@@ -293,15 +293,7 @@ type {{ $s.Name }} struct { {{ range $name, $member := $s.Members }}
 
 {{ end }}
 
-{{ range $s := .Shapes.Exceptions }}
-type {{ $s.Name }} struct {
-  // exception
-}
-{{ end }}
-
-// IMPORTS
-
-var _ time.Time
+var _ time.Time // to avoid errors if the time package isn't referenced
 `))
 
 func main() {
