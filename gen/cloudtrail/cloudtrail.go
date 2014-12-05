@@ -126,11 +126,11 @@ type DeleteTrailResponse struct {
 }
 
 type DescribeTrailsRequest struct {
-	trailNameList []string `json:"trailNameList,omitempty"`
+	TrailNameList []string `json:"trailNameList,omitempty"`
 }
 
 type DescribeTrailsResponse struct {
-	trailList []Trail `json:"trailList,omitempty"`
+	TrailList []Trail `json:"trailList,omitempty"`
 }
 
 type GetTrailStatusRequest struct {

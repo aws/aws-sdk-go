@@ -232,255 +232,255 @@ func (c *Support) ResolveCase(req ResolveCaseRequest) (resp *ResolveCaseResponse
 }
 
 type AddAttachmentsToSetRequest struct {
-	attachmentSetID string       `json:"attachmentSetId,omitempty"`
-	attachments     []Attachment `json:"attachments"`
+	AttachmentSetID string       `json:"attachmentSetId,omitempty"`
+	Attachments     []Attachment `json:"attachments"`
 }
 
 type AddAttachmentsToSetResponse struct {
-	attachmentSetID string `json:"attachmentSetId,omitempty"`
-	expiryTime      string `json:"expiryTime,omitempty"`
+	AttachmentSetID string `json:"attachmentSetId,omitempty"`
+	ExpiryTime      string `json:"expiryTime,omitempty"`
 }
 
 type AddCommunicationToCaseRequest struct {
-	attachmentSetID   string   `json:"attachmentSetId,omitempty"`
-	caseID            string   `json:"caseId,omitempty"`
-	ccEmailAddresses  []string `json:"ccEmailAddresses,omitempty"`
-	communicationBody string   `json:"communicationBody"`
+	AttachmentSetID   string   `json:"attachmentSetId,omitempty"`
+	CaseID            string   `json:"caseId,omitempty"`
+	CcEmailAddresses  []string `json:"ccEmailAddresses,omitempty"`
+	CommunicationBody string   `json:"communicationBody"`
 }
 
 type AddCommunicationToCaseResponse struct {
-	result bool `json:"result,omitempty"`
+	Result bool `json:"result,omitempty"`
 }
 
 type Attachment struct {
-	data     []byte `json:"data,omitempty"`
-	fileName string `json:"fileName,omitempty"`
+	Data     []byte `json:"data,omitempty"`
+	FileName string `json:"fileName,omitempty"`
 }
 
 type AttachmentDetails struct {
-	attachmentID string `json:"attachmentId,omitempty"`
-	fileName     string `json:"fileName,omitempty"`
+	AttachmentID string `json:"attachmentId,omitempty"`
+	FileName     string `json:"fileName,omitempty"`
 }
 
 type CaseDetails struct {
-	caseID               string                   `json:"caseId,omitempty"`
-	categoryCode         string                   `json:"categoryCode,omitempty"`
-	ccEmailAddresses     []string                 `json:"ccEmailAddresses,omitempty"`
-	displayID            string                   `json:"displayId,omitempty"`
-	language             string                   `json:"language,omitempty"`
-	recentCommunications RecentCaseCommunications `json:"recentCommunications,omitempty"`
-	serviceCode          string                   `json:"serviceCode,omitempty"`
-	severityCode         string                   `json:"severityCode,omitempty"`
-	status               string                   `json:"status,omitempty"`
-	subject              string                   `json:"subject,omitempty"`
-	submittedBy          string                   `json:"submittedBy,omitempty"`
-	timeCreated          string                   `json:"timeCreated,omitempty"`
+	CaseID               string                   `json:"caseId,omitempty"`
+	CategoryCode         string                   `json:"categoryCode,omitempty"`
+	CcEmailAddresses     []string                 `json:"ccEmailAddresses,omitempty"`
+	DisplayID            string                   `json:"displayId,omitempty"`
+	Language             string                   `json:"language,omitempty"`
+	RecentCommunications RecentCaseCommunications `json:"recentCommunications,omitempty"`
+	ServiceCode          string                   `json:"serviceCode,omitempty"`
+	SeverityCode         string                   `json:"severityCode,omitempty"`
+	Status               string                   `json:"status,omitempty"`
+	Subject              string                   `json:"subject,omitempty"`
+	SubmittedBy          string                   `json:"submittedBy,omitempty"`
+	TimeCreated          string                   `json:"timeCreated,omitempty"`
 }
 
 type Category struct {
-	code string `json:"code,omitempty"`
-	name string `json:"name,omitempty"`
+	Code string `json:"code,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 
 type Communication struct {
-	attachmentSet []AttachmentDetails `json:"attachmentSet,omitempty"`
-	body          string              `json:"body,omitempty"`
-	caseID        string              `json:"caseId,omitempty"`
-	submittedBy   string              `json:"submittedBy,omitempty"`
-	timeCreated   string              `json:"timeCreated,omitempty"`
+	AttachmentSet []AttachmentDetails `json:"attachmentSet,omitempty"`
+	Body          string              `json:"body,omitempty"`
+	CaseID        string              `json:"caseId,omitempty"`
+	SubmittedBy   string              `json:"submittedBy,omitempty"`
+	TimeCreated   string              `json:"timeCreated,omitempty"`
 }
 
 type CreateCaseRequest struct {
-	attachmentSetID   string   `json:"attachmentSetId,omitempty"`
-	categoryCode      string   `json:"categoryCode,omitempty"`
-	ccEmailAddresses  []string `json:"ccEmailAddresses,omitempty"`
-	communicationBody string   `json:"communicationBody"`
-	issueType         string   `json:"issueType,omitempty"`
-	language          string   `json:"language,omitempty"`
-	serviceCode       string   `json:"serviceCode,omitempty"`
-	severityCode      string   `json:"severityCode,omitempty"`
-	subject           string   `json:"subject"`
+	AttachmentSetID   string   `json:"attachmentSetId,omitempty"`
+	CategoryCode      string   `json:"categoryCode,omitempty"`
+	CcEmailAddresses  []string `json:"ccEmailAddresses,omitempty"`
+	CommunicationBody string   `json:"communicationBody"`
+	IssueType         string   `json:"issueType,omitempty"`
+	Language          string   `json:"language,omitempty"`
+	ServiceCode       string   `json:"serviceCode,omitempty"`
+	SeverityCode      string   `json:"severityCode,omitempty"`
+	Subject           string   `json:"subject"`
 }
 
 type CreateCaseResponse struct {
-	caseID string `json:"caseId,omitempty"`
+	CaseID string `json:"caseId,omitempty"`
 }
 
 type DescribeAttachmentRequest struct {
-	attachmentID string `json:"attachmentId"`
+	AttachmentID string `json:"attachmentId"`
 }
 
 type DescribeAttachmentResponse struct {
-	attachment Attachment `json:"attachment,omitempty"`
+	Attachment Attachment `json:"attachment,omitempty"`
 }
 
 type DescribeCasesRequest struct {
-	afterTime             string   `json:"afterTime,omitempty"`
-	beforeTime            string   `json:"beforeTime,omitempty"`
-	caseIDList            []string `json:"caseIdList,omitempty"`
-	displayID             string   `json:"displayId,omitempty"`
-	includeCommunications bool     `json:"includeCommunications,omitempty"`
-	includeResolvedCases  bool     `json:"includeResolvedCases,omitempty"`
-	language              string   `json:"language,omitempty"`
-	maxResults            int      `json:"maxResults,omitempty"`
-	nextToken             string   `json:"nextToken,omitempty"`
+	AfterTime             string   `json:"afterTime,omitempty"`
+	BeforeTime            string   `json:"beforeTime,omitempty"`
+	CaseIDList            []string `json:"caseIdList,omitempty"`
+	DisplayID             string   `json:"displayId,omitempty"`
+	IncludeCommunications bool     `json:"includeCommunications,omitempty"`
+	IncludeResolvedCases  bool     `json:"includeResolvedCases,omitempty"`
+	Language              string   `json:"language,omitempty"`
+	MaxResults            int      `json:"maxResults,omitempty"`
+	NextToken             string   `json:"nextToken,omitempty"`
 }
 
 type DescribeCasesResponse struct {
-	cases     []CaseDetails `json:"cases,omitempty"`
-	nextToken string        `json:"nextToken,omitempty"`
+	Cases     []CaseDetails `json:"cases,omitempty"`
+	NextToken string        `json:"nextToken,omitempty"`
 }
 
 type DescribeCommunicationsRequest struct {
-	afterTime  string `json:"afterTime,omitempty"`
-	beforeTime string `json:"beforeTime,omitempty"`
-	caseID     string `json:"caseId"`
-	maxResults int    `json:"maxResults,omitempty"`
-	nextToken  string `json:"nextToken,omitempty"`
+	AfterTime  string `json:"afterTime,omitempty"`
+	BeforeTime string `json:"beforeTime,omitempty"`
+	CaseID     string `json:"caseId"`
+	MaxResults int    `json:"maxResults,omitempty"`
+	NextToken  string `json:"nextToken,omitempty"`
 }
 
 type DescribeCommunicationsResponse struct {
-	communications []Communication `json:"communications,omitempty"`
-	nextToken      string          `json:"nextToken,omitempty"`
+	Communications []Communication `json:"communications,omitempty"`
+	NextToken      string          `json:"nextToken,omitempty"`
 }
 
 type DescribeServicesRequest struct {
-	language        string   `json:"language,omitempty"`
-	serviceCodeList []string `json:"serviceCodeList,omitempty"`
+	Language        string   `json:"language,omitempty"`
+	ServiceCodeList []string `json:"serviceCodeList,omitempty"`
 }
 
 type DescribeServicesResponse struct {
-	services []Service `json:"services,omitempty"`
+	Services []Service `json:"services,omitempty"`
 }
 
 type DescribeSeverityLevelsRequest struct {
-	language string `json:"language,omitempty"`
+	Language string `json:"language,omitempty"`
 }
 
 type DescribeSeverityLevelsResponse struct {
-	severityLevels []SeverityLevel `json:"severityLevels,omitempty"`
+	SeverityLevels []SeverityLevel `json:"severityLevels,omitempty"`
 }
 
 type DescribeTrustedAdvisorCheckRefreshStatusesRequest struct {
-	checkIDs []string `json:"checkIds"`
+	CheckIds []string `json:"checkIds"`
 }
 
 type DescribeTrustedAdvisorCheckRefreshStatusesResponse struct {
-	statuses []TrustedAdvisorCheckRefreshStatus `json:"statuses"`
+	Statuses []TrustedAdvisorCheckRefreshStatus `json:"statuses"`
 }
 
 type DescribeTrustedAdvisorCheckResultRequest struct {
-	checkID  string `json:"checkId"`
-	language string `json:"language,omitempty"`
+	CheckID  string `json:"checkId"`
+	Language string `json:"language,omitempty"`
 }
 
 type DescribeTrustedAdvisorCheckResultResponse struct {
-	result TrustedAdvisorCheckResult `json:"result,omitempty"`
+	Result TrustedAdvisorCheckResult `json:"result,omitempty"`
 }
 
 type DescribeTrustedAdvisorCheckSummariesRequest struct {
-	checkIDs []string `json:"checkIds"`
+	CheckIds []string `json:"checkIds"`
 }
 
 type DescribeTrustedAdvisorCheckSummariesResponse struct {
-	summaries []TrustedAdvisorCheckSummary `json:"summaries"`
+	Summaries []TrustedAdvisorCheckSummary `json:"summaries"`
 }
 
 type DescribeTrustedAdvisorChecksRequest struct {
-	language string `json:"language"`
+	Language string `json:"language"`
 }
 
 type DescribeTrustedAdvisorChecksResponse struct {
-	checks []TrustedAdvisorCheckDescription `json:"checks"`
+	Checks []TrustedAdvisorCheckDescription `json:"checks"`
 }
 
 type RecentCaseCommunications struct {
-	communications []Communication `json:"communications,omitempty"`
-	nextToken      string          `json:"nextToken,omitempty"`
+	Communications []Communication `json:"communications,omitempty"`
+	NextToken      string          `json:"nextToken,omitempty"`
 }
 
 type RefreshTrustedAdvisorCheckRequest struct {
-	checkID string `json:"checkId"`
+	CheckID string `json:"checkId"`
 }
 
 type RefreshTrustedAdvisorCheckResponse struct {
-	status TrustedAdvisorCheckRefreshStatus `json:"status"`
+	Status TrustedAdvisorCheckRefreshStatus `json:"status"`
 }
 
 type ResolveCaseRequest struct {
-	caseID string `json:"caseId,omitempty"`
+	CaseID string `json:"caseId,omitempty"`
 }
 
 type ResolveCaseResponse struct {
-	finalCaseStatus   string `json:"finalCaseStatus,omitempty"`
-	initialCaseStatus string `json:"initialCaseStatus,omitempty"`
+	FinalCaseStatus   string `json:"finalCaseStatus,omitempty"`
+	InitialCaseStatus string `json:"initialCaseStatus,omitempty"`
 }
 
 type Service struct {
-	categories []Category `json:"categories,omitempty"`
-	code       string     `json:"code,omitempty"`
-	name       string     `json:"name,omitempty"`
+	Categories []Category `json:"categories,omitempty"`
+	Code       string     `json:"code,omitempty"`
+	Name       string     `json:"name,omitempty"`
 }
 
 type SeverityLevel struct {
-	code string `json:"code,omitempty"`
-	name string `json:"name,omitempty"`
+	Code string `json:"code,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 
 type TrustedAdvisorCategorySpecificSummary struct {
-	costOptimizing TrustedAdvisorCostOptimizingSummary `json:"costOptimizing,omitempty"`
+	CostOptimizing TrustedAdvisorCostOptimizingSummary `json:"costOptimizing,omitempty"`
 }
 
 type TrustedAdvisorCheckDescription struct {
-	category    string   `json:"category"`
-	description string   `json:"description"`
-	id          string   `json:"id"`
-	metadata    []string `json:"metadata"`
-	name        string   `json:"name"`
+	Category    string   `json:"category"`
+	Description string   `json:"description"`
+	ID          string   `json:"id"`
+	Metadata    []string `json:"metadata"`
+	Name        string   `json:"name"`
 }
 
 type TrustedAdvisorCheckRefreshStatus struct {
-	checkID                    string `json:"checkId"`
-	millisUntilNextRefreshable int    `json:"millisUntilNextRefreshable"`
-	status                     string `json:"status"`
+	CheckID                    string `json:"checkId"`
+	MillisUntilNextRefreshable int    `json:"millisUntilNextRefreshable"`
+	Status                     string `json:"status"`
 }
 
 type TrustedAdvisorCheckResult struct {
-	categorySpecificSummary TrustedAdvisorCategorySpecificSummary `json:"categorySpecificSummary"`
-	checkID                 string                                `json:"checkId"`
-	flaggedResources        []TrustedAdvisorResourceDetail        `json:"flaggedResources"`
-	resourcesSummary        TrustedAdvisorResourcesSummary        `json:"resourcesSummary"`
-	status                  string                                `json:"status"`
-	timestamp               string                                `json:"timestamp"`
+	CategorySpecificSummary TrustedAdvisorCategorySpecificSummary `json:"categorySpecificSummary"`
+	CheckID                 string                                `json:"checkId"`
+	FlaggedResources        []TrustedAdvisorResourceDetail        `json:"flaggedResources"`
+	ResourcesSummary        TrustedAdvisorResourcesSummary        `json:"resourcesSummary"`
+	Status                  string                                `json:"status"`
+	Timestamp               string                                `json:"timestamp"`
 }
 
 type TrustedAdvisorCheckSummary struct {
-	categorySpecificSummary TrustedAdvisorCategorySpecificSummary `json:"categorySpecificSummary"`
-	checkID                 string                                `json:"checkId"`
-	hasFlaggedResources     bool                                  `json:"hasFlaggedResources,omitempty"`
-	resourcesSummary        TrustedAdvisorResourcesSummary        `json:"resourcesSummary"`
-	status                  string                                `json:"status"`
-	timestamp               string                                `json:"timestamp"`
+	CategorySpecificSummary TrustedAdvisorCategorySpecificSummary `json:"categorySpecificSummary"`
+	CheckID                 string                                `json:"checkId"`
+	HasFlaggedResources     bool                                  `json:"hasFlaggedResources,omitempty"`
+	ResourcesSummary        TrustedAdvisorResourcesSummary        `json:"resourcesSummary"`
+	Status                  string                                `json:"status"`
+	Timestamp               string                                `json:"timestamp"`
 }
 
 type TrustedAdvisorCostOptimizingSummary struct {
-	estimatedMonthlySavings        float64 `json:"estimatedMonthlySavings"`
-	estimatedPercentMonthlySavings float64 `json:"estimatedPercentMonthlySavings"`
+	EstimatedMonthlySavings        float64 `json:"estimatedMonthlySavings"`
+	EstimatedPercentMonthlySavings float64 `json:"estimatedPercentMonthlySavings"`
 }
 
 type TrustedAdvisorResourceDetail struct {
-	isSuppressed bool     `json:"isSuppressed,omitempty"`
-	metadata     []string `json:"metadata"`
-	region       string   `json:"region"`
-	resourceID   string   `json:"resourceId"`
-	status       string   `json:"status"`
+	IsSuppressed bool     `json:"isSuppressed,omitempty"`
+	Metadata     []string `json:"metadata"`
+	Region       string   `json:"region"`
+	ResourceID   string   `json:"resourceId"`
+	Status       string   `json:"status"`
 }
 
 type TrustedAdvisorResourcesSummary struct {
-	resourcesFlagged    int `json:"resourcesFlagged"`
-	resourcesIgnored    int `json:"resourcesIgnored"`
-	resourcesProcessed  int `json:"resourcesProcessed"`
-	resourcesSuppressed int `json:"resourcesSuppressed"`
+	ResourcesFlagged    int `json:"resourcesFlagged"`
+	ResourcesIgnored    int `json:"resourcesIgnored"`
+	ResourcesProcessed  int `json:"resourcesProcessed"`
+	ResourcesSuppressed int `json:"resourcesSuppressed"`
 }
 
 var _ time.Time // to avoid errors if the time package isn't referenced

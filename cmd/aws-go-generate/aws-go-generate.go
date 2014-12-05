@@ -8,6 +8,7 @@ import (
 	"go/format"
 	"io"
 	"os"
+	"regexp"
 	"sort"
 	"strings"
 	"text/template"
@@ -15,6 +16,10 @@ import (
 	"code.google.com/p/go.net/html"
 	"github.com/aarzilli/sandblast"
 )
+
+// TODO: support client-side validation
+// TODO: support enum values
+// TODO: support exceptions
 
 type Metadata struct {
 	APIVersion          string
@@ -36,7 +41,7 @@ type Operation struct {
 	Name          string
 	Documentation string
 	HTTP          HTTPOptions
-	Input         ShapeRef
+	Input         *ShapeRef
 	Output        *ShapeRef
 }
 
@@ -135,7 +140,7 @@ func (s *Service) Type(name string) string {
 
 	switch shape.Type {
 	case "structure":
-		return shape.Name
+		return s.FixName(shape.Name)
 	case "integer", "long":
 		return "int"
 	case "double":
@@ -154,19 +159,45 @@ func (s *Service) Type(name string) string {
 		return "time.Time"
 	}
 
-	panic(fmt.Errorf("type %s (%s) not found", shape.Name, shape.Type))
+	panic(fmt.Errorf("type %q (%q) not found", name, shape.Type))
 }
 
-var replacements = map[string]string{
-	"Id":  "ID",
-	"Arn": "ARN",
+var replacements = map[*regexp.Regexp]string{
+	regexp.MustCompile(`Id$`):       "ID",
+	regexp.MustCompile(`Id([A-Z])`): "ID$1",
+	regexp.MustCompile(`Arn`):       "ARN",
+	regexp.MustCompile(`Uri`):       "URI",
+	regexp.MustCompile(`Url`):       "URL",
+	regexp.MustCompile(`Ssh`):       "SSH",
+	regexp.MustCompile(`Json`):      "JSON",
+	regexp.MustCompile(`Ip`):        "IP",
+	regexp.MustCompile(`Dns`):       "DNS",
+	regexp.MustCompile(`Cpu`):       "CPU",
 }
 
 func (s *Service) FixName(name string) string {
-	for from, to := range replacements {
-		name = strings.Replace(name, from, to, -1)
+	// make sure the symbol is exportable
+	name = strings.ToUpper(name[0:1]) + name[1:]
+
+	// fix common AWS<->Go bugaboos
+	for regexp, repl := range replacements {
+		name = regexp.ReplaceAllString(name, repl)
 	}
 	return name
+}
+
+func (s *Service) Params(op Operation) string {
+	if op.Input == nil {
+		return ""
+	}
+	return "req " + s.Type(op.Input.Shape)
+}
+
+func (s *Service) Returns(op Operation) string {
+	if op.Output == nil {
+		return "err error"
+	}
+	return "resp *" + s.Type(op.Output.Shape) + ", err error"
 }
 
 func (s *Service) Tags(shape Shape, name string, ref ShapeRef) string {
@@ -186,7 +217,7 @@ func (s *Service) Tags(shape Shape, name string, ref ShapeRef) string {
 	return fmt.Sprintf("`json:%q`", tag)
 }
 
-func (*Service) Doc(name, doco string) string {
+func (s *Service) Doc(name, doco string) string {
 	node, err := html.Parse(strings.NewReader(doco))
 	if err != nil {
 		return ""
@@ -199,11 +230,11 @@ func (*Service) Doc(name, doco string) string {
 
 	v = strings.TrimSpace(v)
 	if v == "" {
-		return "// " + name + " is undocumented.\n"
+		return "// " + s.FixName(name) + " is undocumented.\n"
 	}
 
 	if name != "" {
-		v = name + " " + strings.ToLower(v[0:1]) + v[1:]
+		v = s.FixName(name) + " " + strings.ToLower(v[0:1]) + v[1:]
 	}
 
 	out := bytes.NewBuffer(nil)
@@ -278,16 +309,16 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 }
 
 {{ range $s := .Operations.Sorted }}
-{{ $.Doc $s.Name $s.Documentation }} func (c *{{ $.Name }}) {{$s.Name}}(req {{ $.Type $s.Input.Shape }}) ({{if $s.Output }}resp *{{ $.Type $s.Output.Shape  }},{{end}} err error)  {
+{{ $.Doc $s.Name $s.Documentation }} func (c *{{ $.Name }}) {{ $.FixName $s.Name }}({{ $.Params $s }}) ({{ $.Returns $s }})  {
   {{ if $s.Output }} resp = &{{ $.Type $s.Output.Shape }}{} {{ else }} // NRE {{ end }}
-  err = c.client.Do("{{ $s.Name }}", "{{ $s.HTTP.Method }}", "{{ $s.HTTP.RequestURI }}", req, {{ if $s.Output }} resp {{ else }} nil {{ end }})
+  err = c.client.Do("{{ $s.Name }}", "{{ $s.HTTP.Method }}", "{{ $s.HTTP.RequestURI }}", {{ if $s.Input }} req {{ else }} nil {{ end }}, {{ if $s.Output }} resp {{ else }} nil {{ end }})
   return
 }
 {{ end }}
 
 {{ range $s := .Shapes.Structures }}
 
-type {{ $s.Name }} struct { {{ range $name, $member := $s.Members }}
+type {{ $.FixName $s.Name }} struct { {{ range $name, $member := $s.Members }}
     {{ $.FixName $name }} {{ $.Type $member.Shape }} {{ $.Tags $s $name $member }} {{ end }}
 }
 
