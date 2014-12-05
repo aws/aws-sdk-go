@@ -11,7 +11,7 @@ import (
 
 // CodeDeploy is a client for AWS CodeDeploy.
 type CodeDeploy struct {
-	client *aws.JSONClient
+	client aws.Client
 }
 
 // New returns a new CodeDeploy client.

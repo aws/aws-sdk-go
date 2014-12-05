@@ -11,7 +11,7 @@ import (
 
 // EMR is a client for Amazon Elastic MapReduce.
 type EMR struct {
-	client *aws.JSONClient
+	client aws.Client
 }
 
 // New returns a new EMR client.

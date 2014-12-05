@@ -11,7 +11,7 @@ import (
 
 // Support is a client for AWS Support.
 type Support struct {
-	client *aws.JSONClient
+	client aws.Client
 }
 
 // New returns a new Support client.

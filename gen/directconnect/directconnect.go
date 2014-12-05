@@ -11,7 +11,7 @@ import (
 
 // DirectConnect is a client for AWS Direct Connect.
 type DirectConnect struct {
-	client *aws.JSONClient
+	client aws.Client
 }
 
 // New returns a new DirectConnect client.

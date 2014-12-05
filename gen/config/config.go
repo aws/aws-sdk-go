@@ -11,7 +11,7 @@ import (
 
 // Config is a client for AWS Config.
 type Config struct {
-	client *aws.JSONClient
+	client aws.Client
 }
 
 // New returns a new Config client.

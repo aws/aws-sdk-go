@@ -11,7 +11,7 @@ import (
 
 // Kinesis is a client for Amazon Kinesis.
 type Kinesis struct {
-	client *aws.JSONClient
+	client aws.Client
 }
 
 // New returns a new Kinesis client.

@@ -11,7 +11,7 @@ import (
 
 // Route53Domains is a client for Amazon Route 53 Domains.
 type Route53Domains struct {
-	client *aws.JSONClient
+	client aws.Client
 }
 
 // New returns a new Route53Domains client.

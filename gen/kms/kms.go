@@ -11,7 +11,7 @@ import (
 
 // KMS is a client for AWS Key Management Service.
 type KMS struct {
-	client *aws.JSONClient
+	client aws.Client
 }
 
 // New returns a new KMS client.

@@ -11,7 +11,7 @@ import (
 
 // OpsWorks is a client for AWS OpsWorks.
 type OpsWorks struct {
-	client *aws.JSONClient
+	client aws.Client
 }
 
 // New returns a new OpsWorks client.

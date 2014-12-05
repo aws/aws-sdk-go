@@ -285,7 +285,7 @@ import (
 
 // {{ .Name }} is a client for {{ .FullName }}.
 type {{ .Name }} struct {
-   client *aws.JSONClient
+  client aws.Client
 }
 
 // New returns a new {{ .Name }} client.
