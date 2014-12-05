@@ -660,34 +660,4 @@ type WriteRequest struct {
 	PutRequest    PutRequest    `json:"PutRequest,omitempty"`
 }
 
-type ConditionalCheckFailedException struct {
-	// exception
-}
-
-type InternalServerError struct {
-	// exception
-}
-
-type ItemCollectionSizeLimitExceededException struct {
-	// exception
-}
-
-type LimitExceededException struct {
-	// exception
-}
-
-type ProvisionedThroughputExceededException struct {
-	// exception
-}
-
-type ResourceInUseException struct {
-	// exception
-}
-
-type ResourceNotFoundException struct {
-	// exception
-}
-
-// IMPORTS
-
-var _ time.Time
+var _ time.Time // to avoid errors if the time package isn't referenced

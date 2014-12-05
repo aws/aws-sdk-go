@@ -483,42 +483,4 @@ type TrustedAdvisorResourcesSummary struct {
 	resourcesSuppressed int `json:"resourcesSuppressed"`
 }
 
-type AttachmentIdNotFound struct {
-	// exception
-}
-
-type AttachmentLimitExceeded struct {
-	// exception
-}
-
-type AttachmentSetExpired struct {
-	// exception
-}
-
-type AttachmentSetIdNotFound struct {
-	// exception
-}
-
-type AttachmentSetSizeLimitExceeded struct {
-	// exception
-}
-
-type CaseCreationLimitExceeded struct {
-	// exception
-}
-
-type CaseIdNotFound struct {
-	// exception
-}
-
-type DescribeAttachmentLimitExceeded struct {
-	// exception
-}
-
-type InternalServerError struct {
-	// exception
-}
-
-// IMPORTS
-
-var _ time.Time
+var _ time.Time // to avoid errors if the time package isn't referenced
