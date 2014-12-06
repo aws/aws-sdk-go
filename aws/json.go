@@ -1,14 +1,13 @@
 package aws
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"io/ioutil"
 	"net/http"
-	"net/url"
-	"time"
 
-	"github.com/dynport/gocloud/aws"
+	"github.com/crowdmob/goamz/aws"
 )
 
 type JSONClient struct {
@@ -24,33 +23,23 @@ type JSONClient struct {
 }
 
 func (c *JSONClient) Do(op, method, uri string, req, resp interface{}) error {
-	u, err := url.Parse(c.Endpoint + uri)
-	if err != nil {
-		return err
-	}
-
 	b, err := json.Marshal(req)
 	if err != nil {
 		return err
 	}
 
-	r := aws.RequestV4{
-		Key:     c.Key,
-		Secret:  c.Secret,
-		Method:  method,
-		URL:     u,
-		Payload: b,
-		Region:  c.Region,
-		Service: c.Prefix,
-		Time:    time.Now(),
-	}
-	r.SetHeader("X-Amz-Target", c.TargetPrefix+"."+op)
-	r.SetHeader("Content-Type", "application/x-amz-json-"+c.JSONVersion)
-
-	httpReq, err := r.Request()
+	httpReq, err := http.NewRequest(method, c.Endpoint+uri, bytes.NewReader(b))
 	if err != nil {
 		return err
 	}
+	httpReq.Header.Set("X-Amz-Target", c.TargetPrefix+"."+op)
+	httpReq.Header.Set("Content-Type", "application/x-amz-json-"+c.JSONVersion)
+
+	signer := aws.NewV4Signer(aws.Auth{
+		AccessKey: c.Key,
+		SecretKey: c.Secret,
+	}, c.Prefix, aws.Region{Name: c.Region})
+	signer.Sign(httpReq)
 
 	httpResp, err := c.Client.Do(httpReq)
 	if err != nil {
