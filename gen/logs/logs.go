@@ -2,6 +2,7 @@
 package logs
 
 import (
+	"encoding/xml"
 	"fmt"
 	"net/http"
 	"time"
@@ -379,3 +380,4 @@ type TestMetricFilterResponse struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+var _ xml.Name

@@ -2,6 +2,7 @@
 package kinesis
 
 import (
+	"encoding/xml"
 	"fmt"
 	"net/http"
 	"time"
@@ -584,3 +585,4 @@ type Tag struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+var _ xml.Name

@@ -2,6 +2,7 @@
 package cogitoidentity
 
 import (
+	"encoding/xml"
 	"fmt"
 	"net/http"
 	"time"
@@ -323,3 +324,4 @@ type UnlinkIdentityInput struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+var _ xml.Name

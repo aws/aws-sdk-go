@@ -2,6 +2,7 @@
 package storagegateway
 
 import (
+	"encoding/xml"
 	"fmt"
 	"net/http"
 	"time"
@@ -1318,3 +1319,4 @@ type VolumeiSCSIAttributes struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+var _ xml.Name
