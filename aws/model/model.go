@@ -94,15 +94,15 @@ type Shape struct {
 	Wrapper       bool
 }
 
-func (s Shape) Key() *Shape {
+func (s *Shape) Key() *Shape {
 	return s.KeyRef.Shape()
 }
 
-func (s Shape) Member() *Shape {
+func (s *Shape) Member() *Shape {
 	return s.MemberRef.Shape()
 }
 
-func (s Shape) Members() map[string]Member {
+func (s *Shape) Members() map[string]Member {
 	required := func(v string) bool {
 		for _, s := range s.Required {
 			if s == v {
@@ -123,11 +123,11 @@ func (s Shape) Members() map[string]Member {
 	return members
 }
 
-func (s Shape) Value() *Shape {
+func (s *Shape) Value() *Shape {
 	return s.ValueRef.Shape()
 }
 
-func (s Shape) Type() string {
+func (s *Shape) Type() string {
 	switch s.ShapeType {
 	case "structure":
 		return exportable(s.Name)
