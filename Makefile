@@ -1,6 +1,7 @@
 generate:
 	rm -rfv ./gen/**/*.go
 	go install ./cmd/...
+	aws-go-generate CloudFormation apis/cloudformation/2010-05-15.api.json > gen/cloudformation/cloudformation.go
 	aws-go-generate CloudTrail apis/cloudtrail/2013-11-01.api.json > gen/cloudtrail/cloudtrail.go
 	aws-go-generate CogitoIdentity apis/cognito-identity/2014-06-30.api.json > gen/cognito/identity/identity.go
 	aws-go-generate CodeDeploy apis/codedeploy/2014-10-06.api.json > gen/codedeploy/codedeploy.go
