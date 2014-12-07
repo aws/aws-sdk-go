@@ -27,8 +27,16 @@ type Operation struct {
 	Name          string
 	Documentation string
 	HTTP          HTTPOptions
-	Input         *ShapeRef
-	Output        *ShapeRef
+	InputRef      *ShapeRef `json:"Input"`
+	OutputRef     *ShapeRef `json:"Output"`
+}
+
+func (o Operation) Input() *Shape {
+	return o.InputRef.Shape()
+}
+
+func (o Operation) Output() *Shape {
+	return o.OutputRef.Shape()
 }
 
 type Error struct {
@@ -38,34 +46,40 @@ type Error struct {
 }
 
 type ShapeRef struct {
-	Shape         string
+	ShapeName     string `json:"Shape"`
 	Documentation string
 	Wrapper       bool
 	ResultWrapper string
 }
 
-func (ref ShapeRef) JSONTags(name string, required []string) string {
-	omitempty := true
-	for _, r := range required {
-		if name == r {
-			omitempty = false
-			break
-		}
+func (ref *ShapeRef) Shape() *Shape {
+	if ref == nil {
+		return nil
 	}
+	return s.Shapes[ref.ShapeName]
+}
 
-	if omitempty {
-		return fmt.Sprintf("`json:\"%s,omitempty\"`", name)
+type Member struct {
+	Name     string
+	Shape    *Shape
+	Required bool
+}
+
+func (m Member) JSONTag() string {
+	if !m.Required {
+		return fmt.Sprintf("`json:\"%s,omitempty\"`", m.Name)
 	}
-	return fmt.Sprintf("`json:\"%s\"`", name)
+	return fmt.Sprintf("`json:\"%s\"`", m.Name)
 }
 
 type Shape struct {
-	Type          string
+	Name          string
+	ShapeType     string `json:"Type"`
 	Required      []string
-	Members       map[string]ShapeRef
-	Member        *ShapeRef
-	Key           *ShapeRef
-	Value         *ShapeRef
+	MemberRefs    map[string]ShapeRef `json:"Members"`
+	MemberRef     *ShapeRef           `json:"Member"`
+	KeyRef        *ShapeRef           `json:"Key"`
+	ValueRef      *ShapeRef           `json:"Value"`
 	Error         Error
 	Exception     bool
 	Documentation string
@@ -76,31 +90,43 @@ type Shape struct {
 	Wrapper       bool
 }
 
-type Service struct {
-	Name          string
-	FullName      string
-	PackageName   string
-	Metadata      Metadata
-	Documentation string
-	Operations    map[string]Operation
-	Shapes        map[string]Shape
+func (s Shape) Key() *Shape {
+	return s.KeyRef.Shape()
 }
 
-func Parse(name string, r io.Reader) (*Service, error) {
-	var service Service
-	if err := json.NewDecoder(r).Decode(&service); err != nil {
-		return nil, err
+func (s Shape) Member() *Shape {
+	return s.MemberRef.Shape()
+}
+
+func (s Shape) Members() map[string]Member {
+	required := func(v string) bool {
+		for _, s := range s.Required {
+			if s == v {
+				return true
+			}
+		}
+		return false
 	}
-	service.init(name)
-	return &service, nil
+
+	members := map[string]Member{}
+	for name, ref := range s.MemberRefs {
+		members[name] = Member{
+			Name:     name,
+			Shape:    ref.Shape(),
+			Required: required(name),
+		}
+	}
+	return members
 }
 
-func (s *Service) Type(name string) string {
-	shape := s.Shapes[name]
+func (s Shape) Value() *Shape {
+	return s.ValueRef.Shape()
+}
 
-	switch shape.Type {
+func (s Shape) Type() string {
+	switch s.ShapeType {
 	case "structure":
-		return exportable(name)
+		return exportable(s.Name)
 	case "integer", "long":
 		return "int"
 	case "double":
@@ -108,9 +134,9 @@ func (s *Service) Type(name string) string {
 	case "string":
 		return "string"
 	case "map":
-		return "map[" + s.Type(shape.Key.Shape) + "]" + s.Type(shape.Value.Shape)
+		return "map[" + s.Key().Type() + "]" + s.Value().Type()
 	case "list":
-		return "[]" + s.Type(shape.Member.Shape)
+		return "[]" + s.Member().Type()
 	case "boolean":
 		return "bool"
 	case "blob":
@@ -119,11 +145,34 @@ func (s *Service) Type(name string) string {
 		return "time.Time"
 	}
 
-	panic(fmt.Errorf("type %q (%q) not found", name, shape.Type))
+	panic(fmt.Errorf("type %q (%q) not found", s.Name, s.ShapeType))
 }
 
-func (s *Service) init(name string) {
+type Service struct {
+	Name          string
+	FullName      string
+	PackageName   string
+	Metadata      Metadata
+	Documentation string
+	Operations    map[string]Operation
+	Shapes        map[string]*Shape
+}
+
+var s Service
+
+func Load(name string, r io.Reader) error {
+	s = Service{}
+	if err := json.NewDecoder(r).Decode(&s); err != nil {
+		return err
+	}
+
+	for name, shape := range s.Shapes {
+		shape.Name = name
+	}
+
 	s.FullName = s.Metadata.ServiceFullName
 	s.PackageName = strings.ToLower(name)
 	s.Name = name
+
+	return nil
 }

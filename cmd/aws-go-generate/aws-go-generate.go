@@ -13,12 +13,11 @@ func main() {
 	}
 	defer f.Close()
 
-	service, err := model.Parse(os.Args[1], f)
-	if err != nil {
+	if err := model.Load(os.Args[1], f); err != nil {
 		panic(err)
 	}
 
-	if err := model.Generate(service, os.Stdout); err != nil {
+	if err := model.Generate(os.Stdout); err != nil {
 		panic(err)
 	}
 }

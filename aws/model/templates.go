@@ -16,10 +16,9 @@ import (
 // TODO: support rest-xml clients
 // TODO: support ec2 clients
 
-func Generate(s *Service, w io.Writer) error {
+func Generate(w io.Writer) error {
 	root := template.New("root").Funcs(template.FuncMap{
 		"godoc":      godoc,
-		"type":       s.Type,
 		"exportable": exportable,
 	})
 	root, err := root.Parse(rootTmpl)
@@ -68,20 +67,20 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 }
 
 {{ range $name, $op := .Operations }}
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ exportable $op.Input.Shape }}{{ end }}) ({{ if $op.Output }}resp *{{ exportable $op.Output.Shape }},{{ end }} err error) {
-  {{ if $op.Output }}resp = &{{ exportable $op.Output.Shape }}{}{{ else }}// NRE{{ end }}
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ exportable $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp *{{ exportable $op.Output.Type }},{{ end }} err error) {
+  {{ if $op.Output }}resp = &{{ $op.Output.Type }}{}{{ else }}// NRE{{ end }}
   err = c.client.Do("{{ $name }}", "{{ $op.HTTP.Method }}", "{{ $op.HTTP.RequestURI }}", {{ if $op.Input }} req {{ else }} nil {{ end }}, {{ if $op.Output }} resp {{ else }} nil {{ end }})
   return
 }
 {{ end }}
 
 {{ range $name, $s := .Shapes }}
-{{ if eq $s.Type "structure" }}
+{{ if eq $s.ShapeType "structure" }}
 {{ if not $s.Exception }}
 // {{ exportable $name }} is undocumented.
 type {{ exportable $name }} struct {
 {{ range $name, $m := $s.Members }}
-{{ exportable $name }} {{ type $m.Shape }} {{ $m.JSONTags $name $s.Required }}  {{ end }}
+{{ exportable $name }} {{ $m.Shape.Type }} {{ $m.JSONTag }}  {{ end }}
 }
 {{ end }}
 {{ end }}
