@@ -43,6 +43,60 @@ func Generate(w io.Writer) error {
 
 const (
 	awsTmpl = `
+
+#################### QUERY CLIENT
+
+{{ define "query" }}
+{{ template "header" $ }}
+
+// New returns a new {{ .Name }} client.
+func New(key, secret, region string, client *http.Client) *{{ .Name }} {
+  if client == nil {
+     client = http.DefaultClient
+  }
+
+  return &{{ .Name }}{
+    client: &aws.QueryClient{
+      Client: client,
+      Region: region,
+      Endpoint: fmt.Sprintf("https://{{ .Metadata.EndpointPrefix }}.%s.amazonaws.com", region),
+      Prefix: "{{ .Metadata.EndpointPrefix }}",
+      Key: key,
+      Secret: secret,
+      APIVersion: "{{ .Metadata.APIVersion }}",
+    },
+  }
+}
+
+{{ range $name, $op := .Operations }}
+
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ exportable $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp *{{ exportable $op.Output.Type }},{{ end }} err error) {
+  {{ if $op.Output }}resp = &{{ $op.Output.Type }}{}{{ else }}// NRE{{ end }}
+  err = c.client.Do("{{ $name }}", "{{ $op.HTTP.Method }}", "{{ $op.HTTP.RequestURI }}", {{ if $op.Input }} req {{ else }} nil {{ end }}, {{ if $op.Output }} resp {{ else }} nil {{ end }})
+  return
+}
+
+{{ end }}
+
+{{ range $name, $s := .Shapes }}
+{{ if eq $s.ShapeType "structure" }}
+{{ if not $s.Exception }}
+
+// {{ exportable $name }} is undocumented.
+type {{ exportable $name }} struct {
+{{ if $s.Message }}XMLName xml.Name {{ $s.MessageTag }} {{ end }}{{ range $name, $m := $s.Members }}
+{{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.ResultWrapper }}  {{ end }}
+}
+
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{ template "footer" }}
+{{ end }}
+
+#################### JSON CLIENT
+
 {{ define "json" }}
 {{ template "header" $ }}
 
@@ -93,11 +147,14 @@ type {{ exportable $name }} struct {
 {{ template "footer" }}
 {{ end }}
 
+#################### COMMON TEMPLATES
+
 {{ define "header" }}
 // Package {{ .PackageName }} provides a client for {{ .FullName }}.
 package {{ .PackageName }}
 
 import (
+  "encoding/xml"
   "fmt"
   "net/http"
   "time"
@@ -114,6 +171,7 @@ type {{ .Name }} struct {
 {{ define "footer" }}
 // avoid errors if the packages aren't referenced
 var _ time.Time
+var _ xml.Name
 {{ end }}
 `
 )

@@ -72,6 +72,22 @@ func (m Member) JSONTag() string {
 	return fmt.Sprintf("`json:\"%s\"`", m.Name)
 }
 
+func (m Member) XMLTag(wrapper string) string {
+	var path []string
+	if wrapper != "" {
+		path = append(path, wrapper)
+	}
+
+	path = append(path, m.Name)
+
+	if m.Shape.ShapeType == "list" {
+		// I'm assuming the plural ends with an S otherwise we're hosed
+		path = append(path, m.Name[:len(m.Name)-1])
+	}
+
+	return fmt.Sprintf("`xml:\"%s\"`", strings.Join(path, ">"))
+}
+
 func (m Member) Type() string {
 	return m.Shape.Type()
 }
@@ -92,6 +108,15 @@ type Shape struct {
 	Pattern       string
 	Sensitive     bool
 	Wrapper       bool
+}
+
+func (s *Shape) Message() bool {
+	return strings.HasSuffix(s.Name, "Message") && s.ResultWrapper() != ""
+}
+
+func (s *Shape) MessageTag() string {
+	tag := strings.TrimSuffix(s.ResultWrapper(), "Result") + "Response"
+	return fmt.Sprintf("`xml:\"%s\"`", tag)
 }
 
 func (s *Shape) Key() *Shape {
@@ -121,6 +146,15 @@ func (s *Shape) Members() map[string]Member {
 		}
 	}
 	return members
+}
+
+func (s *Shape) ResultWrapper() string {
+	for _, op := range service.Operations {
+		if op.OutputRef != nil && op.OutputRef.ShapeName == s.Name {
+			return op.OutputRef.ResultWrapper
+		}
+	}
+	return ""
 }
 
 func (s *Shape) Value() *Shape {
