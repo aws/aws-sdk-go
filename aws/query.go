@@ -44,9 +44,9 @@ func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
 	}, c.Prefix, aws.Region{Name: c.Region})
 	signer.Sign(httpReq)
 
-	httpResp, e := c.Client.Do(httpReq)
-	if e != nil {
-		return e
+	httpResp, err := c.Client.Do(httpReq)
+	if err != nil {
+		return err
 	}
 	defer httpResp.Body.Close()
 
