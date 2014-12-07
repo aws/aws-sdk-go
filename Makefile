@@ -13,6 +13,7 @@ generate:
 	aws-go-generate KMS apis/kms/2014-11-01.api.json > gen/kms/kms.go
 	aws-go-generate Logs apis/logs/2014-03-28.api.json > gen/logs/logs.go
 	aws-go-generate OpsWorks apis/opsworks/2013-02-18.api.json > gen/opsworks/opsworks.go
+	aws-go-generate RDS apis/rds/2014-09-01.api.json > gen/rds/rds.go
 	aws-go-generate Route53Domains apis/route53domains/2014-05-15.api.json > gen/route53domains/route53domains.go
 	aws-go-generate StorageGateway apis/storagegateway/2013-06-30.api.json > gen/storagegateway/storagegateway.go
 	aws-go-generate Support apis/support/2013-04-15.api.json > gen/support/support.go
