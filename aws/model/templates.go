@@ -70,8 +70,8 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ exportable $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp *{{ exportable $op.Output.Type }},{{ end }} err error) {
-  {{ if $op.Output }}resp = &{{ $op.Output.Type }}{}{{ else }}// NRE{{ end }}
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.InputRef }}req {{ exportable $op.InputRef.WrappedType }}{{ end }}) ({{ if $op.OutputRef }}resp *{{ exportable $op.OutputRef.WrappedType }},{{ end }} err error) {
+  {{ if $op.Output }}resp = &{{ $op.OutputRef.WrappedType }}{}{{ else }}// NRE{{ end }}
   err = c.client.Do("{{ $name }}", "{{ $op.HTTP.Method }}", "{{ $op.HTTP.RequestURI }}", {{ if $op.Input }} req {{ else }} nil {{ end }}, {{ if $op.Output }} resp {{ else }} nil {{ end }})
   return
 }
@@ -84,12 +84,23 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 
 // {{ exportable $name }} is undocumented.
 type {{ exportable $name }} struct {
-{{ if $s.Message }}XMLName xml.Name {{ $s.MessageTag }} {{ end }}{{ range $name, $m := $s.Members }}
+{{ range $name, $m := $s.Members }}
 {{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.ResultWrapper }}  {{ end }}
 }
 
 {{ end }}
 {{ end }}
+{{ end }}
+
+{{ range $name, $s := .Wrappers }}
+
+// {{ exportable $name }} is a wrapper for {{ $s.Name }}.
+type {{ exportable $name }} struct {
+    XMLName xml.Name {{ $s.MessageTag }}
+{{ range $name, $m := $s.Members }}
+{{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.ResultWrapper }}  {{ end }}
+}
+
 {{ end }}
 
 {{ template "footer" }}

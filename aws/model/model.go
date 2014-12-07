@@ -52,6 +52,13 @@ type ShapeRef struct {
 	ResultWrapper string
 }
 
+func (ref *ShapeRef) WrappedType() string {
+	if ref.ResultWrapper != "" {
+		return ref.ResultWrapper
+	}
+	return ref.Shape().Type()
+}
+
 func (ref *ShapeRef) Shape() *Shape {
 	if ref == nil {
 		return nil
@@ -193,6 +200,30 @@ type Service struct {
 	Documentation string
 	Operations    map[string]Operation
 	Shapes        map[string]*Shape
+}
+
+func (s Service) Wrappers() map[string]*Shape {
+	wrappers := map[string]*Shape{}
+
+	// collect all wrapper types
+	for _, op := range s.Operations {
+		if op.InputRef != nil && op.InputRef.ResultWrapper != "" {
+			wrappers[op.InputRef.ResultWrapper] = op.Input()
+		}
+
+		if op.OutputRef != nil && op.OutputRef.ResultWrapper != "" {
+			wrappers[op.OutputRef.ResultWrapper] = op.Output()
+		}
+	}
+
+	// remove all existing types?
+	for name := range wrappers {
+		if _, ok := s.Shapes[name]; ok {
+			delete(wrappers, name)
+		}
+	}
+
+	return wrappers
 }
 
 var service Service
