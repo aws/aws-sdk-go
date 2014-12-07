@@ -251,23 +251,23 @@ func (c *RDS) DeleteOptionGroup(req DeleteOptionGroupMessage) (err error) {
 }
 
 // DescribeDBEngineVersions is undocumented.
-func (c *RDS) DescribeDBEngineVersions(req DescribeDBEngineVersionsMessage) (resp *DBEngineVersionMessage, err error) {
-	resp = &DBEngineVersionMessage{}
+func (c *RDS) DescribeDBEngineVersions(req DescribeDBEngineVersionsMessage) (resp *DescribeDBEngineVersionsResult, err error) {
+	resp = &DescribeDBEngineVersionsResult{}
 	err = c.client.Do("DescribeDBEngineVersions", "POST", "/", req, resp)
 	return
 }
 
 // DescribeDBInstances returns information about provisioned RDS instances.
 // This API supports pagination.
-func (c *RDS) DescribeDBInstances(req DescribeDBInstancesMessage) (resp *DBInstanceMessage, err error) {
-	resp = &DBInstanceMessage{}
+func (c *RDS) DescribeDBInstances(req DescribeDBInstancesMessage) (resp *DescribeDBInstancesResult, err error) {
+	resp = &DescribeDBInstancesResult{}
 	err = c.client.Do("DescribeDBInstances", "POST", "/", req, resp)
 	return
 }
 
 // DescribeDBLogFiles returns a list of DB log files for the DB instance.
-func (c *RDS) DescribeDBLogFiles(req DescribeDBLogFilesMessage) (resp *DescribeDBLogFilesResponse, err error) {
-	resp = &DescribeDBLogFilesResponse{}
+func (c *RDS) DescribeDBLogFiles(req DescribeDBLogFilesMessage) (resp *DescribeDBLogFilesResult, err error) {
+	resp = &DescribeDBLogFilesResult{}
 	err = c.client.Do("DescribeDBLogFiles", "POST", "/", req, resp)
 	return
 }
@@ -275,16 +275,16 @@ func (c *RDS) DescribeDBLogFiles(req DescribeDBLogFilesMessage) (resp *DescribeD
 // DescribeDBParameterGroups returns a list of DBParameterGroup
 // descriptions. If a DBParameterGroupName is specified, the list will
 // contain only the description of the specified DB parameter group.
-func (c *RDS) DescribeDBParameterGroups(req DescribeDBParameterGroupsMessage) (resp *DBParameterGroupsMessage, err error) {
-	resp = &DBParameterGroupsMessage{}
+func (c *RDS) DescribeDBParameterGroups(req DescribeDBParameterGroupsMessage) (resp *DescribeDBParameterGroupsResult, err error) {
+	resp = &DescribeDBParameterGroupsResult{}
 	err = c.client.Do("DescribeDBParameterGroups", "POST", "/", req, resp)
 	return
 }
 
 // DescribeDBParameters returns the detailed parameter list for a
 // particular DB parameter group.
-func (c *RDS) DescribeDBParameters(req DescribeDBParametersMessage) (resp *DBParameterGroupDetails, err error) {
-	resp = &DBParameterGroupDetails{}
+func (c *RDS) DescribeDBParameters(req DescribeDBParametersMessage) (resp *DescribeDBParametersResult, err error) {
+	resp = &DescribeDBParametersResult{}
 	err = c.client.Do("DescribeDBParameters", "POST", "/", req, resp)
 	return
 }
@@ -292,16 +292,16 @@ func (c *RDS) DescribeDBParameters(req DescribeDBParametersMessage) (resp *DBPar
 // DescribeDBSecurityGroups returns a list of DBSecurityGroup descriptions.
 // If a DBSecurityGroupName is specified, the list will contain only the
 // descriptions of the specified DB security group.
-func (c *RDS) DescribeDBSecurityGroups(req DescribeDBSecurityGroupsMessage) (resp *DBSecurityGroupMessage, err error) {
-	resp = &DBSecurityGroupMessage{}
+func (c *RDS) DescribeDBSecurityGroups(req DescribeDBSecurityGroupsMessage) (resp *DescribeDBSecurityGroupsResult, err error) {
+	resp = &DescribeDBSecurityGroupsResult{}
 	err = c.client.Do("DescribeDBSecurityGroups", "POST", "/", req, resp)
 	return
 }
 
 // DescribeDBSnapshots returns information about DB snapshots. This API
 // supports pagination.
-func (c *RDS) DescribeDBSnapshots(req DescribeDBSnapshotsMessage) (resp *DBSnapshotMessage, err error) {
-	resp = &DBSnapshotMessage{}
+func (c *RDS) DescribeDBSnapshots(req DescribeDBSnapshotsMessage) (resp *DescribeDBSnapshotsResult, err error) {
+	resp = &DescribeDBSnapshotsResult{}
 	err = c.client.Do("DescribeDBSnapshots", "POST", "/", req, resp)
 	return
 }
@@ -310,8 +310,8 @@ func (c *RDS) DescribeDBSnapshots(req DescribeDBSnapshotsMessage) (resp *DBSnaps
 // a DBSubnetGroupName is specified, the list will contain only the
 // descriptions of the specified DBSubnetGroup. For an overview of ranges,
 // go to the Wikipedia Tutorial .
-func (c *RDS) DescribeDBSubnetGroups(req DescribeDBSubnetGroupsMessage) (resp *DBSubnetGroupMessage, err error) {
-	resp = &DBSubnetGroupMessage{}
+func (c *RDS) DescribeDBSubnetGroups(req DescribeDBSubnetGroupsMessage) (resp *DescribeDBSubnetGroupsResult, err error) {
+	resp = &DescribeDBSubnetGroupsResult{}
 	err = c.client.Do("DescribeDBSubnetGroups", "POST", "/", req, resp)
 	return
 }
@@ -328,8 +328,8 @@ func (c *RDS) DescribeEngineDefaultParameters(req DescribeEngineDefaultParameter
 // source types, or, if specified, for a specified source type. You can see
 // a list of the event categories and source types in the Events topic in
 // the Amazon RDS User Guide.
-func (c *RDS) DescribeEventCategories(req DescribeEventCategoriesMessage) (resp *EventCategoriesMessage, err error) {
-	resp = &EventCategoriesMessage{}
+func (c *RDS) DescribeEventCategories(req DescribeEventCategoriesMessage) (resp *DescribeEventCategoriesResult, err error) {
+	resp = &DescribeEventCategoriesResult{}
 	err = c.client.Do("DescribeEventCategories", "POST", "/", req, resp)
 	return
 }
@@ -339,8 +339,8 @@ func (c *RDS) DescribeEventCategories(req DescribeEventCategoriesMessage) (resp 
 // SubscriptionName, SNSTopicARN, CustomerID, SourceType, SourceID,
 // CreationTime, and Status. If you specify a SubscriptionName, lists the
 // description for that subscription.
-func (c *RDS) DescribeEventSubscriptions(req DescribeEventSubscriptionsMessage) (resp *EventSubscriptionsMessage, err error) {
-	resp = &EventSubscriptionsMessage{}
+func (c *RDS) DescribeEventSubscriptions(req DescribeEventSubscriptionsMessage) (resp *DescribeEventSubscriptionsResult, err error) {
+	resp = &DescribeEventSubscriptionsResult{}
 	err = c.client.Do("DescribeEventSubscriptions", "POST", "/", req, resp)
 	return
 }
@@ -350,53 +350,53 @@ func (c *RDS) DescribeEventSubscriptions(req DescribeEventSubscriptionsMessage) 
 // Events specific to a particular DB instance, DB security group, database
 // snapshot, or DB parameter group can be obtained by providing the name as
 // a parameter. By default, the past hour of events are returned.
-func (c *RDS) DescribeEvents(req DescribeEventsMessage) (resp *EventsMessage, err error) {
-	resp = &EventsMessage{}
+func (c *RDS) DescribeEvents(req DescribeEventsMessage) (resp *DescribeEventsResult, err error) {
+	resp = &DescribeEventsResult{}
 	err = c.client.Do("DescribeEvents", "POST", "/", req, resp)
 	return
 }
 
 // DescribeOptionGroupOptions is undocumented.
-func (c *RDS) DescribeOptionGroupOptions(req DescribeOptionGroupOptionsMessage) (resp *OptionGroupOptionsMessage, err error) {
-	resp = &OptionGroupOptionsMessage{}
+func (c *RDS) DescribeOptionGroupOptions(req DescribeOptionGroupOptionsMessage) (resp *DescribeOptionGroupOptionsResult, err error) {
+	resp = &DescribeOptionGroupOptionsResult{}
 	err = c.client.Do("DescribeOptionGroupOptions", "POST", "/", req, resp)
 	return
 }
 
 // DescribeOptionGroups is undocumented.
-func (c *RDS) DescribeOptionGroups(req DescribeOptionGroupsMessage) (resp *OptionGroups, err error) {
-	resp = &OptionGroups{}
+func (c *RDS) DescribeOptionGroups(req DescribeOptionGroupsMessage) (resp *DescribeOptionGroupsResult, err error) {
+	resp = &DescribeOptionGroupsResult{}
 	err = c.client.Do("DescribeOptionGroups", "POST", "/", req, resp)
 	return
 }
 
 // DescribeOrderableDBInstanceOptions returns a list of orderable DB
 // instance options for the specified engine.
-func (c *RDS) DescribeOrderableDBInstanceOptions(req DescribeOrderableDBInstanceOptionsMessage) (resp *OrderableDBInstanceOptionsMessage, err error) {
-	resp = &OrderableDBInstanceOptionsMessage{}
+func (c *RDS) DescribeOrderableDBInstanceOptions(req DescribeOrderableDBInstanceOptionsMessage) (resp *DescribeOrderableDBInstanceOptionsResult, err error) {
+	resp = &DescribeOrderableDBInstanceOptionsResult{}
 	err = c.client.Do("DescribeOrderableDBInstanceOptions", "POST", "/", req, resp)
 	return
 }
 
 // DescribeReservedDBInstances returns information about reserved DB
 // instances for this account, or about a specified reserved DB instance.
-func (c *RDS) DescribeReservedDBInstances(req DescribeReservedDBInstancesMessage) (resp *ReservedDBInstanceMessage, err error) {
-	resp = &ReservedDBInstanceMessage{}
+func (c *RDS) DescribeReservedDBInstances(req DescribeReservedDBInstancesMessage) (resp *DescribeReservedDBInstancesResult, err error) {
+	resp = &DescribeReservedDBInstancesResult{}
 	err = c.client.Do("DescribeReservedDBInstances", "POST", "/", req, resp)
 	return
 }
 
 // DescribeReservedDBInstancesOfferings is undocumented.
-func (c *RDS) DescribeReservedDBInstancesOfferings(req DescribeReservedDBInstancesOfferingsMessage) (resp *ReservedDBInstancesOfferingMessage, err error) {
-	resp = &ReservedDBInstancesOfferingMessage{}
+func (c *RDS) DescribeReservedDBInstancesOfferings(req DescribeReservedDBInstancesOfferingsMessage) (resp *DescribeReservedDBInstancesOfferingsResult, err error) {
+	resp = &DescribeReservedDBInstancesOfferingsResult{}
 	err = c.client.Do("DescribeReservedDBInstancesOfferings", "POST", "/", req, resp)
 	return
 }
 
 // DownloadDBLogFilePortion downloads all or a portion of the specified log
 // file.
-func (c *RDS) DownloadDBLogFilePortion(req DownloadDBLogFilePortionMessage) (resp *DownloadDBLogFilePortionDetails, err error) {
-	resp = &DownloadDBLogFilePortionDetails{}
+func (c *RDS) DownloadDBLogFilePortion(req DownloadDBLogFilePortionMessage) (resp *DownloadDBLogFilePortionResult, err error) {
+	resp = &DownloadDBLogFilePortionResult{}
 	err = c.client.Do("DownloadDBLogFilePortion", "POST", "/", req, resp)
 	return
 }
@@ -404,8 +404,8 @@ func (c *RDS) DownloadDBLogFilePortion(req DownloadDBLogFilePortionMessage) (res
 // ListTagsForResource lists all tags on an Amazon RDS resource. For an
 // overview on tagging an Amazon RDS resource, see Tagging Amazon RDS
 // Resources
-func (c *RDS) ListTagsForResource(req ListTagsForResourceMessage) (resp *TagListMessage, err error) {
-	resp = &TagListMessage{}
+func (c *RDS) ListTagsForResource(req ListTagsForResourceMessage) (resp *ListTagsForResourceResult, err error) {
+	resp = &ListTagsForResourceResult{}
 	err = c.client.Do("ListTagsForResource", "POST", "/", req, resp)
 	return
 }
@@ -433,8 +433,8 @@ func (c *RDS) ModifyDBInstance(req ModifyDBInstanceMessage) (resp *ModifyDBInsta
 // character_set_database parameter. You can use the Parameter Groups
 // option of the Amazon RDS console or the DescribeDBParameters command to
 // verify that your DB parameter group has been created or modified.
-func (c *RDS) ModifyDBParameterGroup(req ModifyDBParameterGroupMessage) (resp *DBParameterGroupNameMessage, err error) {
-	resp = &DBParameterGroupNameMessage{}
+func (c *RDS) ModifyDBParameterGroup(req ModifyDBParameterGroupMessage) (resp *ModifyDBParameterGroupResult, err error) {
+	resp = &ModifyDBParameterGroupResult{}
 	err = c.client.Do("ModifyDBParameterGroup", "POST", "/", req, resp)
 	return
 }
@@ -530,8 +530,8 @@ func (c *RDS) RemoveTagsFromResource(req RemoveTagsFromResourceMessage) (err err
 // parameters are updated immediately and static parameters are set to
 // pending-reboot to take effect on the next DB instance restart or
 // RebootDBInstance request.
-func (c *RDS) ResetDBParameterGroup(req ResetDBParameterGroupMessage) (resp *DBParameterGroupNameMessage, err error) {
-	resp = &DBParameterGroupNameMessage{}
+func (c *RDS) ResetDBParameterGroup(req ResetDBParameterGroupMessage) (resp *ResetDBParameterGroupResult, err error) {
+	resp = &ResetDBParameterGroupResult{}
 	err = c.client.Do("ResetDBParameterGroup", "POST", "/", req, resp)
 	return
 }
@@ -661,7 +661,7 @@ type CreateDBInstanceMessage struct {
 	DBInstanceIdentifier       string   `xml:"DBInstanceIdentifier"`
 	DBName                     string   `xml:"DBName"`
 	DBParameterGroupName       string   `xml:"DBParameterGroupName"`
-	DBSecurityGroups           []string `xml:"DBSecurityGroups>DBSecurityGroup"`
+	DBSecurityGroups           []string `xml:"DBSecurityGroups>String"`
 	DBSubnetGroupName          string   `xml:"DBSubnetGroupName"`
 	Engine                     string   `xml:"Engine"`
 	EngineVersion              string   `xml:"EngineVersion"`
@@ -679,7 +679,7 @@ type CreateDBInstanceMessage struct {
 	Tags                       []Tag    `xml:"Tags>Tag"`
 	TdeCredentialARN           string   `xml:"TdeCredentialArn"`
 	TdeCredentialPassword      string   `xml:"TdeCredentialPassword"`
-	VpcSecurityGroupIds        []string `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VpcSecurityGroupIds        []string `xml:"VpcSecurityGroupIds>String"`
 }
 
 // CreateDBInstanceReadReplicaMessage is undocumented.
@@ -749,7 +749,7 @@ type CreateDBSnapshotResult struct {
 type CreateDBSubnetGroupMessage struct {
 	DBSubnetGroupDescription string   `xml:"DBSubnetGroupDescription"`
 	DBSubnetGroupName        string   `xml:"DBSubnetGroupName"`
-	SubnetIds                []string `xml:"SubnetIds>SubnetId"`
+	SubnetIds                []string `xml:"SubnetIds>String"`
 	Tags                     []Tag    `xml:"Tags>Tag"`
 }
 
@@ -761,9 +761,9 @@ type CreateDBSubnetGroupResult struct {
 // CreateEventSubscriptionMessage is undocumented.
 type CreateEventSubscriptionMessage struct {
 	Enabled          bool     `xml:"Enabled"`
-	EventCategories  []string `xml:"EventCategories>EventCategorie"`
+	EventCategories  []string `xml:"EventCategories>String"`
 	SnsTopicARN      string   `xml:"SnsTopicArn"`
-	SourceIds        []string `xml:"SourceIds>SourceId"`
+	SourceIds        []string `xml:"SourceIds>String"`
 	SourceType       string   `xml:"SourceType"`
 	SubscriptionName string   `xml:"SubscriptionName"`
 	Tags             []Tag    `xml:"Tags>Tag"`
@@ -796,12 +796,11 @@ type DBEngineVersion struct {
 	DefaultCharacterSet        CharacterSet   `xml:"DefaultCharacterSet"`
 	Engine                     string         `xml:"Engine"`
 	EngineVersion              string         `xml:"EngineVersion"`
-	SupportedCharacterSets     []CharacterSet `xml:"SupportedCharacterSets>SupportedCharacterSet"`
+	SupportedCharacterSets     []CharacterSet `xml:"SupportedCharacterSets>CharacterSet"`
 }
 
 // DBEngineVersionMessage is undocumented.
 type DBEngineVersionMessage struct {
-	XMLName          xml.Name          `xml:"DescribeDBEngineVersionsResponse"`
 	DBEngineVersions []DBEngineVersion `xml:"DescribeDBEngineVersionsResult>DBEngineVersions>DBEngineVersion"`
 	Marker           string            `xml:"DescribeDBEngineVersionsResult>Marker"`
 }
@@ -817,8 +816,8 @@ type DBInstance struct {
 	DBInstanceIdentifier                  string                       `xml:"DBInstanceIdentifier"`
 	DBInstanceStatus                      string                       `xml:"DBInstanceStatus"`
 	DBName                                string                       `xml:"DBName"`
-	DBParameterGroups                     []DBParameterGroupStatus     `xml:"DBParameterGroups>DBParameterGroup"`
-	DBSecurityGroups                      []DBSecurityGroupMembership  `xml:"DBSecurityGroups>DBSecurityGroup"`
+	DBParameterGroups                     []DBParameterGroupStatus     `xml:"DBParameterGroups>DBParameterGroupStatus"`
+	DBSecurityGroups                      []DBSecurityGroupMembership  `xml:"DBSecurityGroups>DBSecurityGroupMembership"`
 	DBSubnetGroup                         DBSubnetGroup                `xml:"DBSubnetGroup"`
 	Endpoint                              Endpoint                     `xml:"Endpoint"`
 	Engine                                string                       `xml:"Engine"`
@@ -834,18 +833,17 @@ type DBInstance struct {
 	PreferredBackupWindow                 string                       `xml:"PreferredBackupWindow"`
 	PreferredMaintenanceWindow            string                       `xml:"PreferredMaintenanceWindow"`
 	PubliclyAccessible                    bool                         `xml:"PubliclyAccessible"`
-	ReadReplicaDBInstanceIdentifiers      []string                     `xml:"ReadReplicaDBInstanceIdentifiers>ReadReplicaDBInstanceIdentifier"`
+	ReadReplicaDBInstanceIdentifiers      []string                     `xml:"ReadReplicaDBInstanceIdentifiers>String"`
 	ReadReplicaSourceDBInstanceIdentifier string                       `xml:"ReadReplicaSourceDBInstanceIdentifier"`
 	SecondaryAvailabilityZone             string                       `xml:"SecondaryAvailabilityZone"`
-	StatusInfos                           []DBInstanceStatusInfo       `xml:"StatusInfos>StatusInfo"`
+	StatusInfos                           []DBInstanceStatusInfo       `xml:"StatusInfos>DBInstanceStatusInfo"`
 	StorageType                           string                       `xml:"StorageType"`
 	TdeCredentialARN                      string                       `xml:"TdeCredentialArn"`
-	VpcSecurityGroups                     []VpcSecurityGroupMembership `xml:"VpcSecurityGroups>VpcSecurityGroup"`
+	VpcSecurityGroups                     []VpcSecurityGroupMembership `xml:"VpcSecurityGroups>VpcSecurityGroupMembership"`
 }
 
 // DBInstanceMessage is undocumented.
 type DBInstanceMessage struct {
-	XMLName     xml.Name     `xml:"DescribeDBInstancesResponse"`
 	DBInstances []DBInstance `xml:"DescribeDBInstancesResult>DBInstances>DBInstance"`
 	Marker      string       `xml:"DescribeDBInstancesResult>Marker"`
 }
@@ -873,8 +871,7 @@ type DBParameterGroupDetails struct {
 
 // DBParameterGroupNameMessage is undocumented.
 type DBParameterGroupNameMessage struct {
-	XMLName              xml.Name `xml:"ResetDBParameterGroupResponse"`
-	DBParameterGroupName string   `xml:"ResetDBParameterGroupResult>DBParameterGroupName"`
+	DBParameterGroupName string `xml:"ResetDBParameterGroupResult>DBParameterGroupName"`
 }
 
 // DBParameterGroupStatus is undocumented.
@@ -885,7 +882,6 @@ type DBParameterGroupStatus struct {
 
 // DBParameterGroupsMessage is undocumented.
 type DBParameterGroupsMessage struct {
-	XMLName           xml.Name           `xml:"DescribeDBParameterGroupsResponse"`
 	DBParameterGroups []DBParameterGroup `xml:"DescribeDBParameterGroupsResult>DBParameterGroups>DBParameterGroup"`
 	Marker            string             `xml:"DescribeDBParameterGroupsResult>Marker"`
 }
@@ -908,7 +904,6 @@ type DBSecurityGroupMembership struct {
 
 // DBSecurityGroupMessage is undocumented.
 type DBSecurityGroupMessage struct {
-	XMLName          xml.Name          `xml:"DescribeDBSecurityGroupsResponse"`
 	DBSecurityGroups []DBSecurityGroup `xml:"DescribeDBSecurityGroupsResult>DBSecurityGroups>DBSecurityGroup"`
 	Marker           string            `xml:"DescribeDBSecurityGroupsResult>Marker"`
 }
@@ -939,7 +934,6 @@ type DBSnapshot struct {
 
 // DBSnapshotMessage is undocumented.
 type DBSnapshotMessage struct {
-	XMLName     xml.Name     `xml:"DescribeDBSnapshotsResponse"`
 	DBSnapshots []DBSnapshot `xml:"DescribeDBSnapshotsResult>DBSnapshots>DBSnapshot"`
 	Marker      string       `xml:"DescribeDBSnapshotsResult>Marker"`
 }
@@ -955,7 +949,6 @@ type DBSubnetGroup struct {
 
 // DBSubnetGroupMessage is undocumented.
 type DBSubnetGroupMessage struct {
-	XMLName        xml.Name        `xml:"DescribeDBSubnetGroupsResponse"`
 	DBSubnetGroups []DBSubnetGroup `xml:"DescribeDBSubnetGroupsResult>DBSubnetGroups>DBSubnetGroup"`
 	Marker         string          `xml:"DescribeDBSubnetGroupsResult>Marker"`
 }
@@ -1052,7 +1045,7 @@ type DescribeDBLogFilesMessage struct {
 
 // DescribeDBLogFilesResponse is undocumented.
 type DescribeDBLogFilesResponse struct {
-	DescribeDBLogFiles []DescribeDBLogFilesDetails `xml:"DescribeDBLogFilesResult>DescribeDBLogFiles>DescribeDBLogFile"`
+	DescribeDBLogFiles []DescribeDBLogFilesDetails `xml:"DescribeDBLogFilesResult>DescribeDBLogFiles>DescribeDBLogFilesDetails"`
 	Marker             string                      `xml:"DescribeDBLogFilesResult>Marker"`
 }
 
@@ -1130,7 +1123,7 @@ type DescribeEventSubscriptionsMessage struct {
 type DescribeEventsMessage struct {
 	Duration         int       `xml:"Duration"`
 	EndTime          time.Time `xml:"EndTime"`
-	EventCategories  []string  `xml:"EventCategories>EventCategorie"`
+	EventCategories  []string  `xml:"EventCategories>String"`
 	Filters          []Filter  `xml:"Filters>Filter"`
 	Marker           string    `xml:"Marker"`
 	MaxRecords       int       `xml:"MaxRecords"`
@@ -1236,7 +1229,7 @@ type EngineDefaults struct {
 // Event is undocumented.
 type Event struct {
 	Date             time.Time `xml:"Date"`
-	EventCategories  []string  `xml:"EventCategories>EventCategorie"`
+	EventCategories  []string  `xml:"EventCategories>String"`
 	Message          string    `xml:"Message"`
 	SourceIdentifier string    `xml:"SourceIdentifier"`
 	SourceType       string    `xml:"SourceType"`
@@ -1244,14 +1237,13 @@ type Event struct {
 
 // EventCategoriesMap is undocumented.
 type EventCategoriesMap struct {
-	EventCategories []string `xml:"EventCategories>EventCategorie"`
+	EventCategories []string `xml:"EventCategories>String"`
 	SourceType      string   `xml:"SourceType"`
 }
 
 // EventCategoriesMessage is undocumented.
 type EventCategoriesMessage struct {
-	XMLName                xml.Name             `xml:"DescribeEventCategoriesResponse"`
-	EventCategoriesMapList []EventCategoriesMap `xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMapLis"`
+	EventCategoriesMapList []EventCategoriesMap `xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
 }
 
 // EventSubscription is undocumented.
@@ -1259,9 +1251,9 @@ type EventSubscription struct {
 	CustSubscriptionID       string   `xml:"CustSubscriptionId"`
 	CustomerAwsID            string   `xml:"CustomerAwsId"`
 	Enabled                  bool     `xml:"Enabled"`
-	EventCategoriesList      []string `xml:"EventCategoriesList>EventCategoriesLis"`
+	EventCategoriesList      []string `xml:"EventCategoriesList>String"`
 	SnsTopicARN              string   `xml:"SnsTopicArn"`
-	SourceIdsList            []string `xml:"SourceIdsList>SourceIdsLis"`
+	SourceIdsList            []string `xml:"SourceIdsList>String"`
 	SourceType               string   `xml:"SourceType"`
 	Status                   string   `xml:"Status"`
 	SubscriptionCreationTime string   `xml:"SubscriptionCreationTime"`
@@ -1269,22 +1261,20 @@ type EventSubscription struct {
 
 // EventSubscriptionsMessage is undocumented.
 type EventSubscriptionsMessage struct {
-	XMLName                xml.Name            `xml:"DescribeEventSubscriptionsResponse"`
-	EventSubscriptionsList []EventSubscription `xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscriptionsLis"`
+	EventSubscriptionsList []EventSubscription `xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
 	Marker                 string              `xml:"DescribeEventSubscriptionsResult>Marker"`
 }
 
 // EventsMessage is undocumented.
 type EventsMessage struct {
-	XMLName xml.Name `xml:"DescribeEventsResponse"`
-	Events  []Event  `xml:"DescribeEventsResult>Events>Event"`
-	Marker  string   `xml:"DescribeEventsResult>Marker"`
+	Events []Event `xml:"DescribeEventsResult>Events>Event"`
+	Marker string  `xml:"DescribeEventsResult>Marker"`
 }
 
 // Filter is undocumented.
 type Filter struct {
 	Name   string   `xml:"Name"`
-	Values []string `xml:"Values>Value"`
+	Values []string `xml:"Values>String"`
 }
 
 // IPRange is undocumented.
@@ -1309,7 +1299,7 @@ type ModifyDBInstanceMessage struct {
 	DBInstanceClass            string   `xml:"DBInstanceClass"`
 	DBInstanceIdentifier       string   `xml:"DBInstanceIdentifier"`
 	DBParameterGroupName       string   `xml:"DBParameterGroupName"`
-	DBSecurityGroups           []string `xml:"DBSecurityGroups>DBSecurityGroup"`
+	DBSecurityGroups           []string `xml:"DBSecurityGroups>String"`
 	EngineVersion              string   `xml:"EngineVersion"`
 	Iops                       int      `xml:"Iops"`
 	MasterUserPassword         string   `xml:"MasterUserPassword"`
@@ -1321,7 +1311,7 @@ type ModifyDBInstanceMessage struct {
 	StorageType                string   `xml:"StorageType"`
 	TdeCredentialARN           string   `xml:"TdeCredentialArn"`
 	TdeCredentialPassword      string   `xml:"TdeCredentialPassword"`
-	VpcSecurityGroupIds        []string `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VpcSecurityGroupIds        []string `xml:"VpcSecurityGroupIds>String"`
 }
 
 // ModifyDBInstanceResult is undocumented.
@@ -1339,7 +1329,7 @@ type ModifyDBParameterGroupMessage struct {
 type ModifyDBSubnetGroupMessage struct {
 	DBSubnetGroupDescription string   `xml:"DBSubnetGroupDescription"`
 	DBSubnetGroupName        string   `xml:"DBSubnetGroupName"`
-	SubnetIds                []string `xml:"SubnetIds>SubnetId"`
+	SubnetIds                []string `xml:"SubnetIds>String"`
 }
 
 // ModifyDBSubnetGroupResult is undocumented.
@@ -1350,7 +1340,7 @@ type ModifyDBSubnetGroupResult struct {
 // ModifyEventSubscriptionMessage is undocumented.
 type ModifyEventSubscriptionMessage struct {
 	Enabled          bool     `xml:"Enabled"`
-	EventCategories  []string `xml:"EventCategories>EventCategorie"`
+	EventCategories  []string `xml:"EventCategories>String"`
 	SnsTopicARN      string   `xml:"SnsTopicArn"`
 	SourceType       string   `xml:"SourceType"`
 	SubscriptionName string   `xml:"SubscriptionName"`
@@ -1365,8 +1355,8 @@ type ModifyEventSubscriptionResult struct {
 type ModifyOptionGroupMessage struct {
 	ApplyImmediately bool                  `xml:"ApplyImmediately"`
 	OptionGroupName  string                `xml:"OptionGroupName"`
-	OptionsToInclude []OptionConfiguration `xml:"OptionsToInclude>OptionsToInclud"`
-	OptionsToRemove  []string              `xml:"OptionsToRemove>OptionsToRemov"`
+	OptionsToInclude []OptionConfiguration `xml:"OptionsToInclude>OptionConfiguration"`
+	OptionsToRemove  []string              `xml:"OptionsToRemove>String"`
 }
 
 // ModifyOptionGroupResult is undocumented.
@@ -1388,11 +1378,11 @@ type Option struct {
 
 // OptionConfiguration is undocumented.
 type OptionConfiguration struct {
-	DBSecurityGroupMemberships  []string        `xml:"DBSecurityGroupMemberships>DBSecurityGroupMembership"`
+	DBSecurityGroupMemberships  []string        `xml:"DBSecurityGroupMemberships>String"`
 	OptionName                  string          `xml:"OptionName"`
 	OptionSettings              []OptionSetting `xml:"OptionSettings>OptionSetting"`
 	Port                        int             `xml:"Port"`
-	VpcSecurityGroupMemberships []string        `xml:"VpcSecurityGroupMemberships>VpcSecurityGroupMembership"`
+	VpcSecurityGroupMemberships []string        `xml:"VpcSecurityGroupMemberships>String"`
 }
 
 // OptionGroup is undocumented.
@@ -1421,7 +1411,7 @@ type OptionGroupOption struct {
 	MinimumRequiredMinorEngineVersion string                     `xml:"MinimumRequiredMinorEngineVersion"`
 	Name                              string                     `xml:"Name"`
 	OptionGroupOptionSettings         []OptionGroupOptionSetting `xml:"OptionGroupOptionSettings>OptionGroupOptionSetting"`
-	OptionsDependedOn                 []string                   `xml:"OptionsDependedOn>OptionsDependedO"`
+	OptionsDependedOn                 []string                   `xml:"OptionsDependedOn>String"`
 	Permanent                         bool                       `xml:"Permanent"`
 	Persistent                        bool                       `xml:"Persistent"`
 	PortRequired                      bool                       `xml:"PortRequired"`
@@ -1439,7 +1429,6 @@ type OptionGroupOptionSetting struct {
 
 // OptionGroupOptionsMessage is undocumented.
 type OptionGroupOptionsMessage struct {
-	XMLName            xml.Name            `xml:"DescribeOptionGroupOptionsResponse"`
 	Marker             string              `xml:"DescribeOptionGroupOptionsResult>Marker"`
 	OptionGroupOptions []OptionGroupOption `xml:"DescribeOptionGroupOptionsResult>OptionGroupOptions>OptionGroupOption"`
 }
@@ -1447,7 +1436,7 @@ type OptionGroupOptionsMessage struct {
 // OptionGroups is undocumented.
 type OptionGroups struct {
 	Marker           string        `xml:"DescribeOptionGroupsResult>Marker"`
-	OptionGroupsList []OptionGroup `xml:"DescribeOptionGroupsResult>OptionGroupsList>OptionGroupsLis"`
+	OptionGroupsList []OptionGroup `xml:"DescribeOptionGroupsResult>OptionGroupsList>OptionGroup"`
 }
 
 // OptionSetting is undocumented.
@@ -1479,7 +1468,6 @@ type OrderableDBInstanceOption struct {
 
 // OrderableDBInstanceOptionsMessage is undocumented.
 type OrderableDBInstanceOptionsMessage struct {
-	XMLName                    xml.Name                    `xml:"DescribeOrderableDBInstanceOptionsResponse"`
 	Marker                     string                      `xml:"DescribeOrderableDBInstanceOptionsResult>Marker"`
 	OrderableDBInstanceOptions []OrderableDBInstanceOption `xml:"DescribeOrderableDBInstanceOptionsResult>OrderableDBInstanceOptions>OrderableDBInstanceOption"`
 }
@@ -1568,7 +1556,7 @@ type RemoveSourceIdentifierFromSubscriptionResult struct {
 // RemoveTagsFromResourceMessage is undocumented.
 type RemoveTagsFromResourceMessage struct {
 	ResourceName string   `xml:"ResourceName"`
-	TagKeys      []string `xml:"TagKeys>TagKey"`
+	TagKeys      []string `xml:"TagKeys>String"`
 }
 
 // ReservedDBInstance is undocumented.
@@ -1591,7 +1579,6 @@ type ReservedDBInstance struct {
 
 // ReservedDBInstanceMessage is undocumented.
 type ReservedDBInstanceMessage struct {
-	XMLName             xml.Name             `xml:"DescribeReservedDBInstancesResponse"`
 	Marker              string               `xml:"DescribeReservedDBInstancesResult>Marker"`
 	ReservedDBInstances []ReservedDBInstance `xml:"DescribeReservedDBInstancesResult>ReservedDBInstances>ReservedDBInstance"`
 }
@@ -1612,7 +1599,6 @@ type ReservedDBInstancesOffering struct {
 
 // ReservedDBInstancesOfferingMessage is undocumented.
 type ReservedDBInstancesOfferingMessage struct {
-	XMLName                      xml.Name                      `xml:"DescribeReservedDBInstancesOfferingsResponse"`
 	Marker                       string                        `xml:"DescribeReservedDBInstancesOfferingsResult>Marker"`
 	ReservedDBInstancesOfferings []ReservedDBInstancesOffering `xml:"DescribeReservedDBInstancesOfferingsResult>ReservedDBInstancesOfferings>ReservedDBInstancesOffering"`
 }
@@ -1709,14 +1695,170 @@ type Tag struct {
 
 // TagListMessage is undocumented.
 type TagListMessage struct {
-	XMLName xml.Name `xml:"ListTagsForResourceResponse"`
-	TagList []Tag    `xml:"ListTagsForResourceResult>TagList>TagLis"`
+	TagList []Tag `xml:"ListTagsForResourceResult>TagList>Tag"`
 }
 
 // VpcSecurityGroupMembership is undocumented.
 type VpcSecurityGroupMembership struct {
 	Status             string `xml:"Status"`
 	VpcSecurityGroupID string `xml:"VpcSecurityGroupId"`
+}
+
+// DescribeDBEngineVersionsResult is a wrapper for DBEngineVersionMessage.
+type DescribeDBEngineVersionsResult struct {
+	XMLName xml.Name `xml:"DescribeDBEngineVersionsResponse"`
+
+	DBEngineVersions []DBEngineVersion `xml:"DescribeDBEngineVersionsResult>DBEngineVersions>DBEngineVersion"`
+	Marker           string            `xml:"DescribeDBEngineVersionsResult>Marker"`
+}
+
+// DescribeDBInstancesResult is a wrapper for DBInstanceMessage.
+type DescribeDBInstancesResult struct {
+	XMLName xml.Name `xml:"DescribeDBInstancesResponse"`
+
+	DBInstances []DBInstance `xml:"DescribeDBInstancesResult>DBInstances>DBInstance"`
+	Marker      string       `xml:"DescribeDBInstancesResult>Marker"`
+}
+
+// DescribeDBLogFilesResult is a wrapper for DescribeDBLogFilesResponse.
+type DescribeDBLogFilesResult struct {
+	XMLName xml.Name `xml:"DescribeDBLogFilesResponse"`
+
+	DescribeDBLogFiles []DescribeDBLogFilesDetails `xml:"DescribeDBLogFilesResult>DescribeDBLogFiles>DescribeDBLogFilesDetails"`
+	Marker             string                      `xml:"DescribeDBLogFilesResult>Marker"`
+}
+
+// DescribeDBParameterGroupsResult is a wrapper for DBParameterGroupsMessage.
+type DescribeDBParameterGroupsResult struct {
+	XMLName xml.Name `xml:"DescribeDBParameterGroupsResponse"`
+
+	DBParameterGroups []DBParameterGroup `xml:"DescribeDBParameterGroupsResult>DBParameterGroups>DBParameterGroup"`
+	Marker            string             `xml:"DescribeDBParameterGroupsResult>Marker"`
+}
+
+// DescribeDBParametersResult is a wrapper for DBParameterGroupDetails.
+type DescribeDBParametersResult struct {
+	XMLName xml.Name `xml:"DescribeDBParametersResponse"`
+
+	Marker     string      `xml:"DescribeDBParametersResult>Marker"`
+	Parameters []Parameter `xml:"DescribeDBParametersResult>Parameters>Parameter"`
+}
+
+// DescribeDBSecurityGroupsResult is a wrapper for DBSecurityGroupMessage.
+type DescribeDBSecurityGroupsResult struct {
+	XMLName xml.Name `xml:"DescribeDBSecurityGroupsResponse"`
+
+	DBSecurityGroups []DBSecurityGroup `xml:"DescribeDBSecurityGroupsResult>DBSecurityGroups>DBSecurityGroup"`
+	Marker           string            `xml:"DescribeDBSecurityGroupsResult>Marker"`
+}
+
+// DescribeDBSnapshotsResult is a wrapper for DBSnapshotMessage.
+type DescribeDBSnapshotsResult struct {
+	XMLName xml.Name `xml:"DescribeDBSnapshotsResponse"`
+
+	DBSnapshots []DBSnapshot `xml:"DescribeDBSnapshotsResult>DBSnapshots>DBSnapshot"`
+	Marker      string       `xml:"DescribeDBSnapshotsResult>Marker"`
+}
+
+// DescribeDBSubnetGroupsResult is a wrapper for DBSubnetGroupMessage.
+type DescribeDBSubnetGroupsResult struct {
+	XMLName xml.Name `xml:"DescribeDBSubnetGroupsResponse"`
+
+	DBSubnetGroups []DBSubnetGroup `xml:"DescribeDBSubnetGroupsResult>DBSubnetGroups>DBSubnetGroup"`
+	Marker         string          `xml:"DescribeDBSubnetGroupsResult>Marker"`
+}
+
+// DescribeEventCategoriesResult is a wrapper for EventCategoriesMessage.
+type DescribeEventCategoriesResult struct {
+	XMLName xml.Name `xml:"DescribeEventCategoriesResponse"`
+
+	EventCategoriesMapList []EventCategoriesMap `xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
+}
+
+// DescribeEventSubscriptionsResult is a wrapper for EventSubscriptionsMessage.
+type DescribeEventSubscriptionsResult struct {
+	XMLName xml.Name `xml:"DescribeEventSubscriptionsResponse"`
+
+	EventSubscriptionsList []EventSubscription `xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
+	Marker                 string              `xml:"DescribeEventSubscriptionsResult>Marker"`
+}
+
+// DescribeEventsResult is a wrapper for EventsMessage.
+type DescribeEventsResult struct {
+	XMLName xml.Name `xml:"DescribeEventsResponse"`
+
+	Events []Event `xml:"DescribeEventsResult>Events>Event"`
+	Marker string  `xml:"DescribeEventsResult>Marker"`
+}
+
+// DescribeOptionGroupOptionsResult is a wrapper for OptionGroupOptionsMessage.
+type DescribeOptionGroupOptionsResult struct {
+	XMLName xml.Name `xml:"DescribeOptionGroupOptionsResponse"`
+
+	Marker             string              `xml:"DescribeOptionGroupOptionsResult>Marker"`
+	OptionGroupOptions []OptionGroupOption `xml:"DescribeOptionGroupOptionsResult>OptionGroupOptions>OptionGroupOption"`
+}
+
+// DescribeOptionGroupsResult is a wrapper for OptionGroups.
+type DescribeOptionGroupsResult struct {
+	XMLName xml.Name `xml:"DescribeOptionGroupsResponse"`
+
+	Marker           string        `xml:"DescribeOptionGroupsResult>Marker"`
+	OptionGroupsList []OptionGroup `xml:"DescribeOptionGroupsResult>OptionGroupsList>OptionGroup"`
+}
+
+// DescribeOrderableDBInstanceOptionsResult is a wrapper for OrderableDBInstanceOptionsMessage.
+type DescribeOrderableDBInstanceOptionsResult struct {
+	XMLName xml.Name `xml:"DescribeOrderableDBInstanceOptionsResponse"`
+
+	Marker                     string                      `xml:"DescribeOrderableDBInstanceOptionsResult>Marker"`
+	OrderableDBInstanceOptions []OrderableDBInstanceOption `xml:"DescribeOrderableDBInstanceOptionsResult>OrderableDBInstanceOptions>OrderableDBInstanceOption"`
+}
+
+// DescribeReservedDBInstancesOfferingsResult is a wrapper for ReservedDBInstancesOfferingMessage.
+type DescribeReservedDBInstancesOfferingsResult struct {
+	XMLName xml.Name `xml:"DescribeReservedDBInstancesOfferingsResponse"`
+
+	Marker                       string                        `xml:"DescribeReservedDBInstancesOfferingsResult>Marker"`
+	ReservedDBInstancesOfferings []ReservedDBInstancesOffering `xml:"DescribeReservedDBInstancesOfferingsResult>ReservedDBInstancesOfferings>ReservedDBInstancesOffering"`
+}
+
+// DescribeReservedDBInstancesResult is a wrapper for ReservedDBInstanceMessage.
+type DescribeReservedDBInstancesResult struct {
+	XMLName xml.Name `xml:"DescribeReservedDBInstancesResponse"`
+
+	Marker              string               `xml:"DescribeReservedDBInstancesResult>Marker"`
+	ReservedDBInstances []ReservedDBInstance `xml:"DescribeReservedDBInstancesResult>ReservedDBInstances>ReservedDBInstance"`
+}
+
+// DownloadDBLogFilePortionResult is a wrapper for DownloadDBLogFilePortionDetails.
+type DownloadDBLogFilePortionResult struct {
+	XMLName xml.Name `xml:"DownloadDBLogFilePortionResponse"`
+
+	AdditionalDataPending bool   `xml:"DownloadDBLogFilePortionResult>AdditionalDataPending"`
+	LogFileData           string `xml:"DownloadDBLogFilePortionResult>LogFileData"`
+	Marker                string `xml:"DownloadDBLogFilePortionResult>Marker"`
+}
+
+// ListTagsForResourceResult is a wrapper for TagListMessage.
+type ListTagsForResourceResult struct {
+	XMLName xml.Name `xml:"ListTagsForResourceResponse"`
+
+	TagList []Tag `xml:"ListTagsForResourceResult>TagList>Tag"`
+}
+
+// ModifyDBParameterGroupResult is a wrapper for DBParameterGroupNameMessage.
+type ModifyDBParameterGroupResult struct {
+	XMLName xml.Name `xml:"ResetDBParameterGroupResponse"`
+
+	DBParameterGroupName string `xml:"ResetDBParameterGroupResult>DBParameterGroupName"`
+}
+
+// ResetDBParameterGroupResult is a wrapper for DBParameterGroupNameMessage.
+type ResetDBParameterGroupResult struct {
+	XMLName xml.Name `xml:"ResetDBParameterGroupResponse"`
+
+	DBParameterGroupName string `xml:"ResetDBParameterGroupResult>DBParameterGroupName"`
 }
 
 // avoid errors if the packages aren't referenced
