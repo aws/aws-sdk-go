@@ -72,6 +72,10 @@ func (m Member) JSONTag() string {
 	return fmt.Sprintf("`json:\"%s\"`", m.Name)
 }
 
+func (m Member) Type() string {
+	return m.Shape.Type()
+}
+
 type Shape struct {
 	Name          string
 	ShapeType     string `json:"Type"`
