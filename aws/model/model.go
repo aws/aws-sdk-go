@@ -81,8 +81,7 @@ func (m Member) XMLTag(wrapper string) string {
 	path = append(path, m.Name)
 
 	if m.Shape.ShapeType == "list" {
-		// I'm assuming the plural ends with an S otherwise we're hosed
-		path = append(path, m.Name[:len(m.Name)-1])
+		path = append(path, m.Shape.Member().Name)
 	}
 
 	return fmt.Sprintf("`xml:\"%s\"`", strings.Join(path, ">"))
