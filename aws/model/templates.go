@@ -33,7 +33,7 @@ func Generate(w io.Writer) error {
 
 	b, err := format.Source(out.Bytes())
 	if err != nil {
-		fmt.Fprint(os.Stderr, out.Bytes())
+		fmt.Fprint(os.Stderr, out.String())
 		return err
 	}
 
