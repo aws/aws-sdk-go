@@ -59,8 +59,6 @@ func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
 		return errors.New(string(b))
 	}
 
-	fmt.Println(string(b))
-
 	return xml.Unmarshal(b, resp)
 }
 
