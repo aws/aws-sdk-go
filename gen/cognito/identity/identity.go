@@ -172,6 +172,7 @@ func (c *CogitoIdentity) UpdateIdentityPool(req IdentityPool) (resp *IdentityPoo
 	return
 }
 
+// CreateIdentityPoolInput is undocumented.
 type CreateIdentityPoolInput struct {
 	AllowUnauthenticatedIdentities bool              `json:"AllowUnauthenticatedIdentities"`
 	DeveloperProviderName          string            `json:"DeveloperProviderName,omitempty"`
@@ -180,24 +181,29 @@ type CreateIdentityPoolInput struct {
 	SupportedLoginProviders        map[string]string `json:"SupportedLoginProviders,omitempty"`
 }
 
+// DeleteIdentityPoolInput is undocumented.
 type DeleteIdentityPoolInput struct {
 	IdentityPoolID string `json:"IdentityPoolId"`
 }
 
+// DescribeIdentityPoolInput is undocumented.
 type DescribeIdentityPoolInput struct {
 	IdentityPoolID string `json:"IdentityPoolId"`
 }
 
+// GetIDInput is undocumented.
 type GetIDInput struct {
 	AccountID      string            `json:"AccountId"`
 	IdentityPoolID string            `json:"IdentityPoolId"`
 	Logins         map[string]string `json:"Logins,omitempty"`
 }
 
+// GetIDResponse is undocumented.
 type GetIDResponse struct {
 	IdentityID string `json:"IdentityId,omitempty"`
 }
 
+// GetOpenIDTokenForDeveloperIdentityInput is undocumented.
 type GetOpenIDTokenForDeveloperIdentityInput struct {
 	IdentityID     string            `json:"IdentityId,omitempty"`
 	IdentityPoolID string            `json:"IdentityPoolId"`
@@ -205,26 +211,31 @@ type GetOpenIDTokenForDeveloperIdentityInput struct {
 	TokenDuration  int               `json:"TokenDuration,omitempty"`
 }
 
+// GetOpenIDTokenForDeveloperIdentityResponse is undocumented.
 type GetOpenIDTokenForDeveloperIdentityResponse struct {
 	IdentityID string `json:"IdentityId,omitempty"`
 	Token      string `json:"Token,omitempty"`
 }
 
+// GetOpenIDTokenInput is undocumented.
 type GetOpenIDTokenInput struct {
 	IdentityID string            `json:"IdentityId"`
 	Logins     map[string]string `json:"Logins,omitempty"`
 }
 
+// GetOpenIDTokenResponse is undocumented.
 type GetOpenIDTokenResponse struct {
 	IdentityID string `json:"IdentityId,omitempty"`
 	Token      string `json:"Token,omitempty"`
 }
 
+// IdentityDescription is undocumented.
 type IdentityDescription struct {
 	IdentityID string   `json:"IdentityId,omitempty"`
 	Logins     []string `json:"Logins,omitempty"`
 }
 
+// IdentityPool is undocumented.
 type IdentityPool struct {
 	AllowUnauthenticatedIdentities bool              `json:"AllowUnauthenticatedIdentities"`
 	DeveloperProviderName          string            `json:"DeveloperProviderName,omitempty"`
@@ -234,33 +245,39 @@ type IdentityPool struct {
 	SupportedLoginProviders        map[string]string `json:"SupportedLoginProviders,omitempty"`
 }
 
+// IdentityPoolShortDescription is undocumented.
 type IdentityPoolShortDescription struct {
 	IdentityPoolID   string `json:"IdentityPoolId,omitempty"`
 	IdentityPoolName string `json:"IdentityPoolName,omitempty"`
 }
 
+// ListIdentitiesInput is undocumented.
 type ListIdentitiesInput struct {
 	IdentityPoolID string `json:"IdentityPoolId"`
 	MaxResults     int    `json:"MaxResults"`
 	NextToken      string `json:"NextToken,omitempty"`
 }
 
+// ListIdentitiesResponse is undocumented.
 type ListIdentitiesResponse struct {
 	Identities     []IdentityDescription `json:"Identities,omitempty"`
 	IdentityPoolID string                `json:"IdentityPoolId,omitempty"`
 	NextToken      string                `json:"NextToken,omitempty"`
 }
 
+// ListIdentityPoolsInput is undocumented.
 type ListIdentityPoolsInput struct {
 	MaxResults int    `json:"MaxResults"`
 	NextToken  string `json:"NextToken,omitempty"`
 }
 
+// ListIdentityPoolsResponse is undocumented.
 type ListIdentityPoolsResponse struct {
 	IdentityPools []IdentityPoolShortDescription `json:"IdentityPools,omitempty"`
 	NextToken     string                         `json:"NextToken,omitempty"`
 }
 
+// LookupDeveloperIdentityInput is undocumented.
 type LookupDeveloperIdentityInput struct {
 	DeveloperUserIdentifier string `json:"DeveloperUserIdentifier,omitempty"`
 	IdentityID              string `json:"IdentityId,omitempty"`
@@ -269,12 +286,14 @@ type LookupDeveloperIdentityInput struct {
 	NextToken               string `json:"NextToken,omitempty"`
 }
 
+// LookupDeveloperIdentityResponse is undocumented.
 type LookupDeveloperIdentityResponse struct {
 	DeveloperUserIdentifierList []string `json:"DeveloperUserIdentifierList,omitempty"`
 	IdentityID                  string   `json:"IdentityId,omitempty"`
 	NextToken                   string   `json:"NextToken,omitempty"`
 }
 
+// MergeDeveloperIdentitiesInput is undocumented.
 type MergeDeveloperIdentitiesInput struct {
 	DestinationUserIdentifier string `json:"DestinationUserIdentifier"`
 	DeveloperProviderName     string `json:"DeveloperProviderName"`
@@ -282,10 +301,12 @@ type MergeDeveloperIdentitiesInput struct {
 	SourceUserIdentifier      string `json:"SourceUserIdentifier"`
 }
 
+// MergeDeveloperIdentitiesResponse is undocumented.
 type MergeDeveloperIdentitiesResponse struct {
 	IdentityID string `json:"IdentityId,omitempty"`
 }
 
+// UnlinkDeveloperIdentityInput is undocumented.
 type UnlinkDeveloperIdentityInput struct {
 	DeveloperProviderName   string `json:"DeveloperProviderName"`
 	DeveloperUserIdentifier string `json:"DeveloperUserIdentifier"`
@@ -293,10 +314,12 @@ type UnlinkDeveloperIdentityInput struct {
 	IdentityPoolID          string `json:"IdentityPoolId"`
 }
 
+// UnlinkIdentityInput is undocumented.
 type UnlinkIdentityInput struct {
 	IdentityID     string            `json:"IdentityId"`
 	Logins         map[string]string `json:"Logins"`
 	LoginsToRemove []string          `json:"LoginsToRemove"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

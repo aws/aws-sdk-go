@@ -231,16 +231,19 @@ func (c *Support) ResolveCase(req ResolveCaseRequest) (resp *ResolveCaseResponse
 	return
 }
 
+// AddAttachmentsToSetRequest is undocumented.
 type AddAttachmentsToSetRequest struct {
 	AttachmentSetID string       `json:"attachmentSetId,omitempty"`
 	Attachments     []Attachment `json:"attachments"`
 }
 
+// AddAttachmentsToSetResponse is undocumented.
 type AddAttachmentsToSetResponse struct {
 	AttachmentSetID string `json:"attachmentSetId,omitempty"`
 	ExpiryTime      string `json:"expiryTime,omitempty"`
 }
 
+// AddCommunicationToCaseRequest is undocumented.
 type AddCommunicationToCaseRequest struct {
 	AttachmentSetID   string   `json:"attachmentSetId,omitempty"`
 	CaseID            string   `json:"caseId,omitempty"`
@@ -248,20 +251,24 @@ type AddCommunicationToCaseRequest struct {
 	CommunicationBody string   `json:"communicationBody"`
 }
 
+// AddCommunicationToCaseResponse is undocumented.
 type AddCommunicationToCaseResponse struct {
 	Result bool `json:"result,omitempty"`
 }
 
+// Attachment is undocumented.
 type Attachment struct {
 	Data     []byte `json:"data,omitempty"`
 	FileName string `json:"fileName,omitempty"`
 }
 
+// AttachmentDetails is undocumented.
 type AttachmentDetails struct {
 	AttachmentID string `json:"attachmentId,omitempty"`
 	FileName     string `json:"fileName,omitempty"`
 }
 
+// CaseDetails is undocumented.
 type CaseDetails struct {
 	CaseID               string                   `json:"caseId,omitempty"`
 	CategoryCode         string                   `json:"categoryCode,omitempty"`
@@ -277,11 +284,13 @@ type CaseDetails struct {
 	TimeCreated          string                   `json:"timeCreated,omitempty"`
 }
 
+// Category is undocumented.
 type Category struct {
 	Code string `json:"code,omitempty"`
 	Name string `json:"name,omitempty"`
 }
 
+// Communication is undocumented.
 type Communication struct {
 	AttachmentSet []AttachmentDetails `json:"attachmentSet,omitempty"`
 	Body          string              `json:"body,omitempty"`
@@ -290,6 +299,7 @@ type Communication struct {
 	TimeCreated   string              `json:"timeCreated,omitempty"`
 }
 
+// CreateCaseRequest is undocumented.
 type CreateCaseRequest struct {
 	AttachmentSetID   string   `json:"attachmentSetId,omitempty"`
 	CategoryCode      string   `json:"categoryCode,omitempty"`
@@ -302,18 +312,22 @@ type CreateCaseRequest struct {
 	Subject           string   `json:"subject"`
 }
 
+// CreateCaseResponse is undocumented.
 type CreateCaseResponse struct {
 	CaseID string `json:"caseId,omitempty"`
 }
 
+// DescribeAttachmentRequest is undocumented.
 type DescribeAttachmentRequest struct {
 	AttachmentID string `json:"attachmentId"`
 }
 
+// DescribeAttachmentResponse is undocumented.
 type DescribeAttachmentResponse struct {
 	Attachment Attachment `json:"attachment,omitempty"`
 }
 
+// DescribeCasesRequest is undocumented.
 type DescribeCasesRequest struct {
 	AfterTime             string   `json:"afterTime,omitempty"`
 	BeforeTime            string   `json:"beforeTime,omitempty"`
@@ -326,11 +340,13 @@ type DescribeCasesRequest struct {
 	NextToken             string   `json:"nextToken,omitempty"`
 }
 
+// DescribeCasesResponse is undocumented.
 type DescribeCasesResponse struct {
 	Cases     []CaseDetails `json:"cases,omitempty"`
 	NextToken string        `json:"nextToken,omitempty"`
 }
 
+// DescribeCommunicationsRequest is undocumented.
 type DescribeCommunicationsRequest struct {
 	AfterTime  string `json:"afterTime,omitempty"`
 	BeforeTime string `json:"beforeTime,omitempty"`
@@ -339,98 +355,120 @@ type DescribeCommunicationsRequest struct {
 	NextToken  string `json:"nextToken,omitempty"`
 }
 
+// DescribeCommunicationsResponse is undocumented.
 type DescribeCommunicationsResponse struct {
 	Communications []Communication `json:"communications,omitempty"`
 	NextToken      string          `json:"nextToken,omitempty"`
 }
 
+// DescribeServicesRequest is undocumented.
 type DescribeServicesRequest struct {
 	Language        string   `json:"language,omitempty"`
 	ServiceCodeList []string `json:"serviceCodeList,omitempty"`
 }
 
+// DescribeServicesResponse is undocumented.
 type DescribeServicesResponse struct {
 	Services []Service `json:"services,omitempty"`
 }
 
+// DescribeSeverityLevelsRequest is undocumented.
 type DescribeSeverityLevelsRequest struct {
 	Language string `json:"language,omitempty"`
 }
 
+// DescribeSeverityLevelsResponse is undocumented.
 type DescribeSeverityLevelsResponse struct {
 	SeverityLevels []SeverityLevel `json:"severityLevels,omitempty"`
 }
 
+// DescribeTrustedAdvisorCheckRefreshStatusesRequest is undocumented.
 type DescribeTrustedAdvisorCheckRefreshStatusesRequest struct {
 	CheckIds []string `json:"checkIds"`
 }
 
+// DescribeTrustedAdvisorCheckRefreshStatusesResponse is undocumented.
 type DescribeTrustedAdvisorCheckRefreshStatusesResponse struct {
 	Statuses []TrustedAdvisorCheckRefreshStatus `json:"statuses"`
 }
 
+// DescribeTrustedAdvisorCheckResultRequest is undocumented.
 type DescribeTrustedAdvisorCheckResultRequest struct {
 	CheckID  string `json:"checkId"`
 	Language string `json:"language,omitempty"`
 }
 
+// DescribeTrustedAdvisorCheckResultResponse is undocumented.
 type DescribeTrustedAdvisorCheckResultResponse struct {
 	Result TrustedAdvisorCheckResult `json:"result,omitempty"`
 }
 
+// DescribeTrustedAdvisorCheckSummariesRequest is undocumented.
 type DescribeTrustedAdvisorCheckSummariesRequest struct {
 	CheckIds []string `json:"checkIds"`
 }
 
+// DescribeTrustedAdvisorCheckSummariesResponse is undocumented.
 type DescribeTrustedAdvisorCheckSummariesResponse struct {
 	Summaries []TrustedAdvisorCheckSummary `json:"summaries"`
 }
 
+// DescribeTrustedAdvisorChecksRequest is undocumented.
 type DescribeTrustedAdvisorChecksRequest struct {
 	Language string `json:"language"`
 }
 
+// DescribeTrustedAdvisorChecksResponse is undocumented.
 type DescribeTrustedAdvisorChecksResponse struct {
 	Checks []TrustedAdvisorCheckDescription `json:"checks"`
 }
 
+// RecentCaseCommunications is undocumented.
 type RecentCaseCommunications struct {
 	Communications []Communication `json:"communications,omitempty"`
 	NextToken      string          `json:"nextToken,omitempty"`
 }
 
+// RefreshTrustedAdvisorCheckRequest is undocumented.
 type RefreshTrustedAdvisorCheckRequest struct {
 	CheckID string `json:"checkId"`
 }
 
+// RefreshTrustedAdvisorCheckResponse is undocumented.
 type RefreshTrustedAdvisorCheckResponse struct {
 	Status TrustedAdvisorCheckRefreshStatus `json:"status"`
 }
 
+// ResolveCaseRequest is undocumented.
 type ResolveCaseRequest struct {
 	CaseID string `json:"caseId,omitempty"`
 }
 
+// ResolveCaseResponse is undocumented.
 type ResolveCaseResponse struct {
 	FinalCaseStatus   string `json:"finalCaseStatus,omitempty"`
 	InitialCaseStatus string `json:"initialCaseStatus,omitempty"`
 }
 
+// Service is undocumented.
 type Service struct {
 	Categories []Category `json:"categories,omitempty"`
 	Code       string     `json:"code,omitempty"`
 	Name       string     `json:"name,omitempty"`
 }
 
+// SeverityLevel is undocumented.
 type SeverityLevel struct {
 	Code string `json:"code,omitempty"`
 	Name string `json:"name,omitempty"`
 }
 
+// TrustedAdvisorCategorySpecificSummary is undocumented.
 type TrustedAdvisorCategorySpecificSummary struct {
 	CostOptimizing TrustedAdvisorCostOptimizingSummary `json:"costOptimizing,omitempty"`
 }
 
+// TrustedAdvisorCheckDescription is undocumented.
 type TrustedAdvisorCheckDescription struct {
 	Category    string   `json:"category"`
 	Description string   `json:"description"`
@@ -439,12 +477,14 @@ type TrustedAdvisorCheckDescription struct {
 	Name        string   `json:"name"`
 }
 
+// TrustedAdvisorCheckRefreshStatus is undocumented.
 type TrustedAdvisorCheckRefreshStatus struct {
 	CheckID                    string `json:"checkId"`
 	MillisUntilNextRefreshable int    `json:"millisUntilNextRefreshable"`
 	Status                     string `json:"status"`
 }
 
+// TrustedAdvisorCheckResult is undocumented.
 type TrustedAdvisorCheckResult struct {
 	CategorySpecificSummary TrustedAdvisorCategorySpecificSummary `json:"categorySpecificSummary"`
 	CheckID                 string                                `json:"checkId"`
@@ -454,6 +494,7 @@ type TrustedAdvisorCheckResult struct {
 	Timestamp               string                                `json:"timestamp"`
 }
 
+// TrustedAdvisorCheckSummary is undocumented.
 type TrustedAdvisorCheckSummary struct {
 	CategorySpecificSummary TrustedAdvisorCategorySpecificSummary `json:"categorySpecificSummary"`
 	CheckID                 string                                `json:"checkId"`
@@ -463,11 +504,13 @@ type TrustedAdvisorCheckSummary struct {
 	Timestamp               string                                `json:"timestamp"`
 }
 
+// TrustedAdvisorCostOptimizingSummary is undocumented.
 type TrustedAdvisorCostOptimizingSummary struct {
 	EstimatedMonthlySavings        float64 `json:"estimatedMonthlySavings"`
 	EstimatedPercentMonthlySavings float64 `json:"estimatedPercentMonthlySavings"`
 }
 
+// TrustedAdvisorResourceDetail is undocumented.
 type TrustedAdvisorResourceDetail struct {
 	IsSuppressed bool     `json:"isSuppressed,omitempty"`
 	Metadata     []string `json:"metadata"`
@@ -476,6 +519,7 @@ type TrustedAdvisorResourceDetail struct {
 	Status       string   `json:"status"`
 }
 
+// TrustedAdvisorResourcesSummary is undocumented.
 type TrustedAdvisorResourcesSummary struct {
 	ResourcesFlagged    int `json:"resourcesFlagged"`
 	ResourcesIgnored    int `json:"resourcesIgnored"`
@@ -483,4 +527,5 @@ type TrustedAdvisorResourcesSummary struct {
 	ResourcesSuppressed int `json:"resourcesSuppressed"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

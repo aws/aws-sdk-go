@@ -150,6 +150,7 @@ func (c *Config) StopConfigurationRecorder(req StopConfigurationRecorderRequest)
 	return
 }
 
+// ConfigExportDeliveryInfo is undocumented.
 type ConfigExportDeliveryInfo struct {
 	LastAttemptTime    time.Time `json:"lastAttemptTime,omitempty"`
 	LastErrorCode      string    `json:"lastErrorCode,omitempty"`
@@ -158,6 +159,7 @@ type ConfigExportDeliveryInfo struct {
 	LastSuccessfulTime time.Time `json:"lastSuccessfulTime,omitempty"`
 }
 
+// ConfigStreamDeliveryInfo is undocumented.
 type ConfigStreamDeliveryInfo struct {
 	LastErrorCode        string    `json:"lastErrorCode,omitempty"`
 	LastErrorMessage     string    `json:"lastErrorMessage,omitempty"`
@@ -165,6 +167,7 @@ type ConfigStreamDeliveryInfo struct {
 	LastStatusChangeTime time.Time `json:"lastStatusChangeTime,omitempty"`
 }
 
+// ConfigurationItem is undocumented.
 type ConfigurationItem struct {
 	AccountID                    string            `json:"accountId,omitempty"`
 	ARN                          string            `json:"arn,omitempty"`
@@ -183,11 +186,13 @@ type ConfigurationItem struct {
 	Version                      string            `json:"version,omitempty"`
 }
 
+// ConfigurationRecorder is undocumented.
 type ConfigurationRecorder struct {
 	Name    string `json:"name,omitempty"`
 	RoleARN string `json:"roleARN,omitempty"`
 }
 
+// ConfigurationRecorderStatus is undocumented.
 type ConfigurationRecorderStatus struct {
 	LastErrorCode        string    `json:"lastErrorCode,omitempty"`
 	LastErrorMessage     string    `json:"lastErrorMessage,omitempty"`
@@ -199,18 +204,22 @@ type ConfigurationRecorderStatus struct {
 	Recording            bool      `json:"recording,omitempty"`
 }
 
+// DeleteDeliveryChannelRequest is undocumented.
 type DeleteDeliveryChannelRequest struct {
 	DeliveryChannelName string `json:"DeliveryChannelName"`
 }
 
+// DeliverConfigSnapshotRequest is undocumented.
 type DeliverConfigSnapshotRequest struct {
 	DeliveryChannelName string `json:"deliveryChannelName"`
 }
 
+// DeliverConfigSnapshotResponse is undocumented.
 type DeliverConfigSnapshotResponse struct {
 	ConfigSnapshotID string `json:"configSnapshotId,omitempty"`
 }
 
+// DeliveryChannel is undocumented.
 type DeliveryChannel struct {
 	Name         string `json:"name,omitempty"`
 	S3BucketName string `json:"s3BucketName,omitempty"`
@@ -218,6 +227,7 @@ type DeliveryChannel struct {
 	SnsTopicARN  string `json:"snsTopicARN,omitempty"`
 }
 
+// DeliveryChannelStatus is undocumented.
 type DeliveryChannelStatus struct {
 	ConfigHistoryDeliveryInfo  ConfigExportDeliveryInfo `json:"configHistoryDeliveryInfo,omitempty"`
 	ConfigSnapshotDeliveryInfo ConfigExportDeliveryInfo `json:"configSnapshotDeliveryInfo,omitempty"`
@@ -225,38 +235,47 @@ type DeliveryChannelStatus struct {
 	Name                       string                   `json:"name,omitempty"`
 }
 
+// DescribeConfigurationRecorderStatusRequest is undocumented.
 type DescribeConfigurationRecorderStatusRequest struct {
 	ConfigurationRecorderNames []string `json:"ConfigurationRecorderNames,omitempty"`
 }
 
+// DescribeConfigurationRecorderStatusResponse is undocumented.
 type DescribeConfigurationRecorderStatusResponse struct {
 	ConfigurationRecordersStatus []ConfigurationRecorderStatus `json:"ConfigurationRecordersStatus,omitempty"`
 }
 
+// DescribeConfigurationRecordersRequest is undocumented.
 type DescribeConfigurationRecordersRequest struct {
 	ConfigurationRecorderNames []string `json:"ConfigurationRecorderNames,omitempty"`
 }
 
+// DescribeConfigurationRecordersResponse is undocumented.
 type DescribeConfigurationRecordersResponse struct {
 	ConfigurationRecorders []ConfigurationRecorder `json:"ConfigurationRecorders,omitempty"`
 }
 
+// DescribeDeliveryChannelStatusRequest is undocumented.
 type DescribeDeliveryChannelStatusRequest struct {
 	DeliveryChannelNames []string `json:"DeliveryChannelNames,omitempty"`
 }
 
+// DescribeDeliveryChannelStatusResponse is undocumented.
 type DescribeDeliveryChannelStatusResponse struct {
 	DeliveryChannelsStatus []DeliveryChannelStatus `json:"DeliveryChannelsStatus,omitempty"`
 }
 
+// DescribeDeliveryChannelsRequest is undocumented.
 type DescribeDeliveryChannelsRequest struct {
 	DeliveryChannelNames []string `json:"DeliveryChannelNames,omitempty"`
 }
 
+// DescribeDeliveryChannelsResponse is undocumented.
 type DescribeDeliveryChannelsResponse struct {
 	DeliveryChannels []DeliveryChannel `json:"DeliveryChannels,omitempty"`
 }
 
+// GetResourceConfigHistoryRequest is undocumented.
 type GetResourceConfigHistoryRequest struct {
 	ChronologicalOrder string    `json:"chronologicalOrder,omitempty"`
 	EarlierTime        time.Time `json:"earlierTime,omitempty"`
@@ -267,31 +286,38 @@ type GetResourceConfigHistoryRequest struct {
 	ResourceType       string    `json:"resourceType"`
 }
 
+// GetResourceConfigHistoryResponse is undocumented.
 type GetResourceConfigHistoryResponse struct {
 	ConfigurationItems []ConfigurationItem `json:"configurationItems,omitempty"`
 	NextToken          string              `json:"nextToken,omitempty"`
 }
 
+// PutConfigurationRecorderRequest is undocumented.
 type PutConfigurationRecorderRequest struct {
 	ConfigurationRecorder ConfigurationRecorder `json:"ConfigurationRecorder"`
 }
 
+// PutDeliveryChannelRequest is undocumented.
 type PutDeliveryChannelRequest struct {
 	DeliveryChannel DeliveryChannel `json:"DeliveryChannel"`
 }
 
+// Relationship is undocumented.
 type Relationship struct {
 	RelationshipName string `json:"relationshipName,omitempty"`
 	ResourceID       string `json:"resourceId,omitempty"`
 	ResourceType     string `json:"resourceType,omitempty"`
 }
 
+// StartConfigurationRecorderRequest is undocumented.
 type StartConfigurationRecorderRequest struct {
 	ConfigurationRecorderName string `json:"ConfigurationRecorderName"`
 }
 
+// StopConfigurationRecorderRequest is undocumented.
 type StopConfigurationRecorderRequest struct {
 	ConfigurationRecorderName string `json:"ConfigurationRecorderName"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

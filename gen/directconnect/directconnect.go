@@ -246,6 +246,7 @@ func (c *DirectConnect) DescribeVirtualInterfaces(req DescribeVirtualInterfacesR
 	return
 }
 
+// AllocateConnectionOnInterconnectRequest is undocumented.
 type AllocateConnectionOnInterconnectRequest struct {
 	Bandwidth      string `json:"bandwidth"`
 	ConnectionName string `json:"connectionName"`
@@ -254,43 +255,52 @@ type AllocateConnectionOnInterconnectRequest struct {
 	Vlan           int    `json:"vlan"`
 }
 
+// AllocatePrivateVirtualInterfaceRequest is undocumented.
 type AllocatePrivateVirtualInterfaceRequest struct {
 	ConnectionID                         string                               `json:"connectionId"`
 	NewPrivateVirtualInterfaceAllocation NewPrivateVirtualInterfaceAllocation `json:"newPrivateVirtualInterfaceAllocation"`
 	OwnerAccount                         string                               `json:"ownerAccount"`
 }
 
+// AllocatePublicVirtualInterfaceRequest is undocumented.
 type AllocatePublicVirtualInterfaceRequest struct {
 	ConnectionID                        string                              `json:"connectionId"`
 	NewPublicVirtualInterfaceAllocation NewPublicVirtualInterfaceAllocation `json:"newPublicVirtualInterfaceAllocation"`
 	OwnerAccount                        string                              `json:"ownerAccount"`
 }
 
+// ConfirmConnectionRequest is undocumented.
 type ConfirmConnectionRequest struct {
 	ConnectionID string `json:"connectionId"`
 }
 
+// ConfirmConnectionResponse is undocumented.
 type ConfirmConnectionResponse struct {
 	ConnectionState string `json:"connectionState,omitempty"`
 }
 
+// ConfirmPrivateVirtualInterfaceRequest is undocumented.
 type ConfirmPrivateVirtualInterfaceRequest struct {
 	VirtualGatewayID   string `json:"virtualGatewayId"`
 	VirtualInterfaceID string `json:"virtualInterfaceId"`
 }
 
+// ConfirmPrivateVirtualInterfaceResponse is undocumented.
 type ConfirmPrivateVirtualInterfaceResponse struct {
 	VirtualInterfaceState string `json:"virtualInterfaceState,omitempty"`
 }
 
+// ConfirmPublicVirtualInterfaceRequest is undocumented.
 type ConfirmPublicVirtualInterfaceRequest struct {
 	VirtualInterfaceID string `json:"virtualInterfaceId"`
 }
 
+// ConfirmPublicVirtualInterfaceResponse is undocumented.
 type ConfirmPublicVirtualInterfaceResponse struct {
 	VirtualInterfaceState string `json:"virtualInterfaceState,omitempty"`
 }
 
+// Connection is undocumented.
 type Connection struct {
 	Bandwidth       string `json:"bandwidth,omitempty"`
 	ConnectionID    string `json:"connectionId,omitempty"`
@@ -303,69 +313,84 @@ type Connection struct {
 	Vlan            int    `json:"vlan,omitempty"`
 }
 
+// Connections is undocumented.
 type Connections struct {
 	Connections []Connection `json:"connections,omitempty"`
 }
 
+// CreateConnectionRequest is undocumented.
 type CreateConnectionRequest struct {
 	Bandwidth      string `json:"bandwidth"`
 	ConnectionName string `json:"connectionName"`
 	Location       string `json:"location"`
 }
 
+// CreateInterconnectRequest is undocumented.
 type CreateInterconnectRequest struct {
 	Bandwidth        string `json:"bandwidth"`
 	InterconnectName string `json:"interconnectName"`
 	Location         string `json:"location"`
 }
 
+// CreatePrivateVirtualInterfaceRequest is undocumented.
 type CreatePrivateVirtualInterfaceRequest struct {
 	ConnectionID               string                     `json:"connectionId"`
 	NewPrivateVirtualInterface NewPrivateVirtualInterface `json:"newPrivateVirtualInterface"`
 }
 
+// CreatePublicVirtualInterfaceRequest is undocumented.
 type CreatePublicVirtualInterfaceRequest struct {
 	ConnectionID              string                    `json:"connectionId"`
 	NewPublicVirtualInterface NewPublicVirtualInterface `json:"newPublicVirtualInterface"`
 }
 
+// DeleteConnectionRequest is undocumented.
 type DeleteConnectionRequest struct {
 	ConnectionID string `json:"connectionId"`
 }
 
+// DeleteInterconnectRequest is undocumented.
 type DeleteInterconnectRequest struct {
 	InterconnectID string `json:"interconnectId"`
 }
 
+// DeleteInterconnectResponse is undocumented.
 type DeleteInterconnectResponse struct {
 	InterconnectState string `json:"interconnectState,omitempty"`
 }
 
+// DeleteVirtualInterfaceRequest is undocumented.
 type DeleteVirtualInterfaceRequest struct {
 	VirtualInterfaceID string `json:"virtualInterfaceId"`
 }
 
+// DeleteVirtualInterfaceResponse is undocumented.
 type DeleteVirtualInterfaceResponse struct {
 	VirtualInterfaceState string `json:"virtualInterfaceState,omitempty"`
 }
 
+// DescribeConnectionsOnInterconnectRequest is undocumented.
 type DescribeConnectionsOnInterconnectRequest struct {
 	InterconnectID string `json:"interconnectId"`
 }
 
+// DescribeConnectionsRequest is undocumented.
 type DescribeConnectionsRequest struct {
 	ConnectionID string `json:"connectionId,omitempty"`
 }
 
+// DescribeInterconnectsRequest is undocumented.
 type DescribeInterconnectsRequest struct {
 	InterconnectID string `json:"interconnectId,omitempty"`
 }
 
+// DescribeVirtualInterfacesRequest is undocumented.
 type DescribeVirtualInterfacesRequest struct {
 	ConnectionID       string `json:"connectionId,omitempty"`
 	VirtualInterfaceID string `json:"virtualInterfaceId,omitempty"`
 }
 
+// Interconnect is undocumented.
 type Interconnect struct {
 	Bandwidth         string `json:"bandwidth,omitempty"`
 	InterconnectID    string `json:"interconnectId,omitempty"`
@@ -375,19 +400,23 @@ type Interconnect struct {
 	Region            string `json:"region,omitempty"`
 }
 
+// Interconnects is undocumented.
 type Interconnects struct {
 	Interconnects []Interconnect `json:"interconnects,omitempty"`
 }
 
+// Location is undocumented.
 type Location struct {
 	LocationCode string `json:"locationCode,omitempty"`
 	LocationName string `json:"locationName,omitempty"`
 }
 
+// Locations is undocumented.
 type Locations struct {
 	Locations []Location `json:"locations,omitempty"`
 }
 
+// NewPrivateVirtualInterface is undocumented.
 type NewPrivateVirtualInterface struct {
 	AmazonAddress        string `json:"amazonAddress,omitempty"`
 	Asn                  int    `json:"asn"`
@@ -398,6 +427,7 @@ type NewPrivateVirtualInterface struct {
 	Vlan                 int    `json:"vlan"`
 }
 
+// NewPrivateVirtualInterfaceAllocation is undocumented.
 type NewPrivateVirtualInterfaceAllocation struct {
 	AmazonAddress        string `json:"amazonAddress,omitempty"`
 	Asn                  int    `json:"asn"`
@@ -407,6 +437,7 @@ type NewPrivateVirtualInterfaceAllocation struct {
 	Vlan                 int    `json:"vlan"`
 }
 
+// NewPublicVirtualInterface is undocumented.
 type NewPublicVirtualInterface struct {
 	AmazonAddress        string              `json:"amazonAddress"`
 	Asn                  int                 `json:"asn"`
@@ -417,6 +448,7 @@ type NewPublicVirtualInterface struct {
 	Vlan                 int                 `json:"vlan"`
 }
 
+// NewPublicVirtualInterfaceAllocation is undocumented.
 type NewPublicVirtualInterfaceAllocation struct {
 	AmazonAddress        string              `json:"amazonAddress"`
 	Asn                  int                 `json:"asn"`
@@ -427,19 +459,23 @@ type NewPublicVirtualInterfaceAllocation struct {
 	Vlan                 int                 `json:"vlan"`
 }
 
+// RouteFilterPrefix is undocumented.
 type RouteFilterPrefix struct {
 	Cidr string `json:"cidr,omitempty"`
 }
 
+// VirtualGateway is undocumented.
 type VirtualGateway struct {
 	VirtualGatewayID    string `json:"virtualGatewayId,omitempty"`
 	VirtualGatewayState string `json:"virtualGatewayState,omitempty"`
 }
 
+// VirtualGateways is undocumented.
 type VirtualGateways struct {
 	VirtualGateways []VirtualGateway `json:"virtualGateways,omitempty"`
 }
 
+// VirtualInterface is undocumented.
 type VirtualInterface struct {
 	AmazonAddress         string              `json:"amazonAddress,omitempty"`
 	Asn                   int                 `json:"asn,omitempty"`
@@ -458,8 +494,10 @@ type VirtualInterface struct {
 	Vlan                  int                 `json:"vlan,omitempty"`
 }
 
+// VirtualInterfaces is undocumented.
 type VirtualInterfaces struct {
 	VirtualInterfaces []VirtualInterface `json:"virtualInterfaces,omitempty"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

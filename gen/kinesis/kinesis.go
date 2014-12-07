@@ -398,40 +398,48 @@ func (c *Kinesis) SplitShard(req SplitShardInput) (err error) {
 	return
 }
 
+// AddTagsToStreamInput is undocumented.
 type AddTagsToStreamInput struct {
 	StreamName string            `json:"StreamName"`
 	Tags       map[string]string `json:"Tags"`
 }
 
+// CreateStreamInput is undocumented.
 type CreateStreamInput struct {
 	ShardCount int    `json:"ShardCount"`
 	StreamName string `json:"StreamName"`
 }
 
+// DeleteStreamInput is undocumented.
 type DeleteStreamInput struct {
 	StreamName string `json:"StreamName"`
 }
 
+// DescribeStreamInput is undocumented.
 type DescribeStreamInput struct {
 	ExclusiveStartShardID string `json:"ExclusiveStartShardId,omitempty"`
 	Limit                 int    `json:"Limit,omitempty"`
 	StreamName            string `json:"StreamName"`
 }
 
+// DescribeStreamOutput is undocumented.
 type DescribeStreamOutput struct {
 	StreamDescription StreamDescription `json:"StreamDescription"`
 }
 
+// GetRecordsInput is undocumented.
 type GetRecordsInput struct {
 	Limit         int    `json:"Limit,omitempty"`
 	ShardIterator string `json:"ShardIterator"`
 }
 
+// GetRecordsOutput is undocumented.
 type GetRecordsOutput struct {
 	NextShardIterator string   `json:"NextShardIterator,omitempty"`
 	Records           []Record `json:"Records"`
 }
 
+// GetShardIteratorInput is undocumented.
 type GetShardIteratorInput struct {
 	ShardID                string `json:"ShardId"`
 	ShardIteratorType      string `json:"ShardIteratorType"`
@@ -439,42 +447,50 @@ type GetShardIteratorInput struct {
 	StreamName             string `json:"StreamName"`
 }
 
+// GetShardIteratorOutput is undocumented.
 type GetShardIteratorOutput struct {
 	ShardIterator string `json:"ShardIterator,omitempty"`
 }
 
+// HashKeyRange is undocumented.
 type HashKeyRange struct {
 	EndingHashKey   string `json:"EndingHashKey"`
 	StartingHashKey string `json:"StartingHashKey"`
 }
 
+// ListStreamsInput is undocumented.
 type ListStreamsInput struct {
 	ExclusiveStartStreamName string `json:"ExclusiveStartStreamName,omitempty"`
 	Limit                    int    `json:"Limit,omitempty"`
 }
 
+// ListStreamsOutput is undocumented.
 type ListStreamsOutput struct {
 	HasMoreStreams bool     `json:"HasMoreStreams"`
 	StreamNames    []string `json:"StreamNames"`
 }
 
+// ListTagsForStreamInput is undocumented.
 type ListTagsForStreamInput struct {
 	ExclusiveStartTagKey string `json:"ExclusiveStartTagKey,omitempty"`
 	Limit                int    `json:"Limit,omitempty"`
 	StreamName           string `json:"StreamName"`
 }
 
+// ListTagsForStreamOutput is undocumented.
 type ListTagsForStreamOutput struct {
 	HasMoreTags bool  `json:"HasMoreTags"`
 	Tags        []Tag `json:"Tags"`
 }
 
+// MergeShardsInput is undocumented.
 type MergeShardsInput struct {
 	AdjacentShardToMerge string `json:"AdjacentShardToMerge"`
 	ShardToMerge         string `json:"ShardToMerge"`
 	StreamName           string `json:"StreamName"`
 }
 
+// PutRecordInput is undocumented.
 type PutRecordInput struct {
 	Data                      []byte `json:"Data"`
 	ExplicitHashKey           string `json:"ExplicitHashKey,omitempty"`
@@ -483,27 +499,32 @@ type PutRecordInput struct {
 	StreamName                string `json:"StreamName"`
 }
 
+// PutRecordOutput is undocumented.
 type PutRecordOutput struct {
 	SequenceNumber string `json:"SequenceNumber"`
 	ShardID        string `json:"ShardId"`
 }
 
+// PutRecordsInput is undocumented.
 type PutRecordsInput struct {
 	Records    []PutRecordsRequestEntry `json:"Records"`
 	StreamName string                   `json:"StreamName"`
 }
 
+// PutRecordsOutput is undocumented.
 type PutRecordsOutput struct {
 	FailedRecordCount int                     `json:"FailedRecordCount,omitempty"`
 	Records           []PutRecordsResultEntry `json:"Records"`
 }
 
+// PutRecordsRequestEntry is undocumented.
 type PutRecordsRequestEntry struct {
 	Data            []byte `json:"Data"`
 	ExplicitHashKey string `json:"ExplicitHashKey,omitempty"`
 	PartitionKey    string `json:"PartitionKey"`
 }
 
+// PutRecordsResultEntry is undocumented.
 type PutRecordsResultEntry struct {
 	ErrorCode      string `json:"ErrorCode,omitempty"`
 	ErrorMessage   string `json:"ErrorMessage,omitempty"`
@@ -511,22 +532,26 @@ type PutRecordsResultEntry struct {
 	ShardID        string `json:"ShardId,omitempty"`
 }
 
+// Record is undocumented.
 type Record struct {
 	Data           []byte `json:"Data"`
 	PartitionKey   string `json:"PartitionKey"`
 	SequenceNumber string `json:"SequenceNumber"`
 }
 
+// RemoveTagsFromStreamInput is undocumented.
 type RemoveTagsFromStreamInput struct {
 	StreamName string   `json:"StreamName"`
 	TagKeys    []string `json:"TagKeys"`
 }
 
+// SequenceNumberRange is undocumented.
 type SequenceNumberRange struct {
 	EndingSequenceNumber   string `json:"EndingSequenceNumber,omitempty"`
 	StartingSequenceNumber string `json:"StartingSequenceNumber"`
 }
 
+// Shard is undocumented.
 type Shard struct {
 	AdjacentParentShardID string              `json:"AdjacentParentShardId,omitempty"`
 	HashKeyRange          HashKeyRange        `json:"HashKeyRange"`
@@ -535,12 +560,14 @@ type Shard struct {
 	ShardID               string              `json:"ShardId"`
 }
 
+// SplitShardInput is undocumented.
 type SplitShardInput struct {
 	NewStartingHashKey string `json:"NewStartingHashKey"`
 	ShardToSplit       string `json:"ShardToSplit"`
 	StreamName         string `json:"StreamName"`
 }
 
+// StreamDescription is undocumented.
 type StreamDescription struct {
 	HasMoreShards bool    `json:"HasMoreShards"`
 	Shards        []Shard `json:"Shards"`
@@ -549,9 +576,11 @@ type StreamDescription struct {
 	StreamStatus  string  `json:"StreamStatus"`
 }
 
+// Tag is undocumented.
 type Tag struct {
 	Key   string `json:"Key"`
 	Value string `json:"Value,omitempty"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

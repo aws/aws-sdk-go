@@ -190,44 +190,53 @@ func (c *Logs) TestMetricFilter(req TestMetricFilterRequest) (resp *TestMetricFi
 	return
 }
 
+// CreateLogGroupRequest is undocumented.
 type CreateLogGroupRequest struct {
 	LogGroupName string `json:"logGroupName"`
 }
 
+// CreateLogStreamRequest is undocumented.
 type CreateLogStreamRequest struct {
 	LogGroupName  string `json:"logGroupName"`
 	LogStreamName string `json:"logStreamName"`
 }
 
+// DeleteLogGroupRequest is undocumented.
 type DeleteLogGroupRequest struct {
 	LogGroupName string `json:"logGroupName"`
 }
 
+// DeleteLogStreamRequest is undocumented.
 type DeleteLogStreamRequest struct {
 	LogGroupName  string `json:"logGroupName"`
 	LogStreamName string `json:"logStreamName"`
 }
 
+// DeleteMetricFilterRequest is undocumented.
 type DeleteMetricFilterRequest struct {
 	FilterName   string `json:"filterName"`
 	LogGroupName string `json:"logGroupName"`
 }
 
+// DeleteRetentionPolicyRequest is undocumented.
 type DeleteRetentionPolicyRequest struct {
 	LogGroupName string `json:"logGroupName"`
 }
 
+// DescribeLogGroupsRequest is undocumented.
 type DescribeLogGroupsRequest struct {
 	Limit              int    `json:"limit,omitempty"`
 	LogGroupNamePrefix string `json:"logGroupNamePrefix,omitempty"`
 	NextToken          string `json:"nextToken,omitempty"`
 }
 
+// DescribeLogGroupsResponse is undocumented.
 type DescribeLogGroupsResponse struct {
 	LogGroups []LogGroup `json:"logGroups,omitempty"`
 	NextToken string     `json:"nextToken,omitempty"`
 }
 
+// DescribeLogStreamsRequest is undocumented.
 type DescribeLogStreamsRequest struct {
 	Limit               int    `json:"limit,omitempty"`
 	LogGroupName        string `json:"logGroupName"`
@@ -235,11 +244,13 @@ type DescribeLogStreamsRequest struct {
 	NextToken           string `json:"nextToken,omitempty"`
 }
 
+// DescribeLogStreamsResponse is undocumented.
 type DescribeLogStreamsResponse struct {
 	LogStreams []LogStream `json:"logStreams,omitempty"`
 	NextToken  string      `json:"nextToken,omitempty"`
 }
 
+// DescribeMetricFiltersRequest is undocumented.
 type DescribeMetricFiltersRequest struct {
 	FilterNamePrefix string `json:"filterNamePrefix,omitempty"`
 	Limit            int    `json:"limit,omitempty"`
@@ -247,11 +258,13 @@ type DescribeMetricFiltersRequest struct {
 	NextToken        string `json:"nextToken,omitempty"`
 }
 
+// DescribeMetricFiltersResponse is undocumented.
 type DescribeMetricFiltersResponse struct {
 	MetricFilters []MetricFilter `json:"metricFilters,omitempty"`
 	NextToken     string         `json:"nextToken,omitempty"`
 }
 
+// GetLogEventsRequest is undocumented.
 type GetLogEventsRequest struct {
 	EndTime       int    `json:"endTime,omitempty"`
 	Limit         int    `json:"limit,omitempty"`
@@ -262,17 +275,20 @@ type GetLogEventsRequest struct {
 	StartTime     int    `json:"startTime,omitempty"`
 }
 
+// GetLogEventsResponse is undocumented.
 type GetLogEventsResponse struct {
 	Events            []OutputLogEvent `json:"events,omitempty"`
 	NextBackwardToken string           `json:"nextBackwardToken,omitempty"`
 	NextForwardToken  string           `json:"nextForwardToken,omitempty"`
 }
 
+// InputLogEvent is undocumented.
 type InputLogEvent struct {
 	Message   string `json:"message"`
 	Timestamp int    `json:"timestamp"`
 }
 
+// LogGroup is undocumented.
 type LogGroup struct {
 	ARN               string `json:"arn,omitempty"`
 	CreationTime      int    `json:"creationTime,omitempty"`
@@ -282,6 +298,7 @@ type LogGroup struct {
 	StoredBytes       int    `json:"storedBytes,omitempty"`
 }
 
+// LogStream is undocumented.
 type LogStream struct {
 	ARN                 string `json:"arn,omitempty"`
 	CreationTime        int    `json:"creationTime,omitempty"`
@@ -293,6 +310,7 @@ type LogStream struct {
 	UploadSequenceToken string `json:"uploadSequenceToken,omitempty"`
 }
 
+// MetricFilter is undocumented.
 type MetricFilter struct {
 	CreationTime          int                    `json:"creationTime,omitempty"`
 	FilterName            string                 `json:"filterName,omitempty"`
@@ -300,24 +318,28 @@ type MetricFilter struct {
 	MetricTransformations []MetricTransformation `json:"metricTransformations,omitempty"`
 }
 
+// MetricFilterMatchRecord is undocumented.
 type MetricFilterMatchRecord struct {
 	EventMessage    string            `json:"eventMessage,omitempty"`
 	EventNumber     int               `json:"eventNumber,omitempty"`
 	ExtractedValues map[string]string `json:"extractedValues,omitempty"`
 }
 
+// MetricTransformation is undocumented.
 type MetricTransformation struct {
 	MetricName      string `json:"metricName"`
 	MetricNamespace string `json:"metricNamespace"`
 	MetricValue     string `json:"metricValue"`
 }
 
+// OutputLogEvent is undocumented.
 type OutputLogEvent struct {
 	IngestionTime int    `json:"ingestionTime,omitempty"`
 	Message       string `json:"message,omitempty"`
 	Timestamp     int    `json:"timestamp,omitempty"`
 }
 
+// PutLogEventsRequest is undocumented.
 type PutLogEventsRequest struct {
 	LogEvents     []InputLogEvent `json:"logEvents"`
 	LogGroupName  string          `json:"logGroupName"`
@@ -325,10 +347,12 @@ type PutLogEventsRequest struct {
 	SequenceToken string          `json:"sequenceToken,omitempty"`
 }
 
+// PutLogEventsResponse is undocumented.
 type PutLogEventsResponse struct {
 	NextSequenceToken string `json:"nextSequenceToken,omitempty"`
 }
 
+// PutMetricFilterRequest is undocumented.
 type PutMetricFilterRequest struct {
 	FilterName            string                 `json:"filterName"`
 	FilterPattern         string                 `json:"filterPattern"`
@@ -336,18 +360,22 @@ type PutMetricFilterRequest struct {
 	MetricTransformations []MetricTransformation `json:"metricTransformations"`
 }
 
+// PutRetentionPolicyRequest is undocumented.
 type PutRetentionPolicyRequest struct {
 	LogGroupName    string `json:"logGroupName"`
 	RetentionInDays int    `json:"retentionInDays"`
 }
 
+// TestMetricFilterRequest is undocumented.
 type TestMetricFilterRequest struct {
 	FilterPattern    string   `json:"filterPattern"`
 	LogEventMessages []string `json:"logEventMessages"`
 }
 
+// TestMetricFilterResponse is undocumented.
 type TestMetricFilterResponse struct {
 	Matches []MetricFilterMatchRecord `json:"matches,omitempty"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

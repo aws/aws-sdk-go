@@ -222,6 +222,7 @@ func (c *CodeDeploy) UpdateDeploymentGroup(req UpdateDeploymentGroupInput) (resp
 	return
 }
 
+// ApplicationInfo is undocumented.
 type ApplicationInfo struct {
 	ApplicationID   string    `json:"applicationId,omitempty"`
 	ApplicationName string    `json:"applicationName,omitempty"`
@@ -229,44 +230,54 @@ type ApplicationInfo struct {
 	LinkedToGitHub  bool      `json:"linkedToGitHub,omitempty"`
 }
 
+// AutoScalingGroup is undocumented.
 type AutoScalingGroup struct {
 	Hook string `json:"hook,omitempty"`
 	Name string `json:"name,omitempty"`
 }
 
+// BatchGetApplicationsInput is undocumented.
 type BatchGetApplicationsInput struct {
 	ApplicationNames []string `json:"applicationNames,omitempty"`
 }
 
+// BatchGetApplicationsOutput is undocumented.
 type BatchGetApplicationsOutput struct {
 	ApplicationsInfo []ApplicationInfo `json:"applicationsInfo,omitempty"`
 }
 
+// BatchGetDeploymentsInput is undocumented.
 type BatchGetDeploymentsInput struct {
 	DeploymentIds []string `json:"deploymentIds,omitempty"`
 }
 
+// BatchGetDeploymentsOutput is undocumented.
 type BatchGetDeploymentsOutput struct {
 	DeploymentsInfo []DeploymentInfo `json:"deploymentsInfo,omitempty"`
 }
 
+// CreateApplicationInput is undocumented.
 type CreateApplicationInput struct {
 	ApplicationName string `json:"applicationName"`
 }
 
+// CreateApplicationOutput is undocumented.
 type CreateApplicationOutput struct {
 	ApplicationID string `json:"applicationId,omitempty"`
 }
 
+// CreateDeploymentConfigInput is undocumented.
 type CreateDeploymentConfigInput struct {
 	DeploymentConfigName string              `json:"deploymentConfigName"`
 	MinimumHealthyHosts  MinimumHealthyHosts `json:"minimumHealthyHosts,omitempty"`
 }
 
+// CreateDeploymentConfigOutput is undocumented.
 type CreateDeploymentConfigOutput struct {
 	DeploymentConfigID string `json:"deploymentConfigId,omitempty"`
 }
 
+// CreateDeploymentGroupInput is undocumented.
 type CreateDeploymentGroupInput struct {
 	ApplicationName      string         `json:"applicationName"`
 	AutoScalingGroups    []string       `json:"autoScalingGroups,omitempty"`
@@ -276,10 +287,12 @@ type CreateDeploymentGroupInput struct {
 	ServiceRoleARN       string         `json:"serviceRoleArn,omitempty"`
 }
 
+// CreateDeploymentGroupOutput is undocumented.
 type CreateDeploymentGroupOutput struct {
 	DeploymentGroupID string `json:"deploymentGroupId,omitempty"`
 }
 
+// CreateDeploymentInput is undocumented.
 type CreateDeploymentInput struct {
 	ApplicationName               string           `json:"applicationName"`
 	DeploymentConfigName          string           `json:"deploymentConfigName,omitempty"`
@@ -289,27 +302,33 @@ type CreateDeploymentInput struct {
 	Revision                      RevisionLocation `json:"revision,omitempty"`
 }
 
+// CreateDeploymentOutput is undocumented.
 type CreateDeploymentOutput struct {
 	DeploymentID string `json:"deploymentId,omitempty"`
 }
 
+// DeleteApplicationInput is undocumented.
 type DeleteApplicationInput struct {
 	ApplicationName string `json:"applicationName"`
 }
 
+// DeleteDeploymentConfigInput is undocumented.
 type DeleteDeploymentConfigInput struct {
 	DeploymentConfigName string `json:"deploymentConfigName"`
 }
 
+// DeleteDeploymentGroupInput is undocumented.
 type DeleteDeploymentGroupInput struct {
 	ApplicationName     string `json:"applicationName"`
 	DeploymentGroupName string `json:"deploymentGroupName"`
 }
 
+// DeleteDeploymentGroupOutput is undocumented.
 type DeleteDeploymentGroupOutput struct {
 	HooksNotCleanedUp []AutoScalingGroup `json:"hooksNotCleanedUp,omitempty"`
 }
 
+// DeploymentConfigInfo is undocumented.
 type DeploymentConfigInfo struct {
 	CreateTime           time.Time           `json:"createTime,omitempty"`
 	DeploymentConfigID   string              `json:"deploymentConfigId,omitempty"`
@@ -317,6 +336,7 @@ type DeploymentConfigInfo struct {
 	MinimumHealthyHosts  MinimumHealthyHosts `json:"minimumHealthyHosts,omitempty"`
 }
 
+// DeploymentGroupInfo is undocumented.
 type DeploymentGroupInfo struct {
 	ApplicationName      string             `json:"applicationName,omitempty"`
 	AutoScalingGroups    []AutoScalingGroup `json:"autoScalingGroups,omitempty"`
@@ -328,6 +348,7 @@ type DeploymentGroupInfo struct {
 	TargetRevision       RevisionLocation   `json:"targetRevision,omitempty"`
 }
 
+// DeploymentInfo is undocumented.
 type DeploymentInfo struct {
 	ApplicationName               string             `json:"applicationName,omitempty"`
 	CompleteTime                  time.Time          `json:"completeTime,omitempty"`
@@ -345,6 +366,7 @@ type DeploymentInfo struct {
 	Status                        string             `json:"status,omitempty"`
 }
 
+// DeploymentOverview is undocumented.
 type DeploymentOverview struct {
 	Failed     int `json:"Failed,omitempty"`
 	InProgress int `json:"InProgress,omitempty"`
@@ -353,6 +375,7 @@ type DeploymentOverview struct {
 	Succeeded  int `json:"Succeeded,omitempty"`
 }
 
+// Diagnostics is undocumented.
 type Diagnostics struct {
 	ErrorCode  string `json:"errorCode,omitempty"`
 	LogTail    string `json:"logTail,omitempty"`
@@ -360,17 +383,20 @@ type Diagnostics struct {
 	ScriptName string `json:"scriptName,omitempty"`
 }
 
+// EC2TagFilter is undocumented.
 type EC2TagFilter struct {
 	Key   string `json:"Key,omitempty"`
 	Type  string `json:"Type,omitempty"`
 	Value string `json:"Value,omitempty"`
 }
 
+// ErrorInformation is undocumented.
 type ErrorInformation struct {
 	Code    string `json:"code,omitempty"`
 	Message string `json:"message,omitempty"`
 }
 
+// GenericRevisionInfo is undocumented.
 type GenericRevisionInfo struct {
 	DeploymentGroups []string  `json:"deploymentGroups,omitempty"`
 	Description      string    `json:"description,omitempty"`
@@ -379,64 +405,78 @@ type GenericRevisionInfo struct {
 	RegisterTime     time.Time `json:"registerTime,omitempty"`
 }
 
+// GetApplicationInput is undocumented.
 type GetApplicationInput struct {
 	ApplicationName string `json:"applicationName"`
 }
 
+// GetApplicationOutput is undocumented.
 type GetApplicationOutput struct {
 	Application ApplicationInfo `json:"application,omitempty"`
 }
 
+// GetApplicationRevisionInput is undocumented.
 type GetApplicationRevisionInput struct {
 	ApplicationName string           `json:"applicationName"`
 	Revision        RevisionLocation `json:"revision"`
 }
 
+// GetApplicationRevisionOutput is undocumented.
 type GetApplicationRevisionOutput struct {
 	ApplicationName string              `json:"applicationName,omitempty"`
 	Revision        RevisionLocation    `json:"revision,omitempty"`
 	RevisionInfo    GenericRevisionInfo `json:"revisionInfo,omitempty"`
 }
 
+// GetDeploymentConfigInput is undocumented.
 type GetDeploymentConfigInput struct {
 	DeploymentConfigName string `json:"deploymentConfigName"`
 }
 
+// GetDeploymentConfigOutput is undocumented.
 type GetDeploymentConfigOutput struct {
 	DeploymentConfigInfo DeploymentConfigInfo `json:"deploymentConfigInfo,omitempty"`
 }
 
+// GetDeploymentGroupInput is undocumented.
 type GetDeploymentGroupInput struct {
 	ApplicationName     string `json:"applicationName"`
 	DeploymentGroupName string `json:"deploymentGroupName"`
 }
 
+// GetDeploymentGroupOutput is undocumented.
 type GetDeploymentGroupOutput struct {
 	DeploymentGroupInfo DeploymentGroupInfo `json:"deploymentGroupInfo,omitempty"`
 }
 
+// GetDeploymentInput is undocumented.
 type GetDeploymentInput struct {
 	DeploymentID string `json:"deploymentId"`
 }
 
+// GetDeploymentInstanceInput is undocumented.
 type GetDeploymentInstanceInput struct {
 	DeploymentID string `json:"deploymentId"`
 	InstanceID   string `json:"instanceId"`
 }
 
+// GetDeploymentInstanceOutput is undocumented.
 type GetDeploymentInstanceOutput struct {
 	InstanceSummary InstanceSummary `json:"instanceSummary,omitempty"`
 }
 
+// GetDeploymentOutput is undocumented.
 type GetDeploymentOutput struct {
 	DeploymentInfo DeploymentInfo `json:"deploymentInfo,omitempty"`
 }
 
+// GitHubLocation is undocumented.
 type GitHubLocation struct {
 	CommitID   string `json:"commitId,omitempty"`
 	Repository string `json:"repository,omitempty"`
 }
 
+// InstanceSummary is undocumented.
 type InstanceSummary struct {
 	DeploymentID    string           `json:"deploymentId,omitempty"`
 	InstanceID      string           `json:"instanceId,omitempty"`
@@ -445,6 +485,7 @@ type InstanceSummary struct {
 	Status          string           `json:"status,omitempty"`
 }
 
+// LifecycleEvent is undocumented.
 type LifecycleEvent struct {
 	Diagnostics        Diagnostics `json:"diagnostics,omitempty"`
 	EndTime            time.Time   `json:"endTime,omitempty"`
@@ -453,6 +494,7 @@ type LifecycleEvent struct {
 	Status             string      `json:"status,omitempty"`
 }
 
+// ListApplicationRevisionsInput is undocumented.
 type ListApplicationRevisionsInput struct {
 	ApplicationName string `json:"applicationName"`
 	Deployed        string `json:"deployed,omitempty"`
@@ -463,51 +505,61 @@ type ListApplicationRevisionsInput struct {
 	SortOrder       string `json:"sortOrder,omitempty"`
 }
 
+// ListApplicationRevisionsOutput is undocumented.
 type ListApplicationRevisionsOutput struct {
 	NextToken string             `json:"nextToken,omitempty"`
 	Revisions []RevisionLocation `json:"revisions,omitempty"`
 }
 
+// ListApplicationsInput is undocumented.
 type ListApplicationsInput struct {
 	NextToken string `json:"nextToken,omitempty"`
 }
 
+// ListApplicationsOutput is undocumented.
 type ListApplicationsOutput struct {
 	Applications []string `json:"applications,omitempty"`
 	NextToken    string   `json:"nextToken,omitempty"`
 }
 
+// ListDeploymentConfigsInput is undocumented.
 type ListDeploymentConfigsInput struct {
 	NextToken string `json:"nextToken,omitempty"`
 }
 
+// ListDeploymentConfigsOutput is undocumented.
 type ListDeploymentConfigsOutput struct {
 	DeploymentConfigsList []string `json:"deploymentConfigsList,omitempty"`
 	NextToken             string   `json:"nextToken,omitempty"`
 }
 
+// ListDeploymentGroupsInput is undocumented.
 type ListDeploymentGroupsInput struct {
 	ApplicationName string `json:"applicationName"`
 	NextToken       string `json:"nextToken,omitempty"`
 }
 
+// ListDeploymentGroupsOutput is undocumented.
 type ListDeploymentGroupsOutput struct {
 	ApplicationName  string   `json:"applicationName,omitempty"`
 	DeploymentGroups []string `json:"deploymentGroups,omitempty"`
 	NextToken        string   `json:"nextToken,omitempty"`
 }
 
+// ListDeploymentInstancesInput is undocumented.
 type ListDeploymentInstancesInput struct {
 	DeploymentID         string   `json:"deploymentId"`
 	InstanceStatusFilter []string `json:"instanceStatusFilter,omitempty"`
 	NextToken            string   `json:"nextToken,omitempty"`
 }
 
+// ListDeploymentInstancesOutput is undocumented.
 type ListDeploymentInstancesOutput struct {
 	InstancesList []string `json:"instancesList,omitempty"`
 	NextToken     string   `json:"nextToken,omitempty"`
 }
 
+// ListDeploymentsInput is undocumented.
 type ListDeploymentsInput struct {
 	ApplicationName     string    `json:"applicationName,omitempty"`
 	CreateTimeRange     TimeRange `json:"createTimeRange,omitempty"`
@@ -516,28 +568,33 @@ type ListDeploymentsInput struct {
 	NextToken           string    `json:"nextToken,omitempty"`
 }
 
+// ListDeploymentsOutput is undocumented.
 type ListDeploymentsOutput struct {
 	Deployments []string `json:"deployments,omitempty"`
 	NextToken   string   `json:"nextToken,omitempty"`
 }
 
+// MinimumHealthyHosts is undocumented.
 type MinimumHealthyHosts struct {
 	Type  string `json:"type,omitempty"`
 	Value int    `json:"value,omitempty"`
 }
 
+// RegisterApplicationRevisionInput is undocumented.
 type RegisterApplicationRevisionInput struct {
 	ApplicationName string           `json:"applicationName"`
 	Description     string           `json:"description,omitempty"`
 	Revision        RevisionLocation `json:"revision"`
 }
 
+// RevisionLocation is undocumented.
 type RevisionLocation struct {
 	GitHubLocation GitHubLocation `json:"gitHubLocation,omitempty"`
 	RevisionType   string         `json:"revisionType,omitempty"`
 	S3Location     S3Location     `json:"s3Location,omitempty"`
 }
 
+// S3Location is undocumented.
 type S3Location struct {
 	Bucket     string `json:"bucket,omitempty"`
 	BundleType string `json:"bundleType,omitempty"`
@@ -546,25 +603,30 @@ type S3Location struct {
 	Version    string `json:"version,omitempty"`
 }
 
+// StopDeploymentInput is undocumented.
 type StopDeploymentInput struct {
 	DeploymentID string `json:"deploymentId"`
 }
 
+// StopDeploymentOutput is undocumented.
 type StopDeploymentOutput struct {
 	Status        string `json:"status,omitempty"`
 	StatusMessage string `json:"statusMessage,omitempty"`
 }
 
+// TimeRange is undocumented.
 type TimeRange struct {
 	End   time.Time `json:"end,omitempty"`
 	Start time.Time `json:"start,omitempty"`
 }
 
+// UpdateApplicationInput is undocumented.
 type UpdateApplicationInput struct {
 	ApplicationName    string `json:"applicationName,omitempty"`
 	NewApplicationName string `json:"newApplicationName,omitempty"`
 }
 
+// UpdateDeploymentGroupInput is undocumented.
 type UpdateDeploymentGroupInput struct {
 	ApplicationName            string         `json:"applicationName"`
 	AutoScalingGroups          []string       `json:"autoScalingGroups,omitempty"`
@@ -575,8 +637,10 @@ type UpdateDeploymentGroupInput struct {
 	ServiceRoleARN             string         `json:"serviceRoleArn,omitempty"`
 }
 
+// UpdateDeploymentGroupOutput is undocumented.
 type UpdateDeploymentGroupOutput struct {
 	HooksNotCleanedUp []AutoScalingGroup `json:"hooksNotCleanedUp,omitempty"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

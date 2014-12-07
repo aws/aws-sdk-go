@@ -231,28 +231,34 @@ func (c *DataPipeline) ValidatePipelineDefinition(req ValidatePipelineDefinition
 	return
 }
 
+// ActivatePipelineInput is undocumented.
 type ActivatePipelineInput struct {
 	ParameterValues []ParameterValue `json:"parameterValues,omitempty"`
 	PipelineID      string           `json:"pipelineId"`
 }
 
+// ActivatePipelineOutput is undocumented.
 type ActivatePipelineOutput struct {
 }
 
+// CreatePipelineInput is undocumented.
 type CreatePipelineInput struct {
 	Description string `json:"description,omitempty"`
 	Name        string `json:"name"`
 	UniqueID    string `json:"uniqueId"`
 }
 
+// CreatePipelineOutput is undocumented.
 type CreatePipelineOutput struct {
 	PipelineID string `json:"pipelineId"`
 }
 
+// DeletePipelineInput is undocumented.
 type DeletePipelineInput struct {
 	PipelineID string `json:"pipelineId"`
 }
 
+// DescribeObjectsInput is undocumented.
 type DescribeObjectsInput struct {
 	EvaluateExpressions bool     `json:"evaluateExpressions,omitempty"`
 	Marker              string   `json:"marker,omitempty"`
@@ -260,82 +266,98 @@ type DescribeObjectsInput struct {
 	PipelineID          string   `json:"pipelineId"`
 }
 
+// DescribeObjectsOutput is undocumented.
 type DescribeObjectsOutput struct {
 	HasMoreResults  bool             `json:"hasMoreResults,omitempty"`
 	Marker          string           `json:"marker,omitempty"`
 	PipelineObjects []PipelineObject `json:"pipelineObjects"`
 }
 
+// DescribePipelinesInput is undocumented.
 type DescribePipelinesInput struct {
 	PipelineIds []string `json:"pipelineIds"`
 }
 
+// DescribePipelinesOutput is undocumented.
 type DescribePipelinesOutput struct {
 	PipelineDescriptionList []PipelineDescription `json:"pipelineDescriptionList"`
 }
 
+// EvaluateExpressionInput is undocumented.
 type EvaluateExpressionInput struct {
 	Expression string `json:"expression"`
 	ObjectID   string `json:"objectId"`
 	PipelineID string `json:"pipelineId"`
 }
 
+// EvaluateExpressionOutput is undocumented.
 type EvaluateExpressionOutput struct {
 	EvaluatedExpression string `json:"evaluatedExpression"`
 }
 
+// Field is undocumented.
 type Field struct {
 	Key         string `json:"key"`
 	RefValue    string `json:"refValue,omitempty"`
 	StringValue string `json:"stringValue,omitempty"`
 }
 
+// GetPipelineDefinitionInput is undocumented.
 type GetPipelineDefinitionInput struct {
 	PipelineID string `json:"pipelineId"`
 	Version    string `json:"version,omitempty"`
 }
 
+// GetPipelineDefinitionOutput is undocumented.
 type GetPipelineDefinitionOutput struct {
 	ParameterObjects []ParameterObject `json:"parameterObjects,omitempty"`
 	ParameterValues  []ParameterValue  `json:"parameterValues,omitempty"`
 	PipelineObjects  []PipelineObject  `json:"pipelineObjects,omitempty"`
 }
 
+// InstanceIdentity is undocumented.
 type InstanceIdentity struct {
 	Document  string `json:"document,omitempty"`
 	Signature string `json:"signature,omitempty"`
 }
 
+// ListPipelinesInput is undocumented.
 type ListPipelinesInput struct {
 	Marker string `json:"marker,omitempty"`
 }
 
+// ListPipelinesOutput is undocumented.
 type ListPipelinesOutput struct {
 	HasMoreResults bool             `json:"hasMoreResults,omitempty"`
 	Marker         string           `json:"marker,omitempty"`
 	PipelineIDList []PipelineIDName `json:"pipelineIdList"`
 }
 
+// Operator is undocumented.
 type Operator struct {
 	Type   string   `json:"type,omitempty"`
 	Values []string `json:"values,omitempty"`
 }
 
+// ParameterAttribute is undocumented.
 type ParameterAttribute struct {
 	Key         string `json:"key"`
 	StringValue string `json:"stringValue"`
 }
 
+// ParameterObject is undocumented.
 type ParameterObject struct {
 	Attributes []ParameterAttribute `json:"attributes"`
 	ID         string               `json:"id"`
 }
 
+// ParameterValue is undocumented.
 type ParameterValue struct {
 	ID          string `json:"id"`
 	StringValue string `json:"stringValue"`
 }
 
+// PipelineDescription is undocumented.
 type PipelineDescription struct {
 	Description string  `json:"description,omitempty"`
 	Fields      []Field `json:"fields"`
@@ -343,27 +365,32 @@ type PipelineDescription struct {
 	PipelineID  string  `json:"pipelineId"`
 }
 
+// PipelineIDName is undocumented.
 type PipelineIDName struct {
 	ID   string `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
 }
 
+// PipelineObject is undocumented.
 type PipelineObject struct {
 	Fields []Field `json:"fields"`
 	ID     string  `json:"id"`
 	Name   string  `json:"name"`
 }
 
+// PollForTaskInput is undocumented.
 type PollForTaskInput struct {
 	Hostname         string           `json:"hostname,omitempty"`
 	InstanceIdentity InstanceIdentity `json:"instanceIdentity,omitempty"`
 	WorkerGroup      string           `json:"workerGroup"`
 }
 
+// PollForTaskOutput is undocumented.
 type PollForTaskOutput struct {
 	TaskObject TaskObject `json:"taskObject,omitempty"`
 }
 
+// PutPipelineDefinitionInput is undocumented.
 type PutPipelineDefinitionInput struct {
 	ParameterObjects []ParameterObject `json:"parameterObjects,omitempty"`
 	ParameterValues  []ParameterValue  `json:"parameterValues,omitempty"`
@@ -371,16 +398,19 @@ type PutPipelineDefinitionInput struct {
 	PipelineObjects  []PipelineObject  `json:"pipelineObjects"`
 }
 
+// PutPipelineDefinitionOutput is undocumented.
 type PutPipelineDefinitionOutput struct {
 	Errored            bool                `json:"errored"`
 	ValidationErrors   []ValidationError   `json:"validationErrors,omitempty"`
 	ValidationWarnings []ValidationWarning `json:"validationWarnings,omitempty"`
 }
 
+// Query is undocumented.
 type Query struct {
 	Selectors []Selector `json:"selectors,omitempty"`
 }
 
+// QueryObjectsInput is undocumented.
 type QueryObjectsInput struct {
 	Limit      int    `json:"limit,omitempty"`
 	Marker     string `json:"marker,omitempty"`
@@ -389,42 +419,50 @@ type QueryObjectsInput struct {
 	Sphere     string `json:"sphere"`
 }
 
+// QueryObjectsOutput is undocumented.
 type QueryObjectsOutput struct {
 	HasMoreResults bool     `json:"hasMoreResults,omitempty"`
 	Ids            []string `json:"ids,omitempty"`
 	Marker         string   `json:"marker,omitempty"`
 }
 
+// ReportTaskProgressInput is undocumented.
 type ReportTaskProgressInput struct {
 	Fields []Field `json:"fields,omitempty"`
 	TaskID string  `json:"taskId"`
 }
 
+// ReportTaskProgressOutput is undocumented.
 type ReportTaskProgressOutput struct {
 	Canceled bool `json:"canceled"`
 }
 
+// ReportTaskRunnerHeartbeatInput is undocumented.
 type ReportTaskRunnerHeartbeatInput struct {
 	Hostname     string `json:"hostname,omitempty"`
 	TaskrunnerID string `json:"taskrunnerId"`
 	WorkerGroup  string `json:"workerGroup,omitempty"`
 }
 
+// ReportTaskRunnerHeartbeatOutput is undocumented.
 type ReportTaskRunnerHeartbeatOutput struct {
 	Terminate bool `json:"terminate"`
 }
 
+// Selector is undocumented.
 type Selector struct {
 	FieldName string   `json:"fieldName,omitempty"`
 	Operator  Operator `json:"operator,omitempty"`
 }
 
+// SetStatusInput is undocumented.
 type SetStatusInput struct {
 	ObjectIds  []string `json:"objectIds"`
 	PipelineID string   `json:"pipelineId"`
 	Status     string   `json:"status"`
 }
 
+// SetTaskStatusInput is undocumented.
 type SetTaskStatusInput struct {
 	ErrorID         string `json:"errorId,omitempty"`
 	ErrorMessage    string `json:"errorMessage,omitempty"`
@@ -433,9 +471,11 @@ type SetTaskStatusInput struct {
 	TaskStatus      string `json:"taskStatus"`
 }
 
+// SetTaskStatusOutput is undocumented.
 type SetTaskStatusOutput struct {
 }
 
+// TaskObject is undocumented.
 type TaskObject struct {
 	AttemptID  string                    `json:"attemptId,omitempty"`
 	Objects    map[string]PipelineObject `json:"objects,omitempty"`
@@ -443,6 +483,7 @@ type TaskObject struct {
 	TaskID     string                    `json:"taskId,omitempty"`
 }
 
+// ValidatePipelineDefinitionInput is undocumented.
 type ValidatePipelineDefinitionInput struct {
 	ParameterObjects []ParameterObject `json:"parameterObjects,omitempty"`
 	ParameterValues  []ParameterValue  `json:"parameterValues,omitempty"`
@@ -450,20 +491,24 @@ type ValidatePipelineDefinitionInput struct {
 	PipelineObjects  []PipelineObject  `json:"pipelineObjects"`
 }
 
+// ValidatePipelineDefinitionOutput is undocumented.
 type ValidatePipelineDefinitionOutput struct {
 	Errored            bool                `json:"errored"`
 	ValidationErrors   []ValidationError   `json:"validationErrors,omitempty"`
 	ValidationWarnings []ValidationWarning `json:"validationWarnings,omitempty"`
 }
 
+// ValidationError is undocumented.
 type ValidationError struct {
 	Errors []string `json:"errors,omitempty"`
 	ID     string   `json:"id,omitempty"`
 }
 
+// ValidationWarning is undocumented.
 type ValidationWarning struct {
 	ID       string   `json:"id,omitempty"`
 	Warnings []string `json:"warnings,omitempty"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

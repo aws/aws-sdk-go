@@ -240,17 +240,20 @@ func (c *KMS) UpdateKeyDescription(req UpdateKeyDescriptionRequest) (err error) 
 	return
 }
 
+// AliasListEntry is undocumented.
 type AliasListEntry struct {
 	AliasARN    string `json:"AliasArn,omitempty"`
 	AliasName   string `json:"AliasName,omitempty"`
 	TargetKeyID string `json:"TargetKeyId,omitempty"`
 }
 
+// CreateAliasRequest is undocumented.
 type CreateAliasRequest struct {
 	AliasName   string `json:"AliasName"`
 	TargetKeyID string `json:"TargetKeyId"`
 }
 
+// CreateGrantRequest is undocumented.
 type CreateGrantRequest struct {
 	Constraints       GrantConstraints `json:"Constraints,omitempty"`
 	GrantTokens       []string         `json:"GrantTokens,omitempty"`
@@ -260,60 +263,73 @@ type CreateGrantRequest struct {
 	RetiringPrincipal string           `json:"RetiringPrincipal,omitempty"`
 }
 
+// CreateGrantResponse is undocumented.
 type CreateGrantResponse struct {
 	GrantID    string `json:"GrantId,omitempty"`
 	GrantToken string `json:"GrantToken,omitempty"`
 }
 
+// CreateKeyRequest is undocumented.
 type CreateKeyRequest struct {
 	Description string `json:"Description,omitempty"`
 	KeyUsage    string `json:"KeyUsage,omitempty"`
 	Policy      string `json:"Policy,omitempty"`
 }
 
+// CreateKeyResponse is undocumented.
 type CreateKeyResponse struct {
 	KeyMetadata KeyMetadata `json:"KeyMetadata,omitempty"`
 }
 
+// DecryptRequest is undocumented.
 type DecryptRequest struct {
 	CiphertextBlob    []byte            `json:"CiphertextBlob"`
 	EncryptionContext map[string]string `json:"EncryptionContext,omitempty"`
 	GrantTokens       []string          `json:"GrantTokens,omitempty"`
 }
 
+// DecryptResponse is undocumented.
 type DecryptResponse struct {
 	KeyID     string `json:"KeyId,omitempty"`
 	Plaintext []byte `json:"Plaintext,omitempty"`
 }
 
+// DeleteAliasRequest is undocumented.
 type DeleteAliasRequest struct {
 	AliasName string `json:"AliasName"`
 }
 
+// DescribeKeyRequest is undocumented.
 type DescribeKeyRequest struct {
 	KeyID string `json:"KeyId"`
 }
 
+// DescribeKeyResponse is undocumented.
 type DescribeKeyResponse struct {
 	KeyMetadata KeyMetadata `json:"KeyMetadata,omitempty"`
 }
 
+// DisableKeyRequest is undocumented.
 type DisableKeyRequest struct {
 	KeyID string `json:"KeyId"`
 }
 
+// DisableKeyRotationRequest is undocumented.
 type DisableKeyRotationRequest struct {
 	KeyID string `json:"KeyId"`
 }
 
+// EnableKeyRequest is undocumented.
 type EnableKeyRequest struct {
 	KeyID string `json:"KeyId"`
 }
 
+// EnableKeyRotationRequest is undocumented.
 type EnableKeyRotationRequest struct {
 	KeyID string `json:"KeyId"`
 }
 
+// EncryptRequest is undocumented.
 type EncryptRequest struct {
 	EncryptionContext map[string]string `json:"EncryptionContext,omitempty"`
 	GrantTokens       []string          `json:"GrantTokens,omitempty"`
@@ -321,11 +337,13 @@ type EncryptRequest struct {
 	Plaintext         []byte            `json:"Plaintext"`
 }
 
+// EncryptResponse is undocumented.
 type EncryptResponse struct {
 	CiphertextBlob []byte `json:"CiphertextBlob,omitempty"`
 	KeyID          string `json:"KeyId,omitempty"`
 }
 
+// GenerateDataKeyRequest is undocumented.
 type GenerateDataKeyRequest struct {
 	EncryptionContext map[string]string `json:"EncryptionContext,omitempty"`
 	GrantTokens       []string          `json:"GrantTokens,omitempty"`
@@ -334,12 +352,14 @@ type GenerateDataKeyRequest struct {
 	NumberOfBytes     int               `json:"NumberOfBytes,omitempty"`
 }
 
+// GenerateDataKeyResponse is undocumented.
 type GenerateDataKeyResponse struct {
 	CiphertextBlob []byte `json:"CiphertextBlob,omitempty"`
 	KeyID          string `json:"KeyId,omitempty"`
 	Plaintext      []byte `json:"Plaintext,omitempty"`
 }
 
+// GenerateDataKeyWithoutPlaintextRequest is undocumented.
 type GenerateDataKeyWithoutPlaintextRequest struct {
 	EncryptionContext map[string]string `json:"EncryptionContext,omitempty"`
 	GrantTokens       []string          `json:"GrantTokens,omitempty"`
@@ -348,41 +368,50 @@ type GenerateDataKeyWithoutPlaintextRequest struct {
 	NumberOfBytes     int               `json:"NumberOfBytes,omitempty"`
 }
 
+// GenerateDataKeyWithoutPlaintextResponse is undocumented.
 type GenerateDataKeyWithoutPlaintextResponse struct {
 	CiphertextBlob []byte `json:"CiphertextBlob,omitempty"`
 	KeyID          string `json:"KeyId,omitempty"`
 }
 
+// GenerateRandomRequest is undocumented.
 type GenerateRandomRequest struct {
 	NumberOfBytes int `json:"NumberOfBytes,omitempty"`
 }
 
+// GenerateRandomResponse is undocumented.
 type GenerateRandomResponse struct {
 	Plaintext []byte `json:"Plaintext,omitempty"`
 }
 
+// GetKeyPolicyRequest is undocumented.
 type GetKeyPolicyRequest struct {
 	KeyID      string `json:"KeyId"`
 	PolicyName string `json:"PolicyName"`
 }
 
+// GetKeyPolicyResponse is undocumented.
 type GetKeyPolicyResponse struct {
 	Policy string `json:"Policy,omitempty"`
 }
 
+// GetKeyRotationStatusRequest is undocumented.
 type GetKeyRotationStatusRequest struct {
 	KeyID string `json:"KeyId"`
 }
 
+// GetKeyRotationStatusResponse is undocumented.
 type GetKeyRotationStatusResponse struct {
 	KeyRotationEnabled bool `json:"KeyRotationEnabled,omitempty"`
 }
 
+// GrantConstraints is undocumented.
 type GrantConstraints struct {
 	EncryptionContextEquals map[string]string `json:"EncryptionContextEquals,omitempty"`
 	EncryptionContextSubset map[string]string `json:"EncryptionContextSubset,omitempty"`
 }
 
+// GrantListEntry is undocumented.
 type GrantListEntry struct {
 	Constraints       GrantConstraints `json:"Constraints,omitempty"`
 	GrantID           string           `json:"GrantId,omitempty"`
@@ -392,11 +421,13 @@ type GrantListEntry struct {
 	RetiringPrincipal string           `json:"RetiringPrincipal,omitempty"`
 }
 
+// KeyListEntry is undocumented.
 type KeyListEntry struct {
 	KeyARN string `json:"KeyArn,omitempty"`
 	KeyID  string `json:"KeyId,omitempty"`
 }
 
+// KeyMetadata is undocumented.
 type KeyMetadata struct {
 	AWSAccountID string    `json:"AWSAccountId,omitempty"`
 	ARN          string    `json:"Arn,omitempty"`
@@ -407,58 +438,68 @@ type KeyMetadata struct {
 	KeyUsage     string    `json:"KeyUsage,omitempty"`
 }
 
+// ListAliasesRequest is undocumented.
 type ListAliasesRequest struct {
 	Limit  int    `json:"Limit,omitempty"`
 	Marker string `json:"Marker,omitempty"`
 }
 
+// ListAliasesResponse is undocumented.
 type ListAliasesResponse struct {
 	Aliases    []AliasListEntry `json:"Aliases,omitempty"`
 	NextMarker string           `json:"NextMarker,omitempty"`
 	Truncated  bool             `json:"Truncated,omitempty"`
 }
 
+// ListGrantsRequest is undocumented.
 type ListGrantsRequest struct {
 	KeyID  string `json:"KeyId"`
 	Limit  int    `json:"Limit,omitempty"`
 	Marker string `json:"Marker,omitempty"`
 }
 
+// ListGrantsResponse is undocumented.
 type ListGrantsResponse struct {
 	Grants     []GrantListEntry `json:"Grants,omitempty"`
 	NextMarker string           `json:"NextMarker,omitempty"`
 	Truncated  bool             `json:"Truncated,omitempty"`
 }
 
+// ListKeyPoliciesRequest is undocumented.
 type ListKeyPoliciesRequest struct {
 	KeyID  string `json:"KeyId"`
 	Limit  int    `json:"Limit,omitempty"`
 	Marker string `json:"Marker,omitempty"`
 }
 
+// ListKeyPoliciesResponse is undocumented.
 type ListKeyPoliciesResponse struct {
 	NextMarker  string   `json:"NextMarker,omitempty"`
 	PolicyNames []string `json:"PolicyNames,omitempty"`
 	Truncated   bool     `json:"Truncated,omitempty"`
 }
 
+// ListKeysRequest is undocumented.
 type ListKeysRequest struct {
 	Limit  int    `json:"Limit,omitempty"`
 	Marker string `json:"Marker,omitempty"`
 }
 
+// ListKeysResponse is undocumented.
 type ListKeysResponse struct {
 	Keys       []KeyListEntry `json:"Keys,omitempty"`
 	NextMarker string         `json:"NextMarker,omitempty"`
 	Truncated  bool           `json:"Truncated,omitempty"`
 }
 
+// PutKeyPolicyRequest is undocumented.
 type PutKeyPolicyRequest struct {
 	KeyID      string `json:"KeyId"`
 	Policy     string `json:"Policy"`
 	PolicyName string `json:"PolicyName"`
 }
 
+// ReEncryptRequest is undocumented.
 type ReEncryptRequest struct {
 	CiphertextBlob               []byte            `json:"CiphertextBlob"`
 	DestinationEncryptionContext map[string]string `json:"DestinationEncryptionContext,omitempty"`
@@ -467,24 +508,29 @@ type ReEncryptRequest struct {
 	SourceEncryptionContext      map[string]string `json:"SourceEncryptionContext,omitempty"`
 }
 
+// ReEncryptResponse is undocumented.
 type ReEncryptResponse struct {
 	CiphertextBlob []byte `json:"CiphertextBlob,omitempty"`
 	KeyID          string `json:"KeyId,omitempty"`
 	SourceKeyID    string `json:"SourceKeyId,omitempty"`
 }
 
+// RetireGrantRequest is undocumented.
 type RetireGrantRequest struct {
 	GrantToken string `json:"GrantToken"`
 }
 
+// RevokeGrantRequest is undocumented.
 type RevokeGrantRequest struct {
 	GrantID string `json:"GrantId"`
 	KeyID   string `json:"KeyId"`
 }
 
+// UpdateKeyDescriptionRequest is undocumented.
 type UpdateKeyDescriptionRequest struct {
 	Description string `json:"Description"`
 	KeyID       string `json:"KeyId"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

@@ -716,6 +716,7 @@ func (c *SWF) TerminateWorkflowExecution(req TerminateWorkflowExecutionInput) (e
 	return
 }
 
+// ActivityTask is undocumented.
 type ActivityTask struct {
 	ActivityID        string            `json:"activityId"`
 	ActivityType      ActivityType      `json:"activityType"`
@@ -725,11 +726,13 @@ type ActivityTask struct {
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 }
 
+// ActivityTaskCancelRequestedEventAttributes is undocumented.
 type ActivityTaskCancelRequestedEventAttributes struct {
 	ActivityID                   string `json:"activityId"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 }
 
+// ActivityTaskCanceledEventAttributes is undocumented.
 type ActivityTaskCanceledEventAttributes struct {
 	Details                      string `json:"details,omitempty"`
 	LatestCancelRequestedEventID int    `json:"latestCancelRequestedEventId,omitempty"`
@@ -737,12 +740,14 @@ type ActivityTaskCanceledEventAttributes struct {
 	StartedEventID               int    `json:"startedEventId"`
 }
 
+// ActivityTaskCompletedEventAttributes is undocumented.
 type ActivityTaskCompletedEventAttributes struct {
 	Result           string `json:"result,omitempty"`
 	ScheduledEventID int    `json:"scheduledEventId"`
 	StartedEventID   int    `json:"startedEventId"`
 }
 
+// ActivityTaskFailedEventAttributes is undocumented.
 type ActivityTaskFailedEventAttributes struct {
 	Details          string `json:"details,omitempty"`
 	Reason           string `json:"reason,omitempty"`
@@ -750,6 +755,7 @@ type ActivityTaskFailedEventAttributes struct {
 	StartedEventID   int    `json:"startedEventId"`
 }
 
+// ActivityTaskScheduledEventAttributes is undocumented.
 type ActivityTaskScheduledEventAttributes struct {
 	ActivityID                   string       `json:"activityId"`
 	ActivityType                 ActivityType `json:"activityType"`
@@ -763,15 +769,18 @@ type ActivityTaskScheduledEventAttributes struct {
 	TaskList                     TaskList     `json:"taskList"`
 }
 
+// ActivityTaskStartedEventAttributes is undocumented.
 type ActivityTaskStartedEventAttributes struct {
 	Identity         string `json:"identity,omitempty"`
 	ScheduledEventID int    `json:"scheduledEventId"`
 }
 
+// ActivityTaskStatus is undocumented.
 type ActivityTaskStatus struct {
 	CancelRequested bool `json:"cancelRequested"`
 }
 
+// ActivityTaskTimedOutEventAttributes is undocumented.
 type ActivityTaskTimedOutEventAttributes struct {
 	Details          string `json:"details,omitempty"`
 	ScheduledEventID int    `json:"scheduledEventId"`
@@ -779,11 +788,13 @@ type ActivityTaskTimedOutEventAttributes struct {
 	TimeoutType      string `json:"timeoutType"`
 }
 
+// ActivityType is undocumented.
 type ActivityType struct {
 	Name    string `json:"name"`
 	Version string `json:"version"`
 }
 
+// ActivityTypeConfiguration is undocumented.
 type ActivityTypeConfiguration struct {
 	DefaultTaskHeartbeatTimeout       string   `json:"defaultTaskHeartbeatTimeout,omitempty"`
 	DefaultTaskList                   TaskList `json:"defaultTaskList,omitempty"`
@@ -792,11 +803,13 @@ type ActivityTypeConfiguration struct {
 	DefaultTaskStartToCloseTimeout    string   `json:"defaultTaskStartToCloseTimeout,omitempty"`
 }
 
+// ActivityTypeDetail is undocumented.
 type ActivityTypeDetail struct {
 	Configuration ActivityTypeConfiguration `json:"configuration"`
 	TypeInfo      ActivityTypeInfo          `json:"typeInfo"`
 }
 
+// ActivityTypeInfo is undocumented.
 type ActivityTypeInfo struct {
 	ActivityType    ActivityType `json:"activityType"`
 	CreationDate    time.Time    `json:"creationDate"`
@@ -805,30 +818,36 @@ type ActivityTypeInfo struct {
 	Status          string       `json:"status"`
 }
 
+// ActivityTypeInfos is undocumented.
 type ActivityTypeInfos struct {
 	NextPageToken string             `json:"nextPageToken,omitempty"`
 	TypeInfos     []ActivityTypeInfo `json:"typeInfos"`
 }
 
+// CancelTimerDecisionAttributes is undocumented.
 type CancelTimerDecisionAttributes struct {
 	TimerID string `json:"timerId"`
 }
 
+// CancelTimerFailedEventAttributes is undocumented.
 type CancelTimerFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 	TimerID                      string `json:"timerId"`
 }
 
+// CancelWorkflowExecutionDecisionAttributes is undocumented.
 type CancelWorkflowExecutionDecisionAttributes struct {
 	Details string `json:"details,omitempty"`
 }
 
+// CancelWorkflowExecutionFailedEventAttributes is undocumented.
 type CancelWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 }
 
+// ChildWorkflowExecutionCanceledEventAttributes is undocumented.
 type ChildWorkflowExecutionCanceledEventAttributes struct {
 	Details           string            `json:"details,omitempty"`
 	InitiatedEventID  int               `json:"initiatedEventId"`
@@ -837,6 +856,7 @@ type ChildWorkflowExecutionCanceledEventAttributes struct {
 	WorkflowType      WorkflowType      `json:"workflowType"`
 }
 
+// ChildWorkflowExecutionCompletedEventAttributes is undocumented.
 type ChildWorkflowExecutionCompletedEventAttributes struct {
 	InitiatedEventID  int               `json:"initiatedEventId"`
 	Result            string            `json:"result,omitempty"`
@@ -845,6 +865,7 @@ type ChildWorkflowExecutionCompletedEventAttributes struct {
 	WorkflowType      WorkflowType      `json:"workflowType"`
 }
 
+// ChildWorkflowExecutionFailedEventAttributes is undocumented.
 type ChildWorkflowExecutionFailedEventAttributes struct {
 	Details           string            `json:"details,omitempty"`
 	InitiatedEventID  int               `json:"initiatedEventId"`
@@ -854,12 +875,14 @@ type ChildWorkflowExecutionFailedEventAttributes struct {
 	WorkflowType      WorkflowType      `json:"workflowType"`
 }
 
+// ChildWorkflowExecutionStartedEventAttributes is undocumented.
 type ChildWorkflowExecutionStartedEventAttributes struct {
 	InitiatedEventID  int               `json:"initiatedEventId"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 	WorkflowType      WorkflowType      `json:"workflowType"`
 }
 
+// ChildWorkflowExecutionTerminatedEventAttributes is undocumented.
 type ChildWorkflowExecutionTerminatedEventAttributes struct {
 	InitiatedEventID  int               `json:"initiatedEventId"`
 	StartedEventID    int               `json:"startedEventId"`
@@ -867,6 +890,7 @@ type ChildWorkflowExecutionTerminatedEventAttributes struct {
 	WorkflowType      WorkflowType      `json:"workflowType"`
 }
 
+// ChildWorkflowExecutionTimedOutEventAttributes is undocumented.
 type ChildWorkflowExecutionTimedOutEventAttributes struct {
 	InitiatedEventID  int               `json:"initiatedEventId"`
 	StartedEventID    int               `json:"startedEventId"`
@@ -875,19 +899,23 @@ type ChildWorkflowExecutionTimedOutEventAttributes struct {
 	WorkflowType      WorkflowType      `json:"workflowType"`
 }
 
+// CloseStatusFilter is undocumented.
 type CloseStatusFilter struct {
 	Status string `json:"status"`
 }
 
+// CompleteWorkflowExecutionDecisionAttributes is undocumented.
 type CompleteWorkflowExecutionDecisionAttributes struct {
 	Result string `json:"result,omitempty"`
 }
 
+// CompleteWorkflowExecutionFailedEventAttributes is undocumented.
 type CompleteWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 }
 
+// ContinueAsNewWorkflowExecutionDecisionAttributes is undocumented.
 type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	ChildPolicy                  string   `json:"childPolicy,omitempty"`
 	ExecutionStartToCloseTimeout string   `json:"executionStartToCloseTimeout,omitempty"`
@@ -898,11 +926,13 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	WorkflowTypeVersion          string   `json:"workflowTypeVersion,omitempty"`
 }
 
+// ContinueAsNewWorkflowExecutionFailedEventAttributes is undocumented.
 type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 }
 
+// CountClosedWorkflowExecutionsInput is undocumented.
 type CountClosedWorkflowExecutionsInput struct {
 	CloseStatusFilter CloseStatusFilter       `json:"closeStatusFilter,omitempty"`
 	CloseTimeFilter   ExecutionTimeFilter     `json:"closeTimeFilter,omitempty"`
@@ -913,6 +943,7 @@ type CountClosedWorkflowExecutionsInput struct {
 	TypeFilter        WorkflowTypeFilter      `json:"typeFilter,omitempty"`
 }
 
+// CountOpenWorkflowExecutionsInput is undocumented.
 type CountOpenWorkflowExecutionsInput struct {
 	Domain          string                  `json:"domain"`
 	ExecutionFilter WorkflowExecutionFilter `json:"executionFilter,omitempty"`
@@ -921,16 +952,19 @@ type CountOpenWorkflowExecutionsInput struct {
 	TypeFilter      WorkflowTypeFilter      `json:"typeFilter,omitempty"`
 }
 
+// CountPendingActivityTasksInput is undocumented.
 type CountPendingActivityTasksInput struct {
 	Domain   string   `json:"domain"`
 	TaskList TaskList `json:"taskList"`
 }
 
+// CountPendingDecisionTasksInput is undocumented.
 type CountPendingDecisionTasksInput struct {
 	Domain   string   `json:"domain"`
 	TaskList TaskList `json:"taskList"`
 }
 
+// Decision is undocumented.
 type Decision struct {
 	CancelTimerDecisionAttributes                            CancelTimerDecisionAttributes                            `json:"cancelTimerDecisionAttributes,omitempty"`
 	CancelWorkflowExecutionDecisionAttributes                CancelWorkflowExecutionDecisionAttributes                `json:"cancelWorkflowExecutionDecisionAttributes,omitempty"`
@@ -947,6 +981,7 @@ type Decision struct {
 	StartTimerDecisionAttributes                             StartTimerDecisionAttributes                             `json:"startTimerDecisionAttributes,omitempty"`
 }
 
+// DecisionTask is undocumented.
 type DecisionTask struct {
 	Events                 []HistoryEvent    `json:"events"`
 	NextPageToken          string            `json:"nextPageToken,omitempty"`
@@ -957,106 +992,127 @@ type DecisionTask struct {
 	WorkflowType           WorkflowType      `json:"workflowType"`
 }
 
+// DecisionTaskCompletedEventAttributes is undocumented.
 type DecisionTaskCompletedEventAttributes struct {
 	ExecutionContext string `json:"executionContext,omitempty"`
 	ScheduledEventID int    `json:"scheduledEventId"`
 	StartedEventID   int    `json:"startedEventId"`
 }
 
+// DecisionTaskScheduledEventAttributes is undocumented.
 type DecisionTaskScheduledEventAttributes struct {
 	StartToCloseTimeout string   `json:"startToCloseTimeout,omitempty"`
 	TaskList            TaskList `json:"taskList"`
 }
 
+// DecisionTaskStartedEventAttributes is undocumented.
 type DecisionTaskStartedEventAttributes struct {
 	Identity         string `json:"identity,omitempty"`
 	ScheduledEventID int    `json:"scheduledEventId"`
 }
 
+// DecisionTaskTimedOutEventAttributes is undocumented.
 type DecisionTaskTimedOutEventAttributes struct {
 	ScheduledEventID int    `json:"scheduledEventId"`
 	StartedEventID   int    `json:"startedEventId"`
 	TimeoutType      string `json:"timeoutType"`
 }
 
+// DeprecateActivityTypeInput is undocumented.
 type DeprecateActivityTypeInput struct {
 	ActivityType ActivityType `json:"activityType"`
 	Domain       string       `json:"domain"`
 }
 
+// DeprecateDomainInput is undocumented.
 type DeprecateDomainInput struct {
 	Name string `json:"name"`
 }
 
+// DeprecateWorkflowTypeInput is undocumented.
 type DeprecateWorkflowTypeInput struct {
 	Domain       string       `json:"domain"`
 	WorkflowType WorkflowType `json:"workflowType"`
 }
 
+// DescribeActivityTypeInput is undocumented.
 type DescribeActivityTypeInput struct {
 	ActivityType ActivityType `json:"activityType"`
 	Domain       string       `json:"domain"`
 }
 
+// DescribeDomainInput is undocumented.
 type DescribeDomainInput struct {
 	Name string `json:"name"`
 }
 
+// DescribeWorkflowExecutionInput is undocumented.
 type DescribeWorkflowExecutionInput struct {
 	Domain    string            `json:"domain"`
 	Execution WorkflowExecution `json:"execution"`
 }
 
+// DescribeWorkflowTypeInput is undocumented.
 type DescribeWorkflowTypeInput struct {
 	Domain       string       `json:"domain"`
 	WorkflowType WorkflowType `json:"workflowType"`
 }
 
+// DomainConfiguration is undocumented.
 type DomainConfiguration struct {
 	WorkflowExecutionRetentionPeriodInDays string `json:"workflowExecutionRetentionPeriodInDays"`
 }
 
+// DomainDetail is undocumented.
 type DomainDetail struct {
 	Configuration DomainConfiguration `json:"configuration"`
 	DomainInfo    DomainInfo          `json:"domainInfo"`
 }
 
+// DomainInfo is undocumented.
 type DomainInfo struct {
 	Description string `json:"description,omitempty"`
 	Name        string `json:"name"`
 	Status      string `json:"status"`
 }
 
+// DomainInfos is undocumented.
 type DomainInfos struct {
 	DomainInfos   []DomainInfo `json:"domainInfos"`
 	NextPageToken string       `json:"nextPageToken,omitempty"`
 }
 
+// ExecutionTimeFilter is undocumented.
 type ExecutionTimeFilter struct {
 	LatestDate time.Time `json:"latestDate,omitempty"`
 	OldestDate time.Time `json:"oldestDate"`
 }
 
+// ExternalWorkflowExecutionCancelRequestedEventAttributes is undocumented.
 type ExternalWorkflowExecutionCancelRequestedEventAttributes struct {
 	InitiatedEventID  int               `json:"initiatedEventId"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 }
 
+// ExternalWorkflowExecutionSignaledEventAttributes is undocumented.
 type ExternalWorkflowExecutionSignaledEventAttributes struct {
 	InitiatedEventID  int               `json:"initiatedEventId"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 }
 
+// FailWorkflowExecutionDecisionAttributes is undocumented.
 type FailWorkflowExecutionDecisionAttributes struct {
 	Details string `json:"details,omitempty"`
 	Reason  string `json:"reason,omitempty"`
 }
 
+// FailWorkflowExecutionFailedEventAttributes is undocumented.
 type FailWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 }
 
+// GetWorkflowExecutionHistoryInput is undocumented.
 type GetWorkflowExecutionHistoryInput struct {
 	Domain          string            `json:"domain"`
 	Execution       WorkflowExecution `json:"execution"`
@@ -1065,11 +1121,13 @@ type GetWorkflowExecutionHistoryInput struct {
 	ReverseOrder    bool              `json:"reverseOrder,omitempty"`
 }
 
+// History is undocumented.
 type History struct {
 	Events        []HistoryEvent `json:"events"`
 	NextPageToken string         `json:"nextPageToken,omitempty"`
 }
 
+// HistoryEvent is undocumented.
 type HistoryEvent struct {
 	ActivityTaskCancelRequestedEventAttributes                     ActivityTaskCancelRequestedEventAttributes                     `json:"activityTaskCancelRequestedEventAttributes,omitempty"`
 	ActivityTaskCanceledEventAttributes                            ActivityTaskCanceledEventAttributes                            `json:"activityTaskCanceledEventAttributes,omitempty"`
@@ -1123,6 +1181,7 @@ type HistoryEvent struct {
 	WorkflowExecutionTimedOutEventAttributes                       WorkflowExecutionTimedOutEventAttributes                       `json:"workflowExecutionTimedOutEventAttributes,omitempty"`
 }
 
+// ListActivityTypesInput is undocumented.
 type ListActivityTypesInput struct {
 	Domain             string `json:"domain"`
 	MaximumPageSize    int    `json:"maximumPageSize,omitempty"`
@@ -1132,6 +1191,7 @@ type ListActivityTypesInput struct {
 	ReverseOrder       bool   `json:"reverseOrder,omitempty"`
 }
 
+// ListClosedWorkflowExecutionsInput is undocumented.
 type ListClosedWorkflowExecutionsInput struct {
 	CloseStatusFilter CloseStatusFilter       `json:"closeStatusFilter,omitempty"`
 	CloseTimeFilter   ExecutionTimeFilter     `json:"closeTimeFilter,omitempty"`
@@ -1145,6 +1205,7 @@ type ListClosedWorkflowExecutionsInput struct {
 	TypeFilter        WorkflowTypeFilter      `json:"typeFilter,omitempty"`
 }
 
+// ListDomainsInput is undocumented.
 type ListDomainsInput struct {
 	MaximumPageSize    int    `json:"maximumPageSize,omitempty"`
 	NextPageToken      string `json:"nextPageToken,omitempty"`
@@ -1152,6 +1213,7 @@ type ListDomainsInput struct {
 	ReverseOrder       bool   `json:"reverseOrder,omitempty"`
 }
 
+// ListOpenWorkflowExecutionsInput is undocumented.
 type ListOpenWorkflowExecutionsInput struct {
 	Domain          string                  `json:"domain"`
 	ExecutionFilter WorkflowExecutionFilter `json:"executionFilter,omitempty"`
@@ -1163,6 +1225,7 @@ type ListOpenWorkflowExecutionsInput struct {
 	TypeFilter      WorkflowTypeFilter      `json:"typeFilter,omitempty"`
 }
 
+// ListWorkflowTypesInput is undocumented.
 type ListWorkflowTypesInput struct {
 	Domain             string `json:"domain"`
 	MaximumPageSize    int    `json:"maximumPageSize,omitempty"`
@@ -1172,23 +1235,27 @@ type ListWorkflowTypesInput struct {
 	ReverseOrder       bool   `json:"reverseOrder,omitempty"`
 }
 
+// MarkerRecordedEventAttributes is undocumented.
 type MarkerRecordedEventAttributes struct {
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 	Details                      string `json:"details,omitempty"`
 	MarkerName                   string `json:"markerName"`
 }
 
+// PendingTaskCount is undocumented.
 type PendingTaskCount struct {
 	Count     int  `json:"count"`
 	Truncated bool `json:"truncated,omitempty"`
 }
 
+// PollForActivityTaskInput is undocumented.
 type PollForActivityTaskInput struct {
 	Domain   string   `json:"domain"`
 	Identity string   `json:"identity,omitempty"`
 	TaskList TaskList `json:"taskList"`
 }
 
+// PollForDecisionTaskInput is undocumented.
 type PollForDecisionTaskInput struct {
 	Domain          string   `json:"domain"`
 	Identity        string   `json:"identity,omitempty"`
@@ -1198,22 +1265,26 @@ type PollForDecisionTaskInput struct {
 	TaskList        TaskList `json:"taskList"`
 }
 
+// RecordActivityTaskHeartbeatInput is undocumented.
 type RecordActivityTaskHeartbeatInput struct {
 	Details   string `json:"details,omitempty"`
 	TaskToken string `json:"taskToken"`
 }
 
+// RecordMarkerDecisionAttributes is undocumented.
 type RecordMarkerDecisionAttributes struct {
 	Details    string `json:"details,omitempty"`
 	MarkerName string `json:"markerName"`
 }
 
+// RecordMarkerFailedEventAttributes is undocumented.
 type RecordMarkerFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 	MarkerName                   string `json:"markerName"`
 }
 
+// RegisterActivityTypeInput is undocumented.
 type RegisterActivityTypeInput struct {
 	DefaultTaskHeartbeatTimeout       string   `json:"defaultTaskHeartbeatTimeout,omitempty"`
 	DefaultTaskList                   TaskList `json:"defaultTaskList,omitempty"`
@@ -1226,12 +1297,14 @@ type RegisterActivityTypeInput struct {
 	Version                           string   `json:"version"`
 }
 
+// RegisterDomainInput is undocumented.
 type RegisterDomainInput struct {
 	Description                            string `json:"description,omitempty"`
 	Name                                   string `json:"name"`
 	WorkflowExecutionRetentionPeriodInDays string `json:"workflowExecutionRetentionPeriodInDays"`
 }
 
+// RegisterWorkflowTypeInput is undocumented.
 type RegisterWorkflowTypeInput struct {
 	DefaultChildPolicy                  string   `json:"defaultChildPolicy,omitempty"`
 	DefaultExecutionStartToCloseTimeout string   `json:"defaultExecutionStartToCloseTimeout,omitempty"`
@@ -1243,22 +1316,26 @@ type RegisterWorkflowTypeInput struct {
 	Version                             string   `json:"version"`
 }
 
+// RequestCancelActivityTaskDecisionAttributes is undocumented.
 type RequestCancelActivityTaskDecisionAttributes struct {
 	ActivityID string `json:"activityId"`
 }
 
+// RequestCancelActivityTaskFailedEventAttributes is undocumented.
 type RequestCancelActivityTaskFailedEventAttributes struct {
 	ActivityID                   string `json:"activityId"`
 	Cause                        string `json:"cause"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 }
 
+// RequestCancelExternalWorkflowExecutionDecisionAttributes is undocumented.
 type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 	Control    string `json:"control,omitempty"`
 	RunID      string `json:"runId,omitempty"`
 	WorkflowID string `json:"workflowId"`
 }
 
+// RequestCancelExternalWorkflowExecutionFailedEventAttributes is undocumented.
 type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
 	Control                      string `json:"control,omitempty"`
@@ -1268,6 +1345,7 @@ type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 	WorkflowID                   string `json:"workflowId"`
 }
 
+// RequestCancelExternalWorkflowExecutionInitiatedEventAttributes is undocumented.
 type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
 	Control                      string `json:"control,omitempty"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
@@ -1275,38 +1353,45 @@ type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
 	WorkflowID                   string `json:"workflowId"`
 }
 
+// RequestCancelWorkflowExecutionInput is undocumented.
 type RequestCancelWorkflowExecutionInput struct {
 	Domain     string `json:"domain"`
 	RunID      string `json:"runId,omitempty"`
 	WorkflowID string `json:"workflowId"`
 }
 
+// RespondActivityTaskCanceledInput is undocumented.
 type RespondActivityTaskCanceledInput struct {
 	Details   string `json:"details,omitempty"`
 	TaskToken string `json:"taskToken"`
 }
 
+// RespondActivityTaskCompletedInput is undocumented.
 type RespondActivityTaskCompletedInput struct {
 	Result    string `json:"result,omitempty"`
 	TaskToken string `json:"taskToken"`
 }
 
+// RespondActivityTaskFailedInput is undocumented.
 type RespondActivityTaskFailedInput struct {
 	Details   string `json:"details,omitempty"`
 	Reason    string `json:"reason,omitempty"`
 	TaskToken string `json:"taskToken"`
 }
 
+// RespondDecisionTaskCompletedInput is undocumented.
 type RespondDecisionTaskCompletedInput struct {
 	Decisions        []Decision `json:"decisions,omitempty"`
 	ExecutionContext string     `json:"executionContext,omitempty"`
 	TaskToken        string     `json:"taskToken"`
 }
 
+// Run is undocumented.
 type Run struct {
 	RunID string `json:"runId,omitempty"`
 }
 
+// ScheduleActivityTaskDecisionAttributes is undocumented.
 type ScheduleActivityTaskDecisionAttributes struct {
 	ActivityID             string       `json:"activityId"`
 	ActivityType           ActivityType `json:"activityType"`
@@ -1319,6 +1404,7 @@ type ScheduleActivityTaskDecisionAttributes struct {
 	TaskList               TaskList     `json:"taskList,omitempty"`
 }
 
+// ScheduleActivityTaskFailedEventAttributes is undocumented.
 type ScheduleActivityTaskFailedEventAttributes struct {
 	ActivityID                   string       `json:"activityId"`
 	ActivityType                 ActivityType `json:"activityType"`
@@ -1326,6 +1412,7 @@ type ScheduleActivityTaskFailedEventAttributes struct {
 	DecisionTaskCompletedEventID int          `json:"decisionTaskCompletedEventId"`
 }
 
+// SignalExternalWorkflowExecutionDecisionAttributes is undocumented.
 type SignalExternalWorkflowExecutionDecisionAttributes struct {
 	Control    string `json:"control,omitempty"`
 	Input      string `json:"input,omitempty"`
@@ -1334,6 +1421,7 @@ type SignalExternalWorkflowExecutionDecisionAttributes struct {
 	WorkflowID string `json:"workflowId"`
 }
 
+// SignalExternalWorkflowExecutionFailedEventAttributes is undocumented.
 type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
 	Control                      string `json:"control,omitempty"`
@@ -1343,6 +1431,7 @@ type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 	WorkflowID                   string `json:"workflowId"`
 }
 
+// SignalExternalWorkflowExecutionInitiatedEventAttributes is undocumented.
 type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	Control                      string `json:"control,omitempty"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
@@ -1352,6 +1441,7 @@ type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	WorkflowID                   string `json:"workflowId"`
 }
 
+// SignalWorkflowExecutionInput is undocumented.
 type SignalWorkflowExecutionInput struct {
 	Domain     string `json:"domain"`
 	Input      string `json:"input,omitempty"`
@@ -1360,6 +1450,7 @@ type SignalWorkflowExecutionInput struct {
 	WorkflowID string `json:"workflowId"`
 }
 
+// StartChildWorkflowExecutionDecisionAttributes is undocumented.
 type StartChildWorkflowExecutionDecisionAttributes struct {
 	ChildPolicy                  string       `json:"childPolicy,omitempty"`
 	Control                      string       `json:"control,omitempty"`
@@ -1372,6 +1463,7 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	WorkflowType                 WorkflowType `json:"workflowType"`
 }
 
+// StartChildWorkflowExecutionFailedEventAttributes is undocumented.
 type StartChildWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string       `json:"cause"`
 	Control                      string       `json:"control,omitempty"`
@@ -1381,6 +1473,7 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 	WorkflowType                 WorkflowType `json:"workflowType"`
 }
 
+// StartChildWorkflowExecutionInitiatedEventAttributes is undocumented.
 type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	ChildPolicy                  string       `json:"childPolicy"`
 	Control                      string       `json:"control,omitempty"`
@@ -1394,18 +1487,21 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	WorkflowType                 WorkflowType `json:"workflowType"`
 }
 
+// StartTimerDecisionAttributes is undocumented.
 type StartTimerDecisionAttributes struct {
 	Control            string `json:"control,omitempty"`
 	StartToFireTimeout string `json:"startToFireTimeout"`
 	TimerID            string `json:"timerId"`
 }
 
+// StartTimerFailedEventAttributes is undocumented.
 type StartTimerFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 	TimerID                      string `json:"timerId"`
 }
 
+// StartWorkflowExecutionInput is undocumented.
 type StartWorkflowExecutionInput struct {
 	ChildPolicy                  string       `json:"childPolicy,omitempty"`
 	Domain                       string       `json:"domain"`
@@ -1418,14 +1514,17 @@ type StartWorkflowExecutionInput struct {
 	WorkflowType                 WorkflowType `json:"workflowType"`
 }
 
+// TagFilter is undocumented.
 type TagFilter struct {
 	Tag string `json:"tag"`
 }
 
+// TaskList is undocumented.
 type TaskList struct {
 	Name string `json:"name"`
 }
 
+// TerminateWorkflowExecutionInput is undocumented.
 type TerminateWorkflowExecutionInput struct {
 	ChildPolicy string `json:"childPolicy,omitempty"`
 	Details     string `json:"details,omitempty"`
@@ -1435,17 +1534,20 @@ type TerminateWorkflowExecutionInput struct {
 	WorkflowID  string `json:"workflowId"`
 }
 
+// TimerCanceledEventAttributes is undocumented.
 type TimerCanceledEventAttributes struct {
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 	StartedEventID               int    `json:"startedEventId"`
 	TimerID                      string `json:"timerId"`
 }
 
+// TimerFiredEventAttributes is undocumented.
 type TimerFiredEventAttributes struct {
 	StartedEventID int    `json:"startedEventId"`
 	TimerID        string `json:"timerId"`
 }
 
+// TimerStartedEventAttributes is undocumented.
 type TimerStartedEventAttributes struct {
 	Control                      string `json:"control,omitempty"`
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
@@ -1453,27 +1555,32 @@ type TimerStartedEventAttributes struct {
 	TimerID                      string `json:"timerId"`
 }
 
+// WorkflowExecution is undocumented.
 type WorkflowExecution struct {
 	RunID      string `json:"runId"`
 	WorkflowID string `json:"workflowId"`
 }
 
+// WorkflowExecutionCancelRequestedEventAttributes is undocumented.
 type WorkflowExecutionCancelRequestedEventAttributes struct {
 	Cause                     string            `json:"cause,omitempty"`
 	ExternalInitiatedEventID  int               `json:"externalInitiatedEventId,omitempty"`
 	ExternalWorkflowExecution WorkflowExecution `json:"externalWorkflowExecution,omitempty"`
 }
 
+// WorkflowExecutionCanceledEventAttributes is undocumented.
 type WorkflowExecutionCanceledEventAttributes struct {
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 	Details                      string `json:"details,omitempty"`
 }
 
+// WorkflowExecutionCompletedEventAttributes is undocumented.
 type WorkflowExecutionCompletedEventAttributes struct {
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 	Result                       string `json:"result,omitempty"`
 }
 
+// WorkflowExecutionConfiguration is undocumented.
 type WorkflowExecutionConfiguration struct {
 	ChildPolicy                  string   `json:"childPolicy"`
 	ExecutionStartToCloseTimeout string   `json:"executionStartToCloseTimeout"`
@@ -1481,6 +1588,7 @@ type WorkflowExecutionConfiguration struct {
 	TaskStartToCloseTimeout      string   `json:"taskStartToCloseTimeout"`
 }
 
+// WorkflowExecutionContinuedAsNewEventAttributes is undocumented.
 type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	ChildPolicy                  string       `json:"childPolicy"`
 	DecisionTaskCompletedEventID int          `json:"decisionTaskCompletedEventId"`
@@ -1493,11 +1601,13 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	WorkflowType                 WorkflowType `json:"workflowType"`
 }
 
+// WorkflowExecutionCount is undocumented.
 type WorkflowExecutionCount struct {
 	Count     int  `json:"count"`
 	Truncated bool `json:"truncated,omitempty"`
 }
 
+// WorkflowExecutionDetail is undocumented.
 type WorkflowExecutionDetail struct {
 	ExecutionConfiguration      WorkflowExecutionConfiguration `json:"executionConfiguration"`
 	ExecutionInfo               WorkflowExecutionInfo          `json:"executionInfo"`
@@ -1506,16 +1616,19 @@ type WorkflowExecutionDetail struct {
 	OpenCounts                  WorkflowExecutionOpenCounts    `json:"openCounts"`
 }
 
+// WorkflowExecutionFailedEventAttributes is undocumented.
 type WorkflowExecutionFailedEventAttributes struct {
 	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
 	Details                      string `json:"details,omitempty"`
 	Reason                       string `json:"reason,omitempty"`
 }
 
+// WorkflowExecutionFilter is undocumented.
 type WorkflowExecutionFilter struct {
 	WorkflowID string `json:"workflowId"`
 }
 
+// WorkflowExecutionInfo is undocumented.
 type WorkflowExecutionInfo struct {
 	CancelRequested bool              `json:"cancelRequested,omitempty"`
 	CloseStatus     string            `json:"closeStatus,omitempty"`
@@ -1528,11 +1641,13 @@ type WorkflowExecutionInfo struct {
 	WorkflowType    WorkflowType      `json:"workflowType"`
 }
 
+// WorkflowExecutionInfos is undocumented.
 type WorkflowExecutionInfos struct {
 	ExecutionInfos []WorkflowExecutionInfo `json:"executionInfos"`
 	NextPageToken  string                  `json:"nextPageToken,omitempty"`
 }
 
+// WorkflowExecutionOpenCounts is undocumented.
 type WorkflowExecutionOpenCounts struct {
 	OpenActivityTasks           int `json:"openActivityTasks"`
 	OpenChildWorkflowExecutions int `json:"openChildWorkflowExecutions"`
@@ -1540,6 +1655,7 @@ type WorkflowExecutionOpenCounts struct {
 	OpenTimers                  int `json:"openTimers"`
 }
 
+// WorkflowExecutionSignaledEventAttributes is undocumented.
 type WorkflowExecutionSignaledEventAttributes struct {
 	ExternalInitiatedEventID  int               `json:"externalInitiatedEventId,omitempty"`
 	ExternalWorkflowExecution WorkflowExecution `json:"externalWorkflowExecution,omitempty"`
@@ -1547,6 +1663,7 @@ type WorkflowExecutionSignaledEventAttributes struct {
 	SignalName                string            `json:"signalName"`
 }
 
+// WorkflowExecutionStartedEventAttributes is undocumented.
 type WorkflowExecutionStartedEventAttributes struct {
 	ChildPolicy                  string            `json:"childPolicy"`
 	ContinuedExecutionRunID      string            `json:"continuedExecutionRunId,omitempty"`
@@ -1560,6 +1677,7 @@ type WorkflowExecutionStartedEventAttributes struct {
 	WorkflowType                 WorkflowType      `json:"workflowType"`
 }
 
+// WorkflowExecutionTerminatedEventAttributes is undocumented.
 type WorkflowExecutionTerminatedEventAttributes struct {
 	Cause       string `json:"cause,omitempty"`
 	ChildPolicy string `json:"childPolicy"`
@@ -1567,16 +1685,19 @@ type WorkflowExecutionTerminatedEventAttributes struct {
 	Reason      string `json:"reason,omitempty"`
 }
 
+// WorkflowExecutionTimedOutEventAttributes is undocumented.
 type WorkflowExecutionTimedOutEventAttributes struct {
 	ChildPolicy string `json:"childPolicy"`
 	TimeoutType string `json:"timeoutType"`
 }
 
+// WorkflowType is undocumented.
 type WorkflowType struct {
 	Name    string `json:"name"`
 	Version string `json:"version"`
 }
 
+// WorkflowTypeConfiguration is undocumented.
 type WorkflowTypeConfiguration struct {
 	DefaultChildPolicy                  string   `json:"defaultChildPolicy,omitempty"`
 	DefaultExecutionStartToCloseTimeout string   `json:"defaultExecutionStartToCloseTimeout,omitempty"`
@@ -1584,16 +1705,19 @@ type WorkflowTypeConfiguration struct {
 	DefaultTaskStartToCloseTimeout      string   `json:"defaultTaskStartToCloseTimeout,omitempty"`
 }
 
+// WorkflowTypeDetail is undocumented.
 type WorkflowTypeDetail struct {
 	Configuration WorkflowTypeConfiguration `json:"configuration"`
 	TypeInfo      WorkflowTypeInfo          `json:"typeInfo"`
 }
 
+// WorkflowTypeFilter is undocumented.
 type WorkflowTypeFilter struct {
 	Name    string `json:"name"`
 	Version string `json:"version,omitempty"`
 }
 
+// WorkflowTypeInfo is undocumented.
 type WorkflowTypeInfo struct {
 	CreationDate    time.Time    `json:"creationDate"`
 	DeprecationDate time.Time    `json:"deprecationDate,omitempty"`
@@ -1602,9 +1726,11 @@ type WorkflowTypeInfo struct {
 	WorkflowType    WorkflowType `json:"workflowType"`
 }
 
+// WorkflowTypeInfos is undocumented.
 type WorkflowTypeInfos struct {
 	NextPageToken string             `json:"nextPageToken,omitempty"`
 	TypeInfos     []WorkflowTypeInfo `json:"typeInfos"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

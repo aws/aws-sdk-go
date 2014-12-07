@@ -694,6 +694,7 @@ func (c *OpsWorks) UpdateVolume(req UpdateVolumeRequest) (err error) {
 	return
 }
 
+// App is undocumented.
 type App struct {
 	AppID            string            `json:"AppId,omitempty"`
 	AppSource        Source            `json:"AppSource,omitempty"`
@@ -710,21 +711,25 @@ type App struct {
 	Type             string            `json:"Type,omitempty"`
 }
 
+// AssignVolumeRequest is undocumented.
 type AssignVolumeRequest struct {
 	InstanceID string `json:"InstanceId,omitempty"`
 	VolumeID   string `json:"VolumeId"`
 }
 
+// AssociateElasticIPRequest is undocumented.
 type AssociateElasticIPRequest struct {
 	ElasticIP  string `json:"ElasticIp"`
 	InstanceID string `json:"InstanceId,omitempty"`
 }
 
+// AttachElasticLoadBalancerRequest is undocumented.
 type AttachElasticLoadBalancerRequest struct {
 	ElasticLoadBalancerName string `json:"ElasticLoadBalancerName"`
 	LayerID                 string `json:"LayerId"`
 }
 
+// AutoScalingThresholds is undocumented.
 type AutoScalingThresholds struct {
 	CPUThreshold       float64 `json:"CpuThreshold,omitempty"`
 	IgnoreMetricsTime  int     `json:"IgnoreMetricsTime,omitempty"`
@@ -734,11 +739,13 @@ type AutoScalingThresholds struct {
 	ThresholdsWaitTime int     `json:"ThresholdsWaitTime,omitempty"`
 }
 
+// ChefConfiguration is undocumented.
 type ChefConfiguration struct {
 	BerkshelfVersion string `json:"BerkshelfVersion,omitempty"`
 	ManageBerkshelf  bool   `json:"ManageBerkshelf,omitempty"`
 }
 
+// CloneStackRequest is undocumented.
 type CloneStackRequest struct {
 	Attributes                map[string]string         `json:"Attributes,omitempty"`
 	ChefConfiguration         ChefConfiguration         `json:"ChefConfiguration,omitempty"`
@@ -763,10 +770,12 @@ type CloneStackRequest struct {
 	VpcID                     string                    `json:"VpcId,omitempty"`
 }
 
+// CloneStackResult is undocumented.
 type CloneStackResult struct {
 	StackID string `json:"StackId,omitempty"`
 }
 
+// Command is undocumented.
 type Command struct {
 	AcknowledgedAt string `json:"AcknowledgedAt,omitempty"`
 	CommandID      string `json:"CommandId,omitempty"`
@@ -780,6 +789,7 @@ type Command struct {
 	Type           string `json:"Type,omitempty"`
 }
 
+// CreateAppRequest is undocumented.
 type CreateAppRequest struct {
 	AppSource        Source            `json:"AppSource,omitempty"`
 	Attributes       map[string]string `json:"Attributes,omitempty"`
@@ -794,10 +804,12 @@ type CreateAppRequest struct {
 	Type             string            `json:"Type"`
 }
 
+// CreateAppResult is undocumented.
 type CreateAppResult struct {
 	AppID string `json:"AppId,omitempty"`
 }
 
+// CreateDeploymentRequest is undocumented.
 type CreateDeploymentRequest struct {
 	AppID       string            `json:"AppId,omitempty"`
 	Command     DeploymentCommand `json:"Command"`
@@ -807,10 +819,12 @@ type CreateDeploymentRequest struct {
 	StackID     string            `json:"StackId"`
 }
 
+// CreateDeploymentResult is undocumented.
 type CreateDeploymentResult struct {
 	DeploymentID string `json:"DeploymentId,omitempty"`
 }
 
+// CreateInstanceRequest is undocumented.
 type CreateInstanceRequest struct {
 	AmiID                string   `json:"AmiId,omitempty"`
 	Architecture         string   `json:"Architecture,omitempty"`
@@ -829,10 +843,12 @@ type CreateInstanceRequest struct {
 	VirtualizationType   string   `json:"VirtualizationType,omitempty"`
 }
 
+// CreateInstanceResult is undocumented.
 type CreateInstanceResult struct {
 	InstanceID string `json:"InstanceId,omitempty"`
 }
 
+// CreateLayerRequest is undocumented.
 type CreateLayerRequest struct {
 	Attributes               map[string]string     `json:"Attributes,omitempty"`
 	AutoAssignElasticIPs     bool                  `json:"AutoAssignElasticIps,omitempty"`
@@ -851,10 +867,12 @@ type CreateLayerRequest struct {
 	VolumeConfigurations     []VolumeConfiguration `json:"VolumeConfigurations,omitempty"`
 }
 
+// CreateLayerResult is undocumented.
 type CreateLayerResult struct {
 	LayerID string `json:"LayerId,omitempty"`
 }
 
+// CreateStackRequest is undocumented.
 type CreateStackRequest struct {
 	Attributes                map[string]string         `json:"Attributes,omitempty"`
 	ChefConfiguration         ChefConfiguration         `json:"ChefConfiguration,omitempty"`
@@ -876,10 +894,12 @@ type CreateStackRequest struct {
 	VpcID                     string                    `json:"VpcId,omitempty"`
 }
 
+// CreateStackResult is undocumented.
 type CreateStackResult struct {
 	StackID string `json:"StackId,omitempty"`
 }
 
+// CreateUserProfileRequest is undocumented.
 type CreateUserProfileRequest struct {
 	AllowSelfManagement bool   `json:"AllowSelfManagement,omitempty"`
 	IamUserARN          string `json:"IamUserArn"`
@@ -887,38 +907,46 @@ type CreateUserProfileRequest struct {
 	SSHUsername         string `json:"SshUsername,omitempty"`
 }
 
+// CreateUserProfileResult is undocumented.
 type CreateUserProfileResult struct {
 	IamUserARN string `json:"IamUserArn,omitempty"`
 }
 
+// DataSource is undocumented.
 type DataSource struct {
 	ARN          string `json:"Arn,omitempty"`
 	DatabaseName string `json:"DatabaseName,omitempty"`
 	Type         string `json:"Type,omitempty"`
 }
 
+// DeleteAppRequest is undocumented.
 type DeleteAppRequest struct {
 	AppID string `json:"AppId"`
 }
 
+// DeleteInstanceRequest is undocumented.
 type DeleteInstanceRequest struct {
 	DeleteElasticIP bool   `json:"DeleteElasticIp,omitempty"`
 	DeleteVolumes   bool   `json:"DeleteVolumes,omitempty"`
 	InstanceID      string `json:"InstanceId"`
 }
 
+// DeleteLayerRequest is undocumented.
 type DeleteLayerRequest struct {
 	LayerID string `json:"LayerId"`
 }
 
+// DeleteStackRequest is undocumented.
 type DeleteStackRequest struct {
 	StackID string `json:"StackId"`
 }
 
+// DeleteUserProfileRequest is undocumented.
 type DeleteUserProfileRequest struct {
 	IamUserARN string `json:"IamUserArn"`
 }
 
+// Deployment is undocumented.
 type Deployment struct {
 	AppID        string            `json:"AppId,omitempty"`
 	Command      DeploymentCommand `json:"Command,omitempty"`
@@ -934,171 +962,209 @@ type Deployment struct {
 	Status       string            `json:"Status,omitempty"`
 }
 
+// DeploymentCommand is undocumented.
 type DeploymentCommand struct {
 	Args map[string][]string `json:"Args,omitempty"`
 	Name string              `json:"Name"`
 }
 
+// DeregisterElasticIPRequest is undocumented.
 type DeregisterElasticIPRequest struct {
 	ElasticIP string `json:"ElasticIp"`
 }
 
+// DeregisterRdsDbInstanceRequest is undocumented.
 type DeregisterRdsDbInstanceRequest struct {
 	RdsDbInstanceARN string `json:"RdsDbInstanceArn"`
 }
 
+// DeregisterVolumeRequest is undocumented.
 type DeregisterVolumeRequest struct {
 	VolumeID string `json:"VolumeId"`
 }
 
+// DescribeAppsRequest is undocumented.
 type DescribeAppsRequest struct {
 	AppIds  []string `json:"AppIds,omitempty"`
 	StackID string   `json:"StackId,omitempty"`
 }
 
+// DescribeAppsResult is undocumented.
 type DescribeAppsResult struct {
 	Apps []App `json:"Apps,omitempty"`
 }
 
+// DescribeCommandsRequest is undocumented.
 type DescribeCommandsRequest struct {
 	CommandIds   []string `json:"CommandIds,omitempty"`
 	DeploymentID string   `json:"DeploymentId,omitempty"`
 	InstanceID   string   `json:"InstanceId,omitempty"`
 }
 
+// DescribeCommandsResult is undocumented.
 type DescribeCommandsResult struct {
 	Commands []Command `json:"Commands,omitempty"`
 }
 
+// DescribeDeploymentsRequest is undocumented.
 type DescribeDeploymentsRequest struct {
 	AppID         string   `json:"AppId,omitempty"`
 	DeploymentIds []string `json:"DeploymentIds,omitempty"`
 	StackID       string   `json:"StackId,omitempty"`
 }
 
+// DescribeDeploymentsResult is undocumented.
 type DescribeDeploymentsResult struct {
 	Deployments []Deployment `json:"Deployments,omitempty"`
 }
 
+// DescribeElasticIPsRequest is undocumented.
 type DescribeElasticIPsRequest struct {
 	InstanceID string   `json:"InstanceId,omitempty"`
 	IPs        []string `json:"Ips,omitempty"`
 	StackID    string   `json:"StackId,omitempty"`
 }
 
+// DescribeElasticIPsResult is undocumented.
 type DescribeElasticIPsResult struct {
 	ElasticIPs []ElasticIP `json:"ElasticIps,omitempty"`
 }
 
+// DescribeElasticLoadBalancersRequest is undocumented.
 type DescribeElasticLoadBalancersRequest struct {
 	LayerIds []string `json:"LayerIds,omitempty"`
 	StackID  string   `json:"StackId,omitempty"`
 }
 
+// DescribeElasticLoadBalancersResult is undocumented.
 type DescribeElasticLoadBalancersResult struct {
 	ElasticLoadBalancers []ElasticLoadBalancer `json:"ElasticLoadBalancers,omitempty"`
 }
 
+// DescribeInstancesRequest is undocumented.
 type DescribeInstancesRequest struct {
 	InstanceIds []string `json:"InstanceIds,omitempty"`
 	LayerID     string   `json:"LayerId,omitempty"`
 	StackID     string   `json:"StackId,omitempty"`
 }
 
+// DescribeInstancesResult is undocumented.
 type DescribeInstancesResult struct {
 	Instances []Instance `json:"Instances,omitempty"`
 }
 
+// DescribeLayersRequest is undocumented.
 type DescribeLayersRequest struct {
 	LayerIds []string `json:"LayerIds,omitempty"`
 	StackID  string   `json:"StackId,omitempty"`
 }
 
+// DescribeLayersResult is undocumented.
 type DescribeLayersResult struct {
 	Layers []Layer `json:"Layers,omitempty"`
 }
 
+// DescribeLoadBasedAutoScalingRequest is undocumented.
 type DescribeLoadBasedAutoScalingRequest struct {
 	LayerIds []string `json:"LayerIds"`
 }
 
+// DescribeLoadBasedAutoScalingResult is undocumented.
 type DescribeLoadBasedAutoScalingResult struct {
 	LoadBasedAutoScalingConfigurations []LoadBasedAutoScalingConfiguration `json:"LoadBasedAutoScalingConfigurations,omitempty"`
 }
 
+// DescribeMyUserProfileResult is undocumented.
 type DescribeMyUserProfileResult struct {
 	UserProfile SelfUserProfile `json:"UserProfile,omitempty"`
 }
 
+// DescribePermissionsRequest is undocumented.
 type DescribePermissionsRequest struct {
 	IamUserARN string `json:"IamUserArn,omitempty"`
 	StackID    string `json:"StackId,omitempty"`
 }
 
+// DescribePermissionsResult is undocumented.
 type DescribePermissionsResult struct {
 	Permissions []Permission `json:"Permissions,omitempty"`
 }
 
+// DescribeRaidArraysRequest is undocumented.
 type DescribeRaidArraysRequest struct {
 	InstanceID   string   `json:"InstanceId,omitempty"`
 	RaidArrayIds []string `json:"RaidArrayIds,omitempty"`
 }
 
+// DescribeRaidArraysResult is undocumented.
 type DescribeRaidArraysResult struct {
 	RaidArrays []RaidArray `json:"RaidArrays,omitempty"`
 }
 
+// DescribeRdsDbInstancesRequest is undocumented.
 type DescribeRdsDbInstancesRequest struct {
 	RdsDbInstanceARNs []string `json:"RdsDbInstanceArns,omitempty"`
 	StackID           string   `json:"StackId"`
 }
 
+// DescribeRdsDbInstancesResult is undocumented.
 type DescribeRdsDbInstancesResult struct {
 	RdsDbInstances []RdsDbInstance `json:"RdsDbInstances,omitempty"`
 }
 
+// DescribeServiceErrorsRequest is undocumented.
 type DescribeServiceErrorsRequest struct {
 	InstanceID      string   `json:"InstanceId,omitempty"`
 	ServiceErrorIds []string `json:"ServiceErrorIds,omitempty"`
 	StackID         string   `json:"StackId,omitempty"`
 }
 
+// DescribeServiceErrorsResult is undocumented.
 type DescribeServiceErrorsResult struct {
 	ServiceErrors []ServiceError `json:"ServiceErrors,omitempty"`
 }
 
+// DescribeStackSummaryRequest is undocumented.
 type DescribeStackSummaryRequest struct {
 	StackID string `json:"StackId"`
 }
 
+// DescribeStackSummaryResult is undocumented.
 type DescribeStackSummaryResult struct {
 	StackSummary StackSummary `json:"StackSummary,omitempty"`
 }
 
+// DescribeStacksRequest is undocumented.
 type DescribeStacksRequest struct {
 	StackIds []string `json:"StackIds,omitempty"`
 }
 
+// DescribeStacksResult is undocumented.
 type DescribeStacksResult struct {
 	Stacks []Stack `json:"Stacks,omitempty"`
 }
 
+// DescribeTimeBasedAutoScalingRequest is undocumented.
 type DescribeTimeBasedAutoScalingRequest struct {
 	InstanceIds []string `json:"InstanceIds"`
 }
 
+// DescribeTimeBasedAutoScalingResult is undocumented.
 type DescribeTimeBasedAutoScalingResult struct {
 	TimeBasedAutoScalingConfigurations []TimeBasedAutoScalingConfiguration `json:"TimeBasedAutoScalingConfigurations,omitempty"`
 }
 
+// DescribeUserProfilesRequest is undocumented.
 type DescribeUserProfilesRequest struct {
 	IamUserARNs []string `json:"IamUserArns,omitempty"`
 }
 
+// DescribeUserProfilesResult is undocumented.
 type DescribeUserProfilesResult struct {
 	UserProfiles []UserProfile `json:"UserProfiles,omitempty"`
 }
 
+// DescribeVolumesRequest is undocumented.
 type DescribeVolumesRequest struct {
 	InstanceID  string   `json:"InstanceId,omitempty"`
 	RaidArrayID string   `json:"RaidArrayId,omitempty"`
@@ -1106,19 +1172,23 @@ type DescribeVolumesRequest struct {
 	VolumeIds   []string `json:"VolumeIds,omitempty"`
 }
 
+// DescribeVolumesResult is undocumented.
 type DescribeVolumesResult struct {
 	Volumes []Volume `json:"Volumes,omitempty"`
 }
 
+// DetachElasticLoadBalancerRequest is undocumented.
 type DetachElasticLoadBalancerRequest struct {
 	ElasticLoadBalancerName string `json:"ElasticLoadBalancerName"`
 	LayerID                 string `json:"LayerId"`
 }
 
+// DisassociateElasticIPRequest is undocumented.
 type DisassociateElasticIPRequest struct {
 	ElasticIP string `json:"ElasticIp"`
 }
 
+// ElasticIP is undocumented.
 type ElasticIP struct {
 	Domain     string `json:"Domain,omitempty"`
 	InstanceID string `json:"InstanceId,omitempty"`
@@ -1127,6 +1197,7 @@ type ElasticIP struct {
 	Region     string `json:"Region,omitempty"`
 }
 
+// ElasticLoadBalancer is undocumented.
 type ElasticLoadBalancer struct {
 	AvailabilityZones       []string `json:"AvailabilityZones,omitempty"`
 	DNSName                 string   `json:"DnsName,omitempty"`
@@ -1139,15 +1210,18 @@ type ElasticLoadBalancer struct {
 	VpcID                   string   `json:"VpcId,omitempty"`
 }
 
+// GetHostnameSuggestionRequest is undocumented.
 type GetHostnameSuggestionRequest struct {
 	LayerID string `json:"LayerId"`
 }
 
+// GetHostnameSuggestionResult is undocumented.
 type GetHostnameSuggestionResult struct {
 	Hostname string `json:"Hostname,omitempty"`
 	LayerID  string `json:"LayerId,omitempty"`
 }
 
+// Instance is undocumented.
 type Instance struct {
 	AmiID                    string   `json:"AmiId,omitempty"`
 	Architecture             string   `json:"Architecture,omitempty"`
@@ -1181,6 +1255,7 @@ type Instance struct {
 	VirtualizationType       string   `json:"VirtualizationType,omitempty"`
 }
 
+// InstancesCount is undocumented.
 type InstancesCount struct {
 	Booting        int `json:"Booting,omitempty"`
 	ConnectionLost int `json:"ConnectionLost,omitempty"`
@@ -1198,6 +1273,7 @@ type InstancesCount struct {
 	Terminating    int `json:"Terminating,omitempty"`
 }
 
+// Layer is undocumented.
 type Layer struct {
 	Attributes                map[string]string     `json:"Attributes,omitempty"`
 	AutoAssignElasticIPs      bool                  `json:"AutoAssignElasticIps,omitempty"`
@@ -1220,6 +1296,7 @@ type Layer struct {
 	VolumeConfigurations      []VolumeConfiguration `json:"VolumeConfigurations,omitempty"`
 }
 
+// LoadBasedAutoScalingConfiguration is undocumented.
 type LoadBasedAutoScalingConfiguration struct {
 	DownScaling AutoScalingThresholds `json:"DownScaling,omitempty"`
 	Enable      bool                  `json:"Enable,omitempty"`
@@ -1227,6 +1304,7 @@ type LoadBasedAutoScalingConfiguration struct {
 	UpScaling   AutoScalingThresholds `json:"UpScaling,omitempty"`
 }
 
+// Permission is undocumented.
 type Permission struct {
 	AllowSSH   bool   `json:"AllowSsh,omitempty"`
 	AllowSudo  bool   `json:"AllowSudo,omitempty"`
@@ -1235,6 +1313,7 @@ type Permission struct {
 	StackID    string `json:"StackId,omitempty"`
 }
 
+// RaidArray is undocumented.
 type RaidArray struct {
 	AvailabilityZone string `json:"AvailabilityZone,omitempty"`
 	CreatedAt        string `json:"CreatedAt,omitempty"`
@@ -1250,6 +1329,7 @@ type RaidArray struct {
 	VolumeType       string `json:"VolumeType,omitempty"`
 }
 
+// RdsDbInstance is undocumented.
 type RdsDbInstance struct {
 	Address              string `json:"Address,omitempty"`
 	DbInstanceIdentifier string `json:"DbInstanceIdentifier,omitempty"`
@@ -1262,10 +1342,12 @@ type RdsDbInstance struct {
 	StackID              string `json:"StackId,omitempty"`
 }
 
+// RebootInstanceRequest is undocumented.
 type RebootInstanceRequest struct {
 	InstanceID string `json:"InstanceId"`
 }
 
+// Recipes is undocumented.
 type Recipes struct {
 	Configure []string `json:"Configure,omitempty"`
 	Deploy    []string `json:"Deploy,omitempty"`
@@ -1274,15 +1356,18 @@ type Recipes struct {
 	Undeploy  []string `json:"Undeploy,omitempty"`
 }
 
+// RegisterElasticIPRequest is undocumented.
 type RegisterElasticIPRequest struct {
 	ElasticIP string `json:"ElasticIp"`
 	StackID   string `json:"StackId"`
 }
 
+// RegisterElasticIPResult is undocumented.
 type RegisterElasticIPResult struct {
 	ElasticIP string `json:"ElasticIp,omitempty"`
 }
 
+// RegisterRdsDbInstanceRequest is undocumented.
 type RegisterRdsDbInstanceRequest struct {
 	DbPassword       string `json:"DbPassword"`
 	DbUser           string `json:"DbUser"`
@@ -1290,15 +1375,18 @@ type RegisterRdsDbInstanceRequest struct {
 	StackID          string `json:"StackId"`
 }
 
+// RegisterVolumeRequest is undocumented.
 type RegisterVolumeRequest struct {
 	Ec2VolumeID string `json:"Ec2VolumeId,omitempty"`
 	StackID     string `json:"StackId"`
 }
 
+// RegisterVolumeResult is undocumented.
 type RegisterVolumeResult struct {
 	VolumeID string `json:"VolumeId,omitempty"`
 }
 
+// SelfUserProfile is undocumented.
 type SelfUserProfile struct {
 	IamUserARN   string `json:"IamUserArn,omitempty"`
 	Name         string `json:"Name,omitempty"`
@@ -1306,6 +1394,7 @@ type SelfUserProfile struct {
 	SSHUsername  string `json:"SshUsername,omitempty"`
 }
 
+// ServiceError is undocumented.
 type ServiceError struct {
 	CreatedAt      string `json:"CreatedAt,omitempty"`
 	InstanceID     string `json:"InstanceId,omitempty"`
@@ -1315,6 +1404,7 @@ type ServiceError struct {
 	Type           string `json:"Type,omitempty"`
 }
 
+// SetLoadBasedAutoScalingRequest is undocumented.
 type SetLoadBasedAutoScalingRequest struct {
 	DownScaling AutoScalingThresholds `json:"DownScaling,omitempty"`
 	Enable      bool                  `json:"Enable,omitempty"`
@@ -1322,6 +1412,7 @@ type SetLoadBasedAutoScalingRequest struct {
 	UpScaling   AutoScalingThresholds `json:"UpScaling,omitempty"`
 }
 
+// SetPermissionRequest is undocumented.
 type SetPermissionRequest struct {
 	AllowSSH   bool   `json:"AllowSsh,omitempty"`
 	AllowSudo  bool   `json:"AllowSudo,omitempty"`
@@ -1330,11 +1421,13 @@ type SetPermissionRequest struct {
 	StackID    string `json:"StackId"`
 }
 
+// SetTimeBasedAutoScalingRequest is undocumented.
 type SetTimeBasedAutoScalingRequest struct {
 	AutoScalingSchedule WeeklyAutoScalingSchedule `json:"AutoScalingSchedule,omitempty"`
 	InstanceID          string                    `json:"InstanceId"`
 }
 
+// Source is undocumented.
 type Source struct {
 	Password string `json:"Password,omitempty"`
 	Revision string `json:"Revision,omitempty"`
@@ -1344,12 +1437,14 @@ type Source struct {
 	Username string `json:"Username,omitempty"`
 }
 
+// SslConfiguration is undocumented.
 type SslConfiguration struct {
 	Certificate string `json:"Certificate"`
 	Chain       string `json:"Chain,omitempty"`
 	PrivateKey  string `json:"PrivateKey"`
 }
 
+// Stack is undocumented.
 type Stack struct {
 	ARN                       string                    `json:"Arn,omitempty"`
 	Attributes                map[string]string         `json:"Attributes,omitempty"`
@@ -1374,11 +1469,13 @@ type Stack struct {
 	VpcID                     string                    `json:"VpcId,omitempty"`
 }
 
+// StackConfigurationManager is undocumented.
 type StackConfigurationManager struct {
 	Name    string `json:"Name,omitempty"`
 	Version string `json:"Version,omitempty"`
 }
 
+// StackSummary is undocumented.
 type StackSummary struct {
 	AppsCount      int            `json:"AppsCount,omitempty"`
 	ARN            string         `json:"Arn,omitempty"`
@@ -1388,31 +1485,38 @@ type StackSummary struct {
 	StackID        string         `json:"StackId,omitempty"`
 }
 
+// StartInstanceRequest is undocumented.
 type StartInstanceRequest struct {
 	InstanceID string `json:"InstanceId"`
 }
 
+// StartStackRequest is undocumented.
 type StartStackRequest struct {
 	StackID string `json:"StackId"`
 }
 
+// StopInstanceRequest is undocumented.
 type StopInstanceRequest struct {
 	InstanceID string `json:"InstanceId"`
 }
 
+// StopStackRequest is undocumented.
 type StopStackRequest struct {
 	StackID string `json:"StackId"`
 }
 
+// TimeBasedAutoScalingConfiguration is undocumented.
 type TimeBasedAutoScalingConfiguration struct {
 	AutoScalingSchedule WeeklyAutoScalingSchedule `json:"AutoScalingSchedule,omitempty"`
 	InstanceID          string                    `json:"InstanceId,omitempty"`
 }
 
+// UnassignVolumeRequest is undocumented.
 type UnassignVolumeRequest struct {
 	VolumeID string `json:"VolumeId"`
 }
 
+// UpdateAppRequest is undocumented.
 type UpdateAppRequest struct {
 	AppID            string            `json:"AppId"`
 	AppSource        Source            `json:"AppSource,omitempty"`
@@ -1426,11 +1530,13 @@ type UpdateAppRequest struct {
 	Type             string            `json:"Type,omitempty"`
 }
 
+// UpdateElasticIPRequest is undocumented.
 type UpdateElasticIPRequest struct {
 	ElasticIP string `json:"ElasticIp"`
 	Name      string `json:"Name,omitempty"`
 }
 
+// UpdateInstanceRequest is undocumented.
 type UpdateInstanceRequest struct {
 	AmiID                string   `json:"AmiId,omitempty"`
 	Architecture         string   `json:"Architecture,omitempty"`
@@ -1445,6 +1551,7 @@ type UpdateInstanceRequest struct {
 	SSHKeyName           string   `json:"SshKeyName,omitempty"`
 }
 
+// UpdateLayerRequest is undocumented.
 type UpdateLayerRequest struct {
 	Attributes               map[string]string     `json:"Attributes,omitempty"`
 	AutoAssignElasticIPs     bool                  `json:"AutoAssignElasticIps,omitempty"`
@@ -1462,16 +1569,19 @@ type UpdateLayerRequest struct {
 	VolumeConfigurations     []VolumeConfiguration `json:"VolumeConfigurations,omitempty"`
 }
 
+// UpdateMyUserProfileRequest is undocumented.
 type UpdateMyUserProfileRequest struct {
 	SSHPublicKey string `json:"SshPublicKey,omitempty"`
 }
 
+// UpdateRdsDbInstanceRequest is undocumented.
 type UpdateRdsDbInstanceRequest struct {
 	DbPassword       string `json:"DbPassword,omitempty"`
 	DbUser           string `json:"DbUser,omitempty"`
 	RdsDbInstanceARN string `json:"RdsDbInstanceArn"`
 }
 
+// UpdateStackRequest is undocumented.
 type UpdateStackRequest struct {
 	Attributes                map[string]string         `json:"Attributes,omitempty"`
 	ChefConfiguration         ChefConfiguration         `json:"ChefConfiguration,omitempty"`
@@ -1492,6 +1602,7 @@ type UpdateStackRequest struct {
 	UseOpsworksSecurityGroups bool                      `json:"UseOpsworksSecurityGroups,omitempty"`
 }
 
+// UpdateUserProfileRequest is undocumented.
 type UpdateUserProfileRequest struct {
 	AllowSelfManagement bool   `json:"AllowSelfManagement,omitempty"`
 	IamUserARN          string `json:"IamUserArn"`
@@ -1499,12 +1610,14 @@ type UpdateUserProfileRequest struct {
 	SSHUsername         string `json:"SshUsername,omitempty"`
 }
 
+// UpdateVolumeRequest is undocumented.
 type UpdateVolumeRequest struct {
 	MountPoint string `json:"MountPoint,omitempty"`
 	Name       string `json:"Name,omitempty"`
 	VolumeID   string `json:"VolumeId"`
 }
 
+// UserProfile is undocumented.
 type UserProfile struct {
 	AllowSelfManagement bool   `json:"AllowSelfManagement,omitempty"`
 	IamUserARN          string `json:"IamUserArn,omitempty"`
@@ -1513,6 +1626,7 @@ type UserProfile struct {
 	SSHUsername         string `json:"SshUsername,omitempty"`
 }
 
+// Volume is undocumented.
 type Volume struct {
 	AvailabilityZone string `json:"AvailabilityZone,omitempty"`
 	Device           string `json:"Device,omitempty"`
@@ -1529,6 +1643,7 @@ type Volume struct {
 	VolumeType       string `json:"VolumeType,omitempty"`
 }
 
+// VolumeConfiguration is undocumented.
 type VolumeConfiguration struct {
 	Iops          int    `json:"Iops,omitempty"`
 	MountPoint    string `json:"MountPoint"`
@@ -1538,6 +1653,7 @@ type VolumeConfiguration struct {
 	VolumeType    string `json:"VolumeType,omitempty"`
 }
 
+// WeeklyAutoScalingSchedule is undocumented.
 type WeeklyAutoScalingSchedule struct {
 	Friday    map[string]string `json:"Friday,omitempty"`
 	Monday    map[string]string `json:"Monday,omitempty"`
@@ -1548,4 +1664,5 @@ type WeeklyAutoScalingSchedule struct {
 	Wednesday map[string]string `json:"Wednesday,omitempty"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

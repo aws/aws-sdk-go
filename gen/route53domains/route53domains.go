@@ -222,15 +222,18 @@ func (c *Route53Domains) UpdateDomainNameservers(req UpdateDomainNameserversRequ
 	return
 }
 
+// CheckDomainAvailabilityRequest is undocumented.
 type CheckDomainAvailabilityRequest struct {
 	DomainName  string `json:"DomainName"`
 	IdnLangCode string `json:"IdnLangCode,omitempty"`
 }
 
+// CheckDomainAvailabilityResponse is undocumented.
 type CheckDomainAvailabilityResponse struct {
 	Availability string `json:"Availability"`
 }
 
+// ContactDetail is undocumented.
 type ContactDetail struct {
 	AddressLine1     string       `json:"AddressLine1,omitempty"`
 	AddressLine2     string       `json:"AddressLine2,omitempty"`
@@ -248,21 +251,26 @@ type ContactDetail struct {
 	ZipCode          string       `json:"ZipCode,omitempty"`
 }
 
+// DisableDomainAutoRenewRequest is undocumented.
 type DisableDomainAutoRenewRequest struct {
 	DomainName string `json:"DomainName"`
 }
 
+// DisableDomainAutoRenewResponse is undocumented.
 type DisableDomainAutoRenewResponse struct {
 }
 
+// DisableDomainTransferLockRequest is undocumented.
 type DisableDomainTransferLockRequest struct {
 	DomainName string `json:"DomainName"`
 }
 
+// DisableDomainTransferLockResponse is undocumented.
 type DisableDomainTransferLockResponse struct {
 	OperationID string `json:"OperationId"`
 }
 
+// DomainSummary is undocumented.
 type DomainSummary struct {
 	AutoRenew    bool      `json:"AutoRenew,omitempty"`
 	DomainName   string    `json:"DomainName"`
@@ -270,30 +278,37 @@ type DomainSummary struct {
 	TransferLock bool      `json:"TransferLock,omitempty"`
 }
 
+// EnableDomainAutoRenewRequest is undocumented.
 type EnableDomainAutoRenewRequest struct {
 	DomainName string `json:"DomainName"`
 }
 
+// EnableDomainAutoRenewResponse is undocumented.
 type EnableDomainAutoRenewResponse struct {
 }
 
+// EnableDomainTransferLockRequest is undocumented.
 type EnableDomainTransferLockRequest struct {
 	DomainName string `json:"DomainName"`
 }
 
+// EnableDomainTransferLockResponse is undocumented.
 type EnableDomainTransferLockResponse struct {
 	OperationID string `json:"OperationId"`
 }
 
+// ExtraParam is undocumented.
 type ExtraParam struct {
 	Name  string `json:"Name"`
 	Value string `json:"Value"`
 }
 
+// GetDomainDetailRequest is undocumented.
 type GetDomainDetailRequest struct {
 	DomainName string `json:"DomainName"`
 }
 
+// GetDomainDetailResponse is undocumented.
 type GetDomainDetailResponse struct {
 	AbuseContactEmail string        `json:"AbuseContactEmail,omitempty"`
 	AbuseContactPhone string        `json:"AbuseContactPhone,omitempty"`
@@ -318,10 +333,12 @@ type GetDomainDetailResponse struct {
 	WhoIsServer       string        `json:"WhoIsServer,omitempty"`
 }
 
+// GetOperationDetailRequest is undocumented.
 type GetOperationDetailRequest struct {
 	OperationID string `json:"OperationId"`
 }
 
+// GetOperationDetailResponse is undocumented.
 type GetOperationDetailResponse struct {
 	DomainName    string    `json:"DomainName,omitempty"`
 	Message       string    `json:"Message,omitempty"`
@@ -331,31 +348,37 @@ type GetOperationDetailResponse struct {
 	Type          string    `json:"Type,omitempty"`
 }
 
+// ListDomainsRequest is undocumented.
 type ListDomainsRequest struct {
 	Marker   string `json:"Marker,omitempty"`
 	MaxItems int    `json:"MaxItems,omitempty"`
 }
 
+// ListDomainsResponse is undocumented.
 type ListDomainsResponse struct {
 	Domains        []DomainSummary `json:"Domains"`
 	NextPageMarker string          `json:"NextPageMarker,omitempty"`
 }
 
+// ListOperationsRequest is undocumented.
 type ListOperationsRequest struct {
 	Marker   string `json:"Marker,omitempty"`
 	MaxItems int    `json:"MaxItems,omitempty"`
 }
 
+// ListOperationsResponse is undocumented.
 type ListOperationsResponse struct {
 	NextPageMarker string             `json:"NextPageMarker,omitempty"`
 	Operations     []OperationSummary `json:"Operations"`
 }
 
+// Nameserver is undocumented.
 type Nameserver struct {
 	GlueIPs []string `json:"GlueIps,omitempty"`
 	Name    string   `json:"Name"`
 }
 
+// OperationSummary is undocumented.
 type OperationSummary struct {
 	OperationID   string    `json:"OperationId"`
 	Status        string    `json:"Status"`
@@ -363,6 +386,7 @@ type OperationSummary struct {
 	Type          string    `json:"Type"`
 }
 
+// RegisterDomainRequest is undocumented.
 type RegisterDomainRequest struct {
 	AdminContact                    ContactDetail `json:"AdminContact"`
 	AutoRenew                       bool          `json:"AutoRenew,omitempty"`
@@ -376,18 +400,22 @@ type RegisterDomainRequest struct {
 	TechContact                     ContactDetail `json:"TechContact"`
 }
 
+// RegisterDomainResponse is undocumented.
 type RegisterDomainResponse struct {
 	OperationID string `json:"OperationId"`
 }
 
+// RetrieveDomainAuthCodeRequest is undocumented.
 type RetrieveDomainAuthCodeRequest struct {
 	DomainName string `json:"DomainName"`
 }
 
+// RetrieveDomainAuthCodeResponse is undocumented.
 type RetrieveDomainAuthCodeResponse struct {
 	AuthCode string `json:"AuthCode"`
 }
 
+// TransferDomainRequest is undocumented.
 type TransferDomainRequest struct {
 	AdminContact                    ContactDetail `json:"AdminContact"`
 	AuthCode                        string        `json:"AuthCode,omitempty"`
@@ -403,10 +431,12 @@ type TransferDomainRequest struct {
 	TechContact                     ContactDetail `json:"TechContact"`
 }
 
+// TransferDomainResponse is undocumented.
 type TransferDomainResponse struct {
 	OperationID string `json:"OperationId"`
 }
 
+// UpdateDomainContactPrivacyRequest is undocumented.
 type UpdateDomainContactPrivacyRequest struct {
 	AdminPrivacy      bool   `json:"AdminPrivacy,omitempty"`
 	DomainName        string `json:"DomainName"`
@@ -414,10 +444,12 @@ type UpdateDomainContactPrivacyRequest struct {
 	TechPrivacy       bool   `json:"TechPrivacy,omitempty"`
 }
 
+// UpdateDomainContactPrivacyResponse is undocumented.
 type UpdateDomainContactPrivacyResponse struct {
 	OperationID string `json:"OperationId"`
 }
 
+// UpdateDomainContactRequest is undocumented.
 type UpdateDomainContactRequest struct {
 	AdminContact      ContactDetail `json:"AdminContact,omitempty"`
 	DomainName        string        `json:"DomainName"`
@@ -425,17 +457,21 @@ type UpdateDomainContactRequest struct {
 	TechContact       ContactDetail `json:"TechContact,omitempty"`
 }
 
+// UpdateDomainContactResponse is undocumented.
 type UpdateDomainContactResponse struct {
 	OperationID string `json:"OperationId"`
 }
 
+// UpdateDomainNameserversRequest is undocumented.
 type UpdateDomainNameserversRequest struct {
 	DomainName  string       `json:"DomainName"`
 	Nameservers []Nameserver `json:"Nameservers"`
 }
 
+// UpdateDomainNameserversResponse is undocumented.
 type UpdateDomainNameserversResponse struct {
 	OperationID string `json:"OperationId"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

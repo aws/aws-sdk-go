@@ -609,6 +609,7 @@ func (c *StorageGateway) UpdateSnapshotSchedule(req UpdateSnapshotScheduleInput)
 	return
 }
 
+// ActivateGatewayInput is undocumented.
 type ActivateGatewayInput struct {
 	ActivationKey     string `json:"ActivationKey"`
 	GatewayName       string `json:"GatewayName"`
@@ -619,37 +620,45 @@ type ActivateGatewayInput struct {
 	TapeDriveType     string `json:"TapeDriveType,omitempty"`
 }
 
+// ActivateGatewayOutput is undocumented.
 type ActivateGatewayOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// AddCacheInput is undocumented.
 type AddCacheInput struct {
 	DiskIds    []string `json:"DiskIds"`
 	GatewayARN string   `json:"GatewayARN"`
 }
 
+// AddCacheOutput is undocumented.
 type AddCacheOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// AddUploadBufferInput is undocumented.
 type AddUploadBufferInput struct {
 	DiskIds    []string `json:"DiskIds"`
 	GatewayARN string   `json:"GatewayARN"`
 }
 
+// AddUploadBufferOutput is undocumented.
 type AddUploadBufferOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// AddWorkingStorageInput is undocumented.
 type AddWorkingStorageInput struct {
 	DiskIds    []string `json:"DiskIds"`
 	GatewayARN string   `json:"GatewayARN"`
 }
 
+// AddWorkingStorageOutput is undocumented.
 type AddWorkingStorageOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// CachediSCSIVolume is undocumented.
 type CachediSCSIVolume struct {
 	SourceSnapshotID      string                `json:"SourceSnapshotId,omitempty"`
 	VolumeARN             string                `json:"VolumeARN,omitempty"`
@@ -661,24 +670,29 @@ type CachediSCSIVolume struct {
 	VolumeiSCSIAttributes VolumeiSCSIAttributes `json:"VolumeiSCSIAttributes,omitempty"`
 }
 
+// CancelArchivalInput is undocumented.
 type CancelArchivalInput struct {
 	GatewayARN string `json:"GatewayARN"`
 	TapeARN    string `json:"TapeARN"`
 }
 
+// CancelArchivalOutput is undocumented.
 type CancelArchivalOutput struct {
 	TapeARN string `json:"TapeARN,omitempty"`
 }
 
+// CancelRetrievalInput is undocumented.
 type CancelRetrievalInput struct {
 	GatewayARN string `json:"GatewayARN"`
 	TapeARN    string `json:"TapeARN"`
 }
 
+// CancelRetrievalOutput is undocumented.
 type CancelRetrievalOutput struct {
 	TapeARN string `json:"TapeARN,omitempty"`
 }
 
+// ChapInfo is undocumented.
 type ChapInfo struct {
 	InitiatorName                 string `json:"InitiatorName,omitempty"`
 	SecretToAuthenticateInitiator string `json:"SecretToAuthenticateInitiator,omitempty"`
@@ -686,6 +700,7 @@ type ChapInfo struct {
 	TargetARN                     string `json:"TargetARN,omitempty"`
 }
 
+// CreateCachediSCSIVolumeInput is undocumented.
 type CreateCachediSCSIVolumeInput struct {
 	ClientToken        string `json:"ClientToken"`
 	GatewayARN         string `json:"GatewayARN"`
@@ -695,32 +710,38 @@ type CreateCachediSCSIVolumeInput struct {
 	VolumeSizeInBytes  int    `json:"VolumeSizeInBytes"`
 }
 
+// CreateCachediSCSIVolumeOutput is undocumented.
 type CreateCachediSCSIVolumeOutput struct {
 	TargetARN string `json:"TargetARN,omitempty"`
 	VolumeARN string `json:"VolumeARN,omitempty"`
 }
 
+// CreateSnapshotFromVolumeRecoveryPointInput is undocumented.
 type CreateSnapshotFromVolumeRecoveryPointInput struct {
 	SnapshotDescription string `json:"SnapshotDescription"`
 	VolumeARN           string `json:"VolumeARN"`
 }
 
+// CreateSnapshotFromVolumeRecoveryPointOutput is undocumented.
 type CreateSnapshotFromVolumeRecoveryPointOutput struct {
 	SnapshotID              string `json:"SnapshotId,omitempty"`
 	VolumeARN               string `json:"VolumeARN,omitempty"`
 	VolumeRecoveryPointTime string `json:"VolumeRecoveryPointTime,omitempty"`
 }
 
+// CreateSnapshotInput is undocumented.
 type CreateSnapshotInput struct {
 	SnapshotDescription string `json:"SnapshotDescription"`
 	VolumeARN           string `json:"VolumeARN"`
 }
 
+// CreateSnapshotOutput is undocumented.
 type CreateSnapshotOutput struct {
 	SnapshotID string `json:"SnapshotId,omitempty"`
 	VolumeARN  string `json:"VolumeARN,omitempty"`
 }
 
+// CreateStorediSCSIVolumeInput is undocumented.
 type CreateStorediSCSIVolumeInput struct {
 	DiskID               string `json:"DiskId"`
 	GatewayARN           string `json:"GatewayARN"`
@@ -730,12 +751,14 @@ type CreateStorediSCSIVolumeInput struct {
 	TargetName           string `json:"TargetName"`
 }
 
+// CreateStorediSCSIVolumeOutput is undocumented.
 type CreateStorediSCSIVolumeOutput struct {
 	TargetARN         string `json:"TargetARN,omitempty"`
 	VolumeARN         string `json:"VolumeARN,omitempty"`
 	VolumeSizeInBytes int    `json:"VolumeSizeInBytes,omitempty"`
 }
 
+// CreateTapesInput is undocumented.
 type CreateTapesInput struct {
 	ClientToken       string `json:"ClientToken"`
 	GatewayARN        string `json:"GatewayARN"`
@@ -744,84 +767,103 @@ type CreateTapesInput struct {
 	TapeSizeInBytes   int    `json:"TapeSizeInBytes"`
 }
 
+// CreateTapesOutput is undocumented.
 type CreateTapesOutput struct {
 	TapeARNs []string `json:"TapeARNs,omitempty"`
 }
 
+// DeleteBandwidthRateLimitInput is undocumented.
 type DeleteBandwidthRateLimitInput struct {
 	BandwidthType string `json:"BandwidthType"`
 	GatewayARN    string `json:"GatewayARN"`
 }
 
+// DeleteBandwidthRateLimitOutput is undocumented.
 type DeleteBandwidthRateLimitOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// DeleteChapCredentialsInput is undocumented.
 type DeleteChapCredentialsInput struct {
 	InitiatorName string `json:"InitiatorName"`
 	TargetARN     string `json:"TargetARN"`
 }
 
+// DeleteChapCredentialsOutput is undocumented.
 type DeleteChapCredentialsOutput struct {
 	InitiatorName string `json:"InitiatorName,omitempty"`
 	TargetARN     string `json:"TargetARN,omitempty"`
 }
 
+// DeleteGatewayInput is undocumented.
 type DeleteGatewayInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// DeleteGatewayOutput is undocumented.
 type DeleteGatewayOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// DeleteSnapshotScheduleInput is undocumented.
 type DeleteSnapshotScheduleInput struct {
 	VolumeARN string `json:"VolumeARN"`
 }
 
+// DeleteSnapshotScheduleOutput is undocumented.
 type DeleteSnapshotScheduleOutput struct {
 	VolumeARN string `json:"VolumeARN,omitempty"`
 }
 
+// DeleteTapeArchiveInput is undocumented.
 type DeleteTapeArchiveInput struct {
 	TapeARN string `json:"TapeARN"`
 }
 
+// DeleteTapeArchiveOutput is undocumented.
 type DeleteTapeArchiveOutput struct {
 	TapeARN string `json:"TapeARN,omitempty"`
 }
 
+// DeleteTapeInput is undocumented.
 type DeleteTapeInput struct {
 	GatewayARN string `json:"GatewayARN"`
 	TapeARN    string `json:"TapeARN"`
 }
 
+// DeleteTapeOutput is undocumented.
 type DeleteTapeOutput struct {
 	TapeARN string `json:"TapeARN,omitempty"`
 }
 
+// DeleteVolumeInput is undocumented.
 type DeleteVolumeInput struct {
 	VolumeARN string `json:"VolumeARN"`
 }
 
+// DeleteVolumeOutput is undocumented.
 type DeleteVolumeOutput struct {
 	VolumeARN string `json:"VolumeARN,omitempty"`
 }
 
+// DescribeBandwidthRateLimitInput is undocumented.
 type DescribeBandwidthRateLimitInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// DescribeBandwidthRateLimitOutput is undocumented.
 type DescribeBandwidthRateLimitOutput struct {
 	AverageDownloadRateLimitInBitsPerSec int    `json:"AverageDownloadRateLimitInBitsPerSec,omitempty"`
 	AverageUploadRateLimitInBitsPerSec   int    `json:"AverageUploadRateLimitInBitsPerSec,omitempty"`
 	GatewayARN                           string `json:"GatewayARN,omitempty"`
 }
 
+// DescribeCacheInput is undocumented.
 type DescribeCacheInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// DescribeCacheOutput is undocumented.
 type DescribeCacheOutput struct {
 	CacheAllocatedInBytes int      `json:"CacheAllocatedInBytes,omitempty"`
 	CacheDirtyPercentage  float64  `json:"CacheDirtyPercentage,omitempty"`
@@ -832,26 +874,32 @@ type DescribeCacheOutput struct {
 	GatewayARN            string   `json:"GatewayARN,omitempty"`
 }
 
+// DescribeCachediSCSIVolumesInput is undocumented.
 type DescribeCachediSCSIVolumesInput struct {
 	VolumeARNs []string `json:"VolumeARNs"`
 }
 
+// DescribeCachediSCSIVolumesOutput is undocumented.
 type DescribeCachediSCSIVolumesOutput struct {
 	CachediSCSIVolumes []CachediSCSIVolume `json:"CachediSCSIVolumes,omitempty"`
 }
 
+// DescribeChapCredentialsInput is undocumented.
 type DescribeChapCredentialsInput struct {
 	TargetARN string `json:"TargetARN"`
 }
 
+// DescribeChapCredentialsOutput is undocumented.
 type DescribeChapCredentialsOutput struct {
 	ChapCredentials []ChapInfo `json:"ChapCredentials,omitempty"`
 }
 
+// DescribeGatewayInformationInput is undocumented.
 type DescribeGatewayInformationInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// DescribeGatewayInformationOutput is undocumented.
 type DescribeGatewayInformationOutput struct {
 	GatewayARN                 string             `json:"GatewayARN,omitempty"`
 	GatewayID                  string             `json:"GatewayId,omitempty"`
@@ -862,10 +910,12 @@ type DescribeGatewayInformationOutput struct {
 	NextUpdateAvailabilityDate string             `json:"NextUpdateAvailabilityDate,omitempty"`
 }
 
+// DescribeMaintenanceStartTimeInput is undocumented.
 type DescribeMaintenanceStartTimeInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// DescribeMaintenanceStartTimeOutput is undocumented.
 type DescribeMaintenanceStartTimeOutput struct {
 	DayOfWeek    int    `json:"DayOfWeek,omitempty"`
 	GatewayARN   string `json:"GatewayARN,omitempty"`
@@ -874,10 +924,12 @@ type DescribeMaintenanceStartTimeOutput struct {
 	Timezone     string `json:"Timezone,omitempty"`
 }
 
+// DescribeSnapshotScheduleInput is undocumented.
 type DescribeSnapshotScheduleInput struct {
 	VolumeARN string `json:"VolumeARN"`
 }
 
+// DescribeSnapshotScheduleOutput is undocumented.
 type DescribeSnapshotScheduleOutput struct {
 	Description       string `json:"Description,omitempty"`
 	RecurrenceInHours int    `json:"RecurrenceInHours,omitempty"`
@@ -886,37 +938,44 @@ type DescribeSnapshotScheduleOutput struct {
 	VolumeARN         string `json:"VolumeARN,omitempty"`
 }
 
+// DescribeStorediSCSIVolumesInput is undocumented.
 type DescribeStorediSCSIVolumesInput struct {
 	VolumeARNs []string `json:"VolumeARNs"`
 }
 
+// DescribeStorediSCSIVolumesOutput is undocumented.
 type DescribeStorediSCSIVolumesOutput struct {
 	StorediSCSIVolumes []StorediSCSIVolume `json:"StorediSCSIVolumes,omitempty"`
 }
 
+// DescribeTapeArchivesInput is undocumented.
 type DescribeTapeArchivesInput struct {
 	Limit    int      `json:"Limit,omitempty"`
 	Marker   string   `json:"Marker,omitempty"`
 	TapeARNs []string `json:"TapeARNs,omitempty"`
 }
 
+// DescribeTapeArchivesOutput is undocumented.
 type DescribeTapeArchivesOutput struct {
 	Marker       string        `json:"Marker,omitempty"`
 	TapeArchives []TapeArchive `json:"TapeArchives,omitempty"`
 }
 
+// DescribeTapeRecoveryPointsInput is undocumented.
 type DescribeTapeRecoveryPointsInput struct {
 	GatewayARN string `json:"GatewayARN"`
 	Limit      int    `json:"Limit,omitempty"`
 	Marker     string `json:"Marker,omitempty"`
 }
 
+// DescribeTapeRecoveryPointsOutput is undocumented.
 type DescribeTapeRecoveryPointsOutput struct {
 	GatewayARN             string                  `json:"GatewayARN,omitempty"`
 	Marker                 string                  `json:"Marker,omitempty"`
 	TapeRecoveryPointInfos []TapeRecoveryPointInfo `json:"TapeRecoveryPointInfos,omitempty"`
 }
 
+// DescribeTapesInput is undocumented.
 type DescribeTapesInput struct {
 	GatewayARN string   `json:"GatewayARN"`
 	Limit      int      `json:"Limit,omitempty"`
@@ -924,15 +983,18 @@ type DescribeTapesInput struct {
 	TapeARNs   []string `json:"TapeARNs,omitempty"`
 }
 
+// DescribeTapesOutput is undocumented.
 type DescribeTapesOutput struct {
 	Marker string `json:"Marker,omitempty"`
 	Tapes  []Tape `json:"Tapes,omitempty"`
 }
 
+// DescribeUploadBufferInput is undocumented.
 type DescribeUploadBufferInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// DescribeUploadBufferOutput is undocumented.
 type DescribeUploadBufferOutput struct {
 	DiskIds                      []string `json:"DiskIds,omitempty"`
 	GatewayARN                   string   `json:"GatewayARN,omitempty"`
@@ -940,6 +1002,7 @@ type DescribeUploadBufferOutput struct {
 	UploadBufferUsedInBytes      int      `json:"UploadBufferUsedInBytes,omitempty"`
 }
 
+// DescribeVTLDevicesInput is undocumented.
 type DescribeVTLDevicesInput struct {
 	GatewayARN    string   `json:"GatewayARN"`
 	Limit         int      `json:"Limit,omitempty"`
@@ -947,16 +1010,19 @@ type DescribeVTLDevicesInput struct {
 	VTLDeviceARNs []string `json:"VTLDeviceARNs,omitempty"`
 }
 
+// DescribeVTLDevicesOutput is undocumented.
 type DescribeVTLDevicesOutput struct {
 	GatewayARN string      `json:"GatewayARN,omitempty"`
 	Marker     string      `json:"Marker,omitempty"`
 	VTLDevices []VTLDevice `json:"VTLDevices,omitempty"`
 }
 
+// DescribeWorkingStorageInput is undocumented.
 type DescribeWorkingStorageInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// DescribeWorkingStorageOutput is undocumented.
 type DescribeWorkingStorageOutput struct {
 	DiskIds                        []string `json:"DiskIds,omitempty"`
 	GatewayARN                     string   `json:"GatewayARN,omitempty"`
@@ -964,6 +1030,7 @@ type DescribeWorkingStorageOutput struct {
 	WorkingStorageUsedInBytes      int      `json:"WorkingStorageUsedInBytes,omitempty"`
 }
 
+// DeviceiSCSIAttributes is undocumented.
 type DeviceiSCSIAttributes struct {
 	ChapEnabled          bool   `json:"ChapEnabled,omitempty"`
 	NetworkInterfaceID   string `json:"NetworkInterfaceId,omitempty"`
@@ -971,14 +1038,17 @@ type DeviceiSCSIAttributes struct {
 	TargetARN            string `json:"TargetARN,omitempty"`
 }
 
+// DisableGatewayInput is undocumented.
 type DisableGatewayInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// DisableGatewayOutput is undocumented.
 type DisableGatewayOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// Disk is undocumented.
 type Disk struct {
 	DiskAllocationResource string `json:"DiskAllocationResource,omitempty"`
 	DiskAllocationType     string `json:"DiskAllocationType,omitempty"`
@@ -988,97 +1058,117 @@ type Disk struct {
 	DiskSizeInBytes        int    `json:"DiskSizeInBytes,omitempty"`
 }
 
+// GatewayInfo is undocumented.
 type GatewayInfo struct {
 	GatewayARN              string `json:"GatewayARN,omitempty"`
 	GatewayOperationalState string `json:"GatewayOperationalState,omitempty"`
 	GatewayType             string `json:"GatewayType,omitempty"`
 }
 
+// ListGatewaysInput is undocumented.
 type ListGatewaysInput struct {
 	Limit  int    `json:"Limit,omitempty"`
 	Marker string `json:"Marker,omitempty"`
 }
 
+// ListGatewaysOutput is undocumented.
 type ListGatewaysOutput struct {
 	Gateways []GatewayInfo `json:"Gateways,omitempty"`
 	Marker   string        `json:"Marker,omitempty"`
 }
 
+// ListLocalDisksInput is undocumented.
 type ListLocalDisksInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// ListLocalDisksOutput is undocumented.
 type ListLocalDisksOutput struct {
 	Disks      []Disk `json:"Disks,omitempty"`
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// ListVolumeRecoveryPointsInput is undocumented.
 type ListVolumeRecoveryPointsInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// ListVolumeRecoveryPointsOutput is undocumented.
 type ListVolumeRecoveryPointsOutput struct {
 	GatewayARN               string                    `json:"GatewayARN,omitempty"`
 	VolumeRecoveryPointInfos []VolumeRecoveryPointInfo `json:"VolumeRecoveryPointInfos,omitempty"`
 }
 
+// ListVolumesInput is undocumented.
 type ListVolumesInput struct {
 	GatewayARN string `json:"GatewayARN"`
 	Limit      int    `json:"Limit,omitempty"`
 	Marker     string `json:"Marker,omitempty"`
 }
 
+// ListVolumesOutput is undocumented.
 type ListVolumesOutput struct {
 	GatewayARN  string       `json:"GatewayARN,omitempty"`
 	Marker      string       `json:"Marker,omitempty"`
 	VolumeInfos []VolumeInfo `json:"VolumeInfos,omitempty"`
 }
 
+// NetworkInterface is undocumented.
 type NetworkInterface struct {
 	IPv4Address string `json:"Ipv4Address,omitempty"`
 	IPv6Address string `json:"Ipv6Address,omitempty"`
 	MacAddress  string `json:"MacAddress,omitempty"`
 }
 
+// RetrieveTapeArchiveInput is undocumented.
 type RetrieveTapeArchiveInput struct {
 	GatewayARN string `json:"GatewayARN"`
 	TapeARN    string `json:"TapeARN"`
 }
 
+// RetrieveTapeArchiveOutput is undocumented.
 type RetrieveTapeArchiveOutput struct {
 	TapeARN string `json:"TapeARN,omitempty"`
 }
 
+// RetrieveTapeRecoveryPointInput is undocumented.
 type RetrieveTapeRecoveryPointInput struct {
 	GatewayARN string `json:"GatewayARN"`
 	TapeARN    string `json:"TapeARN"`
 }
 
+// RetrieveTapeRecoveryPointOutput is undocumented.
 type RetrieveTapeRecoveryPointOutput struct {
 	TapeARN string `json:"TapeARN,omitempty"`
 }
 
+// ShutdownGatewayInput is undocumented.
 type ShutdownGatewayInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// ShutdownGatewayOutput is undocumented.
 type ShutdownGatewayOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// StartGatewayInput is undocumented.
 type StartGatewayInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// StartGatewayOutput is undocumented.
 type StartGatewayOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// StorageGatewayError is undocumented.
 type StorageGatewayError struct {
 	ErrorCode    string            `json:"errorCode,omitempty"`
 	ErrorDetails map[string]string `json:"errorDetails,omitempty"`
 }
 
+// StorediSCSIVolume is undocumented.
 type StorediSCSIVolume struct {
 	PreservedExistingData bool                  `json:"PreservedExistingData,omitempty"`
 	SourceSnapshotID      string                `json:"SourceSnapshotId,omitempty"`
@@ -1092,6 +1182,7 @@ type StorediSCSIVolume struct {
 	VolumeiSCSIAttributes VolumeiSCSIAttributes `json:"VolumeiSCSIAttributes,omitempty"`
 }
 
+// Tape is undocumented.
 type Tape struct {
 	Progress        float64 `json:"Progress,omitempty"`
 	TapeARN         string  `json:"TapeARN,omitempty"`
@@ -1101,6 +1192,7 @@ type Tape struct {
 	VTLDevice       string  `json:"VTLDevice,omitempty"`
 }
 
+// TapeArchive is undocumented.
 type TapeArchive struct {
 	CompletionTime  time.Time `json:"CompletionTime,omitempty"`
 	RetrievedTo     string    `json:"RetrievedTo,omitempty"`
@@ -1110,6 +1202,7 @@ type TapeArchive struct {
 	TapeStatus      string    `json:"TapeStatus,omitempty"`
 }
 
+// TapeRecoveryPointInfo is undocumented.
 type TapeRecoveryPointInfo struct {
 	TapeARN               string    `json:"TapeARN,omitempty"`
 	TapeRecoveryPointTime time.Time `json:"TapeRecoveryPointTime,omitempty"`
@@ -1117,16 +1210,19 @@ type TapeRecoveryPointInfo struct {
 	TapeStatus            string    `json:"TapeStatus,omitempty"`
 }
 
+// UpdateBandwidthRateLimitInput is undocumented.
 type UpdateBandwidthRateLimitInput struct {
 	AverageDownloadRateLimitInBitsPerSec int    `json:"AverageDownloadRateLimitInBitsPerSec,omitempty"`
 	AverageUploadRateLimitInBitsPerSec   int    `json:"AverageUploadRateLimitInBitsPerSec,omitempty"`
 	GatewayARN                           string `json:"GatewayARN"`
 }
 
+// UpdateBandwidthRateLimitOutput is undocumented.
 type UpdateBandwidthRateLimitOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// UpdateChapCredentialsInput is undocumented.
 type UpdateChapCredentialsInput struct {
 	InitiatorName                 string `json:"InitiatorName"`
 	SecretToAuthenticateInitiator string `json:"SecretToAuthenticateInitiator"`
@@ -1134,29 +1230,35 @@ type UpdateChapCredentialsInput struct {
 	TargetARN                     string `json:"TargetARN"`
 }
 
+// UpdateChapCredentialsOutput is undocumented.
 type UpdateChapCredentialsOutput struct {
 	InitiatorName string `json:"InitiatorName,omitempty"`
 	TargetARN     string `json:"TargetARN,omitempty"`
 }
 
+// UpdateGatewayInformationInput is undocumented.
 type UpdateGatewayInformationInput struct {
 	GatewayARN      string `json:"GatewayARN"`
 	GatewayName     string `json:"GatewayName,omitempty"`
 	GatewayTimezone string `json:"GatewayTimezone,omitempty"`
 }
 
+// UpdateGatewayInformationOutput is undocumented.
 type UpdateGatewayInformationOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// UpdateGatewaySoftwareNowInput is undocumented.
 type UpdateGatewaySoftwareNowInput struct {
 	GatewayARN string `json:"GatewayARN"`
 }
 
+// UpdateGatewaySoftwareNowOutput is undocumented.
 type UpdateGatewaySoftwareNowOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// UpdateMaintenanceStartTimeInput is undocumented.
 type UpdateMaintenanceStartTimeInput struct {
 	DayOfWeek    int    `json:"DayOfWeek"`
 	GatewayARN   string `json:"GatewayARN"`
@@ -1164,10 +1266,12 @@ type UpdateMaintenanceStartTimeInput struct {
 	MinuteOfHour int    `json:"MinuteOfHour"`
 }
 
+// UpdateMaintenanceStartTimeOutput is undocumented.
 type UpdateMaintenanceStartTimeOutput struct {
 	GatewayARN string `json:"GatewayARN,omitempty"`
 }
 
+// UpdateSnapshotScheduleInput is undocumented.
 type UpdateSnapshotScheduleInput struct {
 	Description       string `json:"Description,omitempty"`
 	RecurrenceInHours int    `json:"RecurrenceInHours"`
@@ -1175,10 +1279,12 @@ type UpdateSnapshotScheduleInput struct {
 	VolumeARN         string `json:"VolumeARN"`
 }
 
+// UpdateSnapshotScheduleOutput is undocumented.
 type UpdateSnapshotScheduleOutput struct {
 	VolumeARN string `json:"VolumeARN,omitempty"`
 }
 
+// VTLDevice is undocumented.
 type VTLDevice struct {
 	DeviceiSCSIAttributes      DeviceiSCSIAttributes `json:"DeviceiSCSIAttributes,omitempty"`
 	VTLDeviceARN               string                `json:"VTLDeviceARN,omitempty"`
@@ -1187,11 +1293,13 @@ type VTLDevice struct {
 	VTLDeviceVendor            string                `json:"VTLDeviceVendor,omitempty"`
 }
 
+// VolumeInfo is undocumented.
 type VolumeInfo struct {
 	VolumeARN  string `json:"VolumeARN,omitempty"`
 	VolumeType string `json:"VolumeType,omitempty"`
 }
 
+// VolumeRecoveryPointInfo is undocumented.
 type VolumeRecoveryPointInfo struct {
 	VolumeARN               string `json:"VolumeARN,omitempty"`
 	VolumeRecoveryPointTime string `json:"VolumeRecoveryPointTime,omitempty"`
@@ -1199,6 +1307,7 @@ type VolumeRecoveryPointInfo struct {
 	VolumeUsageInBytes      int    `json:"VolumeUsageInBytes,omitempty"`
 }
 
+// VolumeiSCSIAttributes is undocumented.
 type VolumeiSCSIAttributes struct {
 	ChapEnabled          bool   `json:"ChapEnabled,omitempty"`
 	LunNumber            int    `json:"LunNumber,omitempty"`
@@ -1207,4 +1316,5 @@ type VolumeiSCSIAttributes struct {
 	TargetARN            string `json:"TargetARN,omitempty"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

@@ -249,33 +249,40 @@ func (c *EMR) TerminateJobFlows(req TerminateJobFlowsInput) (err error) {
 	return
 }
 
+// AddInstanceGroupsInput is undocumented.
 type AddInstanceGroupsInput struct {
 	InstanceGroups []InstanceGroupConfig `json:"InstanceGroups"`
 	JobFlowID      string                `json:"JobFlowId"`
 }
 
+// AddInstanceGroupsOutput is undocumented.
 type AddInstanceGroupsOutput struct {
 	InstanceGroupIds []string `json:"InstanceGroupIds,omitempty"`
 	JobFlowID        string   `json:"JobFlowId,omitempty"`
 }
 
+// AddJobFlowStepsInput is undocumented.
 type AddJobFlowStepsInput struct {
 	JobFlowID string       `json:"JobFlowId"`
 	Steps     []StepConfig `json:"Steps"`
 }
 
+// AddJobFlowStepsOutput is undocumented.
 type AddJobFlowStepsOutput struct {
 	StepIds []string `json:"StepIds,omitempty"`
 }
 
+// AddTagsInput is undocumented.
 type AddTagsInput struct {
 	ResourceID string `json:"ResourceId"`
 	Tags       []Tag  `json:"Tags"`
 }
 
+// AddTagsOutput is undocumented.
 type AddTagsOutput struct {
 }
 
+// Application is undocumented.
 type Application struct {
 	AdditionalInfo map[string]string `json:"AdditionalInfo,omitempty"`
 	Args           []string          `json:"Args,omitempty"`
@@ -283,15 +290,18 @@ type Application struct {
 	Version        string            `json:"Version,omitempty"`
 }
 
+// BootstrapActionConfig is undocumented.
 type BootstrapActionConfig struct {
 	Name                  string                      `json:"Name"`
 	ScriptBootstrapAction ScriptBootstrapActionConfig `json:"ScriptBootstrapAction"`
 }
 
+// BootstrapActionDetail is undocumented.
 type BootstrapActionDetail struct {
 	BootstrapActionConfig BootstrapActionConfig `json:"BootstrapActionConfig,omitempty"`
 }
 
+// Cluster is undocumented.
 type Cluster struct {
 	Applications          []Application         `json:"Applications,omitempty"`
 	AutoTerminate         bool                  `json:"AutoTerminate,omitempty"`
@@ -308,43 +318,51 @@ type Cluster struct {
 	VisibleToAllUsers     bool                  `json:"VisibleToAllUsers,omitempty"`
 }
 
+// ClusterStateChangeReason is undocumented.
 type ClusterStateChangeReason struct {
 	Code    string `json:"Code,omitempty"`
 	Message string `json:"Message,omitempty"`
 }
 
+// ClusterStatus is undocumented.
 type ClusterStatus struct {
 	State             string                   `json:"State,omitempty"`
 	StateChangeReason ClusterStateChangeReason `json:"StateChangeReason,omitempty"`
 	Timeline          ClusterTimeline          `json:"Timeline,omitempty"`
 }
 
+// ClusterSummary is undocumented.
 type ClusterSummary struct {
 	ID     string        `json:"Id,omitempty"`
 	Name   string        `json:"Name,omitempty"`
 	Status ClusterStatus `json:"Status,omitempty"`
 }
 
+// ClusterTimeline is undocumented.
 type ClusterTimeline struct {
 	CreationDateTime time.Time `json:"CreationDateTime,omitempty"`
 	EndDateTime      time.Time `json:"EndDateTime,omitempty"`
 	ReadyDateTime    time.Time `json:"ReadyDateTime,omitempty"`
 }
 
+// Command is undocumented.
 type Command struct {
 	Args       []string `json:"Args,omitempty"`
 	Name       string   `json:"Name,omitempty"`
 	ScriptPath string   `json:"ScriptPath,omitempty"`
 }
 
+// DescribeClusterInput is undocumented.
 type DescribeClusterInput struct {
 	ClusterID string `json:"ClusterId"`
 }
 
+// DescribeClusterOutput is undocumented.
 type DescribeClusterOutput struct {
 	Cluster Cluster `json:"Cluster,omitempty"`
 }
 
+// DescribeJobFlowsInput is undocumented.
 type DescribeJobFlowsInput struct {
 	CreatedAfter  time.Time `json:"CreatedAfter,omitempty"`
 	CreatedBefore time.Time `json:"CreatedBefore,omitempty"`
@@ -352,19 +370,23 @@ type DescribeJobFlowsInput struct {
 	JobFlowStates []string  `json:"JobFlowStates,omitempty"`
 }
 
+// DescribeJobFlowsOutput is undocumented.
 type DescribeJobFlowsOutput struct {
 	JobFlows []JobFlowDetail `json:"JobFlows,omitempty"`
 }
 
+// DescribeStepInput is undocumented.
 type DescribeStepInput struct {
 	ClusterID string `json:"ClusterId"`
 	StepID    string `json:"StepId"`
 }
 
+// DescribeStepOutput is undocumented.
 type DescribeStepOutput struct {
 	Step Step `json:"Step,omitempty"`
 }
 
+// Ec2InstanceAttributes is undocumented.
 type Ec2InstanceAttributes struct {
 	Ec2AvailabilityZone string `json:"Ec2AvailabilityZone,omitempty"`
 	Ec2KeyName          string `json:"Ec2KeyName,omitempty"`
@@ -372,6 +394,7 @@ type Ec2InstanceAttributes struct {
 	IamInstanceProfile  string `json:"IamInstanceProfile,omitempty"`
 }
 
+// HadoopJarStepConfig is undocumented.
 type HadoopJarStepConfig struct {
 	Args       []string   `json:"Args,omitempty"`
 	Jar        string     `json:"Jar"`
@@ -379,6 +402,7 @@ type HadoopJarStepConfig struct {
 	Properties []KeyValue `json:"Properties,omitempty"`
 }
 
+// HadoopStepConfig is undocumented.
 type HadoopStepConfig struct {
 	Args       []string          `json:"Args,omitempty"`
 	Jar        string            `json:"Jar,omitempty"`
@@ -386,6 +410,7 @@ type HadoopStepConfig struct {
 	Properties map[string]string `json:"Properties,omitempty"`
 }
 
+// Instance is undocumented.
 type Instance struct {
 	Ec2InstanceID    string         `json:"Ec2InstanceId,omitempty"`
 	ID               string         `json:"Id,omitempty"`
@@ -396,6 +421,7 @@ type Instance struct {
 	Status           InstanceStatus `json:"Status,omitempty"`
 }
 
+// InstanceGroup is undocumented.
 type InstanceGroup struct {
 	BidPrice               string              `json:"BidPrice,omitempty"`
 	ID                     string              `json:"Id,omitempty"`
@@ -408,6 +434,7 @@ type InstanceGroup struct {
 	Status                 InstanceGroupStatus `json:"Status,omitempty"`
 }
 
+// InstanceGroupConfig is undocumented.
 type InstanceGroupConfig struct {
 	BidPrice      string `json:"BidPrice,omitempty"`
 	InstanceCount int    `json:"InstanceCount"`
@@ -417,6 +444,7 @@ type InstanceGroupConfig struct {
 	Name          string `json:"Name,omitempty"`
 }
 
+// InstanceGroupDetail is undocumented.
 type InstanceGroupDetail struct {
 	BidPrice              string    `json:"BidPrice,omitempty"`
 	CreationDateTime      time.Time `json:"CreationDateTime"`
@@ -434,46 +462,54 @@ type InstanceGroupDetail struct {
 	State                 string    `json:"State"`
 }
 
+// InstanceGroupModifyConfig is undocumented.
 type InstanceGroupModifyConfig struct {
 	EC2InstanceIdsToTerminate []string `json:"EC2InstanceIdsToTerminate,omitempty"`
 	InstanceCount             int      `json:"InstanceCount,omitempty"`
 	InstanceGroupID           string   `json:"InstanceGroupId"`
 }
 
+// InstanceGroupStateChangeReason is undocumented.
 type InstanceGroupStateChangeReason struct {
 	Code    string `json:"Code,omitempty"`
 	Message string `json:"Message,omitempty"`
 }
 
+// InstanceGroupStatus is undocumented.
 type InstanceGroupStatus struct {
 	State             string                         `json:"State,omitempty"`
 	StateChangeReason InstanceGroupStateChangeReason `json:"StateChangeReason,omitempty"`
 	Timeline          InstanceGroupTimeline          `json:"Timeline,omitempty"`
 }
 
+// InstanceGroupTimeline is undocumented.
 type InstanceGroupTimeline struct {
 	CreationDateTime time.Time `json:"CreationDateTime,omitempty"`
 	EndDateTime      time.Time `json:"EndDateTime,omitempty"`
 	ReadyDateTime    time.Time `json:"ReadyDateTime,omitempty"`
 }
 
+// InstanceStateChangeReason is undocumented.
 type InstanceStateChangeReason struct {
 	Code    string `json:"Code,omitempty"`
 	Message string `json:"Message,omitempty"`
 }
 
+// InstanceStatus is undocumented.
 type InstanceStatus struct {
 	State             string                    `json:"State,omitempty"`
 	StateChangeReason InstanceStateChangeReason `json:"StateChangeReason,omitempty"`
 	Timeline          InstanceTimeline          `json:"Timeline,omitempty"`
 }
 
+// InstanceTimeline is undocumented.
 type InstanceTimeline struct {
 	CreationDateTime time.Time `json:"CreationDateTime,omitempty"`
 	EndDateTime      time.Time `json:"EndDateTime,omitempty"`
 	ReadyDateTime    time.Time `json:"ReadyDateTime,omitempty"`
 }
 
+// JobFlowDetail is undocumented.
 type JobFlowDetail struct {
 	AmiVersion            string                       `json:"AmiVersion,omitempty"`
 	BootstrapActions      []BootstrapActionDetail      `json:"BootstrapActions,omitempty"`
@@ -489,6 +525,7 @@ type JobFlowDetail struct {
 	VisibleToAllUsers     bool                         `json:"VisibleToAllUsers,omitempty"`
 }
 
+// JobFlowExecutionStatusDetail is undocumented.
 type JobFlowExecutionStatusDetail struct {
 	CreationDateTime      time.Time `json:"CreationDateTime"`
 	EndDateTime           time.Time `json:"EndDateTime,omitempty"`
@@ -498,6 +535,7 @@ type JobFlowExecutionStatusDetail struct {
 	State                 string    `json:"State"`
 }
 
+// JobFlowInstancesConfig is undocumented.
 type JobFlowInstancesConfig struct {
 	Ec2KeyName                  string                `json:"Ec2KeyName,omitempty"`
 	Ec2SubnetID                 string                `json:"Ec2SubnetId,omitempty"`
@@ -511,6 +549,7 @@ type JobFlowInstancesConfig struct {
 	TerminationProtected        bool                  `json:"TerminationProtected,omitempty"`
 }
 
+// JobFlowInstancesDetail is undocumented.
 type JobFlowInstancesDetail struct {
 	Ec2KeyName                  string                `json:"Ec2KeyName,omitempty"`
 	Ec2SubnetID                 string                `json:"Ec2SubnetId,omitempty"`
@@ -527,21 +566,25 @@ type JobFlowInstancesDetail struct {
 	TerminationProtected        bool                  `json:"TerminationProtected,omitempty"`
 }
 
+// KeyValue is undocumented.
 type KeyValue struct {
 	Key   string `json:"Key,omitempty"`
 	Value string `json:"Value,omitempty"`
 }
 
+// ListBootstrapActionsInput is undocumented.
 type ListBootstrapActionsInput struct {
 	ClusterID string `json:"ClusterId"`
 	Marker    string `json:"Marker,omitempty"`
 }
 
+// ListBootstrapActionsOutput is undocumented.
 type ListBootstrapActionsOutput struct {
 	BootstrapActions []Command `json:"BootstrapActions,omitempty"`
 	Marker           string    `json:"Marker,omitempty"`
 }
 
+// ListClustersInput is undocumented.
 type ListClustersInput struct {
 	ClusterStates []string  `json:"ClusterStates,omitempty"`
 	CreatedAfter  time.Time `json:"CreatedAfter,omitempty"`
@@ -549,21 +592,25 @@ type ListClustersInput struct {
 	Marker        string    `json:"Marker,omitempty"`
 }
 
+// ListClustersOutput is undocumented.
 type ListClustersOutput struct {
 	Clusters []ClusterSummary `json:"Clusters,omitempty"`
 	Marker   string           `json:"Marker,omitempty"`
 }
 
+// ListInstanceGroupsInput is undocumented.
 type ListInstanceGroupsInput struct {
 	ClusterID string `json:"ClusterId"`
 	Marker    string `json:"Marker,omitempty"`
 }
 
+// ListInstanceGroupsOutput is undocumented.
 type ListInstanceGroupsOutput struct {
 	InstanceGroups []InstanceGroup `json:"InstanceGroups,omitempty"`
 	Marker         string          `json:"Marker,omitempty"`
 }
 
+// ListInstancesInput is undocumented.
 type ListInstancesInput struct {
 	ClusterID          string   `json:"ClusterId"`
 	InstanceGroupID    string   `json:"InstanceGroupId,omitempty"`
@@ -571,38 +618,46 @@ type ListInstancesInput struct {
 	Marker             string   `json:"Marker,omitempty"`
 }
 
+// ListInstancesOutput is undocumented.
 type ListInstancesOutput struct {
 	Instances []Instance `json:"Instances,omitempty"`
 	Marker    string     `json:"Marker,omitempty"`
 }
 
+// ListStepsInput is undocumented.
 type ListStepsInput struct {
 	ClusterID  string   `json:"ClusterId"`
 	Marker     string   `json:"Marker,omitempty"`
 	StepStates []string `json:"StepStates,omitempty"`
 }
 
+// ListStepsOutput is undocumented.
 type ListStepsOutput struct {
 	Marker string        `json:"Marker,omitempty"`
 	Steps  []StepSummary `json:"Steps,omitempty"`
 }
 
+// ModifyInstanceGroupsInput is undocumented.
 type ModifyInstanceGroupsInput struct {
 	InstanceGroups []InstanceGroupModifyConfig `json:"InstanceGroups,omitempty"`
 }
 
+// PlacementType is undocumented.
 type PlacementType struct {
 	AvailabilityZone string `json:"AvailabilityZone"`
 }
 
+// RemoveTagsInput is undocumented.
 type RemoveTagsInput struct {
 	ResourceID string   `json:"ResourceId"`
 	TagKeys    []string `json:"TagKeys"`
 }
 
+// RemoveTagsOutput is undocumented.
 type RemoveTagsOutput struct {
 }
 
+// RunJobFlowInput is undocumented.
 type RunJobFlowInput struct {
 	AdditionalInfo       string                   `json:"AdditionalInfo,omitempty"`
 	AmiVersion           string                   `json:"AmiVersion,omitempty"`
@@ -619,25 +674,30 @@ type RunJobFlowInput struct {
 	VisibleToAllUsers    bool                     `json:"VisibleToAllUsers,omitempty"`
 }
 
+// RunJobFlowOutput is undocumented.
 type RunJobFlowOutput struct {
 	JobFlowID string `json:"JobFlowId,omitempty"`
 }
 
+// ScriptBootstrapActionConfig is undocumented.
 type ScriptBootstrapActionConfig struct {
 	Args []string `json:"Args,omitempty"`
 	Path string   `json:"Path"`
 }
 
+// SetTerminationProtectionInput is undocumented.
 type SetTerminationProtectionInput struct {
 	JobFlowIds           []string `json:"JobFlowIds"`
 	TerminationProtected bool     `json:"TerminationProtected"`
 }
 
+// SetVisibleToAllUsersInput is undocumented.
 type SetVisibleToAllUsersInput struct {
 	JobFlowIds        []string `json:"JobFlowIds"`
 	VisibleToAllUsers bool     `json:"VisibleToAllUsers"`
 }
 
+// Step is undocumented.
 type Step struct {
 	ActionOnFailure string           `json:"ActionOnFailure,omitempty"`
 	Config          HadoopStepConfig `json:"Config,omitempty"`
@@ -646,17 +706,20 @@ type Step struct {
 	Status          StepStatus       `json:"Status,omitempty"`
 }
 
+// StepConfig is undocumented.
 type StepConfig struct {
 	ActionOnFailure string              `json:"ActionOnFailure,omitempty"`
 	HadoopJarStep   HadoopJarStepConfig `json:"HadoopJarStep"`
 	Name            string              `json:"Name"`
 }
 
+// StepDetail is undocumented.
 type StepDetail struct {
 	ExecutionStatusDetail StepExecutionStatusDetail `json:"ExecutionStatusDetail"`
 	StepConfig            StepConfig                `json:"StepConfig"`
 }
 
+// StepExecutionStatusDetail is undocumented.
 type StepExecutionStatusDetail struct {
 	CreationDateTime      time.Time `json:"CreationDateTime"`
 	EndDateTime           time.Time `json:"EndDateTime,omitempty"`
@@ -665,41 +728,49 @@ type StepExecutionStatusDetail struct {
 	State                 string    `json:"State"`
 }
 
+// StepStateChangeReason is undocumented.
 type StepStateChangeReason struct {
 	Code    string `json:"Code,omitempty"`
 	Message string `json:"Message,omitempty"`
 }
 
+// StepStatus is undocumented.
 type StepStatus struct {
 	State             string                `json:"State,omitempty"`
 	StateChangeReason StepStateChangeReason `json:"StateChangeReason,omitempty"`
 	Timeline          StepTimeline          `json:"Timeline,omitempty"`
 }
 
+// StepSummary is undocumented.
 type StepSummary struct {
 	ID     string     `json:"Id,omitempty"`
 	Name   string     `json:"Name,omitempty"`
 	Status StepStatus `json:"Status,omitempty"`
 }
 
+// StepTimeline is undocumented.
 type StepTimeline struct {
 	CreationDateTime time.Time `json:"CreationDateTime,omitempty"`
 	EndDateTime      time.Time `json:"EndDateTime,omitempty"`
 	StartDateTime    time.Time `json:"StartDateTime,omitempty"`
 }
 
+// SupportedProductConfig is undocumented.
 type SupportedProductConfig struct {
 	Args []string `json:"Args,omitempty"`
 	Name string   `json:"Name,omitempty"`
 }
 
+// Tag is undocumented.
 type Tag struct {
 	Key   string `json:"Key,omitempty"`
 	Value string `json:"Value,omitempty"`
 }
 
+// TerminateJobFlowsInput is undocumented.
 type TerminateJobFlowsInput struct {
 	JobFlowIds []string `json:"JobFlowIds"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time

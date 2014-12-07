@@ -98,6 +98,7 @@ func (c *CloudTrail) UpdateTrail(req UpdateTrailRequest) (resp *UpdateTrailRespo
 	return
 }
 
+// CreateTrailRequest is undocumented.
 type CreateTrailRequest struct {
 	CloudWatchLogsLogGroupARN  string `json:"CloudWatchLogsLogGroupArn,omitempty"`
 	CloudWatchLogsRoleARN      string `json:"CloudWatchLogsRoleArn,omitempty"`
@@ -108,6 +109,7 @@ type CreateTrailRequest struct {
 	SnsTopicName               string `json:"SnsTopicName,omitempty"`
 }
 
+// CreateTrailResponse is undocumented.
 type CreateTrailResponse struct {
 	CloudWatchLogsLogGroupARN  string `json:"CloudWatchLogsLogGroupArn,omitempty"`
 	CloudWatchLogsRoleARN      string `json:"CloudWatchLogsRoleArn,omitempty"`
@@ -118,25 +120,31 @@ type CreateTrailResponse struct {
 	SnsTopicName               string `json:"SnsTopicName,omitempty"`
 }
 
+// DeleteTrailRequest is undocumented.
 type DeleteTrailRequest struct {
 	Name string `json:"Name"`
 }
 
+// DeleteTrailResponse is undocumented.
 type DeleteTrailResponse struct {
 }
 
+// DescribeTrailsRequest is undocumented.
 type DescribeTrailsRequest struct {
 	TrailNameList []string `json:"trailNameList,omitempty"`
 }
 
+// DescribeTrailsResponse is undocumented.
 type DescribeTrailsResponse struct {
 	TrailList []Trail `json:"trailList,omitempty"`
 }
 
+// GetTrailStatusRequest is undocumented.
 type GetTrailStatusRequest struct {
 	Name string `json:"Name"`
 }
 
+// GetTrailStatusResponse is undocumented.
 type GetTrailStatusResponse struct {
 	IsLogging                         bool      `json:"IsLogging,omitempty"`
 	LatestCloudWatchLogsDeliveryError string    `json:"LatestCloudWatchLogsDeliveryError,omitempty"`
@@ -149,20 +157,25 @@ type GetTrailStatusResponse struct {
 	StopLoggingTime                   time.Time `json:"StopLoggingTime,omitempty"`
 }
 
+// StartLoggingRequest is undocumented.
 type StartLoggingRequest struct {
 	Name string `json:"Name"`
 }
 
+// StartLoggingResponse is undocumented.
 type StartLoggingResponse struct {
 }
 
+// StopLoggingRequest is undocumented.
 type StopLoggingRequest struct {
 	Name string `json:"Name"`
 }
 
+// StopLoggingResponse is undocumented.
 type StopLoggingResponse struct {
 }
 
+// Trail is undocumented.
 type Trail struct {
 	CloudWatchLogsLogGroupARN  string `json:"CloudWatchLogsLogGroupArn,omitempty"`
 	CloudWatchLogsRoleARN      string `json:"CloudWatchLogsRoleArn,omitempty"`
@@ -173,6 +186,7 @@ type Trail struct {
 	SnsTopicName               string `json:"SnsTopicName,omitempty"`
 }
 
+// UpdateTrailRequest is undocumented.
 type UpdateTrailRequest struct {
 	CloudWatchLogsLogGroupARN  string `json:"CloudWatchLogsLogGroupArn,omitempty"`
 	CloudWatchLogsRoleARN      string `json:"CloudWatchLogsRoleArn,omitempty"`
@@ -183,6 +197,7 @@ type UpdateTrailRequest struct {
 	SnsTopicName               string `json:"SnsTopicName,omitempty"`
 }
 
+// UpdateTrailResponse is undocumented.
 type UpdateTrailResponse struct {
 	CloudWatchLogsLogGroupARN  string `json:"CloudWatchLogsLogGroupArn,omitempty"`
 	CloudWatchLogsRoleARN      string `json:"CloudWatchLogsRoleArn,omitempty"`
@@ -193,4 +208,5 @@ type UpdateTrailResponse struct {
 	SnsTopicName               string `json:"SnsTopicName,omitempty"`
 }
 
-var _ time.Time // to avoid errors if the time package isn't referenced
+// avoid errors if the packages aren't referenced
+var _ time.Time
