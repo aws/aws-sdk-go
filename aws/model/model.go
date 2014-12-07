@@ -56,7 +56,7 @@ func (ref *ShapeRef) Shape() *Shape {
 	if ref == nil {
 		return nil
 	}
-	return s.Shapes[ref.ShapeName]
+	return service.Shapes[ref.ShapeName]
 }
 
 type Member struct {
@@ -162,21 +162,21 @@ type Service struct {
 	Shapes        map[string]*Shape
 }
 
-var s Service
+var service Service
 
 func Load(name string, r io.Reader) error {
-	s = Service{}
-	if err := json.NewDecoder(r).Decode(&s); err != nil {
+	service = Service{}
+	if err := json.NewDecoder(r).Decode(&service); err != nil {
 		return err
 	}
 
-	for name, shape := range s.Shapes {
+	for name, shape := range service.Shapes {
 		shape.Name = name
 	}
 
-	s.FullName = s.Metadata.ServiceFullName
-	s.PackageName = strings.ToLower(name)
-	s.Name = name
+	service.FullName = service.Metadata.ServiceFullName
+	service.PackageName = strings.ToLower(name)
+	service.Name = name
 
 	return nil
 }

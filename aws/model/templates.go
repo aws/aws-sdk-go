@@ -17,17 +17,17 @@ import (
 // TODO: support ec2 clients
 
 func Generate(w io.Writer) error {
-	root := template.New("root").Funcs(template.FuncMap{
+	t := template.New("root").Funcs(template.FuncMap{
 		"godoc":      godoc,
 		"exportable": exportable,
 	})
-	root, err := root.Parse(rootTmpl)
+	t, err := t.Parse(awsTmpl)
 	if err != nil {
 		return err
 	}
 
 	out := bytes.NewBuffer(nil)
-	if err := root.ExecuteTemplate(out, s.Metadata.Protocol, s); err != nil {
+	if err := t.ExecuteTemplate(out, service.Metadata.Protocol, service); err != nil {
 		return err
 	}
 
@@ -42,7 +42,7 @@ func Generate(w io.Writer) error {
 }
 
 const (
-	rootTmpl = `
+	awsTmpl = `
 {{ define "json" }}
 {{ template "header" $ }}
 
