@@ -1851,7 +1851,7 @@ type ListTagsForResourceResult struct {
 type ModifyDBParameterGroupResult struct {
 	XMLName xml.Name `xml:"ResetDBParameterGroupResponse"`
 
-	DBParameterGroupName string `xml:"ResetDBParameterGroupResult>DBParameterGroupName"`
+	DBParameterGroupName string `xml:"ModifyDBParameterGroupResult>DBParameterGroupName"`
 }
 
 // ResetDBParameterGroupResult is a wrapper for DBParameterGroupNameMessage.
