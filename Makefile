@@ -7,6 +7,7 @@ install-gen:
 	go install ./cmd/...
 
 generate: clean install-gen
+	aws-gen-goendpoints apis/_endpoints.json > gen/endpoints/endpoints.go
 	aws-gen-gocli AutoScaling apis/autoscaling/2011-01-01.api.json > gen/autoscaling/autoscaling.go
 	aws-gen-gocli CloudFormation apis/cloudformation/2010-05-15.api.json > gen/cloudformation/cloudformation.go
 	aws-gen-gocli CloudTrail apis/cloudtrail/2013-11-01.api.json > gen/cloudtrail/cloudtrail.go
