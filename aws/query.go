@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"strings"
 )
 
 type QueryClient struct {
@@ -61,7 +62,7 @@ func loadValues(v url.Values, i interface{}) error {
 	t := value.Type()
 	for i := 0; i < value.NumField(); i++ {
 		value := value.Field(i)
-		name := t.Field(i).Name
+		name := t.Field(i).Tag.Get("xml")
 		switch casted := value.Interface().(type) {
 		case string:
 			if casted != "" {
@@ -80,6 +81,7 @@ func loadValues(v url.Values, i interface{}) error {
 				v.Set(name, fmt.Sprintf("%d", casted))
 			}
 		case []string:
+			name = strings.Replace(name, ">member", "", -1)
 			if len(casted) != 0 {
 				for i, val := range casted {
 					v.Set(fmt.Sprintf("%s.member.%d", name, i+1), val)
