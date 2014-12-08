@@ -61,7 +61,7 @@ func loadValues(v url.Values, i interface{}) error {
 	t := value.Type()
 	for i := 0; i < value.NumField(); i++ {
 		value := value.Field(i)
-		name := t.Field(i).Tag.Get("xml")
+		name := t.Field(i).Name
 		switch casted := value.Interface().(type) {
 		case string:
 			if casted != "" {
