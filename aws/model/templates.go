@@ -71,7 +71,7 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 {{ range $name, $op := .Operations }}
 
 {{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.InputRef }}req {{ exportable $op.InputRef.WrappedType }}{{ end }}) ({{ if $op.OutputRef }}resp *{{ exportable $op.OutputRef.WrappedType }},{{ end }} err error) {
-  {{ if $op.Output }}resp = &{{ $op.OutputRef.WrappedType }}{}{{ else }}// NRE{{ end }}
+  {{ if $op.Output }}resp = &{{ exportable $op.OutputRef.WrappedType }}{}{{ else }}// NRE{{ end }}
   err = c.client.Do("{{ $name }}", "{{ $op.HTTP.Method }}", "{{ $op.HTTP.RequestURI }}", {{ if $op.Input }} req {{ else }} nil {{ end }}, {{ if $op.Output }} resp {{ else }} nil {{ end }})
   return
 }
