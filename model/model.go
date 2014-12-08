@@ -187,6 +187,8 @@ func (s *Shape) Type() string {
 		return "int"
 	case "long":
 		return "int64"
+	case "float":
+		return "float32"
 	case "double":
 		return "float64"
 	case "string":
