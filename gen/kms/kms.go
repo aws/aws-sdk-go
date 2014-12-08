@@ -3,11 +3,11 @@ package kms
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // KMS is a client for AWS Key Management Service.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *KMS {
 				Service: "kms",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://kms.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("kms", region),
 			JSONVersion:  "1.1",
 			TargetPrefix: "TrentService",
 		},

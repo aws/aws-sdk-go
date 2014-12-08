@@ -3,11 +3,11 @@ package redshift
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // RedShift is a client for Amazon Redshift.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *RedShift {
 				Service: "redshift",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://redshift.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("redshift", region),
 			APIVersion: "2012-12-01",
 		},
 	}

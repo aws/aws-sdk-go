@@ -3,11 +3,11 @@ package sqs
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // SQS is a client for Amazon Simple Queue Service.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *SQS {
 				Service: "sqs",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://sqs.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("sqs", region),
 			APIVersion: "2012-11-05",
 		},
 	}

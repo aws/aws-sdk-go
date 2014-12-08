@@ -3,11 +3,11 @@ package elasticbeanstalk
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // ElasticBeanstalk is a client for AWS Elastic Beanstalk.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *ElasticBeanstalk {
 				Service: "elasticbeanstalk",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://elasticbeanstalk.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("elasticbeanstalk", region),
 			APIVersion: "2010-12-01",
 		},
 	}

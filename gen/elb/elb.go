@@ -3,11 +3,11 @@ package elb
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // ELB is a client for Elastic Load Balancing.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *ELB {
 				Service: "elasticloadbalancing",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://elasticloadbalancing.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("elasticloadbalancing", region),
 			APIVersion: "2012-06-01",
 		},
 	}

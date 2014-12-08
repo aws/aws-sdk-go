@@ -3,11 +3,11 @@ package sns
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // SNS is a client for Amazon Simple Notification Service.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *SNS {
 				Service: "sns",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://sns.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("sns", region),
 			APIVersion: "2010-03-31",
 		},
 	}

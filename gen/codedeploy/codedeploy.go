@@ -3,11 +3,11 @@ package codedeploy
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // CodeDeploy is a client for AWS CodeDeploy.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *CodeDeploy {
 				Service: "codedeploy",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://codedeploy.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("codedeploy", region),
 			JSONVersion:  "1.1",
 			TargetPrefix: "CodeDeploy_20141006",
 		},

@@ -3,11 +3,11 @@ package directconnect
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // DirectConnect is a client for AWS Direct Connect.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *DirectConnect {
 				Service: "directconnect",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://directconnect.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("directconnect", region),
 			JSONVersion:  "1.1",
 			TargetPrefix: "OvertureService",
 		},

@@ -3,11 +3,11 @@ package datapipeline
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // DataPipeline is a client for AWS Data Pipeline.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *DataPipeline {
 				Service: "datapipeline",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://datapipeline.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("datapipeline", region),
 			JSONVersion:  "1.1",
 			TargetPrefix: "DataPipeline",
 		},

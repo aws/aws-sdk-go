@@ -3,11 +3,11 @@ package storagegateway
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // StorageGateway is a client for AWS Storage Gateway.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *StorageGateway {
 				Service: "storagegateway",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://storagegateway.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("storagegateway", region),
 			JSONVersion:  "1.1",
 			TargetPrefix: "StorageGateway_20130630",
 		},

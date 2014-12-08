@@ -3,11 +3,11 @@ package cloudwatch
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // CloudWatch is a client for Amazon CloudWatch.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *CloudWatch {
 				Service: "monitoring",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://monitoring.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("monitoring", region),
 			APIVersion: "2010-08-01",
 		},
 	}

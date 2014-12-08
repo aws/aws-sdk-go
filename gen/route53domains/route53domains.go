@@ -3,11 +3,11 @@ package route53domains
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // Route53Domains is a client for Amazon Route 53 Domains.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *Route53Domains {
 				Service: "route53domains",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://route53domains.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("route53domains", region),
 			JSONVersion:  "1.1",
 			TargetPrefix: "Route53Domains_v20140515",
 		},

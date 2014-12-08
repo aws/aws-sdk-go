@@ -3,11 +3,11 @@ package emr
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // EMR is a client for Amazon Elastic MapReduce.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *EMR {
 				Service: "elasticmapreduce",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://elasticmapreduce.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("elasticmapreduce", region),
 			JSONVersion:  "1.1",
 			TargetPrefix: "ElasticMapReduce",
 		},

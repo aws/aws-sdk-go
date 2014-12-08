@@ -3,11 +3,11 @@ package cloudsearch
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // CloudSearch is a client for Amazon CloudSearch.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *CloudSearch {
 				Service: "cloudsearch",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://cloudsearch.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("cloudsearch", region),
 			APIVersion: "2013-01-01",
 		},
 	}

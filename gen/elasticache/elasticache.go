@@ -3,11 +3,11 @@ package elasticcache
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // ElasticCache is a client for Amazon ElastiCache.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *ElasticCache {
 				Service: "elasticache",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://elasticache.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("elasticache", region),
 			APIVersion: "2014-09-30",
 		},
 	}

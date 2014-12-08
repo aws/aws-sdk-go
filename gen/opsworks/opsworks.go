@@ -3,11 +3,11 @@ package opsworks
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // OpsWorks is a client for AWS OpsWorks.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *OpsWorks {
 				Service: "opsworks",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://opsworks.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("opsworks", region),
 			JSONVersion:  "1.1",
 			TargetPrefix: "OpsWorks_20130218",
 		},

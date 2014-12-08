@@ -3,11 +3,11 @@ package rds
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // RDS is a client for Amazon Relational Database Service.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *RDS {
 				Service: "rds",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://rds.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("rds", region),
 			APIVersion: "2014-09-01",
 		},
 	}

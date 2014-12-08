@@ -3,11 +3,11 @@ package sdb
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // SDB is a client for Amazon SimpleDB.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *SDB {
 				Service: "sdb",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://sdb.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("sdb", region),
 			APIVersion: "2009-04-15",
 		},
 	}

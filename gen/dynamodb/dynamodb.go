@@ -3,11 +3,11 @@ package dynamodb
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // DynamoDB is a client for Amazon DynamoDB.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *DynamoDB {
 				Service: "dynamodb",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://dynamodb.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("dynamodb", region),
 			JSONVersion:  "1.0",
 			TargetPrefix: "DynamoDB_20120810",
 		},

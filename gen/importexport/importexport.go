@@ -3,11 +3,11 @@ package importexport
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // ImportExport is a client for AWS Import/Export.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *ImportExport {
 				Service: "importexport",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://importexport.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("importexport", region),
 			APIVersion: "2010-06-01",
 		},
 	}

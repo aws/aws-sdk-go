@@ -3,11 +3,11 @@ package autoscaling
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // AutoScaling is a client for Auto Scaling.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *AutoScaling {
 				Service: "autoscaling",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://autoscaling.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("autoscaling", region),
 			APIVersion: "2011-01-01",
 		},
 	}

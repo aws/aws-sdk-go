@@ -3,11 +3,11 @@ package kinesis
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // Kinesis is a client for Amazon Kinesis.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *Kinesis {
 				Service: "kinesis",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://kinesis.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("kinesis", region),
 			JSONVersion:  "1.1",
 			TargetPrefix: "Kinesis_20131202",
 		},

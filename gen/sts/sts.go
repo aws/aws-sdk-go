@@ -3,11 +3,11 @@ package sts
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // STS is a client for AWS Security Token Service.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *STS {
 				Service: "sts",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://sts.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("sts", region),
 			APIVersion: "2011-06-15",
 		},
 	}

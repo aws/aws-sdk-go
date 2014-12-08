@@ -3,11 +3,11 @@ package iam
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // IAM is a client for AWS Identity and Access Management.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *IAM {
 				Service: "iam",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://iam.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("iam", region),
 			APIVersion: "2010-05-08",
 		},
 	}

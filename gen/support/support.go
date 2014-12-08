@@ -3,11 +3,11 @@ package support
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // Support is a client for AWS Support.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *Support {
 				Service: "support",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://support.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("support", region),
 			JSONVersion:  "1.1",
 			TargetPrefix: "AWSSupport_20130415",
 		},

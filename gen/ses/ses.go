@@ -3,11 +3,11 @@ package ses
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // SES is a client for Amazon Simple Email Service.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *SES {
 				Service: "email",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://email.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("email", region),
 			APIVersion: "2010-12-01",
 		},
 	}

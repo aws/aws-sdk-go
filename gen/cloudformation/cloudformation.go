@@ -3,11 +3,11 @@ package cloudformation
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // CloudFormation is a client for AWS CloudFormation.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *CloudFormation {
 				Service: "cloudformation",
 				Region:  region,
 			},
-			Endpoint:   fmt.Sprintf("https://cloudformation.%s.amazonaws.com", region),
+			Endpoint:   endpoints.Lookup("cloudformation", region),
 			APIVersion: "2010-05-15",
 		},
 	}

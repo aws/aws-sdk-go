@@ -3,11 +3,11 @@ package swf
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 // SWF is a client for Amazon Simple Workflow Service.
@@ -30,7 +30,7 @@ func New(key, secret, region string, client *http.Client) *SWF {
 				Service: "swf",
 				Region:  region,
 			},
-			Endpoint:     fmt.Sprintf("https://swf.%s.amazonaws.com", region),
+			Endpoint:     endpoints.Lookup("swf", region),
 			JSONVersion:  "1.0",
 			TargetPrefix: "SimpleWorkflowService",
 		},
