@@ -117,15 +117,15 @@ func Lookup(service, region string) string {
     {{ end }}
     {{ end }}
     {{ end }}
-    default:
-    {{ with $endpoints := index . "_default" }}
-    {{ range $endpoints }}
-      {{ if .Constraints }}if {{ .Conditions }} { {{ end }}
-        return format("{{ .URI }}", service, region)
-      {{ if .Constraints }} } {{ end }}
-    {{ end }}
-    {{ end }}
   }
+
+  {{ with $endpoints := index . "_default" }}
+  {{ range $endpoints }}
+    {{ if .Constraints }}if {{ .Conditions }} { {{ end }}
+      return format("{{ .URI }}", service, region)
+    {{ if .Constraints }} } {{ end }}
+  {{ end }}
+  {{ end }}
 
   panic("unknown endpoint for " + service + " in " + region)
 }
