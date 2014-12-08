@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *OpsWorks {
 
 	return &OpsWorks{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "opsworks",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://opsworks.%s.amazonaws.com", region),
-			Prefix:       "opsworks",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "OpsWorks_20130218",
 		},

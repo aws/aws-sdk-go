@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *Kinesis {
 
 	return &Kinesis{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "kinesis",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://kinesis.%s.amazonaws.com", region),
-			Prefix:       "kinesis",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "Kinesis_20131202",
 		},

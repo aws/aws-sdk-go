@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *Config {
 
 	return &Config{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "config",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://config.%s.amazonaws.com", region),
-			Prefix:       "config",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "StarlingDoveService",
 		},

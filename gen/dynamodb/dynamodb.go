@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *DynamoDB {
 
 	return &DynamoDB{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "dynamodb",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://dynamodb.%s.amazonaws.com", region),
-			Prefix:       "dynamodb",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.0",
 			TargetPrefix: "DynamoDB_20120810",
 		},

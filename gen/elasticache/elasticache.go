@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *ElasticCache {
 
 	return &ElasticCache{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "elasticache",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://elasticache.%s.amazonaws.com", region),
-			Prefix:     "elasticache",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2014-09-30",
 		},
 	}

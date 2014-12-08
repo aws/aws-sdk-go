@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *StorageGateway {
 
 	return &StorageGateway{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "storagegateway",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://storagegateway.%s.amazonaws.com", region),
-			Prefix:       "storagegateway",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "StorageGateway_20130630",
 		},

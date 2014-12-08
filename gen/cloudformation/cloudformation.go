@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *CloudFormation {
 
 	return &CloudFormation{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "cloudformation",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://cloudformation.%s.amazonaws.com", region),
-			Prefix:     "cloudformation",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2010-05-15",
 		},
 	}

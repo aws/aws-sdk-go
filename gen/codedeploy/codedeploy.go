@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *CodeDeploy {
 
 	return &CodeDeploy{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "codedeploy",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://codedeploy.%s.amazonaws.com", region),
-			Prefix:       "codedeploy",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "CodeDeploy_20141006",
 		},

@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *DirectConnect {
 
 	return &DirectConnect{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "directconnect",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://directconnect.%s.amazonaws.com", region),
-			Prefix:       "directconnect",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "OvertureService",
 		},

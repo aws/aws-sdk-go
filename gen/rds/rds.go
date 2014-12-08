@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *RDS {
 
 	return &RDS{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "rds",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://rds.%s.amazonaws.com", region),
-			Prefix:     "rds",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2014-09-01",
 		},
 	}
@@ -871,7 +873,7 @@ type DBParameterGroupDetails struct {
 
 // DBParameterGroupNameMessage is undocumented.
 type DBParameterGroupNameMessage struct {
-	DBParameterGroupName string `xml:"ResetDBParameterGroupResult>DBParameterGroupName"`
+	DBParameterGroupName string `xml:"ModifyDBParameterGroupResult>DBParameterGroupName"`
 }
 
 // DBParameterGroupStatus is undocumented.
@@ -1849,14 +1851,14 @@ type ListTagsForResourceResult struct {
 
 // ModifyDBParameterGroupResult is a wrapper for DBParameterGroupNameMessage.
 type ModifyDBParameterGroupResult struct {
-	XMLName xml.Name `xml:"ResetDBParameterGroupResponse"`
+	XMLName xml.Name `xml:"ModifyDBParameterGroupResponse"`
 
 	DBParameterGroupName string `xml:"ModifyDBParameterGroupResult>DBParameterGroupName"`
 }
 
 // ResetDBParameterGroupResult is a wrapper for DBParameterGroupNameMessage.
 type ResetDBParameterGroupResult struct {
-	XMLName xml.Name `xml:"ResetDBParameterGroupResponse"`
+	XMLName xml.Name `xml:"ModifyDBParameterGroupResponse"`
 
 	DBParameterGroupName string `xml:"ResetDBParameterGroupResult>DBParameterGroupName"`
 }

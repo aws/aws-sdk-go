@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *ELB {
 
 	return &ELB{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "elasticloadbalancing",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://elasticloadbalancing.%s.amazonaws.com", region),
-			Prefix:     "elasticloadbalancing",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2012-06-01",
 		},
 	}

@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *AutoScaling {
 
 	return &AutoScaling{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "autoscaling",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://autoscaling.%s.amazonaws.com", region),
-			Prefix:     "autoscaling",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2011-01-01",
 		},
 	}

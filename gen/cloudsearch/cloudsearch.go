@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *CloudSearch {
 
 	return &CloudSearch{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "cloudsearch",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://cloudsearch.%s.amazonaws.com", region),
-			Prefix:     "cloudsearch",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2013-01-01",
 		},
 	}

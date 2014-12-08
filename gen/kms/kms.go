@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *KMS {
 
 	return &KMS{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "kms",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://kms.%s.amazonaws.com", region),
-			Prefix:       "kms",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "TrentService",
 		},

@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *SWF {
 
 	return &SWF{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "swf",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://swf.%s.amazonaws.com", region),
-			Prefix:       "swf",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.0",
 			TargetPrefix: "SimpleWorkflowService",
 		},

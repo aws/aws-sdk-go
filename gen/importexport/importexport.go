@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *ImportExport {
 
 	return &ImportExport{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "importexport",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://importexport.%s.amazonaws.com", region),
-			Prefix:     "importexport",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2010-06-01",
 		},
 	}

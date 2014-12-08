@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *EMR {
 
 	return &EMR{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "elasticmapreduce",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://elasticmapreduce.%s.amazonaws.com", region),
-			Prefix:       "elasticmapreduce",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "ElasticMapReduce",
 		},

@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *DataPipeline {
 
 	return &DataPipeline{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "datapipeline",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://datapipeline.%s.amazonaws.com", region),
-			Prefix:       "datapipeline",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "DataPipeline",
 		},

@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *CloudWatch {
 
 	return &CloudWatch{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "monitoring",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://monitoring.%s.amazonaws.com", region),
-			Prefix:     "monitoring",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2010-08-01",
 		},
 	}

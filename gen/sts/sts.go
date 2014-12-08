@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *STS {
 
 	return &STS{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "sts",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://sts.%s.amazonaws.com", region),
-			Prefix:     "sts",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2011-06-15",
 		},
 	}

@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *ElasticBeanstalk {
 
 	return &ElasticBeanstalk{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "elasticbeanstalk",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://elasticbeanstalk.%s.amazonaws.com", region),
-			Prefix:     "elasticbeanstalk",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2010-12-01",
 		},
 	}
@@ -377,15 +379,15 @@ type ConfigurationOptionsDescription struct {
 
 // ConfigurationSettingsDescription is undocumented.
 type ConfigurationSettingsDescription struct {
-	ApplicationName   string                       `xml:"UpdateConfigurationTemplateResult>ApplicationName"`
-	DateCreated       time.Time                    `xml:"UpdateConfigurationTemplateResult>DateCreated"`
-	DateUpdated       time.Time                    `xml:"UpdateConfigurationTemplateResult>DateUpdated"`
-	DeploymentStatus  string                       `xml:"UpdateConfigurationTemplateResult>DeploymentStatus"`
-	Description       string                       `xml:"UpdateConfigurationTemplateResult>Description"`
-	EnvironmentName   string                       `xml:"UpdateConfigurationTemplateResult>EnvironmentName"`
-	OptionSettings    []ConfigurationOptionSetting `xml:"UpdateConfigurationTemplateResult>OptionSettings>member"`
-	SolutionStackName string                       `xml:"UpdateConfigurationTemplateResult>SolutionStackName"`
-	TemplateName      string                       `xml:"UpdateConfigurationTemplateResult>TemplateName"`
+	ApplicationName   string                       `xml:"CreateConfigurationTemplateResult>ApplicationName"`
+	DateCreated       time.Time                    `xml:"CreateConfigurationTemplateResult>DateCreated"`
+	DateUpdated       time.Time                    `xml:"CreateConfigurationTemplateResult>DateUpdated"`
+	DeploymentStatus  string                       `xml:"CreateConfigurationTemplateResult>DeploymentStatus"`
+	Description       string                       `xml:"CreateConfigurationTemplateResult>Description"`
+	EnvironmentName   string                       `xml:"CreateConfigurationTemplateResult>EnvironmentName"`
+	OptionSettings    []ConfigurationOptionSetting `xml:"CreateConfigurationTemplateResult>OptionSettings>member"`
+	SolutionStackName string                       `xml:"CreateConfigurationTemplateResult>SolutionStackName"`
+	TemplateName      string                       `xml:"CreateConfigurationTemplateResult>TemplateName"`
 }
 
 // ConfigurationSettingsDescriptions is undocumented.
@@ -529,21 +531,21 @@ type DescribeEventsMessage struct {
 
 // EnvironmentDescription is undocumented.
 type EnvironmentDescription struct {
-	ApplicationName   string                          `xml:"UpdateEnvironmentResult>ApplicationName"`
-	CNAME             string                          `xml:"UpdateEnvironmentResult>CNAME"`
-	DateCreated       time.Time                       `xml:"UpdateEnvironmentResult>DateCreated"`
-	DateUpdated       time.Time                       `xml:"UpdateEnvironmentResult>DateUpdated"`
-	Description       string                          `xml:"UpdateEnvironmentResult>Description"`
-	EndpointURL       string                          `xml:"UpdateEnvironmentResult>EndpointURL"`
-	EnvironmentID     string                          `xml:"UpdateEnvironmentResult>EnvironmentId"`
-	EnvironmentName   string                          `xml:"UpdateEnvironmentResult>EnvironmentName"`
-	Health            string                          `xml:"UpdateEnvironmentResult>Health"`
-	Resources         EnvironmentResourcesDescription `xml:"UpdateEnvironmentResult>Resources"`
-	SolutionStackName string                          `xml:"UpdateEnvironmentResult>SolutionStackName"`
-	Status            string                          `xml:"UpdateEnvironmentResult>Status"`
-	TemplateName      string                          `xml:"UpdateEnvironmentResult>TemplateName"`
-	Tier              EnvironmentTier                 `xml:"UpdateEnvironmentResult>Tier"`
-	VersionLabel      string                          `xml:"UpdateEnvironmentResult>VersionLabel"`
+	ApplicationName   string                          `xml:"CreateEnvironmentResult>ApplicationName"`
+	CNAME             string                          `xml:"CreateEnvironmentResult>CNAME"`
+	DateCreated       time.Time                       `xml:"TerminateEnvironmentResult>DateCreated"`
+	DateUpdated       time.Time                       `xml:"TerminateEnvironmentResult>DateUpdated"`
+	Description       string                          `xml:"CreateEnvironmentResult>Description"`
+	EndpointURL       string                          `xml:"TerminateEnvironmentResult>EndpointURL"`
+	EnvironmentID     string                          `xml:"TerminateEnvironmentResult>EnvironmentId"`
+	EnvironmentName   string                          `xml:"TerminateEnvironmentResult>EnvironmentName"`
+	Health            string                          `xml:"CreateEnvironmentResult>Health"`
+	Resources         EnvironmentResourcesDescription `xml:"TerminateEnvironmentResult>Resources"`
+	SolutionStackName string                          `xml:"TerminateEnvironmentResult>SolutionStackName"`
+	Status            string                          `xml:"CreateEnvironmentResult>Status"`
+	TemplateName      string                          `xml:"TerminateEnvironmentResult>TemplateName"`
+	Tier              EnvironmentTier                 `xml:"CreateEnvironmentResult>Tier"`
+	VersionLabel      string                          `xml:"CreateEnvironmentResult>VersionLabel"`
 }
 
 // EnvironmentDescriptionsMessage is undocumented.
@@ -799,14 +801,14 @@ type CreateApplicationResult struct {
 
 // CreateApplicationVersionResult is a wrapper for ApplicationVersionDescriptionMessage.
 type CreateApplicationVersionResult struct {
-	XMLName xml.Name `xml:"CreateApplicationVersionResponse"`
+	XMLName xml.Name `xml:"UpdateApplicationVersionResponse"`
 
 	ApplicationVersion ApplicationVersionDescription `xml:"CreateApplicationVersionResult>ApplicationVersion"`
 }
 
 // CreateConfigurationTemplateResult is a wrapper for ConfigurationSettingsDescription.
 type CreateConfigurationTemplateResult struct {
-	XMLName xml.Name `xml:"UpdateConfigurationTemplateResponse"`
+	XMLName xml.Name `xml:"CreateConfigurationTemplateResponse"`
 
 	ApplicationName   string                       `xml:"CreateConfigurationTemplateResult>ApplicationName"`
 	DateCreated       time.Time                    `xml:"CreateConfigurationTemplateResult>DateCreated"`
@@ -821,7 +823,7 @@ type CreateConfigurationTemplateResult struct {
 
 // CreateEnvironmentResult is a wrapper for EnvironmentDescription.
 type CreateEnvironmentResult struct {
-	XMLName xml.Name `xml:"UpdateEnvironmentResponse"`
+	XMLName xml.Name `xml:"CreateEnvironmentResponse"`
 
 	ApplicationName   string                          `xml:"CreateEnvironmentResult>ApplicationName"`
 	CNAME             string                          `xml:"CreateEnvironmentResult>CNAME"`
@@ -915,7 +917,7 @@ type RetrieveEnvironmentInfoResult struct {
 
 // TerminateEnvironmentResult is a wrapper for EnvironmentDescription.
 type TerminateEnvironmentResult struct {
-	XMLName xml.Name `xml:"UpdateEnvironmentResponse"`
+	XMLName xml.Name `xml:"CreateEnvironmentResponse"`
 
 	ApplicationName   string                          `xml:"TerminateEnvironmentResult>ApplicationName"`
 	CNAME             string                          `xml:"TerminateEnvironmentResult>CNAME"`
@@ -950,7 +952,7 @@ type UpdateApplicationVersionResult struct {
 
 // UpdateConfigurationTemplateResult is a wrapper for ConfigurationSettingsDescription.
 type UpdateConfigurationTemplateResult struct {
-	XMLName xml.Name `xml:"UpdateConfigurationTemplateResponse"`
+	XMLName xml.Name `xml:"CreateConfigurationTemplateResponse"`
 
 	ApplicationName   string                       `xml:"UpdateConfigurationTemplateResult>ApplicationName"`
 	DateCreated       time.Time                    `xml:"UpdateConfigurationTemplateResult>DateCreated"`
@@ -965,7 +967,7 @@ type UpdateConfigurationTemplateResult struct {
 
 // UpdateEnvironmentResult is a wrapper for EnvironmentDescription.
 type UpdateEnvironmentResult struct {
-	XMLName xml.Name `xml:"UpdateEnvironmentResponse"`
+	XMLName xml.Name `xml:"CreateEnvironmentResponse"`
 
 	ApplicationName   string                          `xml:"UpdateEnvironmentResult>ApplicationName"`
 	CNAME             string                          `xml:"UpdateEnvironmentResult>CNAME"`

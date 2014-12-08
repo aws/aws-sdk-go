@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *Logs {
 
 	return &Logs{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "logs",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://logs.%s.amazonaws.com", region),
-			Prefix:       "logs",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "Logs_20140328",
 		},

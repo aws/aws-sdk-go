@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *SDB {
 
 	return &SDB{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "sdb",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://sdb.%s.amazonaws.com", region),
-			Prefix:     "sdb",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2009-04-15",
 		},
 	}

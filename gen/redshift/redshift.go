@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *RedShift {
 
 	return &RedShift{
 		client: &aws.QueryClient{
-			Client:     client,
-			Region:     region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "redshift",
+				Region:  region,
+			},
 			Endpoint:   fmt.Sprintf("https://redshift.%s.amazonaws.com", region),
-			Prefix:     "redshift",
-			Key:        key,
-			Secret:     secret,
 			APIVersion: "2012-12-01",
 		},
 	}
@@ -1442,12 +1444,12 @@ type IPRange struct {
 
 // LoggingStatus is undocumented.
 type LoggingStatus struct {
-	BucketName                 string    `xml:"DescribeLoggingStatusResult>BucketName"`
-	LastFailureMessage         string    `xml:"DescribeLoggingStatusResult>LastFailureMessage"`
-	LastFailureTime            time.Time `xml:"DescribeLoggingStatusResult>LastFailureTime"`
-	LastSuccessfulDeliveryTime time.Time `xml:"DescribeLoggingStatusResult>LastSuccessfulDeliveryTime"`
-	LoggingEnabled             bool      `xml:"DescribeLoggingStatusResult>LoggingEnabled"`
-	S3KeyPrefix                string    `xml:"DescribeLoggingStatusResult>S3KeyPrefix"`
+	BucketName                 string    `xml:"EnableLoggingResult>BucketName"`
+	LastFailureMessage         string    `xml:"EnableLoggingResult>LastFailureMessage"`
+	LastFailureTime            time.Time `xml:"EnableLoggingResult>LastFailureTime"`
+	LastSuccessfulDeliveryTime time.Time `xml:"EnableLoggingResult>LastSuccessfulDeliveryTime"`
+	LoggingEnabled             bool      `xml:"EnableLoggingResult>LoggingEnabled"`
+	S3KeyPrefix                string    `xml:"EnableLoggingResult>S3KeyPrefix"`
 }
 
 // ModifyClusterMessage is undocumented.
@@ -1884,7 +1886,7 @@ type DescribeHsmConfigurationsResult struct {
 
 // DescribeLoggingStatusResult is a wrapper for LoggingStatus.
 type DescribeLoggingStatusResult struct {
-	XMLName xml.Name `xml:"DescribeLoggingStatusResponse"`
+	XMLName xml.Name `xml:"EnableLoggingResponse"`
 
 	BucketName                 string    `xml:"DescribeLoggingStatusResult>BucketName"`
 	LastFailureMessage         string    `xml:"DescribeLoggingStatusResult>LastFailureMessage"`
@@ -1946,7 +1948,7 @@ type DescribeTagsResult struct {
 
 // DisableLoggingResult is a wrapper for LoggingStatus.
 type DisableLoggingResult struct {
-	XMLName xml.Name `xml:"DescribeLoggingStatusResponse"`
+	XMLName xml.Name `xml:"EnableLoggingResponse"`
 
 	BucketName                 string    `xml:"DisableLoggingResult>BucketName"`
 	LastFailureMessage         string    `xml:"DisableLoggingResult>LastFailureMessage"`
@@ -1958,7 +1960,7 @@ type DisableLoggingResult struct {
 
 // EnableLoggingResult is a wrapper for LoggingStatus.
 type EnableLoggingResult struct {
-	XMLName xml.Name `xml:"DescribeLoggingStatusResponse"`
+	XMLName xml.Name `xml:"EnableLoggingResponse"`
 
 	BucketName                 string    `xml:"EnableLoggingResult>BucketName"`
 	LastFailureMessage         string    `xml:"EnableLoggingResult>LastFailureMessage"`

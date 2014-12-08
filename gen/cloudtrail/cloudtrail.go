@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *CloudTrail {
 
 	return &CloudTrail{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "cloudtrail",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://cloudtrail.%s.amazonaws.com", region),
-			Prefix:       "cloudtrail",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "com.amazonaws.cloudtrail.v20131101.CloudTrail_20131101",
 		},

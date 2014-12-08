@@ -23,12 +23,14 @@ func New(key, secret, region string, client *http.Client) *CogitoIdentity {
 
 	return &CogitoIdentity{
 		client: &aws.JSONClient{
-			Client:       client,
-			Region:       region,
+			Client: client,
+			Auth: aws.Auth{
+				Key:     key,
+				Secret:  secret,
+				Service: "cognito-identity",
+				Region:  region,
+			},
 			Endpoint:     fmt.Sprintf("https://cognito-identity.%s.amazonaws.com", region),
-			Prefix:       "cognito-identity",
-			Key:          key,
-			Secret:       secret,
 			JSONVersion:  "1.1",
 			TargetPrefix: "AWSCognitoIdentityService",
 		},
