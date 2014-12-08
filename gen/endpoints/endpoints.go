@@ -31,7 +31,7 @@ func Lookup(service, region string) string {
 			return format("https://elasticmapreduce.us-east-1.amazonaws.com", service, region)
 		}
 
-		if region == "" {
+		if region != "" {
 			return format("https://{region}.elasticmapreduce.amazonaws.com", service, region)
 		}
 
@@ -79,7 +79,7 @@ func Lookup(service, region string) string {
 			return format("{scheme}://{service}-{region}.amazonaws.com", service, region)
 		}
 
-		if region == "" {
+		if region != "" {
 			return format("{scheme}://{service}.{region}.amazonaws.com", service, region)
 		}
 
@@ -99,7 +99,7 @@ func Lookup(service, region string) string {
 			return format("https://{region}.queue.amazonaws.com.cn", service, region)
 		}
 
-		if region == "" {
+		if region != "" {
 			return format("https://{region}.queue.amazonaws.com", service, region)
 		}
 
@@ -115,16 +115,14 @@ func Lookup(service, region string) string {
 
 		return format("https://sts.amazonaws.com", service, region)
 
-	default:
+	}
 
-		if strings.HasPrefix(region, "cn-") {
-			return format("{scheme}://{service}.{region}.amazonaws.com.cn", service, region)
-		}
+	if strings.HasPrefix(region, "cn-") {
+		return format("{scheme}://{service}.{region}.amazonaws.com.cn", service, region)
+	}
 
-		if region == "" {
-			return format("{scheme}://{service}.{region}.amazonaws.com", service, region)
-		}
-
+	if region != "" {
+		return format("{scheme}://{service}.{region}.amazonaws.com", service, region)
 	}
 
 	panic("unknown endpoint for " + service + " in " + region)
