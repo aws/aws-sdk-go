@@ -839,8 +839,8 @@ type ClusterParameterGroupDetails struct {
 
 // ClusterParameterGroupNameMessage is undocumented.
 type ClusterParameterGroupNameMessage struct {
-	ParameterGroupName   string `xml:"ResetClusterParameterGroupResult>ParameterGroupName"`
-	ParameterGroupStatus string `xml:"ResetClusterParameterGroupResult>ParameterGroupStatus"`
+	ParameterGroupName   string `xml:"ParameterGroupName"`
+	ParameterGroupStatus string `xml:"ParameterGroupStatus"`
 }
 
 // ClusterParameterGroupStatus is undocumented.
@@ -1444,12 +1444,12 @@ type IPRange struct {
 
 // LoggingStatus is undocumented.
 type LoggingStatus struct {
-	BucketName                 string    `xml:"EnableLoggingResult>BucketName"`
-	LastFailureMessage         string    `xml:"EnableLoggingResult>LastFailureMessage"`
-	LastFailureTime            time.Time `xml:"EnableLoggingResult>LastFailureTime"`
-	LastSuccessfulDeliveryTime time.Time `xml:"EnableLoggingResult>LastSuccessfulDeliveryTime"`
-	LoggingEnabled             bool      `xml:"EnableLoggingResult>LoggingEnabled"`
-	S3KeyPrefix                string    `xml:"EnableLoggingResult>S3KeyPrefix"`
+	BucketName                 string    `xml:"BucketName"`
+	LastFailureMessage         string    `xml:"LastFailureMessage"`
+	LastFailureTime            time.Time `xml:"LastFailureTime"`
+	LastSuccessfulDeliveryTime time.Time `xml:"LastSuccessfulDeliveryTime"`
+	LoggingEnabled             bool      `xml:"LoggingEnabled"`
+	S3KeyPrefix                string    `xml:"S3KeyPrefix"`
 }
 
 // ModifyClusterMessage is undocumented.
@@ -1886,7 +1886,7 @@ type DescribeHsmConfigurationsResult struct {
 
 // DescribeLoggingStatusResult is a wrapper for LoggingStatus.
 type DescribeLoggingStatusResult struct {
-	XMLName xml.Name `xml:"EnableLoggingResponse"`
+	XMLName xml.Name `xml:"Response"`
 
 	BucketName                 string    `xml:"DescribeLoggingStatusResult>BucketName"`
 	LastFailureMessage         string    `xml:"DescribeLoggingStatusResult>LastFailureMessage"`
@@ -1948,7 +1948,7 @@ type DescribeTagsResult struct {
 
 // DisableLoggingResult is a wrapper for LoggingStatus.
 type DisableLoggingResult struct {
-	XMLName xml.Name `xml:"EnableLoggingResponse"`
+	XMLName xml.Name `xml:"Response"`
 
 	BucketName                 string    `xml:"DisableLoggingResult>BucketName"`
 	LastFailureMessage         string    `xml:"DisableLoggingResult>LastFailureMessage"`
@@ -1960,7 +1960,7 @@ type DisableLoggingResult struct {
 
 // EnableLoggingResult is a wrapper for LoggingStatus.
 type EnableLoggingResult struct {
-	XMLName xml.Name `xml:"EnableLoggingResponse"`
+	XMLName xml.Name `xml:"Response"`
 
 	BucketName                 string    `xml:"EnableLoggingResult>BucketName"`
 	LastFailureMessage         string    `xml:"EnableLoggingResult>LastFailureMessage"`
@@ -1972,7 +1972,7 @@ type EnableLoggingResult struct {
 
 // ModifyClusterParameterGroupResult is a wrapper for ClusterParameterGroupNameMessage.
 type ModifyClusterParameterGroupResult struct {
-	XMLName xml.Name `xml:"ResetClusterParameterGroupResponse"`
+	XMLName xml.Name `xml:"Response"`
 
 	ParameterGroupName   string `xml:"ModifyClusterParameterGroupResult>ParameterGroupName"`
 	ParameterGroupStatus string `xml:"ModifyClusterParameterGroupResult>ParameterGroupStatus"`
@@ -1980,7 +1980,7 @@ type ModifyClusterParameterGroupResult struct {
 
 // ResetClusterParameterGroupResult is a wrapper for ClusterParameterGroupNameMessage.
 type ResetClusterParameterGroupResult struct {
-	XMLName xml.Name `xml:"ResetClusterParameterGroupResponse"`
+	XMLName xml.Name `xml:"Response"`
 
 	ParameterGroupName   string `xml:"ResetClusterParameterGroupResult>ParameterGroupName"`
 	ParameterGroupStatus string `xml:"ResetClusterParameterGroupResult>ParameterGroupStatus"`

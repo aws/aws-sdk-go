@@ -497,7 +497,7 @@ type CacheParameterGroupDetails struct {
 
 // CacheParameterGroupNameMessage is undocumented.
 type CacheParameterGroupNameMessage struct {
-	CacheParameterGroupName string `xml:"ModifyCacheParameterGroupResult>CacheParameterGroupName"`
+	CacheParameterGroupName string `xml:"CacheParameterGroupName"`
 }
 
 // CacheParameterGroupStatus is undocumented.
@@ -1225,14 +1225,14 @@ type DescribeSnapshotsResult struct {
 
 // ModifyCacheParameterGroupResult is a wrapper for CacheParameterGroupNameMessage.
 type ModifyCacheParameterGroupResult struct {
-	XMLName xml.Name `xml:"ModifyCacheParameterGroupResponse"`
+	XMLName xml.Name `xml:"Response"`
 
 	CacheParameterGroupName string `xml:"ModifyCacheParameterGroupResult>CacheParameterGroupName"`
 }
 
 // ResetCacheParameterGroupResult is a wrapper for CacheParameterGroupNameMessage.
 type ResetCacheParameterGroupResult struct {
-	XMLName xml.Name `xml:"ModifyCacheParameterGroupResponse"`
+	XMLName xml.Name `xml:"Response"`
 
 	CacheParameterGroupName string `xml:"ResetCacheParameterGroupResult>CacheParameterGroupName"`
 }
