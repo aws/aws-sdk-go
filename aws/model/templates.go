@@ -64,7 +64,7 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
         Service: "{{ .Metadata.EndpointPrefix }}",
         Region: region,
       },
-      Endpoint: fmt.Sprintf("https://{{ .Metadata.EndpointPrefix }}.%s.amazonaws.com", region),
+      Endpoint: endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region),
       APIVersion: "{{ .Metadata.APIVersion }}",
     },
   }
@@ -128,7 +128,7 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
         Service: "{{ .Metadata.EndpointPrefix }}",
         Region: region,
       },
-      Endpoint: fmt.Sprintf("https://{{ .Metadata.EndpointPrefix }}.%s.amazonaws.com", region),
+      Endpoint: endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region),
       JSONVersion: "{{ .Metadata.JSONVersion }}",
       TargetPrefix: "{{ .Metadata.TargetPrefix }}",
     },
@@ -170,11 +170,11 @@ package {{ .PackageName }}
 
 import (
   "encoding/xml"
-  "fmt"
   "net/http"
   "time"
 
   "github.com/stripe/aws-go/aws"
+  "github.com/stripe/aws-go/gen/endpoints"
 )
 
 // {{ .Name }} is a client for {{ .FullName }}.
