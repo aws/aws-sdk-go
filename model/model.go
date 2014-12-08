@@ -183,8 +183,10 @@ func (s *Shape) Type() string {
 	switch s.ShapeType {
 	case "structure":
 		return exportable(s.Name)
-	case "integer", "long":
+	case "integer":
 		return "int"
+	case "long":
+		return "int64"
 	case "double":
 		return "float64"
 	case "string":
