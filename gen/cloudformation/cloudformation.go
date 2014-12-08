@@ -223,15 +223,15 @@ type CancelUpdateStackInput struct {
 
 // CreateStackInput is undocumented.
 type CreateStackInput struct {
-	Capabilities     []string    `xml:"Capabilities>Capability"`
+	Capabilities     []string    `xml:"Capabilities>member"`
 	DisableRollback  bool        `xml:"DisableRollback"`
-	NotificationARNs []string    `xml:"NotificationARNs>NotificationARN"`
+	NotificationARNs []string    `xml:"NotificationARNs>member"`
 	OnFailure        string      `xml:"OnFailure"`
-	Parameters       []Parameter `xml:"Parameters>Parameter"`
+	Parameters       []Parameter `xml:"Parameters>member"`
 	StackName        string      `xml:"StackName"`
 	StackPolicyBody  string      `xml:"StackPolicyBody"`
 	StackPolicyURL   string      `xml:"StackPolicyURL"`
-	Tags             []Tag       `xml:"Tags>Tag"`
+	Tags             []Tag       `xml:"Tags>member"`
 	TemplateBody     string      `xml:"TemplateBody"`
 	TemplateURL      string      `xml:"TemplateURL"`
 	TimeoutInMinutes int         `xml:"TimeoutInMinutes"`
@@ -256,7 +256,7 @@ type DescribeStackEventsInput struct {
 // DescribeStackEventsOutput is undocumented.
 type DescribeStackEventsOutput struct {
 	NextToken   string       `xml:"DescribeStackEventsResult>NextToken"`
-	StackEvents []StackEvent `xml:"DescribeStackEventsResult>StackEvents>StackEvent"`
+	StackEvents []StackEvent `xml:"DescribeStackEventsResult>StackEvents>member"`
 }
 
 // DescribeStackResourceInput is undocumented.
@@ -279,7 +279,7 @@ type DescribeStackResourcesInput struct {
 
 // DescribeStackResourcesOutput is undocumented.
 type DescribeStackResourcesOutput struct {
-	StackResources []StackResource `xml:"DescribeStackResourcesResult>StackResources>StackResource"`
+	StackResources []StackResource `xml:"DescribeStackResourcesResult>StackResources>member"`
 }
 
 // DescribeStacksInput is undocumented.
@@ -291,12 +291,12 @@ type DescribeStacksInput struct {
 // DescribeStacksOutput is undocumented.
 type DescribeStacksOutput struct {
 	NextToken string  `xml:"DescribeStacksResult>NextToken"`
-	Stacks    []Stack `xml:"DescribeStacksResult>Stacks>Stack"`
+	Stacks    []Stack `xml:"DescribeStacksResult>Stacks>member"`
 }
 
 // EstimateTemplateCostInput is undocumented.
 type EstimateTemplateCostInput struct {
-	Parameters   []Parameter `xml:"Parameters>Parameter"`
+	Parameters   []Parameter `xml:"Parameters>member"`
 	TemplateBody string      `xml:"TemplateBody"`
 	TemplateURL  string      `xml:"TemplateURL"`
 }
@@ -335,10 +335,10 @@ type GetTemplateSummaryInput struct {
 
 // GetTemplateSummaryOutput is undocumented.
 type GetTemplateSummaryOutput struct {
-	Capabilities       []string               `xml:"GetTemplateSummaryResult>Capabilities>Capability"`
+	Capabilities       []string               `xml:"GetTemplateSummaryResult>Capabilities>member"`
 	CapabilitiesReason string                 `xml:"GetTemplateSummaryResult>CapabilitiesReason"`
 	Description        string                 `xml:"GetTemplateSummaryResult>Description"`
-	Parameters         []ParameterDeclaration `xml:"GetTemplateSummaryResult>Parameters>ParameterDeclaration"`
+	Parameters         []ParameterDeclaration `xml:"GetTemplateSummaryResult>Parameters>member"`
 	Version            string                 `xml:"GetTemplateSummaryResult>Version"`
 }
 
@@ -351,19 +351,19 @@ type ListStackResourcesInput struct {
 // ListStackResourcesOutput is undocumented.
 type ListStackResourcesOutput struct {
 	NextToken              string                 `xml:"ListStackResourcesResult>NextToken"`
-	StackResourceSummaries []StackResourceSummary `xml:"ListStackResourcesResult>StackResourceSummaries>StackResourceSummary"`
+	StackResourceSummaries []StackResourceSummary `xml:"ListStackResourcesResult>StackResourceSummaries>member"`
 }
 
 // ListStacksInput is undocumented.
 type ListStacksInput struct {
 	NextToken         string   `xml:"NextToken"`
-	StackStatusFilter []string `xml:"StackStatusFilter>StackStatus"`
+	StackStatusFilter []string `xml:"StackStatusFilter>member"`
 }
 
 // ListStacksOutput is undocumented.
 type ListStacksOutput struct {
 	NextToken      string         `xml:"ListStacksResult>NextToken"`
-	StackSummaries []StackSummary `xml:"ListStacksResult>StackSummaries>StackSummary"`
+	StackSummaries []StackSummary `xml:"ListStacksResult>StackSummaries>member"`
 }
 
 // Output is undocumented.
@@ -406,19 +406,19 @@ type SignalResourceInput struct {
 
 // Stack is undocumented.
 type Stack struct {
-	Capabilities      []string    `xml:"Capabilities>Capability"`
+	Capabilities      []string    `xml:"Capabilities>member"`
 	CreationTime      time.Time   `xml:"CreationTime"`
 	Description       string      `xml:"Description"`
 	DisableRollback   bool        `xml:"DisableRollback"`
 	LastUpdatedTime   time.Time   `xml:"LastUpdatedTime"`
-	NotificationARNs  []string    `xml:"NotificationARNs>NotificationARN"`
-	Outputs           []Output    `xml:"Outputs>Output"`
-	Parameters        []Parameter `xml:"Parameters>Parameter"`
+	NotificationARNs  []string    `xml:"NotificationARNs>member"`
+	Outputs           []Output    `xml:"Outputs>member"`
+	Parameters        []Parameter `xml:"Parameters>member"`
 	StackID           string      `xml:"StackId"`
 	StackName         string      `xml:"StackName"`
 	StackStatus       string      `xml:"StackStatus"`
 	StackStatusReason string      `xml:"StackStatusReason"`
-	Tags              []Tag       `xml:"Tags>Tag"`
+	Tags              []Tag       `xml:"Tags>member"`
 	TimeoutInMinutes  int         `xml:"TimeoutInMinutes"`
 }
 
@@ -501,9 +501,9 @@ type TemplateParameter struct {
 
 // UpdateStackInput is undocumented.
 type UpdateStackInput struct {
-	Capabilities                []string    `xml:"Capabilities>Capability"`
-	NotificationARNs            []string    `xml:"NotificationARNs>NotificationARN"`
-	Parameters                  []Parameter `xml:"Parameters>Parameter"`
+	Capabilities                []string    `xml:"Capabilities>member"`
+	NotificationARNs            []string    `xml:"NotificationARNs>member"`
+	Parameters                  []Parameter `xml:"Parameters>member"`
 	StackName                   string      `xml:"StackName"`
 	StackPolicyBody             string      `xml:"StackPolicyBody"`
 	StackPolicyDuringUpdateBody string      `xml:"StackPolicyDuringUpdateBody"`
@@ -527,10 +527,10 @@ type ValidateTemplateInput struct {
 
 // ValidateTemplateOutput is undocumented.
 type ValidateTemplateOutput struct {
-	Capabilities       []string            `xml:"ValidateTemplateResult>Capabilities>Capability"`
+	Capabilities       []string            `xml:"ValidateTemplateResult>Capabilities>member"`
 	CapabilitiesReason string              `xml:"ValidateTemplateResult>CapabilitiesReason"`
 	Description        string              `xml:"ValidateTemplateResult>Description"`
-	Parameters         []TemplateParameter `xml:"ValidateTemplateResult>Parameters>TemplateParameter"`
+	Parameters         []TemplateParameter `xml:"ValidateTemplateResult>Parameters>member"`
 }
 
 // CreateStackResult is a wrapper for CreateStackOutput.
@@ -545,7 +545,7 @@ type DescribeStackEventsResult struct {
 	XMLName xml.Name `xml:"DescribeStackEventsResponse"`
 
 	NextToken   string       `xml:"DescribeStackEventsResult>NextToken"`
-	StackEvents []StackEvent `xml:"DescribeStackEventsResult>StackEvents>StackEvent"`
+	StackEvents []StackEvent `xml:"DescribeStackEventsResult>StackEvents>member"`
 }
 
 // DescribeStackResourceResult is a wrapper for DescribeStackResourceOutput.
@@ -559,7 +559,7 @@ type DescribeStackResourceResult struct {
 type DescribeStackResourcesResult struct {
 	XMLName xml.Name `xml:"DescribeStackResourcesResponse"`
 
-	StackResources []StackResource `xml:"DescribeStackResourcesResult>StackResources>StackResource"`
+	StackResources []StackResource `xml:"DescribeStackResourcesResult>StackResources>member"`
 }
 
 // DescribeStacksResult is a wrapper for DescribeStacksOutput.
@@ -567,7 +567,7 @@ type DescribeStacksResult struct {
 	XMLName xml.Name `xml:"DescribeStacksResponse"`
 
 	NextToken string  `xml:"DescribeStacksResult>NextToken"`
-	Stacks    []Stack `xml:"DescribeStacksResult>Stacks>Stack"`
+	Stacks    []Stack `xml:"DescribeStacksResult>Stacks>member"`
 }
 
 // EstimateTemplateCostResult is a wrapper for EstimateTemplateCostOutput.
@@ -595,10 +595,10 @@ type GetTemplateResult struct {
 type GetTemplateSummaryResult struct {
 	XMLName xml.Name `xml:"GetTemplateSummaryResponse"`
 
-	Capabilities       []string               `xml:"GetTemplateSummaryResult>Capabilities>Capability"`
+	Capabilities       []string               `xml:"GetTemplateSummaryResult>Capabilities>member"`
 	CapabilitiesReason string                 `xml:"GetTemplateSummaryResult>CapabilitiesReason"`
 	Description        string                 `xml:"GetTemplateSummaryResult>Description"`
-	Parameters         []ParameterDeclaration `xml:"GetTemplateSummaryResult>Parameters>ParameterDeclaration"`
+	Parameters         []ParameterDeclaration `xml:"GetTemplateSummaryResult>Parameters>member"`
 	Version            string                 `xml:"GetTemplateSummaryResult>Version"`
 }
 
@@ -607,7 +607,7 @@ type ListStackResourcesResult struct {
 	XMLName xml.Name `xml:"ListStackResourcesResponse"`
 
 	NextToken              string                 `xml:"ListStackResourcesResult>NextToken"`
-	StackResourceSummaries []StackResourceSummary `xml:"ListStackResourcesResult>StackResourceSummaries>StackResourceSummary"`
+	StackResourceSummaries []StackResourceSummary `xml:"ListStackResourcesResult>StackResourceSummaries>member"`
 }
 
 // ListStacksResult is a wrapper for ListStacksOutput.
@@ -615,7 +615,7 @@ type ListStacksResult struct {
 	XMLName xml.Name `xml:"ListStacksResponse"`
 
 	NextToken      string         `xml:"ListStacksResult>NextToken"`
-	StackSummaries []StackSummary `xml:"ListStacksResult>StackSummaries>StackSummary"`
+	StackSummaries []StackSummary `xml:"ListStacksResult>StackSummaries>member"`
 }
 
 // UpdateStackResult is a wrapper for UpdateStackOutput.
@@ -629,10 +629,10 @@ type UpdateStackResult struct {
 type ValidateTemplateResult struct {
 	XMLName xml.Name `xml:"ValidateTemplateResponse"`
 
-	Capabilities       []string            `xml:"ValidateTemplateResult>Capabilities>Capability"`
+	Capabilities       []string            `xml:"ValidateTemplateResult>Capabilities>member"`
 	CapabilitiesReason string              `xml:"ValidateTemplateResult>CapabilitiesReason"`
 	Description        string              `xml:"ValidateTemplateResult>Description"`
-	Parameters         []TemplateParameter `xml:"ValidateTemplateResult>Parameters>TemplateParameter"`
+	Parameters         []TemplateParameter `xml:"ValidateTemplateResult>Parameters>member"`
 }
 
 // avoid errors if the packages aren't referenced

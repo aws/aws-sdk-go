@@ -661,7 +661,7 @@ type CreateDBInstanceMessage struct {
 	DBInstanceIdentifier       string   `xml:"DBInstanceIdentifier"`
 	DBName                     string   `xml:"DBName"`
 	DBParameterGroupName       string   `xml:"DBParameterGroupName"`
-	DBSecurityGroups           []string `xml:"DBSecurityGroups>String"`
+	DBSecurityGroups           []string `xml:"DBSecurityGroups>DBSecurityGroupName"`
 	DBSubnetGroupName          string   `xml:"DBSubnetGroupName"`
 	Engine                     string   `xml:"Engine"`
 	EngineVersion              string   `xml:"EngineVersion"`
@@ -679,7 +679,7 @@ type CreateDBInstanceMessage struct {
 	Tags                       []Tag    `xml:"Tags>Tag"`
 	TdeCredentialARN           string   `xml:"TdeCredentialArn"`
 	TdeCredentialPassword      string   `xml:"TdeCredentialPassword"`
-	VpcSecurityGroupIds        []string `xml:"VpcSecurityGroupIds>String"`
+	VpcSecurityGroupIds        []string `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // CreateDBInstanceReadReplicaMessage is undocumented.
@@ -749,7 +749,7 @@ type CreateDBSnapshotResult struct {
 type CreateDBSubnetGroupMessage struct {
 	DBSubnetGroupDescription string   `xml:"DBSubnetGroupDescription"`
 	DBSubnetGroupName        string   `xml:"DBSubnetGroupName"`
-	SubnetIds                []string `xml:"SubnetIds>String"`
+	SubnetIds                []string `xml:"SubnetIds>SubnetIdentifier"`
 	Tags                     []Tag    `xml:"Tags>Tag"`
 }
 
@@ -761,9 +761,9 @@ type CreateDBSubnetGroupResult struct {
 // CreateEventSubscriptionMessage is undocumented.
 type CreateEventSubscriptionMessage struct {
 	Enabled          bool     `xml:"Enabled"`
-	EventCategories  []string `xml:"EventCategories>String"`
+	EventCategories  []string `xml:"EventCategories>EventCategory"`
 	SnsTopicARN      string   `xml:"SnsTopicArn"`
-	SourceIds        []string `xml:"SourceIds>String"`
+	SourceIds        []string `xml:"SourceIds>SourceId"`
 	SourceType       string   `xml:"SourceType"`
 	SubscriptionName string   `xml:"SubscriptionName"`
 	Tags             []Tag    `xml:"Tags>Tag"`
@@ -816,8 +816,8 @@ type DBInstance struct {
 	DBInstanceIdentifier                  string                       `xml:"DBInstanceIdentifier"`
 	DBInstanceStatus                      string                       `xml:"DBInstanceStatus"`
 	DBName                                string                       `xml:"DBName"`
-	DBParameterGroups                     []DBParameterGroupStatus     `xml:"DBParameterGroups>DBParameterGroupStatus"`
-	DBSecurityGroups                      []DBSecurityGroupMembership  `xml:"DBSecurityGroups>DBSecurityGroupMembership"`
+	DBParameterGroups                     []DBParameterGroupStatus     `xml:"DBParameterGroups>DBParameterGroup"`
+	DBSecurityGroups                      []DBSecurityGroupMembership  `xml:"DBSecurityGroups>DBSecurityGroup"`
 	DBSubnetGroup                         DBSubnetGroup                `xml:"DBSubnetGroup"`
 	Endpoint                              Endpoint                     `xml:"Endpoint"`
 	Engine                                string                       `xml:"Engine"`
@@ -833,7 +833,7 @@ type DBInstance struct {
 	PreferredBackupWindow                 string                       `xml:"PreferredBackupWindow"`
 	PreferredMaintenanceWindow            string                       `xml:"PreferredMaintenanceWindow"`
 	PubliclyAccessible                    bool                         `xml:"PubliclyAccessible"`
-	ReadReplicaDBInstanceIdentifiers      []string                     `xml:"ReadReplicaDBInstanceIdentifiers>String"`
+	ReadReplicaDBInstanceIdentifiers      []string                     `xml:"ReadReplicaDBInstanceIdentifiers>ReadReplicaDBInstanceIdentifier"`
 	ReadReplicaSourceDBInstanceIdentifier string                       `xml:"ReadReplicaSourceDBInstanceIdentifier"`
 	SecondaryAvailabilityZone             string                       `xml:"SecondaryAvailabilityZone"`
 	StatusInfos                           []DBInstanceStatusInfo       `xml:"StatusInfos>DBInstanceStatusInfo"`
@@ -1123,7 +1123,7 @@ type DescribeEventSubscriptionsMessage struct {
 type DescribeEventsMessage struct {
 	Duration         int       `xml:"Duration"`
 	EndTime          time.Time `xml:"EndTime"`
-	EventCategories  []string  `xml:"EventCategories>String"`
+	EventCategories  []string  `xml:"EventCategories>EventCategory"`
 	Filters          []Filter  `xml:"Filters>Filter"`
 	Marker           string    `xml:"Marker"`
 	MaxRecords       int       `xml:"MaxRecords"`
@@ -1229,7 +1229,7 @@ type EngineDefaults struct {
 // Event is undocumented.
 type Event struct {
 	Date             time.Time `xml:"Date"`
-	EventCategories  []string  `xml:"EventCategories>String"`
+	EventCategories  []string  `xml:"EventCategories>EventCategory"`
 	Message          string    `xml:"Message"`
 	SourceIdentifier string    `xml:"SourceIdentifier"`
 	SourceType       string    `xml:"SourceType"`
@@ -1237,7 +1237,7 @@ type Event struct {
 
 // EventCategoriesMap is undocumented.
 type EventCategoriesMap struct {
-	EventCategories []string `xml:"EventCategories>String"`
+	EventCategories []string `xml:"EventCategories>EventCategory"`
 	SourceType      string   `xml:"SourceType"`
 }
 
@@ -1251,9 +1251,9 @@ type EventSubscription struct {
 	CustSubscriptionID       string   `xml:"CustSubscriptionId"`
 	CustomerAwsID            string   `xml:"CustomerAwsId"`
 	Enabled                  bool     `xml:"Enabled"`
-	EventCategoriesList      []string `xml:"EventCategoriesList>String"`
+	EventCategoriesList      []string `xml:"EventCategoriesList>EventCategory"`
 	SnsTopicARN              string   `xml:"SnsTopicArn"`
-	SourceIdsList            []string `xml:"SourceIdsList>String"`
+	SourceIdsList            []string `xml:"SourceIdsList>SourceId"`
 	SourceType               string   `xml:"SourceType"`
 	Status                   string   `xml:"Status"`
 	SubscriptionCreationTime string   `xml:"SubscriptionCreationTime"`
@@ -1274,7 +1274,7 @@ type EventsMessage struct {
 // Filter is undocumented.
 type Filter struct {
 	Name   string   `xml:"Name"`
-	Values []string `xml:"Values>String"`
+	Values []string `xml:"Values>Value"`
 }
 
 // IPRange is undocumented.
@@ -1299,7 +1299,7 @@ type ModifyDBInstanceMessage struct {
 	DBInstanceClass            string   `xml:"DBInstanceClass"`
 	DBInstanceIdentifier       string   `xml:"DBInstanceIdentifier"`
 	DBParameterGroupName       string   `xml:"DBParameterGroupName"`
-	DBSecurityGroups           []string `xml:"DBSecurityGroups>String"`
+	DBSecurityGroups           []string `xml:"DBSecurityGroups>DBSecurityGroupName"`
 	EngineVersion              string   `xml:"EngineVersion"`
 	Iops                       int      `xml:"Iops"`
 	MasterUserPassword         string   `xml:"MasterUserPassword"`
@@ -1311,7 +1311,7 @@ type ModifyDBInstanceMessage struct {
 	StorageType                string   `xml:"StorageType"`
 	TdeCredentialARN           string   `xml:"TdeCredentialArn"`
 	TdeCredentialPassword      string   `xml:"TdeCredentialPassword"`
-	VpcSecurityGroupIds        []string `xml:"VpcSecurityGroupIds>String"`
+	VpcSecurityGroupIds        []string `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // ModifyDBInstanceResult is undocumented.
@@ -1329,7 +1329,7 @@ type ModifyDBParameterGroupMessage struct {
 type ModifyDBSubnetGroupMessage struct {
 	DBSubnetGroupDescription string   `xml:"DBSubnetGroupDescription"`
 	DBSubnetGroupName        string   `xml:"DBSubnetGroupName"`
-	SubnetIds                []string `xml:"SubnetIds>String"`
+	SubnetIds                []string `xml:"SubnetIds>SubnetIdentifier"`
 }
 
 // ModifyDBSubnetGroupResult is undocumented.
@@ -1340,7 +1340,7 @@ type ModifyDBSubnetGroupResult struct {
 // ModifyEventSubscriptionMessage is undocumented.
 type ModifyEventSubscriptionMessage struct {
 	Enabled          bool     `xml:"Enabled"`
-	EventCategories  []string `xml:"EventCategories>String"`
+	EventCategories  []string `xml:"EventCategories>EventCategory"`
 	SnsTopicARN      string   `xml:"SnsTopicArn"`
 	SourceType       string   `xml:"SourceType"`
 	SubscriptionName string   `xml:"SubscriptionName"`
@@ -1356,7 +1356,7 @@ type ModifyOptionGroupMessage struct {
 	ApplyImmediately bool                  `xml:"ApplyImmediately"`
 	OptionGroupName  string                `xml:"OptionGroupName"`
 	OptionsToInclude []OptionConfiguration `xml:"OptionsToInclude>OptionConfiguration"`
-	OptionsToRemove  []string              `xml:"OptionsToRemove>String"`
+	OptionsToRemove  []string              `xml:"OptionsToRemove>member"`
 }
 
 // ModifyOptionGroupResult is undocumented.
@@ -1366,7 +1366,7 @@ type ModifyOptionGroupResult struct {
 
 // Option is undocumented.
 type Option struct {
-	DBSecurityGroupMemberships  []DBSecurityGroupMembership  `xml:"DBSecurityGroupMemberships>DBSecurityGroupMembership"`
+	DBSecurityGroupMemberships  []DBSecurityGroupMembership  `xml:"DBSecurityGroupMemberships>DBSecurityGroup"`
 	OptionDescription           string                       `xml:"OptionDescription"`
 	OptionName                  string                       `xml:"OptionName"`
 	OptionSettings              []OptionSetting              `xml:"OptionSettings>OptionSetting"`
@@ -1378,11 +1378,11 @@ type Option struct {
 
 // OptionConfiguration is undocumented.
 type OptionConfiguration struct {
-	DBSecurityGroupMemberships  []string        `xml:"DBSecurityGroupMemberships>String"`
+	DBSecurityGroupMemberships  []string        `xml:"DBSecurityGroupMemberships>DBSecurityGroupName"`
 	OptionName                  string          `xml:"OptionName"`
 	OptionSettings              []OptionSetting `xml:"OptionSettings>OptionSetting"`
 	Port                        int             `xml:"Port"`
-	VpcSecurityGroupMemberships []string        `xml:"VpcSecurityGroupMemberships>String"`
+	VpcSecurityGroupMemberships []string        `xml:"VpcSecurityGroupMemberships>VpcSecurityGroupId"`
 }
 
 // OptionGroup is undocumented.
@@ -1411,7 +1411,7 @@ type OptionGroupOption struct {
 	MinimumRequiredMinorEngineVersion string                     `xml:"MinimumRequiredMinorEngineVersion"`
 	Name                              string                     `xml:"Name"`
 	OptionGroupOptionSettings         []OptionGroupOptionSetting `xml:"OptionGroupOptionSettings>OptionGroupOptionSetting"`
-	OptionsDependedOn                 []string                   `xml:"OptionsDependedOn>String"`
+	OptionsDependedOn                 []string                   `xml:"OptionsDependedOn>OptionName"`
 	Permanent                         bool                       `xml:"Permanent"`
 	Persistent                        bool                       `xml:"Persistent"`
 	PortRequired                      bool                       `xml:"PortRequired"`
@@ -1556,7 +1556,7 @@ type RemoveSourceIdentifierFromSubscriptionResult struct {
 // RemoveTagsFromResourceMessage is undocumented.
 type RemoveTagsFromResourceMessage struct {
 	ResourceName string   `xml:"ResourceName"`
-	TagKeys      []string `xml:"TagKeys>String"`
+	TagKeys      []string `xml:"TagKeys>member"`
 }
 
 // ReservedDBInstance is undocumented.
