@@ -28,7 +28,7 @@ func (c Constraint) Condition() string {
 	case "equals":
 		return fmt.Sprintf("%s == %q", str(c[0]), str(c[2]))
 	case "notEquals":
-		return fmt.Sprintf("%s == %q", str(c[0]), str(c[2]))
+		return fmt.Sprintf("%s != %q", str(c[0]), str(c[2]))
 	case "oneOf":
 		var values []string
 		for _, v := range c[2].([]interface{}) {
