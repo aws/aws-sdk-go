@@ -8,17 +8,12 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
-
-	"github.com/crowdmob/goamz/aws"
 )
 
 type QueryClient struct {
+	Auth       Auth
 	Client     *http.Client
-	Region     string
 	Endpoint   string
-	Prefix     string
-	Key        string
-	Secret     string
 	APIVersion string
 }
 
@@ -38,11 +33,7 @@ func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
 		return err
 	}
 
-	signer := aws.NewV4Signer(aws.Auth{
-		AccessKey: c.Key,
-		SecretKey: c.Secret,
-	}, c.Prefix, aws.Region{Name: c.Region})
-	signer.Sign(httpReq)
+	c.Auth.sign(httpReq)
 
 	httpResp, err := c.Client.Do(httpReq)
 	if err != nil {
