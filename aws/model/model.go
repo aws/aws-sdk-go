@@ -48,6 +48,7 @@ type Error struct {
 type ShapeRef struct {
 	ShapeName     string `json:"Shape"`
 	Documentation string
+	LocationName  string
 	Wrapper       bool
 	ResultWrapper string
 }
@@ -88,7 +89,11 @@ func (m Member) XMLTag(wrapper string) string {
 	path = append(path, m.Name)
 
 	if m.Shape.ShapeType == "list" {
-		path = append(path, m.Shape.Member().Name)
+		loc := m.Shape.MemberRef.LocationName
+		if loc == "" {
+			loc = "member"
+		}
+		path = append(path, loc)
 	}
 
 	return fmt.Sprintf("`xml:\"%s\"`", strings.Join(path, ">"))
