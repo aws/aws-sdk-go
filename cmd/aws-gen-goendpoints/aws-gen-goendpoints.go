@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/stripe/aws-go/aws/model"
+	"github.com/stripe/aws-go/model"
 )
 
 func main() {
