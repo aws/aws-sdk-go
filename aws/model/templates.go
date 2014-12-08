@@ -92,13 +92,13 @@ type {{ exportable $name }} struct {
 {{ end }}
 {{ end }}
 
-{{ range $name, $s := .Wrappers }}
+{{ range $wname, $s := .Wrappers }}
 
-// {{ exportable $name }} is a wrapper for {{ $s.Name }}.
-type {{ exportable $name }} struct {
+// {{ exportable $wname }} is a wrapper for {{ $s.Name }}.
+type {{ exportable $wname }} struct {
     XMLName xml.Name {{ $s.MessageTag }}
 {{ range $name, $m := $s.Members }}
-{{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.ResultWrapper }}  {{ end }}
+{{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $wname }}  {{ end }}
 }
 
 {{ end }}
