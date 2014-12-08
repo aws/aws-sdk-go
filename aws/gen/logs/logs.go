@@ -269,13 +269,13 @@ type DescribeMetricFiltersResponse struct {
 
 // GetLogEventsRequest is undocumented.
 type GetLogEventsRequest struct {
-	EndTime       int    `json:"endTime,omitempty"`
+	EndTime       int64  `json:"endTime,omitempty"`
 	Limit         int    `json:"limit,omitempty"`
 	LogGroupName  string `json:"logGroupName"`
 	LogStreamName string `json:"logStreamName"`
 	NextToken     string `json:"nextToken,omitempty"`
 	StartFromHead bool   `json:"startFromHead,omitempty"`
-	StartTime     int    `json:"startTime,omitempty"`
+	StartTime     int64  `json:"startTime,omitempty"`
 }
 
 // GetLogEventsResponse is undocumented.
@@ -288,34 +288,34 @@ type GetLogEventsResponse struct {
 // InputLogEvent is undocumented.
 type InputLogEvent struct {
 	Message   string `json:"message"`
-	Timestamp int    `json:"timestamp"`
+	Timestamp int64  `json:"timestamp"`
 }
 
 // LogGroup is undocumented.
 type LogGroup struct {
 	ARN               string `json:"arn,omitempty"`
-	CreationTime      int    `json:"creationTime,omitempty"`
+	CreationTime      int64  `json:"creationTime,omitempty"`
 	LogGroupName      string `json:"logGroupName,omitempty"`
 	MetricFilterCount int    `json:"metricFilterCount,omitempty"`
 	RetentionInDays   int    `json:"retentionInDays,omitempty"`
-	StoredBytes       int    `json:"storedBytes,omitempty"`
+	StoredBytes       int64  `json:"storedBytes,omitempty"`
 }
 
 // LogStream is undocumented.
 type LogStream struct {
 	ARN                 string `json:"arn,omitempty"`
-	CreationTime        int    `json:"creationTime,omitempty"`
-	FirstEventTimestamp int    `json:"firstEventTimestamp,omitempty"`
-	LastEventTimestamp  int    `json:"lastEventTimestamp,omitempty"`
-	LastIngestionTime   int    `json:"lastIngestionTime,omitempty"`
+	CreationTime        int64  `json:"creationTime,omitempty"`
+	FirstEventTimestamp int64  `json:"firstEventTimestamp,omitempty"`
+	LastEventTimestamp  int64  `json:"lastEventTimestamp,omitempty"`
+	LastIngestionTime   int64  `json:"lastIngestionTime,omitempty"`
 	LogStreamName       string `json:"logStreamName,omitempty"`
-	StoredBytes         int    `json:"storedBytes,omitempty"`
+	StoredBytes         int64  `json:"storedBytes,omitempty"`
 	UploadSequenceToken string `json:"uploadSequenceToken,omitempty"`
 }
 
 // MetricFilter is undocumented.
 type MetricFilter struct {
-	CreationTime          int                    `json:"creationTime,omitempty"`
+	CreationTime          int64                  `json:"creationTime,omitempty"`
 	FilterName            string                 `json:"filterName,omitempty"`
 	FilterPattern         string                 `json:"filterPattern,omitempty"`
 	MetricTransformations []MetricTransformation `json:"metricTransformations,omitempty"`
@@ -324,7 +324,7 @@ type MetricFilter struct {
 // MetricFilterMatchRecord is undocumented.
 type MetricFilterMatchRecord struct {
 	EventMessage    string            `json:"eventMessage,omitempty"`
-	EventNumber     int               `json:"eventNumber,omitempty"`
+	EventNumber     int64             `json:"eventNumber,omitempty"`
 	ExtractedValues map[string]string `json:"extractedValues,omitempty"`
 }
 
@@ -337,9 +337,9 @@ type MetricTransformation struct {
 
 // OutputLogEvent is undocumented.
 type OutputLogEvent struct {
-	IngestionTime int    `json:"ingestionTime,omitempty"`
+	IngestionTime int64  `json:"ingestionTime,omitempty"`
 	Message       string `json:"message,omitempty"`
-	Timestamp     int    `json:"timestamp,omitempty"`
+	Timestamp     int64  `json:"timestamp,omitempty"`
 }
 
 // PutLogEventsRequest is undocumented.

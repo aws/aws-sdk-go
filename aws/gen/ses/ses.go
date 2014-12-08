@@ -396,10 +396,10 @@ type RawMessage struct {
 
 // SendDataPoint is undocumented.
 type SendDataPoint struct {
-	Bounces          int       `xml:"Bounces"`
-	Complaints       int       `xml:"Complaints"`
-	DeliveryAttempts int       `xml:"DeliveryAttempts"`
-	Rejects          int       `xml:"Rejects"`
+	Bounces          int64     `xml:"Bounces"`
+	Complaints       int64     `xml:"Complaints"`
+	DeliveryAttempts int64     `xml:"DeliveryAttempts"`
+	Rejects          int64     `xml:"Rejects"`
 	Timestamp        time.Time `xml:"Timestamp"`
 }
 

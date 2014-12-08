@@ -211,7 +211,7 @@ type GetOpenIDTokenForDeveloperIdentityInput struct {
 	IdentityID     string            `json:"IdentityId,omitempty"`
 	IdentityPoolID string            `json:"IdentityPoolId"`
 	Logins         map[string]string `json:"Logins"`
-	TokenDuration  int               `json:"TokenDuration,omitempty"`
+	TokenDuration  int64             `json:"TokenDuration,omitempty"`
 }
 
 // GetOpenIDTokenForDeveloperIdentityResponse is undocumented.

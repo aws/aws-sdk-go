@@ -644,7 +644,7 @@ type IndexFieldStatus struct {
 
 // IntArrayOptions is undocumented.
 type IntArrayOptions struct {
-	DefaultValue  int    `xml:"DefaultValue"`
+	DefaultValue  int64  `xml:"DefaultValue"`
 	FacetEnabled  bool   `xml:"FacetEnabled"`
 	ReturnEnabled bool   `xml:"ReturnEnabled"`
 	SearchEnabled bool   `xml:"SearchEnabled"`
@@ -653,7 +653,7 @@ type IntArrayOptions struct {
 
 // IntOptions is undocumented.
 type IntOptions struct {
-	DefaultValue  int    `xml:"DefaultValue"`
+	DefaultValue  int64  `xml:"DefaultValue"`
 	FacetEnabled  bool   `xml:"FacetEnabled"`
 	ReturnEnabled bool   `xml:"ReturnEnabled"`
 	SearchEnabled bool   `xml:"SearchEnabled"`

@@ -251,13 +251,13 @@ type DomainMetadataRequest struct {
 
 // DomainMetadataResult is undocumented.
 type DomainMetadataResult struct {
-	AttributeNameCount       int `xml:"DomainMetadataResult>AttributeNameCount"`
-	AttributeNamesSizeBytes  int `xml:"DomainMetadataResult>AttributeNamesSizeBytes"`
-	AttributeValueCount      int `xml:"DomainMetadataResult>AttributeValueCount"`
-	AttributeValuesSizeBytes int `xml:"DomainMetadataResult>AttributeValuesSizeBytes"`
-	ItemCount                int `xml:"DomainMetadataResult>ItemCount"`
-	ItemNamesSizeBytes       int `xml:"DomainMetadataResult>ItemNamesSizeBytes"`
-	Timestamp                int `xml:"DomainMetadataResult>Timestamp"`
+	AttributeNameCount       int   `xml:"DomainMetadataResult>AttributeNameCount"`
+	AttributeNamesSizeBytes  int64 `xml:"DomainMetadataResult>AttributeNamesSizeBytes"`
+	AttributeValueCount      int   `xml:"DomainMetadataResult>AttributeValueCount"`
+	AttributeValuesSizeBytes int64 `xml:"DomainMetadataResult>AttributeValuesSizeBytes"`
+	ItemCount                int   `xml:"DomainMetadataResult>ItemCount"`
+	ItemNamesSizeBytes       int64 `xml:"DomainMetadataResult>ItemNamesSizeBytes"`
+	Timestamp                int   `xml:"DomainMetadataResult>Timestamp"`
 }
 
 // GetAttributesRequest is undocumented.

@@ -483,7 +483,7 @@ type TrustedAdvisorCheckDescription struct {
 // TrustedAdvisorCheckRefreshStatus is undocumented.
 type TrustedAdvisorCheckRefreshStatus struct {
 	CheckID                    string `json:"checkId"`
-	MillisUntilNextRefreshable int    `json:"millisUntilNextRefreshable"`
+	MillisUntilNextRefreshable int64  `json:"millisUntilNextRefreshable"`
 	Status                     string `json:"status"`
 }
 
@@ -524,10 +524,10 @@ type TrustedAdvisorResourceDetail struct {
 
 // TrustedAdvisorResourcesSummary is undocumented.
 type TrustedAdvisorResourcesSummary struct {
-	ResourcesFlagged    int `json:"resourcesFlagged"`
-	ResourcesIgnored    int `json:"resourcesIgnored"`
-	ResourcesProcessed  int `json:"resourcesProcessed"`
-	ResourcesSuppressed int `json:"resourcesSuppressed"`
+	ResourcesFlagged    int64 `json:"resourcesFlagged"`
+	ResourcesIgnored    int64 `json:"resourcesIgnored"`
+	ResourcesProcessed  int64 `json:"resourcesProcessed"`
+	ResourcesSuppressed int64 `json:"resourcesSuppressed"`
 }
 
 // avoid errors if the packages aren't referenced

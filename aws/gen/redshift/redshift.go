@@ -879,7 +879,7 @@ type ClusterSecurityGroupMessage struct {
 // ClusterSnapshotCopyStatus is undocumented.
 type ClusterSnapshotCopyStatus struct {
 	DestinationRegion string `xml:"DestinationRegion"`
-	RetentionPeriod   int    `xml:"RetentionPeriod"`
+	RetentionPeriod   int64  `xml:"RetentionPeriod"`
 }
 
 // ClusterSubnetGroup is undocumented.
@@ -1635,17 +1635,17 @@ type ResetClusterParameterGroupMessage struct {
 // ResizeProgressMessage is undocumented.
 type ResizeProgressMessage struct {
 	AvgResizeRateInMegaBytesPerSecond  float64  `xml:"DescribeResizeResult>AvgResizeRateInMegaBytesPerSecond"`
-	ElapsedTimeInSeconds               int      `xml:"DescribeResizeResult>ElapsedTimeInSeconds"`
-	EstimatedTimeToCompletionInSeconds int      `xml:"DescribeResizeResult>EstimatedTimeToCompletionInSeconds"`
+	ElapsedTimeInSeconds               int64    `xml:"DescribeResizeResult>ElapsedTimeInSeconds"`
+	EstimatedTimeToCompletionInSeconds int64    `xml:"DescribeResizeResult>EstimatedTimeToCompletionInSeconds"`
 	ImportTablesCompleted              []string `xml:"DescribeResizeResult>ImportTablesCompleted>member"`
 	ImportTablesInProgress             []string `xml:"DescribeResizeResult>ImportTablesInProgress>member"`
 	ImportTablesNotStarted             []string `xml:"DescribeResizeResult>ImportTablesNotStarted>member"`
-	ProgressInMegaBytes                int      `xml:"DescribeResizeResult>ProgressInMegaBytes"`
+	ProgressInMegaBytes                int64    `xml:"DescribeResizeResult>ProgressInMegaBytes"`
 	Status                             string   `xml:"DescribeResizeResult>Status"`
 	TargetClusterType                  string   `xml:"DescribeResizeResult>TargetClusterType"`
 	TargetNodeType                     string   `xml:"DescribeResizeResult>TargetNodeType"`
 	TargetNumberOfNodes                int      `xml:"DescribeResizeResult>TargetNumberOfNodes"`
-	TotalResizeDataInMegaBytes         int      `xml:"DescribeResizeResult>TotalResizeDataInMegaBytes"`
+	TotalResizeDataInMegaBytes         int64    `xml:"DescribeResizeResult>TotalResizeDataInMegaBytes"`
 }
 
 // RestoreFromClusterSnapshotMessage is undocumented.
@@ -1678,10 +1678,10 @@ type RestoreFromClusterSnapshotResult struct {
 // RestoreStatus is undocumented.
 type RestoreStatus struct {
 	CurrentRestoreRateInMegaBytesPerSecond float64 `xml:"CurrentRestoreRateInMegaBytesPerSecond"`
-	ElapsedTimeInSeconds                   int     `xml:"ElapsedTimeInSeconds"`
-	EstimatedTimeToCompletionInSeconds     int     `xml:"EstimatedTimeToCompletionInSeconds"`
-	ProgressInMegaBytes                    int     `xml:"ProgressInMegaBytes"`
-	SnapshotSizeInMegaBytes                int     `xml:"SnapshotSizeInMegaBytes"`
+	ElapsedTimeInSeconds                   int64   `xml:"ElapsedTimeInSeconds"`
+	EstimatedTimeToCompletionInSeconds     int64   `xml:"EstimatedTimeToCompletionInSeconds"`
+	ProgressInMegaBytes                    int64   `xml:"ProgressInMegaBytes"`
+	SnapshotSizeInMegaBytes                int64   `xml:"SnapshotSizeInMegaBytes"`
 	Status                                 string  `xml:"Status"`
 }
 
@@ -1731,10 +1731,10 @@ type Snapshot struct {
 	ClusterVersion                         string                     `xml:"ClusterVersion"`
 	CurrentBackupRateInMegaBytesPerSecond  float64                    `xml:"CurrentBackupRateInMegaBytesPerSecond"`
 	DBName                                 string                     `xml:"DBName"`
-	ElapsedTimeInSeconds                   int                        `xml:"ElapsedTimeInSeconds"`
+	ElapsedTimeInSeconds                   int64                      `xml:"ElapsedTimeInSeconds"`
 	Encrypted                              bool                       `xml:"Encrypted"`
 	EncryptedWithHSM                       bool                       `xml:"EncryptedWithHSM"`
-	EstimatedSecondsToCompletion           int                        `xml:"EstimatedSecondsToCompletion"`
+	EstimatedSecondsToCompletion           int64                      `xml:"EstimatedSecondsToCompletion"`
 	KmsKeyID                               string                     `xml:"KmsKeyId"`
 	MasterUsername                         string                     `xml:"MasterUsername"`
 	NodeType                               string                     `xml:"NodeType"`
@@ -1925,17 +1925,17 @@ type DescribeResizeResult struct {
 	XMLName xml.Name `xml:"DescribeResizeResponse"`
 
 	AvgResizeRateInMegaBytesPerSecond  float64  `xml:"DescribeResizeResult>AvgResizeRateInMegaBytesPerSecond"`
-	ElapsedTimeInSeconds               int      `xml:"DescribeResizeResult>ElapsedTimeInSeconds"`
-	EstimatedTimeToCompletionInSeconds int      `xml:"DescribeResizeResult>EstimatedTimeToCompletionInSeconds"`
+	ElapsedTimeInSeconds               int64    `xml:"DescribeResizeResult>ElapsedTimeInSeconds"`
+	EstimatedTimeToCompletionInSeconds int64    `xml:"DescribeResizeResult>EstimatedTimeToCompletionInSeconds"`
 	ImportTablesCompleted              []string `xml:"DescribeResizeResult>ImportTablesCompleted>member"`
 	ImportTablesInProgress             []string `xml:"DescribeResizeResult>ImportTablesInProgress>member"`
 	ImportTablesNotStarted             []string `xml:"DescribeResizeResult>ImportTablesNotStarted>member"`
-	ProgressInMegaBytes                int      `xml:"DescribeResizeResult>ProgressInMegaBytes"`
+	ProgressInMegaBytes                int64    `xml:"DescribeResizeResult>ProgressInMegaBytes"`
 	Status                             string   `xml:"DescribeResizeResult>Status"`
 	TargetClusterType                  string   `xml:"DescribeResizeResult>TargetClusterType"`
 	TargetNodeType                     string   `xml:"DescribeResizeResult>TargetNodeType"`
 	TargetNumberOfNodes                int      `xml:"DescribeResizeResult>TargetNumberOfNodes"`
-	TotalResizeDataInMegaBytes         int      `xml:"DescribeResizeResult>TotalResizeDataInMegaBytes"`
+	TotalResizeDataInMegaBytes         int64    `xml:"DescribeResizeResult>TotalResizeDataInMegaBytes"`
 }
 
 // DescribeTagsResult is a wrapper for TaggedResourceListMessage.

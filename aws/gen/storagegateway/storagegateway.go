@@ -667,7 +667,7 @@ type CachediSCSIVolume struct {
 	VolumeARN             string                `json:"VolumeARN,omitempty"`
 	VolumeID              string                `json:"VolumeId,omitempty"`
 	VolumeProgress        float64               `json:"VolumeProgress,omitempty"`
-	VolumeSizeInBytes     int                   `json:"VolumeSizeInBytes,omitempty"`
+	VolumeSizeInBytes     int64                 `json:"VolumeSizeInBytes,omitempty"`
 	VolumeStatus          string                `json:"VolumeStatus,omitempty"`
 	VolumeType            string                `json:"VolumeType,omitempty"`
 	VolumeiSCSIAttributes VolumeiSCSIAttributes `json:"VolumeiSCSIAttributes,omitempty"`
@@ -710,7 +710,7 @@ type CreateCachediSCSIVolumeInput struct {
 	NetworkInterfaceID string `json:"NetworkInterfaceId"`
 	SnapshotID         string `json:"SnapshotId,omitempty"`
 	TargetName         string `json:"TargetName"`
-	VolumeSizeInBytes  int    `json:"VolumeSizeInBytes"`
+	VolumeSizeInBytes  int64  `json:"VolumeSizeInBytes"`
 }
 
 // CreateCachediSCSIVolumeOutput is undocumented.
@@ -758,7 +758,7 @@ type CreateStorediSCSIVolumeInput struct {
 type CreateStorediSCSIVolumeOutput struct {
 	TargetARN         string `json:"TargetARN,omitempty"`
 	VolumeARN         string `json:"VolumeARN,omitempty"`
-	VolumeSizeInBytes int    `json:"VolumeSizeInBytes,omitempty"`
+	VolumeSizeInBytes int64  `json:"VolumeSizeInBytes,omitempty"`
 }
 
 // CreateTapesInput is undocumented.
@@ -767,7 +767,7 @@ type CreateTapesInput struct {
 	GatewayARN        string `json:"GatewayARN"`
 	NumTapesToCreate  int    `json:"NumTapesToCreate"`
 	TapeBarcodePrefix string `json:"TapeBarcodePrefix"`
-	TapeSizeInBytes   int    `json:"TapeSizeInBytes"`
+	TapeSizeInBytes   int64  `json:"TapeSizeInBytes"`
 }
 
 // CreateTapesOutput is undocumented.
@@ -856,8 +856,8 @@ type DescribeBandwidthRateLimitInput struct {
 
 // DescribeBandwidthRateLimitOutput is undocumented.
 type DescribeBandwidthRateLimitOutput struct {
-	AverageDownloadRateLimitInBitsPerSec int    `json:"AverageDownloadRateLimitInBitsPerSec,omitempty"`
-	AverageUploadRateLimitInBitsPerSec   int    `json:"AverageUploadRateLimitInBitsPerSec,omitempty"`
+	AverageDownloadRateLimitInBitsPerSec int64  `json:"AverageDownloadRateLimitInBitsPerSec,omitempty"`
+	AverageUploadRateLimitInBitsPerSec   int64  `json:"AverageUploadRateLimitInBitsPerSec,omitempty"`
 	GatewayARN                           string `json:"GatewayARN,omitempty"`
 }
 
@@ -868,7 +868,7 @@ type DescribeCacheInput struct {
 
 // DescribeCacheOutput is undocumented.
 type DescribeCacheOutput struct {
-	CacheAllocatedInBytes int      `json:"CacheAllocatedInBytes,omitempty"`
+	CacheAllocatedInBytes int64    `json:"CacheAllocatedInBytes,omitempty"`
 	CacheDirtyPercentage  float64  `json:"CacheDirtyPercentage,omitempty"`
 	CacheHitPercentage    float64  `json:"CacheHitPercentage,omitempty"`
 	CacheMissPercentage   float64  `json:"CacheMissPercentage,omitempty"`
@@ -1001,8 +1001,8 @@ type DescribeUploadBufferInput struct {
 type DescribeUploadBufferOutput struct {
 	DiskIds                      []string `json:"DiskIds,omitempty"`
 	GatewayARN                   string   `json:"GatewayARN,omitempty"`
-	UploadBufferAllocatedInBytes int      `json:"UploadBufferAllocatedInBytes,omitempty"`
-	UploadBufferUsedInBytes      int      `json:"UploadBufferUsedInBytes,omitempty"`
+	UploadBufferAllocatedInBytes int64    `json:"UploadBufferAllocatedInBytes,omitempty"`
+	UploadBufferUsedInBytes      int64    `json:"UploadBufferUsedInBytes,omitempty"`
 }
 
 // DescribeVTLDevicesInput is undocumented.
@@ -1029,8 +1029,8 @@ type DescribeWorkingStorageInput struct {
 type DescribeWorkingStorageOutput struct {
 	DiskIds                        []string `json:"DiskIds,omitempty"`
 	GatewayARN                     string   `json:"GatewayARN,omitempty"`
-	WorkingStorageAllocatedInBytes int      `json:"WorkingStorageAllocatedInBytes,omitempty"`
-	WorkingStorageUsedInBytes      int      `json:"WorkingStorageUsedInBytes,omitempty"`
+	WorkingStorageAllocatedInBytes int64    `json:"WorkingStorageAllocatedInBytes,omitempty"`
+	WorkingStorageUsedInBytes      int64    `json:"WorkingStorageUsedInBytes,omitempty"`
 }
 
 // DeviceiSCSIAttributes is undocumented.
@@ -1058,7 +1058,7 @@ type Disk struct {
 	DiskID                 string `json:"DiskId,omitempty"`
 	DiskNode               string `json:"DiskNode,omitempty"`
 	DiskPath               string `json:"DiskPath,omitempty"`
-	DiskSizeInBytes        int    `json:"DiskSizeInBytes,omitempty"`
+	DiskSizeInBytes        int64  `json:"DiskSizeInBytes,omitempty"`
 }
 
 // GatewayInfo is undocumented.
@@ -1179,7 +1179,7 @@ type StorediSCSIVolume struct {
 	VolumeDiskID          string                `json:"VolumeDiskId,omitempty"`
 	VolumeID              string                `json:"VolumeId,omitempty"`
 	VolumeProgress        float64               `json:"VolumeProgress,omitempty"`
-	VolumeSizeInBytes     int                   `json:"VolumeSizeInBytes,omitempty"`
+	VolumeSizeInBytes     int64                 `json:"VolumeSizeInBytes,omitempty"`
 	VolumeStatus          string                `json:"VolumeStatus,omitempty"`
 	VolumeType            string                `json:"VolumeType,omitempty"`
 	VolumeiSCSIAttributes VolumeiSCSIAttributes `json:"VolumeiSCSIAttributes,omitempty"`
@@ -1190,7 +1190,7 @@ type Tape struct {
 	Progress        float64 `json:"Progress,omitempty"`
 	TapeARN         string  `json:"TapeARN,omitempty"`
 	TapeBarcode     string  `json:"TapeBarcode,omitempty"`
-	TapeSizeInBytes int     `json:"TapeSizeInBytes,omitempty"`
+	TapeSizeInBytes int64   `json:"TapeSizeInBytes,omitempty"`
 	TapeStatus      string  `json:"TapeStatus,omitempty"`
 	VTLDevice       string  `json:"VTLDevice,omitempty"`
 }
@@ -1201,7 +1201,7 @@ type TapeArchive struct {
 	RetrievedTo     string    `json:"RetrievedTo,omitempty"`
 	TapeARN         string    `json:"TapeARN,omitempty"`
 	TapeBarcode     string    `json:"TapeBarcode,omitempty"`
-	TapeSizeInBytes int       `json:"TapeSizeInBytes,omitempty"`
+	TapeSizeInBytes int64     `json:"TapeSizeInBytes,omitempty"`
 	TapeStatus      string    `json:"TapeStatus,omitempty"`
 }
 
@@ -1209,14 +1209,14 @@ type TapeArchive struct {
 type TapeRecoveryPointInfo struct {
 	TapeARN               string    `json:"TapeARN,omitempty"`
 	TapeRecoveryPointTime time.Time `json:"TapeRecoveryPointTime,omitempty"`
-	TapeSizeInBytes       int       `json:"TapeSizeInBytes,omitempty"`
+	TapeSizeInBytes       int64     `json:"TapeSizeInBytes,omitempty"`
 	TapeStatus            string    `json:"TapeStatus,omitempty"`
 }
 
 // UpdateBandwidthRateLimitInput is undocumented.
 type UpdateBandwidthRateLimitInput struct {
-	AverageDownloadRateLimitInBitsPerSec int    `json:"AverageDownloadRateLimitInBitsPerSec,omitempty"`
-	AverageUploadRateLimitInBitsPerSec   int    `json:"AverageUploadRateLimitInBitsPerSec,omitempty"`
+	AverageDownloadRateLimitInBitsPerSec int64  `json:"AverageDownloadRateLimitInBitsPerSec,omitempty"`
+	AverageUploadRateLimitInBitsPerSec   int64  `json:"AverageUploadRateLimitInBitsPerSec,omitempty"`
 	GatewayARN                           string `json:"GatewayARN"`
 }
 
@@ -1306,8 +1306,8 @@ type VolumeInfo struct {
 type VolumeRecoveryPointInfo struct {
 	VolumeARN               string `json:"VolumeARN,omitempty"`
 	VolumeRecoveryPointTime string `json:"VolumeRecoveryPointTime,omitempty"`
-	VolumeSizeInBytes       int    `json:"VolumeSizeInBytes,omitempty"`
-	VolumeUsageInBytes      int    `json:"VolumeUsageInBytes,omitempty"`
+	VolumeSizeInBytes       int64  `json:"VolumeSizeInBytes,omitempty"`
+	VolumeUsageInBytes      int64  `json:"VolumeUsageInBytes,omitempty"`
 }
 
 // VolumeiSCSIAttributes is undocumented.

@@ -486,9 +486,9 @@ type GlobalSecondaryIndex struct {
 // GlobalSecondaryIndexDescription is undocumented.
 type GlobalSecondaryIndexDescription struct {
 	IndexName             string                           `json:"IndexName,omitempty"`
-	IndexSizeBytes        int                              `json:"IndexSizeBytes,omitempty"`
+	IndexSizeBytes        int64                            `json:"IndexSizeBytes,omitempty"`
 	IndexStatus           string                           `json:"IndexStatus,omitempty"`
-	ItemCount             int                              `json:"ItemCount,omitempty"`
+	ItemCount             int64                            `json:"ItemCount,omitempty"`
 	KeySchema             []KeySchemaElement               `json:"KeySchema,omitempty"`
 	Projection            Projection                       `json:"Projection,omitempty"`
 	ProvisionedThroughput ProvisionedThroughputDescription `json:"ProvisionedThroughput,omitempty"`
@@ -542,8 +542,8 @@ type LocalSecondaryIndex struct {
 // LocalSecondaryIndexDescription is undocumented.
 type LocalSecondaryIndexDescription struct {
 	IndexName      string             `json:"IndexName,omitempty"`
-	IndexSizeBytes int                `json:"IndexSizeBytes,omitempty"`
-	ItemCount      int                `json:"ItemCount,omitempty"`
+	IndexSizeBytes int64              `json:"IndexSizeBytes,omitempty"`
+	ItemCount      int64              `json:"ItemCount,omitempty"`
 	KeySchema      []KeySchemaElement `json:"KeySchema,omitempty"`
 	Projection     Projection         `json:"Projection,omitempty"`
 }
@@ -556,17 +556,17 @@ type Projection struct {
 
 // ProvisionedThroughput is undocumented.
 type ProvisionedThroughput struct {
-	ReadCapacityUnits  int `json:"ReadCapacityUnits"`
-	WriteCapacityUnits int `json:"WriteCapacityUnits"`
+	ReadCapacityUnits  int64 `json:"ReadCapacityUnits"`
+	WriteCapacityUnits int64 `json:"WriteCapacityUnits"`
 }
 
 // ProvisionedThroughputDescription is undocumented.
 type ProvisionedThroughputDescription struct {
 	LastDecreaseDateTime   time.Time `json:"LastDecreaseDateTime,omitempty"`
 	LastIncreaseDateTime   time.Time `json:"LastIncreaseDateTime,omitempty"`
-	NumberOfDecreasesToday int       `json:"NumberOfDecreasesToday,omitempty"`
-	ReadCapacityUnits      int       `json:"ReadCapacityUnits,omitempty"`
-	WriteCapacityUnits     int       `json:"WriteCapacityUnits,omitempty"`
+	NumberOfDecreasesToday int64     `json:"NumberOfDecreasesToday,omitempty"`
+	ReadCapacityUnits      int64     `json:"ReadCapacityUnits,omitempty"`
+	WriteCapacityUnits     int64     `json:"WriteCapacityUnits,omitempty"`
 }
 
 // PutItemInput is undocumented.
@@ -656,12 +656,12 @@ type TableDescription struct {
 	AttributeDefinitions   []AttributeDefinition             `json:"AttributeDefinitions,omitempty"`
 	CreationDateTime       time.Time                         `json:"CreationDateTime,omitempty"`
 	GlobalSecondaryIndexes []GlobalSecondaryIndexDescription `json:"GlobalSecondaryIndexes,omitempty"`
-	ItemCount              int                               `json:"ItemCount,omitempty"`
+	ItemCount              int64                             `json:"ItemCount,omitempty"`
 	KeySchema              []KeySchemaElement                `json:"KeySchema,omitempty"`
 	LocalSecondaryIndexes  []LocalSecondaryIndexDescription  `json:"LocalSecondaryIndexes,omitempty"`
 	ProvisionedThroughput  ProvisionedThroughputDescription  `json:"ProvisionedThroughput,omitempty"`
 	TableName              string                            `json:"TableName,omitempty"`
-	TableSizeBytes         int                               `json:"TableSizeBytes,omitempty"`
+	TableSizeBytes         int64                             `json:"TableSizeBytes,omitempty"`
 	TableStatus            string                            `json:"TableStatus,omitempty"`
 }
 

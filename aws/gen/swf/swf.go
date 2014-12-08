@@ -724,7 +724,7 @@ type ActivityTask struct {
 	ActivityID        string            `json:"activityId"`
 	ActivityType      ActivityType      `json:"activityType"`
 	Input             string            `json:"input,omitempty"`
-	StartedEventID    int               `json:"startedEventId"`
+	StartedEventID    int64             `json:"startedEventId"`
 	TaskToken         string            `json:"taskToken"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 }
@@ -732,30 +732,30 @@ type ActivityTask struct {
 // ActivityTaskCancelRequestedEventAttributes is undocumented.
 type ActivityTaskCancelRequestedEventAttributes struct {
 	ActivityID                   string `json:"activityId"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 }
 
 // ActivityTaskCanceledEventAttributes is undocumented.
 type ActivityTaskCanceledEventAttributes struct {
 	Details                      string `json:"details,omitempty"`
-	LatestCancelRequestedEventID int    `json:"latestCancelRequestedEventId,omitempty"`
-	ScheduledEventID             int    `json:"scheduledEventId"`
-	StartedEventID               int    `json:"startedEventId"`
+	LatestCancelRequestedEventID int64  `json:"latestCancelRequestedEventId,omitempty"`
+	ScheduledEventID             int64  `json:"scheduledEventId"`
+	StartedEventID               int64  `json:"startedEventId"`
 }
 
 // ActivityTaskCompletedEventAttributes is undocumented.
 type ActivityTaskCompletedEventAttributes struct {
 	Result           string `json:"result,omitempty"`
-	ScheduledEventID int    `json:"scheduledEventId"`
-	StartedEventID   int    `json:"startedEventId"`
+	ScheduledEventID int64  `json:"scheduledEventId"`
+	StartedEventID   int64  `json:"startedEventId"`
 }
 
 // ActivityTaskFailedEventAttributes is undocumented.
 type ActivityTaskFailedEventAttributes struct {
 	Details          string `json:"details,omitempty"`
 	Reason           string `json:"reason,omitempty"`
-	ScheduledEventID int    `json:"scheduledEventId"`
-	StartedEventID   int    `json:"startedEventId"`
+	ScheduledEventID int64  `json:"scheduledEventId"`
+	StartedEventID   int64  `json:"startedEventId"`
 }
 
 // ActivityTaskScheduledEventAttributes is undocumented.
@@ -763,7 +763,7 @@ type ActivityTaskScheduledEventAttributes struct {
 	ActivityID                   string       `json:"activityId"`
 	ActivityType                 ActivityType `json:"activityType"`
 	Control                      string       `json:"control,omitempty"`
-	DecisionTaskCompletedEventID int          `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64        `json:"decisionTaskCompletedEventId"`
 	HeartbeatTimeout             string       `json:"heartbeatTimeout,omitempty"`
 	Input                        string       `json:"input,omitempty"`
 	ScheduleToCloseTimeout       string       `json:"scheduleToCloseTimeout,omitempty"`
@@ -775,7 +775,7 @@ type ActivityTaskScheduledEventAttributes struct {
 // ActivityTaskStartedEventAttributes is undocumented.
 type ActivityTaskStartedEventAttributes struct {
 	Identity         string `json:"identity,omitempty"`
-	ScheduledEventID int    `json:"scheduledEventId"`
+	ScheduledEventID int64  `json:"scheduledEventId"`
 }
 
 // ActivityTaskStatus is undocumented.
@@ -786,8 +786,8 @@ type ActivityTaskStatus struct {
 // ActivityTaskTimedOutEventAttributes is undocumented.
 type ActivityTaskTimedOutEventAttributes struct {
 	Details          string `json:"details,omitempty"`
-	ScheduledEventID int    `json:"scheduledEventId"`
-	StartedEventID   int    `json:"startedEventId"`
+	ScheduledEventID int64  `json:"scheduledEventId"`
+	StartedEventID   int64  `json:"startedEventId"`
 	TimeoutType      string `json:"timeoutType"`
 }
 
@@ -835,7 +835,7 @@ type CancelTimerDecisionAttributes struct {
 // CancelTimerFailedEventAttributes is undocumented.
 type CancelTimerFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 	TimerID                      string `json:"timerId"`
 }
 
@@ -847,23 +847,23 @@ type CancelWorkflowExecutionDecisionAttributes struct {
 // CancelWorkflowExecutionFailedEventAttributes is undocumented.
 type CancelWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 }
 
 // ChildWorkflowExecutionCanceledEventAttributes is undocumented.
 type ChildWorkflowExecutionCanceledEventAttributes struct {
 	Details           string            `json:"details,omitempty"`
-	InitiatedEventID  int               `json:"initiatedEventId"`
-	StartedEventID    int               `json:"startedEventId"`
+	InitiatedEventID  int64             `json:"initiatedEventId"`
+	StartedEventID    int64             `json:"startedEventId"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 	WorkflowType      WorkflowType      `json:"workflowType"`
 }
 
 // ChildWorkflowExecutionCompletedEventAttributes is undocumented.
 type ChildWorkflowExecutionCompletedEventAttributes struct {
-	InitiatedEventID  int               `json:"initiatedEventId"`
+	InitiatedEventID  int64             `json:"initiatedEventId"`
 	Result            string            `json:"result,omitempty"`
-	StartedEventID    int               `json:"startedEventId"`
+	StartedEventID    int64             `json:"startedEventId"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 	WorkflowType      WorkflowType      `json:"workflowType"`
 }
@@ -871,32 +871,32 @@ type ChildWorkflowExecutionCompletedEventAttributes struct {
 // ChildWorkflowExecutionFailedEventAttributes is undocumented.
 type ChildWorkflowExecutionFailedEventAttributes struct {
 	Details           string            `json:"details,omitempty"`
-	InitiatedEventID  int               `json:"initiatedEventId"`
+	InitiatedEventID  int64             `json:"initiatedEventId"`
 	Reason            string            `json:"reason,omitempty"`
-	StartedEventID    int               `json:"startedEventId"`
+	StartedEventID    int64             `json:"startedEventId"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 	WorkflowType      WorkflowType      `json:"workflowType"`
 }
 
 // ChildWorkflowExecutionStartedEventAttributes is undocumented.
 type ChildWorkflowExecutionStartedEventAttributes struct {
-	InitiatedEventID  int               `json:"initiatedEventId"`
+	InitiatedEventID  int64             `json:"initiatedEventId"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 	WorkflowType      WorkflowType      `json:"workflowType"`
 }
 
 // ChildWorkflowExecutionTerminatedEventAttributes is undocumented.
 type ChildWorkflowExecutionTerminatedEventAttributes struct {
-	InitiatedEventID  int               `json:"initiatedEventId"`
-	StartedEventID    int               `json:"startedEventId"`
+	InitiatedEventID  int64             `json:"initiatedEventId"`
+	StartedEventID    int64             `json:"startedEventId"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 	WorkflowType      WorkflowType      `json:"workflowType"`
 }
 
 // ChildWorkflowExecutionTimedOutEventAttributes is undocumented.
 type ChildWorkflowExecutionTimedOutEventAttributes struct {
-	InitiatedEventID  int               `json:"initiatedEventId"`
-	StartedEventID    int               `json:"startedEventId"`
+	InitiatedEventID  int64             `json:"initiatedEventId"`
+	StartedEventID    int64             `json:"startedEventId"`
 	TimeoutType       string            `json:"timeoutType"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 	WorkflowType      WorkflowType      `json:"workflowType"`
@@ -915,7 +915,7 @@ type CompleteWorkflowExecutionDecisionAttributes struct {
 // CompleteWorkflowExecutionFailedEventAttributes is undocumented.
 type CompleteWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 }
 
 // ContinueAsNewWorkflowExecutionDecisionAttributes is undocumented.
@@ -932,7 +932,7 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 // ContinueAsNewWorkflowExecutionFailedEventAttributes is undocumented.
 type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 }
 
 // CountClosedWorkflowExecutionsInput is undocumented.
@@ -988,8 +988,8 @@ type Decision struct {
 type DecisionTask struct {
 	Events                 []HistoryEvent    `json:"events"`
 	NextPageToken          string            `json:"nextPageToken,omitempty"`
-	PreviousStartedEventID int               `json:"previousStartedEventId,omitempty"`
-	StartedEventID         int               `json:"startedEventId"`
+	PreviousStartedEventID int64             `json:"previousStartedEventId,omitempty"`
+	StartedEventID         int64             `json:"startedEventId"`
 	TaskToken              string            `json:"taskToken"`
 	WorkflowExecution      WorkflowExecution `json:"workflowExecution"`
 	WorkflowType           WorkflowType      `json:"workflowType"`
@@ -998,8 +998,8 @@ type DecisionTask struct {
 // DecisionTaskCompletedEventAttributes is undocumented.
 type DecisionTaskCompletedEventAttributes struct {
 	ExecutionContext string `json:"executionContext,omitempty"`
-	ScheduledEventID int    `json:"scheduledEventId"`
-	StartedEventID   int    `json:"startedEventId"`
+	ScheduledEventID int64  `json:"scheduledEventId"`
+	StartedEventID   int64  `json:"startedEventId"`
 }
 
 // DecisionTaskScheduledEventAttributes is undocumented.
@@ -1011,13 +1011,13 @@ type DecisionTaskScheduledEventAttributes struct {
 // DecisionTaskStartedEventAttributes is undocumented.
 type DecisionTaskStartedEventAttributes struct {
 	Identity         string `json:"identity,omitempty"`
-	ScheduledEventID int    `json:"scheduledEventId"`
+	ScheduledEventID int64  `json:"scheduledEventId"`
 }
 
 // DecisionTaskTimedOutEventAttributes is undocumented.
 type DecisionTaskTimedOutEventAttributes struct {
-	ScheduledEventID int    `json:"scheduledEventId"`
-	StartedEventID   int    `json:"startedEventId"`
+	ScheduledEventID int64  `json:"scheduledEventId"`
+	StartedEventID   int64  `json:"startedEventId"`
 	TimeoutType      string `json:"timeoutType"`
 }
 
@@ -1093,13 +1093,13 @@ type ExecutionTimeFilter struct {
 
 // ExternalWorkflowExecutionCancelRequestedEventAttributes is undocumented.
 type ExternalWorkflowExecutionCancelRequestedEventAttributes struct {
-	InitiatedEventID  int               `json:"initiatedEventId"`
+	InitiatedEventID  int64             `json:"initiatedEventId"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 }
 
 // ExternalWorkflowExecutionSignaledEventAttributes is undocumented.
 type ExternalWorkflowExecutionSignaledEventAttributes struct {
-	InitiatedEventID  int               `json:"initiatedEventId"`
+	InitiatedEventID  int64             `json:"initiatedEventId"`
 	WorkflowExecution WorkflowExecution `json:"workflowExecution"`
 }
 
@@ -1112,7 +1112,7 @@ type FailWorkflowExecutionDecisionAttributes struct {
 // FailWorkflowExecutionFailedEventAttributes is undocumented.
 type FailWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 }
 
 // GetWorkflowExecutionHistoryInput is undocumented.
@@ -1153,7 +1153,7 @@ type HistoryEvent struct {
 	DecisionTaskScheduledEventAttributes                           DecisionTaskScheduledEventAttributes                           `json:"decisionTaskScheduledEventAttributes,omitempty"`
 	DecisionTaskStartedEventAttributes                             DecisionTaskStartedEventAttributes                             `json:"decisionTaskStartedEventAttributes,omitempty"`
 	DecisionTaskTimedOutEventAttributes                            DecisionTaskTimedOutEventAttributes                            `json:"decisionTaskTimedOutEventAttributes,omitempty"`
-	EventID                                                        int                                                            `json:"eventId"`
+	EventID                                                        int64                                                          `json:"eventId"`
 	EventTimestamp                                                 time.Time                                                      `json:"eventTimestamp"`
 	EventType                                                      string                                                         `json:"eventType"`
 	ExternalWorkflowExecutionCancelRequestedEventAttributes        ExternalWorkflowExecutionCancelRequestedEventAttributes        `json:"externalWorkflowExecutionCancelRequestedEventAttributes,omitempty"`
@@ -1240,7 +1240,7 @@ type ListWorkflowTypesInput struct {
 
 // MarkerRecordedEventAttributes is undocumented.
 type MarkerRecordedEventAttributes struct {
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 	Details                      string `json:"details,omitempty"`
 	MarkerName                   string `json:"markerName"`
 }
@@ -1283,7 +1283,7 @@ type RecordMarkerDecisionAttributes struct {
 // RecordMarkerFailedEventAttributes is undocumented.
 type RecordMarkerFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 	MarkerName                   string `json:"markerName"`
 }
 
@@ -1328,7 +1328,7 @@ type RequestCancelActivityTaskDecisionAttributes struct {
 type RequestCancelActivityTaskFailedEventAttributes struct {
 	ActivityID                   string `json:"activityId"`
 	Cause                        string `json:"cause"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 }
 
 // RequestCancelExternalWorkflowExecutionDecisionAttributes is undocumented.
@@ -1342,8 +1342,8 @@ type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
 	Control                      string `json:"control,omitempty"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
-	InitiatedEventID             int    `json:"initiatedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
+	InitiatedEventID             int64  `json:"initiatedEventId"`
 	RunID                        string `json:"runId,omitempty"`
 	WorkflowID                   string `json:"workflowId"`
 }
@@ -1351,7 +1351,7 @@ type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 // RequestCancelExternalWorkflowExecutionInitiatedEventAttributes is undocumented.
 type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
 	Control                      string `json:"control,omitempty"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 	RunID                        string `json:"runId,omitempty"`
 	WorkflowID                   string `json:"workflowId"`
 }
@@ -1412,7 +1412,7 @@ type ScheduleActivityTaskFailedEventAttributes struct {
 	ActivityID                   string       `json:"activityId"`
 	ActivityType                 ActivityType `json:"activityType"`
 	Cause                        string       `json:"cause"`
-	DecisionTaskCompletedEventID int          `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64        `json:"decisionTaskCompletedEventId"`
 }
 
 // SignalExternalWorkflowExecutionDecisionAttributes is undocumented.
@@ -1428,8 +1428,8 @@ type SignalExternalWorkflowExecutionDecisionAttributes struct {
 type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
 	Control                      string `json:"control,omitempty"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
-	InitiatedEventID             int    `json:"initiatedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
+	InitiatedEventID             int64  `json:"initiatedEventId"`
 	RunID                        string `json:"runId,omitempty"`
 	WorkflowID                   string `json:"workflowId"`
 }
@@ -1437,7 +1437,7 @@ type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 // SignalExternalWorkflowExecutionInitiatedEventAttributes is undocumented.
 type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	Control                      string `json:"control,omitempty"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 	Input                        string `json:"input,omitempty"`
 	RunID                        string `json:"runId,omitempty"`
 	SignalName                   string `json:"signalName"`
@@ -1470,8 +1470,8 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 type StartChildWorkflowExecutionFailedEventAttributes struct {
 	Cause                        string       `json:"cause"`
 	Control                      string       `json:"control,omitempty"`
-	DecisionTaskCompletedEventID int          `json:"decisionTaskCompletedEventId"`
-	InitiatedEventID             int          `json:"initiatedEventId"`
+	DecisionTaskCompletedEventID int64        `json:"decisionTaskCompletedEventId"`
+	InitiatedEventID             int64        `json:"initiatedEventId"`
 	WorkflowID                   string       `json:"workflowId"`
 	WorkflowType                 WorkflowType `json:"workflowType"`
 }
@@ -1480,7 +1480,7 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	ChildPolicy                  string       `json:"childPolicy"`
 	Control                      string       `json:"control,omitempty"`
-	DecisionTaskCompletedEventID int          `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64        `json:"decisionTaskCompletedEventId"`
 	ExecutionStartToCloseTimeout string       `json:"executionStartToCloseTimeout,omitempty"`
 	Input                        string       `json:"input,omitempty"`
 	TagList                      []string     `json:"tagList,omitempty"`
@@ -1500,7 +1500,7 @@ type StartTimerDecisionAttributes struct {
 // StartTimerFailedEventAttributes is undocumented.
 type StartTimerFailedEventAttributes struct {
 	Cause                        string `json:"cause"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 	TimerID                      string `json:"timerId"`
 }
 
@@ -1539,21 +1539,21 @@ type TerminateWorkflowExecutionInput struct {
 
 // TimerCanceledEventAttributes is undocumented.
 type TimerCanceledEventAttributes struct {
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
-	StartedEventID               int    `json:"startedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
+	StartedEventID               int64  `json:"startedEventId"`
 	TimerID                      string `json:"timerId"`
 }
 
 // TimerFiredEventAttributes is undocumented.
 type TimerFiredEventAttributes struct {
-	StartedEventID int    `json:"startedEventId"`
+	StartedEventID int64  `json:"startedEventId"`
 	TimerID        string `json:"timerId"`
 }
 
 // TimerStartedEventAttributes is undocumented.
 type TimerStartedEventAttributes struct {
 	Control                      string `json:"control,omitempty"`
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 	StartToFireTimeout           string `json:"startToFireTimeout"`
 	TimerID                      string `json:"timerId"`
 }
@@ -1567,19 +1567,19 @@ type WorkflowExecution struct {
 // WorkflowExecutionCancelRequestedEventAttributes is undocumented.
 type WorkflowExecutionCancelRequestedEventAttributes struct {
 	Cause                     string            `json:"cause,omitempty"`
-	ExternalInitiatedEventID  int               `json:"externalInitiatedEventId,omitempty"`
+	ExternalInitiatedEventID  int64             `json:"externalInitiatedEventId,omitempty"`
 	ExternalWorkflowExecution WorkflowExecution `json:"externalWorkflowExecution,omitempty"`
 }
 
 // WorkflowExecutionCanceledEventAttributes is undocumented.
 type WorkflowExecutionCanceledEventAttributes struct {
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 	Details                      string `json:"details,omitempty"`
 }
 
 // WorkflowExecutionCompletedEventAttributes is undocumented.
 type WorkflowExecutionCompletedEventAttributes struct {
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 	Result                       string `json:"result,omitempty"`
 }
 
@@ -1594,7 +1594,7 @@ type WorkflowExecutionConfiguration struct {
 // WorkflowExecutionContinuedAsNewEventAttributes is undocumented.
 type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	ChildPolicy                  string       `json:"childPolicy"`
-	DecisionTaskCompletedEventID int          `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64        `json:"decisionTaskCompletedEventId"`
 	ExecutionStartToCloseTimeout string       `json:"executionStartToCloseTimeout,omitempty"`
 	Input                        string       `json:"input,omitempty"`
 	NewExecutionRunID            string       `json:"newExecutionRunId"`
@@ -1621,7 +1621,7 @@ type WorkflowExecutionDetail struct {
 
 // WorkflowExecutionFailedEventAttributes is undocumented.
 type WorkflowExecutionFailedEventAttributes struct {
-	DecisionTaskCompletedEventID int    `json:"decisionTaskCompletedEventId"`
+	DecisionTaskCompletedEventID int64  `json:"decisionTaskCompletedEventId"`
 	Details                      string `json:"details,omitempty"`
 	Reason                       string `json:"reason,omitempty"`
 }
@@ -1660,7 +1660,7 @@ type WorkflowExecutionOpenCounts struct {
 
 // WorkflowExecutionSignaledEventAttributes is undocumented.
 type WorkflowExecutionSignaledEventAttributes struct {
-	ExternalInitiatedEventID  int               `json:"externalInitiatedEventId,omitempty"`
+	ExternalInitiatedEventID  int64             `json:"externalInitiatedEventId,omitempty"`
 	ExternalWorkflowExecution WorkflowExecution `json:"externalWorkflowExecution,omitempty"`
 	Input                     string            `json:"input,omitempty"`
 	SignalName                string            `json:"signalName"`
@@ -1672,7 +1672,7 @@ type WorkflowExecutionStartedEventAttributes struct {
 	ContinuedExecutionRunID      string            `json:"continuedExecutionRunId,omitempty"`
 	ExecutionStartToCloseTimeout string            `json:"executionStartToCloseTimeout,omitempty"`
 	Input                        string            `json:"input,omitempty"`
-	ParentInitiatedEventID       int               `json:"parentInitiatedEventId,omitempty"`
+	ParentInitiatedEventID       int64             `json:"parentInitiatedEventId,omitempty"`
 	ParentWorkflowExecution      WorkflowExecution `json:"parentWorkflowExecution,omitempty"`
 	TagList                      []string          `json:"tagList,omitempty"`
 	TaskList                     TaskList          `json:"taskList"`

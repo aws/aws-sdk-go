@@ -527,7 +527,7 @@ type CreateAppCookieStickinessPolicyOutput struct {
 
 // CreateLBCookieStickinessPolicyInput is undocumented.
 type CreateLBCookieStickinessPolicyInput struct {
-	CookieExpirationPeriod int    `xml:"CookieExpirationPeriod"`
+	CookieExpirationPeriod int64  `xml:"CookieExpirationPeriod"`
 	LoadBalancerName       string `xml:"LoadBalancerName"`
 	PolicyName             string `xml:"PolicyName"`
 }
@@ -703,7 +703,7 @@ type InstanceState struct {
 
 // LBCookieStickinessPolicy is undocumented.
 type LBCookieStickinessPolicy struct {
-	CookieExpirationPeriod int    `xml:"CookieExpirationPeriod"`
+	CookieExpirationPeriod int64  `xml:"CookieExpirationPeriod"`
 	PolicyName             string `xml:"PolicyName"`
 }
 

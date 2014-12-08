@@ -371,11 +371,11 @@ type DeploymentInfo struct {
 
 // DeploymentOverview is undocumented.
 type DeploymentOverview struct {
-	Failed     int `json:"Failed,omitempty"`
-	InProgress int `json:"InProgress,omitempty"`
-	Pending    int `json:"Pending,omitempty"`
-	Skipped    int `json:"Skipped,omitempty"`
-	Succeeded  int `json:"Succeeded,omitempty"`
+	Failed     int64 `json:"Failed,omitempty"`
+	InProgress int64 `json:"InProgress,omitempty"`
+	Pending    int64 `json:"Pending,omitempty"`
+	Skipped    int64 `json:"Skipped,omitempty"`
+	Succeeded  int64 `json:"Succeeded,omitempty"`
 }
 
 // Diagnostics is undocumented.

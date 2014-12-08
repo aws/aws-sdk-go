@@ -1029,16 +1029,16 @@ type DescribeDBInstancesMessage struct {
 
 // DescribeDBLogFilesDetails is undocumented.
 type DescribeDBLogFilesDetails struct {
-	LastWritten int    `xml:"LastWritten"`
+	LastWritten int64  `xml:"LastWritten"`
 	LogFileName string `xml:"LogFileName"`
-	Size        int    `xml:"Size"`
+	Size        int64  `xml:"Size"`
 }
 
 // DescribeDBLogFilesMessage is undocumented.
 type DescribeDBLogFilesMessage struct {
 	DBInstanceIdentifier string   `xml:"DBInstanceIdentifier"`
-	FileLastWritten      int      `xml:"FileLastWritten"`
-	FileSize             int      `xml:"FileSize"`
+	FileLastWritten      int64    `xml:"FileLastWritten"`
+	FileSize             int64    `xml:"FileSize"`
 	FilenameContains     string   `xml:"FilenameContains"`
 	Filters              []Filter `xml:"Filters>Filter"`
 	Marker               string   `xml:"Marker"`
