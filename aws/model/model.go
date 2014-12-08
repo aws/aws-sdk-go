@@ -160,11 +160,18 @@ func (s *Shape) Members() map[string]Member {
 }
 
 func (s *Shape) ResultWrapper() string {
+	var wrappers []string
+
 	for _, op := range service.Operations {
 		if op.OutputRef != nil && op.OutputRef.ShapeName == s.Name {
-			return op.OutputRef.ResultWrapper
+			wrappers = append(wrappers, op.OutputRef.ResultWrapper)
 		}
 	}
+
+	if len(wrappers) == 1 {
+		return wrappers[0]
+	}
+
 	return ""
 }
 
