@@ -257,12 +257,14 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
   {{ if $op.Output }}resp = &{{ $op.Output.Type }}{}{{ else }}// NRE{{ end }}
 
   var body io.Reader
+  var contentType string
   {{ if $op.Input }}
   {{ if $op.Input.Payload }}
   {{ with $m := index $op.Input.Members $op.Input.Payload }}
   {{ if $m.Streaming }}
   body = req.{{ exportable $m.Name  }}
   {{ else }}
+  contentType = "application/xml"
   b, err := xml.Marshal(req.{{ exportable $m.Name  }})
   if err != nil {
     return
@@ -317,6 +319,11 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
   if err != nil {
     return
   }
+
+  if contentType != "" {
+    httpReq.Header.Set("Content-Type", contentType)
+  }
+
   {{ if $op.Input }}
   {{ range $name, $m := $op.Input.Members }}
   {{ if eq $m.Location "header" }}
