@@ -93,7 +93,7 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
   {{ if $op.Input.Payload }}
   {{ with $m := index $op.Input.Members $op.Input.Payload }}
   {{ if $m.Streaming }}
-  body = bytes.NewReader(req.{{ exportable $m.Name  }})
+  body = req.{{ exportable $m.Name  }}
   {{ else }}
   b, err := xml.Marshal(req.{{ exportable $m.Name  }})
   if err != nil {
@@ -173,27 +173,24 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
   if err != nil {
     return
   }
-  defer httpResp.Body.Close()
 
   {{ if $op.Output }}
-  {{ with $name := "Body" }}
-  {{ with $m := index $op.Output.Members $name }}
-  {{ if $m }}
+    {{ with $name := "Body" }}
+    {{ with $m := index $op.Output.Members $name }}
+    {{ if $m }}
 
       {{ if $m.Streaming }}
-  respBody, err := ioutil.ReadAll(httpResp.Body)
-  if err != nil {
-    return
-  }
-  resp.Body = respBody
+  resp.Body = httpResp.Body
       {{ else }}
+  defer httpResp.Body.Close()
   err = xml.NewDecoder(httpResp.Body).Decode(resp)
       {{ end }}
 
 
-  {{ end }}
-  {{ end }}
-  {{ end }}
+    {{ else }}
+  defer httpResp.Body.Close()
+    {{ end }}
+    {{ end }}
 
   {{ range $name, $m := $op.Output.Members }}
     {{ if ne $name "Body" }}
@@ -239,6 +236,9 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 
     {{ end }}
   {{ end }}
+  {{ end }}
+  {{ else }}
+  defer httpResp.Body.Close()
   {{ end }}
 
 
