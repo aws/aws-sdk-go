@@ -223,7 +223,7 @@ import (
 
 // {{ .Name }} is a client for {{ .FullName }}.
 type {{ .Name }} struct {
-  client *aws.RestXMLClient
+  client *aws.RestClient
 }
 
 // New returns a new {{ .Name }} client.
@@ -236,7 +236,7 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
   endpoint, service, region := endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region)
 
   return &{{ .Name }}{
-    client: &aws.RestXMLClient{
+    client: &aws.RestClient{
       Signer: &aws.V4Signer{
         Key: key,
         Secret: secret,
