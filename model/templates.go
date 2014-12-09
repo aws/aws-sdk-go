@@ -12,9 +12,6 @@ import (
 // TODO: support client-side validation
 // TODO: support enum values
 // TODO: support exceptions
-// TODO: support query clients
-// TODO: support rest-xml clients
-// TODO: support ec2 clients
 
 func Generate(w io.Writer) error {
 	t := template.New("root").Funcs(template.FuncMap{
