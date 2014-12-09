@@ -9,3 +9,20 @@ APIs, with some allowances for Go-specific idioms (e.g. `ID` vs. `Id`).
 
 It is currently **highly untested**, so please be patient and report any
 bugs or problems you experience.
+
+## Installing
+
+    $ go get github.com/stripe/aws-go/aws/gen/...
+
+## Using
+
+```go
+import "github.com/stripe/aws-go/aws/gen/ec2"
+
+cli := ec2.New(accessKey, secretKey, "us-west-2", nil)
+resp, err := cli.DescribeInstances(ec2.DescribeInstancesRequest{})
+if err != nil {
+    panic(err)
+}
+fmt.Println(resp.Reservations)
+```
