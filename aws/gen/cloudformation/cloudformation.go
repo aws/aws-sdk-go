@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/bmizerany/aws4"
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/aws/gen/endpoints"
 )
@@ -23,12 +24,12 @@ func New(key, secret, region string, client *http.Client) *CloudFormation {
 
 	return &CloudFormation{
 		client: &aws.QueryClient{
-			Client: client,
-			Auth: aws.Auth{
-				Key:     key,
-				Secret:  secret,
-				Service: "cloudformation",
-				Region:  region,
+			Client: &aws4.Client{
+				Keys: &aws4.Keys{
+					AccessKey: key,
+					SecretKey: secret,
+				},
+				Client: client,
 			},
 			Endpoint:   endpoints.Lookup("cloudformation", region),
 			APIVersion: "2010-05-15",

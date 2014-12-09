@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/bmizerany/aws4"
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/aws/gen/endpoints"
 )
@@ -23,12 +24,12 @@ func New(key, secret, region string, client *http.Client) *SDB {
 
 	return &SDB{
 		client: &aws.QueryClient{
-			Client: client,
-			Auth: aws.Auth{
-				Key:     key,
-				Secret:  secret,
-				Service: "sdb",
-				Region:  region,
+			Client: &aws4.Client{
+				Keys: &aws4.Keys{
+					AccessKey: key,
+					SecretKey: secret,
+				},
+				Client: client,
 			},
 			Endpoint:   endpoints.Lookup("sdb", region),
 			APIVersion: "2009-04-15",
@@ -228,7 +229,7 @@ type CreateDomainRequest struct {
 // DeletableItem is undocumented.
 type DeletableItem struct {
 	Attributes []Attribute `xml:"Attributes>Attribute"`
-	Name       string      `xml:"Name"`
+	Name       string      `xml:"ItemName"`
 }
 
 // DeleteAttributesRequest is undocumented.
@@ -310,7 +311,7 @@ type ReplaceableAttribute struct {
 // ReplaceableItem is undocumented.
 type ReplaceableItem struct {
 	Attributes []ReplaceableAttribute `xml:"Attributes>Attribute"`
-	Name       string                 `xml:"Name"`
+	Name       string                 `xml:"ItemName"`
 }
 
 // SelectRequest is undocumented.

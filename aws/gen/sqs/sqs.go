@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/bmizerany/aws4"
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/aws/gen/endpoints"
 )
@@ -23,12 +24,12 @@ func New(key, secret, region string, client *http.Client) *SQS {
 
 	return &SQS{
 		client: &aws.QueryClient{
-			Client: client,
-			Auth: aws.Auth{
-				Key:     key,
-				Secret:  secret,
-				Service: "sqs",
-				Region:  region,
+			Client: &aws4.Client{
+				Keys: &aws4.Keys{
+					AccessKey: key,
+					SecretKey: secret,
+				},
+				Client: client,
 			},
 			Endpoint:   endpoints.Lookup("sqs", region),
 			APIVersion: "2012-11-05",
@@ -356,7 +357,7 @@ type ChangeMessageVisibilityRequest struct {
 
 // CreateQueueRequest is undocumented.
 type CreateQueueRequest struct {
-	Attributes map[string]string `xml:"Attributes"`
+	Attributes map[string]string `xml:"Attribute"`
 	QueueName  string            `xml:"QueueName"`
 }
 
@@ -407,7 +408,7 @@ type GetQueueAttributesRequest struct {
 
 // GetQueueAttributesResult is undocumented.
 type GetQueueAttributesResult struct {
-	Attributes map[string]string `xml:"GetQueueAttributesResult>Attributes"`
+	Attributes map[string]string `xml:"GetQueueAttributesResult>Attribute"`
 }
 
 // GetQueueURLRequest is undocumented.
@@ -443,21 +444,21 @@ type ListQueuesResult struct {
 
 // Message is undocumented.
 type Message struct {
-	Attributes             map[string]string                `xml:"Attributes"`
+	Attributes             map[string]string                `xml:"Attribute"`
 	Body                   string                           `xml:"Body"`
 	MD5OfBody              string                           `xml:"MD5OfBody"`
 	MD5OfMessageAttributes string                           `xml:"MD5OfMessageAttributes"`
-	MessageAttributes      map[string]MessageAttributeValue `xml:"MessageAttributes"`
+	MessageAttributes      map[string]MessageAttributeValue `xml:"MessageAttribute"`
 	MessageID              string                           `xml:"MessageId"`
 	ReceiptHandle          string                           `xml:"ReceiptHandle"`
 }
 
 // MessageAttributeValue is undocumented.
 type MessageAttributeValue struct {
-	BinaryListValues [][]byte `xml:"BinaryListValues>BinaryListValue"`
+	BinaryListValues [][]byte `xml:"BinaryListValue>BinaryListValue"`
 	BinaryValue      []byte   `xml:"BinaryValue"`
 	DataType         string   `xml:"DataType"`
-	StringListValues []string `xml:"StringListValues>StringListValue"`
+	StringListValues []string `xml:"StringListValue>StringListValue"`
 	StringValue      string   `xml:"StringValue"`
 }
 
@@ -492,7 +493,7 @@ type SendMessageBatchRequest struct {
 type SendMessageBatchRequestEntry struct {
 	DelaySeconds      int                              `xml:"DelaySeconds"`
 	ID                string                           `xml:"Id"`
-	MessageAttributes map[string]MessageAttributeValue `xml:"MessageAttributes"`
+	MessageAttributes map[string]MessageAttributeValue `xml:"MessageAttribute"`
 	MessageBody       string                           `xml:"MessageBody"`
 }
 
@@ -513,7 +514,7 @@ type SendMessageBatchResultEntry struct {
 // SendMessageRequest is undocumented.
 type SendMessageRequest struct {
 	DelaySeconds      int                              `xml:"DelaySeconds"`
-	MessageAttributes map[string]MessageAttributeValue `xml:"MessageAttributes"`
+	MessageAttributes map[string]MessageAttributeValue `xml:"MessageAttribute"`
 	MessageBody       string                           `xml:"MessageBody"`
 	QueueURL          string                           `xml:"QueueUrl"`
 }
@@ -527,7 +528,7 @@ type SendMessageResult struct {
 
 // SetQueueAttributesRequest is undocumented.
 type SetQueueAttributesRequest struct {
-	Attributes map[string]string `xml:"Attributes"`
+	Attributes map[string]string `xml:"Attribute"`
 	QueueURL   string            `xml:"QueueUrl"`
 }
 
