@@ -6,11 +6,12 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/bmizerany/aws4"
 )
 
 type JSONClient struct {
-	Client       *http.Client
-	Auth         Auth
+	Client       *aws4.Client
 	Endpoint     string
 	TargetPrefix string
 	JSONVersion  string
@@ -28,8 +29,6 @@ func (c *JSONClient) Do(op, method, uri string, req, resp interface{}) error {
 	}
 	httpReq.Header.Set("X-Amz-Target", c.TargetPrefix+"."+op)
 	httpReq.Header.Set("Content-Type", "application/x-amz-json-"+c.JSONVersion)
-
-	c.Auth.sign(httpReq)
 
 	httpResp, err := c.Client.Do(httpReq)
 	if err != nil {

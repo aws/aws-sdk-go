@@ -9,32 +9,27 @@ import (
 	"net/url"
 	"reflect"
 	"strings"
+
+	"github.com/bmizerany/aws4"
 )
 
 type QueryClient struct {
-	Auth       Auth
-	Client     *http.Client
+	Client     *aws4.Client
 	Endpoint   string
 	APIVersion string
 }
 
 func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
-	v := url.Values{"Action": {op}, "Version": {c.APIVersion}}
-	if err := loadValues(v, req); err != nil {
+	body := url.Values{"Action": {op}, "Version": {c.APIVersion}}
+	if err := loadValues(body, req); err != nil {
 		return err
 	}
 
-	u, err := url.Parse(c.Endpoint + uri + "?" + v.Encode())
+	httpReq, err := http.NewRequest(method, c.Endpoint+uri, strings.NewReader(body.Encode()))
 	if err != nil {
 		return err
 	}
-
-	httpReq, err := http.NewRequest(method, u.String(), nil)
-	if err != nil {
-		return err
-	}
-
-	c.Auth.sign(httpReq)
+	httpReq.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	httpResp, err := c.Client.Do(httpReq)
 	if err != nil {
