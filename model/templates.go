@@ -49,6 +49,11 @@ const (
 {{ define "query" }}
 {{ template "header" $ }}
 
+// {{ .Name }} is a client for {{ .FullName }}.
+type {{ .Name }} struct {
+  client *aws.QueryClient
+}
+
 // New returns a new {{ .Name }} client.
 func New(key, secret, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
@@ -113,6 +118,11 @@ type {{ exportable $wname }} struct {
 
 {{ define "json" }}
 {{ template "header" $ }}
+
+// {{ .Name }} is a client for {{ .FullName }}.
+type {{ .Name }} struct {
+  client *aws.JSONClient
+}
 
 // New returns a new {{ .Name }} client.
 func New(key, secret, region string, client *http.Client) *{{ .Name }} {
@@ -179,10 +189,6 @@ import (
   "github.com/stripe/aws-go/aws/gen/endpoints"
 )
 
-// {{ .Name }} is a client for {{ .FullName }}.
-type {{ .Name }} struct {
-  client aws.Client
-}
 {{ end }}
 
 {{ define "footer" }}
