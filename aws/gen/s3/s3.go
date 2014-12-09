@@ -3628,7 +3628,7 @@ type GetObjectAclRequest struct {
 // GetObjectOutput is undocumented.
 type GetObjectOutput struct {
 	AcceptRanges            string            `xml:"accept-ranges"`
-	Body                    io.Reader         `xml:"Body"`
+	Body                    io.ReadCloser     `xml:"Body"`
 	CacheControl            string            `xml:"Cache-Control"`
 	ContentDisposition      string            `xml:"Content-Disposition"`
 	ContentEncoding         string            `xml:"Content-Encoding"`
@@ -3674,7 +3674,7 @@ type GetObjectRequest struct {
 
 // GetObjectTorrentOutput is undocumented.
 type GetObjectTorrentOutput struct {
-	Body io.Reader `xml:"Body"`
+	Body io.ReadCloser `xml:"Body"`
 }
 
 // GetObjectTorrentRequest is undocumented.
@@ -4056,7 +4056,7 @@ type PutObjectOutput struct {
 // PutObjectRequest is undocumented.
 type PutObjectRequest struct {
 	ACL                     string            `xml:"x-amz-acl"`
-	Body                    io.Reader         `xml:"Body"`
+	Body                    io.ReadCloser     `xml:"Body"`
 	Bucket                  string            `xml:"Bucket"`
 	CacheControl            string            `xml:"Cache-Control"`
 	ContentDisposition      string            `xml:"Content-Disposition"`
@@ -4212,16 +4212,16 @@ type UploadPartOutput struct {
 
 // UploadPartRequest is undocumented.
 type UploadPartRequest struct {
-	Body                 io.Reader `xml:"Body"`
-	Bucket               string    `xml:"Bucket"`
-	ContentLength        int       `xml:"Content-Length"`
-	ContentMD5           string    `xml:"Content-MD5"`
-	Key                  string    `xml:"Key"`
-	PartNumber           int       `xml:"partNumber"`
-	SSECustomerAlgorithm string    `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey       string    `xml:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5    string    `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	UploadID             string    `xml:"uploadId"`
+	Body                 io.ReadCloser `xml:"Body"`
+	Bucket               string        `xml:"Bucket"`
+	ContentLength        int           `xml:"Content-Length"`
+	ContentMD5           string        `xml:"Content-MD5"`
+	Key                  string        `xml:"Key"`
+	PartNumber           int           `xml:"partNumber"`
+	SSECustomerAlgorithm string        `xml:"x-amz-server-side-encryption-customer-algorithm"`
+	SSECustomerKey       string        `xml:"x-amz-server-side-encryption-customer-key"`
+	SSECustomerKeyMD5    string        `xml:"x-amz-server-side-encryption-customer-key-MD5"`
+	UploadID             string        `xml:"uploadId"`
 }
 
 // VersioningConfiguration is undocumented.

@@ -113,7 +113,7 @@ func (m Member) XMLTag(wrapper string) string {
 
 func (m Member) Type() string {
 	if m.Streaming {
-		return "io.Reader"
+		return "io.ReadCloser"
 	}
 	return m.Shape.Type()
 }
