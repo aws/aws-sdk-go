@@ -19,6 +19,7 @@ generate: clean install-gen
 	aws-gen-gocli DataPipeline apis/datapipeline/2012-10-29.api.json > aws/gen/datapipeline/datapipeline.go
 	aws-gen-gocli DirectConnect apis/directconnect/2012-10-25.api.json > aws/gen/directconnect/directconnect.go
 	aws-gen-gocli DynamoDB apis/dynamodb/2012-08-10.api.json > aws/gen/dynamodb/dynamodb.go
+	aws-gen-gocli EC2 apis/ec2/2014-10-01.api.json > aws/gen/ec2/ec2.go
 	aws-gen-gocli ElasticCache apis/elasticache/2014-09-30.api.json > aws/gen/elasticache/elasticache.go
 	aws-gen-gocli ElasticBeanstalk apis/elasticbeanstalk/2010-12-01.api.json > aws/gen/elasticbeanstalk/elasticbeanstalk.go
 	aws-gen-gocli ELB apis/elb/2012-06-01.api.json > aws/gen/elb/elb.go
