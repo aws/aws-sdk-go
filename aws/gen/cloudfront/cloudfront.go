@@ -80,7 +80,17 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(req CreateCloudFrontOr
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
+
+	if s := httpResp.Header.Get("Location"); s != "" {
+
+		resp.Location = s
+
+	}
 
 	return
 }
@@ -118,7 +128,17 @@ func (c *CloudFront) CreateDistribution(req CreateDistributionRequest) (resp *Cr
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
+
+	if s := httpResp.Header.Get("Location"); s != "" {
+
+		resp.Location = s
+
+	}
 
 	return
 }
@@ -159,7 +179,11 @@ func (c *CloudFront) CreateInvalidation(req CreateInvalidationRequest) (resp *Cr
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("Location"); s != "" {
+
+		resp.Location = s
+
+	}
 
 	return
 }
@@ -197,7 +221,17 @@ func (c *CloudFront) CreateStreamingDistribution(req CreateStreamingDistribution
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
+
+	if s := httpResp.Header.Get("Location"); s != "" {
+
+		resp.Location = s
+
+	}
 
 	return
 }
@@ -235,8 +269,6 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(req DeleteCloudFrontOr
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -272,8 +304,6 @@ func (c *CloudFront) DeleteDistribution(req DeleteDistributionRequest) (err erro
 		return
 	}
 	defer httpResp.Body.Close()
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -311,8 +341,6 @@ func (c *CloudFront) DeleteStreamingDistribution(req DeleteStreamingDistribution
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -347,7 +375,11 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentity(req GetCloudFrontOriginAc
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
 
 	return
 }
@@ -383,7 +415,11 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(req GetCloudFrontOr
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
 
 	return
 }
@@ -418,7 +454,11 @@ func (c *CloudFront) GetDistribution(req GetDistributionRequest) (resp *GetDistr
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
 
 	return
 }
@@ -454,7 +494,11 @@ func (c *CloudFront) GetDistributionConfig(req GetDistributionConfigRequest) (re
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
 
 	return
 }
@@ -492,8 +536,6 @@ func (c *CloudFront) GetInvalidation(req GetInvalidationRequest) (resp *GetInval
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -528,7 +570,11 @@ func (c *CloudFront) GetStreamingDistribution(req GetStreamingDistributionReques
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
 
 	return
 }
@@ -564,7 +610,11 @@ func (c *CloudFront) GetStreamingDistributionConfig(req GetStreamingDistribution
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
 
 	return
 }
@@ -606,8 +656,6 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentities(req ListCloudFrontOrig
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -647,8 +695,6 @@ func (c *CloudFront) ListDistributions(req ListDistributionsRequest) (resp *List
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -693,8 +739,6 @@ func (c *CloudFront) ListInvalidations(req ListInvalidationsRequest) (resp *List
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -734,8 +778,6 @@ func (c *CloudFront) ListStreamingDistributions(req ListStreamingDistributionsRe
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -781,7 +823,11 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(req UpdateCloudFrontOr
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
 
 	return
 }
@@ -827,7 +873,11 @@ func (c *CloudFront) UpdateDistribution(req UpdateDistributionRequest) (resp *Up
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
 
 	return
 }
@@ -873,7 +923,11 @@ func (c *CloudFront) UpdateStreamingDistribution(req UpdateStreamingDistribution
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
 
 	return
 }

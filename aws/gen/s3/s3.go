@@ -85,8 +85,6 @@ func (c *S3) AbortMultipartUpload(req AbortMultipartUploadRequest) (err error) {
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -135,7 +133,34 @@ func (c *S3) CompleteMultipartUpload(req CompleteMultipartUploadRequest) (resp *
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
+
+		if t, e := time.Parse(s, time.RFC822); e != nil {
+			err = e
+			return
+		} else {
+			resp.Expiration = t
+		}
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-aws-kms-key-id"); s != "" {
+
+		resp.SSEKMSKeyID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption"); s != "" {
+
+		resp.ServerSideEncryption = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-version-id"); s != "" {
+
+		resp.VersionID = s
+
+	}
 
 	return
 }
@@ -309,7 +334,46 @@ func (c *S3) CopyObject(req CopyObjectRequest) (resp *CopyObjectOutput, err erro
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("x-amz-copy-source-version-id"); s != "" {
+
+		resp.CopySourceVersionID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
+
+		if t, e := time.Parse(s, time.RFC822); e != nil {
+			err = e
+			return
+		} else {
+			resp.Expiration = t
+		}
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-algorithm"); s != "" {
+
+		resp.SSECustomerAlgorithm = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-key-MD5"); s != "" {
+
+		resp.SSECustomerKeyMD5 = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-aws-kms-key-id"); s != "" {
+
+		resp.SSEKMSKeyID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption"); s != "" {
+
+		resp.ServerSideEncryption = s
+
+	}
 
 	return
 }
@@ -380,7 +444,11 @@ func (c *S3) CreateBucket(req CreateBucketRequest) (resp *CreateBucketOutput, er
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("Location"); s != "" {
+
+		resp.Location = s
+
+	}
 
 	return
 }
@@ -513,7 +581,29 @@ func (c *S3) CreateMultipartUpload(req CreateMultipartUploadRequest) (resp *Crea
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-algorithm"); s != "" {
+
+		resp.SSECustomerAlgorithm = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-key-MD5"); s != "" {
+
+		resp.SSECustomerKeyMD5 = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-aws-kms-key-id"); s != "" {
+
+		resp.SSEKMSKeyID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption"); s != "" {
+
+		resp.ServerSideEncryption = s
+
+	}
 
 	return
 }
@@ -548,8 +638,6 @@ func (c *S3) DeleteBucket(req DeleteBucketRequest) (err error) {
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -581,8 +669,6 @@ func (c *S3) DeleteBucketCors(req DeleteBucketCorsRequest) (err error) {
 		return
 	}
 	defer httpResp.Body.Close()
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -616,8 +702,6 @@ func (c *S3) DeleteBucketLifecycle(req DeleteBucketLifecycleRequest) (err error)
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -648,8 +732,6 @@ func (c *S3) DeleteBucketPolicy(req DeleteBucketPolicyRequest) (err error) {
 		return
 	}
 	defer httpResp.Body.Close()
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -682,8 +764,6 @@ func (c *S3) DeleteBucketTagging(req DeleteBucketTaggingRequest) (err error) {
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -715,8 +795,6 @@ func (c *S3) DeleteBucketWebsite(req DeleteBucketWebsiteRequest) (err error) {
 		return
 	}
 	defer httpResp.Body.Close()
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -766,7 +844,22 @@ func (c *S3) DeleteObject(req DeleteObjectRequest) (resp *DeleteObjectOutput, er
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("x-amz-delete-marker"); s != "" {
+
+		if v, e := strconv.ParseBool(s); e != nil {
+			err = e
+			return
+		} else {
+			resp.DeleteMarker = v
+		}
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-version-id"); s != "" {
+
+		resp.VersionID = s
+
+	}
 
 	return
 }
@@ -813,8 +906,6 @@ func (c *S3) DeleteObjects(req DeleteObjectsRequest) (resp *DeleteObjectsOutput,
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -848,8 +939,6 @@ func (c *S3) GetBucketAcl(req GetBucketAclRequest) (resp *GetBucketAclOutput, er
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -882,8 +971,6 @@ func (c *S3) GetBucketCors(req GetBucketCorsRequest) (resp *GetBucketCorsOutput,
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -919,8 +1006,6 @@ func (c *S3) GetBucketLifecycle(req GetBucketLifecycleRequest) (resp *GetBucketL
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -953,8 +1038,6 @@ func (c *S3) GetBucketLocation(req GetBucketLocationRequest) (resp *GetBucketLoc
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -991,8 +1074,6 @@ func (c *S3) GetBucketLogging(req GetBucketLoggingRequest) (resp *GetBucketLoggi
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1026,8 +1107,6 @@ func (c *S3) GetBucketNotification(req GetBucketNotificationRequest) (resp *GetB
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1060,8 +1139,6 @@ func (c *S3) GetBucketPolicy(req GetBucketPolicyRequest) (resp *GetBucketPolicyO
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -1097,8 +1174,6 @@ func (c *S3) GetBucketRequestPayment(req GetBucketRequestPaymentRequest) (resp *
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1131,8 +1206,6 @@ func (c *S3) GetBucketTagging(req GetBucketTaggingRequest) (resp *GetBucketTaggi
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -1167,8 +1240,6 @@ func (c *S3) GetBucketVersioning(req GetBucketVersioningRequest) (resp *GetBucke
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1201,8 +1272,6 @@ func (c *S3) GetBucketWebsite(req GetBucketWebsiteRequest) (resp *GetBucketWebsi
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -1319,7 +1388,162 @@ func (c *S3) GetObject(req GetObjectRequest) (resp *GetObjectOutput, err error) 
 	}
 	resp.Body = respBody
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("accept-ranges"); s != "" {
+
+		resp.AcceptRanges = s
+
+	}
+
+	if s := httpResp.Header.Get("Cache-Control"); s != "" {
+
+		resp.CacheControl = s
+
+	}
+
+	if s := httpResp.Header.Get("Content-Disposition"); s != "" {
+
+		resp.ContentDisposition = s
+
+	}
+
+	if s := httpResp.Header.Get("Content-Encoding"); s != "" {
+
+		resp.ContentEncoding = s
+
+	}
+
+	if s := httpResp.Header.Get("Content-Language"); s != "" {
+
+		resp.ContentLanguage = s
+
+	}
+
+	if s := httpResp.Header.Get("Content-Length"); s != "" {
+
+		if n, e := strconv.Atoi(s); e != nil {
+			err = e
+			return
+		} else {
+			resp.ContentLength = n
+		}
+
+	}
+
+	if s := httpResp.Header.Get("Content-Type"); s != "" {
+
+		resp.ContentType = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-delete-marker"); s != "" {
+
+		if v, e := strconv.ParseBool(s); e != nil {
+			err = e
+			return
+		} else {
+			resp.DeleteMarker = v
+		}
+
+	}
+
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
+
+		if t, e := time.Parse(s, time.RFC822); e != nil {
+			err = e
+			return
+		} else {
+			resp.Expiration = t
+		}
+
+	}
+
+	if s := httpResp.Header.Get("Expires"); s != "" {
+
+		if t, e := time.Parse(s, time.RFC822); e != nil {
+			err = e
+			return
+		} else {
+			resp.Expires = t
+		}
+
+	}
+
+	if s := httpResp.Header.Get("Last-Modified"); s != "" {
+
+		if t, e := time.Parse(s, time.RFC822); e != nil {
+			err = e
+			return
+		} else {
+			resp.LastModified = t
+		}
+
+	}
+
+	resp.Metadata = map[string]string{}
+	for name := range httpResp.Header {
+		if strings.HasPrefix(name, "headers") {
+			resp.Metadata[name] = httpResp.Header.Get(name)
+		}
+	}
+
+	if s := httpResp.Header.Get("x-amz-missing-meta"); s != "" {
+
+		if n, e := strconv.Atoi(s); e != nil {
+			err = e
+			return
+		} else {
+			resp.MissingMeta = n
+		}
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-restore"); s != "" {
+
+		resp.Restore = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-algorithm"); s != "" {
+
+		resp.SSECustomerAlgorithm = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-key-MD5"); s != "" {
+
+		resp.SSECustomerKeyMD5 = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-aws-kms-key-id"); s != "" {
+
+		resp.SSEKMSKeyID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption"); s != "" {
+
+		resp.ServerSideEncryption = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-version-id"); s != "" {
+
+		resp.VersionID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-website-redirect-location"); s != "" {
+
+		resp.WebsiteRedirectLocation = s
+
+	}
 
 	return
 }
@@ -1362,8 +1586,6 @@ func (c *S3) GetObjectAcl(req GetObjectAclRequest) (resp *GetObjectAclOutput, er
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1404,8 +1626,6 @@ func (c *S3) GetObjectTorrent(req GetObjectTorrentRequest) (resp *GetObjectTorre
 	}
 	resp.Body = respBody
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1437,8 +1657,6 @@ func (c *S3) HeadBucket(req HeadBucketRequest) (err error) {
 		return
 	}
 	defer httpResp.Body.Close()
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -1524,7 +1742,162 @@ func (c *S3) HeadObject(req HeadObjectRequest) (resp *HeadObjectOutput, err erro
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("accept-ranges"); s != "" {
+
+		resp.AcceptRanges = s
+
+	}
+
+	if s := httpResp.Header.Get("Cache-Control"); s != "" {
+
+		resp.CacheControl = s
+
+	}
+
+	if s := httpResp.Header.Get("Content-Disposition"); s != "" {
+
+		resp.ContentDisposition = s
+
+	}
+
+	if s := httpResp.Header.Get("Content-Encoding"); s != "" {
+
+		resp.ContentEncoding = s
+
+	}
+
+	if s := httpResp.Header.Get("Content-Language"); s != "" {
+
+		resp.ContentLanguage = s
+
+	}
+
+	if s := httpResp.Header.Get("Content-Length"); s != "" {
+
+		if n, e := strconv.Atoi(s); e != nil {
+			err = e
+			return
+		} else {
+			resp.ContentLength = n
+		}
+
+	}
+
+	if s := httpResp.Header.Get("Content-Type"); s != "" {
+
+		resp.ContentType = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-delete-marker"); s != "" {
+
+		if v, e := strconv.ParseBool(s); e != nil {
+			err = e
+			return
+		} else {
+			resp.DeleteMarker = v
+		}
+
+	}
+
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
+
+		if t, e := time.Parse(s, time.RFC822); e != nil {
+			err = e
+			return
+		} else {
+			resp.Expiration = t
+		}
+
+	}
+
+	if s := httpResp.Header.Get("Expires"); s != "" {
+
+		if t, e := time.Parse(s, time.RFC822); e != nil {
+			err = e
+			return
+		} else {
+			resp.Expires = t
+		}
+
+	}
+
+	if s := httpResp.Header.Get("Last-Modified"); s != "" {
+
+		if t, e := time.Parse(s, time.RFC822); e != nil {
+			err = e
+			return
+		} else {
+			resp.LastModified = t
+		}
+
+	}
+
+	resp.Metadata = map[string]string{}
+	for name := range httpResp.Header {
+		if strings.HasPrefix(name, "headers") {
+			resp.Metadata[name] = httpResp.Header.Get(name)
+		}
+	}
+
+	if s := httpResp.Header.Get("x-amz-missing-meta"); s != "" {
+
+		if n, e := strconv.Atoi(s); e != nil {
+			err = e
+			return
+		} else {
+			resp.MissingMeta = n
+		}
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-restore"); s != "" {
+
+		resp.Restore = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-algorithm"); s != "" {
+
+		resp.SSECustomerAlgorithm = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-key-MD5"); s != "" {
+
+		resp.SSECustomerKeyMD5 = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-aws-kms-key-id"); s != "" {
+
+		resp.SSEKMSKeyID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption"); s != "" {
+
+		resp.ServerSideEncryption = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-version-id"); s != "" {
+
+		resp.VersionID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-website-redirect-location"); s != "" {
+
+		resp.WebsiteRedirectLocation = s
+
+	}
 
 	return
 }
@@ -1556,8 +1929,6 @@ func (c *S3) ListBuckets() (resp *ListBucketsOutput, err error) {
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -1621,8 +1992,6 @@ func (c *S3) ListMultipartUploads(req ListMultipartUploadsRequest) (resp *ListMu
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -1688,8 +2057,6 @@ func (c *S3) ListObjectVersions(req ListObjectVersionsRequest) (resp *ListObject
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1750,8 +2117,6 @@ func (c *S3) ListObjects(req ListObjectsRequest) (resp *ListObjectsOutput, err e
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1803,8 +2168,6 @@ func (c *S3) ListParts(req ListPartsRequest) (resp *ListPartsOutput, err error) 
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -1878,8 +2241,6 @@ func (c *S3) PutBucketAcl(req PutBucketAclRequest) (err error) {
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1921,8 +2282,6 @@ func (c *S3) PutBucketCors(req PutBucketCorsRequest) (err error) {
 		return
 	}
 	defer httpResp.Body.Close()
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -1966,8 +2325,6 @@ func (c *S3) PutBucketLifecycle(req PutBucketLifecycleRequest) (err error) {
 		return
 	}
 	defer httpResp.Body.Close()
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -2013,8 +2370,6 @@ func (c *S3) PutBucketLogging(req PutBucketLoggingRequest) (err error) {
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -2058,8 +2413,6 @@ func (c *S3) PutBucketNotification(req PutBucketNotificationRequest) (err error)
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -2102,8 +2455,6 @@ func (c *S3) PutBucketPolicy(req PutBucketPolicyRequest) (err error) {
 		return
 	}
 	defer httpResp.Body.Close()
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -2151,8 +2502,6 @@ func (c *S3) PutBucketRequestPayment(req PutBucketRequestPaymentRequest) (err er
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -2194,8 +2543,6 @@ func (c *S3) PutBucketTagging(req PutBucketTaggingRequest) (err error) {
 		return
 	}
 	defer httpResp.Body.Close()
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -2245,8 +2592,6 @@ func (c *S3) PutBucketVersioning(req PutBucketVersioningRequest) (err error) {
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -2288,8 +2633,6 @@ func (c *S3) PutBucketWebsite(req PutBucketWebsiteRequest) (err error) {
 		return
 	}
 	defer httpResp.Body.Close()
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -2429,7 +2772,52 @@ func (c *S3) PutObject(req PutObjectRequest) (resp *PutObjectOutput, err error) 
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
+
+		if t, e := time.Parse(s, time.RFC822); e != nil {
+			err = e
+			return
+		} else {
+			resp.Expiration = t
+		}
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-algorithm"); s != "" {
+
+		resp.SSECustomerAlgorithm = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-key-MD5"); s != "" {
+
+		resp.SSECustomerKeyMD5 = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-aws-kms-key-id"); s != "" {
+
+		resp.SSEKMSKeyID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption"); s != "" {
+
+		resp.ServerSideEncryption = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-version-id"); s != "" {
+
+		resp.VersionID = s
+
+	}
 
 	return
 }
@@ -2507,8 +2895,6 @@ func (c *S3) PutObjectAcl(req PutObjectAclRequest) (err error) {
 	}
 	defer httpResp.Body.Close()
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -2553,8 +2939,6 @@ func (c *S3) RestoreObject(req RestoreObjectRequest) (err error) {
 		return
 	}
 	defer httpResp.Body.Close()
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -2634,7 +3018,35 @@ func (c *S3) UploadPart(req UploadPartRequest) (resp *UploadPartOutput, err erro
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("ETag"); s != "" {
+
+		resp.ETag = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-algorithm"); s != "" {
+
+		resp.SSECustomerAlgorithm = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-key-MD5"); s != "" {
+
+		resp.SSECustomerKeyMD5 = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-aws-kms-key-id"); s != "" {
+
+		resp.SSEKMSKeyID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption"); s != "" {
+
+		resp.ServerSideEncryption = s
+
+	}
 
 	return
 }
@@ -2743,7 +3155,35 @@ func (c *S3) UploadPartCopy(req UploadPartCopyRequest) (resp *UploadPartCopyOutp
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("x-amz-copy-source-version-id"); s != "" {
+
+		resp.CopySourceVersionID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-algorithm"); s != "" {
+
+		resp.SSECustomerAlgorithm = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-key-MD5"); s != "" {
+
+		resp.SSECustomerKeyMD5 = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption-aws-kms-key-id"); s != "" {
+
+		resp.SSEKMSKeyID = s
+
+	}
+
+	if s := httpResp.Header.Get("x-amz-server-side-encryption"); s != "" {
+
+		resp.ServerSideEncryption = s
+
+	}
 
 	return
 }

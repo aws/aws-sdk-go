@@ -85,8 +85,6 @@ func (c *Route53) AssociateVPCWithHostedZone(req AssociateVPCWithHostedZoneReque
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -140,8 +138,6 @@ func (c *Route53) ChangeResourceRecordSets(req ChangeResourceRecordSetsRequest) 
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -178,8 +174,6 @@ func (c *Route53) ChangeTagsForResource(req ChangeTagsForResourceRequest) (resp 
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -215,7 +209,11 @@ func (c *Route53) CreateHealthCheck(req CreateHealthCheckRequest) (resp *CreateH
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("Location"); s != "" {
+
+		resp.Location = s
+
+	}
 
 	return
 }
@@ -262,7 +260,11 @@ func (c *Route53) CreateHostedZone(req CreateHostedZoneRequest) (resp *CreateHos
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("Location"); s != "" {
+
+		resp.Location = s
+
+	}
 
 	return
 }
@@ -301,7 +303,11 @@ func (c *Route53) CreateReusableDelegationSet(req CreateReusableDelegationSetReq
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
+	if s := httpResp.Header.Get("Location"); s != "" {
+
+		resp.Location = s
+
+	}
 
 	return
 }
@@ -344,8 +350,6 @@ func (c *Route53) DeleteHealthCheck(req DeleteHealthCheckRequest) (resp *DeleteH
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -390,8 +394,6 @@ func (c *Route53) DeleteHostedZone(req DeleteHostedZoneRequest) (resp *DeleteHos
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -431,8 +433,6 @@ func (c *Route53) DeleteReusableDelegationSet(req DeleteReusableDelegationSetReq
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -475,8 +475,6 @@ func (c *Route53) DisassociateVPCFromHostedZone(req DisassociateVPCFromHostedZon
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -514,8 +512,6 @@ func (c *Route53) GetChange(req GetChangeRequest) (resp *GetChangeResponse, err 
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -549,8 +545,6 @@ func (c *Route53) GetCheckerIPRanges(req GetCheckerIPRangesRequest) (resp *GetCh
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -599,8 +593,6 @@ func (c *Route53) GetGeoLocation(req GetGeoLocationRequest) (resp *GetGeoLocatio
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -635,8 +627,6 @@ func (c *Route53) GetHealthCheck(req GetHealthCheckRequest) (resp *GetHealthChec
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -667,8 +657,6 @@ func (c *Route53) GetHealthCheckCount(req GetHealthCheckCountRequest) (resp *Get
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -706,8 +694,6 @@ func (c *Route53) GetHealthCheckLastFailureReason(req GetHealthCheckLastFailureR
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -742,8 +728,6 @@ func (c *Route53) GetHealthCheckStatus(req GetHealthCheckStatusRequest) (resp *G
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -781,8 +765,6 @@ func (c *Route53) GetHostedZone(req GetHostedZoneRequest) (resp *GetHostedZoneRe
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -816,8 +798,6 @@ func (c *Route53) GetReusableDelegationSet(req GetReusableDelegationSetRequest) 
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -880,8 +860,6 @@ func (c *Route53) ListGeoLocations(req ListGeoLocationsRequest) (resp *ListGeoLo
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -929,8 +907,6 @@ func (c *Route53) ListHealthChecks(req ListHealthChecksRequest) (resp *ListHealt
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -984,8 +960,6 @@ func (c *Route53) ListHostedZones(req ListHostedZonesRequest) (resp *ListHostedZ
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -1073,8 +1047,6 @@ func (c *Route53) ListResourceRecordSets(req ListResourceRecordSetsRequest) (res
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1124,8 +1096,6 @@ func (c *Route53) ListReusableDelegationSets(req ListReusableDelegationSetsReque
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1162,8 +1132,6 @@ func (c *Route53) ListTagsForResource(req ListTagsForResourceRequest) (resp *Lis
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1196,8 +1164,6 @@ func (c *Route53) ListTagsForResources(req ListTagsForResourcesRequest) (resp *L
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }
@@ -1237,8 +1203,6 @@ func (c *Route53) UpdateHealthCheck(req UpdateHealthCheckRequest) (resp *UpdateH
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: extract the rest of the response
-
 	return
 }
 
@@ -1275,8 +1239,6 @@ func (c *Route53) UpdateHostedZoneComment(req UpdateHostedZoneCommentRequest) (r
 	defer httpResp.Body.Close()
 
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
-
-	// TODO: extract the rest of the response
 
 	return
 }

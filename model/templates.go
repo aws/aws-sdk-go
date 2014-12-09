@@ -179,20 +179,71 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
   defer httpResp.Body.Close()
 
   {{ if $op.Output }}
-  {{ with $body := index $op.Output.Members "Body" }}
-  {{ if $body.Streaming }}
+  {{ with $name := "Body" }}
+  {{ with $m := index $op.Output.Members $name }}
+  {{ if $m }}
+
+      {{ if $m.Streaming }}
   respBody, err := ioutil.ReadAll(httpResp.Body)
   if err != nil {
     return
   }
   resp.Body = respBody
-  {{ else if $body }}
+      {{ else }}
   err = xml.NewDecoder(httpResp.Body).Decode(resp)
+      {{ end }}
+
+
   {{ end }}
   {{ end }}
   {{ end }}
 
-  // TODO: extract the rest of the response
+  {{ range $name, $m := $op.Output.Members }}
+    {{ if ne $name "Body" }}
+      {{ if eq $m.Location "header" }}
+        if s := httpResp.Header.Get("{{ $m.LocationName }}"); s != "" {
+         {{ if eq $m.Shape.ShapeType "string" }}
+          resp.{{ exportable $name }} = s
+         {{ else if eq $m.Shape.ShapeType "timestamp" }}
+          if t, e := time.Parse(s, time.RFC822); e != nil {
+           err = e
+           return
+          } else {
+           resp.{{ exportable $name }} = t
+          }
+         {{ else if eq $m.Shape.ShapeType "integer" }}
+          if n, e := strconv.Atoi(s); e != nil {
+           err = e
+           return
+          } else {
+           resp.{{ exportable $name }} = n
+          }
+         {{ else if eq $m.Shape.ShapeType "boolean" }}
+         if v, e := strconv.ParseBool(s); e != nil {
+           err = e
+           return
+          } else {
+           resp.{{ exportable $name }} = v
+          }
+         {{ else }}
+         // TODO: add support for {{ $m.Shape.ShapeType }} headers
+         {{ end }}
+        }
+      {{ else if eq $m.Location "headers" }}
+      resp.{{ exportable $name }} = {{ $m.Shape.Type }}{}
+      for name := range httpResp.Header {
+        if strings.HasPrefix(name, "{{ $m.Location  }}") {
+          resp.{{ exportable $name }}[name] = httpResp.Header.Get(name)
+        }
+      }
+      {{ else if ne $m.Location "" }}
+      // TODO: add support for extracting output members from {{ $m.Location }} to support {{ exportable $name }}
+      {{ end }}
+
+    {{ end }}
+  {{ end }}
+  {{ end }}
+
 
   return
 }
