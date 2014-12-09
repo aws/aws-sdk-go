@@ -57,13 +57,14 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 
   return &{{ .Name }}{
     client: &aws.QueryClient{
-      Client: &aws4.Client{
-        Keys: &aws4.Keys{
-          AccessKey: key,
-          SecretKey: secret,
-        },
-        Client: client,
+      Signer: &aws.V4Signer{
+        Key: key,
+        Secret: secret,
+        Service: "{{ .Metadata.EndpointPrefix }}",
+        Region: region,
+        IncludeXAmzContentSha256: true,
       },
+      Client: client,
       Endpoint: endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region),
       APIVersion: "{{ .Metadata.APIVersion }}",
     },
@@ -121,13 +122,14 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 
   return &{{ .Name }}{
     client: &aws.JSONClient{
-      Client: &aws4.Client{
-        Keys: &aws4.Keys{
-          AccessKey: key,
-          SecretKey: secret,
-        },
-        Client: client,
+      Signer: &aws.V4Signer{
+        Key: key,
+        Secret: secret,
+        Service: "{{ .Metadata.EndpointPrefix }}",
+        Region: region,
+        IncludeXAmzContentSha256: true,
       },
+      Client: client,
       Endpoint: endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region),
       JSONVersion: "{{ .Metadata.JSONVersion }}",
       TargetPrefix: "{{ .Metadata.TargetPrefix }}",
@@ -173,7 +175,6 @@ import (
   "net/http"
   "time"
 
-  "github.com/bmizerany/aws4"
   "github.com/stripe/aws-go/aws"
   "github.com/stripe/aws-go/aws/gen/endpoints"
 )

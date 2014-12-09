@@ -9,12 +9,11 @@ import (
 	"net/url"
 	"reflect"
 	"strings"
-
-	"github.com/bmizerany/aws4"
 )
 
 type QueryClient struct {
-	Client     *aws4.Client
+	Signer     *V4Signer
+	Client     *http.Client
 	Endpoint   string
 	APIVersion string
 }
@@ -30,6 +29,7 @@ func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
 		return err
 	}
 	httpReq.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	c.Signer.sign(httpReq)
 
 	httpResp, err := c.Client.Do(httpReq)
 	if err != nil {
