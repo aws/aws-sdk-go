@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *DirectConnect {
 		client = http.DefaultClient
 	}
 
+	service := "directconnect"
+	endpoint, service, region := endpoints.Lookup("directconnect", region)
+
 	return &DirectConnect{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "directconnect",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("directconnect", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "OvertureService",
 		},

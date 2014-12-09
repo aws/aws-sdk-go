@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *DynamoDB {
 		client = http.DefaultClient
 	}
 
+	service := "dynamodb"
+	endpoint, service, region := endpoints.Lookup("dynamodb", region)
+
 	return &DynamoDB{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "dynamodb",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("dynamodb", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.0",
 			TargetPrefix: "DynamoDB_20120810",
 		},

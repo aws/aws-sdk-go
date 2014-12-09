@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *ELB {
 		client = http.DefaultClient
 	}
 
+	service := "elasticloadbalancing"
+	endpoint, service, region := endpoints.Lookup("elasticloadbalancing", region)
+
 	return &ELB{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "elasticloadbalancing",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("elasticloadbalancing", region),
+			Endpoint:   endpoint,
 			APIVersion: "2012-06-01",
 		},
 	}

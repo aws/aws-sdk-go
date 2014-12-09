@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *EMR {
 		client = http.DefaultClient
 	}
 
+	service := "elasticmapreduce"
+	endpoint, service, region := endpoints.Lookup("elasticmapreduce", region)
+
 	return &EMR{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "elasticmapreduce",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("elasticmapreduce", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "ElasticMapReduce",
 		},

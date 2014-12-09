@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *RedShift {
 		client = http.DefaultClient
 	}
 
+	service := "redshift"
+	endpoint, service, region := endpoints.Lookup("redshift", region)
+
 	return &RedShift{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "redshift",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("redshift", region),
+			Endpoint:   endpoint,
 			APIVersion: "2012-12-01",
 		},
 	}

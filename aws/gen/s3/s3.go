@@ -31,17 +31,20 @@ func New(key, secret, region string, client *http.Client) *S3 {
 		client = http.DefaultClient
 	}
 
+	service := "s3"
+	endpoint, service, region := endpoints.Lookup("s3", region)
+
 	return &S3{
 		client: &aws.RestXMLClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "s3",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("s3", region),
+			Endpoint:   endpoint,
 			APIVersion: "2006-03-01",
 		},
 	}

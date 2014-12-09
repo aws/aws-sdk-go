@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *CogitoIdentity {
 		client = http.DefaultClient
 	}
 
+	service := "cognito-identity"
+	endpoint, service, region := endpoints.Lookup("cognito-identity", region)
+
 	return &CogitoIdentity{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "cognito-identity",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("cognito-identity", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "AWSCognitoIdentityService",
 		},

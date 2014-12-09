@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *CodeDeploy {
 		client = http.DefaultClient
 	}
 
+	service := "codedeploy"
+	endpoint, service, region := endpoints.Lookup("codedeploy", region)
+
 	return &CodeDeploy{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "codedeploy",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("codedeploy", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "CodeDeploy_20141006",
 		},

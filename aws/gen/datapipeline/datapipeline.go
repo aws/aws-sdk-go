@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *DataPipeline {
 		client = http.DefaultClient
 	}
 
+	service := "datapipeline"
+	endpoint, service, region := endpoints.Lookup("datapipeline", region)
+
 	return &DataPipeline{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "datapipeline",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("datapipeline", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "DataPipeline",
 		},

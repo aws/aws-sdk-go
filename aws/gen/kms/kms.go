@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *KMS {
 		client = http.DefaultClient
 	}
 
+	service := "kms"
+	endpoint, service, region := endpoints.Lookup("kms", region)
+
 	return &KMS{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "kms",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("kms", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "TrentService",
 		},

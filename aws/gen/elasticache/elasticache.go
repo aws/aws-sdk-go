@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *ElasticCache {
 		client = http.DefaultClient
 	}
 
+	service := "elasticache"
+	endpoint, service, region := endpoints.Lookup("elasticache", region)
+
 	return &ElasticCache{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "elasticache",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("elasticache", region),
+			Endpoint:   endpoint,
 			APIVersion: "2014-09-30",
 		},
 	}

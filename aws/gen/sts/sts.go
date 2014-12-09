@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *STS {
 		client = http.DefaultClient
 	}
 
+	service := "sts"
+	endpoint, service, region := endpoints.Lookup("sts", region)
+
 	return &STS{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "sts",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("sts", region),
+			Endpoint:   endpoint,
 			APIVersion: "2011-06-15",
 		},
 	}

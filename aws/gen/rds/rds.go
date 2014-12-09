@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *RDS {
 		client = http.DefaultClient
 	}
 
+	service := "rds"
+	endpoint, service, region := endpoints.Lookup("rds", region)
+
 	return &RDS{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "rds",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("rds", region),
+			Endpoint:   endpoint,
 			APIVersion: "2014-09-01",
 		},
 	}

@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *StorageGateway {
 		client = http.DefaultClient
 	}
 
+	service := "storagegateway"
+	endpoint, service, region := endpoints.Lookup("storagegateway", region)
+
 	return &StorageGateway{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "storagegateway",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("storagegateway", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "StorageGateway_20130630",
 		},

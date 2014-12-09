@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *Support {
 		client = http.DefaultClient
 	}
 
+	service := "support"
+	endpoint, service, region := endpoints.Lookup("support", region)
+
 	return &Support{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "support",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("support", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "AWSSupport_20130415",
 		},

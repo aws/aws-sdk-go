@@ -31,17 +31,20 @@ func New(key, secret, region string, client *http.Client) *CloudFront {
 		client = http.DefaultClient
 	}
 
+	service := "cloudfront"
+	endpoint, service, region := endpoints.Lookup("cloudfront", region)
+
 	return &CloudFront{
 		client: &aws.RestXMLClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "cloudfront",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("cloudfront", region),
+			Endpoint:   endpoint,
 			APIVersion: "2014-10-21",
 		},
 	}

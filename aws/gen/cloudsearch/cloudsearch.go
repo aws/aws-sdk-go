@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *CloudSearch {
 		client = http.DefaultClient
 	}
 
+	service := "cloudsearch"
+	endpoint, service, region := endpoints.Lookup("cloudsearch", region)
+
 	return &CloudSearch{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "cloudsearch",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("cloudsearch", region),
+			Endpoint:   endpoint,
 			APIVersion: "2013-01-01",
 		},
 	}

@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *CloudFormation {
 		client = http.DefaultClient
 	}
 
+	service := "cloudformation"
+	endpoint, service, region := endpoints.Lookup("cloudformation", region)
+
 	return &CloudFormation{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "cloudformation",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("cloudformation", region),
+			Endpoint:   endpoint,
 			APIVersion: "2010-05-15",
 		},
 	}

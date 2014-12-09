@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *Config {
 		client = http.DefaultClient
 	}
 
+	service := "config"
+	endpoint, service, region := endpoints.Lookup("config", region)
+
 	return &Config{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "config",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("config", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "StarlingDoveService",
 		},

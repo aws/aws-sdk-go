@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *ImportExport {
 		client = http.DefaultClient
 	}
 
+	service := "importexport"
+	endpoint, service, region := endpoints.Lookup("importexport", region)
+
 	return &ImportExport{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "importexport",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("importexport", region),
+			Endpoint:   endpoint,
 			APIVersion: "2010-06-01",
 		},
 	}

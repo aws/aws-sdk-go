@@ -31,17 +31,20 @@ func New(key, secret, region string, client *http.Client) *Route53 {
 		client = http.DefaultClient
 	}
 
+	service := "route53"
+	endpoint, service, region := endpoints.Lookup("route53", region)
+
 	return &Route53{
 		client: &aws.RestXMLClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "route53",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("route53", region),
+			Endpoint:   endpoint,
 			APIVersion: "2013-04-01",
 		},
 	}

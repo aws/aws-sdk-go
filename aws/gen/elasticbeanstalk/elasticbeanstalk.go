@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *ElasticBeanstalk {
 		client = http.DefaultClient
 	}
 
+	service := "elasticbeanstalk"
+	endpoint, service, region := endpoints.Lookup("elasticbeanstalk", region)
+
 	return &ElasticBeanstalk{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "elasticbeanstalk",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("elasticbeanstalk", region),
+			Endpoint:   endpoint,
 			APIVersion: "2010-12-01",
 		},
 	}

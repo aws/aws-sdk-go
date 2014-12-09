@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *Route53Domains {
 		client = http.DefaultClient
 	}
 
+	service := "route53domains"
+	endpoint, service, region := endpoints.Lookup("route53domains", region)
+
 	return &Route53Domains{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "route53domains",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("route53domains", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "Route53Domains_v20140515",
 		},

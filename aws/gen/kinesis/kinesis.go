@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *Kinesis {
 		client = http.DefaultClient
 	}
 
+	service := "kinesis"
+	endpoint, service, region := endpoints.Lookup("kinesis", region)
+
 	return &Kinesis{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "kinesis",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("kinesis", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "Kinesis_20131202",
 		},

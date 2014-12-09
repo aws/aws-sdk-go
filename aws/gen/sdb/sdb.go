@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *SDB {
 		client = http.DefaultClient
 	}
 
+	service := "sdb"
+	endpoint, service, region := endpoints.Lookup("sdb", region)
+
 	return &SDB{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "sdb",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("sdb", region),
+			Endpoint:   endpoint,
 			APIVersion: "2009-04-15",
 		},
 	}

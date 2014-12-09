@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *AutoScaling {
 		client = http.DefaultClient
 	}
 
+	service := "autoscaling"
+	endpoint, service, region := endpoints.Lookup("autoscaling", region)
+
 	return &AutoScaling{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "autoscaling",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("autoscaling", region),
+			Endpoint:   endpoint,
 			APIVersion: "2011-01-01",
 		},
 	}

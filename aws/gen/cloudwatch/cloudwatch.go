@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *CloudWatch {
 		client = http.DefaultClient
 	}
 
+	service := "monitoring"
+	endpoint, service, region := endpoints.Lookup("monitoring", region)
+
 	return &CloudWatch{
 		client: &aws.QueryClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "monitoring",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:     client,
-			Endpoint:   endpoints.Lookup("monitoring", region),
+			Endpoint:   endpoint,
 			APIVersion: "2010-08-01",
 		},
 	}

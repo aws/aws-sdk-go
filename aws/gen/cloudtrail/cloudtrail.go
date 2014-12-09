@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *CloudTrail {
 		client = http.DefaultClient
 	}
 
+	service := "cloudtrail"
+	endpoint, service, region := endpoints.Lookup("cloudtrail", region)
+
 	return &CloudTrail{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "cloudtrail",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("cloudtrail", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "com.amazonaws.cloudtrail.v20131101.CloudTrail_20131101",
 		},

@@ -21,17 +21,20 @@ func New(key, secret, region string, client *http.Client) *SWF {
 		client = http.DefaultClient
 	}
 
+	service := "swf"
+	endpoint, service, region := endpoints.Lookup("swf", region)
+
 	return &SWF{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
-				Service: "swf",
+				Service: service,
 				Region:  region,
 				IncludeXAmzContentSha256: true,
 			},
 			Client:       client,
-			Endpoint:     endpoints.Lookup("swf", region),
+			Endpoint:     endpoint,
 			JSONVersion:  "1.0",
 			TargetPrefix: "SimpleWorkflowService",
 		},
