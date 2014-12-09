@@ -305,7 +305,7 @@ func (c *Lambda) InvokeAsync(req InvokeAsyncRequest) (resp *InvokeAsyncResponse,
 	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
-	// TODO: add support for extracting output members from statusCode to support Status
+	resp.Status = httpResp.StatusCode
 
 	return
 }

@@ -406,6 +406,8 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
           resp.{{ exportable $name }}[name] = httpResp.Header.Get(name)
         }
       }
+      {{ else if eq $m.Location "statusCode" }}
+        resp.{{ exportable $name }} = httpResp.StatusCode
       {{ else if ne $m.Location "" }}
       // TODO: add support for extracting output members from {{ $m.Location }} to support {{ exportable $name }}
       {{ end }}
@@ -649,6 +651,8 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
           resp.{{ exportable $name }}[name] = httpResp.Header.Get(name)
         }
       }
+      {{ else if eq $m.Location "statusCode" }}
+        resp.{{ exportable $name }} = httpResp.StatusCode
       {{ else if ne $m.Location "" }}
       // TODO: add support for extracting output members from {{ $m.Location }} to support {{ exportable $name }}
       {{ end }}
