@@ -81,8 +81,8 @@ func (c *Route53) AssociateVPCWithHostedZone(req AssociateVPCWithHostedZoneReque
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -134,8 +134,8 @@ func (c *Route53) ChangeResourceRecordSets(req ChangeResourceRecordSetsRequest) 
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -170,8 +170,8 @@ func (c *Route53) ChangeTagsForResource(req ChangeTagsForResourceRequest) (resp 
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -205,8 +205,8 @@ func (c *Route53) CreateHealthCheck(req CreateHealthCheckRequest) (resp *CreateH
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("Location"); s != "" {
@@ -256,8 +256,8 @@ func (c *Route53) CreateHostedZone(req CreateHostedZoneRequest) (resp *CreateHos
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("Location"); s != "" {
@@ -299,8 +299,8 @@ func (c *Route53) CreateReusableDelegationSet(req CreateReusableDelegationSetReq
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("Location"); s != "" {
@@ -347,8 +347,8 @@ func (c *Route53) DeleteHealthCheck(req DeleteHealthCheckRequest) (resp *DeleteH
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -390,8 +390,8 @@ func (c *Route53) DeleteHostedZone(req DeleteHostedZoneRequest) (resp *DeleteHos
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -430,8 +430,8 @@ func (c *Route53) DeleteReusableDelegationSet(req DeleteReusableDelegationSetReq
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -471,8 +471,8 @@ func (c *Route53) DisassociateVPCFromHostedZone(req DisassociateVPCFromHostedZon
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -508,8 +508,8 @@ func (c *Route53) GetChange(req GetChangeRequest) (resp *GetChangeResponse, err 
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -542,8 +542,8 @@ func (c *Route53) GetCheckerIPRanges(req GetCheckerIPRangesRequest) (resp *GetCh
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -589,8 +589,8 @@ func (c *Route53) GetGeoLocation(req GetGeoLocationRequest) (resp *GetGeoLocatio
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -623,8 +623,8 @@ func (c *Route53) GetHealthCheck(req GetHealthCheckRequest) (resp *GetHealthChec
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -654,8 +654,8 @@ func (c *Route53) GetHealthCheckCount(req GetHealthCheckCountRequest) (resp *Get
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -690,8 +690,8 @@ func (c *Route53) GetHealthCheckLastFailureReason(req GetHealthCheckLastFailureR
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -725,8 +725,8 @@ func (c *Route53) GetHealthCheckStatus(req GetHealthCheckStatusRequest) (resp *G
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -761,8 +761,8 @@ func (c *Route53) GetHostedZone(req GetHostedZoneRequest) (resp *GetHostedZoneRe
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -795,8 +795,8 @@ func (c *Route53) GetReusableDelegationSet(req GetReusableDelegationSetRequest) 
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -856,8 +856,8 @@ func (c *Route53) ListGeoLocations(req ListGeoLocationsRequest) (resp *ListGeoLo
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -904,8 +904,8 @@ func (c *Route53) ListHealthChecks(req ListHealthChecksRequest) (resp *ListHealt
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -957,8 +957,8 @@ func (c *Route53) ListHostedZones(req ListHostedZonesRequest) (resp *ListHostedZ
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1043,8 +1043,8 @@ func (c *Route53) ListResourceRecordSets(req ListResourceRecordSetsRequest) (res
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1092,8 +1092,8 @@ func (c *Route53) ListReusableDelegationSets(req ListReusableDelegationSetsReque
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1128,8 +1128,8 @@ func (c *Route53) ListTagsForResource(req ListTagsForResourceRequest) (resp *Lis
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1161,8 +1161,8 @@ func (c *Route53) ListTagsForResources(req ListTagsForResourcesRequest) (resp *L
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1199,8 +1199,8 @@ func (c *Route53) UpdateHealthCheck(req UpdateHealthCheckRequest) (resp *UpdateH
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1236,8 +1236,8 @@ func (c *Route53) UpdateHostedZoneComment(req UpdateHostedZoneCommentRequest) (r
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return

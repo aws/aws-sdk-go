@@ -83,6 +83,7 @@ func (c *S3) AbortMultipartUpload(req AbortMultipartUploadRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -129,8 +130,8 @@ func (c *S3) CompleteMultipartUpload(req CompleteMultipartUploadRequest) (resp *
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
@@ -330,8 +331,8 @@ func (c *S3) CopyObject(req CopyObjectRequest) (resp *CopyObjectOutput, err erro
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("x-amz-copy-source-version-id"); s != "" {
@@ -440,8 +441,8 @@ func (c *S3) CreateBucket(req CreateBucketRequest) (resp *CreateBucketOutput, er
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("Location"); s != "" {
@@ -577,8 +578,8 @@ func (c *S3) CreateMultipartUpload(req CreateMultipartUploadRequest) (resp *Crea
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-algorithm"); s != "" {
@@ -636,6 +637,7 @@ func (c *S3) DeleteBucket(req DeleteBucketRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -668,6 +670,7 @@ func (c *S3) DeleteBucketCors(req DeleteBucketCorsRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -700,6 +703,7 @@ func (c *S3) DeleteBucketLifecycle(req DeleteBucketLifecycleRequest) (err error)
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -731,6 +735,7 @@ func (c *S3) DeleteBucketPolicy(req DeleteBucketPolicyRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -762,6 +767,7 @@ func (c *S3) DeleteBucketTagging(req DeleteBucketTaggingRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -794,6 +800,7 @@ func (c *S3) DeleteBucketWebsite(req DeleteBucketWebsiteRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -840,8 +847,8 @@ func (c *S3) DeleteObject(req DeleteObjectRequest) (resp *DeleteObjectOutput, er
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("x-amz-delete-marker"); s != "" {
@@ -902,8 +909,8 @@ func (c *S3) DeleteObjects(req DeleteObjectsRequest) (resp *DeleteObjectsOutput,
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -935,8 +942,8 @@ func (c *S3) GetBucketAcl(req GetBucketAclRequest) (resp *GetBucketAclOutput, er
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -968,8 +975,8 @@ func (c *S3) GetBucketCors(req GetBucketCorsRequest) (resp *GetBucketCorsOutput,
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1002,8 +1009,8 @@ func (c *S3) GetBucketLifecycle(req GetBucketLifecycleRequest) (resp *GetBucketL
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1035,8 +1042,8 @@ func (c *S3) GetBucketLocation(req GetBucketLocationRequest) (resp *GetBucketLoc
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1070,8 +1077,8 @@ func (c *S3) GetBucketLogging(req GetBucketLoggingRequest) (resp *GetBucketLoggi
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1103,8 +1110,8 @@ func (c *S3) GetBucketNotification(req GetBucketNotificationRequest) (resp *GetB
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1136,8 +1143,8 @@ func (c *S3) GetBucketPolicy(req GetBucketPolicyRequest) (resp *GetBucketPolicyO
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1170,8 +1177,8 @@ func (c *S3) GetBucketRequestPayment(req GetBucketRequestPaymentRequest) (resp *
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1203,8 +1210,8 @@ func (c *S3) GetBucketTagging(req GetBucketTaggingRequest) (resp *GetBucketTaggi
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1236,8 +1243,8 @@ func (c *S3) GetBucketVersioning(req GetBucketVersioningRequest) (resp *GetBucke
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1269,8 +1276,8 @@ func (c *S3) GetBucketWebsite(req GetBucketWebsiteRequest) (resp *GetBucketWebsi
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1380,13 +1387,8 @@ func (c *S3) GetObject(req GetObjectRequest) (resp *GetObjectOutput, err error) 
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
-	respBody, err := ioutil.ReadAll(httpResp.Body)
-	if err != nil {
-		return
-	}
-	resp.Body = respBody
+	resp.Body = httpResp.Body
 
 	if s := httpResp.Header.Get("accept-ranges"); s != "" {
 
@@ -1582,8 +1584,8 @@ func (c *S3) GetObjectAcl(req GetObjectAclRequest) (resp *GetObjectAclOutput, er
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1618,13 +1620,8 @@ func (c *S3) GetObjectTorrent(req GetObjectTorrentRequest) (resp *GetObjectTorre
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
-	respBody, err := ioutil.ReadAll(httpResp.Body)
-	if err != nil {
-		return
-	}
-	resp.Body = respBody
+	resp.Body = httpResp.Body
 
 	return
 }
@@ -1656,6 +1653,7 @@ func (c *S3) HeadBucket(req HeadBucketRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -1738,8 +1736,8 @@ func (c *S3) HeadObject(req HeadObjectRequest) (resp *HeadObjectOutput, err erro
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("accept-ranges"); s != "" {
@@ -1926,8 +1924,8 @@ func (c *S3) ListBuckets() (resp *ListBucketsOutput, err error) {
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -1989,8 +1987,8 @@ func (c *S3) ListMultipartUploads(req ListMultipartUploadsRequest) (resp *ListMu
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -2053,8 +2051,8 @@ func (c *S3) ListObjectVersions(req ListObjectVersionsRequest) (resp *ListObject
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -2113,8 +2111,8 @@ func (c *S3) ListObjects(req ListObjectsRequest) (resp *ListObjectsOutput, err e
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -2165,8 +2163,8 @@ func (c *S3) ListParts(req ListPartsRequest) (resp *ListPartsOutput, err error) 
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	return
@@ -2239,6 +2237,7 @@ func (c *S3) PutBucketAcl(req PutBucketAclRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2281,6 +2280,7 @@ func (c *S3) PutBucketCors(req PutBucketCorsRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2324,6 +2324,7 @@ func (c *S3) PutBucketLifecycle(req PutBucketLifecycleRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2368,6 +2369,7 @@ func (c *S3) PutBucketLogging(req PutBucketLoggingRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2411,6 +2413,7 @@ func (c *S3) PutBucketNotification(req PutBucketNotificationRequest) (err error)
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2454,6 +2457,7 @@ func (c *S3) PutBucketPolicy(req PutBucketPolicyRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2500,6 +2504,7 @@ func (c *S3) PutBucketRequestPayment(req PutBucketRequestPaymentRequest) (err er
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2542,6 +2547,7 @@ func (c *S3) PutBucketTagging(req PutBucketTaggingRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2590,6 +2596,7 @@ func (c *S3) PutBucketVersioning(req PutBucketVersioningRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2632,6 +2639,7 @@ func (c *S3) PutBucketWebsite(req PutBucketWebsiteRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2643,7 +2651,7 @@ func (c *S3) PutObject(req PutObjectRequest) (resp *PutObjectOutput, err error) 
 
 	var body io.Reader
 
-	body = bytes.NewReader(req.Body)
+	body = req.Body
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
@@ -2768,8 +2776,8 @@ func (c *S3) PutObject(req PutObjectRequest) (resp *PutObjectOutput, err error) 
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -2893,6 +2901,7 @@ func (c *S3) PutObjectAcl(req PutObjectAclRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2938,6 +2947,7 @@ func (c *S3) RestoreObject(req RestoreObjectRequest) (err error) {
 	if err != nil {
 		return
 	}
+
 	defer httpResp.Body.Close()
 
 	return
@@ -2954,7 +2964,7 @@ func (c *S3) UploadPart(req UploadPartRequest) (resp *UploadPartOutput, err erro
 
 	var body io.Reader
 
-	body = bytes.NewReader(req.Body)
+	body = req.Body
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
@@ -3014,8 +3024,8 @@ func (c *S3) UploadPart(req UploadPartRequest) (resp *UploadPartOutput, err erro
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -3151,8 +3161,8 @@ func (c *S3) UploadPartCopy(req UploadPartCopyRequest) (resp *UploadPartCopyOutp
 	if err != nil {
 		return
 	}
-	defer httpResp.Body.Close()
 
+	defer httpResp.Body.Close()
 	err = xml.NewDecoder(httpResp.Body).Decode(resp)
 
 	if s := httpResp.Header.Get("x-amz-copy-source-version-id"); s != "" {
@@ -3618,7 +3628,7 @@ type GetObjectAclRequest struct {
 // GetObjectOutput is undocumented.
 type GetObjectOutput struct {
 	AcceptRanges            string            `xml:"accept-ranges"`
-	Body                    []byte            `xml:"Body"`
+	Body                    io.Reader         `xml:"Body"`
 	CacheControl            string            `xml:"Cache-Control"`
 	ContentDisposition      string            `xml:"Content-Disposition"`
 	ContentEncoding         string            `xml:"Content-Encoding"`
@@ -3664,7 +3674,7 @@ type GetObjectRequest struct {
 
 // GetObjectTorrentOutput is undocumented.
 type GetObjectTorrentOutput struct {
-	Body []byte `xml:"Body"`
+	Body io.Reader `xml:"Body"`
 }
 
 // GetObjectTorrentRequest is undocumented.
@@ -4046,7 +4056,7 @@ type PutObjectOutput struct {
 // PutObjectRequest is undocumented.
 type PutObjectRequest struct {
 	ACL                     string            `xml:"x-amz-acl"`
-	Body                    []byte            `xml:"Body"`
+	Body                    io.Reader         `xml:"Body"`
 	Bucket                  string            `xml:"Bucket"`
 	CacheControl            string            `xml:"Cache-Control"`
 	ContentDisposition      string            `xml:"Content-Disposition"`
@@ -4202,16 +4212,16 @@ type UploadPartOutput struct {
 
 // UploadPartRequest is undocumented.
 type UploadPartRequest struct {
-	Body                 []byte `xml:"Body"`
-	Bucket               string `xml:"Bucket"`
-	ContentLength        int    `xml:"Content-Length"`
-	ContentMD5           string `xml:"Content-MD5"`
-	Key                  string `xml:"Key"`
-	PartNumber           int    `xml:"partNumber"`
-	SSECustomerAlgorithm string `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey       string `xml:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5    string `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	UploadID             string `xml:"uploadId"`
+	Body                 io.Reader `xml:"Body"`
+	Bucket               string    `xml:"Bucket"`
+	ContentLength        int       `xml:"Content-Length"`
+	ContentMD5           string    `xml:"Content-MD5"`
+	Key                  string    `xml:"Key"`
+	PartNumber           int       `xml:"partNumber"`
+	SSECustomerAlgorithm string    `xml:"x-amz-server-side-encryption-customer-algorithm"`
+	SSECustomerKey       string    `xml:"x-amz-server-side-encryption-customer-key"`
+	SSECustomerKeyMD5    string    `xml:"x-amz-server-side-encryption-customer-key-MD5"`
+	UploadID             string    `xml:"uploadId"`
 }
 
 // VersioningConfiguration is undocumented.
