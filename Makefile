@@ -10,6 +10,7 @@ generate: clean install-gen
 	aws-gen-goendpoints apis/_endpoints.json > aws/gen/endpoints/endpoints.go
 	aws-gen-gocli AutoScaling apis/autoscaling/2011-01-01.api.json > aws/gen/autoscaling/autoscaling.go
 	aws-gen-gocli CloudFormation apis/cloudformation/2010-05-15.api.json > aws/gen/cloudformation/cloudformation.go
+	aws-gen-gocli CloudFront apis/cloudfront/2014-10-21.api.json > aws/gen/cloudfront/cloudfront.go
 	aws-gen-gocli CloudTrail apis/cloudtrail/2013-11-01.api.json > aws/gen/cloudtrail/cloudtrail.go
 	aws-gen-gocli CloudSearch apis/cloudsearch/2013-01-01.api.json > aws/gen/cloudsearch/cloudsearch.go
 	aws-gen-gocli CloudWatch apis/cloudwatch/2010-08-01.api.json > aws/gen/cloudwatch/cloudwatch.go
@@ -32,6 +33,7 @@ generate: clean install-gen
 	aws-gen-gocli OpsWorks apis/opsworks/2013-02-18.api.json > aws/gen/opsworks/opsworks.go
 	aws-gen-gocli RDS apis/rds/2014-09-01.api.json > aws/gen/rds/rds.go
 	aws-gen-gocli RedShift apis/redshift/2012-12-01.api.json > aws/gen/redshift/redshift.go
+	aws-gen-gocli Route53 apis/route53/2013-04-01.api.json > aws/gen/route53/route53.go
 	aws-gen-gocli Route53Domains apis/route53domains/2014-05-15.api.json > aws/gen/route53domains/route53domains.go
 	aws-gen-gocli S3 apis/s3/2006-03-01.api.json > aws/gen/s3/s3.go
 	aws-gen-gocli SDB apis/sdb/2009-04-15.api.json > aws/gen/sdb/sdb.go
