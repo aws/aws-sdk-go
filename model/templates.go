@@ -9,10 +9,6 @@ import (
 	"text/template"
 )
 
-// TODO: support client-side validation
-// TODO: support enum values
-// TODO: support exceptions
-
 func Generate(w io.Writer) error {
 	t := template.New("root").Funcs(template.FuncMap{
 		"godoc":      godoc,
