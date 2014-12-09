@@ -68,9 +68,10 @@ func (ref *ShapeRef) Shape() *Shape {
 }
 
 type Member struct {
-	Name     string
-	Shape    *Shape
-	Required bool
+	Name         string
+	Shape        *Shape
+	Required     bool
+	LocationName string
 }
 
 func (m Member) JSONTag() string {
@@ -86,7 +87,11 @@ func (m Member) XMLTag(wrapper string) string {
 		path = append(path, wrapper)
 	}
 
-	path = append(path, m.Name)
+	if m.LocationName != "" {
+		path = append(path, m.LocationName)
+	} else {
+		path = append(path, m.Name)
+	}
 
 	if m.Shape.ShapeType == "list" {
 		loc := m.Shape.MemberRef.LocationName
@@ -151,9 +156,10 @@ func (s *Shape) Members() map[string]Member {
 	members := map[string]Member{}
 	for name, ref := range s.MemberRefs {
 		members[name] = Member{
-			Name:     name,
-			Shape:    ref.Shape(),
-			Required: required(name),
+			Name:         name,
+			Shape:        ref.Shape(),
+			Required:     required(name),
+			LocationName: ref.LocationName,
 		}
 	}
 	return members
