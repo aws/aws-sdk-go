@@ -12,7 +12,7 @@ import (
 
 // CloudTrail is a client for AWS CloudTrail.
 type CloudTrail struct {
-	client aws.Client
+	client *aws.JSONClient
 }
 
 // New returns a new CloudTrail client.

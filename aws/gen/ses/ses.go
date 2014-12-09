@@ -12,7 +12,7 @@ import (
 
 // SES is a client for Amazon Simple Email Service.
 type SES struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new SES client.

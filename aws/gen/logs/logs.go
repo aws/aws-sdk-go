@@ -12,7 +12,7 @@ import (
 
 // Logs is a client for Amazon CloudWatch Logs.
 type Logs struct {
-	client aws.Client
+	client *aws.JSONClient
 }
 
 // New returns a new Logs client.

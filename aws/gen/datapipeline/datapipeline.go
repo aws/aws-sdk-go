@@ -12,7 +12,7 @@ import (
 
 // DataPipeline is a client for AWS Data Pipeline.
 type DataPipeline struct {
-	client aws.Client
+	client *aws.JSONClient
 }
 
 // New returns a new DataPipeline client.

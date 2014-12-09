@@ -12,7 +12,7 @@ import (
 
 // ELB is a client for Elastic Load Balancing.
 type ELB struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new ELB client.

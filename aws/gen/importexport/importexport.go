@@ -12,7 +12,7 @@ import (
 
 // ImportExport is a client for AWS Import/Export.
 type ImportExport struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new ImportExport client.

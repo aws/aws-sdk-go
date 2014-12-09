@@ -12,7 +12,7 @@ import (
 
 // EC2 is a client for Amazon Elastic Compute Cloud.
 type EC2 struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new EC2 client.

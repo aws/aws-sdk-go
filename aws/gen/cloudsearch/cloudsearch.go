@@ -12,7 +12,7 @@ import (
 
 // CloudSearch is a client for Amazon CloudSearch.
 type CloudSearch struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new CloudSearch client.

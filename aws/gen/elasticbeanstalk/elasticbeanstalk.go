@@ -12,7 +12,7 @@ import (
 
 // ElasticBeanstalk is a client for AWS Elastic Beanstalk.
 type ElasticBeanstalk struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new ElasticBeanstalk client.

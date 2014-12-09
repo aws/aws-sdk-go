@@ -12,7 +12,7 @@ import (
 
 // RedShift is a client for Amazon Redshift.
 type RedShift struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new RedShift client.

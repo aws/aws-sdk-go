@@ -12,7 +12,7 @@ import (
 
 // DynamoDB is a client for Amazon DynamoDB.
 type DynamoDB struct {
-	client aws.Client
+	client *aws.JSONClient
 }
 
 // New returns a new DynamoDB client.

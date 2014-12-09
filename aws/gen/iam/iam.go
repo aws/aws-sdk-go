@@ -12,7 +12,7 @@ import (
 
 // IAM is a client for AWS Identity and Access Management.
 type IAM struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new IAM client.

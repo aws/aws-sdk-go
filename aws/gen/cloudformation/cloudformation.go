@@ -12,7 +12,7 @@ import (
 
 // CloudFormation is a client for AWS CloudFormation.
 type CloudFormation struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new CloudFormation client.

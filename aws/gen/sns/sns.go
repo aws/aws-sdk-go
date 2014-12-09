@@ -12,7 +12,7 @@ import (
 
 // SNS is a client for Amazon Simple Notification Service.
 type SNS struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new SNS client.

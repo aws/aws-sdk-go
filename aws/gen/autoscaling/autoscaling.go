@@ -12,7 +12,7 @@ import (
 
 // AutoScaling is a client for Auto Scaling.
 type AutoScaling struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new AutoScaling client.

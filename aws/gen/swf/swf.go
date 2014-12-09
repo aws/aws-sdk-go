@@ -12,7 +12,7 @@ import (
 
 // SWF is a client for Amazon Simple Workflow Service.
 type SWF struct {
-	client aws.Client
+	client *aws.JSONClient
 }
 
 // New returns a new SWF client.

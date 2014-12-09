@@ -12,7 +12,7 @@ import (
 
 // SDB is a client for Amazon SimpleDB.
 type SDB struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new SDB client.

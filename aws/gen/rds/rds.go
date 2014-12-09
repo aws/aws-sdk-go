@@ -12,7 +12,7 @@ import (
 
 // RDS is a client for Amazon Relational Database Service.
 type RDS struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new RDS client.

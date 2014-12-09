@@ -12,7 +12,7 @@ import (
 
 // SQS is a client for Amazon Simple Queue Service.
 type SQS struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new SQS client.

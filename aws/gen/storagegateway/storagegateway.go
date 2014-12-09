@@ -12,7 +12,7 @@ import (
 
 // StorageGateway is a client for AWS Storage Gateway.
 type StorageGateway struct {
-	client aws.Client
+	client *aws.JSONClient
 }
 
 // New returns a new StorageGateway client.

@@ -12,7 +12,7 @@ import (
 
 // CloudWatch is a client for Amazon CloudWatch.
 type CloudWatch struct {
-	client aws.Client
+	client *aws.QueryClient
 }
 
 // New returns a new CloudWatch client.

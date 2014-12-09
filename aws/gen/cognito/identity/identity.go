@@ -12,7 +12,7 @@ import (
 
 // CogitoIdentity is a client for Amazon Cognito Identity.
 type CogitoIdentity struct {
-	client aws.Client
+	client *aws.JSONClient
 }
 
 // New returns a new CogitoIdentity client.
