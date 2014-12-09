@@ -63,6 +63,7 @@ func (c *Route53) AssociateVPCWithHostedZone(req AssociateVPCWithHostedZoneReque
 	resp = &AssociateVPCWithHostedZoneResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}/associatevpc"
 
@@ -78,6 +79,10 @@ func (c *Route53) AssociateVPCWithHostedZone(req AssociateVPCWithHostedZoneReque
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -116,6 +121,7 @@ func (c *Route53) ChangeResourceRecordSets(req ChangeResourceRecordSetsRequest) 
 	resp = &ChangeResourceRecordSetsResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}/rrset/"
 
@@ -131,6 +137,10 @@ func (c *Route53) ChangeResourceRecordSets(req ChangeResourceRecordSetsRequest) 
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -149,6 +159,7 @@ func (c *Route53) ChangeTagsForResource(req ChangeTagsForResourceRequest) (resp 
 	resp = &ChangeTagsForResourceResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/tags/{ResourceType}/{ResourceId}"
 
@@ -167,6 +178,10 @@ func (c *Route53) ChangeTagsForResource(req ChangeTagsForResourceRequest) (resp 
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -190,6 +205,7 @@ func (c *Route53) CreateHealthCheck(req CreateHealthCheckRequest) (resp *CreateH
 	resp = &CreateHealthCheckResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck"
 
@@ -202,6 +218,10 @@ func (c *Route53) CreateHealthCheck(req CreateHealthCheckRequest) (resp *CreateH
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -241,6 +261,7 @@ func (c *Route53) CreateHostedZone(req CreateHostedZoneRequest) (resp *CreateHos
 	resp = &CreateHostedZoneResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone"
 
@@ -253,6 +274,10 @@ func (c *Route53) CreateHostedZone(req CreateHostedZoneRequest) (resp *CreateHos
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -284,6 +309,7 @@ func (c *Route53) CreateReusableDelegationSet(req CreateReusableDelegationSetReq
 	resp = &CreateReusableDelegationSetResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/delegationset"
 
@@ -296,6 +322,10 @@ func (c *Route53) CreateReusableDelegationSet(req CreateReusableDelegationSetReq
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -329,6 +359,7 @@ func (c *Route53) DeleteHealthCheck(req DeleteHealthCheckRequest) (resp *DeleteH
 	resp = &DeleteHealthCheckResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck/{HealthCheckId}"
 
@@ -344,6 +375,10 @@ func (c *Route53) DeleteHealthCheck(req DeleteHealthCheckRequest) (resp *DeleteH
 	httpReq, err := http.NewRequest("DELETE", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -372,6 +407,7 @@ func (c *Route53) DeleteHostedZone(req DeleteHostedZoneRequest) (resp *DeleteHos
 	resp = &DeleteHostedZoneResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}"
 
@@ -387,6 +423,10 @@ func (c *Route53) DeleteHostedZone(req DeleteHostedZoneRequest) (resp *DeleteHos
 	httpReq, err := http.NewRequest("DELETE", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -412,6 +452,7 @@ func (c *Route53) DeleteReusableDelegationSet(req DeleteReusableDelegationSetReq
 	resp = &DeleteReusableDelegationSetResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/delegationset/{Id}"
 
@@ -427,6 +468,10 @@ func (c *Route53) DeleteReusableDelegationSet(req DeleteReusableDelegationSetReq
 	httpReq, err := http.NewRequest("DELETE", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -453,6 +498,7 @@ func (c *Route53) DisassociateVPCFromHostedZone(req DisassociateVPCFromHostedZon
 	resp = &DisassociateVPCFromHostedZoneResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}/disassociatevpc"
 
@@ -468,6 +514,10 @@ func (c *Route53) DisassociateVPCFromHostedZone(req DisassociateVPCFromHostedZon
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -490,6 +540,7 @@ func (c *Route53) GetChange(req GetChangeRequest) (resp *GetChangeResponse, err 
 	resp = &GetChangeResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/change/{Id}"
 
@@ -505,6 +556,10 @@ func (c *Route53) GetChange(req GetChangeRequest) (resp *GetChangeResponse, err 
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -527,6 +582,7 @@ func (c *Route53) GetCheckerIPRanges(req GetCheckerIPRangesRequest) (resp *GetCh
 	resp = &GetCheckerIPRangesResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/checkeripranges"
 
@@ -539,6 +595,10 @@ func (c *Route53) GetCheckerIPRanges(req GetCheckerIPRangesRequest) (resp *GetCh
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -559,6 +619,7 @@ func (c *Route53) GetGeoLocation(req GetGeoLocationRequest) (resp *GetGeoLocatio
 	resp = &GetGeoLocationResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/geolocation"
 
@@ -588,6 +649,10 @@ func (c *Route53) GetGeoLocation(req GetGeoLocationRequest) (resp *GetGeoLocatio
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -605,6 +670,7 @@ func (c *Route53) GetHealthCheck(req GetHealthCheckRequest) (resp *GetHealthChec
 	resp = &GetHealthCheckResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck/{HealthCheckId}"
 
@@ -620,6 +686,10 @@ func (c *Route53) GetHealthCheck(req GetHealthCheckRequest) (resp *GetHealthChec
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -639,6 +709,7 @@ func (c *Route53) GetHealthCheckCount(req GetHealthCheckCountRequest) (resp *Get
 	resp = &GetHealthCheckCountResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/healthcheckcount"
 
@@ -651,6 +722,10 @@ func (c *Route53) GetHealthCheckCount(req GetHealthCheckCountRequest) (resp *Get
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -672,6 +747,7 @@ func (c *Route53) GetHealthCheckLastFailureReason(req GetHealthCheckLastFailureR
 	resp = &GetHealthCheckLastFailureReasonResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck/{HealthCheckId}/lastfailurereason"
 
@@ -687,6 +763,10 @@ func (c *Route53) GetHealthCheckLastFailureReason(req GetHealthCheckLastFailureR
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -707,6 +787,7 @@ func (c *Route53) GetHealthCheckStatus(req GetHealthCheckStatusRequest) (resp *G
 	resp = &GetHealthCheckStatusResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck/{HealthCheckId}/status"
 
@@ -722,6 +803,10 @@ func (c *Route53) GetHealthCheckStatus(req GetHealthCheckStatusRequest) (resp *G
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -743,6 +828,7 @@ func (c *Route53) GetHostedZone(req GetHostedZoneRequest) (resp *GetHostedZoneRe
 	resp = &GetHostedZoneResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}"
 
@@ -758,6 +844,10 @@ func (c *Route53) GetHostedZone(req GetHostedZoneRequest) (resp *GetHostedZoneRe
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -777,6 +867,7 @@ func (c *Route53) GetReusableDelegationSet(req GetReusableDelegationSetRequest) 
 	resp = &GetReusableDelegationSetResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/delegationset/{Id}"
 
@@ -792,6 +883,10 @@ func (c *Route53) GetReusableDelegationSet(req GetReusableDelegationSetRequest) 
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -821,6 +916,7 @@ func (c *Route53) ListGeoLocations(req ListGeoLocationsRequest) (resp *ListGeoLo
 	resp = &ListGeoLocationsResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/geolocations"
 
@@ -855,6 +951,10 @@ func (c *Route53) ListGeoLocations(req ListGeoLocationsRequest) (resp *ListGeoLo
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -879,6 +979,7 @@ func (c *Route53) ListHealthChecks(req ListHealthChecksRequest) (resp *ListHealt
 	resp = &ListHealthChecksResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck"
 
@@ -901,6 +1002,10 @@ func (c *Route53) ListHealthChecks(req ListHealthChecksRequest) (resp *ListHealt
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -927,6 +1032,7 @@ func (c *Route53) ListHostedZones(req ListHostedZonesRequest) (resp *ListHostedZ
 	resp = &ListHostedZonesResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone"
 
@@ -954,6 +1060,10 @@ func (c *Route53) ListHostedZones(req ListHostedZonesRequest) (resp *ListHostedZ
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1005,6 +1115,7 @@ func (c *Route53) ListResourceRecordSets(req ListResourceRecordSetsRequest) (res
 	resp = &ListResourceRecordSetsResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}/rrset"
 
@@ -1042,6 +1153,10 @@ func (c *Route53) ListResourceRecordSets(req ListResourceRecordSetsRequest) (res
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -1067,6 +1182,7 @@ func (c *Route53) ListReusableDelegationSets(req ListReusableDelegationSetsReque
 	resp = &ListReusableDelegationSetsResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/delegationset"
 
@@ -1091,6 +1207,10 @@ func (c *Route53) ListReusableDelegationSets(req ListReusableDelegationSetsReque
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -1107,6 +1227,7 @@ func (c *Route53) ListTagsForResource(req ListTagsForResourceRequest) (resp *Lis
 	resp = &ListTagsForResourceResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/tags/{ResourceType}/{ResourceId}"
 
@@ -1127,6 +1248,10 @@ func (c *Route53) ListTagsForResource(req ListTagsForResourceRequest) (resp *Lis
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -1143,6 +1268,7 @@ func (c *Route53) ListTagsForResources(req ListTagsForResourcesRequest) (resp *L
 	resp = &ListTagsForResourcesResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/tags/{ResourceType}"
 
@@ -1158,6 +1284,10 @@ func (c *Route53) ListTagsForResources(req ListTagsForResourcesRequest) (resp *L
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1181,6 +1311,7 @@ func (c *Route53) UpdateHealthCheck(req UpdateHealthCheckRequest) (resp *UpdateH
 	resp = &UpdateHealthCheckResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck/{HealthCheckId}"
 
@@ -1196,6 +1327,10 @@ func (c *Route53) UpdateHealthCheck(req UpdateHealthCheckRequest) (resp *UpdateH
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1218,6 +1353,7 @@ func (c *Route53) UpdateHostedZoneComment(req UpdateHostedZoneCommentRequest) (r
 	resp = &UpdateHostedZoneCommentResponse{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}"
 
@@ -1233,6 +1369,10 @@ func (c *Route53) UpdateHostedZoneComment(req UpdateHostedZoneCommentRequest) (r
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)

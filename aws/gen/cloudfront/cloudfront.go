@@ -55,7 +55,9 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(req CreateCloudFrontOr
 	resp = &CreateCloudFrontOriginAccessIdentityResult{}
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.CloudFrontOriginAccessIdentityConfig)
 	if err != nil {
 		return
@@ -73,6 +75,10 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(req CreateCloudFrontOr
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -103,7 +109,9 @@ func (c *CloudFront) CreateDistribution(req CreateDistributionRequest) (resp *Cr
 	resp = &CreateDistributionResult{}
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.DistributionConfig)
 	if err != nil {
 		return
@@ -121,6 +129,10 @@ func (c *CloudFront) CreateDistribution(req CreateDistributionRequest) (resp *Cr
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -151,7 +163,9 @@ func (c *CloudFront) CreateInvalidation(req CreateInvalidationRequest) (resp *Cr
 	resp = &CreateInvalidationResult{}
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.InvalidationBatch)
 	if err != nil {
 		return
@@ -172,6 +186,10 @@ func (c *CloudFront) CreateInvalidation(req CreateInvalidationRequest) (resp *Cr
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -196,7 +214,9 @@ func (c *CloudFront) CreateStreamingDistribution(req CreateStreamingDistribution
 	resp = &CreateStreamingDistributionResult{}
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.StreamingDistributionConfig)
 	if err != nil {
 		return
@@ -214,6 +234,10 @@ func (c *CloudFront) CreateStreamingDistribution(req CreateStreamingDistribution
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -244,6 +268,7 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(req DeleteCloudFrontOr
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/origin-access-identity/cloudfront/{Id}"
 
@@ -259,6 +284,10 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(req DeleteCloudFrontOr
 	httpReq, err := http.NewRequest("DELETE", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.IfMatch; s != "" {
@@ -281,6 +310,7 @@ func (c *CloudFront) DeleteDistribution(req DeleteDistributionRequest) (err erro
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{Id}"
 
@@ -296,6 +326,10 @@ func (c *CloudFront) DeleteDistribution(req DeleteDistributionRequest) (err erro
 	httpReq, err := http.NewRequest("DELETE", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.IfMatch; s != "" {
@@ -318,6 +352,7 @@ func (c *CloudFront) DeleteStreamingDistribution(req DeleteStreamingDistribution
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/streaming-distribution/{Id}"
 
@@ -333,6 +368,10 @@ func (c *CloudFront) DeleteStreamingDistribution(req DeleteStreamingDistribution
 	httpReq, err := http.NewRequest("DELETE", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.IfMatch; s != "" {
@@ -356,6 +395,7 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentity(req GetCloudFrontOriginAc
 	resp = &GetCloudFrontOriginAccessIdentityResult{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/origin-access-identity/cloudfront/{Id}"
 
@@ -371,6 +411,10 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentity(req GetCloudFrontOriginAc
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -396,6 +440,7 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(req GetCloudFrontOr
 	resp = &GetCloudFrontOriginAccessIdentityConfigResult{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/origin-access-identity/cloudfront/{Id}/config"
 
@@ -411,6 +456,10 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(req GetCloudFrontOr
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -435,6 +484,7 @@ func (c *CloudFront) GetDistribution(req GetDistributionRequest) (resp *GetDistr
 	resp = &GetDistributionResult{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{Id}"
 
@@ -450,6 +500,10 @@ func (c *CloudFront) GetDistribution(req GetDistributionRequest) (resp *GetDistr
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -475,6 +529,7 @@ func (c *CloudFront) GetDistributionConfig(req GetDistributionConfigRequest) (re
 	resp = &GetDistributionConfigResult{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{Id}/config"
 
@@ -490,6 +545,10 @@ func (c *CloudFront) GetDistributionConfig(req GetDistributionConfigRequest) (re
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -514,6 +573,7 @@ func (c *CloudFront) GetInvalidation(req GetInvalidationRequest) (resp *GetInval
 	resp = &GetInvalidationResult{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{DistributionId}/invalidation/{Id}"
 
@@ -534,6 +594,10 @@ func (c *CloudFront) GetInvalidation(req GetInvalidationRequest) (resp *GetInval
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -551,6 +615,7 @@ func (c *CloudFront) GetStreamingDistribution(req GetStreamingDistributionReques
 	resp = &GetStreamingDistributionResult{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/streaming-distribution/{Id}"
 
@@ -566,6 +631,10 @@ func (c *CloudFront) GetStreamingDistribution(req GetStreamingDistributionReques
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -591,6 +660,7 @@ func (c *CloudFront) GetStreamingDistributionConfig(req GetStreamingDistribution
 	resp = &GetStreamingDistributionConfigResult{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/streaming-distribution/{Id}/config"
 
@@ -606,6 +676,10 @@ func (c *CloudFront) GetStreamingDistributionConfig(req GetStreamingDistribution
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -630,6 +704,7 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentities(req ListCloudFrontOrig
 	resp = &ListCloudFrontOriginAccessIdentitiesResult{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/origin-access-identity/cloudfront"
 
@@ -654,6 +729,10 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentities(req ListCloudFrontOrig
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -670,6 +749,7 @@ func (c *CloudFront) ListDistributions(req ListDistributionsRequest) (resp *List
 	resp = &ListDistributionsResult{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/distribution"
 
@@ -694,6 +774,10 @@ func (c *CloudFront) ListDistributions(req ListDistributionsRequest) (resp *List
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -710,6 +794,7 @@ func (c *CloudFront) ListInvalidations(req ListInvalidationsRequest) (resp *List
 	resp = &ListInvalidationsResult{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{DistributionId}/invalidation"
 
@@ -737,6 +822,10 @@ func (c *CloudFront) ListInvalidations(req ListInvalidationsRequest) (resp *List
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -753,6 +842,7 @@ func (c *CloudFront) ListStreamingDistributions(req ListStreamingDistributionsRe
 	resp = &ListStreamingDistributionsResult{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/2014-10-21/streaming-distribution"
 
@@ -777,6 +867,10 @@ func (c *CloudFront) ListStreamingDistributions(req ListStreamingDistributionsRe
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -793,7 +887,9 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(req UpdateCloudFrontOr
 	resp = &UpdateCloudFrontOriginAccessIdentityResult{}
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.CloudFrontOriginAccessIdentityConfig)
 	if err != nil {
 		return
@@ -814,6 +910,10 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(req UpdateCloudFrontOr
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.IfMatch; s != "" {
@@ -843,7 +943,9 @@ func (c *CloudFront) UpdateDistribution(req UpdateDistributionRequest) (resp *Up
 	resp = &UpdateDistributionResult{}
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.DistributionConfig)
 	if err != nil {
 		return
@@ -864,6 +966,10 @@ func (c *CloudFront) UpdateDistribution(req UpdateDistributionRequest) (resp *Up
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.IfMatch; s != "" {
@@ -893,7 +999,9 @@ func (c *CloudFront) UpdateStreamingDistribution(req UpdateStreamingDistribution
 	resp = &UpdateStreamingDistributionResult{}
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.StreamingDistributionConfig)
 	if err != nil {
 		return
@@ -914,6 +1022,10 @@ func (c *CloudFront) UpdateStreamingDistribution(req UpdateStreamingDistribution
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.IfMatch; s != "" {

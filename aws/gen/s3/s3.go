@@ -57,6 +57,7 @@ func (c *S3) AbortMultipartUpload(req AbortMultipartUploadRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
@@ -82,6 +83,10 @@ func (c *S3) AbortMultipartUpload(req AbortMultipartUploadRequest) (err error) {
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -98,7 +103,9 @@ func (c *S3) CompleteMultipartUpload(req CompleteMultipartUploadRequest) (resp *
 	resp = &CompleteMultipartUploadOutput{}
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.MultipartUpload)
 	if err != nil {
 		return
@@ -127,6 +134,10 @@ func (c *S3) CompleteMultipartUpload(req CompleteMultipartUploadRequest) (resp *
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -175,6 +186,7 @@ func (c *S3) CopyObject(req CopyObjectRequest) (resp *CopyObjectOutput, err erro
 	resp = &CopyObjectOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
@@ -193,6 +205,10 @@ func (c *S3) CopyObject(req CopyObjectRequest) (resp *CopyObjectOutput, err erro
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ACL; s != "" {
@@ -387,7 +403,9 @@ func (c *S3) CreateBucket(req CreateBucketRequest) (resp *CreateBucketOutput, er
 	resp = &CreateBucketOutput{}
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.CreateBucketConfiguration)
 	if err != nil {
 		return
@@ -408,6 +426,10 @@ func (c *S3) CreateBucket(req CreateBucketRequest) (resp *CreateBucketOutput, er
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ACL; s != "" {
@@ -467,6 +489,7 @@ func (c *S3) CreateMultipartUpload(req CreateMultipartUploadRequest) (resp *Crea
 	resp = &CreateMultipartUploadOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}?uploads"
 
@@ -485,6 +508,10 @@ func (c *S3) CreateMultipartUpload(req CreateMultipartUploadRequest) (resp *Crea
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ACL; s != "" {
@@ -619,6 +646,7 @@ func (c *S3) DeleteBucket(req DeleteBucketRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}"
 
@@ -634,6 +662,10 @@ func (c *S3) DeleteBucket(req DeleteBucketRequest) (err error) {
 	httpReq, err := http.NewRequest("DELETE", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -652,6 +684,7 @@ func (c *S3) DeleteBucketCors(req DeleteBucketCorsRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?cors"
 
@@ -667,6 +700,10 @@ func (c *S3) DeleteBucketCors(req DeleteBucketCorsRequest) (err error) {
 	httpReq, err := http.NewRequest("DELETE", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -685,6 +722,7 @@ func (c *S3) DeleteBucketLifecycle(req DeleteBucketLifecycleRequest) (err error)
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?lifecycle"
 
@@ -702,6 +740,10 @@ func (c *S3) DeleteBucketLifecycle(req DeleteBucketLifecycleRequest) (err error)
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -717,6 +759,7 @@ func (c *S3) DeleteBucketPolicy(req DeleteBucketPolicyRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?policy"
 
@@ -734,6 +777,10 @@ func (c *S3) DeleteBucketPolicy(req DeleteBucketPolicyRequest) (err error) {
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -749,6 +796,7 @@ func (c *S3) DeleteBucketTagging(req DeleteBucketTaggingRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?tagging"
 
@@ -764,6 +812,10 @@ func (c *S3) DeleteBucketTagging(req DeleteBucketTaggingRequest) (err error) {
 	httpReq, err := http.NewRequest("DELETE", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -782,6 +834,7 @@ func (c *S3) DeleteBucketWebsite(req DeleteBucketWebsiteRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?website"
 
@@ -797,6 +850,10 @@ func (c *S3) DeleteBucketWebsite(req DeleteBucketWebsiteRequest) (err error) {
 	httpReq, err := http.NewRequest("DELETE", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -816,6 +873,7 @@ func (c *S3) DeleteObject(req DeleteObjectRequest) (resp *DeleteObjectOutput, er
 	resp = &DeleteObjectOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
@@ -839,6 +897,10 @@ func (c *S3) DeleteObject(req DeleteObjectRequest) (resp *DeleteObjectOutput, er
 	httpReq, err := http.NewRequest("DELETE", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.MFA; s != "" {
@@ -880,7 +942,9 @@ func (c *S3) DeleteObjects(req DeleteObjectsRequest) (resp *DeleteObjectsOutput,
 	resp = &DeleteObjectsOutput{}
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.Delete)
 	if err != nil {
 		return
@@ -901,6 +965,10 @@ func (c *S3) DeleteObjects(req DeleteObjectsRequest) (resp *DeleteObjectsOutput,
 	httpReq, err := http.NewRequest("POST", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.MFA; s != "" {
@@ -924,6 +992,7 @@ func (c *S3) GetBucketAcl(req GetBucketAclRequest) (resp *GetBucketAclOutput, er
 	resp = &GetBucketAclOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?acl"
 
@@ -939,6 +1008,10 @@ func (c *S3) GetBucketAcl(req GetBucketAclRequest) (resp *GetBucketAclOutput, er
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -957,6 +1030,7 @@ func (c *S3) GetBucketCors(req GetBucketCorsRequest) (resp *GetBucketCorsOutput,
 	resp = &GetBucketCorsOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?cors"
 
@@ -972,6 +1046,10 @@ func (c *S3) GetBucketCors(req GetBucketCorsRequest) (resp *GetBucketCorsOutput,
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -991,6 +1069,7 @@ func (c *S3) GetBucketLifecycle(req GetBucketLifecycleRequest) (resp *GetBucketL
 	resp = &GetBucketLifecycleOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?lifecycle"
 
@@ -1006,6 +1085,10 @@ func (c *S3) GetBucketLifecycle(req GetBucketLifecycleRequest) (resp *GetBucketL
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1024,6 +1107,7 @@ func (c *S3) GetBucketLocation(req GetBucketLocationRequest) (resp *GetBucketLoc
 	resp = &GetBucketLocationOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?location"
 
@@ -1039,6 +1123,10 @@ func (c *S3) GetBucketLocation(req GetBucketLocationRequest) (resp *GetBucketLoc
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1059,6 +1147,7 @@ func (c *S3) GetBucketLogging(req GetBucketLoggingRequest) (resp *GetBucketLoggi
 	resp = &GetBucketLoggingOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?logging"
 
@@ -1074,6 +1163,10 @@ func (c *S3) GetBucketLogging(req GetBucketLoggingRequest) (resp *GetBucketLoggi
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1092,6 +1185,7 @@ func (c *S3) GetBucketNotification(req GetBucketNotificationRequest) (resp *GetB
 	resp = &GetBucketNotificationOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?notification"
 
@@ -1107,6 +1201,10 @@ func (c *S3) GetBucketNotification(req GetBucketNotificationRequest) (resp *GetB
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1125,6 +1223,7 @@ func (c *S3) GetBucketPolicy(req GetBucketPolicyRequest) (resp *GetBucketPolicyO
 	resp = &GetBucketPolicyOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?policy"
 
@@ -1140,6 +1239,10 @@ func (c *S3) GetBucketPolicy(req GetBucketPolicyRequest) (resp *GetBucketPolicyO
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1159,6 +1262,7 @@ func (c *S3) GetBucketRequestPayment(req GetBucketRequestPaymentRequest) (resp *
 	resp = &GetBucketRequestPaymentOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?requestPayment"
 
@@ -1174,6 +1278,10 @@ func (c *S3) GetBucketRequestPayment(req GetBucketRequestPaymentRequest) (resp *
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1192,6 +1300,7 @@ func (c *S3) GetBucketTagging(req GetBucketTaggingRequest) (resp *GetBucketTaggi
 	resp = &GetBucketTaggingOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?tagging"
 
@@ -1207,6 +1316,10 @@ func (c *S3) GetBucketTagging(req GetBucketTaggingRequest) (resp *GetBucketTaggi
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1225,6 +1338,7 @@ func (c *S3) GetBucketVersioning(req GetBucketVersioningRequest) (resp *GetBucke
 	resp = &GetBucketVersioningOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?versioning"
 
@@ -1240,6 +1354,10 @@ func (c *S3) GetBucketVersioning(req GetBucketVersioningRequest) (resp *GetBucke
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1258,6 +1376,7 @@ func (c *S3) GetBucketWebsite(req GetBucketWebsiteRequest) (resp *GetBucketWebsi
 	resp = &GetBucketWebsiteOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?website"
 
@@ -1273,6 +1392,10 @@ func (c *S3) GetBucketWebsite(req GetBucketWebsiteRequest) (resp *GetBucketWebsi
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1291,6 +1414,7 @@ func (c *S3) GetObject(req GetObjectRequest) (resp *GetObjectOutput, err error) 
 	resp = &GetObjectOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
@@ -1344,6 +1468,10 @@ func (c *S3) GetObject(req GetObjectRequest) (resp *GetObjectOutput, err error) 
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.IfMatch; s != "" {
@@ -1558,6 +1686,7 @@ func (c *S3) GetObjectAcl(req GetObjectAclRequest) (resp *GetObjectAclOutput, er
 	resp = &GetObjectAclOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}?acl"
 
@@ -1583,6 +1712,10 @@ func (c *S3) GetObjectAcl(req GetObjectAclRequest) (resp *GetObjectAclOutput, er
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -1599,6 +1732,7 @@ func (c *S3) GetObjectTorrent(req GetObjectTorrentRequest) (resp *GetObjectTorre
 	resp = &GetObjectTorrentOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}?torrent"
 
@@ -1619,6 +1753,10 @@ func (c *S3) GetObjectTorrent(req GetObjectTorrentRequest) (resp *GetObjectTorre
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -1635,6 +1773,7 @@ func (c *S3) HeadBucket(req HeadBucketRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}"
 
@@ -1650,6 +1789,10 @@ func (c *S3) HeadBucket(req HeadBucketRequest) (err error) {
 	httpReq, err := http.NewRequest("HEAD", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1670,6 +1813,7 @@ func (c *S3) HeadObject(req HeadObjectRequest) (resp *HeadObjectOutput, err erro
 	resp = &HeadObjectOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
@@ -1693,6 +1837,10 @@ func (c *S3) HeadObject(req HeadObjectRequest) (resp *HeadObjectOutput, err erro
 	httpReq, err := http.NewRequest("HEAD", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.IfMatch; s != "" {
@@ -1909,6 +2057,7 @@ func (c *S3) ListBuckets() (resp *ListBucketsOutput, err error) {
 	resp = &ListBucketsOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/"
 
@@ -1921,6 +2070,10 @@ func (c *S3) ListBuckets() (resp *ListBucketsOutput, err error) {
 	httpReq, err := http.NewRequest("GET", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	httpResp, err := c.client.Do(httpReq)
@@ -1939,6 +2092,7 @@ func (c *S3) ListMultipartUploads(req ListMultipartUploadsRequest) (resp *ListMu
 	resp = &ListMultipartUploadsOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?uploads"
 
@@ -1986,6 +2140,10 @@ func (c *S3) ListMultipartUploads(req ListMultipartUploadsRequest) (resp *ListMu
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -2003,6 +2161,7 @@ func (c *S3) ListObjectVersions(req ListObjectVersionsRequest) (resp *ListObject
 	resp = &ListObjectVersionsOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}?versions"
 
@@ -2050,6 +2209,10 @@ func (c *S3) ListObjectVersions(req ListObjectVersionsRequest) (resp *ListObject
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -2068,6 +2231,7 @@ func (c *S3) ListObjects(req ListObjectsRequest) (resp *ListObjectsOutput, err e
 	resp = &ListObjectsOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}"
 
@@ -2110,6 +2274,10 @@ func (c *S3) ListObjects(req ListObjectsRequest) (resp *ListObjectsOutput, err e
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -2127,6 +2295,7 @@ func (c *S3) ListParts(req ListPartsRequest) (resp *ListPartsOutput, err error) 
 	resp = &ListPartsOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
@@ -2162,6 +2331,10 @@ func (c *S3) ListParts(req ListPartsRequest) (resp *ListPartsOutput, err error) 
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -2178,7 +2351,9 @@ func (c *S3) PutBucketAcl(req PutBucketAclRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.AccessControlPolicy)
 	if err != nil {
 		return
@@ -2199,6 +2374,10 @@ func (c *S3) PutBucketAcl(req PutBucketAclRequest) (err error) {
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ACL; s != "" {
@@ -2251,7 +2430,9 @@ func (c *S3) PutBucketCors(req PutBucketCorsRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.CORSConfiguration)
 	if err != nil {
 		return
@@ -2272,6 +2453,10 @@ func (c *S3) PutBucketCors(req PutBucketCorsRequest) (err error) {
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ContentMD5; s != "" {
@@ -2295,7 +2480,9 @@ func (c *S3) PutBucketLifecycle(req PutBucketLifecycleRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.LifecycleConfiguration)
 	if err != nil {
 		return
@@ -2316,6 +2503,10 @@ func (c *S3) PutBucketLifecycle(req PutBucketLifecycleRequest) (err error) {
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ContentMD5; s != "" {
@@ -2340,7 +2531,9 @@ func (c *S3) PutBucketLogging(req PutBucketLoggingRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.BucketLoggingStatus)
 	if err != nil {
 		return
@@ -2361,6 +2554,10 @@ func (c *S3) PutBucketLogging(req PutBucketLoggingRequest) (err error) {
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ContentMD5; s != "" {
@@ -2384,7 +2581,9 @@ func (c *S3) PutBucketNotification(req PutBucketNotificationRequest) (err error)
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.NotificationConfiguration)
 	if err != nil {
 		return
@@ -2405,6 +2604,10 @@ func (c *S3) PutBucketNotification(req PutBucketNotificationRequest) (err error)
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ContentMD5; s != "" {
@@ -2428,7 +2631,9 @@ func (c *S3) PutBucketPolicy(req PutBucketPolicyRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.Policy)
 	if err != nil {
 		return
@@ -2449,6 +2654,10 @@ func (c *S3) PutBucketPolicy(req PutBucketPolicyRequest) (err error) {
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ContentMD5; s != "" {
@@ -2475,7 +2684,9 @@ func (c *S3) PutBucketRequestPayment(req PutBucketRequestPaymentRequest) (err er
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.RequestPaymentConfiguration)
 	if err != nil {
 		return
@@ -2498,6 +2709,10 @@ func (c *S3) PutBucketRequestPayment(req PutBucketRequestPaymentRequest) (err er
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	if s := req.ContentMD5; s != "" {
 
 		httpReq.Header.Set("Content-MD5", s)
@@ -2518,7 +2733,9 @@ func (c *S3) PutBucketTagging(req PutBucketTaggingRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.Tagging)
 	if err != nil {
 		return
@@ -2539,6 +2756,10 @@ func (c *S3) PutBucketTagging(req PutBucketTaggingRequest) (err error) {
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ContentMD5; s != "" {
@@ -2562,7 +2783,9 @@ func (c *S3) PutBucketVersioning(req PutBucketVersioningRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.VersioningConfiguration)
 	if err != nil {
 		return
@@ -2583,6 +2806,10 @@ func (c *S3) PutBucketVersioning(req PutBucketVersioningRequest) (err error) {
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ContentMD5; s != "" {
@@ -2610,7 +2837,9 @@ func (c *S3) PutBucketWebsite(req PutBucketWebsiteRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.WebsiteConfiguration)
 	if err != nil {
 		return
@@ -2633,6 +2862,10 @@ func (c *S3) PutBucketWebsite(req PutBucketWebsiteRequest) (err error) {
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	if s := req.ContentMD5; s != "" {
 
 		httpReq.Header.Set("Content-MD5", s)
@@ -2653,6 +2886,7 @@ func (c *S3) PutObject(req PutObjectRequest) (resp *PutObjectOutput, err error) 
 	resp = &PutObjectOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	body = req.Body
 
@@ -2673,6 +2907,10 @@ func (c *S3) PutObject(req PutObjectRequest) (resp *PutObjectOutput, err error) 
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ACL; s != "" {
@@ -2839,7 +3077,9 @@ func (c *S3) PutObjectAcl(req PutObjectAclRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.AccessControlPolicy)
 	if err != nil {
 		return
@@ -2863,6 +3103,10 @@ func (c *S3) PutObjectAcl(req PutObjectAclRequest) (err error) {
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.ACL; s != "" {
@@ -2915,7 +3159,9 @@ func (c *S3) RestoreObject(req RestoreObjectRequest) (err error) {
 	// NRE
 
 	var body io.Reader
+	var contentType string
 
+	contentType = "application/xml"
 	b, err := xml.Marshal(req.RestoreRequest)
 	if err != nil {
 		return
@@ -2946,6 +3192,10 @@ func (c *S3) RestoreObject(req RestoreObjectRequest) (err error) {
 		return
 	}
 
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
 	httpResp, err := c.client.Do(httpReq)
 	if err != nil {
 		return
@@ -2966,6 +3216,7 @@ func (c *S3) UploadPart(req UploadPartRequest) (resp *UploadPartOutput, err erro
 	resp = &UploadPartOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	body = req.Body
 
@@ -2996,6 +3247,10 @@ func (c *S3) UploadPart(req UploadPartRequest) (resp *UploadPartOutput, err erro
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := strconv.Itoa(req.ContentLength); req.ContentLength != 0 {
@@ -3070,6 +3325,7 @@ func (c *S3) UploadPartCopy(req UploadPartCopyRequest) (resp *UploadPartCopyOutp
 	resp = &UploadPartCopyOutput{}
 
 	var body io.Reader
+	var contentType string
 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
@@ -3098,6 +3354,10 @@ func (c *S3) UploadPartCopy(req UploadPartCopyRequest) (resp *UploadPartCopyOutp
 	httpReq, err := http.NewRequest("PUT", uri, body)
 	if err != nil {
 		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
 	}
 
 	if s := req.CopySource; s != "" {
