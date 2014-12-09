@@ -16,6 +16,9 @@ type Metadata struct {
 	SignatureVersion    string
 	TargetPrefix        string
 	Protocol            string
+	ChecksumFormat      string
+	GlobalEndpoint      string
+	TimestampFormat     string
 }
 
 type HTTPOptions struct {
@@ -48,9 +51,11 @@ type Error struct {
 type ShapeRef struct {
 	ShapeName     string `json:"Shape"`
 	Documentation string
+	Location      string
 	LocationName  string
 	Wrapper       bool
 	ResultWrapper string
+	Streaming     bool
 }
 
 func (ref *ShapeRef) WrappedType() string {
@@ -71,7 +76,9 @@ type Member struct {
 	Name         string
 	Shape        *Shape
 	Required     bool
+	Location     string
 	LocationName string
+	Streaming    bool
 }
 
 func (m Member) JSONTag() string {
@@ -93,7 +100,7 @@ func (m Member) XMLTag(wrapper string) string {
 		path = append(path, m.Name)
 	}
 
-	if m.Shape.ShapeType == "list" {
+	if m.Shape.ShapeType == "list" && service.Metadata.Protocol != "rest-xml" {
 		loc := m.Shape.MemberRef.LocationName
 		if loc == "" {
 			loc = "member"
@@ -124,6 +131,7 @@ type Shape struct {
 	Pattern       string
 	Sensitive     bool
 	Wrapper       bool
+	Payload       string
 }
 
 func (s *Shape) Message() bool {
@@ -159,7 +167,9 @@ func (s *Shape) Members() map[string]Member {
 			Name:         name,
 			Shape:        ref.Shape(),
 			Required:     required(name),
+			Location:     ref.Location,
 			LocationName: ref.LocationName,
+			Streaming:    ref.Streaming,
 		}
 	}
 	return members

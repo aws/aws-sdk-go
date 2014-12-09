@@ -33,6 +33,7 @@ generate: clean install-gen
 	aws-gen-gocli RDS apis/rds/2014-09-01.api.json > aws/gen/rds/rds.go
 	aws-gen-gocli RedShift apis/redshift/2012-12-01.api.json > aws/gen/redshift/redshift.go
 	aws-gen-gocli Route53Domains apis/route53domains/2014-05-15.api.json > aws/gen/route53domains/route53domains.go
+	aws-gen-gocli S3 apis/s3/2006-03-01.api.json > aws/gen/s3/s3.go
 	aws-gen-gocli SDB apis/sdb/2009-04-15.api.json > aws/gen/sdb/sdb.go
 	aws-gen-gocli SES apis/ses/2010-12-01.api.json > aws/gen/ses/ses.go
 	aws-gen-gocli SNS apis/sns/2010-03-31.api.json > aws/gen/sns/sns.go
