@@ -73,12 +73,9 @@ func (ref *ShapeRef) Shape() *Shape {
 }
 
 type Member struct {
-	Name         string
-	Shape        *Shape
-	Required     bool
-	Location     string
-	LocationName string
-	Streaming    bool
+	ShapeRef
+	Name     string
+	Required bool
 }
 
 func (m Member) JSONTag() string {
@@ -100,8 +97,8 @@ func (m Member) XMLTag(wrapper string) string {
 		path = append(path, m.Name)
 	}
 
-	if m.Shape.ShapeType == "list" && service.Metadata.Protocol != "rest-xml" {
-		loc := m.Shape.MemberRef.LocationName
+	if m.Shape().ShapeType == "list" && service.Metadata.Protocol != "rest-xml" {
+		loc := m.Shape().MemberRef.LocationName
 		if loc == "" {
 			loc = "member"
 		}
@@ -111,11 +108,15 @@ func (m Member) XMLTag(wrapper string) string {
 	return fmt.Sprintf("`xml:\"%s\"`", strings.Join(path, ">"))
 }
 
+func (m Member) Shape() *Shape {
+	return m.ShapeRef.Shape()
+}
+
 func (m Member) Type() string {
 	if m.Streaming {
 		return "io.ReadCloser"
 	}
-	return m.Shape.Type()
+	return m.Shape().Type()
 }
 
 type Shape struct {
@@ -167,12 +168,9 @@ func (s *Shape) Members() map[string]Member {
 	members := map[string]Member{}
 	for name, ref := range s.MemberRefs {
 		members[name] = Member{
-			Name:         name,
-			Shape:        ref.Shape(),
-			Required:     required(name),
-			Location:     ref.Location,
-			LocationName: ref.LocationName,
-			Streaming:    ref.Streaming,
+			Name:     name,
+			Required: required(name),
+			ShapeRef: ref,
 		}
 	}
 	return members
