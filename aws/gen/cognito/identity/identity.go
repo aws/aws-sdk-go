@@ -1,5 +1,5 @@
-// Package cogitoidentity provides a client for Amazon Cognito Identity.
-package cogitoidentity
+// Package cognitoidentity provides a client for Amazon Cognito Identity.
+package cognitoidentity
 
 import (
 	"encoding/xml"
@@ -10,13 +10,13 @@ import (
 	"github.com/stripe/aws-go/aws/gen/endpoints"
 )
 
-// CogitoIdentity is a client for Amazon Cognito Identity.
-type CogitoIdentity struct {
+// CognitoIdentity is a client for Amazon Cognito Identity.
+type CognitoIdentity struct {
 	client *aws.JSONClient
 }
 
-// New returns a new CogitoIdentity client.
-func New(key, secret, region string, client *http.Client) *CogitoIdentity {
+// New returns a new CognitoIdentity client.
+func New(key, secret, region string, client *http.Client) *CognitoIdentity {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -24,7 +24,7 @@ func New(key, secret, region string, client *http.Client) *CogitoIdentity {
 	service := "cognito-identity"
 	endpoint, service, region := endpoints.Lookup("cognito-identity", region)
 
-	return &CogitoIdentity{
+	return &CognitoIdentity{
 		client: &aws.JSONClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
@@ -44,7 +44,7 @@ func New(key, secret, region string, client *http.Client) *CogitoIdentity {
 // CreateIdentityPool creates a new identity pool. The identity pool is a
 // store of user identity information that is specific to your AWS account.
 // The limit on identity pools is 60 per account.
-func (c *CogitoIdentity) CreateIdentityPool(req CreateIdentityPoolInput) (resp *IdentityPool, err error) {
+func (c *CognitoIdentity) CreateIdentityPool(req CreateIdentityPoolInput) (resp *IdentityPool, err error) {
 	resp = &IdentityPool{}
 	err = c.client.Do("CreateIdentityPool", "POST", "/", req, resp)
 	return
@@ -52,7 +52,7 @@ func (c *CogitoIdentity) CreateIdentityPool(req CreateIdentityPoolInput) (resp *
 
 // DeleteIdentityPool deletes a user pool. Once a pool is deleted, users
 // will not be able to authenticate with the pool.
-func (c *CogitoIdentity) DeleteIdentityPool(req DeleteIdentityPoolInput) (err error) {
+func (c *CognitoIdentity) DeleteIdentityPool(req DeleteIdentityPoolInput) (err error) {
 	// NRE
 	err = c.client.Do("DeleteIdentityPool", "POST", "/", req, nil)
 	return
@@ -61,7 +61,7 @@ func (c *CogitoIdentity) DeleteIdentityPool(req DeleteIdentityPoolInput) (err er
 // DescribeIdentityPool gets details about a particular identity pool,
 // including the pool name, ID description, creation date, and current
 // number of users.
-func (c *CogitoIdentity) DescribeIdentityPool(req DescribeIdentityPoolInput) (resp *IdentityPool, err error) {
+func (c *CognitoIdentity) DescribeIdentityPool(req DescribeIdentityPoolInput) (resp *IdentityPool, err error) {
 	resp = &IdentityPool{}
 	err = c.client.Do("DescribeIdentityPool", "POST", "/", req, resp)
 	return
@@ -69,7 +69,7 @@ func (c *CogitoIdentity) DescribeIdentityPool(req DescribeIdentityPoolInput) (re
 
 // GetID generates (or retrieves) a Cognito ID. Supplying multiple logins
 // will create an implicit linked account.
-func (c *CogitoIdentity) GetID(req GetIDInput) (resp *GetIDResponse, err error) {
+func (c *CognitoIdentity) GetID(req GetIDInput) (resp *GetIDResponse, err error) {
 	resp = &GetIDResponse{}
 	err = c.client.Do("GetId", "POST", "/", req, resp)
 	return
@@ -79,7 +79,7 @@ func (c *CogitoIdentity) GetID(req GetIDInput) (resp *GetIDResponse, err error) 
 // known Cognito ID is returned by GetId . You can optionally add
 // additional logins for the identity. Supplying multiple logins creates an
 // implicit link. The OpenId token is valid for 15 minutes.
-func (c *CogitoIdentity) GetOpenIDToken(req GetOpenIDTokenInput) (resp *GetOpenIDTokenResponse, err error) {
+func (c *CognitoIdentity) GetOpenIDToken(req GetOpenIDTokenInput) (resp *GetOpenIDTokenResponse, err error) {
 	resp = &GetOpenIDTokenResponse{}
 	err = c.client.Do("GetOpenIdToken", "POST", "/", req, resp)
 	return
@@ -99,14 +99,14 @@ func (c *CogitoIdentity) GetOpenIDToken(req GetOpenIDTokenInput) (resp *GetOpenI
 // authenticated/unauthenticated identity, you can do so by providing the
 // existing IdentityId . This API will create the identity in the specified
 // IdentityPoolId
-func (c *CogitoIdentity) GetOpenIDTokenForDeveloperIdentity(req GetOpenIDTokenForDeveloperIdentityInput) (resp *GetOpenIDTokenForDeveloperIdentityResponse, err error) {
+func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentity(req GetOpenIDTokenForDeveloperIdentityInput) (resp *GetOpenIDTokenForDeveloperIdentityResponse, err error) {
 	resp = &GetOpenIDTokenForDeveloperIdentityResponse{}
 	err = c.client.Do("GetOpenIdTokenForDeveloperIdentity", "POST", "/", req, resp)
 	return
 }
 
 // ListIdentities is undocumented.
-func (c *CogitoIdentity) ListIdentities(req ListIdentitiesInput) (resp *ListIdentitiesResponse, err error) {
+func (c *CognitoIdentity) ListIdentities(req ListIdentitiesInput) (resp *ListIdentitiesResponse, err error) {
 	resp = &ListIdentitiesResponse{}
 	err = c.client.Do("ListIdentities", "POST", "/", req, resp)
 	return
@@ -114,7 +114,7 @@ func (c *CogitoIdentity) ListIdentities(req ListIdentitiesInput) (resp *ListIden
 
 // ListIdentityPools lists all of the Cognito identity pools registered for
 // your account.
-func (c *CogitoIdentity) ListIdentityPools(req ListIdentityPoolsInput) (resp *ListIdentityPoolsResponse, err error) {
+func (c *CognitoIdentity) ListIdentityPools(req ListIdentityPoolsInput) (resp *ListIdentityPoolsResponse, err error) {
 	resp = &ListIdentityPoolsResponse{}
 	err = c.client.Do("ListIdentityPools", "POST", "/", req, resp)
 	return
@@ -130,7 +130,7 @@ func (c *CogitoIdentity) ListIdentityPools(req ListIdentityPoolsInput) (resp *Li
 // values are verified against the database, the response returns both
 // values and is the same as the request. Otherwise a
 // ResourceConflictException is thrown.
-func (c *CogitoIdentity) LookupDeveloperIdentity(req LookupDeveloperIdentityInput) (resp *LookupDeveloperIdentityResponse, err error) {
+func (c *CognitoIdentity) LookupDeveloperIdentity(req LookupDeveloperIdentityInput) (resp *LookupDeveloperIdentityResponse, err error) {
 	resp = &LookupDeveloperIdentityResponse{}
 	err = c.client.Do("LookupDeveloperIdentity", "POST", "/", req, resp)
 	return
@@ -145,7 +145,7 @@ func (c *CogitoIdentity) LookupDeveloperIdentity(req LookupDeveloperIdentityInpu
 // developer-authenticated users can be merged. If the users to be merged
 // are associated with the same public provider, but as two different
 // users, an exception will be thrown.
-func (c *CogitoIdentity) MergeDeveloperIdentities(req MergeDeveloperIdentitiesInput) (resp *MergeDeveloperIdentitiesResponse, err error) {
+func (c *CognitoIdentity) MergeDeveloperIdentities(req MergeDeveloperIdentitiesInput) (resp *MergeDeveloperIdentitiesResponse, err error) {
 	resp = &MergeDeveloperIdentitiesResponse{}
 	err = c.client.Do("MergeDeveloperIdentities", "POST", "/", req, resp)
 	return
@@ -156,7 +156,7 @@ func (c *CogitoIdentity) MergeDeveloperIdentities(req MergeDeveloperIdentitiesIn
 // identities next time they are seen. If, for a given Cognito identity,
 // you remove all federated identities as well as the developer user
 // identifier, the Cognito identity becomes inaccessible.
-func (c *CogitoIdentity) UnlinkDeveloperIdentity(req UnlinkDeveloperIdentityInput) (err error) {
+func (c *CognitoIdentity) UnlinkDeveloperIdentity(req UnlinkDeveloperIdentityInput) (err error) {
 	// NRE
 	err = c.client.Do("UnlinkDeveloperIdentity", "POST", "/", req, nil)
 	return
@@ -166,14 +166,14 @@ func (c *CogitoIdentity) UnlinkDeveloperIdentity(req UnlinkDeveloperIdentityInpu
 // Unlinked logins will be considered new identities next time they are
 // seen. Removing the last linked login will make this identity
 // inaccessible.
-func (c *CogitoIdentity) UnlinkIdentity(req UnlinkIdentityInput) (err error) {
+func (c *CognitoIdentity) UnlinkIdentity(req UnlinkIdentityInput) (err error) {
 	// NRE
 	err = c.client.Do("UnlinkIdentity", "POST", "/", req, nil)
 	return
 }
 
 // UpdateIdentityPool is undocumented.
-func (c *CogitoIdentity) UpdateIdentityPool(req IdentityPool) (resp *IdentityPool, err error) {
+func (c *CognitoIdentity) UpdateIdentityPool(req IdentityPool) (resp *IdentityPool, err error) {
 	resp = &IdentityPool{}
 	err = c.client.Do("UpdateIdentityPool", "POST", "/", req, resp)
 	return

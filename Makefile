@@ -14,7 +14,7 @@ generate: clean install-gen
 	aws-gen-gocli CloudTrail apis/cloudtrail/2013-11-01.api.json > aws/gen/cloudtrail/cloudtrail.go
 	aws-gen-gocli CloudSearch apis/cloudsearch/2013-01-01.api.json > aws/gen/cloudsearch/cloudsearch.go
 	aws-gen-gocli CloudWatch apis/cloudwatch/2010-08-01.api.json > aws/gen/cloudwatch/cloudwatch.go
-	aws-gen-gocli CogitoIdentity apis/cognito-identity/2014-06-30.api.json > aws/gen/cognito/identity/identity.go
+	aws-gen-gocli CognitoIdentity apis/cognito-identity/2014-06-30.api.json > aws/gen/cognito/identity/identity.go
 	aws-gen-gocli CodeDeploy apis/codedeploy/2014-10-06.api.json > aws/gen/codedeploy/codedeploy.go
 	aws-gen-gocli Config apis/config/2014-11-12.api.json > aws/gen/config/config.go
 	aws-gen-gocli DataPipeline apis/datapipeline/2012-10-29.api.json > aws/gen/datapipeline/datapipeline.go
