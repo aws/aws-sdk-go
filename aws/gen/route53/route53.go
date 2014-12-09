@@ -22,7 +22,7 @@ import (
 
 // Route53 is a client for Amazon Route 53.
 type Route53 struct {
-	client *aws.RestXMLClient
+	client *aws.RestClient
 }
 
 // New returns a new Route53 client.
@@ -35,7 +35,7 @@ func New(key, secret, region string, client *http.Client) *Route53 {
 	endpoint, service, region := endpoints.Lookup("route53", region)
 
 	return &Route53{
-		client: &aws.RestXMLClient{
+		client: &aws.RestClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,

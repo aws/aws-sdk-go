@@ -22,7 +22,7 @@ import (
 
 // S3 is a client for Amazon Simple Storage Service.
 type S3 struct {
-	client *aws.RestXMLClient
+	client *aws.RestClient
 }
 
 // New returns a new S3 client.
@@ -35,7 +35,7 @@ func New(key, secret, region string, client *http.Client) *S3 {
 	endpoint, service, region := endpoints.Lookup("s3", region)
 
 	return &S3{
-		client: &aws.RestXMLClient{
+		client: &aws.RestClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,

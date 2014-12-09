@@ -22,7 +22,7 @@ import (
 
 // CloudFront is a client for Amazon CloudFront.
 type CloudFront struct {
-	client *aws.RestXMLClient
+	client *aws.RestClient
 }
 
 // New returns a new CloudFront client.
@@ -35,7 +35,7 @@ func New(key, secret, region string, client *http.Client) *CloudFront {
 	endpoint, service, region := endpoints.Lookup("cloudfront", region)
 
 	return &CloudFront{
-		client: &aws.RestXMLClient{
+		client: &aws.RestClient{
 			Signer: &aws.V4Signer{
 				Key:     key,
 				Secret:  secret,
