@@ -67,17 +67,20 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
      client = http.DefaultClient
   }
 
+  service := "{{ .Metadata.EndpointPrefix }}"
+  endpoint, service, region := endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region)
+
   return &{{ .Name }}{
     client: &aws.RestXMLClient{
       Signer: &aws.V4Signer{
         Key: key,
         Secret: secret,
-        Service: "{{ .Metadata.EndpointPrefix }}",
+        Service: service,
         Region: region,
         IncludeXAmzContentSha256: true,
       },
       Client: client,
-      Endpoint: endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region),
+      Endpoint: endpoint,
       APIVersion: "{{ .Metadata.APIVersion }}",
     },
   }
@@ -287,17 +290,20 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
      client = http.DefaultClient
   }
 
+  service := "{{ .Metadata.EndpointPrefix }}"
+  endpoint, service, region := endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region)
+
   return &{{ .Name }}{
     client: &aws.QueryClient{
       Signer: &aws.V4Signer{
         Key: key,
         Secret: secret,
-        Service: "{{ .Metadata.EndpointPrefix }}",
+        Service: service,
         Region: region,
         IncludeXAmzContentSha256: true,
       },
       Client: client,
-      Endpoint: endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region),
+      Endpoint: endpoint,
       APIVersion: "{{ .Metadata.APIVersion }}",
     },
   }
@@ -357,17 +363,20 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
      client = http.DefaultClient
   }
 
+  service := "{{ .Metadata.EndpointPrefix }}"
+  endpoint, service, region := endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region)
+
   return &{{ .Name }}{
     client: &aws.JSONClient{
       Signer: &aws.V4Signer{
         Key: key,
         Secret: secret,
-        Service: "{{ .Metadata.EndpointPrefix }}",
+        Service: service,
         Region: region,
         IncludeXAmzContentSha256: true,
       },
       Client: client,
-      Endpoint: endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region),
+      Endpoint: endpoint,
       JSONVersion: "{{ .Metadata.JSONVersion }}",
       TargetPrefix: "{{ .Metadata.TargetPrefix }}",
     },

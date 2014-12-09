@@ -47,8 +47,8 @@ func (c Constraint) Condition() string {
 }
 
 type CredentialScope struct {
-	Region           string
-	SignatureVersion string
+	Region  string
+	Service string
 }
 
 type Properties struct {
@@ -60,6 +60,20 @@ type Endpoint struct {
 	URI         string
 	Properties  Properties
 	Constraints []Constraint
+}
+
+func (e Endpoint) Service() string {
+	if e.Properties.CredentialScope.Service != "" {
+		return fmt.Sprintf("%q", e.Properties.CredentialScope.Service)
+	}
+	return "service"
+}
+
+func (e Endpoint) Region() string {
+	if e.Properties.CredentialScope.Region != "" {
+		return fmt.Sprintf("%q", e.Properties.CredentialScope.Region)
+	}
+	return "region"
 }
 
 func (e Endpoint) Conditions() string {
@@ -104,15 +118,16 @@ import (
   "strings"
 )
 
-// Lookup returns the endpoint for the given service in the given region.
-func Lookup(service, region string) string {
+// Lookup returns the endpoint for the given service in the given region plus
+// any overrides for the service name and region.
+func Lookup(service, region string) (uri, newService, newRegion string) {
   switch service {
     {{ range $name, $endpoints := . }}
     {{ if ne $name "_default" }}
     case "{{ $name}}" :
     {{ range $endpoints }}
       {{ if .Constraints }}if {{ .Conditions }} { {{ end }}
-        return format("{{ .URI }}", service, region)
+        return format("{{ .URI }}", service, region), {{ .Service }}, {{ .Region }}
       {{ if .Constraints }} } {{ end }}
     {{ end }}
     {{ end }}
@@ -122,7 +137,7 @@ func Lookup(service, region string) string {
   {{ with $endpoints := index . "_default" }}
   {{ range $endpoints }}
     {{ if .Constraints }}if {{ .Conditions }} { {{ end }}
-      return format("{{ .URI }}", service, region)
+      return format("{{ .URI }}", service, region), {{ .Service }}, {{ .Region }}
     {{ if .Constraints }} } {{ end }}
   {{ end }}
   {{ end }}
