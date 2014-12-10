@@ -7,7 +7,6 @@ import (
 	"net/http/httptest"
 	"sync"
 	"testing"
-	"time"
 
 	"github.com/stripe/aws-go/aws"
 )
@@ -45,12 +44,6 @@ func TestJSONRequest(t *testing.T) {
 				"secretAccessKey",
 				"securityToken",
 			),
-			Clock: func() time.Time {
-				return time.Date(
-					2012, 12, 10, 11, 12, 43, 0,
-					time.FixedZone("PDT", -8),
-				)
-			},
 		},
 		Client:       http.DefaultClient,
 		Endpoint:     server.URL,
@@ -115,7 +108,6 @@ func TestJSONRequestError(t *testing.T) {
 				"secretAccessKey",
 				"securityToken",
 			),
-			Clock: time.Now,
 		},
 		Client:       http.DefaultClient,
 		Endpoint:     server.URL,
