@@ -27,6 +27,7 @@ func (c *JSONClient) Do(op, method, uri string, req, resp interface{}) error {
 	if err != nil {
 		return err
 	}
+	httpReq.Header.Set("User-Agent", "aws-go")
 	httpReq.Header.Set("X-Amz-Target", c.TargetPrefix+"."+op)
 	httpReq.Header.Set("Content-Type", "application/x-amz-json-"+c.JSONVersion)
 	if err := c.Context.sign(httpReq); err != nil {
