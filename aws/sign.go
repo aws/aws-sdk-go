@@ -87,6 +87,8 @@ func (c *Context) authorization(header http.Header, t time.Time, signature strin
 	return w.String()
 }
 
+var currentTime = time.Now
+
 const (
 	iso8601BasicFormat      = "20060102T150405Z"
 	iso8601BasicFormatShort = "20060102"
@@ -119,19 +121,12 @@ func requestTime(req *http.Request) time.Time {
 	}
 
 	// Create a current time header to be used
-	t = time.Now().UTC()
+	t = currentTime().UTC()
 	req.Header.Set("x-amz-date", t.Format(iso8601BasicFormat))
 	return t
 }
 
 func canonicalRequest(req *http.Request, pHash string) (string, error) {
-	if pHash == "" {
-		h, err := payloadHash(req)
-		if err != nil {
-			return "", err
-		}
-		pHash = h
-	}
 	c := new(bytes.Buffer)
 	fmt.Fprintf(c, "%s\n", req.Method)
 	fmt.Fprintf(c, "%s\n", canonicalURI(req.URL))
@@ -197,9 +192,7 @@ func signedHeaders(h http.Header) string {
 
 func payloadHash(req *http.Request) (string, error) {
 	var b []byte
-	if req.Body == nil {
-		b = []byte("")
-	} else {
+	if req.Body != nil {
 		var err error
 		b, err = ioutil.ReadAll(req.Body)
 		if err != nil {
@@ -218,6 +211,6 @@ func hash(in string) string {
 
 func mac(key, data []byte) []byte {
 	h := hmac.New(sha256.New, key)
-	h.Write(data)
+	_, _ = h.Write(data)
 	return h.Sum(nil)
 }
