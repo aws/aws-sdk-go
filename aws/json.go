@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+// JSONClient is the underlying client for json APIs.
 type JSONClient struct {
 	Credentials  Credentials
 	Client       *http.Client
@@ -18,6 +19,8 @@ type JSONClient struct {
 	JSONVersion  string
 }
 
+// Do sends an HTTP request and returns an HTTP response, following policy
+// (e.g. redirects, cookies, auth) as configured on the client.
 func (c *JSONClient) Do(op, method, uri string, req, resp interface{}) error {
 	b, err := json.Marshal(req)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 	"strings"
 )
 
+// QueryClient is the underlying client for json APIs.
 type QueryClient struct {
 	Credentials Credentials
 	Client      *http.Client
@@ -20,6 +21,8 @@ type QueryClient struct {
 	APIVersion  string
 }
 
+// Do sends an HTTP request and returns an HTTP response, following policy
+// (e.g. redirects, cookies, auth) as configured on the client.
 func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
 	body := url.Values{"Action": {op}, "Version": {c.APIVersion}}
 	if err := loadValues(body, req); err != nil {

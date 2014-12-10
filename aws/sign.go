@@ -127,7 +127,7 @@ func canonicalHeaders(h http.Header) string {
 
 func signedHeaders(h http.Header) string {
 	i, a := 0, make([]string, len(h))
-	for k, _ := range h {
+	for k := range h {
 		a[i] = strings.ToLower(k)
 		i++
 	}
