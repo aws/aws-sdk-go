@@ -19,6 +19,7 @@ type RestClient struct {
 // Do sends an HTTP request and returns an HTTP response, following policy
 // (e.g. redirects, cookies, auth) as configured on the client.
 func (c *RestClient) Do(req *http.Request) (*http.Response, error) {
+	req.Header.Set("User-Agent", "aws-go")
 	if err := c.Context.sign(req); err != nil {
 		return nil, err
 	}
