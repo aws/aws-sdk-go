@@ -30,6 +30,7 @@ func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
 		return err
 	}
 	httpReq.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	httpReq.Header.Set("User-Agent", "aws-go")
 	if err := c.Context.sign(httpReq); err != nil {
 		return err
 	}
@@ -77,6 +78,9 @@ func loadValues(v url.Values, i interface{}) error {
 	for i := 0; i < value.NumField(); i++ {
 		value := value.Field(i)
 		name := t.Field(i).Tag.Get("xml")
+		if name == "" {
+			name = t.Field(i).Name
+		}
 		switch casted := value.Interface().(type) {
 		case string:
 			if casted != "" {
@@ -101,6 +105,8 @@ func loadValues(v url.Values, i interface{}) error {
 					v.Set(fmt.Sprintf("%s.member.%d", name, i+1), val)
 				}
 			}
+		default:
+			panic(fmt.Sprintf("unsupported type: %#v", casted))
 		}
 	}
 	return nil
