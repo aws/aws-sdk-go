@@ -3,13 +3,15 @@ package aws
 import "net/http"
 
 type RestClient struct {
-	Signer     *V4Signer
-	Client     *http.Client
-	Endpoint   string
-	APIVersion string
+	Credentials Credentials
+	Client      *http.Client
+	Service     string
+	Region      string
+	Endpoint    string
+	APIVersion  string
 }
 
 func (c *RestClient) Do(req *http.Request) (*http.Response, error) {
-	c.Signer.sign(req)
+	sign(c.Service, c.Region, c.Credentials, req)
 	return c.Client.Do(req)
 }

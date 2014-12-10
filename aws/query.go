@@ -12,10 +12,12 @@ import (
 )
 
 type QueryClient struct {
-	Signer     *V4Signer
-	Client     *http.Client
-	Endpoint   string
-	APIVersion string
+	Credentials Credentials
+	Client      *http.Client
+	Service     string
+	Region      string
+	Endpoint    string
+	APIVersion  string
 }
 
 func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
@@ -29,7 +31,7 @@ func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
 		return err
 	}
 	httpReq.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	c.Signer.sign(httpReq)
+	sign(c.Service, c.Region, c.Credentials, httpReq)
 
 	httpResp, err := c.Client.Do(httpReq)
 	if err != nil {
