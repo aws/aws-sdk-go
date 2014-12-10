@@ -17,14 +17,16 @@ Please do not confuse this for a stable, feature-complete library.
 
 ## Installing
 
-    $ go get github.com/stripe/aws-go/aws/gen/...
+    $ go get github.com/stripe/aws-go/aws/...
 
 ## Using
 
 ```go
+import "github.com/stripe/aws-go/aws"
 import "github.com/stripe/aws-go/aws/gen/ec2"
 
-cli := ec2.New(accessKey, secretKey, "us-west-2", nil)
+creds := aws.StaticCreds(accessKey, secretKey, "")
+cli := ec2.New(creds, "us-west-2", nil)
 resp, err := cli.DescribeInstances(ec2.DescribeInstancesRequest{})
 if err != nil {
     panic(err)
