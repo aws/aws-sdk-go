@@ -37,12 +37,14 @@ func New(creds aws.Credentials, region string, client *http.Client) *Lambda {
 
 	return &Lambda{
 		client: &aws.RestClient{
-			Credentials: creds,
-			Service:     service,
-			Region:      region,
-			Client:      client,
-			Endpoint:    endpoint,
-			APIVersion:  "2014-11-11",
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			},
+			Client:     client,
+			Endpoint:   endpoint,
+			APIVersion: "2014-11-11",
 		},
 	}
 }

@@ -26,12 +26,14 @@ func New(creds aws.Credentials, region string, client *http.Client) *CloudSearch
 
 	return &CloudSearch{
 		client: &aws.QueryClient{
-			Credentials: creds,
-			Service:     service,
-			Region:      region,
-			Client:      client,
-			Endpoint:    endpoint,
-			APIVersion:  "2013-01-01",
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			},
+			Client:     client,
+			Endpoint:   endpoint,
+			APIVersion: "2013-01-01",
 		},
 	}
 }

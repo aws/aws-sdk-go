@@ -26,12 +26,14 @@ func New(creds aws.Credentials, region string, client *http.Client) *AutoScaling
 
 	return &AutoScaling{
 		client: &aws.QueryClient{
-			Credentials: creds,
-			Service:     service,
-			Region:      region,
-			Client:      client,
-			Endpoint:    endpoint,
-			APIVersion:  "2011-01-01",
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			},
+			Client:     client,
+			Endpoint:   endpoint,
+			APIVersion: "2011-01-01",
 		},
 	}
 }

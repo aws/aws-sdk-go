@@ -82,10 +82,11 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 
   return &{{ .Name }}{
     client: &aws.JSONClient{
-      Credentials: creds,
-      Service: service,
-      Region: region,
-      Client: client,
+      Context: aws.Context{
+        Credentials: creds,
+        Service: service,
+        Region: region,
+      },      Client: client,
       Endpoint: endpoint,
       JSONVersion: "{{ .Metadata.JSONVersion }}",
       TargetPrefix: "{{ .Metadata.TargetPrefix }}",
@@ -144,9 +145,11 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 
   return &{{ .Name }}{
     client: &aws.QueryClient{
-      Credentials: creds,
-      Service: service,
-      Region: region,
+      Context: aws.Context{
+        Credentials: creds,
+        Service: service,
+        Region: region,
+      },
       Client: client,
       Endpoint: endpoint,
       APIVersion: "{{ .Metadata.APIVersion }}",
@@ -226,9 +229,11 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 
   return &{{ .Name }}{
     client: &aws.RestClient{
-      Credentials: creds,
-      Service: service,
-      Region: region,
+      Context: aws.Context{
+        Credentials: creds,
+        Service: service,
+        Region: region,
+      },
       Client: client,
       Endpoint: endpoint,
       APIVersion: "{{ .Metadata.APIVersion }}",
@@ -467,9 +472,11 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 
   return &{{ .Name }}{
     client: &aws.RestClient{
-      Credentials: creds,
-      Service: service,
-      Region: region,
+      Context: aws.Context{
+        Credentials: creds,
+        Service: service,
+        Region: region,
+      },
       Client: client,
       Endpoint: endpoint,
       APIVersion: "{{ .Metadata.APIVersion }}",

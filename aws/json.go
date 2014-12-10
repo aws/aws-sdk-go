@@ -8,10 +8,8 @@ import (
 
 // JSONClient is the underlying client for json APIs.
 type JSONClient struct {
-	Credentials  Credentials
+	Context      Context
 	Client       *http.Client
-	Service      string
-	Region       string
 	Endpoint     string
 	TargetPrefix string
 	JSONVersion  string
@@ -31,7 +29,7 @@ func (c *JSONClient) Do(op, method, uri string, req, resp interface{}) error {
 	}
 	httpReq.Header.Set("X-Amz-Target", c.TargetPrefix+"."+op)
 	httpReq.Header.Set("Content-Type", "application/x-amz-json-"+c.JSONVersion)
-	if err := sign(c.Service, c.Region, c.Credentials, httpReq); err != nil {
+	if err := c.Context.sign(httpReq); err != nil {
 		return err
 	}
 

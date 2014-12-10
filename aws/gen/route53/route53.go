@@ -36,12 +36,14 @@ func New(creds aws.Credentials, region string, client *http.Client) *Route53 {
 
 	return &Route53{
 		client: &aws.RestClient{
-			Credentials: creds,
-			Service:     service,
-			Region:      region,
-			Client:      client,
-			Endpoint:    endpoint,
-			APIVersion:  "2013-04-01",
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			},
+			Client:     client,
+			Endpoint:   endpoint,
+			APIVersion: "2013-04-01",
 		},
 	}
 }

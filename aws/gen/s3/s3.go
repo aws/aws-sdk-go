@@ -36,12 +36,14 @@ func New(creds aws.Credentials, region string, client *http.Client) *S3 {
 
 	return &S3{
 		client: &aws.RestClient{
-			Credentials: creds,
-			Service:     service,
-			Region:      region,
-			Client:      client,
-			Endpoint:    endpoint,
-			APIVersion:  "2006-03-01",
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			},
+			Client:     client,
+			Endpoint:   endpoint,
+			APIVersion: "2006-03-01",
 		},
 	}
 }

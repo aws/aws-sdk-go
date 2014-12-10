@@ -14,7 +14,14 @@ import (
 	"time"
 )
 
-func sign(service, region string, creds Credentials, req *http.Request) error {
+// Context encapsulates the context of a client's connection to an AWS service.
+type Context struct {
+	Service     string
+	Region      string
+	Credentials Credentials
+}
+
+func (c *Context) sign(req *http.Request) error {
 	req.Header.Set("host", req.Host) // host header must be included as a signed header
 	payloadHash, err := payloadHash(req)
 	if err != nil {
@@ -27,14 +34,57 @@ func sign(service, region string, creds Credentials, req *http.Request) error {
 	if err != nil {
 		return err
 	}
-	sts := stringToSign(t, creq, region, service)
-	signature := signature(t, sts, region, service, creds.SecretAccessKey())
-	auth := authorization(req.Header, t, region, service, creds.AccessKeyID(), signature)
+	sts := c.stringToSign(t, creq)
+	signature := c.signature(t, sts)
+	auth := c.authorization(req.Header, t, signature)
 	req.Header.Set("Authorization", auth)
-	if s := creds.SecurityToken(); s != "" {
+	if s := c.Credentials.SecurityToken(); s != "" {
 		req.Header.Set("X-Amz-Security-Token", s)
 	}
 	return nil
+}
+
+func (c *Context) stringToSign(t time.Time, creq string) string {
+	w := new(bytes.Buffer)
+	fmt.Fprint(w, "AWS4-HMAC-SHA256\n")
+	fmt.Fprintf(w, "%s\n", t.Format(iso8601BasicFormat))
+	fmt.Fprintf(w, "%s\n", c.credentialScope(t))
+	fmt.Fprintf(w, "%s", hash(creq))
+	return w.String()
+}
+
+func (c *Context) credentialScope(t time.Time) string {
+	return fmt.Sprintf(
+		"%s/%s/%s/aws4_request",
+		t.Format(iso8601BasicFormatShort),
+		c.Region,
+		c.Service,
+	)
+}
+
+func (c *Context) signature(t time.Time, sts string) string {
+	h := mac(c.derivedKey(t), []byte(sts))
+	return fmt.Sprintf("%x", h)
+}
+
+func (c *Context) derivedKey(t time.Time) []byte {
+	h := mac(
+		[]byte("AWS4"+c.Credentials.SecretAccessKey()),
+		[]byte(t.Format(iso8601BasicFormatShort)),
+	)
+	h = mac(h, []byte(c.Region))
+	h = mac(h, []byte(c.Service))
+	h = mac(h, []byte("aws4_request"))
+	return h
+}
+
+func (c *Context) authorization(header http.Header, t time.Time, signature string) string {
+	w := new(bytes.Buffer)
+	fmt.Fprint(w, "AWS4-HMAC-SHA256 ")
+	fmt.Fprintf(w, "Credential=%s/%s, ", c.Credentials.AccessKeyID(), c.credentialScope(t))
+	fmt.Fprintf(w, "SignedHeaders=%s, ", signedHeaders(header))
+	fmt.Fprintf(w, "Signature=%s", signature)
+	return w.String()
 }
 
 const (
@@ -158,41 +208,6 @@ func payloadHash(req *http.Request) (string, error) {
 	}
 	req.Body = ioutil.NopCloser(bytes.NewBuffer(b))
 	return hash(string(b)), nil
-}
-
-func stringToSign(t time.Time, creq, region, service string) string {
-	w := new(bytes.Buffer)
-	fmt.Fprint(w, "AWS4-HMAC-SHA256\n")
-	fmt.Fprintf(w, "%s\n", t.Format(iso8601BasicFormat))
-	fmt.Fprintf(w, "%s\n", credentialScope(t, region, service))
-	fmt.Fprintf(w, "%s", hash(creq))
-	return w.String()
-}
-
-func credentialScope(t time.Time, region, service string) string {
-	return fmt.Sprintf("%s/%s/%s/aws4_request", t.Format(iso8601BasicFormatShort), region, service)
-}
-
-func signature(t time.Time, sts, region, service, secret string) string {
-	h := mac(derivedKey(t, region, service, secret), []byte(sts))
-	return fmt.Sprintf("%x", h)
-}
-
-func derivedKey(t time.Time, region, service, secret string) []byte {
-	h := mac([]byte("AWS4"+secret), []byte(t.Format(iso8601BasicFormatShort)))
-	h = mac(h, []byte(region))
-	h = mac(h, []byte(service))
-	h = mac(h, []byte("aws4_request"))
-	return h
-}
-
-func authorization(header http.Header, t time.Time, region, service, key, signature string) string {
-	w := new(bytes.Buffer)
-	fmt.Fprint(w, "AWS4-HMAC-SHA256 ")
-	fmt.Fprintf(w, "Credential=%s/%s, ", key, credentialScope(t, region, service))
-	fmt.Fprintf(w, "SignedHeaders=%s, ", signedHeaders(header))
-	fmt.Fprintf(w, "Signature=%s", signature)
-	return w.String()
 }
 
 func hash(in string) string {

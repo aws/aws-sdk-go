@@ -37,12 +37,14 @@ func New(creds aws.Credentials, region string, client *http.Client) *ElasticTran
 
 	return &ElasticTranscoder{
 		client: &aws.RestClient{
-			Credentials: creds,
-			Service:     service,
-			Region:      region,
-			Client:      client,
-			Endpoint:    endpoint,
-			APIVersion:  "2012-09-25",
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			},
+			Client:     client,
+			Endpoint:   endpoint,
+			APIVersion: "2012-09-25",
 		},
 	}
 }

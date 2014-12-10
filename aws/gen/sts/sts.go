@@ -26,12 +26,14 @@ func New(creds aws.Credentials, region string, client *http.Client) *STS {
 
 	return &STS{
 		client: &aws.QueryClient{
-			Credentials: creds,
-			Service:     service,
-			Region:      region,
-			Client:      client,
-			Endpoint:    endpoint,
-			APIVersion:  "2011-06-15",
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			},
+			Client:     client,
+			Endpoint:   endpoint,
+			APIVersion: "2011-06-15",
 		},
 	}
 }

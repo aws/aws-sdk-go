@@ -26,10 +26,11 @@ func New(creds aws.Credentials, region string, client *http.Client) *CognitoIden
 
 	return &CognitoIdentity{
 		client: &aws.JSONClient{
-			Credentials:  creds,
-			Service:      service,
-			Region:       region,
-			Client:       client,
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			}, Client: client,
 			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "AWSCognitoIdentityService",

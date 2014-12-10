@@ -26,10 +26,11 @@ func New(creds aws.Credentials, region string, client *http.Client) *Route53Doma
 
 	return &Route53Domains{
 		client: &aws.JSONClient{
-			Credentials:  creds,
-			Service:      service,
-			Region:       region,
-			Client:       client,
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			}, Client: client,
 			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "Route53Domains_v20140515",

@@ -26,10 +26,11 @@ func New(creds aws.Credentials, region string, client *http.Client) *Kinesis {
 
 	return &Kinesis{
 		client: &aws.JSONClient{
-			Credentials:  creds,
-			Service:      service,
-			Region:       region,
-			Client:       client,
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			}, Client: client,
 			Endpoint:     endpoint,
 			JSONVersion:  "1.1",
 			TargetPrefix: "Kinesis_20131202",

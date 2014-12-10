@@ -11,12 +11,10 @@ import (
 
 // QueryClient is the underlying client for json APIs.
 type QueryClient struct {
-	Credentials Credentials
-	Client      *http.Client
-	Service     string
-	Region      string
-	Endpoint    string
-	APIVersion  string
+	Context    Context
+	Client     *http.Client
+	Endpoint   string
+	APIVersion string
 }
 
 // Do sends an HTTP request and returns an HTTP response, following policy
@@ -32,7 +30,7 @@ func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
 		return err
 	}
 	httpReq.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	if err := sign(c.Service, c.Region, c.Credentials, httpReq); err != nil {
+	if err := c.Context.sign(httpReq); err != nil {
 		return err
 	}
 

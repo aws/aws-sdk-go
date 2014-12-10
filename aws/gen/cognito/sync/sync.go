@@ -37,12 +37,14 @@ func New(creds aws.Credentials, region string, client *http.Client) *CognitoSync
 
 	return &CognitoSync{
 		client: &aws.RestClient{
-			Credentials: creds,
-			Service:     service,
-			Region:      region,
-			Client:      client,
-			Endpoint:    endpoint,
-			APIVersion:  "2014-06-30",
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			},
+			Client:     client,
+			Endpoint:   endpoint,
+			APIVersion: "2014-06-30",
 		},
 	}
 }

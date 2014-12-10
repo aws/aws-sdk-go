@@ -26,12 +26,14 @@ func New(creds aws.Credentials, region string, client *http.Client) *ElasticCach
 
 	return &ElasticCache{
 		client: &aws.QueryClient{
-			Credentials: creds,
-			Service:     service,
-			Region:      region,
-			Client:      client,
-			Endpoint:    endpoint,
-			APIVersion:  "2014-09-30",
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			},
+			Client:     client,
+			Endpoint:   endpoint,
+			APIVersion: "2014-09-30",
 		},
 	}
 }

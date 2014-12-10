@@ -26,12 +26,14 @@ func New(creds aws.Credentials, region string, client *http.Client) *CloudFormat
 
 	return &CloudFormation{
 		client: &aws.QueryClient{
-			Credentials: creds,
-			Service:     service,
-			Region:      region,
-			Client:      client,
-			Endpoint:    endpoint,
-			APIVersion:  "2010-05-15",
+			Context: aws.Context{
+				Credentials: creds,
+				Service:     service,
+				Region:      region,
+			},
+			Client:     client,
+			Endpoint:   endpoint,
+			APIVersion: "2010-05-15",
 		},
 	}
 }
