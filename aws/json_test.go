@@ -84,8 +84,7 @@ func TestJSONRequest(t *testing.T) {
 		t.Errorf("Body was %v but expected %v", v, want)
 	}
 
-	x := fakeJSONResponse{TailWagged: true}
-	if v, want := resp, x; v != want {
+	if v, want := resp, (fakeJSONResponse{TailWagged: true}); v != want {
 		t.Errorf("Response was %#v but expected %#v", v, want)
 	}
 }
