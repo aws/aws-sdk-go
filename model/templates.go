@@ -72,7 +72,7 @@ type {{ .Name }} struct {
 }
 
 // New returns a new {{ .Name }} client.
-func New(key, secret, region string, client *http.Client) *{{ .Name }} {
+func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
      client = http.DefaultClient
   }
@@ -82,13 +82,9 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 
   return &{{ .Name }}{
     client: &aws.JSONClient{
-      Signer: &aws.V4Signer{
-        Key: key,
-        Secret: secret,
-        Service: service,
-        Region: region,
-        IncludeXAmzContentSha256: true,
-      },
+      Credentials: creds,
+      Service: service,
+      Region: region,
       Client: client,
       Endpoint: endpoint,
       JSONVersion: "{{ .Metadata.JSONVersion }}",
@@ -138,7 +134,7 @@ type {{ .Name }} struct {
 }
 
 // New returns a new {{ .Name }} client.
-func New(key, secret, region string, client *http.Client) *{{ .Name }} {
+func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
      client = http.DefaultClient
   }
@@ -148,13 +144,9 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 
   return &{{ .Name }}{
     client: &aws.QueryClient{
-      Signer: &aws.V4Signer{
-        Key: key,
-        Secret: secret,
-        Service: service,
-        Region: region,
-        IncludeXAmzContentSha256: true,
-      },
+      Credentials: creds,
+      Service: service,
+      Region: region,
       Client: client,
       Endpoint: endpoint,
       APIVersion: "{{ .Metadata.APIVersion }}",
@@ -224,7 +216,7 @@ type {{ .Name }} struct {
 }
 
 // New returns a new {{ .Name }} client.
-func New(key, secret, region string, client *http.Client) *{{ .Name }} {
+func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
      client = http.DefaultClient
   }
@@ -234,13 +226,9 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 
   return &{{ .Name }}{
     client: &aws.RestClient{
-      Signer: &aws.V4Signer{
-        Key: key,
-        Secret: secret,
-        Service: service,
-        Region: region,
-        IncludeXAmzContentSha256: true,
-      },
+      Credentials: creds,
+      Service: service,
+      Region: region,
       Client: client,
       Endpoint: endpoint,
       APIVersion: "{{ .Metadata.APIVersion }}",
@@ -469,7 +457,7 @@ type {{ .Name }} struct {
 }
 
 // New returns a new {{ .Name }} client.
-func New(key, secret, region string, client *http.Client) *{{ .Name }} {
+func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
      client = http.DefaultClient
   }
@@ -479,13 +467,9 @@ func New(key, secret, region string, client *http.Client) *{{ .Name }} {
 
   return &{{ .Name }}{
     client: &aws.RestClient{
-      Signer: &aws.V4Signer{
-        Key: key,
-        Secret: secret,
-        Service: service,
-        Region: region,
-        IncludeXAmzContentSha256: true,
-      },
+      Credentials: creds,
+      Service: service,
+      Region: region,
       Client: client,
       Endpoint: endpoint,
       APIVersion: "{{ .Metadata.APIVersion }}",
