@@ -16,7 +16,7 @@ type Kinesis struct {
 }
 
 // New returns a new Kinesis client.
-func New(key, secret, region string, client *http.Client) *Kinesis {
+func New(creds aws.Credentials, region string, client *http.Client) *Kinesis {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -26,13 +26,9 @@ func New(key, secret, region string, client *http.Client) *Kinesis {
 
 	return &Kinesis{
 		client: &aws.JSONClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
+			Credentials:  creds,
+			Service:      service,
+			Region:       region,
 			Client:       client,
 			Endpoint:     endpoint,
 			JSONVersion:  "1.1",

@@ -16,7 +16,7 @@ type AutoScaling struct {
 }
 
 // New returns a new AutoScaling client.
-func New(key, secret, region string, client *http.Client) *AutoScaling {
+func New(creds aws.Credentials, region string, client *http.Client) *AutoScaling {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -26,16 +26,12 @@ func New(key, secret, region string, client *http.Client) *AutoScaling {
 
 	return &AutoScaling{
 		client: &aws.QueryClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2011-01-01",
+			Credentials: creds,
+			Service:     service,
+			Region:      region,
+			Client:      client,
+			Endpoint:    endpoint,
+			APIVersion:  "2011-01-01",
 		},
 	}
 }

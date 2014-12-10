@@ -16,7 +16,7 @@ type IAM struct {
 }
 
 // New returns a new IAM client.
-func New(key, secret, region string, client *http.Client) *IAM {
+func New(creds aws.Credentials, region string, client *http.Client) *IAM {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -26,16 +26,12 @@ func New(key, secret, region string, client *http.Client) *IAM {
 
 	return &IAM{
 		client: &aws.QueryClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2010-05-08",
+			Credentials: creds,
+			Service:     service,
+			Region:      region,
+			Client:      client,
+			Endpoint:    endpoint,
+			APIVersion:  "2010-05-08",
 		},
 	}
 }

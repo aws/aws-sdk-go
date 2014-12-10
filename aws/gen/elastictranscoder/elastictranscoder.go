@@ -27,7 +27,7 @@ type ElasticTranscoder struct {
 }
 
 // New returns a new ElasticTranscoder client.
-func New(key, secret, region string, client *http.Client) *ElasticTranscoder {
+func New(creds aws.Credentials, region string, client *http.Client) *ElasticTranscoder {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -37,16 +37,12 @@ func New(key, secret, region string, client *http.Client) *ElasticTranscoder {
 
 	return &ElasticTranscoder{
 		client: &aws.RestClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2012-09-25",
+			Credentials: creds,
+			Service:     service,
+			Region:      region,
+			Client:      client,
+			Endpoint:    endpoint,
+			APIVersion:  "2012-09-25",
 		},
 	}
 }

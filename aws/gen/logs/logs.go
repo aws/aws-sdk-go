@@ -16,7 +16,7 @@ type Logs struct {
 }
 
 // New returns a new Logs client.
-func New(key, secret, region string, client *http.Client) *Logs {
+func New(creds aws.Credentials, region string, client *http.Client) *Logs {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -26,13 +26,9 @@ func New(key, secret, region string, client *http.Client) *Logs {
 
 	return &Logs{
 		client: &aws.JSONClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
+			Credentials:  creds,
+			Service:      service,
+			Region:       region,
 			Client:       client,
 			Endpoint:     endpoint,
 			JSONVersion:  "1.1",

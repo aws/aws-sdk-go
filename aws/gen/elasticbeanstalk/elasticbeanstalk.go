@@ -16,7 +16,7 @@ type ElasticBeanstalk struct {
 }
 
 // New returns a new ElasticBeanstalk client.
-func New(key, secret, region string, client *http.Client) *ElasticBeanstalk {
+func New(creds aws.Credentials, region string, client *http.Client) *ElasticBeanstalk {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -26,16 +26,12 @@ func New(key, secret, region string, client *http.Client) *ElasticBeanstalk {
 
 	return &ElasticBeanstalk{
 		client: &aws.QueryClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2010-12-01",
+			Credentials: creds,
+			Service:     service,
+			Region:      region,
+			Client:      client,
+			Endpoint:    endpoint,
+			APIVersion:  "2010-12-01",
 		},
 	}
 }

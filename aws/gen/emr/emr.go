@@ -16,7 +16,7 @@ type EMR struct {
 }
 
 // New returns a new EMR client.
-func New(key, secret, region string, client *http.Client) *EMR {
+func New(creds aws.Credentials, region string, client *http.Client) *EMR {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -26,13 +26,9 @@ func New(key, secret, region string, client *http.Client) *EMR {
 
 	return &EMR{
 		client: &aws.JSONClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
+			Credentials:  creds,
+			Service:      service,
+			Region:       region,
 			Client:       client,
 			Endpoint:     endpoint,
 			JSONVersion:  "1.1",

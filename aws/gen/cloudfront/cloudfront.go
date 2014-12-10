@@ -26,7 +26,7 @@ type CloudFront struct {
 }
 
 // New returns a new CloudFront client.
-func New(key, secret, region string, client *http.Client) *CloudFront {
+func New(creds aws.Credentials, region string, client *http.Client) *CloudFront {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -36,16 +36,12 @@ func New(key, secret, region string, client *http.Client) *CloudFront {
 
 	return &CloudFront{
 		client: &aws.RestClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2014-10-21",
+			Credentials: creds,
+			Service:     service,
+			Region:      region,
+			Client:      client,
+			Endpoint:    endpoint,
+			APIVersion:  "2014-10-21",
 		},
 	}
 }

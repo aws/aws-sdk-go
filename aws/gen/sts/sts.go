@@ -16,7 +16,7 @@ type STS struct {
 }
 
 // New returns a new STS client.
-func New(key, secret, region string, client *http.Client) *STS {
+func New(creds aws.Credentials, region string, client *http.Client) *STS {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -26,16 +26,12 @@ func New(key, secret, region string, client *http.Client) *STS {
 
 	return &STS{
 		client: &aws.QueryClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2011-06-15",
+			Credentials: creds,
+			Service:     service,
+			Region:      region,
+			Client:      client,
+			Endpoint:    endpoint,
+			APIVersion:  "2011-06-15",
 		},
 	}
 }

@@ -27,7 +27,7 @@ type CognitoSync struct {
 }
 
 // New returns a new CognitoSync client.
-func New(key, secret, region string, client *http.Client) *CognitoSync {
+func New(creds aws.Credentials, region string, client *http.Client) *CognitoSync {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -37,16 +37,12 @@ func New(key, secret, region string, client *http.Client) *CognitoSync {
 
 	return &CognitoSync{
 		client: &aws.RestClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2014-06-30",
+			Credentials: creds,
+			Service:     service,
+			Region:      region,
+			Client:      client,
+			Endpoint:    endpoint,
+			APIVersion:  "2014-06-30",
 		},
 	}
 }

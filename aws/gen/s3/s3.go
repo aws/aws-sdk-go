@@ -26,7 +26,7 @@ type S3 struct {
 }
 
 // New returns a new S3 client.
-func New(key, secret, region string, client *http.Client) *S3 {
+func New(creds aws.Credentials, region string, client *http.Client) *S3 {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -36,16 +36,12 @@ func New(key, secret, region string, client *http.Client) *S3 {
 
 	return &S3{
 		client: &aws.RestClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2006-03-01",
+			Credentials: creds,
+			Service:     service,
+			Region:      region,
+			Client:      client,
+			Endpoint:    endpoint,
+			APIVersion:  "2006-03-01",
 		},
 	}
 }

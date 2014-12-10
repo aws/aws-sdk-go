@@ -16,7 +16,7 @@ type RDS struct {
 }
 
 // New returns a new RDS client.
-func New(key, secret, region string, client *http.Client) *RDS {
+func New(creds aws.Credentials, region string, client *http.Client) *RDS {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -26,16 +26,12 @@ func New(key, secret, region string, client *http.Client) *RDS {
 
 	return &RDS{
 		client: &aws.QueryClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2014-09-01",
+			Credentials: creds,
+			Service:     service,
+			Region:      region,
+			Client:      client,
+			Endpoint:    endpoint,
+			APIVersion:  "2014-09-01",
 		},
 	}
 }

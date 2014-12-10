@@ -16,7 +16,7 @@ type CloudSearch struct {
 }
 
 // New returns a new CloudSearch client.
-func New(key, secret, region string, client *http.Client) *CloudSearch {
+func New(creds aws.Credentials, region string, client *http.Client) *CloudSearch {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -26,16 +26,12 @@ func New(key, secret, region string, client *http.Client) *CloudSearch {
 
 	return &CloudSearch{
 		client: &aws.QueryClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2013-01-01",
+			Credentials: creds,
+			Service:     service,
+			Region:      region,
+			Client:      client,
+			Endpoint:    endpoint,
+			APIVersion:  "2013-01-01",
 		},
 	}
 }

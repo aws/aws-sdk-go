@@ -16,7 +16,7 @@ type SDB struct {
 }
 
 // New returns a new SDB client.
-func New(key, secret, region string, client *http.Client) *SDB {
+func New(creds aws.Credentials, region string, client *http.Client) *SDB {
 	if client == nil {
 		client = http.DefaultClient
 	}
@@ -26,16 +26,12 @@ func New(key, secret, region string, client *http.Client) *SDB {
 
 	return &SDB{
 		client: &aws.QueryClient{
-			Signer: &aws.V4Signer{
-				Key:     key,
-				Secret:  secret,
-				Service: service,
-				Region:  region,
-				IncludeXAmzContentSha256: true,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2009-04-15",
+			Credentials: creds,
+			Service:     service,
+			Region:      region,
+			Client:      client,
+			Endpoint:    endpoint,
+			APIVersion:  "2009-04-15",
 		},
 	}
 }
