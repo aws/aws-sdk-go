@@ -14,13 +14,19 @@ import (
 	"time"
 )
 
-func sign(service, region string, creds Credentials, req *http.Request) {
+func sign(service, region string, creds Credentials, req *http.Request) error {
 	req.Header.Set("host", req.Host) // host header must be included as a signed header
-	payloadHash := payloadHash(req)
+	payloadHash, err := payloadHash(req)
+	if err != nil {
+		return err
+	}
 	req.Header.Set("x-amz-content-sha256", payloadHash)
 
 	t := requestTime(req)
-	creq := canonicalRequest(req, payloadHash)
+	creq, err := canonicalRequest(req, payloadHash)
+	if err != nil {
+		return err
+	}
 	sts := stringToSign(t, creq, region, service)
 	signature := signature(t, sts, region, service, creds.SecretAccessKey())
 	auth := authorization(req.Header, t, region, service, creds.AccessKeyID(), signature)
@@ -28,7 +34,7 @@ func sign(service, region string, creds Credentials, req *http.Request) {
 	if s := creds.SecurityToken(); s != "" {
 		req.Header.Set("X-Amz-Security-Token", s)
 	}
-	return
+	return nil
 }
 
 const (
@@ -68,9 +74,13 @@ func requestTime(req *http.Request) time.Time {
 	return t
 }
 
-func canonicalRequest(req *http.Request, pHash string) string {
+func canonicalRequest(req *http.Request, pHash string) (string, error) {
 	if pHash == "" {
-		pHash = payloadHash(req)
+		h, err := payloadHash(req)
+		if err != nil {
+			return "", err
+		}
+		pHash = h
 	}
 	c := new(bytes.Buffer)
 	fmt.Fprintf(c, "%s\n", req.Method)
@@ -79,7 +89,7 @@ func canonicalRequest(req *http.Request, pHash string) string {
 	fmt.Fprintf(c, "%s\n\n", canonicalHeaders(req.Header))
 	fmt.Fprintf(c, "%s\n", signedHeaders(req.Header))
 	fmt.Fprintf(c, "%s", pHash)
-	return c.String()
+	return c.String(), nil
 }
 
 func canonicalURI(u *url.URL) string {
@@ -135,7 +145,7 @@ func signedHeaders(h http.Header) string {
 	return strings.Join(a, ";")
 }
 
-func payloadHash(req *http.Request) string {
+func payloadHash(req *http.Request) (string, error) {
 	var b []byte
 	if req.Body == nil {
 		b = []byte("")
@@ -143,12 +153,11 @@ func payloadHash(req *http.Request) string {
 		var err error
 		b, err = ioutil.ReadAll(req.Body)
 		if err != nil {
-			// TODO: I REALLY DON'T LIKE THIS PANIC!!!!
-			panic(err)
+			return "", err
 		}
 	}
 	req.Body = ioutil.NopCloser(bytes.NewBuffer(b))
-	return hash(string(b))
+	return hash(string(b)), nil
 }
 
 func stringToSign(t time.Time, creq, region, service string) string {

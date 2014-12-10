@@ -21,7 +21,10 @@ type RestClient struct {
 // Do sends an HTTP request and returns an HTTP response, following policy
 // (e.g. redirects, cookies, auth) as configured on the client.
 func (c *RestClient) Do(req *http.Request) (*http.Response, error) {
-	sign(c.Service, c.Region, c.Credentials, req)
+	if err := sign(c.Service, c.Region, c.Credentials, req); err != nil {
+		return nil, err
+	}
+
 	resp, err := c.Client.Do(req)
 	if err != nil {
 		return nil, err
