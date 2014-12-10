@@ -36,10 +36,10 @@ func EnvCreds() (Credentials, error) {
 		return nil, ErrSecretAccessKeyNotFound
 	}
 
-	return StaticCreds(id, secret, ""), nil
+	return Creds(id, secret, ""), nil
 }
 
-func StaticCreds(accessKeyID, secretAccessKey, securityToken string) Credentials {
+func Creds(accessKeyID, secretAccessKey, securityToken string) Credentials {
 	return &staticCreds{
 		id:     accessKeyID,
 		secret: secretAccessKey,
