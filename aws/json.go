@@ -3,8 +3,6 @@ package aws
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -42,12 +40,24 @@ func (c *JSONClient) Do(op, method, uri string, req, resp interface{}) error {
 	defer httpResp.Body.Close()
 
 	if httpResp.StatusCode != 200 {
-		b, err := ioutil.ReadAll(httpResp.Body)
-		if err != nil {
+		var err jsonErrorResponse
+		if err := json.NewDecoder(httpResp.Body).Decode(&err); err != nil {
 			return err
 		}
-		return errors.New(string(b))
+		return err.Err()
 	}
 
 	return json.NewDecoder(httpResp.Body).Decode(resp)
+}
+
+type jsonErrorResponse struct {
+	Type    string `json:"__type"`
+	Message string `json:"message"`
+}
+
+func (e jsonErrorResponse) Err() error {
+	return APIError{
+		Type:    e.Type,
+		Message: e.Message,
+	}
 }

@@ -2,9 +2,7 @@ package aws
 
 import (
 	"encoding/xml"
-	"errors"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -42,16 +40,32 @@ func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
 	}
 	defer httpResp.Body.Close()
 
-	b, err := ioutil.ReadAll(httpResp.Body)
-	if err != nil {
-		return err
-	}
-
 	if httpResp.StatusCode != 200 {
-		return errors.New(string(b))
+		var err queryErrorResponse
+		if err := xml.NewDecoder(httpResp.Body).Decode(&err); err != nil {
+			return err
+		}
+		return err.Err()
 	}
 
-	return xml.Unmarshal(b, resp)
+	return xml.NewDecoder(httpResp.Body).Decode(resp)
+}
+
+type queryErrorResponse struct {
+	XMLName   xml.Name `xml:"ErrorResponse"`
+	Type      string   `xml:"Error>Type"`
+	Code      string   `xml:"Error>Code"`
+	Message   string   `xml:"Error>Message"`
+	RequestID string   `xml:"RequestId"`
+}
+
+func (e queryErrorResponse) Err() error {
+	return APIError{
+		Type:      e.Type,
+		Code:      e.Code,
+		Message:   e.Message,
+		RequestID: e.RequestID,
+	}
 }
 
 func loadValues(v url.Values, i interface{}) error {
