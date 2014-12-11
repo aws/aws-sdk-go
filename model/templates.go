@@ -356,9 +356,19 @@ func restXMLClient(t *template.Template) (*template.Template, error) {
 
   {{ else if eq $m.Shape.ShapeType "integer" }}
 
+  {{ if eq $m.LocationName "Content-Length" }}
+
+  if req.{{ exportable $name }} != nil {
+    httpReq.ContentLength = int64(*req.{{ exportable $name }})
+  }
+
+  {{ else }}
+
   if req.{{ exportable $name }} != nil {
     httpReq.Header.Set("{{ $m.LocationName }}", strconv.Itoa(*req.{{ exportable $name }}))
   }
+
+  {{ end }}
 
   {{ else }}
 
