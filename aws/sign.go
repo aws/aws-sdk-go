@@ -199,7 +199,7 @@ func payloadHash(req *http.Request) (string, error) {
 			return "", err
 		}
 	}
-	req.Body = ioutil.NopCloser(bytes.NewBuffer(b))
+	req.Body = ioutil.NopCloser(bytes.NewReader(b))
 	return hash(string(b)), nil
 }
 
