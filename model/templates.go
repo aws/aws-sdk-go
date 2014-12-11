@@ -529,7 +529,9 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
   resp.Body = httpResp.Body
       {{ else }}
   defer httpResp.Body.Close()
-  err = xml.NewDecoder(httpResp.Body).Decode(resp)
+  if httpResp.StatusCode != 204 {
+    err = xml.NewDecoder(httpResp.Body).Decode(resp)
+  }
       {{ end }}
 
 
@@ -675,7 +677,10 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
   resp.Body = httpResp.Body
       {{ else }}
   defer httpResp.Body.Close()
-  err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+  if httpResp.StatusCode != 204 {
+    err = xml.NewDecoder(httpResp.Body).Decode(resp)
+  }
       {{ end }}
 
 
