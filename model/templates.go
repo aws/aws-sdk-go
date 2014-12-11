@@ -381,7 +381,7 @@ func restXMLClient(t *template.Template) (*template.Template, error) {
          {{ if eq $m.Shape.ShapeType "string" }}
           resp.{{ exportable $name }} = &s
          {{ else if eq $m.Shape.ShapeType "timestamp" }}
-          if t, e := time.Parse(s, time.RFC822); e != nil {
+          if t, e := time.Parse(time.RFC1123, s); e != nil {
            err = e
            return
           } else {
