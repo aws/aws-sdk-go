@@ -23,11 +23,11 @@ Please do not confuse this for a stable, feature-complete library.
 
 ```go
 import "github.com/stripe/aws-go/aws"
-import "github.com/stripe/aws-go/aws/gen/ec2"
+import "github.com/stripe/aws-go/gen/ec2"
 
 creds := aws.Creds(accessKey, secretKey, "")
 cli := ec2.New(creds, "us-west-2", nil)
-resp, err := cli.DescribeInstances(ec2.DescribeInstancesRequest{})
+resp, err := cli.DescribeInstances(nil)
 if err != nil {
     panic(err)
 }
