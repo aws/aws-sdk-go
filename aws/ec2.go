@@ -119,13 +119,17 @@ func (c *EC2Client) loadStruct(v url.Values, value reflect.Value, prefix string)
 			name = prefix + "." + name
 		}
 		switch casted := value.Interface().(type) {
-		case string:
-			if casted != "" {
-				v.Set(name, casted)
+		case StringValue:
+			if casted != nil {
+				v.Set(name, *casted)
 			}
-		case bool:
-			if casted {
-				v.Set(name, "true")
+		case BooleanValue:
+			if casted != nil {
+				if *casted {
+					v.Set(name, "true")
+				} else {
+					v.Set(name, "false")
+				}
 			}
 		case int64:
 			if casted != 0 {

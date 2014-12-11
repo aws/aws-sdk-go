@@ -50,10 +50,10 @@ func TestQueryRequest(t *testing.T) {
 	}
 
 	req := fakeQueryRequest{
-		ID:       "one",
-		Count:    500,
-		BigCount: 600,
-		OK:       true,
+		ID:       aws.String("one"),
+		Count:    aws.Integer(500),
+		BigCount: aws.Long(600),
+		OK:       aws.True(),
 		Things:   []string{"woo", "yeah"},
 	}
 	var resp fakeQueryResponse
@@ -96,7 +96,7 @@ func TestQueryRequest(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(form, expectedForm) {
-		t.Errorf("Post body was %s, but expected %s", form.Encode(), expectedForm.Encode())
+		t.Errorf("Post body was \n%s\n but expected \n%s", form.Encode(), expectedForm.Encode())
 	}
 
 	if want := (fakeQueryResponse{IPAddress: "woo"}); want != resp {
@@ -150,10 +150,10 @@ func TestQueryRequestError(t *testing.T) {
 	}
 
 	req := fakeQueryRequest{
-		ID:       "one",
-		Count:    500,
-		BigCount: 600,
-		OK:       true,
+		ID:       aws.String("one"),
+		Count:    aws.Integer(500),
+		BigCount: aws.Long(600),
+		OK:       aws.True(),
 		Things:   []string{"woo", "yeah"},
 	}
 	var resp fakeQueryResponse
@@ -180,10 +180,10 @@ func TestQueryRequestError(t *testing.T) {
 }
 
 type fakeQueryRequest struct {
-	ID       string `xml:"Id"`
-	Count    int
-	BigCount int64
-	OK       bool
+	ID       aws.StringValue `xml:"Id"`
+	Count    aws.IntegerValue
+	BigCount aws.LongValue
+	OK       aws.BooleanValue
 	Things   []string
 }
 

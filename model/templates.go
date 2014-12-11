@@ -28,7 +28,7 @@ func Generate(w io.Writer) error {
 
 	b, err := format.Source(out.Bytes())
 	if err != nil {
-		fmt.Fprint(os.Stderr, out.String())
+		fmt.Fprint(os.Stdout, out.String())
 		return err
 	}
 
@@ -97,8 +97,8 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ exportable $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp *{{ exportable $op.Output.Type }},{{ end }} err error) {
-  {{ if $op.Output }}resp = &{{ $op.Output.Type }}{}{{ else }}// NRE{{ end }}
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error) {
+  {{ if $op.Output }}resp = {{ $op.Output.Literal }}{{ else }}// NRE{{ end }}
   err = c.client.Do("{{ $name }}", "{{ $op.HTTP.Method }}", "{{ $op.HTTP.RequestURI }}", {{ if $op.Input }} req {{ else }} nil {{ end }}, {{ if $op.Output }} resp {{ else }} nil {{ end }})
   return
 }
@@ -160,8 +160,8 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.InputRef }}req {{ exportable $op.InputRef.WrappedType }}{{ end }}) ({{ if $op.OutputRef }}resp *{{ exportable $op.OutputRef.WrappedType }},{{ end }} err error) {
-  {{ if $op.Output }}resp = &{{ exportable $op.OutputRef.WrappedType }}{}{{ else }}// NRE{{ end }}
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.InputRef }}req {{ $op.InputRef.WrappedType }}{{ end }}) ({{ if $op.OutputRef }}resp {{ $op.OutputRef.WrappedType }},{{ end }} err error) {
+  {{ if $op.Output }}resp = {{ $op.OutputRef.WrappedLiteral }}{{ else }}// NRE{{ end }}
   err = c.client.Do("{{ $name }}", "{{ $op.HTTP.Method }}", "{{ $op.HTTP.RequestURI }}", {{ if $op.Input }} req {{ else }} nil {{ end }}, {{ if $op.Output }} resp {{ else }} nil {{ end }})
   return
 }
@@ -234,8 +234,8 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.InputRef }}req {{ exportable $op.InputRef.WrappedType }}{{ end }}) ({{ if $op.OutputRef }}resp *{{ exportable $op.OutputRef.WrappedType }},{{ end }} err error) {
-  {{ if $op.Output }}resp = &{{ exportable $op.OutputRef.WrappedType }}{}{{ else }}// NRE{{ end }}
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.InputRef }}req {{ $op.InputRef.WrappedType }}{{ end }}) ({{ if $op.OutputRef }}resp {{ $op.OutputRef.WrappedType }},{{ end }} err error) {
+  {{ if $op.Output }}resp = {{ $op.OutputRef.WrappedLiteral }}{{ else }}// NRE{{ end }}
   err = c.client.Do("{{ $name }}", "{{ $op.HTTP.Method }}", "{{ $op.HTTP.RequestURI }}", {{ if $op.Input }} req {{ else }} nil {{ end }}, {{ if $op.Output }} resp {{ else }} nil {{ end }})
   return
 }
@@ -275,6 +275,151 @@ type {{ exportable $wname }} struct {
 
 func restXMLClient(t *template.Template) (*template.Template, error) {
 	return t.Parse(`
+{{ define "rest-uri" }}
+  {{ if .Input }}
+  {{ range $name, $m := .Input.Members }}
+  {{ if eq $m.Location "uri" }}
+
+  if req.{{ exportable $name }} != nil {
+    uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}"+"}", *req.{{ exportable $name }}, -1)
+    uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}+"+"}", *req.{{ exportable $name }}, -1)
+  }
+
+  {{ end }}
+  {{ end }}
+  {{ end }}
+
+{{ end }}
+
+
+{{ define "rest-querystring" }}
+  q := url.Values{}
+
+  {{ if .Input }}
+  {{ range $name, $m := .Input.Members }}
+  {{ if eq $m.Location "querystring" }}
+
+
+  {{ if eq $m.Shape.ShapeType "string" }}
+
+  if req.{{ exportable $name }} != nil {
+    q.Set("{{ $m.LocationName }}", *req.{{ exportable $name }})
+  }
+
+  {{ else if eq $m.Shape.ShapeType "timestamp" }}
+
+  if req.{{ exportable $name }} != (time.Time{}) {
+    q.Set("{{ $m.LocationName }}", req.{{ exportable $name }}.Format(time.RFC822))
+  }
+
+  {{ else if eq $m.Shape.ShapeType "integer" }}
+
+  if req.{{ exportable $name }} != nil {
+    q.Set("{{ $m.LocationName }}", strconv.Itoa(*req.{{ exportable $name }}))
+  }
+
+  {{ else }}
+
+  if req.{{ exportable $name }} != nil {
+    q.Set("{{ $m.LocationName }}", fmt.Sprintf("%v", req.{{ exportable $name }}))
+  }
+
+  {{ end }}
+
+  {{ end }}
+  {{ end }}
+  {{ end }}
+
+  if len(q) > 0 {
+    uri += "?" + q.Encode()
+  }
+{{ end }}
+
+{{ define "rest-reqheaders" }}
+  {{ if .Input }}
+  {{ range $name, $m := .Input.Members }}
+  {{ if eq $m.Location "header" }}
+
+ {{ if eq $m.Shape.ShapeType "string" }}
+
+  if req.{{ exportable $name }} != nil {
+    httpReq.Header.Set("{{ $m.LocationName }}", *req.{{ exportable $name }})
+  }
+
+  {{ else if eq $m.Shape.ShapeType "timestamp" }}
+
+  if req.{{ exportable $name }} != (time.Time{}) {
+    httpReq.Header.Set("{{ $m.LocationName }}", req.{{ exportable $name }}.Format(time.RFC822))
+  }
+
+  {{ else if eq $m.Shape.ShapeType "integer" }}
+
+  if req.{{ exportable $name }} != nil {
+    httpReq.Header.Set("{{ $m.LocationName }}", strconv.Itoa(*req.{{ exportable $name }}))
+  }
+
+  {{ else }}
+
+  if req.{{ exportable $name }} != nil {
+    httpReq.Header.Set("{{ $m.LocationName }}", fmt.Sprintf("%v", req.{{ exportable $name }}))
+  }
+
+  {{ end }}
+
+  {{ end }}
+  {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ define "rest-respheaders" }}
+ {{ range $name, $m := .Output.Members }}
+    {{ if ne $name "Body" }}
+      {{ if eq $m.Location "header" }}
+        if s := httpResp.Header.Get("{{ $m.LocationName }}"); s != "" {
+         {{ if eq $m.Shape.ShapeType "string" }}
+          resp.{{ exportable $name }} = &s
+         {{ else if eq $m.Shape.ShapeType "timestamp" }}
+          if t, e := time.Parse(s, time.RFC822); e != nil {
+           err = e
+           return
+          } else {
+           resp.{{ exportable $name }} = t
+          }
+         {{ else if eq $m.Shape.ShapeType "integer" }}
+          if n, e := strconv.Atoi(s); e != nil {
+           err = e
+           return
+          } else {
+           resp.{{ exportable $name }} = &n
+          }
+         {{ else if eq $m.Shape.ShapeType "boolean" }}
+         if v, e := strconv.ParseBool(s); e != nil {
+           err = e
+           return
+          } else {
+           resp.{{ exportable $name }} = &v
+          }
+         {{ else }}
+         // TODO: add support for {{ $m.Shape.ShapeType }} headers
+         {{ end }}
+        }
+      {{ else if eq $m.Location "headers" }}
+      resp.{{ exportable $name }} = {{ $m.Shape.Type }}{}
+      for name := range httpResp.Header {
+        if strings.HasPrefix(name, "{{ $m.Location  }}") {
+          resp.{{ exportable $name }}[name] = httpResp.Header.Get(name)
+        }
+      }
+      {{ else if eq $m.Location "statusCode" }}
+        resp.{{ exportable $name }} = aws.Integer(httpResp.StatusCode)
+      {{ else if ne $m.Location "" }}
+      // TODO: add support for extracting output members from {{ $m.Location }} to support {{ exportable $name }}
+      {{ end }}
+
+    {{ end }}
+  {{ end }}
+{{ end }}
+
 {{ define "rest-xml" }}
 {{ template "header" $ }}
 
@@ -318,8 +463,8 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ exportable $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp *{{ exportable $op.Output.Type }},{{ end }} err error) {
-  {{ if $op.Output }}resp = &{{ $op.Output.Type }}{}{{ else }}// NRE{{ end }}
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error) {
+  {{ if $op.Output }}resp = {{ $op.Output.Literal }}{{ else }}// NRE{{ end }}
 
   var body io.Reader
   var contentType string
@@ -342,43 +487,10 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 
 
   uri := c.client.Endpoint + "{{ $op.HTTP.RequestURI }}"
-  {{ if $op.Input }}
-  {{ range $name, $m := $op.Input.Members }}
-  {{ if eq $m.Location "uri" }}
-
-  uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}"+"}", req.{{ exportable $name }}, -1)
-  uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}+"+"}", req.{{ exportable $name }}, -1)
-
-  {{ end }}
-  {{ end }}
-  {{ end }}
-
-  q := url.Values{}
-
-  {{ if $op.Input }}
-  {{ range $name, $m := $op.Input.Members }}
-  {{ if eq $m.Location "querystring" }}
+  {{ template "rest-uri" $op }}
 
 
-  {{ if eq $m.Shape.ShapeType "string" }}
-  if s := req.{{ exportable $name }}; s != "" {
-  {{ else if eq $m.Shape.ShapeType "timestamp" }}
-  if s := req.{{ exportable $name }}.Format(time.RFC822); s != "01 Jan 01 00:00 UTC" {
-  {{ else if eq $m.Shape.ShapeType "integer" }}
-  if s := strconv.Itoa(req.{{ exportable $name }}); req.{{ exportable $name }} != 0 {
-  {{ else }}
-  if s := fmt.Sprintf("%v", req.{{ exportable $name }}); s != "" {
-  {{ end }}
-    q.Set("{{ $m.LocationName }}", s)
-  }
-
-  {{ end }}
-  {{ end }}
-  {{ end }}
-
-  if len(q) > 0 {
-    uri += "?" + q.Encode()
-  }
+  {{ template "rest-querystring" $op }}
 
   httpReq, err := http.NewRequest("{{ $op.HTTP.Method }}", uri, body)
   if err != nil {
@@ -389,25 +501,7 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
     httpReq.Header.Set("Content-Type", contentType)
   }
 
-  {{ if $op.Input }}
-  {{ range $name, $m := $op.Input.Members }}
-  {{ if eq $m.Location "header" }}
-
-  {{ if eq $m.Shape.ShapeType "string" }}
-  if s := req.{{ exportable $name }}; s != "" {
-  {{ else if eq $m.Shape.ShapeType "timestamp" }}
-  if s := req.{{ exportable $name }}.Format(time.RFC822); s != "01 Jan 01 00:00 UTC" {
-  {{ else if eq $m.Shape.ShapeType "integer" }}
-  if s := strconv.Itoa(req.{{ exportable $name }}); req.{{ exportable $name }} != 0 {
-  {{ else }}
-  if s := fmt.Sprintf("%v", req.{{ exportable $name }}); s != "" {
-  {{ end }}
-    httpReq.Header.Set("{{ $m.LocationName }}", s)
-  }
-
-  {{ end }}
-  {{ end }}
-  {{ end }}
+  {{ template "rest-reqheaders" $op }}
 
   httpResp, err := c.client.Do(httpReq)
   if err != nil {
@@ -432,52 +526,7 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
     {{ end }}
     {{ end }}
 
-  {{ range $name, $m := $op.Output.Members }}
-    {{ if ne $name "Body" }}
-      {{ if eq $m.Location "header" }}
-        if s := httpResp.Header.Get("{{ $m.LocationName }}"); s != "" {
-         {{ if eq $m.Shape.ShapeType "string" }}
-          resp.{{ exportable $name }} = s
-         {{ else if eq $m.Shape.ShapeType "timestamp" }}
-          if t, e := time.Parse(s, time.RFC822); e != nil {
-           err = e
-           return
-          } else {
-           resp.{{ exportable $name }} = t
-          }
-         {{ else if eq $m.Shape.ShapeType "integer" }}
-          if n, e := strconv.Atoi(s); e != nil {
-           err = e
-           return
-          } else {
-           resp.{{ exportable $name }} = n
-          }
-         {{ else if eq $m.Shape.ShapeType "boolean" }}
-         if v, e := strconv.ParseBool(s); e != nil {
-           err = e
-           return
-          } else {
-           resp.{{ exportable $name }} = v
-          }
-         {{ else }}
-         // TODO: add support for {{ $m.Shape.ShapeType }} headers
-         {{ end }}
-        }
-      {{ else if eq $m.Location "headers" }}
-      resp.{{ exportable $name }} = {{ $m.Shape.Type }}{}
-      for name := range httpResp.Header {
-        if strings.HasPrefix(name, "{{ $m.Location  }}") {
-          resp.{{ exportable $name }}[name] = httpResp.Header.Get(name)
-        }
-      }
-      {{ else if eq $m.Location "statusCode" }}
-        resp.{{ exportable $name }} = httpResp.StatusCode
-      {{ else if ne $m.Location "" }}
-      // TODO: add support for extracting output members from {{ $m.Location }} to support {{ exportable $name }}
-      {{ end }}
-
-    {{ end }}
-  {{ end }}
+  {{ template "rest-respheaders" $op }}
   {{ end }}
   {{ else }}
   defer httpResp.Body.Close()
@@ -561,8 +610,8 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ exportable $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp *{{ exportable $op.Output.Type }},{{ end }} err error) {
-  {{ if $op.Output }}resp = &{{ $op.Output.Type }}{}{{ else }}// NRE{{ end }}
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error) {
+  {{ if $op.Output }}resp = {{ $op.Output.Literal }}{{ else }}// NRE{{ end }}
 
   var body io.Reader
   var contentType string
@@ -585,43 +634,9 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 
 
   uri := c.client.Endpoint + "{{ $op.HTTP.RequestURI }}"
-  {{ if $op.Input }}
-  {{ range $name, $m := $op.Input.Members }}
-  {{ if eq $m.Location "uri" }}
+  {{ template "rest-uri" $op }}
 
-  uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}"+"}", req.{{ exportable $name }}, -1)
-  uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}+"+"}", req.{{ exportable $name }}, -1)
-
-  {{ end }}
-  {{ end }}
-  {{ end }}
-
-  q := url.Values{}
-
-  {{ if $op.Input }}
-  {{ range $name, $m := $op.Input.Members }}
-  {{ if eq $m.Location "querystring" }}
-
-
-  {{ if eq $m.Shape.ShapeType "string" }}
-  if s := req.{{ exportable $name }}; s != "" {
-  {{ else if eq $m.Shape.ShapeType "timestamp" }}
-  if s := req.{{ exportable $name }}.Format(time.RFC822); s != "01 Jan 01 00:00 UTC" {
-  {{ else if eq $m.Shape.ShapeType "integer" }}
-  if s := strconv.Itoa(req.{{ exportable $name }}); req.{{ exportable $name }} != 0 {
-  {{ else }}
-  if s := fmt.Sprintf("%v", req.{{ exportable $name }}); s != "" {
-  {{ end }}
-    q.Set("{{ $m.LocationName }}", s)
-  }
-
-  {{ end }}
-  {{ end }}
-  {{ end }}
-
-  if len(q) > 0 {
-    uri += "?" + q.Encode()
-  }
+  {{ template "rest-querystring" $op }}
 
   httpReq, err := http.NewRequest("{{ $op.HTTP.Method }}", uri, body)
   if err != nil {
@@ -632,25 +647,7 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
     httpReq.Header.Set("Content-Type", contentType)
   }
 
-  {{ if $op.Input }}
-  {{ range $name, $m := $op.Input.Members }}
-  {{ if eq $m.Location "header" }}
-
-  {{ if eq $m.Shape.ShapeType "string" }}
-  if s := req.{{ exportable $name }}; s != "" {
-  {{ else if eq $m.Shape.ShapeType "timestamp" }}
-  if s := req.{{ exportable $name }}.Format(time.RFC822); s != "01 Jan 01 00:00 UTC" {
-  {{ else if eq $m.Shape.ShapeType "integer" }}
-  if s := strconv.Itoa(req.{{ exportable $name }}); req.{{ exportable $name }} != 0 {
-  {{ else }}
-  if s := fmt.Sprintf("%v", req.{{ exportable $name }}); s != "" {
-  {{ end }}
-    httpReq.Header.Set("{{ $m.LocationName }}", s)
-  }
-
-  {{ end }}
-  {{ end }}
-  {{ end }}
+  {{ template "rest-reqheaders" $op }}
 
   httpResp, err := c.client.Do(httpReq)
   if err != nil {
@@ -675,52 +672,7 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
     {{ end }}
     {{ end }}
 
-  {{ range $name, $m := $op.Output.Members }}
-    {{ if ne $name "Body" }}
-      {{ if eq $m.Location "header" }}
-        if s := httpResp.Header.Get("{{ $m.LocationName }}"); s != "" {
-         {{ if eq $m.Shape.ShapeType "string" }}
-          resp.{{ exportable $name }} = s
-         {{ else if eq $m.Shape.ShapeType "timestamp" }}
-          if t, e := time.Parse(s, time.RFC822); e != nil {
-           err = e
-           return
-          } else {
-           resp.{{ exportable $name }} = t
-          }
-         {{ else if eq $m.Shape.ShapeType "integer" }}
-          if n, e := strconv.Atoi(s); e != nil {
-           err = e
-           return
-          } else {
-           resp.{{ exportable $name }} = n
-          }
-         {{ else if eq $m.Shape.ShapeType "boolean" }}
-         if v, e := strconv.ParseBool(s); e != nil {
-           err = e
-           return
-          } else {
-           resp.{{ exportable $name }} = v
-          }
-         {{ else }}
-         // TODO: add support for {{ $m.Shape.ShapeType }} headers
-         {{ end }}
-        }
-      {{ else if eq $m.Location "headers" }}
-      resp.{{ exportable $name }} = {{ $m.Shape.Type }}{}
-      for name := range httpResp.Header {
-        if strings.HasPrefix(name, "{{ $m.Location  }}") {
-          resp.{{ exportable $name }}[name] = httpResp.Header.Get(name)
-        }
-      }
-      {{ else if eq $m.Location "statusCode" }}
-        resp.{{ exportable $name }} = httpResp.StatusCode
-      {{ else if ne $m.Location "" }}
-      // TODO: add support for extracting output members from {{ $m.Location }} to support {{ exportable $name }}
-      {{ end }}
-
-    {{ end }}
-  {{ end }}
+   {{ template "rest-respheaders" $op }}
   {{ end }}
   {{ else }}
   defer httpResp.Body.Close()

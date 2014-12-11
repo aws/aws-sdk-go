@@ -60,9 +60,16 @@ type ShapeRef struct {
 
 func (ref *ShapeRef) WrappedType() string {
 	if ref.ResultWrapper != "" {
-		return ref.ResultWrapper
+		return "*" + exportable(ref.ResultWrapper)
 	}
 	return ref.Shape().Type()
+}
+
+func (ref *ShapeRef) WrappedLiteral() string {
+	if ref.ResultWrapper != "" {
+		return "&" + exportable(ref.ResultWrapper) + "{}"
+	}
+	return ref.Shape().Literal()
 }
 
 func (ref *ShapeRef) Shape() *Shape {
@@ -116,7 +123,7 @@ func (m Member) EC2Tag() string {
 		path = append(path, m.Name)
 	}
 
-	if m.Shape().ShapeType == "list" && service.Metadata.Protocol != "rest-xml" {
+	if m.Shape().ShapeType == "list" {
 		loc := m.Shape().MemberRef.LocationName
 		if loc == "" {
 			loc = "member"
@@ -124,7 +131,12 @@ func (m Member) EC2Tag() string {
 		path = append(path, loc)
 	}
 
-	return fmt.Sprintf("`ec2:\"%s\" xml:\"%s\"`", m.LocationName, strings.Join(path, ">"))
+	name := m.LocationName
+	if name == "" {
+		name = m.Name
+	}
+
+	return fmt.Sprintf("`ec2:%q xml:%q`", name, strings.Join(path, ">"))
 }
 
 func (m Member) Shape() *Shape {
@@ -215,7 +227,14 @@ func (s *Shape) Value() *Shape {
 	return s.ValueRef.Shape()
 }
 
-func (s *Shape) Type() string {
+func (s *Shape) Literal() string {
+	if s.ShapeType == "structure" {
+		return "&" + s.Type()[1:] + "{}"
+	}
+	panic("trying to make a literal non-structure for " + s.Name)
+}
+
+func (s *Shape) ElementType() string {
 	switch s.ShapeType {
 	case "structure":
 		return exportable(s.Name)
@@ -230,11 +249,40 @@ func (s *Shape) Type() string {
 	case "string":
 		return "string"
 	case "map":
-		return "map[" + s.Key().Type() + "]" + s.Value().Type()
+		return "map[" + s.Key().ElementType() + "]" + s.Value().ElementType()
 	case "list":
-		return "[]" + s.Member().Type()
+		return "[]" + s.Member().ElementType()
 	case "boolean":
 		return "bool"
+	case "blob":
+		return "[]byte"
+	case "timestamp":
+		return "time.Time"
+	}
+
+	panic(fmt.Errorf("type %q (%q) not found", s.Name, s.ShapeType))
+}
+
+func (s *Shape) Type() string {
+	switch s.ShapeType {
+	case "structure":
+		return "*" + exportable(s.Name)
+	case "integer":
+		return "aws.IntegerValue"
+	case "long":
+		return "aws.LongValue"
+	case "float":
+		return "aws.FloatValue"
+	case "double":
+		return "aws.DoubleValue"
+	case "string":
+		return "aws.StringValue"
+	case "map":
+		return "map[" + s.Key().ElementType() + "]" + s.Value().ElementType()
+	case "list":
+		return "[]" + s.Member().ElementType()
+	case "boolean":
+		return "aws.BooleanValue"
 	case "blob":
 		return "[]byte"
 	case "timestamp":

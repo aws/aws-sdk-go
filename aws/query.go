@@ -120,30 +120,30 @@ func (c *QueryClient) loadStruct(v url.Values, value reflect.Value, prefix strin
 			name = prefix + "." + name
 		}
 		switch casted := value.Interface().(type) {
-		case string:
-			if casted != "" {
-				v.Set(name, casted)
+		case StringValue:
+			if casted != nil {
+				v.Set(name, *casted)
 			}
-		case bool:
-			if casted {
-				v.Set(name, "true")
+		case BooleanValue:
+			if casted != nil {
+				if *casted {
+					v.Set(name, "true")
+				} else {
+					v.Set(name, "false")
+				}
 			}
-		case int64:
-			if casted != 0 {
-				v.Set(name, fmt.Sprintf("%d", casted))
+		case LongValue:
+			if casted != nil {
+				v.Set(name, fmt.Sprintf("%d", *casted))
 			}
-		case int:
-			if casted != 0 {
-				v.Set(name, fmt.Sprintf("%d", casted))
+		case IntegerValue:
+			if casted != nil {
+				v.Set(name, fmt.Sprintf("%d", *casted))
 			}
 		case []string:
 			if len(casted) != 0 {
 				for i, val := range casted {
-					if paths[len(paths)-1] == "member" {
-						v.Set(fmt.Sprintf("%s.member.%d", name, i+1), val)
-					} else {
-						v.Set(fmt.Sprintf("%s.%d", name, i+1), val)
-					}
+					v.Set(fmt.Sprintf("%s.member.%d", name, i+1), val)
 				}
 			}
 		default:
