@@ -59,4 +59,7 @@ var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Ip`):        "IP",
 	regexp.MustCompile(`Dns`):       "DNS",
 	regexp.MustCompile(`Cpu`):       "CPU",
+	regexp.MustCompile(`Api`):       "API",
+	regexp.MustCompile(`Http`):      "HTTP",
+	regexp.MustCompile(`Html`):      "HTML",
 }

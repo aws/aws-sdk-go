@@ -3720,7 +3720,7 @@ type Instance struct {
 // InstanceAttribute is undocumented.
 type InstanceAttribute struct {
 	BlockDeviceMappings               []InstanceBlockDeviceMapping `xml:"blockDeviceMapping>item"`
-	DisableApiTermination             AttributeBooleanValue        `xml:"disableApiTermination"`
+	DisableAPITermination             AttributeBooleanValue        `xml:"disableApiTermination"`
 	EbsOptimized                      AttributeBooleanValue        `xml:"ebsOptimized"`
 	Groups                            []GroupIdentifier            `xml:"groupSet>item"`
 	InstanceID                        string                       `xml:"instanceId"`
@@ -3956,7 +3956,7 @@ type ModifyImageAttributeRequest struct {
 type ModifyInstanceAttributeRequest struct {
 	Attribute                         string                                    `xml:"attribute"`
 	BlockDeviceMappings               []InstanceBlockDeviceMappingSpecification `xml:"blockDeviceMapping>item"`
-	DisableApiTermination             AttributeBooleanValue                     `xml:"disableApiTermination"`
+	DisableAPITermination             AttributeBooleanValue                     `xml:"disableApiTermination"`
 	DryRun                            bool                                      `xml:"dryRun"`
 	EbsOptimized                      AttributeBooleanValue                     `xml:"ebsOptimized"`
 	Groups                            []string                                  `xml:"GroupId>groupId"`
@@ -4547,7 +4547,7 @@ type RunInstancesRequest struct {
 	AdditionalInfo                    string                                  `xml:"additionalInfo"`
 	BlockDeviceMappings               []BlockDeviceMapping                    `xml:"BlockDeviceMapping>BlockDeviceMapping"`
 	ClientToken                       string                                  `xml:"clientToken"`
-	DisableApiTermination             bool                                    `xml:"disableApiTermination"`
+	DisableAPITermination             bool                                    `xml:"disableApiTermination"`
 	DryRun                            bool                                    `xml:"dryRun"`
 	EbsOptimized                      bool                                    `xml:"ebsOptimized"`
 	IamInstanceProfile                IamInstanceProfileSpecification         `xml:"iamInstanceProfile"`

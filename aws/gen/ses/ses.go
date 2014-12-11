@@ -273,7 +273,7 @@ func (c *SES) VerifyEmailIdentity(req VerifyEmailIdentityRequest) (resp *VerifyE
 
 // Body is undocumented.
 type Body struct {
-	Html Content `xml:"Html"`
+	HTML Content `xml:"Html"`
 	Text Content `xml:"Text"`
 }
 

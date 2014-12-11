@@ -3544,7 +3544,7 @@ type CompletedPart struct {
 
 // Condition is undocumented.
 type Condition struct {
-	HttpErrorCodeReturnedEquals string `xml:"HttpErrorCodeReturnedEquals"`
+	HTTPErrorCodeReturnedEquals string `xml:"HttpErrorCodeReturnedEquals"`
 	KeyPrefixEquals             string `xml:"KeyPrefixEquals"`
 }
 
@@ -4353,7 +4353,7 @@ type QueueConfiguration struct {
 // Redirect is undocumented.
 type Redirect struct {
 	HostName             string `xml:"HostName"`
-	HttpRedirectCode     string `xml:"HttpRedirectCode"`
+	HTTPRedirectCode     string `xml:"HttpRedirectCode"`
 	Protocol             string `xml:"Protocol"`
 	ReplaceKeyPrefixWith string `xml:"ReplaceKeyPrefixWith"`
 	ReplaceKeyWith       string `xml:"ReplaceKeyWith"`
