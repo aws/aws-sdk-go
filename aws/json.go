@@ -48,7 +48,10 @@ func (c *JSONClient) Do(op, method, uri string, req, resp interface{}) error {
 		return err.Err()
 	}
 
-	return json.NewDecoder(httpResp.Body).Decode(resp)
+	if resp != nil {
+		return json.NewDecoder(httpResp.Body).Decode(resp)
+	}
+	return nil
 }
 
 type jsonErrorResponse struct {

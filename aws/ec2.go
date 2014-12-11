@@ -49,7 +49,10 @@ func (c *EC2Client) Do(op, method, uri string, req, resp interface{}) error {
 		return err.Err()
 	}
 
-	return xml.NewDecoder(httpResp.Body).Decode(resp)
+	if resp != nil {
+		return xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
+	return nil
 }
 
 type ec2ErrorResponse struct {
