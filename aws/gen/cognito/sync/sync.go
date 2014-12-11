@@ -100,8 +100,9 @@ func (c *CognitoSync) DeleteDataset(req *DeleteDatasetRequest) (resp *DeleteData
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -157,8 +158,9 @@ func (c *CognitoSync) DescribeDataset(req *DescribeDatasetRequest) (resp *Descri
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -201,8 +203,9 @@ func (c *CognitoSync) DescribeIdentityPoolUsage(req *DescribeIdentityPoolUsageRe
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -250,8 +253,9 @@ func (c *CognitoSync) DescribeIdentityUsage(req *DescribeIdentityUsageRequest) (
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -294,8 +298,9 @@ func (c *CognitoSync) GetIdentityPoolConfiguration(req *GetIdentityPoolConfigura
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -354,8 +359,9 @@ func (c *CognitoSync) ListDatasets(req *ListDatasetsRequest) (resp *ListDatasets
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -401,8 +407,9 @@ func (c *CognitoSync) ListIdentityPoolUsage(req *ListIdentityPoolUsageRequest) (
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -475,8 +482,9 @@ func (c *CognitoSync) ListRecords(req *ListRecordsRequest) (resp *ListRecordsRes
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -523,8 +531,9 @@ func (c *CognitoSync) RegisterDevice(req *RegisterDeviceRequest) (resp *Register
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -566,8 +575,9 @@ func (c *CognitoSync) SetIdentityPoolConfiguration(req *SetIdentityPoolConfigura
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -625,8 +635,9 @@ func (c *CognitoSync) SubscribeToDataset(req *SubscribeToDatasetRequest) (resp *
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -684,8 +695,9 @@ func (c *CognitoSync) UnsubscribeFromDataset(req *UnsubscribeFromDatasetRequest)
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -746,8 +758,9 @@ func (c *CognitoSync) UpdateRecords(req *UpdateRecordsRequest) (resp *UpdateReco
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return

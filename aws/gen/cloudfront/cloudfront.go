@@ -87,8 +87,9 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(req *CreateCloudFrontO
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -143,8 +144,9 @@ func (c *CloudFront) CreateDistribution(req *CreateDistributionRequest) (resp *C
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -204,8 +206,9 @@ func (c *CloudFront) CreateInvalidation(req *CreateInvalidationRequest) (resp *C
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("Location"); s != "" {
@@ -254,8 +257,9 @@ func (c *CloudFront) CreateStreamingDistribution(req *CreateStreamingDistributio
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -438,8 +442,9 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentity(req *GetCloudFrontOriginA
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -487,8 +492,9 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(req *GetCloudFrontO
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -535,8 +541,9 @@ func (c *CloudFront) GetDistribution(req *GetDistributionRequest) (resp *GetDist
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -584,8 +591,9 @@ func (c *CloudFront) GetDistributionConfig(req *GetDistributionConfigRequest) (r
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -637,8 +645,9 @@ func (c *CloudFront) GetInvalidation(req *GetInvalidationRequest) (resp *GetInva
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -680,8 +689,9 @@ func (c *CloudFront) GetStreamingDistribution(req *GetStreamingDistributionReque
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -729,8 +739,9 @@ func (c *CloudFront) GetStreamingDistributionConfig(req *GetStreamingDistributio
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -780,8 +791,9 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentities(req *ListCloudFrontOri
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -825,8 +837,9 @@ func (c *CloudFront) ListDistributions(req *ListDistributionsRequest) (resp *Lis
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -875,8 +888,9 @@ func (c *CloudFront) ListInvalidations(req *ListInvalidationsRequest) (resp *Lis
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -920,8 +934,9 @@ func (c *CloudFront) ListStreamingDistributions(req *ListStreamingDistributionsR
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -973,8 +988,9 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(req *UpdateCloudFrontO
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -1032,8 +1048,9 @@ func (c *CloudFront) UpdateDistribution(req *UpdateDistributionRequest) (resp *U
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
@@ -1091,8 +1108,9 @@ func (c *CloudFront) UpdateStreamingDistribution(req *UpdateStreamingDistributio
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {

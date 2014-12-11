@@ -90,8 +90,9 @@ func (c *ElasticTranscoder) CancelJob(req *CancelJobRequest) (resp *CancelJobRes
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -133,8 +134,9 @@ func (c *ElasticTranscoder) CreateJob(req *CreateJobRequest) (resp *CreateJobRes
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -172,8 +174,9 @@ func (c *ElasticTranscoder) CreatePipeline(req *CreatePipelineRequest) (resp *Cr
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -224,8 +227,9 @@ func (c *ElasticTranscoder) CreatePreset(req *CreatePresetRequest) (resp *Create
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -270,8 +274,9 @@ func (c *ElasticTranscoder) DeletePipeline(req *DeletePipelineRequest) (resp *De
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -315,8 +320,9 @@ func (c *ElasticTranscoder) DeletePreset(req *DeletePresetRequest) (resp *Delete
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -369,8 +375,9 @@ func (c *ElasticTranscoder) ListJobsByPipeline(req *ListJobsByPipelineRequest) (
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -422,8 +429,9 @@ func (c *ElasticTranscoder) ListJobsByStatus(req *ListJobsByStatusRequest) (resp
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -469,8 +477,9 @@ func (c *ElasticTranscoder) ListPipelines(req *ListPipelinesRequest) (resp *List
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -517,8 +526,9 @@ func (c *ElasticTranscoder) ListPresets(req *ListPresetsRequest) (resp *ListPres
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -560,8 +570,9 @@ func (c *ElasticTranscoder) ReadJob(req *ReadJobRequest) (resp *ReadJobResponse,
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -604,8 +615,9 @@ func (c *ElasticTranscoder) ReadPipeline(req *ReadPipelineRequest) (resp *ReadPi
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -648,8 +660,9 @@ func (c *ElasticTranscoder) ReadPreset(req *ReadPresetRequest) (resp *ReadPreset
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -692,8 +705,9 @@ func (c *ElasticTranscoder) TestRole(req *TestRoleRequest) (resp *TestRoleRespon
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -739,8 +753,9 @@ func (c *ElasticTranscoder) UpdatePipeline(req *UpdatePipelineRequest) (resp *Up
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -786,8 +801,9 @@ func (c *ElasticTranscoder) UpdatePipelineNotifications(req *UpdatePipelineNotif
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -835,8 +851,9 @@ func (c *ElasticTranscoder) UpdatePipelineStatus(req *UpdatePipelineStatusReques
 
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := json.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return

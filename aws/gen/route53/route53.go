@@ -93,8 +93,9 @@ func (c *Route53) AssociateVPCWithHostedZone(req *AssociateVPCWithHostedZoneRequ
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -155,8 +156,9 @@ func (c *Route53) ChangeResourceRecordSets(req *ChangeResourceRecordSetsRequest)
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -202,8 +204,9 @@ func (c *Route53) ChangeTagsForResource(req *ChangeTagsForResourceRequest) (resp
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -244,8 +247,9 @@ func (c *Route53) CreateHealthCheck(req *CreateHealthCheckRequest) (resp *Create
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("Location"); s != "" {
@@ -302,8 +306,9 @@ func (c *Route53) CreateHostedZone(req *CreateHostedZoneRequest) (resp *CreateHo
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("Location"); s != "" {
@@ -352,8 +357,9 @@ func (c *Route53) CreateReusableDelegationSet(req *CreateReusableDelegationSetRe
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	if s := httpResp.Header.Get("Location"); s != "" {
@@ -409,8 +415,9 @@ func (c *Route53) DeleteHealthCheck(req *DeleteHealthCheckRequest) (resp *Delete
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -461,8 +468,9 @@ func (c *Route53) DeleteHostedZone(req *DeleteHostedZoneRequest) (resp *DeleteHo
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -510,8 +518,9 @@ func (c *Route53) DeleteReusableDelegationSet(req *DeleteReusableDelegationSetRe
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -560,8 +569,9 @@ func (c *Route53) DisassociateVPCFromHostedZone(req *DisassociateVPCFromHostedZo
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -606,8 +616,9 @@ func (c *Route53) GetChange(req *GetChangeRequest) (resp *GetChangeResponse, err
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -647,8 +658,9 @@ func (c *Route53) GetCheckerIPRanges(req *GetCheckerIPRangesRequest) (resp *GetC
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -698,8 +710,9 @@ func (c *Route53) GetGeoLocation(req *GetGeoLocationRequest) (resp *GetGeoLocati
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -741,8 +754,9 @@ func (c *Route53) GetHealthCheck(req *GetHealthCheckRequest) (resp *GetHealthChe
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -779,8 +793,9 @@ func (c *Route53) GetHealthCheckCount(req *GetHealthCheckCountRequest) (resp *Ge
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -824,8 +839,9 @@ func (c *Route53) GetHealthCheckLastFailureReason(req *GetHealthCheckLastFailure
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -868,8 +884,9 @@ func (c *Route53) GetHealthCheckStatus(req *GetHealthCheckStatusRequest) (resp *
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -913,8 +930,9 @@ func (c *Route53) GetHostedZone(req *GetHostedZoneRequest) (resp *GetHostedZoneR
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -956,8 +974,9 @@ func (c *Route53) GetReusableDelegationSet(req *GetReusableDelegationSetRequest)
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -1020,8 +1039,9 @@ func (c *Route53) ListGeoLocations(req *ListGeoLocationsRequest) (resp *ListGeoL
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -1073,8 +1093,9 @@ func (c *Route53) ListHealthChecks(req *ListHealthChecksRequest) (resp *ListHeal
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -1130,8 +1151,9 @@ func (c *Route53) ListHostedZones(req *ListHostedZonesRequest) (resp *ListHosted
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -1221,8 +1243,9 @@ func (c *Route53) ListResourceRecordSets(req *ListResourceRecordSetsRequest) (re
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -1275,8 +1298,9 @@ func (c *Route53) ListReusableDelegationSets(req *ListReusableDelegationSetsRequ
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -1322,8 +1346,9 @@ func (c *Route53) ListTagsForResource(req *ListTagsForResourceRequest) (resp *Li
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -1364,8 +1389,9 @@ func (c *Route53) ListTagsForResources(req *ListTagsForResourcesRequest) (resp *
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -1411,8 +1437,9 @@ func (c *Route53) UpdateHealthCheck(req *UpdateHealthCheckRequest) (resp *Update
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
@@ -1457,8 +1484,9 @@ func (c *Route53) UpdateHostedZoneComment(req *UpdateHostedZoneCommentRequest) (
 	}
 
 	defer httpResp.Body.Close()
-	if httpResp.StatusCode != 204 {
-		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
 	}
 
 	return
