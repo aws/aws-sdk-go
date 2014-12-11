@@ -21,7 +21,7 @@ type QueryClient struct {
 // (e.g. redirects, cookies, auth) as configured on the client.
 func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
 	body := url.Values{"Action": {op}, "Version": {c.APIVersion}}
-	if err := loadValues(body, req); err != nil {
+	if err := c.loadValues(body, req, ""); err != nil {
 		return err
 	}
 
@@ -69,17 +69,52 @@ func (e queryErrorResponse) Err() error {
 	}
 }
 
-func loadValues(v url.Values, i interface{}) error {
+func (c *QueryClient) loadValues(v url.Values, i interface{}, prefix string) error {
 	value := reflect.ValueOf(i)
-	if value.Kind() == reflect.Ptr {
+
+	// follow any pointers
+	for value.Kind() == reflect.Ptr {
 		value = value.Elem()
 	}
+
+	switch value.Kind() {
+	case reflect.Struct:
+		if err := c.loadStruct(v, value, prefix); err == nil {
+			return err
+		}
+	case reflect.Slice:
+		for i := 0; i < value.Len(); i++ {
+
+			var eprefix string
+			if prefix == "" {
+				eprefix = fmt.Sprintf("%d", i+1)
+			} else {
+				eprefix = fmt.Sprintf("%s.%d", prefix, i+1)
+			}
+
+			elem := value.Index(i).Interface()
+
+			if err := c.loadValues(v, elem, eprefix); err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
+func (c *QueryClient) loadStruct(v url.Values, value reflect.Value, prefix string) error {
 	t := value.Type()
 	for i := 0; i < value.NumField(); i++ {
 		value := value.Field(i)
-		name := t.Field(i).Tag.Get("xml")
+		paths := strings.Split(t.Field(i).Tag.Get("xml"), ">")
+		name := paths[0]
+
 		if name == "" {
 			name = t.Field(i).Name
+		}
+		if prefix != "" {
+			name = prefix + "." + name
 		}
 		switch casted := value.Interface().(type) {
 		case string:
@@ -99,14 +134,19 @@ func loadValues(v url.Values, i interface{}) error {
 				v.Set(name, fmt.Sprintf("%d", casted))
 			}
 		case []string:
-			name = strings.Replace(name, ">member", "", -1)
 			if len(casted) != 0 {
 				for i, val := range casted {
-					v.Set(fmt.Sprintf("%s.member.%d", name, i+1), val)
+					if paths[len(paths)-1] == "member" {
+						v.Set(fmt.Sprintf("%s.member.%d", name, i+1), val)
+					} else {
+						v.Set(fmt.Sprintf("%s.%d", name, i+1), val)
+					}
 				}
 			}
 		default:
-			panic(fmt.Sprintf("unsupported type: %#v", casted))
+			if err := c.loadValues(v, value.Interface(), name); err != nil {
+				return err
+			}
 		}
 	}
 	return nil
