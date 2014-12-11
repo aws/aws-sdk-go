@@ -50,7 +50,7 @@ import (
   "time"
 
   "github.com/stripe/aws-go/aws"
-  "github.com/stripe/aws-go/aws/gen/endpoints"
+  "github.com/stripe/aws-go/gen/endpoints"
 )
 
 {{ end }}
