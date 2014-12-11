@@ -149,7 +149,10 @@ func (c *CloudSearchDomain) Search(req *SearchRequest) (resp *SearchResponse, er
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -209,7 +212,10 @@ func (c *CloudSearchDomain) Suggest(req *SuggestRequest) (resp *SuggestResponse,
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -274,7 +280,10 @@ func (c *CloudSearchDomain) UploadDocuments(req *UploadDocumentsRequest) (resp *
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }

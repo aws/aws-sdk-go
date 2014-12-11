@@ -91,7 +91,10 @@ func (c *Lambda) AddEventSource(req *AddEventSourceRequest) (resp *EventSourceCo
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -174,7 +177,10 @@ func (c *Lambda) GetEventSource(req *GetEventSourceRequest) (resp *EventSourceCo
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -219,7 +225,10 @@ func (c *Lambda) GetFunction(req *GetFunctionRequest) (resp *GetFunctionResponse
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -262,7 +271,10 @@ func (c *Lambda) GetFunctionConfiguration(req *GetFunctionConfigurationRequest) 
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -313,7 +325,10 @@ func (c *Lambda) InvokeAsync(req *InvokeAsyncRequest) (resp *InvokeAsyncResponse
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	resp.Status = aws.Integer(httpResp.StatusCode)
 
@@ -370,7 +385,10 @@ func (c *Lambda) ListEventSources(req *ListEventSourcesRequest) (resp *ListEvent
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -416,7 +434,10 @@ func (c *Lambda) ListFunctions(req *ListFunctionsRequest) (resp *ListFunctionsRe
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -523,7 +544,10 @@ func (c *Lambda) UpdateFunctionConfiguration(req *UpdateFunctionConfigurationReq
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -603,7 +627,10 @@ func (c *Lambda) UploadFunction(req *UploadFunctionRequest) (resp *FunctionConfi
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }

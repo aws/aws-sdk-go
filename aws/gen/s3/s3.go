@@ -152,11 +152,13 @@ func (c *S3) CompleteMultipartUpload(req *CompleteMultipartUploadRequest) (resp 
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		if t, e := time.Parse(s, time.RFC822); e != nil {
+		if t, e := time.Parse(time.RFC1123, s); e != nil {
 			err = e
 			return
 		} else {
@@ -335,7 +337,9 @@ func (c *S3) CopyObject(req *CopyObjectRequest) (resp *CopyObjectOutput, err err
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	if s := httpResp.Header.Get("x-amz-copy-source-version-id"); s != "" {
 
@@ -345,7 +349,7 @@ func (c *S3) CopyObject(req *CopyObjectRequest) (resp *CopyObjectOutput, err err
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		if t, e := time.Parse(s, time.RFC822); e != nil {
+		if t, e := time.Parse(time.RFC1123, s); e != nil {
 			err = e
 			return
 		} else {
@@ -447,7 +451,9 @@ func (c *S3) CreateBucket(req *CreateBucketRequest) (resp *CreateBucketOutput, e
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	if s := httpResp.Header.Get("Location"); s != "" {
 
@@ -575,7 +581,9 @@ func (c *S3) CreateMultipartUpload(req *CreateMultipartUploadRequest) (resp *Cre
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	if s := httpResp.Header.Get("x-amz-server-side-encryption-customer-algorithm"); s != "" {
 
@@ -893,7 +901,9 @@ func (c *S3) DeleteObject(req *DeleteObjectRequest) (resp *DeleteObjectOutput, e
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	if s := httpResp.Header.Get("x-amz-delete-marker"); s != "" {
 
@@ -962,7 +972,9 @@ func (c *S3) DeleteObjects(req *DeleteObjectsRequest) (resp *DeleteObjectsOutput
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1002,7 +1014,9 @@ func (c *S3) GetBucketAcl(req *GetBucketAclRequest) (resp *GetBucketAclOutput, e
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1042,7 +1056,9 @@ func (c *S3) GetBucketCors(req *GetBucketCorsRequest) (resp *GetBucketCorsOutput
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1083,7 +1099,9 @@ func (c *S3) GetBucketLifecycle(req *GetBucketLifecycleRequest) (resp *GetBucket
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1123,7 +1141,9 @@ func (c *S3) GetBucketLocation(req *GetBucketLocationRequest) (resp *GetBucketLo
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1165,7 +1185,9 @@ func (c *S3) GetBucketLogging(req *GetBucketLoggingRequest) (resp *GetBucketLogg
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1205,7 +1227,9 @@ func (c *S3) GetBucketNotification(req *GetBucketNotificationRequest) (resp *Get
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1245,7 +1269,9 @@ func (c *S3) GetBucketPolicy(req *GetBucketPolicyRequest) (resp *GetBucketPolicy
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1286,7 +1312,9 @@ func (c *S3) GetBucketRequestPayment(req *GetBucketRequestPaymentRequest) (resp 
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1326,7 +1354,9 @@ func (c *S3) GetBucketTagging(req *GetBucketTaggingRequest) (resp *GetBucketTagg
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1366,7 +1396,9 @@ func (c *S3) GetBucketVersioning(req *GetBucketVersioningRequest) (resp *GetBuck
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1406,7 +1438,9 @@ func (c *S3) GetBucketWebsite(req *GetBucketWebsiteRequest) (resp *GetBucketWebs
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1578,7 +1612,7 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		if t, e := time.Parse(s, time.RFC822); e != nil {
+		if t, e := time.Parse(time.RFC1123, s); e != nil {
 			err = e
 			return
 		} else {
@@ -1589,7 +1623,7 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 	if s := httpResp.Header.Get("Expires"); s != "" {
 
-		if t, e := time.Parse(s, time.RFC822); e != nil {
+		if t, e := time.Parse(time.RFC1123, s); e != nil {
 			err = e
 			return
 		} else {
@@ -1600,7 +1634,7 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 	if s := httpResp.Header.Get("Last-Modified"); s != "" {
 
-		if t, e := time.Parse(s, time.RFC822); e != nil {
+		if t, e := time.Parse(time.RFC1123, s); e != nil {
 			err = e
 			return
 		} else {
@@ -1716,7 +1750,9 @@ func (c *S3) GetObjectAcl(req *GetObjectAclRequest) (resp *GetObjectAclOutput, e
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -1884,7 +1920,9 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	if s := httpResp.Header.Get("accept-ranges"); s != "" {
 
@@ -1952,7 +1990,7 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		if t, e := time.Parse(s, time.RFC822); e != nil {
+		if t, e := time.Parse(time.RFC1123, s); e != nil {
 			err = e
 			return
 		} else {
@@ -1963,7 +2001,7 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 
 	if s := httpResp.Header.Get("Expires"); s != "" {
 
-		if t, e := time.Parse(s, time.RFC822); e != nil {
+		if t, e := time.Parse(time.RFC1123, s); e != nil {
 			err = e
 			return
 		} else {
@@ -1974,7 +2012,7 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 
 	if s := httpResp.Header.Get("Last-Modified"); s != "" {
 
-		if t, e := time.Parse(s, time.RFC822); e != nil {
+		if t, e := time.Parse(time.RFC1123, s); e != nil {
 			err = e
 			return
 		} else {
@@ -2077,7 +2115,9 @@ func (c *S3) ListBuckets() (resp *ListBucketsOutput, err error) {
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -2141,7 +2181,9 @@ func (c *S3) ListMultipartUploads(req *ListMultipartUploadsRequest) (resp *ListM
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -2206,7 +2248,9 @@ func (c *S3) ListObjectVersions(req *ListObjectVersionsRequest) (resp *ListObjec
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -2268,7 +2312,9 @@ func (c *S3) ListObjects(req *ListObjectsRequest) (resp *ListObjectsOutput, err 
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -2326,7 +2372,9 @@ func (c *S3) ListParts(req *ListPartsRequest) (resp *ListPartsOutput, err error)
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	return
 }
@@ -2926,7 +2974,7 @@ func (c *S3) PutObject(req *PutObjectRequest) (resp *PutObjectOutput, err error)
 	}
 
 	if req.ContentLength != nil {
-		httpReq.Header.Set("Content-Length", strconv.Itoa(*req.ContentLength))
+		httpReq.ContentLength = int64(*req.ContentLength)
 	}
 
 	if req.ContentMD5 != nil {
@@ -2991,7 +3039,9 @@ func (c *S3) PutObject(req *PutObjectRequest) (resp *PutObjectOutput, err error)
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
 
@@ -3001,7 +3051,7 @@ func (c *S3) PutObject(req *PutObjectRequest) (resp *PutObjectOutput, err error)
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		if t, e := time.Parse(s, time.RFC822); e != nil {
+		if t, e := time.Parse(time.RFC1123, s); e != nil {
 			err = e
 			return
 		} else {
@@ -3228,7 +3278,7 @@ func (c *S3) UploadPart(req *UploadPartRequest) (resp *UploadPartOutput, err err
 	}
 
 	if req.ContentLength != nil {
-		httpReq.Header.Set("Content-Length", strconv.Itoa(*req.ContentLength))
+		httpReq.ContentLength = int64(*req.ContentLength)
 	}
 
 	if req.ContentMD5 != nil {
@@ -3253,7 +3303,9 @@ func (c *S3) UploadPart(req *UploadPartRequest) (resp *UploadPartOutput, err err
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	if s := httpResp.Header.Get("ETag"); s != "" {
 
@@ -3385,7 +3437,9 @@ func (c *S3) UploadPartCopy(req *UploadPartCopyRequest) (resp *UploadPartCopyOut
 	}
 
 	defer httpResp.Body.Close()
-	err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	if httpResp.StatusCode != 204 {
+		err = xml.NewDecoder(httpResp.Body).Decode(resp)
+	}
 
 	if s := httpResp.Header.Get("x-amz-copy-source-version-id"); s != "" {
 
