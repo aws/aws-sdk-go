@@ -107,7 +107,7 @@ func (c *EC2Client) loadStruct(v url.Values, value reflect.Value, prefix string)
 	t := value.Type()
 	for i := 0; i < value.NumField(); i++ {
 		value := value.Field(i)
-		name := t.Field(i).Name
+		name := t.Field(i).Tag.Get("ec2")
 
 		if name == "" {
 			name = t.Field(i).Name

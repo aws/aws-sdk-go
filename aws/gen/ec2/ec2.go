@@ -2059,2864 +2059,2864 @@ func (c *EC2) UnmonitorInstances(req UnmonitorInstancesRequest) (resp *Unmonitor
 
 // AcceptVpcPeeringConnectionRequest is undocumented.
 type AcceptVpcPeeringConnectionRequest struct {
-	DryRun                 bool   `xml:"dryRun"`
-	VpcPeeringConnectionID string `xml:"vpcPeeringConnectionId"`
+	DryRun                 bool   `ec2:"dryRun" xml:"dryRun"`
+	VpcPeeringConnectionID string `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // AcceptVpcPeeringConnectionResult is undocumented.
 type AcceptVpcPeeringConnectionResult struct {
-	VpcPeeringConnection VpcPeeringConnection `xml:"vpcPeeringConnection"`
+	VpcPeeringConnection VpcPeeringConnection `ec2:"vpcPeeringConnection" xml:"vpcPeeringConnection"`
 }
 
 // AccountAttribute is undocumented.
 type AccountAttribute struct {
-	AttributeName   string                  `xml:"attributeName"`
-	AttributeValues []AccountAttributeValue `xml:"attributeValueSet>item"`
+	AttributeName   string                  `ec2:"attributeName" xml:"attributeName"`
+	AttributeValues []AccountAttributeValue `ec2:"attributeValueSet" xml:"attributeValueSet>item"`
 }
 
 // AccountAttributeValue is undocumented.
 type AccountAttributeValue struct {
-	AttributeValue string `xml:"attributeValue"`
+	AttributeValue string `ec2:"attributeValue" xml:"attributeValue"`
 }
 
 // Address is undocumented.
 type Address struct {
-	AllocationID            string `xml:"allocationId"`
-	AssociationID           string `xml:"associationId"`
-	Domain                  string `xml:"domain"`
-	InstanceID              string `xml:"instanceId"`
-	NetworkInterfaceID      string `xml:"networkInterfaceId"`
-	NetworkInterfaceOwnerID string `xml:"networkInterfaceOwnerId"`
-	PrivateIPAddress        string `xml:"privateIpAddress"`
-	PublicIP                string `xml:"publicIp"`
+	AllocationID            string `ec2:"allocationId" xml:"allocationId"`
+	AssociationID           string `ec2:"associationId" xml:"associationId"`
+	Domain                  string `ec2:"domain" xml:"domain"`
+	InstanceID              string `ec2:"instanceId" xml:"instanceId"`
+	NetworkInterfaceID      string `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	NetworkInterfaceOwnerID string `ec2:"networkInterfaceOwnerId" xml:"networkInterfaceOwnerId"`
+	PrivateIPAddress        string `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	PublicIP                string `ec2:"publicIp" xml:"publicIp"`
 }
 
 // AllocateAddressRequest is undocumented.
 type AllocateAddressRequest struct {
-	Domain string `xml:"Domain"`
-	DryRun bool   `xml:"dryRun"`
+	Domain string `ec2:"" xml:"Domain"`
+	DryRun bool   `ec2:"dryRun" xml:"dryRun"`
 }
 
 // AllocateAddressResult is undocumented.
 type AllocateAddressResult struct {
-	AllocationID string `xml:"allocationId"`
-	Domain       string `xml:"domain"`
-	PublicIP     string `xml:"publicIp"`
+	AllocationID string `ec2:"allocationId" xml:"allocationId"`
+	Domain       string `ec2:"domain" xml:"domain"`
+	PublicIP     string `ec2:"publicIp" xml:"publicIp"`
 }
 
 // AssignPrivateIPAddressesRequest is undocumented.
 type AssignPrivateIPAddressesRequest struct {
-	AllowReassignment              bool     `xml:"allowReassignment"`
-	NetworkInterfaceID             string   `xml:"networkInterfaceId"`
-	PrivateIPAddresses             []string `xml:"privateIpAddress>PrivateIpAddress"`
-	SecondaryPrivateIPAddressCount int      `xml:"secondaryPrivateIpAddressCount"`
+	AllowReassignment              bool     `ec2:"allowReassignment" xml:"allowReassignment"`
+	NetworkInterfaceID             string   `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	PrivateIPAddresses             []string `ec2:"privateIpAddress" xml:"privateIpAddress>PrivateIpAddress"`
+	SecondaryPrivateIPAddressCount int      `ec2:"secondaryPrivateIpAddressCount" xml:"secondaryPrivateIpAddressCount"`
 }
 
 // AssociateAddressRequest is undocumented.
 type AssociateAddressRequest struct {
-	AllocationID       string `xml:"AllocationId"`
-	AllowReassociation bool   `xml:"allowReassociation"`
-	DryRun             bool   `xml:"dryRun"`
-	InstanceID         string `xml:"InstanceId"`
-	NetworkInterfaceID string `xml:"networkInterfaceId"`
-	PrivateIPAddress   string `xml:"privateIpAddress"`
-	PublicIP           string `xml:"PublicIp"`
+	AllocationID       string `ec2:"" xml:"AllocationId"`
+	AllowReassociation bool   `ec2:"allowReassociation" xml:"allowReassociation"`
+	DryRun             bool   `ec2:"dryRun" xml:"dryRun"`
+	InstanceID         string `ec2:"" xml:"InstanceId"`
+	NetworkInterfaceID string `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	PrivateIPAddress   string `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	PublicIP           string `ec2:"" xml:"PublicIp"`
 }
 
 // AssociateAddressResult is undocumented.
 type AssociateAddressResult struct {
-	AssociationID string `xml:"associationId"`
+	AssociationID string `ec2:"associationId" xml:"associationId"`
 }
 
 // AssociateDhcpOptionsRequest is undocumented.
 type AssociateDhcpOptionsRequest struct {
-	DhcpOptionsID string `xml:"DhcpOptionsId"`
-	DryRun        bool   `xml:"dryRun"`
-	VpcID         string `xml:"VpcId"`
+	DhcpOptionsID string `ec2:"" xml:"DhcpOptionsId"`
+	DryRun        bool   `ec2:"dryRun" xml:"dryRun"`
+	VpcID         string `ec2:"" xml:"VpcId"`
 }
 
 // AssociateRouteTableRequest is undocumented.
 type AssociateRouteTableRequest struct {
-	DryRun       bool   `xml:"dryRun"`
-	RouteTableID string `xml:"routeTableId"`
-	SubnetID     string `xml:"subnetId"`
+	DryRun       bool   `ec2:"dryRun" xml:"dryRun"`
+	RouteTableID string `ec2:"routeTableId" xml:"routeTableId"`
+	SubnetID     string `ec2:"subnetId" xml:"subnetId"`
 }
 
 // AssociateRouteTableResult is undocumented.
 type AssociateRouteTableResult struct {
-	AssociationID string `xml:"associationId"`
+	AssociationID string `ec2:"associationId" xml:"associationId"`
 }
 
 // AttachInternetGatewayRequest is undocumented.
 type AttachInternetGatewayRequest struct {
-	DryRun            bool   `xml:"dryRun"`
-	InternetGatewayID string `xml:"internetGatewayId"`
-	VpcID             string `xml:"vpcId"`
+	DryRun            bool   `ec2:"dryRun" xml:"dryRun"`
+	InternetGatewayID string `ec2:"internetGatewayId" xml:"internetGatewayId"`
+	VpcID             string `ec2:"vpcId" xml:"vpcId"`
 }
 
 // AttachNetworkInterfaceRequest is undocumented.
 type AttachNetworkInterfaceRequest struct {
-	DeviceIndex        int    `xml:"deviceIndex"`
-	DryRun             bool   `xml:"dryRun"`
-	InstanceID         string `xml:"instanceId"`
-	NetworkInterfaceID string `xml:"networkInterfaceId"`
+	DeviceIndex        int    `ec2:"deviceIndex" xml:"deviceIndex"`
+	DryRun             bool   `ec2:"dryRun" xml:"dryRun"`
+	InstanceID         string `ec2:"instanceId" xml:"instanceId"`
+	NetworkInterfaceID string `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
 }
 
 // AttachNetworkInterfaceResult is undocumented.
 type AttachNetworkInterfaceResult struct {
-	AttachmentID string `xml:"attachmentId"`
+	AttachmentID string `ec2:"attachmentId" xml:"attachmentId"`
 }
 
 // AttachVolumeRequest is undocumented.
 type AttachVolumeRequest struct {
-	Device     string `xml:"Device"`
-	DryRun     bool   `xml:"dryRun"`
-	InstanceID string `xml:"InstanceId"`
-	VolumeID   string `xml:"VolumeId"`
+	Device     string `ec2:"" xml:"Device"`
+	DryRun     bool   `ec2:"dryRun" xml:"dryRun"`
+	InstanceID string `ec2:"" xml:"InstanceId"`
+	VolumeID   string `ec2:"" xml:"VolumeId"`
 }
 
 // AttachVpnGatewayRequest is undocumented.
 type AttachVpnGatewayRequest struct {
-	DryRun       bool   `xml:"dryRun"`
-	VpcID        string `xml:"VpcId"`
-	VpnGatewayID string `xml:"VpnGatewayId"`
+	DryRun       bool   `ec2:"dryRun" xml:"dryRun"`
+	VpcID        string `ec2:"" xml:"VpcId"`
+	VpnGatewayID string `ec2:"" xml:"VpnGatewayId"`
 }
 
 // AttachVpnGatewayResult is undocumented.
 type AttachVpnGatewayResult struct {
-	VpcAttachment VpcAttachment `xml:"attachment"`
+	VpcAttachment VpcAttachment `ec2:"attachment" xml:"attachment"`
 }
 
 // AttributeBooleanValue is undocumented.
 type AttributeBooleanValue struct {
-	Value bool `xml:"value"`
+	Value bool `ec2:"value" xml:"value"`
 }
 
 // AttributeValue is undocumented.
 type AttributeValue struct {
-	Value string `xml:"value"`
+	Value string `ec2:"value" xml:"value"`
 }
 
 // AuthorizeSecurityGroupEgressRequest is undocumented.
 type AuthorizeSecurityGroupEgressRequest struct {
-	CidrIP                     string         `xml:"cidrIp"`
-	DryRun                     bool           `xml:"dryRun"`
-	FromPort                   int            `xml:"fromPort"`
-	GroupID                    string         `xml:"groupId"`
-	IPPermissions              []IPPermission `xml:"ipPermissions>item"`
-	IPProtocol                 string         `xml:"ipProtocol"`
-	SourceSecurityGroupName    string         `xml:"sourceSecurityGroupName"`
-	SourceSecurityGroupOwnerID string         `xml:"sourceSecurityGroupOwnerId"`
-	ToPort                     int            `xml:"toPort"`
+	CidrIP                     string         `ec2:"cidrIp" xml:"cidrIp"`
+	DryRun                     bool           `ec2:"dryRun" xml:"dryRun"`
+	FromPort                   int            `ec2:"fromPort" xml:"fromPort"`
+	GroupID                    string         `ec2:"groupId" xml:"groupId"`
+	IPPermissions              []IPPermission `ec2:"ipPermissions" xml:"ipPermissions>item"`
+	IPProtocol                 string         `ec2:"ipProtocol" xml:"ipProtocol"`
+	SourceSecurityGroupName    string         `ec2:"sourceSecurityGroupName" xml:"sourceSecurityGroupName"`
+	SourceSecurityGroupOwnerID string         `ec2:"sourceSecurityGroupOwnerId" xml:"sourceSecurityGroupOwnerId"`
+	ToPort                     int            `ec2:"toPort" xml:"toPort"`
 }
 
 // AuthorizeSecurityGroupIngressRequest is undocumented.
 type AuthorizeSecurityGroupIngressRequest struct {
-	CidrIP                     string         `xml:"CidrIp"`
-	DryRun                     bool           `xml:"dryRun"`
-	FromPort                   int            `xml:"FromPort"`
-	GroupID                    string         `xml:"GroupId"`
-	GroupName                  string         `xml:"GroupName"`
-	IPPermissions              []IPPermission `xml:"IpPermissions>item"`
-	IPProtocol                 string         `xml:"IpProtocol"`
-	SourceSecurityGroupName    string         `xml:"SourceSecurityGroupName"`
-	SourceSecurityGroupOwnerID string         `xml:"SourceSecurityGroupOwnerId"`
-	ToPort                     int            `xml:"ToPort"`
+	CidrIP                     string         `ec2:"" xml:"CidrIp"`
+	DryRun                     bool           `ec2:"dryRun" xml:"dryRun"`
+	FromPort                   int            `ec2:"" xml:"FromPort"`
+	GroupID                    string         `ec2:"" xml:"GroupId"`
+	GroupName                  string         `ec2:"" xml:"GroupName"`
+	IPPermissions              []IPPermission `ec2:"" xml:"IpPermissions>item"`
+	IPProtocol                 string         `ec2:"" xml:"IpProtocol"`
+	SourceSecurityGroupName    string         `ec2:"" xml:"SourceSecurityGroupName"`
+	SourceSecurityGroupOwnerID string         `ec2:"" xml:"SourceSecurityGroupOwnerId"`
+	ToPort                     int            `ec2:"" xml:"ToPort"`
 }
 
 // AvailabilityZone is undocumented.
 type AvailabilityZone struct {
-	Messages   []AvailabilityZoneMessage `xml:"messageSet>item"`
-	RegionName string                    `xml:"regionName"`
-	State      string                    `xml:"zoneState"`
-	ZoneName   string                    `xml:"zoneName"`
+	Messages   []AvailabilityZoneMessage `ec2:"messageSet" xml:"messageSet>item"`
+	RegionName string                    `ec2:"regionName" xml:"regionName"`
+	State      string                    `ec2:"zoneState" xml:"zoneState"`
+	ZoneName   string                    `ec2:"zoneName" xml:"zoneName"`
 }
 
 // AvailabilityZoneMessage is undocumented.
 type AvailabilityZoneMessage struct {
-	Message string `xml:"message"`
+	Message string `ec2:"message" xml:"message"`
 }
 
 // BlobAttributeValue is undocumented.
 type BlobAttributeValue struct {
-	Value []byte `xml:"value"`
+	Value []byte `ec2:"value" xml:"value"`
 }
 
 // BlockDeviceMapping is undocumented.
 type BlockDeviceMapping struct {
-	DeviceName  string         `xml:"deviceName"`
-	Ebs         EbsBlockDevice `xml:"ebs"`
-	NoDevice    string         `xml:"noDevice"`
-	VirtualName string         `xml:"virtualName"`
+	DeviceName  string         `ec2:"deviceName" xml:"deviceName"`
+	Ebs         EbsBlockDevice `ec2:"ebs" xml:"ebs"`
+	NoDevice    string         `ec2:"noDevice" xml:"noDevice"`
+	VirtualName string         `ec2:"virtualName" xml:"virtualName"`
 }
 
 // BundleInstanceRequest is undocumented.
 type BundleInstanceRequest struct {
-	DryRun     bool    `xml:"dryRun"`
-	InstanceID string  `xml:"InstanceId"`
-	Storage    Storage `xml:"Storage"`
+	DryRun     bool    `ec2:"dryRun" xml:"dryRun"`
+	InstanceID string  `ec2:"" xml:"InstanceId"`
+	Storage    Storage `ec2:"" xml:"Storage"`
 }
 
 // BundleInstanceResult is undocumented.
 type BundleInstanceResult struct {
-	BundleTask BundleTask `xml:"bundleInstanceTask"`
+	BundleTask BundleTask `ec2:"bundleInstanceTask" xml:"bundleInstanceTask"`
 }
 
 // BundleTask is undocumented.
 type BundleTask struct {
-	BundleID        string          `xml:"bundleId"`
-	BundleTaskError BundleTaskError `xml:"error"`
-	InstanceID      string          `xml:"instanceId"`
-	Progress        string          `xml:"progress"`
-	StartTime       time.Time       `xml:"startTime"`
-	State           string          `xml:"state"`
-	Storage         Storage         `xml:"storage"`
-	UpdateTime      time.Time       `xml:"updateTime"`
+	BundleID        string          `ec2:"bundleId" xml:"bundleId"`
+	BundleTaskError BundleTaskError `ec2:"error" xml:"error"`
+	InstanceID      string          `ec2:"instanceId" xml:"instanceId"`
+	Progress        string          `ec2:"progress" xml:"progress"`
+	StartTime       time.Time       `ec2:"startTime" xml:"startTime"`
+	State           string          `ec2:"state" xml:"state"`
+	Storage         Storage         `ec2:"storage" xml:"storage"`
+	UpdateTime      time.Time       `ec2:"updateTime" xml:"updateTime"`
 }
 
 // BundleTaskError is undocumented.
 type BundleTaskError struct {
-	Code    string `xml:"code"`
-	Message string `xml:"message"`
+	Code    string `ec2:"code" xml:"code"`
+	Message string `ec2:"message" xml:"message"`
 }
 
 // CancelBundleTaskRequest is undocumented.
 type CancelBundleTaskRequest struct {
-	BundleID string `xml:"BundleId"`
-	DryRun   bool   `xml:"dryRun"`
+	BundleID string `ec2:"" xml:"BundleId"`
+	DryRun   bool   `ec2:"dryRun" xml:"dryRun"`
 }
 
 // CancelBundleTaskResult is undocumented.
 type CancelBundleTaskResult struct {
-	BundleTask BundleTask `xml:"bundleInstanceTask"`
+	BundleTask BundleTask `ec2:"bundleInstanceTask" xml:"bundleInstanceTask"`
 }
 
 // CancelConversionRequest is undocumented.
 type CancelConversionRequest struct {
-	ConversionTaskID string `xml:"conversionTaskId"`
-	DryRun           bool   `xml:"dryRun"`
-	ReasonMessage    string `xml:"reasonMessage"`
+	ConversionTaskID string `ec2:"conversionTaskId" xml:"conversionTaskId"`
+	DryRun           bool   `ec2:"dryRun" xml:"dryRun"`
+	ReasonMessage    string `ec2:"reasonMessage" xml:"reasonMessage"`
 }
 
 // CancelExportTaskRequest is undocumented.
 type CancelExportTaskRequest struct {
-	ExportTaskID string `xml:"exportTaskId"`
+	ExportTaskID string `ec2:"exportTaskId" xml:"exportTaskId"`
 }
 
 // CancelReservedInstancesListingRequest is undocumented.
 type CancelReservedInstancesListingRequest struct {
-	ReservedInstancesListingID string `xml:"reservedInstancesListingId"`
+	ReservedInstancesListingID string `ec2:"reservedInstancesListingId" xml:"reservedInstancesListingId"`
 }
 
 // CancelReservedInstancesListingResult is undocumented.
 type CancelReservedInstancesListingResult struct {
-	ReservedInstancesListings []ReservedInstancesListing `xml:"reservedInstancesListingsSet>item"`
+	ReservedInstancesListings []ReservedInstancesListing `ec2:"reservedInstancesListingsSet" xml:"reservedInstancesListingsSet>item"`
 }
 
 // CancelSpotInstanceRequestsRequest is undocumented.
 type CancelSpotInstanceRequestsRequest struct {
-	DryRun                 bool     `xml:"dryRun"`
-	SpotInstanceRequestIds []string `xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
+	DryRun                 bool     `ec2:"dryRun" xml:"dryRun"`
+	SpotInstanceRequestIds []string `ec2:"SpotInstanceRequestId" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
 }
 
 // CancelSpotInstanceRequestsResult is undocumented.
 type CancelSpotInstanceRequestsResult struct {
-	CancelledSpotInstanceRequests []CancelledSpotInstanceRequest `xml:"spotInstanceRequestSet>item"`
+	CancelledSpotInstanceRequests []CancelledSpotInstanceRequest `ec2:"spotInstanceRequestSet" xml:"spotInstanceRequestSet>item"`
 }
 
 // CancelledSpotInstanceRequest is undocumented.
 type CancelledSpotInstanceRequest struct {
-	SpotInstanceRequestID string `xml:"spotInstanceRequestId"`
-	State                 string `xml:"state"`
+	SpotInstanceRequestID string `ec2:"spotInstanceRequestId" xml:"spotInstanceRequestId"`
+	State                 string `ec2:"state" xml:"state"`
 }
 
 // ConfirmProductInstanceRequest is undocumented.
 type ConfirmProductInstanceRequest struct {
-	DryRun      bool   `xml:"dryRun"`
-	InstanceID  string `xml:"InstanceId"`
-	ProductCode string `xml:"ProductCode"`
+	DryRun      bool   `ec2:"dryRun" xml:"dryRun"`
+	InstanceID  string `ec2:"" xml:"InstanceId"`
+	ProductCode string `ec2:"" xml:"ProductCode"`
 }
 
 // ConfirmProductInstanceResult is undocumented.
 type ConfirmProductInstanceResult struct {
-	OwnerID string `xml:"ownerId"`
+	OwnerID string `ec2:"ownerId" xml:"ownerId"`
 }
 
 // ConversionTask is undocumented.
 type ConversionTask struct {
-	ConversionTaskID string                    `xml:"conversionTaskId"`
-	ExpirationTime   string                    `xml:"expirationTime"`
-	ImportInstance   ImportInstanceTaskDetails `xml:"importInstance"`
-	ImportVolume     ImportVolumeTaskDetails   `xml:"importVolume"`
-	State            string                    `xml:"state"`
-	StatusMessage    string                    `xml:"statusMessage"`
-	Tags             []Tag                     `xml:"tagSet>item"`
+	ConversionTaskID string                    `ec2:"conversionTaskId" xml:"conversionTaskId"`
+	ExpirationTime   string                    `ec2:"expirationTime" xml:"expirationTime"`
+	ImportInstance   ImportInstanceTaskDetails `ec2:"importInstance" xml:"importInstance"`
+	ImportVolume     ImportVolumeTaskDetails   `ec2:"importVolume" xml:"importVolume"`
+	State            string                    `ec2:"state" xml:"state"`
+	StatusMessage    string                    `ec2:"statusMessage" xml:"statusMessage"`
+	Tags             []Tag                     `ec2:"tagSet" xml:"tagSet>item"`
 }
 
 // CopyImageRequest is undocumented.
 type CopyImageRequest struct {
-	ClientToken   string `xml:"ClientToken"`
-	Description   string `xml:"Description"`
-	DryRun        bool   `xml:"dryRun"`
-	Name          string `xml:"Name"`
-	SourceImageID string `xml:"SourceImageId"`
-	SourceRegion  string `xml:"SourceRegion"`
+	ClientToken   string `ec2:"" xml:"ClientToken"`
+	Description   string `ec2:"" xml:"Description"`
+	DryRun        bool   `ec2:"dryRun" xml:"dryRun"`
+	Name          string `ec2:"" xml:"Name"`
+	SourceImageID string `ec2:"" xml:"SourceImageId"`
+	SourceRegion  string `ec2:"" xml:"SourceRegion"`
 }
 
 // CopyImageResult is undocumented.
 type CopyImageResult struct {
-	ImageID string `xml:"imageId"`
+	ImageID string `ec2:"imageId" xml:"imageId"`
 }
 
 // CopySnapshotRequest is undocumented.
 type CopySnapshotRequest struct {
-	Description       string `xml:"Description"`
-	DestinationRegion string `xml:"destinationRegion"`
-	DryRun            bool   `xml:"dryRun"`
-	PresignedURL      string `xml:"presignedUrl"`
-	SourceRegion      string `xml:"SourceRegion"`
-	SourceSnapshotID  string `xml:"SourceSnapshotId"`
+	Description       string `ec2:"" xml:"Description"`
+	DestinationRegion string `ec2:"destinationRegion" xml:"destinationRegion"`
+	DryRun            bool   `ec2:"dryRun" xml:"dryRun"`
+	PresignedURL      string `ec2:"presignedUrl" xml:"presignedUrl"`
+	SourceRegion      string `ec2:"" xml:"SourceRegion"`
+	SourceSnapshotID  string `ec2:"" xml:"SourceSnapshotId"`
 }
 
 // CopySnapshotResult is undocumented.
 type CopySnapshotResult struct {
-	SnapshotID string `xml:"snapshotId"`
+	SnapshotID string `ec2:"snapshotId" xml:"snapshotId"`
 }
 
 // CreateCustomerGatewayRequest is undocumented.
 type CreateCustomerGatewayRequest struct {
-	BgpAsn   int    `xml:"BgpAsn"`
-	DryRun   bool   `xml:"dryRun"`
-	PublicIP string `xml:"IpAddress"`
-	Type     string `xml:"Type"`
+	BgpAsn   int    `ec2:"" xml:"BgpAsn"`
+	DryRun   bool   `ec2:"dryRun" xml:"dryRun"`
+	PublicIP string `ec2:"IpAddress" xml:"IpAddress"`
+	Type     string `ec2:"" xml:"Type"`
 }
 
 // CreateCustomerGatewayResult is undocumented.
 type CreateCustomerGatewayResult struct {
-	CustomerGateway CustomerGateway `xml:"customerGateway"`
+	CustomerGateway CustomerGateway `ec2:"customerGateway" xml:"customerGateway"`
 }
 
 // CreateDhcpOptionsRequest is undocumented.
 type CreateDhcpOptionsRequest struct {
-	DhcpConfigurations []NewDhcpConfiguration `xml:"dhcpConfiguration>item"`
-	DryRun             bool                   `xml:"dryRun"`
+	DhcpConfigurations []NewDhcpConfiguration `ec2:"dhcpConfiguration" xml:"dhcpConfiguration>item"`
+	DryRun             bool                   `ec2:"dryRun" xml:"dryRun"`
 }
 
 // CreateDhcpOptionsResult is undocumented.
 type CreateDhcpOptionsResult struct {
-	DhcpOptions DhcpOptions `xml:"dhcpOptions"`
+	DhcpOptions DhcpOptions `ec2:"dhcpOptions" xml:"dhcpOptions"`
 }
 
 // CreateImageRequest is undocumented.
 type CreateImageRequest struct {
-	BlockDeviceMappings []BlockDeviceMapping `xml:"blockDeviceMapping>BlockDeviceMapping"`
-	Description         string               `xml:"description"`
-	DryRun              bool                 `xml:"dryRun"`
-	InstanceID          string               `xml:"instanceId"`
-	Name                string               `xml:"name"`
-	NoReboot            bool                 `xml:"noReboot"`
+	BlockDeviceMappings []BlockDeviceMapping `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>BlockDeviceMapping"`
+	Description         string               `ec2:"description" xml:"description"`
+	DryRun              bool                 `ec2:"dryRun" xml:"dryRun"`
+	InstanceID          string               `ec2:"instanceId" xml:"instanceId"`
+	Name                string               `ec2:"name" xml:"name"`
+	NoReboot            bool                 `ec2:"noReboot" xml:"noReboot"`
 }
 
 // CreateImageResult is undocumented.
 type CreateImageResult struct {
-	ImageID string `xml:"imageId"`
+	ImageID string `ec2:"imageId" xml:"imageId"`
 }
 
 // CreateInstanceExportTaskRequest is undocumented.
 type CreateInstanceExportTaskRequest struct {
-	Description       string                      `xml:"description"`
-	ExportToS3Task    ExportToS3TaskSpecification `xml:"exportToS3"`
-	InstanceID        string                      `xml:"instanceId"`
-	TargetEnvironment string                      `xml:"targetEnvironment"`
+	Description       string                      `ec2:"description" xml:"description"`
+	ExportToS3Task    ExportToS3TaskSpecification `ec2:"exportToS3" xml:"exportToS3"`
+	InstanceID        string                      `ec2:"instanceId" xml:"instanceId"`
+	TargetEnvironment string                      `ec2:"targetEnvironment" xml:"targetEnvironment"`
 }
 
 // CreateInstanceExportTaskResult is undocumented.
 type CreateInstanceExportTaskResult struct {
-	ExportTask ExportTask `xml:"exportTask"`
+	ExportTask ExportTask `ec2:"exportTask" xml:"exportTask"`
 }
 
 // CreateInternetGatewayRequest is undocumented.
 type CreateInternetGatewayRequest struct {
-	DryRun bool `xml:"dryRun"`
+	DryRun bool `ec2:"dryRun" xml:"dryRun"`
 }
 
 // CreateInternetGatewayResult is undocumented.
 type CreateInternetGatewayResult struct {
-	InternetGateway InternetGateway `xml:"internetGateway"`
+	InternetGateway InternetGateway `ec2:"internetGateway" xml:"internetGateway"`
 }
 
 // CreateKeyPairRequest is undocumented.
 type CreateKeyPairRequest struct {
-	DryRun  bool   `xml:"dryRun"`
-	KeyName string `xml:"KeyName"`
+	DryRun  bool   `ec2:"dryRun" xml:"dryRun"`
+	KeyName string `ec2:"" xml:"KeyName"`
 }
 
 // CreateNetworkAclEntryRequest is undocumented.
 type CreateNetworkAclEntryRequest struct {
-	CidrBlock    string       `xml:"cidrBlock"`
-	DryRun       bool         `xml:"dryRun"`
-	Egress       bool         `xml:"egress"`
-	IcmpTypeCode IcmpTypeCode `xml:"Icmp"`
-	NetworkAclID string       `xml:"networkAclId"`
-	PortRange    PortRange    `xml:"portRange"`
-	Protocol     string       `xml:"protocol"`
-	RuleAction   string       `xml:"ruleAction"`
-	RuleNumber   int          `xml:"ruleNumber"`
+	CidrBlock    string       `ec2:"cidrBlock" xml:"cidrBlock"`
+	DryRun       bool         `ec2:"dryRun" xml:"dryRun"`
+	Egress       bool         `ec2:"egress" xml:"egress"`
+	IcmpTypeCode IcmpTypeCode `ec2:"Icmp" xml:"Icmp"`
+	NetworkAclID string       `ec2:"networkAclId" xml:"networkAclId"`
+	PortRange    PortRange    `ec2:"portRange" xml:"portRange"`
+	Protocol     string       `ec2:"protocol" xml:"protocol"`
+	RuleAction   string       `ec2:"ruleAction" xml:"ruleAction"`
+	RuleNumber   int          `ec2:"ruleNumber" xml:"ruleNumber"`
 }
 
 // CreateNetworkAclRequest is undocumented.
 type CreateNetworkAclRequest struct {
-	DryRun bool   `xml:"dryRun"`
-	VpcID  string `xml:"vpcId"`
+	DryRun bool   `ec2:"dryRun" xml:"dryRun"`
+	VpcID  string `ec2:"vpcId" xml:"vpcId"`
 }
 
 // CreateNetworkAclResult is undocumented.
 type CreateNetworkAclResult struct {
-	NetworkAcl NetworkAcl `xml:"networkAcl"`
+	NetworkAcl NetworkAcl `ec2:"networkAcl" xml:"networkAcl"`
 }
 
 // CreateNetworkInterfaceRequest is undocumented.
 type CreateNetworkInterfaceRequest struct {
-	Description                    string                          `xml:"description"`
-	DryRun                         bool                            `xml:"dryRun"`
-	Groups                         []string                        `xml:"SecurityGroupId>SecurityGroupId"`
-	PrivateIPAddress               string                          `xml:"privateIpAddress"`
-	PrivateIPAddresses             []PrivateIPAddressSpecification `xml:"privateIpAddresses>item"`
-	SecondaryPrivateIPAddressCount int                             `xml:"secondaryPrivateIpAddressCount"`
-	SubnetID                       string                          `xml:"subnetId"`
+	Description                    string                          `ec2:"description" xml:"description"`
+	DryRun                         bool                            `ec2:"dryRun" xml:"dryRun"`
+	Groups                         []string                        `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
+	PrivateIPAddress               string                          `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	PrivateIPAddresses             []PrivateIPAddressSpecification `ec2:"privateIpAddresses" xml:"privateIpAddresses>item"`
+	SecondaryPrivateIPAddressCount int                             `ec2:"secondaryPrivateIpAddressCount" xml:"secondaryPrivateIpAddressCount"`
+	SubnetID                       string                          `ec2:"subnetId" xml:"subnetId"`
 }
 
 // CreateNetworkInterfaceResult is undocumented.
 type CreateNetworkInterfaceResult struct {
-	NetworkInterface NetworkInterface `xml:"networkInterface"`
+	NetworkInterface NetworkInterface `ec2:"networkInterface" xml:"networkInterface"`
 }
 
 // CreatePlacementGroupRequest is undocumented.
 type CreatePlacementGroupRequest struct {
-	DryRun    bool   `xml:"dryRun"`
-	GroupName string `xml:"groupName"`
-	Strategy  string `xml:"strategy"`
+	DryRun    bool   `ec2:"dryRun" xml:"dryRun"`
+	GroupName string `ec2:"groupName" xml:"groupName"`
+	Strategy  string `ec2:"strategy" xml:"strategy"`
 }
 
 // CreateReservedInstancesListingRequest is undocumented.
 type CreateReservedInstancesListingRequest struct {
-	ClientToken         string                       `xml:"clientToken"`
-	InstanceCount       int                          `xml:"instanceCount"`
-	PriceSchedules      []PriceScheduleSpecification `xml:"priceSchedules>item"`
-	ReservedInstancesID string                       `xml:"reservedInstancesId"`
+	ClientToken         string                       `ec2:"clientToken" xml:"clientToken"`
+	InstanceCount       int                          `ec2:"instanceCount" xml:"instanceCount"`
+	PriceSchedules      []PriceScheduleSpecification `ec2:"priceSchedules" xml:"priceSchedules>item"`
+	ReservedInstancesID string                       `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
 }
 
 // CreateReservedInstancesListingResult is undocumented.
 type CreateReservedInstancesListingResult struct {
-	ReservedInstancesListings []ReservedInstancesListing `xml:"reservedInstancesListingsSet>item"`
+	ReservedInstancesListings []ReservedInstancesListing `ec2:"reservedInstancesListingsSet" xml:"reservedInstancesListingsSet>item"`
 }
 
 // CreateRouteRequest is undocumented.
 type CreateRouteRequest struct {
-	DestinationCidrBlock   string `xml:"destinationCidrBlock"`
-	DryRun                 bool   `xml:"dryRun"`
-	GatewayID              string `xml:"gatewayId"`
-	InstanceID             string `xml:"instanceId"`
-	NetworkInterfaceID     string `xml:"networkInterfaceId"`
-	RouteTableID           string `xml:"routeTableId"`
-	VpcPeeringConnectionID string `xml:"vpcPeeringConnectionId"`
+	DestinationCidrBlock   string `ec2:"destinationCidrBlock" xml:"destinationCidrBlock"`
+	DryRun                 bool   `ec2:"dryRun" xml:"dryRun"`
+	GatewayID              string `ec2:"gatewayId" xml:"gatewayId"`
+	InstanceID             string `ec2:"instanceId" xml:"instanceId"`
+	NetworkInterfaceID     string `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	RouteTableID           string `ec2:"routeTableId" xml:"routeTableId"`
+	VpcPeeringConnectionID string `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // CreateRouteTableRequest is undocumented.
 type CreateRouteTableRequest struct {
-	DryRun bool   `xml:"dryRun"`
-	VpcID  string `xml:"vpcId"`
+	DryRun bool   `ec2:"dryRun" xml:"dryRun"`
+	VpcID  string `ec2:"vpcId" xml:"vpcId"`
 }
 
 // CreateRouteTableResult is undocumented.
 type CreateRouteTableResult struct {
-	RouteTable RouteTable `xml:"routeTable"`
+	RouteTable RouteTable `ec2:"routeTable" xml:"routeTable"`
 }
 
 // CreateSecurityGroupRequest is undocumented.
 type CreateSecurityGroupRequest struct {
-	Description string `xml:"GroupDescription"`
-	DryRun      bool   `xml:"dryRun"`
-	GroupName   string `xml:"GroupName"`
-	VpcID       string `xml:"VpcId"`
+	Description string `ec2:"GroupDescription" xml:"GroupDescription"`
+	DryRun      bool   `ec2:"dryRun" xml:"dryRun"`
+	GroupName   string `ec2:"" xml:"GroupName"`
+	VpcID       string `ec2:"" xml:"VpcId"`
 }
 
 // CreateSecurityGroupResult is undocumented.
 type CreateSecurityGroupResult struct {
-	GroupID string `xml:"groupId"`
+	GroupID string `ec2:"groupId" xml:"groupId"`
 }
 
 // CreateSnapshotRequest is undocumented.
 type CreateSnapshotRequest struct {
-	Description string `xml:"Description"`
-	DryRun      bool   `xml:"dryRun"`
-	VolumeID    string `xml:"VolumeId"`
+	Description string `ec2:"" xml:"Description"`
+	DryRun      bool   `ec2:"dryRun" xml:"dryRun"`
+	VolumeID    string `ec2:"" xml:"VolumeId"`
 }
 
 // CreateSpotDatafeedSubscriptionRequest is undocumented.
 type CreateSpotDatafeedSubscriptionRequest struct {
-	Bucket string `xml:"bucket"`
-	DryRun bool   `xml:"dryRun"`
-	Prefix string `xml:"prefix"`
+	Bucket string `ec2:"bucket" xml:"bucket"`
+	DryRun bool   `ec2:"dryRun" xml:"dryRun"`
+	Prefix string `ec2:"prefix" xml:"prefix"`
 }
 
 // CreateSpotDatafeedSubscriptionResult is undocumented.
 type CreateSpotDatafeedSubscriptionResult struct {
-	SpotDatafeedSubscription SpotDatafeedSubscription `xml:"spotDatafeedSubscription"`
+	SpotDatafeedSubscription SpotDatafeedSubscription `ec2:"spotDatafeedSubscription" xml:"spotDatafeedSubscription"`
 }
 
 // CreateSubnetRequest is undocumented.
 type CreateSubnetRequest struct {
-	AvailabilityZone string `xml:"AvailabilityZone"`
-	CidrBlock        string `xml:"CidrBlock"`
-	DryRun           bool   `xml:"dryRun"`
-	VpcID            string `xml:"VpcId"`
+	AvailabilityZone string `ec2:"" xml:"AvailabilityZone"`
+	CidrBlock        string `ec2:"" xml:"CidrBlock"`
+	DryRun           bool   `ec2:"dryRun" xml:"dryRun"`
+	VpcID            string `ec2:"" xml:"VpcId"`
 }
 
 // CreateSubnetResult is undocumented.
 type CreateSubnetResult struct {
-	Subnet Subnet `xml:"subnet"`
+	Subnet Subnet `ec2:"subnet" xml:"subnet"`
 }
 
 // CreateTagsRequest is undocumented.
 type CreateTagsRequest struct {
-	DryRun    bool     `xml:"dryRun"`
-	Resources []string `xml:"ResourceId>member"`
-	Tags      []Tag    `xml:"Tag>item"`
+	DryRun    bool     `ec2:"dryRun" xml:"dryRun"`
+	Resources []string `ec2:"ResourceId" xml:"ResourceId>member"`
+	Tags      []Tag    `ec2:"Tag" xml:"Tag>item"`
 }
 
 // CreateVolumePermission is undocumented.
 type CreateVolumePermission struct {
-	Group  string `xml:"group"`
-	UserID string `xml:"userId"`
+	Group  string `ec2:"group" xml:"group"`
+	UserID string `ec2:"userId" xml:"userId"`
 }
 
 // CreateVolumePermissionModifications is undocumented.
 type CreateVolumePermissionModifications struct {
-	Add    []CreateVolumePermission `xml:"Add>item"`
-	Remove []CreateVolumePermission `xml:"Remove>item"`
+	Add    []CreateVolumePermission `ec2:"" xml:"Add>item"`
+	Remove []CreateVolumePermission `ec2:"" xml:"Remove>item"`
 }
 
 // CreateVolumeRequest is undocumented.
 type CreateVolumeRequest struct {
-	AvailabilityZone string `xml:"AvailabilityZone"`
-	DryRun           bool   `xml:"dryRun"`
-	Encrypted        bool   `xml:"encrypted"`
-	Iops             int    `xml:"Iops"`
-	KmsKeyID         string `xml:"KmsKeyId"`
-	Size             int    `xml:"Size"`
-	SnapshotID       string `xml:"SnapshotId"`
-	VolumeType       string `xml:"VolumeType"`
+	AvailabilityZone string `ec2:"" xml:"AvailabilityZone"`
+	DryRun           bool   `ec2:"dryRun" xml:"dryRun"`
+	Encrypted        bool   `ec2:"encrypted" xml:"encrypted"`
+	Iops             int    `ec2:"" xml:"Iops"`
+	KmsKeyID         string `ec2:"" xml:"KmsKeyId"`
+	Size             int    `ec2:"" xml:"Size"`
+	SnapshotID       string `ec2:"" xml:"SnapshotId"`
+	VolumeType       string `ec2:"" xml:"VolumeType"`
 }
 
 // CreateVpcPeeringConnectionRequest is undocumented.
 type CreateVpcPeeringConnectionRequest struct {
-	DryRun      bool   `xml:"dryRun"`
-	PeerOwnerID string `xml:"peerOwnerId"`
-	PeerVpcID   string `xml:"peerVpcId"`
-	VpcID       string `xml:"vpcId"`
+	DryRun      bool   `ec2:"dryRun" xml:"dryRun"`
+	PeerOwnerID string `ec2:"peerOwnerId" xml:"peerOwnerId"`
+	PeerVpcID   string `ec2:"peerVpcId" xml:"peerVpcId"`
+	VpcID       string `ec2:"vpcId" xml:"vpcId"`
 }
 
 // CreateVpcPeeringConnectionResult is undocumented.
 type CreateVpcPeeringConnectionResult struct {
-	VpcPeeringConnection VpcPeeringConnection `xml:"vpcPeeringConnection"`
+	VpcPeeringConnection VpcPeeringConnection `ec2:"vpcPeeringConnection" xml:"vpcPeeringConnection"`
 }
 
 // CreateVpcRequest is undocumented.
 type CreateVpcRequest struct {
-	CidrBlock       string `xml:"CidrBlock"`
-	DryRun          bool   `xml:"dryRun"`
-	InstanceTenancy string `xml:"instanceTenancy"`
+	CidrBlock       string `ec2:"" xml:"CidrBlock"`
+	DryRun          bool   `ec2:"dryRun" xml:"dryRun"`
+	InstanceTenancy string `ec2:"instanceTenancy" xml:"instanceTenancy"`
 }
 
 // CreateVpcResult is undocumented.
 type CreateVpcResult struct {
-	Vpc Vpc `xml:"vpc"`
+	Vpc Vpc `ec2:"vpc" xml:"vpc"`
 }
 
 // CreateVpnConnectionRequest is undocumented.
 type CreateVpnConnectionRequest struct {
-	CustomerGatewayID string                            `xml:"CustomerGatewayId"`
-	DryRun            bool                              `xml:"dryRun"`
-	Options           VpnConnectionOptionsSpecification `xml:"options"`
-	Type              string                            `xml:"Type"`
-	VpnGatewayID      string                            `xml:"VpnGatewayId"`
+	CustomerGatewayID string                            `ec2:"" xml:"CustomerGatewayId"`
+	DryRun            bool                              `ec2:"dryRun" xml:"dryRun"`
+	Options           VpnConnectionOptionsSpecification `ec2:"options" xml:"options"`
+	Type              string                            `ec2:"" xml:"Type"`
+	VpnGatewayID      string                            `ec2:"" xml:"VpnGatewayId"`
 }
 
 // CreateVpnConnectionResult is undocumented.
 type CreateVpnConnectionResult struct {
-	VpnConnection VpnConnection `xml:"vpnConnection"`
+	VpnConnection VpnConnection `ec2:"vpnConnection" xml:"vpnConnection"`
 }
 
 // CreateVpnConnectionRouteRequest is undocumented.
 type CreateVpnConnectionRouteRequest struct {
-	DestinationCidrBlock string `xml:"DestinationCidrBlock"`
-	VpnConnectionID      string `xml:"VpnConnectionId"`
+	DestinationCidrBlock string `ec2:"" xml:"DestinationCidrBlock"`
+	VpnConnectionID      string `ec2:"" xml:"VpnConnectionId"`
 }
 
 // CreateVpnGatewayRequest is undocumented.
 type CreateVpnGatewayRequest struct {
-	AvailabilityZone string `xml:"AvailabilityZone"`
-	DryRun           bool   `xml:"dryRun"`
-	Type             string `xml:"Type"`
+	AvailabilityZone string `ec2:"" xml:"AvailabilityZone"`
+	DryRun           bool   `ec2:"dryRun" xml:"dryRun"`
+	Type             string `ec2:"" xml:"Type"`
 }
 
 // CreateVpnGatewayResult is undocumented.
 type CreateVpnGatewayResult struct {
-	VpnGateway VpnGateway `xml:"vpnGateway"`
+	VpnGateway VpnGateway `ec2:"vpnGateway" xml:"vpnGateway"`
 }
 
 // CustomerGateway is undocumented.
 type CustomerGateway struct {
-	BgpAsn            string `xml:"bgpAsn"`
-	CustomerGatewayID string `xml:"customerGatewayId"`
-	IPAddress         string `xml:"ipAddress"`
-	State             string `xml:"state"`
-	Tags              []Tag  `xml:"tagSet>item"`
-	Type              string `xml:"type"`
+	BgpAsn            string `ec2:"bgpAsn" xml:"bgpAsn"`
+	CustomerGatewayID string `ec2:"customerGatewayId" xml:"customerGatewayId"`
+	IPAddress         string `ec2:"ipAddress" xml:"ipAddress"`
+	State             string `ec2:"state" xml:"state"`
+	Tags              []Tag  `ec2:"tagSet" xml:"tagSet>item"`
+	Type              string `ec2:"type" xml:"type"`
 }
 
 // DeleteCustomerGatewayRequest is undocumented.
 type DeleteCustomerGatewayRequest struct {
-	CustomerGatewayID string `xml:"CustomerGatewayId"`
-	DryRun            bool   `xml:"dryRun"`
+	CustomerGatewayID string `ec2:"" xml:"CustomerGatewayId"`
+	DryRun            bool   `ec2:"dryRun" xml:"dryRun"`
 }
 
 // DeleteDhcpOptionsRequest is undocumented.
 type DeleteDhcpOptionsRequest struct {
-	DhcpOptionsID string `xml:"DhcpOptionsId"`
-	DryRun        bool   `xml:"dryRun"`
+	DhcpOptionsID string `ec2:"" xml:"DhcpOptionsId"`
+	DryRun        bool   `ec2:"dryRun" xml:"dryRun"`
 }
 
 // DeleteInternetGatewayRequest is undocumented.
 type DeleteInternetGatewayRequest struct {
-	DryRun            bool   `xml:"dryRun"`
-	InternetGatewayID string `xml:"internetGatewayId"`
+	DryRun            bool   `ec2:"dryRun" xml:"dryRun"`
+	InternetGatewayID string `ec2:"internetGatewayId" xml:"internetGatewayId"`
 }
 
 // DeleteKeyPairRequest is undocumented.
 type DeleteKeyPairRequest struct {
-	DryRun  bool   `xml:"dryRun"`
-	KeyName string `xml:"KeyName"`
+	DryRun  bool   `ec2:"dryRun" xml:"dryRun"`
+	KeyName string `ec2:"" xml:"KeyName"`
 }
 
 // DeleteNetworkAclEntryRequest is undocumented.
 type DeleteNetworkAclEntryRequest struct {
-	DryRun       bool   `xml:"dryRun"`
-	Egress       bool   `xml:"egress"`
-	NetworkAclID string `xml:"networkAclId"`
-	RuleNumber   int    `xml:"ruleNumber"`
+	DryRun       bool   `ec2:"dryRun" xml:"dryRun"`
+	Egress       bool   `ec2:"egress" xml:"egress"`
+	NetworkAclID string `ec2:"networkAclId" xml:"networkAclId"`
+	RuleNumber   int    `ec2:"ruleNumber" xml:"ruleNumber"`
 }
 
 // DeleteNetworkAclRequest is undocumented.
 type DeleteNetworkAclRequest struct {
-	DryRun       bool   `xml:"dryRun"`
-	NetworkAclID string `xml:"networkAclId"`
+	DryRun       bool   `ec2:"dryRun" xml:"dryRun"`
+	NetworkAclID string `ec2:"networkAclId" xml:"networkAclId"`
 }
 
 // DeleteNetworkInterfaceRequest is undocumented.
 type DeleteNetworkInterfaceRequest struct {
-	DryRun             bool   `xml:"dryRun"`
-	NetworkInterfaceID string `xml:"networkInterfaceId"`
+	DryRun             bool   `ec2:"dryRun" xml:"dryRun"`
+	NetworkInterfaceID string `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
 }
 
 // DeletePlacementGroupRequest is undocumented.
 type DeletePlacementGroupRequest struct {
-	DryRun    bool   `xml:"dryRun"`
-	GroupName string `xml:"groupName"`
+	DryRun    bool   `ec2:"dryRun" xml:"dryRun"`
+	GroupName string `ec2:"groupName" xml:"groupName"`
 }
 
 // DeleteRouteRequest is undocumented.
 type DeleteRouteRequest struct {
-	DestinationCidrBlock string `xml:"destinationCidrBlock"`
-	DryRun               bool   `xml:"dryRun"`
-	RouteTableID         string `xml:"routeTableId"`
+	DestinationCidrBlock string `ec2:"destinationCidrBlock" xml:"destinationCidrBlock"`
+	DryRun               bool   `ec2:"dryRun" xml:"dryRun"`
+	RouteTableID         string `ec2:"routeTableId" xml:"routeTableId"`
 }
 
 // DeleteRouteTableRequest is undocumented.
 type DeleteRouteTableRequest struct {
-	DryRun       bool   `xml:"dryRun"`
-	RouteTableID string `xml:"routeTableId"`
+	DryRun       bool   `ec2:"dryRun" xml:"dryRun"`
+	RouteTableID string `ec2:"routeTableId" xml:"routeTableId"`
 }
 
 // DeleteSecurityGroupRequest is undocumented.
 type DeleteSecurityGroupRequest struct {
-	DryRun    bool   `xml:"dryRun"`
-	GroupID   string `xml:"GroupId"`
-	GroupName string `xml:"GroupName"`
+	DryRun    bool   `ec2:"dryRun" xml:"dryRun"`
+	GroupID   string `ec2:"" xml:"GroupId"`
+	GroupName string `ec2:"" xml:"GroupName"`
 }
 
 // DeleteSnapshotRequest is undocumented.
 type DeleteSnapshotRequest struct {
-	DryRun     bool   `xml:"dryRun"`
-	SnapshotID string `xml:"SnapshotId"`
+	DryRun     bool   `ec2:"dryRun" xml:"dryRun"`
+	SnapshotID string `ec2:"" xml:"SnapshotId"`
 }
 
 // DeleteSpotDatafeedSubscriptionRequest is undocumented.
 type DeleteSpotDatafeedSubscriptionRequest struct {
-	DryRun bool `xml:"dryRun"`
+	DryRun bool `ec2:"dryRun" xml:"dryRun"`
 }
 
 // DeleteSubnetRequest is undocumented.
 type DeleteSubnetRequest struct {
-	DryRun   bool   `xml:"dryRun"`
-	SubnetID string `xml:"SubnetId"`
+	DryRun   bool   `ec2:"dryRun" xml:"dryRun"`
+	SubnetID string `ec2:"" xml:"SubnetId"`
 }
 
 // DeleteTagsRequest is undocumented.
 type DeleteTagsRequest struct {
-	DryRun    bool     `xml:"dryRun"`
-	Resources []string `xml:"resourceId>member"`
-	Tags      []Tag    `xml:"tag>item"`
+	DryRun    bool     `ec2:"dryRun" xml:"dryRun"`
+	Resources []string `ec2:"resourceId" xml:"resourceId>member"`
+	Tags      []Tag    `ec2:"tag" xml:"tag>item"`
 }
 
 // DeleteVolumeRequest is undocumented.
 type DeleteVolumeRequest struct {
-	DryRun   bool   `xml:"dryRun"`
-	VolumeID string `xml:"VolumeId"`
+	DryRun   bool   `ec2:"dryRun" xml:"dryRun"`
+	VolumeID string `ec2:"" xml:"VolumeId"`
 }
 
 // DeleteVpcPeeringConnectionRequest is undocumented.
 type DeleteVpcPeeringConnectionRequest struct {
-	DryRun                 bool   `xml:"dryRun"`
-	VpcPeeringConnectionID string `xml:"vpcPeeringConnectionId"`
+	DryRun                 bool   `ec2:"dryRun" xml:"dryRun"`
+	VpcPeeringConnectionID string `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // DeleteVpcPeeringConnectionResult is undocumented.
 type DeleteVpcPeeringConnectionResult struct {
-	Return bool `xml:"return"`
+	Return bool `ec2:"return" xml:"return"`
 }
 
 // DeleteVpcRequest is undocumented.
 type DeleteVpcRequest struct {
-	DryRun bool   `xml:"dryRun"`
-	VpcID  string `xml:"VpcId"`
+	DryRun bool   `ec2:"dryRun" xml:"dryRun"`
+	VpcID  string `ec2:"" xml:"VpcId"`
 }
 
 // DeleteVpnConnectionRequest is undocumented.
 type DeleteVpnConnectionRequest struct {
-	DryRun          bool   `xml:"dryRun"`
-	VpnConnectionID string `xml:"VpnConnectionId"`
+	DryRun          bool   `ec2:"dryRun" xml:"dryRun"`
+	VpnConnectionID string `ec2:"" xml:"VpnConnectionId"`
 }
 
 // DeleteVpnConnectionRouteRequest is undocumented.
 type DeleteVpnConnectionRouteRequest struct {
-	DestinationCidrBlock string `xml:"DestinationCidrBlock"`
-	VpnConnectionID      string `xml:"VpnConnectionId"`
+	DestinationCidrBlock string `ec2:"" xml:"DestinationCidrBlock"`
+	VpnConnectionID      string `ec2:"" xml:"VpnConnectionId"`
 }
 
 // DeleteVpnGatewayRequest is undocumented.
 type DeleteVpnGatewayRequest struct {
-	DryRun       bool   `xml:"dryRun"`
-	VpnGatewayID string `xml:"VpnGatewayId"`
+	DryRun       bool   `ec2:"dryRun" xml:"dryRun"`
+	VpnGatewayID string `ec2:"" xml:"VpnGatewayId"`
 }
 
 // DeregisterImageRequest is undocumented.
 type DeregisterImageRequest struct {
-	DryRun  bool   `xml:"dryRun"`
-	ImageID string `xml:"ImageId"`
+	DryRun  bool   `ec2:"dryRun" xml:"dryRun"`
+	ImageID string `ec2:"" xml:"ImageId"`
 }
 
 // DescribeAccountAttributesRequest is undocumented.
 type DescribeAccountAttributesRequest struct {
-	AttributeNames []string `xml:"attributeName>attributeName"`
-	DryRun         bool     `xml:"dryRun"`
+	AttributeNames []string `ec2:"attributeName" xml:"attributeName>attributeName"`
+	DryRun         bool     `ec2:"dryRun" xml:"dryRun"`
 }
 
 // DescribeAccountAttributesResult is undocumented.
 type DescribeAccountAttributesResult struct {
-	AccountAttributes []AccountAttribute `xml:"accountAttributeSet>item"`
+	AccountAttributes []AccountAttribute `ec2:"accountAttributeSet" xml:"accountAttributeSet>item"`
 }
 
 // DescribeAddressesRequest is undocumented.
 type DescribeAddressesRequest struct {
-	AllocationIds []string `xml:"AllocationId>AllocationId"`
-	DryRun        bool     `xml:"dryRun"`
-	Filters       []Filter `xml:"Filter>Filter"`
-	PublicIPs     []string `xml:"PublicIp>PublicIp"`
+	AllocationIds []string `ec2:"AllocationId" xml:"AllocationId>AllocationId"`
+	DryRun        bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters       []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	PublicIPs     []string `ec2:"PublicIp" xml:"PublicIp>PublicIp"`
 }
 
 // DescribeAddressesResult is undocumented.
 type DescribeAddressesResult struct {
-	Addresses []Address `xml:"addressesSet>item"`
+	Addresses []Address `ec2:"addressesSet" xml:"addressesSet>item"`
 }
 
 // DescribeAvailabilityZonesRequest is undocumented.
 type DescribeAvailabilityZonesRequest struct {
-	DryRun    bool     `xml:"dryRun"`
-	Filters   []Filter `xml:"Filter>Filter"`
-	ZoneNames []string `xml:"ZoneName>ZoneName"`
+	DryRun    bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters   []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	ZoneNames []string `ec2:"ZoneName" xml:"ZoneName>ZoneName"`
 }
 
 // DescribeAvailabilityZonesResult is undocumented.
 type DescribeAvailabilityZonesResult struct {
-	AvailabilityZones []AvailabilityZone `xml:"availabilityZoneInfo>item"`
+	AvailabilityZones []AvailabilityZone `ec2:"availabilityZoneInfo" xml:"availabilityZoneInfo>item"`
 }
 
 // DescribeBundleTasksRequest is undocumented.
 type DescribeBundleTasksRequest struct {
-	BundleIds []string `xml:"BundleId>BundleId"`
-	DryRun    bool     `xml:"dryRun"`
-	Filters   []Filter `xml:"Filter>Filter"`
+	BundleIds []string `ec2:"BundleId" xml:"BundleId>BundleId"`
+	DryRun    bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters   []Filter `ec2:"Filter" xml:"Filter>Filter"`
 }
 
 // DescribeBundleTasksResult is undocumented.
 type DescribeBundleTasksResult struct {
-	BundleTasks []BundleTask `xml:"bundleInstanceTasksSet>item"`
+	BundleTasks []BundleTask `ec2:"bundleInstanceTasksSet" xml:"bundleInstanceTasksSet>item"`
 }
 
 // DescribeConversionTasksRequest is undocumented.
 type DescribeConversionTasksRequest struct {
-	ConversionTaskIds []string `xml:"conversionTaskId>item"`
-	DryRun            bool     `xml:"dryRun"`
-	Filters           []Filter `xml:"filter>Filter"`
+	ConversionTaskIds []string `ec2:"conversionTaskId" xml:"conversionTaskId>item"`
+	DryRun            bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters           []Filter `ec2:"filter" xml:"filter>Filter"`
 }
 
 // DescribeConversionTasksResult is undocumented.
 type DescribeConversionTasksResult struct {
-	ConversionTasks []ConversionTask `xml:"conversionTasks>item"`
+	ConversionTasks []ConversionTask `ec2:"conversionTasks" xml:"conversionTasks>item"`
 }
 
 // DescribeCustomerGatewaysRequest is undocumented.
 type DescribeCustomerGatewaysRequest struct {
-	CustomerGatewayIds []string `xml:"CustomerGatewayId>CustomerGatewayId"`
-	DryRun             bool     `xml:"dryRun"`
-	Filters            []Filter `xml:"Filter>Filter"`
+	CustomerGatewayIds []string `ec2:"CustomerGatewayId" xml:"CustomerGatewayId>CustomerGatewayId"`
+	DryRun             bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters            []Filter `ec2:"Filter" xml:"Filter>Filter"`
 }
 
 // DescribeCustomerGatewaysResult is undocumented.
 type DescribeCustomerGatewaysResult struct {
-	CustomerGateways []CustomerGateway `xml:"customerGatewaySet>item"`
+	CustomerGateways []CustomerGateway `ec2:"customerGatewaySet" xml:"customerGatewaySet>item"`
 }
 
 // DescribeDhcpOptionsRequest is undocumented.
 type DescribeDhcpOptionsRequest struct {
-	DhcpOptionsIds []string `xml:"DhcpOptionsId>DhcpOptionsId"`
-	DryRun         bool     `xml:"dryRun"`
-	Filters        []Filter `xml:"Filter>Filter"`
+	DhcpOptionsIds []string `ec2:"DhcpOptionsId" xml:"DhcpOptionsId>DhcpOptionsId"`
+	DryRun         bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters        []Filter `ec2:"Filter" xml:"Filter>Filter"`
 }
 
 // DescribeDhcpOptionsResult is undocumented.
 type DescribeDhcpOptionsResult struct {
-	DhcpOptions []DhcpOptions `xml:"dhcpOptionsSet>item"`
+	DhcpOptions []DhcpOptions `ec2:"dhcpOptionsSet" xml:"dhcpOptionsSet>item"`
 }
 
 // DescribeExportTasksRequest is undocumented.
 type DescribeExportTasksRequest struct {
-	ExportTaskIds []string `xml:"exportTaskId>ExportTaskId"`
+	ExportTaskIds []string `ec2:"exportTaskId" xml:"exportTaskId>ExportTaskId"`
 }
 
 // DescribeExportTasksResult is undocumented.
 type DescribeExportTasksResult struct {
-	ExportTasks []ExportTask `xml:"exportTaskSet>item"`
+	ExportTasks []ExportTask `ec2:"exportTaskSet" xml:"exportTaskSet>item"`
 }
 
 // DescribeImageAttributeRequest is undocumented.
 type DescribeImageAttributeRequest struct {
-	Attribute string `xml:"Attribute"`
-	DryRun    bool   `xml:"dryRun"`
-	ImageID   string `xml:"ImageId"`
+	Attribute string `ec2:"" xml:"Attribute"`
+	DryRun    bool   `ec2:"dryRun" xml:"dryRun"`
+	ImageID   string `ec2:"" xml:"ImageId"`
 }
 
 // DescribeImagesRequest is undocumented.
 type DescribeImagesRequest struct {
-	DryRun          bool     `xml:"dryRun"`
-	ExecutableUsers []string `xml:"ExecutableBy>ExecutableBy"`
-	Filters         []Filter `xml:"Filter>Filter"`
-	ImageIds        []string `xml:"ImageId>ImageId"`
-	Owners          []string `xml:"Owner>Owner"`
+	DryRun          bool     `ec2:"dryRun" xml:"dryRun"`
+	ExecutableUsers []string `ec2:"ExecutableBy" xml:"ExecutableBy>ExecutableBy"`
+	Filters         []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	ImageIds        []string `ec2:"ImageId" xml:"ImageId>ImageId"`
+	Owners          []string `ec2:"Owner" xml:"Owner>Owner"`
 }
 
 // DescribeImagesResult is undocumented.
 type DescribeImagesResult struct {
-	Images []Image `xml:"imagesSet>item"`
+	Images []Image `ec2:"imagesSet" xml:"imagesSet>item"`
 }
 
 // DescribeInstanceAttributeRequest is undocumented.
 type DescribeInstanceAttributeRequest struct {
-	Attribute  string `xml:"attribute"`
-	DryRun     bool   `xml:"dryRun"`
-	InstanceID string `xml:"instanceId"`
+	Attribute  string `ec2:"attribute" xml:"attribute"`
+	DryRun     bool   `ec2:"dryRun" xml:"dryRun"`
+	InstanceID string `ec2:"instanceId" xml:"instanceId"`
 }
 
 // DescribeInstanceStatusRequest is undocumented.
 type DescribeInstanceStatusRequest struct {
-	DryRun              bool     `xml:"dryRun"`
-	Filters             []Filter `xml:"Filter>Filter"`
-	IncludeAllInstances bool     `xml:"includeAllInstances"`
-	InstanceIds         []string `xml:"InstanceId>InstanceId"`
-	MaxResults          int      `xml:"MaxResults"`
-	NextToken           string   `xml:"NextToken"`
+	DryRun              bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters             []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	IncludeAllInstances bool     `ec2:"includeAllInstances" xml:"includeAllInstances"`
+	InstanceIds         []string `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
+	MaxResults          int      `ec2:"" xml:"MaxResults"`
+	NextToken           string   `ec2:"" xml:"NextToken"`
 }
 
 // DescribeInstanceStatusResult is undocumented.
 type DescribeInstanceStatusResult struct {
-	InstanceStatuses []InstanceStatus `xml:"instanceStatusSet>item"`
-	NextToken        string           `xml:"nextToken"`
+	InstanceStatuses []InstanceStatus `ec2:"instanceStatusSet" xml:"instanceStatusSet>item"`
+	NextToken        string           `ec2:"nextToken" xml:"nextToken"`
 }
 
 // DescribeInstancesRequest is undocumented.
 type DescribeInstancesRequest struct {
-	DryRun      bool     `xml:"dryRun"`
-	Filters     []Filter `xml:"Filter>Filter"`
-	InstanceIds []string `xml:"InstanceId>InstanceId"`
-	MaxResults  int      `xml:"maxResults"`
-	NextToken   string   `xml:"nextToken"`
+	DryRun      bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters     []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	InstanceIds []string `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
+	MaxResults  int      `ec2:"maxResults" xml:"maxResults"`
+	NextToken   string   `ec2:"nextToken" xml:"nextToken"`
 }
 
 // DescribeInstancesResult is undocumented.
 type DescribeInstancesResult struct {
-	NextToken    string        `xml:"nextToken"`
-	Reservations []Reservation `xml:"reservationSet>item"`
+	NextToken    string        `ec2:"nextToken" xml:"nextToken"`
+	Reservations []Reservation `ec2:"reservationSet" xml:"reservationSet>item"`
 }
 
 // DescribeInternetGatewaysRequest is undocumented.
 type DescribeInternetGatewaysRequest struct {
-	DryRun             bool     `xml:"dryRun"`
-	Filters            []Filter `xml:"Filter>Filter"`
-	InternetGatewayIds []string `xml:"internetGatewayId>item"`
+	DryRun             bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters            []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	InternetGatewayIds []string `ec2:"internetGatewayId" xml:"internetGatewayId>item"`
 }
 
 // DescribeInternetGatewaysResult is undocumented.
 type DescribeInternetGatewaysResult struct {
-	InternetGateways []InternetGateway `xml:"internetGatewaySet>item"`
+	InternetGateways []InternetGateway `ec2:"internetGatewaySet" xml:"internetGatewaySet>item"`
 }
 
 // DescribeKeyPairsRequest is undocumented.
 type DescribeKeyPairsRequest struct {
-	DryRun   bool     `xml:"dryRun"`
-	Filters  []Filter `xml:"Filter>Filter"`
-	KeyNames []string `xml:"KeyName>KeyName"`
+	DryRun   bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters  []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	KeyNames []string `ec2:"KeyName" xml:"KeyName>KeyName"`
 }
 
 // DescribeKeyPairsResult is undocumented.
 type DescribeKeyPairsResult struct {
-	KeyPairs []KeyPairInfo `xml:"keySet>item"`
+	KeyPairs []KeyPairInfo `ec2:"keySet" xml:"keySet>item"`
 }
 
 // DescribeNetworkAclsRequest is undocumented.
 type DescribeNetworkAclsRequest struct {
-	DryRun        bool     `xml:"dryRun"`
-	Filters       []Filter `xml:"Filter>Filter"`
-	NetworkAclIds []string `xml:"NetworkAclId>item"`
+	DryRun        bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters       []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	NetworkAclIds []string `ec2:"NetworkAclId" xml:"NetworkAclId>item"`
 }
 
 // DescribeNetworkAclsResult is undocumented.
 type DescribeNetworkAclsResult struct {
-	NetworkAcls []NetworkAcl `xml:"networkAclSet>item"`
+	NetworkAcls []NetworkAcl `ec2:"networkAclSet" xml:"networkAclSet>item"`
 }
 
 // DescribeNetworkInterfaceAttributeRequest is undocumented.
 type DescribeNetworkInterfaceAttributeRequest struct {
-	Attribute          string `xml:"attribute"`
-	DryRun             bool   `xml:"dryRun"`
-	NetworkInterfaceID string `xml:"networkInterfaceId"`
+	Attribute          string `ec2:"attribute" xml:"attribute"`
+	DryRun             bool   `ec2:"dryRun" xml:"dryRun"`
+	NetworkInterfaceID string `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
 }
 
 // DescribeNetworkInterfaceAttributeResult is undocumented.
 type DescribeNetworkInterfaceAttributeResult struct {
-	Attachment         NetworkInterfaceAttachment `xml:"attachment"`
-	Description        AttributeValue             `xml:"description"`
-	Groups             []GroupIdentifier          `xml:"groupSet>item"`
-	NetworkInterfaceID string                     `xml:"networkInterfaceId"`
-	SourceDestCheck    AttributeBooleanValue      `xml:"sourceDestCheck"`
+	Attachment         NetworkInterfaceAttachment `ec2:"attachment" xml:"attachment"`
+	Description        AttributeValue             `ec2:"description" xml:"description"`
+	Groups             []GroupIdentifier          `ec2:"groupSet" xml:"groupSet>item"`
+	NetworkInterfaceID string                     `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	SourceDestCheck    AttributeBooleanValue      `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
 }
 
 // DescribeNetworkInterfacesRequest is undocumented.
 type DescribeNetworkInterfacesRequest struct {
-	DryRun              bool     `xml:"dryRun"`
-	Filters             []Filter `xml:"filter>Filter"`
-	NetworkInterfaceIds []string `xml:"NetworkInterfaceId>item"`
+	DryRun              bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters             []Filter `ec2:"filter" xml:"filter>Filter"`
+	NetworkInterfaceIds []string `ec2:"NetworkInterfaceId" xml:"NetworkInterfaceId>item"`
 }
 
 // DescribeNetworkInterfacesResult is undocumented.
 type DescribeNetworkInterfacesResult struct {
-	NetworkInterfaces []NetworkInterface `xml:"networkInterfaceSet>item"`
+	NetworkInterfaces []NetworkInterface `ec2:"networkInterfaceSet" xml:"networkInterfaceSet>item"`
 }
 
 // DescribePlacementGroupsRequest is undocumented.
 type DescribePlacementGroupsRequest struct {
-	DryRun     bool     `xml:"dryRun"`
-	Filters    []Filter `xml:"Filter>Filter"`
-	GroupNames []string `xml:"groupName>member"`
+	DryRun     bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters    []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	GroupNames []string `ec2:"groupName" xml:"groupName>member"`
 }
 
 // DescribePlacementGroupsResult is undocumented.
 type DescribePlacementGroupsResult struct {
-	PlacementGroups []PlacementGroup `xml:"placementGroupSet>item"`
+	PlacementGroups []PlacementGroup `ec2:"placementGroupSet" xml:"placementGroupSet>item"`
 }
 
 // DescribeRegionsRequest is undocumented.
 type DescribeRegionsRequest struct {
-	DryRun      bool     `xml:"dryRun"`
-	Filters     []Filter `xml:"Filter>Filter"`
-	RegionNames []string `xml:"RegionName>RegionName"`
+	DryRun      bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters     []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	RegionNames []string `ec2:"RegionName" xml:"RegionName>RegionName"`
 }
 
 // DescribeRegionsResult is undocumented.
 type DescribeRegionsResult struct {
-	Regions []Region `xml:"regionInfo>item"`
+	Regions []Region `ec2:"regionInfo" xml:"regionInfo>item"`
 }
 
 // DescribeReservedInstancesListingsRequest is undocumented.
 type DescribeReservedInstancesListingsRequest struct {
-	Filters                    []Filter `xml:"filters>Filter"`
-	ReservedInstancesID        string   `xml:"reservedInstancesId"`
-	ReservedInstancesListingID string   `xml:"reservedInstancesListingId"`
+	Filters                    []Filter `ec2:"filters" xml:"filters>Filter"`
+	ReservedInstancesID        string   `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
+	ReservedInstancesListingID string   `ec2:"reservedInstancesListingId" xml:"reservedInstancesListingId"`
 }
 
 // DescribeReservedInstancesListingsResult is undocumented.
 type DescribeReservedInstancesListingsResult struct {
-	ReservedInstancesListings []ReservedInstancesListing `xml:"reservedInstancesListingsSet>item"`
+	ReservedInstancesListings []ReservedInstancesListing `ec2:"reservedInstancesListingsSet" xml:"reservedInstancesListingsSet>item"`
 }
 
 // DescribeReservedInstancesModificationsRequest is undocumented.
 type DescribeReservedInstancesModificationsRequest struct {
-	Filters                          []Filter `xml:"Filter>Filter"`
-	NextToken                        string   `xml:"nextToken"`
-	ReservedInstancesModificationIds []string `xml:"ReservedInstancesModificationId>ReservedInstancesModificationId"`
+	Filters                          []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	NextToken                        string   `ec2:"nextToken" xml:"nextToken"`
+	ReservedInstancesModificationIds []string `ec2:"ReservedInstancesModificationId" xml:"ReservedInstancesModificationId>ReservedInstancesModificationId"`
 }
 
 // DescribeReservedInstancesModificationsResult is undocumented.
 type DescribeReservedInstancesModificationsResult struct {
-	NextToken                      string                          `xml:"nextToken"`
-	ReservedInstancesModifications []ReservedInstancesModification `xml:"reservedInstancesModificationsSet>item"`
+	NextToken                      string                          `ec2:"nextToken" xml:"nextToken"`
+	ReservedInstancesModifications []ReservedInstancesModification `ec2:"reservedInstancesModificationsSet" xml:"reservedInstancesModificationsSet>item"`
 }
 
 // DescribeReservedInstancesOfferingsRequest is undocumented.
 type DescribeReservedInstancesOfferingsRequest struct {
-	AvailabilityZone             string   `xml:"AvailabilityZone"`
-	DryRun                       bool     `xml:"dryRun"`
-	Filters                      []Filter `xml:"Filter>Filter"`
-	IncludeMarketplace           bool     `xml:"IncludeMarketplace"`
-	InstanceTenancy              string   `xml:"instanceTenancy"`
-	InstanceType                 string   `xml:"InstanceType"`
-	MaxDuration                  int64    `xml:"MaxDuration"`
-	MaxInstanceCount             int      `xml:"MaxInstanceCount"`
-	MaxResults                   int      `xml:"maxResults"`
-	MinDuration                  int64    `xml:"MinDuration"`
-	NextToken                    string   `xml:"nextToken"`
-	OfferingType                 string   `xml:"offeringType"`
-	ProductDescription           string   `xml:"ProductDescription"`
-	ReservedInstancesOfferingIds []string `xml:"ReservedInstancesOfferingId>member"`
+	AvailabilityZone             string   `ec2:"" xml:"AvailabilityZone"`
+	DryRun                       bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters                      []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	IncludeMarketplace           bool     `ec2:"" xml:"IncludeMarketplace"`
+	InstanceTenancy              string   `ec2:"instanceTenancy" xml:"instanceTenancy"`
+	InstanceType                 string   `ec2:"" xml:"InstanceType"`
+	MaxDuration                  int64    `ec2:"" xml:"MaxDuration"`
+	MaxInstanceCount             int      `ec2:"" xml:"MaxInstanceCount"`
+	MaxResults                   int      `ec2:"maxResults" xml:"maxResults"`
+	MinDuration                  int64    `ec2:"" xml:"MinDuration"`
+	NextToken                    string   `ec2:"nextToken" xml:"nextToken"`
+	OfferingType                 string   `ec2:"offeringType" xml:"offeringType"`
+	ProductDescription           string   `ec2:"" xml:"ProductDescription"`
+	ReservedInstancesOfferingIds []string `ec2:"ReservedInstancesOfferingId" xml:"ReservedInstancesOfferingId>member"`
 }
 
 // DescribeReservedInstancesOfferingsResult is undocumented.
 type DescribeReservedInstancesOfferingsResult struct {
-	NextToken                  string                      `xml:"nextToken"`
-	ReservedInstancesOfferings []ReservedInstancesOffering `xml:"reservedInstancesOfferingsSet>item"`
+	NextToken                  string                      `ec2:"nextToken" xml:"nextToken"`
+	ReservedInstancesOfferings []ReservedInstancesOffering `ec2:"reservedInstancesOfferingsSet" xml:"reservedInstancesOfferingsSet>item"`
 }
 
 // DescribeReservedInstancesRequest is undocumented.
 type DescribeReservedInstancesRequest struct {
-	DryRun               bool     `xml:"dryRun"`
-	Filters              []Filter `xml:"Filter>Filter"`
-	OfferingType         string   `xml:"offeringType"`
-	ReservedInstancesIds []string `xml:"ReservedInstancesId>ReservedInstancesId"`
+	DryRun               bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters              []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	OfferingType         string   `ec2:"offeringType" xml:"offeringType"`
+	ReservedInstancesIds []string `ec2:"ReservedInstancesId" xml:"ReservedInstancesId>ReservedInstancesId"`
 }
 
 // DescribeReservedInstancesResult is undocumented.
 type DescribeReservedInstancesResult struct {
-	ReservedInstances []ReservedInstances `xml:"reservedInstancesSet>item"`
+	ReservedInstances []ReservedInstances `ec2:"reservedInstancesSet" xml:"reservedInstancesSet>item"`
 }
 
 // DescribeRouteTablesRequest is undocumented.
 type DescribeRouteTablesRequest struct {
-	DryRun        bool     `xml:"dryRun"`
-	Filters       []Filter `xml:"Filter>Filter"`
-	RouteTableIds []string `xml:"RouteTableId>item"`
+	DryRun        bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters       []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	RouteTableIds []string `ec2:"RouteTableId" xml:"RouteTableId>item"`
 }
 
 // DescribeRouteTablesResult is undocumented.
 type DescribeRouteTablesResult struct {
-	RouteTables []RouteTable `xml:"routeTableSet>item"`
+	RouteTables []RouteTable `ec2:"routeTableSet" xml:"routeTableSet>item"`
 }
 
 // DescribeSecurityGroupsRequest is undocumented.
 type DescribeSecurityGroupsRequest struct {
-	DryRun     bool     `xml:"dryRun"`
-	Filters    []Filter `xml:"Filter>Filter"`
-	GroupIds   []string `xml:"GroupId>groupId"`
-	GroupNames []string `xml:"GroupName>GroupName"`
+	DryRun     bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters    []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	GroupIds   []string `ec2:"GroupId" xml:"GroupId>groupId"`
+	GroupNames []string `ec2:"GroupName" xml:"GroupName>GroupName"`
 }
 
 // DescribeSecurityGroupsResult is undocumented.
 type DescribeSecurityGroupsResult struct {
-	SecurityGroups []SecurityGroup `xml:"securityGroupInfo>item"`
+	SecurityGroups []SecurityGroup `ec2:"securityGroupInfo" xml:"securityGroupInfo>item"`
 }
 
 // DescribeSnapshotAttributeRequest is undocumented.
 type DescribeSnapshotAttributeRequest struct {
-	Attribute  string `xml:"Attribute"`
-	DryRun     bool   `xml:"dryRun"`
-	SnapshotID string `xml:"SnapshotId"`
+	Attribute  string `ec2:"" xml:"Attribute"`
+	DryRun     bool   `ec2:"dryRun" xml:"dryRun"`
+	SnapshotID string `ec2:"" xml:"SnapshotId"`
 }
 
 // DescribeSnapshotAttributeResult is undocumented.
 type DescribeSnapshotAttributeResult struct {
-	CreateVolumePermissions []CreateVolumePermission `xml:"createVolumePermission>item"`
-	ProductCodes            []ProductCode            `xml:"productCodes>item"`
-	SnapshotID              string                   `xml:"snapshotId"`
+	CreateVolumePermissions []CreateVolumePermission `ec2:"createVolumePermission" xml:"createVolumePermission>item"`
+	ProductCodes            []ProductCode            `ec2:"productCodes" xml:"productCodes>item"`
+	SnapshotID              string                   `ec2:"snapshotId" xml:"snapshotId"`
 }
 
 // DescribeSnapshotsRequest is undocumented.
 type DescribeSnapshotsRequest struct {
-	DryRun              bool     `xml:"dryRun"`
-	Filters             []Filter `xml:"Filter>Filter"`
-	OwnerIds            []string `xml:"Owner>Owner"`
-	RestorableByUserIds []string `xml:"RestorableBy>member"`
-	SnapshotIds         []string `xml:"SnapshotId>SnapshotId"`
+	DryRun              bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters             []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	OwnerIds            []string `ec2:"Owner" xml:"Owner>Owner"`
+	RestorableByUserIds []string `ec2:"RestorableBy" xml:"RestorableBy>member"`
+	SnapshotIds         []string `ec2:"SnapshotId" xml:"SnapshotId>SnapshotId"`
 }
 
 // DescribeSnapshotsResult is undocumented.
 type DescribeSnapshotsResult struct {
-	Snapshots []Snapshot `xml:"snapshotSet>item"`
+	Snapshots []Snapshot `ec2:"snapshotSet" xml:"snapshotSet>item"`
 }
 
 // DescribeSpotDatafeedSubscriptionRequest is undocumented.
 type DescribeSpotDatafeedSubscriptionRequest struct {
-	DryRun bool `xml:"dryRun"`
+	DryRun bool `ec2:"dryRun" xml:"dryRun"`
 }
 
 // DescribeSpotDatafeedSubscriptionResult is undocumented.
 type DescribeSpotDatafeedSubscriptionResult struct {
-	SpotDatafeedSubscription SpotDatafeedSubscription `xml:"spotDatafeedSubscription"`
+	SpotDatafeedSubscription SpotDatafeedSubscription `ec2:"spotDatafeedSubscription" xml:"spotDatafeedSubscription"`
 }
 
 // DescribeSpotInstanceRequestsRequest is undocumented.
 type DescribeSpotInstanceRequestsRequest struct {
-	DryRun                 bool     `xml:"dryRun"`
-	Filters                []Filter `xml:"Filter>Filter"`
-	SpotInstanceRequestIds []string `xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
+	DryRun                 bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters                []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	SpotInstanceRequestIds []string `ec2:"SpotInstanceRequestId" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
 }
 
 // DescribeSpotInstanceRequestsResult is undocumented.
 type DescribeSpotInstanceRequestsResult struct {
-	SpotInstanceRequests []SpotInstanceRequest `xml:"spotInstanceRequestSet>item"`
+	SpotInstanceRequests []SpotInstanceRequest `ec2:"spotInstanceRequestSet" xml:"spotInstanceRequestSet>item"`
 }
 
 // DescribeSpotPriceHistoryRequest is undocumented.
 type DescribeSpotPriceHistoryRequest struct {
-	AvailabilityZone    string    `xml:"availabilityZone"`
-	DryRun              bool      `xml:"dryRun"`
-	EndTime             time.Time `xml:"endTime"`
-	Filters             []Filter  `xml:"Filter>Filter"`
-	InstanceTypes       []string  `xml:"InstanceType>member"`
-	MaxResults          int       `xml:"maxResults"`
-	NextToken           string    `xml:"nextToken"`
-	ProductDescriptions []string  `xml:"ProductDescription>member"`
-	StartTime           time.Time `xml:"startTime"`
+	AvailabilityZone    string    `ec2:"availabilityZone" xml:"availabilityZone"`
+	DryRun              bool      `ec2:"dryRun" xml:"dryRun"`
+	EndTime             time.Time `ec2:"endTime" xml:"endTime"`
+	Filters             []Filter  `ec2:"Filter" xml:"Filter>Filter"`
+	InstanceTypes       []string  `ec2:"InstanceType" xml:"InstanceType>member"`
+	MaxResults          int       `ec2:"maxResults" xml:"maxResults"`
+	NextToken           string    `ec2:"nextToken" xml:"nextToken"`
+	ProductDescriptions []string  `ec2:"ProductDescription" xml:"ProductDescription>member"`
+	StartTime           time.Time `ec2:"startTime" xml:"startTime"`
 }
 
 // DescribeSpotPriceHistoryResult is undocumented.
 type DescribeSpotPriceHistoryResult struct {
-	NextToken        string      `xml:"nextToken"`
-	SpotPriceHistory []SpotPrice `xml:"spotPriceHistorySet>item"`
+	NextToken        string      `ec2:"nextToken" xml:"nextToken"`
+	SpotPriceHistory []SpotPrice `ec2:"spotPriceHistorySet" xml:"spotPriceHistorySet>item"`
 }
 
 // DescribeSubnetsRequest is undocumented.
 type DescribeSubnetsRequest struct {
-	DryRun    bool     `xml:"dryRun"`
-	Filters   []Filter `xml:"Filter>Filter"`
-	SubnetIds []string `xml:"SubnetId>SubnetId"`
+	DryRun    bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters   []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	SubnetIds []string `ec2:"SubnetId" xml:"SubnetId>SubnetId"`
 }
 
 // DescribeSubnetsResult is undocumented.
 type DescribeSubnetsResult struct {
-	Subnets []Subnet `xml:"subnetSet>item"`
+	Subnets []Subnet `ec2:"subnetSet" xml:"subnetSet>item"`
 }
 
 // DescribeTagsRequest is undocumented.
 type DescribeTagsRequest struct {
-	DryRun     bool     `xml:"dryRun"`
-	Filters    []Filter `xml:"Filter>Filter"`
-	MaxResults int      `xml:"maxResults"`
-	NextToken  string   `xml:"nextToken"`
+	DryRun     bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters    []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	MaxResults int      `ec2:"maxResults" xml:"maxResults"`
+	NextToken  string   `ec2:"nextToken" xml:"nextToken"`
 }
 
 // DescribeTagsResult is undocumented.
 type DescribeTagsResult struct {
-	NextToken string           `xml:"nextToken"`
-	Tags      []TagDescription `xml:"tagSet>item"`
+	NextToken string           `ec2:"nextToken" xml:"nextToken"`
+	Tags      []TagDescription `ec2:"tagSet" xml:"tagSet>item"`
 }
 
 // DescribeVolumeAttributeRequest is undocumented.
 type DescribeVolumeAttributeRequest struct {
-	Attribute string `xml:"Attribute"`
-	DryRun    bool   `xml:"dryRun"`
-	VolumeID  string `xml:"VolumeId"`
+	Attribute string `ec2:"" xml:"Attribute"`
+	DryRun    bool   `ec2:"dryRun" xml:"dryRun"`
+	VolumeID  string `ec2:"" xml:"VolumeId"`
 }
 
 // DescribeVolumeAttributeResult is undocumented.
 type DescribeVolumeAttributeResult struct {
-	AutoEnableIO AttributeBooleanValue `xml:"autoEnableIO"`
-	ProductCodes []ProductCode         `xml:"productCodes>item"`
-	VolumeID     string                `xml:"volumeId"`
+	AutoEnableIO AttributeBooleanValue `ec2:"autoEnableIO" xml:"autoEnableIO"`
+	ProductCodes []ProductCode         `ec2:"productCodes" xml:"productCodes>item"`
+	VolumeID     string                `ec2:"volumeId" xml:"volumeId"`
 }
 
 // DescribeVolumeStatusRequest is undocumented.
 type DescribeVolumeStatusRequest struct {
-	DryRun     bool     `xml:"dryRun"`
-	Filters    []Filter `xml:"Filter>Filter"`
-	MaxResults int      `xml:"MaxResults"`
-	NextToken  string   `xml:"NextToken"`
-	VolumeIds  []string `xml:"VolumeId>VolumeId"`
+	DryRun     bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters    []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	MaxResults int      `ec2:"" xml:"MaxResults"`
+	NextToken  string   `ec2:"" xml:"NextToken"`
+	VolumeIds  []string `ec2:"VolumeId" xml:"VolumeId>VolumeId"`
 }
 
 // DescribeVolumeStatusResult is undocumented.
 type DescribeVolumeStatusResult struct {
-	NextToken      string             `xml:"nextToken"`
-	VolumeStatuses []VolumeStatusItem `xml:"volumeStatusSet>item"`
+	NextToken      string             `ec2:"nextToken" xml:"nextToken"`
+	VolumeStatuses []VolumeStatusItem `ec2:"volumeStatusSet" xml:"volumeStatusSet>item"`
 }
 
 // DescribeVolumesRequest is undocumented.
 type DescribeVolumesRequest struct {
-	DryRun     bool     `xml:"dryRun"`
-	Filters    []Filter `xml:"Filter>Filter"`
-	MaxResults int      `xml:"maxResults"`
-	NextToken  string   `xml:"nextToken"`
-	VolumeIds  []string `xml:"VolumeId>VolumeId"`
+	DryRun     bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters    []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	MaxResults int      `ec2:"maxResults" xml:"maxResults"`
+	NextToken  string   `ec2:"nextToken" xml:"nextToken"`
+	VolumeIds  []string `ec2:"VolumeId" xml:"VolumeId>VolumeId"`
 }
 
 // DescribeVolumesResult is undocumented.
 type DescribeVolumesResult struct {
-	NextToken string   `xml:"nextToken"`
-	Volumes   []Volume `xml:"volumeSet>item"`
+	NextToken string   `ec2:"nextToken" xml:"nextToken"`
+	Volumes   []Volume `ec2:"volumeSet" xml:"volumeSet>item"`
 }
 
 // DescribeVpcAttributeRequest is undocumented.
 type DescribeVpcAttributeRequest struct {
-	Attribute string `xml:"Attribute"`
-	DryRun    bool   `xml:"dryRun"`
-	VpcID     string `xml:"VpcId"`
+	Attribute string `ec2:"" xml:"Attribute"`
+	DryRun    bool   `ec2:"dryRun" xml:"dryRun"`
+	VpcID     string `ec2:"" xml:"VpcId"`
 }
 
 // DescribeVpcAttributeResult is undocumented.
 type DescribeVpcAttributeResult struct {
-	EnableDNSHostnames AttributeBooleanValue `xml:"enableDnsHostnames"`
-	EnableDNSSupport   AttributeBooleanValue `xml:"enableDnsSupport"`
-	VpcID              string                `xml:"vpcId"`
+	EnableDNSHostnames AttributeBooleanValue `ec2:"enableDnsHostnames" xml:"enableDnsHostnames"`
+	EnableDNSSupport   AttributeBooleanValue `ec2:"enableDnsSupport" xml:"enableDnsSupport"`
+	VpcID              string                `ec2:"vpcId" xml:"vpcId"`
 }
 
 // DescribeVpcPeeringConnectionsRequest is undocumented.
 type DescribeVpcPeeringConnectionsRequest struct {
-	DryRun                  bool     `xml:"dryRun"`
-	Filters                 []Filter `xml:"Filter>Filter"`
-	VpcPeeringConnectionIds []string `xml:"VpcPeeringConnectionId>item"`
+	DryRun                  bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters                 []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	VpcPeeringConnectionIds []string `ec2:"VpcPeeringConnectionId" xml:"VpcPeeringConnectionId>item"`
 }
 
 // DescribeVpcPeeringConnectionsResult is undocumented.
 type DescribeVpcPeeringConnectionsResult struct {
-	VpcPeeringConnections []VpcPeeringConnection `xml:"vpcPeeringConnectionSet>item"`
+	VpcPeeringConnections []VpcPeeringConnection `ec2:"vpcPeeringConnectionSet" xml:"vpcPeeringConnectionSet>item"`
 }
 
 // DescribeVpcsRequest is undocumented.
 type DescribeVpcsRequest struct {
-	DryRun  bool     `xml:"dryRun"`
-	Filters []Filter `xml:"Filter>Filter"`
-	VpcIds  []string `xml:"VpcId>VpcId"`
+	DryRun  bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	VpcIds  []string `ec2:"VpcId" xml:"VpcId>VpcId"`
 }
 
 // DescribeVpcsResult is undocumented.
 type DescribeVpcsResult struct {
-	Vpcs []Vpc `xml:"vpcSet>item"`
+	Vpcs []Vpc `ec2:"vpcSet" xml:"vpcSet>item"`
 }
 
 // DescribeVpnConnectionsRequest is undocumented.
 type DescribeVpnConnectionsRequest struct {
-	DryRun           bool     `xml:"dryRun"`
-	Filters          []Filter `xml:"Filter>Filter"`
-	VpnConnectionIds []string `xml:"VpnConnectionId>VpnConnectionId"`
+	DryRun           bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters          []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	VpnConnectionIds []string `ec2:"VpnConnectionId" xml:"VpnConnectionId>VpnConnectionId"`
 }
 
 // DescribeVpnConnectionsResult is undocumented.
 type DescribeVpnConnectionsResult struct {
-	VpnConnections []VpnConnection `xml:"vpnConnectionSet>item"`
+	VpnConnections []VpnConnection `ec2:"vpnConnectionSet" xml:"vpnConnectionSet>item"`
 }
 
 // DescribeVpnGatewaysRequest is undocumented.
 type DescribeVpnGatewaysRequest struct {
-	DryRun        bool     `xml:"dryRun"`
-	Filters       []Filter `xml:"Filter>Filter"`
-	VpnGatewayIds []string `xml:"VpnGatewayId>VpnGatewayId"`
+	DryRun        bool     `ec2:"dryRun" xml:"dryRun"`
+	Filters       []Filter `ec2:"Filter" xml:"Filter>Filter"`
+	VpnGatewayIds []string `ec2:"VpnGatewayId" xml:"VpnGatewayId>VpnGatewayId"`
 }
 
 // DescribeVpnGatewaysResult is undocumented.
 type DescribeVpnGatewaysResult struct {
-	VpnGateways []VpnGateway `xml:"vpnGatewaySet>item"`
+	VpnGateways []VpnGateway `ec2:"vpnGatewaySet" xml:"vpnGatewaySet>item"`
 }
 
 // DetachInternetGatewayRequest is undocumented.
 type DetachInternetGatewayRequest struct {
-	DryRun            bool   `xml:"dryRun"`
-	InternetGatewayID string `xml:"internetGatewayId"`
-	VpcID             string `xml:"vpcId"`
+	DryRun            bool   `ec2:"dryRun" xml:"dryRun"`
+	InternetGatewayID string `ec2:"internetGatewayId" xml:"internetGatewayId"`
+	VpcID             string `ec2:"vpcId" xml:"vpcId"`
 }
 
 // DetachNetworkInterfaceRequest is undocumented.
 type DetachNetworkInterfaceRequest struct {
-	AttachmentID string `xml:"attachmentId"`
-	DryRun       bool   `xml:"dryRun"`
-	Force        bool   `xml:"force"`
+	AttachmentID string `ec2:"attachmentId" xml:"attachmentId"`
+	DryRun       bool   `ec2:"dryRun" xml:"dryRun"`
+	Force        bool   `ec2:"force" xml:"force"`
 }
 
 // DetachVolumeRequest is undocumented.
 type DetachVolumeRequest struct {
-	Device     string `xml:"Device"`
-	DryRun     bool   `xml:"dryRun"`
-	Force      bool   `xml:"Force"`
-	InstanceID string `xml:"InstanceId"`
-	VolumeID   string `xml:"VolumeId"`
+	Device     string `ec2:"" xml:"Device"`
+	DryRun     bool   `ec2:"dryRun" xml:"dryRun"`
+	Force      bool   `ec2:"" xml:"Force"`
+	InstanceID string `ec2:"" xml:"InstanceId"`
+	VolumeID   string `ec2:"" xml:"VolumeId"`
 }
 
 // DetachVpnGatewayRequest is undocumented.
 type DetachVpnGatewayRequest struct {
-	DryRun       bool   `xml:"dryRun"`
-	VpcID        string `xml:"VpcId"`
-	VpnGatewayID string `xml:"VpnGatewayId"`
+	DryRun       bool   `ec2:"dryRun" xml:"dryRun"`
+	VpcID        string `ec2:"" xml:"VpcId"`
+	VpnGatewayID string `ec2:"" xml:"VpnGatewayId"`
 }
 
 // DhcpConfiguration is undocumented.
 type DhcpConfiguration struct {
-	Key    string           `xml:"key"`
-	Values []AttributeValue `xml:"valueSet>item"`
+	Key    string           `ec2:"key" xml:"key"`
+	Values []AttributeValue `ec2:"valueSet" xml:"valueSet>item"`
 }
 
 // DhcpOptions is undocumented.
 type DhcpOptions struct {
-	DhcpConfigurations []DhcpConfiguration `xml:"dhcpConfigurationSet>item"`
-	DhcpOptionsID      string              `xml:"dhcpOptionsId"`
-	Tags               []Tag               `xml:"tagSet>item"`
+	DhcpConfigurations []DhcpConfiguration `ec2:"dhcpConfigurationSet" xml:"dhcpConfigurationSet>item"`
+	DhcpOptionsID      string              `ec2:"dhcpOptionsId" xml:"dhcpOptionsId"`
+	Tags               []Tag               `ec2:"tagSet" xml:"tagSet>item"`
 }
 
 // DisableVgwRoutePropagationRequest is undocumented.
 type DisableVgwRoutePropagationRequest struct {
-	GatewayID    string `xml:"GatewayId"`
-	RouteTableID string `xml:"RouteTableId"`
+	GatewayID    string `ec2:"" xml:"GatewayId"`
+	RouteTableID string `ec2:"" xml:"RouteTableId"`
 }
 
 // DisassociateAddressRequest is undocumented.
 type DisassociateAddressRequest struct {
-	AssociationID string `xml:"AssociationId"`
-	DryRun        bool   `xml:"dryRun"`
-	PublicIP      string `xml:"PublicIp"`
+	AssociationID string `ec2:"" xml:"AssociationId"`
+	DryRun        bool   `ec2:"dryRun" xml:"dryRun"`
+	PublicIP      string `ec2:"" xml:"PublicIp"`
 }
 
 // DisassociateRouteTableRequest is undocumented.
 type DisassociateRouteTableRequest struct {
-	AssociationID string `xml:"associationId"`
-	DryRun        bool   `xml:"dryRun"`
+	AssociationID string `ec2:"associationId" xml:"associationId"`
+	DryRun        bool   `ec2:"dryRun" xml:"dryRun"`
 }
 
 // DiskImage is undocumented.
 type DiskImage struct {
-	Description string          `xml:"Description"`
-	Image       DiskImageDetail `xml:"Image"`
-	Volume      VolumeDetail    `xml:"Volume"`
+	Description string          `ec2:"" xml:"Description"`
+	Image       DiskImageDetail `ec2:"" xml:"Image"`
+	Volume      VolumeDetail    `ec2:"" xml:"Volume"`
 }
 
 // DiskImageDescription is undocumented.
 type DiskImageDescription struct {
-	Checksum          string `xml:"checksum"`
-	Format            string `xml:"format"`
-	ImportManifestURL string `xml:"importManifestUrl"`
-	Size              int64  `xml:"size"`
+	Checksum          string `ec2:"checksum" xml:"checksum"`
+	Format            string `ec2:"format" xml:"format"`
+	ImportManifestURL string `ec2:"importManifestUrl" xml:"importManifestUrl"`
+	Size              int64  `ec2:"size" xml:"size"`
 }
 
 // DiskImageDetail is undocumented.
 type DiskImageDetail struct {
-	Bytes             int64  `xml:"bytes"`
-	Format            string `xml:"format"`
-	ImportManifestURL string `xml:"importManifestUrl"`
+	Bytes             int64  `ec2:"bytes" xml:"bytes"`
+	Format            string `ec2:"format" xml:"format"`
+	ImportManifestURL string `ec2:"importManifestUrl" xml:"importManifestUrl"`
 }
 
 // DiskImageVolumeDescription is undocumented.
 type DiskImageVolumeDescription struct {
-	ID   string `xml:"id"`
-	Size int64  `xml:"size"`
+	ID   string `ec2:"id" xml:"id"`
+	Size int64  `ec2:"size" xml:"size"`
 }
 
 // EbsBlockDevice is undocumented.
 type EbsBlockDevice struct {
-	DeleteOnTermination bool   `xml:"deleteOnTermination"`
-	Encrypted           bool   `xml:"encrypted"`
-	Iops                int    `xml:"iops"`
-	SnapshotID          string `xml:"snapshotId"`
-	VolumeSize          int    `xml:"volumeSize"`
-	VolumeType          string `xml:"volumeType"`
+	DeleteOnTermination bool   `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
+	Encrypted           bool   `ec2:"encrypted" xml:"encrypted"`
+	Iops                int    `ec2:"iops" xml:"iops"`
+	SnapshotID          string `ec2:"snapshotId" xml:"snapshotId"`
+	VolumeSize          int    `ec2:"volumeSize" xml:"volumeSize"`
+	VolumeType          string `ec2:"volumeType" xml:"volumeType"`
 }
 
 // EbsInstanceBlockDevice is undocumented.
 type EbsInstanceBlockDevice struct {
-	AttachTime          time.Time `xml:"attachTime"`
-	DeleteOnTermination bool      `xml:"deleteOnTermination"`
-	Status              string    `xml:"status"`
-	VolumeID            string    `xml:"volumeId"`
+	AttachTime          time.Time `ec2:"attachTime" xml:"attachTime"`
+	DeleteOnTermination bool      `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
+	Status              string    `ec2:"status" xml:"status"`
+	VolumeID            string    `ec2:"volumeId" xml:"volumeId"`
 }
 
 // EbsInstanceBlockDeviceSpecification is undocumented.
 type EbsInstanceBlockDeviceSpecification struct {
-	DeleteOnTermination bool   `xml:"deleteOnTermination"`
-	VolumeID            string `xml:"volumeId"`
+	DeleteOnTermination bool   `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
+	VolumeID            string `ec2:"volumeId" xml:"volumeId"`
 }
 
 // EnableVgwRoutePropagationRequest is undocumented.
 type EnableVgwRoutePropagationRequest struct {
-	GatewayID    string `xml:"GatewayId"`
-	RouteTableID string `xml:"RouteTableId"`
+	GatewayID    string `ec2:"" xml:"GatewayId"`
+	RouteTableID string `ec2:"" xml:"RouteTableId"`
 }
 
 // EnableVolumeIORequest is undocumented.
 type EnableVolumeIORequest struct {
-	DryRun   bool   `xml:"dryRun"`
-	VolumeID string `xml:"volumeId"`
+	DryRun   bool   `ec2:"dryRun" xml:"dryRun"`
+	VolumeID string `ec2:"volumeId" xml:"volumeId"`
 }
 
 // ExportTask is undocumented.
 type ExportTask struct {
-	Description           string                `xml:"description"`
-	ExportTaskID          string                `xml:"exportTaskId"`
-	ExportToS3Task        ExportToS3Task        `xml:"exportToS3"`
-	InstanceExportDetails InstanceExportDetails `xml:"instanceExport"`
-	State                 string                `xml:"state"`
-	StatusMessage         string                `xml:"statusMessage"`
+	Description           string                `ec2:"description" xml:"description"`
+	ExportTaskID          string                `ec2:"exportTaskId" xml:"exportTaskId"`
+	ExportToS3Task        ExportToS3Task        `ec2:"exportToS3" xml:"exportToS3"`
+	InstanceExportDetails InstanceExportDetails `ec2:"instanceExport" xml:"instanceExport"`
+	State                 string                `ec2:"state" xml:"state"`
+	StatusMessage         string                `ec2:"statusMessage" xml:"statusMessage"`
 }
 
 // ExportToS3Task is undocumented.
 type ExportToS3Task struct {
-	ContainerFormat string `xml:"containerFormat"`
-	DiskImageFormat string `xml:"diskImageFormat"`
-	S3Bucket        string `xml:"s3Bucket"`
-	S3Key           string `xml:"s3Key"`
+	ContainerFormat string `ec2:"containerFormat" xml:"containerFormat"`
+	DiskImageFormat string `ec2:"diskImageFormat" xml:"diskImageFormat"`
+	S3Bucket        string `ec2:"s3Bucket" xml:"s3Bucket"`
+	S3Key           string `ec2:"s3Key" xml:"s3Key"`
 }
 
 // ExportToS3TaskSpecification is undocumented.
 type ExportToS3TaskSpecification struct {
-	ContainerFormat string `xml:"containerFormat"`
-	DiskImageFormat string `xml:"diskImageFormat"`
-	S3Bucket        string `xml:"s3Bucket"`
-	S3Prefix        string `xml:"s3Prefix"`
+	ContainerFormat string `ec2:"containerFormat" xml:"containerFormat"`
+	DiskImageFormat string `ec2:"diskImageFormat" xml:"diskImageFormat"`
+	S3Bucket        string `ec2:"s3Bucket" xml:"s3Bucket"`
+	S3Prefix        string `ec2:"s3Prefix" xml:"s3Prefix"`
 }
 
 // Filter is undocumented.
 type Filter struct {
-	Name   string   `xml:"Name"`
-	Values []string `xml:"Value>item"`
+	Name   string   `ec2:"" xml:"Name"`
+	Values []string `ec2:"Value" xml:"Value>item"`
 }
 
 // GetConsoleOutputRequest is undocumented.
 type GetConsoleOutputRequest struct {
-	DryRun     bool   `xml:"dryRun"`
-	InstanceID string `xml:"InstanceId"`
+	DryRun     bool   `ec2:"dryRun" xml:"dryRun"`
+	InstanceID string `ec2:"" xml:"InstanceId"`
 }
 
 // GetConsoleOutputResult is undocumented.
 type GetConsoleOutputResult struct {
-	InstanceID string    `xml:"instanceId"`
-	Output     string    `xml:"output"`
-	Timestamp  time.Time `xml:"timestamp"`
+	InstanceID string    `ec2:"instanceId" xml:"instanceId"`
+	Output     string    `ec2:"output" xml:"output"`
+	Timestamp  time.Time `ec2:"timestamp" xml:"timestamp"`
 }
 
 // GetPasswordDataRequest is undocumented.
 type GetPasswordDataRequest struct {
-	DryRun     bool   `xml:"dryRun"`
-	InstanceID string `xml:"InstanceId"`
+	DryRun     bool   `ec2:"dryRun" xml:"dryRun"`
+	InstanceID string `ec2:"" xml:"InstanceId"`
 }
 
 // GetPasswordDataResult is undocumented.
 type GetPasswordDataResult struct {
-	InstanceID   string    `xml:"instanceId"`
-	PasswordData string    `xml:"passwordData"`
-	Timestamp    time.Time `xml:"timestamp"`
+	InstanceID   string    `ec2:"instanceId" xml:"instanceId"`
+	PasswordData string    `ec2:"passwordData" xml:"passwordData"`
+	Timestamp    time.Time `ec2:"timestamp" xml:"timestamp"`
 }
 
 // GroupIdentifier is undocumented.
 type GroupIdentifier struct {
-	GroupID   string `xml:"groupId"`
-	GroupName string `xml:"groupName"`
+	GroupID   string `ec2:"groupId" xml:"groupId"`
+	GroupName string `ec2:"groupName" xml:"groupName"`
 }
 
 // IamInstanceProfile is undocumented.
 type IamInstanceProfile struct {
-	ARN string `xml:"arn"`
-	ID  string `xml:"id"`
+	ARN string `ec2:"arn" xml:"arn"`
+	ID  string `ec2:"id" xml:"id"`
 }
 
 // IamInstanceProfileSpecification is undocumented.
 type IamInstanceProfileSpecification struct {
-	ARN  string `xml:"arn"`
-	Name string `xml:"name"`
+	ARN  string `ec2:"arn" xml:"arn"`
+	Name string `ec2:"name" xml:"name"`
 }
 
 // IcmpTypeCode is undocumented.
 type IcmpTypeCode struct {
-	Code int `xml:"code"`
-	Type int `xml:"type"`
+	Code int `ec2:"code" xml:"code"`
+	Type int `ec2:"type" xml:"type"`
 }
 
 // Image is undocumented.
 type Image struct {
-	Architecture        string               `xml:"architecture"`
-	BlockDeviceMappings []BlockDeviceMapping `xml:"blockDeviceMapping>item"`
-	Description         string               `xml:"description"`
-	Hypervisor          string               `xml:"hypervisor"`
-	ImageID             string               `xml:"imageId"`
-	ImageLocation       string               `xml:"imageLocation"`
-	ImageOwnerAlias     string               `xml:"imageOwnerAlias"`
-	ImageType           string               `xml:"imageType"`
-	KernelID            string               `xml:"kernelId"`
-	Name                string               `xml:"name"`
-	OwnerID             string               `xml:"imageOwnerId"`
-	Platform            string               `xml:"platform"`
-	ProductCodes        []ProductCode        `xml:"productCodes>item"`
-	Public              bool                 `xml:"isPublic"`
-	RamdiskID           string               `xml:"ramdiskId"`
-	RootDeviceName      string               `xml:"rootDeviceName"`
-	RootDeviceType      string               `xml:"rootDeviceType"`
-	SriovNetSupport     string               `xml:"sriovNetSupport"`
-	State               string               `xml:"imageState"`
-	StateReason         StateReason          `xml:"stateReason"`
-	Tags                []Tag                `xml:"tagSet>item"`
-	VirtualizationType  string               `xml:"virtualizationType"`
+	Architecture        string               `ec2:"architecture" xml:"architecture"`
+	BlockDeviceMappings []BlockDeviceMapping `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
+	Description         string               `ec2:"description" xml:"description"`
+	Hypervisor          string               `ec2:"hypervisor" xml:"hypervisor"`
+	ImageID             string               `ec2:"imageId" xml:"imageId"`
+	ImageLocation       string               `ec2:"imageLocation" xml:"imageLocation"`
+	ImageOwnerAlias     string               `ec2:"imageOwnerAlias" xml:"imageOwnerAlias"`
+	ImageType           string               `ec2:"imageType" xml:"imageType"`
+	KernelID            string               `ec2:"kernelId" xml:"kernelId"`
+	Name                string               `ec2:"name" xml:"name"`
+	OwnerID             string               `ec2:"imageOwnerId" xml:"imageOwnerId"`
+	Platform            string               `ec2:"platform" xml:"platform"`
+	ProductCodes        []ProductCode        `ec2:"productCodes" xml:"productCodes>item"`
+	Public              bool                 `ec2:"isPublic" xml:"isPublic"`
+	RamdiskID           string               `ec2:"ramdiskId" xml:"ramdiskId"`
+	RootDeviceName      string               `ec2:"rootDeviceName" xml:"rootDeviceName"`
+	RootDeviceType      string               `ec2:"rootDeviceType" xml:"rootDeviceType"`
+	SriovNetSupport     string               `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
+	State               string               `ec2:"imageState" xml:"imageState"`
+	StateReason         StateReason          `ec2:"stateReason" xml:"stateReason"`
+	Tags                []Tag                `ec2:"tagSet" xml:"tagSet>item"`
+	VirtualizationType  string               `ec2:"virtualizationType" xml:"virtualizationType"`
 }
 
 // ImageAttribute is undocumented.
 type ImageAttribute struct {
-	BlockDeviceMappings []BlockDeviceMapping `xml:"blockDeviceMapping>item"`
-	Description         AttributeValue       `xml:"description"`
-	ImageID             string               `xml:"imageId"`
-	KernelID            AttributeValue       `xml:"kernel"`
-	LaunchPermissions   []LaunchPermission   `xml:"launchPermission>item"`
-	ProductCodes        []ProductCode        `xml:"productCodes>item"`
-	RamdiskID           AttributeValue       `xml:"ramdisk"`
-	SriovNetSupport     AttributeValue       `xml:"sriovNetSupport"`
+	BlockDeviceMappings []BlockDeviceMapping `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
+	Description         AttributeValue       `ec2:"description" xml:"description"`
+	ImageID             string               `ec2:"imageId" xml:"imageId"`
+	KernelID            AttributeValue       `ec2:"kernel" xml:"kernel"`
+	LaunchPermissions   []LaunchPermission   `ec2:"launchPermission" xml:"launchPermission>item"`
+	ProductCodes        []ProductCode        `ec2:"productCodes" xml:"productCodes>item"`
+	RamdiskID           AttributeValue       `ec2:"ramdisk" xml:"ramdisk"`
+	SriovNetSupport     AttributeValue       `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
 }
 
 // ImportInstanceLaunchSpecification is undocumented.
 type ImportInstanceLaunchSpecification struct {
-	AdditionalInfo                    string    `xml:"additionalInfo"`
-	Architecture                      string    `xml:"architecture"`
-	GroupIds                          []string  `xml:"GroupId>SecurityGroupId"`
-	GroupNames                        []string  `xml:"GroupName>SecurityGroup"`
-	InstanceInitiatedShutdownBehavior string    `xml:"instanceInitiatedShutdownBehavior"`
-	InstanceType                      string    `xml:"instanceType"`
-	Monitoring                        bool      `xml:"monitoring"`
-	Placement                         Placement `xml:"placement"`
-	PrivateIPAddress                  string    `xml:"privateIpAddress"`
-	SubnetID                          string    `xml:"subnetId"`
-	UserData                          string    `xml:"userData"`
+	AdditionalInfo                    string    `ec2:"additionalInfo" xml:"additionalInfo"`
+	Architecture                      string    `ec2:"architecture" xml:"architecture"`
+	GroupIds                          []string  `ec2:"GroupId" xml:"GroupId>SecurityGroupId"`
+	GroupNames                        []string  `ec2:"GroupName" xml:"GroupName>SecurityGroup"`
+	InstanceInitiatedShutdownBehavior string    `ec2:"instanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
+	InstanceType                      string    `ec2:"instanceType" xml:"instanceType"`
+	Monitoring                        bool      `ec2:"monitoring" xml:"monitoring"`
+	Placement                         Placement `ec2:"placement" xml:"placement"`
+	PrivateIPAddress                  string    `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	SubnetID                          string    `ec2:"subnetId" xml:"subnetId"`
+	UserData                          string    `ec2:"userData" xml:"userData"`
 }
 
 // ImportInstanceRequest is undocumented.
 type ImportInstanceRequest struct {
-	Description         string                            `xml:"description"`
-	DiskImages          []DiskImage                       `xml:"diskImage>member"`
-	DryRun              bool                              `xml:"dryRun"`
-	LaunchSpecification ImportInstanceLaunchSpecification `xml:"launchSpecification"`
-	Platform            string                            `xml:"platform"`
+	Description         string                            `ec2:"description" xml:"description"`
+	DiskImages          []DiskImage                       `ec2:"diskImage" xml:"diskImage>member"`
+	DryRun              bool                              `ec2:"dryRun" xml:"dryRun"`
+	LaunchSpecification ImportInstanceLaunchSpecification `ec2:"launchSpecification" xml:"launchSpecification"`
+	Platform            string                            `ec2:"platform" xml:"platform"`
 }
 
 // ImportInstanceResult is undocumented.
 type ImportInstanceResult struct {
-	ConversionTask ConversionTask `xml:"conversionTask"`
+	ConversionTask ConversionTask `ec2:"conversionTask" xml:"conversionTask"`
 }
 
 // ImportInstanceTaskDetails is undocumented.
 type ImportInstanceTaskDetails struct {
-	Description string                           `xml:"description"`
-	InstanceID  string                           `xml:"instanceId"`
-	Platform    string                           `xml:"platform"`
-	Volumes     []ImportInstanceVolumeDetailItem `xml:"volumes>item"`
+	Description string                           `ec2:"description" xml:"description"`
+	InstanceID  string                           `ec2:"instanceId" xml:"instanceId"`
+	Platform    string                           `ec2:"platform" xml:"platform"`
+	Volumes     []ImportInstanceVolumeDetailItem `ec2:"volumes" xml:"volumes>item"`
 }
 
 // ImportInstanceVolumeDetailItem is undocumented.
 type ImportInstanceVolumeDetailItem struct {
-	AvailabilityZone string                     `xml:"availabilityZone"`
-	BytesConverted   int64                      `xml:"bytesConverted"`
-	Description      string                     `xml:"description"`
-	Image            DiskImageDescription       `xml:"image"`
-	Status           string                     `xml:"status"`
-	StatusMessage    string                     `xml:"statusMessage"`
-	Volume           DiskImageVolumeDescription `xml:"volume"`
+	AvailabilityZone string                     `ec2:"availabilityZone" xml:"availabilityZone"`
+	BytesConverted   int64                      `ec2:"bytesConverted" xml:"bytesConverted"`
+	Description      string                     `ec2:"description" xml:"description"`
+	Image            DiskImageDescription       `ec2:"image" xml:"image"`
+	Status           string                     `ec2:"status" xml:"status"`
+	StatusMessage    string                     `ec2:"statusMessage" xml:"statusMessage"`
+	Volume           DiskImageVolumeDescription `ec2:"volume" xml:"volume"`
 }
 
 // ImportKeyPairRequest is undocumented.
 type ImportKeyPairRequest struct {
-	DryRun            bool   `xml:"dryRun"`
-	KeyName           string `xml:"keyName"`
-	PublicKeyMaterial []byte `xml:"publicKeyMaterial"`
+	DryRun            bool   `ec2:"dryRun" xml:"dryRun"`
+	KeyName           string `ec2:"keyName" xml:"keyName"`
+	PublicKeyMaterial []byte `ec2:"publicKeyMaterial" xml:"publicKeyMaterial"`
 }
 
 // ImportKeyPairResult is undocumented.
 type ImportKeyPairResult struct {
-	KeyFingerprint string `xml:"keyFingerprint"`
-	KeyName        string `xml:"keyName"`
+	KeyFingerprint string `ec2:"keyFingerprint" xml:"keyFingerprint"`
+	KeyName        string `ec2:"keyName" xml:"keyName"`
 }
 
 // ImportVolumeRequest is undocumented.
 type ImportVolumeRequest struct {
-	AvailabilityZone string          `xml:"availabilityZone"`
-	Description      string          `xml:"description"`
-	DryRun           bool            `xml:"dryRun"`
-	Image            DiskImageDetail `xml:"image"`
-	Volume           VolumeDetail    `xml:"volume"`
+	AvailabilityZone string          `ec2:"availabilityZone" xml:"availabilityZone"`
+	Description      string          `ec2:"description" xml:"description"`
+	DryRun           bool            `ec2:"dryRun" xml:"dryRun"`
+	Image            DiskImageDetail `ec2:"image" xml:"image"`
+	Volume           VolumeDetail    `ec2:"volume" xml:"volume"`
 }
 
 // ImportVolumeResult is undocumented.
 type ImportVolumeResult struct {
-	ConversionTask ConversionTask `xml:"conversionTask"`
+	ConversionTask ConversionTask `ec2:"conversionTask" xml:"conversionTask"`
 }
 
 // ImportVolumeTaskDetails is undocumented.
 type ImportVolumeTaskDetails struct {
-	AvailabilityZone string                     `xml:"availabilityZone"`
-	BytesConverted   int64                      `xml:"bytesConverted"`
-	Description      string                     `xml:"description"`
-	Image            DiskImageDescription       `xml:"image"`
-	Volume           DiskImageVolumeDescription `xml:"volume"`
+	AvailabilityZone string                     `ec2:"availabilityZone" xml:"availabilityZone"`
+	BytesConverted   int64                      `ec2:"bytesConverted" xml:"bytesConverted"`
+	Description      string                     `ec2:"description" xml:"description"`
+	Image            DiskImageDescription       `ec2:"image" xml:"image"`
+	Volume           DiskImageVolumeDescription `ec2:"volume" xml:"volume"`
 }
 
 // Instance is undocumented.
 type Instance struct {
-	AmiLaunchIndex        int                          `xml:"amiLaunchIndex"`
-	Architecture          string                       `xml:"architecture"`
-	BlockDeviceMappings   []InstanceBlockDeviceMapping `xml:"blockDeviceMapping>item"`
-	ClientToken           string                       `xml:"clientToken"`
-	EbsOptimized          bool                         `xml:"ebsOptimized"`
-	Hypervisor            string                       `xml:"hypervisor"`
-	IamInstanceProfile    IamInstanceProfile           `xml:"iamInstanceProfile"`
-	ImageID               string                       `xml:"imageId"`
-	InstanceID            string                       `xml:"instanceId"`
-	InstanceLifecycle     string                       `xml:"instanceLifecycle"`
-	InstanceType          string                       `xml:"instanceType"`
-	KernelID              string                       `xml:"kernelId"`
-	KeyName               string                       `xml:"keyName"`
-	LaunchTime            time.Time                    `xml:"launchTime"`
-	Monitoring            Monitoring                   `xml:"monitoring"`
-	NetworkInterfaces     []InstanceNetworkInterface   `xml:"networkInterfaceSet>item"`
-	Placement             Placement                    `xml:"placement"`
-	Platform              string                       `xml:"platform"`
-	PrivateDNSName        string                       `xml:"privateDnsName"`
-	PrivateIPAddress      string                       `xml:"privateIpAddress"`
-	ProductCodes          []ProductCode                `xml:"productCodes>item"`
-	PublicDNSName         string                       `xml:"dnsName"`
-	PublicIPAddress       string                       `xml:"ipAddress"`
-	RamdiskID             string                       `xml:"ramdiskId"`
-	RootDeviceName        string                       `xml:"rootDeviceName"`
-	RootDeviceType        string                       `xml:"rootDeviceType"`
-	SecurityGroups        []GroupIdentifier            `xml:"groupSet>item"`
-	SourceDestCheck       bool                         `xml:"sourceDestCheck"`
-	SpotInstanceRequestID string                       `xml:"spotInstanceRequestId"`
-	SriovNetSupport       string                       `xml:"sriovNetSupport"`
-	State                 InstanceState                `xml:"instanceState"`
-	StateReason           StateReason                  `xml:"stateReason"`
-	StateTransitionReason string                       `xml:"reason"`
-	SubnetID              string                       `xml:"subnetId"`
-	Tags                  []Tag                        `xml:"tagSet>item"`
-	VirtualizationType    string                       `xml:"virtualizationType"`
-	VpcID                 string                       `xml:"vpcId"`
+	AmiLaunchIndex        int                          `ec2:"amiLaunchIndex" xml:"amiLaunchIndex"`
+	Architecture          string                       `ec2:"architecture" xml:"architecture"`
+	BlockDeviceMappings   []InstanceBlockDeviceMapping `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
+	ClientToken           string                       `ec2:"clientToken" xml:"clientToken"`
+	EbsOptimized          bool                         `ec2:"ebsOptimized" xml:"ebsOptimized"`
+	Hypervisor            string                       `ec2:"hypervisor" xml:"hypervisor"`
+	IamInstanceProfile    IamInstanceProfile           `ec2:"iamInstanceProfile" xml:"iamInstanceProfile"`
+	ImageID               string                       `ec2:"imageId" xml:"imageId"`
+	InstanceID            string                       `ec2:"instanceId" xml:"instanceId"`
+	InstanceLifecycle     string                       `ec2:"instanceLifecycle" xml:"instanceLifecycle"`
+	InstanceType          string                       `ec2:"instanceType" xml:"instanceType"`
+	KernelID              string                       `ec2:"kernelId" xml:"kernelId"`
+	KeyName               string                       `ec2:"keyName" xml:"keyName"`
+	LaunchTime            time.Time                    `ec2:"launchTime" xml:"launchTime"`
+	Monitoring            Monitoring                   `ec2:"monitoring" xml:"monitoring"`
+	NetworkInterfaces     []InstanceNetworkInterface   `ec2:"networkInterfaceSet" xml:"networkInterfaceSet>item"`
+	Placement             Placement                    `ec2:"placement" xml:"placement"`
+	Platform              string                       `ec2:"platform" xml:"platform"`
+	PrivateDNSName        string                       `ec2:"privateDnsName" xml:"privateDnsName"`
+	PrivateIPAddress      string                       `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	ProductCodes          []ProductCode                `ec2:"productCodes" xml:"productCodes>item"`
+	PublicDNSName         string                       `ec2:"dnsName" xml:"dnsName"`
+	PublicIPAddress       string                       `ec2:"ipAddress" xml:"ipAddress"`
+	RamdiskID             string                       `ec2:"ramdiskId" xml:"ramdiskId"`
+	RootDeviceName        string                       `ec2:"rootDeviceName" xml:"rootDeviceName"`
+	RootDeviceType        string                       `ec2:"rootDeviceType" xml:"rootDeviceType"`
+	SecurityGroups        []GroupIdentifier            `ec2:"groupSet" xml:"groupSet>item"`
+	SourceDestCheck       bool                         `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
+	SpotInstanceRequestID string                       `ec2:"spotInstanceRequestId" xml:"spotInstanceRequestId"`
+	SriovNetSupport       string                       `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
+	State                 InstanceState                `ec2:"instanceState" xml:"instanceState"`
+	StateReason           StateReason                  `ec2:"stateReason" xml:"stateReason"`
+	StateTransitionReason string                       `ec2:"reason" xml:"reason"`
+	SubnetID              string                       `ec2:"subnetId" xml:"subnetId"`
+	Tags                  []Tag                        `ec2:"tagSet" xml:"tagSet>item"`
+	VirtualizationType    string                       `ec2:"virtualizationType" xml:"virtualizationType"`
+	VpcID                 string                       `ec2:"vpcId" xml:"vpcId"`
 }
 
 // InstanceAttribute is undocumented.
 type InstanceAttribute struct {
-	BlockDeviceMappings               []InstanceBlockDeviceMapping `xml:"blockDeviceMapping>item"`
-	DisableAPITermination             AttributeBooleanValue        `xml:"disableApiTermination"`
-	EbsOptimized                      AttributeBooleanValue        `xml:"ebsOptimized"`
-	Groups                            []GroupIdentifier            `xml:"groupSet>item"`
-	InstanceID                        string                       `xml:"instanceId"`
-	InstanceInitiatedShutdownBehavior AttributeValue               `xml:"instanceInitiatedShutdownBehavior"`
-	InstanceType                      AttributeValue               `xml:"instanceType"`
-	KernelID                          AttributeValue               `xml:"kernel"`
-	ProductCodes                      []ProductCode                `xml:"productCodes>item"`
-	RamdiskID                         AttributeValue               `xml:"ramdisk"`
-	RootDeviceName                    AttributeValue               `xml:"rootDeviceName"`
-	SourceDestCheck                   AttributeBooleanValue        `xml:"sourceDestCheck"`
-	SriovNetSupport                   AttributeValue               `xml:"sriovNetSupport"`
-	UserData                          AttributeValue               `xml:"userData"`
+	BlockDeviceMappings               []InstanceBlockDeviceMapping `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
+	DisableAPITermination             AttributeBooleanValue        `ec2:"disableApiTermination" xml:"disableApiTermination"`
+	EbsOptimized                      AttributeBooleanValue        `ec2:"ebsOptimized" xml:"ebsOptimized"`
+	Groups                            []GroupIdentifier            `ec2:"groupSet" xml:"groupSet>item"`
+	InstanceID                        string                       `ec2:"instanceId" xml:"instanceId"`
+	InstanceInitiatedShutdownBehavior AttributeValue               `ec2:"instanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
+	InstanceType                      AttributeValue               `ec2:"instanceType" xml:"instanceType"`
+	KernelID                          AttributeValue               `ec2:"kernel" xml:"kernel"`
+	ProductCodes                      []ProductCode                `ec2:"productCodes" xml:"productCodes>item"`
+	RamdiskID                         AttributeValue               `ec2:"ramdisk" xml:"ramdisk"`
+	RootDeviceName                    AttributeValue               `ec2:"rootDeviceName" xml:"rootDeviceName"`
+	SourceDestCheck                   AttributeBooleanValue        `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
+	SriovNetSupport                   AttributeValue               `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
+	UserData                          AttributeValue               `ec2:"userData" xml:"userData"`
 }
 
 // InstanceBlockDeviceMapping is undocumented.
 type InstanceBlockDeviceMapping struct {
-	DeviceName string                 `xml:"deviceName"`
-	Ebs        EbsInstanceBlockDevice `xml:"ebs"`
+	DeviceName string                 `ec2:"deviceName" xml:"deviceName"`
+	Ebs        EbsInstanceBlockDevice `ec2:"ebs" xml:"ebs"`
 }
 
 // InstanceBlockDeviceMappingSpecification is undocumented.
 type InstanceBlockDeviceMappingSpecification struct {
-	DeviceName  string                              `xml:"deviceName"`
-	Ebs         EbsInstanceBlockDeviceSpecification `xml:"ebs"`
-	NoDevice    string                              `xml:"noDevice"`
-	VirtualName string                              `xml:"virtualName"`
+	DeviceName  string                              `ec2:"deviceName" xml:"deviceName"`
+	Ebs         EbsInstanceBlockDeviceSpecification `ec2:"ebs" xml:"ebs"`
+	NoDevice    string                              `ec2:"noDevice" xml:"noDevice"`
+	VirtualName string                              `ec2:"virtualName" xml:"virtualName"`
 }
 
 // InstanceCount is undocumented.
 type InstanceCount struct {
-	InstanceCount int    `xml:"instanceCount"`
-	State         string `xml:"state"`
+	InstanceCount int    `ec2:"instanceCount" xml:"instanceCount"`
+	State         string `ec2:"state" xml:"state"`
 }
 
 // InstanceExportDetails is undocumented.
 type InstanceExportDetails struct {
-	InstanceID        string `xml:"instanceId"`
-	TargetEnvironment string `xml:"targetEnvironment"`
+	InstanceID        string `ec2:"instanceId" xml:"instanceId"`
+	TargetEnvironment string `ec2:"targetEnvironment" xml:"targetEnvironment"`
 }
 
 // InstanceMonitoring is undocumented.
 type InstanceMonitoring struct {
-	InstanceID string     `xml:"instanceId"`
-	Monitoring Monitoring `xml:"monitoring"`
+	InstanceID string     `ec2:"instanceId" xml:"instanceId"`
+	Monitoring Monitoring `ec2:"monitoring" xml:"monitoring"`
 }
 
 // InstanceNetworkInterface is undocumented.
 type InstanceNetworkInterface struct {
-	Association        InstanceNetworkInterfaceAssociation `xml:"association"`
-	Attachment         InstanceNetworkInterfaceAttachment  `xml:"attachment"`
-	Description        string                              `xml:"description"`
-	Groups             []GroupIdentifier                   `xml:"groupSet>item"`
-	MacAddress         string                              `xml:"macAddress"`
-	NetworkInterfaceID string                              `xml:"networkInterfaceId"`
-	OwnerID            string                              `xml:"ownerId"`
-	PrivateDNSName     string                              `xml:"privateDnsName"`
-	PrivateIPAddress   string                              `xml:"privateIpAddress"`
-	PrivateIPAddresses []InstancePrivateIPAddress          `xml:"privateIpAddressesSet>item"`
-	SourceDestCheck    bool                                `xml:"sourceDestCheck"`
-	Status             string                              `xml:"status"`
-	SubnetID           string                              `xml:"subnetId"`
-	VpcID              string                              `xml:"vpcId"`
+	Association        InstanceNetworkInterfaceAssociation `ec2:"association" xml:"association"`
+	Attachment         InstanceNetworkInterfaceAttachment  `ec2:"attachment" xml:"attachment"`
+	Description        string                              `ec2:"description" xml:"description"`
+	Groups             []GroupIdentifier                   `ec2:"groupSet" xml:"groupSet>item"`
+	MacAddress         string                              `ec2:"macAddress" xml:"macAddress"`
+	NetworkInterfaceID string                              `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	OwnerID            string                              `ec2:"ownerId" xml:"ownerId"`
+	PrivateDNSName     string                              `ec2:"privateDnsName" xml:"privateDnsName"`
+	PrivateIPAddress   string                              `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	PrivateIPAddresses []InstancePrivateIPAddress          `ec2:"privateIpAddressesSet" xml:"privateIpAddressesSet>item"`
+	SourceDestCheck    bool                                `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
+	Status             string                              `ec2:"status" xml:"status"`
+	SubnetID           string                              `ec2:"subnetId" xml:"subnetId"`
+	VpcID              string                              `ec2:"vpcId" xml:"vpcId"`
 }
 
 // InstanceNetworkInterfaceAssociation is undocumented.
 type InstanceNetworkInterfaceAssociation struct {
-	IPOwnerID     string `xml:"ipOwnerId"`
-	PublicDNSName string `xml:"publicDnsName"`
-	PublicIP      string `xml:"publicIp"`
+	IPOwnerID     string `ec2:"ipOwnerId" xml:"ipOwnerId"`
+	PublicDNSName string `ec2:"publicDnsName" xml:"publicDnsName"`
+	PublicIP      string `ec2:"publicIp" xml:"publicIp"`
 }
 
 // InstanceNetworkInterfaceAttachment is undocumented.
 type InstanceNetworkInterfaceAttachment struct {
-	AttachTime          time.Time `xml:"attachTime"`
-	AttachmentID        string    `xml:"attachmentId"`
-	DeleteOnTermination bool      `xml:"deleteOnTermination"`
-	DeviceIndex         int       `xml:"deviceIndex"`
-	Status              string    `xml:"status"`
+	AttachTime          time.Time `ec2:"attachTime" xml:"attachTime"`
+	AttachmentID        string    `ec2:"attachmentId" xml:"attachmentId"`
+	DeleteOnTermination bool      `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
+	DeviceIndex         int       `ec2:"deviceIndex" xml:"deviceIndex"`
+	Status              string    `ec2:"status" xml:"status"`
 }
 
 // InstanceNetworkInterfaceSpecification is undocumented.
 type InstanceNetworkInterfaceSpecification struct {
-	AssociatePublicIPAddress       bool                            `xml:"associatePublicIpAddress"`
-	DeleteOnTermination            bool                            `xml:"deleteOnTermination"`
-	Description                    string                          `xml:"description"`
-	DeviceIndex                    int                             `xml:"deviceIndex"`
-	Groups                         []string                        `xml:"SecurityGroupId>SecurityGroupId"`
-	NetworkInterfaceID             string                          `xml:"networkInterfaceId"`
-	PrivateIPAddress               string                          `xml:"privateIpAddress"`
-	PrivateIPAddresses             []PrivateIPAddressSpecification `xml:"privateIpAddressesSet>item"`
-	SecondaryPrivateIPAddressCount int                             `xml:"secondaryPrivateIpAddressCount"`
-	SubnetID                       string                          `xml:"subnetId"`
+	AssociatePublicIPAddress       bool                            `ec2:"associatePublicIpAddress" xml:"associatePublicIpAddress"`
+	DeleteOnTermination            bool                            `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
+	Description                    string                          `ec2:"description" xml:"description"`
+	DeviceIndex                    int                             `ec2:"deviceIndex" xml:"deviceIndex"`
+	Groups                         []string                        `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
+	NetworkInterfaceID             string                          `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	PrivateIPAddress               string                          `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	PrivateIPAddresses             []PrivateIPAddressSpecification `ec2:"privateIpAddressesSet" xml:"privateIpAddressesSet>item"`
+	SecondaryPrivateIPAddressCount int                             `ec2:"secondaryPrivateIpAddressCount" xml:"secondaryPrivateIpAddressCount"`
+	SubnetID                       string                          `ec2:"subnetId" xml:"subnetId"`
 }
 
 // InstancePrivateIPAddress is undocumented.
 type InstancePrivateIPAddress struct {
-	Association      InstanceNetworkInterfaceAssociation `xml:"association"`
-	Primary          bool                                `xml:"primary"`
-	PrivateDNSName   string                              `xml:"privateDnsName"`
-	PrivateIPAddress string                              `xml:"privateIpAddress"`
+	Association      InstanceNetworkInterfaceAssociation `ec2:"association" xml:"association"`
+	Primary          bool                                `ec2:"primary" xml:"primary"`
+	PrivateDNSName   string                              `ec2:"privateDnsName" xml:"privateDnsName"`
+	PrivateIPAddress string                              `ec2:"privateIpAddress" xml:"privateIpAddress"`
 }
 
 // InstanceState is undocumented.
 type InstanceState struct {
-	Code int    `xml:"code"`
-	Name string `xml:"name"`
+	Code int    `ec2:"code" xml:"code"`
+	Name string `ec2:"name" xml:"name"`
 }
 
 // InstanceStateChange is undocumented.
 type InstanceStateChange struct {
-	CurrentState  InstanceState `xml:"currentState"`
-	InstanceID    string        `xml:"instanceId"`
-	PreviousState InstanceState `xml:"previousState"`
+	CurrentState  InstanceState `ec2:"currentState" xml:"currentState"`
+	InstanceID    string        `ec2:"instanceId" xml:"instanceId"`
+	PreviousState InstanceState `ec2:"previousState" xml:"previousState"`
 }
 
 // InstanceStatus is undocumented.
 type InstanceStatus struct {
-	AvailabilityZone string                `xml:"availabilityZone"`
-	Events           []InstanceStatusEvent `xml:"eventsSet>item"`
-	InstanceID       string                `xml:"instanceId"`
-	InstanceState    InstanceState         `xml:"instanceState"`
-	InstanceStatus   InstanceStatusSummary `xml:"instanceStatus"`
-	SystemStatus     InstanceStatusSummary `xml:"systemStatus"`
+	AvailabilityZone string                `ec2:"availabilityZone" xml:"availabilityZone"`
+	Events           []InstanceStatusEvent `ec2:"eventsSet" xml:"eventsSet>item"`
+	InstanceID       string                `ec2:"instanceId" xml:"instanceId"`
+	InstanceState    InstanceState         `ec2:"instanceState" xml:"instanceState"`
+	InstanceStatus   InstanceStatusSummary `ec2:"instanceStatus" xml:"instanceStatus"`
+	SystemStatus     InstanceStatusSummary `ec2:"systemStatus" xml:"systemStatus"`
 }
 
 // InstanceStatusDetails is undocumented.
 type InstanceStatusDetails struct {
-	ImpairedSince time.Time `xml:"impairedSince"`
-	Name          string    `xml:"name"`
-	Status        string    `xml:"status"`
+	ImpairedSince time.Time `ec2:"impairedSince" xml:"impairedSince"`
+	Name          string    `ec2:"name" xml:"name"`
+	Status        string    `ec2:"status" xml:"status"`
 }
 
 // InstanceStatusEvent is undocumented.
 type InstanceStatusEvent struct {
-	Code        string    `xml:"code"`
-	Description string    `xml:"description"`
-	NotAfter    time.Time `xml:"notAfter"`
-	NotBefore   time.Time `xml:"notBefore"`
+	Code        string    `ec2:"code" xml:"code"`
+	Description string    `ec2:"description" xml:"description"`
+	NotAfter    time.Time `ec2:"notAfter" xml:"notAfter"`
+	NotBefore   time.Time `ec2:"notBefore" xml:"notBefore"`
 }
 
 // InstanceStatusSummary is undocumented.
 type InstanceStatusSummary struct {
-	Details []InstanceStatusDetails `xml:"details>item"`
-	Status  string                  `xml:"status"`
+	Details []InstanceStatusDetails `ec2:"details" xml:"details>item"`
+	Status  string                  `ec2:"status" xml:"status"`
 }
 
 // InternetGateway is undocumented.
 type InternetGateway struct {
-	Attachments       []InternetGatewayAttachment `xml:"attachmentSet>item"`
-	InternetGatewayID string                      `xml:"internetGatewayId"`
-	Tags              []Tag                       `xml:"tagSet>item"`
+	Attachments       []InternetGatewayAttachment `ec2:"attachmentSet" xml:"attachmentSet>item"`
+	InternetGatewayID string                      `ec2:"internetGatewayId" xml:"internetGatewayId"`
+	Tags              []Tag                       `ec2:"tagSet" xml:"tagSet>item"`
 }
 
 // InternetGatewayAttachment is undocumented.
 type InternetGatewayAttachment struct {
-	State string `xml:"state"`
-	VpcID string `xml:"vpcId"`
+	State string `ec2:"state" xml:"state"`
+	VpcID string `ec2:"vpcId" xml:"vpcId"`
 }
 
 // IPPermission is undocumented.
 type IPPermission struct {
-	FromPort         int               `xml:"fromPort"`
-	IPProtocol       string            `xml:"ipProtocol"`
-	IPRanges         []IPRange         `xml:"ipRanges>item"`
-	ToPort           int               `xml:"toPort"`
-	UserIDGroupPairs []UserIDGroupPair `xml:"groups>item"`
+	FromPort         int               `ec2:"fromPort" xml:"fromPort"`
+	IPProtocol       string            `ec2:"ipProtocol" xml:"ipProtocol"`
+	IPRanges         []IPRange         `ec2:"ipRanges" xml:"ipRanges>item"`
+	ToPort           int               `ec2:"toPort" xml:"toPort"`
+	UserIDGroupPairs []UserIDGroupPair `ec2:"groups" xml:"groups>item"`
 }
 
 // IPRange is undocumented.
 type IPRange struct {
-	CidrIP string `xml:"cidrIp"`
+	CidrIP string `ec2:"cidrIp" xml:"cidrIp"`
 }
 
 // KeyPair is undocumented.
 type KeyPair struct {
-	KeyFingerprint string `xml:"keyFingerprint"`
-	KeyMaterial    string `xml:"keyMaterial"`
-	KeyName        string `xml:"keyName"`
+	KeyFingerprint string `ec2:"keyFingerprint" xml:"keyFingerprint"`
+	KeyMaterial    string `ec2:"keyMaterial" xml:"keyMaterial"`
+	KeyName        string `ec2:"keyName" xml:"keyName"`
 }
 
 // KeyPairInfo is undocumented.
 type KeyPairInfo struct {
-	KeyFingerprint string `xml:"keyFingerprint"`
-	KeyName        string `xml:"keyName"`
+	KeyFingerprint string `ec2:"keyFingerprint" xml:"keyFingerprint"`
+	KeyName        string `ec2:"keyName" xml:"keyName"`
 }
 
 // LaunchPermission is undocumented.
 type LaunchPermission struct {
-	Group  string `xml:"group"`
-	UserID string `xml:"userId"`
+	Group  string `ec2:"group" xml:"group"`
+	UserID string `ec2:"userId" xml:"userId"`
 }
 
 // LaunchPermissionModifications is undocumented.
 type LaunchPermissionModifications struct {
-	Add    []LaunchPermission `xml:"Add>item"`
-	Remove []LaunchPermission `xml:"Remove>item"`
+	Add    []LaunchPermission `ec2:"" xml:"Add>item"`
+	Remove []LaunchPermission `ec2:"" xml:"Remove>item"`
 }
 
 // LaunchSpecification is undocumented.
 type LaunchSpecification struct {
-	AddressingType      string                                  `xml:"addressingType"`
-	BlockDeviceMappings []BlockDeviceMapping                    `xml:"blockDeviceMapping>item"`
-	EbsOptimized        bool                                    `xml:"ebsOptimized"`
-	IamInstanceProfile  IamInstanceProfileSpecification         `xml:"iamInstanceProfile"`
-	ImageID             string                                  `xml:"imageId"`
-	InstanceType        string                                  `xml:"instanceType"`
-	KernelID            string                                  `xml:"kernelId"`
-	KeyName             string                                  `xml:"keyName"`
-	Monitoring          RunInstancesMonitoringEnabled           `xml:"monitoring"`
-	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `xml:"networkInterfaceSet>item"`
-	Placement           SpotPlacement                           `xml:"placement"`
-	RamdiskID           string                                  `xml:"ramdiskId"`
-	SecurityGroups      []GroupIdentifier                       `xml:"groupSet>item"`
-	SubnetID            string                                  `xml:"subnetId"`
-	UserData            string                                  `xml:"userData"`
+	AddressingType      string                                  `ec2:"addressingType" xml:"addressingType"`
+	BlockDeviceMappings []BlockDeviceMapping                    `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
+	EbsOptimized        bool                                    `ec2:"ebsOptimized" xml:"ebsOptimized"`
+	IamInstanceProfile  IamInstanceProfileSpecification         `ec2:"iamInstanceProfile" xml:"iamInstanceProfile"`
+	ImageID             string                                  `ec2:"imageId" xml:"imageId"`
+	InstanceType        string                                  `ec2:"instanceType" xml:"instanceType"`
+	KernelID            string                                  `ec2:"kernelId" xml:"kernelId"`
+	KeyName             string                                  `ec2:"keyName" xml:"keyName"`
+	Monitoring          RunInstancesMonitoringEnabled           `ec2:"monitoring" xml:"monitoring"`
+	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `ec2:"networkInterfaceSet" xml:"networkInterfaceSet>item"`
+	Placement           SpotPlacement                           `ec2:"placement" xml:"placement"`
+	RamdiskID           string                                  `ec2:"ramdiskId" xml:"ramdiskId"`
+	SecurityGroups      []GroupIdentifier                       `ec2:"groupSet" xml:"groupSet>item"`
+	SubnetID            string                                  `ec2:"subnetId" xml:"subnetId"`
+	UserData            string                                  `ec2:"userData" xml:"userData"`
 }
 
 // ModifyImageAttributeRequest is undocumented.
 type ModifyImageAttributeRequest struct {
-	Attribute        string                        `xml:"Attribute"`
-	Description      AttributeValue                `xml:"Description"`
-	DryRun           bool                          `xml:"dryRun"`
-	ImageID          string                        `xml:"ImageId"`
-	LaunchPermission LaunchPermissionModifications `xml:"LaunchPermission"`
-	OperationType    string                        `xml:"OperationType"`
-	ProductCodes     []string                      `xml:"ProductCode>ProductCode"`
-	UserGroups       []string                      `xml:"UserGroup>UserGroup"`
-	UserIds          []string                      `xml:"UserId>UserId"`
-	Value            string                        `xml:"Value"`
+	Attribute        string                        `ec2:"" xml:"Attribute"`
+	Description      AttributeValue                `ec2:"" xml:"Description"`
+	DryRun           bool                          `ec2:"dryRun" xml:"dryRun"`
+	ImageID          string                        `ec2:"" xml:"ImageId"`
+	LaunchPermission LaunchPermissionModifications `ec2:"" xml:"LaunchPermission"`
+	OperationType    string                        `ec2:"" xml:"OperationType"`
+	ProductCodes     []string                      `ec2:"ProductCode" xml:"ProductCode>ProductCode"`
+	UserGroups       []string                      `ec2:"UserGroup" xml:"UserGroup>UserGroup"`
+	UserIds          []string                      `ec2:"UserId" xml:"UserId>UserId"`
+	Value            string                        `ec2:"" xml:"Value"`
 }
 
 // ModifyInstanceAttributeRequest is undocumented.
 type ModifyInstanceAttributeRequest struct {
-	Attribute                         string                                    `xml:"attribute"`
-	BlockDeviceMappings               []InstanceBlockDeviceMappingSpecification `xml:"blockDeviceMapping>item"`
-	DisableAPITermination             AttributeBooleanValue                     `xml:"disableApiTermination"`
-	DryRun                            bool                                      `xml:"dryRun"`
-	EbsOptimized                      AttributeBooleanValue                     `xml:"ebsOptimized"`
-	Groups                            []string                                  `xml:"GroupId>groupId"`
-	InstanceID                        string                                    `xml:"instanceId"`
-	InstanceInitiatedShutdownBehavior AttributeValue                            `xml:"instanceInitiatedShutdownBehavior"`
-	InstanceType                      AttributeValue                            `xml:"instanceType"`
-	Kernel                            AttributeValue                            `xml:"kernel"`
-	Ramdisk                           AttributeValue                            `xml:"ramdisk"`
-	SourceDestCheck                   AttributeBooleanValue                     `xml:"SourceDestCheck"`
-	SriovNetSupport                   AttributeValue                            `xml:"sriovNetSupport"`
-	UserData                          BlobAttributeValue                        `xml:"userData"`
-	Value                             string                                    `xml:"value"`
+	Attribute                         string                                    `ec2:"attribute" xml:"attribute"`
+	BlockDeviceMappings               []InstanceBlockDeviceMappingSpecification `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
+	DisableAPITermination             AttributeBooleanValue                     `ec2:"disableApiTermination" xml:"disableApiTermination"`
+	DryRun                            bool                                      `ec2:"dryRun" xml:"dryRun"`
+	EbsOptimized                      AttributeBooleanValue                     `ec2:"ebsOptimized" xml:"ebsOptimized"`
+	Groups                            []string                                  `ec2:"GroupId" xml:"GroupId>groupId"`
+	InstanceID                        string                                    `ec2:"instanceId" xml:"instanceId"`
+	InstanceInitiatedShutdownBehavior AttributeValue                            `ec2:"instanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
+	InstanceType                      AttributeValue                            `ec2:"instanceType" xml:"instanceType"`
+	Kernel                            AttributeValue                            `ec2:"kernel" xml:"kernel"`
+	Ramdisk                           AttributeValue                            `ec2:"ramdisk" xml:"ramdisk"`
+	SourceDestCheck                   AttributeBooleanValue                     `ec2:"" xml:"SourceDestCheck"`
+	SriovNetSupport                   AttributeValue                            `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
+	UserData                          BlobAttributeValue                        `ec2:"userData" xml:"userData"`
+	Value                             string                                    `ec2:"value" xml:"value"`
 }
 
 // ModifyNetworkInterfaceAttributeRequest is undocumented.
 type ModifyNetworkInterfaceAttributeRequest struct {
-	Attachment         NetworkInterfaceAttachmentChanges `xml:"attachment"`
-	Description        AttributeValue                    `xml:"description"`
-	DryRun             bool                              `xml:"dryRun"`
-	Groups             []string                          `xml:"SecurityGroupId>SecurityGroupId"`
-	NetworkInterfaceID string                            `xml:"networkInterfaceId"`
-	SourceDestCheck    AttributeBooleanValue             `xml:"sourceDestCheck"`
+	Attachment         NetworkInterfaceAttachmentChanges `ec2:"attachment" xml:"attachment"`
+	Description        AttributeValue                    `ec2:"description" xml:"description"`
+	DryRun             bool                              `ec2:"dryRun" xml:"dryRun"`
+	Groups             []string                          `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
+	NetworkInterfaceID string                            `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	SourceDestCheck    AttributeBooleanValue             `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
 }
 
 // ModifyReservedInstancesRequest is undocumented.
 type ModifyReservedInstancesRequest struct {
-	ClientToken          string                           `xml:"clientToken"`
-	ReservedInstancesIds []string                         `xml:"ReservedInstancesId>ReservedInstancesId"`
-	TargetConfigurations []ReservedInstancesConfiguration `xml:"ReservedInstancesConfigurationSetItemType>item"`
+	ClientToken          string                           `ec2:"clientToken" xml:"clientToken"`
+	ReservedInstancesIds []string                         `ec2:"ReservedInstancesId" xml:"ReservedInstancesId>ReservedInstancesId"`
+	TargetConfigurations []ReservedInstancesConfiguration `ec2:"ReservedInstancesConfigurationSetItemType" xml:"ReservedInstancesConfigurationSetItemType>item"`
 }
 
 // ModifyReservedInstancesResult is undocumented.
 type ModifyReservedInstancesResult struct {
-	ReservedInstancesModificationID string `xml:"reservedInstancesModificationId"`
+	ReservedInstancesModificationID string `ec2:"reservedInstancesModificationId" xml:"reservedInstancesModificationId"`
 }
 
 // ModifySnapshotAttributeRequest is undocumented.
 type ModifySnapshotAttributeRequest struct {
-	Attribute              string                              `xml:"Attribute"`
-	CreateVolumePermission CreateVolumePermissionModifications `xml:"CreateVolumePermission"`
-	DryRun                 bool                                `xml:"dryRun"`
-	GroupNames             []string                            `xml:"UserGroup>GroupName"`
-	OperationType          string                              `xml:"OperationType"`
-	SnapshotID             string                              `xml:"SnapshotId"`
-	UserIds                []string                            `xml:"UserId>UserId"`
+	Attribute              string                              `ec2:"" xml:"Attribute"`
+	CreateVolumePermission CreateVolumePermissionModifications `ec2:"" xml:"CreateVolumePermission"`
+	DryRun                 bool                                `ec2:"dryRun" xml:"dryRun"`
+	GroupNames             []string                            `ec2:"UserGroup" xml:"UserGroup>GroupName"`
+	OperationType          string                              `ec2:"" xml:"OperationType"`
+	SnapshotID             string                              `ec2:"" xml:"SnapshotId"`
+	UserIds                []string                            `ec2:"UserId" xml:"UserId>UserId"`
 }
 
 // ModifySubnetAttributeRequest is undocumented.
 type ModifySubnetAttributeRequest struct {
-	MapPublicIPOnLaunch AttributeBooleanValue `xml:"MapPublicIpOnLaunch"`
-	SubnetID            string                `xml:"subnetId"`
+	MapPublicIPOnLaunch AttributeBooleanValue `ec2:"" xml:"MapPublicIpOnLaunch"`
+	SubnetID            string                `ec2:"subnetId" xml:"subnetId"`
 }
 
 // ModifyVolumeAttributeRequest is undocumented.
 type ModifyVolumeAttributeRequest struct {
-	AutoEnableIO AttributeBooleanValue `xml:"AutoEnableIO"`
-	DryRun       bool                  `xml:"dryRun"`
-	VolumeID     string                `xml:"VolumeId"`
+	AutoEnableIO AttributeBooleanValue `ec2:"" xml:"AutoEnableIO"`
+	DryRun       bool                  `ec2:"dryRun" xml:"dryRun"`
+	VolumeID     string                `ec2:"" xml:"VolumeId"`
 }
 
 // ModifyVpcAttributeRequest is undocumented.
 type ModifyVpcAttributeRequest struct {
-	EnableDNSHostnames AttributeBooleanValue `xml:"EnableDnsHostnames"`
-	EnableDNSSupport   AttributeBooleanValue `xml:"EnableDnsSupport"`
-	VpcID              string                `xml:"vpcId"`
+	EnableDNSHostnames AttributeBooleanValue `ec2:"" xml:"EnableDnsHostnames"`
+	EnableDNSSupport   AttributeBooleanValue `ec2:"" xml:"EnableDnsSupport"`
+	VpcID              string                `ec2:"vpcId" xml:"vpcId"`
 }
 
 // MonitorInstancesRequest is undocumented.
 type MonitorInstancesRequest struct {
-	DryRun      bool     `xml:"dryRun"`
-	InstanceIds []string `xml:"InstanceId>InstanceId"`
+	DryRun      bool     `ec2:"dryRun" xml:"dryRun"`
+	InstanceIds []string `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // MonitorInstancesResult is undocumented.
 type MonitorInstancesResult struct {
-	InstanceMonitorings []InstanceMonitoring `xml:"instancesSet>item"`
+	InstanceMonitorings []InstanceMonitoring `ec2:"instancesSet" xml:"instancesSet>item"`
 }
 
 // Monitoring is undocumented.
 type Monitoring struct {
-	State string `xml:"state"`
+	State string `ec2:"state" xml:"state"`
 }
 
 // NetworkAcl is undocumented.
 type NetworkAcl struct {
-	Associations []NetworkAclAssociation `xml:"associationSet>item"`
-	Entries      []NetworkAclEntry       `xml:"entrySet>item"`
-	IsDefault    bool                    `xml:"default"`
-	NetworkAclID string                  `xml:"networkAclId"`
-	Tags         []Tag                   `xml:"tagSet>item"`
-	VpcID        string                  `xml:"vpcId"`
+	Associations []NetworkAclAssociation `ec2:"associationSet" xml:"associationSet>item"`
+	Entries      []NetworkAclEntry       `ec2:"entrySet" xml:"entrySet>item"`
+	IsDefault    bool                    `ec2:"default" xml:"default"`
+	NetworkAclID string                  `ec2:"networkAclId" xml:"networkAclId"`
+	Tags         []Tag                   `ec2:"tagSet" xml:"tagSet>item"`
+	VpcID        string                  `ec2:"vpcId" xml:"vpcId"`
 }
 
 // NetworkAclAssociation is undocumented.
 type NetworkAclAssociation struct {
-	NetworkAclAssociationID string `xml:"networkAclAssociationId"`
-	NetworkAclID            string `xml:"networkAclId"`
-	SubnetID                string `xml:"subnetId"`
+	NetworkAclAssociationID string `ec2:"networkAclAssociationId" xml:"networkAclAssociationId"`
+	NetworkAclID            string `ec2:"networkAclId" xml:"networkAclId"`
+	SubnetID                string `ec2:"subnetId" xml:"subnetId"`
 }
 
 // NetworkAclEntry is undocumented.
 type NetworkAclEntry struct {
-	CidrBlock    string       `xml:"cidrBlock"`
-	Egress       bool         `xml:"egress"`
-	IcmpTypeCode IcmpTypeCode `xml:"icmpTypeCode"`
-	PortRange    PortRange    `xml:"portRange"`
-	Protocol     string       `xml:"protocol"`
-	RuleAction   string       `xml:"ruleAction"`
-	RuleNumber   int          `xml:"ruleNumber"`
+	CidrBlock    string       `ec2:"cidrBlock" xml:"cidrBlock"`
+	Egress       bool         `ec2:"egress" xml:"egress"`
+	IcmpTypeCode IcmpTypeCode `ec2:"icmpTypeCode" xml:"icmpTypeCode"`
+	PortRange    PortRange    `ec2:"portRange" xml:"portRange"`
+	Protocol     string       `ec2:"protocol" xml:"protocol"`
+	RuleAction   string       `ec2:"ruleAction" xml:"ruleAction"`
+	RuleNumber   int          `ec2:"ruleNumber" xml:"ruleNumber"`
 }
 
 // NetworkInterface is undocumented.
 type NetworkInterface struct {
-	Association        NetworkInterfaceAssociation        `xml:"association"`
-	Attachment         NetworkInterfaceAttachment         `xml:"attachment"`
-	AvailabilityZone   string                             `xml:"availabilityZone"`
-	Description        string                             `xml:"description"`
-	Groups             []GroupIdentifier                  `xml:"groupSet>item"`
-	MacAddress         string                             `xml:"macAddress"`
-	NetworkInterfaceID string                             `xml:"networkInterfaceId"`
-	OwnerID            string                             `xml:"ownerId"`
-	PrivateDNSName     string                             `xml:"privateDnsName"`
-	PrivateIPAddress   string                             `xml:"privateIpAddress"`
-	PrivateIPAddresses []NetworkInterfacePrivateIPAddress `xml:"privateIpAddressesSet>item"`
-	RequesterID        string                             `xml:"requesterId"`
-	RequesterManaged   bool                               `xml:"requesterManaged"`
-	SourceDestCheck    bool                               `xml:"sourceDestCheck"`
-	Status             string                             `xml:"status"`
-	SubnetID           string                             `xml:"subnetId"`
-	TagSet             []Tag                              `xml:"tagSet>item"`
-	VpcID              string                             `xml:"vpcId"`
+	Association        NetworkInterfaceAssociation        `ec2:"association" xml:"association"`
+	Attachment         NetworkInterfaceAttachment         `ec2:"attachment" xml:"attachment"`
+	AvailabilityZone   string                             `ec2:"availabilityZone" xml:"availabilityZone"`
+	Description        string                             `ec2:"description" xml:"description"`
+	Groups             []GroupIdentifier                  `ec2:"groupSet" xml:"groupSet>item"`
+	MacAddress         string                             `ec2:"macAddress" xml:"macAddress"`
+	NetworkInterfaceID string                             `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	OwnerID            string                             `ec2:"ownerId" xml:"ownerId"`
+	PrivateDNSName     string                             `ec2:"privateDnsName" xml:"privateDnsName"`
+	PrivateIPAddress   string                             `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	PrivateIPAddresses []NetworkInterfacePrivateIPAddress `ec2:"privateIpAddressesSet" xml:"privateIpAddressesSet>item"`
+	RequesterID        string                             `ec2:"requesterId" xml:"requesterId"`
+	RequesterManaged   bool                               `ec2:"requesterManaged" xml:"requesterManaged"`
+	SourceDestCheck    bool                               `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
+	Status             string                             `ec2:"status" xml:"status"`
+	SubnetID           string                             `ec2:"subnetId" xml:"subnetId"`
+	TagSet             []Tag                              `ec2:"tagSet" xml:"tagSet>item"`
+	VpcID              string                             `ec2:"vpcId" xml:"vpcId"`
 }
 
 // NetworkInterfaceAssociation is undocumented.
 type NetworkInterfaceAssociation struct {
-	AllocationID  string `xml:"allocationId"`
-	AssociationID string `xml:"associationId"`
-	IPOwnerID     string `xml:"ipOwnerId"`
-	PublicDNSName string `xml:"publicDnsName"`
-	PublicIP      string `xml:"publicIp"`
+	AllocationID  string `ec2:"allocationId" xml:"allocationId"`
+	AssociationID string `ec2:"associationId" xml:"associationId"`
+	IPOwnerID     string `ec2:"ipOwnerId" xml:"ipOwnerId"`
+	PublicDNSName string `ec2:"publicDnsName" xml:"publicDnsName"`
+	PublicIP      string `ec2:"publicIp" xml:"publicIp"`
 }
 
 // NetworkInterfaceAttachment is undocumented.
 type NetworkInterfaceAttachment struct {
-	AttachTime          time.Time `xml:"attachTime"`
-	AttachmentID        string    `xml:"attachmentId"`
-	DeleteOnTermination bool      `xml:"deleteOnTermination"`
-	DeviceIndex         int       `xml:"deviceIndex"`
-	InstanceID          string    `xml:"instanceId"`
-	InstanceOwnerID     string    `xml:"instanceOwnerId"`
-	Status              string    `xml:"status"`
+	AttachTime          time.Time `ec2:"attachTime" xml:"attachTime"`
+	AttachmentID        string    `ec2:"attachmentId" xml:"attachmentId"`
+	DeleteOnTermination bool      `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
+	DeviceIndex         int       `ec2:"deviceIndex" xml:"deviceIndex"`
+	InstanceID          string    `ec2:"instanceId" xml:"instanceId"`
+	InstanceOwnerID     string    `ec2:"instanceOwnerId" xml:"instanceOwnerId"`
+	Status              string    `ec2:"status" xml:"status"`
 }
 
 // NetworkInterfaceAttachmentChanges is undocumented.
 type NetworkInterfaceAttachmentChanges struct {
-	AttachmentID        string `xml:"attachmentId"`
-	DeleteOnTermination bool   `xml:"deleteOnTermination"`
+	AttachmentID        string `ec2:"attachmentId" xml:"attachmentId"`
+	DeleteOnTermination bool   `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
 }
 
 // NetworkInterfacePrivateIPAddress is undocumented.
 type NetworkInterfacePrivateIPAddress struct {
-	Association      NetworkInterfaceAssociation `xml:"association"`
-	Primary          bool                        `xml:"primary"`
-	PrivateDNSName   string                      `xml:"privateDnsName"`
-	PrivateIPAddress string                      `xml:"privateIpAddress"`
+	Association      NetworkInterfaceAssociation `ec2:"association" xml:"association"`
+	Primary          bool                        `ec2:"primary" xml:"primary"`
+	PrivateDNSName   string                      `ec2:"privateDnsName" xml:"privateDnsName"`
+	PrivateIPAddress string                      `ec2:"privateIpAddress" xml:"privateIpAddress"`
 }
 
 // NewDhcpConfiguration is undocumented.
 type NewDhcpConfiguration struct {
-	Key    string   `xml:"key"`
-	Values []string `xml:"Value>item"`
+	Key    string   `ec2:"key" xml:"key"`
+	Values []string `ec2:"Value" xml:"Value>item"`
 }
 
 // Placement is undocumented.
 type Placement struct {
-	AvailabilityZone string `xml:"availabilityZone"`
-	GroupName        string `xml:"groupName"`
-	Tenancy          string `xml:"tenancy"`
+	AvailabilityZone string `ec2:"availabilityZone" xml:"availabilityZone"`
+	GroupName        string `ec2:"groupName" xml:"groupName"`
+	Tenancy          string `ec2:"tenancy" xml:"tenancy"`
 }
 
 // PlacementGroup is undocumented.
 type PlacementGroup struct {
-	GroupName string `xml:"groupName"`
-	State     string `xml:"state"`
-	Strategy  string `xml:"strategy"`
+	GroupName string `ec2:"groupName" xml:"groupName"`
+	State     string `ec2:"state" xml:"state"`
+	Strategy  string `ec2:"strategy" xml:"strategy"`
 }
 
 // PortRange is undocumented.
 type PortRange struct {
-	From int `xml:"from"`
-	To   int `xml:"to"`
+	From int `ec2:"from" xml:"from"`
+	To   int `ec2:"to" xml:"to"`
 }
 
 // PriceSchedule is undocumented.
 type PriceSchedule struct {
-	Active       bool    `xml:"active"`
-	CurrencyCode string  `xml:"currencyCode"`
-	Price        float64 `xml:"price"`
-	Term         int64   `xml:"term"`
+	Active       bool    `ec2:"active" xml:"active"`
+	CurrencyCode string  `ec2:"currencyCode" xml:"currencyCode"`
+	Price        float64 `ec2:"price" xml:"price"`
+	Term         int64   `ec2:"term" xml:"term"`
 }
 
 // PriceScheduleSpecification is undocumented.
 type PriceScheduleSpecification struct {
-	CurrencyCode string  `xml:"currencyCode"`
-	Price        float64 `xml:"price"`
-	Term         int64   `xml:"term"`
+	CurrencyCode string  `ec2:"currencyCode" xml:"currencyCode"`
+	Price        float64 `ec2:"price" xml:"price"`
+	Term         int64   `ec2:"term" xml:"term"`
 }
 
 // PricingDetail is undocumented.
 type PricingDetail struct {
-	Count int     `xml:"count"`
-	Price float64 `xml:"price"`
+	Count int     `ec2:"count" xml:"count"`
+	Price float64 `ec2:"price" xml:"price"`
 }
 
 // PrivateIPAddressSpecification is undocumented.
 type PrivateIPAddressSpecification struct {
-	Primary          bool   `xml:"primary"`
-	PrivateIPAddress string `xml:"privateIpAddress"`
+	Primary          bool   `ec2:"primary" xml:"primary"`
+	PrivateIPAddress string `ec2:"privateIpAddress" xml:"privateIpAddress"`
 }
 
 // ProductCode is undocumented.
 type ProductCode struct {
-	ProductCodeID   string `xml:"productCode"`
-	ProductCodeType string `xml:"type"`
+	ProductCodeID   string `ec2:"productCode" xml:"productCode"`
+	ProductCodeType string `ec2:"type" xml:"type"`
 }
 
 // PropagatingVgw is undocumented.
 type PropagatingVgw struct {
-	GatewayID string `xml:"gatewayId"`
+	GatewayID string `ec2:"gatewayId" xml:"gatewayId"`
 }
 
 // PurchaseReservedInstancesOfferingRequest is undocumented.
 type PurchaseReservedInstancesOfferingRequest struct {
-	DryRun                      bool                       `xml:"dryRun"`
-	InstanceCount               int                        `xml:"InstanceCount"`
-	LimitPrice                  ReservedInstanceLimitPrice `xml:"limitPrice"`
-	ReservedInstancesOfferingID string                     `xml:"ReservedInstancesOfferingId"`
+	DryRun                      bool                       `ec2:"dryRun" xml:"dryRun"`
+	InstanceCount               int                        `ec2:"" xml:"InstanceCount"`
+	LimitPrice                  ReservedInstanceLimitPrice `ec2:"limitPrice" xml:"limitPrice"`
+	ReservedInstancesOfferingID string                     `ec2:"" xml:"ReservedInstancesOfferingId"`
 }
 
 // PurchaseReservedInstancesOfferingResult is undocumented.
 type PurchaseReservedInstancesOfferingResult struct {
-	ReservedInstancesID string `xml:"reservedInstancesId"`
+	ReservedInstancesID string `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
 }
 
 // RebootInstancesRequest is undocumented.
 type RebootInstancesRequest struct {
-	DryRun      bool     `xml:"dryRun"`
-	InstanceIds []string `xml:"InstanceId>InstanceId"`
+	DryRun      bool     `ec2:"dryRun" xml:"dryRun"`
+	InstanceIds []string `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // RecurringCharge is undocumented.
 type RecurringCharge struct {
-	Amount    float64 `xml:"amount"`
-	Frequency string  `xml:"frequency"`
+	Amount    float64 `ec2:"amount" xml:"amount"`
+	Frequency string  `ec2:"frequency" xml:"frequency"`
 }
 
 // Region is undocumented.
 type Region struct {
-	Endpoint   string `xml:"regionEndpoint"`
-	RegionName string `xml:"regionName"`
+	Endpoint   string `ec2:"regionEndpoint" xml:"regionEndpoint"`
+	RegionName string `ec2:"regionName" xml:"regionName"`
 }
 
 // RegisterImageRequest is undocumented.
 type RegisterImageRequest struct {
-	Architecture        string               `xml:"architecture"`
-	BlockDeviceMappings []BlockDeviceMapping `xml:"BlockDeviceMapping>BlockDeviceMapping"`
-	Description         string               `xml:"description"`
-	DryRun              bool                 `xml:"dryRun"`
-	ImageLocation       string               `xml:"ImageLocation"`
-	KernelID            string               `xml:"kernelId"`
-	Name                string               `xml:"name"`
-	RamdiskID           string               `xml:"ramdiskId"`
-	RootDeviceName      string               `xml:"rootDeviceName"`
-	SriovNetSupport     string               `xml:"sriovNetSupport"`
-	VirtualizationType  string               `xml:"virtualizationType"`
+	Architecture        string               `ec2:"architecture" xml:"architecture"`
+	BlockDeviceMappings []BlockDeviceMapping `ec2:"BlockDeviceMapping" xml:"BlockDeviceMapping>BlockDeviceMapping"`
+	Description         string               `ec2:"description" xml:"description"`
+	DryRun              bool                 `ec2:"dryRun" xml:"dryRun"`
+	ImageLocation       string               `ec2:"" xml:"ImageLocation"`
+	KernelID            string               `ec2:"kernelId" xml:"kernelId"`
+	Name                string               `ec2:"name" xml:"name"`
+	RamdiskID           string               `ec2:"ramdiskId" xml:"ramdiskId"`
+	RootDeviceName      string               `ec2:"rootDeviceName" xml:"rootDeviceName"`
+	SriovNetSupport     string               `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
+	VirtualizationType  string               `ec2:"virtualizationType" xml:"virtualizationType"`
 }
 
 // RegisterImageResult is undocumented.
 type RegisterImageResult struct {
-	ImageID string `xml:"imageId"`
+	ImageID string `ec2:"imageId" xml:"imageId"`
 }
 
 // RejectVpcPeeringConnectionRequest is undocumented.
 type RejectVpcPeeringConnectionRequest struct {
-	DryRun                 bool   `xml:"dryRun"`
-	VpcPeeringConnectionID string `xml:"vpcPeeringConnectionId"`
+	DryRun                 bool   `ec2:"dryRun" xml:"dryRun"`
+	VpcPeeringConnectionID string `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // RejectVpcPeeringConnectionResult is undocumented.
 type RejectVpcPeeringConnectionResult struct {
-	Return bool `xml:"return"`
+	Return bool `ec2:"return" xml:"return"`
 }
 
 // ReleaseAddressRequest is undocumented.
 type ReleaseAddressRequest struct {
-	AllocationID string `xml:"AllocationId"`
-	DryRun       bool   `xml:"dryRun"`
-	PublicIP     string `xml:"PublicIp"`
+	AllocationID string `ec2:"" xml:"AllocationId"`
+	DryRun       bool   `ec2:"dryRun" xml:"dryRun"`
+	PublicIP     string `ec2:"" xml:"PublicIp"`
 }
 
 // ReplaceNetworkAclAssociationRequest is undocumented.
 type ReplaceNetworkAclAssociationRequest struct {
-	AssociationID string `xml:"associationId"`
-	DryRun        bool   `xml:"dryRun"`
-	NetworkAclID  string `xml:"networkAclId"`
+	AssociationID string `ec2:"associationId" xml:"associationId"`
+	DryRun        bool   `ec2:"dryRun" xml:"dryRun"`
+	NetworkAclID  string `ec2:"networkAclId" xml:"networkAclId"`
 }
 
 // ReplaceNetworkAclAssociationResult is undocumented.
 type ReplaceNetworkAclAssociationResult struct {
-	NewAssociationID string `xml:"newAssociationId"`
+	NewAssociationID string `ec2:"newAssociationId" xml:"newAssociationId"`
 }
 
 // ReplaceNetworkAclEntryRequest is undocumented.
 type ReplaceNetworkAclEntryRequest struct {
-	CidrBlock    string       `xml:"cidrBlock"`
-	DryRun       bool         `xml:"dryRun"`
-	Egress       bool         `xml:"egress"`
-	IcmpTypeCode IcmpTypeCode `xml:"Icmp"`
-	NetworkAclID string       `xml:"networkAclId"`
-	PortRange    PortRange    `xml:"portRange"`
-	Protocol     string       `xml:"protocol"`
-	RuleAction   string       `xml:"ruleAction"`
-	RuleNumber   int          `xml:"ruleNumber"`
+	CidrBlock    string       `ec2:"cidrBlock" xml:"cidrBlock"`
+	DryRun       bool         `ec2:"dryRun" xml:"dryRun"`
+	Egress       bool         `ec2:"egress" xml:"egress"`
+	IcmpTypeCode IcmpTypeCode `ec2:"Icmp" xml:"Icmp"`
+	NetworkAclID string       `ec2:"networkAclId" xml:"networkAclId"`
+	PortRange    PortRange    `ec2:"portRange" xml:"portRange"`
+	Protocol     string       `ec2:"protocol" xml:"protocol"`
+	RuleAction   string       `ec2:"ruleAction" xml:"ruleAction"`
+	RuleNumber   int          `ec2:"ruleNumber" xml:"ruleNumber"`
 }
 
 // ReplaceRouteRequest is undocumented.
 type ReplaceRouteRequest struct {
-	DestinationCidrBlock   string `xml:"destinationCidrBlock"`
-	DryRun                 bool   `xml:"dryRun"`
-	GatewayID              string `xml:"gatewayId"`
-	InstanceID             string `xml:"instanceId"`
-	NetworkInterfaceID     string `xml:"networkInterfaceId"`
-	RouteTableID           string `xml:"routeTableId"`
-	VpcPeeringConnectionID string `xml:"vpcPeeringConnectionId"`
+	DestinationCidrBlock   string `ec2:"destinationCidrBlock" xml:"destinationCidrBlock"`
+	DryRun                 bool   `ec2:"dryRun" xml:"dryRun"`
+	GatewayID              string `ec2:"gatewayId" xml:"gatewayId"`
+	InstanceID             string `ec2:"instanceId" xml:"instanceId"`
+	NetworkInterfaceID     string `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	RouteTableID           string `ec2:"routeTableId" xml:"routeTableId"`
+	VpcPeeringConnectionID string `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // ReplaceRouteTableAssociationRequest is undocumented.
 type ReplaceRouteTableAssociationRequest struct {
-	AssociationID string `xml:"associationId"`
-	DryRun        bool   `xml:"dryRun"`
-	RouteTableID  string `xml:"routeTableId"`
+	AssociationID string `ec2:"associationId" xml:"associationId"`
+	DryRun        bool   `ec2:"dryRun" xml:"dryRun"`
+	RouteTableID  string `ec2:"routeTableId" xml:"routeTableId"`
 }
 
 // ReplaceRouteTableAssociationResult is undocumented.
 type ReplaceRouteTableAssociationResult struct {
-	NewAssociationID string `xml:"newAssociationId"`
+	NewAssociationID string `ec2:"newAssociationId" xml:"newAssociationId"`
 }
 
 // ReportInstanceStatusRequest is undocumented.
 type ReportInstanceStatusRequest struct {
-	Description string    `xml:"description"`
-	DryRun      bool      `xml:"dryRun"`
-	EndTime     time.Time `xml:"endTime"`
-	Instances   []string  `xml:"instanceId>InstanceId"`
-	ReasonCodes []string  `xml:"reasonCode>item"`
-	StartTime   time.Time `xml:"startTime"`
-	Status      string    `xml:"status"`
+	Description string    `ec2:"description" xml:"description"`
+	DryRun      bool      `ec2:"dryRun" xml:"dryRun"`
+	EndTime     time.Time `ec2:"endTime" xml:"endTime"`
+	Instances   []string  `ec2:"instanceId" xml:"instanceId>InstanceId"`
+	ReasonCodes []string  `ec2:"reasonCode" xml:"reasonCode>item"`
+	StartTime   time.Time `ec2:"startTime" xml:"startTime"`
+	Status      string    `ec2:"status" xml:"status"`
 }
 
 // RequestSpotInstancesRequest is undocumented.
 type RequestSpotInstancesRequest struct {
-	AvailabilityZoneGroup string                         `xml:"availabilityZoneGroup"`
-	DryRun                bool                           `xml:"dryRun"`
-	InstanceCount         int                            `xml:"instanceCount"`
-	LaunchGroup           string                         `xml:"launchGroup"`
-	LaunchSpecification   RequestSpotLaunchSpecification `xml:"LaunchSpecification"`
-	SpotPrice             string                         `xml:"spotPrice"`
-	Type                  string                         `xml:"type"`
-	ValidFrom             time.Time                      `xml:"validFrom"`
-	ValidUntil            time.Time                      `xml:"validUntil"`
+	AvailabilityZoneGroup string                         `ec2:"availabilityZoneGroup" xml:"availabilityZoneGroup"`
+	DryRun                bool                           `ec2:"dryRun" xml:"dryRun"`
+	InstanceCount         int                            `ec2:"instanceCount" xml:"instanceCount"`
+	LaunchGroup           string                         `ec2:"launchGroup" xml:"launchGroup"`
+	LaunchSpecification   RequestSpotLaunchSpecification `ec2:"" xml:"LaunchSpecification"`
+	SpotPrice             string                         `ec2:"spotPrice" xml:"spotPrice"`
+	Type                  string                         `ec2:"type" xml:"type"`
+	ValidFrom             time.Time                      `ec2:"validFrom" xml:"validFrom"`
+	ValidUntil            time.Time                      `ec2:"validUntil" xml:"validUntil"`
 }
 
 // RequestSpotInstancesResult is undocumented.
 type RequestSpotInstancesResult struct {
-	SpotInstanceRequests []SpotInstanceRequest `xml:"spotInstanceRequestSet>item"`
+	SpotInstanceRequests []SpotInstanceRequest `ec2:"spotInstanceRequestSet" xml:"spotInstanceRequestSet>item"`
 }
 
 // RequestSpotLaunchSpecification is undocumented.
 type RequestSpotLaunchSpecification struct {
-	AddressingType      string                                  `xml:"addressingType"`
-	BlockDeviceMappings []BlockDeviceMapping                    `xml:"blockDeviceMapping>item"`
-	EbsOptimized        bool                                    `xml:"ebsOptimized"`
-	IamInstanceProfile  IamInstanceProfileSpecification         `xml:"iamInstanceProfile"`
-	ImageID             string                                  `xml:"imageId"`
-	InstanceType        string                                  `xml:"instanceType"`
-	KernelID            string                                  `xml:"kernelId"`
-	KeyName             string                                  `xml:"keyName"`
-	Monitoring          RunInstancesMonitoringEnabled           `xml:"monitoring"`
-	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `xml:"NetworkInterface>item"`
-	Placement           SpotPlacement                           `xml:"placement"`
-	RamdiskID           string                                  `xml:"ramdiskId"`
-	SecurityGroupIds    []string                                `xml:"SecurityGroupId>item"`
-	SecurityGroups      []string                                `xml:"SecurityGroup>item"`
-	SubnetID            string                                  `xml:"subnetId"`
-	UserData            string                                  `xml:"userData"`
+	AddressingType      string                                  `ec2:"addressingType" xml:"addressingType"`
+	BlockDeviceMappings []BlockDeviceMapping                    `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
+	EbsOptimized        bool                                    `ec2:"ebsOptimized" xml:"ebsOptimized"`
+	IamInstanceProfile  IamInstanceProfileSpecification         `ec2:"iamInstanceProfile" xml:"iamInstanceProfile"`
+	ImageID             string                                  `ec2:"imageId" xml:"imageId"`
+	InstanceType        string                                  `ec2:"instanceType" xml:"instanceType"`
+	KernelID            string                                  `ec2:"kernelId" xml:"kernelId"`
+	KeyName             string                                  `ec2:"keyName" xml:"keyName"`
+	Monitoring          RunInstancesMonitoringEnabled           `ec2:"monitoring" xml:"monitoring"`
+	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `ec2:"NetworkInterface" xml:"NetworkInterface>item"`
+	Placement           SpotPlacement                           `ec2:"placement" xml:"placement"`
+	RamdiskID           string                                  `ec2:"ramdiskId" xml:"ramdiskId"`
+	SecurityGroupIds    []string                                `ec2:"SecurityGroupId" xml:"SecurityGroupId>item"`
+	SecurityGroups      []string                                `ec2:"SecurityGroup" xml:"SecurityGroup>item"`
+	SubnetID            string                                  `ec2:"subnetId" xml:"subnetId"`
+	UserData            string                                  `ec2:"userData" xml:"userData"`
 }
 
 // Reservation is undocumented.
 type Reservation struct {
-	Groups        []GroupIdentifier `xml:"groupSet>item"`
-	Instances     []Instance        `xml:"instancesSet>item"`
-	OwnerID       string            `xml:"ownerId"`
-	RequesterID   string            `xml:"requesterId"`
-	ReservationID string            `xml:"reservationId"`
+	Groups        []GroupIdentifier `ec2:"groupSet" xml:"groupSet>item"`
+	Instances     []Instance        `ec2:"instancesSet" xml:"instancesSet>item"`
+	OwnerID       string            `ec2:"ownerId" xml:"ownerId"`
+	RequesterID   string            `ec2:"requesterId" xml:"requesterId"`
+	ReservationID string            `ec2:"reservationId" xml:"reservationId"`
 }
 
 // ReservedInstanceLimitPrice is undocumented.
 type ReservedInstanceLimitPrice struct {
-	Amount       float64 `xml:"amount"`
-	CurrencyCode string  `xml:"currencyCode"`
+	Amount       float64 `ec2:"amount" xml:"amount"`
+	CurrencyCode string  `ec2:"currencyCode" xml:"currencyCode"`
 }
 
 // ReservedInstances is undocumented.
 type ReservedInstances struct {
-	AvailabilityZone    string            `xml:"availabilityZone"`
-	CurrencyCode        string            `xml:"currencyCode"`
-	Duration            int64             `xml:"duration"`
-	End                 time.Time         `xml:"end"`
-	FixedPrice          float32           `xml:"fixedPrice"`
-	InstanceCount       int               `xml:"instanceCount"`
-	InstanceTenancy     string            `xml:"instanceTenancy"`
-	InstanceType        string            `xml:"instanceType"`
-	OfferingType        string            `xml:"offeringType"`
-	ProductDescription  string            `xml:"productDescription"`
-	RecurringCharges    []RecurringCharge `xml:"recurringCharges>item"`
-	ReservedInstancesID string            `xml:"reservedInstancesId"`
-	Start               time.Time         `xml:"start"`
-	State               string            `xml:"state"`
-	Tags                []Tag             `xml:"tagSet>item"`
-	UsagePrice          float32           `xml:"usagePrice"`
+	AvailabilityZone    string            `ec2:"availabilityZone" xml:"availabilityZone"`
+	CurrencyCode        string            `ec2:"currencyCode" xml:"currencyCode"`
+	Duration            int64             `ec2:"duration" xml:"duration"`
+	End                 time.Time         `ec2:"end" xml:"end"`
+	FixedPrice          float32           `ec2:"fixedPrice" xml:"fixedPrice"`
+	InstanceCount       int               `ec2:"instanceCount" xml:"instanceCount"`
+	InstanceTenancy     string            `ec2:"instanceTenancy" xml:"instanceTenancy"`
+	InstanceType        string            `ec2:"instanceType" xml:"instanceType"`
+	OfferingType        string            `ec2:"offeringType" xml:"offeringType"`
+	ProductDescription  string            `ec2:"productDescription" xml:"productDescription"`
+	RecurringCharges    []RecurringCharge `ec2:"recurringCharges" xml:"recurringCharges>item"`
+	ReservedInstancesID string            `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
+	Start               time.Time         `ec2:"start" xml:"start"`
+	State               string            `ec2:"state" xml:"state"`
+	Tags                []Tag             `ec2:"tagSet" xml:"tagSet>item"`
+	UsagePrice          float32           `ec2:"usagePrice" xml:"usagePrice"`
 }
 
 // ReservedInstancesConfiguration is undocumented.
 type ReservedInstancesConfiguration struct {
-	AvailabilityZone string `xml:"availabilityZone"`
-	InstanceCount    int    `xml:"instanceCount"`
-	InstanceType     string `xml:"instanceType"`
-	Platform         string `xml:"platform"`
+	AvailabilityZone string `ec2:"availabilityZone" xml:"availabilityZone"`
+	InstanceCount    int    `ec2:"instanceCount" xml:"instanceCount"`
+	InstanceType     string `ec2:"instanceType" xml:"instanceType"`
+	Platform         string `ec2:"platform" xml:"platform"`
 }
 
 // ReservedInstancesID is undocumented.
 type ReservedInstancesID struct {
-	ReservedInstancesID string `xml:"reservedInstancesId"`
+	ReservedInstancesID string `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
 }
 
 // ReservedInstancesListing is undocumented.
 type ReservedInstancesListing struct {
-	ClientToken                string          `xml:"clientToken"`
-	CreateDate                 time.Time       `xml:"createDate"`
-	InstanceCounts             []InstanceCount `xml:"instanceCounts>item"`
-	PriceSchedules             []PriceSchedule `xml:"priceSchedules>item"`
-	ReservedInstancesID        string          `xml:"reservedInstancesId"`
-	ReservedInstancesListingID string          `xml:"reservedInstancesListingId"`
-	Status                     string          `xml:"status"`
-	StatusMessage              string          `xml:"statusMessage"`
-	Tags                       []Tag           `xml:"tagSet>item"`
-	UpdateDate                 time.Time       `xml:"updateDate"`
+	ClientToken                string          `ec2:"clientToken" xml:"clientToken"`
+	CreateDate                 time.Time       `ec2:"createDate" xml:"createDate"`
+	InstanceCounts             []InstanceCount `ec2:"instanceCounts" xml:"instanceCounts>item"`
+	PriceSchedules             []PriceSchedule `ec2:"priceSchedules" xml:"priceSchedules>item"`
+	ReservedInstancesID        string          `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
+	ReservedInstancesListingID string          `ec2:"reservedInstancesListingId" xml:"reservedInstancesListingId"`
+	Status                     string          `ec2:"status" xml:"status"`
+	StatusMessage              string          `ec2:"statusMessage" xml:"statusMessage"`
+	Tags                       []Tag           `ec2:"tagSet" xml:"tagSet>item"`
+	UpdateDate                 time.Time       `ec2:"updateDate" xml:"updateDate"`
 }
 
 // ReservedInstancesModification is undocumented.
 type ReservedInstancesModification struct {
-	ClientToken                     string                                `xml:"clientToken"`
-	CreateDate                      time.Time                             `xml:"createDate"`
-	EffectiveDate                   time.Time                             `xml:"effectiveDate"`
-	ModificationResults             []ReservedInstancesModificationResult `xml:"modificationResultSet>item"`
-	ReservedInstancesIds            []ReservedInstancesID                 `xml:"reservedInstancesSet>item"`
-	ReservedInstancesModificationID string                                `xml:"reservedInstancesModificationId"`
-	Status                          string                                `xml:"status"`
-	StatusMessage                   string                                `xml:"statusMessage"`
-	UpdateDate                      time.Time                             `xml:"updateDate"`
+	ClientToken                     string                                `ec2:"clientToken" xml:"clientToken"`
+	CreateDate                      time.Time                             `ec2:"createDate" xml:"createDate"`
+	EffectiveDate                   time.Time                             `ec2:"effectiveDate" xml:"effectiveDate"`
+	ModificationResults             []ReservedInstancesModificationResult `ec2:"modificationResultSet" xml:"modificationResultSet>item"`
+	ReservedInstancesIds            []ReservedInstancesID                 `ec2:"reservedInstancesSet" xml:"reservedInstancesSet>item"`
+	ReservedInstancesModificationID string                                `ec2:"reservedInstancesModificationId" xml:"reservedInstancesModificationId"`
+	Status                          string                                `ec2:"status" xml:"status"`
+	StatusMessage                   string                                `ec2:"statusMessage" xml:"statusMessage"`
+	UpdateDate                      time.Time                             `ec2:"updateDate" xml:"updateDate"`
 }
 
 // ReservedInstancesModificationResult is undocumented.
 type ReservedInstancesModificationResult struct {
-	ReservedInstancesID string                         `xml:"reservedInstancesId"`
-	TargetConfiguration ReservedInstancesConfiguration `xml:"targetConfiguration"`
+	ReservedInstancesID string                         `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
+	TargetConfiguration ReservedInstancesConfiguration `ec2:"targetConfiguration" xml:"targetConfiguration"`
 }
 
 // ReservedInstancesOffering is undocumented.
 type ReservedInstancesOffering struct {
-	AvailabilityZone            string            `xml:"availabilityZone"`
-	CurrencyCode                string            `xml:"currencyCode"`
-	Duration                    int64             `xml:"duration"`
-	FixedPrice                  float32           `xml:"fixedPrice"`
-	InstanceTenancy             string            `xml:"instanceTenancy"`
-	InstanceType                string            `xml:"instanceType"`
-	Marketplace                 bool              `xml:"marketplace"`
-	OfferingType                string            `xml:"offeringType"`
-	PricingDetails              []PricingDetail   `xml:"pricingDetailsSet>item"`
-	ProductDescription          string            `xml:"productDescription"`
-	RecurringCharges            []RecurringCharge `xml:"recurringCharges>item"`
-	ReservedInstancesOfferingID string            `xml:"reservedInstancesOfferingId"`
-	UsagePrice                  float32           `xml:"usagePrice"`
+	AvailabilityZone            string            `ec2:"availabilityZone" xml:"availabilityZone"`
+	CurrencyCode                string            `ec2:"currencyCode" xml:"currencyCode"`
+	Duration                    int64             `ec2:"duration" xml:"duration"`
+	FixedPrice                  float32           `ec2:"fixedPrice" xml:"fixedPrice"`
+	InstanceTenancy             string            `ec2:"instanceTenancy" xml:"instanceTenancy"`
+	InstanceType                string            `ec2:"instanceType" xml:"instanceType"`
+	Marketplace                 bool              `ec2:"marketplace" xml:"marketplace"`
+	OfferingType                string            `ec2:"offeringType" xml:"offeringType"`
+	PricingDetails              []PricingDetail   `ec2:"pricingDetailsSet" xml:"pricingDetailsSet>item"`
+	ProductDescription          string            `ec2:"productDescription" xml:"productDescription"`
+	RecurringCharges            []RecurringCharge `ec2:"recurringCharges" xml:"recurringCharges>item"`
+	ReservedInstancesOfferingID string            `ec2:"reservedInstancesOfferingId" xml:"reservedInstancesOfferingId"`
+	UsagePrice                  float32           `ec2:"usagePrice" xml:"usagePrice"`
 }
 
 // ResetImageAttributeRequest is undocumented.
 type ResetImageAttributeRequest struct {
-	Attribute string `xml:"Attribute"`
-	DryRun    bool   `xml:"dryRun"`
-	ImageID   string `xml:"ImageId"`
+	Attribute string `ec2:"" xml:"Attribute"`
+	DryRun    bool   `ec2:"dryRun" xml:"dryRun"`
+	ImageID   string `ec2:"" xml:"ImageId"`
 }
 
 // ResetInstanceAttributeRequest is undocumented.
 type ResetInstanceAttributeRequest struct {
-	Attribute  string `xml:"attribute"`
-	DryRun     bool   `xml:"dryRun"`
-	InstanceID string `xml:"instanceId"`
+	Attribute  string `ec2:"attribute" xml:"attribute"`
+	DryRun     bool   `ec2:"dryRun" xml:"dryRun"`
+	InstanceID string `ec2:"instanceId" xml:"instanceId"`
 }
 
 // ResetNetworkInterfaceAttributeRequest is undocumented.
 type ResetNetworkInterfaceAttributeRequest struct {
-	DryRun             bool   `xml:"dryRun"`
-	NetworkInterfaceID string `xml:"networkInterfaceId"`
-	SourceDestCheck    string `xml:"sourceDestCheck"`
+	DryRun             bool   `ec2:"dryRun" xml:"dryRun"`
+	NetworkInterfaceID string `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	SourceDestCheck    string `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
 }
 
 // ResetSnapshotAttributeRequest is undocumented.
 type ResetSnapshotAttributeRequest struct {
-	Attribute  string `xml:"Attribute"`
-	DryRun     bool   `xml:"dryRun"`
-	SnapshotID string `xml:"SnapshotId"`
+	Attribute  string `ec2:"" xml:"Attribute"`
+	DryRun     bool   `ec2:"dryRun" xml:"dryRun"`
+	SnapshotID string `ec2:"" xml:"SnapshotId"`
 }
 
 // RevokeSecurityGroupEgressRequest is undocumented.
 type RevokeSecurityGroupEgressRequest struct {
-	CidrIP                     string         `xml:"cidrIp"`
-	DryRun                     bool           `xml:"dryRun"`
-	FromPort                   int            `xml:"fromPort"`
-	GroupID                    string         `xml:"groupId"`
-	IPPermissions              []IPPermission `xml:"ipPermissions>item"`
-	IPProtocol                 string         `xml:"ipProtocol"`
-	SourceSecurityGroupName    string         `xml:"sourceSecurityGroupName"`
-	SourceSecurityGroupOwnerID string         `xml:"sourceSecurityGroupOwnerId"`
-	ToPort                     int            `xml:"toPort"`
+	CidrIP                     string         `ec2:"cidrIp" xml:"cidrIp"`
+	DryRun                     bool           `ec2:"dryRun" xml:"dryRun"`
+	FromPort                   int            `ec2:"fromPort" xml:"fromPort"`
+	GroupID                    string         `ec2:"groupId" xml:"groupId"`
+	IPPermissions              []IPPermission `ec2:"ipPermissions" xml:"ipPermissions>item"`
+	IPProtocol                 string         `ec2:"ipProtocol" xml:"ipProtocol"`
+	SourceSecurityGroupName    string         `ec2:"sourceSecurityGroupName" xml:"sourceSecurityGroupName"`
+	SourceSecurityGroupOwnerID string         `ec2:"sourceSecurityGroupOwnerId" xml:"sourceSecurityGroupOwnerId"`
+	ToPort                     int            `ec2:"toPort" xml:"toPort"`
 }
 
 // RevokeSecurityGroupIngressRequest is undocumented.
 type RevokeSecurityGroupIngressRequest struct {
-	CidrIP                     string         `xml:"CidrIp"`
-	DryRun                     bool           `xml:"dryRun"`
-	FromPort                   int            `xml:"FromPort"`
-	GroupID                    string         `xml:"GroupId"`
-	GroupName                  string         `xml:"GroupName"`
-	IPPermissions              []IPPermission `xml:"IpPermissions>item"`
-	IPProtocol                 string         `xml:"IpProtocol"`
-	SourceSecurityGroupName    string         `xml:"SourceSecurityGroupName"`
-	SourceSecurityGroupOwnerID string         `xml:"SourceSecurityGroupOwnerId"`
-	ToPort                     int            `xml:"ToPort"`
+	CidrIP                     string         `ec2:"" xml:"CidrIp"`
+	DryRun                     bool           `ec2:"dryRun" xml:"dryRun"`
+	FromPort                   int            `ec2:"" xml:"FromPort"`
+	GroupID                    string         `ec2:"" xml:"GroupId"`
+	GroupName                  string         `ec2:"" xml:"GroupName"`
+	IPPermissions              []IPPermission `ec2:"" xml:"IpPermissions>item"`
+	IPProtocol                 string         `ec2:"" xml:"IpProtocol"`
+	SourceSecurityGroupName    string         `ec2:"" xml:"SourceSecurityGroupName"`
+	SourceSecurityGroupOwnerID string         `ec2:"" xml:"SourceSecurityGroupOwnerId"`
+	ToPort                     int            `ec2:"" xml:"ToPort"`
 }
 
 // Route is undocumented.
 type Route struct {
-	DestinationCidrBlock   string `xml:"destinationCidrBlock"`
-	GatewayID              string `xml:"gatewayId"`
-	InstanceID             string `xml:"instanceId"`
-	InstanceOwnerID        string `xml:"instanceOwnerId"`
-	NetworkInterfaceID     string `xml:"networkInterfaceId"`
-	Origin                 string `xml:"origin"`
-	State                  string `xml:"state"`
-	VpcPeeringConnectionID string `xml:"vpcPeeringConnectionId"`
+	DestinationCidrBlock   string `ec2:"destinationCidrBlock" xml:"destinationCidrBlock"`
+	GatewayID              string `ec2:"gatewayId" xml:"gatewayId"`
+	InstanceID             string `ec2:"instanceId" xml:"instanceId"`
+	InstanceOwnerID        string `ec2:"instanceOwnerId" xml:"instanceOwnerId"`
+	NetworkInterfaceID     string `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	Origin                 string `ec2:"origin" xml:"origin"`
+	State                  string `ec2:"state" xml:"state"`
+	VpcPeeringConnectionID string `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // RouteTable is undocumented.
 type RouteTable struct {
-	Associations    []RouteTableAssociation `xml:"associationSet>item"`
-	PropagatingVgws []PropagatingVgw        `xml:"propagatingVgwSet>item"`
-	RouteTableID    string                  `xml:"routeTableId"`
-	Routes          []Route                 `xml:"routeSet>item"`
-	Tags            []Tag                   `xml:"tagSet>item"`
-	VpcID           string                  `xml:"vpcId"`
+	Associations    []RouteTableAssociation `ec2:"associationSet" xml:"associationSet>item"`
+	PropagatingVgws []PropagatingVgw        `ec2:"propagatingVgwSet" xml:"propagatingVgwSet>item"`
+	RouteTableID    string                  `ec2:"routeTableId" xml:"routeTableId"`
+	Routes          []Route                 `ec2:"routeSet" xml:"routeSet>item"`
+	Tags            []Tag                   `ec2:"tagSet" xml:"tagSet>item"`
+	VpcID           string                  `ec2:"vpcId" xml:"vpcId"`
 }
 
 // RouteTableAssociation is undocumented.
 type RouteTableAssociation struct {
-	Main                    bool   `xml:"main"`
-	RouteTableAssociationID string `xml:"routeTableAssociationId"`
-	RouteTableID            string `xml:"routeTableId"`
-	SubnetID                string `xml:"subnetId"`
+	Main                    bool   `ec2:"main" xml:"main"`
+	RouteTableAssociationID string `ec2:"routeTableAssociationId" xml:"routeTableAssociationId"`
+	RouteTableID            string `ec2:"routeTableId" xml:"routeTableId"`
+	SubnetID                string `ec2:"subnetId" xml:"subnetId"`
 }
 
 // RunInstancesMonitoringEnabled is undocumented.
 type RunInstancesMonitoringEnabled struct {
-	Enabled bool `xml:"enabled"`
+	Enabled bool `ec2:"enabled" xml:"enabled"`
 }
 
 // RunInstancesRequest is undocumented.
 type RunInstancesRequest struct {
-	AdditionalInfo                    string                                  `xml:"additionalInfo"`
-	BlockDeviceMappings               []BlockDeviceMapping                    `xml:"BlockDeviceMapping>BlockDeviceMapping"`
-	ClientToken                       string                                  `xml:"clientToken"`
-	DisableAPITermination             bool                                    `xml:"disableApiTermination"`
-	DryRun                            bool                                    `xml:"dryRun"`
-	EbsOptimized                      bool                                    `xml:"ebsOptimized"`
-	IamInstanceProfile                IamInstanceProfileSpecification         `xml:"iamInstanceProfile"`
-	ImageID                           string                                  `xml:"ImageId"`
-	InstanceInitiatedShutdownBehavior string                                  `xml:"instanceInitiatedShutdownBehavior"`
-	InstanceType                      string                                  `xml:"InstanceType"`
-	KernelID                          string                                  `xml:"KernelId"`
-	KeyName                           string                                  `xml:"KeyName"`
-	MaxCount                          int                                     `xml:"MaxCount"`
-	MinCount                          int                                     `xml:"MinCount"`
-	Monitoring                        RunInstancesMonitoringEnabled           `xml:"Monitoring"`
-	NetworkInterfaces                 []InstanceNetworkInterfaceSpecification `xml:"networkInterface>item"`
-	Placement                         Placement                               `xml:"Placement"`
-	PrivateIPAddress                  string                                  `xml:"privateIpAddress"`
-	RamdiskID                         string                                  `xml:"RamdiskId"`
-	SecurityGroupIds                  []string                                `xml:"SecurityGroupId>SecurityGroupId"`
-	SecurityGroups                    []string                                `xml:"SecurityGroup>SecurityGroup"`
-	SubnetID                          string                                  `xml:"SubnetId"`
-	UserData                          string                                  `xml:"UserData"`
+	AdditionalInfo                    string                                  `ec2:"additionalInfo" xml:"additionalInfo"`
+	BlockDeviceMappings               []BlockDeviceMapping                    `ec2:"BlockDeviceMapping" xml:"BlockDeviceMapping>BlockDeviceMapping"`
+	ClientToken                       string                                  `ec2:"clientToken" xml:"clientToken"`
+	DisableAPITermination             bool                                    `ec2:"disableApiTermination" xml:"disableApiTermination"`
+	DryRun                            bool                                    `ec2:"dryRun" xml:"dryRun"`
+	EbsOptimized                      bool                                    `ec2:"ebsOptimized" xml:"ebsOptimized"`
+	IamInstanceProfile                IamInstanceProfileSpecification         `ec2:"iamInstanceProfile" xml:"iamInstanceProfile"`
+	ImageID                           string                                  `ec2:"" xml:"ImageId"`
+	InstanceInitiatedShutdownBehavior string                                  `ec2:"instanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
+	InstanceType                      string                                  `ec2:"" xml:"InstanceType"`
+	KernelID                          string                                  `ec2:"" xml:"KernelId"`
+	KeyName                           string                                  `ec2:"" xml:"KeyName"`
+	MaxCount                          int                                     `ec2:"" xml:"MaxCount"`
+	MinCount                          int                                     `ec2:"" xml:"MinCount"`
+	Monitoring                        RunInstancesMonitoringEnabled           `ec2:"" xml:"Monitoring"`
+	NetworkInterfaces                 []InstanceNetworkInterfaceSpecification `ec2:"networkInterface" xml:"networkInterface>item"`
+	Placement                         Placement                               `ec2:"" xml:"Placement"`
+	PrivateIPAddress                  string                                  `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	RamdiskID                         string                                  `ec2:"" xml:"RamdiskId"`
+	SecurityGroupIds                  []string                                `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
+	SecurityGroups                    []string                                `ec2:"SecurityGroup" xml:"SecurityGroup>SecurityGroup"`
+	SubnetID                          string                                  `ec2:"" xml:"SubnetId"`
+	UserData                          string                                  `ec2:"" xml:"UserData"`
 }
 
 // S3Storage is undocumented.
 type S3Storage struct {
-	AWSAccessKeyID        string `xml:"AWSAccessKeyId"`
-	Bucket                string `xml:"bucket"`
-	Prefix                string `xml:"prefix"`
-	UploadPolicy          []byte `xml:"uploadPolicy"`
-	UploadPolicySignature string `xml:"uploadPolicySignature"`
+	AWSAccessKeyID        string `ec2:"" xml:"AWSAccessKeyId"`
+	Bucket                string `ec2:"bucket" xml:"bucket"`
+	Prefix                string `ec2:"prefix" xml:"prefix"`
+	UploadPolicy          []byte `ec2:"uploadPolicy" xml:"uploadPolicy"`
+	UploadPolicySignature string `ec2:"uploadPolicySignature" xml:"uploadPolicySignature"`
 }
 
 // SecurityGroup is undocumented.
 type SecurityGroup struct {
-	Description         string         `xml:"groupDescription"`
-	GroupID             string         `xml:"groupId"`
-	GroupName           string         `xml:"groupName"`
-	IPPermissions       []IPPermission `xml:"ipPermissions>item"`
-	IPPermissionsEgress []IPPermission `xml:"ipPermissionsEgress>item"`
-	OwnerID             string         `xml:"ownerId"`
-	Tags                []Tag          `xml:"tagSet>item"`
-	VpcID               string         `xml:"vpcId"`
+	Description         string         `ec2:"groupDescription" xml:"groupDescription"`
+	GroupID             string         `ec2:"groupId" xml:"groupId"`
+	GroupName           string         `ec2:"groupName" xml:"groupName"`
+	IPPermissions       []IPPermission `ec2:"ipPermissions" xml:"ipPermissions>item"`
+	IPPermissionsEgress []IPPermission `ec2:"ipPermissionsEgress" xml:"ipPermissionsEgress>item"`
+	OwnerID             string         `ec2:"ownerId" xml:"ownerId"`
+	Tags                []Tag          `ec2:"tagSet" xml:"tagSet>item"`
+	VpcID               string         `ec2:"vpcId" xml:"vpcId"`
 }
 
 // Snapshot is undocumented.
 type Snapshot struct {
-	Description string    `xml:"description"`
-	Encrypted   bool      `xml:"encrypted"`
-	KmsKeyID    string    `xml:"kmsKeyId"`
-	OwnerAlias  string    `xml:"ownerAlias"`
-	OwnerID     string    `xml:"ownerId"`
-	Progress    string    `xml:"progress"`
-	SnapshotID  string    `xml:"snapshotId"`
-	StartTime   time.Time `xml:"startTime"`
-	State       string    `xml:"status"`
-	Tags        []Tag     `xml:"tagSet>item"`
-	VolumeID    string    `xml:"volumeId"`
-	VolumeSize  int       `xml:"volumeSize"`
+	Description string    `ec2:"description" xml:"description"`
+	Encrypted   bool      `ec2:"encrypted" xml:"encrypted"`
+	KmsKeyID    string    `ec2:"kmsKeyId" xml:"kmsKeyId"`
+	OwnerAlias  string    `ec2:"ownerAlias" xml:"ownerAlias"`
+	OwnerID     string    `ec2:"ownerId" xml:"ownerId"`
+	Progress    string    `ec2:"progress" xml:"progress"`
+	SnapshotID  string    `ec2:"snapshotId" xml:"snapshotId"`
+	StartTime   time.Time `ec2:"startTime" xml:"startTime"`
+	State       string    `ec2:"status" xml:"status"`
+	Tags        []Tag     `ec2:"tagSet" xml:"tagSet>item"`
+	VolumeID    string    `ec2:"volumeId" xml:"volumeId"`
+	VolumeSize  int       `ec2:"volumeSize" xml:"volumeSize"`
 }
 
 // SpotDatafeedSubscription is undocumented.
 type SpotDatafeedSubscription struct {
-	Bucket  string                 `xml:"bucket"`
-	Fault   SpotInstanceStateFault `xml:"fault"`
-	OwnerID string                 `xml:"ownerId"`
-	Prefix  string                 `xml:"prefix"`
-	State   string                 `xml:"state"`
+	Bucket  string                 `ec2:"bucket" xml:"bucket"`
+	Fault   SpotInstanceStateFault `ec2:"fault" xml:"fault"`
+	OwnerID string                 `ec2:"ownerId" xml:"ownerId"`
+	Prefix  string                 `ec2:"prefix" xml:"prefix"`
+	State   string                 `ec2:"state" xml:"state"`
 }
 
 // SpotInstanceRequest is undocumented.
 type SpotInstanceRequest struct {
-	AvailabilityZoneGroup    string                 `xml:"availabilityZoneGroup"`
-	CreateTime               time.Time              `xml:"createTime"`
-	Fault                    SpotInstanceStateFault `xml:"fault"`
-	InstanceID               string                 `xml:"instanceId"`
-	LaunchGroup              string                 `xml:"launchGroup"`
-	LaunchSpecification      LaunchSpecification    `xml:"launchSpecification"`
-	LaunchedAvailabilityZone string                 `xml:"launchedAvailabilityZone"`
-	ProductDescription       string                 `xml:"productDescription"`
-	SpotInstanceRequestID    string                 `xml:"spotInstanceRequestId"`
-	SpotPrice                string                 `xml:"spotPrice"`
-	State                    string                 `xml:"state"`
-	Status                   SpotInstanceStatus     `xml:"status"`
-	Tags                     []Tag                  `xml:"tagSet>item"`
-	Type                     string                 `xml:"type"`
-	ValidFrom                time.Time              `xml:"validFrom"`
-	ValidUntil               time.Time              `xml:"validUntil"`
+	AvailabilityZoneGroup    string                 `ec2:"availabilityZoneGroup" xml:"availabilityZoneGroup"`
+	CreateTime               time.Time              `ec2:"createTime" xml:"createTime"`
+	Fault                    SpotInstanceStateFault `ec2:"fault" xml:"fault"`
+	InstanceID               string                 `ec2:"instanceId" xml:"instanceId"`
+	LaunchGroup              string                 `ec2:"launchGroup" xml:"launchGroup"`
+	LaunchSpecification      LaunchSpecification    `ec2:"launchSpecification" xml:"launchSpecification"`
+	LaunchedAvailabilityZone string                 `ec2:"launchedAvailabilityZone" xml:"launchedAvailabilityZone"`
+	ProductDescription       string                 `ec2:"productDescription" xml:"productDescription"`
+	SpotInstanceRequestID    string                 `ec2:"spotInstanceRequestId" xml:"spotInstanceRequestId"`
+	SpotPrice                string                 `ec2:"spotPrice" xml:"spotPrice"`
+	State                    string                 `ec2:"state" xml:"state"`
+	Status                   SpotInstanceStatus     `ec2:"status" xml:"status"`
+	Tags                     []Tag                  `ec2:"tagSet" xml:"tagSet>item"`
+	Type                     string                 `ec2:"type" xml:"type"`
+	ValidFrom                time.Time              `ec2:"validFrom" xml:"validFrom"`
+	ValidUntil               time.Time              `ec2:"validUntil" xml:"validUntil"`
 }
 
 // SpotInstanceStateFault is undocumented.
 type SpotInstanceStateFault struct {
-	Code    string `xml:"code"`
-	Message string `xml:"message"`
+	Code    string `ec2:"code" xml:"code"`
+	Message string `ec2:"message" xml:"message"`
 }
 
 // SpotInstanceStatus is undocumented.
 type SpotInstanceStatus struct {
-	Code       string    `xml:"code"`
-	Message    string    `xml:"message"`
-	UpdateTime time.Time `xml:"updateTime"`
+	Code       string    `ec2:"code" xml:"code"`
+	Message    string    `ec2:"message" xml:"message"`
+	UpdateTime time.Time `ec2:"updateTime" xml:"updateTime"`
 }
 
 // SpotPlacement is undocumented.
 type SpotPlacement struct {
-	AvailabilityZone string `xml:"availabilityZone"`
-	GroupName        string `xml:"groupName"`
+	AvailabilityZone string `ec2:"availabilityZone" xml:"availabilityZone"`
+	GroupName        string `ec2:"groupName" xml:"groupName"`
 }
 
 // SpotPrice is undocumented.
 type SpotPrice struct {
-	AvailabilityZone   string    `xml:"availabilityZone"`
-	InstanceType       string    `xml:"instanceType"`
-	ProductDescription string    `xml:"productDescription"`
-	SpotPrice          string    `xml:"spotPrice"`
-	Timestamp          time.Time `xml:"timestamp"`
+	AvailabilityZone   string    `ec2:"availabilityZone" xml:"availabilityZone"`
+	InstanceType       string    `ec2:"instanceType" xml:"instanceType"`
+	ProductDescription string    `ec2:"productDescription" xml:"productDescription"`
+	SpotPrice          string    `ec2:"spotPrice" xml:"spotPrice"`
+	Timestamp          time.Time `ec2:"timestamp" xml:"timestamp"`
 }
 
 // StartInstancesRequest is undocumented.
 type StartInstancesRequest struct {
-	AdditionalInfo string   `xml:"additionalInfo"`
-	DryRun         bool     `xml:"dryRun"`
-	InstanceIds    []string `xml:"InstanceId>InstanceId"`
+	AdditionalInfo string   `ec2:"additionalInfo" xml:"additionalInfo"`
+	DryRun         bool     `ec2:"dryRun" xml:"dryRun"`
+	InstanceIds    []string `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // StartInstancesResult is undocumented.
 type StartInstancesResult struct {
-	StartingInstances []InstanceStateChange `xml:"instancesSet>item"`
+	StartingInstances []InstanceStateChange `ec2:"instancesSet" xml:"instancesSet>item"`
 }
 
 // StateReason is undocumented.
 type StateReason struct {
-	Code    string `xml:"code"`
-	Message string `xml:"message"`
+	Code    string `ec2:"code" xml:"code"`
+	Message string `ec2:"message" xml:"message"`
 }
 
 // StopInstancesRequest is undocumented.
 type StopInstancesRequest struct {
-	DryRun      bool     `xml:"dryRun"`
-	Force       bool     `xml:"force"`
-	InstanceIds []string `xml:"InstanceId>InstanceId"`
+	DryRun      bool     `ec2:"dryRun" xml:"dryRun"`
+	Force       bool     `ec2:"force" xml:"force"`
+	InstanceIds []string `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // StopInstancesResult is undocumented.
 type StopInstancesResult struct {
-	StoppingInstances []InstanceStateChange `xml:"instancesSet>item"`
+	StoppingInstances []InstanceStateChange `ec2:"instancesSet" xml:"instancesSet>item"`
 }
 
 // Storage is undocumented.
 type Storage struct {
-	S3 S3Storage `xml:"S3"`
+	S3 S3Storage `ec2:"" xml:"S3"`
 }
 
 // Subnet is undocumented.
 type Subnet struct {
-	AvailabilityZone        string `xml:"availabilityZone"`
-	AvailableIPAddressCount int    `xml:"availableIpAddressCount"`
-	CidrBlock               string `xml:"cidrBlock"`
-	DefaultForAz            bool   `xml:"defaultForAz"`
-	MapPublicIPOnLaunch     bool   `xml:"mapPublicIpOnLaunch"`
-	State                   string `xml:"state"`
-	SubnetID                string `xml:"subnetId"`
-	Tags                    []Tag  `xml:"tagSet>item"`
-	VpcID                   string `xml:"vpcId"`
+	AvailabilityZone        string `ec2:"availabilityZone" xml:"availabilityZone"`
+	AvailableIPAddressCount int    `ec2:"availableIpAddressCount" xml:"availableIpAddressCount"`
+	CidrBlock               string `ec2:"cidrBlock" xml:"cidrBlock"`
+	DefaultForAz            bool   `ec2:"defaultForAz" xml:"defaultForAz"`
+	MapPublicIPOnLaunch     bool   `ec2:"mapPublicIpOnLaunch" xml:"mapPublicIpOnLaunch"`
+	State                   string `ec2:"state" xml:"state"`
+	SubnetID                string `ec2:"subnetId" xml:"subnetId"`
+	Tags                    []Tag  `ec2:"tagSet" xml:"tagSet>item"`
+	VpcID                   string `ec2:"vpcId" xml:"vpcId"`
 }
 
 // Tag is undocumented.
 type Tag struct {
-	Key   string `xml:"key"`
-	Value string `xml:"value"`
+	Key   string `ec2:"key" xml:"key"`
+	Value string `ec2:"value" xml:"value"`
 }
 
 // TagDescription is undocumented.
 type TagDescription struct {
-	Key          string `xml:"key"`
-	ResourceID   string `xml:"resourceId"`
-	ResourceType string `xml:"resourceType"`
-	Value        string `xml:"value"`
+	Key          string `ec2:"key" xml:"key"`
+	ResourceID   string `ec2:"resourceId" xml:"resourceId"`
+	ResourceType string `ec2:"resourceType" xml:"resourceType"`
+	Value        string `ec2:"value" xml:"value"`
 }
 
 // TerminateInstancesRequest is undocumented.
 type TerminateInstancesRequest struct {
-	DryRun      bool     `xml:"dryRun"`
-	InstanceIds []string `xml:"InstanceId>InstanceId"`
+	DryRun      bool     `ec2:"dryRun" xml:"dryRun"`
+	InstanceIds []string `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // TerminateInstancesResult is undocumented.
 type TerminateInstancesResult struct {
-	TerminatingInstances []InstanceStateChange `xml:"instancesSet>item"`
+	TerminatingInstances []InstanceStateChange `ec2:"instancesSet" xml:"instancesSet>item"`
 }
 
 // UnassignPrivateIPAddressesRequest is undocumented.
 type UnassignPrivateIPAddressesRequest struct {
-	NetworkInterfaceID string   `xml:"networkInterfaceId"`
-	PrivateIPAddresses []string `xml:"privateIpAddress>PrivateIpAddress"`
+	NetworkInterfaceID string   `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	PrivateIPAddresses []string `ec2:"privateIpAddress" xml:"privateIpAddress>PrivateIpAddress"`
 }
 
 // UnmonitorInstancesRequest is undocumented.
 type UnmonitorInstancesRequest struct {
-	DryRun      bool     `xml:"dryRun"`
-	InstanceIds []string `xml:"InstanceId>InstanceId"`
+	DryRun      bool     `ec2:"dryRun" xml:"dryRun"`
+	InstanceIds []string `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // UnmonitorInstancesResult is undocumented.
 type UnmonitorInstancesResult struct {
-	InstanceMonitorings []InstanceMonitoring `xml:"instancesSet>item"`
+	InstanceMonitorings []InstanceMonitoring `ec2:"instancesSet" xml:"instancesSet>item"`
 }
 
 // UserIDGroupPair is undocumented.
 type UserIDGroupPair struct {
-	GroupID   string `xml:"groupId"`
-	GroupName string `xml:"groupName"`
-	UserID    string `xml:"userId"`
+	GroupID   string `ec2:"groupId" xml:"groupId"`
+	GroupName string `ec2:"groupName" xml:"groupName"`
+	UserID    string `ec2:"userId" xml:"userId"`
 }
 
 // VgwTelemetry is undocumented.
 type VgwTelemetry struct {
-	AcceptedRouteCount int       `xml:"acceptedRouteCount"`
-	LastStatusChange   time.Time `xml:"lastStatusChange"`
-	OutsideIPAddress   string    `xml:"outsideIpAddress"`
-	Status             string    `xml:"status"`
-	StatusMessage      string    `xml:"statusMessage"`
+	AcceptedRouteCount int       `ec2:"acceptedRouteCount" xml:"acceptedRouteCount"`
+	LastStatusChange   time.Time `ec2:"lastStatusChange" xml:"lastStatusChange"`
+	OutsideIPAddress   string    `ec2:"outsideIpAddress" xml:"outsideIpAddress"`
+	Status             string    `ec2:"status" xml:"status"`
+	StatusMessage      string    `ec2:"statusMessage" xml:"statusMessage"`
 }
 
 // Volume is undocumented.
 type Volume struct {
-	Attachments      []VolumeAttachment `xml:"attachmentSet>item"`
-	AvailabilityZone string             `xml:"availabilityZone"`
-	CreateTime       time.Time          `xml:"createTime"`
-	Encrypted        bool               `xml:"encrypted"`
-	Iops             int                `xml:"iops"`
-	KmsKeyID         string             `xml:"kmsKeyId"`
-	Size             int                `xml:"size"`
-	SnapshotID       string             `xml:"snapshotId"`
-	State            string             `xml:"status"`
-	Tags             []Tag              `xml:"tagSet>item"`
-	VolumeID         string             `xml:"volumeId"`
-	VolumeType       string             `xml:"volumeType"`
+	Attachments      []VolumeAttachment `ec2:"attachmentSet" xml:"attachmentSet>item"`
+	AvailabilityZone string             `ec2:"availabilityZone" xml:"availabilityZone"`
+	CreateTime       time.Time          `ec2:"createTime" xml:"createTime"`
+	Encrypted        bool               `ec2:"encrypted" xml:"encrypted"`
+	Iops             int                `ec2:"iops" xml:"iops"`
+	KmsKeyID         string             `ec2:"kmsKeyId" xml:"kmsKeyId"`
+	Size             int                `ec2:"size" xml:"size"`
+	SnapshotID       string             `ec2:"snapshotId" xml:"snapshotId"`
+	State            string             `ec2:"status" xml:"status"`
+	Tags             []Tag              `ec2:"tagSet" xml:"tagSet>item"`
+	VolumeID         string             `ec2:"volumeId" xml:"volumeId"`
+	VolumeType       string             `ec2:"volumeType" xml:"volumeType"`
 }
 
 // VolumeAttachment is undocumented.
 type VolumeAttachment struct {
-	AttachTime          time.Time `xml:"attachTime"`
-	DeleteOnTermination bool      `xml:"deleteOnTermination"`
-	Device              string    `xml:"device"`
-	InstanceID          string    `xml:"instanceId"`
-	State               string    `xml:"status"`
-	VolumeID            string    `xml:"volumeId"`
+	AttachTime          time.Time `ec2:"attachTime" xml:"attachTime"`
+	DeleteOnTermination bool      `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
+	Device              string    `ec2:"device" xml:"device"`
+	InstanceID          string    `ec2:"instanceId" xml:"instanceId"`
+	State               string    `ec2:"status" xml:"status"`
+	VolumeID            string    `ec2:"volumeId" xml:"volumeId"`
 }
 
 // VolumeDetail is undocumented.
 type VolumeDetail struct {
-	Size int64 `xml:"size"`
+	Size int64 `ec2:"size" xml:"size"`
 }
 
 // VolumeStatusAction is undocumented.
 type VolumeStatusAction struct {
-	Code        string `xml:"code"`
-	Description string `xml:"description"`
-	EventID     string `xml:"eventId"`
-	EventType   string `xml:"eventType"`
+	Code        string `ec2:"code" xml:"code"`
+	Description string `ec2:"description" xml:"description"`
+	EventID     string `ec2:"eventId" xml:"eventId"`
+	EventType   string `ec2:"eventType" xml:"eventType"`
 }
 
 // VolumeStatusDetails is undocumented.
 type VolumeStatusDetails struct {
-	Name   string `xml:"name"`
-	Status string `xml:"status"`
+	Name   string `ec2:"name" xml:"name"`
+	Status string `ec2:"status" xml:"status"`
 }
 
 // VolumeStatusEvent is undocumented.
 type VolumeStatusEvent struct {
-	Description string    `xml:"description"`
-	EventID     string    `xml:"eventId"`
-	EventType   string    `xml:"eventType"`
-	NotAfter    time.Time `xml:"notAfter"`
-	NotBefore   time.Time `xml:"notBefore"`
+	Description string    `ec2:"description" xml:"description"`
+	EventID     string    `ec2:"eventId" xml:"eventId"`
+	EventType   string    `ec2:"eventType" xml:"eventType"`
+	NotAfter    time.Time `ec2:"notAfter" xml:"notAfter"`
+	NotBefore   time.Time `ec2:"notBefore" xml:"notBefore"`
 }
 
 // VolumeStatusInfo is undocumented.
 type VolumeStatusInfo struct {
-	Details []VolumeStatusDetails `xml:"details>item"`
-	Status  string                `xml:"status"`
+	Details []VolumeStatusDetails `ec2:"details" xml:"details>item"`
+	Status  string                `ec2:"status" xml:"status"`
 }
 
 // VolumeStatusItem is undocumented.
 type VolumeStatusItem struct {
-	Actions          []VolumeStatusAction `xml:"actionsSet>item"`
-	AvailabilityZone string               `xml:"availabilityZone"`
-	Events           []VolumeStatusEvent  `xml:"eventsSet>item"`
-	VolumeID         string               `xml:"volumeId"`
-	VolumeStatus     VolumeStatusInfo     `xml:"volumeStatus"`
+	Actions          []VolumeStatusAction `ec2:"actionsSet" xml:"actionsSet>item"`
+	AvailabilityZone string               `ec2:"availabilityZone" xml:"availabilityZone"`
+	Events           []VolumeStatusEvent  `ec2:"eventsSet" xml:"eventsSet>item"`
+	VolumeID         string               `ec2:"volumeId" xml:"volumeId"`
+	VolumeStatus     VolumeStatusInfo     `ec2:"volumeStatus" xml:"volumeStatus"`
 }
 
 // Vpc is undocumented.
 type Vpc struct {
-	CidrBlock       string `xml:"cidrBlock"`
-	DhcpOptionsID   string `xml:"dhcpOptionsId"`
-	InstanceTenancy string `xml:"instanceTenancy"`
-	IsDefault       bool   `xml:"isDefault"`
-	State           string `xml:"state"`
-	Tags            []Tag  `xml:"tagSet>item"`
-	VpcID           string `xml:"vpcId"`
+	CidrBlock       string `ec2:"cidrBlock" xml:"cidrBlock"`
+	DhcpOptionsID   string `ec2:"dhcpOptionsId" xml:"dhcpOptionsId"`
+	InstanceTenancy string `ec2:"instanceTenancy" xml:"instanceTenancy"`
+	IsDefault       bool   `ec2:"isDefault" xml:"isDefault"`
+	State           string `ec2:"state" xml:"state"`
+	Tags            []Tag  `ec2:"tagSet" xml:"tagSet>item"`
+	VpcID           string `ec2:"vpcId" xml:"vpcId"`
 }
 
 // VpcAttachment is undocumented.
 type VpcAttachment struct {
-	State string `xml:"state"`
-	VpcID string `xml:"vpcId"`
+	State string `ec2:"state" xml:"state"`
+	VpcID string `ec2:"vpcId" xml:"vpcId"`
 }
 
 // VpcPeeringConnection is undocumented.
 type VpcPeeringConnection struct {
-	AccepterVpcInfo        VpcPeeringConnectionVpcInfo     `xml:"accepterVpcInfo"`
-	ExpirationTime         time.Time                       `xml:"expirationTime"`
-	RequesterVpcInfo       VpcPeeringConnectionVpcInfo     `xml:"requesterVpcInfo"`
-	Status                 VpcPeeringConnectionStateReason `xml:"status"`
-	Tags                   []Tag                           `xml:"tagSet>item"`
-	VpcPeeringConnectionID string                          `xml:"vpcPeeringConnectionId"`
+	AccepterVpcInfo        VpcPeeringConnectionVpcInfo     `ec2:"accepterVpcInfo" xml:"accepterVpcInfo"`
+	ExpirationTime         time.Time                       `ec2:"expirationTime" xml:"expirationTime"`
+	RequesterVpcInfo       VpcPeeringConnectionVpcInfo     `ec2:"requesterVpcInfo" xml:"requesterVpcInfo"`
+	Status                 VpcPeeringConnectionStateReason `ec2:"status" xml:"status"`
+	Tags                   []Tag                           `ec2:"tagSet" xml:"tagSet>item"`
+	VpcPeeringConnectionID string                          `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // VpcPeeringConnectionStateReason is undocumented.
 type VpcPeeringConnectionStateReason struct {
-	Code    string `xml:"code"`
-	Message string `xml:"message"`
+	Code    string `ec2:"code" xml:"code"`
+	Message string `ec2:"message" xml:"message"`
 }
 
 // VpcPeeringConnectionVpcInfo is undocumented.
 type VpcPeeringConnectionVpcInfo struct {
-	CidrBlock string `xml:"cidrBlock"`
-	OwnerID   string `xml:"ownerId"`
-	VpcID     string `xml:"vpcId"`
+	CidrBlock string `ec2:"cidrBlock" xml:"cidrBlock"`
+	OwnerID   string `ec2:"ownerId" xml:"ownerId"`
+	VpcID     string `ec2:"vpcId" xml:"vpcId"`
 }
 
 // VpnConnection is undocumented.
 type VpnConnection struct {
-	CustomerGatewayConfiguration string               `xml:"customerGatewayConfiguration"`
-	CustomerGatewayID            string               `xml:"customerGatewayId"`
-	Options                      VpnConnectionOptions `xml:"options"`
-	Routes                       []VpnStaticRoute     `xml:"routes>item"`
-	State                        string               `xml:"state"`
-	Tags                         []Tag                `xml:"tagSet>item"`
-	Type                         string               `xml:"type"`
-	VgwTelemetry                 []VgwTelemetry       `xml:"vgwTelemetry>item"`
-	VpnConnectionID              string               `xml:"vpnConnectionId"`
-	VpnGatewayID                 string               `xml:"vpnGatewayId"`
+	CustomerGatewayConfiguration string               `ec2:"customerGatewayConfiguration" xml:"customerGatewayConfiguration"`
+	CustomerGatewayID            string               `ec2:"customerGatewayId" xml:"customerGatewayId"`
+	Options                      VpnConnectionOptions `ec2:"options" xml:"options"`
+	Routes                       []VpnStaticRoute     `ec2:"routes" xml:"routes>item"`
+	State                        string               `ec2:"state" xml:"state"`
+	Tags                         []Tag                `ec2:"tagSet" xml:"tagSet>item"`
+	Type                         string               `ec2:"type" xml:"type"`
+	VgwTelemetry                 []VgwTelemetry       `ec2:"vgwTelemetry" xml:"vgwTelemetry>item"`
+	VpnConnectionID              string               `ec2:"vpnConnectionId" xml:"vpnConnectionId"`
+	VpnGatewayID                 string               `ec2:"vpnGatewayId" xml:"vpnGatewayId"`
 }
 
 // VpnConnectionOptions is undocumented.
 type VpnConnectionOptions struct {
-	StaticRoutesOnly bool `xml:"staticRoutesOnly"`
+	StaticRoutesOnly bool `ec2:"staticRoutesOnly" xml:"staticRoutesOnly"`
 }
 
 // VpnConnectionOptionsSpecification is undocumented.
 type VpnConnectionOptionsSpecification struct {
-	StaticRoutesOnly bool `xml:"staticRoutesOnly"`
+	StaticRoutesOnly bool `ec2:"staticRoutesOnly" xml:"staticRoutesOnly"`
 }
 
 // VpnGateway is undocumented.
 type VpnGateway struct {
-	AvailabilityZone string          `xml:"availabilityZone"`
-	State            string          `xml:"state"`
-	Tags             []Tag           `xml:"tagSet>item"`
-	Type             string          `xml:"type"`
-	VpcAttachments   []VpcAttachment `xml:"attachments>item"`
-	VpnGatewayID     string          `xml:"vpnGatewayId"`
+	AvailabilityZone string          `ec2:"availabilityZone" xml:"availabilityZone"`
+	State            string          `ec2:"state" xml:"state"`
+	Tags             []Tag           `ec2:"tagSet" xml:"tagSet>item"`
+	Type             string          `ec2:"type" xml:"type"`
+	VpcAttachments   []VpcAttachment `ec2:"attachments" xml:"attachments>item"`
+	VpnGatewayID     string          `ec2:"vpnGatewayId" xml:"vpnGatewayId"`
 }
 
 // VpnStaticRoute is undocumented.
 type VpnStaticRoute struct {
-	DestinationCidrBlock string `xml:"destinationCidrBlock"`
-	Source               string `xml:"source"`
-	State                string `xml:"state"`
+	DestinationCidrBlock string `ec2:"destinationCidrBlock" xml:"destinationCidrBlock"`
+	Source               string `ec2:"source" xml:"source"`
+	State                string `ec2:"state" xml:"state"`
 }
 
 // avoid errors if the packages aren't referenced

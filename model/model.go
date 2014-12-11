@@ -108,6 +108,25 @@ func (m Member) XMLTag(wrapper string) string {
 	return fmt.Sprintf("`xml:\"%s\"`", strings.Join(path, ">"))
 }
 
+func (m Member) EC2Tag() string {
+	var path []string
+	if m.LocationName != "" {
+		path = append(path, m.LocationName)
+	} else {
+		path = append(path, m.Name)
+	}
+
+	if m.Shape().ShapeType == "list" && service.Metadata.Protocol != "rest-xml" {
+		loc := m.Shape().MemberRef.LocationName
+		if loc == "" {
+			loc = "member"
+		}
+		path = append(path, loc)
+	}
+
+	return fmt.Sprintf("`ec2:\"%s\" xml:\"%s\"`", m.LocationName, strings.Join(path, ">"))
+}
+
 func (m Member) Shape() *Shape {
 	return m.ShapeRef.Shape()
 }
