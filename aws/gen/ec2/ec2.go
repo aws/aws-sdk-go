@@ -12,7 +12,7 @@ import (
 
 // EC2 is a client for Amazon Elastic Compute Cloud.
 type EC2 struct {
-	client *aws.QueryClient
+	client *aws.EC2Client
 }
 
 // New returns a new EC2 client.
@@ -25,7 +25,7 @@ func New(creds aws.Credentials, region string, client *http.Client) *EC2 {
 	endpoint, service, region := endpoints.Lookup("ec2", region)
 
 	return &EC2{
-		client: &aws.QueryClient{
+		client: &aws.EC2Client{
 			Context: aws.Context{
 				Credentials: creds,
 				Service:     service,

@@ -274,9 +274,6 @@ func Load(name string, r io.Reader) error {
 	service.FullName = service.Metadata.ServiceFullName
 	service.PackageName = strings.ToLower(name)
 	service.Name = name
-	if service.Metadata.Protocol == "ec2" {
-		service.Metadata.Protocol = "query"
-	}
 
 	return nil
 }

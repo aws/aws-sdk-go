@@ -17,6 +17,7 @@ func Generate(w io.Writer) error {
 	template.Must(common(t))
 	template.Must(jsonClient(t))
 	template.Must(queryClient(t))
+	template.Must(ec2Client(t))
 	template.Must(restXMLClient(t))
 	template.Must(restJSONClient(t))
 
@@ -188,6 +189,80 @@ type {{ exportable $wname }} struct {
     XMLName xml.Name {{ $s.MessageTag }}
 {{ range $name, $m := $s.Members }}
 {{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $wname }}  {{ end }}
+}
+
+{{ end }}
+
+{{ template "footer" }}
+{{ end }}
+
+`)
+}
+
+func ec2Client(t *template.Template) (*template.Template, error) {
+	return t.Parse(`
+{{ define "ec2" }}
+{{ template "header" $ }}
+
+// {{ .Name }} is a client for {{ .FullName }}.
+type {{ .Name }} struct {
+  client *aws.EC2Client
+}
+
+// New returns a new {{ .Name }} client.
+func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }} {
+  if client == nil {
+     client = http.DefaultClient
+  }
+
+  service := "{{ .Metadata.EndpointPrefix }}"
+  endpoint, service, region := endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region)
+
+  return &{{ .Name }}{
+    client: &aws.EC2Client{
+      Context: aws.Context{
+        Credentials: creds,
+        Service: service,
+        Region: region,
+      },
+      Client: client,
+      Endpoint: endpoint,
+      APIVersion: "{{ .Metadata.APIVersion }}",
+    },
+  }
+}
+
+{{ range $name, $op := .Operations }}
+
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.InputRef }}req {{ exportable $op.InputRef.WrappedType }}{{ end }}) ({{ if $op.OutputRef }}resp *{{ exportable $op.OutputRef.WrappedType }},{{ end }} err error) {
+  {{ if $op.Output }}resp = &{{ exportable $op.OutputRef.WrappedType }}{}{{ else }}// NRE{{ end }}
+  err = c.client.Do("{{ $name }}", "{{ $op.HTTP.Method }}", "{{ $op.HTTP.RequestURI }}", {{ if $op.Input }} req {{ else }} nil {{ end }}, {{ if $op.Output }} resp {{ else }} nil {{ end }})
+  return
+}
+
+{{ end }}
+
+{{ range $name, $s := .Shapes }}
+{{ if eq $s.ShapeType "structure" }}
+{{ if not $s.Exception }}
+
+// {{ exportable $name }} is undocumented.
+type {{ exportable $name }} struct {
+{{ range $name, $m := $s.Members }}
+{{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.ResultWrapper }}  {{ end }}
+}
+
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{ range $wname, $s := .Wrappers }}
+
+// {{ exportable $wname }} is a wrapper for {{ $s.Name }}.
+type {{ exportable $wname }} struct {
+    XMLName xml.Name {{ $s.MessageTag }}
+{{ range $name, $m := $s.Members }}
+{{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag "" }}  {{ end }}
 }
 
 {{ end }}
