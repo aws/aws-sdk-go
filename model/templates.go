@@ -175,7 +175,7 @@ func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }}
 // {{ exportable $name }} is undocumented.
 type {{ exportable $name }} struct {
 {{ range $name, $m := $s.Members }}
-{{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.ResultWrapper }}  {{ end }}
+{{ exportable $name }} {{ $m.Type }} {{ $m.QueryTag $s.ResultWrapper }}  {{ end }}
 }
 
 {{ end }}
@@ -187,7 +187,7 @@ type {{ exportable $name }} struct {
 // {{ exportable $wname }} is a wrapper for {{ $s.Name }}.
 type {{ exportable $wname }} struct {
 {{ range $name, $m := $s.Members }}
-{{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $wname }}  {{ end }}
+{{ exportable $name }} {{ $m.Type }} {{ $m.QueryTag $wname }}  {{ end }}
 }
 
 {{ end }}

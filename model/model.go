@@ -104,7 +104,23 @@ func (m Member) XMLTag(wrapper string) string {
 		path = append(path, m.Name)
 	}
 
-	if m.Shape().ShapeType == "list" && service.Metadata.Protocol != "rest-xml" {
+	return fmt.Sprintf("`xml:\"%s\"`", strings.Join(path, ">"))
+}
+
+// QueryTag returns the field tag for Query protocol members.
+func (m Member) QueryTag(wrapper string) string {
+	var path []string
+	if wrapper != "" {
+		path = append(path, wrapper)
+	}
+
+	if m.LocationName != "" {
+		path = append(path, m.LocationName)
+	} else {
+		path = append(path, m.Name)
+	}
+
+	if m.Shape().ShapeType == "list" {
 		loc := m.Shape().MemberRef.LocationName
 		if loc == "" {
 			loc = "member"
