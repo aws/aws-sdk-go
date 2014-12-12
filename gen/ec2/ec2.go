@@ -2061,161 +2061,161 @@ func (c *EC2) UnmonitorInstances(req *UnmonitorInstancesRequest) (resp *Unmonito
 
 // AcceptVpcPeeringConnectionRequest is undocumented.
 type AcceptVpcPeeringConnectionRequest struct {
-	DryRun                 aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	VpcPeeringConnectionID aws.StringValue  `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	VpcPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // AcceptVpcPeeringConnectionResult is undocumented.
 type AcceptVpcPeeringConnectionResult struct {
-	VpcPeeringConnection *VpcPeeringConnection `ec2:"vpcPeeringConnection" xml:"vpcPeeringConnection"`
+	VpcPeeringConnection *VpcPeeringConnection `ec2:"VpcPeeringConnection" xml:"vpcPeeringConnection"`
 }
 
 // AccountAttribute is undocumented.
 type AccountAttribute struct {
-	AttributeName   aws.StringValue         `ec2:"attributeName" xml:"attributeName"`
-	AttributeValues []AccountAttributeValue `ec2:"attributeValueSet" xml:"attributeValueSet>item"`
+	AttributeName   aws.StringValue         `ec2:"AttributeName" xml:"attributeName"`
+	AttributeValues []AccountAttributeValue `ec2:"AttributeValues" xml:"attributeValueSet>item"`
 }
 
 // AccountAttributeValue is undocumented.
 type AccountAttributeValue struct {
-	AttributeValue aws.StringValue `ec2:"attributeValue" xml:"attributeValue"`
+	AttributeValue aws.StringValue `ec2:"AttributeValue" xml:"attributeValue"`
 }
 
 // Address is undocumented.
 type Address struct {
-	AllocationID            aws.StringValue `ec2:"allocationId" xml:"allocationId"`
-	AssociationID           aws.StringValue `ec2:"associationId" xml:"associationId"`
-	Domain                  aws.StringValue `ec2:"domain" xml:"domain"`
-	InstanceID              aws.StringValue `ec2:"instanceId" xml:"instanceId"`
-	NetworkInterfaceID      aws.StringValue `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	NetworkInterfaceOwnerID aws.StringValue `ec2:"networkInterfaceOwnerId" xml:"networkInterfaceOwnerId"`
-	PrivateIPAddress        aws.StringValue `ec2:"privateIpAddress" xml:"privateIpAddress"`
-	PublicIP                aws.StringValue `ec2:"publicIp" xml:"publicIp"`
+	AllocationID            aws.StringValue `ec2:"AllocationId" xml:"allocationId"`
+	AssociationID           aws.StringValue `ec2:"AssociationId" xml:"associationId"`
+	Domain                  aws.StringValue `ec2:"Domain" xml:"domain"`
+	InstanceID              aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
+	NetworkInterfaceID      aws.StringValue `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	NetworkInterfaceOwnerID aws.StringValue `ec2:"NetworkInterfaceOwnerId" xml:"networkInterfaceOwnerId"`
+	PrivateIPAddress        aws.StringValue `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
+	PublicIP                aws.StringValue `ec2:"PublicIp" xml:"publicIp"`
 }
 
 // AllocateAddressRequest is undocumented.
 type AllocateAddressRequest struct {
 	Domain aws.StringValue  `ec2:"Domain" xml:"Domain"`
-	DryRun aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
 // AllocateAddressResult is undocumented.
 type AllocateAddressResult struct {
-	AllocationID aws.StringValue `ec2:"allocationId" xml:"allocationId"`
-	Domain       aws.StringValue `ec2:"domain" xml:"domain"`
-	PublicIP     aws.StringValue `ec2:"publicIp" xml:"publicIp"`
+	AllocationID aws.StringValue `ec2:"AllocationId" xml:"allocationId"`
+	Domain       aws.StringValue `ec2:"Domain" xml:"domain"`
+	PublicIP     aws.StringValue `ec2:"PublicIp" xml:"publicIp"`
 }
 
 // AssignPrivateIPAddressesRequest is undocumented.
 type AssignPrivateIPAddressesRequest struct {
-	AllowReassignment              aws.BooleanValue `ec2:"allowReassignment" xml:"allowReassignment"`
-	NetworkInterfaceID             aws.StringValue  `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	PrivateIPAddresses             []string         `ec2:"privateIpAddress" xml:"privateIpAddress>PrivateIpAddress"`
-	SecondaryPrivateIPAddressCount aws.IntegerValue `ec2:"secondaryPrivateIpAddressCount" xml:"secondaryPrivateIpAddressCount"`
+	AllowReassignment              aws.BooleanValue `ec2:"AllowReassignment" xml:"allowReassignment"`
+	NetworkInterfaceID             aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	PrivateIPAddresses             []string         `ec2:"PrivateIpAddresses" xml:"privateIpAddress>PrivateIpAddress"`
+	SecondaryPrivateIPAddressCount aws.IntegerValue `ec2:"SecondaryPrivateIpAddressCount" xml:"secondaryPrivateIpAddressCount"`
 }
 
 // AssociateAddressRequest is undocumented.
 type AssociateAddressRequest struct {
 	AllocationID       aws.StringValue  `ec2:"AllocationId" xml:"AllocationId"`
-	AllowReassociation aws.BooleanValue `ec2:"allowReassociation" xml:"allowReassociation"`
-	DryRun             aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	AllowReassociation aws.BooleanValue `ec2:"AllowReassociation" xml:"allowReassociation"`
+	DryRun             aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceID         aws.StringValue  `ec2:"InstanceId" xml:"InstanceId"`
-	NetworkInterfaceID aws.StringValue  `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	PrivateIPAddress   aws.StringValue  `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	NetworkInterfaceID aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	PrivateIPAddress   aws.StringValue  `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 	PublicIP           aws.StringValue  `ec2:"PublicIp" xml:"PublicIp"`
 }
 
 // AssociateAddressResult is undocumented.
 type AssociateAddressResult struct {
-	AssociationID aws.StringValue `ec2:"associationId" xml:"associationId"`
+	AssociationID aws.StringValue `ec2:"AssociationId" xml:"associationId"`
 }
 
 // AssociateDhcpOptionsRequest is undocumented.
 type AssociateDhcpOptionsRequest struct {
 	DhcpOptionsID aws.StringValue  `ec2:"DhcpOptionsId" xml:"DhcpOptionsId"`
-	DryRun        aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VpcID         aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
 // AssociateRouteTableRequest is undocumented.
 type AssociateRouteTableRequest struct {
-	DryRun       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	RouteTableID aws.StringValue  `ec2:"routeTableId" xml:"routeTableId"`
-	SubnetID     aws.StringValue  `ec2:"subnetId" xml:"subnetId"`
+	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	RouteTableID aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
+	SubnetID     aws.StringValue  `ec2:"SubnetId" xml:"subnetId"`
 }
 
 // AssociateRouteTableResult is undocumented.
 type AssociateRouteTableResult struct {
-	AssociationID aws.StringValue `ec2:"associationId" xml:"associationId"`
+	AssociationID aws.StringValue `ec2:"AssociationId" xml:"associationId"`
 }
 
 // AttachInternetGatewayRequest is undocumented.
 type AttachInternetGatewayRequest struct {
-	DryRun            aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InternetGatewayID aws.StringValue  `ec2:"internetGatewayId" xml:"internetGatewayId"`
-	VpcID             aws.StringValue  `ec2:"vpcId" xml:"vpcId"`
+	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InternetGatewayID aws.StringValue  `ec2:"InternetGatewayId" xml:"internetGatewayId"`
+	VpcID             aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // AttachNetworkInterfaceRequest is undocumented.
 type AttachNetworkInterfaceRequest struct {
-	DeviceIndex        aws.IntegerValue `ec2:"deviceIndex" xml:"deviceIndex"`
-	DryRun             aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InstanceID         aws.StringValue  `ec2:"instanceId" xml:"instanceId"`
-	NetworkInterfaceID aws.StringValue  `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	DeviceIndex        aws.IntegerValue `ec2:"DeviceIndex" xml:"deviceIndex"`
+	DryRun             aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InstanceID         aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
+	NetworkInterfaceID aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 }
 
 // AttachNetworkInterfaceResult is undocumented.
 type AttachNetworkInterfaceResult struct {
-	AttachmentID aws.StringValue `ec2:"attachmentId" xml:"attachmentId"`
+	AttachmentID aws.StringValue `ec2:"AttachmentId" xml:"attachmentId"`
 }
 
 // AttachVolumeRequest is undocumented.
 type AttachVolumeRequest struct {
 	Device     aws.StringValue  `ec2:"Device" xml:"Device"`
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"InstanceId"`
 	VolumeID   aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
 }
 
 // AttachVpnGatewayRequest is undocumented.
 type AttachVpnGatewayRequest struct {
-	DryRun       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VpcID        aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 	VpnGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
 // AttachVpnGatewayResult is undocumented.
 type AttachVpnGatewayResult struct {
-	VpcAttachment *VpcAttachment `ec2:"attachment" xml:"attachment"`
+	VpcAttachment *VpcAttachment `ec2:"VpcAttachment" xml:"attachment"`
 }
 
 // AttributeBooleanValue is undocumented.
 type AttributeBooleanValue struct {
-	Value aws.BooleanValue `ec2:"value" xml:"value"`
+	Value aws.BooleanValue `ec2:"Value" xml:"value"`
 }
 
 // AttributeValue is undocumented.
 type AttributeValue struct {
-	Value aws.StringValue `ec2:"value" xml:"value"`
+	Value aws.StringValue `ec2:"Value" xml:"value"`
 }
 
 // AuthorizeSecurityGroupEgressRequest is undocumented.
 type AuthorizeSecurityGroupEgressRequest struct {
-	CidrIP                     aws.StringValue  `ec2:"cidrIp" xml:"cidrIp"`
-	DryRun                     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	FromPort                   aws.IntegerValue `ec2:"fromPort" xml:"fromPort"`
-	GroupID                    aws.StringValue  `ec2:"groupId" xml:"groupId"`
-	IPPermissions              []IPPermission   `ec2:"ipPermissions" xml:"ipPermissions>item"`
-	IPProtocol                 aws.StringValue  `ec2:"ipProtocol" xml:"ipProtocol"`
-	SourceSecurityGroupName    aws.StringValue  `ec2:"sourceSecurityGroupName" xml:"sourceSecurityGroupName"`
-	SourceSecurityGroupOwnerID aws.StringValue  `ec2:"sourceSecurityGroupOwnerId" xml:"sourceSecurityGroupOwnerId"`
-	ToPort                     aws.IntegerValue `ec2:"toPort" xml:"toPort"`
+	CidrIP                     aws.StringValue  `ec2:"CidrIp" xml:"cidrIp"`
+	DryRun                     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	FromPort                   aws.IntegerValue `ec2:"FromPort" xml:"fromPort"`
+	GroupID                    aws.StringValue  `ec2:"GroupId" xml:"groupId"`
+	IPPermissions              []IPPermission   `ec2:"IpPermissions" xml:"ipPermissions>item"`
+	IPProtocol                 aws.StringValue  `ec2:"IpProtocol" xml:"ipProtocol"`
+	SourceSecurityGroupName    aws.StringValue  `ec2:"SourceSecurityGroupName" xml:"sourceSecurityGroupName"`
+	SourceSecurityGroupOwnerID aws.StringValue  `ec2:"SourceSecurityGroupOwnerId" xml:"sourceSecurityGroupOwnerId"`
+	ToPort                     aws.IntegerValue `ec2:"ToPort" xml:"toPort"`
 }
 
 // AuthorizeSecurityGroupIngressRequest is undocumented.
 type AuthorizeSecurityGroupIngressRequest struct {
 	CidrIP                     aws.StringValue  `ec2:"CidrIp" xml:"CidrIp"`
-	DryRun                     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun                     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	FromPort                   aws.IntegerValue `ec2:"FromPort" xml:"FromPort"`
 	GroupID                    aws.StringValue  `ec2:"GroupId" xml:"GroupId"`
 	GroupName                  aws.StringValue  `ec2:"GroupName" xml:"GroupName"`
@@ -2228,138 +2228,138 @@ type AuthorizeSecurityGroupIngressRequest struct {
 
 // AvailabilityZone is undocumented.
 type AvailabilityZone struct {
-	Messages   []AvailabilityZoneMessage `ec2:"messageSet" xml:"messageSet>item"`
-	RegionName aws.StringValue           `ec2:"regionName" xml:"regionName"`
-	State      aws.StringValue           `ec2:"zoneState" xml:"zoneState"`
-	ZoneName   aws.StringValue           `ec2:"zoneName" xml:"zoneName"`
+	Messages   []AvailabilityZoneMessage `ec2:"Messages" xml:"messageSet>item"`
+	RegionName aws.StringValue           `ec2:"RegionName" xml:"regionName"`
+	State      aws.StringValue           `ec2:"State" xml:"zoneState"`
+	ZoneName   aws.StringValue           `ec2:"ZoneName" xml:"zoneName"`
 }
 
 // AvailabilityZoneMessage is undocumented.
 type AvailabilityZoneMessage struct {
-	Message aws.StringValue `ec2:"message" xml:"message"`
+	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
 // BlobAttributeValue is undocumented.
 type BlobAttributeValue struct {
-	Value []byte `ec2:"value" xml:"value"`
+	Value []byte `ec2:"Value" xml:"value"`
 }
 
 // BlockDeviceMapping is undocumented.
 type BlockDeviceMapping struct {
-	DeviceName  aws.StringValue `ec2:"deviceName" xml:"deviceName"`
-	Ebs         *EbsBlockDevice `ec2:"ebs" xml:"ebs"`
-	NoDevice    aws.StringValue `ec2:"noDevice" xml:"noDevice"`
-	VirtualName aws.StringValue `ec2:"virtualName" xml:"virtualName"`
+	DeviceName  aws.StringValue `ec2:"DeviceName" xml:"deviceName"`
+	Ebs         *EbsBlockDevice `ec2:"Ebs" xml:"ebs"`
+	NoDevice    aws.StringValue `ec2:"NoDevice" xml:"noDevice"`
+	VirtualName aws.StringValue `ec2:"VirtualName" xml:"virtualName"`
 }
 
 // BundleInstanceRequest is undocumented.
 type BundleInstanceRequest struct {
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"InstanceId"`
 	Storage    *Storage         `ec2:"Storage" xml:"Storage"`
 }
 
 // BundleInstanceResult is undocumented.
 type BundleInstanceResult struct {
-	BundleTask *BundleTask `ec2:"bundleInstanceTask" xml:"bundleInstanceTask"`
+	BundleTask *BundleTask `ec2:"BundleTask" xml:"bundleInstanceTask"`
 }
 
 // BundleTask is undocumented.
 type BundleTask struct {
-	BundleID        aws.StringValue  `ec2:"bundleId" xml:"bundleId"`
-	BundleTaskError *BundleTaskError `ec2:"error" xml:"error"`
-	InstanceID      aws.StringValue  `ec2:"instanceId" xml:"instanceId"`
-	Progress        aws.StringValue  `ec2:"progress" xml:"progress"`
-	StartTime       time.Time        `ec2:"startTime" xml:"startTime"`
-	State           aws.StringValue  `ec2:"state" xml:"state"`
-	Storage         *Storage         `ec2:"storage" xml:"storage"`
-	UpdateTime      time.Time        `ec2:"updateTime" xml:"updateTime"`
+	BundleID        aws.StringValue  `ec2:"BundleId" xml:"bundleId"`
+	BundleTaskError *BundleTaskError `ec2:"BundleTaskError" xml:"error"`
+	InstanceID      aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
+	Progress        aws.StringValue  `ec2:"Progress" xml:"progress"`
+	StartTime       time.Time        `ec2:"StartTime" xml:"startTime"`
+	State           aws.StringValue  `ec2:"State" xml:"state"`
+	Storage         *Storage         `ec2:"Storage" xml:"storage"`
+	UpdateTime      time.Time        `ec2:"UpdateTime" xml:"updateTime"`
 }
 
 // BundleTaskError is undocumented.
 type BundleTaskError struct {
-	Code    aws.StringValue `ec2:"code" xml:"code"`
-	Message aws.StringValue `ec2:"message" xml:"message"`
+	Code    aws.StringValue `ec2:"Code" xml:"code"`
+	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
 // CancelBundleTaskRequest is undocumented.
 type CancelBundleTaskRequest struct {
 	BundleID aws.StringValue  `ec2:"BundleId" xml:"BundleId"`
-	DryRun   aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
 // CancelBundleTaskResult is undocumented.
 type CancelBundleTaskResult struct {
-	BundleTask *BundleTask `ec2:"bundleInstanceTask" xml:"bundleInstanceTask"`
+	BundleTask *BundleTask `ec2:"BundleTask" xml:"bundleInstanceTask"`
 }
 
 // CancelConversionRequest is undocumented.
 type CancelConversionRequest struct {
-	ConversionTaskID aws.StringValue  `ec2:"conversionTaskId" xml:"conversionTaskId"`
-	DryRun           aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	ReasonMessage    aws.StringValue  `ec2:"reasonMessage" xml:"reasonMessage"`
+	ConversionTaskID aws.StringValue  `ec2:"ConversionTaskId" xml:"conversionTaskId"`
+	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	ReasonMessage    aws.StringValue  `ec2:"ReasonMessage" xml:"reasonMessage"`
 }
 
 // CancelExportTaskRequest is undocumented.
 type CancelExportTaskRequest struct {
-	ExportTaskID aws.StringValue `ec2:"exportTaskId" xml:"exportTaskId"`
+	ExportTaskID aws.StringValue `ec2:"ExportTaskId" xml:"exportTaskId"`
 }
 
 // CancelReservedInstancesListingRequest is undocumented.
 type CancelReservedInstancesListingRequest struct {
-	ReservedInstancesListingID aws.StringValue `ec2:"reservedInstancesListingId" xml:"reservedInstancesListingId"`
+	ReservedInstancesListingID aws.StringValue `ec2:"ReservedInstancesListingId" xml:"reservedInstancesListingId"`
 }
 
 // CancelReservedInstancesListingResult is undocumented.
 type CancelReservedInstancesListingResult struct {
-	ReservedInstancesListings []ReservedInstancesListing `ec2:"reservedInstancesListingsSet" xml:"reservedInstancesListingsSet>item"`
+	ReservedInstancesListings []ReservedInstancesListing `ec2:"ReservedInstancesListings" xml:"reservedInstancesListingsSet>item"`
 }
 
 // CancelSpotInstanceRequestsRequest is undocumented.
 type CancelSpotInstanceRequestsRequest struct {
-	DryRun                 aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	SpotInstanceRequestIds []string         `ec2:"SpotInstanceRequestId" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
+	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	SpotInstanceRequestIds []string         `ec2:"SpotInstanceRequestIds" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
 }
 
 // CancelSpotInstanceRequestsResult is undocumented.
 type CancelSpotInstanceRequestsResult struct {
-	CancelledSpotInstanceRequests []CancelledSpotInstanceRequest `ec2:"spotInstanceRequestSet" xml:"spotInstanceRequestSet>item"`
+	CancelledSpotInstanceRequests []CancelledSpotInstanceRequest `ec2:"CancelledSpotInstanceRequests" xml:"spotInstanceRequestSet>item"`
 }
 
 // CancelledSpotInstanceRequest is undocumented.
 type CancelledSpotInstanceRequest struct {
-	SpotInstanceRequestID aws.StringValue `ec2:"spotInstanceRequestId" xml:"spotInstanceRequestId"`
-	State                 aws.StringValue `ec2:"state" xml:"state"`
+	SpotInstanceRequestID aws.StringValue `ec2:"SpotInstanceRequestId" xml:"spotInstanceRequestId"`
+	State                 aws.StringValue `ec2:"State" xml:"state"`
 }
 
 // ConfirmProductInstanceRequest is undocumented.
 type ConfirmProductInstanceRequest struct {
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceID  aws.StringValue  `ec2:"InstanceId" xml:"InstanceId"`
 	ProductCode aws.StringValue  `ec2:"ProductCode" xml:"ProductCode"`
 }
 
 // ConfirmProductInstanceResult is undocumented.
 type ConfirmProductInstanceResult struct {
-	OwnerID aws.StringValue `ec2:"ownerId" xml:"ownerId"`
+	OwnerID aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
 }
 
 // ConversionTask is undocumented.
 type ConversionTask struct {
-	ConversionTaskID aws.StringValue            `ec2:"conversionTaskId" xml:"conversionTaskId"`
-	ExpirationTime   aws.StringValue            `ec2:"expirationTime" xml:"expirationTime"`
-	ImportInstance   *ImportInstanceTaskDetails `ec2:"importInstance" xml:"importInstance"`
-	ImportVolume     *ImportVolumeTaskDetails   `ec2:"importVolume" xml:"importVolume"`
-	State            aws.StringValue            `ec2:"state" xml:"state"`
-	StatusMessage    aws.StringValue            `ec2:"statusMessage" xml:"statusMessage"`
-	Tags             []Tag                      `ec2:"tagSet" xml:"tagSet>item"`
+	ConversionTaskID aws.StringValue            `ec2:"ConversionTaskId" xml:"conversionTaskId"`
+	ExpirationTime   aws.StringValue            `ec2:"ExpirationTime" xml:"expirationTime"`
+	ImportInstance   *ImportInstanceTaskDetails `ec2:"ImportInstance" xml:"importInstance"`
+	ImportVolume     *ImportVolumeTaskDetails   `ec2:"ImportVolume" xml:"importVolume"`
+	State            aws.StringValue            `ec2:"State" xml:"state"`
+	StatusMessage    aws.StringValue            `ec2:"StatusMessage" xml:"statusMessage"`
+	Tags             []Tag                      `ec2:"Tags" xml:"tagSet>item"`
 }
 
 // CopyImageRequest is undocumented.
 type CopyImageRequest struct {
 	ClientToken   aws.StringValue  `ec2:"ClientToken" xml:"ClientToken"`
 	Description   aws.StringValue  `ec2:"Description" xml:"Description"`
-	DryRun        aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Name          aws.StringValue  `ec2:"Name" xml:"Name"`
 	SourceImageID aws.StringValue  `ec2:"SourceImageId" xml:"SourceImageId"`
 	SourceRegion  aws.StringValue  `ec2:"SourceRegion" xml:"SourceRegion"`
@@ -2367,230 +2367,230 @@ type CopyImageRequest struct {
 
 // CopyImageResult is undocumented.
 type CopyImageResult struct {
-	ImageID aws.StringValue `ec2:"imageId" xml:"imageId"`
+	ImageID aws.StringValue `ec2:"ImageId" xml:"imageId"`
 }
 
 // CopySnapshotRequest is undocumented.
 type CopySnapshotRequest struct {
 	Description       aws.StringValue  `ec2:"Description" xml:"Description"`
-	DestinationRegion aws.StringValue  `ec2:"destinationRegion" xml:"destinationRegion"`
-	DryRun            aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	PresignedURL      aws.StringValue  `ec2:"presignedUrl" xml:"presignedUrl"`
+	DestinationRegion aws.StringValue  `ec2:"DestinationRegion" xml:"destinationRegion"`
+	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	PresignedURL      aws.StringValue  `ec2:"PresignedUrl" xml:"presignedUrl"`
 	SourceRegion      aws.StringValue  `ec2:"SourceRegion" xml:"SourceRegion"`
 	SourceSnapshotID  aws.StringValue  `ec2:"SourceSnapshotId" xml:"SourceSnapshotId"`
 }
 
 // CopySnapshotResult is undocumented.
 type CopySnapshotResult struct {
-	SnapshotID aws.StringValue `ec2:"snapshotId" xml:"snapshotId"`
+	SnapshotID aws.StringValue `ec2:"SnapshotId" xml:"snapshotId"`
 }
 
 // CreateCustomerGatewayRequest is undocumented.
 type CreateCustomerGatewayRequest struct {
 	BgpAsn   aws.IntegerValue `ec2:"BgpAsn" xml:"BgpAsn"`
-	DryRun   aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	PublicIP aws.StringValue  `ec2:"IpAddress" xml:"IpAddress"`
+	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	PublicIP aws.StringValue  `ec2:"PublicIp" xml:"IpAddress"`
 	Type     aws.StringValue  `ec2:"Type" xml:"Type"`
 }
 
 // CreateCustomerGatewayResult is undocumented.
 type CreateCustomerGatewayResult struct {
-	CustomerGateway *CustomerGateway `ec2:"customerGateway" xml:"customerGateway"`
+	CustomerGateway *CustomerGateway `ec2:"CustomerGateway" xml:"customerGateway"`
 }
 
 // CreateDhcpOptionsRequest is undocumented.
 type CreateDhcpOptionsRequest struct {
-	DhcpConfigurations []NewDhcpConfiguration `ec2:"dhcpConfiguration" xml:"dhcpConfiguration>item"`
-	DryRun             aws.BooleanValue       `ec2:"dryRun" xml:"dryRun"`
+	DhcpConfigurations []NewDhcpConfiguration `ec2:"DhcpConfigurations" xml:"dhcpConfiguration>item"`
+	DryRun             aws.BooleanValue       `ec2:"DryRun" xml:"dryRun"`
 }
 
 // CreateDhcpOptionsResult is undocumented.
 type CreateDhcpOptionsResult struct {
-	DhcpOptions *DhcpOptions `ec2:"dhcpOptions" xml:"dhcpOptions"`
+	DhcpOptions *DhcpOptions `ec2:"DhcpOptions" xml:"dhcpOptions"`
 }
 
 // CreateImageRequest is undocumented.
 type CreateImageRequest struct {
-	BlockDeviceMappings []BlockDeviceMapping `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>BlockDeviceMapping"`
-	Description         aws.StringValue      `ec2:"description" xml:"description"`
-	DryRun              aws.BooleanValue     `ec2:"dryRun" xml:"dryRun"`
-	InstanceID          aws.StringValue      `ec2:"instanceId" xml:"instanceId"`
-	Name                aws.StringValue      `ec2:"name" xml:"name"`
-	NoReboot            aws.BooleanValue     `ec2:"noReboot" xml:"noReboot"`
+	BlockDeviceMappings []BlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>BlockDeviceMapping"`
+	Description         aws.StringValue      `ec2:"Description" xml:"description"`
+	DryRun              aws.BooleanValue     `ec2:"DryRun" xml:"dryRun"`
+	InstanceID          aws.StringValue      `ec2:"InstanceId" xml:"instanceId"`
+	Name                aws.StringValue      `ec2:"Name" xml:"name"`
+	NoReboot            aws.BooleanValue     `ec2:"NoReboot" xml:"noReboot"`
 }
 
 // CreateImageResult is undocumented.
 type CreateImageResult struct {
-	ImageID aws.StringValue `ec2:"imageId" xml:"imageId"`
+	ImageID aws.StringValue `ec2:"ImageId" xml:"imageId"`
 }
 
 // CreateInstanceExportTaskRequest is undocumented.
 type CreateInstanceExportTaskRequest struct {
-	Description       aws.StringValue              `ec2:"description" xml:"description"`
-	ExportToS3Task    *ExportToS3TaskSpecification `ec2:"exportToS3" xml:"exportToS3"`
-	InstanceID        aws.StringValue              `ec2:"instanceId" xml:"instanceId"`
-	TargetEnvironment aws.StringValue              `ec2:"targetEnvironment" xml:"targetEnvironment"`
+	Description       aws.StringValue              `ec2:"Description" xml:"description"`
+	ExportToS3Task    *ExportToS3TaskSpecification `ec2:"ExportToS3Task" xml:"exportToS3"`
+	InstanceID        aws.StringValue              `ec2:"InstanceId" xml:"instanceId"`
+	TargetEnvironment aws.StringValue              `ec2:"TargetEnvironment" xml:"targetEnvironment"`
 }
 
 // CreateInstanceExportTaskResult is undocumented.
 type CreateInstanceExportTaskResult struct {
-	ExportTask *ExportTask `ec2:"exportTask" xml:"exportTask"`
+	ExportTask *ExportTask `ec2:"ExportTask" xml:"exportTask"`
 }
 
 // CreateInternetGatewayRequest is undocumented.
 type CreateInternetGatewayRequest struct {
-	DryRun aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
 // CreateInternetGatewayResult is undocumented.
 type CreateInternetGatewayResult struct {
-	InternetGateway *InternetGateway `ec2:"internetGateway" xml:"internetGateway"`
+	InternetGateway *InternetGateway `ec2:"InternetGateway" xml:"internetGateway"`
 }
 
 // CreateKeyPairRequest is undocumented.
 type CreateKeyPairRequest struct {
-	DryRun  aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	KeyName aws.StringValue  `ec2:"KeyName" xml:"KeyName"`
 }
 
 // CreateNetworkAclEntryRequest is undocumented.
 type CreateNetworkAclEntryRequest struct {
-	CidrBlock    aws.StringValue  `ec2:"cidrBlock" xml:"cidrBlock"`
-	DryRun       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Egress       aws.BooleanValue `ec2:"egress" xml:"egress"`
-	IcmpTypeCode *IcmpTypeCode    `ec2:"Icmp" xml:"Icmp"`
-	NetworkAclID aws.StringValue  `ec2:"networkAclId" xml:"networkAclId"`
-	PortRange    *PortRange       `ec2:"portRange" xml:"portRange"`
-	Protocol     aws.StringValue  `ec2:"protocol" xml:"protocol"`
-	RuleAction   aws.StringValue  `ec2:"ruleAction" xml:"ruleAction"`
-	RuleNumber   aws.IntegerValue `ec2:"ruleNumber" xml:"ruleNumber"`
+	CidrBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
+	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
+	IcmpTypeCode *IcmpTypeCode    `ec2:"IcmpTypeCode" xml:"Icmp"`
+	NetworkAclID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
+	PortRange    *PortRange       `ec2:"PortRange" xml:"portRange"`
+	Protocol     aws.StringValue  `ec2:"Protocol" xml:"protocol"`
+	RuleAction   aws.StringValue  `ec2:"RuleAction" xml:"ruleAction"`
+	RuleNumber   aws.IntegerValue `ec2:"RuleNumber" xml:"ruleNumber"`
 }
 
 // CreateNetworkAclRequest is undocumented.
 type CreateNetworkAclRequest struct {
-	DryRun aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	VpcID  aws.StringValue  `ec2:"vpcId" xml:"vpcId"`
+	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	VpcID  aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // CreateNetworkAclResult is undocumented.
 type CreateNetworkAclResult struct {
-	NetworkAcl *NetworkAcl `ec2:"networkAcl" xml:"networkAcl"`
+	NetworkAcl *NetworkAcl `ec2:"NetworkAcl" xml:"networkAcl"`
 }
 
 // CreateNetworkInterfaceRequest is undocumented.
 type CreateNetworkInterfaceRequest struct {
-	Description                    aws.StringValue                 `ec2:"description" xml:"description"`
-	DryRun                         aws.BooleanValue                `ec2:"dryRun" xml:"dryRun"`
-	Groups                         []string                        `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
-	PrivateIPAddress               aws.StringValue                 `ec2:"privateIpAddress" xml:"privateIpAddress"`
-	PrivateIPAddresses             []PrivateIPAddressSpecification `ec2:"privateIpAddresses" xml:"privateIpAddresses>item"`
-	SecondaryPrivateIPAddressCount aws.IntegerValue                `ec2:"secondaryPrivateIpAddressCount" xml:"secondaryPrivateIpAddressCount"`
-	SubnetID                       aws.StringValue                 `ec2:"subnetId" xml:"subnetId"`
+	Description                    aws.StringValue                 `ec2:"Description" xml:"description"`
+	DryRun                         aws.BooleanValue                `ec2:"DryRun" xml:"dryRun"`
+	Groups                         []string                        `ec2:"Groups" xml:"SecurityGroupId>SecurityGroupId"`
+	PrivateIPAddress               aws.StringValue                 `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
+	PrivateIPAddresses             []PrivateIPAddressSpecification `ec2:"PrivateIpAddresses" xml:"privateIpAddresses>item"`
+	SecondaryPrivateIPAddressCount aws.IntegerValue                `ec2:"SecondaryPrivateIpAddressCount" xml:"secondaryPrivateIpAddressCount"`
+	SubnetID                       aws.StringValue                 `ec2:"SubnetId" xml:"subnetId"`
 }
 
 // CreateNetworkInterfaceResult is undocumented.
 type CreateNetworkInterfaceResult struct {
-	NetworkInterface *NetworkInterface `ec2:"networkInterface" xml:"networkInterface"`
+	NetworkInterface *NetworkInterface `ec2:"NetworkInterface" xml:"networkInterface"`
 }
 
 // CreatePlacementGroupRequest is undocumented.
 type CreatePlacementGroupRequest struct {
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	GroupName aws.StringValue  `ec2:"groupName" xml:"groupName"`
-	Strategy  aws.StringValue  `ec2:"strategy" xml:"strategy"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	GroupName aws.StringValue  `ec2:"GroupName" xml:"groupName"`
+	Strategy  aws.StringValue  `ec2:"Strategy" xml:"strategy"`
 }
 
 // CreateReservedInstancesListingRequest is undocumented.
 type CreateReservedInstancesListingRequest struct {
-	ClientToken         aws.StringValue              `ec2:"clientToken" xml:"clientToken"`
-	InstanceCount       aws.IntegerValue             `ec2:"instanceCount" xml:"instanceCount"`
-	PriceSchedules      []PriceScheduleSpecification `ec2:"priceSchedules" xml:"priceSchedules>item"`
-	ReservedInstancesID aws.StringValue              `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
+	ClientToken         aws.StringValue              `ec2:"ClientToken" xml:"clientToken"`
+	InstanceCount       aws.IntegerValue             `ec2:"InstanceCount" xml:"instanceCount"`
+	PriceSchedules      []PriceScheduleSpecification `ec2:"PriceSchedules" xml:"priceSchedules>item"`
+	ReservedInstancesID aws.StringValue              `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
 }
 
 // CreateReservedInstancesListingResult is undocumented.
 type CreateReservedInstancesListingResult struct {
-	ReservedInstancesListings []ReservedInstancesListing `ec2:"reservedInstancesListingsSet" xml:"reservedInstancesListingsSet>item"`
+	ReservedInstancesListings []ReservedInstancesListing `ec2:"ReservedInstancesListings" xml:"reservedInstancesListingsSet>item"`
 }
 
 // CreateRouteRequest is undocumented.
 type CreateRouteRequest struct {
-	DestinationCidrBlock   aws.StringValue  `ec2:"destinationCidrBlock" xml:"destinationCidrBlock"`
-	DryRun                 aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	GatewayID              aws.StringValue  `ec2:"gatewayId" xml:"gatewayId"`
-	InstanceID             aws.StringValue  `ec2:"instanceId" xml:"instanceId"`
-	NetworkInterfaceID     aws.StringValue  `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	RouteTableID           aws.StringValue  `ec2:"routeTableId" xml:"routeTableId"`
-	VpcPeeringConnectionID aws.StringValue  `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	DestinationCidrBlock   aws.StringValue  `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
+	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	GatewayID              aws.StringValue  `ec2:"GatewayId" xml:"gatewayId"`
+	InstanceID             aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
+	NetworkInterfaceID     aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	RouteTableID           aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
+	VpcPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // CreateRouteTableRequest is undocumented.
 type CreateRouteTableRequest struct {
-	DryRun aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	VpcID  aws.StringValue  `ec2:"vpcId" xml:"vpcId"`
+	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	VpcID  aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // CreateRouteTableResult is undocumented.
 type CreateRouteTableResult struct {
-	RouteTable *RouteTable `ec2:"routeTable" xml:"routeTable"`
+	RouteTable *RouteTable `ec2:"RouteTable" xml:"routeTable"`
 }
 
 // CreateSecurityGroupRequest is undocumented.
 type CreateSecurityGroupRequest struct {
-	Description aws.StringValue  `ec2:"GroupDescription" xml:"GroupDescription"`
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	Description aws.StringValue  `ec2:"Description" xml:"GroupDescription"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	GroupName   aws.StringValue  `ec2:"GroupName" xml:"GroupName"`
 	VpcID       aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
 // CreateSecurityGroupResult is undocumented.
 type CreateSecurityGroupResult struct {
-	GroupID aws.StringValue `ec2:"groupId" xml:"groupId"`
+	GroupID aws.StringValue `ec2:"GroupId" xml:"groupId"`
 }
 
 // CreateSnapshotRequest is undocumented.
 type CreateSnapshotRequest struct {
 	Description aws.StringValue  `ec2:"Description" xml:"Description"`
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VolumeID    aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
 }
 
 // CreateSpotDatafeedSubscriptionRequest is undocumented.
 type CreateSpotDatafeedSubscriptionRequest struct {
-	Bucket aws.StringValue  `ec2:"bucket" xml:"bucket"`
-	DryRun aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Prefix aws.StringValue  `ec2:"prefix" xml:"prefix"`
+	Bucket aws.StringValue  `ec2:"Bucket" xml:"bucket"`
+	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Prefix aws.StringValue  `ec2:"Prefix" xml:"prefix"`
 }
 
 // CreateSpotDatafeedSubscriptionResult is undocumented.
 type CreateSpotDatafeedSubscriptionResult struct {
-	SpotDatafeedSubscription *SpotDatafeedSubscription `ec2:"spotDatafeedSubscription" xml:"spotDatafeedSubscription"`
+	SpotDatafeedSubscription *SpotDatafeedSubscription `ec2:"SpotDatafeedSubscription" xml:"spotDatafeedSubscription"`
 }
 
 // CreateSubnetRequest is undocumented.
 type CreateSubnetRequest struct {
 	AvailabilityZone aws.StringValue  `ec2:"AvailabilityZone" xml:"AvailabilityZone"`
 	CidrBlock        aws.StringValue  `ec2:"CidrBlock" xml:"CidrBlock"`
-	DryRun           aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VpcID            aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
 // CreateSubnetResult is undocumented.
 type CreateSubnetResult struct {
-	Subnet *Subnet `ec2:"subnet" xml:"subnet"`
+	Subnet *Subnet `ec2:"Subnet" xml:"subnet"`
 }
 
 // CreateTagsRequest is undocumented.
 type CreateTagsRequest struct {
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Resources []string         `ec2:"ResourceId" xml:"ResourceId>member"`
-	Tags      []Tag            `ec2:"Tag" xml:"Tag>item"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Resources []string         `ec2:"Resources" xml:"ResourceId>member"`
+	Tags      []Tag            `ec2:"Tags" xml:"Tag>item"`
 }
 
 // CreateVolumePermission is undocumented.
 type CreateVolumePermission struct {
-	Group  aws.StringValue `ec2:"group" xml:"group"`
-	UserID aws.StringValue `ec2:"userId" xml:"userId"`
+	Group  aws.StringValue `ec2:"Group" xml:"group"`
+	UserID aws.StringValue `ec2:"UserId" xml:"userId"`
 }
 
 // CreateVolumePermissionModifications is undocumented.
@@ -2602,8 +2602,8 @@ type CreateVolumePermissionModifications struct {
 // CreateVolumeRequest is undocumented.
 type CreateVolumeRequest struct {
 	AvailabilityZone aws.StringValue  `ec2:"AvailabilityZone" xml:"AvailabilityZone"`
-	DryRun           aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Encrypted        aws.BooleanValue `ec2:"encrypted" xml:"encrypted"`
+	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Encrypted        aws.BooleanValue `ec2:"Encrypted" xml:"encrypted"`
 	Iops             aws.IntegerValue `ec2:"Iops" xml:"Iops"`
 	KmsKeyID         aws.StringValue  `ec2:"KmsKeyId" xml:"KmsKeyId"`
 	Size             aws.IntegerValue `ec2:"Size" xml:"Size"`
@@ -2613,41 +2613,41 @@ type CreateVolumeRequest struct {
 
 // CreateVpcPeeringConnectionRequest is undocumented.
 type CreateVpcPeeringConnectionRequest struct {
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	PeerOwnerID aws.StringValue  `ec2:"peerOwnerId" xml:"peerOwnerId"`
-	PeerVpcID   aws.StringValue  `ec2:"peerVpcId" xml:"peerVpcId"`
-	VpcID       aws.StringValue  `ec2:"vpcId" xml:"vpcId"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	PeerOwnerID aws.StringValue  `ec2:"PeerOwnerId" xml:"peerOwnerId"`
+	PeerVpcID   aws.StringValue  `ec2:"PeerVpcId" xml:"peerVpcId"`
+	VpcID       aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // CreateVpcPeeringConnectionResult is undocumented.
 type CreateVpcPeeringConnectionResult struct {
-	VpcPeeringConnection *VpcPeeringConnection `ec2:"vpcPeeringConnection" xml:"vpcPeeringConnection"`
+	VpcPeeringConnection *VpcPeeringConnection `ec2:"VpcPeeringConnection" xml:"vpcPeeringConnection"`
 }
 
 // CreateVpcRequest is undocumented.
 type CreateVpcRequest struct {
 	CidrBlock       aws.StringValue  `ec2:"CidrBlock" xml:"CidrBlock"`
-	DryRun          aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InstanceTenancy aws.StringValue  `ec2:"instanceTenancy" xml:"instanceTenancy"`
+	DryRun          aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InstanceTenancy aws.StringValue  `ec2:"InstanceTenancy" xml:"instanceTenancy"`
 }
 
 // CreateVpcResult is undocumented.
 type CreateVpcResult struct {
-	Vpc *Vpc `ec2:"vpc" xml:"vpc"`
+	Vpc *Vpc `ec2:"Vpc" xml:"vpc"`
 }
 
 // CreateVpnConnectionRequest is undocumented.
 type CreateVpnConnectionRequest struct {
 	CustomerGatewayID aws.StringValue                    `ec2:"CustomerGatewayId" xml:"CustomerGatewayId"`
-	DryRun            aws.BooleanValue                   `ec2:"dryRun" xml:"dryRun"`
-	Options           *VpnConnectionOptionsSpecification `ec2:"options" xml:"options"`
+	DryRun            aws.BooleanValue                   `ec2:"DryRun" xml:"dryRun"`
+	Options           *VpnConnectionOptionsSpecification `ec2:"Options" xml:"options"`
 	Type              aws.StringValue                    `ec2:"Type" xml:"Type"`
 	VpnGatewayID      aws.StringValue                    `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
 // CreateVpnConnectionResult is undocumented.
 type CreateVpnConnectionResult struct {
-	VpnConnection *VpnConnection `ec2:"vpnConnection" xml:"vpnConnection"`
+	VpnConnection *VpnConnection `ec2:"VpnConnection" xml:"vpnConnection"`
 }
 
 // CreateVpnConnectionRouteRequest is undocumented.
@@ -2659,145 +2659,145 @@ type CreateVpnConnectionRouteRequest struct {
 // CreateVpnGatewayRequest is undocumented.
 type CreateVpnGatewayRequest struct {
 	AvailabilityZone aws.StringValue  `ec2:"AvailabilityZone" xml:"AvailabilityZone"`
-	DryRun           aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Type             aws.StringValue  `ec2:"Type" xml:"Type"`
 }
 
 // CreateVpnGatewayResult is undocumented.
 type CreateVpnGatewayResult struct {
-	VpnGateway *VpnGateway `ec2:"vpnGateway" xml:"vpnGateway"`
+	VpnGateway *VpnGateway `ec2:"VpnGateway" xml:"vpnGateway"`
 }
 
 // CustomerGateway is undocumented.
 type CustomerGateway struct {
-	BgpAsn            aws.StringValue `ec2:"bgpAsn" xml:"bgpAsn"`
-	CustomerGatewayID aws.StringValue `ec2:"customerGatewayId" xml:"customerGatewayId"`
-	IPAddress         aws.StringValue `ec2:"ipAddress" xml:"ipAddress"`
-	State             aws.StringValue `ec2:"state" xml:"state"`
-	Tags              []Tag           `ec2:"tagSet" xml:"tagSet>item"`
-	Type              aws.StringValue `ec2:"type" xml:"type"`
+	BgpAsn            aws.StringValue `ec2:"BgpAsn" xml:"bgpAsn"`
+	CustomerGatewayID aws.StringValue `ec2:"CustomerGatewayId" xml:"customerGatewayId"`
+	IPAddress         aws.StringValue `ec2:"IpAddress" xml:"ipAddress"`
+	State             aws.StringValue `ec2:"State" xml:"state"`
+	Tags              []Tag           `ec2:"Tags" xml:"tagSet>item"`
+	Type              aws.StringValue `ec2:"Type" xml:"type"`
 }
 
 // DeleteCustomerGatewayRequest is undocumented.
 type DeleteCustomerGatewayRequest struct {
 	CustomerGatewayID aws.StringValue  `ec2:"CustomerGatewayId" xml:"CustomerGatewayId"`
-	DryRun            aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
 // DeleteDhcpOptionsRequest is undocumented.
 type DeleteDhcpOptionsRequest struct {
 	DhcpOptionsID aws.StringValue  `ec2:"DhcpOptionsId" xml:"DhcpOptionsId"`
-	DryRun        aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
 // DeleteInternetGatewayRequest is undocumented.
 type DeleteInternetGatewayRequest struct {
-	DryRun            aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InternetGatewayID aws.StringValue  `ec2:"internetGatewayId" xml:"internetGatewayId"`
+	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InternetGatewayID aws.StringValue  `ec2:"InternetGatewayId" xml:"internetGatewayId"`
 }
 
 // DeleteKeyPairRequest is undocumented.
 type DeleteKeyPairRequest struct {
-	DryRun  aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	KeyName aws.StringValue  `ec2:"KeyName" xml:"KeyName"`
 }
 
 // DeleteNetworkAclEntryRequest is undocumented.
 type DeleteNetworkAclEntryRequest struct {
-	DryRun       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Egress       aws.BooleanValue `ec2:"egress" xml:"egress"`
-	NetworkAclID aws.StringValue  `ec2:"networkAclId" xml:"networkAclId"`
-	RuleNumber   aws.IntegerValue `ec2:"ruleNumber" xml:"ruleNumber"`
+	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
+	NetworkAclID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
+	RuleNumber   aws.IntegerValue `ec2:"RuleNumber" xml:"ruleNumber"`
 }
 
 // DeleteNetworkAclRequest is undocumented.
 type DeleteNetworkAclRequest struct {
-	DryRun       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	NetworkAclID aws.StringValue  `ec2:"networkAclId" xml:"networkAclId"`
+	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	NetworkAclID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 }
 
 // DeleteNetworkInterfaceRequest is undocumented.
 type DeleteNetworkInterfaceRequest struct {
-	DryRun             aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	NetworkInterfaceID aws.StringValue  `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	DryRun             aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	NetworkInterfaceID aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 }
 
 // DeletePlacementGroupRequest is undocumented.
 type DeletePlacementGroupRequest struct {
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	GroupName aws.StringValue  `ec2:"groupName" xml:"groupName"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	GroupName aws.StringValue  `ec2:"GroupName" xml:"groupName"`
 }
 
 // DeleteRouteRequest is undocumented.
 type DeleteRouteRequest struct {
-	DestinationCidrBlock aws.StringValue  `ec2:"destinationCidrBlock" xml:"destinationCidrBlock"`
-	DryRun               aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	RouteTableID         aws.StringValue  `ec2:"routeTableId" xml:"routeTableId"`
+	DestinationCidrBlock aws.StringValue  `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
+	DryRun               aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	RouteTableID         aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
 }
 
 // DeleteRouteTableRequest is undocumented.
 type DeleteRouteTableRequest struct {
-	DryRun       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	RouteTableID aws.StringValue  `ec2:"routeTableId" xml:"routeTableId"`
+	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	RouteTableID aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
 }
 
 // DeleteSecurityGroupRequest is undocumented.
 type DeleteSecurityGroupRequest struct {
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	GroupID   aws.StringValue  `ec2:"GroupId" xml:"GroupId"`
 	GroupName aws.StringValue  `ec2:"GroupName" xml:"GroupName"`
 }
 
 // DeleteSnapshotRequest is undocumented.
 type DeleteSnapshotRequest struct {
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	SnapshotID aws.StringValue  `ec2:"SnapshotId" xml:"SnapshotId"`
 }
 
 // DeleteSpotDatafeedSubscriptionRequest is undocumented.
 type DeleteSpotDatafeedSubscriptionRequest struct {
-	DryRun aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
 // DeleteSubnetRequest is undocumented.
 type DeleteSubnetRequest struct {
-	DryRun   aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	SubnetID aws.StringValue  `ec2:"SubnetId" xml:"SubnetId"`
 }
 
 // DeleteTagsRequest is undocumented.
 type DeleteTagsRequest struct {
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Resources []string         `ec2:"resourceId" xml:"resourceId>member"`
-	Tags      []Tag            `ec2:"tag" xml:"tag>item"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Resources []string         `ec2:"Resources" xml:"resourceId>member"`
+	Tags      []Tag            `ec2:"Tags" xml:"tag>item"`
 }
 
 // DeleteVolumeRequest is undocumented.
 type DeleteVolumeRequest struct {
-	DryRun   aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VolumeID aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
 }
 
 // DeleteVpcPeeringConnectionRequest is undocumented.
 type DeleteVpcPeeringConnectionRequest struct {
-	DryRun                 aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	VpcPeeringConnectionID aws.StringValue  `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	VpcPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // DeleteVpcPeeringConnectionResult is undocumented.
 type DeleteVpcPeeringConnectionResult struct {
-	Return aws.BooleanValue `ec2:"return" xml:"return"`
+	Return aws.BooleanValue `ec2:"Return" xml:"return"`
 }
 
 // DeleteVpcRequest is undocumented.
 type DeleteVpcRequest struct {
-	DryRun aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VpcID  aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
 // DeleteVpnConnectionRequest is undocumented.
 type DeleteVpnConnectionRequest struct {
-	DryRun          aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun          aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VpnConnectionID aws.StringValue  `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
 }
 
@@ -2809,563 +2809,563 @@ type DeleteVpnConnectionRouteRequest struct {
 
 // DeleteVpnGatewayRequest is undocumented.
 type DeleteVpnGatewayRequest struct {
-	DryRun       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VpnGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
 // DeregisterImageRequest is undocumented.
 type DeregisterImageRequest struct {
-	DryRun  aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	ImageID aws.StringValue  `ec2:"ImageId" xml:"ImageId"`
 }
 
 // DescribeAccountAttributesRequest is undocumented.
 type DescribeAccountAttributesRequest struct {
-	AttributeNames []string         `ec2:"attributeName" xml:"attributeName>attributeName"`
-	DryRun         aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	AttributeNames []string         `ec2:"AttributeNames" xml:"attributeName>attributeName"`
+	DryRun         aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
 // DescribeAccountAttributesResult is undocumented.
 type DescribeAccountAttributesResult struct {
-	AccountAttributes []AccountAttribute `ec2:"accountAttributeSet" xml:"accountAttributeSet>item"`
+	AccountAttributes []AccountAttribute `ec2:"AccountAttributes" xml:"accountAttributeSet>item"`
 }
 
 // DescribeAddressesRequest is undocumented.
 type DescribeAddressesRequest struct {
-	AllocationIds []string         `ec2:"AllocationId" xml:"AllocationId>AllocationId"`
-	DryRun        aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters       []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	PublicIPs     []string         `ec2:"PublicIp" xml:"PublicIp>PublicIp"`
+	AllocationIds []string         `ec2:"AllocationIds" xml:"AllocationId>AllocationId"`
+	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters       []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	PublicIPs     []string         `ec2:"PublicIps" xml:"PublicIp>PublicIp"`
 }
 
 // DescribeAddressesResult is undocumented.
 type DescribeAddressesResult struct {
-	Addresses []Address `ec2:"addressesSet" xml:"addressesSet>item"`
+	Addresses []Address `ec2:"Addresses" xml:"addressesSet>item"`
 }
 
 // DescribeAvailabilityZonesRequest is undocumented.
 type DescribeAvailabilityZonesRequest struct {
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters   []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	ZoneNames []string         `ec2:"ZoneName" xml:"ZoneName>ZoneName"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters   []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	ZoneNames []string         `ec2:"ZoneNames" xml:"ZoneName>ZoneName"`
 }
 
 // DescribeAvailabilityZonesResult is undocumented.
 type DescribeAvailabilityZonesResult struct {
-	AvailabilityZones []AvailabilityZone `ec2:"availabilityZoneInfo" xml:"availabilityZoneInfo>item"`
+	AvailabilityZones []AvailabilityZone `ec2:"AvailabilityZones" xml:"availabilityZoneInfo>item"`
 }
 
 // DescribeBundleTasksRequest is undocumented.
 type DescribeBundleTasksRequest struct {
-	BundleIds []string         `ec2:"BundleId" xml:"BundleId>BundleId"`
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters   []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	BundleIds []string         `ec2:"BundleIds" xml:"BundleId>BundleId"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters   []Filter         `ec2:"Filters" xml:"Filter>Filter"`
 }
 
 // DescribeBundleTasksResult is undocumented.
 type DescribeBundleTasksResult struct {
-	BundleTasks []BundleTask `ec2:"bundleInstanceTasksSet" xml:"bundleInstanceTasksSet>item"`
+	BundleTasks []BundleTask `ec2:"BundleTasks" xml:"bundleInstanceTasksSet>item"`
 }
 
 // DescribeConversionTasksRequest is undocumented.
 type DescribeConversionTasksRequest struct {
-	ConversionTaskIds []string         `ec2:"conversionTaskId" xml:"conversionTaskId>item"`
-	DryRun            aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters           []Filter         `ec2:"filter" xml:"filter>Filter"`
+	ConversionTaskIds []string         `ec2:"ConversionTaskIds" xml:"conversionTaskId>item"`
+	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters           []Filter         `ec2:"Filters" xml:"filter>Filter"`
 }
 
 // DescribeConversionTasksResult is undocumented.
 type DescribeConversionTasksResult struct {
-	ConversionTasks []ConversionTask `ec2:"conversionTasks" xml:"conversionTasks>item"`
+	ConversionTasks []ConversionTask `ec2:"ConversionTasks" xml:"conversionTasks>item"`
 }
 
 // DescribeCustomerGatewaysRequest is undocumented.
 type DescribeCustomerGatewaysRequest struct {
-	CustomerGatewayIds []string         `ec2:"CustomerGatewayId" xml:"CustomerGatewayId>CustomerGatewayId"`
-	DryRun             aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters            []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	CustomerGatewayIds []string         `ec2:"CustomerGatewayIds" xml:"CustomerGatewayId>CustomerGatewayId"`
+	DryRun             aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters            []Filter         `ec2:"Filters" xml:"Filter>Filter"`
 }
 
 // DescribeCustomerGatewaysResult is undocumented.
 type DescribeCustomerGatewaysResult struct {
-	CustomerGateways []CustomerGateway `ec2:"customerGatewaySet" xml:"customerGatewaySet>item"`
+	CustomerGateways []CustomerGateway `ec2:"CustomerGateways" xml:"customerGatewaySet>item"`
 }
 
 // DescribeDhcpOptionsRequest is undocumented.
 type DescribeDhcpOptionsRequest struct {
-	DhcpOptionsIds []string         `ec2:"DhcpOptionsId" xml:"DhcpOptionsId>DhcpOptionsId"`
-	DryRun         aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters        []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	DhcpOptionsIds []string         `ec2:"DhcpOptionsIds" xml:"DhcpOptionsId>DhcpOptionsId"`
+	DryRun         aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters        []Filter         `ec2:"Filters" xml:"Filter>Filter"`
 }
 
 // DescribeDhcpOptionsResult is undocumented.
 type DescribeDhcpOptionsResult struct {
-	DhcpOptions []DhcpOptions `ec2:"dhcpOptionsSet" xml:"dhcpOptionsSet>item"`
+	DhcpOptions []DhcpOptions `ec2:"DhcpOptions" xml:"dhcpOptionsSet>item"`
 }
 
 // DescribeExportTasksRequest is undocumented.
 type DescribeExportTasksRequest struct {
-	ExportTaskIds []string `ec2:"exportTaskId" xml:"exportTaskId>ExportTaskId"`
+	ExportTaskIds []string `ec2:"ExportTaskIds" xml:"exportTaskId>ExportTaskId"`
 }
 
 // DescribeExportTasksResult is undocumented.
 type DescribeExportTasksResult struct {
-	ExportTasks []ExportTask `ec2:"exportTaskSet" xml:"exportTaskSet>item"`
+	ExportTasks []ExportTask `ec2:"ExportTasks" xml:"exportTaskSet>item"`
 }
 
 // DescribeImageAttributeRequest is undocumented.
 type DescribeImageAttributeRequest struct {
 	Attribute aws.StringValue  `ec2:"Attribute" xml:"Attribute"`
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	ImageID   aws.StringValue  `ec2:"ImageId" xml:"ImageId"`
 }
 
 // DescribeImagesRequest is undocumented.
 type DescribeImagesRequest struct {
-	DryRun          aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	ExecutableUsers []string         `ec2:"ExecutableBy" xml:"ExecutableBy>ExecutableBy"`
-	Filters         []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	ImageIds        []string         `ec2:"ImageId" xml:"ImageId>ImageId"`
-	Owners          []string         `ec2:"Owner" xml:"Owner>Owner"`
+	DryRun          aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	ExecutableUsers []string         `ec2:"ExecutableUsers" xml:"ExecutableBy>ExecutableBy"`
+	Filters         []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	ImageIds        []string         `ec2:"ImageIds" xml:"ImageId>ImageId"`
+	Owners          []string         `ec2:"Owners" xml:"Owner>Owner"`
 }
 
 // DescribeImagesResult is undocumented.
 type DescribeImagesResult struct {
-	Images []Image `ec2:"imagesSet" xml:"imagesSet>item"`
+	Images []Image `ec2:"Images" xml:"imagesSet>item"`
 }
 
 // DescribeInstanceAttributeRequest is undocumented.
 type DescribeInstanceAttributeRequest struct {
-	Attribute  aws.StringValue  `ec2:"attribute" xml:"attribute"`
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InstanceID aws.StringValue  `ec2:"instanceId" xml:"instanceId"`
+	Attribute  aws.StringValue  `ec2:"Attribute" xml:"attribute"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
 }
 
 // DescribeInstanceStatusRequest is undocumented.
 type DescribeInstanceStatusRequest struct {
-	DryRun              aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters             []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	IncludeAllInstances aws.BooleanValue `ec2:"includeAllInstances" xml:"includeAllInstances"`
-	InstanceIds         []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
+	DryRun              aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters             []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	IncludeAllInstances aws.BooleanValue `ec2:"IncludeAllInstances" xml:"includeAllInstances"`
+	InstanceIds         []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
 	MaxResults          aws.IntegerValue `ec2:"MaxResults" xml:"MaxResults"`
 	NextToken           aws.StringValue  `ec2:"NextToken" xml:"NextToken"`
 }
 
 // DescribeInstanceStatusResult is undocumented.
 type DescribeInstanceStatusResult struct {
-	InstanceStatuses []InstanceStatus `ec2:"instanceStatusSet" xml:"instanceStatusSet>item"`
-	NextToken        aws.StringValue  `ec2:"nextToken" xml:"nextToken"`
+	InstanceStatuses []InstanceStatus `ec2:"InstanceStatuses" xml:"instanceStatusSet>item"`
+	NextToken        aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
 }
 
 // DescribeInstancesRequest is undocumented.
 type DescribeInstancesRequest struct {
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters     []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
-	MaxResults  aws.IntegerValue `ec2:"maxResults" xml:"maxResults"`
-	NextToken   aws.StringValue  `ec2:"nextToken" xml:"nextToken"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters     []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
+	MaxResults  aws.IntegerValue `ec2:"MaxResults" xml:"maxResults"`
+	NextToken   aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
 }
 
 // DescribeInstancesResult is undocumented.
 type DescribeInstancesResult struct {
-	NextToken    aws.StringValue `ec2:"nextToken" xml:"nextToken"`
-	Reservations []Reservation   `ec2:"reservationSet" xml:"reservationSet>item"`
+	NextToken    aws.StringValue `ec2:"NextToken" xml:"nextToken"`
+	Reservations []Reservation   `ec2:"Reservations" xml:"reservationSet>item"`
 }
 
 // DescribeInternetGatewaysRequest is undocumented.
 type DescribeInternetGatewaysRequest struct {
-	DryRun             aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters            []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	InternetGatewayIds []string         `ec2:"internetGatewayId" xml:"internetGatewayId>item"`
+	DryRun             aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters            []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	InternetGatewayIds []string         `ec2:"InternetGatewayIds" xml:"internetGatewayId>item"`
 }
 
 // DescribeInternetGatewaysResult is undocumented.
 type DescribeInternetGatewaysResult struct {
-	InternetGateways []InternetGateway `ec2:"internetGatewaySet" xml:"internetGatewaySet>item"`
+	InternetGateways []InternetGateway `ec2:"InternetGateways" xml:"internetGatewaySet>item"`
 }
 
 // DescribeKeyPairsRequest is undocumented.
 type DescribeKeyPairsRequest struct {
-	DryRun   aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters  []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	KeyNames []string         `ec2:"KeyName" xml:"KeyName>KeyName"`
+	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters  []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	KeyNames []string         `ec2:"KeyNames" xml:"KeyName>KeyName"`
 }
 
 // DescribeKeyPairsResult is undocumented.
 type DescribeKeyPairsResult struct {
-	KeyPairs []KeyPairInfo `ec2:"keySet" xml:"keySet>item"`
+	KeyPairs []KeyPairInfo `ec2:"KeyPairs" xml:"keySet>item"`
 }
 
 // DescribeNetworkAclsRequest is undocumented.
 type DescribeNetworkAclsRequest struct {
-	DryRun        aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters       []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	NetworkAclIds []string         `ec2:"NetworkAclId" xml:"NetworkAclId>item"`
+	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters       []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	NetworkAclIds []string         `ec2:"NetworkAclIds" xml:"NetworkAclId>item"`
 }
 
 // DescribeNetworkAclsResult is undocumented.
 type DescribeNetworkAclsResult struct {
-	NetworkAcls []NetworkAcl `ec2:"networkAclSet" xml:"networkAclSet>item"`
+	NetworkAcls []NetworkAcl `ec2:"NetworkAcls" xml:"networkAclSet>item"`
 }
 
 // DescribeNetworkInterfaceAttributeRequest is undocumented.
 type DescribeNetworkInterfaceAttributeRequest struct {
-	Attribute          aws.StringValue  `ec2:"attribute" xml:"attribute"`
-	DryRun             aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	NetworkInterfaceID aws.StringValue  `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
+	Attribute          aws.StringValue  `ec2:"Attribute" xml:"attribute"`
+	DryRun             aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	NetworkInterfaceID aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 }
 
 // DescribeNetworkInterfaceAttributeResult is undocumented.
 type DescribeNetworkInterfaceAttributeResult struct {
-	Attachment         *NetworkInterfaceAttachment `ec2:"attachment" xml:"attachment"`
-	Description        *AttributeValue             `ec2:"description" xml:"description"`
-	Groups             []GroupIdentifier           `ec2:"groupSet" xml:"groupSet>item"`
-	NetworkInterfaceID aws.StringValue             `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	SourceDestCheck    *AttributeBooleanValue      `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
+	Attachment         *NetworkInterfaceAttachment `ec2:"Attachment" xml:"attachment"`
+	Description        *AttributeValue             `ec2:"Description" xml:"description"`
+	Groups             []GroupIdentifier           `ec2:"Groups" xml:"groupSet>item"`
+	NetworkInterfaceID aws.StringValue             `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	SourceDestCheck    *AttributeBooleanValue      `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
 }
 
 // DescribeNetworkInterfacesRequest is undocumented.
 type DescribeNetworkInterfacesRequest struct {
-	DryRun              aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters             []Filter         `ec2:"filter" xml:"filter>Filter"`
-	NetworkInterfaceIds []string         `ec2:"NetworkInterfaceId" xml:"NetworkInterfaceId>item"`
+	DryRun              aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters             []Filter         `ec2:"Filters" xml:"filter>Filter"`
+	NetworkInterfaceIds []string         `ec2:"NetworkInterfaceIds" xml:"NetworkInterfaceId>item"`
 }
 
 // DescribeNetworkInterfacesResult is undocumented.
 type DescribeNetworkInterfacesResult struct {
-	NetworkInterfaces []NetworkInterface `ec2:"networkInterfaceSet" xml:"networkInterfaceSet>item"`
+	NetworkInterfaces []NetworkInterface `ec2:"NetworkInterfaces" xml:"networkInterfaceSet>item"`
 }
 
 // DescribePlacementGroupsRequest is undocumented.
 type DescribePlacementGroupsRequest struct {
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters    []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	GroupNames []string         `ec2:"groupName" xml:"groupName>member"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters    []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	GroupNames []string         `ec2:"GroupNames" xml:"groupName>member"`
 }
 
 // DescribePlacementGroupsResult is undocumented.
 type DescribePlacementGroupsResult struct {
-	PlacementGroups []PlacementGroup `ec2:"placementGroupSet" xml:"placementGroupSet>item"`
+	PlacementGroups []PlacementGroup `ec2:"PlacementGroups" xml:"placementGroupSet>item"`
 }
 
 // DescribeRegionsRequest is undocumented.
 type DescribeRegionsRequest struct {
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters     []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	RegionNames []string         `ec2:"RegionName" xml:"RegionName>RegionName"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters     []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	RegionNames []string         `ec2:"RegionNames" xml:"RegionName>RegionName"`
 }
 
 // DescribeRegionsResult is undocumented.
 type DescribeRegionsResult struct {
-	Regions []Region `ec2:"regionInfo" xml:"regionInfo>item"`
+	Regions []Region `ec2:"Regions" xml:"regionInfo>item"`
 }
 
 // DescribeReservedInstancesListingsRequest is undocumented.
 type DescribeReservedInstancesListingsRequest struct {
-	Filters                    []Filter        `ec2:"filters" xml:"filters>Filter"`
-	ReservedInstancesID        aws.StringValue `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
-	ReservedInstancesListingID aws.StringValue `ec2:"reservedInstancesListingId" xml:"reservedInstancesListingId"`
+	Filters                    []Filter        `ec2:"Filters" xml:"filters>Filter"`
+	ReservedInstancesID        aws.StringValue `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
+	ReservedInstancesListingID aws.StringValue `ec2:"ReservedInstancesListingId" xml:"reservedInstancesListingId"`
 }
 
 // DescribeReservedInstancesListingsResult is undocumented.
 type DescribeReservedInstancesListingsResult struct {
-	ReservedInstancesListings []ReservedInstancesListing `ec2:"reservedInstancesListingsSet" xml:"reservedInstancesListingsSet>item"`
+	ReservedInstancesListings []ReservedInstancesListing `ec2:"ReservedInstancesListings" xml:"reservedInstancesListingsSet>item"`
 }
 
 // DescribeReservedInstancesModificationsRequest is undocumented.
 type DescribeReservedInstancesModificationsRequest struct {
-	Filters                          []Filter        `ec2:"Filter" xml:"Filter>Filter"`
-	NextToken                        aws.StringValue `ec2:"nextToken" xml:"nextToken"`
-	ReservedInstancesModificationIds []string        `ec2:"ReservedInstancesModificationId" xml:"ReservedInstancesModificationId>ReservedInstancesModificationId"`
+	Filters                          []Filter        `ec2:"Filters" xml:"Filter>Filter"`
+	NextToken                        aws.StringValue `ec2:"NextToken" xml:"nextToken"`
+	ReservedInstancesModificationIds []string        `ec2:"ReservedInstancesModificationIds" xml:"ReservedInstancesModificationId>ReservedInstancesModificationId"`
 }
 
 // DescribeReservedInstancesModificationsResult is undocumented.
 type DescribeReservedInstancesModificationsResult struct {
-	NextToken                      aws.StringValue                 `ec2:"nextToken" xml:"nextToken"`
-	ReservedInstancesModifications []ReservedInstancesModification `ec2:"reservedInstancesModificationsSet" xml:"reservedInstancesModificationsSet>item"`
+	NextToken                      aws.StringValue                 `ec2:"NextToken" xml:"nextToken"`
+	ReservedInstancesModifications []ReservedInstancesModification `ec2:"ReservedInstancesModifications" xml:"reservedInstancesModificationsSet>item"`
 }
 
 // DescribeReservedInstancesOfferingsRequest is undocumented.
 type DescribeReservedInstancesOfferingsRequest struct {
 	AvailabilityZone             aws.StringValue  `ec2:"AvailabilityZone" xml:"AvailabilityZone"`
-	DryRun                       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters                      []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	DryRun                       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters                      []Filter         `ec2:"Filters" xml:"Filter>Filter"`
 	IncludeMarketplace           aws.BooleanValue `ec2:"IncludeMarketplace" xml:"IncludeMarketplace"`
-	InstanceTenancy              aws.StringValue  `ec2:"instanceTenancy" xml:"instanceTenancy"`
+	InstanceTenancy              aws.StringValue  `ec2:"InstanceTenancy" xml:"instanceTenancy"`
 	InstanceType                 aws.StringValue  `ec2:"InstanceType" xml:"InstanceType"`
 	MaxDuration                  aws.LongValue    `ec2:"MaxDuration" xml:"MaxDuration"`
 	MaxInstanceCount             aws.IntegerValue `ec2:"MaxInstanceCount" xml:"MaxInstanceCount"`
-	MaxResults                   aws.IntegerValue `ec2:"maxResults" xml:"maxResults"`
+	MaxResults                   aws.IntegerValue `ec2:"MaxResults" xml:"maxResults"`
 	MinDuration                  aws.LongValue    `ec2:"MinDuration" xml:"MinDuration"`
-	NextToken                    aws.StringValue  `ec2:"nextToken" xml:"nextToken"`
-	OfferingType                 aws.StringValue  `ec2:"offeringType" xml:"offeringType"`
+	NextToken                    aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
+	OfferingType                 aws.StringValue  `ec2:"OfferingType" xml:"offeringType"`
 	ProductDescription           aws.StringValue  `ec2:"ProductDescription" xml:"ProductDescription"`
-	ReservedInstancesOfferingIds []string         `ec2:"ReservedInstancesOfferingId" xml:"ReservedInstancesOfferingId>member"`
+	ReservedInstancesOfferingIds []string         `ec2:"ReservedInstancesOfferingIds" xml:"ReservedInstancesOfferingId>member"`
 }
 
 // DescribeReservedInstancesOfferingsResult is undocumented.
 type DescribeReservedInstancesOfferingsResult struct {
-	NextToken                  aws.StringValue             `ec2:"nextToken" xml:"nextToken"`
-	ReservedInstancesOfferings []ReservedInstancesOffering `ec2:"reservedInstancesOfferingsSet" xml:"reservedInstancesOfferingsSet>item"`
+	NextToken                  aws.StringValue             `ec2:"NextToken" xml:"nextToken"`
+	ReservedInstancesOfferings []ReservedInstancesOffering `ec2:"ReservedInstancesOfferings" xml:"reservedInstancesOfferingsSet>item"`
 }
 
 // DescribeReservedInstancesRequest is undocumented.
 type DescribeReservedInstancesRequest struct {
-	DryRun               aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters              []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	OfferingType         aws.StringValue  `ec2:"offeringType" xml:"offeringType"`
-	ReservedInstancesIds []string         `ec2:"ReservedInstancesId" xml:"ReservedInstancesId>ReservedInstancesId"`
+	DryRun               aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters              []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	OfferingType         aws.StringValue  `ec2:"OfferingType" xml:"offeringType"`
+	ReservedInstancesIds []string         `ec2:"ReservedInstancesIds" xml:"ReservedInstancesId>ReservedInstancesId"`
 }
 
 // DescribeReservedInstancesResult is undocumented.
 type DescribeReservedInstancesResult struct {
-	ReservedInstances []ReservedInstances `ec2:"reservedInstancesSet" xml:"reservedInstancesSet>item"`
+	ReservedInstances []ReservedInstances `ec2:"ReservedInstances" xml:"reservedInstancesSet>item"`
 }
 
 // DescribeRouteTablesRequest is undocumented.
 type DescribeRouteTablesRequest struct {
-	DryRun        aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters       []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	RouteTableIds []string         `ec2:"RouteTableId" xml:"RouteTableId>item"`
+	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters       []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	RouteTableIds []string         `ec2:"RouteTableIds" xml:"RouteTableId>item"`
 }
 
 // DescribeRouteTablesResult is undocumented.
 type DescribeRouteTablesResult struct {
-	RouteTables []RouteTable `ec2:"routeTableSet" xml:"routeTableSet>item"`
+	RouteTables []RouteTable `ec2:"RouteTables" xml:"routeTableSet>item"`
 }
 
 // DescribeSecurityGroupsRequest is undocumented.
 type DescribeSecurityGroupsRequest struct {
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters    []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	GroupIds   []string         `ec2:"GroupId" xml:"GroupId>groupId"`
-	GroupNames []string         `ec2:"GroupName" xml:"GroupName>GroupName"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters    []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	GroupIds   []string         `ec2:"GroupIds" xml:"GroupId>groupId"`
+	GroupNames []string         `ec2:"GroupNames" xml:"GroupName>GroupName"`
 }
 
 // DescribeSecurityGroupsResult is undocumented.
 type DescribeSecurityGroupsResult struct {
-	SecurityGroups []SecurityGroup `ec2:"securityGroupInfo" xml:"securityGroupInfo>item"`
+	SecurityGroups []SecurityGroup `ec2:"SecurityGroups" xml:"securityGroupInfo>item"`
 }
 
 // DescribeSnapshotAttributeRequest is undocumented.
 type DescribeSnapshotAttributeRequest struct {
 	Attribute  aws.StringValue  `ec2:"Attribute" xml:"Attribute"`
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	SnapshotID aws.StringValue  `ec2:"SnapshotId" xml:"SnapshotId"`
 }
 
 // DescribeSnapshotAttributeResult is undocumented.
 type DescribeSnapshotAttributeResult struct {
-	CreateVolumePermissions []CreateVolumePermission `ec2:"createVolumePermission" xml:"createVolumePermission>item"`
-	ProductCodes            []ProductCode            `ec2:"productCodes" xml:"productCodes>item"`
-	SnapshotID              aws.StringValue          `ec2:"snapshotId" xml:"snapshotId"`
+	CreateVolumePermissions []CreateVolumePermission `ec2:"CreateVolumePermissions" xml:"createVolumePermission>item"`
+	ProductCodes            []ProductCode            `ec2:"ProductCodes" xml:"productCodes>item"`
+	SnapshotID              aws.StringValue          `ec2:"SnapshotId" xml:"snapshotId"`
 }
 
 // DescribeSnapshotsRequest is undocumented.
 type DescribeSnapshotsRequest struct {
-	DryRun              aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters             []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	OwnerIds            []string         `ec2:"Owner" xml:"Owner>Owner"`
-	RestorableByUserIds []string         `ec2:"RestorableBy" xml:"RestorableBy>member"`
-	SnapshotIds         []string         `ec2:"SnapshotId" xml:"SnapshotId>SnapshotId"`
+	DryRun              aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters             []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	OwnerIds            []string         `ec2:"OwnerIds" xml:"Owner>Owner"`
+	RestorableByUserIds []string         `ec2:"RestorableByUserIds" xml:"RestorableBy>member"`
+	SnapshotIds         []string         `ec2:"SnapshotIds" xml:"SnapshotId>SnapshotId"`
 }
 
 // DescribeSnapshotsResult is undocumented.
 type DescribeSnapshotsResult struct {
-	Snapshots []Snapshot `ec2:"snapshotSet" xml:"snapshotSet>item"`
+	Snapshots []Snapshot `ec2:"Snapshots" xml:"snapshotSet>item"`
 }
 
 // DescribeSpotDatafeedSubscriptionRequest is undocumented.
 type DescribeSpotDatafeedSubscriptionRequest struct {
-	DryRun aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
 // DescribeSpotDatafeedSubscriptionResult is undocumented.
 type DescribeSpotDatafeedSubscriptionResult struct {
-	SpotDatafeedSubscription *SpotDatafeedSubscription `ec2:"spotDatafeedSubscription" xml:"spotDatafeedSubscription"`
+	SpotDatafeedSubscription *SpotDatafeedSubscription `ec2:"SpotDatafeedSubscription" xml:"spotDatafeedSubscription"`
 }
 
 // DescribeSpotInstanceRequestsRequest is undocumented.
 type DescribeSpotInstanceRequestsRequest struct {
-	DryRun                 aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters                []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	SpotInstanceRequestIds []string         `ec2:"SpotInstanceRequestId" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
+	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters                []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	SpotInstanceRequestIds []string         `ec2:"SpotInstanceRequestIds" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
 }
 
 // DescribeSpotInstanceRequestsResult is undocumented.
 type DescribeSpotInstanceRequestsResult struct {
-	SpotInstanceRequests []SpotInstanceRequest `ec2:"spotInstanceRequestSet" xml:"spotInstanceRequestSet>item"`
+	SpotInstanceRequests []SpotInstanceRequest `ec2:"SpotInstanceRequests" xml:"spotInstanceRequestSet>item"`
 }
 
 // DescribeSpotPriceHistoryRequest is undocumented.
 type DescribeSpotPriceHistoryRequest struct {
-	AvailabilityZone    aws.StringValue  `ec2:"availabilityZone" xml:"availabilityZone"`
-	DryRun              aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	EndTime             time.Time        `ec2:"endTime" xml:"endTime"`
-	Filters             []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	InstanceTypes       []string         `ec2:"InstanceType" xml:"InstanceType>member"`
-	MaxResults          aws.IntegerValue `ec2:"maxResults" xml:"maxResults"`
-	NextToken           aws.StringValue  `ec2:"nextToken" xml:"nextToken"`
-	ProductDescriptions []string         `ec2:"ProductDescription" xml:"ProductDescription>member"`
-	StartTime           time.Time        `ec2:"startTime" xml:"startTime"`
+	AvailabilityZone    aws.StringValue  `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	DryRun              aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	EndTime             time.Time        `ec2:"EndTime" xml:"endTime"`
+	Filters             []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	InstanceTypes       []string         `ec2:"InstanceTypes" xml:"InstanceType>member"`
+	MaxResults          aws.IntegerValue `ec2:"MaxResults" xml:"maxResults"`
+	NextToken           aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
+	ProductDescriptions []string         `ec2:"ProductDescriptions" xml:"ProductDescription>member"`
+	StartTime           time.Time        `ec2:"StartTime" xml:"startTime"`
 }
 
 // DescribeSpotPriceHistoryResult is undocumented.
 type DescribeSpotPriceHistoryResult struct {
-	NextToken        aws.StringValue `ec2:"nextToken" xml:"nextToken"`
-	SpotPriceHistory []SpotPrice     `ec2:"spotPriceHistorySet" xml:"spotPriceHistorySet>item"`
+	NextToken        aws.StringValue `ec2:"NextToken" xml:"nextToken"`
+	SpotPriceHistory []SpotPrice     `ec2:"SpotPriceHistory" xml:"spotPriceHistorySet>item"`
 }
 
 // DescribeSubnetsRequest is undocumented.
 type DescribeSubnetsRequest struct {
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters   []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	SubnetIds []string         `ec2:"SubnetId" xml:"SubnetId>SubnetId"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters   []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	SubnetIds []string         `ec2:"SubnetIds" xml:"SubnetId>SubnetId"`
 }
 
 // DescribeSubnetsResult is undocumented.
 type DescribeSubnetsResult struct {
-	Subnets []Subnet `ec2:"subnetSet" xml:"subnetSet>item"`
+	Subnets []Subnet `ec2:"Subnets" xml:"subnetSet>item"`
 }
 
 // DescribeTagsRequest is undocumented.
 type DescribeTagsRequest struct {
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters    []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	MaxResults aws.IntegerValue `ec2:"maxResults" xml:"maxResults"`
-	NextToken  aws.StringValue  `ec2:"nextToken" xml:"nextToken"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters    []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	MaxResults aws.IntegerValue `ec2:"MaxResults" xml:"maxResults"`
+	NextToken  aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
 }
 
 // DescribeTagsResult is undocumented.
 type DescribeTagsResult struct {
-	NextToken aws.StringValue  `ec2:"nextToken" xml:"nextToken"`
-	Tags      []TagDescription `ec2:"tagSet" xml:"tagSet>item"`
+	NextToken aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
+	Tags      []TagDescription `ec2:"Tags" xml:"tagSet>item"`
 }
 
 // DescribeVolumeAttributeRequest is undocumented.
 type DescribeVolumeAttributeRequest struct {
 	Attribute aws.StringValue  `ec2:"Attribute" xml:"Attribute"`
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VolumeID  aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
 }
 
 // DescribeVolumeAttributeResult is undocumented.
 type DescribeVolumeAttributeResult struct {
-	AutoEnableIO *AttributeBooleanValue `ec2:"autoEnableIO" xml:"autoEnableIO"`
-	ProductCodes []ProductCode          `ec2:"productCodes" xml:"productCodes>item"`
-	VolumeID     aws.StringValue        `ec2:"volumeId" xml:"volumeId"`
+	AutoEnableIO *AttributeBooleanValue `ec2:"AutoEnableIO" xml:"autoEnableIO"`
+	ProductCodes []ProductCode          `ec2:"ProductCodes" xml:"productCodes>item"`
+	VolumeID     aws.StringValue        `ec2:"VolumeId" xml:"volumeId"`
 }
 
 // DescribeVolumeStatusRequest is undocumented.
 type DescribeVolumeStatusRequest struct {
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters    []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters    []Filter         `ec2:"Filters" xml:"Filter>Filter"`
 	MaxResults aws.IntegerValue `ec2:"MaxResults" xml:"MaxResults"`
 	NextToken  aws.StringValue  `ec2:"NextToken" xml:"NextToken"`
-	VolumeIds  []string         `ec2:"VolumeId" xml:"VolumeId>VolumeId"`
+	VolumeIds  []string         `ec2:"VolumeIds" xml:"VolumeId>VolumeId"`
 }
 
 // DescribeVolumeStatusResult is undocumented.
 type DescribeVolumeStatusResult struct {
-	NextToken      aws.StringValue    `ec2:"nextToken" xml:"nextToken"`
-	VolumeStatuses []VolumeStatusItem `ec2:"volumeStatusSet" xml:"volumeStatusSet>item"`
+	NextToken      aws.StringValue    `ec2:"NextToken" xml:"nextToken"`
+	VolumeStatuses []VolumeStatusItem `ec2:"VolumeStatuses" xml:"volumeStatusSet>item"`
 }
 
 // DescribeVolumesRequest is undocumented.
 type DescribeVolumesRequest struct {
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters    []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	MaxResults aws.IntegerValue `ec2:"maxResults" xml:"maxResults"`
-	NextToken  aws.StringValue  `ec2:"nextToken" xml:"nextToken"`
-	VolumeIds  []string         `ec2:"VolumeId" xml:"VolumeId>VolumeId"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters    []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	MaxResults aws.IntegerValue `ec2:"MaxResults" xml:"maxResults"`
+	NextToken  aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
+	VolumeIds  []string         `ec2:"VolumeIds" xml:"VolumeId>VolumeId"`
 }
 
 // DescribeVolumesResult is undocumented.
 type DescribeVolumesResult struct {
-	NextToken aws.StringValue `ec2:"nextToken" xml:"nextToken"`
-	Volumes   []Volume        `ec2:"volumeSet" xml:"volumeSet>item"`
+	NextToken aws.StringValue `ec2:"NextToken" xml:"nextToken"`
+	Volumes   []Volume        `ec2:"Volumes" xml:"volumeSet>item"`
 }
 
 // DescribeVpcAttributeRequest is undocumented.
 type DescribeVpcAttributeRequest struct {
 	Attribute aws.StringValue  `ec2:"Attribute" xml:"Attribute"`
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VpcID     aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
 // DescribeVpcAttributeResult is undocumented.
 type DescribeVpcAttributeResult struct {
-	EnableDNSHostnames *AttributeBooleanValue `ec2:"enableDnsHostnames" xml:"enableDnsHostnames"`
-	EnableDNSSupport   *AttributeBooleanValue `ec2:"enableDnsSupport" xml:"enableDnsSupport"`
-	VpcID              aws.StringValue        `ec2:"vpcId" xml:"vpcId"`
+	EnableDNSHostnames *AttributeBooleanValue `ec2:"EnableDnsHostnames" xml:"enableDnsHostnames"`
+	EnableDNSSupport   *AttributeBooleanValue `ec2:"EnableDnsSupport" xml:"enableDnsSupport"`
+	VpcID              aws.StringValue        `ec2:"VpcId" xml:"vpcId"`
 }
 
 // DescribeVpcPeeringConnectionsRequest is undocumented.
 type DescribeVpcPeeringConnectionsRequest struct {
-	DryRun                  aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters                 []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	VpcPeeringConnectionIds []string         `ec2:"VpcPeeringConnectionId" xml:"VpcPeeringConnectionId>item"`
+	DryRun                  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters                 []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	VpcPeeringConnectionIds []string         `ec2:"VpcPeeringConnectionIds" xml:"VpcPeeringConnectionId>item"`
 }
 
 // DescribeVpcPeeringConnectionsResult is undocumented.
 type DescribeVpcPeeringConnectionsResult struct {
-	VpcPeeringConnections []VpcPeeringConnection `ec2:"vpcPeeringConnectionSet" xml:"vpcPeeringConnectionSet>item"`
+	VpcPeeringConnections []VpcPeeringConnection `ec2:"VpcPeeringConnections" xml:"vpcPeeringConnectionSet>item"`
 }
 
 // DescribeVpcsRequest is undocumented.
 type DescribeVpcsRequest struct {
-	DryRun  aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	VpcIds  []string         `ec2:"VpcId" xml:"VpcId>VpcId"`
+	DryRun  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	VpcIds  []string         `ec2:"VpcIds" xml:"VpcId>VpcId"`
 }
 
 // DescribeVpcsResult is undocumented.
 type DescribeVpcsResult struct {
-	Vpcs []Vpc `ec2:"vpcSet" xml:"vpcSet>item"`
+	Vpcs []Vpc `ec2:"Vpcs" xml:"vpcSet>item"`
 }
 
 // DescribeVpnConnectionsRequest is undocumented.
 type DescribeVpnConnectionsRequest struct {
-	DryRun           aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters          []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	VpnConnectionIds []string         `ec2:"VpnConnectionId" xml:"VpnConnectionId>VpnConnectionId"`
+	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters          []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	VpnConnectionIds []string         `ec2:"VpnConnectionIds" xml:"VpnConnectionId>VpnConnectionId"`
 }
 
 // DescribeVpnConnectionsResult is undocumented.
 type DescribeVpnConnectionsResult struct {
-	VpnConnections []VpnConnection `ec2:"vpnConnectionSet" xml:"vpnConnectionSet>item"`
+	VpnConnections []VpnConnection `ec2:"VpnConnections" xml:"vpnConnectionSet>item"`
 }
 
 // DescribeVpnGatewaysRequest is undocumented.
 type DescribeVpnGatewaysRequest struct {
-	DryRun        aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Filters       []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	VpnGatewayIds []string         `ec2:"VpnGatewayId" xml:"VpnGatewayId>VpnGatewayId"`
+	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters       []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	VpnGatewayIds []string         `ec2:"VpnGatewayIds" xml:"VpnGatewayId>VpnGatewayId"`
 }
 
 // DescribeVpnGatewaysResult is undocumented.
 type DescribeVpnGatewaysResult struct {
-	VpnGateways []VpnGateway `ec2:"vpnGatewaySet" xml:"vpnGatewaySet>item"`
+	VpnGateways []VpnGateway `ec2:"VpnGateways" xml:"vpnGatewaySet>item"`
 }
 
 // DetachInternetGatewayRequest is undocumented.
 type DetachInternetGatewayRequest struct {
-	DryRun            aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InternetGatewayID aws.StringValue  `ec2:"internetGatewayId" xml:"internetGatewayId"`
-	VpcID             aws.StringValue  `ec2:"vpcId" xml:"vpcId"`
+	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InternetGatewayID aws.StringValue  `ec2:"InternetGatewayId" xml:"internetGatewayId"`
+	VpcID             aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // DetachNetworkInterfaceRequest is undocumented.
 type DetachNetworkInterfaceRequest struct {
-	AttachmentID aws.StringValue  `ec2:"attachmentId" xml:"attachmentId"`
-	DryRun       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Force        aws.BooleanValue `ec2:"force" xml:"force"`
+	AttachmentID aws.StringValue  `ec2:"AttachmentId" xml:"attachmentId"`
+	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Force        aws.BooleanValue `ec2:"Force" xml:"force"`
 }
 
 // DetachVolumeRequest is undocumented.
 type DetachVolumeRequest struct {
 	Device     aws.StringValue  `ec2:"Device" xml:"Device"`
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Force      aws.BooleanValue `ec2:"Force" xml:"Force"`
 	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"InstanceId"`
 	VolumeID   aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
@@ -3373,22 +3373,22 @@ type DetachVolumeRequest struct {
 
 // DetachVpnGatewayRequest is undocumented.
 type DetachVpnGatewayRequest struct {
-	DryRun       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VpcID        aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 	VpnGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
 // DhcpConfiguration is undocumented.
 type DhcpConfiguration struct {
-	Key    aws.StringValue  `ec2:"key" xml:"key"`
-	Values []AttributeValue `ec2:"valueSet" xml:"valueSet>item"`
+	Key    aws.StringValue  `ec2:"Key" xml:"key"`
+	Values []AttributeValue `ec2:"Values" xml:"valueSet>item"`
 }
 
 // DhcpOptions is undocumented.
 type DhcpOptions struct {
-	DhcpConfigurations []DhcpConfiguration `ec2:"dhcpConfigurationSet" xml:"dhcpConfigurationSet>item"`
-	DhcpOptionsID      aws.StringValue     `ec2:"dhcpOptionsId" xml:"dhcpOptionsId"`
-	Tags               []Tag               `ec2:"tagSet" xml:"tagSet>item"`
+	DhcpConfigurations []DhcpConfiguration `ec2:"DhcpConfigurations" xml:"dhcpConfigurationSet>item"`
+	DhcpOptionsID      aws.StringValue     `ec2:"DhcpOptionsId" xml:"dhcpOptionsId"`
+	Tags               []Tag               `ec2:"Tags" xml:"tagSet>item"`
 }
 
 // DisableVgwRoutePropagationRequest is undocumented.
@@ -3400,14 +3400,14 @@ type DisableVgwRoutePropagationRequest struct {
 // DisassociateAddressRequest is undocumented.
 type DisassociateAddressRequest struct {
 	AssociationID aws.StringValue  `ec2:"AssociationId" xml:"AssociationId"`
-	DryRun        aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	PublicIP      aws.StringValue  `ec2:"PublicIp" xml:"PublicIp"`
 }
 
 // DisassociateRouteTableRequest is undocumented.
 type DisassociateRouteTableRequest struct {
-	AssociationID aws.StringValue  `ec2:"associationId" xml:"associationId"`
-	DryRun        aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	AssociationID aws.StringValue  `ec2:"AssociationId" xml:"associationId"`
+	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
 // DiskImage is undocumented.
@@ -3419,47 +3419,47 @@ type DiskImage struct {
 
 // DiskImageDescription is undocumented.
 type DiskImageDescription struct {
-	Checksum          aws.StringValue `ec2:"checksum" xml:"checksum"`
-	Format            aws.StringValue `ec2:"format" xml:"format"`
-	ImportManifestURL aws.StringValue `ec2:"importManifestUrl" xml:"importManifestUrl"`
-	Size              aws.LongValue   `ec2:"size" xml:"size"`
+	Checksum          aws.StringValue `ec2:"Checksum" xml:"checksum"`
+	Format            aws.StringValue `ec2:"Format" xml:"format"`
+	ImportManifestURL aws.StringValue `ec2:"ImportManifestUrl" xml:"importManifestUrl"`
+	Size              aws.LongValue   `ec2:"Size" xml:"size"`
 }
 
 // DiskImageDetail is undocumented.
 type DiskImageDetail struct {
-	Bytes             aws.LongValue   `ec2:"bytes" xml:"bytes"`
-	Format            aws.StringValue `ec2:"format" xml:"format"`
-	ImportManifestURL aws.StringValue `ec2:"importManifestUrl" xml:"importManifestUrl"`
+	Bytes             aws.LongValue   `ec2:"Bytes" xml:"bytes"`
+	Format            aws.StringValue `ec2:"Format" xml:"format"`
+	ImportManifestURL aws.StringValue `ec2:"ImportManifestUrl" xml:"importManifestUrl"`
 }
 
 // DiskImageVolumeDescription is undocumented.
 type DiskImageVolumeDescription struct {
-	ID   aws.StringValue `ec2:"id" xml:"id"`
-	Size aws.LongValue   `ec2:"size" xml:"size"`
+	ID   aws.StringValue `ec2:"Id" xml:"id"`
+	Size aws.LongValue   `ec2:"Size" xml:"size"`
 }
 
 // EbsBlockDevice is undocumented.
 type EbsBlockDevice struct {
-	DeleteOnTermination aws.BooleanValue `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
-	Encrypted           aws.BooleanValue `ec2:"encrypted" xml:"encrypted"`
-	Iops                aws.IntegerValue `ec2:"iops" xml:"iops"`
-	SnapshotID          aws.StringValue  `ec2:"snapshotId" xml:"snapshotId"`
-	VolumeSize          aws.IntegerValue `ec2:"volumeSize" xml:"volumeSize"`
-	VolumeType          aws.StringValue  `ec2:"volumeType" xml:"volumeType"`
+	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
+	Encrypted           aws.BooleanValue `ec2:"Encrypted" xml:"encrypted"`
+	Iops                aws.IntegerValue `ec2:"Iops" xml:"iops"`
+	SnapshotID          aws.StringValue  `ec2:"SnapshotId" xml:"snapshotId"`
+	VolumeSize          aws.IntegerValue `ec2:"VolumeSize" xml:"volumeSize"`
+	VolumeType          aws.StringValue  `ec2:"VolumeType" xml:"volumeType"`
 }
 
 // EbsInstanceBlockDevice is undocumented.
 type EbsInstanceBlockDevice struct {
-	AttachTime          time.Time        `ec2:"attachTime" xml:"attachTime"`
-	DeleteOnTermination aws.BooleanValue `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
-	Status              aws.StringValue  `ec2:"status" xml:"status"`
-	VolumeID            aws.StringValue  `ec2:"volumeId" xml:"volumeId"`
+	AttachTime          time.Time        `ec2:"AttachTime" xml:"attachTime"`
+	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
+	Status              aws.StringValue  `ec2:"Status" xml:"status"`
+	VolumeID            aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
 
 // EbsInstanceBlockDeviceSpecification is undocumented.
 type EbsInstanceBlockDeviceSpecification struct {
-	DeleteOnTermination aws.BooleanValue `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
-	VolumeID            aws.StringValue  `ec2:"volumeId" xml:"volumeId"`
+	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
+	VolumeID            aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
 
 // EnableVgwRoutePropagationRequest is undocumented.
@@ -3470,449 +3470,449 @@ type EnableVgwRoutePropagationRequest struct {
 
 // EnableVolumeIORequest is undocumented.
 type EnableVolumeIORequest struct {
-	DryRun   aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	VolumeID aws.StringValue  `ec2:"volumeId" xml:"volumeId"`
+	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	VolumeID aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
 
 // ExportTask is undocumented.
 type ExportTask struct {
-	Description           aws.StringValue        `ec2:"description" xml:"description"`
-	ExportTaskID          aws.StringValue        `ec2:"exportTaskId" xml:"exportTaskId"`
-	ExportToS3Task        *ExportToS3Task        `ec2:"exportToS3" xml:"exportToS3"`
-	InstanceExportDetails *InstanceExportDetails `ec2:"instanceExport" xml:"instanceExport"`
-	State                 aws.StringValue        `ec2:"state" xml:"state"`
-	StatusMessage         aws.StringValue        `ec2:"statusMessage" xml:"statusMessage"`
+	Description           aws.StringValue        `ec2:"Description" xml:"description"`
+	ExportTaskID          aws.StringValue        `ec2:"ExportTaskId" xml:"exportTaskId"`
+	ExportToS3Task        *ExportToS3Task        `ec2:"ExportToS3Task" xml:"exportToS3"`
+	InstanceExportDetails *InstanceExportDetails `ec2:"InstanceExportDetails" xml:"instanceExport"`
+	State                 aws.StringValue        `ec2:"State" xml:"state"`
+	StatusMessage         aws.StringValue        `ec2:"StatusMessage" xml:"statusMessage"`
 }
 
 // ExportToS3Task is undocumented.
 type ExportToS3Task struct {
-	ContainerFormat aws.StringValue `ec2:"containerFormat" xml:"containerFormat"`
-	DiskImageFormat aws.StringValue `ec2:"diskImageFormat" xml:"diskImageFormat"`
-	S3Bucket        aws.StringValue `ec2:"s3Bucket" xml:"s3Bucket"`
-	S3Key           aws.StringValue `ec2:"s3Key" xml:"s3Key"`
+	ContainerFormat aws.StringValue `ec2:"ContainerFormat" xml:"containerFormat"`
+	DiskImageFormat aws.StringValue `ec2:"DiskImageFormat" xml:"diskImageFormat"`
+	S3Bucket        aws.StringValue `ec2:"S3Bucket" xml:"s3Bucket"`
+	S3Key           aws.StringValue `ec2:"S3Key" xml:"s3Key"`
 }
 
 // ExportToS3TaskSpecification is undocumented.
 type ExportToS3TaskSpecification struct {
-	ContainerFormat aws.StringValue `ec2:"containerFormat" xml:"containerFormat"`
-	DiskImageFormat aws.StringValue `ec2:"diskImageFormat" xml:"diskImageFormat"`
-	S3Bucket        aws.StringValue `ec2:"s3Bucket" xml:"s3Bucket"`
-	S3Prefix        aws.StringValue `ec2:"s3Prefix" xml:"s3Prefix"`
+	ContainerFormat aws.StringValue `ec2:"ContainerFormat" xml:"containerFormat"`
+	DiskImageFormat aws.StringValue `ec2:"DiskImageFormat" xml:"diskImageFormat"`
+	S3Bucket        aws.StringValue `ec2:"S3Bucket" xml:"s3Bucket"`
+	S3Prefix        aws.StringValue `ec2:"S3Prefix" xml:"s3Prefix"`
 }
 
 // Filter is undocumented.
 type Filter struct {
 	Name   aws.StringValue `ec2:"Name" xml:"Name"`
-	Values []string        `ec2:"Value" xml:"Value>item"`
+	Values []string        `ec2:"Values" xml:"Value>item"`
 }
 
 // GetConsoleOutputRequest is undocumented.
 type GetConsoleOutputRequest struct {
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"InstanceId"`
 }
 
 // GetConsoleOutputResult is undocumented.
 type GetConsoleOutputResult struct {
-	InstanceID aws.StringValue `ec2:"instanceId" xml:"instanceId"`
-	Output     aws.StringValue `ec2:"output" xml:"output"`
-	Timestamp  time.Time       `ec2:"timestamp" xml:"timestamp"`
+	InstanceID aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
+	Output     aws.StringValue `ec2:"Output" xml:"output"`
+	Timestamp  time.Time       `ec2:"Timestamp" xml:"timestamp"`
 }
 
 // GetPasswordDataRequest is undocumented.
 type GetPasswordDataRequest struct {
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"InstanceId"`
 }
 
 // GetPasswordDataResult is undocumented.
 type GetPasswordDataResult struct {
-	InstanceID   aws.StringValue `ec2:"instanceId" xml:"instanceId"`
-	PasswordData aws.StringValue `ec2:"passwordData" xml:"passwordData"`
-	Timestamp    time.Time       `ec2:"timestamp" xml:"timestamp"`
+	InstanceID   aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
+	PasswordData aws.StringValue `ec2:"PasswordData" xml:"passwordData"`
+	Timestamp    time.Time       `ec2:"Timestamp" xml:"timestamp"`
 }
 
 // GroupIdentifier is undocumented.
 type GroupIdentifier struct {
-	GroupID   aws.StringValue `ec2:"groupId" xml:"groupId"`
-	GroupName aws.StringValue `ec2:"groupName" xml:"groupName"`
+	GroupID   aws.StringValue `ec2:"GroupId" xml:"groupId"`
+	GroupName aws.StringValue `ec2:"GroupName" xml:"groupName"`
 }
 
 // IamInstanceProfile is undocumented.
 type IamInstanceProfile struct {
-	ARN aws.StringValue `ec2:"arn" xml:"arn"`
-	ID  aws.StringValue `ec2:"id" xml:"id"`
+	ARN aws.StringValue `ec2:"Arn" xml:"arn"`
+	ID  aws.StringValue `ec2:"Id" xml:"id"`
 }
 
 // IamInstanceProfileSpecification is undocumented.
 type IamInstanceProfileSpecification struct {
-	ARN  aws.StringValue `ec2:"arn" xml:"arn"`
-	Name aws.StringValue `ec2:"name" xml:"name"`
+	ARN  aws.StringValue `ec2:"Arn" xml:"arn"`
+	Name aws.StringValue `ec2:"Name" xml:"name"`
 }
 
 // IcmpTypeCode is undocumented.
 type IcmpTypeCode struct {
-	Code aws.IntegerValue `ec2:"code" xml:"code"`
-	Type aws.IntegerValue `ec2:"type" xml:"type"`
+	Code aws.IntegerValue `ec2:"Code" xml:"code"`
+	Type aws.IntegerValue `ec2:"Type" xml:"type"`
 }
 
 // Image is undocumented.
 type Image struct {
-	Architecture        aws.StringValue      `ec2:"architecture" xml:"architecture"`
-	BlockDeviceMappings []BlockDeviceMapping `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
-	Description         aws.StringValue      `ec2:"description" xml:"description"`
-	Hypervisor          aws.StringValue      `ec2:"hypervisor" xml:"hypervisor"`
-	ImageID             aws.StringValue      `ec2:"imageId" xml:"imageId"`
-	ImageLocation       aws.StringValue      `ec2:"imageLocation" xml:"imageLocation"`
-	ImageOwnerAlias     aws.StringValue      `ec2:"imageOwnerAlias" xml:"imageOwnerAlias"`
-	ImageType           aws.StringValue      `ec2:"imageType" xml:"imageType"`
-	KernelID            aws.StringValue      `ec2:"kernelId" xml:"kernelId"`
-	Name                aws.StringValue      `ec2:"name" xml:"name"`
-	OwnerID             aws.StringValue      `ec2:"imageOwnerId" xml:"imageOwnerId"`
-	Platform            aws.StringValue      `ec2:"platform" xml:"platform"`
-	ProductCodes        []ProductCode        `ec2:"productCodes" xml:"productCodes>item"`
-	Public              aws.BooleanValue     `ec2:"isPublic" xml:"isPublic"`
-	RamdiskID           aws.StringValue      `ec2:"ramdiskId" xml:"ramdiskId"`
-	RootDeviceName      aws.StringValue      `ec2:"rootDeviceName" xml:"rootDeviceName"`
-	RootDeviceType      aws.StringValue      `ec2:"rootDeviceType" xml:"rootDeviceType"`
-	SriovNetSupport     aws.StringValue      `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
-	State               aws.StringValue      `ec2:"imageState" xml:"imageState"`
-	StateReason         *StateReason         `ec2:"stateReason" xml:"stateReason"`
-	Tags                []Tag                `ec2:"tagSet" xml:"tagSet>item"`
-	VirtualizationType  aws.StringValue      `ec2:"virtualizationType" xml:"virtualizationType"`
+	Architecture        aws.StringValue      `ec2:"Architecture" xml:"architecture"`
+	BlockDeviceMappings []BlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
+	Description         aws.StringValue      `ec2:"Description" xml:"description"`
+	Hypervisor          aws.StringValue      `ec2:"Hypervisor" xml:"hypervisor"`
+	ImageID             aws.StringValue      `ec2:"ImageId" xml:"imageId"`
+	ImageLocation       aws.StringValue      `ec2:"ImageLocation" xml:"imageLocation"`
+	ImageOwnerAlias     aws.StringValue      `ec2:"ImageOwnerAlias" xml:"imageOwnerAlias"`
+	ImageType           aws.StringValue      `ec2:"ImageType" xml:"imageType"`
+	KernelID            aws.StringValue      `ec2:"KernelId" xml:"kernelId"`
+	Name                aws.StringValue      `ec2:"Name" xml:"name"`
+	OwnerID             aws.StringValue      `ec2:"OwnerId" xml:"imageOwnerId"`
+	Platform            aws.StringValue      `ec2:"Platform" xml:"platform"`
+	ProductCodes        []ProductCode        `ec2:"ProductCodes" xml:"productCodes>item"`
+	Public              aws.BooleanValue     `ec2:"Public" xml:"isPublic"`
+	RamdiskID           aws.StringValue      `ec2:"RamdiskId" xml:"ramdiskId"`
+	RootDeviceName      aws.StringValue      `ec2:"RootDeviceName" xml:"rootDeviceName"`
+	RootDeviceType      aws.StringValue      `ec2:"RootDeviceType" xml:"rootDeviceType"`
+	SriovNetSupport     aws.StringValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+	State               aws.StringValue      `ec2:"State" xml:"imageState"`
+	StateReason         *StateReason         `ec2:"StateReason" xml:"stateReason"`
+	Tags                []Tag                `ec2:"Tags" xml:"tagSet>item"`
+	VirtualizationType  aws.StringValue      `ec2:"VirtualizationType" xml:"virtualizationType"`
 }
 
 // ImageAttribute is undocumented.
 type ImageAttribute struct {
-	BlockDeviceMappings []BlockDeviceMapping `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
-	Description         *AttributeValue      `ec2:"description" xml:"description"`
-	ImageID             aws.StringValue      `ec2:"imageId" xml:"imageId"`
-	KernelID            *AttributeValue      `ec2:"kernel" xml:"kernel"`
-	LaunchPermissions   []LaunchPermission   `ec2:"launchPermission" xml:"launchPermission>item"`
-	ProductCodes        []ProductCode        `ec2:"productCodes" xml:"productCodes>item"`
-	RamdiskID           *AttributeValue      `ec2:"ramdisk" xml:"ramdisk"`
-	SriovNetSupport     *AttributeValue      `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
+	BlockDeviceMappings []BlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
+	Description         *AttributeValue      `ec2:"Description" xml:"description"`
+	ImageID             aws.StringValue      `ec2:"ImageId" xml:"imageId"`
+	KernelID            *AttributeValue      `ec2:"KernelId" xml:"kernel"`
+	LaunchPermissions   []LaunchPermission   `ec2:"LaunchPermissions" xml:"launchPermission>item"`
+	ProductCodes        []ProductCode        `ec2:"ProductCodes" xml:"productCodes>item"`
+	RamdiskID           *AttributeValue      `ec2:"RamdiskId" xml:"ramdisk"`
+	SriovNetSupport     *AttributeValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 }
 
 // ImportInstanceLaunchSpecification is undocumented.
 type ImportInstanceLaunchSpecification struct {
-	AdditionalInfo                    aws.StringValue  `ec2:"additionalInfo" xml:"additionalInfo"`
-	Architecture                      aws.StringValue  `ec2:"architecture" xml:"architecture"`
-	GroupIds                          []string         `ec2:"GroupId" xml:"GroupId>SecurityGroupId"`
-	GroupNames                        []string         `ec2:"GroupName" xml:"GroupName>SecurityGroup"`
-	InstanceInitiatedShutdownBehavior aws.StringValue  `ec2:"instanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
-	InstanceType                      aws.StringValue  `ec2:"instanceType" xml:"instanceType"`
-	Monitoring                        aws.BooleanValue `ec2:"monitoring" xml:"monitoring"`
-	Placement                         *Placement       `ec2:"placement" xml:"placement"`
-	PrivateIPAddress                  aws.StringValue  `ec2:"privateIpAddress" xml:"privateIpAddress"`
-	SubnetID                          aws.StringValue  `ec2:"subnetId" xml:"subnetId"`
-	UserData                          aws.StringValue  `ec2:"userData" xml:"userData"`
+	AdditionalInfo                    aws.StringValue  `ec2:"AdditionalInfo" xml:"additionalInfo"`
+	Architecture                      aws.StringValue  `ec2:"Architecture" xml:"architecture"`
+	GroupIds                          []string         `ec2:"GroupIds" xml:"GroupId>SecurityGroupId"`
+	GroupNames                        []string         `ec2:"GroupNames" xml:"GroupName>SecurityGroup"`
+	InstanceInitiatedShutdownBehavior aws.StringValue  `ec2:"InstanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
+	InstanceType                      aws.StringValue  `ec2:"InstanceType" xml:"instanceType"`
+	Monitoring                        aws.BooleanValue `ec2:"Monitoring" xml:"monitoring"`
+	Placement                         *Placement       `ec2:"Placement" xml:"placement"`
+	PrivateIPAddress                  aws.StringValue  `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
+	SubnetID                          aws.StringValue  `ec2:"SubnetId" xml:"subnetId"`
+	UserData                          aws.StringValue  `ec2:"UserData" xml:"userData"`
 }
 
 // ImportInstanceRequest is undocumented.
 type ImportInstanceRequest struct {
-	Description         aws.StringValue                    `ec2:"description" xml:"description"`
-	DiskImages          []DiskImage                        `ec2:"diskImage" xml:"diskImage>member"`
-	DryRun              aws.BooleanValue                   `ec2:"dryRun" xml:"dryRun"`
-	LaunchSpecification *ImportInstanceLaunchSpecification `ec2:"launchSpecification" xml:"launchSpecification"`
-	Platform            aws.StringValue                    `ec2:"platform" xml:"platform"`
+	Description         aws.StringValue                    `ec2:"Description" xml:"description"`
+	DiskImages          []DiskImage                        `ec2:"DiskImages" xml:"diskImage>member"`
+	DryRun              aws.BooleanValue                   `ec2:"DryRun" xml:"dryRun"`
+	LaunchSpecification *ImportInstanceLaunchSpecification `ec2:"LaunchSpecification" xml:"launchSpecification"`
+	Platform            aws.StringValue                    `ec2:"Platform" xml:"platform"`
 }
 
 // ImportInstanceResult is undocumented.
 type ImportInstanceResult struct {
-	ConversionTask *ConversionTask `ec2:"conversionTask" xml:"conversionTask"`
+	ConversionTask *ConversionTask `ec2:"ConversionTask" xml:"conversionTask"`
 }
 
 // ImportInstanceTaskDetails is undocumented.
 type ImportInstanceTaskDetails struct {
-	Description aws.StringValue                  `ec2:"description" xml:"description"`
-	InstanceID  aws.StringValue                  `ec2:"instanceId" xml:"instanceId"`
-	Platform    aws.StringValue                  `ec2:"platform" xml:"platform"`
-	Volumes     []ImportInstanceVolumeDetailItem `ec2:"volumes" xml:"volumes>item"`
+	Description aws.StringValue                  `ec2:"Description" xml:"description"`
+	InstanceID  aws.StringValue                  `ec2:"InstanceId" xml:"instanceId"`
+	Platform    aws.StringValue                  `ec2:"Platform" xml:"platform"`
+	Volumes     []ImportInstanceVolumeDetailItem `ec2:"Volumes" xml:"volumes>item"`
 }
 
 // ImportInstanceVolumeDetailItem is undocumented.
 type ImportInstanceVolumeDetailItem struct {
-	AvailabilityZone aws.StringValue             `ec2:"availabilityZone" xml:"availabilityZone"`
-	BytesConverted   aws.LongValue               `ec2:"bytesConverted" xml:"bytesConverted"`
-	Description      aws.StringValue             `ec2:"description" xml:"description"`
-	Image            *DiskImageDescription       `ec2:"image" xml:"image"`
-	Status           aws.StringValue             `ec2:"status" xml:"status"`
-	StatusMessage    aws.StringValue             `ec2:"statusMessage" xml:"statusMessage"`
-	Volume           *DiskImageVolumeDescription `ec2:"volume" xml:"volume"`
+	AvailabilityZone aws.StringValue             `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	BytesConverted   aws.LongValue               `ec2:"BytesConverted" xml:"bytesConverted"`
+	Description      aws.StringValue             `ec2:"Description" xml:"description"`
+	Image            *DiskImageDescription       `ec2:"Image" xml:"image"`
+	Status           aws.StringValue             `ec2:"Status" xml:"status"`
+	StatusMessage    aws.StringValue             `ec2:"StatusMessage" xml:"statusMessage"`
+	Volume           *DiskImageVolumeDescription `ec2:"Volume" xml:"volume"`
 }
 
 // ImportKeyPairRequest is undocumented.
 type ImportKeyPairRequest struct {
-	DryRun            aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	KeyName           aws.StringValue  `ec2:"keyName" xml:"keyName"`
-	PublicKeyMaterial []byte           `ec2:"publicKeyMaterial" xml:"publicKeyMaterial"`
+	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	KeyName           aws.StringValue  `ec2:"KeyName" xml:"keyName"`
+	PublicKeyMaterial []byte           `ec2:"PublicKeyMaterial" xml:"publicKeyMaterial"`
 }
 
 // ImportKeyPairResult is undocumented.
 type ImportKeyPairResult struct {
-	KeyFingerprint aws.StringValue `ec2:"keyFingerprint" xml:"keyFingerprint"`
-	KeyName        aws.StringValue `ec2:"keyName" xml:"keyName"`
+	KeyFingerprint aws.StringValue `ec2:"KeyFingerprint" xml:"keyFingerprint"`
+	KeyName        aws.StringValue `ec2:"KeyName" xml:"keyName"`
 }
 
 // ImportVolumeRequest is undocumented.
 type ImportVolumeRequest struct {
-	AvailabilityZone aws.StringValue  `ec2:"availabilityZone" xml:"availabilityZone"`
-	Description      aws.StringValue  `ec2:"description" xml:"description"`
-	DryRun           aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Image            *DiskImageDetail `ec2:"image" xml:"image"`
-	Volume           *VolumeDetail    `ec2:"volume" xml:"volume"`
+	AvailabilityZone aws.StringValue  `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	Description      aws.StringValue  `ec2:"Description" xml:"description"`
+	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Image            *DiskImageDetail `ec2:"Image" xml:"image"`
+	Volume           *VolumeDetail    `ec2:"Volume" xml:"volume"`
 }
 
 // ImportVolumeResult is undocumented.
 type ImportVolumeResult struct {
-	ConversionTask *ConversionTask `ec2:"conversionTask" xml:"conversionTask"`
+	ConversionTask *ConversionTask `ec2:"ConversionTask" xml:"conversionTask"`
 }
 
 // ImportVolumeTaskDetails is undocumented.
 type ImportVolumeTaskDetails struct {
-	AvailabilityZone aws.StringValue             `ec2:"availabilityZone" xml:"availabilityZone"`
-	BytesConverted   aws.LongValue               `ec2:"bytesConverted" xml:"bytesConverted"`
-	Description      aws.StringValue             `ec2:"description" xml:"description"`
-	Image            *DiskImageDescription       `ec2:"image" xml:"image"`
-	Volume           *DiskImageVolumeDescription `ec2:"volume" xml:"volume"`
+	AvailabilityZone aws.StringValue             `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	BytesConverted   aws.LongValue               `ec2:"BytesConverted" xml:"bytesConverted"`
+	Description      aws.StringValue             `ec2:"Description" xml:"description"`
+	Image            *DiskImageDescription       `ec2:"Image" xml:"image"`
+	Volume           *DiskImageVolumeDescription `ec2:"Volume" xml:"volume"`
 }
 
 // Instance is undocumented.
 type Instance struct {
-	AmiLaunchIndex        aws.IntegerValue             `ec2:"amiLaunchIndex" xml:"amiLaunchIndex"`
-	Architecture          aws.StringValue              `ec2:"architecture" xml:"architecture"`
-	BlockDeviceMappings   []InstanceBlockDeviceMapping `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
-	ClientToken           aws.StringValue              `ec2:"clientToken" xml:"clientToken"`
-	EbsOptimized          aws.BooleanValue             `ec2:"ebsOptimized" xml:"ebsOptimized"`
-	Hypervisor            aws.StringValue              `ec2:"hypervisor" xml:"hypervisor"`
-	IamInstanceProfile    *IamInstanceProfile          `ec2:"iamInstanceProfile" xml:"iamInstanceProfile"`
-	ImageID               aws.StringValue              `ec2:"imageId" xml:"imageId"`
-	InstanceID            aws.StringValue              `ec2:"instanceId" xml:"instanceId"`
-	InstanceLifecycle     aws.StringValue              `ec2:"instanceLifecycle" xml:"instanceLifecycle"`
-	InstanceType          aws.StringValue              `ec2:"instanceType" xml:"instanceType"`
-	KernelID              aws.StringValue              `ec2:"kernelId" xml:"kernelId"`
-	KeyName               aws.StringValue              `ec2:"keyName" xml:"keyName"`
-	LaunchTime            time.Time                    `ec2:"launchTime" xml:"launchTime"`
-	Monitoring            *Monitoring                  `ec2:"monitoring" xml:"monitoring"`
-	NetworkInterfaces     []InstanceNetworkInterface   `ec2:"networkInterfaceSet" xml:"networkInterfaceSet>item"`
-	Placement             *Placement                   `ec2:"placement" xml:"placement"`
-	Platform              aws.StringValue              `ec2:"platform" xml:"platform"`
-	PrivateDNSName        aws.StringValue              `ec2:"privateDnsName" xml:"privateDnsName"`
-	PrivateIPAddress      aws.StringValue              `ec2:"privateIpAddress" xml:"privateIpAddress"`
-	ProductCodes          []ProductCode                `ec2:"productCodes" xml:"productCodes>item"`
-	PublicDNSName         aws.StringValue              `ec2:"dnsName" xml:"dnsName"`
-	PublicIPAddress       aws.StringValue              `ec2:"ipAddress" xml:"ipAddress"`
-	RamdiskID             aws.StringValue              `ec2:"ramdiskId" xml:"ramdiskId"`
-	RootDeviceName        aws.StringValue              `ec2:"rootDeviceName" xml:"rootDeviceName"`
-	RootDeviceType        aws.StringValue              `ec2:"rootDeviceType" xml:"rootDeviceType"`
-	SecurityGroups        []GroupIdentifier            `ec2:"groupSet" xml:"groupSet>item"`
-	SourceDestCheck       aws.BooleanValue             `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
-	SpotInstanceRequestID aws.StringValue              `ec2:"spotInstanceRequestId" xml:"spotInstanceRequestId"`
-	SriovNetSupport       aws.StringValue              `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
-	State                 *InstanceState               `ec2:"instanceState" xml:"instanceState"`
-	StateReason           *StateReason                 `ec2:"stateReason" xml:"stateReason"`
-	StateTransitionReason aws.StringValue              `ec2:"reason" xml:"reason"`
-	SubnetID              aws.StringValue              `ec2:"subnetId" xml:"subnetId"`
-	Tags                  []Tag                        `ec2:"tagSet" xml:"tagSet>item"`
-	VirtualizationType    aws.StringValue              `ec2:"virtualizationType" xml:"virtualizationType"`
-	VpcID                 aws.StringValue              `ec2:"vpcId" xml:"vpcId"`
+	AmiLaunchIndex        aws.IntegerValue             `ec2:"AmiLaunchIndex" xml:"amiLaunchIndex"`
+	Architecture          aws.StringValue              `ec2:"Architecture" xml:"architecture"`
+	BlockDeviceMappings   []InstanceBlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
+	ClientToken           aws.StringValue              `ec2:"ClientToken" xml:"clientToken"`
+	EbsOptimized          aws.BooleanValue             `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	Hypervisor            aws.StringValue              `ec2:"Hypervisor" xml:"hypervisor"`
+	IamInstanceProfile    *IamInstanceProfile          `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
+	ImageID               aws.StringValue              `ec2:"ImageId" xml:"imageId"`
+	InstanceID            aws.StringValue              `ec2:"InstanceId" xml:"instanceId"`
+	InstanceLifecycle     aws.StringValue              `ec2:"InstanceLifecycle" xml:"instanceLifecycle"`
+	InstanceType          aws.StringValue              `ec2:"InstanceType" xml:"instanceType"`
+	KernelID              aws.StringValue              `ec2:"KernelId" xml:"kernelId"`
+	KeyName               aws.StringValue              `ec2:"KeyName" xml:"keyName"`
+	LaunchTime            time.Time                    `ec2:"LaunchTime" xml:"launchTime"`
+	Monitoring            *Monitoring                  `ec2:"Monitoring" xml:"monitoring"`
+	NetworkInterfaces     []InstanceNetworkInterface   `ec2:"NetworkInterfaces" xml:"networkInterfaceSet>item"`
+	Placement             *Placement                   `ec2:"Placement" xml:"placement"`
+	Platform              aws.StringValue              `ec2:"Platform" xml:"platform"`
+	PrivateDNSName        aws.StringValue              `ec2:"PrivateDnsName" xml:"privateDnsName"`
+	PrivateIPAddress      aws.StringValue              `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
+	ProductCodes          []ProductCode                `ec2:"ProductCodes" xml:"productCodes>item"`
+	PublicDNSName         aws.StringValue              `ec2:"PublicDnsName" xml:"dnsName"`
+	PublicIPAddress       aws.StringValue              `ec2:"PublicIpAddress" xml:"ipAddress"`
+	RamdiskID             aws.StringValue              `ec2:"RamdiskId" xml:"ramdiskId"`
+	RootDeviceName        aws.StringValue              `ec2:"RootDeviceName" xml:"rootDeviceName"`
+	RootDeviceType        aws.StringValue              `ec2:"RootDeviceType" xml:"rootDeviceType"`
+	SecurityGroups        []GroupIdentifier            `ec2:"SecurityGroups" xml:"groupSet>item"`
+	SourceDestCheck       aws.BooleanValue             `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
+	SpotInstanceRequestID aws.StringValue              `ec2:"SpotInstanceRequestId" xml:"spotInstanceRequestId"`
+	SriovNetSupport       aws.StringValue              `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+	State                 *InstanceState               `ec2:"State" xml:"instanceState"`
+	StateReason           *StateReason                 `ec2:"StateReason" xml:"stateReason"`
+	StateTransitionReason aws.StringValue              `ec2:"StateTransitionReason" xml:"reason"`
+	SubnetID              aws.StringValue              `ec2:"SubnetId" xml:"subnetId"`
+	Tags                  []Tag                        `ec2:"Tags" xml:"tagSet>item"`
+	VirtualizationType    aws.StringValue              `ec2:"VirtualizationType" xml:"virtualizationType"`
+	VpcID                 aws.StringValue              `ec2:"VpcId" xml:"vpcId"`
 }
 
 // InstanceAttribute is undocumented.
 type InstanceAttribute struct {
-	BlockDeviceMappings               []InstanceBlockDeviceMapping `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
-	DisableAPITermination             *AttributeBooleanValue       `ec2:"disableApiTermination" xml:"disableApiTermination"`
-	EbsOptimized                      *AttributeBooleanValue       `ec2:"ebsOptimized" xml:"ebsOptimized"`
-	Groups                            []GroupIdentifier            `ec2:"groupSet" xml:"groupSet>item"`
-	InstanceID                        aws.StringValue              `ec2:"instanceId" xml:"instanceId"`
-	InstanceInitiatedShutdownBehavior *AttributeValue              `ec2:"instanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
-	InstanceType                      *AttributeValue              `ec2:"instanceType" xml:"instanceType"`
-	KernelID                          *AttributeValue              `ec2:"kernel" xml:"kernel"`
-	ProductCodes                      []ProductCode                `ec2:"productCodes" xml:"productCodes>item"`
-	RamdiskID                         *AttributeValue              `ec2:"ramdisk" xml:"ramdisk"`
-	RootDeviceName                    *AttributeValue              `ec2:"rootDeviceName" xml:"rootDeviceName"`
-	SourceDestCheck                   *AttributeBooleanValue       `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
-	SriovNetSupport                   *AttributeValue              `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
-	UserData                          *AttributeValue              `ec2:"userData" xml:"userData"`
+	BlockDeviceMappings               []InstanceBlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
+	DisableAPITermination             *AttributeBooleanValue       `ec2:"DisableApiTermination" xml:"disableApiTermination"`
+	EbsOptimized                      *AttributeBooleanValue       `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	Groups                            []GroupIdentifier            `ec2:"Groups" xml:"groupSet>item"`
+	InstanceID                        aws.StringValue              `ec2:"InstanceId" xml:"instanceId"`
+	InstanceInitiatedShutdownBehavior *AttributeValue              `ec2:"InstanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
+	InstanceType                      *AttributeValue              `ec2:"InstanceType" xml:"instanceType"`
+	KernelID                          *AttributeValue              `ec2:"KernelId" xml:"kernel"`
+	ProductCodes                      []ProductCode                `ec2:"ProductCodes" xml:"productCodes>item"`
+	RamdiskID                         *AttributeValue              `ec2:"RamdiskId" xml:"ramdisk"`
+	RootDeviceName                    *AttributeValue              `ec2:"RootDeviceName" xml:"rootDeviceName"`
+	SourceDestCheck                   *AttributeBooleanValue       `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
+	SriovNetSupport                   *AttributeValue              `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+	UserData                          *AttributeValue              `ec2:"UserData" xml:"userData"`
 }
 
 // InstanceBlockDeviceMapping is undocumented.
 type InstanceBlockDeviceMapping struct {
-	DeviceName aws.StringValue         `ec2:"deviceName" xml:"deviceName"`
-	Ebs        *EbsInstanceBlockDevice `ec2:"ebs" xml:"ebs"`
+	DeviceName aws.StringValue         `ec2:"DeviceName" xml:"deviceName"`
+	Ebs        *EbsInstanceBlockDevice `ec2:"Ebs" xml:"ebs"`
 }
 
 // InstanceBlockDeviceMappingSpecification is undocumented.
 type InstanceBlockDeviceMappingSpecification struct {
-	DeviceName  aws.StringValue                      `ec2:"deviceName" xml:"deviceName"`
-	Ebs         *EbsInstanceBlockDeviceSpecification `ec2:"ebs" xml:"ebs"`
-	NoDevice    aws.StringValue                      `ec2:"noDevice" xml:"noDevice"`
-	VirtualName aws.StringValue                      `ec2:"virtualName" xml:"virtualName"`
+	DeviceName  aws.StringValue                      `ec2:"DeviceName" xml:"deviceName"`
+	Ebs         *EbsInstanceBlockDeviceSpecification `ec2:"Ebs" xml:"ebs"`
+	NoDevice    aws.StringValue                      `ec2:"NoDevice" xml:"noDevice"`
+	VirtualName aws.StringValue                      `ec2:"VirtualName" xml:"virtualName"`
 }
 
 // InstanceCount is undocumented.
 type InstanceCount struct {
-	InstanceCount aws.IntegerValue `ec2:"instanceCount" xml:"instanceCount"`
-	State         aws.StringValue  `ec2:"state" xml:"state"`
+	InstanceCount aws.IntegerValue `ec2:"InstanceCount" xml:"instanceCount"`
+	State         aws.StringValue  `ec2:"State" xml:"state"`
 }
 
 // InstanceExportDetails is undocumented.
 type InstanceExportDetails struct {
-	InstanceID        aws.StringValue `ec2:"instanceId" xml:"instanceId"`
-	TargetEnvironment aws.StringValue `ec2:"targetEnvironment" xml:"targetEnvironment"`
+	InstanceID        aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
+	TargetEnvironment aws.StringValue `ec2:"TargetEnvironment" xml:"targetEnvironment"`
 }
 
 // InstanceMonitoring is undocumented.
 type InstanceMonitoring struct {
-	InstanceID aws.StringValue `ec2:"instanceId" xml:"instanceId"`
-	Monitoring *Monitoring     `ec2:"monitoring" xml:"monitoring"`
+	InstanceID aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
+	Monitoring *Monitoring     `ec2:"Monitoring" xml:"monitoring"`
 }
 
 // InstanceNetworkInterface is undocumented.
 type InstanceNetworkInterface struct {
-	Association        *InstanceNetworkInterfaceAssociation `ec2:"association" xml:"association"`
-	Attachment         *InstanceNetworkInterfaceAttachment  `ec2:"attachment" xml:"attachment"`
-	Description        aws.StringValue                      `ec2:"description" xml:"description"`
-	Groups             []GroupIdentifier                    `ec2:"groupSet" xml:"groupSet>item"`
-	MacAddress         aws.StringValue                      `ec2:"macAddress" xml:"macAddress"`
-	NetworkInterfaceID aws.StringValue                      `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	OwnerID            aws.StringValue                      `ec2:"ownerId" xml:"ownerId"`
-	PrivateDNSName     aws.StringValue                      `ec2:"privateDnsName" xml:"privateDnsName"`
-	PrivateIPAddress   aws.StringValue                      `ec2:"privateIpAddress" xml:"privateIpAddress"`
-	PrivateIPAddresses []InstancePrivateIPAddress           `ec2:"privateIpAddressesSet" xml:"privateIpAddressesSet>item"`
-	SourceDestCheck    aws.BooleanValue                     `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
-	Status             aws.StringValue                      `ec2:"status" xml:"status"`
-	SubnetID           aws.StringValue                      `ec2:"subnetId" xml:"subnetId"`
-	VpcID              aws.StringValue                      `ec2:"vpcId" xml:"vpcId"`
+	Association        *InstanceNetworkInterfaceAssociation `ec2:"Association" xml:"association"`
+	Attachment         *InstanceNetworkInterfaceAttachment  `ec2:"Attachment" xml:"attachment"`
+	Description        aws.StringValue                      `ec2:"Description" xml:"description"`
+	Groups             []GroupIdentifier                    `ec2:"Groups" xml:"groupSet>item"`
+	MacAddress         aws.StringValue                      `ec2:"MacAddress" xml:"macAddress"`
+	NetworkInterfaceID aws.StringValue                      `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	OwnerID            aws.StringValue                      `ec2:"OwnerId" xml:"ownerId"`
+	PrivateDNSName     aws.StringValue                      `ec2:"PrivateDnsName" xml:"privateDnsName"`
+	PrivateIPAddress   aws.StringValue                      `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
+	PrivateIPAddresses []InstancePrivateIPAddress           `ec2:"PrivateIpAddresses" xml:"privateIpAddressesSet>item"`
+	SourceDestCheck    aws.BooleanValue                     `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
+	Status             aws.StringValue                      `ec2:"Status" xml:"status"`
+	SubnetID           aws.StringValue                      `ec2:"SubnetId" xml:"subnetId"`
+	VpcID              aws.StringValue                      `ec2:"VpcId" xml:"vpcId"`
 }
 
 // InstanceNetworkInterfaceAssociation is undocumented.
 type InstanceNetworkInterfaceAssociation struct {
-	IPOwnerID     aws.StringValue `ec2:"ipOwnerId" xml:"ipOwnerId"`
-	PublicDNSName aws.StringValue `ec2:"publicDnsName" xml:"publicDnsName"`
-	PublicIP      aws.StringValue `ec2:"publicIp" xml:"publicIp"`
+	IPOwnerID     aws.StringValue `ec2:"IpOwnerId" xml:"ipOwnerId"`
+	PublicDNSName aws.StringValue `ec2:"PublicDnsName" xml:"publicDnsName"`
+	PublicIP      aws.StringValue `ec2:"PublicIp" xml:"publicIp"`
 }
 
 // InstanceNetworkInterfaceAttachment is undocumented.
 type InstanceNetworkInterfaceAttachment struct {
-	AttachTime          time.Time        `ec2:"attachTime" xml:"attachTime"`
-	AttachmentID        aws.StringValue  `ec2:"attachmentId" xml:"attachmentId"`
-	DeleteOnTermination aws.BooleanValue `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
-	DeviceIndex         aws.IntegerValue `ec2:"deviceIndex" xml:"deviceIndex"`
-	Status              aws.StringValue  `ec2:"status" xml:"status"`
+	AttachTime          time.Time        `ec2:"AttachTime" xml:"attachTime"`
+	AttachmentID        aws.StringValue  `ec2:"AttachmentId" xml:"attachmentId"`
+	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
+	DeviceIndex         aws.IntegerValue `ec2:"DeviceIndex" xml:"deviceIndex"`
+	Status              aws.StringValue  `ec2:"Status" xml:"status"`
 }
 
 // InstanceNetworkInterfaceSpecification is undocumented.
 type InstanceNetworkInterfaceSpecification struct {
-	AssociatePublicIPAddress       aws.BooleanValue                `ec2:"associatePublicIpAddress" xml:"associatePublicIpAddress"`
-	DeleteOnTermination            aws.BooleanValue                `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
-	Description                    aws.StringValue                 `ec2:"description" xml:"description"`
-	DeviceIndex                    aws.IntegerValue                `ec2:"deviceIndex" xml:"deviceIndex"`
-	Groups                         []string                        `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
-	NetworkInterfaceID             aws.StringValue                 `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	PrivateIPAddress               aws.StringValue                 `ec2:"privateIpAddress" xml:"privateIpAddress"`
-	PrivateIPAddresses             []PrivateIPAddressSpecification `ec2:"privateIpAddressesSet" xml:"privateIpAddressesSet>item"`
-	SecondaryPrivateIPAddressCount aws.IntegerValue                `ec2:"secondaryPrivateIpAddressCount" xml:"secondaryPrivateIpAddressCount"`
-	SubnetID                       aws.StringValue                 `ec2:"subnetId" xml:"subnetId"`
+	AssociatePublicIPAddress       aws.BooleanValue                `ec2:"AssociatePublicIpAddress" xml:"associatePublicIpAddress"`
+	DeleteOnTermination            aws.BooleanValue                `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
+	Description                    aws.StringValue                 `ec2:"Description" xml:"description"`
+	DeviceIndex                    aws.IntegerValue                `ec2:"DeviceIndex" xml:"deviceIndex"`
+	Groups                         []string                        `ec2:"Groups" xml:"SecurityGroupId>SecurityGroupId"`
+	NetworkInterfaceID             aws.StringValue                 `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	PrivateIPAddress               aws.StringValue                 `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
+	PrivateIPAddresses             []PrivateIPAddressSpecification `ec2:"PrivateIpAddresses" xml:"privateIpAddressesSet>item"`
+	SecondaryPrivateIPAddressCount aws.IntegerValue                `ec2:"SecondaryPrivateIpAddressCount" xml:"secondaryPrivateIpAddressCount"`
+	SubnetID                       aws.StringValue                 `ec2:"SubnetId" xml:"subnetId"`
 }
 
 // InstancePrivateIPAddress is undocumented.
 type InstancePrivateIPAddress struct {
-	Association      *InstanceNetworkInterfaceAssociation `ec2:"association" xml:"association"`
-	Primary          aws.BooleanValue                     `ec2:"primary" xml:"primary"`
-	PrivateDNSName   aws.StringValue                      `ec2:"privateDnsName" xml:"privateDnsName"`
-	PrivateIPAddress aws.StringValue                      `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	Association      *InstanceNetworkInterfaceAssociation `ec2:"Association" xml:"association"`
+	Primary          aws.BooleanValue                     `ec2:"Primary" xml:"primary"`
+	PrivateDNSName   aws.StringValue                      `ec2:"PrivateDnsName" xml:"privateDnsName"`
+	PrivateIPAddress aws.StringValue                      `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 }
 
 // InstanceState is undocumented.
 type InstanceState struct {
-	Code aws.IntegerValue `ec2:"code" xml:"code"`
-	Name aws.StringValue  `ec2:"name" xml:"name"`
+	Code aws.IntegerValue `ec2:"Code" xml:"code"`
+	Name aws.StringValue  `ec2:"Name" xml:"name"`
 }
 
 // InstanceStateChange is undocumented.
 type InstanceStateChange struct {
-	CurrentState  *InstanceState  `ec2:"currentState" xml:"currentState"`
-	InstanceID    aws.StringValue `ec2:"instanceId" xml:"instanceId"`
-	PreviousState *InstanceState  `ec2:"previousState" xml:"previousState"`
+	CurrentState  *InstanceState  `ec2:"CurrentState" xml:"currentState"`
+	InstanceID    aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
+	PreviousState *InstanceState  `ec2:"PreviousState" xml:"previousState"`
 }
 
 // InstanceStatus is undocumented.
 type InstanceStatus struct {
-	AvailabilityZone aws.StringValue        `ec2:"availabilityZone" xml:"availabilityZone"`
-	Events           []InstanceStatusEvent  `ec2:"eventsSet" xml:"eventsSet>item"`
-	InstanceID       aws.StringValue        `ec2:"instanceId" xml:"instanceId"`
-	InstanceState    *InstanceState         `ec2:"instanceState" xml:"instanceState"`
-	InstanceStatus   *InstanceStatusSummary `ec2:"instanceStatus" xml:"instanceStatus"`
-	SystemStatus     *InstanceStatusSummary `ec2:"systemStatus" xml:"systemStatus"`
+	AvailabilityZone aws.StringValue        `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	Events           []InstanceStatusEvent  `ec2:"Events" xml:"eventsSet>item"`
+	InstanceID       aws.StringValue        `ec2:"InstanceId" xml:"instanceId"`
+	InstanceState    *InstanceState         `ec2:"InstanceState" xml:"instanceState"`
+	InstanceStatus   *InstanceStatusSummary `ec2:"InstanceStatus" xml:"instanceStatus"`
+	SystemStatus     *InstanceStatusSummary `ec2:"SystemStatus" xml:"systemStatus"`
 }
 
 // InstanceStatusDetails is undocumented.
 type InstanceStatusDetails struct {
-	ImpairedSince time.Time       `ec2:"impairedSince" xml:"impairedSince"`
-	Name          aws.StringValue `ec2:"name" xml:"name"`
-	Status        aws.StringValue `ec2:"status" xml:"status"`
+	ImpairedSince time.Time       `ec2:"ImpairedSince" xml:"impairedSince"`
+	Name          aws.StringValue `ec2:"Name" xml:"name"`
+	Status        aws.StringValue `ec2:"Status" xml:"status"`
 }
 
 // InstanceStatusEvent is undocumented.
 type InstanceStatusEvent struct {
-	Code        aws.StringValue `ec2:"code" xml:"code"`
-	Description aws.StringValue `ec2:"description" xml:"description"`
-	NotAfter    time.Time       `ec2:"notAfter" xml:"notAfter"`
-	NotBefore   time.Time       `ec2:"notBefore" xml:"notBefore"`
+	Code        aws.StringValue `ec2:"Code" xml:"code"`
+	Description aws.StringValue `ec2:"Description" xml:"description"`
+	NotAfter    time.Time       `ec2:"NotAfter" xml:"notAfter"`
+	NotBefore   time.Time       `ec2:"NotBefore" xml:"notBefore"`
 }
 
 // InstanceStatusSummary is undocumented.
 type InstanceStatusSummary struct {
-	Details []InstanceStatusDetails `ec2:"details" xml:"details>item"`
-	Status  aws.StringValue         `ec2:"status" xml:"status"`
+	Details []InstanceStatusDetails `ec2:"Details" xml:"details>item"`
+	Status  aws.StringValue         `ec2:"Status" xml:"status"`
 }
 
 // InternetGateway is undocumented.
 type InternetGateway struct {
-	Attachments       []InternetGatewayAttachment `ec2:"attachmentSet" xml:"attachmentSet>item"`
-	InternetGatewayID aws.StringValue             `ec2:"internetGatewayId" xml:"internetGatewayId"`
-	Tags              []Tag                       `ec2:"tagSet" xml:"tagSet>item"`
+	Attachments       []InternetGatewayAttachment `ec2:"Attachments" xml:"attachmentSet>item"`
+	InternetGatewayID aws.StringValue             `ec2:"InternetGatewayId" xml:"internetGatewayId"`
+	Tags              []Tag                       `ec2:"Tags" xml:"tagSet>item"`
 }
 
 // InternetGatewayAttachment is undocumented.
 type InternetGatewayAttachment struct {
-	State aws.StringValue `ec2:"state" xml:"state"`
-	VpcID aws.StringValue `ec2:"vpcId" xml:"vpcId"`
+	State aws.StringValue `ec2:"State" xml:"state"`
+	VpcID aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
 // IPPermission is undocumented.
 type IPPermission struct {
-	FromPort         aws.IntegerValue  `ec2:"fromPort" xml:"fromPort"`
-	IPProtocol       aws.StringValue   `ec2:"ipProtocol" xml:"ipProtocol"`
-	IPRanges         []IPRange         `ec2:"ipRanges" xml:"ipRanges>item"`
-	ToPort           aws.IntegerValue  `ec2:"toPort" xml:"toPort"`
-	UserIDGroupPairs []UserIDGroupPair `ec2:"groups" xml:"groups>item"`
+	FromPort         aws.IntegerValue  `ec2:"FromPort" xml:"fromPort"`
+	IPProtocol       aws.StringValue   `ec2:"IpProtocol" xml:"ipProtocol"`
+	IPRanges         []IPRange         `ec2:"IpRanges" xml:"ipRanges>item"`
+	ToPort           aws.IntegerValue  `ec2:"ToPort" xml:"toPort"`
+	UserIDGroupPairs []UserIDGroupPair `ec2:"UserIdGroupPairs" xml:"groups>item"`
 }
 
 // IPRange is undocumented.
 type IPRange struct {
-	CidrIP aws.StringValue `ec2:"cidrIp" xml:"cidrIp"`
+	CidrIP aws.StringValue `ec2:"CidrIp" xml:"cidrIp"`
 }
 
 // KeyPair is undocumented.
 type KeyPair struct {
-	KeyFingerprint aws.StringValue `ec2:"keyFingerprint" xml:"keyFingerprint"`
-	KeyMaterial    aws.StringValue `ec2:"keyMaterial" xml:"keyMaterial"`
-	KeyName        aws.StringValue `ec2:"keyName" xml:"keyName"`
+	KeyFingerprint aws.StringValue `ec2:"KeyFingerprint" xml:"keyFingerprint"`
+	KeyMaterial    aws.StringValue `ec2:"KeyMaterial" xml:"keyMaterial"`
+	KeyName        aws.StringValue `ec2:"KeyName" xml:"keyName"`
 }
 
 // KeyPairInfo is undocumented.
 type KeyPairInfo struct {
-	KeyFingerprint aws.StringValue `ec2:"keyFingerprint" xml:"keyFingerprint"`
-	KeyName        aws.StringValue `ec2:"keyName" xml:"keyName"`
+	KeyFingerprint aws.StringValue `ec2:"KeyFingerprint" xml:"keyFingerprint"`
+	KeyName        aws.StringValue `ec2:"KeyName" xml:"keyName"`
 }
 
 // LaunchPermission is undocumented.
 type LaunchPermission struct {
-	Group  aws.StringValue `ec2:"group" xml:"group"`
-	UserID aws.StringValue `ec2:"userId" xml:"userId"`
+	Group  aws.StringValue `ec2:"Group" xml:"group"`
+	UserID aws.StringValue `ec2:"UserId" xml:"userId"`
 }
 
 // LaunchPermissionModifications is undocumented.
@@ -3923,99 +3923,99 @@ type LaunchPermissionModifications struct {
 
 // LaunchSpecification is undocumented.
 type LaunchSpecification struct {
-	AddressingType      aws.StringValue                         `ec2:"addressingType" xml:"addressingType"`
-	BlockDeviceMappings []BlockDeviceMapping                    `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
-	EbsOptimized        aws.BooleanValue                        `ec2:"ebsOptimized" xml:"ebsOptimized"`
-	IamInstanceProfile  *IamInstanceProfileSpecification        `ec2:"iamInstanceProfile" xml:"iamInstanceProfile"`
-	ImageID             aws.StringValue                         `ec2:"imageId" xml:"imageId"`
-	InstanceType        aws.StringValue                         `ec2:"instanceType" xml:"instanceType"`
-	KernelID            aws.StringValue                         `ec2:"kernelId" xml:"kernelId"`
-	KeyName             aws.StringValue                         `ec2:"keyName" xml:"keyName"`
-	Monitoring          *RunInstancesMonitoringEnabled          `ec2:"monitoring" xml:"monitoring"`
-	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `ec2:"networkInterfaceSet" xml:"networkInterfaceSet>item"`
-	Placement           *SpotPlacement                          `ec2:"placement" xml:"placement"`
-	RamdiskID           aws.StringValue                         `ec2:"ramdiskId" xml:"ramdiskId"`
-	SecurityGroups      []GroupIdentifier                       `ec2:"groupSet" xml:"groupSet>item"`
-	SubnetID            aws.StringValue                         `ec2:"subnetId" xml:"subnetId"`
-	UserData            aws.StringValue                         `ec2:"userData" xml:"userData"`
+	AddressingType      aws.StringValue                         `ec2:"AddressingType" xml:"addressingType"`
+	BlockDeviceMappings []BlockDeviceMapping                    `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
+	EbsOptimized        aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	IamInstanceProfile  *IamInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
+	ImageID             aws.StringValue                         `ec2:"ImageId" xml:"imageId"`
+	InstanceType        aws.StringValue                         `ec2:"InstanceType" xml:"instanceType"`
+	KernelID            aws.StringValue                         `ec2:"KernelId" xml:"kernelId"`
+	KeyName             aws.StringValue                         `ec2:"KeyName" xml:"keyName"`
+	Monitoring          *RunInstancesMonitoringEnabled          `ec2:"Monitoring" xml:"monitoring"`
+	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `ec2:"NetworkInterfaces" xml:"networkInterfaceSet>item"`
+	Placement           *SpotPlacement                          `ec2:"Placement" xml:"placement"`
+	RamdiskID           aws.StringValue                         `ec2:"RamdiskId" xml:"ramdiskId"`
+	SecurityGroups      []GroupIdentifier                       `ec2:"SecurityGroups" xml:"groupSet>item"`
+	SubnetID            aws.StringValue                         `ec2:"SubnetId" xml:"subnetId"`
+	UserData            aws.StringValue                         `ec2:"UserData" xml:"userData"`
 }
 
 // ModifyImageAttributeRequest is undocumented.
 type ModifyImageAttributeRequest struct {
 	Attribute        aws.StringValue                `ec2:"Attribute" xml:"Attribute"`
 	Description      *AttributeValue                `ec2:"Description" xml:"Description"`
-	DryRun           aws.BooleanValue               `ec2:"dryRun" xml:"dryRun"`
+	DryRun           aws.BooleanValue               `ec2:"DryRun" xml:"dryRun"`
 	ImageID          aws.StringValue                `ec2:"ImageId" xml:"ImageId"`
 	LaunchPermission *LaunchPermissionModifications `ec2:"LaunchPermission" xml:"LaunchPermission"`
 	OperationType    aws.StringValue                `ec2:"OperationType" xml:"OperationType"`
-	ProductCodes     []string                       `ec2:"ProductCode" xml:"ProductCode>ProductCode"`
-	UserGroups       []string                       `ec2:"UserGroup" xml:"UserGroup>UserGroup"`
-	UserIds          []string                       `ec2:"UserId" xml:"UserId>UserId"`
+	ProductCodes     []string                       `ec2:"ProductCodes" xml:"ProductCode>ProductCode"`
+	UserGroups       []string                       `ec2:"UserGroups" xml:"UserGroup>UserGroup"`
+	UserIds          []string                       `ec2:"UserIds" xml:"UserId>UserId"`
 	Value            aws.StringValue                `ec2:"Value" xml:"Value"`
 }
 
 // ModifyInstanceAttributeRequest is undocumented.
 type ModifyInstanceAttributeRequest struct {
-	Attribute                         aws.StringValue                           `ec2:"attribute" xml:"attribute"`
-	BlockDeviceMappings               []InstanceBlockDeviceMappingSpecification `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
-	DisableAPITermination             *AttributeBooleanValue                    `ec2:"disableApiTermination" xml:"disableApiTermination"`
-	DryRun                            aws.BooleanValue                          `ec2:"dryRun" xml:"dryRun"`
-	EbsOptimized                      *AttributeBooleanValue                    `ec2:"ebsOptimized" xml:"ebsOptimized"`
-	Groups                            []string                                  `ec2:"GroupId" xml:"GroupId>groupId"`
-	InstanceID                        aws.StringValue                           `ec2:"instanceId" xml:"instanceId"`
-	InstanceInitiatedShutdownBehavior *AttributeValue                           `ec2:"instanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
-	InstanceType                      *AttributeValue                           `ec2:"instanceType" xml:"instanceType"`
-	Kernel                            *AttributeValue                           `ec2:"kernel" xml:"kernel"`
-	Ramdisk                           *AttributeValue                           `ec2:"ramdisk" xml:"ramdisk"`
+	Attribute                         aws.StringValue                           `ec2:"Attribute" xml:"attribute"`
+	BlockDeviceMappings               []InstanceBlockDeviceMappingSpecification `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
+	DisableAPITermination             *AttributeBooleanValue                    `ec2:"DisableApiTermination" xml:"disableApiTermination"`
+	DryRun                            aws.BooleanValue                          `ec2:"DryRun" xml:"dryRun"`
+	EbsOptimized                      *AttributeBooleanValue                    `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	Groups                            []string                                  `ec2:"Groups" xml:"GroupId>groupId"`
+	InstanceID                        aws.StringValue                           `ec2:"InstanceId" xml:"instanceId"`
+	InstanceInitiatedShutdownBehavior *AttributeValue                           `ec2:"InstanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
+	InstanceType                      *AttributeValue                           `ec2:"InstanceType" xml:"instanceType"`
+	Kernel                            *AttributeValue                           `ec2:"Kernel" xml:"kernel"`
+	Ramdisk                           *AttributeValue                           `ec2:"Ramdisk" xml:"ramdisk"`
 	SourceDestCheck                   *AttributeBooleanValue                    `ec2:"SourceDestCheck" xml:"SourceDestCheck"`
-	SriovNetSupport                   *AttributeValue                           `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
-	UserData                          *BlobAttributeValue                       `ec2:"userData" xml:"userData"`
-	Value                             aws.StringValue                           `ec2:"value" xml:"value"`
+	SriovNetSupport                   *AttributeValue                           `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+	UserData                          *BlobAttributeValue                       `ec2:"UserData" xml:"userData"`
+	Value                             aws.StringValue                           `ec2:"Value" xml:"value"`
 }
 
 // ModifyNetworkInterfaceAttributeRequest is undocumented.
 type ModifyNetworkInterfaceAttributeRequest struct {
-	Attachment         *NetworkInterfaceAttachmentChanges `ec2:"attachment" xml:"attachment"`
-	Description        *AttributeValue                    `ec2:"description" xml:"description"`
-	DryRun             aws.BooleanValue                   `ec2:"dryRun" xml:"dryRun"`
-	Groups             []string                           `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
-	NetworkInterfaceID aws.StringValue                    `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	SourceDestCheck    *AttributeBooleanValue             `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
+	Attachment         *NetworkInterfaceAttachmentChanges `ec2:"Attachment" xml:"attachment"`
+	Description        *AttributeValue                    `ec2:"Description" xml:"description"`
+	DryRun             aws.BooleanValue                   `ec2:"DryRun" xml:"dryRun"`
+	Groups             []string                           `ec2:"Groups" xml:"SecurityGroupId>SecurityGroupId"`
+	NetworkInterfaceID aws.StringValue                    `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	SourceDestCheck    *AttributeBooleanValue             `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
 }
 
 // ModifyReservedInstancesRequest is undocumented.
 type ModifyReservedInstancesRequest struct {
-	ClientToken          aws.StringValue                  `ec2:"clientToken" xml:"clientToken"`
-	ReservedInstancesIds []string                         `ec2:"ReservedInstancesId" xml:"ReservedInstancesId>ReservedInstancesId"`
-	TargetConfigurations []ReservedInstancesConfiguration `ec2:"ReservedInstancesConfigurationSetItemType" xml:"ReservedInstancesConfigurationSetItemType>item"`
+	ClientToken          aws.StringValue                  `ec2:"ClientToken" xml:"clientToken"`
+	ReservedInstancesIds []string                         `ec2:"ReservedInstancesIds" xml:"ReservedInstancesId>ReservedInstancesId"`
+	TargetConfigurations []ReservedInstancesConfiguration `ec2:"TargetConfigurations" xml:"ReservedInstancesConfigurationSetItemType>item"`
 }
 
 // ModifyReservedInstancesResult is undocumented.
 type ModifyReservedInstancesResult struct {
-	ReservedInstancesModificationID aws.StringValue `ec2:"reservedInstancesModificationId" xml:"reservedInstancesModificationId"`
+	ReservedInstancesModificationID aws.StringValue `ec2:"ReservedInstancesModificationId" xml:"reservedInstancesModificationId"`
 }
 
 // ModifySnapshotAttributeRequest is undocumented.
 type ModifySnapshotAttributeRequest struct {
 	Attribute              aws.StringValue                      `ec2:"Attribute" xml:"Attribute"`
 	CreateVolumePermission *CreateVolumePermissionModifications `ec2:"CreateVolumePermission" xml:"CreateVolumePermission"`
-	DryRun                 aws.BooleanValue                     `ec2:"dryRun" xml:"dryRun"`
-	GroupNames             []string                             `ec2:"UserGroup" xml:"UserGroup>GroupName"`
+	DryRun                 aws.BooleanValue                     `ec2:"DryRun" xml:"dryRun"`
+	GroupNames             []string                             `ec2:"GroupNames" xml:"UserGroup>GroupName"`
 	OperationType          aws.StringValue                      `ec2:"OperationType" xml:"OperationType"`
 	SnapshotID             aws.StringValue                      `ec2:"SnapshotId" xml:"SnapshotId"`
-	UserIds                []string                             `ec2:"UserId" xml:"UserId>UserId"`
+	UserIds                []string                             `ec2:"UserIds" xml:"UserId>UserId"`
 }
 
 // ModifySubnetAttributeRequest is undocumented.
 type ModifySubnetAttributeRequest struct {
 	MapPublicIPOnLaunch *AttributeBooleanValue `ec2:"MapPublicIpOnLaunch" xml:"MapPublicIpOnLaunch"`
-	SubnetID            aws.StringValue        `ec2:"subnetId" xml:"subnetId"`
+	SubnetID            aws.StringValue        `ec2:"SubnetId" xml:"subnetId"`
 }
 
 // ModifyVolumeAttributeRequest is undocumented.
 type ModifyVolumeAttributeRequest struct {
 	AutoEnableIO *AttributeBooleanValue `ec2:"AutoEnableIO" xml:"AutoEnableIO"`
-	DryRun       aws.BooleanValue       `ec2:"dryRun" xml:"dryRun"`
+	DryRun       aws.BooleanValue       `ec2:"DryRun" xml:"dryRun"`
 	VolumeID     aws.StringValue        `ec2:"VolumeId" xml:"VolumeId"`
 }
 
@@ -4023,482 +4023,482 @@ type ModifyVolumeAttributeRequest struct {
 type ModifyVpcAttributeRequest struct {
 	EnableDNSHostnames *AttributeBooleanValue `ec2:"EnableDnsHostnames" xml:"EnableDnsHostnames"`
 	EnableDNSSupport   *AttributeBooleanValue `ec2:"EnableDnsSupport" xml:"EnableDnsSupport"`
-	VpcID              aws.StringValue        `ec2:"vpcId" xml:"vpcId"`
+	VpcID              aws.StringValue        `ec2:"VpcId" xml:"vpcId"`
 }
 
 // MonitorInstancesRequest is undocumented.
 type MonitorInstancesRequest struct {
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
 }
 
 // MonitorInstancesResult is undocumented.
 type MonitorInstancesResult struct {
-	InstanceMonitorings []InstanceMonitoring `ec2:"instancesSet" xml:"instancesSet>item"`
+	InstanceMonitorings []InstanceMonitoring `ec2:"InstanceMonitorings" xml:"instancesSet>item"`
 }
 
 // Monitoring is undocumented.
 type Monitoring struct {
-	State aws.StringValue `ec2:"state" xml:"state"`
+	State aws.StringValue `ec2:"State" xml:"state"`
 }
 
 // NetworkAcl is undocumented.
 type NetworkAcl struct {
-	Associations []NetworkAclAssociation `ec2:"associationSet" xml:"associationSet>item"`
-	Entries      []NetworkAclEntry       `ec2:"entrySet" xml:"entrySet>item"`
-	IsDefault    aws.BooleanValue        `ec2:"default" xml:"default"`
-	NetworkAclID aws.StringValue         `ec2:"networkAclId" xml:"networkAclId"`
-	Tags         []Tag                   `ec2:"tagSet" xml:"tagSet>item"`
-	VpcID        aws.StringValue         `ec2:"vpcId" xml:"vpcId"`
+	Associations []NetworkAclAssociation `ec2:"Associations" xml:"associationSet>item"`
+	Entries      []NetworkAclEntry       `ec2:"Entries" xml:"entrySet>item"`
+	IsDefault    aws.BooleanValue        `ec2:"IsDefault" xml:"default"`
+	NetworkAclID aws.StringValue         `ec2:"NetworkAclId" xml:"networkAclId"`
+	Tags         []Tag                   `ec2:"Tags" xml:"tagSet>item"`
+	VpcID        aws.StringValue         `ec2:"VpcId" xml:"vpcId"`
 }
 
 // NetworkAclAssociation is undocumented.
 type NetworkAclAssociation struct {
-	NetworkAclAssociationID aws.StringValue `ec2:"networkAclAssociationId" xml:"networkAclAssociationId"`
-	NetworkAclID            aws.StringValue `ec2:"networkAclId" xml:"networkAclId"`
-	SubnetID                aws.StringValue `ec2:"subnetId" xml:"subnetId"`
+	NetworkAclAssociationID aws.StringValue `ec2:"NetworkAclAssociationId" xml:"networkAclAssociationId"`
+	NetworkAclID            aws.StringValue `ec2:"NetworkAclId" xml:"networkAclId"`
+	SubnetID                aws.StringValue `ec2:"SubnetId" xml:"subnetId"`
 }
 
 // NetworkAclEntry is undocumented.
 type NetworkAclEntry struct {
-	CidrBlock    aws.StringValue  `ec2:"cidrBlock" xml:"cidrBlock"`
-	Egress       aws.BooleanValue `ec2:"egress" xml:"egress"`
-	IcmpTypeCode *IcmpTypeCode    `ec2:"icmpTypeCode" xml:"icmpTypeCode"`
-	PortRange    *PortRange       `ec2:"portRange" xml:"portRange"`
-	Protocol     aws.StringValue  `ec2:"protocol" xml:"protocol"`
-	RuleAction   aws.StringValue  `ec2:"ruleAction" xml:"ruleAction"`
-	RuleNumber   aws.IntegerValue `ec2:"ruleNumber" xml:"ruleNumber"`
+	CidrBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
+	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
+	IcmpTypeCode *IcmpTypeCode    `ec2:"IcmpTypeCode" xml:"icmpTypeCode"`
+	PortRange    *PortRange       `ec2:"PortRange" xml:"portRange"`
+	Protocol     aws.StringValue  `ec2:"Protocol" xml:"protocol"`
+	RuleAction   aws.StringValue  `ec2:"RuleAction" xml:"ruleAction"`
+	RuleNumber   aws.IntegerValue `ec2:"RuleNumber" xml:"ruleNumber"`
 }
 
 // NetworkInterface is undocumented.
 type NetworkInterface struct {
-	Association        *NetworkInterfaceAssociation       `ec2:"association" xml:"association"`
-	Attachment         *NetworkInterfaceAttachment        `ec2:"attachment" xml:"attachment"`
-	AvailabilityZone   aws.StringValue                    `ec2:"availabilityZone" xml:"availabilityZone"`
-	Description        aws.StringValue                    `ec2:"description" xml:"description"`
-	Groups             []GroupIdentifier                  `ec2:"groupSet" xml:"groupSet>item"`
-	MacAddress         aws.StringValue                    `ec2:"macAddress" xml:"macAddress"`
-	NetworkInterfaceID aws.StringValue                    `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	OwnerID            aws.StringValue                    `ec2:"ownerId" xml:"ownerId"`
-	PrivateDNSName     aws.StringValue                    `ec2:"privateDnsName" xml:"privateDnsName"`
-	PrivateIPAddress   aws.StringValue                    `ec2:"privateIpAddress" xml:"privateIpAddress"`
-	PrivateIPAddresses []NetworkInterfacePrivateIPAddress `ec2:"privateIpAddressesSet" xml:"privateIpAddressesSet>item"`
-	RequesterID        aws.StringValue                    `ec2:"requesterId" xml:"requesterId"`
-	RequesterManaged   aws.BooleanValue                   `ec2:"requesterManaged" xml:"requesterManaged"`
-	SourceDestCheck    aws.BooleanValue                   `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
-	Status             aws.StringValue                    `ec2:"status" xml:"status"`
-	SubnetID           aws.StringValue                    `ec2:"subnetId" xml:"subnetId"`
-	TagSet             []Tag                              `ec2:"tagSet" xml:"tagSet>item"`
-	VpcID              aws.StringValue                    `ec2:"vpcId" xml:"vpcId"`
+	Association        *NetworkInterfaceAssociation       `ec2:"Association" xml:"association"`
+	Attachment         *NetworkInterfaceAttachment        `ec2:"Attachment" xml:"attachment"`
+	AvailabilityZone   aws.StringValue                    `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	Description        aws.StringValue                    `ec2:"Description" xml:"description"`
+	Groups             []GroupIdentifier                  `ec2:"Groups" xml:"groupSet>item"`
+	MacAddress         aws.StringValue                    `ec2:"MacAddress" xml:"macAddress"`
+	NetworkInterfaceID aws.StringValue                    `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	OwnerID            aws.StringValue                    `ec2:"OwnerId" xml:"ownerId"`
+	PrivateDNSName     aws.StringValue                    `ec2:"PrivateDnsName" xml:"privateDnsName"`
+	PrivateIPAddress   aws.StringValue                    `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
+	PrivateIPAddresses []NetworkInterfacePrivateIPAddress `ec2:"PrivateIpAddresses" xml:"privateIpAddressesSet>item"`
+	RequesterID        aws.StringValue                    `ec2:"RequesterId" xml:"requesterId"`
+	RequesterManaged   aws.BooleanValue                   `ec2:"RequesterManaged" xml:"requesterManaged"`
+	SourceDestCheck    aws.BooleanValue                   `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
+	Status             aws.StringValue                    `ec2:"Status" xml:"status"`
+	SubnetID           aws.StringValue                    `ec2:"SubnetId" xml:"subnetId"`
+	TagSet             []Tag                              `ec2:"TagSet" xml:"tagSet>item"`
+	VpcID              aws.StringValue                    `ec2:"VpcId" xml:"vpcId"`
 }
 
 // NetworkInterfaceAssociation is undocumented.
 type NetworkInterfaceAssociation struct {
-	AllocationID  aws.StringValue `ec2:"allocationId" xml:"allocationId"`
-	AssociationID aws.StringValue `ec2:"associationId" xml:"associationId"`
-	IPOwnerID     aws.StringValue `ec2:"ipOwnerId" xml:"ipOwnerId"`
-	PublicDNSName aws.StringValue `ec2:"publicDnsName" xml:"publicDnsName"`
-	PublicIP      aws.StringValue `ec2:"publicIp" xml:"publicIp"`
+	AllocationID  aws.StringValue `ec2:"AllocationId" xml:"allocationId"`
+	AssociationID aws.StringValue `ec2:"AssociationId" xml:"associationId"`
+	IPOwnerID     aws.StringValue `ec2:"IpOwnerId" xml:"ipOwnerId"`
+	PublicDNSName aws.StringValue `ec2:"PublicDnsName" xml:"publicDnsName"`
+	PublicIP      aws.StringValue `ec2:"PublicIp" xml:"publicIp"`
 }
 
 // NetworkInterfaceAttachment is undocumented.
 type NetworkInterfaceAttachment struct {
-	AttachTime          time.Time        `ec2:"attachTime" xml:"attachTime"`
-	AttachmentID        aws.StringValue  `ec2:"attachmentId" xml:"attachmentId"`
-	DeleteOnTermination aws.BooleanValue `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
-	DeviceIndex         aws.IntegerValue `ec2:"deviceIndex" xml:"deviceIndex"`
-	InstanceID          aws.StringValue  `ec2:"instanceId" xml:"instanceId"`
-	InstanceOwnerID     aws.StringValue  `ec2:"instanceOwnerId" xml:"instanceOwnerId"`
-	Status              aws.StringValue  `ec2:"status" xml:"status"`
+	AttachTime          time.Time        `ec2:"AttachTime" xml:"attachTime"`
+	AttachmentID        aws.StringValue  `ec2:"AttachmentId" xml:"attachmentId"`
+	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
+	DeviceIndex         aws.IntegerValue `ec2:"DeviceIndex" xml:"deviceIndex"`
+	InstanceID          aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
+	InstanceOwnerID     aws.StringValue  `ec2:"InstanceOwnerId" xml:"instanceOwnerId"`
+	Status              aws.StringValue  `ec2:"Status" xml:"status"`
 }
 
 // NetworkInterfaceAttachmentChanges is undocumented.
 type NetworkInterfaceAttachmentChanges struct {
-	AttachmentID        aws.StringValue  `ec2:"attachmentId" xml:"attachmentId"`
-	DeleteOnTermination aws.BooleanValue `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
+	AttachmentID        aws.StringValue  `ec2:"AttachmentId" xml:"attachmentId"`
+	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
 }
 
 // NetworkInterfacePrivateIPAddress is undocumented.
 type NetworkInterfacePrivateIPAddress struct {
-	Association      *NetworkInterfaceAssociation `ec2:"association" xml:"association"`
-	Primary          aws.BooleanValue             `ec2:"primary" xml:"primary"`
-	PrivateDNSName   aws.StringValue              `ec2:"privateDnsName" xml:"privateDnsName"`
-	PrivateIPAddress aws.StringValue              `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	Association      *NetworkInterfaceAssociation `ec2:"Association" xml:"association"`
+	Primary          aws.BooleanValue             `ec2:"Primary" xml:"primary"`
+	PrivateDNSName   aws.StringValue              `ec2:"PrivateDnsName" xml:"privateDnsName"`
+	PrivateIPAddress aws.StringValue              `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 }
 
 // NewDhcpConfiguration is undocumented.
 type NewDhcpConfiguration struct {
-	Key    aws.StringValue `ec2:"key" xml:"key"`
-	Values []string        `ec2:"Value" xml:"Value>item"`
+	Key    aws.StringValue `ec2:"Key" xml:"key"`
+	Values []string        `ec2:"Values" xml:"Value>item"`
 }
 
 // Placement is undocumented.
 type Placement struct {
-	AvailabilityZone aws.StringValue `ec2:"availabilityZone" xml:"availabilityZone"`
-	GroupName        aws.StringValue `ec2:"groupName" xml:"groupName"`
-	Tenancy          aws.StringValue `ec2:"tenancy" xml:"tenancy"`
+	AvailabilityZone aws.StringValue `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	GroupName        aws.StringValue `ec2:"GroupName" xml:"groupName"`
+	Tenancy          aws.StringValue `ec2:"Tenancy" xml:"tenancy"`
 }
 
 // PlacementGroup is undocumented.
 type PlacementGroup struct {
-	GroupName aws.StringValue `ec2:"groupName" xml:"groupName"`
-	State     aws.StringValue `ec2:"state" xml:"state"`
-	Strategy  aws.StringValue `ec2:"strategy" xml:"strategy"`
+	GroupName aws.StringValue `ec2:"GroupName" xml:"groupName"`
+	State     aws.StringValue `ec2:"State" xml:"state"`
+	Strategy  aws.StringValue `ec2:"Strategy" xml:"strategy"`
 }
 
 // PortRange is undocumented.
 type PortRange struct {
-	From aws.IntegerValue `ec2:"from" xml:"from"`
-	To   aws.IntegerValue `ec2:"to" xml:"to"`
+	From aws.IntegerValue `ec2:"From" xml:"from"`
+	To   aws.IntegerValue `ec2:"To" xml:"to"`
 }
 
 // PriceSchedule is undocumented.
 type PriceSchedule struct {
-	Active       aws.BooleanValue `ec2:"active" xml:"active"`
-	CurrencyCode aws.StringValue  `ec2:"currencyCode" xml:"currencyCode"`
-	Price        aws.DoubleValue  `ec2:"price" xml:"price"`
-	Term         aws.LongValue    `ec2:"term" xml:"term"`
+	Active       aws.BooleanValue `ec2:"Active" xml:"active"`
+	CurrencyCode aws.StringValue  `ec2:"CurrencyCode" xml:"currencyCode"`
+	Price        aws.DoubleValue  `ec2:"Price" xml:"price"`
+	Term         aws.LongValue    `ec2:"Term" xml:"term"`
 }
 
 // PriceScheduleSpecification is undocumented.
 type PriceScheduleSpecification struct {
-	CurrencyCode aws.StringValue `ec2:"currencyCode" xml:"currencyCode"`
-	Price        aws.DoubleValue `ec2:"price" xml:"price"`
-	Term         aws.LongValue   `ec2:"term" xml:"term"`
+	CurrencyCode aws.StringValue `ec2:"CurrencyCode" xml:"currencyCode"`
+	Price        aws.DoubleValue `ec2:"Price" xml:"price"`
+	Term         aws.LongValue   `ec2:"Term" xml:"term"`
 }
 
 // PricingDetail is undocumented.
 type PricingDetail struct {
-	Count aws.IntegerValue `ec2:"count" xml:"count"`
-	Price aws.DoubleValue  `ec2:"price" xml:"price"`
+	Count aws.IntegerValue `ec2:"Count" xml:"count"`
+	Price aws.DoubleValue  `ec2:"Price" xml:"price"`
 }
 
 // PrivateIPAddressSpecification is undocumented.
 type PrivateIPAddressSpecification struct {
-	Primary          aws.BooleanValue `ec2:"primary" xml:"primary"`
-	PrivateIPAddress aws.StringValue  `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	Primary          aws.BooleanValue `ec2:"Primary" xml:"primary"`
+	PrivateIPAddress aws.StringValue  `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 }
 
 // ProductCode is undocumented.
 type ProductCode struct {
-	ProductCodeID   aws.StringValue `ec2:"productCode" xml:"productCode"`
-	ProductCodeType aws.StringValue `ec2:"type" xml:"type"`
+	ProductCodeID   aws.StringValue `ec2:"ProductCodeId" xml:"productCode"`
+	ProductCodeType aws.StringValue `ec2:"ProductCodeType" xml:"type"`
 }
 
 // PropagatingVgw is undocumented.
 type PropagatingVgw struct {
-	GatewayID aws.StringValue `ec2:"gatewayId" xml:"gatewayId"`
+	GatewayID aws.StringValue `ec2:"GatewayId" xml:"gatewayId"`
 }
 
 // PurchaseReservedInstancesOfferingRequest is undocumented.
 type PurchaseReservedInstancesOfferingRequest struct {
-	DryRun                      aws.BooleanValue            `ec2:"dryRun" xml:"dryRun"`
+	DryRun                      aws.BooleanValue            `ec2:"DryRun" xml:"dryRun"`
 	InstanceCount               aws.IntegerValue            `ec2:"InstanceCount" xml:"InstanceCount"`
-	LimitPrice                  *ReservedInstanceLimitPrice `ec2:"limitPrice" xml:"limitPrice"`
+	LimitPrice                  *ReservedInstanceLimitPrice `ec2:"LimitPrice" xml:"limitPrice"`
 	ReservedInstancesOfferingID aws.StringValue             `ec2:"ReservedInstancesOfferingId" xml:"ReservedInstancesOfferingId"`
 }
 
 // PurchaseReservedInstancesOfferingResult is undocumented.
 type PurchaseReservedInstancesOfferingResult struct {
-	ReservedInstancesID aws.StringValue `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
+	ReservedInstancesID aws.StringValue `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
 }
 
 // RebootInstancesRequest is undocumented.
 type RebootInstancesRequest struct {
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
 }
 
 // RecurringCharge is undocumented.
 type RecurringCharge struct {
-	Amount    aws.DoubleValue `ec2:"amount" xml:"amount"`
-	Frequency aws.StringValue `ec2:"frequency" xml:"frequency"`
+	Amount    aws.DoubleValue `ec2:"Amount" xml:"amount"`
+	Frequency aws.StringValue `ec2:"Frequency" xml:"frequency"`
 }
 
 // Region is undocumented.
 type Region struct {
-	Endpoint   aws.StringValue `ec2:"regionEndpoint" xml:"regionEndpoint"`
-	RegionName aws.StringValue `ec2:"regionName" xml:"regionName"`
+	Endpoint   aws.StringValue `ec2:"Endpoint" xml:"regionEndpoint"`
+	RegionName aws.StringValue `ec2:"RegionName" xml:"regionName"`
 }
 
 // RegisterImageRequest is undocumented.
 type RegisterImageRequest struct {
-	Architecture        aws.StringValue      `ec2:"architecture" xml:"architecture"`
-	BlockDeviceMappings []BlockDeviceMapping `ec2:"BlockDeviceMapping" xml:"BlockDeviceMapping>BlockDeviceMapping"`
-	Description         aws.StringValue      `ec2:"description" xml:"description"`
-	DryRun              aws.BooleanValue     `ec2:"dryRun" xml:"dryRun"`
+	Architecture        aws.StringValue      `ec2:"Architecture" xml:"architecture"`
+	BlockDeviceMappings []BlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"BlockDeviceMapping>BlockDeviceMapping"`
+	Description         aws.StringValue      `ec2:"Description" xml:"description"`
+	DryRun              aws.BooleanValue     `ec2:"DryRun" xml:"dryRun"`
 	ImageLocation       aws.StringValue      `ec2:"ImageLocation" xml:"ImageLocation"`
-	KernelID            aws.StringValue      `ec2:"kernelId" xml:"kernelId"`
-	Name                aws.StringValue      `ec2:"name" xml:"name"`
-	RamdiskID           aws.StringValue      `ec2:"ramdiskId" xml:"ramdiskId"`
-	RootDeviceName      aws.StringValue      `ec2:"rootDeviceName" xml:"rootDeviceName"`
-	SriovNetSupport     aws.StringValue      `ec2:"sriovNetSupport" xml:"sriovNetSupport"`
-	VirtualizationType  aws.StringValue      `ec2:"virtualizationType" xml:"virtualizationType"`
+	KernelID            aws.StringValue      `ec2:"KernelId" xml:"kernelId"`
+	Name                aws.StringValue      `ec2:"Name" xml:"name"`
+	RamdiskID           aws.StringValue      `ec2:"RamdiskId" xml:"ramdiskId"`
+	RootDeviceName      aws.StringValue      `ec2:"RootDeviceName" xml:"rootDeviceName"`
+	SriovNetSupport     aws.StringValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+	VirtualizationType  aws.StringValue      `ec2:"VirtualizationType" xml:"virtualizationType"`
 }
 
 // RegisterImageResult is undocumented.
 type RegisterImageResult struct {
-	ImageID aws.StringValue `ec2:"imageId" xml:"imageId"`
+	ImageID aws.StringValue `ec2:"ImageId" xml:"imageId"`
 }
 
 // RejectVpcPeeringConnectionRequest is undocumented.
 type RejectVpcPeeringConnectionRequest struct {
-	DryRun                 aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	VpcPeeringConnectionID aws.StringValue  `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	VpcPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // RejectVpcPeeringConnectionResult is undocumented.
 type RejectVpcPeeringConnectionResult struct {
-	Return aws.BooleanValue `ec2:"return" xml:"return"`
+	Return aws.BooleanValue `ec2:"Return" xml:"return"`
 }
 
 // ReleaseAddressRequest is undocumented.
 type ReleaseAddressRequest struct {
 	AllocationID aws.StringValue  `ec2:"AllocationId" xml:"AllocationId"`
-	DryRun       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	PublicIP     aws.StringValue  `ec2:"PublicIp" xml:"PublicIp"`
 }
 
 // ReplaceNetworkAclAssociationRequest is undocumented.
 type ReplaceNetworkAclAssociationRequest struct {
-	AssociationID aws.StringValue  `ec2:"associationId" xml:"associationId"`
-	DryRun        aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	NetworkAclID  aws.StringValue  `ec2:"networkAclId" xml:"networkAclId"`
+	AssociationID aws.StringValue  `ec2:"AssociationId" xml:"associationId"`
+	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	NetworkAclID  aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 }
 
 // ReplaceNetworkAclAssociationResult is undocumented.
 type ReplaceNetworkAclAssociationResult struct {
-	NewAssociationID aws.StringValue `ec2:"newAssociationId" xml:"newAssociationId"`
+	NewAssociationID aws.StringValue `ec2:"NewAssociationId" xml:"newAssociationId"`
 }
 
 // ReplaceNetworkAclEntryRequest is undocumented.
 type ReplaceNetworkAclEntryRequest struct {
-	CidrBlock    aws.StringValue  `ec2:"cidrBlock" xml:"cidrBlock"`
-	DryRun       aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Egress       aws.BooleanValue `ec2:"egress" xml:"egress"`
-	IcmpTypeCode *IcmpTypeCode    `ec2:"Icmp" xml:"Icmp"`
-	NetworkAclID aws.StringValue  `ec2:"networkAclId" xml:"networkAclId"`
-	PortRange    *PortRange       `ec2:"portRange" xml:"portRange"`
-	Protocol     aws.StringValue  `ec2:"protocol" xml:"protocol"`
-	RuleAction   aws.StringValue  `ec2:"ruleAction" xml:"ruleAction"`
-	RuleNumber   aws.IntegerValue `ec2:"ruleNumber" xml:"ruleNumber"`
+	CidrBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
+	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
+	IcmpTypeCode *IcmpTypeCode    `ec2:"IcmpTypeCode" xml:"Icmp"`
+	NetworkAclID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
+	PortRange    *PortRange       `ec2:"PortRange" xml:"portRange"`
+	Protocol     aws.StringValue  `ec2:"Protocol" xml:"protocol"`
+	RuleAction   aws.StringValue  `ec2:"RuleAction" xml:"ruleAction"`
+	RuleNumber   aws.IntegerValue `ec2:"RuleNumber" xml:"ruleNumber"`
 }
 
 // ReplaceRouteRequest is undocumented.
 type ReplaceRouteRequest struct {
-	DestinationCidrBlock   aws.StringValue  `ec2:"destinationCidrBlock" xml:"destinationCidrBlock"`
-	DryRun                 aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	GatewayID              aws.StringValue  `ec2:"gatewayId" xml:"gatewayId"`
-	InstanceID             aws.StringValue  `ec2:"instanceId" xml:"instanceId"`
-	NetworkInterfaceID     aws.StringValue  `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	RouteTableID           aws.StringValue  `ec2:"routeTableId" xml:"routeTableId"`
-	VpcPeeringConnectionID aws.StringValue  `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	DestinationCidrBlock   aws.StringValue  `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
+	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	GatewayID              aws.StringValue  `ec2:"GatewayId" xml:"gatewayId"`
+	InstanceID             aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
+	NetworkInterfaceID     aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	RouteTableID           aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
+	VpcPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // ReplaceRouteTableAssociationRequest is undocumented.
 type ReplaceRouteTableAssociationRequest struct {
-	AssociationID aws.StringValue  `ec2:"associationId" xml:"associationId"`
-	DryRun        aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	RouteTableID  aws.StringValue  `ec2:"routeTableId" xml:"routeTableId"`
+	AssociationID aws.StringValue  `ec2:"AssociationId" xml:"associationId"`
+	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	RouteTableID  aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
 }
 
 // ReplaceRouteTableAssociationResult is undocumented.
 type ReplaceRouteTableAssociationResult struct {
-	NewAssociationID aws.StringValue `ec2:"newAssociationId" xml:"newAssociationId"`
+	NewAssociationID aws.StringValue `ec2:"NewAssociationId" xml:"newAssociationId"`
 }
 
 // ReportInstanceStatusRequest is undocumented.
 type ReportInstanceStatusRequest struct {
-	Description aws.StringValue  `ec2:"description" xml:"description"`
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	EndTime     time.Time        `ec2:"endTime" xml:"endTime"`
-	Instances   []string         `ec2:"instanceId" xml:"instanceId>InstanceId"`
-	ReasonCodes []string         `ec2:"reasonCode" xml:"reasonCode>item"`
-	StartTime   time.Time        `ec2:"startTime" xml:"startTime"`
-	Status      aws.StringValue  `ec2:"status" xml:"status"`
+	Description aws.StringValue  `ec2:"Description" xml:"description"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	EndTime     time.Time        `ec2:"EndTime" xml:"endTime"`
+	Instances   []string         `ec2:"Instances" xml:"instanceId>InstanceId"`
+	ReasonCodes []string         `ec2:"ReasonCodes" xml:"reasonCode>item"`
+	StartTime   time.Time        `ec2:"StartTime" xml:"startTime"`
+	Status      aws.StringValue  `ec2:"Status" xml:"status"`
 }
 
 // RequestSpotInstancesRequest is undocumented.
 type RequestSpotInstancesRequest struct {
-	AvailabilityZoneGroup aws.StringValue                 `ec2:"availabilityZoneGroup" xml:"availabilityZoneGroup"`
-	DryRun                aws.BooleanValue                `ec2:"dryRun" xml:"dryRun"`
-	InstanceCount         aws.IntegerValue                `ec2:"instanceCount" xml:"instanceCount"`
-	LaunchGroup           aws.StringValue                 `ec2:"launchGroup" xml:"launchGroup"`
+	AvailabilityZoneGroup aws.StringValue                 `ec2:"AvailabilityZoneGroup" xml:"availabilityZoneGroup"`
+	DryRun                aws.BooleanValue                `ec2:"DryRun" xml:"dryRun"`
+	InstanceCount         aws.IntegerValue                `ec2:"InstanceCount" xml:"instanceCount"`
+	LaunchGroup           aws.StringValue                 `ec2:"LaunchGroup" xml:"launchGroup"`
 	LaunchSpecification   *RequestSpotLaunchSpecification `ec2:"LaunchSpecification" xml:"LaunchSpecification"`
-	SpotPrice             aws.StringValue                 `ec2:"spotPrice" xml:"spotPrice"`
-	Type                  aws.StringValue                 `ec2:"type" xml:"type"`
-	ValidFrom             time.Time                       `ec2:"validFrom" xml:"validFrom"`
-	ValidUntil            time.Time                       `ec2:"validUntil" xml:"validUntil"`
+	SpotPrice             aws.StringValue                 `ec2:"SpotPrice" xml:"spotPrice"`
+	Type                  aws.StringValue                 `ec2:"Type" xml:"type"`
+	ValidFrom             time.Time                       `ec2:"ValidFrom" xml:"validFrom"`
+	ValidUntil            time.Time                       `ec2:"ValidUntil" xml:"validUntil"`
 }
 
 // RequestSpotInstancesResult is undocumented.
 type RequestSpotInstancesResult struct {
-	SpotInstanceRequests []SpotInstanceRequest `ec2:"spotInstanceRequestSet" xml:"spotInstanceRequestSet>item"`
+	SpotInstanceRequests []SpotInstanceRequest `ec2:"SpotInstanceRequests" xml:"spotInstanceRequestSet>item"`
 }
 
 // RequestSpotLaunchSpecification is undocumented.
 type RequestSpotLaunchSpecification struct {
-	AddressingType      aws.StringValue                         `ec2:"addressingType" xml:"addressingType"`
-	BlockDeviceMappings []BlockDeviceMapping                    `ec2:"blockDeviceMapping" xml:"blockDeviceMapping>item"`
-	EbsOptimized        aws.BooleanValue                        `ec2:"ebsOptimized" xml:"ebsOptimized"`
-	IamInstanceProfile  *IamInstanceProfileSpecification        `ec2:"iamInstanceProfile" xml:"iamInstanceProfile"`
-	ImageID             aws.StringValue                         `ec2:"imageId" xml:"imageId"`
-	InstanceType        aws.StringValue                         `ec2:"instanceType" xml:"instanceType"`
-	KernelID            aws.StringValue                         `ec2:"kernelId" xml:"kernelId"`
-	KeyName             aws.StringValue                         `ec2:"keyName" xml:"keyName"`
-	Monitoring          *RunInstancesMonitoringEnabled          `ec2:"monitoring" xml:"monitoring"`
-	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `ec2:"NetworkInterface" xml:"NetworkInterface>item"`
-	Placement           *SpotPlacement                          `ec2:"placement" xml:"placement"`
-	RamdiskID           aws.StringValue                         `ec2:"ramdiskId" xml:"ramdiskId"`
-	SecurityGroupIds    []string                                `ec2:"SecurityGroupId" xml:"SecurityGroupId>item"`
-	SecurityGroups      []string                                `ec2:"SecurityGroup" xml:"SecurityGroup>item"`
-	SubnetID            aws.StringValue                         `ec2:"subnetId" xml:"subnetId"`
-	UserData            aws.StringValue                         `ec2:"userData" xml:"userData"`
+	AddressingType      aws.StringValue                         `ec2:"AddressingType" xml:"addressingType"`
+	BlockDeviceMappings []BlockDeviceMapping                    `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
+	EbsOptimized        aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	IamInstanceProfile  *IamInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
+	ImageID             aws.StringValue                         `ec2:"ImageId" xml:"imageId"`
+	InstanceType        aws.StringValue                         `ec2:"InstanceType" xml:"instanceType"`
+	KernelID            aws.StringValue                         `ec2:"KernelId" xml:"kernelId"`
+	KeyName             aws.StringValue                         `ec2:"KeyName" xml:"keyName"`
+	Monitoring          *RunInstancesMonitoringEnabled          `ec2:"Monitoring" xml:"monitoring"`
+	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `ec2:"NetworkInterfaces" xml:"NetworkInterface>item"`
+	Placement           *SpotPlacement                          `ec2:"Placement" xml:"placement"`
+	RamdiskID           aws.StringValue                         `ec2:"RamdiskId" xml:"ramdiskId"`
+	SecurityGroupIds    []string                                `ec2:"SecurityGroupIds" xml:"SecurityGroupId>item"`
+	SecurityGroups      []string                                `ec2:"SecurityGroups" xml:"SecurityGroup>item"`
+	SubnetID            aws.StringValue                         `ec2:"SubnetId" xml:"subnetId"`
+	UserData            aws.StringValue                         `ec2:"UserData" xml:"userData"`
 }
 
 // Reservation is undocumented.
 type Reservation struct {
-	Groups        []GroupIdentifier `ec2:"groupSet" xml:"groupSet>item"`
-	Instances     []Instance        `ec2:"instancesSet" xml:"instancesSet>item"`
-	OwnerID       aws.StringValue   `ec2:"ownerId" xml:"ownerId"`
-	RequesterID   aws.StringValue   `ec2:"requesterId" xml:"requesterId"`
-	ReservationID aws.StringValue   `ec2:"reservationId" xml:"reservationId"`
+	Groups        []GroupIdentifier `ec2:"Groups" xml:"groupSet>item"`
+	Instances     []Instance        `ec2:"Instances" xml:"instancesSet>item"`
+	OwnerID       aws.StringValue   `ec2:"OwnerId" xml:"ownerId"`
+	RequesterID   aws.StringValue   `ec2:"RequesterId" xml:"requesterId"`
+	ReservationID aws.StringValue   `ec2:"ReservationId" xml:"reservationId"`
 }
 
 // ReservedInstanceLimitPrice is undocumented.
 type ReservedInstanceLimitPrice struct {
-	Amount       aws.DoubleValue `ec2:"amount" xml:"amount"`
-	CurrencyCode aws.StringValue `ec2:"currencyCode" xml:"currencyCode"`
+	Amount       aws.DoubleValue `ec2:"Amount" xml:"amount"`
+	CurrencyCode aws.StringValue `ec2:"CurrencyCode" xml:"currencyCode"`
 }
 
 // ReservedInstances is undocumented.
 type ReservedInstances struct {
-	AvailabilityZone    aws.StringValue   `ec2:"availabilityZone" xml:"availabilityZone"`
-	CurrencyCode        aws.StringValue   `ec2:"currencyCode" xml:"currencyCode"`
-	Duration            aws.LongValue     `ec2:"duration" xml:"duration"`
-	End                 time.Time         `ec2:"end" xml:"end"`
-	FixedPrice          aws.FloatValue    `ec2:"fixedPrice" xml:"fixedPrice"`
-	InstanceCount       aws.IntegerValue  `ec2:"instanceCount" xml:"instanceCount"`
-	InstanceTenancy     aws.StringValue   `ec2:"instanceTenancy" xml:"instanceTenancy"`
-	InstanceType        aws.StringValue   `ec2:"instanceType" xml:"instanceType"`
-	OfferingType        aws.StringValue   `ec2:"offeringType" xml:"offeringType"`
-	ProductDescription  aws.StringValue   `ec2:"productDescription" xml:"productDescription"`
-	RecurringCharges    []RecurringCharge `ec2:"recurringCharges" xml:"recurringCharges>item"`
-	ReservedInstancesID aws.StringValue   `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
-	Start               time.Time         `ec2:"start" xml:"start"`
-	State               aws.StringValue   `ec2:"state" xml:"state"`
-	Tags                []Tag             `ec2:"tagSet" xml:"tagSet>item"`
-	UsagePrice          aws.FloatValue    `ec2:"usagePrice" xml:"usagePrice"`
+	AvailabilityZone    aws.StringValue   `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	CurrencyCode        aws.StringValue   `ec2:"CurrencyCode" xml:"currencyCode"`
+	Duration            aws.LongValue     `ec2:"Duration" xml:"duration"`
+	End                 time.Time         `ec2:"End" xml:"end"`
+	FixedPrice          aws.FloatValue    `ec2:"FixedPrice" xml:"fixedPrice"`
+	InstanceCount       aws.IntegerValue  `ec2:"InstanceCount" xml:"instanceCount"`
+	InstanceTenancy     aws.StringValue   `ec2:"InstanceTenancy" xml:"instanceTenancy"`
+	InstanceType        aws.StringValue   `ec2:"InstanceType" xml:"instanceType"`
+	OfferingType        aws.StringValue   `ec2:"OfferingType" xml:"offeringType"`
+	ProductDescription  aws.StringValue   `ec2:"ProductDescription" xml:"productDescription"`
+	RecurringCharges    []RecurringCharge `ec2:"RecurringCharges" xml:"recurringCharges>item"`
+	ReservedInstancesID aws.StringValue   `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
+	Start               time.Time         `ec2:"Start" xml:"start"`
+	State               aws.StringValue   `ec2:"State" xml:"state"`
+	Tags                []Tag             `ec2:"Tags" xml:"tagSet>item"`
+	UsagePrice          aws.FloatValue    `ec2:"UsagePrice" xml:"usagePrice"`
 }
 
 // ReservedInstancesConfiguration is undocumented.
 type ReservedInstancesConfiguration struct {
-	AvailabilityZone aws.StringValue  `ec2:"availabilityZone" xml:"availabilityZone"`
-	InstanceCount    aws.IntegerValue `ec2:"instanceCount" xml:"instanceCount"`
-	InstanceType     aws.StringValue  `ec2:"instanceType" xml:"instanceType"`
-	Platform         aws.StringValue  `ec2:"platform" xml:"platform"`
+	AvailabilityZone aws.StringValue  `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	InstanceCount    aws.IntegerValue `ec2:"InstanceCount" xml:"instanceCount"`
+	InstanceType     aws.StringValue  `ec2:"InstanceType" xml:"instanceType"`
+	Platform         aws.StringValue  `ec2:"Platform" xml:"platform"`
 }
 
 // ReservedInstancesID is undocumented.
 type ReservedInstancesID struct {
-	ReservedInstancesID aws.StringValue `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
+	ReservedInstancesID aws.StringValue `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
 }
 
 // ReservedInstancesListing is undocumented.
 type ReservedInstancesListing struct {
-	ClientToken                aws.StringValue `ec2:"clientToken" xml:"clientToken"`
-	CreateDate                 time.Time       `ec2:"createDate" xml:"createDate"`
-	InstanceCounts             []InstanceCount `ec2:"instanceCounts" xml:"instanceCounts>item"`
-	PriceSchedules             []PriceSchedule `ec2:"priceSchedules" xml:"priceSchedules>item"`
-	ReservedInstancesID        aws.StringValue `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
-	ReservedInstancesListingID aws.StringValue `ec2:"reservedInstancesListingId" xml:"reservedInstancesListingId"`
-	Status                     aws.StringValue `ec2:"status" xml:"status"`
-	StatusMessage              aws.StringValue `ec2:"statusMessage" xml:"statusMessage"`
-	Tags                       []Tag           `ec2:"tagSet" xml:"tagSet>item"`
-	UpdateDate                 time.Time       `ec2:"updateDate" xml:"updateDate"`
+	ClientToken                aws.StringValue `ec2:"ClientToken" xml:"clientToken"`
+	CreateDate                 time.Time       `ec2:"CreateDate" xml:"createDate"`
+	InstanceCounts             []InstanceCount `ec2:"InstanceCounts" xml:"instanceCounts>item"`
+	PriceSchedules             []PriceSchedule `ec2:"PriceSchedules" xml:"priceSchedules>item"`
+	ReservedInstancesID        aws.StringValue `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
+	ReservedInstancesListingID aws.StringValue `ec2:"ReservedInstancesListingId" xml:"reservedInstancesListingId"`
+	Status                     aws.StringValue `ec2:"Status" xml:"status"`
+	StatusMessage              aws.StringValue `ec2:"StatusMessage" xml:"statusMessage"`
+	Tags                       []Tag           `ec2:"Tags" xml:"tagSet>item"`
+	UpdateDate                 time.Time       `ec2:"UpdateDate" xml:"updateDate"`
 }
 
 // ReservedInstancesModification is undocumented.
 type ReservedInstancesModification struct {
-	ClientToken                     aws.StringValue                       `ec2:"clientToken" xml:"clientToken"`
-	CreateDate                      time.Time                             `ec2:"createDate" xml:"createDate"`
-	EffectiveDate                   time.Time                             `ec2:"effectiveDate" xml:"effectiveDate"`
-	ModificationResults             []ReservedInstancesModificationResult `ec2:"modificationResultSet" xml:"modificationResultSet>item"`
-	ReservedInstancesIds            []ReservedInstancesID                 `ec2:"reservedInstancesSet" xml:"reservedInstancesSet>item"`
-	ReservedInstancesModificationID aws.StringValue                       `ec2:"reservedInstancesModificationId" xml:"reservedInstancesModificationId"`
-	Status                          aws.StringValue                       `ec2:"status" xml:"status"`
-	StatusMessage                   aws.StringValue                       `ec2:"statusMessage" xml:"statusMessage"`
-	UpdateDate                      time.Time                             `ec2:"updateDate" xml:"updateDate"`
+	ClientToken                     aws.StringValue                       `ec2:"ClientToken" xml:"clientToken"`
+	CreateDate                      time.Time                             `ec2:"CreateDate" xml:"createDate"`
+	EffectiveDate                   time.Time                             `ec2:"EffectiveDate" xml:"effectiveDate"`
+	ModificationResults             []ReservedInstancesModificationResult `ec2:"ModificationResults" xml:"modificationResultSet>item"`
+	ReservedInstancesIds            []ReservedInstancesID                 `ec2:"ReservedInstancesIds" xml:"reservedInstancesSet>item"`
+	ReservedInstancesModificationID aws.StringValue                       `ec2:"ReservedInstancesModificationId" xml:"reservedInstancesModificationId"`
+	Status                          aws.StringValue                       `ec2:"Status" xml:"status"`
+	StatusMessage                   aws.StringValue                       `ec2:"StatusMessage" xml:"statusMessage"`
+	UpdateDate                      time.Time                             `ec2:"UpdateDate" xml:"updateDate"`
 }
 
 // ReservedInstancesModificationResult is undocumented.
 type ReservedInstancesModificationResult struct {
-	ReservedInstancesID aws.StringValue                 `ec2:"reservedInstancesId" xml:"reservedInstancesId"`
-	TargetConfiguration *ReservedInstancesConfiguration `ec2:"targetConfiguration" xml:"targetConfiguration"`
+	ReservedInstancesID aws.StringValue                 `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
+	TargetConfiguration *ReservedInstancesConfiguration `ec2:"TargetConfiguration" xml:"targetConfiguration"`
 }
 
 // ReservedInstancesOffering is undocumented.
 type ReservedInstancesOffering struct {
-	AvailabilityZone            aws.StringValue   `ec2:"availabilityZone" xml:"availabilityZone"`
-	CurrencyCode                aws.StringValue   `ec2:"currencyCode" xml:"currencyCode"`
-	Duration                    aws.LongValue     `ec2:"duration" xml:"duration"`
-	FixedPrice                  aws.FloatValue    `ec2:"fixedPrice" xml:"fixedPrice"`
-	InstanceTenancy             aws.StringValue   `ec2:"instanceTenancy" xml:"instanceTenancy"`
-	InstanceType                aws.StringValue   `ec2:"instanceType" xml:"instanceType"`
-	Marketplace                 aws.BooleanValue  `ec2:"marketplace" xml:"marketplace"`
-	OfferingType                aws.StringValue   `ec2:"offeringType" xml:"offeringType"`
-	PricingDetails              []PricingDetail   `ec2:"pricingDetailsSet" xml:"pricingDetailsSet>item"`
-	ProductDescription          aws.StringValue   `ec2:"productDescription" xml:"productDescription"`
-	RecurringCharges            []RecurringCharge `ec2:"recurringCharges" xml:"recurringCharges>item"`
-	ReservedInstancesOfferingID aws.StringValue   `ec2:"reservedInstancesOfferingId" xml:"reservedInstancesOfferingId"`
-	UsagePrice                  aws.FloatValue    `ec2:"usagePrice" xml:"usagePrice"`
+	AvailabilityZone            aws.StringValue   `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	CurrencyCode                aws.StringValue   `ec2:"CurrencyCode" xml:"currencyCode"`
+	Duration                    aws.LongValue     `ec2:"Duration" xml:"duration"`
+	FixedPrice                  aws.FloatValue    `ec2:"FixedPrice" xml:"fixedPrice"`
+	InstanceTenancy             aws.StringValue   `ec2:"InstanceTenancy" xml:"instanceTenancy"`
+	InstanceType                aws.StringValue   `ec2:"InstanceType" xml:"instanceType"`
+	Marketplace                 aws.BooleanValue  `ec2:"Marketplace" xml:"marketplace"`
+	OfferingType                aws.StringValue   `ec2:"OfferingType" xml:"offeringType"`
+	PricingDetails              []PricingDetail   `ec2:"PricingDetails" xml:"pricingDetailsSet>item"`
+	ProductDescription          aws.StringValue   `ec2:"ProductDescription" xml:"productDescription"`
+	RecurringCharges            []RecurringCharge `ec2:"RecurringCharges" xml:"recurringCharges>item"`
+	ReservedInstancesOfferingID aws.StringValue   `ec2:"ReservedInstancesOfferingId" xml:"reservedInstancesOfferingId"`
+	UsagePrice                  aws.FloatValue    `ec2:"UsagePrice" xml:"usagePrice"`
 }
 
 // ResetImageAttributeRequest is undocumented.
 type ResetImageAttributeRequest struct {
 	Attribute aws.StringValue  `ec2:"Attribute" xml:"Attribute"`
-	DryRun    aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	ImageID   aws.StringValue  `ec2:"ImageId" xml:"ImageId"`
 }
 
 // ResetInstanceAttributeRequest is undocumented.
 type ResetInstanceAttributeRequest struct {
-	Attribute  aws.StringValue  `ec2:"attribute" xml:"attribute"`
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InstanceID aws.StringValue  `ec2:"instanceId" xml:"instanceId"`
+	Attribute  aws.StringValue  `ec2:"Attribute" xml:"attribute"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
 }
 
 // ResetNetworkInterfaceAttributeRequest is undocumented.
 type ResetNetworkInterfaceAttributeRequest struct {
-	DryRun             aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	NetworkInterfaceID aws.StringValue  `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	SourceDestCheck    aws.StringValue  `ec2:"sourceDestCheck" xml:"sourceDestCheck"`
+	DryRun             aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	NetworkInterfaceID aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	SourceDestCheck    aws.StringValue  `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
 }
 
 // ResetSnapshotAttributeRequest is undocumented.
 type ResetSnapshotAttributeRequest struct {
 	Attribute  aws.StringValue  `ec2:"Attribute" xml:"Attribute"`
-	DryRun     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	SnapshotID aws.StringValue  `ec2:"SnapshotId" xml:"SnapshotId"`
 }
 
 // RevokeSecurityGroupEgressRequest is undocumented.
 type RevokeSecurityGroupEgressRequest struct {
-	CidrIP                     aws.StringValue  `ec2:"cidrIp" xml:"cidrIp"`
-	DryRun                     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	FromPort                   aws.IntegerValue `ec2:"fromPort" xml:"fromPort"`
-	GroupID                    aws.StringValue  `ec2:"groupId" xml:"groupId"`
-	IPPermissions              []IPPermission   `ec2:"ipPermissions" xml:"ipPermissions>item"`
-	IPProtocol                 aws.StringValue  `ec2:"ipProtocol" xml:"ipProtocol"`
-	SourceSecurityGroupName    aws.StringValue  `ec2:"sourceSecurityGroupName" xml:"sourceSecurityGroupName"`
-	SourceSecurityGroupOwnerID aws.StringValue  `ec2:"sourceSecurityGroupOwnerId" xml:"sourceSecurityGroupOwnerId"`
-	ToPort                     aws.IntegerValue `ec2:"toPort" xml:"toPort"`
+	CidrIP                     aws.StringValue  `ec2:"CidrIp" xml:"cidrIp"`
+	DryRun                     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	FromPort                   aws.IntegerValue `ec2:"FromPort" xml:"fromPort"`
+	GroupID                    aws.StringValue  `ec2:"GroupId" xml:"groupId"`
+	IPPermissions              []IPPermission   `ec2:"IpPermissions" xml:"ipPermissions>item"`
+	IPProtocol                 aws.StringValue  `ec2:"IpProtocol" xml:"ipProtocol"`
+	SourceSecurityGroupName    aws.StringValue  `ec2:"SourceSecurityGroupName" xml:"sourceSecurityGroupName"`
+	SourceSecurityGroupOwnerID aws.StringValue  `ec2:"SourceSecurityGroupOwnerId" xml:"sourceSecurityGroupOwnerId"`
+	ToPort                     aws.IntegerValue `ec2:"ToPort" xml:"toPort"`
 }
 
 // RevokeSecurityGroupIngressRequest is undocumented.
 type RevokeSecurityGroupIngressRequest struct {
 	CidrIP                     aws.StringValue  `ec2:"CidrIp" xml:"CidrIp"`
-	DryRun                     aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
+	DryRun                     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	FromPort                   aws.IntegerValue `ec2:"FromPort" xml:"FromPort"`
 	GroupID                    aws.StringValue  `ec2:"GroupId" xml:"GroupId"`
 	GroupName                  aws.StringValue  `ec2:"GroupName" xml:"GroupName"`
@@ -4511,62 +4511,62 @@ type RevokeSecurityGroupIngressRequest struct {
 
 // Route is undocumented.
 type Route struct {
-	DestinationCidrBlock   aws.StringValue `ec2:"destinationCidrBlock" xml:"destinationCidrBlock"`
-	GatewayID              aws.StringValue `ec2:"gatewayId" xml:"gatewayId"`
-	InstanceID             aws.StringValue `ec2:"instanceId" xml:"instanceId"`
-	InstanceOwnerID        aws.StringValue `ec2:"instanceOwnerId" xml:"instanceOwnerId"`
-	NetworkInterfaceID     aws.StringValue `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	Origin                 aws.StringValue `ec2:"origin" xml:"origin"`
-	State                  aws.StringValue `ec2:"state" xml:"state"`
-	VpcPeeringConnectionID aws.StringValue `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	DestinationCidrBlock   aws.StringValue `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
+	GatewayID              aws.StringValue `ec2:"GatewayId" xml:"gatewayId"`
+	InstanceID             aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
+	InstanceOwnerID        aws.StringValue `ec2:"InstanceOwnerId" xml:"instanceOwnerId"`
+	NetworkInterfaceID     aws.StringValue `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	Origin                 aws.StringValue `ec2:"Origin" xml:"origin"`
+	State                  aws.StringValue `ec2:"State" xml:"state"`
+	VpcPeeringConnectionID aws.StringValue `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // RouteTable is undocumented.
 type RouteTable struct {
-	Associations    []RouteTableAssociation `ec2:"associationSet" xml:"associationSet>item"`
-	PropagatingVgws []PropagatingVgw        `ec2:"propagatingVgwSet" xml:"propagatingVgwSet>item"`
-	RouteTableID    aws.StringValue         `ec2:"routeTableId" xml:"routeTableId"`
-	Routes          []Route                 `ec2:"routeSet" xml:"routeSet>item"`
-	Tags            []Tag                   `ec2:"tagSet" xml:"tagSet>item"`
-	VpcID           aws.StringValue         `ec2:"vpcId" xml:"vpcId"`
+	Associations    []RouteTableAssociation `ec2:"Associations" xml:"associationSet>item"`
+	PropagatingVgws []PropagatingVgw        `ec2:"PropagatingVgws" xml:"propagatingVgwSet>item"`
+	RouteTableID    aws.StringValue         `ec2:"RouteTableId" xml:"routeTableId"`
+	Routes          []Route                 `ec2:"Routes" xml:"routeSet>item"`
+	Tags            []Tag                   `ec2:"Tags" xml:"tagSet>item"`
+	VpcID           aws.StringValue         `ec2:"VpcId" xml:"vpcId"`
 }
 
 // RouteTableAssociation is undocumented.
 type RouteTableAssociation struct {
-	Main                    aws.BooleanValue `ec2:"main" xml:"main"`
-	RouteTableAssociationID aws.StringValue  `ec2:"routeTableAssociationId" xml:"routeTableAssociationId"`
-	RouteTableID            aws.StringValue  `ec2:"routeTableId" xml:"routeTableId"`
-	SubnetID                aws.StringValue  `ec2:"subnetId" xml:"subnetId"`
+	Main                    aws.BooleanValue `ec2:"Main" xml:"main"`
+	RouteTableAssociationID aws.StringValue  `ec2:"RouteTableAssociationId" xml:"routeTableAssociationId"`
+	RouteTableID            aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
+	SubnetID                aws.StringValue  `ec2:"SubnetId" xml:"subnetId"`
 }
 
 // RunInstancesMonitoringEnabled is undocumented.
 type RunInstancesMonitoringEnabled struct {
-	Enabled aws.BooleanValue `ec2:"enabled" xml:"enabled"`
+	Enabled aws.BooleanValue `ec2:"Enabled" xml:"enabled"`
 }
 
 // RunInstancesRequest is undocumented.
 type RunInstancesRequest struct {
-	AdditionalInfo                    aws.StringValue                         `ec2:"additionalInfo" xml:"additionalInfo"`
-	BlockDeviceMappings               []BlockDeviceMapping                    `ec2:"BlockDeviceMapping" xml:"BlockDeviceMapping>BlockDeviceMapping"`
-	ClientToken                       aws.StringValue                         `ec2:"clientToken" xml:"clientToken"`
-	DisableAPITermination             aws.BooleanValue                        `ec2:"disableApiTermination" xml:"disableApiTermination"`
-	DryRun                            aws.BooleanValue                        `ec2:"dryRun" xml:"dryRun"`
-	EbsOptimized                      aws.BooleanValue                        `ec2:"ebsOptimized" xml:"ebsOptimized"`
-	IamInstanceProfile                *IamInstanceProfileSpecification        `ec2:"iamInstanceProfile" xml:"iamInstanceProfile"`
+	AdditionalInfo                    aws.StringValue                         `ec2:"AdditionalInfo" xml:"additionalInfo"`
+	BlockDeviceMappings               []BlockDeviceMapping                    `ec2:"BlockDeviceMappings" xml:"BlockDeviceMapping>BlockDeviceMapping"`
+	ClientToken                       aws.StringValue                         `ec2:"ClientToken" xml:"clientToken"`
+	DisableAPITermination             aws.BooleanValue                        `ec2:"DisableApiTermination" xml:"disableApiTermination"`
+	DryRun                            aws.BooleanValue                        `ec2:"DryRun" xml:"dryRun"`
+	EbsOptimized                      aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	IamInstanceProfile                *IamInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
 	ImageID                           aws.StringValue                         `ec2:"ImageId" xml:"ImageId"`
-	InstanceInitiatedShutdownBehavior aws.StringValue                         `ec2:"instanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
+	InstanceInitiatedShutdownBehavior aws.StringValue                         `ec2:"InstanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
 	InstanceType                      aws.StringValue                         `ec2:"InstanceType" xml:"InstanceType"`
 	KernelID                          aws.StringValue                         `ec2:"KernelId" xml:"KernelId"`
 	KeyName                           aws.StringValue                         `ec2:"KeyName" xml:"KeyName"`
 	MaxCount                          aws.IntegerValue                        `ec2:"MaxCount" xml:"MaxCount"`
 	MinCount                          aws.IntegerValue                        `ec2:"MinCount" xml:"MinCount"`
 	Monitoring                        *RunInstancesMonitoringEnabled          `ec2:"Monitoring" xml:"Monitoring"`
-	NetworkInterfaces                 []InstanceNetworkInterfaceSpecification `ec2:"networkInterface" xml:"networkInterface>item"`
+	NetworkInterfaces                 []InstanceNetworkInterfaceSpecification `ec2:"NetworkInterfaces" xml:"networkInterface>item"`
 	Placement                         *Placement                              `ec2:"Placement" xml:"Placement"`
-	PrivateIPAddress                  aws.StringValue                         `ec2:"privateIpAddress" xml:"privateIpAddress"`
+	PrivateIPAddress                  aws.StringValue                         `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 	RamdiskID                         aws.StringValue                         `ec2:"RamdiskId" xml:"RamdiskId"`
-	SecurityGroupIds                  []string                                `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
-	SecurityGroups                    []string                                `ec2:"SecurityGroup" xml:"SecurityGroup>SecurityGroup"`
+	SecurityGroupIds                  []string                                `ec2:"SecurityGroupIds" xml:"SecurityGroupId>SecurityGroupId"`
+	SecurityGroups                    []string                                `ec2:"SecurityGroups" xml:"SecurityGroup>SecurityGroup"`
 	SubnetID                          aws.StringValue                         `ec2:"SubnetId" xml:"SubnetId"`
 	UserData                          aws.StringValue                         `ec2:"UserData" xml:"UserData"`
 }
@@ -4574,125 +4574,125 @@ type RunInstancesRequest struct {
 // S3Storage is undocumented.
 type S3Storage struct {
 	AWSAccessKeyID        aws.StringValue `ec2:"AWSAccessKeyId" xml:"AWSAccessKeyId"`
-	Bucket                aws.StringValue `ec2:"bucket" xml:"bucket"`
-	Prefix                aws.StringValue `ec2:"prefix" xml:"prefix"`
-	UploadPolicy          []byte          `ec2:"uploadPolicy" xml:"uploadPolicy"`
-	UploadPolicySignature aws.StringValue `ec2:"uploadPolicySignature" xml:"uploadPolicySignature"`
+	Bucket                aws.StringValue `ec2:"Bucket" xml:"bucket"`
+	Prefix                aws.StringValue `ec2:"Prefix" xml:"prefix"`
+	UploadPolicy          []byte          `ec2:"UploadPolicy" xml:"uploadPolicy"`
+	UploadPolicySignature aws.StringValue `ec2:"UploadPolicySignature" xml:"uploadPolicySignature"`
 }
 
 // SecurityGroup is undocumented.
 type SecurityGroup struct {
-	Description         aws.StringValue `ec2:"groupDescription" xml:"groupDescription"`
-	GroupID             aws.StringValue `ec2:"groupId" xml:"groupId"`
-	GroupName           aws.StringValue `ec2:"groupName" xml:"groupName"`
-	IPPermissions       []IPPermission  `ec2:"ipPermissions" xml:"ipPermissions>item"`
-	IPPermissionsEgress []IPPermission  `ec2:"ipPermissionsEgress" xml:"ipPermissionsEgress>item"`
-	OwnerID             aws.StringValue `ec2:"ownerId" xml:"ownerId"`
-	Tags                []Tag           `ec2:"tagSet" xml:"tagSet>item"`
-	VpcID               aws.StringValue `ec2:"vpcId" xml:"vpcId"`
+	Description         aws.StringValue `ec2:"Description" xml:"groupDescription"`
+	GroupID             aws.StringValue `ec2:"GroupId" xml:"groupId"`
+	GroupName           aws.StringValue `ec2:"GroupName" xml:"groupName"`
+	IPPermissions       []IPPermission  `ec2:"IpPermissions" xml:"ipPermissions>item"`
+	IPPermissionsEgress []IPPermission  `ec2:"IpPermissionsEgress" xml:"ipPermissionsEgress>item"`
+	OwnerID             aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
+	Tags                []Tag           `ec2:"Tags" xml:"tagSet>item"`
+	VpcID               aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
 // Snapshot is undocumented.
 type Snapshot struct {
-	Description aws.StringValue  `ec2:"description" xml:"description"`
-	Encrypted   aws.BooleanValue `ec2:"encrypted" xml:"encrypted"`
-	KmsKeyID    aws.StringValue  `ec2:"kmsKeyId" xml:"kmsKeyId"`
-	OwnerAlias  aws.StringValue  `ec2:"ownerAlias" xml:"ownerAlias"`
-	OwnerID     aws.StringValue  `ec2:"ownerId" xml:"ownerId"`
-	Progress    aws.StringValue  `ec2:"progress" xml:"progress"`
-	SnapshotID  aws.StringValue  `ec2:"snapshotId" xml:"snapshotId"`
-	StartTime   time.Time        `ec2:"startTime" xml:"startTime"`
-	State       aws.StringValue  `ec2:"status" xml:"status"`
-	Tags        []Tag            `ec2:"tagSet" xml:"tagSet>item"`
-	VolumeID    aws.StringValue  `ec2:"volumeId" xml:"volumeId"`
-	VolumeSize  aws.IntegerValue `ec2:"volumeSize" xml:"volumeSize"`
+	Description aws.StringValue  `ec2:"Description" xml:"description"`
+	Encrypted   aws.BooleanValue `ec2:"Encrypted" xml:"encrypted"`
+	KmsKeyID    aws.StringValue  `ec2:"KmsKeyId" xml:"kmsKeyId"`
+	OwnerAlias  aws.StringValue  `ec2:"OwnerAlias" xml:"ownerAlias"`
+	OwnerID     aws.StringValue  `ec2:"OwnerId" xml:"ownerId"`
+	Progress    aws.StringValue  `ec2:"Progress" xml:"progress"`
+	SnapshotID  aws.StringValue  `ec2:"SnapshotId" xml:"snapshotId"`
+	StartTime   time.Time        `ec2:"StartTime" xml:"startTime"`
+	State       aws.StringValue  `ec2:"State" xml:"status"`
+	Tags        []Tag            `ec2:"Tags" xml:"tagSet>item"`
+	VolumeID    aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
+	VolumeSize  aws.IntegerValue `ec2:"VolumeSize" xml:"volumeSize"`
 }
 
 // SpotDatafeedSubscription is undocumented.
 type SpotDatafeedSubscription struct {
-	Bucket  aws.StringValue         `ec2:"bucket" xml:"bucket"`
-	Fault   *SpotInstanceStateFault `ec2:"fault" xml:"fault"`
-	OwnerID aws.StringValue         `ec2:"ownerId" xml:"ownerId"`
-	Prefix  aws.StringValue         `ec2:"prefix" xml:"prefix"`
-	State   aws.StringValue         `ec2:"state" xml:"state"`
+	Bucket  aws.StringValue         `ec2:"Bucket" xml:"bucket"`
+	Fault   *SpotInstanceStateFault `ec2:"Fault" xml:"fault"`
+	OwnerID aws.StringValue         `ec2:"OwnerId" xml:"ownerId"`
+	Prefix  aws.StringValue         `ec2:"Prefix" xml:"prefix"`
+	State   aws.StringValue         `ec2:"State" xml:"state"`
 }
 
 // SpotInstanceRequest is undocumented.
 type SpotInstanceRequest struct {
-	AvailabilityZoneGroup    aws.StringValue         `ec2:"availabilityZoneGroup" xml:"availabilityZoneGroup"`
-	CreateTime               time.Time               `ec2:"createTime" xml:"createTime"`
-	Fault                    *SpotInstanceStateFault `ec2:"fault" xml:"fault"`
-	InstanceID               aws.StringValue         `ec2:"instanceId" xml:"instanceId"`
-	LaunchGroup              aws.StringValue         `ec2:"launchGroup" xml:"launchGroup"`
-	LaunchSpecification      *LaunchSpecification    `ec2:"launchSpecification" xml:"launchSpecification"`
-	LaunchedAvailabilityZone aws.StringValue         `ec2:"launchedAvailabilityZone" xml:"launchedAvailabilityZone"`
-	ProductDescription       aws.StringValue         `ec2:"productDescription" xml:"productDescription"`
-	SpotInstanceRequestID    aws.StringValue         `ec2:"spotInstanceRequestId" xml:"spotInstanceRequestId"`
-	SpotPrice                aws.StringValue         `ec2:"spotPrice" xml:"spotPrice"`
-	State                    aws.StringValue         `ec2:"state" xml:"state"`
-	Status                   *SpotInstanceStatus     `ec2:"status" xml:"status"`
-	Tags                     []Tag                   `ec2:"tagSet" xml:"tagSet>item"`
-	Type                     aws.StringValue         `ec2:"type" xml:"type"`
-	ValidFrom                time.Time               `ec2:"validFrom" xml:"validFrom"`
-	ValidUntil               time.Time               `ec2:"validUntil" xml:"validUntil"`
+	AvailabilityZoneGroup    aws.StringValue         `ec2:"AvailabilityZoneGroup" xml:"availabilityZoneGroup"`
+	CreateTime               time.Time               `ec2:"CreateTime" xml:"createTime"`
+	Fault                    *SpotInstanceStateFault `ec2:"Fault" xml:"fault"`
+	InstanceID               aws.StringValue         `ec2:"InstanceId" xml:"instanceId"`
+	LaunchGroup              aws.StringValue         `ec2:"LaunchGroup" xml:"launchGroup"`
+	LaunchSpecification      *LaunchSpecification    `ec2:"LaunchSpecification" xml:"launchSpecification"`
+	LaunchedAvailabilityZone aws.StringValue         `ec2:"LaunchedAvailabilityZone" xml:"launchedAvailabilityZone"`
+	ProductDescription       aws.StringValue         `ec2:"ProductDescription" xml:"productDescription"`
+	SpotInstanceRequestID    aws.StringValue         `ec2:"SpotInstanceRequestId" xml:"spotInstanceRequestId"`
+	SpotPrice                aws.StringValue         `ec2:"SpotPrice" xml:"spotPrice"`
+	State                    aws.StringValue         `ec2:"State" xml:"state"`
+	Status                   *SpotInstanceStatus     `ec2:"Status" xml:"status"`
+	Tags                     []Tag                   `ec2:"Tags" xml:"tagSet>item"`
+	Type                     aws.StringValue         `ec2:"Type" xml:"type"`
+	ValidFrom                time.Time               `ec2:"ValidFrom" xml:"validFrom"`
+	ValidUntil               time.Time               `ec2:"ValidUntil" xml:"validUntil"`
 }
 
 // SpotInstanceStateFault is undocumented.
 type SpotInstanceStateFault struct {
-	Code    aws.StringValue `ec2:"code" xml:"code"`
-	Message aws.StringValue `ec2:"message" xml:"message"`
+	Code    aws.StringValue `ec2:"Code" xml:"code"`
+	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
 // SpotInstanceStatus is undocumented.
 type SpotInstanceStatus struct {
-	Code       aws.StringValue `ec2:"code" xml:"code"`
-	Message    aws.StringValue `ec2:"message" xml:"message"`
-	UpdateTime time.Time       `ec2:"updateTime" xml:"updateTime"`
+	Code       aws.StringValue `ec2:"Code" xml:"code"`
+	Message    aws.StringValue `ec2:"Message" xml:"message"`
+	UpdateTime time.Time       `ec2:"UpdateTime" xml:"updateTime"`
 }
 
 // SpotPlacement is undocumented.
 type SpotPlacement struct {
-	AvailabilityZone aws.StringValue `ec2:"availabilityZone" xml:"availabilityZone"`
-	GroupName        aws.StringValue `ec2:"groupName" xml:"groupName"`
+	AvailabilityZone aws.StringValue `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	GroupName        aws.StringValue `ec2:"GroupName" xml:"groupName"`
 }
 
 // SpotPrice is undocumented.
 type SpotPrice struct {
-	AvailabilityZone   aws.StringValue `ec2:"availabilityZone" xml:"availabilityZone"`
-	InstanceType       aws.StringValue `ec2:"instanceType" xml:"instanceType"`
-	ProductDescription aws.StringValue `ec2:"productDescription" xml:"productDescription"`
-	SpotPrice          aws.StringValue `ec2:"spotPrice" xml:"spotPrice"`
-	Timestamp          time.Time       `ec2:"timestamp" xml:"timestamp"`
+	AvailabilityZone   aws.StringValue `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	InstanceType       aws.StringValue `ec2:"InstanceType" xml:"instanceType"`
+	ProductDescription aws.StringValue `ec2:"ProductDescription" xml:"productDescription"`
+	SpotPrice          aws.StringValue `ec2:"SpotPrice" xml:"spotPrice"`
+	Timestamp          time.Time       `ec2:"Timestamp" xml:"timestamp"`
 }
 
 // StartInstancesRequest is undocumented.
 type StartInstancesRequest struct {
-	AdditionalInfo aws.StringValue  `ec2:"additionalInfo" xml:"additionalInfo"`
-	DryRun         aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InstanceIds    []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
+	AdditionalInfo aws.StringValue  `ec2:"AdditionalInfo" xml:"additionalInfo"`
+	DryRun         aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InstanceIds    []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
 }
 
 // StartInstancesResult is undocumented.
 type StartInstancesResult struct {
-	StartingInstances []InstanceStateChange `ec2:"instancesSet" xml:"instancesSet>item"`
+	StartingInstances []InstanceStateChange `ec2:"StartingInstances" xml:"instancesSet>item"`
 }
 
 // StateReason is undocumented.
 type StateReason struct {
-	Code    aws.StringValue `ec2:"code" xml:"code"`
-	Message aws.StringValue `ec2:"message" xml:"message"`
+	Code    aws.StringValue `ec2:"Code" xml:"code"`
+	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
 // StopInstancesRequest is undocumented.
 type StopInstancesRequest struct {
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	Force       aws.BooleanValue `ec2:"force" xml:"force"`
-	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Force       aws.BooleanValue `ec2:"Force" xml:"force"`
+	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
 }
 
 // StopInstancesResult is undocumented.
 type StopInstancesResult struct {
-	StoppingInstances []InstanceStateChange `ec2:"instancesSet" xml:"instancesSet>item"`
+	StoppingInstances []InstanceStateChange `ec2:"StoppingInstances" xml:"instancesSet>item"`
 }
 
 // Storage is undocumented.
@@ -4702,223 +4702,223 @@ type Storage struct {
 
 // Subnet is undocumented.
 type Subnet struct {
-	AvailabilityZone        aws.StringValue  `ec2:"availabilityZone" xml:"availabilityZone"`
-	AvailableIPAddressCount aws.IntegerValue `ec2:"availableIpAddressCount" xml:"availableIpAddressCount"`
-	CidrBlock               aws.StringValue  `ec2:"cidrBlock" xml:"cidrBlock"`
-	DefaultForAz            aws.BooleanValue `ec2:"defaultForAz" xml:"defaultForAz"`
-	MapPublicIPOnLaunch     aws.BooleanValue `ec2:"mapPublicIpOnLaunch" xml:"mapPublicIpOnLaunch"`
-	State                   aws.StringValue  `ec2:"state" xml:"state"`
-	SubnetID                aws.StringValue  `ec2:"subnetId" xml:"subnetId"`
-	Tags                    []Tag            `ec2:"tagSet" xml:"tagSet>item"`
-	VpcID                   aws.StringValue  `ec2:"vpcId" xml:"vpcId"`
+	AvailabilityZone        aws.StringValue  `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	AvailableIPAddressCount aws.IntegerValue `ec2:"AvailableIpAddressCount" xml:"availableIpAddressCount"`
+	CidrBlock               aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
+	DefaultForAz            aws.BooleanValue `ec2:"DefaultForAz" xml:"defaultForAz"`
+	MapPublicIPOnLaunch     aws.BooleanValue `ec2:"MapPublicIpOnLaunch" xml:"mapPublicIpOnLaunch"`
+	State                   aws.StringValue  `ec2:"State" xml:"state"`
+	SubnetID                aws.StringValue  `ec2:"SubnetId" xml:"subnetId"`
+	Tags                    []Tag            `ec2:"Tags" xml:"tagSet>item"`
+	VpcID                   aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // Tag is undocumented.
 type Tag struct {
-	Key   aws.StringValue `ec2:"key" xml:"key"`
-	Value aws.StringValue `ec2:"value" xml:"value"`
+	Key   aws.StringValue `ec2:"Key" xml:"key"`
+	Value aws.StringValue `ec2:"Value" xml:"value"`
 }
 
 // TagDescription is undocumented.
 type TagDescription struct {
-	Key          aws.StringValue `ec2:"key" xml:"key"`
-	ResourceID   aws.StringValue `ec2:"resourceId" xml:"resourceId"`
-	ResourceType aws.StringValue `ec2:"resourceType" xml:"resourceType"`
-	Value        aws.StringValue `ec2:"value" xml:"value"`
+	Key          aws.StringValue `ec2:"Key" xml:"key"`
+	ResourceID   aws.StringValue `ec2:"ResourceId" xml:"resourceId"`
+	ResourceType aws.StringValue `ec2:"ResourceType" xml:"resourceType"`
+	Value        aws.StringValue `ec2:"Value" xml:"value"`
 }
 
 // TerminateInstancesRequest is undocumented.
 type TerminateInstancesRequest struct {
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
 }
 
 // TerminateInstancesResult is undocumented.
 type TerminateInstancesResult struct {
-	TerminatingInstances []InstanceStateChange `ec2:"instancesSet" xml:"instancesSet>item"`
+	TerminatingInstances []InstanceStateChange `ec2:"TerminatingInstances" xml:"instancesSet>item"`
 }
 
 // UnassignPrivateIPAddressesRequest is undocumented.
 type UnassignPrivateIPAddressesRequest struct {
-	NetworkInterfaceID aws.StringValue `ec2:"networkInterfaceId" xml:"networkInterfaceId"`
-	PrivateIPAddresses []string        `ec2:"privateIpAddress" xml:"privateIpAddress>PrivateIpAddress"`
+	NetworkInterfaceID aws.StringValue `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
+	PrivateIPAddresses []string        `ec2:"PrivateIpAddresses" xml:"privateIpAddress>PrivateIpAddress"`
 }
 
 // UnmonitorInstancesRequest is undocumented.
 type UnmonitorInstancesRequest struct {
-	DryRun      aws.BooleanValue `ec2:"dryRun" xml:"dryRun"`
-	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
 }
 
 // UnmonitorInstancesResult is undocumented.
 type UnmonitorInstancesResult struct {
-	InstanceMonitorings []InstanceMonitoring `ec2:"instancesSet" xml:"instancesSet>item"`
+	InstanceMonitorings []InstanceMonitoring `ec2:"InstanceMonitorings" xml:"instancesSet>item"`
 }
 
 // UserIDGroupPair is undocumented.
 type UserIDGroupPair struct {
-	GroupID   aws.StringValue `ec2:"groupId" xml:"groupId"`
-	GroupName aws.StringValue `ec2:"groupName" xml:"groupName"`
-	UserID    aws.StringValue `ec2:"userId" xml:"userId"`
+	GroupID   aws.StringValue `ec2:"GroupId" xml:"groupId"`
+	GroupName aws.StringValue `ec2:"GroupName" xml:"groupName"`
+	UserID    aws.StringValue `ec2:"UserId" xml:"userId"`
 }
 
 // VgwTelemetry is undocumented.
 type VgwTelemetry struct {
-	AcceptedRouteCount aws.IntegerValue `ec2:"acceptedRouteCount" xml:"acceptedRouteCount"`
-	LastStatusChange   time.Time        `ec2:"lastStatusChange" xml:"lastStatusChange"`
-	OutsideIPAddress   aws.StringValue  `ec2:"outsideIpAddress" xml:"outsideIpAddress"`
-	Status             aws.StringValue  `ec2:"status" xml:"status"`
-	StatusMessage      aws.StringValue  `ec2:"statusMessage" xml:"statusMessage"`
+	AcceptedRouteCount aws.IntegerValue `ec2:"AcceptedRouteCount" xml:"acceptedRouteCount"`
+	LastStatusChange   time.Time        `ec2:"LastStatusChange" xml:"lastStatusChange"`
+	OutsideIPAddress   aws.StringValue  `ec2:"OutsideIpAddress" xml:"outsideIpAddress"`
+	Status             aws.StringValue  `ec2:"Status" xml:"status"`
+	StatusMessage      aws.StringValue  `ec2:"StatusMessage" xml:"statusMessage"`
 }
 
 // Volume is undocumented.
 type Volume struct {
-	Attachments      []VolumeAttachment `ec2:"attachmentSet" xml:"attachmentSet>item"`
-	AvailabilityZone aws.StringValue    `ec2:"availabilityZone" xml:"availabilityZone"`
-	CreateTime       time.Time          `ec2:"createTime" xml:"createTime"`
-	Encrypted        aws.BooleanValue   `ec2:"encrypted" xml:"encrypted"`
-	Iops             aws.IntegerValue   `ec2:"iops" xml:"iops"`
-	KmsKeyID         aws.StringValue    `ec2:"kmsKeyId" xml:"kmsKeyId"`
-	Size             aws.IntegerValue   `ec2:"size" xml:"size"`
-	SnapshotID       aws.StringValue    `ec2:"snapshotId" xml:"snapshotId"`
-	State            aws.StringValue    `ec2:"status" xml:"status"`
-	Tags             []Tag              `ec2:"tagSet" xml:"tagSet>item"`
-	VolumeID         aws.StringValue    `ec2:"volumeId" xml:"volumeId"`
-	VolumeType       aws.StringValue    `ec2:"volumeType" xml:"volumeType"`
+	Attachments      []VolumeAttachment `ec2:"Attachments" xml:"attachmentSet>item"`
+	AvailabilityZone aws.StringValue    `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	CreateTime       time.Time          `ec2:"CreateTime" xml:"createTime"`
+	Encrypted        aws.BooleanValue   `ec2:"Encrypted" xml:"encrypted"`
+	Iops             aws.IntegerValue   `ec2:"Iops" xml:"iops"`
+	KmsKeyID         aws.StringValue    `ec2:"KmsKeyId" xml:"kmsKeyId"`
+	Size             aws.IntegerValue   `ec2:"Size" xml:"size"`
+	SnapshotID       aws.StringValue    `ec2:"SnapshotId" xml:"snapshotId"`
+	State            aws.StringValue    `ec2:"State" xml:"status"`
+	Tags             []Tag              `ec2:"Tags" xml:"tagSet>item"`
+	VolumeID         aws.StringValue    `ec2:"VolumeId" xml:"volumeId"`
+	VolumeType       aws.StringValue    `ec2:"VolumeType" xml:"volumeType"`
 }
 
 // VolumeAttachment is undocumented.
 type VolumeAttachment struct {
-	AttachTime          time.Time        `ec2:"attachTime" xml:"attachTime"`
-	DeleteOnTermination aws.BooleanValue `ec2:"deleteOnTermination" xml:"deleteOnTermination"`
-	Device              aws.StringValue  `ec2:"device" xml:"device"`
-	InstanceID          aws.StringValue  `ec2:"instanceId" xml:"instanceId"`
-	State               aws.StringValue  `ec2:"status" xml:"status"`
-	VolumeID            aws.StringValue  `ec2:"volumeId" xml:"volumeId"`
+	AttachTime          time.Time        `ec2:"AttachTime" xml:"attachTime"`
+	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
+	Device              aws.StringValue  `ec2:"Device" xml:"device"`
+	InstanceID          aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
+	State               aws.StringValue  `ec2:"State" xml:"status"`
+	VolumeID            aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
 
 // VolumeDetail is undocumented.
 type VolumeDetail struct {
-	Size aws.LongValue `ec2:"size" xml:"size"`
+	Size aws.LongValue `ec2:"Size" xml:"size"`
 }
 
 // VolumeStatusAction is undocumented.
 type VolumeStatusAction struct {
-	Code        aws.StringValue `ec2:"code" xml:"code"`
-	Description aws.StringValue `ec2:"description" xml:"description"`
-	EventID     aws.StringValue `ec2:"eventId" xml:"eventId"`
-	EventType   aws.StringValue `ec2:"eventType" xml:"eventType"`
+	Code        aws.StringValue `ec2:"Code" xml:"code"`
+	Description aws.StringValue `ec2:"Description" xml:"description"`
+	EventID     aws.StringValue `ec2:"EventId" xml:"eventId"`
+	EventType   aws.StringValue `ec2:"EventType" xml:"eventType"`
 }
 
 // VolumeStatusDetails is undocumented.
 type VolumeStatusDetails struct {
-	Name   aws.StringValue `ec2:"name" xml:"name"`
-	Status aws.StringValue `ec2:"status" xml:"status"`
+	Name   aws.StringValue `ec2:"Name" xml:"name"`
+	Status aws.StringValue `ec2:"Status" xml:"status"`
 }
 
 // VolumeStatusEvent is undocumented.
 type VolumeStatusEvent struct {
-	Description aws.StringValue `ec2:"description" xml:"description"`
-	EventID     aws.StringValue `ec2:"eventId" xml:"eventId"`
-	EventType   aws.StringValue `ec2:"eventType" xml:"eventType"`
-	NotAfter    time.Time       `ec2:"notAfter" xml:"notAfter"`
-	NotBefore   time.Time       `ec2:"notBefore" xml:"notBefore"`
+	Description aws.StringValue `ec2:"Description" xml:"description"`
+	EventID     aws.StringValue `ec2:"EventId" xml:"eventId"`
+	EventType   aws.StringValue `ec2:"EventType" xml:"eventType"`
+	NotAfter    time.Time       `ec2:"NotAfter" xml:"notAfter"`
+	NotBefore   time.Time       `ec2:"NotBefore" xml:"notBefore"`
 }
 
 // VolumeStatusInfo is undocumented.
 type VolumeStatusInfo struct {
-	Details []VolumeStatusDetails `ec2:"details" xml:"details>item"`
-	Status  aws.StringValue       `ec2:"status" xml:"status"`
+	Details []VolumeStatusDetails `ec2:"Details" xml:"details>item"`
+	Status  aws.StringValue       `ec2:"Status" xml:"status"`
 }
 
 // VolumeStatusItem is undocumented.
 type VolumeStatusItem struct {
-	Actions          []VolumeStatusAction `ec2:"actionsSet" xml:"actionsSet>item"`
-	AvailabilityZone aws.StringValue      `ec2:"availabilityZone" xml:"availabilityZone"`
-	Events           []VolumeStatusEvent  `ec2:"eventsSet" xml:"eventsSet>item"`
-	VolumeID         aws.StringValue      `ec2:"volumeId" xml:"volumeId"`
-	VolumeStatus     *VolumeStatusInfo    `ec2:"volumeStatus" xml:"volumeStatus"`
+	Actions          []VolumeStatusAction `ec2:"Actions" xml:"actionsSet>item"`
+	AvailabilityZone aws.StringValue      `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	Events           []VolumeStatusEvent  `ec2:"Events" xml:"eventsSet>item"`
+	VolumeID         aws.StringValue      `ec2:"VolumeId" xml:"volumeId"`
+	VolumeStatus     *VolumeStatusInfo    `ec2:"VolumeStatus" xml:"volumeStatus"`
 }
 
 // Vpc is undocumented.
 type Vpc struct {
-	CidrBlock       aws.StringValue  `ec2:"cidrBlock" xml:"cidrBlock"`
-	DhcpOptionsID   aws.StringValue  `ec2:"dhcpOptionsId" xml:"dhcpOptionsId"`
-	InstanceTenancy aws.StringValue  `ec2:"instanceTenancy" xml:"instanceTenancy"`
-	IsDefault       aws.BooleanValue `ec2:"isDefault" xml:"isDefault"`
-	State           aws.StringValue  `ec2:"state" xml:"state"`
-	Tags            []Tag            `ec2:"tagSet" xml:"tagSet>item"`
-	VpcID           aws.StringValue  `ec2:"vpcId" xml:"vpcId"`
+	CidrBlock       aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
+	DhcpOptionsID   aws.StringValue  `ec2:"DhcpOptionsId" xml:"dhcpOptionsId"`
+	InstanceTenancy aws.StringValue  `ec2:"InstanceTenancy" xml:"instanceTenancy"`
+	IsDefault       aws.BooleanValue `ec2:"IsDefault" xml:"isDefault"`
+	State           aws.StringValue  `ec2:"State" xml:"state"`
+	Tags            []Tag            `ec2:"Tags" xml:"tagSet>item"`
+	VpcID           aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // VpcAttachment is undocumented.
 type VpcAttachment struct {
-	State aws.StringValue `ec2:"state" xml:"state"`
-	VpcID aws.StringValue `ec2:"vpcId" xml:"vpcId"`
+	State aws.StringValue `ec2:"State" xml:"state"`
+	VpcID aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
 // VpcPeeringConnection is undocumented.
 type VpcPeeringConnection struct {
-	AccepterVpcInfo        *VpcPeeringConnectionVpcInfo     `ec2:"accepterVpcInfo" xml:"accepterVpcInfo"`
-	ExpirationTime         time.Time                        `ec2:"expirationTime" xml:"expirationTime"`
-	RequesterVpcInfo       *VpcPeeringConnectionVpcInfo     `ec2:"requesterVpcInfo" xml:"requesterVpcInfo"`
-	Status                 *VpcPeeringConnectionStateReason `ec2:"status" xml:"status"`
-	Tags                   []Tag                            `ec2:"tagSet" xml:"tagSet>item"`
-	VpcPeeringConnectionID aws.StringValue                  `ec2:"vpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	AccepterVpcInfo        *VpcPeeringConnectionVpcInfo     `ec2:"AccepterVpcInfo" xml:"accepterVpcInfo"`
+	ExpirationTime         time.Time                        `ec2:"ExpirationTime" xml:"expirationTime"`
+	RequesterVpcInfo       *VpcPeeringConnectionVpcInfo     `ec2:"RequesterVpcInfo" xml:"requesterVpcInfo"`
+	Status                 *VpcPeeringConnectionStateReason `ec2:"Status" xml:"status"`
+	Tags                   []Tag                            `ec2:"Tags" xml:"tagSet>item"`
+	VpcPeeringConnectionID aws.StringValue                  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // VpcPeeringConnectionStateReason is undocumented.
 type VpcPeeringConnectionStateReason struct {
-	Code    aws.StringValue `ec2:"code" xml:"code"`
-	Message aws.StringValue `ec2:"message" xml:"message"`
+	Code    aws.StringValue `ec2:"Code" xml:"code"`
+	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
 // VpcPeeringConnectionVpcInfo is undocumented.
 type VpcPeeringConnectionVpcInfo struct {
-	CidrBlock aws.StringValue `ec2:"cidrBlock" xml:"cidrBlock"`
-	OwnerID   aws.StringValue `ec2:"ownerId" xml:"ownerId"`
-	VpcID     aws.StringValue `ec2:"vpcId" xml:"vpcId"`
+	CidrBlock aws.StringValue `ec2:"CidrBlock" xml:"cidrBlock"`
+	OwnerID   aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
+	VpcID     aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
 // VpnConnection is undocumented.
 type VpnConnection struct {
-	CustomerGatewayConfiguration aws.StringValue       `ec2:"customerGatewayConfiguration" xml:"customerGatewayConfiguration"`
-	CustomerGatewayID            aws.StringValue       `ec2:"customerGatewayId" xml:"customerGatewayId"`
-	Options                      *VpnConnectionOptions `ec2:"options" xml:"options"`
-	Routes                       []VpnStaticRoute      `ec2:"routes" xml:"routes>item"`
-	State                        aws.StringValue       `ec2:"state" xml:"state"`
-	Tags                         []Tag                 `ec2:"tagSet" xml:"tagSet>item"`
-	Type                         aws.StringValue       `ec2:"type" xml:"type"`
-	VgwTelemetry                 []VgwTelemetry        `ec2:"vgwTelemetry" xml:"vgwTelemetry>item"`
-	VpnConnectionID              aws.StringValue       `ec2:"vpnConnectionId" xml:"vpnConnectionId"`
-	VpnGatewayID                 aws.StringValue       `ec2:"vpnGatewayId" xml:"vpnGatewayId"`
+	CustomerGatewayConfiguration aws.StringValue       `ec2:"CustomerGatewayConfiguration" xml:"customerGatewayConfiguration"`
+	CustomerGatewayID            aws.StringValue       `ec2:"CustomerGatewayId" xml:"customerGatewayId"`
+	Options                      *VpnConnectionOptions `ec2:"Options" xml:"options"`
+	Routes                       []VpnStaticRoute      `ec2:"Routes" xml:"routes>item"`
+	State                        aws.StringValue       `ec2:"State" xml:"state"`
+	Tags                         []Tag                 `ec2:"Tags" xml:"tagSet>item"`
+	Type                         aws.StringValue       `ec2:"Type" xml:"type"`
+	VgwTelemetry                 []VgwTelemetry        `ec2:"VgwTelemetry" xml:"vgwTelemetry>item"`
+	VpnConnectionID              aws.StringValue       `ec2:"VpnConnectionId" xml:"vpnConnectionId"`
+	VpnGatewayID                 aws.StringValue       `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
 }
 
 // VpnConnectionOptions is undocumented.
 type VpnConnectionOptions struct {
-	StaticRoutesOnly aws.BooleanValue `ec2:"staticRoutesOnly" xml:"staticRoutesOnly"`
+	StaticRoutesOnly aws.BooleanValue `ec2:"StaticRoutesOnly" xml:"staticRoutesOnly"`
 }
 
 // VpnConnectionOptionsSpecification is undocumented.
 type VpnConnectionOptionsSpecification struct {
-	StaticRoutesOnly aws.BooleanValue `ec2:"staticRoutesOnly" xml:"staticRoutesOnly"`
+	StaticRoutesOnly aws.BooleanValue `ec2:"StaticRoutesOnly" xml:"staticRoutesOnly"`
 }
 
 // VpnGateway is undocumented.
 type VpnGateway struct {
-	AvailabilityZone aws.StringValue `ec2:"availabilityZone" xml:"availabilityZone"`
-	State            aws.StringValue `ec2:"state" xml:"state"`
-	Tags             []Tag           `ec2:"tagSet" xml:"tagSet>item"`
-	Type             aws.StringValue `ec2:"type" xml:"type"`
-	VpcAttachments   []VpcAttachment `ec2:"attachments" xml:"attachments>item"`
-	VpnGatewayID     aws.StringValue `ec2:"vpnGatewayId" xml:"vpnGatewayId"`
+	AvailabilityZone aws.StringValue `ec2:"AvailabilityZone" xml:"availabilityZone"`
+	State            aws.StringValue `ec2:"State" xml:"state"`
+	Tags             []Tag           `ec2:"Tags" xml:"tagSet>item"`
+	Type             aws.StringValue `ec2:"Type" xml:"type"`
+	VpcAttachments   []VpcAttachment `ec2:"VpcAttachments" xml:"attachments>item"`
+	VpnGatewayID     aws.StringValue `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
 }
 
 // VpnStaticRoute is undocumented.
 type VpnStaticRoute struct {
-	DestinationCidrBlock aws.StringValue `ec2:"destinationCidrBlock" xml:"destinationCidrBlock"`
-	Source               aws.StringValue `ec2:"source" xml:"source"`
-	State                aws.StringValue `ec2:"state" xml:"state"`
+	DestinationCidrBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
+	Source               aws.StringValue `ec2:"Source" xml:"source"`
+	State                aws.StringValue `ec2:"State" xml:"state"`
 }
 
 // avoid errors if the packages aren't referenced
