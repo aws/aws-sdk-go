@@ -131,12 +131,7 @@ func (m Member) EC2Tag() string {
 		path = append(path, loc)
 	}
 
-	name := m.LocationName
-	if name == "" {
-		name = m.Name
-	}
-
-	return fmt.Sprintf("`ec2:%q xml:%q`", name, strings.Join(path, ">"))
+	return fmt.Sprintf("`ec2:%q xml:%q`", m.Name, strings.Join(path, ">"))
 }
 
 func (m Member) Shape() *Shape {
