@@ -391,26 +391,26 @@ func restXMLClient(t *template.Template) (*template.Template, error) {
          {{ if eq $m.Shape.ShapeType "string" }}
           resp.{{ exportable $name }} = &s
          {{ else if eq $m.Shape.ShapeType "timestamp" }}
-          if t, e := time.Parse(time.RFC1123, s); e != nil {
-           err = e
-           return
-          } else {
+           var t time.Time
+           t, err = time.Parse(time.RFC1123, s)
+           if err != nil {
+             return
+           }
            resp.{{ exportable $name }} = t
-          }
          {{ else if eq $m.Shape.ShapeType "integer" }}
-          if n, e := strconv.Atoi(s); e != nil {
-           err = e
-           return
-          } else {
+           var n int
+           n, err = strconv.Atoi(s)
+           if  err != nil {
+             return
+           }
            resp.{{ exportable $name }} = &n
-          }
          {{ else if eq $m.Shape.ShapeType "boolean" }}
-         if v, e := strconv.ParseBool(s); e != nil {
-           err = e
-           return
-          } else {
+           var v bool
+           v, err = strconv.ParseBool(s)
+           if  err != nil {
+             return
+            }
            resp.{{ exportable $name }} = &v
-          }
          {{ else }}
          // TODO: add support for {{ $m.Shape.ShapeType }} headers
          {{ end }}
