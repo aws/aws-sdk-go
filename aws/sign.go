@@ -5,6 +5,7 @@ import (
 	"crypto/hmac"
 	"crypto/sha256"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -21,137 +22,109 @@ type Context struct {
 	Credentials Credentials
 }
 
-func (c *Context) sign(req *http.Request) error {
-	req.Header.Set("host", req.Host) // host header must be included as a signed header
-	payloadHash, err := payloadHash(req)
+func (c *Context) sign(r *http.Request) error {
+	date := r.Header.Get("Date")
+	t := currentTime().UTC()
+	if date != "" {
+		var err error
+		t, err = time.Parse(http.TimeFormat, date)
+		if err != nil {
+			return err
+		}
+	}
+	r.Header.Set("x-amz-date", t.Format(iso8601BasicFormat))
+	chash, err := c.hashContent(r)
 	if err != nil {
 		return err
 	}
-	req.Header.Set("x-amz-content-sha256", payloadHash)
+	r.Header.Set("x-amz-content-sha256", chash)
 
-	t := requestTime(req)
-	creq, err := canonicalRequest(req, payloadHash)
-	if err != nil {
-		return err
-	}
-	sts := c.stringToSign(t, creq)
-	signature := c.signature(t, sts)
-	auth := c.authorization(req.Header, t, signature)
-	req.Header.Set("Authorization", auth)
+	k := c.signature(t)
+	h := hmac.New(sha256.New, k)
+	c.writeStringToSign(h, t, r, chash)
+
+	auth := bytes.NewBufferString("AWS4-HMAC-SHA256 ")
+	auth.Write([]byte("Credential=" + c.Credentials.AccessKeyID() + "/" + c.creds(t)))
+	auth.Write([]byte{',', ' '})
+	auth.Write([]byte("SignedHeaders="))
+	c.writeHeaderList(auth, r)
+	auth.Write([]byte{',', ' '})
+	auth.Write([]byte("Signature=" + fmt.Sprintf("%x", h.Sum(nil))))
+
+	r.Header.Set("Authorization", auth.String())
 	if s := c.Credentials.SecurityToken(); s != "" {
-		req.Header.Set("X-Amz-Security-Token", s)
+		r.Header.Set("X-Amz-Security-Token", s)
 	}
 	return nil
 }
 
-func (c *Context) stringToSign(t time.Time, creq string) string {
-	w := new(bytes.Buffer)
-	fmt.Fprint(w, "AWS4-HMAC-SHA256\n")
-	fmt.Fprintf(w, "%s\n", t.Format(iso8601BasicFormat))
-	fmt.Fprintf(w, "%s\n", c.credentialScope(t))
-	fmt.Fprintf(w, "%s", hash(creq))
-	return w.String()
+func (c *Context) writeStringToSign(w io.Writer, t time.Time, r *http.Request, chash string) {
+	w.Write([]byte("AWS4-HMAC-SHA256"))
+	w.Write(lf)
+	w.Write([]byte(t.Format(iso8601BasicFormat)))
+	w.Write(lf)
+
+	w.Write([]byte(c.creds(t)))
+	w.Write(lf)
+
+	h := sha256.New()
+	c.writeRequest(h, r, chash)
+	fmt.Fprintf(w, "%x", h.Sum(nil))
 }
 
-func (c *Context) credentialScope(t time.Time) string {
-	return fmt.Sprintf(
-		"%s/%s/%s/aws4_request",
-		t.Format(iso8601BasicFormatShort),
-		c.Region,
-		c.Service,
-	)
+func (c *Context) writeRequest(w io.Writer, r *http.Request, chash string) {
+	r.Header.Set("host", r.Host)
+
+	w.Write([]byte(r.Method))
+	w.Write(lf)
+	c.writeURI(w, r)
+	w.Write(lf)
+	c.writeQuery(w, r)
+	w.Write(lf)
+	c.writeHeader(w, r)
+	w.Write(lf)
+	w.Write(lf)
+	c.writeHeaderList(w, r)
+	w.Write(lf)
+	fmt.Fprint(w, chash)
 }
 
-func (c *Context) signature(t time.Time, sts string) string {
-	h := mac(c.derivedKey(t), []byte(sts))
-	return fmt.Sprintf("%x", h)
-}
-
-func (c *Context) derivedKey(t time.Time) []byte {
-	h := mac(
-		[]byte("AWS4"+c.Credentials.SecretAccessKey()),
-		[]byte(t.Format(iso8601BasicFormatShort)),
-	)
-	h = mac(h, []byte(c.Region))
-	h = mac(h, []byte(c.Service))
-	h = mac(h, []byte("aws4_request"))
-	return h
-}
-
-func (c *Context) authorization(header http.Header, t time.Time, signature string) string {
-	w := new(bytes.Buffer)
-	fmt.Fprint(w, "AWS4-HMAC-SHA256 ")
-	fmt.Fprintf(w, "Credential=%s/%s, ", c.Credentials.AccessKeyID(), c.credentialScope(t))
-	fmt.Fprintf(w, "SignedHeaders=%s, ", signedHeaders(header))
-	fmt.Fprintf(w, "Signature=%s", signature)
-	return w.String()
-}
-
-var currentTime = time.Now
-
-const (
-	iso8601BasicFormat      = "20060102T150405Z"
-	iso8601BasicFormatShort = "20060102"
-)
-
-func requestTime(req *http.Request) time.Time {
-	// Get "x-amz-date" header
-	date := req.Header.Get("x-amz-date")
-
-	// Attempt to parse as ISO8601BasicFormat
-	t, err := time.Parse(iso8601BasicFormat, date)
-	if err == nil {
-		return t
+func (c *Context) hashContent(r *http.Request) (string, error) {
+	var b []byte
+	// If the payload is empty, use the empty string as the input to the SHA256 function
+	// http://docs.amazonwebservices.com/general/latest/gr/sigv4-create-canonical-request.html
+	if r.Body == nil {
+		b = []byte("")
+	} else {
+		body, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			return "", err
+		}
+		b = body
+		r.Body = ioutil.NopCloser(bytes.NewBuffer(b))
 	}
 
-	// Attempt to parse as http.TimeFormat
-	t, err = time.Parse(http.TimeFormat, date)
-	if err == nil {
-		req.Header.Set("x-amz-date", t.Format(iso8601BasicFormat))
-		return t
-	}
-
-	// Get "date" header
-	date = req.Header.Get("date")
-
-	// Attempt to parse as http.TimeFormat
-	t, err = time.Parse(http.TimeFormat, date)
-	if err == nil {
-		return t
-	}
-
-	// Create a current time header to be used
-	t = currentTime().UTC()
-	req.Header.Set("x-amz-date", t.Format(iso8601BasicFormat))
-	return t
+	h := sha256.New()
+	h.Write(b)
+	return fmt.Sprintf("%x", h.Sum(nil)), nil
 }
 
-func canonicalRequest(req *http.Request, pHash string) (string, error) {
-	c := new(bytes.Buffer)
-	fmt.Fprintf(c, "%s\n", req.Method)
-	fmt.Fprintf(c, "%s\n", canonicalURI(req.URL))
-	fmt.Fprintf(c, "%s\n", canonicalQueryString(req.URL))
-	fmt.Fprintf(c, "%s\n\n", canonicalHeaders(req.Header))
-	fmt.Fprintf(c, "%s\n", signedHeaders(req.Header))
-	fmt.Fprintf(c, "%s", pHash)
-	return c.String(), nil
-}
-
-func canonicalURI(u *url.URL) string {
-	u = &url.URL{Path: u.Path}
-	canonicalPath := u.String()
-	slash := strings.HasSuffix(canonicalPath, "/")
-	canonicalPath = path.Clean(canonicalPath)
-	if canonicalPath != "/" && slash {
-		canonicalPath += "/"
+func (c *Context) writeURI(w io.Writer, r *http.Request) {
+	p := r.URL.RequestURI()
+	if r.URL.RawQuery != "" {
+		p = p[:len(p)-len(r.URL.RawQuery)-1]
 	}
-
-	return canonicalPath
+	slash := strings.HasSuffix(p, "/")
+	p = path.Clean(p)
+	if p != "/" && slash {
+		p += "/"
+	}
+	w.Write([]byte(p))
 }
 
-func canonicalQueryString(u *url.URL) string {
+func (c *Context) writeQuery(w io.Writer, r *http.Request) {
 	var a []string
-	for k, vs := range u.Query() {
+	for k, vs := range r.URL.Query() {
 		k = url.QueryEscape(k)
 		for _, v := range vs {
 			if v == "" {
@@ -163,54 +136,90 @@ func canonicalQueryString(u *url.URL) string {
 		}
 	}
 	sort.Strings(a)
-	return strings.Join(a, "&")
+	for i, s := range a {
+		if i > 0 {
+			w.Write([]byte{'&'})
+		}
+		w.Write([]byte(s))
+	}
 }
 
-func canonicalHeaders(h http.Header) string {
-	i, a := 0, make([]string, len(h))
-	for k, v := range h {
-		for j, w := range v {
-			v[j] = strings.Trim(w, " ")
-		}
+func (c *Context) writeHeader(w io.Writer, r *http.Request) {
+	i, a := 0, make([]string, len(r.Header))
+	for k, v := range r.Header {
 		sort.Strings(v)
 		a[i] = strings.ToLower(k) + ":" + strings.Join(v, ",")
 		i++
 	}
 	sort.Strings(a)
-	return strings.Join(a, "\n")
+	for i, s := range a {
+		if i > 0 {
+			w.Write(lf)
+		}
+		io.WriteString(w, s)
+	}
 }
 
-func signedHeaders(h http.Header) string {
-	i, a := 0, make([]string, len(h))
-	for k := range h {
+func (c *Context) writeHeaderList(w io.Writer, r *http.Request) {
+	i, a := 0, make([]string, len(r.Header))
+	for k := range r.Header {
 		a[i] = strings.ToLower(k)
 		i++
 	}
 	sort.Strings(a)
-	return strings.Join(a, ";")
+	for i, s := range a {
+		if i > 0 {
+			w.Write([]byte{';'})
+		}
+		w.Write([]byte(s))
+	}
 }
 
-func payloadHash(req *http.Request) (string, error) {
+func (c *Context) creds(t time.Time) string {
+	return t.Format(iso8601BasicFormatShort) + "/" + c.Region + "/" + c.Service + "/aws4_request"
+}
+
+func payloadHash(r *http.Request) (string, error) {
 	var b []byte
-	if req.Body != nil {
-		var err error
-		b, err = ioutil.ReadAll(req.Body)
+	// If the payload is empty, use the empty string as the input to the SHA256 function
+	// http://docs.amazonwebservices.com/general/latest/gr/sigv4-create-canonical-request.html
+	if r.Body == nil {
+		b = []byte("")
+	} else {
+		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
 			return "", err
 		}
+		b = body
+		r.Body = ioutil.NopCloser(bytes.NewBuffer(body))
 	}
-	req.Body = ioutil.NopCloser(bytes.NewReader(b))
-	return hash(string(b)), nil
-}
 
-func hash(in string) string {
 	h := sha256.New()
-	fmt.Fprintf(h, "%s", in)
-	return fmt.Sprintf("%x", h.Sum(nil))
+	h.Write(b)
+	return fmt.Sprintf("%x", h.Sum(nil)), nil
 }
 
-func mac(key, data []byte) []byte {
+func (c *Context) signature(t time.Time) []byte {
+	h := ghmac(
+		[]byte("AWS4"+c.Credentials.SecretAccessKey()),
+		[]byte(t.Format(iso8601BasicFormatShort)),
+	)
+	h = ghmac(h, []byte(c.Region))
+	h = ghmac(h, []byte(c.Service))
+	h = ghmac(h, []byte("aws4_request"))
+	return h
+}
+
+func ghmac(key, data []byte) []byte {
 	h := hmac.New(sha256.New, key)
-	_, _ = h.Write(data)
+	h.Write(data)
 	return h.Sum(nil)
 }
+
+var lf = []byte{'\n'}
+var currentTime = time.Now
+
+const (
+	iso8601BasicFormat      = "20060102T150405Z"
+	iso8601BasicFormatShort = "20060102"
+)
