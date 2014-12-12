@@ -45,7 +45,6 @@ func common(t *template.Template) (*template.Template, error) {
 package {{ .PackageName }}
 
 import (
-  "encoding/xml"
   "net/http"
   "time"
 
@@ -58,7 +57,6 @@ import (
 {{ define "footer" }}
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name
 {{ end }}
 
 `)
@@ -435,6 +433,7 @@ func restXMLClient(t *template.Template) (*template.Template, error) {
 
 import (
   "bytes"
+  "encoding/xml"
   "fmt"
   "io"
   "io/ioutil"
