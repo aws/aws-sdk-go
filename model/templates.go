@@ -188,7 +188,6 @@ type {{ exportable $name }} struct {
 
 // {{ exportable $wname }} is a wrapper for {{ $s.Name }}.
 type {{ exportable $wname }} struct {
-    XMLName xml.Name {{ $s.MessageTag }}
 {{ range $name, $m := $s.Members }}
 {{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $wname }}  {{ end }}
 }
@@ -262,7 +261,6 @@ type {{ exportable $name }} struct {
 
 // {{ exportable $wname }} is a wrapper for {{ $s.Name }}.
 type {{ exportable $wname }} struct {
-    XMLName xml.Name {{ $s.MessageTag }}
 {{ range $name, $m := $s.Members }}
 {{ exportable $name }} {{ $m.Type }} {{ $m.EC2Tag }}  {{ end }}
 }
