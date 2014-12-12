@@ -131,7 +131,18 @@ func (m Member) EC2Tag() string {
 		path = append(path, loc)
 	}
 
-	return fmt.Sprintf("`ec2:%q xml:%q`", m.Name, strings.Join(path, ">"))
+	// Literally no idea how to distinguish between a location name that's
+	// required (e.g. DescribeImagesRequest#Filters) and one that's weirdly
+	// misleading (e.g. ModifyInstanceAttributeRequest#InstanceId) besides this.
+
+	// Use the locationName unless it's missing or unless it starts with a
+	// lowercase letter. Not even making this up.
+	var name = m.LocationName
+	if name == "" || strings.ToLower(name[0:1]) == name[0:1] {
+		name = m.Name
+	}
+
+	return fmt.Sprintf("`ec2:%q xml:%q`", name, strings.Join(path, ">"))
 }
 
 func (m Member) Shape() *Shape {
