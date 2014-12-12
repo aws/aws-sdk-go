@@ -159,12 +159,12 @@ func (c *S3) CompleteMultipartUpload(req *CompleteMultipartUploadRequest) (resp 
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		if t, e := time.Parse(time.RFC1123, s); e != nil {
-			err = e
+		var t time.Time
+		t, err = time.Parse(time.RFC1123, s)
+		if err != nil {
 			return
-		} else {
-			resp.Expiration = t
 		}
+		resp.Expiration = t
 
 	}
 
@@ -351,12 +351,12 @@ func (c *S3) CopyObject(req *CopyObjectRequest) (resp *CopyObjectOutput, err err
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		if t, e := time.Parse(time.RFC1123, s); e != nil {
-			err = e
+		var t time.Time
+		t, err = time.Parse(time.RFC1123, s)
+		if err != nil {
 			return
-		} else {
-			resp.Expiration = t
 		}
+		resp.Expiration = t
 
 	}
 
@@ -912,12 +912,12 @@ func (c *S3) DeleteObject(req *DeleteObjectRequest) (resp *DeleteObjectOutput, e
 
 	if s := httpResp.Header.Get("x-amz-delete-marker"); s != "" {
 
-		if v, e := strconv.ParseBool(s); e != nil {
-			err = e
+		var v bool
+		v, err = strconv.ParseBool(s)
+		if err != nil {
 			return
-		} else {
-			resp.DeleteMarker = &v
 		}
+		resp.DeleteMarker = &v
 
 	}
 
@@ -1595,12 +1595,12 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 	if s := httpResp.Header.Get("Content-Length"); s != "" {
 
-		if n, e := strconv.Atoi(s); e != nil {
-			err = e
+		var n int
+		n, err = strconv.Atoi(s)
+		if err != nil {
 			return
-		} else {
-			resp.ContentLength = &n
 		}
+		resp.ContentLength = &n
 
 	}
 
@@ -1612,12 +1612,12 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 	if s := httpResp.Header.Get("x-amz-delete-marker"); s != "" {
 
-		if v, e := strconv.ParseBool(s); e != nil {
-			err = e
+		var v bool
+		v, err = strconv.ParseBool(s)
+		if err != nil {
 			return
-		} else {
-			resp.DeleteMarker = &v
 		}
+		resp.DeleteMarker = &v
 
 	}
 
@@ -1629,34 +1629,34 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		if t, e := time.Parse(time.RFC1123, s); e != nil {
-			err = e
+		var t time.Time
+		t, err = time.Parse(time.RFC1123, s)
+		if err != nil {
 			return
-		} else {
-			resp.Expiration = t
 		}
+		resp.Expiration = t
 
 	}
 
 	if s := httpResp.Header.Get("Expires"); s != "" {
 
-		if t, e := time.Parse(time.RFC1123, s); e != nil {
-			err = e
+		var t time.Time
+		t, err = time.Parse(time.RFC1123, s)
+		if err != nil {
 			return
-		} else {
-			resp.Expires = t
 		}
+		resp.Expires = t
 
 	}
 
 	if s := httpResp.Header.Get("Last-Modified"); s != "" {
 
-		if t, e := time.Parse(time.RFC1123, s); e != nil {
-			err = e
+		var t time.Time
+		t, err = time.Parse(time.RFC1123, s)
+		if err != nil {
 			return
-		} else {
-			resp.LastModified = t
 		}
+		resp.LastModified = t
 
 	}
 
@@ -1669,12 +1669,12 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 	if s := httpResp.Header.Get("x-amz-missing-meta"); s != "" {
 
-		if n, e := strconv.Atoi(s); e != nil {
-			err = e
+		var n int
+		n, err = strconv.Atoi(s)
+		if err != nil {
 			return
-		} else {
-			resp.MissingMeta = &n
 		}
+		resp.MissingMeta = &n
 
 	}
 
@@ -1975,12 +1975,12 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 
 	if s := httpResp.Header.Get("Content-Length"); s != "" {
 
-		if n, e := strconv.Atoi(s); e != nil {
-			err = e
+		var n int
+		n, err = strconv.Atoi(s)
+		if err != nil {
 			return
-		} else {
-			resp.ContentLength = &n
 		}
+		resp.ContentLength = &n
 
 	}
 
@@ -1992,12 +1992,12 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 
 	if s := httpResp.Header.Get("x-amz-delete-marker"); s != "" {
 
-		if v, e := strconv.ParseBool(s); e != nil {
-			err = e
+		var v bool
+		v, err = strconv.ParseBool(s)
+		if err != nil {
 			return
-		} else {
-			resp.DeleteMarker = &v
 		}
+		resp.DeleteMarker = &v
 
 	}
 
@@ -2009,34 +2009,34 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		if t, e := time.Parse(time.RFC1123, s); e != nil {
-			err = e
+		var t time.Time
+		t, err = time.Parse(time.RFC1123, s)
+		if err != nil {
 			return
-		} else {
-			resp.Expiration = t
 		}
+		resp.Expiration = t
 
 	}
 
 	if s := httpResp.Header.Get("Expires"); s != "" {
 
-		if t, e := time.Parse(time.RFC1123, s); e != nil {
-			err = e
+		var t time.Time
+		t, err = time.Parse(time.RFC1123, s)
+		if err != nil {
 			return
-		} else {
-			resp.Expires = t
 		}
+		resp.Expires = t
 
 	}
 
 	if s := httpResp.Header.Get("Last-Modified"); s != "" {
 
-		if t, e := time.Parse(time.RFC1123, s); e != nil {
-			err = e
+		var t time.Time
+		t, err = time.Parse(time.RFC1123, s)
+		if err != nil {
 			return
-		} else {
-			resp.LastModified = t
 		}
+		resp.LastModified = t
 
 	}
 
@@ -2049,12 +2049,12 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 
 	if s := httpResp.Header.Get("x-amz-missing-meta"); s != "" {
 
-		if n, e := strconv.Atoi(s); e != nil {
-			err = e
+		var n int
+		n, err = strconv.Atoi(s)
+		if err != nil {
 			return
-		} else {
-			resp.MissingMeta = &n
 		}
+		resp.MissingMeta = &n
 
 	}
 
@@ -3076,12 +3076,12 @@ func (c *S3) PutObject(req *PutObjectRequest) (resp *PutObjectOutput, err error)
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		if t, e := time.Parse(time.RFC1123, s); e != nil {
-			err = e
+		var t time.Time
+		t, err = time.Parse(time.RFC1123, s)
+		if err != nil {
 			return
-		} else {
-			resp.Expiration = t
 		}
+		resp.Expiration = t
 
 	}
 
