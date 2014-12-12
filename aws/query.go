@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-// QueryClient is the underlying client for json APIs.
+// QueryClient is the underlying client for Query APIs.
 type QueryClient struct {
 	Context    Context
 	Client     *http.Client

@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-// JSONClient is the underlying client for json APIs.
+// JSONClient is the underlying client for JSON APIs.
 type JSONClient struct {
 	Context      Context
 	Client       *http.Client

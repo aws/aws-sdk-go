@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-// RestClient is the underlying client for rest-json and rest-xml APIs.
+// RestClient is the underlying client for REST-JSON and REST-XML APIs.
 type RestClient struct {
 	Context    Context
 	Client     *http.Client
