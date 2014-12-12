@@ -7,17 +7,23 @@ import (
 )
 
 func main() {
-	f, err := os.Open(os.Args[2])
+	in, err := os.Open(os.Args[2])
 	if err != nil {
 		panic(err)
 	}
-	defer f.Close()
+	defer in.Close()
 
-	if err := model.Load(os.Args[1], f); err != nil {
+	out, err := os.Create(os.Args[3])
+	if err != nil {
+		panic(err)
+	}
+	defer out.Close()
+
+	if err := model.Load(os.Args[1], in); err != nil {
 		panic(err)
 	}
 
-	if err := model.Generate(os.Stdout); err != nil {
+	if err := model.Generate(out); err != nil {
 		panic(err)
 	}
 }
