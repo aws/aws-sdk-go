@@ -18,6 +18,7 @@ func Generate(w io.Writer) error {
 	template.Must(jsonClient(t))
 	template.Must(queryClient(t))
 	template.Must(ec2Client(t))
+	template.Must(restCommon(t))
 	template.Must(restXMLClient(t))
 	template.Must(restJSONClient(t))
 
@@ -271,7 +272,7 @@ type {{ exportable $wname }} struct {
 `)
 }
 
-func restXMLClient(t *template.Template) (*template.Template, error) {
+func restCommon(t *template.Template) (*template.Template, error) {
 	return t.Parse(`
 {{ define "rest-uri" }}
   {{ if .Input }}
@@ -427,7 +428,11 @@ func restXMLClient(t *template.Template) (*template.Template, error) {
     {{ end }}
   {{ end }}
 {{ end }}
+`)
+}
 
+func restXMLClient(t *template.Template) (*template.Template, error) {
+	return t.Parse(`
 {{ define "rest-xml" }}
 {{ template "header" $ }}
 
