@@ -4,7 +4,6 @@
 package cloudsearchdomain
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -401,7 +400,6 @@ type UploadDocumentsResponse struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name
 
 var _ bytes.Reader
 var _ url.URL

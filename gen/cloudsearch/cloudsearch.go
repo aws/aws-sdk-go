@@ -4,7 +4,6 @@
 package cloudsearch
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -798,172 +797,123 @@ type UpdateServiceAccessPoliciesResponse struct {
 
 // BuildSuggestersResult is a wrapper for BuildSuggestersResponse.
 type BuildSuggestersResult struct {
-	XMLName xml.Name `xml:"BuildSuggestersResponse"`
-
 	FieldNames []string `xml:"BuildSuggestersResult>FieldNames>member"`
 }
 
 // CreateDomainResult is a wrapper for CreateDomainResponse.
 type CreateDomainResult struct {
-	XMLName xml.Name `xml:"CreateDomainResponse"`
-
 	DomainStatus *DomainStatus `xml:"CreateDomainResult>DomainStatus"`
 }
 
 // DefineAnalysisSchemeResult is a wrapper for DefineAnalysisSchemeResponse.
 type DefineAnalysisSchemeResult struct {
-	XMLName xml.Name `xml:"DefineAnalysisSchemeResponse"`
-
 	AnalysisScheme *AnalysisSchemeStatus `xml:"DefineAnalysisSchemeResult>AnalysisScheme"`
 }
 
 // DefineExpressionResult is a wrapper for DefineExpressionResponse.
 type DefineExpressionResult struct {
-	XMLName xml.Name `xml:"DefineExpressionResponse"`
-
 	Expression *ExpressionStatus `xml:"DefineExpressionResult>Expression"`
 }
 
 // DefineIndexFieldResult is a wrapper for DefineIndexFieldResponse.
 type DefineIndexFieldResult struct {
-	XMLName xml.Name `xml:"DefineIndexFieldResponse"`
-
 	IndexField *IndexFieldStatus `xml:"DefineIndexFieldResult>IndexField"`
 }
 
 // DefineSuggesterResult is a wrapper for DefineSuggesterResponse.
 type DefineSuggesterResult struct {
-	XMLName xml.Name `xml:"DefineSuggesterResponse"`
-
 	Suggester *SuggesterStatus `xml:"DefineSuggesterResult>Suggester"`
 }
 
 // DeleteAnalysisSchemeResult is a wrapper for DeleteAnalysisSchemeResponse.
 type DeleteAnalysisSchemeResult struct {
-	XMLName xml.Name `xml:"DeleteAnalysisSchemeResponse"`
-
 	AnalysisScheme *AnalysisSchemeStatus `xml:"DeleteAnalysisSchemeResult>AnalysisScheme"`
 }
 
 // DeleteDomainResult is a wrapper for DeleteDomainResponse.
 type DeleteDomainResult struct {
-	XMLName xml.Name `xml:"DeleteDomainResponse"`
-
 	DomainStatus *DomainStatus `xml:"DeleteDomainResult>DomainStatus"`
 }
 
 // DeleteExpressionResult is a wrapper for DeleteExpressionResponse.
 type DeleteExpressionResult struct {
-	XMLName xml.Name `xml:"DeleteExpressionResponse"`
-
 	Expression *ExpressionStatus `xml:"DeleteExpressionResult>Expression"`
 }
 
 // DeleteIndexFieldResult is a wrapper for DeleteIndexFieldResponse.
 type DeleteIndexFieldResult struct {
-	XMLName xml.Name `xml:"DeleteIndexFieldResponse"`
-
 	IndexField *IndexFieldStatus `xml:"DeleteIndexFieldResult>IndexField"`
 }
 
 // DeleteSuggesterResult is a wrapper for DeleteSuggesterResponse.
 type DeleteSuggesterResult struct {
-	XMLName xml.Name `xml:"DeleteSuggesterResponse"`
-
 	Suggester *SuggesterStatus `xml:"DeleteSuggesterResult>Suggester"`
 }
 
 // DescribeAnalysisSchemesResult is a wrapper for DescribeAnalysisSchemesResponse.
 type DescribeAnalysisSchemesResult struct {
-	XMLName xml.Name `xml:"DescribeAnalysisSchemesResponse"`
-
 	AnalysisSchemes []AnalysisSchemeStatus `xml:"DescribeAnalysisSchemesResult>AnalysisSchemes>member"`
 }
 
 // DescribeAvailabilityOptionsResult is a wrapper for DescribeAvailabilityOptionsResponse.
 type DescribeAvailabilityOptionsResult struct {
-	XMLName xml.Name `xml:"DescribeAvailabilityOptionsResponse"`
-
 	AvailabilityOptions *AvailabilityOptionsStatus `xml:"DescribeAvailabilityOptionsResult>AvailabilityOptions"`
 }
 
 // DescribeDomainsResult is a wrapper for DescribeDomainsResponse.
 type DescribeDomainsResult struct {
-	XMLName xml.Name `xml:"DescribeDomainsResponse"`
-
 	DomainStatusList []DomainStatus `xml:"DescribeDomainsResult>DomainStatusList>member"`
 }
 
 // DescribeExpressionsResult is a wrapper for DescribeExpressionsResponse.
 type DescribeExpressionsResult struct {
-	XMLName xml.Name `xml:"DescribeExpressionsResponse"`
-
 	Expressions []ExpressionStatus `xml:"DescribeExpressionsResult>Expressions>member"`
 }
 
 // DescribeIndexFieldsResult is a wrapper for DescribeIndexFieldsResponse.
 type DescribeIndexFieldsResult struct {
-	XMLName xml.Name `xml:"DescribeIndexFieldsResponse"`
-
 	IndexFields []IndexFieldStatus `xml:"DescribeIndexFieldsResult>IndexFields>member"`
 }
 
 // DescribeScalingParametersResult is a wrapper for DescribeScalingParametersResponse.
 type DescribeScalingParametersResult struct {
-	XMLName xml.Name `xml:"DescribeScalingParametersResponse"`
-
 	ScalingParameters *ScalingParametersStatus `xml:"DescribeScalingParametersResult>ScalingParameters"`
 }
 
 // DescribeServiceAccessPoliciesResult is a wrapper for DescribeServiceAccessPoliciesResponse.
 type DescribeServiceAccessPoliciesResult struct {
-	XMLName xml.Name `xml:"DescribeServiceAccessPoliciesResponse"`
-
 	AccessPolicies *AccessPoliciesStatus `xml:"DescribeServiceAccessPoliciesResult>AccessPolicies"`
 }
 
 // DescribeSuggestersResult is a wrapper for DescribeSuggestersResponse.
 type DescribeSuggestersResult struct {
-	XMLName xml.Name `xml:"DescribeSuggestersResponse"`
-
 	Suggesters []SuggesterStatus `xml:"DescribeSuggestersResult>Suggesters>member"`
 }
 
 // IndexDocumentsResult is a wrapper for IndexDocumentsResponse.
 type IndexDocumentsResult struct {
-	XMLName xml.Name `xml:"IndexDocumentsResponse"`
-
 	FieldNames []string `xml:"IndexDocumentsResult>FieldNames>member"`
 }
 
 // ListDomainNamesResult is a wrapper for ListDomainNamesResponse.
 type ListDomainNamesResult struct {
-	XMLName xml.Name `xml:"ListDomainNamesResponse"`
-
 	DomainNames map[string]string `xml:"ListDomainNamesResult>DomainNames"`
 }
 
 // UpdateAvailabilityOptionsResult is a wrapper for UpdateAvailabilityOptionsResponse.
 type UpdateAvailabilityOptionsResult struct {
-	XMLName xml.Name `xml:"UpdateAvailabilityOptionsResponse"`
-
 	AvailabilityOptions *AvailabilityOptionsStatus `xml:"UpdateAvailabilityOptionsResult>AvailabilityOptions"`
 }
 
 // UpdateScalingParametersResult is a wrapper for UpdateScalingParametersResponse.
 type UpdateScalingParametersResult struct {
-	XMLName xml.Name `xml:"UpdateScalingParametersResponse"`
-
 	ScalingParameters *ScalingParametersStatus `xml:"UpdateScalingParametersResult>ScalingParameters"`
 }
 
 // UpdateServiceAccessPoliciesResult is a wrapper for UpdateServiceAccessPoliciesResponse.
 type UpdateServiceAccessPoliciesResult struct {
-	XMLName xml.Name `xml:"UpdateServiceAccessPoliciesResponse"`
-
 	AccessPolicies *AccessPoliciesStatus `xml:"UpdateServiceAccessPoliciesResult>AccessPolicies"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

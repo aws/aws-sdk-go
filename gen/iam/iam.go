@@ -4,7 +4,6 @@
 package iam
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -1926,79 +1925,57 @@ type VirtualMFADevice struct {
 
 // CreateAccessKeyResult is a wrapper for CreateAccessKeyResponse.
 type CreateAccessKeyResult struct {
-	XMLName xml.Name `xml:"CreateAccessKeyResponse"`
-
 	AccessKey *AccessKey `xml:"CreateAccessKeyResult>AccessKey"`
 }
 
 // CreateGroupResult is a wrapper for CreateGroupResponse.
 type CreateGroupResult struct {
-	XMLName xml.Name `xml:"CreateGroupResponse"`
-
 	Group *Group `xml:"CreateGroupResult>Group"`
 }
 
 // CreateInstanceProfileResult is a wrapper for CreateInstanceProfileResponse.
 type CreateInstanceProfileResult struct {
-	XMLName xml.Name `xml:"CreateInstanceProfileResponse"`
-
 	InstanceProfile *InstanceProfile `xml:"CreateInstanceProfileResult>InstanceProfile"`
 }
 
 // CreateLoginProfileResult is a wrapper for CreateLoginProfileResponse.
 type CreateLoginProfileResult struct {
-	XMLName xml.Name `xml:"CreateLoginProfileResponse"`
-
 	LoginProfile *LoginProfile `xml:"CreateLoginProfileResult>LoginProfile"`
 }
 
 // CreateOpenIDConnectProviderResult is a wrapper for CreateOpenIDConnectProviderResponse.
 type CreateOpenIDConnectProviderResult struct {
-	XMLName xml.Name `xml:"CreateOpenIDConnectProviderResponse"`
-
 	OpenIDConnectProviderARN aws.StringValue `xml:"CreateOpenIDConnectProviderResult>OpenIDConnectProviderArn"`
 }
 
 // CreateRoleResult is a wrapper for CreateRoleResponse.
 type CreateRoleResult struct {
-	XMLName xml.Name `xml:"CreateRoleResponse"`
-
 	Role *Role `xml:"CreateRoleResult>Role"`
 }
 
 // CreateSAMLProviderResult is a wrapper for CreateSAMLProviderResponse.
 type CreateSAMLProviderResult struct {
-	XMLName xml.Name `xml:"CreateSAMLProviderResponse"`
-
 	SAMLProviderARN aws.StringValue `xml:"CreateSAMLProviderResult>SAMLProviderArn"`
 }
 
 // CreateUserResult is a wrapper for CreateUserResponse.
 type CreateUserResult struct {
-	XMLName xml.Name `xml:"CreateUserResponse"`
-
 	User *User `xml:"CreateUserResult>User"`
 }
 
 // CreateVirtualMFADeviceResult is a wrapper for CreateVirtualMFADeviceResponse.
 type CreateVirtualMFADeviceResult struct {
-	XMLName xml.Name `xml:"CreateVirtualMFADeviceResponse"`
-
 	VirtualMFADevice *VirtualMFADevice `xml:"CreateVirtualMFADeviceResult>VirtualMFADevice"`
 }
 
 // GenerateCredentialReportResult is a wrapper for GenerateCredentialReportResponse.
 type GenerateCredentialReportResult struct {
-	XMLName xml.Name `xml:"GenerateCredentialReportResponse"`
-
 	Description aws.StringValue `xml:"GenerateCredentialReportResult>Description"`
 	State       aws.StringValue `xml:"GenerateCredentialReportResult>State"`
 }
 
 // GetAccountAuthorizationDetailsResult is a wrapper for GetAccountAuthorizationDetailsResponse.
 type GetAccountAuthorizationDetailsResult struct {
-	XMLName xml.Name `xml:"GetAccountAuthorizationDetailsResponse"`
-
 	GroupDetailList []GroupDetail    `xml:"GetAccountAuthorizationDetailsResult>GroupDetailList>member"`
 	IsTruncated     aws.BooleanValue `xml:"GetAccountAuthorizationDetailsResult>IsTruncated"`
 	Marker          aws.StringValue  `xml:"GetAccountAuthorizationDetailsResult>Marker"`
@@ -2008,22 +1985,16 @@ type GetAccountAuthorizationDetailsResult struct {
 
 // GetAccountPasswordPolicyResult is a wrapper for GetAccountPasswordPolicyResponse.
 type GetAccountPasswordPolicyResult struct {
-	XMLName xml.Name `xml:"GetAccountPasswordPolicyResponse"`
-
 	PasswordPolicy *PasswordPolicy `xml:"GetAccountPasswordPolicyResult>PasswordPolicy"`
 }
 
 // GetAccountSummaryResult is a wrapper for GetAccountSummaryResponse.
 type GetAccountSummaryResult struct {
-	XMLName xml.Name `xml:"GetAccountSummaryResponse"`
-
 	SummaryMap map[string]int `xml:"GetAccountSummaryResult>SummaryMap"`
 }
 
 // GetCredentialReportResult is a wrapper for GetCredentialReportResponse.
 type GetCredentialReportResult struct {
-	XMLName xml.Name `xml:"GetCredentialReportResponse"`
-
 	Content       []byte          `xml:"GetCredentialReportResult>Content"`
 	GeneratedTime time.Time       `xml:"GetCredentialReportResult>GeneratedTime"`
 	ReportFormat  aws.StringValue `xml:"GetCredentialReportResult>ReportFormat"`
@@ -2031,8 +2002,6 @@ type GetCredentialReportResult struct {
 
 // GetGroupPolicyResult is a wrapper for GetGroupPolicyResponse.
 type GetGroupPolicyResult struct {
-	XMLName xml.Name `xml:"GetGroupPolicyResponse"`
-
 	GroupName      aws.StringValue `xml:"GetGroupPolicyResult>GroupName"`
 	PolicyDocument aws.StringValue `xml:"GetGroupPolicyResult>PolicyDocument"`
 	PolicyName     aws.StringValue `xml:"GetGroupPolicyResult>PolicyName"`
@@ -2040,8 +2009,6 @@ type GetGroupPolicyResult struct {
 
 // GetGroupResult is a wrapper for GetGroupResponse.
 type GetGroupResult struct {
-	XMLName xml.Name `xml:"GetGroupResponse"`
-
 	Group       *Group           `xml:"GetGroupResult>Group"`
 	IsTruncated aws.BooleanValue `xml:"GetGroupResult>IsTruncated"`
 	Marker      aws.StringValue  `xml:"GetGroupResult>Marker"`
@@ -2050,22 +2017,16 @@ type GetGroupResult struct {
 
 // GetInstanceProfileResult is a wrapper for GetInstanceProfileResponse.
 type GetInstanceProfileResult struct {
-	XMLName xml.Name `xml:"GetInstanceProfileResponse"`
-
 	InstanceProfile *InstanceProfile `xml:"GetInstanceProfileResult>InstanceProfile"`
 }
 
 // GetLoginProfileResult is a wrapper for GetLoginProfileResponse.
 type GetLoginProfileResult struct {
-	XMLName xml.Name `xml:"GetLoginProfileResponse"`
-
 	LoginProfile *LoginProfile `xml:"GetLoginProfileResult>LoginProfile"`
 }
 
 // GetOpenIDConnectProviderResult is a wrapper for GetOpenIDConnectProviderResponse.
 type GetOpenIDConnectProviderResult struct {
-	XMLName xml.Name `xml:"GetOpenIDConnectProviderResponse"`
-
 	ClientIDList   []string        `xml:"GetOpenIDConnectProviderResult>ClientIDList>member"`
 	CreateDate     time.Time       `xml:"GetOpenIDConnectProviderResult>CreateDate"`
 	ThumbprintList []string        `xml:"GetOpenIDConnectProviderResult>ThumbprintList>member"`
@@ -2074,8 +2035,6 @@ type GetOpenIDConnectProviderResult struct {
 
 // GetRolePolicyResult is a wrapper for GetRolePolicyResponse.
 type GetRolePolicyResult struct {
-	XMLName xml.Name `xml:"GetRolePolicyResponse"`
-
 	PolicyDocument aws.StringValue `xml:"GetRolePolicyResult>PolicyDocument"`
 	PolicyName     aws.StringValue `xml:"GetRolePolicyResult>PolicyName"`
 	RoleName       aws.StringValue `xml:"GetRolePolicyResult>RoleName"`
@@ -2083,15 +2042,11 @@ type GetRolePolicyResult struct {
 
 // GetRoleResult is a wrapper for GetRoleResponse.
 type GetRoleResult struct {
-	XMLName xml.Name `xml:"GetRoleResponse"`
-
 	Role *Role `xml:"GetRoleResult>Role"`
 }
 
 // GetSAMLProviderResult is a wrapper for GetSAMLProviderResponse.
 type GetSAMLProviderResult struct {
-	XMLName xml.Name `xml:"GetSAMLProviderResponse"`
-
 	CreateDate           time.Time       `xml:"GetSAMLProviderResult>CreateDate"`
 	SAMLMetadataDocument aws.StringValue `xml:"GetSAMLProviderResult>SAMLMetadataDocument"`
 	ValidUntil           time.Time       `xml:"GetSAMLProviderResult>ValidUntil"`
@@ -2099,15 +2054,11 @@ type GetSAMLProviderResult struct {
 
 // GetServerCertificateResult is a wrapper for GetServerCertificateResponse.
 type GetServerCertificateResult struct {
-	XMLName xml.Name `xml:"GetServerCertificateResponse"`
-
 	ServerCertificate *ServerCertificate `xml:"GetServerCertificateResult>ServerCertificate"`
 }
 
 // GetUserPolicyResult is a wrapper for GetUserPolicyResponse.
 type GetUserPolicyResult struct {
-	XMLName xml.Name `xml:"GetUserPolicyResponse"`
-
 	PolicyDocument aws.StringValue `xml:"GetUserPolicyResult>PolicyDocument"`
 	PolicyName     aws.StringValue `xml:"GetUserPolicyResult>PolicyName"`
 	UserName       aws.StringValue `xml:"GetUserPolicyResult>UserName"`
@@ -2115,15 +2066,11 @@ type GetUserPolicyResult struct {
 
 // GetUserResult is a wrapper for GetUserResponse.
 type GetUserResult struct {
-	XMLName xml.Name `xml:"GetUserResponse"`
-
 	User *User `xml:"GetUserResult>User"`
 }
 
 // ListAccessKeysResult is a wrapper for ListAccessKeysResponse.
 type ListAccessKeysResult struct {
-	XMLName xml.Name `xml:"ListAccessKeysResponse"`
-
 	AccessKeyMetadata []AccessKeyMetadata `xml:"ListAccessKeysResult>AccessKeyMetadata>member"`
 	IsTruncated       aws.BooleanValue    `xml:"ListAccessKeysResult>IsTruncated"`
 	Marker            aws.StringValue     `xml:"ListAccessKeysResult>Marker"`
@@ -2131,8 +2078,6 @@ type ListAccessKeysResult struct {
 
 // ListAccountAliasesResult is a wrapper for ListAccountAliasesResponse.
 type ListAccountAliasesResult struct {
-	XMLName xml.Name `xml:"ListAccountAliasesResponse"`
-
 	AccountAliases []string         `xml:"ListAccountAliasesResult>AccountAliases>member"`
 	IsTruncated    aws.BooleanValue `xml:"ListAccountAliasesResult>IsTruncated"`
 	Marker         aws.StringValue  `xml:"ListAccountAliasesResult>Marker"`
@@ -2140,8 +2085,6 @@ type ListAccountAliasesResult struct {
 
 // ListGroupPoliciesResult is a wrapper for ListGroupPoliciesResponse.
 type ListGroupPoliciesResult struct {
-	XMLName xml.Name `xml:"ListGroupPoliciesResponse"`
-
 	IsTruncated aws.BooleanValue `xml:"ListGroupPoliciesResult>IsTruncated"`
 	Marker      aws.StringValue  `xml:"ListGroupPoliciesResult>Marker"`
 	PolicyNames []string         `xml:"ListGroupPoliciesResult>PolicyNames>member"`
@@ -2149,8 +2092,6 @@ type ListGroupPoliciesResult struct {
 
 // ListGroupsForUserResult is a wrapper for ListGroupsForUserResponse.
 type ListGroupsForUserResult struct {
-	XMLName xml.Name `xml:"ListGroupsForUserResponse"`
-
 	Groups      []Group          `xml:"ListGroupsForUserResult>Groups>member"`
 	IsTruncated aws.BooleanValue `xml:"ListGroupsForUserResult>IsTruncated"`
 	Marker      aws.StringValue  `xml:"ListGroupsForUserResult>Marker"`
@@ -2158,8 +2099,6 @@ type ListGroupsForUserResult struct {
 
 // ListGroupsResult is a wrapper for ListGroupsResponse.
 type ListGroupsResult struct {
-	XMLName xml.Name `xml:"ListGroupsResponse"`
-
 	Groups      []Group          `xml:"ListGroupsResult>Groups>member"`
 	IsTruncated aws.BooleanValue `xml:"ListGroupsResult>IsTruncated"`
 	Marker      aws.StringValue  `xml:"ListGroupsResult>Marker"`
@@ -2167,8 +2106,6 @@ type ListGroupsResult struct {
 
 // ListInstanceProfilesForRoleResult is a wrapper for ListInstanceProfilesForRoleResponse.
 type ListInstanceProfilesForRoleResult struct {
-	XMLName xml.Name `xml:"ListInstanceProfilesForRoleResponse"`
-
 	InstanceProfiles []InstanceProfile `xml:"ListInstanceProfilesForRoleResult>InstanceProfiles>member"`
 	IsTruncated      aws.BooleanValue  `xml:"ListInstanceProfilesForRoleResult>IsTruncated"`
 	Marker           aws.StringValue   `xml:"ListInstanceProfilesForRoleResult>Marker"`
@@ -2176,8 +2113,6 @@ type ListInstanceProfilesForRoleResult struct {
 
 // ListInstanceProfilesResult is a wrapper for ListInstanceProfilesResponse.
 type ListInstanceProfilesResult struct {
-	XMLName xml.Name `xml:"ListInstanceProfilesResponse"`
-
 	InstanceProfiles []InstanceProfile `xml:"ListInstanceProfilesResult>InstanceProfiles>member"`
 	IsTruncated      aws.BooleanValue  `xml:"ListInstanceProfilesResult>IsTruncated"`
 	Marker           aws.StringValue   `xml:"ListInstanceProfilesResult>Marker"`
@@ -2185,8 +2120,6 @@ type ListInstanceProfilesResult struct {
 
 // ListMFADevicesResult is a wrapper for ListMFADevicesResponse.
 type ListMFADevicesResult struct {
-	XMLName xml.Name `xml:"ListMFADevicesResponse"`
-
 	IsTruncated aws.BooleanValue `xml:"ListMFADevicesResult>IsTruncated"`
 	MFADevices  []MFADevice      `xml:"ListMFADevicesResult>MFADevices>member"`
 	Marker      aws.StringValue  `xml:"ListMFADevicesResult>Marker"`
@@ -2194,15 +2127,11 @@ type ListMFADevicesResult struct {
 
 // ListOpenIDConnectProvidersResult is a wrapper for ListOpenIDConnectProvidersResponse.
 type ListOpenIDConnectProvidersResult struct {
-	XMLName xml.Name `xml:"ListOpenIDConnectProvidersResponse"`
-
 	OpenIDConnectProviderList []OpenIDConnectProviderListEntry `xml:"ListOpenIDConnectProvidersResult>OpenIDConnectProviderList>member"`
 }
 
 // ListRolePoliciesResult is a wrapper for ListRolePoliciesResponse.
 type ListRolePoliciesResult struct {
-	XMLName xml.Name `xml:"ListRolePoliciesResponse"`
-
 	IsTruncated aws.BooleanValue `xml:"ListRolePoliciesResult>IsTruncated"`
 	Marker      aws.StringValue  `xml:"ListRolePoliciesResult>Marker"`
 	PolicyNames []string         `xml:"ListRolePoliciesResult>PolicyNames>member"`
@@ -2210,8 +2139,6 @@ type ListRolePoliciesResult struct {
 
 // ListRolesResult is a wrapper for ListRolesResponse.
 type ListRolesResult struct {
-	XMLName xml.Name `xml:"ListRolesResponse"`
-
 	IsTruncated aws.BooleanValue `xml:"ListRolesResult>IsTruncated"`
 	Marker      aws.StringValue  `xml:"ListRolesResult>Marker"`
 	Roles       []Role           `xml:"ListRolesResult>Roles>member"`
@@ -2219,15 +2146,11 @@ type ListRolesResult struct {
 
 // ListSAMLProvidersResult is a wrapper for ListSAMLProvidersResponse.
 type ListSAMLProvidersResult struct {
-	XMLName xml.Name `xml:"ListSAMLProvidersResponse"`
-
 	SAMLProviderList []SAMLProviderListEntry `xml:"ListSAMLProvidersResult>SAMLProviderList>member"`
 }
 
 // ListServerCertificatesResult is a wrapper for ListServerCertificatesResponse.
 type ListServerCertificatesResult struct {
-	XMLName xml.Name `xml:"ListServerCertificatesResponse"`
-
 	IsTruncated                   aws.BooleanValue            `xml:"ListServerCertificatesResult>IsTruncated"`
 	Marker                        aws.StringValue             `xml:"ListServerCertificatesResult>Marker"`
 	ServerCertificateMetadataList []ServerCertificateMetadata `xml:"ListServerCertificatesResult>ServerCertificateMetadataList>member"`
@@ -2235,8 +2158,6 @@ type ListServerCertificatesResult struct {
 
 // ListSigningCertificatesResult is a wrapper for ListSigningCertificatesResponse.
 type ListSigningCertificatesResult struct {
-	XMLName xml.Name `xml:"ListSigningCertificatesResponse"`
-
 	Certificates []SigningCertificate `xml:"ListSigningCertificatesResult>Certificates>member"`
 	IsTruncated  aws.BooleanValue     `xml:"ListSigningCertificatesResult>IsTruncated"`
 	Marker       aws.StringValue      `xml:"ListSigningCertificatesResult>Marker"`
@@ -2244,8 +2165,6 @@ type ListSigningCertificatesResult struct {
 
 // ListUserPoliciesResult is a wrapper for ListUserPoliciesResponse.
 type ListUserPoliciesResult struct {
-	XMLName xml.Name `xml:"ListUserPoliciesResponse"`
-
 	IsTruncated aws.BooleanValue `xml:"ListUserPoliciesResult>IsTruncated"`
 	Marker      aws.StringValue  `xml:"ListUserPoliciesResult>Marker"`
 	PolicyNames []string         `xml:"ListUserPoliciesResult>PolicyNames>member"`
@@ -2253,8 +2172,6 @@ type ListUserPoliciesResult struct {
 
 // ListUsersResult is a wrapper for ListUsersResponse.
 type ListUsersResult struct {
-	XMLName xml.Name `xml:"ListUsersResponse"`
-
 	IsTruncated aws.BooleanValue `xml:"ListUsersResult>IsTruncated"`
 	Marker      aws.StringValue  `xml:"ListUsersResult>Marker"`
 	Users       []User           `xml:"ListUsersResult>Users>member"`
@@ -2262,8 +2179,6 @@ type ListUsersResult struct {
 
 // ListVirtualMFADevicesResult is a wrapper for ListVirtualMFADevicesResponse.
 type ListVirtualMFADevicesResult struct {
-	XMLName xml.Name `xml:"ListVirtualMFADevicesResponse"`
-
 	IsTruncated       aws.BooleanValue   `xml:"ListVirtualMFADevicesResult>IsTruncated"`
 	Marker            aws.StringValue    `xml:"ListVirtualMFADevicesResult>Marker"`
 	VirtualMFADevices []VirtualMFADevice `xml:"ListVirtualMFADevicesResult>VirtualMFADevices>member"`
@@ -2271,25 +2186,18 @@ type ListVirtualMFADevicesResult struct {
 
 // UpdateSAMLProviderResult is a wrapper for UpdateSAMLProviderResponse.
 type UpdateSAMLProviderResult struct {
-	XMLName xml.Name `xml:"UpdateSAMLProviderResponse"`
-
 	SAMLProviderARN aws.StringValue `xml:"UpdateSAMLProviderResult>SAMLProviderArn"`
 }
 
 // UploadServerCertificateResult is a wrapper for UploadServerCertificateResponse.
 type UploadServerCertificateResult struct {
-	XMLName xml.Name `xml:"UploadServerCertificateResponse"`
-
 	ServerCertificateMetadata *ServerCertificateMetadata `xml:"UploadServerCertificateResult>ServerCertificateMetadata"`
 }
 
 // UploadSigningCertificateResult is a wrapper for UploadSigningCertificateResponse.
 type UploadSigningCertificateResult struct {
-	XMLName xml.Name `xml:"UploadSigningCertificateResponse"`
-
 	Certificate *SigningCertificate `xml:"UploadSigningCertificateResult>Certificate"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

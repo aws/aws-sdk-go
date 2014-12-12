@@ -4,7 +4,6 @@
 package kms
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -540,4 +539,3 @@ type UpdateKeyDescriptionRequest struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

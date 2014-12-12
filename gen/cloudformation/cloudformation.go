@@ -4,7 +4,6 @@
 package cloudformation
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -541,66 +540,48 @@ type ValidateTemplateOutput struct {
 
 // CreateStackResult is a wrapper for CreateStackOutput.
 type CreateStackResult struct {
-	XMLName xml.Name `xml:"CreateStackResponse"`
-
 	StackID aws.StringValue `xml:"CreateStackResult>StackId"`
 }
 
 // DescribeStackEventsResult is a wrapper for DescribeStackEventsOutput.
 type DescribeStackEventsResult struct {
-	XMLName xml.Name `xml:"DescribeStackEventsResponse"`
-
 	NextToken   aws.StringValue `xml:"DescribeStackEventsResult>NextToken"`
 	StackEvents []StackEvent    `xml:"DescribeStackEventsResult>StackEvents>member"`
 }
 
 // DescribeStackResourceResult is a wrapper for DescribeStackResourceOutput.
 type DescribeStackResourceResult struct {
-	XMLName xml.Name `xml:"DescribeStackResourceResponse"`
-
 	StackResourceDetail *StackResourceDetail `xml:"DescribeStackResourceResult>StackResourceDetail"`
 }
 
 // DescribeStackResourcesResult is a wrapper for DescribeStackResourcesOutput.
 type DescribeStackResourcesResult struct {
-	XMLName xml.Name `xml:"DescribeStackResourcesResponse"`
-
 	StackResources []StackResource `xml:"DescribeStackResourcesResult>StackResources>member"`
 }
 
 // DescribeStacksResult is a wrapper for DescribeStacksOutput.
 type DescribeStacksResult struct {
-	XMLName xml.Name `xml:"DescribeStacksResponse"`
-
 	NextToken aws.StringValue `xml:"DescribeStacksResult>NextToken"`
 	Stacks    []Stack         `xml:"DescribeStacksResult>Stacks>member"`
 }
 
 // EstimateTemplateCostResult is a wrapper for EstimateTemplateCostOutput.
 type EstimateTemplateCostResult struct {
-	XMLName xml.Name `xml:"EstimateTemplateCostResponse"`
-
 	URL aws.StringValue `xml:"EstimateTemplateCostResult>Url"`
 }
 
 // GetStackPolicyResult is a wrapper for GetStackPolicyOutput.
 type GetStackPolicyResult struct {
-	XMLName xml.Name `xml:"GetStackPolicyResponse"`
-
 	StackPolicyBody aws.StringValue `xml:"GetStackPolicyResult>StackPolicyBody"`
 }
 
 // GetTemplateResult is a wrapper for GetTemplateOutput.
 type GetTemplateResult struct {
-	XMLName xml.Name `xml:"GetTemplateResponse"`
-
 	TemplateBody aws.StringValue `xml:"GetTemplateResult>TemplateBody"`
 }
 
 // GetTemplateSummaryResult is a wrapper for GetTemplateSummaryOutput.
 type GetTemplateSummaryResult struct {
-	XMLName xml.Name `xml:"GetTemplateSummaryResponse"`
-
 	Capabilities       []string               `xml:"GetTemplateSummaryResult>Capabilities>member"`
 	CapabilitiesReason aws.StringValue        `xml:"GetTemplateSummaryResult>CapabilitiesReason"`
 	Description        aws.StringValue        `xml:"GetTemplateSummaryResult>Description"`
@@ -610,31 +591,23 @@ type GetTemplateSummaryResult struct {
 
 // ListStackResourcesResult is a wrapper for ListStackResourcesOutput.
 type ListStackResourcesResult struct {
-	XMLName xml.Name `xml:"ListStackResourcesResponse"`
-
 	NextToken              aws.StringValue        `xml:"ListStackResourcesResult>NextToken"`
 	StackResourceSummaries []StackResourceSummary `xml:"ListStackResourcesResult>StackResourceSummaries>member"`
 }
 
 // ListStacksResult is a wrapper for ListStacksOutput.
 type ListStacksResult struct {
-	XMLName xml.Name `xml:"ListStacksResponse"`
-
 	NextToken      aws.StringValue `xml:"ListStacksResult>NextToken"`
 	StackSummaries []StackSummary  `xml:"ListStacksResult>StackSummaries>member"`
 }
 
 // UpdateStackResult is a wrapper for UpdateStackOutput.
 type UpdateStackResult struct {
-	XMLName xml.Name `xml:"UpdateStackResponse"`
-
 	StackID aws.StringValue `xml:"UpdateStackResult>StackId"`
 }
 
 // ValidateTemplateResult is a wrapper for ValidateTemplateOutput.
 type ValidateTemplateResult struct {
-	XMLName xml.Name `xml:"ValidateTemplateResponse"`
-
 	Capabilities       []string            `xml:"ValidateTemplateResult>Capabilities>member"`
 	CapabilitiesReason aws.StringValue     `xml:"ValidateTemplateResult>CapabilitiesReason"`
 	Description        aws.StringValue     `xml:"ValidateTemplateResult>Description"`
@@ -643,4 +616,3 @@ type ValidateTemplateResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

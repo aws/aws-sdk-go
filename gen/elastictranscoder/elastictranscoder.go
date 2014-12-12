@@ -4,7 +4,6 @@
 package elastictranscoder
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -1320,7 +1319,6 @@ type VideoParameters struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name
 
 var _ bytes.Reader
 var _ url.URL

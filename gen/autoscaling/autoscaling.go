@@ -4,7 +4,6 @@
 package autoscaling
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -1154,181 +1153,134 @@ type UpdateAutoScalingGroupType struct {
 
 // CompleteLifecycleActionResult is a wrapper for CompleteLifecycleActionAnswer.
 type CompleteLifecycleActionResult struct {
-	XMLName xml.Name `xml:"CompleteLifecycleActionResponse"`
 }
 
 // DeleteLifecycleHookResult is a wrapper for DeleteLifecycleHookAnswer.
 type DeleteLifecycleHookResult struct {
-	XMLName xml.Name `xml:"DeleteLifecycleHookResponse"`
 }
 
 // DescribeAccountLimitsResult is a wrapper for DescribeAccountLimitsAnswer.
 type DescribeAccountLimitsResult struct {
-	XMLName xml.Name `xml:"DescribeAccountLimitsResponse"`
-
 	MaxNumberOfAutoScalingGroups    aws.IntegerValue `xml:"DescribeAccountLimitsResult>MaxNumberOfAutoScalingGroups"`
 	MaxNumberOfLaunchConfigurations aws.IntegerValue `xml:"DescribeAccountLimitsResult>MaxNumberOfLaunchConfigurations"`
 }
 
 // DescribeAdjustmentTypesResult is a wrapper for DescribeAdjustmentTypesAnswer.
 type DescribeAdjustmentTypesResult struct {
-	XMLName xml.Name `xml:"DescribeAdjustmentTypesResponse"`
-
 	AdjustmentTypes []AdjustmentType `xml:"DescribeAdjustmentTypesResult>AdjustmentTypes>member"`
 }
 
 // DescribeAutoScalingGroupsResult is a wrapper for AutoScalingGroupsType.
 type DescribeAutoScalingGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeAutoScalingGroupsResponse"`
-
 	AutoScalingGroups []AutoScalingGroup `xml:"DescribeAutoScalingGroupsResult>AutoScalingGroups>member"`
 	NextToken         aws.StringValue    `xml:"DescribeAutoScalingGroupsResult>NextToken"`
 }
 
 // DescribeAutoScalingInstancesResult is a wrapper for AutoScalingInstancesType.
 type DescribeAutoScalingInstancesResult struct {
-	XMLName xml.Name `xml:"DescribeAutoScalingInstancesResponse"`
-
 	AutoScalingInstances []AutoScalingInstanceDetails `xml:"DescribeAutoScalingInstancesResult>AutoScalingInstances>member"`
 	NextToken            aws.StringValue              `xml:"DescribeAutoScalingInstancesResult>NextToken"`
 }
 
 // DescribeAutoScalingNotificationTypesResult is a wrapper for DescribeAutoScalingNotificationTypesAnswer.
 type DescribeAutoScalingNotificationTypesResult struct {
-	XMLName xml.Name `xml:"DescribeAutoScalingNotificationTypesResponse"`
-
 	AutoScalingNotificationTypes []string `xml:"DescribeAutoScalingNotificationTypesResult>AutoScalingNotificationTypes>member"`
 }
 
 // DescribeLaunchConfigurationsResult is a wrapper for LaunchConfigurationsType.
 type DescribeLaunchConfigurationsResult struct {
-	XMLName xml.Name `xml:"DescribeLaunchConfigurationsResponse"`
-
 	LaunchConfigurations []LaunchConfiguration `xml:"DescribeLaunchConfigurationsResult>LaunchConfigurations>member"`
 	NextToken            aws.StringValue       `xml:"DescribeLaunchConfigurationsResult>NextToken"`
 }
 
 // DescribeLifecycleHookTypesResult is a wrapper for DescribeLifecycleHookTypesAnswer.
 type DescribeLifecycleHookTypesResult struct {
-	XMLName xml.Name `xml:"DescribeLifecycleHookTypesResponse"`
-
 	LifecycleHookTypes []string `xml:"DescribeLifecycleHookTypesResult>LifecycleHookTypes>member"`
 }
 
 // DescribeLifecycleHooksResult is a wrapper for DescribeLifecycleHooksAnswer.
 type DescribeLifecycleHooksResult struct {
-	XMLName xml.Name `xml:"DescribeLifecycleHooksResponse"`
-
 	LifecycleHooks []LifecycleHook `xml:"DescribeLifecycleHooksResult>LifecycleHooks>member"`
 }
 
 // DescribeMetricCollectionTypesResult is a wrapper for DescribeMetricCollectionTypesAnswer.
 type DescribeMetricCollectionTypesResult struct {
-	XMLName xml.Name `xml:"DescribeMetricCollectionTypesResponse"`
-
 	Granularities []MetricGranularityType `xml:"DescribeMetricCollectionTypesResult>Granularities>member"`
 	Metrics       []MetricCollectionType  `xml:"DescribeMetricCollectionTypesResult>Metrics>member"`
 }
 
 // DescribeNotificationConfigurationsResult is a wrapper for DescribeNotificationConfigurationsAnswer.
 type DescribeNotificationConfigurationsResult struct {
-	XMLName xml.Name `xml:"DescribeNotificationConfigurationsResponse"`
-
 	NextToken                  aws.StringValue             `xml:"DescribeNotificationConfigurationsResult>NextToken"`
 	NotificationConfigurations []NotificationConfiguration `xml:"DescribeNotificationConfigurationsResult>NotificationConfigurations>member"`
 }
 
 // DescribePoliciesResult is a wrapper for PoliciesType.
 type DescribePoliciesResult struct {
-	XMLName xml.Name `xml:"DescribePoliciesResponse"`
-
 	NextToken       aws.StringValue `xml:"DescribePoliciesResult>NextToken"`
 	ScalingPolicies []ScalingPolicy `xml:"DescribePoliciesResult>ScalingPolicies>member"`
 }
 
 // DescribeScalingActivitiesResult is a wrapper for ActivitiesType.
 type DescribeScalingActivitiesResult struct {
-	XMLName xml.Name `xml:"DescribeScalingActivitiesResponse"`
-
 	Activities []Activity      `xml:"DescribeScalingActivitiesResult>Activities>member"`
 	NextToken  aws.StringValue `xml:"DescribeScalingActivitiesResult>NextToken"`
 }
 
 // DescribeScalingProcessTypesResult is a wrapper for ProcessesType.
 type DescribeScalingProcessTypesResult struct {
-	XMLName xml.Name `xml:"DescribeScalingProcessTypesResponse"`
-
 	Processes []ProcessType `xml:"DescribeScalingProcessTypesResult>Processes>member"`
 }
 
 // DescribeScheduledActionsResult is a wrapper for ScheduledActionsType.
 type DescribeScheduledActionsResult struct {
-	XMLName xml.Name `xml:"DescribeScheduledActionsResponse"`
-
 	NextToken                   aws.StringValue              `xml:"DescribeScheduledActionsResult>NextToken"`
 	ScheduledUpdateGroupActions []ScheduledUpdateGroupAction `xml:"DescribeScheduledActionsResult>ScheduledUpdateGroupActions>member"`
 }
 
 // DescribeTagsResult is a wrapper for TagsType.
 type DescribeTagsResult struct {
-	XMLName xml.Name `xml:"DescribeTagsResponse"`
-
 	NextToken aws.StringValue  `xml:"DescribeTagsResult>NextToken"`
 	Tags      []TagDescription `xml:"DescribeTagsResult>Tags>member"`
 }
 
 // DescribeTerminationPolicyTypesResult is a wrapper for DescribeTerminationPolicyTypesAnswer.
 type DescribeTerminationPolicyTypesResult struct {
-	XMLName xml.Name `xml:"DescribeTerminationPolicyTypesResponse"`
-
 	TerminationPolicyTypes []string `xml:"DescribeTerminationPolicyTypesResult>TerminationPolicyTypes>member"`
 }
 
 // DetachInstancesResult is a wrapper for DetachInstancesAnswer.
 type DetachInstancesResult struct {
-	XMLName xml.Name `xml:"DetachInstancesResponse"`
-
 	Activities []Activity `xml:"DetachInstancesResult>Activities>member"`
 }
 
 // EnterStandbyResult is a wrapper for EnterStandbyAnswer.
 type EnterStandbyResult struct {
-	XMLName xml.Name `xml:"EnterStandbyResponse"`
-
 	Activities []Activity `xml:"EnterStandbyResult>Activities>member"`
 }
 
 // ExitStandbyResult is a wrapper for ExitStandbyAnswer.
 type ExitStandbyResult struct {
-	XMLName xml.Name `xml:"ExitStandbyResponse"`
-
 	Activities []Activity `xml:"ExitStandbyResult>Activities>member"`
 }
 
 // PutLifecycleHookResult is a wrapper for PutLifecycleHookAnswer.
 type PutLifecycleHookResult struct {
-	XMLName xml.Name `xml:"PutLifecycleHookResponse"`
 }
 
 // PutScalingPolicyResult is a wrapper for PolicyARNType.
 type PutScalingPolicyResult struct {
-	XMLName xml.Name `xml:"PutScalingPolicyResponse"`
-
 	PolicyARN aws.StringValue `xml:"PutScalingPolicyResult>PolicyARN"`
 }
 
 // RecordLifecycleActionHeartbeatResult is a wrapper for RecordLifecycleActionHeartbeatAnswer.
 type RecordLifecycleActionHeartbeatResult struct {
-	XMLName xml.Name `xml:"RecordLifecycleActionHeartbeatResponse"`
 }
 
 // TerminateInstanceInAutoScalingGroupResult is a wrapper for ActivityType.
 type TerminateInstanceInAutoScalingGroupResult struct {
-	XMLName xml.Name `xml:"TerminateInstanceInAutoScalingGroupResponse"`
-
 	Activity *Activity `xml:"TerminateInstanceInAutoScalingGroupResult>Activity"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

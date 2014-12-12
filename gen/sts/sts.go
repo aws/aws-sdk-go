@@ -4,7 +4,6 @@
 package sts
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -426,8 +425,6 @@ type GetSessionTokenResponse struct {
 
 // AssumeRoleResult is a wrapper for AssumeRoleResponse.
 type AssumeRoleResult struct {
-	XMLName xml.Name `xml:"AssumeRoleResponse"`
-
 	AssumedRoleUser  *AssumedRoleUser `xml:"AssumeRoleResult>AssumedRoleUser"`
 	Credentials      *Credentials     `xml:"AssumeRoleResult>Credentials"`
 	PackedPolicySize aws.IntegerValue `xml:"AssumeRoleResult>PackedPolicySize"`
@@ -435,8 +432,6 @@ type AssumeRoleResult struct {
 
 // AssumeRoleWithSAMLResult is a wrapper for AssumeRoleWithSAMLResponse.
 type AssumeRoleWithSAMLResult struct {
-	XMLName xml.Name `xml:"AssumeRoleWithSAMLResponse"`
-
 	AssumedRoleUser  *AssumedRoleUser `xml:"AssumeRoleWithSAMLResult>AssumedRoleUser"`
 	Audience         aws.StringValue  `xml:"AssumeRoleWithSAMLResult>Audience"`
 	Credentials      *Credentials     `xml:"AssumeRoleWithSAMLResult>Credentials"`
@@ -449,8 +444,6 @@ type AssumeRoleWithSAMLResult struct {
 
 // AssumeRoleWithWebIdentityResult is a wrapper for AssumeRoleWithWebIdentityResponse.
 type AssumeRoleWithWebIdentityResult struct {
-	XMLName xml.Name `xml:"AssumeRoleWithWebIdentityResponse"`
-
 	AssumedRoleUser             *AssumedRoleUser `xml:"AssumeRoleWithWebIdentityResult>AssumedRoleUser"`
 	Audience                    aws.StringValue  `xml:"AssumeRoleWithWebIdentityResult>Audience"`
 	Credentials                 *Credentials     `xml:"AssumeRoleWithWebIdentityResult>Credentials"`
@@ -461,15 +454,11 @@ type AssumeRoleWithWebIdentityResult struct {
 
 // DecodeAuthorizationMessageResult is a wrapper for DecodeAuthorizationMessageResponse.
 type DecodeAuthorizationMessageResult struct {
-	XMLName xml.Name `xml:"DecodeAuthorizationMessageResponse"`
-
 	DecodedMessage aws.StringValue `xml:"DecodeAuthorizationMessageResult>DecodedMessage"`
 }
 
 // GetFederationTokenResult is a wrapper for GetFederationTokenResponse.
 type GetFederationTokenResult struct {
-	XMLName xml.Name `xml:"GetFederationTokenResponse"`
-
 	Credentials      *Credentials     `xml:"GetFederationTokenResult>Credentials"`
 	FederatedUser    *FederatedUser   `xml:"GetFederationTokenResult>FederatedUser"`
 	PackedPolicySize aws.IntegerValue `xml:"GetFederationTokenResult>PackedPolicySize"`
@@ -477,11 +466,8 @@ type GetFederationTokenResult struct {
 
 // GetSessionTokenResult is a wrapper for GetSessionTokenResponse.
 type GetSessionTokenResult struct {
-	XMLName xml.Name `xml:"GetSessionTokenResponse"`
-
 	Credentials *Credentials `xml:"GetSessionTokenResult>Credentials"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

@@ -4,7 +4,6 @@
 package sns
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -583,114 +582,83 @@ type UnsubscribeInput struct {
 
 // ConfirmSubscriptionResult is a wrapper for ConfirmSubscriptionResponse.
 type ConfirmSubscriptionResult struct {
-	XMLName xml.Name `xml:"ConfirmSubscriptionResponse"`
-
 	SubscriptionARN aws.StringValue `xml:"ConfirmSubscriptionResult>SubscriptionArn"`
 }
 
 // CreatePlatformApplicationResult is a wrapper for CreatePlatformApplicationResponse.
 type CreatePlatformApplicationResult struct {
-	XMLName xml.Name `xml:"CreatePlatformApplicationResponse"`
-
 	PlatformApplicationARN aws.StringValue `xml:"CreatePlatformApplicationResult>PlatformApplicationArn"`
 }
 
 // CreatePlatformEndpointResult is a wrapper for CreateEndpointResponse.
 type CreatePlatformEndpointResult struct {
-	XMLName xml.Name `xml:"CreatePlatformEndpointResponse"`
-
 	EndpointARN aws.StringValue `xml:"CreatePlatformEndpointResult>EndpointArn"`
 }
 
 // CreateTopicResult is a wrapper for CreateTopicResponse.
 type CreateTopicResult struct {
-	XMLName xml.Name `xml:"CreateTopicResponse"`
-
 	TopicARN aws.StringValue `xml:"CreateTopicResult>TopicArn"`
 }
 
 // GetEndpointAttributesResult is a wrapper for GetEndpointAttributesResponse.
 type GetEndpointAttributesResult struct {
-	XMLName xml.Name `xml:"GetEndpointAttributesResponse"`
-
 	Attributes map[string]string `xml:"GetEndpointAttributesResult>Attributes"`
 }
 
 // GetPlatformApplicationAttributesResult is a wrapper for GetPlatformApplicationAttributesResponse.
 type GetPlatformApplicationAttributesResult struct {
-	XMLName xml.Name `xml:"GetPlatformApplicationAttributesResponse"`
-
 	Attributes map[string]string `xml:"GetPlatformApplicationAttributesResult>Attributes"`
 }
 
 // GetSubscriptionAttributesResult is a wrapper for GetSubscriptionAttributesResponse.
 type GetSubscriptionAttributesResult struct {
-	XMLName xml.Name `xml:"GetSubscriptionAttributesResponse"`
-
 	Attributes map[string]string `xml:"GetSubscriptionAttributesResult>Attributes"`
 }
 
 // GetTopicAttributesResult is a wrapper for GetTopicAttributesResponse.
 type GetTopicAttributesResult struct {
-	XMLName xml.Name `xml:"GetTopicAttributesResponse"`
-
 	Attributes map[string]string `xml:"GetTopicAttributesResult>Attributes"`
 }
 
 // ListEndpointsByPlatformApplicationResult is a wrapper for ListEndpointsByPlatformApplicationResponse.
 type ListEndpointsByPlatformApplicationResult struct {
-	XMLName xml.Name `xml:"ListEndpointsByPlatformApplicationResponse"`
-
 	Endpoints []Endpoint      `xml:"ListEndpointsByPlatformApplicationResult>Endpoints>member"`
 	NextToken aws.StringValue `xml:"ListEndpointsByPlatformApplicationResult>NextToken"`
 }
 
 // ListPlatformApplicationsResult is a wrapper for ListPlatformApplicationsResponse.
 type ListPlatformApplicationsResult struct {
-	XMLName xml.Name `xml:"ListPlatformApplicationsResponse"`
-
 	NextToken            aws.StringValue       `xml:"ListPlatformApplicationsResult>NextToken"`
 	PlatformApplications []PlatformApplication `xml:"ListPlatformApplicationsResult>PlatformApplications>member"`
 }
 
 // ListSubscriptionsByTopicResult is a wrapper for ListSubscriptionsByTopicResponse.
 type ListSubscriptionsByTopicResult struct {
-	XMLName xml.Name `xml:"ListSubscriptionsByTopicResponse"`
-
 	NextToken     aws.StringValue `xml:"ListSubscriptionsByTopicResult>NextToken"`
 	Subscriptions []Subscription  `xml:"ListSubscriptionsByTopicResult>Subscriptions>member"`
 }
 
 // ListSubscriptionsResult is a wrapper for ListSubscriptionsResponse.
 type ListSubscriptionsResult struct {
-	XMLName xml.Name `xml:"ListSubscriptionsResponse"`
-
 	NextToken     aws.StringValue `xml:"ListSubscriptionsResult>NextToken"`
 	Subscriptions []Subscription  `xml:"ListSubscriptionsResult>Subscriptions>member"`
 }
 
 // ListTopicsResult is a wrapper for ListTopicsResponse.
 type ListTopicsResult struct {
-	XMLName xml.Name `xml:"ListTopicsResponse"`
-
 	NextToken aws.StringValue `xml:"ListTopicsResult>NextToken"`
 	Topics    []Topic         `xml:"ListTopicsResult>Topics>member"`
 }
 
 // PublishResult is a wrapper for PublishResponse.
 type PublishResult struct {
-	XMLName xml.Name `xml:"PublishResponse"`
-
 	MessageID aws.StringValue `xml:"PublishResult>MessageId"`
 }
 
 // SubscribeResult is a wrapper for SubscribeResponse.
 type SubscribeResult struct {
-	XMLName xml.Name `xml:"SubscribeResponse"`
-
 	SubscriptionARN aws.StringValue `xml:"SubscribeResult>SubscriptionArn"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

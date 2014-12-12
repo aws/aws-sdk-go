@@ -4,7 +4,6 @@
 package importexport
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -182,15 +181,11 @@ type UpdateJobOutput struct {
 
 // CancelJobResult is a wrapper for CancelJobOutput.
 type CancelJobResult struct {
-	XMLName xml.Name `xml:"CancelJobResponse"`
-
 	Success aws.BooleanValue `xml:"CancelJobResult>Success"`
 }
 
 // CreateJobResult is a wrapper for CreateJobOutput.
 type CreateJobResult struct {
-	XMLName xml.Name `xml:"CreateJobResponse"`
-
 	AwsShippingAddress    aws.StringValue `xml:"CreateJobResult>AwsShippingAddress"`
 	JobID                 aws.StringValue `xml:"CreateJobResult>JobId"`
 	JobType               aws.StringValue `xml:"CreateJobResult>JobType"`
@@ -201,8 +196,6 @@ type CreateJobResult struct {
 
 // GetStatusResult is a wrapper for GetStatusOutput.
 type GetStatusResult struct {
-	XMLName xml.Name `xml:"GetStatusResponse"`
-
 	AwsShippingAddress    aws.StringValue  `xml:"GetStatusResult>AwsShippingAddress"`
 	Carrier               aws.StringValue  `xml:"GetStatusResult>Carrier"`
 	CreationDate          time.Time        `xml:"GetStatusResult>CreationDate"`
@@ -223,20 +216,15 @@ type GetStatusResult struct {
 
 // ListJobsResult is a wrapper for ListJobsOutput.
 type ListJobsResult struct {
-	XMLName xml.Name `xml:"ListJobsResponse"`
-
 	IsTruncated aws.BooleanValue `xml:"ListJobsResult>IsTruncated"`
 	Jobs        []Job            `xml:"ListJobsResult>Jobs>member"`
 }
 
 // UpdateJobResult is a wrapper for UpdateJobOutput.
 type UpdateJobResult struct {
-	XMLName xml.Name `xml:"UpdateJobResponse"`
-
 	Success        aws.BooleanValue `xml:"UpdateJobResult>Success"`
 	WarningMessage aws.StringValue  `xml:"UpdateJobResult>WarningMessage"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

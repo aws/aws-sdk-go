@@ -4,7 +4,6 @@
 package elasticcache
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -1140,32 +1139,24 @@ type Subnet struct {
 
 // DescribeCacheClustersResult is a wrapper for CacheClusterMessage.
 type DescribeCacheClustersResult struct {
-	XMLName xml.Name `xml:"DescribeCacheClustersResponse"`
-
 	CacheClusters []CacheCluster  `xml:"DescribeCacheClustersResult>CacheClusters>CacheCluster"`
 	Marker        aws.StringValue `xml:"DescribeCacheClustersResult>Marker"`
 }
 
 // DescribeCacheEngineVersionsResult is a wrapper for CacheEngineVersionMessage.
 type DescribeCacheEngineVersionsResult struct {
-	XMLName xml.Name `xml:"DescribeCacheEngineVersionsResponse"`
-
 	CacheEngineVersions []CacheEngineVersion `xml:"DescribeCacheEngineVersionsResult>CacheEngineVersions>CacheEngineVersion"`
 	Marker              aws.StringValue      `xml:"DescribeCacheEngineVersionsResult>Marker"`
 }
 
 // DescribeCacheParameterGroupsResult is a wrapper for CacheParameterGroupsMessage.
 type DescribeCacheParameterGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeCacheParameterGroupsResponse"`
-
 	CacheParameterGroups []CacheParameterGroup `xml:"DescribeCacheParameterGroupsResult>CacheParameterGroups>CacheParameterGroup"`
 	Marker               aws.StringValue       `xml:"DescribeCacheParameterGroupsResult>Marker"`
 }
 
 // DescribeCacheParametersResult is a wrapper for CacheParameterGroupDetails.
 type DescribeCacheParametersResult struct {
-	XMLName xml.Name `xml:"DescribeCacheParametersResponse"`
-
 	CacheNodeTypeSpecificParameters []CacheNodeTypeSpecificParameter `xml:"DescribeCacheParametersResult>CacheNodeTypeSpecificParameters>CacheNodeTypeSpecificParameter"`
 	Marker                          aws.StringValue                  `xml:"DescribeCacheParametersResult>Marker"`
 	Parameters                      []Parameter                      `xml:"DescribeCacheParametersResult>Parameters>Parameter"`
@@ -1173,74 +1164,55 @@ type DescribeCacheParametersResult struct {
 
 // DescribeCacheSecurityGroupsResult is a wrapper for CacheSecurityGroupMessage.
 type DescribeCacheSecurityGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeCacheSecurityGroupsResponse"`
-
 	CacheSecurityGroups []CacheSecurityGroup `xml:"DescribeCacheSecurityGroupsResult>CacheSecurityGroups>CacheSecurityGroup"`
 	Marker              aws.StringValue      `xml:"DescribeCacheSecurityGroupsResult>Marker"`
 }
 
 // DescribeCacheSubnetGroupsResult is a wrapper for CacheSubnetGroupMessage.
 type DescribeCacheSubnetGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeCacheSubnetGroupsResponse"`
-
 	CacheSubnetGroups []CacheSubnetGroup `xml:"DescribeCacheSubnetGroupsResult>CacheSubnetGroups>CacheSubnetGroup"`
 	Marker            aws.StringValue    `xml:"DescribeCacheSubnetGroupsResult>Marker"`
 }
 
 // DescribeEventsResult is a wrapper for EventsMessage.
 type DescribeEventsResult struct {
-	XMLName xml.Name `xml:"DescribeEventsResponse"`
-
 	Events []Event         `xml:"DescribeEventsResult>Events>Event"`
 	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
 }
 
 // DescribeReplicationGroupsResult is a wrapper for ReplicationGroupMessage.
 type DescribeReplicationGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeReplicationGroupsResponse"`
-
 	Marker            aws.StringValue    `xml:"DescribeReplicationGroupsResult>Marker"`
 	ReplicationGroups []ReplicationGroup `xml:"DescribeReplicationGroupsResult>ReplicationGroups>ReplicationGroup"`
 }
 
 // DescribeReservedCacheNodesOfferingsResult is a wrapper for ReservedCacheNodesOfferingMessage.
 type DescribeReservedCacheNodesOfferingsResult struct {
-	XMLName xml.Name `xml:"DescribeReservedCacheNodesOfferingsResponse"`
-
 	Marker                      aws.StringValue              `xml:"DescribeReservedCacheNodesOfferingsResult>Marker"`
 	ReservedCacheNodesOfferings []ReservedCacheNodesOffering `xml:"DescribeReservedCacheNodesOfferingsResult>ReservedCacheNodesOfferings>ReservedCacheNodesOffering"`
 }
 
 // DescribeReservedCacheNodesResult is a wrapper for ReservedCacheNodeMessage.
 type DescribeReservedCacheNodesResult struct {
-	XMLName xml.Name `xml:"DescribeReservedCacheNodesResponse"`
-
 	Marker             aws.StringValue     `xml:"DescribeReservedCacheNodesResult>Marker"`
 	ReservedCacheNodes []ReservedCacheNode `xml:"DescribeReservedCacheNodesResult>ReservedCacheNodes>ReservedCacheNode"`
 }
 
 // DescribeSnapshotsResult is a wrapper for DescribeSnapshotsListMessage.
 type DescribeSnapshotsResult struct {
-	XMLName xml.Name `xml:"DescribeSnapshotsResponse"`
-
 	Marker    aws.StringValue `xml:"DescribeSnapshotsResult>Marker"`
 	Snapshots []Snapshot      `xml:"DescribeSnapshotsResult>Snapshots>Snapshot"`
 }
 
 // ModifyCacheParameterGroupResult is a wrapper for CacheParameterGroupNameMessage.
 type ModifyCacheParameterGroupResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	CacheParameterGroupName aws.StringValue `xml:"ModifyCacheParameterGroupResult>CacheParameterGroupName"`
 }
 
 // ResetCacheParameterGroupResult is a wrapper for CacheParameterGroupNameMessage.
 type ResetCacheParameterGroupResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	CacheParameterGroupName aws.StringValue `xml:"ResetCacheParameterGroupResult>CacheParameterGroupName"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

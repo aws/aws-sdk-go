@@ -4,7 +4,6 @@
 package ses
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -500,34 +499,25 @@ type VerifyEmailIdentityResponse struct {
 
 // DeleteIdentityResult is a wrapper for DeleteIdentityResponse.
 type DeleteIdentityResult struct {
-	XMLName xml.Name `xml:"DeleteIdentityResponse"`
 }
 
 // GetIdentityDkimAttributesResult is a wrapper for GetIdentityDkimAttributesResponse.
 type GetIdentityDkimAttributesResult struct {
-	XMLName xml.Name `xml:"GetIdentityDkimAttributesResponse"`
-
 	DkimAttributes map[string]IdentityDkimAttributes `xml:"GetIdentityDkimAttributesResult>DkimAttributes"`
 }
 
 // GetIdentityNotificationAttributesResult is a wrapper for GetIdentityNotificationAttributesResponse.
 type GetIdentityNotificationAttributesResult struct {
-	XMLName xml.Name `xml:"GetIdentityNotificationAttributesResponse"`
-
 	NotificationAttributes map[string]IdentityNotificationAttributes `xml:"GetIdentityNotificationAttributesResult>NotificationAttributes"`
 }
 
 // GetIdentityVerificationAttributesResult is a wrapper for GetIdentityVerificationAttributesResponse.
 type GetIdentityVerificationAttributesResult struct {
-	XMLName xml.Name `xml:"GetIdentityVerificationAttributesResponse"`
-
 	VerificationAttributes map[string]IdentityVerificationAttributes `xml:"GetIdentityVerificationAttributesResult>VerificationAttributes"`
 }
 
 // GetSendQuotaResult is a wrapper for GetSendQuotaResponse.
 type GetSendQuotaResult struct {
-	XMLName xml.Name `xml:"GetSendQuotaResponse"`
-
 	Max24HourSend   aws.DoubleValue `xml:"GetSendQuotaResult>Max24HourSend"`
 	MaxSendRate     aws.DoubleValue `xml:"GetSendQuotaResult>MaxSendRate"`
 	SentLast24Hours aws.DoubleValue `xml:"GetSendQuotaResult>SentLast24Hours"`
@@ -535,74 +525,55 @@ type GetSendQuotaResult struct {
 
 // GetSendStatisticsResult is a wrapper for GetSendStatisticsResponse.
 type GetSendStatisticsResult struct {
-	XMLName xml.Name `xml:"GetSendStatisticsResponse"`
-
 	SendDataPoints []SendDataPoint `xml:"GetSendStatisticsResult>SendDataPoints>member"`
 }
 
 // ListIdentitiesResult is a wrapper for ListIdentitiesResponse.
 type ListIdentitiesResult struct {
-	XMLName xml.Name `xml:"ListIdentitiesResponse"`
-
 	Identities []string        `xml:"ListIdentitiesResult>Identities>member"`
 	NextToken  aws.StringValue `xml:"ListIdentitiesResult>NextToken"`
 }
 
 // ListVerifiedEmailAddressesResult is a wrapper for ListVerifiedEmailAddressesResponse.
 type ListVerifiedEmailAddressesResult struct {
-	XMLName xml.Name `xml:"ListVerifiedEmailAddressesResponse"`
-
 	VerifiedEmailAddresses []string `xml:"ListVerifiedEmailAddressesResult>VerifiedEmailAddresses>member"`
 }
 
 // SendEmailResult is a wrapper for SendEmailResponse.
 type SendEmailResult struct {
-	XMLName xml.Name `xml:"SendEmailResponse"`
-
 	MessageID aws.StringValue `xml:"SendEmailResult>MessageId"`
 }
 
 // SendRawEmailResult is a wrapper for SendRawEmailResponse.
 type SendRawEmailResult struct {
-	XMLName xml.Name `xml:"SendRawEmailResponse"`
-
 	MessageID aws.StringValue `xml:"SendRawEmailResult>MessageId"`
 }
 
 // SetIdentityDkimEnabledResult is a wrapper for SetIdentityDkimEnabledResponse.
 type SetIdentityDkimEnabledResult struct {
-	XMLName xml.Name `xml:"SetIdentityDkimEnabledResponse"`
 }
 
 // SetIdentityFeedbackForwardingEnabledResult is a wrapper for SetIdentityFeedbackForwardingEnabledResponse.
 type SetIdentityFeedbackForwardingEnabledResult struct {
-	XMLName xml.Name `xml:"SetIdentityFeedbackForwardingEnabledResponse"`
 }
 
 // SetIdentityNotificationTopicResult is a wrapper for SetIdentityNotificationTopicResponse.
 type SetIdentityNotificationTopicResult struct {
-	XMLName xml.Name `xml:"SetIdentityNotificationTopicResponse"`
 }
 
 // VerifyDomainDkimResult is a wrapper for VerifyDomainDkimResponse.
 type VerifyDomainDkimResult struct {
-	XMLName xml.Name `xml:"VerifyDomainDkimResponse"`
-
 	DkimTokens []string `xml:"VerifyDomainDkimResult>DkimTokens>member"`
 }
 
 // VerifyDomainIdentityResult is a wrapper for VerifyDomainIdentityResponse.
 type VerifyDomainIdentityResult struct {
-	XMLName xml.Name `xml:"VerifyDomainIdentityResponse"`
-
 	VerificationToken aws.StringValue `xml:"VerifyDomainIdentityResult>VerificationToken"`
 }
 
 // VerifyEmailIdentityResult is a wrapper for VerifyEmailIdentityResponse.
 type VerifyEmailIdentityResult struct {
-	XMLName xml.Name `xml:"VerifyEmailIdentityResponse"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

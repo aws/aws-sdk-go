@@ -4,7 +4,6 @@
 package cloudfront
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -14,6 +13,7 @@ import (
 
 import (
 	"bytes"
+	"encoding/xml"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -1700,7 +1700,6 @@ type ViewerCertificate struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name
 
 var _ bytes.Reader
 var _ url.URL

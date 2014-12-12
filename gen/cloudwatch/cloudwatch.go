@@ -4,7 +4,6 @@
 package cloudwatch
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -382,43 +381,32 @@ type StatisticSet struct {
 
 // DescribeAlarmHistoryResult is a wrapper for DescribeAlarmHistoryOutput.
 type DescribeAlarmHistoryResult struct {
-	XMLName xml.Name `xml:"DescribeAlarmHistoryResponse"`
-
 	AlarmHistoryItems []AlarmHistoryItem `xml:"DescribeAlarmHistoryResult>AlarmHistoryItems>member"`
 	NextToken         aws.StringValue    `xml:"DescribeAlarmHistoryResult>NextToken"`
 }
 
 // DescribeAlarmsForMetricResult is a wrapper for DescribeAlarmsForMetricOutput.
 type DescribeAlarmsForMetricResult struct {
-	XMLName xml.Name `xml:"DescribeAlarmsForMetricResponse"`
-
 	MetricAlarms []MetricAlarm `xml:"DescribeAlarmsForMetricResult>MetricAlarms>member"`
 }
 
 // DescribeAlarmsResult is a wrapper for DescribeAlarmsOutput.
 type DescribeAlarmsResult struct {
-	XMLName xml.Name `xml:"DescribeAlarmsResponse"`
-
 	MetricAlarms []MetricAlarm   `xml:"DescribeAlarmsResult>MetricAlarms>member"`
 	NextToken    aws.StringValue `xml:"DescribeAlarmsResult>NextToken"`
 }
 
 // GetMetricStatisticsResult is a wrapper for GetMetricStatisticsOutput.
 type GetMetricStatisticsResult struct {
-	XMLName xml.Name `xml:"GetMetricStatisticsResponse"`
-
 	Datapoints []Datapoint     `xml:"GetMetricStatisticsResult>Datapoints>member"`
 	Label      aws.StringValue `xml:"GetMetricStatisticsResult>Label"`
 }
 
 // ListMetricsResult is a wrapper for ListMetricsOutput.
 type ListMetricsResult struct {
-	XMLName xml.Name `xml:"ListMetricsResponse"`
-
 	Metrics   []Metric        `xml:"ListMetricsResult>Metrics>member"`
 	NextToken aws.StringValue `xml:"ListMetricsResult>NextToken"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

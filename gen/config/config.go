@@ -4,7 +4,6 @@
 package config
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -327,4 +326,3 @@ type StopConfigurationRecorderRequest struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

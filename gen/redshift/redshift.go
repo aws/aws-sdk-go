@@ -4,7 +4,6 @@
 package redshift
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -1795,103 +1794,77 @@ type VpcSecurityGroupMembership struct {
 
 // DescribeClusterParameterGroupsResult is a wrapper for ClusterParameterGroupsMessage.
 type DescribeClusterParameterGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeClusterParameterGroupsResponse"`
-
 	Marker          aws.StringValue         `xml:"DescribeClusterParameterGroupsResult>Marker"`
 	ParameterGroups []ClusterParameterGroup `xml:"DescribeClusterParameterGroupsResult>ParameterGroups>ClusterParameterGroup"`
 }
 
 // DescribeClusterParametersResult is a wrapper for ClusterParameterGroupDetails.
 type DescribeClusterParametersResult struct {
-	XMLName xml.Name `xml:"DescribeClusterParametersResponse"`
-
 	Marker     aws.StringValue `xml:"DescribeClusterParametersResult>Marker"`
 	Parameters []Parameter     `xml:"DescribeClusterParametersResult>Parameters>Parameter"`
 }
 
 // DescribeClusterSecurityGroupsResult is a wrapper for ClusterSecurityGroupMessage.
 type DescribeClusterSecurityGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeClusterSecurityGroupsResponse"`
-
 	ClusterSecurityGroups []ClusterSecurityGroup `xml:"DescribeClusterSecurityGroupsResult>ClusterSecurityGroups>ClusterSecurityGroup"`
 	Marker                aws.StringValue        `xml:"DescribeClusterSecurityGroupsResult>Marker"`
 }
 
 // DescribeClusterSnapshotsResult is a wrapper for SnapshotMessage.
 type DescribeClusterSnapshotsResult struct {
-	XMLName xml.Name `xml:"DescribeClusterSnapshotsResponse"`
-
 	Marker    aws.StringValue `xml:"DescribeClusterSnapshotsResult>Marker"`
 	Snapshots []Snapshot      `xml:"DescribeClusterSnapshotsResult>Snapshots>Snapshot"`
 }
 
 // DescribeClusterSubnetGroupsResult is a wrapper for ClusterSubnetGroupMessage.
 type DescribeClusterSubnetGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeClusterSubnetGroupsResponse"`
-
 	ClusterSubnetGroups []ClusterSubnetGroup `xml:"DescribeClusterSubnetGroupsResult>ClusterSubnetGroups>ClusterSubnetGroup"`
 	Marker              aws.StringValue      `xml:"DescribeClusterSubnetGroupsResult>Marker"`
 }
 
 // DescribeClusterVersionsResult is a wrapper for ClusterVersionsMessage.
 type DescribeClusterVersionsResult struct {
-	XMLName xml.Name `xml:"DescribeClusterVersionsResponse"`
-
 	ClusterVersions []ClusterVersion `xml:"DescribeClusterVersionsResult>ClusterVersions>ClusterVersion"`
 	Marker          aws.StringValue  `xml:"DescribeClusterVersionsResult>Marker"`
 }
 
 // DescribeClustersResult is a wrapper for ClustersMessage.
 type DescribeClustersResult struct {
-	XMLName xml.Name `xml:"DescribeClustersResponse"`
-
 	Clusters []Cluster       `xml:"DescribeClustersResult>Clusters>Cluster"`
 	Marker   aws.StringValue `xml:"DescribeClustersResult>Marker"`
 }
 
 // DescribeEventCategoriesResult is a wrapper for EventCategoriesMessage.
 type DescribeEventCategoriesResult struct {
-	XMLName xml.Name `xml:"DescribeEventCategoriesResponse"`
-
 	EventCategoriesMapList []EventCategoriesMap `xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
 }
 
 // DescribeEventSubscriptionsResult is a wrapper for EventSubscriptionsMessage.
 type DescribeEventSubscriptionsResult struct {
-	XMLName xml.Name `xml:"DescribeEventSubscriptionsResponse"`
-
 	EventSubscriptionsList []EventSubscription `xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
 	Marker                 aws.StringValue     `xml:"DescribeEventSubscriptionsResult>Marker"`
 }
 
 // DescribeEventsResult is a wrapper for EventsMessage.
 type DescribeEventsResult struct {
-	XMLName xml.Name `xml:"DescribeEventsResponse"`
-
 	Events []Event         `xml:"DescribeEventsResult>Events>Event"`
 	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
 }
 
 // DescribeHsmClientCertificatesResult is a wrapper for HsmClientCertificateMessage.
 type DescribeHsmClientCertificatesResult struct {
-	XMLName xml.Name `xml:"DescribeHsmClientCertificatesResponse"`
-
 	HsmClientCertificates []HsmClientCertificate `xml:"DescribeHsmClientCertificatesResult>HsmClientCertificates>HsmClientCertificate"`
 	Marker                aws.StringValue        `xml:"DescribeHsmClientCertificatesResult>Marker"`
 }
 
 // DescribeHsmConfigurationsResult is a wrapper for HsmConfigurationMessage.
 type DescribeHsmConfigurationsResult struct {
-	XMLName xml.Name `xml:"DescribeHsmConfigurationsResponse"`
-
 	HsmConfigurations []HsmConfiguration `xml:"DescribeHsmConfigurationsResult>HsmConfigurations>HsmConfiguration"`
 	Marker            aws.StringValue    `xml:"DescribeHsmConfigurationsResult>Marker"`
 }
 
 // DescribeLoggingStatusResult is a wrapper for LoggingStatus.
 type DescribeLoggingStatusResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	BucketName                 aws.StringValue  `xml:"DescribeLoggingStatusResult>BucketName"`
 	LastFailureMessage         aws.StringValue  `xml:"DescribeLoggingStatusResult>LastFailureMessage"`
 	LastFailureTime            time.Time        `xml:"DescribeLoggingStatusResult>LastFailureTime"`
@@ -1902,32 +1875,24 @@ type DescribeLoggingStatusResult struct {
 
 // DescribeOrderableClusterOptionsResult is a wrapper for OrderableClusterOptionsMessage.
 type DescribeOrderableClusterOptionsResult struct {
-	XMLName xml.Name `xml:"DescribeOrderableClusterOptionsResponse"`
-
 	Marker                  aws.StringValue          `xml:"DescribeOrderableClusterOptionsResult>Marker"`
 	OrderableClusterOptions []OrderableClusterOption `xml:"DescribeOrderableClusterOptionsResult>OrderableClusterOptions>OrderableClusterOption"`
 }
 
 // DescribeReservedNodeOfferingsResult is a wrapper for ReservedNodeOfferingsMessage.
 type DescribeReservedNodeOfferingsResult struct {
-	XMLName xml.Name `xml:"DescribeReservedNodeOfferingsResponse"`
-
 	Marker                aws.StringValue        `xml:"DescribeReservedNodeOfferingsResult>Marker"`
 	ReservedNodeOfferings []ReservedNodeOffering `xml:"DescribeReservedNodeOfferingsResult>ReservedNodeOfferings>ReservedNodeOffering"`
 }
 
 // DescribeReservedNodesResult is a wrapper for ReservedNodesMessage.
 type DescribeReservedNodesResult struct {
-	XMLName xml.Name `xml:"DescribeReservedNodesResponse"`
-
 	Marker        aws.StringValue `xml:"DescribeReservedNodesResult>Marker"`
 	ReservedNodes []ReservedNode  `xml:"DescribeReservedNodesResult>ReservedNodes>ReservedNode"`
 }
 
 // DescribeResizeResult is a wrapper for ResizeProgressMessage.
 type DescribeResizeResult struct {
-	XMLName xml.Name `xml:"DescribeResizeResponse"`
-
 	AvgResizeRateInMegaBytesPerSecond  aws.DoubleValue  `xml:"DescribeResizeResult>AvgResizeRateInMegaBytesPerSecond"`
 	ElapsedTimeInSeconds               aws.LongValue    `xml:"DescribeResizeResult>ElapsedTimeInSeconds"`
 	EstimatedTimeToCompletionInSeconds aws.LongValue    `xml:"DescribeResizeResult>EstimatedTimeToCompletionInSeconds"`
@@ -1944,16 +1909,12 @@ type DescribeResizeResult struct {
 
 // DescribeTagsResult is a wrapper for TaggedResourceListMessage.
 type DescribeTagsResult struct {
-	XMLName xml.Name `xml:"DescribeTagsResponse"`
-
 	Marker          aws.StringValue  `xml:"DescribeTagsResult>Marker"`
 	TaggedResources []TaggedResource `xml:"DescribeTagsResult>TaggedResources>TaggedResource"`
 }
 
 // DisableLoggingResult is a wrapper for LoggingStatus.
 type DisableLoggingResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	BucketName                 aws.StringValue  `xml:"DisableLoggingResult>BucketName"`
 	LastFailureMessage         aws.StringValue  `xml:"DisableLoggingResult>LastFailureMessage"`
 	LastFailureTime            time.Time        `xml:"DisableLoggingResult>LastFailureTime"`
@@ -1964,8 +1925,6 @@ type DisableLoggingResult struct {
 
 // EnableLoggingResult is a wrapper for LoggingStatus.
 type EnableLoggingResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	BucketName                 aws.StringValue  `xml:"EnableLoggingResult>BucketName"`
 	LastFailureMessage         aws.StringValue  `xml:"EnableLoggingResult>LastFailureMessage"`
 	LastFailureTime            time.Time        `xml:"EnableLoggingResult>LastFailureTime"`
@@ -1976,20 +1935,15 @@ type EnableLoggingResult struct {
 
 // ModifyClusterParameterGroupResult is a wrapper for ClusterParameterGroupNameMessage.
 type ModifyClusterParameterGroupResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	ParameterGroupName   aws.StringValue `xml:"ModifyClusterParameterGroupResult>ParameterGroupName"`
 	ParameterGroupStatus aws.StringValue `xml:"ModifyClusterParameterGroupResult>ParameterGroupStatus"`
 }
 
 // ResetClusterParameterGroupResult is a wrapper for ClusterParameterGroupNameMessage.
 type ResetClusterParameterGroupResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	ParameterGroupName   aws.StringValue `xml:"ResetClusterParameterGroupResult>ParameterGroupName"`
 	ParameterGroupStatus aws.StringValue `xml:"ResetClusterParameterGroupResult>ParameterGroupStatus"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

@@ -4,7 +4,6 @@
 package elb
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -899,178 +898,133 @@ type TagKeyOnly struct {
 
 // AddTagsResult is a wrapper for AddTagsOutput.
 type AddTagsResult struct {
-	XMLName xml.Name `xml:"AddTagsResponse"`
 }
 
 // ApplySecurityGroupsToLoadBalancerResult is a wrapper for ApplySecurityGroupsToLoadBalancerOutput.
 type ApplySecurityGroupsToLoadBalancerResult struct {
-	XMLName xml.Name `xml:"ApplySecurityGroupsToLoadBalancerResponse"`
-
 	SecurityGroups []string `xml:"ApplySecurityGroupsToLoadBalancerResult>SecurityGroups>member"`
 }
 
 // AttachLoadBalancerToSubnetsResult is a wrapper for AttachLoadBalancerToSubnetsOutput.
 type AttachLoadBalancerToSubnetsResult struct {
-	XMLName xml.Name `xml:"AttachLoadBalancerToSubnetsResponse"`
-
 	Subnets []string `xml:"AttachLoadBalancerToSubnetsResult>Subnets>member"`
 }
 
 // ConfigureHealthCheckResult is a wrapper for ConfigureHealthCheckOutput.
 type ConfigureHealthCheckResult struct {
-	XMLName xml.Name `xml:"ConfigureHealthCheckResponse"`
-
 	HealthCheck *HealthCheck `xml:"ConfigureHealthCheckResult>HealthCheck"`
 }
 
 // CreateAppCookieStickinessPolicyResult is a wrapper for CreateAppCookieStickinessPolicyOutput.
 type CreateAppCookieStickinessPolicyResult struct {
-	XMLName xml.Name `xml:"CreateAppCookieStickinessPolicyResponse"`
 }
 
 // CreateLBCookieStickinessPolicyResult is a wrapper for CreateLBCookieStickinessPolicyOutput.
 type CreateLBCookieStickinessPolicyResult struct {
-	XMLName xml.Name `xml:"CreateLBCookieStickinessPolicyResponse"`
 }
 
 // CreateLoadBalancerListenersResult is a wrapper for CreateLoadBalancerListenerOutput.
 type CreateLoadBalancerListenersResult struct {
-	XMLName xml.Name `xml:"CreateLoadBalancerListenersResponse"`
 }
 
 // CreateLoadBalancerPolicyResult is a wrapper for CreateLoadBalancerPolicyOutput.
 type CreateLoadBalancerPolicyResult struct {
-	XMLName xml.Name `xml:"CreateLoadBalancerPolicyResponse"`
 }
 
 // CreateLoadBalancerResult is a wrapper for CreateAccessPointOutput.
 type CreateLoadBalancerResult struct {
-	XMLName xml.Name `xml:"CreateLoadBalancerResponse"`
-
 	DNSName aws.StringValue `xml:"CreateLoadBalancerResult>DNSName"`
 }
 
 // DeleteLoadBalancerListenersResult is a wrapper for DeleteLoadBalancerListenerOutput.
 type DeleteLoadBalancerListenersResult struct {
-	XMLName xml.Name `xml:"DeleteLoadBalancerListenersResponse"`
 }
 
 // DeleteLoadBalancerPolicyResult is a wrapper for DeleteLoadBalancerPolicyOutput.
 type DeleteLoadBalancerPolicyResult struct {
-	XMLName xml.Name `xml:"DeleteLoadBalancerPolicyResponse"`
 }
 
 // DeleteLoadBalancerResult is a wrapper for DeleteAccessPointOutput.
 type DeleteLoadBalancerResult struct {
-	XMLName xml.Name `xml:"DeleteLoadBalancerResponse"`
 }
 
 // DeregisterInstancesFromLoadBalancerResult is a wrapper for DeregisterEndPointsOutput.
 type DeregisterInstancesFromLoadBalancerResult struct {
-	XMLName xml.Name `xml:"DeregisterInstancesFromLoadBalancerResponse"`
-
 	Instances []Instance `xml:"DeregisterInstancesFromLoadBalancerResult>Instances>member"`
 }
 
 // DescribeInstanceHealthResult is a wrapper for DescribeEndPointStateOutput.
 type DescribeInstanceHealthResult struct {
-	XMLName xml.Name `xml:"DescribeInstanceHealthResponse"`
-
 	InstanceStates []InstanceState `xml:"DescribeInstanceHealthResult>InstanceStates>member"`
 }
 
 // DescribeLoadBalancerAttributesResult is a wrapper for DescribeLoadBalancerAttributesOutput.
 type DescribeLoadBalancerAttributesResult struct {
-	XMLName xml.Name `xml:"DescribeLoadBalancerAttributesResponse"`
-
 	LoadBalancerAttributes *LoadBalancerAttributes `xml:"DescribeLoadBalancerAttributesResult>LoadBalancerAttributes"`
 }
 
 // DescribeLoadBalancerPoliciesResult is a wrapper for DescribeLoadBalancerPoliciesOutput.
 type DescribeLoadBalancerPoliciesResult struct {
-	XMLName xml.Name `xml:"DescribeLoadBalancerPoliciesResponse"`
-
 	PolicyDescriptions []PolicyDescription `xml:"DescribeLoadBalancerPoliciesResult>PolicyDescriptions>member"`
 }
 
 // DescribeLoadBalancerPolicyTypesResult is a wrapper for DescribeLoadBalancerPolicyTypesOutput.
 type DescribeLoadBalancerPolicyTypesResult struct {
-	XMLName xml.Name `xml:"DescribeLoadBalancerPolicyTypesResponse"`
-
 	PolicyTypeDescriptions []PolicyTypeDescription `xml:"DescribeLoadBalancerPolicyTypesResult>PolicyTypeDescriptions>member"`
 }
 
 // DescribeLoadBalancersResult is a wrapper for DescribeAccessPointsOutput.
 type DescribeLoadBalancersResult struct {
-	XMLName xml.Name `xml:"DescribeLoadBalancersResponse"`
-
 	LoadBalancerDescriptions []LoadBalancerDescription `xml:"DescribeLoadBalancersResult>LoadBalancerDescriptions>member"`
 	NextMarker               aws.StringValue           `xml:"DescribeLoadBalancersResult>NextMarker"`
 }
 
 // DescribeTagsResult is a wrapper for DescribeTagsOutput.
 type DescribeTagsResult struct {
-	XMLName xml.Name `xml:"DescribeTagsResponse"`
-
 	TagDescriptions []TagDescription `xml:"DescribeTagsResult>TagDescriptions>member"`
 }
 
 // DetachLoadBalancerFromSubnetsResult is a wrapper for DetachLoadBalancerFromSubnetsOutput.
 type DetachLoadBalancerFromSubnetsResult struct {
-	XMLName xml.Name `xml:"DetachLoadBalancerFromSubnetsResponse"`
-
 	Subnets []string `xml:"DetachLoadBalancerFromSubnetsResult>Subnets>member"`
 }
 
 // DisableAvailabilityZonesForLoadBalancerResult is a wrapper for RemoveAvailabilityZonesOutput.
 type DisableAvailabilityZonesForLoadBalancerResult struct {
-	XMLName xml.Name `xml:"DisableAvailabilityZonesForLoadBalancerResponse"`
-
 	AvailabilityZones []string `xml:"DisableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
 }
 
 // EnableAvailabilityZonesForLoadBalancerResult is a wrapper for AddAvailabilityZonesOutput.
 type EnableAvailabilityZonesForLoadBalancerResult struct {
-	XMLName xml.Name `xml:"EnableAvailabilityZonesForLoadBalancerResponse"`
-
 	AvailabilityZones []string `xml:"EnableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
 }
 
 // ModifyLoadBalancerAttributesResult is a wrapper for ModifyLoadBalancerAttributesOutput.
 type ModifyLoadBalancerAttributesResult struct {
-	XMLName xml.Name `xml:"ModifyLoadBalancerAttributesResponse"`
-
 	LoadBalancerAttributes *LoadBalancerAttributes `xml:"ModifyLoadBalancerAttributesResult>LoadBalancerAttributes"`
 	LoadBalancerName       aws.StringValue         `xml:"ModifyLoadBalancerAttributesResult>LoadBalancerName"`
 }
 
 // RegisterInstancesWithLoadBalancerResult is a wrapper for RegisterEndPointsOutput.
 type RegisterInstancesWithLoadBalancerResult struct {
-	XMLName xml.Name `xml:"RegisterInstancesWithLoadBalancerResponse"`
-
 	Instances []Instance `xml:"RegisterInstancesWithLoadBalancerResult>Instances>member"`
 }
 
 // RemoveTagsResult is a wrapper for RemoveTagsOutput.
 type RemoveTagsResult struct {
-	XMLName xml.Name `xml:"RemoveTagsResponse"`
 }
 
 // SetLoadBalancerListenerSSLCertificateResult is a wrapper for SetLoadBalancerListenerSSLCertificateOutput.
 type SetLoadBalancerListenerSSLCertificateResult struct {
-	XMLName xml.Name `xml:"SetLoadBalancerListenerSSLCertificateResponse"`
 }
 
 // SetLoadBalancerPoliciesForBackendServerResult is a wrapper for SetLoadBalancerPoliciesForBackendServerOutput.
 type SetLoadBalancerPoliciesForBackendServerResult struct {
-	XMLName xml.Name `xml:"SetLoadBalancerPoliciesForBackendServerResponse"`
 }
 
 // SetLoadBalancerPoliciesOfListenerResult is a wrapper for SetLoadBalancerPoliciesOfListenerOutput.
 type SetLoadBalancerPoliciesOfListenerResult struct {
-	XMLName xml.Name `xml:"SetLoadBalancerPoliciesOfListenerResponse"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

@@ -4,7 +4,6 @@
 package rds
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -1712,135 +1711,101 @@ type VpcSecurityGroupMembership struct {
 
 // DescribeDBEngineVersionsResult is a wrapper for DBEngineVersionMessage.
 type DescribeDBEngineVersionsResult struct {
-	XMLName xml.Name `xml:"DescribeDBEngineVersionsResponse"`
-
 	DBEngineVersions []DBEngineVersion `xml:"DescribeDBEngineVersionsResult>DBEngineVersions>DBEngineVersion"`
 	Marker           aws.StringValue   `xml:"DescribeDBEngineVersionsResult>Marker"`
 }
 
 // DescribeDBInstancesResult is a wrapper for DBInstanceMessage.
 type DescribeDBInstancesResult struct {
-	XMLName xml.Name `xml:"DescribeDBInstancesResponse"`
-
 	DBInstances []DBInstance    `xml:"DescribeDBInstancesResult>DBInstances>DBInstance"`
 	Marker      aws.StringValue `xml:"DescribeDBInstancesResult>Marker"`
 }
 
 // DescribeDBLogFilesResult is a wrapper for DescribeDBLogFilesResponse.
 type DescribeDBLogFilesResult struct {
-	XMLName xml.Name `xml:"DescribeDBLogFilesResponse"`
-
 	DescribeDBLogFiles []DescribeDBLogFilesDetails `xml:"DescribeDBLogFilesResult>DescribeDBLogFiles>DescribeDBLogFilesDetails"`
 	Marker             aws.StringValue             `xml:"DescribeDBLogFilesResult>Marker"`
 }
 
 // DescribeDBParameterGroupsResult is a wrapper for DBParameterGroupsMessage.
 type DescribeDBParameterGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeDBParameterGroupsResponse"`
-
 	DBParameterGroups []DBParameterGroup `xml:"DescribeDBParameterGroupsResult>DBParameterGroups>DBParameterGroup"`
 	Marker            aws.StringValue    `xml:"DescribeDBParameterGroupsResult>Marker"`
 }
 
 // DescribeDBParametersResult is a wrapper for DBParameterGroupDetails.
 type DescribeDBParametersResult struct {
-	XMLName xml.Name `xml:"DescribeDBParametersResponse"`
-
 	Marker     aws.StringValue `xml:"DescribeDBParametersResult>Marker"`
 	Parameters []Parameter     `xml:"DescribeDBParametersResult>Parameters>Parameter"`
 }
 
 // DescribeDBSecurityGroupsResult is a wrapper for DBSecurityGroupMessage.
 type DescribeDBSecurityGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeDBSecurityGroupsResponse"`
-
 	DBSecurityGroups []DBSecurityGroup `xml:"DescribeDBSecurityGroupsResult>DBSecurityGroups>DBSecurityGroup"`
 	Marker           aws.StringValue   `xml:"DescribeDBSecurityGroupsResult>Marker"`
 }
 
 // DescribeDBSnapshotsResult is a wrapper for DBSnapshotMessage.
 type DescribeDBSnapshotsResult struct {
-	XMLName xml.Name `xml:"DescribeDBSnapshotsResponse"`
-
 	DBSnapshots []DBSnapshot    `xml:"DescribeDBSnapshotsResult>DBSnapshots>DBSnapshot"`
 	Marker      aws.StringValue `xml:"DescribeDBSnapshotsResult>Marker"`
 }
 
 // DescribeDBSubnetGroupsResult is a wrapper for DBSubnetGroupMessage.
 type DescribeDBSubnetGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeDBSubnetGroupsResponse"`
-
 	DBSubnetGroups []DBSubnetGroup `xml:"DescribeDBSubnetGroupsResult>DBSubnetGroups>DBSubnetGroup"`
 	Marker         aws.StringValue `xml:"DescribeDBSubnetGroupsResult>Marker"`
 }
 
 // DescribeEventCategoriesResult is a wrapper for EventCategoriesMessage.
 type DescribeEventCategoriesResult struct {
-	XMLName xml.Name `xml:"DescribeEventCategoriesResponse"`
-
 	EventCategoriesMapList []EventCategoriesMap `xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
 }
 
 // DescribeEventSubscriptionsResult is a wrapper for EventSubscriptionsMessage.
 type DescribeEventSubscriptionsResult struct {
-	XMLName xml.Name `xml:"DescribeEventSubscriptionsResponse"`
-
 	EventSubscriptionsList []EventSubscription `xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
 	Marker                 aws.StringValue     `xml:"DescribeEventSubscriptionsResult>Marker"`
 }
 
 // DescribeEventsResult is a wrapper for EventsMessage.
 type DescribeEventsResult struct {
-	XMLName xml.Name `xml:"DescribeEventsResponse"`
-
 	Events []Event         `xml:"DescribeEventsResult>Events>Event"`
 	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
 }
 
 // DescribeOptionGroupOptionsResult is a wrapper for OptionGroupOptionsMessage.
 type DescribeOptionGroupOptionsResult struct {
-	XMLName xml.Name `xml:"DescribeOptionGroupOptionsResponse"`
-
 	Marker             aws.StringValue     `xml:"DescribeOptionGroupOptionsResult>Marker"`
 	OptionGroupOptions []OptionGroupOption `xml:"DescribeOptionGroupOptionsResult>OptionGroupOptions>OptionGroupOption"`
 }
 
 // DescribeOptionGroupsResult is a wrapper for OptionGroups.
 type DescribeOptionGroupsResult struct {
-	XMLName xml.Name `xml:"DescribeOptionGroupsResponse"`
-
 	Marker           aws.StringValue `xml:"DescribeOptionGroupsResult>Marker"`
 	OptionGroupsList []OptionGroup   `xml:"DescribeOptionGroupsResult>OptionGroupsList>OptionGroup"`
 }
 
 // DescribeOrderableDBInstanceOptionsResult is a wrapper for OrderableDBInstanceOptionsMessage.
 type DescribeOrderableDBInstanceOptionsResult struct {
-	XMLName xml.Name `xml:"DescribeOrderableDBInstanceOptionsResponse"`
-
 	Marker                     aws.StringValue             `xml:"DescribeOrderableDBInstanceOptionsResult>Marker"`
 	OrderableDBInstanceOptions []OrderableDBInstanceOption `xml:"DescribeOrderableDBInstanceOptionsResult>OrderableDBInstanceOptions>OrderableDBInstanceOption"`
 }
 
 // DescribeReservedDBInstancesOfferingsResult is a wrapper for ReservedDBInstancesOfferingMessage.
 type DescribeReservedDBInstancesOfferingsResult struct {
-	XMLName xml.Name `xml:"DescribeReservedDBInstancesOfferingsResponse"`
-
 	Marker                       aws.StringValue               `xml:"DescribeReservedDBInstancesOfferingsResult>Marker"`
 	ReservedDBInstancesOfferings []ReservedDBInstancesOffering `xml:"DescribeReservedDBInstancesOfferingsResult>ReservedDBInstancesOfferings>ReservedDBInstancesOffering"`
 }
 
 // DescribeReservedDBInstancesResult is a wrapper for ReservedDBInstanceMessage.
 type DescribeReservedDBInstancesResult struct {
-	XMLName xml.Name `xml:"DescribeReservedDBInstancesResponse"`
-
 	Marker              aws.StringValue      `xml:"DescribeReservedDBInstancesResult>Marker"`
 	ReservedDBInstances []ReservedDBInstance `xml:"DescribeReservedDBInstancesResult>ReservedDBInstances>ReservedDBInstance"`
 }
 
 // DownloadDBLogFilePortionResult is a wrapper for DownloadDBLogFilePortionDetails.
 type DownloadDBLogFilePortionResult struct {
-	XMLName xml.Name `xml:"DownloadDBLogFilePortionResponse"`
-
 	AdditionalDataPending aws.BooleanValue `xml:"DownloadDBLogFilePortionResult>AdditionalDataPending"`
 	LogFileData           aws.StringValue  `xml:"DownloadDBLogFilePortionResult>LogFileData"`
 	Marker                aws.StringValue  `xml:"DownloadDBLogFilePortionResult>Marker"`
@@ -1848,25 +1813,18 @@ type DownloadDBLogFilePortionResult struct {
 
 // ListTagsForResourceResult is a wrapper for TagListMessage.
 type ListTagsForResourceResult struct {
-	XMLName xml.Name `xml:"ListTagsForResourceResponse"`
-
 	TagList []Tag `xml:"ListTagsForResourceResult>TagList>Tag"`
 }
 
 // ModifyDBParameterGroupResult is a wrapper for DBParameterGroupNameMessage.
 type ModifyDBParameterGroupResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	DBParameterGroupName aws.StringValue `xml:"ModifyDBParameterGroupResult>DBParameterGroupName"`
 }
 
 // ResetDBParameterGroupResult is a wrapper for DBParameterGroupNameMessage.
 type ResetDBParameterGroupResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	DBParameterGroupName aws.StringValue `xml:"ResetDBParameterGroupResult>DBParameterGroupName"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name

@@ -4,7 +4,6 @@
 package elasticbeanstalk
 
 import (
-	"encoding/xml"
 	"net/http"
 	"time"
 
@@ -790,30 +789,22 @@ type ValidationMessage struct {
 
 // CheckDNSAvailabilityResult is a wrapper for CheckDNSAvailabilityResultMessage.
 type CheckDNSAvailabilityResult struct {
-	XMLName xml.Name `xml:"CheckDNSAvailabilityResponse"`
-
 	Available           aws.BooleanValue `xml:"CheckDNSAvailabilityResult>Available"`
 	FullyQualifiedCNAME aws.StringValue  `xml:"CheckDNSAvailabilityResult>FullyQualifiedCNAME"`
 }
 
 // CreateApplicationResult is a wrapper for ApplicationDescriptionMessage.
 type CreateApplicationResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	Application *ApplicationDescription `xml:"CreateApplicationResult>Application"`
 }
 
 // CreateApplicationVersionResult is a wrapper for ApplicationVersionDescriptionMessage.
 type CreateApplicationVersionResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	ApplicationVersion *ApplicationVersionDescription `xml:"CreateApplicationVersionResult>ApplicationVersion"`
 }
 
 // CreateConfigurationTemplateResult is a wrapper for ConfigurationSettingsDescription.
 type CreateConfigurationTemplateResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	ApplicationName   aws.StringValue              `xml:"CreateConfigurationTemplateResult>ApplicationName"`
 	DateCreated       time.Time                    `xml:"CreateConfigurationTemplateResult>DateCreated"`
 	DateUpdated       time.Time                    `xml:"CreateConfigurationTemplateResult>DateUpdated"`
@@ -827,8 +818,6 @@ type CreateConfigurationTemplateResult struct {
 
 // CreateEnvironmentResult is a wrapper for EnvironmentDescription.
 type CreateEnvironmentResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	ApplicationName   aws.StringValue                  `xml:"CreateEnvironmentResult>ApplicationName"`
 	CNAME             aws.StringValue                  `xml:"CreateEnvironmentResult>CNAME"`
 	DateCreated       time.Time                        `xml:"CreateEnvironmentResult>DateCreated"`
@@ -848,81 +837,59 @@ type CreateEnvironmentResult struct {
 
 // CreateStorageLocationResult is a wrapper for CreateStorageLocationResultMessage.
 type CreateStorageLocationResult struct {
-	XMLName xml.Name `xml:"CreateStorageLocationResponse"`
-
 	S3Bucket aws.StringValue `xml:"CreateStorageLocationResult>S3Bucket"`
 }
 
 // DescribeApplicationVersionsResult is a wrapper for ApplicationVersionDescriptionsMessage.
 type DescribeApplicationVersionsResult struct {
-	XMLName xml.Name `xml:"DescribeApplicationVersionsResponse"`
-
 	ApplicationVersions []ApplicationVersionDescription `xml:"DescribeApplicationVersionsResult>ApplicationVersions>member"`
 }
 
 // DescribeApplicationsResult is a wrapper for ApplicationDescriptionsMessage.
 type DescribeApplicationsResult struct {
-	XMLName xml.Name `xml:"DescribeApplicationsResponse"`
-
 	Applications []ApplicationDescription `xml:"DescribeApplicationsResult>Applications>member"`
 }
 
 // DescribeConfigurationOptionsResult is a wrapper for ConfigurationOptionsDescription.
 type DescribeConfigurationOptionsResult struct {
-	XMLName xml.Name `xml:"DescribeConfigurationOptionsResponse"`
-
 	Options           []ConfigurationOptionDescription `xml:"DescribeConfigurationOptionsResult>Options>member"`
 	SolutionStackName aws.StringValue                  `xml:"DescribeConfigurationOptionsResult>SolutionStackName"`
 }
 
 // DescribeConfigurationSettingsResult is a wrapper for ConfigurationSettingsDescriptions.
 type DescribeConfigurationSettingsResult struct {
-	XMLName xml.Name `xml:"DescribeConfigurationSettingsResponse"`
-
 	ConfigurationSettings []ConfigurationSettingsDescription `xml:"DescribeConfigurationSettingsResult>ConfigurationSettings>member"`
 }
 
 // DescribeEnvironmentResourcesResult is a wrapper for EnvironmentResourceDescriptionsMessage.
 type DescribeEnvironmentResourcesResult struct {
-	XMLName xml.Name `xml:"DescribeEnvironmentResourcesResponse"`
-
 	EnvironmentResources *EnvironmentResourceDescription `xml:"DescribeEnvironmentResourcesResult>EnvironmentResources"`
 }
 
 // DescribeEnvironmentsResult is a wrapper for EnvironmentDescriptionsMessage.
 type DescribeEnvironmentsResult struct {
-	XMLName xml.Name `xml:"DescribeEnvironmentsResponse"`
-
 	Environments []EnvironmentDescription `xml:"DescribeEnvironmentsResult>Environments>member"`
 }
 
 // DescribeEventsResult is a wrapper for EventDescriptionsMessage.
 type DescribeEventsResult struct {
-	XMLName xml.Name `xml:"DescribeEventsResponse"`
-
 	Events    []EventDescription `xml:"DescribeEventsResult>Events>member"`
 	NextToken aws.StringValue    `xml:"DescribeEventsResult>NextToken"`
 }
 
 // ListAvailableSolutionStacksResult is a wrapper for ListAvailableSolutionStacksResultMessage.
 type ListAvailableSolutionStacksResult struct {
-	XMLName xml.Name `xml:"ListAvailableSolutionStacksResponse"`
-
 	SolutionStackDetails []SolutionStackDescription `xml:"ListAvailableSolutionStacksResult>SolutionStackDetails>member"`
 	SolutionStacks       []string                   `xml:"ListAvailableSolutionStacksResult>SolutionStacks>member"`
 }
 
 // RetrieveEnvironmentInfoResult is a wrapper for RetrieveEnvironmentInfoResultMessage.
 type RetrieveEnvironmentInfoResult struct {
-	XMLName xml.Name `xml:"RetrieveEnvironmentInfoResponse"`
-
 	EnvironmentInfo []EnvironmentInfoDescription `xml:"RetrieveEnvironmentInfoResult>EnvironmentInfo>member"`
 }
 
 // TerminateEnvironmentResult is a wrapper for EnvironmentDescription.
 type TerminateEnvironmentResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	ApplicationName   aws.StringValue                  `xml:"TerminateEnvironmentResult>ApplicationName"`
 	CNAME             aws.StringValue                  `xml:"TerminateEnvironmentResult>CNAME"`
 	DateCreated       time.Time                        `xml:"TerminateEnvironmentResult>DateCreated"`
@@ -942,22 +909,16 @@ type TerminateEnvironmentResult struct {
 
 // UpdateApplicationResult is a wrapper for ApplicationDescriptionMessage.
 type UpdateApplicationResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	Application *ApplicationDescription `xml:"UpdateApplicationResult>Application"`
 }
 
 // UpdateApplicationVersionResult is a wrapper for ApplicationVersionDescriptionMessage.
 type UpdateApplicationVersionResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	ApplicationVersion *ApplicationVersionDescription `xml:"UpdateApplicationVersionResult>ApplicationVersion"`
 }
 
 // UpdateConfigurationTemplateResult is a wrapper for ConfigurationSettingsDescription.
 type UpdateConfigurationTemplateResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	ApplicationName   aws.StringValue              `xml:"UpdateConfigurationTemplateResult>ApplicationName"`
 	DateCreated       time.Time                    `xml:"UpdateConfigurationTemplateResult>DateCreated"`
 	DateUpdated       time.Time                    `xml:"UpdateConfigurationTemplateResult>DateUpdated"`
@@ -971,8 +932,6 @@ type UpdateConfigurationTemplateResult struct {
 
 // UpdateEnvironmentResult is a wrapper for EnvironmentDescription.
 type UpdateEnvironmentResult struct {
-	XMLName xml.Name `xml:"Response"`
-
 	ApplicationName   aws.StringValue                  `xml:"UpdateEnvironmentResult>ApplicationName"`
 	CNAME             aws.StringValue                  `xml:"UpdateEnvironmentResult>CNAME"`
 	DateCreated       time.Time                        `xml:"UpdateEnvironmentResult>DateCreated"`
@@ -992,11 +951,8 @@ type UpdateEnvironmentResult struct {
 
 // ValidateConfigurationSettingsResult is a wrapper for ConfigurationSettingsValidationMessages.
 type ValidateConfigurationSettingsResult struct {
-	XMLName xml.Name `xml:"ValidateConfigurationSettingsResponse"`
-
 	Messages []ValidationMessage `xml:"ValidateConfigurationSettingsResult>Messages>member"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Name
