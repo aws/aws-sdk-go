@@ -17,7 +17,9 @@ Please do not confuse this for a stable, feature-complete library.
 
 ## Installing
 
-    $ go get github.com/stripe/aws-go/aws/...
+Let's say you want to use EC2:
+
+    $ go get github.com/stripe/aws-go/gen/ec2
 
 ## Using
 
@@ -33,3 +35,46 @@ if err != nil {
 }
 fmt.Println(resp.Reservations)
 ```
+
+## Supported Services
+
+ * AutoScaling
+ * CloudFormation
+ * CloudFront
+ * CloudSearch
+ * CloudSearchdomain
+ * CloudTrail
+ * CloudWatch Metrics
+ * CloudWatch Logs
+ * CodeDeploy
+ * Cognito Identity
+ * Cognito Sync
+ * Config
+ * Data Pipeline
+ * Direct Connect
+ * DynamoDB
+ * EC2
+ * Elasticache
+ * Elastic Beanstalk
+ * Elastic Transcoder
+ * ELB
+ * EMR
+ * IAM
+ * Import/Export
+ * Kinesis
+ * Key Management Service
+ * Lambda
+ * OpsWorks
+ * RDS
+ * RedShift
+ * Route53
+ * Route53 Domains
+ * S3
+ * SimpleDB
+ * Simple Email Service
+ * SNS
+ * SQS
+ * Storage Gateway
+ * STS
+ * Support
+ * SWF
