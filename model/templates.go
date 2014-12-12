@@ -9,6 +9,7 @@ import (
 	"text/template"
 )
 
+// Generate writes a Go file with a client for using the parsed service.
 func Generate(w io.Writer) error {
 	t := template.New("root").Funcs(template.FuncMap{
 		"godoc":      godoc,

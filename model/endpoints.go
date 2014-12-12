@@ -10,8 +10,10 @@ import (
 	"text/template"
 )
 
+// A Constraint is a set of constraints on input types.
 type Constraint []interface{}
 
+// Condition returns a Go fragment which matches the constraint.
 func (c Constraint) Condition() string {
 	str := func(i interface{}) string {
 		if i == nil {
@@ -46,15 +48,18 @@ func (c Constraint) Condition() string {
 	}
 }
 
+// CredentialScope is a set of overrides for the service region and name.
 type CredentialScope struct {
 	Region  string
 	Service string
 }
 
+// Properties is a set of properties associated with an Endpoint.
 type Properties struct {
 	CredentialScope CredentialScope
 }
 
+// An Endpoint is an URL where a service is available.
 type Endpoint struct {
 	Name        string
 	URI         string
@@ -62,6 +67,7 @@ type Endpoint struct {
 	Constraints []Constraint
 }
 
+// Service returns the Go literal or variable for the service.
 func (e Endpoint) Service() string {
 	if e.Properties.CredentialScope.Service != "" {
 		return fmt.Sprintf("%q", e.Properties.CredentialScope.Service)
@@ -69,6 +75,7 @@ func (e Endpoint) Service() string {
 	return "service"
 }
 
+// Region returns the Go literal or variable for the region.
 func (e Endpoint) Region() string {
 	if e.Properties.CredentialScope.Region != "" {
 		return fmt.Sprintf("%q", e.Properties.CredentialScope.Region)
@@ -76,6 +83,7 @@ func (e Endpoint) Region() string {
 	return "region"
 }
 
+// Conditions returns the conjunction of the conditions for the endpoint.
 func (e Endpoint) Conditions() string {
 	var conds []string
 	for _, c := range e.Constraints {
@@ -84,13 +92,16 @@ func (e Endpoint) Conditions() string {
 	return strings.Join(conds, " && ")
 }
 
+// Endpoints are a set of named endpoints.
 type Endpoints map[string][]Endpoint
 
+// Parse parses the JSON description of the endpoints.
 func (e *Endpoints) Parse(r io.Reader) error {
 	return json.NewDecoder(r).Decode(e)
 }
 
-func (e Endpoints) Render(w io.Writer) error {
+// Generate writes a Go file to the given writer.
+func (e Endpoints) Generate(w io.Writer) error {
 	tmpl, err := template.New("endpoints").Parse(t)
 	if err != nil {
 		return err

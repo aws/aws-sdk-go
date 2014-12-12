@@ -1,3 +1,7 @@
+// Command aws-gen-goendpoints parses a JSON description of the AWS endpoint
+// discovery logic and generates a Go file which returns an endpoint.
+//
+//     aws-gen-goendpoints apis/_endpoints.json gen/endpoints/endpoints.json
 package main
 
 import (
@@ -24,7 +28,7 @@ func main() {
 	}
 	defer out.Close()
 
-	if err := endpoints.Render(out); err != nil {
+	if err := endpoints.Generate(out); err != nil {
 		panic(err)
 	}
 }

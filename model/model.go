@@ -1,3 +1,4 @@
+// Package model contains functionality to generate clients for AWS APIs.
 package model
 
 import (
@@ -7,6 +8,7 @@ import (
 	"strings"
 )
 
+// Metadata contains various bits of metadata associated with an API.
 type Metadata struct {
 	APIVersion          string
 	EndpointPrefix      string
@@ -21,11 +23,13 @@ type Metadata struct {
 	TimestampFormat     string
 }
 
+// HTTPOptions contains the HTTP-specific options for an Operation.
 type HTTPOptions struct {
 	Method     string
 	RequestURI string
 }
 
+// Operation is an API operation.
 type Operation struct {
 	Name          string
 	Documentation string
@@ -34,20 +38,24 @@ type Operation struct {
 	OutputRef     *ShapeRef `json:"Output"`
 }
 
+// Input returns the shape of the input parameter, if any.
 func (o Operation) Input() *Shape {
 	return o.InputRef.Shape()
 }
 
+// Output returns the shape of the output parameter, if any.
 func (o Operation) Output() *Shape {
 	return o.OutputRef.Shape()
 }
 
+// Error is an error returned by the API.
 type Error struct {
 	Code           string
 	HTTPStatusCode int
 	SenderFault    bool
 }
 
+// ShapeRef is a reference to a Shape.
 type ShapeRef struct {
 	ShapeName     string `json:"Shape"`
 	Documentation string
@@ -58,6 +66,8 @@ type ShapeRef struct {
 	Streaming     bool
 }
 
+// WrappedType returns the Go type of the reference shape, wrapped if a result
+// wrapper was specified.
 func (ref *ShapeRef) WrappedType() string {
 	if ref.ResultWrapper != "" {
 		return "*" + exportable(ref.ResultWrapper)
@@ -65,6 +75,8 @@ func (ref *ShapeRef) WrappedType() string {
 	return ref.Shape().Type()
 }
 
+// WrappedLiteral returns an empty Go literal of the reference shape, wrapped if
+// a result wrapper was specified.
 func (ref *ShapeRef) WrappedLiteral() string {
 	if ref.ResultWrapper != "" {
 		return "&" + exportable(ref.ResultWrapper) + "{}"
@@ -72,6 +84,7 @@ func (ref *ShapeRef) WrappedLiteral() string {
 	return ref.Shape().Literal()
 }
 
+// Shape returns the wrapped shape.
 func (ref *ShapeRef) Shape() *Shape {
 	if ref == nil {
 		return nil
@@ -79,12 +92,14 @@ func (ref *ShapeRef) Shape() *Shape {
 	return service.Shapes[ref.ShapeName]
 }
 
+// Member is a member of a shape.
 type Member struct {
 	ShapeRef
 	Name     string
 	Required bool
 }
 
+// JSONTag returns the field tag for JSON protocol members.
 func (m Member) JSONTag() string {
 	if !m.Required {
 		return fmt.Sprintf("`json:\"%s,omitempty\"`", m.Name)
@@ -92,6 +107,7 @@ func (m Member) JSONTag() string {
 	return fmt.Sprintf("`json:\"%s\"`", m.Name)
 }
 
+// XMLTag returns the field tag for XML protocol members.
 func (m Member) XMLTag(wrapper string) string {
 	var path []string
 	if wrapper != "" {
@@ -131,6 +147,7 @@ func (m Member) QueryTag(wrapper string) string {
 	return fmt.Sprintf("`xml:\"%s\"`", strings.Join(path, ">"))
 }
 
+// EC2Tag returns the field tag for EC2 protocol members.
 func (m Member) EC2Tag() string {
 	var path []string
 	if m.LocationName != "" {
@@ -161,17 +178,20 @@ func (m Member) EC2Tag() string {
 	return fmt.Sprintf("`ec2:%q xml:%q`", name, strings.Join(path, ">"))
 }
 
+// Shape returns the member's shape.
 func (m Member) Shape() *Shape {
 	return m.ShapeRef.Shape()
 }
 
+// Type returns the member's Go type.
 func (m Member) Type() string {
 	if m.Streaming {
-		return "io.ReadCloser"
+		return "io.ReadCloser" // this allows us to pass the S3 body directly
 	}
 	return m.Shape().Type()
 }
 
+// Shape is a type used in an API.
 type Shape struct {
 	Name          string
 	ShapeType     string `json:"Type"`
@@ -191,23 +211,22 @@ type Shape struct {
 	Payload       string
 }
 
-func (s *Shape) Message() bool {
-	return strings.HasSuffix(s.Name, "Message") && s.ResultWrapper() != ""
-}
-
-func (s *Shape) MessageTag() string {
-	tag := strings.TrimSuffix(s.ResultWrapper(), "Result") + "Response"
-	return fmt.Sprintf("`xml:\"%s\"`", tag)
-}
-
+// Key returns the shape's key shape, if any.
 func (s *Shape) Key() *Shape {
 	return s.KeyRef.Shape()
 }
 
+// Value returns the shape's value shape, if any.
+func (s *Shape) Value() *Shape {
+	return s.ValueRef.Shape()
+}
+
+// Member returns the shape's member shape, if any.
 func (s *Shape) Member() *Shape {
 	return s.MemberRef.Shape()
 }
 
+// Members returns the shape's members.
 func (s *Shape) Members() map[string]Member {
 	required := func(v string) bool {
 		for _, s := range s.Required {
@@ -229,6 +248,8 @@ func (s *Shape) Members() map[string]Member {
 	return members
 }
 
+// ResultWrapper returns the shape's result wrapper, if and only if a single,
+// unambiguous wrapper can be found in the API's operation outputs.
 func (s *Shape) ResultWrapper() string {
 	var wrappers []string
 
@@ -245,10 +266,7 @@ func (s *Shape) ResultWrapper() string {
 	return ""
 }
 
-func (s *Shape) Value() *Shape {
-	return s.ValueRef.Shape()
-}
-
+// Literal returns a Go literal of the given shape.
 func (s *Shape) Literal() string {
 	if s.ShapeType == "structure" {
 		return "&" + s.Type()[1:] + "{}"
@@ -256,6 +274,8 @@ func (s *Shape) Literal() string {
 	panic("trying to make a literal non-structure for " + s.Name)
 }
 
+// ElementType returns the Go type of the shape as an element of another shape
+// (i.e., list or map).
 func (s *Shape) ElementType() string {
 	switch s.ShapeType {
 	case "structure":
@@ -285,6 +305,7 @@ func (s *Shape) ElementType() string {
 	panic(fmt.Errorf("type %q (%q) not found", s.Name, s.ShapeType))
 }
 
+// Type returns the shape's Go type.
 func (s *Shape) Type() string {
 	switch s.ShapeType {
 	case "structure":
@@ -314,6 +335,7 @@ func (s *Shape) Type() string {
 	panic(fmt.Errorf("type %q (%q) not found", s.Name, s.ShapeType))
 }
 
+// A Service is an AWS service.
 type Service struct {
 	Name          string
 	FullName      string
@@ -324,6 +346,7 @@ type Service struct {
 	Shapes        map[string]*Shape
 }
 
+// Wrappers returns the service's wrapper shapes.
 func (s Service) Wrappers() map[string]*Shape {
 	wrappers := map[string]*Shape{}
 
@@ -350,6 +373,8 @@ func (s Service) Wrappers() map[string]*Shape {
 
 var service Service
 
+// Load parses the given JSON input and loads it into the singleton instance of
+// the package.
 func Load(name string, r io.Reader) error {
 	service = Service{}
 	if err := json.NewDecoder(r).Decode(&service); err != nil {

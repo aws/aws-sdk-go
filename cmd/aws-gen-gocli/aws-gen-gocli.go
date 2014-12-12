@@ -1,3 +1,7 @@
+// Command aws-gen-gocli parses a JSON description of an AWS API and generates a
+// Go file containing a client for the API.
+//
+//     aws-gen-gocli EC2 apis/ec2/2014-10-01.api.json gen/ec2/ec2.go
 package main
 
 import (
