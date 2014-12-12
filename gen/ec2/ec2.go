@@ -2318,7 +2318,7 @@ type CancelReservedInstancesListingResult struct {
 // CancelSpotInstanceRequestsRequest is undocumented.
 type CancelSpotInstanceRequestsRequest struct {
 	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	SpotInstanceRequestIds []string         `ec2:"SpotInstanceRequestIds" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
+	SpotInstanceRequestIds []string         `ec2:"SpotInstanceRequestId" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
 }
 
 // CancelSpotInstanceRequestsResult is undocumented.
@@ -2389,7 +2389,7 @@ type CopySnapshotResult struct {
 type CreateCustomerGatewayRequest struct {
 	BgpAsn   aws.IntegerValue `ec2:"BgpAsn" xml:"BgpAsn"`
 	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	PublicIP aws.StringValue  `ec2:"PublicIp" xml:"IpAddress"`
+	PublicIP aws.StringValue  `ec2:"IpAddress" xml:"IpAddress"`
 	Type     aws.StringValue  `ec2:"Type" xml:"Type"`
 }
 
@@ -2458,7 +2458,7 @@ type CreateNetworkAclEntryRequest struct {
 	CidrBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
-	IcmpTypeCode *IcmpTypeCode    `ec2:"IcmpTypeCode" xml:"Icmp"`
+	IcmpTypeCode *IcmpTypeCode    `ec2:"Icmp" xml:"Icmp"`
 	NetworkAclID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 	PortRange    *PortRange       `ec2:"PortRange" xml:"portRange"`
 	Protocol     aws.StringValue  `ec2:"Protocol" xml:"protocol"`
@@ -2481,7 +2481,7 @@ type CreateNetworkAclResult struct {
 type CreateNetworkInterfaceRequest struct {
 	Description                    aws.StringValue                 `ec2:"Description" xml:"description"`
 	DryRun                         aws.BooleanValue                `ec2:"DryRun" xml:"dryRun"`
-	Groups                         []string                        `ec2:"Groups" xml:"SecurityGroupId>SecurityGroupId"`
+	Groups                         []string                        `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
 	PrivateIPAddress               aws.StringValue                 `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 	PrivateIPAddresses             []PrivateIPAddressSpecification `ec2:"PrivateIpAddresses" xml:"privateIpAddresses>item"`
 	SecondaryPrivateIPAddressCount aws.IntegerValue                `ec2:"SecondaryPrivateIpAddressCount" xml:"secondaryPrivateIpAddressCount"`
@@ -2537,7 +2537,7 @@ type CreateRouteTableResult struct {
 
 // CreateSecurityGroupRequest is undocumented.
 type CreateSecurityGroupRequest struct {
-	Description aws.StringValue  `ec2:"Description" xml:"GroupDescription"`
+	Description aws.StringValue  `ec2:"GroupDescription" xml:"GroupDescription"`
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	GroupName   aws.StringValue  `ec2:"GroupName" xml:"GroupName"`
 	VpcID       aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
@@ -2583,8 +2583,8 @@ type CreateSubnetResult struct {
 // CreateTagsRequest is undocumented.
 type CreateTagsRequest struct {
 	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Resources []string         `ec2:"Resources" xml:"ResourceId>member"`
-	Tags      []Tag            `ec2:"Tags" xml:"Tag>item"`
+	Resources []string         `ec2:"ResourceId" xml:"ResourceId>member"`
+	Tags      []Tag            `ec2:"Tag" xml:"Tag>item"`
 }
 
 // CreateVolumePermission is undocumented.
@@ -2832,10 +2832,10 @@ type DescribeAccountAttributesResult struct {
 
 // DescribeAddressesRequest is undocumented.
 type DescribeAddressesRequest struct {
-	AllocationIds []string         `ec2:"AllocationIds" xml:"AllocationId>AllocationId"`
+	AllocationIds []string         `ec2:"AllocationId" xml:"AllocationId>AllocationId"`
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters       []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	PublicIPs     []string         `ec2:"PublicIps" xml:"PublicIp>PublicIp"`
+	Filters       []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	PublicIPs     []string         `ec2:"PublicIp" xml:"PublicIp>PublicIp"`
 }
 
 // DescribeAddressesResult is undocumented.
@@ -2846,8 +2846,8 @@ type DescribeAddressesResult struct {
 // DescribeAvailabilityZonesRequest is undocumented.
 type DescribeAvailabilityZonesRequest struct {
 	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters   []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	ZoneNames []string         `ec2:"ZoneNames" xml:"ZoneName>ZoneName"`
+	Filters   []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	ZoneNames []string         `ec2:"ZoneName" xml:"ZoneName>ZoneName"`
 }
 
 // DescribeAvailabilityZonesResult is undocumented.
@@ -2857,9 +2857,9 @@ type DescribeAvailabilityZonesResult struct {
 
 // DescribeBundleTasksRequest is undocumented.
 type DescribeBundleTasksRequest struct {
-	BundleIds []string         `ec2:"BundleIds" xml:"BundleId>BundleId"`
+	BundleIds []string         `ec2:"BundleId" xml:"BundleId>BundleId"`
 	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters   []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	Filters   []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 }
 
 // DescribeBundleTasksResult is undocumented.
@@ -2881,9 +2881,9 @@ type DescribeConversionTasksResult struct {
 
 // DescribeCustomerGatewaysRequest is undocumented.
 type DescribeCustomerGatewaysRequest struct {
-	CustomerGatewayIds []string         `ec2:"CustomerGatewayIds" xml:"CustomerGatewayId>CustomerGatewayId"`
+	CustomerGatewayIds []string         `ec2:"CustomerGatewayId" xml:"CustomerGatewayId>CustomerGatewayId"`
 	DryRun             aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters            []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	Filters            []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 }
 
 // DescribeCustomerGatewaysResult is undocumented.
@@ -2893,9 +2893,9 @@ type DescribeCustomerGatewaysResult struct {
 
 // DescribeDhcpOptionsRequest is undocumented.
 type DescribeDhcpOptionsRequest struct {
-	DhcpOptionsIds []string         `ec2:"DhcpOptionsIds" xml:"DhcpOptionsId>DhcpOptionsId"`
+	DhcpOptionsIds []string         `ec2:"DhcpOptionsId" xml:"DhcpOptionsId>DhcpOptionsId"`
 	DryRun         aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters        []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	Filters        []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 }
 
 // DescribeDhcpOptionsResult is undocumented.
@@ -2923,10 +2923,10 @@ type DescribeImageAttributeRequest struct {
 // DescribeImagesRequest is undocumented.
 type DescribeImagesRequest struct {
 	DryRun          aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	ExecutableUsers []string         `ec2:"ExecutableUsers" xml:"ExecutableBy>ExecutableBy"`
-	Filters         []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	ImageIds        []string         `ec2:"ImageIds" xml:"ImageId>ImageId"`
-	Owners          []string         `ec2:"Owners" xml:"Owner>Owner"`
+	ExecutableUsers []string         `ec2:"ExecutableBy" xml:"ExecutableBy>ExecutableBy"`
+	Filters         []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	ImageIds        []string         `ec2:"ImageId" xml:"ImageId>ImageId"`
+	Owners          []string         `ec2:"Owner" xml:"Owner>Owner"`
 }
 
 // DescribeImagesResult is undocumented.
@@ -2944,9 +2944,9 @@ type DescribeInstanceAttributeRequest struct {
 // DescribeInstanceStatusRequest is undocumented.
 type DescribeInstanceStatusRequest struct {
 	DryRun              aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters             []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	Filters             []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 	IncludeAllInstances aws.BooleanValue `ec2:"IncludeAllInstances" xml:"includeAllInstances"`
-	InstanceIds         []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
+	InstanceIds         []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 	MaxResults          aws.IntegerValue `ec2:"MaxResults" xml:"MaxResults"`
 	NextToken           aws.StringValue  `ec2:"NextToken" xml:"NextToken"`
 }
@@ -2960,8 +2960,8 @@ type DescribeInstanceStatusResult struct {
 // DescribeInstancesRequest is undocumented.
 type DescribeInstancesRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters     []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
+	Filters     []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 	MaxResults  aws.IntegerValue `ec2:"MaxResults" xml:"maxResults"`
 	NextToken   aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
 }
@@ -2975,7 +2975,7 @@ type DescribeInstancesResult struct {
 // DescribeInternetGatewaysRequest is undocumented.
 type DescribeInternetGatewaysRequest struct {
 	DryRun             aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters            []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	Filters            []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 	InternetGatewayIds []string         `ec2:"InternetGatewayIds" xml:"internetGatewayId>item"`
 }
 
@@ -2987,8 +2987,8 @@ type DescribeInternetGatewaysResult struct {
 // DescribeKeyPairsRequest is undocumented.
 type DescribeKeyPairsRequest struct {
 	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters  []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	KeyNames []string         `ec2:"KeyNames" xml:"KeyName>KeyName"`
+	Filters  []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	KeyNames []string         `ec2:"KeyName" xml:"KeyName>KeyName"`
 }
 
 // DescribeKeyPairsResult is undocumented.
@@ -2999,8 +2999,8 @@ type DescribeKeyPairsResult struct {
 // DescribeNetworkAclsRequest is undocumented.
 type DescribeNetworkAclsRequest struct {
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters       []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	NetworkAclIds []string         `ec2:"NetworkAclIds" xml:"NetworkAclId>item"`
+	Filters       []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	NetworkAclIds []string         `ec2:"NetworkAclId" xml:"NetworkAclId>item"`
 }
 
 // DescribeNetworkAclsResult is undocumented.
@@ -3028,7 +3028,7 @@ type DescribeNetworkInterfaceAttributeResult struct {
 type DescribeNetworkInterfacesRequest struct {
 	DryRun              aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Filters             []Filter         `ec2:"Filters" xml:"filter>Filter"`
-	NetworkInterfaceIds []string         `ec2:"NetworkInterfaceIds" xml:"NetworkInterfaceId>item"`
+	NetworkInterfaceIds []string         `ec2:"NetworkInterfaceId" xml:"NetworkInterfaceId>item"`
 }
 
 // DescribeNetworkInterfacesResult is undocumented.
@@ -3039,7 +3039,7 @@ type DescribeNetworkInterfacesResult struct {
 // DescribePlacementGroupsRequest is undocumented.
 type DescribePlacementGroupsRequest struct {
 	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters    []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	Filters    []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 	GroupNames []string         `ec2:"GroupNames" xml:"groupName>member"`
 }
 
@@ -3051,8 +3051,8 @@ type DescribePlacementGroupsResult struct {
 // DescribeRegionsRequest is undocumented.
 type DescribeRegionsRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters     []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	RegionNames []string         `ec2:"RegionNames" xml:"RegionName>RegionName"`
+	Filters     []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	RegionNames []string         `ec2:"RegionName" xml:"RegionName>RegionName"`
 }
 
 // DescribeRegionsResult is undocumented.
@@ -3074,9 +3074,9 @@ type DescribeReservedInstancesListingsResult struct {
 
 // DescribeReservedInstancesModificationsRequest is undocumented.
 type DescribeReservedInstancesModificationsRequest struct {
-	Filters                          []Filter        `ec2:"Filters" xml:"Filter>Filter"`
+	Filters                          []Filter        `ec2:"Filter" xml:"Filter>Filter"`
 	NextToken                        aws.StringValue `ec2:"NextToken" xml:"nextToken"`
-	ReservedInstancesModificationIds []string        `ec2:"ReservedInstancesModificationIds" xml:"ReservedInstancesModificationId>ReservedInstancesModificationId"`
+	ReservedInstancesModificationIds []string        `ec2:"ReservedInstancesModificationId" xml:"ReservedInstancesModificationId>ReservedInstancesModificationId"`
 }
 
 // DescribeReservedInstancesModificationsResult is undocumented.
@@ -3089,7 +3089,7 @@ type DescribeReservedInstancesModificationsResult struct {
 type DescribeReservedInstancesOfferingsRequest struct {
 	AvailabilityZone             aws.StringValue  `ec2:"AvailabilityZone" xml:"AvailabilityZone"`
 	DryRun                       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters                      []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	Filters                      []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 	IncludeMarketplace           aws.BooleanValue `ec2:"IncludeMarketplace" xml:"IncludeMarketplace"`
 	InstanceTenancy              aws.StringValue  `ec2:"InstanceTenancy" xml:"instanceTenancy"`
 	InstanceType                 aws.StringValue  `ec2:"InstanceType" xml:"InstanceType"`
@@ -3100,7 +3100,7 @@ type DescribeReservedInstancesOfferingsRequest struct {
 	NextToken                    aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
 	OfferingType                 aws.StringValue  `ec2:"OfferingType" xml:"offeringType"`
 	ProductDescription           aws.StringValue  `ec2:"ProductDescription" xml:"ProductDescription"`
-	ReservedInstancesOfferingIds []string         `ec2:"ReservedInstancesOfferingIds" xml:"ReservedInstancesOfferingId>member"`
+	ReservedInstancesOfferingIds []string         `ec2:"ReservedInstancesOfferingId" xml:"ReservedInstancesOfferingId>member"`
 }
 
 // DescribeReservedInstancesOfferingsResult is undocumented.
@@ -3112,9 +3112,9 @@ type DescribeReservedInstancesOfferingsResult struct {
 // DescribeReservedInstancesRequest is undocumented.
 type DescribeReservedInstancesRequest struct {
 	DryRun               aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters              []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	Filters              []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 	OfferingType         aws.StringValue  `ec2:"OfferingType" xml:"offeringType"`
-	ReservedInstancesIds []string         `ec2:"ReservedInstancesIds" xml:"ReservedInstancesId>ReservedInstancesId"`
+	ReservedInstancesIds []string         `ec2:"ReservedInstancesId" xml:"ReservedInstancesId>ReservedInstancesId"`
 }
 
 // DescribeReservedInstancesResult is undocumented.
@@ -3125,8 +3125,8 @@ type DescribeReservedInstancesResult struct {
 // DescribeRouteTablesRequest is undocumented.
 type DescribeRouteTablesRequest struct {
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters       []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	RouteTableIds []string         `ec2:"RouteTableIds" xml:"RouteTableId>item"`
+	Filters       []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	RouteTableIds []string         `ec2:"RouteTableId" xml:"RouteTableId>item"`
 }
 
 // DescribeRouteTablesResult is undocumented.
@@ -3137,9 +3137,9 @@ type DescribeRouteTablesResult struct {
 // DescribeSecurityGroupsRequest is undocumented.
 type DescribeSecurityGroupsRequest struct {
 	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters    []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	GroupIds   []string         `ec2:"GroupIds" xml:"GroupId>groupId"`
-	GroupNames []string         `ec2:"GroupNames" xml:"GroupName>GroupName"`
+	Filters    []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	GroupIds   []string         `ec2:"GroupId" xml:"GroupId>groupId"`
+	GroupNames []string         `ec2:"GroupName" xml:"GroupName>GroupName"`
 }
 
 // DescribeSecurityGroupsResult is undocumented.
@@ -3164,10 +3164,10 @@ type DescribeSnapshotAttributeResult struct {
 // DescribeSnapshotsRequest is undocumented.
 type DescribeSnapshotsRequest struct {
 	DryRun              aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters             []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	OwnerIds            []string         `ec2:"OwnerIds" xml:"Owner>Owner"`
-	RestorableByUserIds []string         `ec2:"RestorableByUserIds" xml:"RestorableBy>member"`
-	SnapshotIds         []string         `ec2:"SnapshotIds" xml:"SnapshotId>SnapshotId"`
+	Filters             []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	OwnerIds            []string         `ec2:"Owner" xml:"Owner>Owner"`
+	RestorableByUserIds []string         `ec2:"RestorableBy" xml:"RestorableBy>member"`
+	SnapshotIds         []string         `ec2:"SnapshotId" xml:"SnapshotId>SnapshotId"`
 }
 
 // DescribeSnapshotsResult is undocumented.
@@ -3188,8 +3188,8 @@ type DescribeSpotDatafeedSubscriptionResult struct {
 // DescribeSpotInstanceRequestsRequest is undocumented.
 type DescribeSpotInstanceRequestsRequest struct {
 	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters                []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	SpotInstanceRequestIds []string         `ec2:"SpotInstanceRequestIds" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
+	Filters                []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	SpotInstanceRequestIds []string         `ec2:"SpotInstanceRequestId" xml:"SpotInstanceRequestId>SpotInstanceRequestId"`
 }
 
 // DescribeSpotInstanceRequestsResult is undocumented.
@@ -3202,11 +3202,11 @@ type DescribeSpotPriceHistoryRequest struct {
 	AvailabilityZone    aws.StringValue  `ec2:"AvailabilityZone" xml:"availabilityZone"`
 	DryRun              aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	EndTime             time.Time        `ec2:"EndTime" xml:"endTime"`
-	Filters             []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	InstanceTypes       []string         `ec2:"InstanceTypes" xml:"InstanceType>member"`
+	Filters             []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	InstanceTypes       []string         `ec2:"InstanceType" xml:"InstanceType>member"`
 	MaxResults          aws.IntegerValue `ec2:"MaxResults" xml:"maxResults"`
 	NextToken           aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
-	ProductDescriptions []string         `ec2:"ProductDescriptions" xml:"ProductDescription>member"`
+	ProductDescriptions []string         `ec2:"ProductDescription" xml:"ProductDescription>member"`
 	StartTime           time.Time        `ec2:"StartTime" xml:"startTime"`
 }
 
@@ -3219,8 +3219,8 @@ type DescribeSpotPriceHistoryResult struct {
 // DescribeSubnetsRequest is undocumented.
 type DescribeSubnetsRequest struct {
 	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters   []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	SubnetIds []string         `ec2:"SubnetIds" xml:"SubnetId>SubnetId"`
+	Filters   []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	SubnetIds []string         `ec2:"SubnetId" xml:"SubnetId>SubnetId"`
 }
 
 // DescribeSubnetsResult is undocumented.
@@ -3231,7 +3231,7 @@ type DescribeSubnetsResult struct {
 // DescribeTagsRequest is undocumented.
 type DescribeTagsRequest struct {
 	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters    []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	Filters    []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 	MaxResults aws.IntegerValue `ec2:"MaxResults" xml:"maxResults"`
 	NextToken  aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
 }
@@ -3259,10 +3259,10 @@ type DescribeVolumeAttributeResult struct {
 // DescribeVolumeStatusRequest is undocumented.
 type DescribeVolumeStatusRequest struct {
 	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters    []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	Filters    []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 	MaxResults aws.IntegerValue `ec2:"MaxResults" xml:"MaxResults"`
 	NextToken  aws.StringValue  `ec2:"NextToken" xml:"NextToken"`
-	VolumeIds  []string         `ec2:"VolumeIds" xml:"VolumeId>VolumeId"`
+	VolumeIds  []string         `ec2:"VolumeId" xml:"VolumeId>VolumeId"`
 }
 
 // DescribeVolumeStatusResult is undocumented.
@@ -3274,10 +3274,10 @@ type DescribeVolumeStatusResult struct {
 // DescribeVolumesRequest is undocumented.
 type DescribeVolumesRequest struct {
 	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters    []Filter         `ec2:"Filters" xml:"Filter>Filter"`
+	Filters    []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 	MaxResults aws.IntegerValue `ec2:"MaxResults" xml:"maxResults"`
 	NextToken  aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
-	VolumeIds  []string         `ec2:"VolumeIds" xml:"VolumeId>VolumeId"`
+	VolumeIds  []string         `ec2:"VolumeId" xml:"VolumeId>VolumeId"`
 }
 
 // DescribeVolumesResult is undocumented.
@@ -3303,8 +3303,8 @@ type DescribeVpcAttributeResult struct {
 // DescribeVpcPeeringConnectionsRequest is undocumented.
 type DescribeVpcPeeringConnectionsRequest struct {
 	DryRun                  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters                 []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	VpcPeeringConnectionIds []string         `ec2:"VpcPeeringConnectionIds" xml:"VpcPeeringConnectionId>item"`
+	Filters                 []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	VpcPeeringConnectionIds []string         `ec2:"VpcPeeringConnectionId" xml:"VpcPeeringConnectionId>item"`
 }
 
 // DescribeVpcPeeringConnectionsResult is undocumented.
@@ -3315,8 +3315,8 @@ type DescribeVpcPeeringConnectionsResult struct {
 // DescribeVpcsRequest is undocumented.
 type DescribeVpcsRequest struct {
 	DryRun  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	VpcIds  []string         `ec2:"VpcIds" xml:"VpcId>VpcId"`
+	Filters []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	VpcIds  []string         `ec2:"VpcId" xml:"VpcId>VpcId"`
 }
 
 // DescribeVpcsResult is undocumented.
@@ -3327,8 +3327,8 @@ type DescribeVpcsResult struct {
 // DescribeVpnConnectionsRequest is undocumented.
 type DescribeVpnConnectionsRequest struct {
 	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters          []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	VpnConnectionIds []string         `ec2:"VpnConnectionIds" xml:"VpnConnectionId>VpnConnectionId"`
+	Filters          []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	VpnConnectionIds []string         `ec2:"VpnConnectionId" xml:"VpnConnectionId>VpnConnectionId"`
 }
 
 // DescribeVpnConnectionsResult is undocumented.
@@ -3339,8 +3339,8 @@ type DescribeVpnConnectionsResult struct {
 // DescribeVpnGatewaysRequest is undocumented.
 type DescribeVpnGatewaysRequest struct {
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	Filters       []Filter         `ec2:"Filters" xml:"Filter>Filter"`
-	VpnGatewayIds []string         `ec2:"VpnGatewayIds" xml:"VpnGatewayId>VpnGatewayId"`
+	Filters       []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	VpnGatewayIds []string         `ec2:"VpnGatewayId" xml:"VpnGatewayId>VpnGatewayId"`
 }
 
 // DescribeVpnGatewaysResult is undocumented.
@@ -3503,7 +3503,7 @@ type ExportToS3TaskSpecification struct {
 // Filter is undocumented.
 type Filter struct {
 	Name   aws.StringValue `ec2:"Name" xml:"Name"`
-	Values []string        `ec2:"Values" xml:"Value>item"`
+	Values []string        `ec2:"Value" xml:"Value>item"`
 }
 
 // GetConsoleOutputRequest is undocumented.
@@ -3598,8 +3598,8 @@ type ImageAttribute struct {
 type ImportInstanceLaunchSpecification struct {
 	AdditionalInfo                    aws.StringValue  `ec2:"AdditionalInfo" xml:"additionalInfo"`
 	Architecture                      aws.StringValue  `ec2:"Architecture" xml:"architecture"`
-	GroupIds                          []string         `ec2:"GroupIds" xml:"GroupId>SecurityGroupId"`
-	GroupNames                        []string         `ec2:"GroupNames" xml:"GroupName>SecurityGroup"`
+	GroupIds                          []string         `ec2:"GroupId" xml:"GroupId>SecurityGroupId"`
+	GroupNames                        []string         `ec2:"GroupName" xml:"GroupName>SecurityGroup"`
 	InstanceInitiatedShutdownBehavior aws.StringValue  `ec2:"InstanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
 	InstanceType                      aws.StringValue  `ec2:"InstanceType" xml:"instanceType"`
 	Monitoring                        aws.BooleanValue `ec2:"Monitoring" xml:"monitoring"`
@@ -3809,7 +3809,7 @@ type InstanceNetworkInterfaceSpecification struct {
 	DeleteOnTermination            aws.BooleanValue                `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
 	Description                    aws.StringValue                 `ec2:"Description" xml:"description"`
 	DeviceIndex                    aws.IntegerValue                `ec2:"DeviceIndex" xml:"deviceIndex"`
-	Groups                         []string                        `ec2:"Groups" xml:"SecurityGroupId>SecurityGroupId"`
+	Groups                         []string                        `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
 	NetworkInterfaceID             aws.StringValue                 `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 	PrivateIPAddress               aws.StringValue                 `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 	PrivateIPAddresses             []PrivateIPAddressSpecification `ec2:"PrivateIpAddresses" xml:"privateIpAddressesSet>item"`
@@ -3948,9 +3948,9 @@ type ModifyImageAttributeRequest struct {
 	ImageID          aws.StringValue                `ec2:"ImageId" xml:"ImageId"`
 	LaunchPermission *LaunchPermissionModifications `ec2:"LaunchPermission" xml:"LaunchPermission"`
 	OperationType    aws.StringValue                `ec2:"OperationType" xml:"OperationType"`
-	ProductCodes     []string                       `ec2:"ProductCodes" xml:"ProductCode>ProductCode"`
-	UserGroups       []string                       `ec2:"UserGroups" xml:"UserGroup>UserGroup"`
-	UserIds          []string                       `ec2:"UserIds" xml:"UserId>UserId"`
+	ProductCodes     []string                       `ec2:"ProductCode" xml:"ProductCode>ProductCode"`
+	UserGroups       []string                       `ec2:"UserGroup" xml:"UserGroup>UserGroup"`
+	UserIds          []string                       `ec2:"UserId" xml:"UserId>UserId"`
 	Value            aws.StringValue                `ec2:"Value" xml:"Value"`
 }
 
@@ -3961,7 +3961,7 @@ type ModifyInstanceAttributeRequest struct {
 	DisableAPITermination             *AttributeBooleanValue                    `ec2:"DisableApiTermination" xml:"disableApiTermination"`
 	DryRun                            aws.BooleanValue                          `ec2:"DryRun" xml:"dryRun"`
 	EbsOptimized                      *AttributeBooleanValue                    `ec2:"EbsOptimized" xml:"ebsOptimized"`
-	Groups                            []string                                  `ec2:"Groups" xml:"GroupId>groupId"`
+	Groups                            []string                                  `ec2:"GroupId" xml:"GroupId>groupId"`
 	InstanceID                        aws.StringValue                           `ec2:"InstanceId" xml:"instanceId"`
 	InstanceInitiatedShutdownBehavior *AttributeValue                           `ec2:"InstanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
 	InstanceType                      *AttributeValue                           `ec2:"InstanceType" xml:"instanceType"`
@@ -3978,7 +3978,7 @@ type ModifyNetworkInterfaceAttributeRequest struct {
 	Attachment         *NetworkInterfaceAttachmentChanges `ec2:"Attachment" xml:"attachment"`
 	Description        *AttributeValue                    `ec2:"Description" xml:"description"`
 	DryRun             aws.BooleanValue                   `ec2:"DryRun" xml:"dryRun"`
-	Groups             []string                           `ec2:"Groups" xml:"SecurityGroupId>SecurityGroupId"`
+	Groups             []string                           `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
 	NetworkInterfaceID aws.StringValue                    `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 	SourceDestCheck    *AttributeBooleanValue             `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
 }
@@ -3986,8 +3986,8 @@ type ModifyNetworkInterfaceAttributeRequest struct {
 // ModifyReservedInstancesRequest is undocumented.
 type ModifyReservedInstancesRequest struct {
 	ClientToken          aws.StringValue                  `ec2:"ClientToken" xml:"clientToken"`
-	ReservedInstancesIds []string                         `ec2:"ReservedInstancesIds" xml:"ReservedInstancesId>ReservedInstancesId"`
-	TargetConfigurations []ReservedInstancesConfiguration `ec2:"TargetConfigurations" xml:"ReservedInstancesConfigurationSetItemType>item"`
+	ReservedInstancesIds []string                         `ec2:"ReservedInstancesId" xml:"ReservedInstancesId>ReservedInstancesId"`
+	TargetConfigurations []ReservedInstancesConfiguration `ec2:"ReservedInstancesConfigurationSetItemType" xml:"ReservedInstancesConfigurationSetItemType>item"`
 }
 
 // ModifyReservedInstancesResult is undocumented.
@@ -4000,10 +4000,10 @@ type ModifySnapshotAttributeRequest struct {
 	Attribute              aws.StringValue                      `ec2:"Attribute" xml:"Attribute"`
 	CreateVolumePermission *CreateVolumePermissionModifications `ec2:"CreateVolumePermission" xml:"CreateVolumePermission"`
 	DryRun                 aws.BooleanValue                     `ec2:"DryRun" xml:"dryRun"`
-	GroupNames             []string                             `ec2:"GroupNames" xml:"UserGroup>GroupName"`
+	GroupNames             []string                             `ec2:"UserGroup" xml:"UserGroup>GroupName"`
 	OperationType          aws.StringValue                      `ec2:"OperationType" xml:"OperationType"`
 	SnapshotID             aws.StringValue                      `ec2:"SnapshotId" xml:"SnapshotId"`
-	UserIds                []string                             `ec2:"UserIds" xml:"UserId>UserId"`
+	UserIds                []string                             `ec2:"UserId" xml:"UserId>UserId"`
 }
 
 // ModifySubnetAttributeRequest is undocumented.
@@ -4029,7 +4029,7 @@ type ModifyVpcAttributeRequest struct {
 // MonitorInstancesRequest is undocumented.
 type MonitorInstancesRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
+	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // MonitorInstancesResult is undocumented.
@@ -4129,7 +4129,7 @@ type NetworkInterfacePrivateIPAddress struct {
 // NewDhcpConfiguration is undocumented.
 type NewDhcpConfiguration struct {
 	Key    aws.StringValue `ec2:"Key" xml:"key"`
-	Values []string        `ec2:"Values" xml:"Value>item"`
+	Values []string        `ec2:"Value" xml:"Value>item"`
 }
 
 // Placement is undocumented.
@@ -4206,7 +4206,7 @@ type PurchaseReservedInstancesOfferingResult struct {
 // RebootInstancesRequest is undocumented.
 type RebootInstancesRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
+	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // RecurringCharge is undocumented.
@@ -4224,7 +4224,7 @@ type Region struct {
 // RegisterImageRequest is undocumented.
 type RegisterImageRequest struct {
 	Architecture        aws.StringValue      `ec2:"Architecture" xml:"architecture"`
-	BlockDeviceMappings []BlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"BlockDeviceMapping>BlockDeviceMapping"`
+	BlockDeviceMappings []BlockDeviceMapping `ec2:"BlockDeviceMapping" xml:"BlockDeviceMapping>BlockDeviceMapping"`
 	Description         aws.StringValue      `ec2:"Description" xml:"description"`
 	DryRun              aws.BooleanValue     `ec2:"DryRun" xml:"dryRun"`
 	ImageLocation       aws.StringValue      `ec2:"ImageLocation" xml:"ImageLocation"`
@@ -4276,7 +4276,7 @@ type ReplaceNetworkAclEntryRequest struct {
 	CidrBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
-	IcmpTypeCode *IcmpTypeCode    `ec2:"IcmpTypeCode" xml:"Icmp"`
+	IcmpTypeCode *IcmpTypeCode    `ec2:"Icmp" xml:"Icmp"`
 	NetworkAclID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 	PortRange    *PortRange       `ec2:"PortRange" xml:"portRange"`
 	Protocol     aws.StringValue  `ec2:"Protocol" xml:"protocol"`
@@ -4347,11 +4347,11 @@ type RequestSpotLaunchSpecification struct {
 	KernelID            aws.StringValue                         `ec2:"KernelId" xml:"kernelId"`
 	KeyName             aws.StringValue                         `ec2:"KeyName" xml:"keyName"`
 	Monitoring          *RunInstancesMonitoringEnabled          `ec2:"Monitoring" xml:"monitoring"`
-	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `ec2:"NetworkInterfaces" xml:"NetworkInterface>item"`
+	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `ec2:"NetworkInterface" xml:"NetworkInterface>item"`
 	Placement           *SpotPlacement                          `ec2:"Placement" xml:"placement"`
 	RamdiskID           aws.StringValue                         `ec2:"RamdiskId" xml:"ramdiskId"`
-	SecurityGroupIds    []string                                `ec2:"SecurityGroupIds" xml:"SecurityGroupId>item"`
-	SecurityGroups      []string                                `ec2:"SecurityGroups" xml:"SecurityGroup>item"`
+	SecurityGroupIds    []string                                `ec2:"SecurityGroupId" xml:"SecurityGroupId>item"`
+	SecurityGroups      []string                                `ec2:"SecurityGroup" xml:"SecurityGroup>item"`
 	SubnetID            aws.StringValue                         `ec2:"SubnetId" xml:"subnetId"`
 	UserData            aws.StringValue                         `ec2:"UserData" xml:"userData"`
 }
@@ -4547,7 +4547,7 @@ type RunInstancesMonitoringEnabled struct {
 // RunInstancesRequest is undocumented.
 type RunInstancesRequest struct {
 	AdditionalInfo                    aws.StringValue                         `ec2:"AdditionalInfo" xml:"additionalInfo"`
-	BlockDeviceMappings               []BlockDeviceMapping                    `ec2:"BlockDeviceMappings" xml:"BlockDeviceMapping>BlockDeviceMapping"`
+	BlockDeviceMappings               []BlockDeviceMapping                    `ec2:"BlockDeviceMapping" xml:"BlockDeviceMapping>BlockDeviceMapping"`
 	ClientToken                       aws.StringValue                         `ec2:"ClientToken" xml:"clientToken"`
 	DisableAPITermination             aws.BooleanValue                        `ec2:"DisableApiTermination" xml:"disableApiTermination"`
 	DryRun                            aws.BooleanValue                        `ec2:"DryRun" xml:"dryRun"`
@@ -4565,8 +4565,8 @@ type RunInstancesRequest struct {
 	Placement                         *Placement                              `ec2:"Placement" xml:"Placement"`
 	PrivateIPAddress                  aws.StringValue                         `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 	RamdiskID                         aws.StringValue                         `ec2:"RamdiskId" xml:"RamdiskId"`
-	SecurityGroupIds                  []string                                `ec2:"SecurityGroupIds" xml:"SecurityGroupId>SecurityGroupId"`
-	SecurityGroups                    []string                                `ec2:"SecurityGroups" xml:"SecurityGroup>SecurityGroup"`
+	SecurityGroupIds                  []string                                `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
+	SecurityGroups                    []string                                `ec2:"SecurityGroup" xml:"SecurityGroup>SecurityGroup"`
 	SubnetID                          aws.StringValue                         `ec2:"SubnetId" xml:"SubnetId"`
 	UserData                          aws.StringValue                         `ec2:"UserData" xml:"UserData"`
 }
@@ -4669,7 +4669,7 @@ type SpotPrice struct {
 type StartInstancesRequest struct {
 	AdditionalInfo aws.StringValue  `ec2:"AdditionalInfo" xml:"additionalInfo"`
 	DryRun         aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	InstanceIds    []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
+	InstanceIds    []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // StartInstancesResult is undocumented.
@@ -4687,7 +4687,7 @@ type StateReason struct {
 type StopInstancesRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Force       aws.BooleanValue `ec2:"Force" xml:"force"`
-	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
+	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // StopInstancesResult is undocumented.
@@ -4730,7 +4730,7 @@ type TagDescription struct {
 // TerminateInstancesRequest is undocumented.
 type TerminateInstancesRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
+	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // TerminateInstancesResult is undocumented.
@@ -4747,7 +4747,7 @@ type UnassignPrivateIPAddressesRequest struct {
 // UnmonitorInstancesRequest is undocumented.
 type UnmonitorInstancesRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	InstanceIds []string         `ec2:"InstanceIds" xml:"InstanceId>InstanceId"`
+	InstanceIds []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
 }
 
 // UnmonitorInstancesResult is undocumented.
