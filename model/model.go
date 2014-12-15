@@ -101,6 +101,9 @@ type Member struct {
 
 // JSONTag returns the field tag for JSON protocol members.
 func (m Member) JSONTag() string {
+	if m.ShapeRef.Location != "" || m.Name == "Body" {
+		return "`json:\"-\"`"
+	}
 	if !m.Required {
 		return fmt.Sprintf("`json:\"%s,omitempty\"`", m.Name)
 	}
@@ -109,6 +112,10 @@ func (m Member) JSONTag() string {
 
 // XMLTag returns the field tag for XML protocol members.
 func (m Member) XMLTag(wrapper string) string {
+	if m.ShapeRef.Location != "" || m.Name == "Body" {
+		return "`xml:\"-\"`"
+	}
+
 	var path []string
 	if wrapper != "" {
 		path = append(path, wrapper)
