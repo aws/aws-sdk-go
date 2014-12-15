@@ -33,11 +33,16 @@ func (c *Context) sign(r *http.Request) error {
 		}
 	}
 	r.Header.Set("x-amz-date", t.Format(iso8601BasicFormat))
+
 	chash, err := c.hashContent(r)
 	if err != nil {
 		return err
 	}
 	r.Header.Set("x-amz-content-sha256", chash)
+
+	if s := c.Credentials.SecurityToken(); s != "" {
+		r.Header.Set("X-Amz-Security-Token", s)
+	}
 
 	k := c.signature(t)
 	h := hmac.New(sha256.New, k)
@@ -52,9 +57,6 @@ func (c *Context) sign(r *http.Request) error {
 	auth.Write([]byte("Signature=" + fmt.Sprintf("%x", h.Sum(nil))))
 
 	r.Header.Set("Authorization", auth.String())
-	if s := c.Credentials.SecurityToken(); s != "" {
-		r.Header.Set("X-Amz-Security-Token", s)
-	}
 	return nil
 }
 
