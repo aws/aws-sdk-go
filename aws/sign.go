@@ -52,7 +52,7 @@ func (c *Context) sign(r *http.Request) error {
 	}
 
 	auth := bytes.NewBufferString("AWS4-HMAC-SHA256 ")
-	auth.Write([]byte("Credential=" + credentials.Id + "/" + c.creds(t)))
+	auth.Write([]byte("Credential=" + credentials.ID + "/" + c.creds(t)))
 	auth.Write([]byte{',', ' '})
 	auth.Write([]byte("SignedHeaders="))
 	c.writeHeaderList(auth, r)

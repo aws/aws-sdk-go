@@ -10,14 +10,16 @@ import (
 	"github.com/juju/errors"
 )
 
-type CredentialsValue struct {
-	Id, Secret, Token string
+// A set of credentials which can be used for a single request.
+// Some RequestCredentials providers may return different credentials over time.
+type RequestCredentials struct {
+	ID, Secret, Token string
 }
 
 // Credentials are used to authenticate and authorize calls that you make to
 // AWS.
 type Credentials interface {
-	Fetch() (CredentialsValue, error)
+	Fetch() (RequestCredentials, error)
 }
 
 var (
@@ -73,8 +75,8 @@ type staticCreds struct {
 	token  string
 }
 
-func (c *staticCreds) Fetch() (CredentialsValue, error) {
-	return CredentialsValue{c.id, c.secret, c.token}, nil
+func (c *staticCreds) Fetch() (RequestCredentials, error) {
+	return RequestCredentials{c.id, c.secret, c.token}, nil
 }
 
 type instanceRoleCredentials struct {
@@ -121,7 +123,7 @@ func (c *instanceRoleCredentials) obtainCredentialsLazily() error {
 	return nil
 }
 
-func (c *instanceRoleCredentials) Fetch() (CredentialsValue, error) {
+func (c *instanceRoleCredentials) Fetch() (RequestCredentials, error) {
 	err := c.obtainCredentialsLazily()
-	return CredentialsValue{c.id, c.secret, c.token}, err
+	return RequestCredentials{c.id, c.secret, c.token}, err
 }
