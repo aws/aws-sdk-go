@@ -1,17 +1,27 @@
 package aws
 
 import (
+	"bufio"
+	"encoding/json"
+	"fmt"
+	"net/http"
 	"os"
+	"sync"
+	"time"
 
 	"github.com/juju/errors"
 )
 
+// A set of credentials which can be used for a single request.
+// Some RequestCredentials providers may return different credentials over time.
+type RequestCredentials struct {
+	ID, Secret, Token string
+}
+
 // Credentials are used to authenticate and authorize calls that you make to
 // AWS.
 type Credentials interface {
-	AccessKeyID() string
-	SecretAccessKey() string
-	SecurityToken() string
+	Fetch() (RequestCredentials, error)
 }
 
 var (
@@ -67,14 +77,81 @@ type staticCreds struct {
 	token  string
 }
 
-func (c *staticCreds) AccessKeyID() string {
-	return c.id
+func (c *staticCreds) Fetch() (RequestCredentials, error) {
+	return RequestCredentials{c.id, c.secret, c.token}, nil
 }
 
-func (c *staticCreds) SecretAccessKey() string {
-	return c.secret
+type instanceRoleCredentials struct {
+	m                sync.Mutex
+	expires          time.Time
+	ID               string `json:"AccessKeyId"`
+	Secret           string `json:"SecretAccessKey"`
+	Token            string `json:"Token"`
+	ExpirationString string `json:"Expiration"`
+	APIResponseCode  string `json:"Code"`
 }
 
-func (c *staticCreds) SecurityToken() string {
-	return c.token
+func InstanceRoleCredentials() Credentials {
+	return &instanceRoleCredentials{}
+}
+
+// {
+//   "Code" : "Success",
+//   "LastUpdated" : "2014-12-15T19:17:56Z",
+//   "Type" : "AWS-HMAC",
+//   "AccessKeyId" : "",
+//   "SecretAccessKey" : "",
+//   "Token" : "",
+//   "Expiration" : "2014-12-16T01:51:37Z"
+// }
+
+var metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam/security-credentials/"
+
+// Retrieve credentials from the EC2 Metadata endpoint
+func (c *instanceRoleCredentials) obtainCredentialsLazily() error {
+	zeroTime := time.Time{}
+	if c.expires != zeroTime || -time.Since(c.expires) > 10*time.Second {
+		// Reuse existing credentials
+		return nil
+	}
+
+	c.m.Lock()
+	defer c.m.Unlock()
+
+	// Query the security-credentials/ endpoint
+	r, err := http.Get(metadataCredentialsEndpoint)
+	if err != nil {
+		return err
+	}
+
+	s := bufio.NewScanner(r.Body)
+	s.Scan()
+	if s.Err() != nil {
+		return s.Err()
+	}
+	firstLine := s.Text()
+
+	// Query the role that it returns
+	r, err = http.Get(metadataCredentialsEndpoint + firstLine)
+	if err != nil {
+		return err
+	}
+	decoder := json.NewDecoder(r.Body)
+	err = decoder.Decode(c)
+	if err != nil {
+		return err
+	}
+	if c.APIResponseCode != "Success" {
+		return fmt.Errorf("Metadata endpoint did not succeed. Code: %#+v", c)
+	}
+	c.expires, err = time.Parse("2006-01-02T15:04:05Z", c.ExpirationString)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *instanceRoleCredentials) Fetch() (RequestCredentials, error) {
+	err := c.obtainCredentialsLazily()
+	return RequestCredentials{c.ID, c.Secret, c.Token}, err
 }
