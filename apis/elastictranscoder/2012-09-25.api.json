@@ -1207,6 +1207,10 @@
         "Playlists":{
           "shape":"CreateJobPlaylists",
           "documentation":"<p>If you specify a preset in <code>PresetId</code> for which the value of <code>Container</code> is fmp4 (Fragmented MP4) or ts (MPEG-TS), Playlists contains information about the master playlists that you want Elastic Transcoder to create.</p> <p>The maximum number of master playlists in a job is 30.</p>"
+        },
+        "UserMetadata":{
+          "shape":"UserMetadata",
+          "documentation":"<p>User-defined metadata that you want to associate with an Elastic Transcoder job. You specify metadata in <code>key/value</code> pairs, and you can add up to 10 <code>key/value</code> pairs per job. Elastic Transcoder does not guarantee that <code>key/value</code> pairs will be returned in the same order in which you specify them.</p>"
         }
       },
       "documentation":"<p>The <code>CreateJobRequest</code> structure.</p>"
@@ -1494,6 +1498,10 @@
         "Status":{
           "shape":"JobStatus",
           "documentation":"<p> The status of the job: <code>Submitted</code>, <code>Progressing</code>, <code>Complete</code>, <code>Canceled</code>, or <code>Error</code>. </p>"
+        },
+        "UserMetadata":{
+          "shape":"UserMetadata",
+          "documentation":"<p>User-defined metadata that you want to associate with an Elastic Transcoder job. You specify metadata in <code>key/value</code> pairs, and you can add up to 10 <code>key/value</code> pairs per job. Elastic Transcoder does not guarantee that <code>key/value</code> pairs will be returned in the same order in which you specify them.</p> <p>Metadata <code>keys</code> and <code>values</code> must use characters from the following list:</p> <ul> <li><p><code>0-9</code></p></li> <li><p><code>A-Z</code> and <code>a-z</code></p></li> <li><p><code>Space</code></p></li> <li><p>The following symbols: <code>_.:/=+-%@</code></p></li> </ul>"
         }
       },
       "documentation":"<p>A section of the response body that provides information about the job that is created.</p>"
@@ -2459,6 +2467,11 @@
         }
       },
       "documentation":"When you update status for a pipeline, Elastic Transcoder returns the values that you specified in the request."
+    },
+    "UserMetadata":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
     },
     "ValidationException":{
       "type":"structure",

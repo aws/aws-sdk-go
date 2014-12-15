@@ -1700,7 +1700,7 @@
       "member":{"shape":"Event"},
       "flattened":true
     },
-    "Expiration":{"type":"timestamp"},
+    "Expiration":{"type":"string"},
     "ExpirationStatus":{
       "type":"string",
       "enum":[
