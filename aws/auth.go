@@ -1,7 +1,11 @@
 package aws
 
 import (
+	"encoding/json"
+	"log"
+	"net/http"
 	"os"
+	"sync"
 
 	"github.com/juju/errors"
 )
@@ -76,5 +80,66 @@ func (c *staticCreds) SecretAccessKey() string {
 }
 
 func (c *staticCreds) SecurityToken() string {
+	return c.token
+}
+
+type instanceRoleCredentials struct {
+	m                sync.Mutex
+	id               string `json:"AccessKeyId"`
+	secret           string `json:"SecretAccessKey"`
+	token            string `json:"Token"`
+	expirationString string `json:"Expiration"`
+	apiResponseCode  string `json:"Code"`
+}
+
+func InstanceRoleCredentials() Credentials {
+	return &instanceRoleCredentials{}
+}
+
+// {
+//   "Code" : "Success",
+//   "LastUpdated" : "2014-12-15T19:17:56Z",
+//   "Type" : "AWS-HMAC",
+//   "AccessKeyId" : "",
+//   "SecretAccessKey" : "",
+//   "Token" : "",
+//   "Expiration" : "2014-12-16T01:51:37Z"
+// }
+
+// Retrieve credentials from the EC2 Metadata endpoint
+func (c *instanceRoleCredentials) obtainCredentialsLazily() {
+	// TODO: Do we need to refresh?
+
+	// TODO: Need to loop over entries at /services/../, or pick the first line...
+	r, err := http.Get("http://169.254.169.254/latest/meta-data/iam/security-credentials/services")
+	if err != nil {
+		// Nowhere else to put it right now.
+		panic(err)
+	}
+	defer r.Close()
+	decoder := json.Decoder(r.Body)
+	err = decoder.Decode(c)
+	if err != nil {
+		panic(err)
+	}
+	if c.apiResponseCode != "success" {
+		log.Panicln("Error fetching code:", c.apiResponseCode)
+	}
+	log.Println("Got a key:", c.AccessKeyID())
+	// decoder
+}
+
+func (c *instanceRoleCredentials) AccessKeyID() string {
+	c.obtainCredentialsLazily()
+	return c.id
+}
+
+func (c *instanceRoleCredentials) SecretAccessKey() string {
+	c.obtainCredentialsLazily()
+	return c.secret
+}
+
+func (c *instanceRoleCredentials) SecurityToken() string {
+	c.obtainCredentialsLazily()
 	return c.token
 }
