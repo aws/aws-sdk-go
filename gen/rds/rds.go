@@ -684,7 +684,7 @@ type CreateDBInstanceMessage struct {
 	Tags                       []Tag            `xml:"Tags>Tag"`
 	TdeCredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
 	TdeCredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
-	VpcSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VPCSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // CreateDBInstanceReadReplicaMessage is undocumented.
@@ -844,7 +844,7 @@ type DBInstance struct {
 	StatusInfos                           []DBInstanceStatusInfo       `xml:"StatusInfos>DBInstanceStatusInfo"`
 	StorageType                           aws.StringValue              `xml:"StorageType"`
 	TdeCredentialARN                      aws.StringValue              `xml:"TdeCredentialArn"`
-	VpcSecurityGroups                     []VpcSecurityGroupMembership `xml:"VpcSecurityGroups>VpcSecurityGroupMembership"`
+	VPCSecurityGroups                     []VPCSecurityGroupMembership `xml:"VpcSecurityGroups>VpcSecurityGroupMembership"`
 }
 
 // DBInstanceMessage is undocumented.
@@ -898,7 +898,7 @@ type DBSecurityGroup struct {
 	EC2SecurityGroups          []EC2SecurityGroup `xml:"EC2SecurityGroups>EC2SecurityGroup"`
 	IPRanges                   []IPRange          `xml:"IPRanges>IPRange"`
 	OwnerID                    aws.StringValue    `xml:"OwnerId"`
-	VpcID                      aws.StringValue    `xml:"VpcId"`
+	VPCID                      aws.StringValue    `xml:"VpcId"`
 }
 
 // DBSecurityGroupMembership is undocumented.
@@ -934,7 +934,7 @@ type DBSnapshot struct {
 	Status               aws.StringValue  `xml:"Status"`
 	StorageType          aws.StringValue  `xml:"StorageType"`
 	TdeCredentialARN     aws.StringValue  `xml:"TdeCredentialArn"`
-	VpcID                aws.StringValue  `xml:"VpcId"`
+	VPCID                aws.StringValue  `xml:"VpcId"`
 }
 
 // DBSnapshotMessage is undocumented.
@@ -949,7 +949,7 @@ type DBSubnetGroup struct {
 	DBSubnetGroupName        aws.StringValue `xml:"DBSubnetGroupName"`
 	SubnetGroupStatus        aws.StringValue `xml:"SubnetGroupStatus"`
 	Subnets                  []Subnet        `xml:"Subnets>Subnet"`
-	VpcID                    aws.StringValue `xml:"VpcId"`
+	VPCID                    aws.StringValue `xml:"VpcId"`
 }
 
 // DBSubnetGroupMessage is undocumented.
@@ -1165,7 +1165,7 @@ type DescribeOrderableDBInstanceOptionsMessage struct {
 	LicenseModel    aws.StringValue  `xml:"LicenseModel"`
 	Marker          aws.StringValue  `xml:"Marker"`
 	MaxRecords      aws.IntegerValue `xml:"MaxRecords"`
-	Vpc             aws.BooleanValue `xml:"Vpc"`
+	VPC             aws.BooleanValue `xml:"Vpc"`
 }
 
 // DescribeReservedDBInstancesMessage is undocumented.
@@ -1316,7 +1316,7 @@ type ModifyDBInstanceMessage struct {
 	StorageType                aws.StringValue  `xml:"StorageType"`
 	TdeCredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
 	TdeCredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
-	VpcSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VPCSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // ModifyDBInstanceResult is undocumented.
@@ -1378,7 +1378,7 @@ type Option struct {
 	Permanent                   aws.BooleanValue             `xml:"Permanent"`
 	Persistent                  aws.BooleanValue             `xml:"Persistent"`
 	Port                        aws.IntegerValue             `xml:"Port"`
-	VpcSecurityGroupMemberships []VpcSecurityGroupMembership `xml:"VpcSecurityGroupMemberships>VpcSecurityGroupMembership"`
+	VPCSecurityGroupMemberships []VPCSecurityGroupMembership `xml:"VpcSecurityGroupMemberships>VpcSecurityGroupMembership"`
 }
 
 // OptionConfiguration is undocumented.
@@ -1387,18 +1387,18 @@ type OptionConfiguration struct {
 	OptionName                  aws.StringValue  `xml:"OptionName"`
 	OptionSettings              []OptionSetting  `xml:"OptionSettings>OptionSetting"`
 	Port                        aws.IntegerValue `xml:"Port"`
-	VpcSecurityGroupMemberships []string         `xml:"VpcSecurityGroupMemberships>VpcSecurityGroupId"`
+	VPCSecurityGroupMemberships []string         `xml:"VpcSecurityGroupMemberships>VpcSecurityGroupId"`
 }
 
 // OptionGroup is undocumented.
 type OptionGroup struct {
-	AllowsVpcAndNonVpcInstanceMemberships aws.BooleanValue `xml:"AllowsVpcAndNonVpcInstanceMemberships"`
+	AllowsVPCAndNonVPCInstanceMemberships aws.BooleanValue `xml:"AllowsVpcAndNonVpcInstanceMemberships"`
 	EngineName                            aws.StringValue  `xml:"EngineName"`
 	MajorEngineVersion                    aws.StringValue  `xml:"MajorEngineVersion"`
 	OptionGroupDescription                aws.StringValue  `xml:"OptionGroupDescription"`
 	OptionGroupName                       aws.StringValue  `xml:"OptionGroupName"`
 	Options                               []Option         `xml:"Options>Option"`
-	VpcID                                 aws.StringValue  `xml:"VpcId"`
+	VPCID                                 aws.StringValue  `xml:"VpcId"`
 }
 
 // OptionGroupMembership is undocumented.
@@ -1468,7 +1468,7 @@ type OrderableDBInstanceOption struct {
 	ReadReplicaCapable aws.BooleanValue   `xml:"ReadReplicaCapable"`
 	StorageType        aws.StringValue    `xml:"StorageType"`
 	SupportsIops       aws.BooleanValue   `xml:"SupportsIops"`
-	Vpc                aws.BooleanValue   `xml:"Vpc"`
+	VPC                aws.BooleanValue   `xml:"Vpc"`
 }
 
 // OrderableDBInstanceOptionsMessage is undocumented.
@@ -1703,10 +1703,10 @@ type TagListMessage struct {
 	TagList []Tag `xml:"ListTagsForResourceResult>TagList>Tag"`
 }
 
-// VpcSecurityGroupMembership is undocumented.
-type VpcSecurityGroupMembership struct {
+// VPCSecurityGroupMembership is undocumented.
+type VPCSecurityGroupMembership struct {
 	Status             aws.StringValue `xml:"Status"`
-	VpcSecurityGroupID aws.StringValue `xml:"VpcSecurityGroupId"`
+	VPCSecurityGroupID aws.StringValue `xml:"VpcSecurityGroupId"`
 }
 
 // DescribeDBEngineVersionsResult is a wrapper for DBEngineVersionMessage.

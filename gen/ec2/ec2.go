@@ -39,13 +39,13 @@ func New(creds aws.Credentials, region string, client *http.Client) *EC2 {
 	}
 }
 
-// AcceptVpcPeeringConnection accept a VPC peering connection request. To
+// AcceptVPCPeeringConnection accept a VPC peering connection request. To
 // accept a request, the VPC peering connection must be in the
 // pending-acceptance state, and you must be the owner of the peer Use the
 // DescribeVpcPeeringConnections request to view your outstanding VPC
 // peering connection requests.
-func (c *EC2) AcceptVpcPeeringConnection(req *AcceptVpcPeeringConnectionRequest) (resp *AcceptVpcPeeringConnectionResult, err error) {
-	resp = &AcceptVpcPeeringConnectionResult{}
+func (c *EC2) AcceptVPCPeeringConnection(req *AcceptVPCPeeringConnectionRequest) (resp *AcceptVPCPeeringConnectionResult, err error) {
+	resp = &AcceptVPCPeeringConnectionResult{}
 	err = c.client.Do("AcceptVpcPeeringConnection", "POST", "/", req, resp)
 	return
 }
@@ -640,7 +640,7 @@ func (c *EC2) CreateVolume(req *CreateVolumeRequest) (resp *Volume, err error) {
 	return
 }
 
-// CreateVpc creates a VPC with the specified block. The smallest VPC you
+// CreateVPC creates a VPC with the specified block. The smallest VPC you
 // can create uses a /28 netmask (16 IP addresses), and the largest uses a
 // /16 netmask (65,536 IP addresses). To help you decide how big to make
 // your see Your VPC and Subnets in the Amazon Virtual Private Cloud User
@@ -648,13 +648,13 @@ func (c *EC2) CreateVolume(req *CreateVolumeRequest) (resp *Volume, err error) {
 // options, which includes only a default DNS server that we provide
 // (AmazonProvidedDNS). For more information about options, see Options
 // Sets in the Amazon Virtual Private Cloud User Guide
-func (c *EC2) CreateVpc(req *CreateVpcRequest) (resp *CreateVpcResult, err error) {
-	resp = &CreateVpcResult{}
+func (c *EC2) CreateVPC(req *CreateVPCRequest) (resp *CreateVPCResult, err error) {
+	resp = &CreateVPCResult{}
 	err = c.client.Do("CreateVpc", "POST", "/", req, resp)
 	return
 }
 
-// CreateVpcPeeringConnection requests a VPC peering connection between two
+// CreateVPCPeeringConnection requests a VPC peering connection between two
 // VPCs: a requester VPC that you own and a peer VPC with which to create
 // the connection. The peer VPC can belong to another AWS account. The
 // requester VPC and peer VPC cannot have overlapping blocks. The owner of
@@ -663,8 +663,8 @@ func (c *EC2) CreateVpc(req *CreateVpcRequest) (resp *CreateVpcResult, err error
 // after which it cannot be accepted or rejected. A
 // CreateVpcPeeringConnection request between VPCs with overlapping blocks
 // results in the VPC peering connection having a status of failed
-func (c *EC2) CreateVpcPeeringConnection(req *CreateVpcPeeringConnectionRequest) (resp *CreateVpcPeeringConnectionResult, err error) {
-	resp = &CreateVpcPeeringConnectionResult{}
+func (c *EC2) CreateVPCPeeringConnection(req *CreateVPCPeeringConnectionRequest) (resp *CreateVPCPeeringConnectionResult, err error) {
+	resp = &CreateVPCPeeringConnectionResult{}
 	err = c.client.Do("CreateVpcPeeringConnection", "POST", "/", req, resp)
 	return
 }
@@ -862,25 +862,25 @@ func (c *EC2) DeleteVolume(req *DeleteVolumeRequest) (err error) {
 	return
 }
 
-// DeleteVpc deletes the specified You must detach or delete all gateways
+// DeleteVPC deletes the specified You must detach or delete all gateways
 // and resources that are associated with the VPC before you can delete it.
 // For example, you must terminate all instances running in the delete all
 // security groups associated with the VPC (except the default one), delete
 // all route tables associated with the VPC (except the default one), and
 // so on.
-func (c *EC2) DeleteVpc(req *DeleteVpcRequest) (err error) {
+func (c *EC2) DeleteVPC(req *DeleteVPCRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteVpc", "POST", "/", req, nil)
 	return
 }
 
-// DeleteVpcPeeringConnection deletes a VPC peering connection. Either the
+// DeleteVPCPeeringConnection deletes a VPC peering connection. Either the
 // owner of the requester VPC or the owner of the peer VPC can delete the
 // VPC peering connection if it's in the active state. The owner of the
 // requester VPC can delete a VPC peering connection in the
 // pending-acceptance state.
-func (c *EC2) DeleteVpcPeeringConnection(req *DeleteVpcPeeringConnectionRequest) (resp *DeleteVpcPeeringConnectionResult, err error) {
-	resp = &DeleteVpcPeeringConnectionResult{}
+func (c *EC2) DeleteVPCPeeringConnection(req *DeleteVPCPeeringConnectionRequest) (resp *DeleteVPCPeeringConnectionResult, err error) {
+	resp = &DeleteVPCPeeringConnectionResult{}
 	err = c.client.Do("DeleteVpcPeeringConnection", "POST", "/", req, resp)
 	return
 }
@@ -1420,25 +1420,25 @@ func (c *EC2) DescribeVolumes(req *DescribeVolumesRequest) (resp *DescribeVolume
 	return
 }
 
-// DescribeVpcAttribute describes the specified attribute of the specified
+// DescribeVPCAttribute describes the specified attribute of the specified
 // You can specify only one attribute at a time.
-func (c *EC2) DescribeVpcAttribute(req *DescribeVpcAttributeRequest) (resp *DescribeVpcAttributeResult, err error) {
-	resp = &DescribeVpcAttributeResult{}
+func (c *EC2) DescribeVPCAttribute(req *DescribeVPCAttributeRequest) (resp *DescribeVPCAttributeResult, err error) {
+	resp = &DescribeVPCAttributeResult{}
 	err = c.client.Do("DescribeVpcAttribute", "POST", "/", req, resp)
 	return
 }
 
-// DescribeVpcPeeringConnections describes one or more of your VPC peering
+// DescribeVPCPeeringConnections describes one or more of your VPC peering
 // connections.
-func (c *EC2) DescribeVpcPeeringConnections(req *DescribeVpcPeeringConnectionsRequest) (resp *DescribeVpcPeeringConnectionsResult, err error) {
-	resp = &DescribeVpcPeeringConnectionsResult{}
+func (c *EC2) DescribeVPCPeeringConnections(req *DescribeVPCPeeringConnectionsRequest) (resp *DescribeVPCPeeringConnectionsResult, err error) {
+	resp = &DescribeVPCPeeringConnectionsResult{}
 	err = c.client.Do("DescribeVpcPeeringConnections", "POST", "/", req, resp)
 	return
 }
 
-// DescribeVpcs is undocumented.
-func (c *EC2) DescribeVpcs(req *DescribeVpcsRequest) (resp *DescribeVpcsResult, err error) {
-	resp = &DescribeVpcsResult{}
+// DescribeVPCs is undocumented.
+func (c *EC2) DescribeVPCs(req *DescribeVPCsRequest) (resp *DescribeVPCsResult, err error) {
+	resp = &DescribeVPCsResult{}
 	err = c.client.Do("DescribeVpcs", "POST", "/", req, resp)
 	return
 }
@@ -1705,8 +1705,8 @@ func (c *EC2) ModifyVolumeAttribute(req *ModifyVolumeAttributeRequest) (err erro
 	return
 }
 
-// ModifyVpcAttribute is undocumented.
-func (c *EC2) ModifyVpcAttribute(req *ModifyVpcAttributeRequest) (err error) {
+// ModifyVPCAttribute is undocumented.
+func (c *EC2) ModifyVPCAttribute(req *ModifyVPCAttributeRequest) (err error) {
 	// NRE
 	err = c.client.Do("ModifyVpcAttribute", "POST", "/", req, nil)
 	return
@@ -1772,14 +1772,14 @@ func (c *EC2) RegisterImage(req *RegisterImageRequest) (resp *RegisterImageResul
 	return
 }
 
-// RejectVpcPeeringConnection rejects a VPC peering connection request. The
+// RejectVPCPeeringConnection rejects a VPC peering connection request. The
 // VPC peering connection must be in the pending-acceptance state. Use the
 // DescribeVpcPeeringConnections request to view your outstanding VPC
 // peering connection requests. To delete an active VPC peering connection,
 // or to delete a VPC peering connection request that you initiated, use
 // DeleteVpcPeeringConnection
-func (c *EC2) RejectVpcPeeringConnection(req *RejectVpcPeeringConnectionRequest) (resp *RejectVpcPeeringConnectionResult, err error) {
-	resp = &RejectVpcPeeringConnectionResult{}
+func (c *EC2) RejectVPCPeeringConnection(req *RejectVPCPeeringConnectionRequest) (resp *RejectVPCPeeringConnectionResult, err error) {
+	resp = &RejectVPCPeeringConnectionResult{}
 	err = c.client.Do("RejectVpcPeeringConnection", "POST", "/", req, resp)
 	return
 }
@@ -2058,15 +2058,15 @@ func (c *EC2) UnmonitorInstances(req *UnmonitorInstancesRequest) (resp *Unmonito
 	return
 }
 
-// AcceptVpcPeeringConnectionRequest is undocumented.
-type AcceptVpcPeeringConnectionRequest struct {
+// AcceptVPCPeeringConnectionRequest is undocumented.
+type AcceptVPCPeeringConnectionRequest struct {
 	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpcPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	VPCPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
-// AcceptVpcPeeringConnectionResult is undocumented.
-type AcceptVpcPeeringConnectionResult struct {
-	VpcPeeringConnection *VpcPeeringConnection `ec2:"VpcPeeringConnection" xml:"vpcPeeringConnection"`
+// AcceptVPCPeeringConnectionResult is undocumented.
+type AcceptVPCPeeringConnectionResult struct {
+	VPCPeeringConnection *VPCPeeringConnection `ec2:"VpcPeeringConnection" xml:"vpcPeeringConnection"`
 }
 
 // AccountAttribute is undocumented.
@@ -2133,7 +2133,7 @@ type AssociateAddressResult struct {
 type AssociateDhcpOptionsRequest struct {
 	DhcpOptionsID aws.StringValue  `ec2:"DhcpOptionsId" xml:"DhcpOptionsId"`
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpcID         aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
+	VPCID         aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
 // AssociateRouteTableRequest is undocumented.
@@ -2152,7 +2152,7 @@ type AssociateRouteTableResult struct {
 type AttachInternetGatewayRequest struct {
 	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InternetGatewayID aws.StringValue  `ec2:"InternetGatewayId" xml:"internetGatewayId"`
-	VpcID             aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+	VPCID             aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // AttachNetworkInterfaceRequest is undocumented.
@@ -2179,13 +2179,13 @@ type AttachVolumeRequest struct {
 // AttachVpnGatewayRequest is undocumented.
 type AttachVpnGatewayRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpcID        aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
+	VPCID        aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 	VpnGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
 // AttachVpnGatewayResult is undocumented.
 type AttachVpnGatewayResult struct {
-	VpcAttachment *VpcAttachment `ec2:"VpcAttachment" xml:"attachment"`
+	VPCAttachment *VPCAttachment `ec2:"VpcAttachment" xml:"attachment"`
 }
 
 // AttributeBooleanValue is undocumented.
@@ -2468,7 +2468,7 @@ type CreateNetworkAclEntryRequest struct {
 // CreateNetworkAclRequest is undocumented.
 type CreateNetworkAclRequest struct {
 	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpcID  aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+	VPCID  aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // CreateNetworkAclResult is undocumented.
@@ -2520,13 +2520,13 @@ type CreateRouteRequest struct {
 	InstanceID             aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
 	NetworkInterfaceID     aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 	RouteTableID           aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
-	VpcPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	VPCPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // CreateRouteTableRequest is undocumented.
 type CreateRouteTableRequest struct {
 	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpcID  aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+	VPCID  aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // CreateRouteTableResult is undocumented.
@@ -2539,7 +2539,7 @@ type CreateSecurityGroupRequest struct {
 	Description aws.StringValue  `ec2:"GroupDescription" xml:"GroupDescription"`
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	GroupName   aws.StringValue  `ec2:"GroupName" xml:"GroupName"`
-	VpcID       aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
+	VPCID       aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
 // CreateSecurityGroupResult is undocumented.
@@ -2571,7 +2571,7 @@ type CreateSubnetRequest struct {
 	AvailabilityZone aws.StringValue  `ec2:"AvailabilityZone" xml:"AvailabilityZone"`
 	CidrBlock        aws.StringValue  `ec2:"CidrBlock" xml:"CidrBlock"`
 	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpcID            aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
+	VPCID            aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
 // CreateSubnetResult is undocumented.
@@ -2610,29 +2610,29 @@ type CreateVolumeRequest struct {
 	VolumeType       aws.StringValue  `ec2:"VolumeType" xml:"VolumeType"`
 }
 
-// CreateVpcPeeringConnectionRequest is undocumented.
-type CreateVpcPeeringConnectionRequest struct {
+// CreateVPCPeeringConnectionRequest is undocumented.
+type CreateVPCPeeringConnectionRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	PeerOwnerID aws.StringValue  `ec2:"PeerOwnerId" xml:"peerOwnerId"`
-	PeerVpcID   aws.StringValue  `ec2:"PeerVpcId" xml:"peerVpcId"`
-	VpcID       aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+	PeerVPCID   aws.StringValue  `ec2:"PeerVpcId" xml:"peerVpcId"`
+	VPCID       aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
-// CreateVpcPeeringConnectionResult is undocumented.
-type CreateVpcPeeringConnectionResult struct {
-	VpcPeeringConnection *VpcPeeringConnection `ec2:"VpcPeeringConnection" xml:"vpcPeeringConnection"`
+// CreateVPCPeeringConnectionResult is undocumented.
+type CreateVPCPeeringConnectionResult struct {
+	VPCPeeringConnection *VPCPeeringConnection `ec2:"VpcPeeringConnection" xml:"vpcPeeringConnection"`
 }
 
-// CreateVpcRequest is undocumented.
-type CreateVpcRequest struct {
+// CreateVPCRequest is undocumented.
+type CreateVPCRequest struct {
 	CidrBlock       aws.StringValue  `ec2:"CidrBlock" xml:"CidrBlock"`
 	DryRun          aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceTenancy aws.StringValue  `ec2:"InstanceTenancy" xml:"instanceTenancy"`
 }
 
-// CreateVpcResult is undocumented.
-type CreateVpcResult struct {
-	Vpc *Vpc `ec2:"Vpc" xml:"vpc"`
+// CreateVPCResult is undocumented.
+type CreateVPCResult struct {
+	VPC *VPC `ec2:"Vpc" xml:"vpc"`
 }
 
 // CreateVpnConnectionRequest is undocumented.
@@ -2777,21 +2777,21 @@ type DeleteVolumeRequest struct {
 	VolumeID aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
 }
 
-// DeleteVpcPeeringConnectionRequest is undocumented.
-type DeleteVpcPeeringConnectionRequest struct {
+// DeleteVPCPeeringConnectionRequest is undocumented.
+type DeleteVPCPeeringConnectionRequest struct {
 	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpcPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	VPCPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
-// DeleteVpcPeeringConnectionResult is undocumented.
-type DeleteVpcPeeringConnectionResult struct {
+// DeleteVPCPeeringConnectionResult is undocumented.
+type DeleteVPCPeeringConnectionResult struct {
 	Return aws.BooleanValue `ec2:"Return" xml:"return"`
 }
 
-// DeleteVpcRequest is undocumented.
-type DeleteVpcRequest struct {
+// DeleteVPCRequest is undocumented.
+type DeleteVPCRequest struct {
 	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpcID  aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
+	VPCID  aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
 // DeleteVpnConnectionRequest is undocumented.
@@ -3285,42 +3285,42 @@ type DescribeVolumesResult struct {
 	Volumes   []Volume        `ec2:"Volumes" xml:"volumeSet>item"`
 }
 
-// DescribeVpcAttributeRequest is undocumented.
-type DescribeVpcAttributeRequest struct {
+// DescribeVPCAttributeRequest is undocumented.
+type DescribeVPCAttributeRequest struct {
 	Attribute aws.StringValue  `ec2:"Attribute" xml:"Attribute"`
 	DryRun    aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpcID     aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
+	VPCID     aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
-// DescribeVpcAttributeResult is undocumented.
-type DescribeVpcAttributeResult struct {
+// DescribeVPCAttributeResult is undocumented.
+type DescribeVPCAttributeResult struct {
 	EnableDNSHostnames *AttributeBooleanValue `ec2:"EnableDnsHostnames" xml:"enableDnsHostnames"`
 	EnableDNSSupport   *AttributeBooleanValue `ec2:"EnableDnsSupport" xml:"enableDnsSupport"`
-	VpcID              aws.StringValue        `ec2:"VpcId" xml:"vpcId"`
+	VPCID              aws.StringValue        `ec2:"VpcId" xml:"vpcId"`
 }
 
-// DescribeVpcPeeringConnectionsRequest is undocumented.
-type DescribeVpcPeeringConnectionsRequest struct {
+// DescribeVPCPeeringConnectionsRequest is undocumented.
+type DescribeVPCPeeringConnectionsRequest struct {
 	DryRun                  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Filters                 []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	VpcPeeringConnectionIDs []string         `ec2:"VpcPeeringConnectionId" xml:"VpcPeeringConnectionId>item"`
+	VPCPeeringConnectionIDs []string         `ec2:"VpcPeeringConnectionId" xml:"VpcPeeringConnectionId>item"`
 }
 
-// DescribeVpcPeeringConnectionsResult is undocumented.
-type DescribeVpcPeeringConnectionsResult struct {
-	VpcPeeringConnections []VpcPeeringConnection `ec2:"VpcPeeringConnections" xml:"vpcPeeringConnectionSet>item"`
+// DescribeVPCPeeringConnectionsResult is undocumented.
+type DescribeVPCPeeringConnectionsResult struct {
+	VPCPeeringConnections []VPCPeeringConnection `ec2:"VpcPeeringConnections" xml:"vpcPeeringConnectionSet>item"`
 }
 
-// DescribeVpcsRequest is undocumented.
-type DescribeVpcsRequest struct {
+// DescribeVPCsRequest is undocumented.
+type DescribeVPCsRequest struct {
 	DryRun  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Filters []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	VpcIDs  []string         `ec2:"VpcId" xml:"VpcId>VpcId"`
+	VPCIDs  []string         `ec2:"VpcId" xml:"VpcId>VpcId"`
 }
 
-// DescribeVpcsResult is undocumented.
-type DescribeVpcsResult struct {
-	Vpcs []Vpc `ec2:"Vpcs" xml:"vpcSet>item"`
+// DescribeVPCsResult is undocumented.
+type DescribeVPCsResult struct {
+	VPCs []VPC `ec2:"Vpcs" xml:"vpcSet>item"`
 }
 
 // DescribeVpnConnectionsRequest is undocumented.
@@ -3351,7 +3351,7 @@ type DescribeVpnGatewaysResult struct {
 type DetachInternetGatewayRequest struct {
 	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InternetGatewayID aws.StringValue  `ec2:"InternetGatewayId" xml:"internetGatewayId"`
-	VpcID             aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+	VPCID             aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // DetachNetworkInterfaceRequest is undocumented.
@@ -3373,7 +3373,7 @@ type DetachVolumeRequest struct {
 // DetachVpnGatewayRequest is undocumented.
 type DetachVpnGatewayRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpcID        aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
+	VPCID        aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 	VpnGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
@@ -3715,7 +3715,7 @@ type Instance struct {
 	SubnetID              aws.StringValue              `ec2:"SubnetId" xml:"subnetId"`
 	Tags                  []Tag                        `ec2:"Tags" xml:"tagSet>item"`
 	VirtualizationType    aws.StringValue              `ec2:"VirtualizationType" xml:"virtualizationType"`
-	VpcID                 aws.StringValue              `ec2:"VpcId" xml:"vpcId"`
+	VPCID                 aws.StringValue              `ec2:"VpcId" xml:"vpcId"`
 }
 
 // InstanceAttribute is undocumented.
@@ -3783,7 +3783,7 @@ type InstanceNetworkInterface struct {
 	SourceDestCheck    aws.BooleanValue                     `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
 	Status             aws.StringValue                      `ec2:"Status" xml:"status"`
 	SubnetID           aws.StringValue                      `ec2:"SubnetId" xml:"subnetId"`
-	VpcID              aws.StringValue                      `ec2:"VpcId" xml:"vpcId"`
+	VPCID              aws.StringValue                      `ec2:"VpcId" xml:"vpcId"`
 }
 
 // InstanceNetworkInterfaceAssociation is undocumented.
@@ -3878,7 +3878,7 @@ type InternetGateway struct {
 // InternetGatewayAttachment is undocumented.
 type InternetGatewayAttachment struct {
 	State aws.StringValue `ec2:"State" xml:"state"`
-	VpcID aws.StringValue `ec2:"VpcId" xml:"vpcId"`
+	VPCID aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
 // IPPermission is undocumented.
@@ -4018,11 +4018,11 @@ type ModifyVolumeAttributeRequest struct {
 	VolumeID     aws.StringValue        `ec2:"VolumeId" xml:"VolumeId"`
 }
 
-// ModifyVpcAttributeRequest is undocumented.
-type ModifyVpcAttributeRequest struct {
+// ModifyVPCAttributeRequest is undocumented.
+type ModifyVPCAttributeRequest struct {
 	EnableDNSHostnames *AttributeBooleanValue `ec2:"EnableDnsHostnames" xml:"EnableDnsHostnames"`
 	EnableDNSSupport   *AttributeBooleanValue `ec2:"EnableDnsSupport" xml:"EnableDnsSupport"`
-	VpcID              aws.StringValue        `ec2:"VpcId" xml:"vpcId"`
+	VPCID              aws.StringValue        `ec2:"VpcId" xml:"vpcId"`
 }
 
 // MonitorInstancesRequest is undocumented.
@@ -4048,7 +4048,7 @@ type NetworkAcl struct {
 	IsDefault    aws.BooleanValue        `ec2:"IsDefault" xml:"default"`
 	NetworkAclID aws.StringValue         `ec2:"NetworkAclId" xml:"networkAclId"`
 	Tags         []Tag                   `ec2:"Tags" xml:"tagSet>item"`
-	VpcID        aws.StringValue         `ec2:"VpcId" xml:"vpcId"`
+	VPCID        aws.StringValue         `ec2:"VpcId" xml:"vpcId"`
 }
 
 // NetworkAclAssociation is undocumented.
@@ -4088,7 +4088,7 @@ type NetworkInterface struct {
 	Status             aws.StringValue                    `ec2:"Status" xml:"status"`
 	SubnetID           aws.StringValue                    `ec2:"SubnetId" xml:"subnetId"`
 	TagSet             []Tag                              `ec2:"TagSet" xml:"tagSet>item"`
-	VpcID              aws.StringValue                    `ec2:"VpcId" xml:"vpcId"`
+	VPCID              aws.StringValue                    `ec2:"VpcId" xml:"vpcId"`
 }
 
 // NetworkInterfaceAssociation is undocumented.
@@ -4240,14 +4240,14 @@ type RegisterImageResult struct {
 	ImageID aws.StringValue `ec2:"ImageId" xml:"imageId"`
 }
 
-// RejectVpcPeeringConnectionRequest is undocumented.
-type RejectVpcPeeringConnectionRequest struct {
+// RejectVPCPeeringConnectionRequest is undocumented.
+type RejectVPCPeeringConnectionRequest struct {
 	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpcPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	VPCPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
-// RejectVpcPeeringConnectionResult is undocumented.
-type RejectVpcPeeringConnectionResult struct {
+// RejectVPCPeeringConnectionResult is undocumented.
+type RejectVPCPeeringConnectionResult struct {
 	Return aws.BooleanValue `ec2:"Return" xml:"return"`
 }
 
@@ -4291,7 +4291,7 @@ type ReplaceRouteRequest struct {
 	InstanceID             aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
 	NetworkInterfaceID     aws.StringValue  `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 	RouteTableID           aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
-	VpcPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	VPCPeeringConnectionID aws.StringValue  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // ReplaceRouteTableAssociationRequest is undocumented.
@@ -4517,7 +4517,7 @@ type Route struct {
 	NetworkInterfaceID     aws.StringValue `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 	Origin                 aws.StringValue `ec2:"Origin" xml:"origin"`
 	State                  aws.StringValue `ec2:"State" xml:"state"`
-	VpcPeeringConnectionID aws.StringValue `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	VPCPeeringConnectionID aws.StringValue `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
 // RouteTable is undocumented.
@@ -4527,7 +4527,7 @@ type RouteTable struct {
 	RouteTableID    aws.StringValue         `ec2:"RouteTableId" xml:"routeTableId"`
 	Routes          []Route                 `ec2:"Routes" xml:"routeSet>item"`
 	Tags            []Tag                   `ec2:"Tags" xml:"tagSet>item"`
-	VpcID           aws.StringValue         `ec2:"VpcId" xml:"vpcId"`
+	VPCID           aws.StringValue         `ec2:"VpcId" xml:"vpcId"`
 }
 
 // RouteTableAssociation is undocumented.
@@ -4588,7 +4588,7 @@ type SecurityGroup struct {
 	IPPermissionsEgress []IPPermission  `ec2:"IpPermissionsEgress" xml:"ipPermissionsEgress>item"`
 	OwnerID             aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
 	Tags                []Tag           `ec2:"Tags" xml:"tagSet>item"`
-	VpcID               aws.StringValue `ec2:"VpcId" xml:"vpcId"`
+	VPCID               aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
 // Snapshot is undocumented.
@@ -4709,7 +4709,7 @@ type Subnet struct {
 	State                   aws.StringValue  `ec2:"State" xml:"state"`
 	SubnetID                aws.StringValue  `ec2:"SubnetId" xml:"subnetId"`
 	Tags                    []Tag            `ec2:"Tags" xml:"tagSet>item"`
-	VpcID                   aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+	VPCID                   aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
 // Tag is undocumented.
@@ -4839,44 +4839,44 @@ type VolumeStatusItem struct {
 	VolumeStatus     *VolumeStatusInfo    `ec2:"VolumeStatus" xml:"volumeStatus"`
 }
 
-// Vpc is undocumented.
-type Vpc struct {
+// VPC is undocumented.
+type VPC struct {
 	CidrBlock       aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	DhcpOptionsID   aws.StringValue  `ec2:"DhcpOptionsId" xml:"dhcpOptionsId"`
 	InstanceTenancy aws.StringValue  `ec2:"InstanceTenancy" xml:"instanceTenancy"`
 	IsDefault       aws.BooleanValue `ec2:"IsDefault" xml:"isDefault"`
 	State           aws.StringValue  `ec2:"State" xml:"state"`
 	Tags            []Tag            `ec2:"Tags" xml:"tagSet>item"`
-	VpcID           aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+	VPCID           aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
-// VpcAttachment is undocumented.
-type VpcAttachment struct {
+// VPCAttachment is undocumented.
+type VPCAttachment struct {
 	State aws.StringValue `ec2:"State" xml:"state"`
-	VpcID aws.StringValue `ec2:"VpcId" xml:"vpcId"`
+	VPCID aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
-// VpcPeeringConnection is undocumented.
-type VpcPeeringConnection struct {
-	AccepterVpcInfo        *VpcPeeringConnectionVpcInfo     `ec2:"AccepterVpcInfo" xml:"accepterVpcInfo"`
+// VPCPeeringConnection is undocumented.
+type VPCPeeringConnection struct {
+	AccepterVPCInfo        *VPCPeeringConnectionVPCInfo     `ec2:"AccepterVpcInfo" xml:"accepterVpcInfo"`
 	ExpirationTime         time.Time                        `ec2:"ExpirationTime" xml:"expirationTime"`
-	RequesterVpcInfo       *VpcPeeringConnectionVpcInfo     `ec2:"RequesterVpcInfo" xml:"requesterVpcInfo"`
-	Status                 *VpcPeeringConnectionStateReason `ec2:"Status" xml:"status"`
+	RequesterVPCInfo       *VPCPeeringConnectionVPCInfo     `ec2:"RequesterVpcInfo" xml:"requesterVpcInfo"`
+	Status                 *VPCPeeringConnectionStateReason `ec2:"Status" xml:"status"`
 	Tags                   []Tag                            `ec2:"Tags" xml:"tagSet>item"`
-	VpcPeeringConnectionID aws.StringValue                  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
+	VPCPeeringConnectionID aws.StringValue                  `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
-// VpcPeeringConnectionStateReason is undocumented.
-type VpcPeeringConnectionStateReason struct {
+// VPCPeeringConnectionStateReason is undocumented.
+type VPCPeeringConnectionStateReason struct {
 	Code    aws.StringValue `ec2:"Code" xml:"code"`
 	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
-// VpcPeeringConnectionVpcInfo is undocumented.
-type VpcPeeringConnectionVpcInfo struct {
+// VPCPeeringConnectionVPCInfo is undocumented.
+type VPCPeeringConnectionVPCInfo struct {
 	CidrBlock aws.StringValue `ec2:"CidrBlock" xml:"cidrBlock"`
 	OwnerID   aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
-	VpcID     aws.StringValue `ec2:"VpcId" xml:"vpcId"`
+	VPCID     aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
 // VpnConnection is undocumented.
@@ -4909,7 +4909,7 @@ type VpnGateway struct {
 	State            aws.StringValue `ec2:"State" xml:"state"`
 	Tags             []Tag           `ec2:"Tags" xml:"tagSet>item"`
 	Type             aws.StringValue `ec2:"Type" xml:"type"`
-	VpcAttachments   []VpcAttachment `ec2:"VpcAttachments" xml:"attachments>item"`
+	VPCAttachments   []VPCAttachment `ec2:"VpcAttachments" xml:"attachments>item"`
 	VpnGatewayID     aws.StringValue `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
 }
 

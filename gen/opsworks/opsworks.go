@@ -872,7 +872,7 @@ type CloneStackRequest struct {
 	SourceStackID             aws.StringValue            `json:"SourceStackId"`
 	UseCustomCookbooks        aws.BooleanValue           `json:"UseCustomCookbooks,omitempty"`
 	UseOpsworksSecurityGroups aws.BooleanValue           `json:"UseOpsworksSecurityGroups,omitempty"`
-	VpcID                     aws.StringValue            `json:"VpcId,omitempty"`
+	VPCID                     aws.StringValue            `json:"VpcId,omitempty"`
 }
 
 // CloneStackResult is undocumented.
@@ -998,7 +998,7 @@ type CreateStackRequest struct {
 	ServiceRoleARN            aws.StringValue            `json:"ServiceRoleArn"`
 	UseCustomCookbooks        aws.BooleanValue           `json:"UseCustomCookbooks,omitempty"`
 	UseOpsworksSecurityGroups aws.BooleanValue           `json:"UseOpsworksSecurityGroups,omitempty"`
-	VpcID                     aws.StringValue            `json:"VpcId,omitempty"`
+	VPCID                     aws.StringValue            `json:"VpcId,omitempty"`
 }
 
 // CreateStackResult is undocumented.
@@ -1331,7 +1331,7 @@ type ElasticLoadBalancer struct {
 	Region                  aws.StringValue `json:"Region,omitempty"`
 	StackID                 aws.StringValue `json:"StackId,omitempty"`
 	SubnetIDs               []string        `json:"SubnetIds,omitempty"`
-	VpcID                   aws.StringValue `json:"VpcId,omitempty"`
+	VPCID                   aws.StringValue `json:"VpcId,omitempty"`
 }
 
 // EnvironmentVariable is undocumented.
@@ -1647,7 +1647,7 @@ type Stack struct {
 	StackID                   aws.StringValue            `json:"StackId,omitempty"`
 	UseCustomCookbooks        aws.BooleanValue           `json:"UseCustomCookbooks,omitempty"`
 	UseOpsworksSecurityGroups aws.BooleanValue           `json:"UseOpsworksSecurityGroups,omitempty"`
-	VpcID                     aws.StringValue            `json:"VpcId,omitempty"`
+	VPCID                     aws.StringValue            `json:"VpcId,omitempty"`
 }
 
 // StackConfigurationManager is undocumented.

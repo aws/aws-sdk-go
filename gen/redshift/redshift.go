@@ -815,8 +815,8 @@ type Cluster struct {
 	PubliclyAccessible               aws.BooleanValue                 `xml:"PubliclyAccessible"`
 	RestoreStatus                    *RestoreStatus                   `xml:"RestoreStatus"`
 	Tags                             []Tag                            `xml:"Tags>Tag"`
-	VpcID                            aws.StringValue                  `xml:"VpcId"`
-	VpcSecurityGroups                []VpcSecurityGroupMembership     `xml:"VpcSecurityGroups>VpcSecurityGroup"`
+	VPCID                            aws.StringValue                  `xml:"VpcId"`
+	VPCSecurityGroups                []VPCSecurityGroupMembership     `xml:"VpcSecurityGroups>VpcSecurityGroup"`
 }
 
 // ClusterNode is undocumented.
@@ -892,7 +892,7 @@ type ClusterSubnetGroup struct {
 	SubnetGroupStatus      aws.StringValue `xml:"SubnetGroupStatus"`
 	Subnets                []Subnet        `xml:"Subnets>Subnet"`
 	Tags                   []Tag           `xml:"Tags>Tag"`
-	VpcID                  aws.StringValue `xml:"VpcId"`
+	VPCID                  aws.StringValue `xml:"VpcId"`
 }
 
 // ClusterSubnetGroupMessage is undocumented.
@@ -957,7 +957,7 @@ type CreateClusterMessage struct {
 	PreferredMaintenanceWindow       aws.StringValue  `xml:"PreferredMaintenanceWindow"`
 	PubliclyAccessible               aws.BooleanValue `xml:"PubliclyAccessible"`
 	Tags                             []Tag            `xml:"Tags>Tag"`
-	VpcSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VPCSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // CreateClusterParameterGroupMessage is undocumented.
@@ -1471,7 +1471,7 @@ type ModifyClusterMessage struct {
 	NodeType                         aws.StringValue  `xml:"NodeType"`
 	NumberOfNodes                    aws.IntegerValue `xml:"NumberOfNodes"`
 	PreferredMaintenanceWindow       aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	VpcSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VPCSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // ModifyClusterParameterGroupMessage is undocumented.
@@ -1670,7 +1670,7 @@ type RestoreFromClusterSnapshotMessage struct {
 	PubliclyAccessible               aws.BooleanValue `xml:"PubliclyAccessible"`
 	SnapshotClusterIdentifier        aws.StringValue  `xml:"SnapshotClusterIdentifier"`
 	SnapshotIdentifier               aws.StringValue  `xml:"SnapshotIdentifier"`
-	VpcSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VPCSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // RestoreFromClusterSnapshotResult is undocumented.
@@ -1751,7 +1751,7 @@ type Snapshot struct {
 	Status                                 aws.StringValue            `xml:"Status"`
 	Tags                                   []Tag                      `xml:"Tags>Tag"`
 	TotalBackupSizeInMegaBytes             aws.DoubleValue            `xml:"TotalBackupSizeInMegaBytes"`
-	VpcID                                  aws.StringValue            `xml:"VpcId"`
+	VPCID                                  aws.StringValue            `xml:"VpcId"`
 }
 
 // SnapshotMessage is undocumented.
@@ -1786,10 +1786,10 @@ type TaggedResourceListMessage struct {
 	TaggedResources []TaggedResource `xml:"DescribeTagsResult>TaggedResources>TaggedResource"`
 }
 
-// VpcSecurityGroupMembership is undocumented.
-type VpcSecurityGroupMembership struct {
+// VPCSecurityGroupMembership is undocumented.
+type VPCSecurityGroupMembership struct {
 	Status             aws.StringValue `xml:"Status"`
-	VpcSecurityGroupID aws.StringValue `xml:"VpcSecurityGroupId"`
+	VPCSecurityGroupID aws.StringValue `xml:"VpcSecurityGroupId"`
 }
 
 // DescribeClusterParameterGroupsResult is a wrapper for ClusterParameterGroupsMessage.

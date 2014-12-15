@@ -541,7 +541,7 @@ type CacheSubnetGroup struct {
 	CacheSubnetGroupDescription aws.StringValue `xml:"CacheSubnetGroupDescription"`
 	CacheSubnetGroupName        aws.StringValue `xml:"CacheSubnetGroupName"`
 	Subnets                     []Subnet        `xml:"Subnets>Subnet"`
-	VpcID                       aws.StringValue `xml:"VpcId"`
+	VPCID                       aws.StringValue `xml:"VpcId"`
 }
 
 // CacheSubnetGroupMessage is undocumented.
@@ -1128,7 +1128,7 @@ type Snapshot struct {
 	SnapshotStatus             aws.StringValue  `xml:"SnapshotStatus"`
 	SnapshotWindow             aws.StringValue  `xml:"SnapshotWindow"`
 	TopicARN                   aws.StringValue  `xml:"TopicArn"`
-	VpcID                      aws.StringValue  `xml:"VpcId"`
+	VPCID                      aws.StringValue  `xml:"VpcId"`
 }
 
 // Subnet is undocumented.

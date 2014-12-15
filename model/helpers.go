@@ -65,4 +65,5 @@ var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Http`):       "HTTP",
 	regexp.MustCompile(`Html`):       "HTML",
 	regexp.MustCompile(`Ebs`):        "EBS",
+	regexp.MustCompile(`Vpc`):        "VPC",
 }
