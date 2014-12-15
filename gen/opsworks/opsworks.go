@@ -1009,14 +1009,14 @@ type CreateStackResult struct {
 // CreateUserProfileRequest is undocumented.
 type CreateUserProfileRequest struct {
 	AllowSelfManagement aws.BooleanValue `json:"AllowSelfManagement,omitempty"`
-	IamUserARN          aws.StringValue  `json:"IamUserArn"`
+	IAMUserARN          aws.StringValue  `json:"IamUserArn"`
 	SSHPublicKey        aws.StringValue  `json:"SshPublicKey,omitempty"`
 	SSHUsername         aws.StringValue  `json:"SshUsername,omitempty"`
 }
 
 // CreateUserProfileResult is undocumented.
 type CreateUserProfileResult struct {
-	IamUserARN aws.StringValue `json:"IamUserArn,omitempty"`
+	IAMUserARN aws.StringValue `json:"IamUserArn,omitempty"`
 }
 
 // DataSource is undocumented.
@@ -1050,7 +1050,7 @@ type DeleteStackRequest struct {
 
 // DeleteUserProfileRequest is undocumented.
 type DeleteUserProfileRequest struct {
-	IamUserARN aws.StringValue `json:"IamUserArn"`
+	IAMUserARN aws.StringValue `json:"IamUserArn"`
 }
 
 // Deployment is undocumented.
@@ -1063,7 +1063,7 @@ type Deployment struct {
 	CustomJSON   aws.StringValue    `json:"CustomJson,omitempty"`
 	DeploymentID aws.StringValue    `json:"DeploymentId,omitempty"`
 	Duration     aws.IntegerValue   `json:"Duration,omitempty"`
-	IamUserARN   aws.StringValue    `json:"IamUserArn,omitempty"`
+	IAMUserARN   aws.StringValue    `json:"IamUserArn,omitempty"`
 	InstanceIDs  []string           `json:"InstanceIds,omitempty"`
 	StackID      aws.StringValue    `json:"StackId,omitempty"`
 	Status       aws.StringValue    `json:"Status,omitempty"`
@@ -1193,7 +1193,7 @@ type DescribeMyUserProfileResult struct {
 
 // DescribePermissionsRequest is undocumented.
 type DescribePermissionsRequest struct {
-	IamUserARN aws.StringValue `json:"IamUserArn,omitempty"`
+	IAMUserARN aws.StringValue `json:"IamUserArn,omitempty"`
 	StackID    aws.StringValue `json:"StackId,omitempty"`
 }
 
@@ -1280,7 +1280,7 @@ type DescribeTimeBasedAutoScalingResult struct {
 
 // DescribeUserProfilesRequest is undocumented.
 type DescribeUserProfilesRequest struct {
-	IamUserARNs []string `json:"IamUserArns,omitempty"`
+	IAMUserARNs []string `json:"IamUserArns,omitempty"`
 }
 
 // DescribeUserProfilesResult is undocumented.
@@ -1459,7 +1459,7 @@ type LoadBasedAutoScalingConfiguration struct {
 type Permission struct {
 	AllowSSH   aws.BooleanValue `json:"AllowSsh,omitempty"`
 	AllowSudo  aws.BooleanValue `json:"AllowSudo,omitempty"`
-	IamUserARN aws.StringValue  `json:"IamUserArn,omitempty"`
+	IAMUserARN aws.StringValue  `json:"IamUserArn,omitempty"`
 	Level      aws.StringValue  `json:"Level,omitempty"`
 	StackID    aws.StringValue  `json:"StackId,omitempty"`
 }
@@ -1563,7 +1563,7 @@ type ReportedOs struct {
 
 // SelfUserProfile is undocumented.
 type SelfUserProfile struct {
-	IamUserARN   aws.StringValue `json:"IamUserArn,omitempty"`
+	IAMUserARN   aws.StringValue `json:"IamUserArn,omitempty"`
 	Name         aws.StringValue `json:"Name,omitempty"`
 	SSHPublicKey aws.StringValue `json:"SshPublicKey,omitempty"`
 	SSHUsername  aws.StringValue `json:"SshUsername,omitempty"`
@@ -1591,7 +1591,7 @@ type SetLoadBasedAutoScalingRequest struct {
 type SetPermissionRequest struct {
 	AllowSSH   aws.BooleanValue `json:"AllowSsh,omitempty"`
 	AllowSudo  aws.BooleanValue `json:"AllowSudo,omitempty"`
-	IamUserARN aws.StringValue  `json:"IamUserArn"`
+	IAMUserARN aws.StringValue  `json:"IamUserArn"`
 	Level      aws.StringValue  `json:"Level,omitempty"`
 	StackID    aws.StringValue  `json:"StackId"`
 }
@@ -1793,7 +1793,7 @@ type UpdateStackRequest struct {
 // UpdateUserProfileRequest is undocumented.
 type UpdateUserProfileRequest struct {
 	AllowSelfManagement aws.BooleanValue `json:"AllowSelfManagement,omitempty"`
-	IamUserARN          aws.StringValue  `json:"IamUserArn"`
+	IAMUserARN          aws.StringValue  `json:"IamUserArn"`
 	SSHPublicKey        aws.StringValue  `json:"SshPublicKey,omitempty"`
 	SSHUsername         aws.StringValue  `json:"SshUsername,omitempty"`
 }
@@ -1808,7 +1808,7 @@ type UpdateVolumeRequest struct {
 // UserProfile is undocumented.
 type UserProfile struct {
 	AllowSelfManagement aws.BooleanValue `json:"AllowSelfManagement,omitempty"`
-	IamUserARN          aws.StringValue  `json:"IamUserArn,omitempty"`
+	IAMUserARN          aws.StringValue  `json:"IamUserArn,omitempty"`
 	Name                aws.StringValue  `json:"Name,omitempty"`
 	SSHPublicKey        aws.StringValue  `json:"SshPublicKey,omitempty"`
 	SSHUsername         aws.StringValue  `json:"SshUsername,omitempty"`

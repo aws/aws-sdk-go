@@ -655,7 +655,7 @@ type CreateLaunchConfigurationType struct {
 	AssociatePublicIPAddress aws.BooleanValue     `xml:"AssociatePublicIpAddress"`
 	BlockDeviceMappings      []BlockDeviceMapping `xml:"BlockDeviceMappings>member"`
 	EBSOptimized             aws.BooleanValue     `xml:"EbsOptimized"`
-	IamInstanceProfile       aws.StringValue      `xml:"IamInstanceProfile"`
+	IAMInstanceProfile       aws.StringValue      `xml:"IamInstanceProfile"`
 	ImageID                  aws.StringValue      `xml:"ImageId"`
 	InstanceID               aws.StringValue      `xml:"InstanceId"`
 	InstanceMonitoring       *InstanceMonitoring  `xml:"InstanceMonitoring"`
@@ -906,7 +906,7 @@ type LaunchConfiguration struct {
 	BlockDeviceMappings      []BlockDeviceMapping `xml:"BlockDeviceMappings>member"`
 	CreatedTime              time.Time            `xml:"CreatedTime"`
 	EBSOptimized             aws.BooleanValue     `xml:"EbsOptimized"`
-	IamInstanceProfile       aws.StringValue      `xml:"IamInstanceProfile"`
+	IAMInstanceProfile       aws.StringValue      `xml:"IamInstanceProfile"`
 	ImageID                  aws.StringValue      `xml:"ImageId"`
 	InstanceMonitoring       *InstanceMonitoring  `xml:"InstanceMonitoring"`
 	InstanceType             aws.StringValue      `xml:"InstanceType"`

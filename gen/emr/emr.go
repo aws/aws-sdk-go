@@ -396,7 +396,7 @@ type EC2InstanceAttributes struct {
 	EC2AvailabilityZone aws.StringValue `json:"Ec2AvailabilityZone,omitempty"`
 	EC2KeyName          aws.StringValue `json:"Ec2KeyName,omitempty"`
 	EC2SubnetID         aws.StringValue `json:"Ec2SubnetId,omitempty"`
-	IamInstanceProfile  aws.StringValue `json:"IamInstanceProfile,omitempty"`
+	IAMInstanceProfile  aws.StringValue `json:"IamInstanceProfile,omitempty"`
 }
 
 // HadoopJarStepConfig is undocumented.

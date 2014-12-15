@@ -3537,14 +3537,14 @@ type GroupIdentifier struct {
 	GroupName aws.StringValue `ec2:"GroupName" xml:"groupName"`
 }
 
-// IamInstanceProfile is undocumented.
-type IamInstanceProfile struct {
+// IAMInstanceProfile is undocumented.
+type IAMInstanceProfile struct {
 	ARN aws.StringValue `ec2:"Arn" xml:"arn"`
 	ID  aws.StringValue `ec2:"Id" xml:"id"`
 }
 
-// IamInstanceProfileSpecification is undocumented.
-type IamInstanceProfileSpecification struct {
+// IAMInstanceProfileSpecification is undocumented.
+type IAMInstanceProfileSpecification struct {
 	ARN  aws.StringValue `ec2:"Arn" xml:"arn"`
 	Name aws.StringValue `ec2:"Name" xml:"name"`
 }
@@ -3685,7 +3685,7 @@ type Instance struct {
 	ClientToken           aws.StringValue              `ec2:"ClientToken" xml:"clientToken"`
 	EBSOptimized          aws.BooleanValue             `ec2:"EbsOptimized" xml:"ebsOptimized"`
 	Hypervisor            aws.StringValue              `ec2:"Hypervisor" xml:"hypervisor"`
-	IamInstanceProfile    *IamInstanceProfile          `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
+	IAMInstanceProfile    *IAMInstanceProfile          `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
 	ImageID               aws.StringValue              `ec2:"ImageId" xml:"imageId"`
 	InstanceID            aws.StringValue              `ec2:"InstanceId" xml:"instanceId"`
 	InstanceLifecycle     aws.StringValue              `ec2:"InstanceLifecycle" xml:"instanceLifecycle"`
@@ -3925,7 +3925,7 @@ type LaunchSpecification struct {
 	AddressingType      aws.StringValue                         `ec2:"AddressingType" xml:"addressingType"`
 	BlockDeviceMappings []BlockDeviceMapping                    `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
 	EBSOptimized        aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
-	IamInstanceProfile  *IamInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
+	IAMInstanceProfile  *IAMInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
 	ImageID             aws.StringValue                         `ec2:"ImageId" xml:"imageId"`
 	InstanceType        aws.StringValue                         `ec2:"InstanceType" xml:"instanceType"`
 	KernelID            aws.StringValue                         `ec2:"KernelId" xml:"kernelId"`
@@ -4340,7 +4340,7 @@ type RequestSpotLaunchSpecification struct {
 	AddressingType      aws.StringValue                         `ec2:"AddressingType" xml:"addressingType"`
 	BlockDeviceMappings []BlockDeviceMapping                    `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
 	EBSOptimized        aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
-	IamInstanceProfile  *IamInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
+	IAMInstanceProfile  *IAMInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
 	ImageID             aws.StringValue                         `ec2:"ImageId" xml:"imageId"`
 	InstanceType        aws.StringValue                         `ec2:"InstanceType" xml:"instanceType"`
 	KernelID            aws.StringValue                         `ec2:"KernelId" xml:"kernelId"`
@@ -4551,7 +4551,7 @@ type RunInstancesRequest struct {
 	DisableAPITermination             aws.BooleanValue                        `ec2:"DisableApiTermination" xml:"disableApiTermination"`
 	DryRun                            aws.BooleanValue                        `ec2:"DryRun" xml:"dryRun"`
 	EBSOptimized                      aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
-	IamInstanceProfile                *IamInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
+	IAMInstanceProfile                *IAMInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
 	ImageID                           aws.StringValue                         `ec2:"ImageId" xml:"ImageId"`
 	InstanceInitiatedShutdownBehavior aws.StringValue                         `ec2:"InstanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
 	InstanceType                      aws.StringValue                         `ec2:"InstanceType" xml:"InstanceType"`

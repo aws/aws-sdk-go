@@ -63,6 +63,7 @@ var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Ec2`):        "EC2",
 	regexp.MustCompile(`Html`):       "HTML",
 	regexp.MustCompile(`Http`):       "HTTP",
+	regexp.MustCompile(`Iam`):        "IAM",
 	regexp.MustCompile(`Id$`):        "ID",
 	regexp.MustCompile(`Id([A-Z])`):  "ID$1",
 	regexp.MustCompile(`Ids$`):       "IDs",
