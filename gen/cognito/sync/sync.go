@@ -778,9 +778,9 @@ type Dataset struct {
 
 // DeleteDatasetRequest is undocumented.
 type DeleteDatasetRequest struct {
-	DatasetName    aws.StringValue `json:"DatasetName"`
-	IdentityID     aws.StringValue `json:"IdentityId"`
-	IdentityPoolID aws.StringValue `json:"IdentityPoolId"`
+	DatasetName    aws.StringValue `json:"-"`
+	IdentityID     aws.StringValue `json:"-"`
+	IdentityPoolID aws.StringValue `json:"-"`
 }
 
 // DeleteDatasetResponse is undocumented.
@@ -790,9 +790,9 @@ type DeleteDatasetResponse struct {
 
 // DescribeDatasetRequest is undocumented.
 type DescribeDatasetRequest struct {
-	DatasetName    aws.StringValue `json:"DatasetName"`
-	IdentityID     aws.StringValue `json:"IdentityId"`
-	IdentityPoolID aws.StringValue `json:"IdentityPoolId"`
+	DatasetName    aws.StringValue `json:"-"`
+	IdentityID     aws.StringValue `json:"-"`
+	IdentityPoolID aws.StringValue `json:"-"`
 }
 
 // DescribeDatasetResponse is undocumented.
@@ -802,7 +802,7 @@ type DescribeDatasetResponse struct {
 
 // DescribeIdentityPoolUsageRequest is undocumented.
 type DescribeIdentityPoolUsageRequest struct {
-	IdentityPoolID aws.StringValue `json:"IdentityPoolId"`
+	IdentityPoolID aws.StringValue `json:"-"`
 }
 
 // DescribeIdentityPoolUsageResponse is undocumented.
@@ -812,8 +812,8 @@ type DescribeIdentityPoolUsageResponse struct {
 
 // DescribeIdentityUsageRequest is undocumented.
 type DescribeIdentityUsageRequest struct {
-	IdentityID     aws.StringValue `json:"IdentityId"`
-	IdentityPoolID aws.StringValue `json:"IdentityPoolId"`
+	IdentityID     aws.StringValue `json:"-"`
+	IdentityPoolID aws.StringValue `json:"-"`
 }
 
 // DescribeIdentityUsageResponse is undocumented.
@@ -823,7 +823,7 @@ type DescribeIdentityUsageResponse struct {
 
 // GetIdentityPoolConfigurationRequest is undocumented.
 type GetIdentityPoolConfigurationRequest struct {
-	IdentityPoolID aws.StringValue `json:"IdentityPoolId"`
+	IdentityPoolID aws.StringValue `json:"-"`
 }
 
 // GetIdentityPoolConfigurationResponse is undocumented.
@@ -851,10 +851,10 @@ type IdentityUsage struct {
 
 // ListDatasetsRequest is undocumented.
 type ListDatasetsRequest struct {
-	IdentityID     aws.StringValue  `json:"IdentityId"`
-	IdentityPoolID aws.StringValue  `json:"IdentityPoolId"`
-	MaxResults     aws.IntegerValue `json:"MaxResults,omitempty"`
-	NextToken      aws.StringValue  `json:"NextToken,omitempty"`
+	IdentityID     aws.StringValue  `json:"-"`
+	IdentityPoolID aws.StringValue  `json:"-"`
+	MaxResults     aws.IntegerValue `json:"-"`
+	NextToken      aws.StringValue  `json:"-"`
 }
 
 // ListDatasetsResponse is undocumented.
@@ -866,8 +866,8 @@ type ListDatasetsResponse struct {
 
 // ListIdentityPoolUsageRequest is undocumented.
 type ListIdentityPoolUsageRequest struct {
-	MaxResults aws.IntegerValue `json:"MaxResults,omitempty"`
-	NextToken  aws.StringValue  `json:"NextToken,omitempty"`
+	MaxResults aws.IntegerValue `json:"-"`
+	NextToken  aws.StringValue  `json:"-"`
 }
 
 // ListIdentityPoolUsageResponse is undocumented.
@@ -880,13 +880,13 @@ type ListIdentityPoolUsageResponse struct {
 
 // ListRecordsRequest is undocumented.
 type ListRecordsRequest struct {
-	DatasetName      aws.StringValue  `json:"DatasetName"`
-	IdentityID       aws.StringValue  `json:"IdentityId"`
-	IdentityPoolID   aws.StringValue  `json:"IdentityPoolId"`
-	LastSyncCount    aws.LongValue    `json:"LastSyncCount,omitempty"`
-	MaxResults       aws.IntegerValue `json:"MaxResults,omitempty"`
-	NextToken        aws.StringValue  `json:"NextToken,omitempty"`
-	SyncSessionToken aws.StringValue  `json:"SyncSessionToken,omitempty"`
+	DatasetName      aws.StringValue  `json:"-"`
+	IdentityID       aws.StringValue  `json:"-"`
+	IdentityPoolID   aws.StringValue  `json:"-"`
+	LastSyncCount    aws.LongValue    `json:"-"`
+	MaxResults       aws.IntegerValue `json:"-"`
+	NextToken        aws.StringValue  `json:"-"`
+	SyncSessionToken aws.StringValue  `json:"-"`
 }
 
 // ListRecordsResponse is undocumented.
@@ -929,8 +929,8 @@ type RecordPatch struct {
 
 // RegisterDeviceRequest is undocumented.
 type RegisterDeviceRequest struct {
-	IdentityID     aws.StringValue `json:"IdentityId"`
-	IdentityPoolID aws.StringValue `json:"IdentityPoolId"`
+	IdentityID     aws.StringValue `json:"-"`
+	IdentityPoolID aws.StringValue `json:"-"`
 	Platform       aws.StringValue `json:"Platform"`
 	Token          aws.StringValue `json:"Token"`
 }
@@ -942,7 +942,7 @@ type RegisterDeviceResponse struct {
 
 // SetIdentityPoolConfigurationRequest is undocumented.
 type SetIdentityPoolConfigurationRequest struct {
-	IdentityPoolID aws.StringValue `json:"IdentityPoolId"`
+	IdentityPoolID aws.StringValue `json:"-"`
 	PushSync       *PushSync       `json:"PushSync,omitempty"`
 }
 
@@ -954,10 +954,10 @@ type SetIdentityPoolConfigurationResponse struct {
 
 // SubscribeToDatasetRequest is undocumented.
 type SubscribeToDatasetRequest struct {
-	DatasetName    aws.StringValue `json:"DatasetName"`
-	DeviceID       aws.StringValue `json:"DeviceId"`
-	IdentityID     aws.StringValue `json:"IdentityId"`
-	IdentityPoolID aws.StringValue `json:"IdentityPoolId"`
+	DatasetName    aws.StringValue `json:"-"`
+	DeviceID       aws.StringValue `json:"-"`
+	IdentityID     aws.StringValue `json:"-"`
+	IdentityPoolID aws.StringValue `json:"-"`
 }
 
 // SubscribeToDatasetResponse is undocumented.
@@ -966,10 +966,10 @@ type SubscribeToDatasetResponse struct {
 
 // UnsubscribeFromDatasetRequest is undocumented.
 type UnsubscribeFromDatasetRequest struct {
-	DatasetName    aws.StringValue `json:"DatasetName"`
-	DeviceID       aws.StringValue `json:"DeviceId"`
-	IdentityID     aws.StringValue `json:"IdentityId"`
-	IdentityPoolID aws.StringValue `json:"IdentityPoolId"`
+	DatasetName    aws.StringValue `json:"-"`
+	DeviceID       aws.StringValue `json:"-"`
+	IdentityID     aws.StringValue `json:"-"`
+	IdentityPoolID aws.StringValue `json:"-"`
 }
 
 // UnsubscribeFromDatasetResponse is undocumented.
@@ -978,11 +978,11 @@ type UnsubscribeFromDatasetResponse struct {
 
 // UpdateRecordsRequest is undocumented.
 type UpdateRecordsRequest struct {
-	ClientContext    aws.StringValue `json:"ClientContext,omitempty"`
-	DatasetName      aws.StringValue `json:"DatasetName"`
+	ClientContext    aws.StringValue `json:"-"`
+	DatasetName      aws.StringValue `json:"-"`
 	DeviceID         aws.StringValue `json:"DeviceId,omitempty"`
-	IdentityID       aws.StringValue `json:"IdentityId"`
-	IdentityPoolID   aws.StringValue `json:"IdentityPoolId"`
+	IdentityID       aws.StringValue `json:"-"`
+	IdentityPoolID   aws.StringValue `json:"-"`
 	RecordPatches    []RecordPatch   `json:"RecordPatches,omitempty"`
 	SyncSessionToken aws.StringValue `json:"SyncSessionToken"`
 }

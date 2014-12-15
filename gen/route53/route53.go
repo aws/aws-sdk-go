@@ -1502,7 +1502,7 @@ type AliasTarget struct {
 // AssociateVPCWithHostedZoneRequest is undocumented.
 type AssociateVPCWithHostedZoneRequest struct {
 	Comment      aws.StringValue `xml:"Comment"`
-	HostedZoneID aws.StringValue `xml:"Id"`
+	HostedZoneID aws.StringValue `xml:"-"`
 	VPC          *VPC            `xml:"VPC"`
 }
 
@@ -1534,7 +1534,7 @@ type ChangeInfo struct {
 // ChangeResourceRecordSetsRequest is undocumented.
 type ChangeResourceRecordSetsRequest struct {
 	ChangeBatch  *ChangeBatch    `xml:"ChangeBatch"`
-	HostedZoneID aws.StringValue `xml:"Id"`
+	HostedZoneID aws.StringValue `xml:"-"`
 }
 
 // ChangeResourceRecordSetsResponse is undocumented.
@@ -1546,8 +1546,8 @@ type ChangeResourceRecordSetsResponse struct {
 type ChangeTagsForResourceRequest struct {
 	AddTags       []Tag           `xml:"AddTags"`
 	RemoveTagKeys []string        `xml:"RemoveTagKeys"`
-	ResourceID    aws.StringValue `xml:"ResourceId"`
-	ResourceType  aws.StringValue `xml:"ResourceType"`
+	ResourceID    aws.StringValue `xml:"-"`
+	ResourceType  aws.StringValue `xml:"-"`
 }
 
 // ChangeTagsForResourceResponse is undocumented.
@@ -1563,7 +1563,7 @@ type CreateHealthCheckRequest struct {
 // CreateHealthCheckResponse is undocumented.
 type CreateHealthCheckResponse struct {
 	HealthCheck *HealthCheck    `xml:"HealthCheck"`
-	Location    aws.StringValue `xml:"Location"`
+	Location    aws.StringValue `xml:"-"`
 }
 
 // CreateHostedZoneRequest is undocumented.
@@ -1580,7 +1580,7 @@ type CreateHostedZoneResponse struct {
 	ChangeInfo    *ChangeInfo     `xml:"ChangeInfo"`
 	DelegationSet *DelegationSet  `xml:"DelegationSet"`
 	HostedZone    *HostedZone     `xml:"HostedZone"`
-	Location      aws.StringValue `xml:"Location"`
+	Location      aws.StringValue `xml:"-"`
 	VPC           *VPC            `xml:"VPC"`
 }
 
@@ -1593,7 +1593,7 @@ type CreateReusableDelegationSetRequest struct {
 // CreateReusableDelegationSetResponse is undocumented.
 type CreateReusableDelegationSetResponse struct {
 	DelegationSet *DelegationSet  `xml:"DelegationSet"`
-	Location      aws.StringValue `xml:"Location"`
+	Location      aws.StringValue `xml:"-"`
 }
 
 // DelegationSet is undocumented.
@@ -1605,7 +1605,7 @@ type DelegationSet struct {
 
 // DeleteHealthCheckRequest is undocumented.
 type DeleteHealthCheckRequest struct {
-	HealthCheckID aws.StringValue `xml:"HealthCheckId"`
+	HealthCheckID aws.StringValue `xml:"-"`
 }
 
 // DeleteHealthCheckResponse is undocumented.
@@ -1614,7 +1614,7 @@ type DeleteHealthCheckResponse struct {
 
 // DeleteHostedZoneRequest is undocumented.
 type DeleteHostedZoneRequest struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `xml:"-"`
 }
 
 // DeleteHostedZoneResponse is undocumented.
@@ -1624,7 +1624,7 @@ type DeleteHostedZoneResponse struct {
 
 // DeleteReusableDelegationSetRequest is undocumented.
 type DeleteReusableDelegationSetRequest struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `xml:"-"`
 }
 
 // DeleteReusableDelegationSetResponse is undocumented.
@@ -1634,7 +1634,7 @@ type DeleteReusableDelegationSetResponse struct {
 // DisassociateVPCFromHostedZoneRequest is undocumented.
 type DisassociateVPCFromHostedZoneRequest struct {
 	Comment      aws.StringValue `xml:"Comment"`
-	HostedZoneID aws.StringValue `xml:"Id"`
+	HostedZoneID aws.StringValue `xml:"-"`
 	VPC          *VPC            `xml:"VPC"`
 }
 
@@ -1662,7 +1662,7 @@ type GeoLocationDetails struct {
 
 // GetChangeRequest is undocumented.
 type GetChangeRequest struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `xml:"-"`
 }
 
 // GetChangeResponse is undocumented.
@@ -1681,9 +1681,9 @@ type GetCheckerIPRangesResponse struct {
 
 // GetGeoLocationRequest is undocumented.
 type GetGeoLocationRequest struct {
-	ContinentCode   aws.StringValue `xml:"continentcode"`
-	CountryCode     aws.StringValue `xml:"countrycode"`
-	SubdivisionCode aws.StringValue `xml:"subdivisioncode"`
+	ContinentCode   aws.StringValue `xml:"-"`
+	CountryCode     aws.StringValue `xml:"-"`
+	SubdivisionCode aws.StringValue `xml:"-"`
 }
 
 // GetGeoLocationResponse is undocumented.
@@ -1702,7 +1702,7 @@ type GetHealthCheckCountResponse struct {
 
 // GetHealthCheckLastFailureReasonRequest is undocumented.
 type GetHealthCheckLastFailureReasonRequest struct {
-	HealthCheckID aws.StringValue `xml:"HealthCheckId"`
+	HealthCheckID aws.StringValue `xml:"-"`
 }
 
 // GetHealthCheckLastFailureReasonResponse is undocumented.
@@ -1712,7 +1712,7 @@ type GetHealthCheckLastFailureReasonResponse struct {
 
 // GetHealthCheckRequest is undocumented.
 type GetHealthCheckRequest struct {
-	HealthCheckID aws.StringValue `xml:"HealthCheckId"`
+	HealthCheckID aws.StringValue `xml:"-"`
 }
 
 // GetHealthCheckResponse is undocumented.
@@ -1722,7 +1722,7 @@ type GetHealthCheckResponse struct {
 
 // GetHealthCheckStatusRequest is undocumented.
 type GetHealthCheckStatusRequest struct {
-	HealthCheckID aws.StringValue `xml:"HealthCheckId"`
+	HealthCheckID aws.StringValue `xml:"-"`
 }
 
 // GetHealthCheckStatusResponse is undocumented.
@@ -1732,7 +1732,7 @@ type GetHealthCheckStatusResponse struct {
 
 // GetHostedZoneRequest is undocumented.
 type GetHostedZoneRequest struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `xml:"-"`
 }
 
 // GetHostedZoneResponse is undocumented.
@@ -1744,7 +1744,7 @@ type GetHostedZoneResponse struct {
 
 // GetReusableDelegationSetRequest is undocumented.
 type GetReusableDelegationSetRequest struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `xml:"-"`
 }
 
 // GetReusableDelegationSetResponse is undocumented.
@@ -1795,10 +1795,10 @@ type HostedZoneConfig struct {
 
 // ListGeoLocationsRequest is undocumented.
 type ListGeoLocationsRequest struct {
-	MaxItems             aws.StringValue `xml:"maxitems"`
-	StartContinentCode   aws.StringValue `xml:"startcontinentcode"`
-	StartCountryCode     aws.StringValue `xml:"startcountrycode"`
-	StartSubdivisionCode aws.StringValue `xml:"startsubdivisioncode"`
+	MaxItems             aws.StringValue `xml:"-"`
+	StartContinentCode   aws.StringValue `xml:"-"`
+	StartCountryCode     aws.StringValue `xml:"-"`
+	StartSubdivisionCode aws.StringValue `xml:"-"`
 }
 
 // ListGeoLocationsResponse is undocumented.
@@ -1813,8 +1813,8 @@ type ListGeoLocationsResponse struct {
 
 // ListHealthChecksRequest is undocumented.
 type ListHealthChecksRequest struct {
-	Marker   aws.StringValue `xml:"marker"`
-	MaxItems aws.StringValue `xml:"maxitems"`
+	Marker   aws.StringValue `xml:"-"`
+	MaxItems aws.StringValue `xml:"-"`
 }
 
 // ListHealthChecksResponse is undocumented.
@@ -1828,9 +1828,9 @@ type ListHealthChecksResponse struct {
 
 // ListHostedZonesRequest is undocumented.
 type ListHostedZonesRequest struct {
-	DelegationSetID aws.StringValue `xml:"delegationsetid"`
-	Marker          aws.StringValue `xml:"marker"`
-	MaxItems        aws.StringValue `xml:"maxitems"`
+	DelegationSetID aws.StringValue `xml:"-"`
+	Marker          aws.StringValue `xml:"-"`
+	MaxItems        aws.StringValue `xml:"-"`
 }
 
 // ListHostedZonesResponse is undocumented.
@@ -1844,11 +1844,11 @@ type ListHostedZonesResponse struct {
 
 // ListResourceRecordSetsRequest is undocumented.
 type ListResourceRecordSetsRequest struct {
-	HostedZoneID          aws.StringValue `xml:"Id"`
-	MaxItems              aws.StringValue `xml:"maxitems"`
-	StartRecordIdentifier aws.StringValue `xml:"identifier"`
-	StartRecordName       aws.StringValue `xml:"name"`
-	StartRecordType       aws.StringValue `xml:"type"`
+	HostedZoneID          aws.StringValue `xml:"-"`
+	MaxItems              aws.StringValue `xml:"-"`
+	StartRecordIdentifier aws.StringValue `xml:"-"`
+	StartRecordName       aws.StringValue `xml:"-"`
+	StartRecordType       aws.StringValue `xml:"-"`
 }
 
 // ListResourceRecordSetsResponse is undocumented.
@@ -1863,8 +1863,8 @@ type ListResourceRecordSetsResponse struct {
 
 // ListReusableDelegationSetsRequest is undocumented.
 type ListReusableDelegationSetsRequest struct {
-	Marker   aws.StringValue `xml:"marker"`
-	MaxItems aws.StringValue `xml:"maxitems"`
+	Marker   aws.StringValue `xml:"-"`
+	MaxItems aws.StringValue `xml:"-"`
 }
 
 // ListReusableDelegationSetsResponse is undocumented.
@@ -1878,8 +1878,8 @@ type ListReusableDelegationSetsResponse struct {
 
 // ListTagsForResourceRequest is undocumented.
 type ListTagsForResourceRequest struct {
-	ResourceID   aws.StringValue `xml:"ResourceId"`
-	ResourceType aws.StringValue `xml:"ResourceType"`
+	ResourceID   aws.StringValue `xml:"-"`
+	ResourceType aws.StringValue `xml:"-"`
 }
 
 // ListTagsForResourceResponse is undocumented.
@@ -1890,7 +1890,7 @@ type ListTagsForResourceResponse struct {
 // ListTagsForResourcesRequest is undocumented.
 type ListTagsForResourcesRequest struct {
 	ResourceIds  []string        `xml:"ResourceIds"`
-	ResourceType aws.StringValue `xml:"ResourceType"`
+	ResourceType aws.StringValue `xml:"-"`
 }
 
 // ListTagsForResourcesResponse is undocumented.
@@ -1941,7 +1941,7 @@ type Tag struct {
 type UpdateHealthCheckRequest struct {
 	FailureThreshold         aws.IntegerValue `xml:"FailureThreshold"`
 	FullyQualifiedDomainName aws.StringValue  `xml:"FullyQualifiedDomainName"`
-	HealthCheckID            aws.StringValue  `xml:"HealthCheckId"`
+	HealthCheckID            aws.StringValue  `xml:"-"`
 	HealthCheckVersion       aws.LongValue    `xml:"HealthCheckVersion"`
 	IPAddress                aws.StringValue  `xml:"IPAddress"`
 	Port                     aws.IntegerValue `xml:"Port"`
@@ -1957,7 +1957,7 @@ type UpdateHealthCheckResponse struct {
 // UpdateHostedZoneCommentRequest is undocumented.
 type UpdateHostedZoneCommentRequest struct {
 	Comment aws.StringValue `xml:"Comment"`
-	ID      aws.StringValue `xml:"Id"`
+	ID      aws.StringValue `xml:"-"`
 }
 
 // UpdateHostedZoneCommentResponse is undocumented.
