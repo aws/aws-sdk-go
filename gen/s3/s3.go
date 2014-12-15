@@ -159,12 +159,7 @@ func (c *S3) CompleteMultipartUpload(req *CompleteMultipartUploadRequest) (resp 
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		var t time.Time
-		t, err = time.Parse(time.RFC1123, s)
-		if err != nil {
-			return
-		}
-		resp.Expiration = t
+		resp.Expiration = &s
 
 	}
 
@@ -351,12 +346,7 @@ func (c *S3) CopyObject(req *CopyObjectRequest) (resp *CopyObjectOutput, err err
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		var t time.Time
-		t, err = time.Parse(time.RFC1123, s)
-		if err != nil {
-			return
-		}
-		resp.Expiration = t
+		resp.Expiration = &s
 
 	}
 
@@ -1629,12 +1619,7 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		var t time.Time
-		t, err = time.Parse(time.RFC1123, s)
-		if err != nil {
-			return
-		}
-		resp.Expiration = t
+		resp.Expiration = &s
 
 	}
 
@@ -2009,12 +1994,7 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		var t time.Time
-		t, err = time.Parse(time.RFC1123, s)
-		if err != nil {
-			return
-		}
-		resp.Expiration = t
+		resp.Expiration = &s
 
 	}
 
@@ -3076,12 +3056,7 @@ func (c *S3) PutObject(req *PutObjectRequest) (resp *PutObjectOutput, err error)
 
 	if s := httpResp.Header.Get("x-amz-expiration"); s != "" {
 
-		var t time.Time
-		t, err = time.Parse(time.RFC1123, s)
-		if err != nil {
-			return
-		}
-		resp.Expiration = t
+		resp.Expiration = &s
 
 	}
 
@@ -3557,7 +3532,7 @@ type CommonPrefix struct {
 type CompleteMultipartUploadOutput struct {
 	Bucket               aws.StringValue `xml:"Bucket"`
 	ETag                 aws.StringValue `xml:"ETag"`
-	Expiration           time.Time       `xml:"-"`
+	Expiration           aws.StringValue `xml:"-"`
 	Key                  aws.StringValue `xml:"Key"`
 	Location             aws.StringValue `xml:"Location"`
 	SSEKMSKeyID          aws.StringValue `xml:"-"`
@@ -3594,7 +3569,7 @@ type Condition struct {
 type CopyObjectOutput struct {
 	CopyObjectResult     *CopyObjectResult `xml:"CopyObjectResult"`
 	CopySourceVersionID  aws.StringValue   `xml:"-"`
-	Expiration           time.Time         `xml:"-"`
+	Expiration           aws.StringValue   `xml:"-"`
 	SSECustomerAlgorithm aws.StringValue   `xml:"-"`
 	SSECustomerKeyMD5    aws.StringValue   `xml:"-"`
 	SSEKMSKeyID          aws.StringValue   `xml:"-"`
@@ -3940,7 +3915,7 @@ type GetObjectOutput struct {
 	ContentType             aws.StringValue   `xml:"-"`
 	DeleteMarker            aws.BooleanValue  `xml:"-"`
 	ETag                    aws.StringValue   `xml:"-"`
-	Expiration              time.Time         `xml:"-"`
+	Expiration              aws.StringValue   `xml:"-"`
 	Expires                 time.Time         `xml:"-"`
 	LastModified            time.Time         `xml:"-"`
 	Metadata                map[string]string `xml:"-"`
@@ -4017,7 +3992,7 @@ type HeadObjectOutput struct {
 	ContentType             aws.StringValue   `xml:"-"`
 	DeleteMarker            aws.BooleanValue  `xml:"-"`
 	ETag                    aws.StringValue   `xml:"-"`
-	Expiration              time.Time         `xml:"-"`
+	Expiration              aws.StringValue   `xml:"-"`
 	Expires                 time.Time         `xml:"-"`
 	LastModified            time.Time         `xml:"-"`
 	Metadata                map[string]string `xml:"-"`
@@ -4348,7 +4323,7 @@ type PutObjectAclRequest struct {
 // PutObjectOutput is undocumented.
 type PutObjectOutput struct {
 	ETag                 aws.StringValue `xml:"-"`
-	Expiration           time.Time       `xml:"-"`
+	Expiration           aws.StringValue `xml:"-"`
 	SSECustomerAlgorithm aws.StringValue `xml:"-"`
 	SSECustomerKeyMD5    aws.StringValue `xml:"-"`
 	SSEKMSKeyID          aws.StringValue `xml:"-"`

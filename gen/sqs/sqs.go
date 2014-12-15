@@ -44,7 +44,13 @@ func New(creds aws.Credentials, region string, client *http.Client) *SQS {
 // you have full control access rights for the queue. Only you (as owner of
 // the queue) can grant or deny permissions to the queue. For more
 // information about these permissions, see Shared Queues in the Amazon SQS
-// Developer Guide
+// Developer Guide AddPermission writes an Amazon SQS-generated policy. If
+// you want to write your own policy, use SetQueueAttributes to upload your
+// policy. For more information about writing your own policy, see Using
+// The Access Policy Language in the Amazon SQS Developer Guide Some API
+// actions take lists of parameters. These lists are specified using the
+// param.n notation. Values of n are integers starting from 1. For example,
+// a parameter list with two elements looks like this:
 func (c *SQS) AddPermission(req *AddPermissionRequest) (err error) {
 	// NRE
 	err = c.client.Do("AddPermission", "POST", "/", req, nil)
@@ -62,7 +68,14 @@ func (c *SQS) AddPermission(req *AddPermissionRequest) (err error) {
 // value of two hours and the effective timeout would be two hours and 30
 // minutes. When that time comes near you could again extend the time out
 // by calling ChangeMessageVisiblity, but this time the maximum allowed
-// timeout would be 9 hours and 30 minutes. If you attempt to set the
+// timeout would be 9 hours and 30 minutes. There is a 120,000 limit for
+// the number of inflight messages per queue. Messages are inflight after
+// they have been received from the queue by a consuming component, but
+// have not yet been deleted from the queue. If you reach the 120,000
+// limit, you will receive an OverLimit error message from Amazon To help
+// avoid reaching the limit, you should delete the messages from the queue
+// after they have been processed. You can also increase the number of
+// queues you use to process the messages. If you attempt to set the
 // VisibilityTimeout to an amount more than the maximum time left, Amazon
 // SQS returns an error. It will not automatically recalculate and increase
 // the timeout to the maximum time remaining. Unlike with a queue, when you
@@ -85,7 +98,9 @@ func (c *SQS) ChangeMessageVisibility(req *ChangeMessageVisibilityRequest) (err 
 // each ChangeMessageVisibilityBatch action. Because the batch request can
 // result in a combination of successful and unsuccessful actions, you
 // should check for batch errors even when the call returns an status code
-// of 200.
+// of 200. Some API actions take lists of parameters. These lists are
+// specified using the param.n notation. Values of n are integers starting
+// from 1. For example, a parameter list with two elements looks like this:
 func (c *SQS) ChangeMessageVisibilityBatch(req *ChangeMessageVisibilityBatchRequest) (resp *ChangeMessageVisibilityBatchResult, err error) {
 	resp = &ChangeMessageVisibilityBatchResult{}
 	err = c.client.Do("ChangeMessageVisibilityBatch", "POST", "/", req, resp)
@@ -95,14 +110,20 @@ func (c *SQS) ChangeMessageVisibilityBatch(req *ChangeMessageVisibilityBatchRequ
 // CreateQueue creates a new queue, or returns the URL of an existing one.
 // When you request CreateQueue , you provide a name for the queue. To
 // successfully create a new queue, you must provide a name that is unique
-// within the scope of your own queues. You may pass one or more attributes
-// in the request. If you do not provide a value for any attribute, the
-// queue will have the default value for that attribute. Permitted
-// attributes are the same that can be set using SetQueueAttributes If you
-// provide the name of an existing queue, along with the exact names and
-// values of all the queue's attributes, CreateQueue returns the queue URL
-// for the existing queue. If the queue name, attribute names, or attribute
-// values do not match an existing queue, CreateQueue returns an error.
+// within the scope of your own queues. If you delete a queue, you must
+// wait at least 60 seconds before creating a queue with the same name. You
+// may pass one or more attributes in the request. If you do not provide a
+// value for any attribute, the queue will have the default value for that
+// attribute. Permitted attributes are the same that can be set using
+// SetQueueAttributes Use GetQueueUrl to get a queue's GetQueueUrl requires
+// only the QueueName parameter. If you provide the name of an existing
+// queue, along with the exact names and values of all the queue's
+// attributes, CreateQueue returns the queue URL for the existing queue. If
+// the queue name, attribute names, or attribute values do not match an
+// existing queue, CreateQueue returns an error. Some API actions take
+// lists of parameters. These lists are specified using the param.n
+// notation. Values of n are integers starting from 1. For example, a
+// parameter list with two elements looks like this:
 func (c *SQS) CreateQueue(req *CreateQueueRequest) (resp *CreateQueueResult, err error) {
 	resp = &CreateQueueResult{}
 	err = c.client.Do("CreateQueue", "POST", "/", req, resp)
@@ -115,25 +136,34 @@ func (c *SQS) CreateQueue(req *CreateQueueRequest) (resp *CreateQueueResult, err
 // is locked by another reader due to the visibility timeout setting, it is
 // still deleted from the queue. If you leave a message in the queue for
 // longer than the queue's configured retention period, Amazon SQS
-// automatically deletes it. It is possible you will receive a message even
-// after you have deleted it. This might happen on rare occasions if one of
-// the servers storing a copy of the message is unavailable when you
-// request to delete the message. The copy remains on the server and might
-// be returned to you again on a subsequent receive request. You should
-// create your system to be idempotent so that receiving a particular
-// message more than once is not a problem.
+// automatically deletes it. The receipt handle is associated with a
+// specific instance of receiving the message. If you receive a message
+// more than once, the receipt handle you get each time you receive the
+// message is different. When you request DeleteMessage , if you don't
+// provide the most recently received receipt handle for the message, the
+// request will still succeed, but the message might not be deleted. It is
+// possible you will receive a message even after you have deleted it. This
+// might happen on rare occasions if one of the servers storing a copy of
+// the message is unavailable when you request to delete the message. The
+// copy remains on the server and might be returned to you again on a
+// subsequent receive request. You should create your system to be
+// idempotent so that receiving a particular message more than once is not
+// a problem.
 func (c *SQS) DeleteMessage(req *DeleteMessageRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteMessage", "POST", "/", req, nil)
 	return
 }
 
-// DeleteMessageBatch deletes multiple messages. This is a batch version of
-// DeleteMessage . The result of the delete action on each message is
-// reported individually in the response. Because the batch request can
-// result in a combination of successful and unsuccessful actions, you
-// should check for batch errors even when the call returns an status code
-// of 200.
+// DeleteMessageBatch deletes up to ten messages from the specified queue.
+// This is a batch version of DeleteMessage . The result of the delete
+// action on each message is reported individually in the response. Because
+// the batch request can result in a combination of successful and
+// unsuccessful actions, you should check for batch errors even when the
+// call returns an status code of 200. Some API actions take lists of
+// parameters. These lists are specified using the param.n notation. Values
+// of n are integers starting from 1. For example, a parameter list with
+// two elements looks like this:
 func (c *SQS) DeleteMessageBatch(req *DeleteMessageBatchRequest) (resp *DeleteMessageBatchResult, err error) {
 	resp = &DeleteMessageBatchResult{}
 	err = c.client.Do("DeleteMessageBatch", "POST", "/", req, resp)
@@ -184,7 +214,12 @@ func (c *SQS) DeleteQueue(req *DeleteQueueRequest) (err error) {
 // returns the parameters for dead letter queue functionality of the source
 // queue. For more information about RedrivePolicy and dead letter queues,
 // see Using Amazon SQS Dead Letter Queues in the Amazon SQS Developer
-// Guide
+// Guide Going forward, new attributes might be added. If you are writing
+// code that calls this action, we recommend that you structure your code
+// so that it can handle new attributes gracefully. Some API actions take
+// lists of parameters. These lists are specified using the param.n
+// notation. Values of n are integers starting from 1. For example, a
+// parameter list with two elements looks like this:
 func (c *SQS) GetQueueAttributes(req *GetQueueAttributesRequest) (resp *GetQueueAttributesResult, err error) {
 	resp = &GetQueueAttributesResult{}
 	err = c.client.Do("GetQueueAttributes", "POST", "/", req, resp)
@@ -224,6 +259,20 @@ func (c *SQS) ListQueues(req *ListQueuesRequest) (resp *ListQueuesResult, err er
 	return
 }
 
+// PurgeQueue deletes the messages in a queue specified by the queue When
+// you use the PurgeQueue the deleted messages in the queue cannot be
+// retrieved. When you purge a queue, the message deletion process takes up
+// to 60 seconds. All messages sent to the queue before calling PurgeQueue
+// will be deleted; messages sent to the queue while it is being purged may
+// be deleted. While the queue is being purged, messages sent to the queue
+// before PurgeQueue was called may be received, but will be deleted within
+// the next minute.
+func (c *SQS) PurgeQueue(req *PurgeQueueRequest) (err error) {
+	// NRE
+	err = c.client.Do("PurgeQueue", "POST", "/", req, nil)
+	return
+}
+
 // ReceiveMessage retrieves one or more messages, with a maximum limit of
 // 10 messages, from the specified queue. Long poll support is enabled by
 // using the WaitTimeSeconds parameter. For more information, see Amazon
@@ -246,7 +295,10 @@ func (c *SQS) ListQueues(req *ListQueuesRequest) (resp *ListQueuesResult, err er
 // the messages that Amazon SQS returns in the response. If you do not
 // include the parameter, the overall visibility timeout for the queue is
 // used for the returned messages. For more information, see Visibility
-// Timeout in the Amazon SQS Developer Guide .
+// Timeout in the Amazon SQS Developer Guide . Going forward, new
+// attributes might be added. If you are writing code that calls this
+// action, we recommend that you structure your code so that it can handle
+// new attributes gracefully.
 func (c *SQS) ReceiveMessage(req *ReceiveMessageRequest) (resp *ReceiveMessageResult, err error) {
 	resp = &ReceiveMessageResult{}
 	err = c.client.Do("ReceiveMessage", "POST", "/", req, resp)
@@ -292,7 +344,10 @@ func (c *SQS) SendMessage(req *SendMessageRequest) (resp *SendMessageResult, err
 // rejected. #x9 | #xA | #xD | [#x20 to #xD7FF] | [#xE000 to #xFFFD] |
 // [#x10000 to #x10FFFF] Because the batch request can result in a
 // combination of successful and unsuccessful actions, you should check for
-// batch errors even when the call returns an status code of 200.
+// batch errors even when the call returns an status code of 200. Some API
+// actions take lists of parameters. These lists are specified using the
+// param.n notation. Values of n are integers starting from 1. For example,
+// a parameter list with two elements looks like this:
 func (c *SQS) SendMessageBatch(req *SendMessageBatchRequest) (resp *SendMessageBatchResult, err error) {
 	resp = &SendMessageBatchResult{}
 	err = c.client.Do("SendMessageBatch", "POST", "/", req, resp)
@@ -303,7 +358,9 @@ func (c *SQS) SendMessageBatch(req *SendMessageBatchRequest) (resp *SendMessageB
 // you change a queue's attributes, the change can take up to 60 seconds
 // for most of the attributes to propagate throughout the SQS system.
 // Changes made to the MessageRetentionPeriod attribute can take up to 15
-// minutes.
+// minutes. Going forward, new attributes might be added. If you are
+// writing code that calls this action, we recommend that you structure
+// your code so that it can handle new attributes gracefully.
 func (c *SQS) SetQueueAttributes(req *SetQueueAttributesRequest) (err error) {
 	// NRE
 	err = c.client.Do("SetQueueAttributes", "POST", "/", req, nil)
@@ -462,6 +519,11 @@ type MessageAttributeValue struct {
 	DataType         aws.StringValue `xml:"DataType"`
 	StringListValues []string        `xml:"StringListValue>StringListValue"`
 	StringValue      aws.StringValue `xml:"StringValue"`
+}
+
+// PurgeQueueRequest is undocumented.
+type PurgeQueueRequest struct {
+	QueueURL aws.StringValue `xml:"QueueUrl"`
 }
 
 // ReceiveMessageRequest is undocumented.

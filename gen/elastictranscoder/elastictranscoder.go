@@ -950,6 +950,7 @@ type CreateJobRequest struct {
 	Outputs         []CreateJobOutput   `json:"Outputs,omitempty"`
 	PipelineID      aws.StringValue     `json:"PipelineId"`
 	Playlists       []CreateJobPlaylist `json:"Playlists,omitempty"`
+	UserMetadata    map[string]string   `json:"UserMetadata,omitempty"`
 }
 
 // CreateJobResponse is undocumented.
@@ -1018,15 +1019,16 @@ type Encryption struct {
 
 // Job is undocumented.
 type Job struct {
-	ARN             aws.StringValue `json:"Arn,omitempty"`
-	ID              aws.StringValue `json:"Id,omitempty"`
-	Input           *JobInput       `json:"Input,omitempty"`
-	Output          *JobOutput      `json:"Output,omitempty"`
-	OutputKeyPrefix aws.StringValue `json:"OutputKeyPrefix,omitempty"`
-	Outputs         []JobOutput     `json:"Outputs,omitempty"`
-	PipelineID      aws.StringValue `json:"PipelineId,omitempty"`
-	Playlists       []Playlist      `json:"Playlists,omitempty"`
-	Status          aws.StringValue `json:"Status,omitempty"`
+	ARN             aws.StringValue   `json:"Arn,omitempty"`
+	ID              aws.StringValue   `json:"Id,omitempty"`
+	Input           *JobInput         `json:"Input,omitempty"`
+	Output          *JobOutput        `json:"Output,omitempty"`
+	OutputKeyPrefix aws.StringValue   `json:"OutputKeyPrefix,omitempty"`
+	Outputs         []JobOutput       `json:"Outputs,omitempty"`
+	PipelineID      aws.StringValue   `json:"PipelineId,omitempty"`
+	Playlists       []Playlist        `json:"Playlists,omitempty"`
+	Status          aws.StringValue   `json:"Status,omitempty"`
+	UserMetadata    map[string]string `json:"UserMetadata,omitempty"`
 }
 
 // JobAlbumArt is undocumented.

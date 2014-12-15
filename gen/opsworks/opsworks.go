@@ -39,6 +39,18 @@ func New(creds aws.Credentials, region string, client *http.Client) *OpsWorks {
 	}
 }
 
+// AssignInstance assign a registered instance to a custom layer. You
+// cannot use this action with instances that were created with AWS
+// OpsWorks. Required Permissions : To use this action, an IAM user must
+// have a Manage permissions level for the stack or an attached policy that
+// explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions
+func (c *OpsWorks) AssignInstance(req *AssignInstanceRequest) (err error) {
+	// NRE
+	err = c.client.Do("AssignInstance", "POST", "/", req, nil)
+	return
+}
+
 // AssignVolume assigns one of the stack's registered Amazon EBS volumes to
 // a specified instance. The volume must first be registered with the stack
 // by calling RegisterVolume . For more information, see Resource
@@ -67,10 +79,13 @@ func (c *OpsWorks) AssociateElasticIP(req *AssociateElasticIPRequest) (err error
 
 // AttachElasticLoadBalancer attaches an Elastic Load Balancing load
 // balancer to a specified layer. For more information, see Elastic Load
-// Balancing Required Permissions : To use this action, an IAM user must
-// have a Manage permissions level for the stack, or an attached policy
-// that explicitly grants permissions. For more information on user
-// permissions, see Managing User Permissions
+// Balancing You must create the Elastic Load Balancing instance
+// separately, by using the Elastic Load Balancing console, or For more
+// information, see Elastic Load Balancing Developer Guide Required
+// Permissions : To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly
+// grants permissions. For more information on user permissions, see
+// Managing User Permissions
 func (c *OpsWorks) AttachElasticLoadBalancer(req *AttachElasticLoadBalancerRequest) (err error) {
 	// NRE
 	err = c.client.Do("AttachElasticLoadBalancer", "POST", "/", req, nil)
@@ -98,10 +113,7 @@ func (c *OpsWorks) CreateApp(req *CreateAppRequest) (resp *CreateAppResult, err 
 	return
 }
 
-// CreateDeployment deploys a stack or app. App deployment generates a
-// deploy event, which runs the associated recipes and passes them a stack
-// configuration object that includes information about the app. Stack
-// deployment runs the deploy recipes but does not raise an event. For more
+// CreateDeployment runs deployment or stack commands. For more
 // information, see Deploying Apps and Run Stack Commands Required
 // Permissions : To use this action, an IAM user must have a Deploy or
 // Manage permissions level for the stack, or an attached policy that
@@ -125,10 +137,15 @@ func (c *OpsWorks) CreateInstance(req *CreateInstanceRequest) (resp *CreateInsta
 }
 
 // CreateLayer creates a layer. For more information, see How to Create a
-// Layer Required Permissions : To use this action, an IAM user must have a
-// Manage permissions level for the stack, or an attached policy that
-// explicitly grants permissions. For more information on user permissions,
-// see Managing User Permissions
+// Layer You should use CreateLayer for noncustom layer types such as PHP
+// App Server only if the stack does not have an existing layer of that
+// type. A stack can have at most one instance of each noncustom layer; if
+// you attempt to create a second instance, CreateLayer fails. A stack can
+// have an arbitrary number of custom layers, so you can call CreateLayer
+// as many times as you like for that layer type. Required Permissions : To
+// use this action, an IAM user must have a Manage permissions level for
+// the stack, or an attached policy that explicitly grants permissions. For
+// more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) CreateLayer(req *CreateLayerRequest) (resp *CreateLayerResult, err error) {
 	resp = &CreateLayerResult{}
 	err = c.client.Do("CreateLayer", "POST", "/", req, resp)
@@ -165,12 +182,13 @@ func (c *OpsWorks) DeleteApp(req *DeleteAppRequest) (err error) {
 	return
 }
 
-// DeleteInstance deletes a specified instance. You must stop an instance
-// before you can delete it. For more information, see Deleting Instances
-// Required Permissions : To use this action, an IAM user must have a
-// Manage permissions level for the stack, or an attached policy that
-// explicitly grants permissions. For more information on user permissions,
-// see Managing User Permissions
+// DeleteInstance deletes a specified instance, which terminates the
+// associated Amazon EC2 instance. You must stop an instance before you can
+// delete it. For more information, see Deleting Instances Required
+// Permissions : To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly
+// grants permissions. For more information on user permissions, see
+// Managing User Permissions
 func (c *OpsWorks) DeleteInstance(req *DeleteInstanceRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteInstance", "POST", "/", req, nil)
@@ -178,11 +196,11 @@ func (c *OpsWorks) DeleteInstance(req *DeleteInstanceRequest) (err error) {
 }
 
 // DeleteLayer deletes a specified layer. You must first stop and then
-// delete all associated instances. For more information, see How to Delete
-// a Layer Required Permissions : To use this action, an IAM user must have
-// a Manage permissions level for the stack, or an attached policy that
-// explicitly grants permissions. For more information on user permissions,
-// see Managing User Permissions
+// delete all associated instances or unassign registered instances. For
+// more information, see How to Delete a Layer Required Permissions : To
+// use this action, an IAM user must have a Manage permissions level for
+// the stack, or an attached policy that explicitly grants permissions. For
+// more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DeleteLayer(req *DeleteLayerRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteLayer", "POST", "/", req, nil)
@@ -190,11 +208,11 @@ func (c *OpsWorks) DeleteLayer(req *DeleteLayerRequest) (err error) {
 }
 
 // DeleteStack deletes a specified stack. You must first delete all
-// instances, layers, and apps. For more information, see Shut Down a Stack
-// Required Permissions : To use this action, an IAM user must have a
-// Manage permissions level for the stack, or an attached policy that
-// explicitly grants permissions. For more information on user permissions,
-// see Managing User Permissions
+// instances, layers, and apps or deregister registered instances. For more
+// information, see Shut Down a Stack Required Permissions : To use this
+// action, an IAM user must have a Manage permissions level for the stack,
+// or an attached policy that explicitly grants permissions. For more
+// information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DeleteStack(req *DeleteStackRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteStack", "POST", "/", req, nil)
@@ -223,7 +241,24 @@ func (c *OpsWorks) DeregisterElasticIP(req *DeregisterElasticIPRequest) (err err
 	return
 }
 
-// DeregisterRdsDbInstance is undocumented.
+// DeregisterInstance deregister a registered Amazon EC2 or on-premises
+// instance. This action removes the instance from the stack and returns it
+// to your control. This action can not be used with instances that were
+// created with AWS OpsWorks. Required Permissions : To use this action, an
+// IAM user must have a Manage permissions level for the stack or an
+// attached policy that explicitly grants permissions. For more information
+// on user permissions, see Managing User Permissions
+func (c *OpsWorks) DeregisterInstance(req *DeregisterInstanceRequest) (err error) {
+	// NRE
+	err = c.client.Do("DeregisterInstance", "POST", "/", req, nil)
+	return
+}
+
+// DeregisterRdsDbInstance deregisters an Amazon RDS instance. Required
+// Permissions : To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly
+// grants permissions. For more information on user permissions, see
+// Managing User Permissions
 func (c *OpsWorks) DeregisterRdsDbInstance(req *DeregisterRdsDbInstanceRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeregisterRdsDbInstance", "POST", "/", req, nil)
@@ -242,7 +277,7 @@ func (c *OpsWorks) DeregisterVolume(req *DeregisterVolumeRequest) (err error) {
 	return
 }
 
-// DescribeApps requests a description of a specified set of apps. Required
+// DescribeApps you must specify at least one of the parameters. Required
 // Permissions : To use this action, an IAM user must have a Show, Deploy,
 // or Manage permissions level for the stack, or an attached policy that
 // explicitly grants permissions. For more information on user permissions,
@@ -253,11 +288,11 @@ func (c *OpsWorks) DescribeApps(req *DescribeAppsRequest) (resp *DescribeAppsRes
 	return
 }
 
-// DescribeCommands describes the results of specified commands. Required
-// Permissions : To use this action, an IAM user must have a Show, Deploy,
-// or Manage permissions level for the stack, or an attached policy that
-// explicitly grants permissions. For more information on user permissions,
-// see Managing User Permissions
+// DescribeCommands you must specify at least one of the parameters.
+// Required Permissions : To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user
+// permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeCommands(req *DescribeCommandsRequest) (resp *DescribeCommandsResult, err error) {
 	resp = &DescribeCommandsResult{}
 	err = c.client.Do("DescribeCommands", "POST", "/", req, resp)
@@ -265,21 +300,22 @@ func (c *OpsWorks) DescribeCommands(req *DescribeCommandsRequest) (resp *Describ
 }
 
 // DescribeDeployments requests a description of a specified set of
-// deployments. Required Permissions : To use this action, an IAM user must
-// have a Show, Deploy, or Manage permissions level for the stack, or an
-// attached policy that explicitly grants permissions. For more information
-// on user permissions, see Managing User Permissions
+// deployments. You must specify at least one of the parameters. Required
+// Permissions : To use this action, an IAM user must have a Show, Deploy,
+// or Manage permissions level for the stack, or an attached policy that
+// explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions
 func (c *OpsWorks) DescribeDeployments(req *DescribeDeploymentsRequest) (resp *DescribeDeploymentsResult, err error) {
 	resp = &DescribeDeploymentsResult{}
 	err = c.client.Do("DescribeDeployments", "POST", "/", req, resp)
 	return
 }
 
-// DescribeElasticIPs describes Elastic IP addresses Required Permissions :
-// To use this action, an IAM user must have a Show, Deploy, or Manage
-// permissions level for the stack, or an attached policy that explicitly
-// grants permissions. For more information on user permissions, see
-// Managing User Permissions
+// DescribeElasticIPs you must specify at least one of the parameters.
+// Required Permissions : To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user
+// permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeElasticIPs(req *DescribeElasticIPsRequest) (resp *DescribeElasticIPsResult, err error) {
 	resp = &DescribeElasticIPsResult{}
 	err = c.client.Do("DescribeElasticIps", "POST", "/", req, resp)
@@ -287,21 +323,22 @@ func (c *OpsWorks) DescribeElasticIPs(req *DescribeElasticIPsRequest) (resp *Des
 }
 
 // DescribeElasticLoadBalancers describes a stack's Elastic Load Balancing
-// instances. Required Permissions : To use this action, an IAM user must
-// have a Show, Deploy, or Manage permissions level for the stack, or an
-// attached policy that explicitly grants permissions. For more information
-// on user permissions, see Managing User Permissions
+// instances. You must specify at least one of the parameters. Required
+// Permissions : To use this action, an IAM user must have a Show, Deploy,
+// or Manage permissions level for the stack, or an attached policy that
+// explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions
 func (c *OpsWorks) DescribeElasticLoadBalancers(req *DescribeElasticLoadBalancersRequest) (resp *DescribeElasticLoadBalancersResult, err error) {
 	resp = &DescribeElasticLoadBalancersResult{}
 	err = c.client.Do("DescribeElasticLoadBalancers", "POST", "/", req, resp)
 	return
 }
 
-// DescribeInstances requests a description of a set of instances. Required
-// Permissions : To use this action, an IAM user must have a Show, Deploy,
-// or Manage permissions level for the stack, or an attached policy that
-// explicitly grants permissions. For more information on user permissions,
-// see Managing User Permissions
+// DescribeInstances you must specify at least one of the parameters.
+// Required Permissions : To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user
+// permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeInstances(req *DescribeInstancesRequest) (resp *DescribeInstancesResult, err error) {
 	resp = &DescribeInstancesResult{}
 	err = c.client.Do("DescribeInstances", "POST", "/", req, resp)
@@ -309,10 +346,11 @@ func (c *OpsWorks) DescribeInstances(req *DescribeInstancesRequest) (resp *Descr
 }
 
 // DescribeLayers requests a description of one or more layers in a
-// specified stack. Required Permissions : To use this action, an IAM user
-// must have a Show, Deploy, or Manage permissions level for the stack, or
-// an attached policy that explicitly grants permissions. For more
-// information on user permissions, see Managing User Permissions
+// specified stack. You must specify at least one of the parameters.
+// Required Permissions : To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user
+// permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeLayers(req *DescribeLayersRequest) (resp *DescribeLayersResult, err error) {
 	resp = &DescribeLayersResult{}
 	err = c.client.Do("DescribeLayers", "POST", "/", req, resp)
@@ -320,11 +358,11 @@ func (c *OpsWorks) DescribeLayers(req *DescribeLayersRequest) (resp *DescribeLay
 }
 
 // DescribeLoadBasedAutoScaling describes load-based auto scaling
-// configurations for specified layers. Required Permissions : To use this
-// action, an IAM user must have a Show, Deploy, or Manage permissions
-// level for the stack, or an attached policy that explicitly grants
-// permissions. For more information on user permissions, see Managing User
-// Permissions
+// configurations for specified layers. You must specify at least one of
+// the parameters. Required Permissions : To use this action, an IAM user
+// must have a Show, Deploy, or Manage permissions level for the stack, or
+// an attached policy that explicitly grants permissions. For more
+// information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeLoadBasedAutoScaling(req *DescribeLoadBasedAutoScalingRequest) (resp *DescribeLoadBasedAutoScalingResult, err error) {
 	resp = &DescribeLoadBasedAutoScalingResult{}
 	err = c.client.Do("DescribeLoadBasedAutoScaling", "POST", "/", req, resp)
@@ -352,18 +390,22 @@ func (c *OpsWorks) DescribePermissions(req *DescribePermissionsRequest) (resp *D
 	return
 }
 
-// DescribeRaidArrays describe an instance's arrays. Required Permissions :
-// To use this action, an IAM user must have a Show, Deploy, or Manage
-// permissions level for the stack, or an attached policy that explicitly
-// grants permissions. For more information on user permissions, see
-// Managing User Permissions
+// DescribeRaidArrays you must specify at least one of the parameters.
+// Required Permissions : To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user
+// permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeRaidArrays(req *DescribeRaidArraysRequest) (resp *DescribeRaidArraysResult, err error) {
 	resp = &DescribeRaidArraysResult{}
 	err = c.client.Do("DescribeRaidArrays", "POST", "/", req, resp)
 	return
 }
 
-// DescribeRdsDbInstances is undocumented.
+// DescribeRdsDbInstances describes Amazon RDS instances. Required
+// Permissions : To use this action, an IAM user must have a Show, Deploy,
+// or Manage permissions level for the stack, or an attached policy that
+// explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions
 func (c *OpsWorks) DescribeRdsDbInstances(req *DescribeRdsDbInstancesRequest) (resp *DescribeRdsDbInstancesResult, err error) {
 	resp = &DescribeRdsDbInstancesResult{}
 	err = c.client.Do("DescribeRdsDbInstances", "POST", "/", req, resp)
@@ -378,6 +420,17 @@ func (c *OpsWorks) DescribeRdsDbInstances(req *DescribeRdsDbInstancesRequest) (r
 func (c *OpsWorks) DescribeServiceErrors(req *DescribeServiceErrorsRequest) (resp *DescribeServiceErrorsResult, err error) {
 	resp = &DescribeServiceErrorsResult{}
 	err = c.client.Do("DescribeServiceErrors", "POST", "/", req, resp)
+	return
+}
+
+// DescribeStackProvisioningParameters requests a description of a stack's
+// provisioning parameters. Required Permissions : To use this action, an
+// IAM user must have a Show, Deploy, or Manage permissions level for the
+// stack or an attached policy that explicitly grants permissions. For more
+// information on user permissions, see Managing User Permissions
+func (c *OpsWorks) DescribeStackProvisioningParameters(req *DescribeStackProvisioningParametersRequest) (resp *DescribeStackProvisioningParametersResult, err error) {
+	resp = &DescribeStackProvisioningParametersResult{}
+	err = c.client.Do("DescribeStackProvisioningParameters", "POST", "/", req, resp)
 	return
 }
 
@@ -405,11 +458,11 @@ func (c *OpsWorks) DescribeStacks(req *DescribeStacksRequest) (resp *DescribeSta
 }
 
 // DescribeTimeBasedAutoScaling describes time-based auto scaling
-// configurations for specified instances. Required Permissions : To use
-// this action, an IAM user must have a Show, Deploy, or Manage permissions
-// level for the stack, or an attached policy that explicitly grants
-// permissions. For more information on user permissions, see Managing User
-// Permissions
+// configurations for specified instances. You must specify at least one of
+// the parameters. Required Permissions : To use this action, an IAM user
+// must have a Show, Deploy, or Manage permissions level for the stack, or
+// an attached policy that explicitly grants permissions. For more
+// information on user permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeTimeBasedAutoScaling(req *DescribeTimeBasedAutoScalingRequest) (resp *DescribeTimeBasedAutoScalingResult, err error) {
 	resp = &DescribeTimeBasedAutoScalingResult{}
 	err = c.client.Do("DescribeTimeBasedAutoScaling", "POST", "/", req, resp)
@@ -426,11 +479,11 @@ func (c *OpsWorks) DescribeUserProfiles(req *DescribeUserProfilesRequest) (resp 
 	return
 }
 
-// DescribeVolumes describes an instance's Amazon EBS volumes. Required
-// Permissions : To use this action, an IAM user must have a Show, Deploy,
-// or Manage permissions level for the stack, or an attached policy that
-// explicitly grants permissions. For more information on user permissions,
-// see Managing User Permissions
+// DescribeVolumes you must specify at least one of the parameters.
+// Required Permissions : To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user
+// permissions, see Managing User Permissions
 func (c *OpsWorks) DescribeVolumes(req *DescribeVolumesRequest) (resp *DescribeVolumesResult, err error) {
 	resp = &DescribeVolumesResult{}
 	err = c.client.Do("DescribeVolumes", "POST", "/", req, resp)
@@ -496,7 +549,27 @@ func (c *OpsWorks) RegisterElasticIP(req *RegisterElasticIPRequest) (resp *Regis
 	return
 }
 
-// RegisterRdsDbInstance is undocumented.
+// RegisterInstance registers instances with a specified stack that were
+// created outside of AWS OpsWorks. We do not recommend using this action
+// to register instances. The complete registration operation has two
+// primary steps, installing the AWS OpsWorks agent on the instance and
+// registering the instance with the stack. RegisterInstance handles only
+// the second step. You should instead use the AWS CLI register command,
+// which performs the entire registration operation. Required Permissions :
+// To use this action, an IAM user must have a Manage permissions level for
+// the stack or an attached policy that explicitly grants permissions. For
+// more information on user permissions, see Managing User Permissions
+func (c *OpsWorks) RegisterInstance(req *RegisterInstanceRequest) (resp *RegisterInstanceResult, err error) {
+	resp = &RegisterInstanceResult{}
+	err = c.client.Do("RegisterInstance", "POST", "/", req, resp)
+	return
+}
+
+// RegisterRdsDbInstance registers an Amazon RDS instance with a stack.
+// Required Permissions : To use this action, an IAM user must have a
+// Manage permissions level for the stack, or an attached policy that
+// explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions
 func (c *OpsWorks) RegisterRdsDbInstance(req *RegisterRdsDbInstanceRequest) (err error) {
 	// NRE
 	err = c.client.Do("RegisterRdsDbInstance", "POST", "/", req, nil)
@@ -519,10 +592,14 @@ func (c *OpsWorks) RegisterVolume(req *RegisterVolumeRequest) (resp *RegisterVol
 
 // SetLoadBasedAutoScaling specify the load-based auto scaling
 // configuration for a specified layer. For more information, see Managing
-// Load with Time-based and Load-based Instances Required Permissions : To
-// use this action, an IAM user must have a Manage permissions level for
-// the stack, or an attached policy that explicitly grants permissions. For
-// more information on user permissions, see Managing User Permissions
+// Load with Time-based and Load-based Instances To use load-based auto
+// scaling, you must create a set of load-based auto scaling instances.
+// Load-based auto scaling operates only on the instances from that set, so
+// you must ensure that you have created enough instances to handle the
+// maximum anticipated load. Required Permissions : To use this action, an
+// IAM user must have a Manage permissions level for the stack, or an
+// attached policy that explicitly grants permissions. For more information
+// on user permissions, see Managing User Permissions
 func (c *OpsWorks) SetLoadBasedAutoScaling(req *SetLoadBasedAutoScalingRequest) (err error) {
 	// NRE
 	err = c.client.Do("SetLoadBasedAutoScaling", "POST", "/", req, nil)
@@ -598,6 +675,19 @@ func (c *OpsWorks) StopStack(req *StopStackRequest) (err error) {
 	return
 }
 
+// UnassignInstance unassigns a registered instance from all of it's
+// layers. The instance remains in the stack as an unassigned instance and
+// can be assigned to another layer, as needed. You cannot use this action
+// with instances that were created with AWS OpsWorks. Required Permissions
+// : To use this action, an IAM user must have a Manage permissions level
+// for the stack or an attached policy that explicitly grants permissions.
+// For more information on user permissions, see Managing User Permissions
+func (c *OpsWorks) UnassignInstance(req *UnassignInstanceRequest) (err error) {
+	// NRE
+	err = c.client.Do("UnassignInstance", "POST", "/", req, nil)
+	return
+}
+
 // UnassignVolume unassigns an assigned Amazon EBS volume. The volume
 // remains registered with the stack. For more information, see Resource
 // Management Required Permissions : To use this action, an IAM user must
@@ -661,7 +751,10 @@ func (c *OpsWorks) UpdateMyUserProfile(req *UpdateMyUserProfileRequest) (err err
 	return
 }
 
-// UpdateRdsDbInstance is undocumented.
+// UpdateRdsDbInstance updates an Amazon RDS instance. Required Permissions
+// : To use this action, an IAM user must have a Manage permissions level
+// for the stack, or an attached policy that explicitly grants permissions.
+// For more information on user permissions, see Managing User Permissions
 func (c *OpsWorks) UpdateRdsDbInstance(req *UpdateRdsDbInstanceRequest) (err error) {
 	// NRE
 	err = c.client.Do("UpdateRdsDbInstance", "POST", "/", req, nil)
@@ -701,19 +794,26 @@ func (c *OpsWorks) UpdateVolume(req *UpdateVolumeRequest) (err error) {
 
 // App is undocumented.
 type App struct {
-	AppID            aws.StringValue   `json:"AppId,omitempty"`
-	AppSource        *Source           `json:"AppSource,omitempty"`
-	Attributes       map[string]string `json:"Attributes,omitempty"`
-	CreatedAt        aws.StringValue   `json:"CreatedAt,omitempty"`
-	DataSources      []DataSource      `json:"DataSources,omitempty"`
-	Description      aws.StringValue   `json:"Description,omitempty"`
-	Domains          []string          `json:"Domains,omitempty"`
-	EnableSsl        aws.BooleanValue  `json:"EnableSsl,omitempty"`
-	Name             aws.StringValue   `json:"Name,omitempty"`
-	Shortname        aws.StringValue   `json:"Shortname,omitempty"`
-	SslConfiguration *SslConfiguration `json:"SslConfiguration,omitempty"`
-	StackID          aws.StringValue   `json:"StackId,omitempty"`
-	Type             aws.StringValue   `json:"Type,omitempty"`
+	AppID            aws.StringValue       `json:"AppId,omitempty"`
+	AppSource        *Source               `json:"AppSource,omitempty"`
+	Attributes       map[string]string     `json:"Attributes,omitempty"`
+	CreatedAt        aws.StringValue       `json:"CreatedAt,omitempty"`
+	DataSources      []DataSource          `json:"DataSources,omitempty"`
+	Description      aws.StringValue       `json:"Description,omitempty"`
+	Domains          []string              `json:"Domains,omitempty"`
+	EnableSsl        aws.BooleanValue      `json:"EnableSsl,omitempty"`
+	Environment      []EnvironmentVariable `json:"Environment,omitempty"`
+	Name             aws.StringValue       `json:"Name,omitempty"`
+	Shortname        aws.StringValue       `json:"Shortname,omitempty"`
+	SslConfiguration *SslConfiguration     `json:"SslConfiguration,omitempty"`
+	StackID          aws.StringValue       `json:"StackId,omitempty"`
+	Type             aws.StringValue       `json:"Type,omitempty"`
+}
+
+// AssignInstanceRequest is undocumented.
+type AssignInstanceRequest struct {
+	InstanceID aws.StringValue `json:"InstanceId"`
+	LayerIds   []string        `json:"LayerIds"`
 }
 
 // AssignVolumeRequest is undocumented.
@@ -796,17 +896,18 @@ type Command struct {
 
 // CreateAppRequest is undocumented.
 type CreateAppRequest struct {
-	AppSource        *Source           `json:"AppSource,omitempty"`
-	Attributes       map[string]string `json:"Attributes,omitempty"`
-	DataSources      []DataSource      `json:"DataSources,omitempty"`
-	Description      aws.StringValue   `json:"Description,omitempty"`
-	Domains          []string          `json:"Domains,omitempty"`
-	EnableSsl        aws.BooleanValue  `json:"EnableSsl,omitempty"`
-	Name             aws.StringValue   `json:"Name"`
-	Shortname        aws.StringValue   `json:"Shortname,omitempty"`
-	SslConfiguration *SslConfiguration `json:"SslConfiguration,omitempty"`
-	StackID          aws.StringValue   `json:"StackId"`
-	Type             aws.StringValue   `json:"Type"`
+	AppSource        *Source               `json:"AppSource,omitempty"`
+	Attributes       map[string]string     `json:"Attributes,omitempty"`
+	DataSources      []DataSource          `json:"DataSources,omitempty"`
+	Description      aws.StringValue       `json:"Description,omitempty"`
+	Domains          []string              `json:"Domains,omitempty"`
+	EnableSsl        aws.BooleanValue      `json:"EnableSsl,omitempty"`
+	Environment      []EnvironmentVariable `json:"Environment,omitempty"`
+	Name             aws.StringValue       `json:"Name"`
+	Shortname        aws.StringValue       `json:"Shortname,omitempty"`
+	SslConfiguration *SslConfiguration     `json:"SslConfiguration,omitempty"`
+	StackID          aws.StringValue       `json:"StackId"`
+	Type             aws.StringValue       `json:"Type"`
 }
 
 // CreateAppResult is undocumented.
@@ -855,21 +956,22 @@ type CreateInstanceResult struct {
 
 // CreateLayerRequest is undocumented.
 type CreateLayerRequest struct {
-	Attributes               map[string]string     `json:"Attributes,omitempty"`
-	AutoAssignElasticIPs     aws.BooleanValue      `json:"AutoAssignElasticIps,omitempty"`
-	AutoAssignPublicIPs      aws.BooleanValue      `json:"AutoAssignPublicIps,omitempty"`
-	CustomInstanceProfileARN aws.StringValue       `json:"CustomInstanceProfileArn,omitempty"`
-	CustomRecipes            *Recipes              `json:"CustomRecipes,omitempty"`
-	CustomSecurityGroupIds   []string              `json:"CustomSecurityGroupIds,omitempty"`
-	EnableAutoHealing        aws.BooleanValue      `json:"EnableAutoHealing,omitempty"`
-	InstallUpdatesOnBoot     aws.BooleanValue      `json:"InstallUpdatesOnBoot,omitempty"`
-	Name                     aws.StringValue       `json:"Name"`
-	Packages                 []string              `json:"Packages,omitempty"`
-	Shortname                aws.StringValue       `json:"Shortname"`
-	StackID                  aws.StringValue       `json:"StackId"`
-	Type                     aws.StringValue       `json:"Type"`
-	UseEbsOptimizedInstances aws.BooleanValue      `json:"UseEbsOptimizedInstances,omitempty"`
-	VolumeConfigurations     []VolumeConfiguration `json:"VolumeConfigurations,omitempty"`
+	Attributes                  map[string]string            `json:"Attributes,omitempty"`
+	AutoAssignElasticIPs        aws.BooleanValue             `json:"AutoAssignElasticIps,omitempty"`
+	AutoAssignPublicIPs         aws.BooleanValue             `json:"AutoAssignPublicIps,omitempty"`
+	CustomInstanceProfileARN    aws.StringValue              `json:"CustomInstanceProfileArn,omitempty"`
+	CustomRecipes               *Recipes                     `json:"CustomRecipes,omitempty"`
+	CustomSecurityGroupIds      []string                     `json:"CustomSecurityGroupIds,omitempty"`
+	EnableAutoHealing           aws.BooleanValue             `json:"EnableAutoHealing,omitempty"`
+	InstallUpdatesOnBoot        aws.BooleanValue             `json:"InstallUpdatesOnBoot,omitempty"`
+	LifecycleEventConfiguration *LifecycleEventConfiguration `json:"LifecycleEventConfiguration,omitempty"`
+	Name                        aws.StringValue              `json:"Name"`
+	Packages                    []string                     `json:"Packages,omitempty"`
+	Shortname                   aws.StringValue              `json:"Shortname"`
+	StackID                     aws.StringValue              `json:"StackId"`
+	Type                        aws.StringValue              `json:"Type"`
+	UseEbsOptimizedInstances    aws.BooleanValue             `json:"UseEbsOptimizedInstances,omitempty"`
+	VolumeConfigurations        []VolumeConfiguration        `json:"VolumeConfigurations,omitempty"`
 }
 
 // CreateLayerResult is undocumented.
@@ -976,6 +1078,11 @@ type DeploymentCommand struct {
 // DeregisterElasticIPRequest is undocumented.
 type DeregisterElasticIPRequest struct {
 	ElasticIP aws.StringValue `json:"ElasticIp"`
+}
+
+// DeregisterInstanceRequest is undocumented.
+type DeregisterInstanceRequest struct {
+	InstanceID aws.StringValue `json:"InstanceId"`
 }
 
 // DeregisterRdsDbInstanceRequest is undocumented.
@@ -1099,6 +1206,7 @@ type DescribePermissionsResult struct {
 type DescribeRaidArraysRequest struct {
 	InstanceID   aws.StringValue `json:"InstanceId,omitempty"`
 	RaidArrayIds []string        `json:"RaidArrayIds,omitempty"`
+	StackID      aws.StringValue `json:"StackId,omitempty"`
 }
 
 // DescribeRaidArraysResult is undocumented.
@@ -1127,6 +1235,17 @@ type DescribeServiceErrorsRequest struct {
 // DescribeServiceErrorsResult is undocumented.
 type DescribeServiceErrorsResult struct {
 	ServiceErrors []ServiceError `json:"ServiceErrors,omitempty"`
+}
+
+// DescribeStackProvisioningParametersRequest is undocumented.
+type DescribeStackProvisioningParametersRequest struct {
+	StackID aws.StringValue `json:"StackId"`
+}
+
+// DescribeStackProvisioningParametersResult is undocumented.
+type DescribeStackProvisioningParametersResult struct {
+	AgentInstallerURL aws.StringValue   `json:"AgentInstallerUrl,omitempty"`
+	Parameters        map[string]string `json:"Parameters,omitempty"`
 }
 
 // DescribeStackSummaryRequest is undocumented.
@@ -1215,6 +1334,13 @@ type ElasticLoadBalancer struct {
 	VpcID                   aws.StringValue `json:"VpcId,omitempty"`
 }
 
+// EnvironmentVariable is undocumented.
+type EnvironmentVariable struct {
+	Key    aws.StringValue  `json:"Key"`
+	Secure aws.BooleanValue `json:"Secure,omitempty"`
+	Value  aws.StringValue  `json:"Value"`
+}
+
 // GetHostnameSuggestionRequest is undocumented.
 type GetHostnameSuggestionRequest struct {
 	LayerID aws.StringValue `json:"LayerId"`
@@ -1237,6 +1363,7 @@ type Instance struct {
 	Ec2InstanceID            aws.StringValue  `json:"Ec2InstanceId,omitempty"`
 	ElasticIP                aws.StringValue  `json:"ElasticIp,omitempty"`
 	Hostname                 aws.StringValue  `json:"Hostname,omitempty"`
+	InfrastructureClass      aws.StringValue  `json:"InfrastructureClass,omitempty"`
 	InstallUpdatesOnBoot     aws.BooleanValue `json:"InstallUpdatesOnBoot,omitempty"`
 	InstanceID               aws.StringValue  `json:"InstanceId,omitempty"`
 	InstanceProfileARN       aws.StringValue  `json:"InstanceProfileArn,omitempty"`
@@ -1248,6 +1375,8 @@ type Instance struct {
 	PrivateIP                aws.StringValue  `json:"PrivateIp,omitempty"`
 	PublicDNS                aws.StringValue  `json:"PublicDns,omitempty"`
 	PublicIP                 aws.StringValue  `json:"PublicIp,omitempty"`
+	RegisteredBy             aws.StringValue  `json:"RegisteredBy,omitempty"`
+	ReportedOs               *ReportedOs      `json:"ReportedOs,omitempty"`
 	RootDeviceType           aws.StringValue  `json:"RootDeviceType,omitempty"`
 	RootDeviceVolumeID       aws.StringValue  `json:"RootDeviceVolumeId,omitempty"`
 	SecurityGroupIds         []string         `json:"SecurityGroupIds,omitempty"`
@@ -1260,13 +1389,23 @@ type Instance struct {
 	VirtualizationType       aws.StringValue  `json:"VirtualizationType,omitempty"`
 }
 
+// InstanceIdentity is undocumented.
+type InstanceIdentity struct {
+	Document  aws.StringValue `json:"Document,omitempty"`
+	Signature aws.StringValue `json:"Signature,omitempty"`
+}
+
 // InstancesCount is undocumented.
 type InstancesCount struct {
+	Assigning      aws.IntegerValue `json:"Assigning,omitempty"`
 	Booting        aws.IntegerValue `json:"Booting,omitempty"`
 	ConnectionLost aws.IntegerValue `json:"ConnectionLost,omitempty"`
+	Deregistering  aws.IntegerValue `json:"Deregistering,omitempty"`
 	Online         aws.IntegerValue `json:"Online,omitempty"`
 	Pending        aws.IntegerValue `json:"Pending,omitempty"`
 	Rebooting      aws.IntegerValue `json:"Rebooting,omitempty"`
+	Registered     aws.IntegerValue `json:"Registered,omitempty"`
+	Registering    aws.IntegerValue `json:"Registering,omitempty"`
 	Requested      aws.IntegerValue `json:"Requested,omitempty"`
 	RunningSetup   aws.IntegerValue `json:"RunningSetup,omitempty"`
 	SetupFailed    aws.IntegerValue `json:"SetupFailed,omitempty"`
@@ -1276,29 +1415,36 @@ type InstancesCount struct {
 	Stopping       aws.IntegerValue `json:"Stopping,omitempty"`
 	Terminated     aws.IntegerValue `json:"Terminated,omitempty"`
 	Terminating    aws.IntegerValue `json:"Terminating,omitempty"`
+	Unassigning    aws.IntegerValue `json:"Unassigning,omitempty"`
 }
 
 // Layer is undocumented.
 type Layer struct {
-	Attributes                map[string]string     `json:"Attributes,omitempty"`
-	AutoAssignElasticIPs      aws.BooleanValue      `json:"AutoAssignElasticIps,omitempty"`
-	AutoAssignPublicIPs       aws.BooleanValue      `json:"AutoAssignPublicIps,omitempty"`
-	CreatedAt                 aws.StringValue       `json:"CreatedAt,omitempty"`
-	CustomInstanceProfileARN  aws.StringValue       `json:"CustomInstanceProfileArn,omitempty"`
-	CustomRecipes             *Recipes              `json:"CustomRecipes,omitempty"`
-	CustomSecurityGroupIds    []string              `json:"CustomSecurityGroupIds,omitempty"`
-	DefaultRecipes            *Recipes              `json:"DefaultRecipes,omitempty"`
-	DefaultSecurityGroupNames []string              `json:"DefaultSecurityGroupNames,omitempty"`
-	EnableAutoHealing         aws.BooleanValue      `json:"EnableAutoHealing,omitempty"`
-	InstallUpdatesOnBoot      aws.BooleanValue      `json:"InstallUpdatesOnBoot,omitempty"`
-	LayerID                   aws.StringValue       `json:"LayerId,omitempty"`
-	Name                      aws.StringValue       `json:"Name,omitempty"`
-	Packages                  []string              `json:"Packages,omitempty"`
-	Shortname                 aws.StringValue       `json:"Shortname,omitempty"`
-	StackID                   aws.StringValue       `json:"StackId,omitempty"`
-	Type                      aws.StringValue       `json:"Type,omitempty"`
-	UseEbsOptimizedInstances  aws.BooleanValue      `json:"UseEbsOptimizedInstances,omitempty"`
-	VolumeConfigurations      []VolumeConfiguration `json:"VolumeConfigurations,omitempty"`
+	Attributes                  map[string]string            `json:"Attributes,omitempty"`
+	AutoAssignElasticIPs        aws.BooleanValue             `json:"AutoAssignElasticIps,omitempty"`
+	AutoAssignPublicIPs         aws.BooleanValue             `json:"AutoAssignPublicIps,omitempty"`
+	CreatedAt                   aws.StringValue              `json:"CreatedAt,omitempty"`
+	CustomInstanceProfileARN    aws.StringValue              `json:"CustomInstanceProfileArn,omitempty"`
+	CustomRecipes               *Recipes                     `json:"CustomRecipes,omitempty"`
+	CustomSecurityGroupIds      []string                     `json:"CustomSecurityGroupIds,omitempty"`
+	DefaultRecipes              *Recipes                     `json:"DefaultRecipes,omitempty"`
+	DefaultSecurityGroupNames   []string                     `json:"DefaultSecurityGroupNames,omitempty"`
+	EnableAutoHealing           aws.BooleanValue             `json:"EnableAutoHealing,omitempty"`
+	InstallUpdatesOnBoot        aws.BooleanValue             `json:"InstallUpdatesOnBoot,omitempty"`
+	LayerID                     aws.StringValue              `json:"LayerId,omitempty"`
+	LifecycleEventConfiguration *LifecycleEventConfiguration `json:"LifecycleEventConfiguration,omitempty"`
+	Name                        aws.StringValue              `json:"Name,omitempty"`
+	Packages                    []string                     `json:"Packages,omitempty"`
+	Shortname                   aws.StringValue              `json:"Shortname,omitempty"`
+	StackID                     aws.StringValue              `json:"StackId,omitempty"`
+	Type                        aws.StringValue              `json:"Type,omitempty"`
+	UseEbsOptimizedInstances    aws.BooleanValue             `json:"UseEbsOptimizedInstances,omitempty"`
+	VolumeConfigurations        []VolumeConfiguration        `json:"VolumeConfigurations,omitempty"`
+}
+
+// LifecycleEventConfiguration is undocumented.
+type LifecycleEventConfiguration struct {
+	Shutdown *ShutdownEventConfiguration `json:"Shutdown,omitempty"`
 }
 
 // LoadBasedAutoScalingConfiguration is undocumented.
@@ -1331,6 +1477,7 @@ type RaidArray struct {
 	RaidArrayID      aws.StringValue  `json:"RaidArrayId,omitempty"`
 	RaidLevel        aws.IntegerValue `json:"RaidLevel,omitempty"`
 	Size             aws.IntegerValue `json:"Size,omitempty"`
+	StackID          aws.StringValue  `json:"StackId,omitempty"`
 	VolumeType       aws.StringValue  `json:"VolumeType,omitempty"`
 }
 
@@ -1372,6 +1519,22 @@ type RegisterElasticIPResult struct {
 	ElasticIP aws.StringValue `json:"ElasticIp,omitempty"`
 }
 
+// RegisterInstanceRequest is undocumented.
+type RegisterInstanceRequest struct {
+	Hostname                aws.StringValue   `json:"Hostname,omitempty"`
+	InstanceIdentity        *InstanceIdentity `json:"InstanceIdentity,omitempty"`
+	PrivateIP               aws.StringValue   `json:"PrivateIp,omitempty"`
+	PublicIP                aws.StringValue   `json:"PublicIp,omitempty"`
+	RsaPublicKey            aws.StringValue   `json:"RsaPublicKey,omitempty"`
+	RsaPublicKeyFingerprint aws.StringValue   `json:"RsaPublicKeyFingerprint,omitempty"`
+	StackID                 aws.StringValue   `json:"StackId"`
+}
+
+// RegisterInstanceResult is undocumented.
+type RegisterInstanceResult struct {
+	InstanceID aws.StringValue `json:"InstanceId,omitempty"`
+}
+
 // RegisterRdsDbInstanceRequest is undocumented.
 type RegisterRdsDbInstanceRequest struct {
 	DbPassword       aws.StringValue `json:"DbPassword"`
@@ -1389,6 +1552,13 @@ type RegisterVolumeRequest struct {
 // RegisterVolumeResult is undocumented.
 type RegisterVolumeResult struct {
 	VolumeID aws.StringValue `json:"VolumeId,omitempty"`
+}
+
+// ReportedOs is undocumented.
+type ReportedOs struct {
+	Family  aws.StringValue `json:"Family,omitempty"`
+	Name    aws.StringValue `json:"Name,omitempty"`
+	Version aws.StringValue `json:"Version,omitempty"`
 }
 
 // SelfUserProfile is undocumented.
@@ -1430,6 +1600,12 @@ type SetPermissionRequest struct {
 type SetTimeBasedAutoScalingRequest struct {
 	AutoScalingSchedule *WeeklyAutoScalingSchedule `json:"AutoScalingSchedule,omitempty"`
 	InstanceID          aws.StringValue            `json:"InstanceId"`
+}
+
+// ShutdownEventConfiguration is undocumented.
+type ShutdownEventConfiguration struct {
+	DelayUntilElbConnectionsDrained aws.BooleanValue `json:"DelayUntilElbConnectionsDrained,omitempty"`
+	ExecutionTimeout                aws.IntegerValue `json:"ExecutionTimeout,omitempty"`
 }
 
 // Source is undocumented.
@@ -1516,6 +1692,11 @@ type TimeBasedAutoScalingConfiguration struct {
 	InstanceID          aws.StringValue            `json:"InstanceId,omitempty"`
 }
 
+// UnassignInstanceRequest is undocumented.
+type UnassignInstanceRequest struct {
+	InstanceID aws.StringValue `json:"InstanceId"`
+}
+
 // UnassignVolumeRequest is undocumented.
 type UnassignVolumeRequest struct {
 	VolumeID aws.StringValue `json:"VolumeId"`
@@ -1523,16 +1704,17 @@ type UnassignVolumeRequest struct {
 
 // UpdateAppRequest is undocumented.
 type UpdateAppRequest struct {
-	AppID            aws.StringValue   `json:"AppId"`
-	AppSource        *Source           `json:"AppSource,omitempty"`
-	Attributes       map[string]string `json:"Attributes,omitempty"`
-	DataSources      []DataSource      `json:"DataSources,omitempty"`
-	Description      aws.StringValue   `json:"Description,omitempty"`
-	Domains          []string          `json:"Domains,omitempty"`
-	EnableSsl        aws.BooleanValue  `json:"EnableSsl,omitempty"`
-	Name             aws.StringValue   `json:"Name,omitempty"`
-	SslConfiguration *SslConfiguration `json:"SslConfiguration,omitempty"`
-	Type             aws.StringValue   `json:"Type,omitempty"`
+	AppID            aws.StringValue       `json:"AppId"`
+	AppSource        *Source               `json:"AppSource,omitempty"`
+	Attributes       map[string]string     `json:"Attributes,omitempty"`
+	DataSources      []DataSource          `json:"DataSources,omitempty"`
+	Description      aws.StringValue       `json:"Description,omitempty"`
+	Domains          []string              `json:"Domains,omitempty"`
+	EnableSsl        aws.BooleanValue      `json:"EnableSsl,omitempty"`
+	Environment      []EnvironmentVariable `json:"Environment,omitempty"`
+	Name             aws.StringValue       `json:"Name,omitempty"`
+	SslConfiguration *SslConfiguration     `json:"SslConfiguration,omitempty"`
+	Type             aws.StringValue       `json:"Type,omitempty"`
 }
 
 // UpdateElasticIPRequest is undocumented.
@@ -1558,20 +1740,21 @@ type UpdateInstanceRequest struct {
 
 // UpdateLayerRequest is undocumented.
 type UpdateLayerRequest struct {
-	Attributes               map[string]string     `json:"Attributes,omitempty"`
-	AutoAssignElasticIPs     aws.BooleanValue      `json:"AutoAssignElasticIps,omitempty"`
-	AutoAssignPublicIPs      aws.BooleanValue      `json:"AutoAssignPublicIps,omitempty"`
-	CustomInstanceProfileARN aws.StringValue       `json:"CustomInstanceProfileArn,omitempty"`
-	CustomRecipes            *Recipes              `json:"CustomRecipes,omitempty"`
-	CustomSecurityGroupIds   []string              `json:"CustomSecurityGroupIds,omitempty"`
-	EnableAutoHealing        aws.BooleanValue      `json:"EnableAutoHealing,omitempty"`
-	InstallUpdatesOnBoot     aws.BooleanValue      `json:"InstallUpdatesOnBoot,omitempty"`
-	LayerID                  aws.StringValue       `json:"LayerId"`
-	Name                     aws.StringValue       `json:"Name,omitempty"`
-	Packages                 []string              `json:"Packages,omitempty"`
-	Shortname                aws.StringValue       `json:"Shortname,omitempty"`
-	UseEbsOptimizedInstances aws.BooleanValue      `json:"UseEbsOptimizedInstances,omitempty"`
-	VolumeConfigurations     []VolumeConfiguration `json:"VolumeConfigurations,omitempty"`
+	Attributes                  map[string]string            `json:"Attributes,omitempty"`
+	AutoAssignElasticIPs        aws.BooleanValue             `json:"AutoAssignElasticIps,omitempty"`
+	AutoAssignPublicIPs         aws.BooleanValue             `json:"AutoAssignPublicIps,omitempty"`
+	CustomInstanceProfileARN    aws.StringValue              `json:"CustomInstanceProfileArn,omitempty"`
+	CustomRecipes               *Recipes                     `json:"CustomRecipes,omitempty"`
+	CustomSecurityGroupIds      []string                     `json:"CustomSecurityGroupIds,omitempty"`
+	EnableAutoHealing           aws.BooleanValue             `json:"EnableAutoHealing,omitempty"`
+	InstallUpdatesOnBoot        aws.BooleanValue             `json:"InstallUpdatesOnBoot,omitempty"`
+	LayerID                     aws.StringValue              `json:"LayerId"`
+	LifecycleEventConfiguration *LifecycleEventConfiguration `json:"LifecycleEventConfiguration,omitempty"`
+	Name                        aws.StringValue              `json:"Name,omitempty"`
+	Packages                    []string                     `json:"Packages,omitempty"`
+	Shortname                   aws.StringValue              `json:"Shortname,omitempty"`
+	UseEbsOptimizedInstances    aws.BooleanValue             `json:"UseEbsOptimizedInstances,omitempty"`
+	VolumeConfigurations        []VolumeConfiguration        `json:"VolumeConfigurations,omitempty"`
 }
 
 // UpdateMyUserProfileRequest is undocumented.
