@@ -171,7 +171,7 @@ func (c *RedShift) CreateEventSubscription(req *CreateEventSubscriptionMessage) 
 	return
 }
 
-// CreateHsmClientCertificate creates an HSM client certificate that an
+// CreateHSMClientCertificate creates an HSM client certificate that an
 // Amazon Redshift cluster will use to connect to the client's HSM in order
 // to store and retrieve the keys used to encrypt the cluster databases.
 // The command returns a public key, which you must store in the In
@@ -180,13 +180,13 @@ func (c *RedShift) CreateEventSubscription(req *CreateEventSubscriptionMessage) 
 // needed to store and use encryption keys in the For more information, go
 // to Hardware Security Modules in the Amazon Redshift Cluster Management
 // Guide.
-func (c *RedShift) CreateHsmClientCertificate(req *CreateHsmClientCertificateMessage) (resp *CreateHsmClientCertificateResult, err error) {
-	resp = &CreateHsmClientCertificateResult{}
+func (c *RedShift) CreateHSMClientCertificate(req *CreateHSMClientCertificateMessage) (resp *CreateHSMClientCertificateResult, err error) {
+	resp = &CreateHSMClientCertificateResult{}
 	err = c.client.Do("CreateHsmClientCertificate", "POST", "/", req, resp)
 	return
 }
 
-// CreateHsmConfiguration creates an HSM configuration that contains the
+// CreateHSMConfiguration creates an HSM configuration that contains the
 // information required by an Amazon Redshift cluster to store and use
 // database encryption keys in a Hardware Security Module After creating
 // the HSM configuration, you can specify it as a parameter when creating a
@@ -194,8 +194,8 @@ func (c *RedShift) CreateHsmClientCertificate(req *CreateHsmClientCertificateMes
 // addition to creating an HSM configuration, you must also create an HSM
 // client certificate. For more information, go to Hardware Security
 // Modules in the Amazon Redshift Cluster Management Guide.
-func (c *RedShift) CreateHsmConfiguration(req *CreateHsmConfigurationMessage) (resp *CreateHsmConfigurationResult, err error) {
-	resp = &CreateHsmConfigurationResult{}
+func (c *RedShift) CreateHSMConfiguration(req *CreateHSMConfigurationMessage) (resp *CreateHSMConfigurationResult, err error) {
+	resp = &CreateHSMConfigurationResult{}
 	err = c.client.Do("CreateHsmConfiguration", "POST", "/", req, resp)
 	return
 }
@@ -280,16 +280,16 @@ func (c *RedShift) DeleteEventSubscription(req *DeleteEventSubscriptionMessage) 
 	return
 }
 
-// DeleteHsmClientCertificate is undocumented.
-func (c *RedShift) DeleteHsmClientCertificate(req *DeleteHsmClientCertificateMessage) (err error) {
+// DeleteHSMClientCertificate is undocumented.
+func (c *RedShift) DeleteHSMClientCertificate(req *DeleteHSMClientCertificateMessage) (err error) {
 	// NRE
 	err = c.client.Do("DeleteHsmClientCertificate", "POST", "/", req, nil)
 	return
 }
 
-// DeleteHsmConfiguration deletes the specified Amazon Redshift HSM
+// DeleteHSMConfiguration deletes the specified Amazon Redshift HSM
 // configuration.
-func (c *RedShift) DeleteHsmConfiguration(req *DeleteHsmConfigurationMessage) (err error) {
+func (c *RedShift) DeleteHSMConfiguration(req *DeleteHSMConfigurationMessage) (err error) {
 	// NRE
 	err = c.client.Do("DeleteHsmConfiguration", "POST", "/", req, nil)
 	return
@@ -465,7 +465,7 @@ func (c *RedShift) DescribeEvents(req *DescribeEventsMessage) (resp *DescribeEve
 	return
 }
 
-// DescribeHsmClientCertificates returns information about the specified
+// DescribeHSMClientCertificates returns information about the specified
 // HSM client certificate. If no certificate ID is specified, returns
 // information about all the HSM certificates owned by your AWS customer
 // account. If you specify both tag keys and tag values in the same
@@ -476,13 +476,13 @@ func (c *RedShift) DescribeEvents(req *DescribeEventsMessage) (resp *DescribeEve
 // values are returned. If both tag keys and values are omitted from the
 // request, HSM client certificates are returned regardless of whether they
 // have tag keys or values associated with them.
-func (c *RedShift) DescribeHsmClientCertificates(req *DescribeHsmClientCertificatesMessage) (resp *DescribeHsmClientCertificatesResult, err error) {
-	resp = &DescribeHsmClientCertificatesResult{}
+func (c *RedShift) DescribeHSMClientCertificates(req *DescribeHSMClientCertificatesMessage) (resp *DescribeHSMClientCertificatesResult, err error) {
+	resp = &DescribeHSMClientCertificatesResult{}
 	err = c.client.Do("DescribeHsmClientCertificates", "POST", "/", req, resp)
 	return
 }
 
-// DescribeHsmConfigurations returns information about the specified Amazon
+// DescribeHSMConfigurations returns information about the specified Amazon
 // Redshift HSM configuration. If no configuration ID is specified, returns
 // information about all the HSM configurations owned by your AWS customer
 // account. If you specify both tag keys and tag values in the same
@@ -493,8 +493,8 @@ func (c *RedShift) DescribeHsmClientCertificates(req *DescribeHsmClientCertifica
 // returned. If both tag keys and values are omitted from the request, HSM
 // connections are returned regardless of whether they have tag keys or
 // values associated with them.
-func (c *RedShift) DescribeHsmConfigurations(req *DescribeHsmConfigurationsMessage) (resp *DescribeHsmConfigurationsResult, err error) {
-	resp = &DescribeHsmConfigurationsResult{}
+func (c *RedShift) DescribeHSMConfigurations(req *DescribeHSMConfigurationsMessage) (resp *DescribeHSMConfigurationsResult, err error) {
+	resp = &DescribeHSMConfigurationsResult{}
 	err = c.client.Do("DescribeHsmConfigurations", "POST", "/", req, resp)
 	return
 }
@@ -804,7 +804,7 @@ type Cluster struct {
 	ElasticIPStatus                  *ElasticIPStatus                 `xml:"ElasticIpStatus"`
 	Encrypted                        aws.BooleanValue                 `xml:"Encrypted"`
 	Endpoint                         *Endpoint                        `xml:"Endpoint"`
-	HsmStatus                        *HsmStatus                       `xml:"HsmStatus"`
+	HSMStatus                        *HSMStatus                       `xml:"HsmStatus"`
 	KMSKeyID                         aws.StringValue                  `xml:"KmsKeyId"`
 	MasterUsername                   aws.StringValue                  `xml:"MasterUsername"`
 	ModifyStatus                     aws.StringValue                  `xml:"ModifyStatus"`
@@ -946,8 +946,8 @@ type CreateClusterMessage struct {
 	DBName                           aws.StringValue  `xml:"DBName"`
 	ElasticIP                        aws.StringValue  `xml:"ElasticIp"`
 	Encrypted                        aws.BooleanValue `xml:"Encrypted"`
-	HsmClientCertificateIdentifier   aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
-	HsmConfigurationIdentifier       aws.StringValue  `xml:"HsmConfigurationIdentifier"`
+	HSMClientCertificateIdentifier   aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
+	HSMConfigurationIdentifier       aws.StringValue  `xml:"HsmConfigurationIdentifier"`
 	KMSKeyID                         aws.StringValue  `xml:"KmsKeyId"`
 	MasterUserPassword               aws.StringValue  `xml:"MasterUserPassword"`
 	MasterUsername                   aws.StringValue  `xml:"MasterUsername"`
@@ -1032,31 +1032,31 @@ type CreateEventSubscriptionResult struct {
 	EventSubscription *EventSubscription `xml:"CreateEventSubscriptionResult>EventSubscription"`
 }
 
-// CreateHsmClientCertificateMessage is undocumented.
-type CreateHsmClientCertificateMessage struct {
-	HsmClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
+// CreateHSMClientCertificateMessage is undocumented.
+type CreateHSMClientCertificateMessage struct {
+	HSMClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
 	Tags                           []Tag           `xml:"Tags>Tag"`
 }
 
-// CreateHsmClientCertificateResult is undocumented.
-type CreateHsmClientCertificateResult struct {
-	HsmClientCertificate *HsmClientCertificate `xml:"CreateHsmClientCertificateResult>HsmClientCertificate"`
+// CreateHSMClientCertificateResult is undocumented.
+type CreateHSMClientCertificateResult struct {
+	HSMClientCertificate *HSMClientCertificate `xml:"CreateHsmClientCertificateResult>HsmClientCertificate"`
 }
 
-// CreateHsmConfigurationMessage is undocumented.
-type CreateHsmConfigurationMessage struct {
+// CreateHSMConfigurationMessage is undocumented.
+type CreateHSMConfigurationMessage struct {
 	Description                aws.StringValue `xml:"Description"`
-	HsmConfigurationIdentifier aws.StringValue `xml:"HsmConfigurationIdentifier"`
-	HsmIPAddress               aws.StringValue `xml:"HsmIpAddress"`
-	HsmPartitionName           aws.StringValue `xml:"HsmPartitionName"`
-	HsmPartitionPassword       aws.StringValue `xml:"HsmPartitionPassword"`
-	HsmServerPublicCertificate aws.StringValue `xml:"HsmServerPublicCertificate"`
+	HSMConfigurationIdentifier aws.StringValue `xml:"HsmConfigurationIdentifier"`
+	HSMIPAddress               aws.StringValue `xml:"HsmIpAddress"`
+	HSMPartitionName           aws.StringValue `xml:"HsmPartitionName"`
+	HSMPartitionPassword       aws.StringValue `xml:"HsmPartitionPassword"`
+	HSMServerPublicCertificate aws.StringValue `xml:"HsmServerPublicCertificate"`
 	Tags                       []Tag           `xml:"Tags>Tag"`
 }
 
-// CreateHsmConfigurationResult is undocumented.
-type CreateHsmConfigurationResult struct {
-	HsmConfiguration *HsmConfiguration `xml:"CreateHsmConfigurationResult>HsmConfiguration"`
+// CreateHSMConfigurationResult is undocumented.
+type CreateHSMConfigurationResult struct {
+	HSMConfiguration *HSMConfiguration `xml:"CreateHsmConfigurationResult>HsmConfiguration"`
 }
 
 // CreateTagsMessage is undocumented.
@@ -1115,14 +1115,14 @@ type DeleteEventSubscriptionMessage struct {
 	SubscriptionName aws.StringValue `xml:"SubscriptionName"`
 }
 
-// DeleteHsmClientCertificateMessage is undocumented.
-type DeleteHsmClientCertificateMessage struct {
-	HsmClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
+// DeleteHSMClientCertificateMessage is undocumented.
+type DeleteHSMClientCertificateMessage struct {
+	HSMClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
 }
 
-// DeleteHsmConfigurationMessage is undocumented.
-type DeleteHsmConfigurationMessage struct {
-	HsmConfigurationIdentifier aws.StringValue `xml:"HsmConfigurationIdentifier"`
+// DeleteHSMConfigurationMessage is undocumented.
+type DeleteHSMConfigurationMessage struct {
+	HSMConfigurationIdentifier aws.StringValue `xml:"HsmConfigurationIdentifier"`
 }
 
 // DeleteTagsMessage is undocumented.
@@ -1232,18 +1232,18 @@ type DescribeEventsMessage struct {
 	StartTime        time.Time        `xml:"StartTime"`
 }
 
-// DescribeHsmClientCertificatesMessage is undocumented.
-type DescribeHsmClientCertificatesMessage struct {
-	HsmClientCertificateIdentifier aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
+// DescribeHSMClientCertificatesMessage is undocumented.
+type DescribeHSMClientCertificatesMessage struct {
+	HSMClientCertificateIdentifier aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
 	Marker                         aws.StringValue  `xml:"Marker"`
 	MaxRecords                     aws.IntegerValue `xml:"MaxRecords"`
 	TagKeys                        []string         `xml:"TagKeys>TagKey"`
 	TagValues                      []string         `xml:"TagValues>TagValue"`
 }
 
-// DescribeHsmConfigurationsMessage is undocumented.
-type DescribeHsmConfigurationsMessage struct {
-	HsmConfigurationIdentifier aws.StringValue  `xml:"HsmConfigurationIdentifier"`
+// DescribeHSMConfigurationsMessage is undocumented.
+type DescribeHSMConfigurationsMessage struct {
+	HSMConfigurationIdentifier aws.StringValue  `xml:"HsmConfigurationIdentifier"`
 	Marker                     aws.StringValue  `xml:"Marker"`
 	MaxRecords                 aws.IntegerValue `xml:"MaxRecords"`
 	TagKeys                    []string         `xml:"TagKeys>TagKey"`
@@ -1403,38 +1403,38 @@ type EventsMessage struct {
 	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
 }
 
-// HsmClientCertificate is undocumented.
-type HsmClientCertificate struct {
-	HsmClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
-	HsmClientCertificatePublicKey  aws.StringValue `xml:"HsmClientCertificatePublicKey"`
+// HSMClientCertificate is undocumented.
+type HSMClientCertificate struct {
+	HSMClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
+	HSMClientCertificatePublicKey  aws.StringValue `xml:"HsmClientCertificatePublicKey"`
 	Tags                           []Tag           `xml:"Tags>Tag"`
 }
 
-// HsmClientCertificateMessage is undocumented.
-type HsmClientCertificateMessage struct {
-	HsmClientCertificates []HsmClientCertificate `xml:"DescribeHsmClientCertificatesResult>HsmClientCertificates>HsmClientCertificate"`
+// HSMClientCertificateMessage is undocumented.
+type HSMClientCertificateMessage struct {
+	HSMClientCertificates []HSMClientCertificate `xml:"DescribeHsmClientCertificatesResult>HsmClientCertificates>HsmClientCertificate"`
 	Marker                aws.StringValue        `xml:"DescribeHsmClientCertificatesResult>Marker"`
 }
 
-// HsmConfiguration is undocumented.
-type HsmConfiguration struct {
+// HSMConfiguration is undocumented.
+type HSMConfiguration struct {
 	Description                aws.StringValue `xml:"Description"`
-	HsmConfigurationIdentifier aws.StringValue `xml:"HsmConfigurationIdentifier"`
-	HsmIPAddress               aws.StringValue `xml:"HsmIpAddress"`
-	HsmPartitionName           aws.StringValue `xml:"HsmPartitionName"`
+	HSMConfigurationIdentifier aws.StringValue `xml:"HsmConfigurationIdentifier"`
+	HSMIPAddress               aws.StringValue `xml:"HsmIpAddress"`
+	HSMPartitionName           aws.StringValue `xml:"HsmPartitionName"`
 	Tags                       []Tag           `xml:"Tags>Tag"`
 }
 
-// HsmConfigurationMessage is undocumented.
-type HsmConfigurationMessage struct {
-	HsmConfigurations []HsmConfiguration `xml:"DescribeHsmConfigurationsResult>HsmConfigurations>HsmConfiguration"`
+// HSMConfigurationMessage is undocumented.
+type HSMConfigurationMessage struct {
+	HSMConfigurations []HSMConfiguration `xml:"DescribeHsmConfigurationsResult>HsmConfigurations>HsmConfiguration"`
 	Marker            aws.StringValue    `xml:"DescribeHsmConfigurationsResult>Marker"`
 }
 
-// HsmStatus is undocumented.
-type HsmStatus struct {
-	HsmClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
-	HsmConfigurationIdentifier     aws.StringValue `xml:"HsmConfigurationIdentifier"`
+// HSMStatus is undocumented.
+type HSMStatus struct {
+	HSMClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
+	HSMConfigurationIdentifier     aws.StringValue `xml:"HsmConfigurationIdentifier"`
 	Status                         aws.StringValue `xml:"Status"`
 }
 
@@ -1464,8 +1464,8 @@ type ModifyClusterMessage struct {
 	ClusterSecurityGroups            []string         `xml:"ClusterSecurityGroups>ClusterSecurityGroupName"`
 	ClusterType                      aws.StringValue  `xml:"ClusterType"`
 	ClusterVersion                   aws.StringValue  `xml:"ClusterVersion"`
-	HsmClientCertificateIdentifier   aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
-	HsmConfigurationIdentifier       aws.StringValue  `xml:"HsmConfigurationIdentifier"`
+	HSMClientCertificateIdentifier   aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
+	HSMConfigurationIdentifier       aws.StringValue  `xml:"HsmConfigurationIdentifier"`
 	MasterUserPassword               aws.StringValue  `xml:"MasterUserPassword"`
 	NewClusterIdentifier             aws.StringValue  `xml:"NewClusterIdentifier"`
 	NodeType                         aws.StringValue  `xml:"NodeType"`
@@ -1661,8 +1661,8 @@ type RestoreFromClusterSnapshotMessage struct {
 	ClusterSecurityGroups            []string         `xml:"ClusterSecurityGroups>ClusterSecurityGroupName"`
 	ClusterSubnetGroupName           aws.StringValue  `xml:"ClusterSubnetGroupName"`
 	ElasticIP                        aws.StringValue  `xml:"ElasticIp"`
-	HsmClientCertificateIdentifier   aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
-	HsmConfigurationIdentifier       aws.StringValue  `xml:"HsmConfigurationIdentifier"`
+	HSMClientCertificateIdentifier   aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
+	HSMConfigurationIdentifier       aws.StringValue  `xml:"HsmConfigurationIdentifier"`
 	KMSKeyID                         aws.StringValue  `xml:"KmsKeyId"`
 	OwnerAccount                     aws.StringValue  `xml:"OwnerAccount"`
 	Port                             aws.IntegerValue `xml:"Port"`
@@ -1851,15 +1851,15 @@ type DescribeEventsResult struct {
 	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
 }
 
-// DescribeHsmClientCertificatesResult is a wrapper for HsmClientCertificateMessage.
-type DescribeHsmClientCertificatesResult struct {
-	HsmClientCertificates []HsmClientCertificate `xml:"DescribeHsmClientCertificatesResult>HsmClientCertificates>HsmClientCertificate"`
+// DescribeHSMClientCertificatesResult is a wrapper for HsmClientCertificateMessage.
+type DescribeHSMClientCertificatesResult struct {
+	HSMClientCertificates []HSMClientCertificate `xml:"DescribeHsmClientCertificatesResult>HsmClientCertificates>HsmClientCertificate"`
 	Marker                aws.StringValue        `xml:"DescribeHsmClientCertificatesResult>Marker"`
 }
 
-// DescribeHsmConfigurationsResult is a wrapper for HsmConfigurationMessage.
-type DescribeHsmConfigurationsResult struct {
-	HsmConfigurations []HsmConfiguration `xml:"DescribeHsmConfigurationsResult>HsmConfigurations>HsmConfiguration"`
+// DescribeHSMConfigurationsResult is a wrapper for HsmConfigurationMessage.
+type DescribeHSMConfigurationsResult struct {
+	HSMConfigurations []HSMConfiguration `xml:"DescribeHsmConfigurationsResult>HsmConfigurations>HsmConfiguration"`
 	Marker            aws.StringValue    `xml:"DescribeHsmConfigurationsResult>Marker"`
 }
 
