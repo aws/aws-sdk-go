@@ -390,13 +390,13 @@ func (c *OpsWorks) DescribePermissions(req *DescribePermissionsRequest) (resp *D
 	return
 }
 
-// DescribeRaidArrays you must specify at least one of the parameters.
+// DescribeRAIDArrays you must specify at least one of the parameters.
 // Required Permissions : To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user
 // permissions, see Managing User Permissions
-func (c *OpsWorks) DescribeRaidArrays(req *DescribeRaidArraysRequest) (resp *DescribeRaidArraysResult, err error) {
-	resp = &DescribeRaidArraysResult{}
+func (c *OpsWorks) DescribeRAIDArrays(req *DescribeRAIDArraysRequest) (resp *DescribeRAIDArraysResult, err error) {
+	resp = &DescribeRAIDArraysResult{}
 	err = c.client.Do("DescribeRaidArrays", "POST", "/", req, resp)
 	return
 }
@@ -1202,16 +1202,16 @@ type DescribePermissionsResult struct {
 	Permissions []Permission `json:"Permissions,omitempty"`
 }
 
-// DescribeRaidArraysRequest is undocumented.
-type DescribeRaidArraysRequest struct {
+// DescribeRAIDArraysRequest is undocumented.
+type DescribeRAIDArraysRequest struct {
 	InstanceID   aws.StringValue `json:"InstanceId,omitempty"`
-	RaidArrayIDs []string        `json:"RaidArrayIds,omitempty"`
+	RAIDArrayIDs []string        `json:"RaidArrayIds,omitempty"`
 	StackID      aws.StringValue `json:"StackId,omitempty"`
 }
 
-// DescribeRaidArraysResult is undocumented.
-type DescribeRaidArraysResult struct {
-	RaidArrays []RaidArray `json:"RaidArrays,omitempty"`
+// DescribeRAIDArraysResult is undocumented.
+type DescribeRAIDArraysResult struct {
+	RAIDArrays []RAIDArray `json:"RaidArrays,omitempty"`
 }
 
 // DescribeRDSDBInstancesRequest is undocumented.
@@ -1291,7 +1291,7 @@ type DescribeUserProfilesResult struct {
 // DescribeVolumesRequest is undocumented.
 type DescribeVolumesRequest struct {
 	InstanceID  aws.StringValue `json:"InstanceId,omitempty"`
-	RaidArrayID aws.StringValue `json:"RaidArrayId,omitempty"`
+	RAIDArrayID aws.StringValue `json:"RaidArrayId,omitempty"`
 	StackID     aws.StringValue `json:"StackId,omitempty"`
 	VolumeIDs   []string        `json:"VolumeIds,omitempty"`
 }
@@ -1464,8 +1464,8 @@ type Permission struct {
 	StackID    aws.StringValue  `json:"StackId,omitempty"`
 }
 
-// RaidArray is undocumented.
-type RaidArray struct {
+// RAIDArray is undocumented.
+type RAIDArray struct {
 	AvailabilityZone aws.StringValue  `json:"AvailabilityZone,omitempty"`
 	CreatedAt        aws.StringValue  `json:"CreatedAt,omitempty"`
 	Device           aws.StringValue  `json:"Device,omitempty"`
@@ -1474,8 +1474,8 @@ type RaidArray struct {
 	MountPoint       aws.StringValue  `json:"MountPoint,omitempty"`
 	Name             aws.StringValue  `json:"Name,omitempty"`
 	NumberOfDisks    aws.IntegerValue `json:"NumberOfDisks,omitempty"`
-	RaidArrayID      aws.StringValue  `json:"RaidArrayId,omitempty"`
-	RaidLevel        aws.IntegerValue `json:"RaidLevel,omitempty"`
+	RAIDArrayID      aws.StringValue  `json:"RaidArrayId,omitempty"`
+	RAIDLevel        aws.IntegerValue `json:"RaidLevel,omitempty"`
 	Size             aws.IntegerValue `json:"Size,omitempty"`
 	StackID          aws.StringValue  `json:"StackId,omitempty"`
 	VolumeType       aws.StringValue  `json:"VolumeType,omitempty"`
@@ -1823,7 +1823,7 @@ type Volume struct {
 	Iops             aws.IntegerValue `json:"Iops,omitempty"`
 	MountPoint       aws.StringValue  `json:"MountPoint,omitempty"`
 	Name             aws.StringValue  `json:"Name,omitempty"`
-	RaidArrayID      aws.StringValue  `json:"RaidArrayId,omitempty"`
+	RAIDArrayID      aws.StringValue  `json:"RaidArrayId,omitempty"`
 	Region           aws.StringValue  `json:"Region,omitempty"`
 	Size             aws.IntegerValue `json:"Size,omitempty"`
 	Status           aws.StringValue  `json:"Status,omitempty"`
@@ -1836,7 +1836,7 @@ type VolumeConfiguration struct {
 	Iops          aws.IntegerValue `json:"Iops,omitempty"`
 	MountPoint    aws.StringValue  `json:"MountPoint"`
 	NumberOfDisks aws.IntegerValue `json:"NumberOfDisks"`
-	RaidLevel     aws.IntegerValue `json:"RaidLevel,omitempty"`
+	RAIDLevel     aws.IntegerValue `json:"RaidLevel,omitempty"`
 	Size          aws.IntegerValue `json:"Size"`
 	VolumeType    aws.StringValue  `json:"VolumeType,omitempty"`
 }

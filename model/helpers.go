@@ -79,6 +79,7 @@ var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Mac`):        "MAC",
 	regexp.MustCompile(`Md5`):        "MD5",
 	regexp.MustCompile(`Os`):         "OS",
+	regexp.MustCompile(`Raid`):       "RAID",
 	regexp.MustCompile(`Ramdisk`):    "RAMDisk",
 	regexp.MustCompile(`Rds`):        "RDS",
 	regexp.MustCompile(`Sns`):        "SNS",
