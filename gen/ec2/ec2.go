@@ -94,7 +94,7 @@ func (c *EC2) AssociateAddress(req *AssociateAddressRequest) (resp *AssociateAdd
 	return
 }
 
-// AssociateDhcpOptions associates a set of options (that you've previously
+// AssociateDHCPOptions associates a set of options (that you've previously
 // created) with the specified or associates no options with the After you
 // associate the options with the any existing instances and all new
 // instances that you launch in that VPC use the options. You don't need to
@@ -103,7 +103,7 @@ func (c *EC2) AssociateAddress(req *AssociateAddressRequest) (resp *AssociateAdd
 // renews its lease. You can explicitly renew the lease using the operating
 // system on the instance. For more information, see Options Sets in the
 // Amazon Virtual Private Cloud User Guide
-func (c *EC2) AssociateDhcpOptions(req *AssociateDhcpOptionsRequest) (err error) {
+func (c *EC2) AssociateDHCPOptions(req *AssociateDHCPOptionsRequest) (err error) {
 	// NRE
 	err = c.client.Do("AssociateDhcpOptions", "POST", "/", req, nil)
 	return
@@ -343,7 +343,7 @@ func (c *EC2) CreateCustomerGateway(req *CreateCustomerGatewayRequest) (resp *Cr
 	return
 }
 
-// CreateDhcpOptions creates a set of options for your After creating the
+// CreateDHCPOptions creates a set of options for your After creating the
 // set, you must associate it with the causing all existing and new
 // instances that you launch in the VPC to use this set of options. The
 // following are the individual options you can specify. For more
@@ -368,8 +368,8 @@ func (c *EC2) CreateCustomerGateway(req *CreateCustomerGatewayRequest) (resp *Cr
 // either to AmazonProvidedDNS or to a domain name server of your choice.
 // For more information about options, see Options Sets in the Amazon
 // Virtual Private Cloud User Guide
-func (c *EC2) CreateDhcpOptions(req *CreateDhcpOptionsRequest) (resp *CreateDhcpOptionsResult, err error) {
-	resp = &CreateDhcpOptionsResult{}
+func (c *EC2) CreateDHCPOptions(req *CreateDHCPOptionsRequest) (resp *CreateDHCPOptionsResult, err error) {
+	resp = &CreateDHCPOptionsResult{}
 	err = c.client.Do("CreateDhcpOptions", "POST", "/", req, resp)
 	return
 }
@@ -719,11 +719,11 @@ func (c *EC2) DeleteCustomerGateway(req *DeleteCustomerGatewayRequest) (err erro
 	return
 }
 
-// DeleteDhcpOptions deletes the specified set of options. You must
+// DeleteDHCPOptions deletes the specified set of options. You must
 // disassociate the set of options before you can delete it. You can
 // disassociate the set of options by associating either a new set of
 // options or the default set of options with the
-func (c *EC2) DeleteDhcpOptions(req *DeleteDhcpOptionsRequest) (err error) {
+func (c *EC2) DeleteDHCPOptions(req *DeleteDHCPOptionsRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteDhcpOptions", "POST", "/", req, nil)
 	return
@@ -992,11 +992,11 @@ func (c *EC2) DescribeCustomerGateways(req *DescribeCustomerGatewaysRequest) (re
 	return
 }
 
-// DescribeDhcpOptions describes one or more of your options sets. For more
+// DescribeDHCPOptions describes one or more of your options sets. For more
 // information about options sets, see Options Sets in the Amazon Virtual
 // Private Cloud User Guide
-func (c *EC2) DescribeDhcpOptions(req *DescribeDhcpOptionsRequest) (resp *DescribeDhcpOptionsResult, err error) {
-	resp = &DescribeDhcpOptionsResult{}
+func (c *EC2) DescribeDHCPOptions(req *DescribeDHCPOptionsRequest) (resp *DescribeDHCPOptionsResult, err error) {
+	resp = &DescribeDHCPOptionsResult{}
 	err = c.client.Do("DescribeDhcpOptions", "POST", "/", req, resp)
 	return
 }
@@ -2129,9 +2129,9 @@ type AssociateAddressResult struct {
 	AssociationID aws.StringValue `ec2:"AssociationId" xml:"associationId"`
 }
 
-// AssociateDhcpOptionsRequest is undocumented.
-type AssociateDhcpOptionsRequest struct {
-	DhcpOptionsID aws.StringValue  `ec2:"DhcpOptionsId" xml:"DhcpOptionsId"`
+// AssociateDHCPOptionsRequest is undocumented.
+type AssociateDHCPOptionsRequest struct {
+	DHCPOptionsID aws.StringValue  `ec2:"DhcpOptionsId" xml:"DhcpOptionsId"`
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VPCID         aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
@@ -2397,15 +2397,15 @@ type CreateCustomerGatewayResult struct {
 	CustomerGateway *CustomerGateway `ec2:"CustomerGateway" xml:"customerGateway"`
 }
 
-// CreateDhcpOptionsRequest is undocumented.
-type CreateDhcpOptionsRequest struct {
-	DhcpConfigurations []NewDhcpConfiguration `ec2:"DhcpConfigurations" xml:"dhcpConfiguration>item"`
+// CreateDHCPOptionsRequest is undocumented.
+type CreateDHCPOptionsRequest struct {
+	DHCPConfigurations []NewDHCPConfiguration `ec2:"DhcpConfigurations" xml:"dhcpConfiguration>item"`
 	DryRun             aws.BooleanValue       `ec2:"DryRun" xml:"dryRun"`
 }
 
-// CreateDhcpOptionsResult is undocumented.
-type CreateDhcpOptionsResult struct {
-	DhcpOptions *DhcpOptions `ec2:"DhcpOptions" xml:"dhcpOptions"`
+// CreateDHCPOptionsResult is undocumented.
+type CreateDHCPOptionsResult struct {
+	DHCPOptions *DHCPOptions `ec2:"DhcpOptions" xml:"dhcpOptions"`
 }
 
 // CreateImageRequest is undocumented.
@@ -2683,9 +2683,9 @@ type DeleteCustomerGatewayRequest struct {
 	DryRun            aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
-// DeleteDhcpOptionsRequest is undocumented.
-type DeleteDhcpOptionsRequest struct {
-	DhcpOptionsID aws.StringValue  `ec2:"DhcpOptionsId" xml:"DhcpOptionsId"`
+// DeleteDHCPOptionsRequest is undocumented.
+type DeleteDHCPOptionsRequest struct {
+	DHCPOptionsID aws.StringValue  `ec2:"DhcpOptionsId" xml:"DhcpOptionsId"`
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 }
 
@@ -2890,16 +2890,16 @@ type DescribeCustomerGatewaysResult struct {
 	CustomerGateways []CustomerGateway `ec2:"CustomerGateways" xml:"customerGatewaySet>item"`
 }
 
-// DescribeDhcpOptionsRequest is undocumented.
-type DescribeDhcpOptionsRequest struct {
-	DhcpOptionsIDs []string         `ec2:"DhcpOptionsId" xml:"DhcpOptionsId>DhcpOptionsId"`
+// DescribeDHCPOptionsRequest is undocumented.
+type DescribeDHCPOptionsRequest struct {
+	DHCPOptionsIDs []string         `ec2:"DhcpOptionsId" xml:"DhcpOptionsId>DhcpOptionsId"`
 	DryRun         aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Filters        []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 }
 
-// DescribeDhcpOptionsResult is undocumented.
-type DescribeDhcpOptionsResult struct {
-	DhcpOptions []DhcpOptions `ec2:"DhcpOptions" xml:"dhcpOptionsSet>item"`
+// DescribeDHCPOptionsResult is undocumented.
+type DescribeDHCPOptionsResult struct {
+	DHCPOptions []DHCPOptions `ec2:"DhcpOptions" xml:"dhcpOptionsSet>item"`
 }
 
 // DescribeExportTasksRequest is undocumented.
@@ -3377,16 +3377,16 @@ type DetachVpnGatewayRequest struct {
 	VpnGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
-// DhcpConfiguration is undocumented.
-type DhcpConfiguration struct {
+// DHCPConfiguration is undocumented.
+type DHCPConfiguration struct {
 	Key    aws.StringValue  `ec2:"Key" xml:"key"`
 	Values []AttributeValue `ec2:"Values" xml:"valueSet>item"`
 }
 
-// DhcpOptions is undocumented.
-type DhcpOptions struct {
-	DhcpConfigurations []DhcpConfiguration `ec2:"DhcpConfigurations" xml:"dhcpConfigurationSet>item"`
-	DhcpOptionsID      aws.StringValue     `ec2:"DhcpOptionsId" xml:"dhcpOptionsId"`
+// DHCPOptions is undocumented.
+type DHCPOptions struct {
+	DHCPConfigurations []DHCPConfiguration `ec2:"DhcpConfigurations" xml:"dhcpConfigurationSet>item"`
+	DHCPOptionsID      aws.StringValue     `ec2:"DhcpOptionsId" xml:"dhcpOptionsId"`
 	Tags               []Tag               `ec2:"Tags" xml:"tagSet>item"`
 }
 
@@ -4125,8 +4125,8 @@ type NetworkInterfacePrivateIPAddress struct {
 	PrivateIPAddress aws.StringValue              `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 }
 
-// NewDhcpConfiguration is undocumented.
-type NewDhcpConfiguration struct {
+// NewDHCPConfiguration is undocumented.
+type NewDHCPConfiguration struct {
 	Key    aws.StringValue `ec2:"Key" xml:"key"`
 	Values []string        `ec2:"Value" xml:"Value>item"`
 }
@@ -4842,7 +4842,7 @@ type VolumeStatusItem struct {
 // VPC is undocumented.
 type VPC struct {
 	CIDRBlock       aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
-	DhcpOptionsID   aws.StringValue  `ec2:"DhcpOptionsId" xml:"dhcpOptionsId"`
+	DHCPOptionsID   aws.StringValue  `ec2:"DhcpOptionsId" xml:"dhcpOptionsId"`
 	InstanceTenancy aws.StringValue  `ec2:"InstanceTenancy" xml:"instanceTenancy"`
 	IsDefault       aws.BooleanValue `ec2:"IsDefault" xml:"isDefault"`
 	State           aws.StringValue  `ec2:"State" xml:"state"`
