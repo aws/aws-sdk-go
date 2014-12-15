@@ -936,7 +936,7 @@ type CreateInstanceRequest struct {
 	Architecture         aws.StringValue  `json:"Architecture,omitempty"`
 	AutoScalingType      aws.StringValue  `json:"AutoScalingType,omitempty"`
 	AvailabilityZone     aws.StringValue  `json:"AvailabilityZone,omitempty"`
-	EbsOptimized         aws.BooleanValue `json:"EbsOptimized,omitempty"`
+	EBSOptimized         aws.BooleanValue `json:"EbsOptimized,omitempty"`
 	Hostname             aws.StringValue  `json:"Hostname,omitempty"`
 	InstallUpdatesOnBoot aws.BooleanValue `json:"InstallUpdatesOnBoot,omitempty"`
 	InstanceType         aws.StringValue  `json:"InstanceType"`
@@ -970,7 +970,7 @@ type CreateLayerRequest struct {
 	Shortname                   aws.StringValue              `json:"Shortname"`
 	StackID                     aws.StringValue              `json:"StackId"`
 	Type                        aws.StringValue              `json:"Type"`
-	UseEbsOptimizedInstances    aws.BooleanValue             `json:"UseEbsOptimizedInstances,omitempty"`
+	UseEBSOptimizedInstances    aws.BooleanValue             `json:"UseEbsOptimizedInstances,omitempty"`
 	VolumeConfigurations        []VolumeConfiguration        `json:"VolumeConfigurations,omitempty"`
 }
 
@@ -1359,7 +1359,7 @@ type Instance struct {
 	AutoScalingType          aws.StringValue  `json:"AutoScalingType,omitempty"`
 	AvailabilityZone         aws.StringValue  `json:"AvailabilityZone,omitempty"`
 	CreatedAt                aws.StringValue  `json:"CreatedAt,omitempty"`
-	EbsOptimized             aws.BooleanValue `json:"EbsOptimized,omitempty"`
+	EBSOptimized             aws.BooleanValue `json:"EbsOptimized,omitempty"`
 	Ec2InstanceID            aws.StringValue  `json:"Ec2InstanceId,omitempty"`
 	ElasticIP                aws.StringValue  `json:"ElasticIp,omitempty"`
 	Hostname                 aws.StringValue  `json:"Hostname,omitempty"`
@@ -1438,7 +1438,7 @@ type Layer struct {
 	Shortname                   aws.StringValue              `json:"Shortname,omitempty"`
 	StackID                     aws.StringValue              `json:"StackId,omitempty"`
 	Type                        aws.StringValue              `json:"Type,omitempty"`
-	UseEbsOptimizedInstances    aws.BooleanValue             `json:"UseEbsOptimizedInstances,omitempty"`
+	UseEBSOptimizedInstances    aws.BooleanValue             `json:"UseEbsOptimizedInstances,omitempty"`
 	VolumeConfigurations        []VolumeConfiguration        `json:"VolumeConfigurations,omitempty"`
 }
 
@@ -1728,7 +1728,7 @@ type UpdateInstanceRequest struct {
 	AmiID                aws.StringValue  `json:"AmiId,omitempty"`
 	Architecture         aws.StringValue  `json:"Architecture,omitempty"`
 	AutoScalingType      aws.StringValue  `json:"AutoScalingType,omitempty"`
-	EbsOptimized         aws.BooleanValue `json:"EbsOptimized,omitempty"`
+	EBSOptimized         aws.BooleanValue `json:"EbsOptimized,omitempty"`
 	Hostname             aws.StringValue  `json:"Hostname,omitempty"`
 	InstallUpdatesOnBoot aws.BooleanValue `json:"InstallUpdatesOnBoot,omitempty"`
 	InstanceID           aws.StringValue  `json:"InstanceId"`
@@ -1753,7 +1753,7 @@ type UpdateLayerRequest struct {
 	Name                        aws.StringValue              `json:"Name,omitempty"`
 	Packages                    []string                     `json:"Packages,omitempty"`
 	Shortname                   aws.StringValue              `json:"Shortname,omitempty"`
-	UseEbsOptimizedInstances    aws.BooleanValue             `json:"UseEbsOptimizedInstances,omitempty"`
+	UseEBSOptimizedInstances    aws.BooleanValue             `json:"UseEbsOptimizedInstances,omitempty"`
 	VolumeConfigurations        []VolumeConfiguration        `json:"VolumeConfigurations,omitempty"`
 }
 

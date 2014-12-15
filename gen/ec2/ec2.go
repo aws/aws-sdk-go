@@ -2246,7 +2246,7 @@ type BlobAttributeValue struct {
 // BlockDeviceMapping is undocumented.
 type BlockDeviceMapping struct {
 	DeviceName  aws.StringValue `ec2:"DeviceName" xml:"deviceName"`
-	Ebs         *EbsBlockDevice `ec2:"Ebs" xml:"ebs"`
+	EBS         *EBSBlockDevice `ec2:"Ebs" xml:"ebs"`
 	NoDevice    aws.StringValue `ec2:"NoDevice" xml:"noDevice"`
 	VirtualName aws.StringValue `ec2:"VirtualName" xml:"virtualName"`
 }
@@ -3437,8 +3437,8 @@ type DiskImageVolumeDescription struct {
 	Size aws.LongValue   `ec2:"Size" xml:"size"`
 }
 
-// EbsBlockDevice is undocumented.
-type EbsBlockDevice struct {
+// EBSBlockDevice is undocumented.
+type EBSBlockDevice struct {
 	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
 	Encrypted           aws.BooleanValue `ec2:"Encrypted" xml:"encrypted"`
 	Iops                aws.IntegerValue `ec2:"Iops" xml:"iops"`
@@ -3447,16 +3447,16 @@ type EbsBlockDevice struct {
 	VolumeType          aws.StringValue  `ec2:"VolumeType" xml:"volumeType"`
 }
 
-// EbsInstanceBlockDevice is undocumented.
-type EbsInstanceBlockDevice struct {
+// EBSInstanceBlockDevice is undocumented.
+type EBSInstanceBlockDevice struct {
 	AttachTime          time.Time        `ec2:"AttachTime" xml:"attachTime"`
 	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
 	Status              aws.StringValue  `ec2:"Status" xml:"status"`
 	VolumeID            aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
 
-// EbsInstanceBlockDeviceSpecification is undocumented.
-type EbsInstanceBlockDeviceSpecification struct {
+// EBSInstanceBlockDeviceSpecification is undocumented.
+type EBSInstanceBlockDeviceSpecification struct {
 	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
 	VolumeID            aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
@@ -3683,7 +3683,7 @@ type Instance struct {
 	Architecture          aws.StringValue              `ec2:"Architecture" xml:"architecture"`
 	BlockDeviceMappings   []InstanceBlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
 	ClientToken           aws.StringValue              `ec2:"ClientToken" xml:"clientToken"`
-	EbsOptimized          aws.BooleanValue             `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	EBSOptimized          aws.BooleanValue             `ec2:"EbsOptimized" xml:"ebsOptimized"`
 	Hypervisor            aws.StringValue              `ec2:"Hypervisor" xml:"hypervisor"`
 	IamInstanceProfile    *IamInstanceProfile          `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
 	ImageID               aws.StringValue              `ec2:"ImageId" xml:"imageId"`
@@ -3722,7 +3722,7 @@ type Instance struct {
 type InstanceAttribute struct {
 	BlockDeviceMappings               []InstanceBlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
 	DisableAPITermination             *AttributeBooleanValue       `ec2:"DisableApiTermination" xml:"disableApiTermination"`
-	EbsOptimized                      *AttributeBooleanValue       `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	EBSOptimized                      *AttributeBooleanValue       `ec2:"EbsOptimized" xml:"ebsOptimized"`
 	Groups                            []GroupIdentifier            `ec2:"Groups" xml:"groupSet>item"`
 	InstanceID                        aws.StringValue              `ec2:"InstanceId" xml:"instanceId"`
 	InstanceInitiatedShutdownBehavior *AttributeValue              `ec2:"InstanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
@@ -3739,13 +3739,13 @@ type InstanceAttribute struct {
 // InstanceBlockDeviceMapping is undocumented.
 type InstanceBlockDeviceMapping struct {
 	DeviceName aws.StringValue         `ec2:"DeviceName" xml:"deviceName"`
-	Ebs        *EbsInstanceBlockDevice `ec2:"Ebs" xml:"ebs"`
+	EBS        *EBSInstanceBlockDevice `ec2:"Ebs" xml:"ebs"`
 }
 
 // InstanceBlockDeviceMappingSpecification is undocumented.
 type InstanceBlockDeviceMappingSpecification struct {
 	DeviceName  aws.StringValue                      `ec2:"DeviceName" xml:"deviceName"`
-	Ebs         *EbsInstanceBlockDeviceSpecification `ec2:"Ebs" xml:"ebs"`
+	EBS         *EBSInstanceBlockDeviceSpecification `ec2:"Ebs" xml:"ebs"`
 	NoDevice    aws.StringValue                      `ec2:"NoDevice" xml:"noDevice"`
 	VirtualName aws.StringValue                      `ec2:"VirtualName" xml:"virtualName"`
 }
@@ -3924,7 +3924,7 @@ type LaunchPermissionModifications struct {
 type LaunchSpecification struct {
 	AddressingType      aws.StringValue                         `ec2:"AddressingType" xml:"addressingType"`
 	BlockDeviceMappings []BlockDeviceMapping                    `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
-	EbsOptimized        aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	EBSOptimized        aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
 	IamInstanceProfile  *IamInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
 	ImageID             aws.StringValue                         `ec2:"ImageId" xml:"imageId"`
 	InstanceType        aws.StringValue                         `ec2:"InstanceType" xml:"instanceType"`
@@ -3959,7 +3959,7 @@ type ModifyInstanceAttributeRequest struct {
 	BlockDeviceMappings               []InstanceBlockDeviceMappingSpecification `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
 	DisableAPITermination             *AttributeBooleanValue                    `ec2:"DisableApiTermination" xml:"disableApiTermination"`
 	DryRun                            aws.BooleanValue                          `ec2:"DryRun" xml:"dryRun"`
-	EbsOptimized                      *AttributeBooleanValue                    `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	EBSOptimized                      *AttributeBooleanValue                    `ec2:"EbsOptimized" xml:"ebsOptimized"`
 	Groups                            []string                                  `ec2:"GroupId" xml:"GroupId>groupId"`
 	InstanceID                        aws.StringValue                           `ec2:"InstanceId" xml:"instanceId"`
 	InstanceInitiatedShutdownBehavior *AttributeValue                           `ec2:"InstanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
@@ -4339,7 +4339,7 @@ type RequestSpotInstancesResult struct {
 type RequestSpotLaunchSpecification struct {
 	AddressingType      aws.StringValue                         `ec2:"AddressingType" xml:"addressingType"`
 	BlockDeviceMappings []BlockDeviceMapping                    `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
-	EbsOptimized        aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	EBSOptimized        aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
 	IamInstanceProfile  *IamInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
 	ImageID             aws.StringValue                         `ec2:"ImageId" xml:"imageId"`
 	InstanceType        aws.StringValue                         `ec2:"InstanceType" xml:"instanceType"`
@@ -4550,7 +4550,7 @@ type RunInstancesRequest struct {
 	ClientToken                       aws.StringValue                         `ec2:"ClientToken" xml:"clientToken"`
 	DisableAPITermination             aws.BooleanValue                        `ec2:"DisableApiTermination" xml:"disableApiTermination"`
 	DryRun                            aws.BooleanValue                        `ec2:"DryRun" xml:"dryRun"`
-	EbsOptimized                      aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
+	EBSOptimized                      aws.BooleanValue                        `ec2:"EbsOptimized" xml:"ebsOptimized"`
 	IamInstanceProfile                *IamInstanceProfileSpecification        `ec2:"IamInstanceProfile" xml:"iamInstanceProfile"`
 	ImageID                           aws.StringValue                         `ec2:"ImageId" xml:"ImageId"`
 	InstanceInitiatedShutdownBehavior aws.StringValue                         `ec2:"InstanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`

@@ -614,7 +614,7 @@ type AutoScalingInstancesType struct {
 // BlockDeviceMapping is undocumented.
 type BlockDeviceMapping struct {
 	DeviceName  aws.StringValue  `xml:"DeviceName"`
-	Ebs         *Ebs             `xml:"Ebs"`
+	EBS         *EBS             `xml:"Ebs"`
 	NoDevice    aws.BooleanValue `xml:"NoDevice"`
 	VirtualName aws.StringValue  `xml:"VirtualName"`
 }
@@ -654,7 +654,7 @@ type CreateAutoScalingGroupType struct {
 type CreateLaunchConfigurationType struct {
 	AssociatePublicIPAddress aws.BooleanValue     `xml:"AssociatePublicIpAddress"`
 	BlockDeviceMappings      []BlockDeviceMapping `xml:"BlockDeviceMappings>member"`
-	EbsOptimized             aws.BooleanValue     `xml:"EbsOptimized"`
+	EBSOptimized             aws.BooleanValue     `xml:"EbsOptimized"`
 	IamInstanceProfile       aws.StringValue      `xml:"IamInstanceProfile"`
 	ImageID                  aws.StringValue      `xml:"ImageId"`
 	InstanceID               aws.StringValue      `xml:"InstanceId"`
@@ -828,8 +828,8 @@ type DisableMetricsCollectionQuery struct {
 	Metrics              []string        `xml:"Metrics>member"`
 }
 
-// Ebs is undocumented.
-type Ebs struct {
+// EBS is undocumented.
+type EBS struct {
 	DeleteOnTermination aws.BooleanValue `xml:"DeleteOnTermination"`
 	Iops                aws.IntegerValue `xml:"Iops"`
 	SnapshotID          aws.StringValue  `xml:"SnapshotId"`
@@ -905,7 +905,7 @@ type LaunchConfiguration struct {
 	AssociatePublicIPAddress aws.BooleanValue     `xml:"AssociatePublicIpAddress"`
 	BlockDeviceMappings      []BlockDeviceMapping `xml:"BlockDeviceMappings>member"`
 	CreatedTime              time.Time            `xml:"CreatedTime"`
-	EbsOptimized             aws.BooleanValue     `xml:"EbsOptimized"`
+	EBSOptimized             aws.BooleanValue     `xml:"EbsOptimized"`
 	IamInstanceProfile       aws.StringValue      `xml:"IamInstanceProfile"`
 	ImageID                  aws.StringValue      `xml:"ImageId"`
 	InstanceMonitoring       *InstanceMonitoring  `xml:"InstanceMonitoring"`
