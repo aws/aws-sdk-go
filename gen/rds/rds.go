@@ -767,7 +767,7 @@ type CreateDBSubnetGroupResult struct {
 type CreateEventSubscriptionMessage struct {
 	Enabled          aws.BooleanValue `xml:"Enabled"`
 	EventCategories  []string         `xml:"EventCategories>EventCategory"`
-	SnsTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
+	SNSTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
 	SourceIDs        []string         `xml:"SourceIds>SourceId"`
 	SourceType       aws.StringValue  `xml:"SourceType"`
 	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
@@ -1257,7 +1257,7 @@ type EventSubscription struct {
 	CustomerAwsID            aws.StringValue  `xml:"CustomerAwsId"`
 	Enabled                  aws.BooleanValue `xml:"Enabled"`
 	EventCategoriesList      []string         `xml:"EventCategoriesList>EventCategory"`
-	SnsTopicARN              aws.StringValue  `xml:"SnsTopicArn"`
+	SNSTopicARN              aws.StringValue  `xml:"SnsTopicArn"`
 	SourceIDsList            []string         `xml:"SourceIdsList>SourceId"`
 	SourceType               aws.StringValue  `xml:"SourceType"`
 	Status                   aws.StringValue  `xml:"Status"`
@@ -1346,7 +1346,7 @@ type ModifyDBSubnetGroupResult struct {
 type ModifyEventSubscriptionMessage struct {
 	Enabled          aws.BooleanValue `xml:"Enabled"`
 	EventCategories  []string         `xml:"EventCategories>EventCategory"`
-	SnsTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
+	SNSTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
 	SourceType       aws.StringValue  `xml:"SourceType"`
 	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
 }

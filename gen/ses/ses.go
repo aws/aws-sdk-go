@@ -456,7 +456,7 @@ type SetIdentityFeedbackForwardingEnabledResponse struct {
 type SetIdentityNotificationTopicRequest struct {
 	Identity         aws.StringValue `xml:"Identity"`
 	NotificationType aws.StringValue `xml:"NotificationType"`
-	SnsTopic         aws.StringValue `xml:"SnsTopic"`
+	SNSTopic         aws.StringValue `xml:"SnsTopic"`
 }
 
 // SetIdentityNotificationTopicResponse is undocumented.

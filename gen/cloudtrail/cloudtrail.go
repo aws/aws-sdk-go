@@ -111,7 +111,7 @@ type CreateTrailRequest struct {
 	Name                       aws.StringValue  `json:"Name"`
 	S3BucketName               aws.StringValue  `json:"S3BucketName"`
 	S3KeyPrefix                aws.StringValue  `json:"S3KeyPrefix,omitempty"`
-	SnsTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
+	SNSTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
 }
 
 // CreateTrailResponse is undocumented.
@@ -122,7 +122,7 @@ type CreateTrailResponse struct {
 	Name                       aws.StringValue  `json:"Name,omitempty"`
 	S3BucketName               aws.StringValue  `json:"S3BucketName,omitempty"`
 	S3KeyPrefix                aws.StringValue  `json:"S3KeyPrefix,omitempty"`
-	SnsTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
+	SNSTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
 }
 
 // DeleteTrailRequest is undocumented.
@@ -188,7 +188,7 @@ type Trail struct {
 	Name                       aws.StringValue  `json:"Name,omitempty"`
 	S3BucketName               aws.StringValue  `json:"S3BucketName,omitempty"`
 	S3KeyPrefix                aws.StringValue  `json:"S3KeyPrefix,omitempty"`
-	SnsTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
+	SNSTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
 }
 
 // UpdateTrailRequest is undocumented.
@@ -199,7 +199,7 @@ type UpdateTrailRequest struct {
 	Name                       aws.StringValue  `json:"Name"`
 	S3BucketName               aws.StringValue  `json:"S3BucketName,omitempty"`
 	S3KeyPrefix                aws.StringValue  `json:"S3KeyPrefix,omitempty"`
-	SnsTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
+	SNSTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
 }
 
 // UpdateTrailResponse is undocumented.
@@ -210,7 +210,7 @@ type UpdateTrailResponse struct {
 	Name                       aws.StringValue  `json:"Name,omitempty"`
 	S3BucketName               aws.StringValue  `json:"S3BucketName,omitempty"`
 	S3KeyPrefix                aws.StringValue  `json:"S3KeyPrefix,omitempty"`
-	SnsTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
+	SNSTopicName               aws.StringValue  `json:"SnsTopicName,omitempty"`
 }
 
 // avoid errors if the packages aren't referenced

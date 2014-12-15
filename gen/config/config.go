@@ -229,7 +229,7 @@ type DeliveryChannel struct {
 	Name         aws.StringValue `json:"name,omitempty"`
 	S3BucketName aws.StringValue `json:"s3BucketName,omitempty"`
 	S3KeyPrefix  aws.StringValue `json:"s3KeyPrefix,omitempty"`
-	SnsTopicARN  aws.StringValue `json:"snsTopicARN,omitempty"`
+	SNSTopicARN  aws.StringValue `json:"snsTopicARN,omitempty"`
 }
 
 // DeliveryChannelStatus is undocumented.

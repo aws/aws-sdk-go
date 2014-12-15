@@ -1020,7 +1020,7 @@ type CreateEventSubscriptionMessage struct {
 	Enabled          aws.BooleanValue `xml:"Enabled"`
 	EventCategories  []string         `xml:"EventCategories>EventCategory"`
 	Severity         aws.StringValue  `xml:"Severity"`
-	SnsTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
+	SNSTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
 	SourceIDs        []string         `xml:"SourceIds>SourceId"`
 	SourceType       aws.StringValue  `xml:"SourceType"`
 	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
@@ -1383,7 +1383,7 @@ type EventSubscription struct {
 	Enabled                  aws.BooleanValue `xml:"Enabled"`
 	EventCategoriesList      []string         `xml:"EventCategoriesList>EventCategory"`
 	Severity                 aws.StringValue  `xml:"Severity"`
-	SnsTopicARN              aws.StringValue  `xml:"SnsTopicArn"`
+	SNSTopicARN              aws.StringValue  `xml:"SnsTopicArn"`
 	SourceIDsList            []string         `xml:"SourceIdsList>SourceId"`
 	SourceType               aws.StringValue  `xml:"SourceType"`
 	Status                   aws.StringValue  `xml:"Status"`
@@ -1502,7 +1502,7 @@ type ModifyEventSubscriptionMessage struct {
 	Enabled          aws.BooleanValue `xml:"Enabled"`
 	EventCategories  []string         `xml:"EventCategories>EventCategory"`
 	Severity         aws.StringValue  `xml:"Severity"`
-	SnsTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
+	SNSTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
 	SourceIDs        []string         `xml:"SourceIds>SourceId"`
 	SourceType       aws.StringValue  `xml:"SourceType"`
 	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
