@@ -1013,7 +1013,7 @@ type DeletePresetResponse struct {
 type Encryption struct {
 	InitializationVector aws.StringValue `json:"InitializationVector,omitempty"`
 	Key                  aws.StringValue `json:"Key,omitempty"`
-	KeyMd5               aws.StringValue `json:"KeyMd5,omitempty"`
+	KeyMD5               aws.StringValue `json:"KeyMd5,omitempty"`
 	Mode                 aws.StringValue `json:"Mode,omitempty"`
 }
 
