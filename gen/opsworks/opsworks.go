@@ -1325,7 +1325,7 @@ type ElasticIP struct {
 type ElasticLoadBalancer struct {
 	AvailabilityZones       []string        `json:"AvailabilityZones,omitempty"`
 	DNSName                 aws.StringValue `json:"DnsName,omitempty"`
-	Ec2InstanceIDs          []string        `json:"Ec2InstanceIds,omitempty"`
+	EC2InstanceIDs          []string        `json:"Ec2InstanceIds,omitempty"`
 	ElasticLoadBalancerName aws.StringValue `json:"ElasticLoadBalancerName,omitempty"`
 	LayerID                 aws.StringValue `json:"LayerId,omitempty"`
 	Region                  aws.StringValue `json:"Region,omitempty"`
@@ -1360,7 +1360,7 @@ type Instance struct {
 	AvailabilityZone         aws.StringValue  `json:"AvailabilityZone,omitempty"`
 	CreatedAt                aws.StringValue  `json:"CreatedAt,omitempty"`
 	EBSOptimized             aws.BooleanValue `json:"EbsOptimized,omitempty"`
-	Ec2InstanceID            aws.StringValue  `json:"Ec2InstanceId,omitempty"`
+	EC2InstanceID            aws.StringValue  `json:"Ec2InstanceId,omitempty"`
 	ElasticIP                aws.StringValue  `json:"ElasticIp,omitempty"`
 	Hostname                 aws.StringValue  `json:"Hostname,omitempty"`
 	InfrastructureClass      aws.StringValue  `json:"InfrastructureClass,omitempty"`
@@ -1545,7 +1545,7 @@ type RegisterRdsDbInstanceRequest struct {
 
 // RegisterVolumeRequest is undocumented.
 type RegisterVolumeRequest struct {
-	Ec2VolumeID aws.StringValue `json:"Ec2VolumeId,omitempty"`
+	EC2VolumeID aws.StringValue `json:"Ec2VolumeId,omitempty"`
 	StackID     aws.StringValue `json:"StackId"`
 }
 
@@ -1818,7 +1818,7 @@ type UserProfile struct {
 type Volume struct {
 	AvailabilityZone aws.StringValue  `json:"AvailabilityZone,omitempty"`
 	Device           aws.StringValue  `json:"Device,omitempty"`
-	Ec2VolumeID      aws.StringValue  `json:"Ec2VolumeId,omitempty"`
+	EC2VolumeID      aws.StringValue  `json:"Ec2VolumeId,omitempty"`
 	InstanceID       aws.StringValue  `json:"InstanceId,omitempty"`
 	Iops             aws.IntegerValue `json:"Iops,omitempty"`
 	MountPoint       aws.StringValue  `json:"MountPoint,omitempty"`

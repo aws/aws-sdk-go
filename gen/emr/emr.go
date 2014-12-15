@@ -310,7 +310,7 @@ type BootstrapActionDetail struct {
 type Cluster struct {
 	Applications          []Application          `json:"Applications,omitempty"`
 	AutoTerminate         aws.BooleanValue       `json:"AutoTerminate,omitempty"`
-	Ec2InstanceAttributes *Ec2InstanceAttributes `json:"Ec2InstanceAttributes,omitempty"`
+	EC2InstanceAttributes *EC2InstanceAttributes `json:"Ec2InstanceAttributes,omitempty"`
 	ID                    aws.StringValue        `json:"Id,omitempty"`
 	LogURI                aws.StringValue        `json:"LogUri,omitempty"`
 	Name                  aws.StringValue        `json:"Name,omitempty"`
@@ -391,11 +391,11 @@ type DescribeStepOutput struct {
 	Step *Step `json:"Step,omitempty"`
 }
 
-// Ec2InstanceAttributes is undocumented.
-type Ec2InstanceAttributes struct {
-	Ec2AvailabilityZone aws.StringValue `json:"Ec2AvailabilityZone,omitempty"`
-	Ec2KeyName          aws.StringValue `json:"Ec2KeyName,omitempty"`
-	Ec2SubnetID         aws.StringValue `json:"Ec2SubnetId,omitempty"`
+// EC2InstanceAttributes is undocumented.
+type EC2InstanceAttributes struct {
+	EC2AvailabilityZone aws.StringValue `json:"Ec2AvailabilityZone,omitempty"`
+	EC2KeyName          aws.StringValue `json:"Ec2KeyName,omitempty"`
+	EC2SubnetID         aws.StringValue `json:"Ec2SubnetId,omitempty"`
 	IamInstanceProfile  aws.StringValue `json:"IamInstanceProfile,omitempty"`
 }
 
@@ -417,7 +417,7 @@ type HadoopStepConfig struct {
 
 // Instance is undocumented.
 type Instance struct {
-	Ec2InstanceID    aws.StringValue `json:"Ec2InstanceId,omitempty"`
+	EC2InstanceID    aws.StringValue `json:"Ec2InstanceId,omitempty"`
 	ID               aws.StringValue `json:"Id,omitempty"`
 	PrivateDNSName   aws.StringValue `json:"PrivateDnsName,omitempty"`
 	PrivateIPAddress aws.StringValue `json:"PrivateIpAddress,omitempty"`
@@ -542,8 +542,8 @@ type JobFlowExecutionStatusDetail struct {
 
 // JobFlowInstancesConfig is undocumented.
 type JobFlowInstancesConfig struct {
-	Ec2KeyName                  aws.StringValue       `json:"Ec2KeyName,omitempty"`
-	Ec2SubnetID                 aws.StringValue       `json:"Ec2SubnetId,omitempty"`
+	EC2KeyName                  aws.StringValue       `json:"Ec2KeyName,omitempty"`
+	EC2SubnetID                 aws.StringValue       `json:"Ec2SubnetId,omitempty"`
 	HadoopVersion               aws.StringValue       `json:"HadoopVersion,omitempty"`
 	InstanceCount               aws.IntegerValue      `json:"InstanceCount,omitempty"`
 	InstanceGroups              []InstanceGroupConfig `json:"InstanceGroups,omitempty"`
@@ -556,8 +556,8 @@ type JobFlowInstancesConfig struct {
 
 // JobFlowInstancesDetail is undocumented.
 type JobFlowInstancesDetail struct {
-	Ec2KeyName                  aws.StringValue       `json:"Ec2KeyName,omitempty"`
-	Ec2SubnetID                 aws.StringValue       `json:"Ec2SubnetId,omitempty"`
+	EC2KeyName                  aws.StringValue       `json:"Ec2KeyName,omitempty"`
+	EC2SubnetID                 aws.StringValue       `json:"Ec2SubnetId,omitempty"`
 	HadoopVersion               aws.StringValue       `json:"HadoopVersion,omitempty"`
 	InstanceCount               aws.IntegerValue      `json:"InstanceCount"`
 	InstanceGroups              []InstanceGroupDetail `json:"InstanceGroups,omitempty"`

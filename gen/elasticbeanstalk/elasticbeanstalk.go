@@ -558,7 +558,7 @@ type EnvironmentDescriptionsMessage struct {
 
 // EnvironmentInfoDescription is undocumented.
 type EnvironmentInfoDescription struct {
-	Ec2InstanceID   aws.StringValue `xml:"Ec2InstanceId"`
+	EC2InstanceID   aws.StringValue `xml:"Ec2InstanceId"`
 	InfoType        aws.StringValue `xml:"InfoType"`
 	Message         aws.StringValue `xml:"Message"`
 	SampleTimestamp time.Time       `xml:"SampleTimestamp"`

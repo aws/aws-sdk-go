@@ -288,7 +288,7 @@ type CreateDeploymentGroupInput struct {
 	AutoScalingGroups    []string        `json:"autoScalingGroups,omitempty"`
 	DeploymentConfigName aws.StringValue `json:"deploymentConfigName,omitempty"`
 	DeploymentGroupName  aws.StringValue `json:"deploymentGroupName"`
-	Ec2TagFilters        []EC2TagFilter  `json:"ec2TagFilters,omitempty"`
+	EC2TagFilters        []EC2TagFilter  `json:"ec2TagFilters,omitempty"`
 	ServiceRoleARN       aws.StringValue `json:"serviceRoleArn,omitempty"`
 }
 
@@ -348,7 +348,7 @@ type DeploymentGroupInfo struct {
 	DeploymentConfigName aws.StringValue    `json:"deploymentConfigName,omitempty"`
 	DeploymentGroupID    aws.StringValue    `json:"deploymentGroupId,omitempty"`
 	DeploymentGroupName  aws.StringValue    `json:"deploymentGroupName,omitempty"`
-	Ec2TagFilters        []EC2TagFilter     `json:"ec2TagFilters,omitempty"`
+	EC2TagFilters        []EC2TagFilter     `json:"ec2TagFilters,omitempty"`
 	ServiceRoleARN       aws.StringValue    `json:"serviceRoleArn,omitempty"`
 	TargetRevision       *RevisionLocation  `json:"targetRevision,omitempty"`
 }
@@ -637,7 +637,7 @@ type UpdateDeploymentGroupInput struct {
 	AutoScalingGroups          []string        `json:"autoScalingGroups,omitempty"`
 	CurrentDeploymentGroupName aws.StringValue `json:"currentDeploymentGroupName"`
 	DeploymentConfigName       aws.StringValue `json:"deploymentConfigName,omitempty"`
-	Ec2TagFilters              []EC2TagFilter  `json:"ec2TagFilters,omitempty"`
+	EC2TagFilters              []EC2TagFilter  `json:"ec2TagFilters,omitempty"`
 	NewDeploymentGroupName     aws.StringValue `json:"newDeploymentGroupName,omitempty"`
 	ServiceRoleARN             aws.StringValue `json:"serviceRoleArn,omitempty"`
 }
