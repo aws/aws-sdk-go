@@ -1,8 +1,9 @@
 package aws
 
 import (
+	"bufio"
 	"encoding/json"
-	"log"
+	"fmt"
 	"net/http"
 	"os"
 	"sync"
@@ -102,12 +103,25 @@ func InstanceRoleCredentials() Credentials {
 //   "Expiration" : "2014-12-16T01:51:37Z"
 // }
 
+var metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam/security-credentials/"
+
 // Retrieve credentials from the EC2 Metadata endpoint
 func (c *instanceRoleCredentials) obtainCredentialsLazily() error {
 	// TODO: Do we need to refresh?
 
-	// TODO: Need to loop over entries at /services/../, or pick the first line...
-	r, err := http.Get("http://169.254.169.254/latest/meta-data/iam/security-credentials/services")
+	r, err := http.Get(metadataCredentialsEndpoint)
+	if err != nil {
+		return err
+	}
+
+	s := bufio.NewScanner(r.Body)
+	s.Scan()
+	if s.Err() != nil {
+		return s.Err()
+	}
+	firstLine := s.Text()
+
+	r, err = http.Get(metadataCredentialsEndpoint + firstLine)
 	if err != nil {
 		return err
 	}
@@ -117,9 +131,8 @@ func (c *instanceRoleCredentials) obtainCredentialsLazily() error {
 		return err
 	}
 	if c.apiResponseCode != "success" {
-		log.Panicln("Error fetching code:", c.apiResponseCode)
+		return fmt.Errorf("Metadata endpoint did not succeed. Code:", c.apiResponseCode)
 	}
-	log.Println("Got credentials:", c.id)
 	return nil
 }
 
