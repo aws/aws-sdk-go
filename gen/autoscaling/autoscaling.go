@@ -831,7 +831,7 @@ type DisableMetricsCollectionQuery struct {
 // EBS is undocumented.
 type EBS struct {
 	DeleteOnTermination aws.BooleanValue `xml:"DeleteOnTermination"`
-	Iops                aws.IntegerValue `xml:"Iops"`
+	IOPS                aws.IntegerValue `xml:"Iops"`
 	SnapshotID          aws.StringValue  `xml:"SnapshotId"`
 	VolumeSize          aws.IntegerValue `xml:"VolumeSize"`
 	VolumeType          aws.StringValue  `xml:"VolumeType"`

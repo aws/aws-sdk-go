@@ -1470,7 +1470,7 @@ type RAIDArray struct {
 	CreatedAt        aws.StringValue  `json:"CreatedAt,omitempty"`
 	Device           aws.StringValue  `json:"Device,omitempty"`
 	InstanceID       aws.StringValue  `json:"InstanceId,omitempty"`
-	Iops             aws.IntegerValue `json:"Iops,omitempty"`
+	IOPS             aws.IntegerValue `json:"Iops,omitempty"`
 	MountPoint       aws.StringValue  `json:"MountPoint,omitempty"`
 	Name             aws.StringValue  `json:"Name,omitempty"`
 	NumberOfDisks    aws.IntegerValue `json:"NumberOfDisks,omitempty"`
@@ -1820,7 +1820,7 @@ type Volume struct {
 	Device           aws.StringValue  `json:"Device,omitempty"`
 	EC2VolumeID      aws.StringValue  `json:"Ec2VolumeId,omitempty"`
 	InstanceID       aws.StringValue  `json:"InstanceId,omitempty"`
-	Iops             aws.IntegerValue `json:"Iops,omitempty"`
+	IOPS             aws.IntegerValue `json:"Iops,omitempty"`
 	MountPoint       aws.StringValue  `json:"MountPoint,omitempty"`
 	Name             aws.StringValue  `json:"Name,omitempty"`
 	RAIDArrayID      aws.StringValue  `json:"RaidArrayId,omitempty"`
@@ -1833,7 +1833,7 @@ type Volume struct {
 
 // VolumeConfiguration is undocumented.
 type VolumeConfiguration struct {
-	Iops          aws.IntegerValue `json:"Iops,omitempty"`
+	IOPS          aws.IntegerValue `json:"Iops,omitempty"`
 	MountPoint    aws.StringValue  `json:"MountPoint"`
 	NumberOfDisks aws.IntegerValue `json:"NumberOfDisks"`
 	RAIDLevel     aws.IntegerValue `json:"RaidLevel,omitempty"`

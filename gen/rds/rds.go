@@ -670,7 +670,7 @@ type CreateDBInstanceMessage struct {
 	DBSubnetGroupName          aws.StringValue  `xml:"DBSubnetGroupName"`
 	Engine                     aws.StringValue  `xml:"Engine"`
 	EngineVersion              aws.StringValue  `xml:"EngineVersion"`
-	Iops                       aws.IntegerValue `xml:"Iops"`
+	IOPS                       aws.IntegerValue `xml:"Iops"`
 	LicenseModel               aws.StringValue  `xml:"LicenseModel"`
 	MasterUserPassword         aws.StringValue  `xml:"MasterUserPassword"`
 	MasterUsername             aws.StringValue  `xml:"MasterUsername"`
@@ -694,7 +694,7 @@ type CreateDBInstanceReadReplicaMessage struct {
 	DBInstanceClass            aws.StringValue  `xml:"DBInstanceClass"`
 	DBInstanceIdentifier       aws.StringValue  `xml:"DBInstanceIdentifier"`
 	DBSubnetGroupName          aws.StringValue  `xml:"DBSubnetGroupName"`
-	Iops                       aws.IntegerValue `xml:"Iops"`
+	IOPS                       aws.IntegerValue `xml:"Iops"`
 	OptionGroupName            aws.StringValue  `xml:"OptionGroupName"`
 	Port                       aws.IntegerValue `xml:"Port"`
 	PubliclyAccessible         aws.BooleanValue `xml:"PubliclyAccessible"`
@@ -828,7 +828,7 @@ type DBInstance struct {
 	Engine                                aws.StringValue              `xml:"Engine"`
 	EngineVersion                         aws.StringValue              `xml:"EngineVersion"`
 	InstanceCreateTime                    time.Time                    `xml:"InstanceCreateTime"`
-	Iops                                  aws.IntegerValue             `xml:"Iops"`
+	IOPS                                  aws.IntegerValue             `xml:"Iops"`
 	LatestRestorableTime                  time.Time                    `xml:"LatestRestorableTime"`
 	LicenseModel                          aws.StringValue              `xml:"LicenseModel"`
 	MasterUsername                        aws.StringValue              `xml:"MasterUsername"`
@@ -922,7 +922,7 @@ type DBSnapshot struct {
 	Engine               aws.StringValue  `xml:"Engine"`
 	EngineVersion        aws.StringValue  `xml:"EngineVersion"`
 	InstanceCreateTime   time.Time        `xml:"InstanceCreateTime"`
-	Iops                 aws.IntegerValue `xml:"Iops"`
+	IOPS                 aws.IntegerValue `xml:"Iops"`
 	LicenseModel         aws.StringValue  `xml:"LicenseModel"`
 	MasterUsername       aws.StringValue  `xml:"MasterUsername"`
 	OptionGroupName      aws.StringValue  `xml:"OptionGroupName"`
@@ -1306,7 +1306,7 @@ type ModifyDBInstanceMessage struct {
 	DBParameterGroupName       aws.StringValue  `xml:"DBParameterGroupName"`
 	DBSecurityGroups           []string         `xml:"DBSecurityGroups>DBSecurityGroupName"`
 	EngineVersion              aws.StringValue  `xml:"EngineVersion"`
-	Iops                       aws.IntegerValue `xml:"Iops"`
+	IOPS                       aws.IntegerValue `xml:"Iops"`
 	MasterUserPassword         aws.StringValue  `xml:"MasterUserPassword"`
 	MultiAZ                    aws.BooleanValue `xml:"MultiAZ"`
 	NewDBInstanceIdentifier    aws.StringValue  `xml:"NewDBInstanceIdentifier"`
@@ -1467,7 +1467,7 @@ type OrderableDBInstanceOption struct {
 	MultiAZCapable     aws.BooleanValue   `xml:"MultiAZCapable"`
 	ReadReplicaCapable aws.BooleanValue   `xml:"ReadReplicaCapable"`
 	StorageType        aws.StringValue    `xml:"StorageType"`
-	SupportsIops       aws.BooleanValue   `xml:"SupportsIops"`
+	SupportsIOPS       aws.BooleanValue   `xml:"SupportsIops"`
 	VPC                aws.BooleanValue   `xml:"Vpc"`
 }
 
@@ -1498,7 +1498,7 @@ type PendingModifiedValues struct {
 	DBInstanceClass       aws.StringValue  `xml:"DBInstanceClass"`
 	DBInstanceIdentifier  aws.StringValue  `xml:"DBInstanceIdentifier"`
 	EngineVersion         aws.StringValue  `xml:"EngineVersion"`
-	Iops                  aws.IntegerValue `xml:"Iops"`
+	IOPS                  aws.IntegerValue `xml:"Iops"`
 	MasterUserPassword    aws.StringValue  `xml:"MasterUserPassword"`
 	MultiAZ               aws.BooleanValue `xml:"MultiAZ"`
 	Port                  aws.IntegerValue `xml:"Port"`
@@ -1625,7 +1625,7 @@ type RestoreDBInstanceFromDBSnapshotMessage struct {
 	DBSnapshotIdentifier    aws.StringValue  `xml:"DBSnapshotIdentifier"`
 	DBSubnetGroupName       aws.StringValue  `xml:"DBSubnetGroupName"`
 	Engine                  aws.StringValue  `xml:"Engine"`
-	Iops                    aws.IntegerValue `xml:"Iops"`
+	IOPS                    aws.IntegerValue `xml:"Iops"`
 	LicenseModel            aws.StringValue  `xml:"LicenseModel"`
 	MultiAZ                 aws.BooleanValue `xml:"MultiAZ"`
 	OptionGroupName         aws.StringValue  `xml:"OptionGroupName"`
@@ -1650,7 +1650,7 @@ type RestoreDBInstanceToPointInTimeMessage struct {
 	DBName                     aws.StringValue  `xml:"DBName"`
 	DBSubnetGroupName          aws.StringValue  `xml:"DBSubnetGroupName"`
 	Engine                     aws.StringValue  `xml:"Engine"`
-	Iops                       aws.IntegerValue `xml:"Iops"`
+	IOPS                       aws.IntegerValue `xml:"Iops"`
 	LicenseModel               aws.StringValue  `xml:"LicenseModel"`
 	MultiAZ                    aws.BooleanValue `xml:"MultiAZ"`
 	OptionGroupName            aws.StringValue  `xml:"OptionGroupName"`

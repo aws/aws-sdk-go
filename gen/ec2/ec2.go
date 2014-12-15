@@ -2603,7 +2603,7 @@ type CreateVolumeRequest struct {
 	AvailabilityZone aws.StringValue  `ec2:"AvailabilityZone" xml:"AvailabilityZone"`
 	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Encrypted        aws.BooleanValue `ec2:"Encrypted" xml:"encrypted"`
-	Iops             aws.IntegerValue `ec2:"Iops" xml:"Iops"`
+	IOPS             aws.IntegerValue `ec2:"Iops" xml:"Iops"`
 	KMSKeyID         aws.StringValue  `ec2:"KmsKeyId" xml:"KmsKeyId"`
 	Size             aws.IntegerValue `ec2:"Size" xml:"Size"`
 	SnapshotID       aws.StringValue  `ec2:"SnapshotId" xml:"SnapshotId"`
@@ -3441,7 +3441,7 @@ type DiskImageVolumeDescription struct {
 type EBSBlockDevice struct {
 	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
 	Encrypted           aws.BooleanValue `ec2:"Encrypted" xml:"encrypted"`
-	Iops                aws.IntegerValue `ec2:"Iops" xml:"iops"`
+	IOPS                aws.IntegerValue `ec2:"Iops" xml:"iops"`
 	SnapshotID          aws.StringValue  `ec2:"SnapshotId" xml:"snapshotId"`
 	VolumeSize          aws.IntegerValue `ec2:"VolumeSize" xml:"volumeSize"`
 	VolumeType          aws.StringValue  `ec2:"VolumeType" xml:"volumeType"`
@@ -4776,7 +4776,7 @@ type Volume struct {
 	AvailabilityZone aws.StringValue    `ec2:"AvailabilityZone" xml:"availabilityZone"`
 	CreateTime       time.Time          `ec2:"CreateTime" xml:"createTime"`
 	Encrypted        aws.BooleanValue   `ec2:"Encrypted" xml:"encrypted"`
-	Iops             aws.IntegerValue   `ec2:"Iops" xml:"iops"`
+	IOPS             aws.IntegerValue   `ec2:"Iops" xml:"iops"`
 	KMSKeyID         aws.StringValue    `ec2:"KmsKeyId" xml:"kmsKeyId"`
 	Size             aws.IntegerValue   `ec2:"Size" xml:"size"`
 	SnapshotID       aws.StringValue    `ec2:"SnapshotId" xml:"snapshotId"`
