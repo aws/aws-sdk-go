@@ -23,7 +23,7 @@ func Generate(w io.Writer) error {
 	template.Must(restXMLClient(t))
 	template.Must(restJSONClient(t))
 
-	out := bytes.NewBuffer(nil)
+	out := new(bytes.Buffer)
 	if err := t.ExecuteTemplate(out, service.Metadata.Protocol, service); err != nil {
 		return err
 	}
@@ -34,7 +34,7 @@ func Generate(w io.Writer) error {
 		return err
 	}
 
-	_, err = io.Copy(w, bytes.NewReader(b))
+	_, err = w.Write(b)
 	return err
 }
 
