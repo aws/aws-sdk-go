@@ -230,7 +230,7 @@ func (c *Route53Domains) UpdateDomainNameservers(req *UpdateDomainNameserversReq
 // CheckDomainAvailabilityRequest is undocumented.
 type CheckDomainAvailabilityRequest struct {
 	DomainName  aws.StringValue `json:"DomainName"`
-	IdnLangCode aws.StringValue `json:"IdnLangCode,omitempty"`
+	IDNLangCode aws.StringValue `json:"IdnLangCode,omitempty"`
 }
 
 // CheckDomainAvailabilityResponse is undocumented.
@@ -397,7 +397,7 @@ type RegisterDomainRequest struct {
 	AutoRenew                       aws.BooleanValue `json:"AutoRenew,omitempty"`
 	DomainName                      aws.StringValue  `json:"DomainName"`
 	DurationInYears                 aws.IntegerValue `json:"DurationInYears"`
-	IdnLangCode                     aws.StringValue  `json:"IdnLangCode,omitempty"`
+	IDNLangCode                     aws.StringValue  `json:"IdnLangCode,omitempty"`
 	PrivacyProtectAdminContact      aws.BooleanValue `json:"PrivacyProtectAdminContact,omitempty"`
 	PrivacyProtectRegistrantContact aws.BooleanValue `json:"PrivacyProtectRegistrantContact,omitempty"`
 	PrivacyProtectTechContact       aws.BooleanValue `json:"PrivacyProtectTechContact,omitempty"`
@@ -427,7 +427,7 @@ type TransferDomainRequest struct {
 	AutoRenew                       aws.BooleanValue `json:"AutoRenew,omitempty"`
 	DomainName                      aws.StringValue  `json:"DomainName"`
 	DurationInYears                 aws.IntegerValue `json:"DurationInYears"`
-	IdnLangCode                     aws.StringValue  `json:"IdnLangCode,omitempty"`
+	IDNLangCode                     aws.StringValue  `json:"IdnLangCode,omitempty"`
 	Nameservers                     []Nameserver     `json:"Nameservers"`
 	PrivacyProtectAdminContact      aws.BooleanValue `json:"PrivacyProtectAdminContact,omitempty"`
 	PrivacyProtectRegistrantContact aws.BooleanValue `json:"PrivacyProtectRegistrantContact,omitempty"`
