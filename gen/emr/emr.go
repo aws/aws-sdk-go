@@ -314,8 +314,8 @@ type Cluster struct {
 	ID                    aws.StringValue        `json:"Id,omitempty"`
 	LogURI                aws.StringValue        `json:"LogUri,omitempty"`
 	Name                  aws.StringValue        `json:"Name,omitempty"`
-	RequestedAmiVersion   aws.StringValue        `json:"RequestedAmiVersion,omitempty"`
-	RunningAmiVersion     aws.StringValue        `json:"RunningAmiVersion,omitempty"`
+	RequestedAMIVersion   aws.StringValue        `json:"RequestedAmiVersion,omitempty"`
+	RunningAMIVersion     aws.StringValue        `json:"RunningAmiVersion,omitempty"`
 	ServiceRole           aws.StringValue        `json:"ServiceRole,omitempty"`
 	Status                *ClusterStatus         `json:"Status,omitempty"`
 	Tags                  []Tag                  `json:"Tags,omitempty"`
@@ -516,7 +516,7 @@ type InstanceTimeline struct {
 
 // JobFlowDetail is undocumented.
 type JobFlowDetail struct {
-	AmiVersion            aws.StringValue               `json:"AmiVersion,omitempty"`
+	AMIVersion            aws.StringValue               `json:"AmiVersion,omitempty"`
 	BootstrapActions      []BootstrapActionDetail       `json:"BootstrapActions,omitempty"`
 	ExecutionStatusDetail *JobFlowExecutionStatusDetail `json:"ExecutionStatusDetail"`
 	Instances             *JobFlowInstancesDetail       `json:"Instances"`
@@ -665,7 +665,7 @@ type RemoveTagsOutput struct {
 // RunJobFlowInput is undocumented.
 type RunJobFlowInput struct {
 	AdditionalInfo       aws.StringValue          `json:"AdditionalInfo,omitempty"`
-	AmiVersion           aws.StringValue          `json:"AmiVersion,omitempty"`
+	AMIVersion           aws.StringValue          `json:"AmiVersion,omitempty"`
 	BootstrapActions     []BootstrapActionConfig  `json:"BootstrapActions,omitempty"`
 	Instances            *JobFlowInstancesConfig  `json:"Instances"`
 	JobFlowRole          aws.StringValue          `json:"JobFlowRole,omitempty"`

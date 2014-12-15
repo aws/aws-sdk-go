@@ -932,7 +932,7 @@ type CreateDeploymentResult struct {
 
 // CreateInstanceRequest is undocumented.
 type CreateInstanceRequest struct {
-	AmiID                aws.StringValue  `json:"AmiId,omitempty"`
+	AMIID                aws.StringValue  `json:"AmiId,omitempty"`
 	Architecture         aws.StringValue  `json:"Architecture,omitempty"`
 	AutoScalingType      aws.StringValue  `json:"AutoScalingType,omitempty"`
 	AvailabilityZone     aws.StringValue  `json:"AvailabilityZone,omitempty"`
@@ -1354,7 +1354,7 @@ type GetHostnameSuggestionResult struct {
 
 // Instance is undocumented.
 type Instance struct {
-	AmiID                    aws.StringValue  `json:"AmiId,omitempty"`
+	AMIID                    aws.StringValue  `json:"AmiId,omitempty"`
 	Architecture             aws.StringValue  `json:"Architecture,omitempty"`
 	AutoScalingType          aws.StringValue  `json:"AutoScalingType,omitempty"`
 	AvailabilityZone         aws.StringValue  `json:"AvailabilityZone,omitempty"`
@@ -1725,7 +1725,7 @@ type UpdateElasticIPRequest struct {
 
 // UpdateInstanceRequest is undocumented.
 type UpdateInstanceRequest struct {
-	AmiID                aws.StringValue  `json:"AmiId,omitempty"`
+	AMIID                aws.StringValue  `json:"AmiId,omitempty"`
 	Architecture         aws.StringValue  `json:"Architecture,omitempty"`
 	AutoScalingType      aws.StringValue  `json:"AutoScalingType,omitempty"`
 	EBSOptimized         aws.BooleanValue `json:"EbsOptimized,omitempty"`

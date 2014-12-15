@@ -3679,7 +3679,7 @@ type ImportVolumeTaskDetails struct {
 
 // Instance is undocumented.
 type Instance struct {
-	AmiLaunchIndex        aws.IntegerValue             `ec2:"AmiLaunchIndex" xml:"amiLaunchIndex"`
+	AMILaunchIndex        aws.IntegerValue             `ec2:"AmiLaunchIndex" xml:"amiLaunchIndex"`
 	Architecture          aws.StringValue              `ec2:"Architecture" xml:"architecture"`
 	BlockDeviceMappings   []InstanceBlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
 	ClientToken           aws.StringValue              `ec2:"ClientToken" xml:"clientToken"`
