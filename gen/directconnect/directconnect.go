@@ -257,7 +257,7 @@ type AllocateConnectionOnInterconnectRequest struct {
 	ConnectionName aws.StringValue  `json:"connectionName"`
 	InterconnectID aws.StringValue  `json:"interconnectId"`
 	OwnerAccount   aws.StringValue  `json:"ownerAccount"`
-	Vlan           aws.IntegerValue `json:"vlan"`
+	VLAN           aws.IntegerValue `json:"vlan"`
 }
 
 // AllocatePrivateVirtualInterfaceRequest is undocumented.
@@ -315,7 +315,7 @@ type Connection struct {
 	OwnerAccount    aws.StringValue  `json:"ownerAccount,omitempty"`
 	PartnerName     aws.StringValue  `json:"partnerName,omitempty"`
 	Region          aws.StringValue  `json:"region,omitempty"`
-	Vlan            aws.IntegerValue `json:"vlan,omitempty"`
+	VLAN            aws.IntegerValue `json:"vlan,omitempty"`
 }
 
 // Connections is undocumented.
@@ -429,7 +429,7 @@ type NewPrivateVirtualInterface struct {
 	CustomerAddress      aws.StringValue  `json:"customerAddress,omitempty"`
 	VirtualGatewayID     aws.StringValue  `json:"virtualGatewayId"`
 	VirtualInterfaceName aws.StringValue  `json:"virtualInterfaceName"`
-	Vlan                 aws.IntegerValue `json:"vlan"`
+	VLAN                 aws.IntegerValue `json:"vlan"`
 }
 
 // NewPrivateVirtualInterfaceAllocation is undocumented.
@@ -439,7 +439,7 @@ type NewPrivateVirtualInterfaceAllocation struct {
 	AuthKey              aws.StringValue  `json:"authKey,omitempty"`
 	CustomerAddress      aws.StringValue  `json:"customerAddress,omitempty"`
 	VirtualInterfaceName aws.StringValue  `json:"virtualInterfaceName"`
-	Vlan                 aws.IntegerValue `json:"vlan"`
+	VLAN                 aws.IntegerValue `json:"vlan"`
 }
 
 // NewPublicVirtualInterface is undocumented.
@@ -450,7 +450,7 @@ type NewPublicVirtualInterface struct {
 	CustomerAddress      aws.StringValue     `json:"customerAddress"`
 	RouteFilterPrefixes  []RouteFilterPrefix `json:"routeFilterPrefixes"`
 	VirtualInterfaceName aws.StringValue     `json:"virtualInterfaceName"`
-	Vlan                 aws.IntegerValue    `json:"vlan"`
+	VLAN                 aws.IntegerValue    `json:"vlan"`
 }
 
 // NewPublicVirtualInterfaceAllocation is undocumented.
@@ -461,7 +461,7 @@ type NewPublicVirtualInterfaceAllocation struct {
 	CustomerAddress      aws.StringValue     `json:"customerAddress"`
 	RouteFilterPrefixes  []RouteFilterPrefix `json:"routeFilterPrefixes"`
 	VirtualInterfaceName aws.StringValue     `json:"virtualInterfaceName"`
-	Vlan                 aws.IntegerValue    `json:"vlan"`
+	VLAN                 aws.IntegerValue    `json:"vlan"`
 }
 
 // RouteFilterPrefix is undocumented.
@@ -496,7 +496,7 @@ type VirtualInterface struct {
 	VirtualInterfaceName  aws.StringValue     `json:"virtualInterfaceName,omitempty"`
 	VirtualInterfaceState aws.StringValue     `json:"virtualInterfaceState,omitempty"`
 	VirtualInterfaceType  aws.StringValue     `json:"virtualInterfaceType,omitempty"`
-	Vlan                  aws.IntegerValue    `json:"vlan,omitempty"`
+	VLAN                  aws.IntegerValue    `json:"vlan,omitempty"`
 }
 
 // VirtualInterfaces is undocumented.
