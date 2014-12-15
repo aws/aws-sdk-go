@@ -3571,7 +3571,7 @@ type Image struct {
 	Platform            aws.StringValue      `ec2:"Platform" xml:"platform"`
 	ProductCodes        []ProductCode        `ec2:"ProductCodes" xml:"productCodes>item"`
 	Public              aws.BooleanValue     `ec2:"Public" xml:"isPublic"`
-	RamdiskID           aws.StringValue      `ec2:"RamdiskId" xml:"ramdiskId"`
+	RAMDiskID           aws.StringValue      `ec2:"RamdiskId" xml:"ramdiskId"`
 	RootDeviceName      aws.StringValue      `ec2:"RootDeviceName" xml:"rootDeviceName"`
 	RootDeviceType      aws.StringValue      `ec2:"RootDeviceType" xml:"rootDeviceType"`
 	SRIOVNetSupport     aws.StringValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
@@ -3589,7 +3589,7 @@ type ImageAttribute struct {
 	KernelID            *AttributeValue      `ec2:"KernelId" xml:"kernel"`
 	LaunchPermissions   []LaunchPermission   `ec2:"LaunchPermissions" xml:"launchPermission>item"`
 	ProductCodes        []ProductCode        `ec2:"ProductCodes" xml:"productCodes>item"`
-	RamdiskID           *AttributeValue      `ec2:"RamdiskId" xml:"ramdisk"`
+	RAMDiskID           *AttributeValue      `ec2:"RamdiskId" xml:"ramdisk"`
 	SRIOVNetSupport     *AttributeValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 }
 
@@ -3702,7 +3702,7 @@ type Instance struct {
 	ProductCodes          []ProductCode                `ec2:"ProductCodes" xml:"productCodes>item"`
 	PublicDNSName         aws.StringValue              `ec2:"PublicDnsName" xml:"dnsName"`
 	PublicIPAddress       aws.StringValue              `ec2:"PublicIpAddress" xml:"ipAddress"`
-	RamdiskID             aws.StringValue              `ec2:"RamdiskId" xml:"ramdiskId"`
+	RAMDiskID             aws.StringValue              `ec2:"RamdiskId" xml:"ramdiskId"`
 	RootDeviceName        aws.StringValue              `ec2:"RootDeviceName" xml:"rootDeviceName"`
 	RootDeviceType        aws.StringValue              `ec2:"RootDeviceType" xml:"rootDeviceType"`
 	SecurityGroups        []GroupIdentifier            `ec2:"SecurityGroups" xml:"groupSet>item"`
@@ -3729,7 +3729,7 @@ type InstanceAttribute struct {
 	InstanceType                      *AttributeValue              `ec2:"InstanceType" xml:"instanceType"`
 	KernelID                          *AttributeValue              `ec2:"KernelId" xml:"kernel"`
 	ProductCodes                      []ProductCode                `ec2:"ProductCodes" xml:"productCodes>item"`
-	RamdiskID                         *AttributeValue              `ec2:"RamdiskId" xml:"ramdisk"`
+	RAMDiskID                         *AttributeValue              `ec2:"RamdiskId" xml:"ramdisk"`
 	RootDeviceName                    *AttributeValue              `ec2:"RootDeviceName" xml:"rootDeviceName"`
 	SourceDestCheck                   *AttributeBooleanValue       `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
 	SRIOVNetSupport                   *AttributeValue              `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
@@ -3933,7 +3933,7 @@ type LaunchSpecification struct {
 	Monitoring          *RunInstancesMonitoringEnabled          `ec2:"Monitoring" xml:"monitoring"`
 	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `ec2:"NetworkInterfaces" xml:"networkInterfaceSet>item"`
 	Placement           *SpotPlacement                          `ec2:"Placement" xml:"placement"`
-	RamdiskID           aws.StringValue                         `ec2:"RamdiskId" xml:"ramdiskId"`
+	RAMDiskID           aws.StringValue                         `ec2:"RamdiskId" xml:"ramdiskId"`
 	SecurityGroups      []GroupIdentifier                       `ec2:"SecurityGroups" xml:"groupSet>item"`
 	SubnetID            aws.StringValue                         `ec2:"SubnetId" xml:"subnetId"`
 	UserData            aws.StringValue                         `ec2:"UserData" xml:"userData"`
@@ -3965,7 +3965,7 @@ type ModifyInstanceAttributeRequest struct {
 	InstanceInitiatedShutdownBehavior *AttributeValue                           `ec2:"InstanceInitiatedShutdownBehavior" xml:"instanceInitiatedShutdownBehavior"`
 	InstanceType                      *AttributeValue                           `ec2:"InstanceType" xml:"instanceType"`
 	Kernel                            *AttributeValue                           `ec2:"Kernel" xml:"kernel"`
-	Ramdisk                           *AttributeValue                           `ec2:"Ramdisk" xml:"ramdisk"`
+	RAMDisk                           *AttributeValue                           `ec2:"Ramdisk" xml:"ramdisk"`
 	SourceDestCheck                   *AttributeBooleanValue                    `ec2:"SourceDestCheck" xml:"SourceDestCheck"`
 	SRIOVNetSupport                   *AttributeValue                           `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 	UserData                          *BlobAttributeValue                       `ec2:"UserData" xml:"userData"`
@@ -4229,7 +4229,7 @@ type RegisterImageRequest struct {
 	ImageLocation       aws.StringValue      `ec2:"ImageLocation" xml:"ImageLocation"`
 	KernelID            aws.StringValue      `ec2:"KernelId" xml:"kernelId"`
 	Name                aws.StringValue      `ec2:"Name" xml:"name"`
-	RamdiskID           aws.StringValue      `ec2:"RamdiskId" xml:"ramdiskId"`
+	RAMDiskID           aws.StringValue      `ec2:"RamdiskId" xml:"ramdiskId"`
 	RootDeviceName      aws.StringValue      `ec2:"RootDeviceName" xml:"rootDeviceName"`
 	SRIOVNetSupport     aws.StringValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 	VirtualizationType  aws.StringValue      `ec2:"VirtualizationType" xml:"virtualizationType"`
@@ -4348,7 +4348,7 @@ type RequestSpotLaunchSpecification struct {
 	Monitoring          *RunInstancesMonitoringEnabled          `ec2:"Monitoring" xml:"monitoring"`
 	NetworkInterfaces   []InstanceNetworkInterfaceSpecification `ec2:"NetworkInterface" xml:"NetworkInterface>item"`
 	Placement           *SpotPlacement                          `ec2:"Placement" xml:"placement"`
-	RamdiskID           aws.StringValue                         `ec2:"RamdiskId" xml:"ramdiskId"`
+	RAMDiskID           aws.StringValue                         `ec2:"RamdiskId" xml:"ramdiskId"`
 	SecurityGroupIDs    []string                                `ec2:"SecurityGroupId" xml:"SecurityGroupId>item"`
 	SecurityGroups      []string                                `ec2:"SecurityGroup" xml:"SecurityGroup>item"`
 	SubnetID            aws.StringValue                         `ec2:"SubnetId" xml:"subnetId"`
@@ -4563,7 +4563,7 @@ type RunInstancesRequest struct {
 	NetworkInterfaces                 []InstanceNetworkInterfaceSpecification `ec2:"NetworkInterfaces" xml:"networkInterface>item"`
 	Placement                         *Placement                              `ec2:"Placement" xml:"Placement"`
 	PrivateIPAddress                  aws.StringValue                         `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
-	RamdiskID                         aws.StringValue                         `ec2:"RamdiskId" xml:"RamdiskId"`
+	RAMDiskID                         aws.StringValue                         `ec2:"RamdiskId" xml:"RamdiskId"`
 	SecurityGroupIDs                  []string                                `ec2:"SecurityGroupId" xml:"SecurityGroupId>SecurityGroupId"`
 	SecurityGroups                    []string                                `ec2:"SecurityGroup" xml:"SecurityGroup>SecurityGroup"`
 	SubnetID                          aws.StringValue                         `ec2:"SubnetId" xml:"SubnetId"`

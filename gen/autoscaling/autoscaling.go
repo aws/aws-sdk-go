@@ -664,7 +664,7 @@ type CreateLaunchConfigurationType struct {
 	KeyName                  aws.StringValue      `xml:"KeyName"`
 	LaunchConfigurationName  aws.StringValue      `xml:"LaunchConfigurationName"`
 	PlacementTenancy         aws.StringValue      `xml:"PlacementTenancy"`
-	RamdiskID                aws.StringValue      `xml:"RamdiskId"`
+	RAMDiskID                aws.StringValue      `xml:"RamdiskId"`
 	SecurityGroups           []string             `xml:"SecurityGroups>member"`
 	SpotPrice                aws.StringValue      `xml:"SpotPrice"`
 	UserData                 aws.StringValue      `xml:"UserData"`
@@ -915,7 +915,7 @@ type LaunchConfiguration struct {
 	LaunchConfigurationARN   aws.StringValue      `xml:"LaunchConfigurationARN"`
 	LaunchConfigurationName  aws.StringValue      `xml:"LaunchConfigurationName"`
 	PlacementTenancy         aws.StringValue      `xml:"PlacementTenancy"`
-	RamdiskID                aws.StringValue      `xml:"RamdiskId"`
+	RAMDiskID                aws.StringValue      `xml:"RamdiskId"`
 	SecurityGroups           []string             `xml:"SecurityGroups>member"`
 	SpotPrice                aws.StringValue      `xml:"SpotPrice"`
 	UserData                 aws.StringValue      `xml:"UserData"`
