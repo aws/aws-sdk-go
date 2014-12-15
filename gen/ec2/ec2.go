@@ -424,17 +424,17 @@ func (c *EC2) CreateKeyPair(req *CreateKeyPairRequest) (resp *KeyPair, err error
 	return
 }
 
-// CreateNetworkAcl creates a network ACL in a Network ACLs provide an
+// CreateNetworkACL creates a network ACL in a Network ACLs provide an
 // optional layer of security (in addition to security groups) for the
 // instances in your For more information about network ACLs, see Network
 // ACLs in the Amazon Virtual Private Cloud User Guide
-func (c *EC2) CreateNetworkAcl(req *CreateNetworkAclRequest) (resp *CreateNetworkAclResult, err error) {
-	resp = &CreateNetworkAclResult{}
+func (c *EC2) CreateNetworkACL(req *CreateNetworkACLRequest) (resp *CreateNetworkACLResult, err error) {
+	resp = &CreateNetworkACLResult{}
 	err = c.client.Do("CreateNetworkAcl", "POST", "/", req, resp)
 	return
 }
 
-// CreateNetworkAclEntry creates an entry (a rule) in a network ACL with
+// CreateNetworkACLEntry creates an entry (a rule) in a network ACL with
 // the specified rule number. Each network ACL has a set of numbered
 // ingress rules and a separate set of numbered egress rules. When
 // determining whether a packet should be allowed in or out of a subnet
@@ -448,7 +448,7 @@ func (c *EC2) CreateNetworkAcl(req *CreateNetworkAclRequest) (resp *CreateNetwor
 // must either replace it, or create an entry and delete the old one. For
 // more information about network ACLs, see Network ACLs in the Amazon
 // Virtual Private Cloud User Guide
-func (c *EC2) CreateNetworkAclEntry(req *CreateNetworkAclEntryRequest) (err error) {
+func (c *EC2) CreateNetworkACLEntry(req *CreateNetworkACLEntryRequest) (err error) {
 	// NRE
 	err = c.client.Do("CreateNetworkAclEntry", "POST", "/", req, nil)
 	return
@@ -745,18 +745,18 @@ func (c *EC2) DeleteKeyPair(req *DeleteKeyPairRequest) (err error) {
 	return
 }
 
-// DeleteNetworkAcl deletes the specified network You can't delete the ACL
+// DeleteNetworkACL deletes the specified network You can't delete the ACL
 // if it's associated with any subnets. You can't delete the default
 // network
-func (c *EC2) DeleteNetworkAcl(req *DeleteNetworkAclRequest) (err error) {
+func (c *EC2) DeleteNetworkACL(req *DeleteNetworkACLRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteNetworkAcl", "POST", "/", req, nil)
 	return
 }
 
-// DeleteNetworkAclEntry deletes the specified ingress or egress entry
+// DeleteNetworkACLEntry deletes the specified ingress or egress entry
 // (rule) from the specified network
-func (c *EC2) DeleteNetworkAclEntry(req *DeleteNetworkAclEntryRequest) (err error) {
+func (c *EC2) DeleteNetworkACLEntry(req *DeleteNetworkACLEntryRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteNetworkAclEntry", "POST", "/", req, nil)
 	return
@@ -1124,11 +1124,11 @@ func (c *EC2) DescribeKeyPairs(req *DescribeKeyPairsRequest) (resp *DescribeKeyP
 	return
 }
 
-// DescribeNetworkAcls describes one or more of your network ACLs. For more
+// DescribeNetworkACLs describes one or more of your network ACLs. For more
 // information about network ACLs, see Network ACLs in the Amazon Virtual
 // Private Cloud User Guide
-func (c *EC2) DescribeNetworkAcls(req *DescribeNetworkAclsRequest) (resp *DescribeNetworkAclsResult, err error) {
-	resp = &DescribeNetworkAclsResult{}
+func (c *EC2) DescribeNetworkACLs(req *DescribeNetworkACLsRequest) (resp *DescribeNetworkACLsResult, err error) {
+	resp = &DescribeNetworkACLsResult{}
 	err = c.client.Do("DescribeNetworkAcls", "POST", "/", req, resp)
 	return
 }
@@ -1802,20 +1802,20 @@ func (c *EC2) ReleaseAddress(req *ReleaseAddressRequest) (err error) {
 	return
 }
 
-// ReplaceNetworkAclAssociation changes which network ACL a subnet is
+// ReplaceNetworkACLAssociation changes which network ACL a subnet is
 // associated with. By default when you create a subnet, it's automatically
 // associated with the default network For more information about network
 // ACLs, see Network ACLs in the Amazon Virtual Private Cloud User Guide
-func (c *EC2) ReplaceNetworkAclAssociation(req *ReplaceNetworkAclAssociationRequest) (resp *ReplaceNetworkAclAssociationResult, err error) {
-	resp = &ReplaceNetworkAclAssociationResult{}
+func (c *EC2) ReplaceNetworkACLAssociation(req *ReplaceNetworkACLAssociationRequest) (resp *ReplaceNetworkACLAssociationResult, err error) {
+	resp = &ReplaceNetworkACLAssociationResult{}
 	err = c.client.Do("ReplaceNetworkAclAssociation", "POST", "/", req, resp)
 	return
 }
 
-// ReplaceNetworkAclEntry replaces an entry (rule) in a network For more
+// ReplaceNetworkACLEntry replaces an entry (rule) in a network For more
 // information about network ACLs, see Network ACLs in the Amazon Virtual
 // Private Cloud User Guide
-func (c *EC2) ReplaceNetworkAclEntry(req *ReplaceNetworkAclEntryRequest) (err error) {
+func (c *EC2) ReplaceNetworkACLEntry(req *ReplaceNetworkACLEntryRequest) (err error) {
 	// NRE
 	err = c.client.Do("ReplaceNetworkAclEntry", "POST", "/", req, nil)
 	return
@@ -2452,28 +2452,28 @@ type CreateKeyPairRequest struct {
 	KeyName aws.StringValue  `ec2:"KeyName" xml:"KeyName"`
 }
 
-// CreateNetworkAclEntryRequest is undocumented.
-type CreateNetworkAclEntryRequest struct {
+// CreateNetworkACLEntryRequest is undocumented.
+type CreateNetworkACLEntryRequest struct {
 	CIDRBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
 	IcmpTypeCode *IcmpTypeCode    `ec2:"Icmp" xml:"Icmp"`
-	NetworkAclID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
+	NetworkACLID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 	PortRange    *PortRange       `ec2:"PortRange" xml:"portRange"`
 	Protocol     aws.StringValue  `ec2:"Protocol" xml:"protocol"`
 	RuleAction   aws.StringValue  `ec2:"RuleAction" xml:"ruleAction"`
 	RuleNumber   aws.IntegerValue `ec2:"RuleNumber" xml:"ruleNumber"`
 }
 
-// CreateNetworkAclRequest is undocumented.
-type CreateNetworkAclRequest struct {
+// CreateNetworkACLRequest is undocumented.
+type CreateNetworkACLRequest struct {
 	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VPCID  aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
-// CreateNetworkAclResult is undocumented.
-type CreateNetworkAclResult struct {
-	NetworkAcl *NetworkAcl `ec2:"NetworkAcl" xml:"networkAcl"`
+// CreateNetworkACLResult is undocumented.
+type CreateNetworkACLResult struct {
+	NetworkACL *NetworkACL `ec2:"NetworkAcl" xml:"networkAcl"`
 }
 
 // CreateNetworkInterfaceRequest is undocumented.
@@ -2701,18 +2701,18 @@ type DeleteKeyPairRequest struct {
 	KeyName aws.StringValue  `ec2:"KeyName" xml:"KeyName"`
 }
 
-// DeleteNetworkAclEntryRequest is undocumented.
-type DeleteNetworkAclEntryRequest struct {
+// DeleteNetworkACLEntryRequest is undocumented.
+type DeleteNetworkACLEntryRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
-	NetworkAclID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
+	NetworkACLID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 	RuleNumber   aws.IntegerValue `ec2:"RuleNumber" xml:"ruleNumber"`
 }
 
-// DeleteNetworkAclRequest is undocumented.
-type DeleteNetworkAclRequest struct {
+// DeleteNetworkACLRequest is undocumented.
+type DeleteNetworkACLRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	NetworkAclID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
+	NetworkACLID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 }
 
 // DeleteNetworkInterfaceRequest is undocumented.
@@ -2995,16 +2995,16 @@ type DescribeKeyPairsResult struct {
 	KeyPairs []KeyPairInfo `ec2:"KeyPairs" xml:"keySet>item"`
 }
 
-// DescribeNetworkAclsRequest is undocumented.
-type DescribeNetworkAclsRequest struct {
+// DescribeNetworkACLsRequest is undocumented.
+type DescribeNetworkACLsRequest struct {
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Filters       []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	NetworkAclIDs []string         `ec2:"NetworkAclId" xml:"NetworkAclId>item"`
+	NetworkACLIDs []string         `ec2:"NetworkAclId" xml:"NetworkAclId>item"`
 }
 
-// DescribeNetworkAclsResult is undocumented.
-type DescribeNetworkAclsResult struct {
-	NetworkAcls []NetworkAcl `ec2:"NetworkAcls" xml:"networkAclSet>item"`
+// DescribeNetworkACLsResult is undocumented.
+type DescribeNetworkACLsResult struct {
+	NetworkACLs []NetworkACL `ec2:"NetworkAcls" xml:"networkAclSet>item"`
 }
 
 // DescribeNetworkInterfaceAttributeRequest is undocumented.
@@ -4041,25 +4041,25 @@ type Monitoring struct {
 	State aws.StringValue `ec2:"State" xml:"state"`
 }
 
-// NetworkAcl is undocumented.
-type NetworkAcl struct {
-	Associations []NetworkAclAssociation `ec2:"Associations" xml:"associationSet>item"`
-	Entries      []NetworkAclEntry       `ec2:"Entries" xml:"entrySet>item"`
+// NetworkACL is undocumented.
+type NetworkACL struct {
+	Associations []NetworkACLAssociation `ec2:"Associations" xml:"associationSet>item"`
+	Entries      []NetworkACLEntry       `ec2:"Entries" xml:"entrySet>item"`
 	IsDefault    aws.BooleanValue        `ec2:"IsDefault" xml:"default"`
-	NetworkAclID aws.StringValue         `ec2:"NetworkAclId" xml:"networkAclId"`
+	NetworkACLID aws.StringValue         `ec2:"NetworkAclId" xml:"networkAclId"`
 	Tags         []Tag                   `ec2:"Tags" xml:"tagSet>item"`
 	VPCID        aws.StringValue         `ec2:"VpcId" xml:"vpcId"`
 }
 
-// NetworkAclAssociation is undocumented.
-type NetworkAclAssociation struct {
-	NetworkAclAssociationID aws.StringValue `ec2:"NetworkAclAssociationId" xml:"networkAclAssociationId"`
-	NetworkAclID            aws.StringValue `ec2:"NetworkAclId" xml:"networkAclId"`
+// NetworkACLAssociation is undocumented.
+type NetworkACLAssociation struct {
+	NetworkACLAssociationID aws.StringValue `ec2:"NetworkAclAssociationId" xml:"networkAclAssociationId"`
+	NetworkACLID            aws.StringValue `ec2:"NetworkAclId" xml:"networkAclId"`
 	SubnetID                aws.StringValue `ec2:"SubnetId" xml:"subnetId"`
 }
 
-// NetworkAclEntry is undocumented.
-type NetworkAclEntry struct {
+// NetworkACLEntry is undocumented.
+type NetworkACLEntry struct {
 	CIDRBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
 	IcmpTypeCode *IcmpTypeCode    `ec2:"IcmpTypeCode" xml:"icmpTypeCode"`
@@ -4258,25 +4258,25 @@ type ReleaseAddressRequest struct {
 	PublicIP     aws.StringValue  `ec2:"PublicIp" xml:"PublicIp"`
 }
 
-// ReplaceNetworkAclAssociationRequest is undocumented.
-type ReplaceNetworkAclAssociationRequest struct {
+// ReplaceNetworkACLAssociationRequest is undocumented.
+type ReplaceNetworkACLAssociationRequest struct {
 	AssociationID aws.StringValue  `ec2:"AssociationId" xml:"associationId"`
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	NetworkAclID  aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
+	NetworkACLID  aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 }
 
-// ReplaceNetworkAclAssociationResult is undocumented.
-type ReplaceNetworkAclAssociationResult struct {
+// ReplaceNetworkACLAssociationResult is undocumented.
+type ReplaceNetworkACLAssociationResult struct {
 	NewAssociationID aws.StringValue `ec2:"NewAssociationId" xml:"newAssociationId"`
 }
 
-// ReplaceNetworkAclEntryRequest is undocumented.
-type ReplaceNetworkAclEntryRequest struct {
+// ReplaceNetworkACLEntryRequest is undocumented.
+type ReplaceNetworkACLEntryRequest struct {
 	CIDRBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
 	IcmpTypeCode *IcmpTypeCode    `ec2:"Icmp" xml:"Icmp"`
-	NetworkAclID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
+	NetworkACLID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 	PortRange    *PortRange       `ec2:"PortRange" xml:"portRange"`
 	Protocol     aws.StringValue  `ec2:"Protocol" xml:"protocol"`
 	RuleAction   aws.StringValue  `ec2:"RuleAction" xml:"ruleAction"`

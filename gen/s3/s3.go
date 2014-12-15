@@ -975,9 +975,9 @@ func (c *S3) DeleteObjects(req *DeleteObjectsRequest) (resp *DeleteObjectsOutput
 	return
 }
 
-// GetBucketAcl is undocumented.
-func (c *S3) GetBucketAcl(req *GetBucketAclRequest) (resp *GetBucketAclOutput, err error) {
-	resp = &GetBucketAclOutput{}
+// GetBucketACL is undocumented.
+func (c *S3) GetBucketACL(req *GetBucketACLRequest) (resp *GetBucketACLOutput, err error) {
+	resp = &GetBucketACLOutput{}
 
 	var body io.Reader
 	var contentType string
@@ -1708,9 +1708,9 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 	return
 }
 
-// GetObjectAcl is undocumented.
-func (c *S3) GetObjectAcl(req *GetObjectAclRequest) (resp *GetObjectAclOutput, err error) {
-	resp = &GetObjectAclOutput{}
+// GetObjectACL is undocumented.
+func (c *S3) GetObjectACL(req *GetObjectACLRequest) (resp *GetObjectACLOutput, err error) {
+	resp = &GetObjectACLOutput{}
 
 	var body io.Reader
 	var contentType string
@@ -2383,8 +2383,8 @@ func (c *S3) ListParts(req *ListPartsRequest) (resp *ListPartsOutput, err error)
 	return
 }
 
-// PutBucketAcl sets the permissions on a bucket using access control lists
-func (c *S3) PutBucketAcl(req *PutBucketAclRequest) (err error) {
+// PutBucketACL sets the permissions on a bucket using access control lists
+func (c *S3) PutBucketACL(req *PutBucketACLRequest) (err error) {
 	// NRE
 
 	var body io.Reader
@@ -3093,9 +3093,9 @@ func (c *S3) PutObject(req *PutObjectRequest) (resp *PutObjectOutput, err error)
 	return
 }
 
-// PutObjectAcl uses the acl subresource to set the access control list
+// PutObjectACL uses the acl subresource to set the access control list
 // permissions for an object that already exists in a bucket
-func (c *S3) PutObjectAcl(req *PutObjectAclRequest) (err error) {
+func (c *S3) PutObjectACL(req *PutObjectACLRequest) (err error) {
 	// NRE
 
 	var body io.Reader
@@ -3773,14 +3773,14 @@ type ErrorDocument struct {
 	Key aws.StringValue `xml:"Key"`
 }
 
-// GetBucketAclOutput is undocumented.
-type GetBucketAclOutput struct {
+// GetBucketACLOutput is undocumented.
+type GetBucketACLOutput struct {
 	Grants []Grant `xml:"AccessControlList"`
 	Owner  *Owner  `xml:"Owner"`
 }
 
-// GetBucketAclRequest is undocumented.
-type GetBucketAclRequest struct {
+// GetBucketACLRequest is undocumented.
+type GetBucketACLRequest struct {
 	Bucket aws.StringValue `xml:"-"`
 }
 
@@ -3890,14 +3890,14 @@ type GetBucketWebsiteRequest struct {
 	Bucket aws.StringValue `xml:"-"`
 }
 
-// GetObjectAclOutput is undocumented.
-type GetObjectAclOutput struct {
+// GetObjectACLOutput is undocumented.
+type GetObjectACLOutput struct {
 	Grants []Grant `xml:"AccessControlList"`
 	Owner  *Owner  `xml:"Owner"`
 }
 
-// GetObjectAclRequest is undocumented.
-type GetObjectAclRequest struct {
+// GetObjectACLRequest is undocumented.
+type GetObjectACLRequest struct {
 	Bucket    aws.StringValue `xml:"-"`
 	Key       aws.StringValue `xml:"-"`
 	VersionID aws.StringValue `xml:"-"`
@@ -4229,8 +4229,8 @@ type Part struct {
 	Size         aws.IntegerValue `xml:"Size"`
 }
 
-// PutBucketAclRequest is undocumented.
-type PutBucketAclRequest struct {
+// PutBucketACLRequest is undocumented.
+type PutBucketACLRequest struct {
 	ACL                 aws.StringValue      `xml:"-"`
 	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy"`
 	Bucket              aws.StringValue      `xml:"-"`
@@ -4306,8 +4306,8 @@ type PutBucketWebsiteRequest struct {
 	WebsiteConfiguration *WebsiteConfiguration `xml:"WebsiteConfiguration"`
 }
 
-// PutObjectAclRequest is undocumented.
-type PutObjectAclRequest struct {
+// PutObjectACLRequest is undocumented.
+type PutObjectACLRequest struct {
 	ACL                 aws.StringValue      `xml:"-"`
 	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy"`
 	Bucket              aws.StringValue      `xml:"-"`
