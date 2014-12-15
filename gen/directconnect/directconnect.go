@@ -466,7 +466,7 @@ type NewPublicVirtualInterfaceAllocation struct {
 
 // RouteFilterPrefix is undocumented.
 type RouteFilterPrefix struct {
-	Cidr aws.StringValue `json:"cidr,omitempty"`
+	CIDR aws.StringValue `json:"cidr,omitempty"`
 }
 
 // VirtualGateway is undocumented.

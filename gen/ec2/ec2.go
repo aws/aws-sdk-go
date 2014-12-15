@@ -2200,7 +2200,7 @@ type AttributeValue struct {
 
 // AuthorizeSecurityGroupEgressRequest is undocumented.
 type AuthorizeSecurityGroupEgressRequest struct {
-	CidrIP                     aws.StringValue  `ec2:"CidrIp" xml:"cidrIp"`
+	CIDRIP                     aws.StringValue  `ec2:"CidrIp" xml:"cidrIp"`
 	DryRun                     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	FromPort                   aws.IntegerValue `ec2:"FromPort" xml:"fromPort"`
 	GroupID                    aws.StringValue  `ec2:"GroupId" xml:"groupId"`
@@ -2213,7 +2213,7 @@ type AuthorizeSecurityGroupEgressRequest struct {
 
 // AuthorizeSecurityGroupIngressRequest is undocumented.
 type AuthorizeSecurityGroupIngressRequest struct {
-	CidrIP                     aws.StringValue  `ec2:"CidrIp" xml:"CidrIp"`
+	CIDRIP                     aws.StringValue  `ec2:"CidrIp" xml:"CidrIp"`
 	DryRun                     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	FromPort                   aws.IntegerValue `ec2:"FromPort" xml:"FromPort"`
 	GroupID                    aws.StringValue  `ec2:"GroupId" xml:"GroupId"`
@@ -2454,7 +2454,7 @@ type CreateKeyPairRequest struct {
 
 // CreateNetworkAclEntryRequest is undocumented.
 type CreateNetworkAclEntryRequest struct {
-	CidrBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
+	CIDRBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
 	IcmpTypeCode *IcmpTypeCode    `ec2:"Icmp" xml:"Icmp"`
@@ -2514,7 +2514,7 @@ type CreateReservedInstancesListingResult struct {
 
 // CreateRouteRequest is undocumented.
 type CreateRouteRequest struct {
-	DestinationCidrBlock   aws.StringValue  `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
+	DestinationCIDRBlock   aws.StringValue  `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
 	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	GatewayID              aws.StringValue  `ec2:"GatewayId" xml:"gatewayId"`
 	InstanceID             aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
@@ -2569,7 +2569,7 @@ type CreateSpotDatafeedSubscriptionResult struct {
 // CreateSubnetRequest is undocumented.
 type CreateSubnetRequest struct {
 	AvailabilityZone aws.StringValue  `ec2:"AvailabilityZone" xml:"AvailabilityZone"`
-	CidrBlock        aws.StringValue  `ec2:"CidrBlock" xml:"CidrBlock"`
+	CIDRBlock        aws.StringValue  `ec2:"CidrBlock" xml:"CidrBlock"`
 	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VPCID            aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
@@ -2625,7 +2625,7 @@ type CreateVPCPeeringConnectionResult struct {
 
 // CreateVPCRequest is undocumented.
 type CreateVPCRequest struct {
-	CidrBlock       aws.StringValue  `ec2:"CidrBlock" xml:"CidrBlock"`
+	CIDRBlock       aws.StringValue  `ec2:"CidrBlock" xml:"CidrBlock"`
 	DryRun          aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	InstanceTenancy aws.StringValue  `ec2:"InstanceTenancy" xml:"instanceTenancy"`
 }
@@ -2651,7 +2651,7 @@ type CreateVpnConnectionResult struct {
 
 // CreateVpnConnectionRouteRequest is undocumented.
 type CreateVpnConnectionRouteRequest struct {
-	DestinationCidrBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"DestinationCidrBlock"`
+	DestinationCIDRBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"DestinationCidrBlock"`
 	VpnConnectionID      aws.StringValue `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
 }
 
@@ -2729,7 +2729,7 @@ type DeletePlacementGroupRequest struct {
 
 // DeleteRouteRequest is undocumented.
 type DeleteRouteRequest struct {
-	DestinationCidrBlock aws.StringValue  `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
+	DestinationCIDRBlock aws.StringValue  `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
 	DryRun               aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	RouteTableID         aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
 }
@@ -2802,7 +2802,7 @@ type DeleteVpnConnectionRequest struct {
 
 // DeleteVpnConnectionRouteRequest is undocumented.
 type DeleteVpnConnectionRouteRequest struct {
-	DestinationCidrBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"DestinationCidrBlock"`
+	DestinationCIDRBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"DestinationCidrBlock"`
 	VpnConnectionID      aws.StringValue `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
 }
 
@@ -3892,7 +3892,7 @@ type IPPermission struct {
 
 // IPRange is undocumented.
 type IPRange struct {
-	CidrIP aws.StringValue `ec2:"CidrIp" xml:"cidrIp"`
+	CIDRIP aws.StringValue `ec2:"CidrIp" xml:"cidrIp"`
 }
 
 // KeyPair is undocumented.
@@ -4060,7 +4060,7 @@ type NetworkAclAssociation struct {
 
 // NetworkAclEntry is undocumented.
 type NetworkAclEntry struct {
-	CidrBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
+	CIDRBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
 	IcmpTypeCode *IcmpTypeCode    `ec2:"IcmpTypeCode" xml:"icmpTypeCode"`
 	PortRange    *PortRange       `ec2:"PortRange" xml:"portRange"`
@@ -4272,7 +4272,7 @@ type ReplaceNetworkAclAssociationResult struct {
 
 // ReplaceNetworkAclEntryRequest is undocumented.
 type ReplaceNetworkAclEntryRequest struct {
-	CidrBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
+	CIDRBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
 	IcmpTypeCode *IcmpTypeCode    `ec2:"Icmp" xml:"Icmp"`
@@ -4285,7 +4285,7 @@ type ReplaceNetworkAclEntryRequest struct {
 
 // ReplaceRouteRequest is undocumented.
 type ReplaceRouteRequest struct {
-	DestinationCidrBlock   aws.StringValue  `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
+	DestinationCIDRBlock   aws.StringValue  `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
 	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	GatewayID              aws.StringValue  `ec2:"GatewayId" xml:"gatewayId"`
 	InstanceID             aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
@@ -4483,7 +4483,7 @@ type ResetSnapshotAttributeRequest struct {
 
 // RevokeSecurityGroupEgressRequest is undocumented.
 type RevokeSecurityGroupEgressRequest struct {
-	CidrIP                     aws.StringValue  `ec2:"CidrIp" xml:"cidrIp"`
+	CIDRIP                     aws.StringValue  `ec2:"CidrIp" xml:"cidrIp"`
 	DryRun                     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	FromPort                   aws.IntegerValue `ec2:"FromPort" xml:"fromPort"`
 	GroupID                    aws.StringValue  `ec2:"GroupId" xml:"groupId"`
@@ -4496,7 +4496,7 @@ type RevokeSecurityGroupEgressRequest struct {
 
 // RevokeSecurityGroupIngressRequest is undocumented.
 type RevokeSecurityGroupIngressRequest struct {
-	CidrIP                     aws.StringValue  `ec2:"CidrIp" xml:"CidrIp"`
+	CIDRIP                     aws.StringValue  `ec2:"CidrIp" xml:"CidrIp"`
 	DryRun                     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	FromPort                   aws.IntegerValue `ec2:"FromPort" xml:"FromPort"`
 	GroupID                    aws.StringValue  `ec2:"GroupId" xml:"GroupId"`
@@ -4510,7 +4510,7 @@ type RevokeSecurityGroupIngressRequest struct {
 
 // Route is undocumented.
 type Route struct {
-	DestinationCidrBlock   aws.StringValue `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
+	DestinationCIDRBlock   aws.StringValue `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
 	GatewayID              aws.StringValue `ec2:"GatewayId" xml:"gatewayId"`
 	InstanceID             aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
 	InstanceOwnerID        aws.StringValue `ec2:"InstanceOwnerId" xml:"instanceOwnerId"`
@@ -4703,7 +4703,7 @@ type Storage struct {
 type Subnet struct {
 	AvailabilityZone        aws.StringValue  `ec2:"AvailabilityZone" xml:"availabilityZone"`
 	AvailableIPAddressCount aws.IntegerValue `ec2:"AvailableIpAddressCount" xml:"availableIpAddressCount"`
-	CidrBlock               aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
+	CIDRBlock               aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	DefaultForAz            aws.BooleanValue `ec2:"DefaultForAz" xml:"defaultForAz"`
 	MapPublicIPOnLaunch     aws.BooleanValue `ec2:"MapPublicIpOnLaunch" xml:"mapPublicIpOnLaunch"`
 	State                   aws.StringValue  `ec2:"State" xml:"state"`
@@ -4841,7 +4841,7 @@ type VolumeStatusItem struct {
 
 // VPC is undocumented.
 type VPC struct {
-	CidrBlock       aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
+	CIDRBlock       aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	DhcpOptionsID   aws.StringValue  `ec2:"DhcpOptionsId" xml:"dhcpOptionsId"`
 	InstanceTenancy aws.StringValue  `ec2:"InstanceTenancy" xml:"instanceTenancy"`
 	IsDefault       aws.BooleanValue `ec2:"IsDefault" xml:"isDefault"`
@@ -4874,7 +4874,7 @@ type VPCPeeringConnectionStateReason struct {
 
 // VPCPeeringConnectionVPCInfo is undocumented.
 type VPCPeeringConnectionVPCInfo struct {
-	CidrBlock aws.StringValue `ec2:"CidrBlock" xml:"cidrBlock"`
+	CIDRBlock aws.StringValue `ec2:"CidrBlock" xml:"cidrBlock"`
 	OwnerID   aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
 	VPCID     aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
@@ -4915,7 +4915,7 @@ type VpnGateway struct {
 
 // VpnStaticRoute is undocumented.
 type VpnStaticRoute struct {
-	DestinationCidrBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
+	DestinationCIDRBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
 	Source               aws.StringValue `ec2:"Source" xml:"source"`
 	State                aws.StringValue `ec2:"State" xml:"state"`
 }
