@@ -1254,7 +1254,7 @@ type EventCategoriesMessage struct {
 // EventSubscription is undocumented.
 type EventSubscription struct {
 	CustSubscriptionID       aws.StringValue  `xml:"CustSubscriptionId"`
-	CustomerAwsID            aws.StringValue  `xml:"CustomerAwsId"`
+	CustomerAWSID            aws.StringValue  `xml:"CustomerAwsId"`
 	Enabled                  aws.BooleanValue `xml:"Enabled"`
 	EventCategoriesList      []string         `xml:"EventCategoriesList>EventCategory"`
 	SNSTopicARN              aws.StringValue  `xml:"SnsTopicArn"`

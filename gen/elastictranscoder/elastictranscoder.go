@@ -960,7 +960,7 @@ type CreateJobResponse struct {
 
 // CreatePipelineRequest is undocumented.
 type CreatePipelineRequest struct {
-	AwsKMSKeyARN    aws.StringValue       `json:"AwsKmsKeyArn,omitempty"`
+	AWSKMSKeyARN    aws.StringValue       `json:"AwsKmsKeyArn,omitempty"`
 	ContentConfig   *PipelineOutputConfig `json:"ContentConfig,omitempty"`
 	InputBucket     aws.StringValue       `json:"InputBucket"`
 	Name            aws.StringValue       `json:"Name"`
@@ -1144,7 +1144,7 @@ type Permission struct {
 // Pipeline is undocumented.
 type Pipeline struct {
 	ARN             aws.StringValue       `json:"Arn,omitempty"`
-	AwsKMSKeyARN    aws.StringValue       `json:"AwsKmsKeyArn,omitempty"`
+	AWSKMSKeyARN    aws.StringValue       `json:"AwsKmsKeyArn,omitempty"`
 	ContentConfig   *PipelineOutputConfig `json:"ContentConfig,omitempty"`
 	ID              aws.StringValue       `json:"Id,omitempty"`
 	InputBucket     aws.StringValue       `json:"InputBucket,omitempty"`
@@ -1274,7 +1274,7 @@ type UpdatePipelineNotificationsResponse struct {
 
 // UpdatePipelineRequest is undocumented.
 type UpdatePipelineRequest struct {
-	AwsKMSKeyARN    aws.StringValue       `json:"AwsKmsKeyArn,omitempty"`
+	AWSKMSKeyARN    aws.StringValue       `json:"AwsKmsKeyArn,omitempty"`
 	ContentConfig   *PipelineOutputConfig `json:"ContentConfig,omitempty"`
 	ID              aws.StringValue       `json:"-"`
 	InputBucket     aws.StringValue       `json:"InputBucket,omitempty"`

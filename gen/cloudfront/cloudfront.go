@@ -1587,7 +1587,7 @@ type S3OriginConfig struct {
 
 // Signer is undocumented.
 type Signer struct {
-	AwsAccountNumber aws.StringValue `xml:"AwsAccountNumber"`
+	AWSAccountNumber aws.StringValue `xml:"AwsAccountNumber"`
 	KeyPairIDs       *KeyPairIDs     `xml:"KeyPairIds"`
 }
 

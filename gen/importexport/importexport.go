@@ -112,7 +112,7 @@ type CreateJobInput struct {
 
 // CreateJobOutput is undocumented.
 type CreateJobOutput struct {
-	AwsShippingAddress    aws.StringValue `xml:"CreateJobResult>AwsShippingAddress"`
+	AWSShippingAddress    aws.StringValue `xml:"CreateJobResult>AwsShippingAddress"`
 	JobID                 aws.StringValue `xml:"CreateJobResult>JobId"`
 	JobType               aws.StringValue `xml:"CreateJobResult>JobType"`
 	Signature             aws.StringValue `xml:"CreateJobResult>Signature"`
@@ -127,7 +127,7 @@ type GetStatusInput struct {
 
 // GetStatusOutput is undocumented.
 type GetStatusOutput struct {
-	AwsShippingAddress    aws.StringValue  `xml:"GetStatusResult>AwsShippingAddress"`
+	AWSShippingAddress    aws.StringValue  `xml:"GetStatusResult>AwsShippingAddress"`
 	Carrier               aws.StringValue  `xml:"GetStatusResult>Carrier"`
 	CreationDate          time.Time        `xml:"GetStatusResult>CreationDate"`
 	CurrentManifest       aws.StringValue  `xml:"GetStatusResult>CurrentManifest"`
@@ -186,7 +186,7 @@ type CancelJobResult struct {
 
 // CreateJobResult is a wrapper for CreateJobOutput.
 type CreateJobResult struct {
-	AwsShippingAddress    aws.StringValue `xml:"CreateJobResult>AwsShippingAddress"`
+	AWSShippingAddress    aws.StringValue `xml:"CreateJobResult>AwsShippingAddress"`
 	JobID                 aws.StringValue `xml:"CreateJobResult>JobId"`
 	JobType               aws.StringValue `xml:"CreateJobResult>JobType"`
 	Signature             aws.StringValue `xml:"CreateJobResult>Signature"`
@@ -196,7 +196,7 @@ type CreateJobResult struct {
 
 // GetStatusResult is a wrapper for GetStatusOutput.
 type GetStatusResult struct {
-	AwsShippingAddress    aws.StringValue  `xml:"GetStatusResult>AwsShippingAddress"`
+	AWSShippingAddress    aws.StringValue  `xml:"GetStatusResult>AwsShippingAddress"`
 	Carrier               aws.StringValue  `xml:"GetStatusResult>Carrier"`
 	CreationDate          time.Time        `xml:"GetStatusResult>CreationDate"`
 	CurrentManifest       aws.StringValue  `xml:"GetStatusResult>CurrentManifest"`
