@@ -41,7 +41,7 @@ func (c *EC2Client) Do(op, method, uri string, req, resp interface{}) error {
 	}
 	defer httpResp.Body.Close()
 
-	if httpResp.StatusCode != 200 {
+	if httpResp.StatusCode != http.StatusOK {
 		var err ec2ErrorResponse
 		if err := xml.NewDecoder(httpResp.Body).Decode(&err); err != nil {
 			return err
