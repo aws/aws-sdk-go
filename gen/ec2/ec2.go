@@ -2604,7 +2604,7 @@ type CreateVolumeRequest struct {
 	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Encrypted        aws.BooleanValue `ec2:"Encrypted" xml:"encrypted"`
 	Iops             aws.IntegerValue `ec2:"Iops" xml:"Iops"`
-	KmsKeyID         aws.StringValue  `ec2:"KmsKeyId" xml:"KmsKeyId"`
+	KMSKeyID         aws.StringValue  `ec2:"KmsKeyId" xml:"KmsKeyId"`
 	Size             aws.IntegerValue `ec2:"Size" xml:"Size"`
 	SnapshotID       aws.StringValue  `ec2:"SnapshotId" xml:"SnapshotId"`
 	VolumeType       aws.StringValue  `ec2:"VolumeType" xml:"VolumeType"`
@@ -4595,7 +4595,7 @@ type SecurityGroup struct {
 type Snapshot struct {
 	Description aws.StringValue  `ec2:"Description" xml:"description"`
 	Encrypted   aws.BooleanValue `ec2:"Encrypted" xml:"encrypted"`
-	KmsKeyID    aws.StringValue  `ec2:"KmsKeyId" xml:"kmsKeyId"`
+	KMSKeyID    aws.StringValue  `ec2:"KmsKeyId" xml:"kmsKeyId"`
 	OwnerAlias  aws.StringValue  `ec2:"OwnerAlias" xml:"ownerAlias"`
 	OwnerID     aws.StringValue  `ec2:"OwnerId" xml:"ownerId"`
 	Progress    aws.StringValue  `ec2:"Progress" xml:"progress"`
@@ -4777,7 +4777,7 @@ type Volume struct {
 	CreateTime       time.Time          `ec2:"CreateTime" xml:"createTime"`
 	Encrypted        aws.BooleanValue   `ec2:"Encrypted" xml:"encrypted"`
 	Iops             aws.IntegerValue   `ec2:"Iops" xml:"iops"`
-	KmsKeyID         aws.StringValue    `ec2:"KmsKeyId" xml:"kmsKeyId"`
+	KMSKeyID         aws.StringValue    `ec2:"KmsKeyId" xml:"kmsKeyId"`
 	Size             aws.IntegerValue   `ec2:"Size" xml:"size"`
 	SnapshotID       aws.StringValue    `ec2:"SnapshotId" xml:"snapshotId"`
 	State            aws.StringValue    `ec2:"State" xml:"status"`

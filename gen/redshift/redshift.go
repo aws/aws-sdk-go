@@ -805,7 +805,7 @@ type Cluster struct {
 	Encrypted                        aws.BooleanValue                 `xml:"Encrypted"`
 	Endpoint                         *Endpoint                        `xml:"Endpoint"`
 	HsmStatus                        *HsmStatus                       `xml:"HsmStatus"`
-	KmsKeyID                         aws.StringValue                  `xml:"KmsKeyId"`
+	KMSKeyID                         aws.StringValue                  `xml:"KmsKeyId"`
 	MasterUsername                   aws.StringValue                  `xml:"MasterUsername"`
 	ModifyStatus                     aws.StringValue                  `xml:"ModifyStatus"`
 	NodeType                         aws.StringValue                  `xml:"NodeType"`
@@ -948,7 +948,7 @@ type CreateClusterMessage struct {
 	Encrypted                        aws.BooleanValue `xml:"Encrypted"`
 	HsmClientCertificateIdentifier   aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
 	HsmConfigurationIdentifier       aws.StringValue  `xml:"HsmConfigurationIdentifier"`
-	KmsKeyID                         aws.StringValue  `xml:"KmsKeyId"`
+	KMSKeyID                         aws.StringValue  `xml:"KmsKeyId"`
 	MasterUserPassword               aws.StringValue  `xml:"MasterUserPassword"`
 	MasterUsername                   aws.StringValue  `xml:"MasterUsername"`
 	NodeType                         aws.StringValue  `xml:"NodeType"`
@@ -1663,7 +1663,7 @@ type RestoreFromClusterSnapshotMessage struct {
 	ElasticIP                        aws.StringValue  `xml:"ElasticIp"`
 	HsmClientCertificateIdentifier   aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
 	HsmConfigurationIdentifier       aws.StringValue  `xml:"HsmConfigurationIdentifier"`
-	KmsKeyID                         aws.StringValue  `xml:"KmsKeyId"`
+	KMSKeyID                         aws.StringValue  `xml:"KmsKeyId"`
 	OwnerAccount                     aws.StringValue  `xml:"OwnerAccount"`
 	Port                             aws.IntegerValue `xml:"Port"`
 	PreferredMaintenanceWindow       aws.StringValue  `xml:"PreferredMaintenanceWindow"`
@@ -1738,7 +1738,7 @@ type Snapshot struct {
 	Encrypted                              aws.BooleanValue           `xml:"Encrypted"`
 	EncryptedWithHSM                       aws.BooleanValue           `xml:"EncryptedWithHSM"`
 	EstimatedSecondsToCompletion           aws.LongValue              `xml:"EstimatedSecondsToCompletion"`
-	KmsKeyID                               aws.StringValue            `xml:"KmsKeyId"`
+	KMSKeyID                               aws.StringValue            `xml:"KmsKeyId"`
 	MasterUsername                         aws.StringValue            `xml:"MasterUsername"`
 	NodeType                               aws.StringValue            `xml:"NodeType"`
 	NumberOfNodes                          aws.IntegerValue           `xml:"NumberOfNodes"`
