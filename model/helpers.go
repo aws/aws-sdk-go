@@ -57,6 +57,7 @@ var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Aws`):        "AWS",
 	regexp.MustCompile(`Bgp`):        "BGP",
 	regexp.MustCompile(`Cidr`):       "CIDR",
+	regexp.MustCompile(`Cors`):       "CORS",
 	regexp.MustCompile(`Cpu`):        "CPU",
 	regexp.MustCompile(`Dhcp`):       "DHCP",
 	regexp.MustCompile(`Dns`):        "DNS",

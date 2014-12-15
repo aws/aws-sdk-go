@@ -647,9 +647,9 @@ func (c *S3) DeleteBucket(req *DeleteBucketRequest) (err error) {
 	return
 }
 
-// DeleteBucketCors deletes the cors configuration information set for the
+// DeleteBucketCORS deletes the cors configuration information set for the
 // bucket.
-func (c *S3) DeleteBucketCors(req *DeleteBucketCorsRequest) (err error) {
+func (c *S3) DeleteBucketCORS(req *DeleteBucketCORSRequest) (err error) {
 	// NRE
 
 	var body io.Reader
@@ -1018,9 +1018,9 @@ func (c *S3) GetBucketACL(req *GetBucketACLRequest) (resp *GetBucketACLOutput, e
 	return
 }
 
-// GetBucketCors is undocumented.
-func (c *S3) GetBucketCors(req *GetBucketCorsRequest) (resp *GetBucketCorsOutput, err error) {
-	resp = &GetBucketCorsOutput{}
+// GetBucketCORS is undocumented.
+func (c *S3) GetBucketCORS(req *GetBucketCORSRequest) (resp *GetBucketCORSOutput, err error) {
+	resp = &GetBucketCORSOutput{}
 
 	var body io.Reader
 	var contentType string
@@ -2457,8 +2457,8 @@ func (c *S3) PutBucketACL(req *PutBucketACLRequest) (err error) {
 	return
 }
 
-// PutBucketCors is undocumented.
-func (c *S3) PutBucketCors(req *PutBucketCorsRequest) (err error) {
+// PutBucketCORS is undocumented.
+func (c *S3) PutBucketCORS(req *PutBucketCORSRequest) (err error) {
 	// NRE
 
 	var body io.Reader
@@ -3686,8 +3686,8 @@ type Delete struct {
 	Quiet   aws.BooleanValue   `xml:"Quiet"`
 }
 
-// DeleteBucketCorsRequest is undocumented.
-type DeleteBucketCorsRequest struct {
+// DeleteBucketCORSRequest is undocumented.
+type DeleteBucketCORSRequest struct {
 	Bucket aws.StringValue `xml:"-"`
 }
 
@@ -3784,13 +3784,13 @@ type GetBucketACLRequest struct {
 	Bucket aws.StringValue `xml:"-"`
 }
 
-// GetBucketCorsOutput is undocumented.
-type GetBucketCorsOutput struct {
+// GetBucketCORSOutput is undocumented.
+type GetBucketCORSOutput struct {
 	CORSRules []CORSRule `xml:"CORSRule"`
 }
 
-// GetBucketCorsRequest is undocumented.
-type GetBucketCorsRequest struct {
+// GetBucketCORSRequest is undocumented.
+type GetBucketCORSRequest struct {
 	Bucket aws.StringValue `xml:"-"`
 }
 
@@ -4242,8 +4242,8 @@ type PutBucketACLRequest struct {
 	GrantWriteACP       aws.StringValue      `xml:"-"`
 }
 
-// PutBucketCorsRequest is undocumented.
-type PutBucketCorsRequest struct {
+// PutBucketCORSRequest is undocumented.
+type PutBucketCORSRequest struct {
 	Bucket            aws.StringValue    `xml:"-"`
 	CORSConfiguration *CORSConfiguration `xml:"CORSConfiguration"`
 	ContentMD5        aws.StringValue    `xml:"-"`
