@@ -10,12 +10,14 @@ import (
 	"github.com/juju/errors"
 )
 
+type CredentialsValue struct {
+	Id, Secret, Token string
+}
+
 // Credentials are used to authenticate and authorize calls that you make to
 // AWS.
 type Credentials interface {
-	AccessKeyID() string
-	SecretAccessKey() string
-	SecurityToken() string
+	Fetch() (CredentialsValue, error)
 }
 
 var (
@@ -71,16 +73,8 @@ type staticCreds struct {
 	token  string
 }
 
-func (c *staticCreds) AccessKeyID() string {
-	return c.id
-}
-
-func (c *staticCreds) SecretAccessKey() string {
-	return c.secret
-}
-
-func (c *staticCreds) SecurityToken() string {
-	return c.token
+func (c *staticCreds) Fetch() (CredentialsValue, error) {
+	return CredentialsValue{c.id, c.secret, c.token}, nil
 }
 
 type instanceRoleCredentials struct {
@@ -107,39 +101,27 @@ func InstanceRoleCredentials() Credentials {
 // }
 
 // Retrieve credentials from the EC2 Metadata endpoint
-func (c *instanceRoleCredentials) obtainCredentialsLazily() {
+func (c *instanceRoleCredentials) obtainCredentialsLazily() error {
 	// TODO: Do we need to refresh?
 
 	// TODO: Need to loop over entries at /services/../, or pick the first line...
 	r, err := http.Get("http://169.254.169.254/latest/meta-data/iam/security-credentials/services")
 	if err != nil {
-		// Nowhere else to put it right now.
-		panic(err)
+		return err
 	}
-	defer r.Close()
-	decoder := json.Decoder(r.Body)
+	decoder := json.NewDecoder(r.Body)
 	err = decoder.Decode(c)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	if c.apiResponseCode != "success" {
 		log.Panicln("Error fetching code:", c.apiResponseCode)
 	}
-	log.Println("Got a key:", c.AccessKeyID())
-	// decoder
+	log.Println("Got credentials:", c.id)
+	return nil
 }
 
-func (c *instanceRoleCredentials) AccessKeyID() string {
-	c.obtainCredentialsLazily()
-	return c.id
-}
-
-func (c *instanceRoleCredentials) SecretAccessKey() string {
-	c.obtainCredentialsLazily()
-	return c.secret
-}
-
-func (c *instanceRoleCredentials) SecurityToken() string {
-	c.obtainCredentialsLazily()
-	return c.token
+func (c *instanceRoleCredentials) Fetch() (CredentialsValue, error) {
+	err := c.obtainCredentialsLazily()
+	return CredentialsValue{c.id, c.secret, c.token}, err
 }

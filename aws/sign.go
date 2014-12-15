@@ -39,12 +39,20 @@ func (c *Context) sign(r *http.Request) error {
 	}
 	r.Header.Set("x-amz-content-sha256", chash)
 
-	k := c.signature(t)
+	k, err := c.signature(t)
+	if err != nil {
+		return err
+	}
 	h := hmac.New(sha256.New, k)
 	c.writeStringToSign(h, t, r, chash)
 
+	credentials, err := c.Credentials.Fetch()
+	if err != nil {
+		return err
+	}
+
 	auth := bytes.NewBufferString("AWS4-HMAC-SHA256 ")
-	auth.Write([]byte("Credential=" + c.Credentials.AccessKeyID() + "/" + c.creds(t)))
+	auth.Write([]byte("Credential=" + credentials.Id + "/" + c.creds(t)))
 	auth.Write([]byte{',', ' '})
 	auth.Write([]byte("SignedHeaders="))
 	c.writeHeaderList(auth, r)
@@ -52,7 +60,7 @@ func (c *Context) sign(r *http.Request) error {
 	auth.Write([]byte("Signature=" + fmt.Sprintf("%x", h.Sum(nil))))
 
 	r.Header.Set("Authorization", auth.String())
-	if s := c.Credentials.SecurityToken(); s != "" {
+	if s := credentials.Token; s != "" {
 		r.Header.Set("X-Amz-Security-Token", s)
 	}
 	return nil
@@ -199,15 +207,19 @@ func payloadHash(r *http.Request) (string, error) {
 	return fmt.Sprintf("%x", h.Sum(nil)), nil
 }
 
-func (c *Context) signature(t time.Time) []byte {
+func (c *Context) signature(t time.Time) ([]byte, error) {
+	credentials, err := c.Credentials.Fetch()
+	if err != nil {
+		return nil, err
+	}
 	h := ghmac(
-		[]byte("AWS4"+c.Credentials.SecretAccessKey()),
+		[]byte("AWS4"+credentials.Secret),
 		[]byte(t.Format(iso8601BasicFormatShort)),
 	)
 	h = ghmac(h, []byte(c.Region))
 	h = ghmac(h, []byte(c.Service))
 	h = ghmac(h, []byte("aws4_request"))
-	return h
+	return h, nil
 }
 
 func ghmac(key, data []byte) []byte {
