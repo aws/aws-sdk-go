@@ -71,6 +71,7 @@ var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Ids$`):       "IDs",
 	regexp.MustCompile(`Ids([A-Z])`): "IDs$1",
 	regexp.MustCompile(`Ip`):         "IP",
+	regexp.MustCompile(`Jar`):        "JAR",
 	regexp.MustCompile(`Json`):       "JSON",
 	regexp.MustCompile(`Kms`):        "KMS",
 	regexp.MustCompile(`Mac`):        "MAC",

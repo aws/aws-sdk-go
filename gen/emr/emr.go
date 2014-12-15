@@ -399,10 +399,10 @@ type EC2InstanceAttributes struct {
 	IAMInstanceProfile  aws.StringValue `json:"IamInstanceProfile,omitempty"`
 }
 
-// HadoopJarStepConfig is undocumented.
-type HadoopJarStepConfig struct {
+// HadoopJARStepConfig is undocumented.
+type HadoopJARStepConfig struct {
 	Args       []string        `json:"Args,omitempty"`
-	Jar        aws.StringValue `json:"Jar"`
+	JAR        aws.StringValue `json:"Jar"`
 	MainClass  aws.StringValue `json:"MainClass,omitempty"`
 	Properties []KeyValue      `json:"Properties,omitempty"`
 }
@@ -410,7 +410,7 @@ type HadoopJarStepConfig struct {
 // HadoopStepConfig is undocumented.
 type HadoopStepConfig struct {
 	Args       []string          `json:"Args,omitempty"`
-	Jar        aws.StringValue   `json:"Jar,omitempty"`
+	JAR        aws.StringValue   `json:"Jar,omitempty"`
 	MainClass  aws.StringValue   `json:"MainClass,omitempty"`
 	Properties map[string]string `json:"Properties,omitempty"`
 }
@@ -714,7 +714,7 @@ type Step struct {
 // StepConfig is undocumented.
 type StepConfig struct {
 	ActionOnFailure aws.StringValue      `json:"ActionOnFailure,omitempty"`
-	HadoopJarStep   *HadoopJarStepConfig `json:"HadoopJarStep"`
+	HadoopJARStep   *HadoopJARStepConfig `json:"HadoopJarStep"`
 	Name            aws.StringValue      `json:"Name"`
 }
 
