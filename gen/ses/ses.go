@@ -300,7 +300,7 @@ type DeleteVerifiedEmailAddressRequest struct {
 
 // Destination is undocumented.
 type Destination struct {
-	BccAddresses []string `xml:"BccAddresses>member"`
+	BCCAddresses []string `xml:"BccAddresses>member"`
 	CCAddresses  []string `xml:"CcAddresses>member"`
 	ToAddresses  []string `xml:"ToAddresses>member"`
 }
