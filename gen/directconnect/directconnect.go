@@ -424,7 +424,7 @@ type Locations struct {
 // NewPrivateVirtualInterface is undocumented.
 type NewPrivateVirtualInterface struct {
 	AmazonAddress        aws.StringValue  `json:"amazonAddress,omitempty"`
-	Asn                  aws.IntegerValue `json:"asn"`
+	ASN                  aws.IntegerValue `json:"asn"`
 	AuthKey              aws.StringValue  `json:"authKey,omitempty"`
 	CustomerAddress      aws.StringValue  `json:"customerAddress,omitempty"`
 	VirtualGatewayID     aws.StringValue  `json:"virtualGatewayId"`
@@ -435,7 +435,7 @@ type NewPrivateVirtualInterface struct {
 // NewPrivateVirtualInterfaceAllocation is undocumented.
 type NewPrivateVirtualInterfaceAllocation struct {
 	AmazonAddress        aws.StringValue  `json:"amazonAddress,omitempty"`
-	Asn                  aws.IntegerValue `json:"asn"`
+	ASN                  aws.IntegerValue `json:"asn"`
 	AuthKey              aws.StringValue  `json:"authKey,omitempty"`
 	CustomerAddress      aws.StringValue  `json:"customerAddress,omitempty"`
 	VirtualInterfaceName aws.StringValue  `json:"virtualInterfaceName"`
@@ -445,7 +445,7 @@ type NewPrivateVirtualInterfaceAllocation struct {
 // NewPublicVirtualInterface is undocumented.
 type NewPublicVirtualInterface struct {
 	AmazonAddress        aws.StringValue     `json:"amazonAddress"`
-	Asn                  aws.IntegerValue    `json:"asn"`
+	ASN                  aws.IntegerValue    `json:"asn"`
 	AuthKey              aws.StringValue     `json:"authKey,omitempty"`
 	CustomerAddress      aws.StringValue     `json:"customerAddress"`
 	RouteFilterPrefixes  []RouteFilterPrefix `json:"routeFilterPrefixes"`
@@ -456,7 +456,7 @@ type NewPublicVirtualInterface struct {
 // NewPublicVirtualInterfaceAllocation is undocumented.
 type NewPublicVirtualInterfaceAllocation struct {
 	AmazonAddress        aws.StringValue     `json:"amazonAddress"`
-	Asn                  aws.IntegerValue    `json:"asn"`
+	ASN                  aws.IntegerValue    `json:"asn"`
 	AuthKey              aws.StringValue     `json:"authKey,omitempty"`
 	CustomerAddress      aws.StringValue     `json:"customerAddress"`
 	RouteFilterPrefixes  []RouteFilterPrefix `json:"routeFilterPrefixes"`
@@ -483,7 +483,7 @@ type VirtualGateways struct {
 // VirtualInterface is undocumented.
 type VirtualInterface struct {
 	AmazonAddress         aws.StringValue     `json:"amazonAddress,omitempty"`
-	Asn                   aws.IntegerValue    `json:"asn,omitempty"`
+	ASN                   aws.IntegerValue    `json:"asn,omitempty"`
 	AuthKey               aws.StringValue     `json:"authKey,omitempty"`
 	ConnectionID          aws.StringValue     `json:"connectionId,omitempty"`
 	CustomerAddress       aws.StringValue     `json:"customerAddress,omitempty"`
