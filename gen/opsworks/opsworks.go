@@ -801,11 +801,11 @@ type App struct {
 	DataSources      []DataSource          `json:"DataSources,omitempty"`
 	Description      aws.StringValue       `json:"Description,omitempty"`
 	Domains          []string              `json:"Domains,omitempty"`
-	EnableSsl        aws.BooleanValue      `json:"EnableSsl,omitempty"`
+	EnableSSL        aws.BooleanValue      `json:"EnableSsl,omitempty"`
 	Environment      []EnvironmentVariable `json:"Environment,omitempty"`
 	Name             aws.StringValue       `json:"Name,omitempty"`
 	Shortname        aws.StringValue       `json:"Shortname,omitempty"`
-	SslConfiguration *SslConfiguration     `json:"SslConfiguration,omitempty"`
+	SSLConfiguration *SSLConfiguration     `json:"SslConfiguration,omitempty"`
 	StackID          aws.StringValue       `json:"StackId,omitempty"`
 	Type             aws.StringValue       `json:"Type,omitempty"`
 }
@@ -901,11 +901,11 @@ type CreateAppRequest struct {
 	DataSources      []DataSource          `json:"DataSources,omitempty"`
 	Description      aws.StringValue       `json:"Description,omitempty"`
 	Domains          []string              `json:"Domains,omitempty"`
-	EnableSsl        aws.BooleanValue      `json:"EnableSsl,omitempty"`
+	EnableSSL        aws.BooleanValue      `json:"EnableSsl,omitempty"`
 	Environment      []EnvironmentVariable `json:"Environment,omitempty"`
 	Name             aws.StringValue       `json:"Name"`
 	Shortname        aws.StringValue       `json:"Shortname,omitempty"`
-	SslConfiguration *SslConfiguration     `json:"SslConfiguration,omitempty"`
+	SSLConfiguration *SSLConfiguration     `json:"SslConfiguration,omitempty"`
 	StackID          aws.StringValue       `json:"StackId"`
 	Type             aws.StringValue       `json:"Type"`
 }
@@ -1618,8 +1618,8 @@ type Source struct {
 	Username aws.StringValue `json:"Username,omitempty"`
 }
 
-// SslConfiguration is undocumented.
-type SslConfiguration struct {
+// SSLConfiguration is undocumented.
+type SSLConfiguration struct {
 	Certificate aws.StringValue `json:"Certificate"`
 	Chain       aws.StringValue `json:"Chain,omitempty"`
 	PrivateKey  aws.StringValue `json:"PrivateKey"`
@@ -1710,10 +1710,10 @@ type UpdateAppRequest struct {
 	DataSources      []DataSource          `json:"DataSources,omitempty"`
 	Description      aws.StringValue       `json:"Description,omitempty"`
 	Domains          []string              `json:"Domains,omitempty"`
-	EnableSsl        aws.BooleanValue      `json:"EnableSsl,omitempty"`
+	EnableSSL        aws.BooleanValue      `json:"EnableSsl,omitempty"`
 	Environment      []EnvironmentVariable `json:"Environment,omitempty"`
 	Name             aws.StringValue       `json:"Name,omitempty"`
-	SslConfiguration *SslConfiguration     `json:"SslConfiguration,omitempty"`
+	SSLConfiguration *SSLConfiguration     `json:"SslConfiguration,omitempty"`
 	Type             aws.StringValue       `json:"Type,omitempty"`
 }
 
