@@ -2457,7 +2457,7 @@ type CreateNetworkACLEntryRequest struct {
 	CIDRBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
-	IcmpTypeCode *IcmpTypeCode    `ec2:"Icmp" xml:"Icmp"`
+	ICMPTypeCode *ICMPTypeCode    `ec2:"Icmp" xml:"Icmp"`
 	NetworkACLID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 	PortRange    *PortRange       `ec2:"PortRange" xml:"portRange"`
 	Protocol     aws.StringValue  `ec2:"Protocol" xml:"protocol"`
@@ -3549,8 +3549,8 @@ type IAMInstanceProfileSpecification struct {
 	Name aws.StringValue `ec2:"Name" xml:"name"`
 }
 
-// IcmpTypeCode is undocumented.
-type IcmpTypeCode struct {
+// ICMPTypeCode is undocumented.
+type ICMPTypeCode struct {
 	Code aws.IntegerValue `ec2:"Code" xml:"code"`
 	Type aws.IntegerValue `ec2:"Type" xml:"type"`
 }
@@ -4062,7 +4062,7 @@ type NetworkACLAssociation struct {
 type NetworkACLEntry struct {
 	CIDRBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
-	IcmpTypeCode *IcmpTypeCode    `ec2:"IcmpTypeCode" xml:"icmpTypeCode"`
+	ICMPTypeCode *ICMPTypeCode    `ec2:"IcmpTypeCode" xml:"icmpTypeCode"`
 	PortRange    *PortRange       `ec2:"PortRange" xml:"portRange"`
 	Protocol     aws.StringValue  `ec2:"Protocol" xml:"protocol"`
 	RuleAction   aws.StringValue  `ec2:"RuleAction" xml:"ruleAction"`
@@ -4275,7 +4275,7 @@ type ReplaceNetworkACLEntryRequest struct {
 	CIDRBlock    aws.StringValue  `ec2:"CidrBlock" xml:"cidrBlock"`
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Egress       aws.BooleanValue `ec2:"Egress" xml:"egress"`
-	IcmpTypeCode *IcmpTypeCode    `ec2:"Icmp" xml:"Icmp"`
+	ICMPTypeCode *ICMPTypeCode    `ec2:"Icmp" xml:"Icmp"`
 	NetworkACLID aws.StringValue  `ec2:"NetworkAclId" xml:"networkAclId"`
 	PortRange    *PortRange       `ec2:"PortRange" xml:"portRange"`
 	Protocol     aws.StringValue  `ec2:"Protocol" xml:"protocol"`
