@@ -167,11 +167,11 @@ func (c *EC2) AttachVolume(req *AttachVolumeRequest) (resp *VolumeAttachment, er
 	return
 }
 
-// AttachVpnGateway attaches a virtual private gateway to a For more
+// AttachVPNGateway attaches a virtual private gateway to a For more
 // information, see Adding a Hardware Virtual Private Gateway to Your in
 // the Amazon Virtual Private Cloud User Guide
-func (c *EC2) AttachVpnGateway(req *AttachVpnGatewayRequest) (resp *AttachVpnGatewayResult, err error) {
-	resp = &AttachVpnGatewayResult{}
+func (c *EC2) AttachVPNGateway(req *AttachVPNGatewayRequest) (resp *AttachVPNGatewayResult, err error) {
+	resp = &AttachVPNGatewayResult{}
 	err = c.client.Do("AttachVpnGateway", "POST", "/", req, resp)
 	return
 }
@@ -669,7 +669,7 @@ func (c *EC2) CreateVPCPeeringConnection(req *CreateVPCPeeringConnectionRequest)
 	return
 }
 
-// CreateVpnConnection creates a VPN connection between an existing virtual
+// CreateVPNConnection creates a VPN connection between an existing virtual
 // private gateway and a VPN customer gateway. The only supported
 // connection type is ipsec.1 The response includes information that you
 // need to give to your network administrator to configure your customer
@@ -681,32 +681,32 @@ func (c *EC2) CreateVPCPeeringConnection(req *CreateVPCPeeringConnectionRequest)
 // from this call. For more information about VPN connections, see Adding a
 // Hardware Virtual Private Gateway to Your in the Amazon Virtual Private
 // Cloud User Guide
-func (c *EC2) CreateVpnConnection(req *CreateVpnConnectionRequest) (resp *CreateVpnConnectionResult, err error) {
-	resp = &CreateVpnConnectionResult{}
+func (c *EC2) CreateVPNConnection(req *CreateVPNConnectionRequest) (resp *CreateVPNConnectionResult, err error) {
+	resp = &CreateVPNConnectionResult{}
 	err = c.client.Do("CreateVpnConnection", "POST", "/", req, resp)
 	return
 }
 
-// CreateVpnConnectionRoute creates a static route associated with a VPN
+// CreateVPNConnectionRoute creates a static route associated with a VPN
 // connection between an existing virtual private gateway and a VPN
 // customer gateway. The static route allows traffic to be routed from the
 // virtual private gateway to the VPN customer gateway. For more
 // information about VPN connections, see Adding a Hardware Virtual Private
 // Gateway to Your in the Amazon Virtual Private Cloud User Guide
-func (c *EC2) CreateVpnConnectionRoute(req *CreateVpnConnectionRouteRequest) (err error) {
+func (c *EC2) CreateVPNConnectionRoute(req *CreateVPNConnectionRouteRequest) (err error) {
 	// NRE
 	err = c.client.Do("CreateVpnConnectionRoute", "POST", "/", req, nil)
 	return
 }
 
-// CreateVpnGateway creates a virtual private gateway. A virtual private
+// CreateVPNGateway creates a virtual private gateway. A virtual private
 // gateway is the endpoint on the VPC side of your VPN connection. You can
 // create a virtual private gateway before creating the VPC itself. For
 // more information about virtual private gateways, see Adding a Hardware
 // Virtual Private Gateway to Your in the Amazon Virtual Private Cloud User
 // Guide
-func (c *EC2) CreateVpnGateway(req *CreateVpnGatewayRequest) (resp *CreateVpnGatewayResult, err error) {
-	resp = &CreateVpnGatewayResult{}
+func (c *EC2) CreateVPNGateway(req *CreateVPNGatewayRequest) (resp *CreateVPNGatewayResult, err error) {
+	resp = &CreateVPNGatewayResult{}
 	err = c.client.Do("CreateVpnGateway", "POST", "/", req, resp)
 	return
 }
@@ -885,7 +885,7 @@ func (c *EC2) DeleteVPCPeeringConnection(req *DeleteVPCPeeringConnectionRequest)
 	return
 }
 
-// DeleteVpnConnection deletes the specified VPN connection. If you're
+// DeleteVPNConnection deletes the specified VPN connection. If you're
 // deleting the VPC and its associated components, we recommend that you
 // detach the virtual private gateway from the VPC and delete the VPC
 // before deleting the VPN connection. If you believe that the tunnel
@@ -895,28 +895,28 @@ func (c *EC2) DeleteVPCPeeringConnection(req *DeleteVPCPeeringConnectionRequest)
 // create a new VPN connection, you must reconfigure the customer gateway
 // using the new configuration information returned with the new VPN
 // connection
-func (c *EC2) DeleteVpnConnection(req *DeleteVpnConnectionRequest) (err error) {
+func (c *EC2) DeleteVPNConnection(req *DeleteVPNConnectionRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteVpnConnection", "POST", "/", req, nil)
 	return
 }
 
-// DeleteVpnConnectionRoute deletes the specified static route associated
+// DeleteVPNConnectionRoute deletes the specified static route associated
 // with a VPN connection between an existing virtual private gateway and a
 // VPN customer gateway. The static route allows traffic to be routed from
 // the virtual private gateway to the VPN customer gateway.
-func (c *EC2) DeleteVpnConnectionRoute(req *DeleteVpnConnectionRouteRequest) (err error) {
+func (c *EC2) DeleteVPNConnectionRoute(req *DeleteVPNConnectionRouteRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteVpnConnectionRoute", "POST", "/", req, nil)
 	return
 }
 
-// DeleteVpnGateway deletes the specified virtual private gateway. We
+// DeleteVPNGateway deletes the specified virtual private gateway. We
 // recommend that before you delete a virtual private gateway, you detach
 // it from the VPC and delete the VPN connection. Note that you don't need
 // to delete the virtual private gateway if you plan to delete and recreate
 // the VPN connection between your VPC and your network.
-func (c *EC2) DeleteVpnGateway(req *DeleteVpnGatewayRequest) (err error) {
+func (c *EC2) DeleteVPNGateway(req *DeleteVPNGatewayRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteVpnGateway", "POST", "/", req, nil)
 	return
@@ -1443,22 +1443,22 @@ func (c *EC2) DescribeVPCs(req *DescribeVPCsRequest) (resp *DescribeVPCsResult, 
 	return
 }
 
-// DescribeVpnConnections describes one or more of your VPN connections.
+// DescribeVPNConnections describes one or more of your VPN connections.
 // For more information about VPN connections, see Adding a Hardware
 // Virtual Private Gateway to Your in the Amazon Virtual Private Cloud User
 // Guide
-func (c *EC2) DescribeVpnConnections(req *DescribeVpnConnectionsRequest) (resp *DescribeVpnConnectionsResult, err error) {
-	resp = &DescribeVpnConnectionsResult{}
+func (c *EC2) DescribeVPNConnections(req *DescribeVPNConnectionsRequest) (resp *DescribeVPNConnectionsResult, err error) {
+	resp = &DescribeVPNConnectionsResult{}
 	err = c.client.Do("DescribeVpnConnections", "POST", "/", req, resp)
 	return
 }
 
-// DescribeVpnGateways describes one or more of your virtual private
+// DescribeVPNGateways describes one or more of your virtual private
 // gateways. For more information about virtual private gateways, see
 // Adding an IPsec Hardware VPN to Your in the Amazon Virtual Private Cloud
 // User Guide
-func (c *EC2) DescribeVpnGateways(req *DescribeVpnGatewaysRequest) (resp *DescribeVpnGatewaysResult, err error) {
-	resp = &DescribeVpnGatewaysResult{}
+func (c *EC2) DescribeVPNGateways(req *DescribeVPNGatewaysRequest) (resp *DescribeVPNGatewaysResult, err error) {
+	resp = &DescribeVPNGatewaysResult{}
 	err = c.client.Do("DescribeVpnGateways", "POST", "/", req, resp)
 	return
 }
@@ -1495,14 +1495,14 @@ func (c *EC2) DetachVolume(req *DetachVolumeRequest) (resp *VolumeAttachment, er
 	return
 }
 
-// DetachVpnGateway detaches a virtual private gateway from a You do this
+// DetachVPNGateway detaches a virtual private gateway from a You do this
 // if you're planning to turn off the VPC and not use it anymore. You can
 // confirm a virtual private gateway has been completely detached from a
 // VPC by describing the virtual private gateway (any attachments to the
 // virtual private gateway are also described). You must wait for the
 // attachment's state to switch to detached before you can delete the VPC
 // or attach a different VPC to the virtual private gateway.
-func (c *EC2) DetachVpnGateway(req *DetachVpnGatewayRequest) (err error) {
+func (c *EC2) DetachVPNGateway(req *DetachVPNGatewayRequest) (err error) {
 	// NRE
 	err = c.client.Do("DetachVpnGateway", "POST", "/", req, nil)
 	return
@@ -2176,15 +2176,15 @@ type AttachVolumeRequest struct {
 	VolumeID   aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
 }
 
-// AttachVpnGatewayRequest is undocumented.
-type AttachVpnGatewayRequest struct {
+// AttachVPNGatewayRequest is undocumented.
+type AttachVPNGatewayRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VPCID        aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
-	VpnGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
+	VPNGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
-// AttachVpnGatewayResult is undocumented.
-type AttachVpnGatewayResult struct {
+// AttachVPNGatewayResult is undocumented.
+type AttachVPNGatewayResult struct {
 	VPCAttachment *VPCAttachment `ec2:"VpcAttachment" xml:"attachment"`
 }
 
@@ -2635,36 +2635,36 @@ type CreateVPCResult struct {
 	VPC *VPC `ec2:"Vpc" xml:"vpc"`
 }
 
-// CreateVpnConnectionRequest is undocumented.
-type CreateVpnConnectionRequest struct {
+// CreateVPNConnectionRequest is undocumented.
+type CreateVPNConnectionRequest struct {
 	CustomerGatewayID aws.StringValue                    `ec2:"CustomerGatewayId" xml:"CustomerGatewayId"`
 	DryRun            aws.BooleanValue                   `ec2:"DryRun" xml:"dryRun"`
-	Options           *VpnConnectionOptionsSpecification `ec2:"Options" xml:"options"`
+	Options           *VPNConnectionOptionsSpecification `ec2:"Options" xml:"options"`
 	Type              aws.StringValue                    `ec2:"Type" xml:"Type"`
-	VpnGatewayID      aws.StringValue                    `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
+	VPNGatewayID      aws.StringValue                    `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
-// CreateVpnConnectionResult is undocumented.
-type CreateVpnConnectionResult struct {
-	VpnConnection *VpnConnection `ec2:"VpnConnection" xml:"vpnConnection"`
+// CreateVPNConnectionResult is undocumented.
+type CreateVPNConnectionResult struct {
+	VPNConnection *VPNConnection `ec2:"VpnConnection" xml:"vpnConnection"`
 }
 
-// CreateVpnConnectionRouteRequest is undocumented.
-type CreateVpnConnectionRouteRequest struct {
+// CreateVPNConnectionRouteRequest is undocumented.
+type CreateVPNConnectionRouteRequest struct {
 	DestinationCIDRBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"DestinationCidrBlock"`
-	VpnConnectionID      aws.StringValue `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
+	VPNConnectionID      aws.StringValue `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
 }
 
-// CreateVpnGatewayRequest is undocumented.
-type CreateVpnGatewayRequest struct {
+// CreateVPNGatewayRequest is undocumented.
+type CreateVPNGatewayRequest struct {
 	AvailabilityZone aws.StringValue  `ec2:"AvailabilityZone" xml:"AvailabilityZone"`
 	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Type             aws.StringValue  `ec2:"Type" xml:"Type"`
 }
 
-// CreateVpnGatewayResult is undocumented.
-type CreateVpnGatewayResult struct {
-	VpnGateway *VpnGateway `ec2:"VpnGateway" xml:"vpnGateway"`
+// CreateVPNGatewayResult is undocumented.
+type CreateVPNGatewayResult struct {
+	VPNGateway *VPNGateway `ec2:"VpnGateway" xml:"vpnGateway"`
 }
 
 // CustomerGateway is undocumented.
@@ -2794,22 +2794,22 @@ type DeleteVPCRequest struct {
 	VPCID  aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
 }
 
-// DeleteVpnConnectionRequest is undocumented.
-type DeleteVpnConnectionRequest struct {
+// DeleteVPNConnectionRequest is undocumented.
+type DeleteVPNConnectionRequest struct {
 	DryRun          aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpnConnectionID aws.StringValue  `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
+	VPNConnectionID aws.StringValue  `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
 }
 
-// DeleteVpnConnectionRouteRequest is undocumented.
-type DeleteVpnConnectionRouteRequest struct {
+// DeleteVPNConnectionRouteRequest is undocumented.
+type DeleteVPNConnectionRouteRequest struct {
 	DestinationCIDRBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"DestinationCidrBlock"`
-	VpnConnectionID      aws.StringValue `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
+	VPNConnectionID      aws.StringValue `ec2:"VpnConnectionId" xml:"VpnConnectionId"`
 }
 
-// DeleteVpnGatewayRequest is undocumented.
-type DeleteVpnGatewayRequest struct {
+// DeleteVPNGatewayRequest is undocumented.
+type DeleteVPNGatewayRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	VpnGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
+	VPNGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
 // DeregisterImageRequest is undocumented.
@@ -3323,28 +3323,28 @@ type DescribeVPCsResult struct {
 	VPCs []VPC `ec2:"Vpcs" xml:"vpcSet>item"`
 }
 
-// DescribeVpnConnectionsRequest is undocumented.
-type DescribeVpnConnectionsRequest struct {
+// DescribeVPNConnectionsRequest is undocumented.
+type DescribeVPNConnectionsRequest struct {
 	DryRun           aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Filters          []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	VpnConnectionIDs []string         `ec2:"VpnConnectionId" xml:"VpnConnectionId>VpnConnectionId"`
+	VPNConnectionIDs []string         `ec2:"VpnConnectionId" xml:"VpnConnectionId>VpnConnectionId"`
 }
 
-// DescribeVpnConnectionsResult is undocumented.
-type DescribeVpnConnectionsResult struct {
-	VpnConnections []VpnConnection `ec2:"VpnConnections" xml:"vpnConnectionSet>item"`
+// DescribeVPNConnectionsResult is undocumented.
+type DescribeVPNConnectionsResult struct {
+	VPNConnections []VPNConnection `ec2:"VpnConnections" xml:"vpnConnectionSet>item"`
 }
 
-// DescribeVpnGatewaysRequest is undocumented.
-type DescribeVpnGatewaysRequest struct {
+// DescribeVPNGatewaysRequest is undocumented.
+type DescribeVPNGatewaysRequest struct {
 	DryRun        aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	Filters       []Filter         `ec2:"Filter" xml:"Filter>Filter"`
-	VpnGatewayIDs []string         `ec2:"VpnGatewayId" xml:"VpnGatewayId>VpnGatewayId"`
+	VPNGatewayIDs []string         `ec2:"VpnGatewayId" xml:"VpnGatewayId>VpnGatewayId"`
 }
 
-// DescribeVpnGatewaysResult is undocumented.
-type DescribeVpnGatewaysResult struct {
-	VpnGateways []VpnGateway `ec2:"VpnGateways" xml:"vpnGatewaySet>item"`
+// DescribeVPNGatewaysResult is undocumented.
+type DescribeVPNGatewaysResult struct {
+	VPNGateways []VPNGateway `ec2:"VpnGateways" xml:"vpnGatewaySet>item"`
 }
 
 // DetachInternetGatewayRequest is undocumented.
@@ -3370,11 +3370,11 @@ type DetachVolumeRequest struct {
 	VolumeID   aws.StringValue  `ec2:"VolumeId" xml:"VolumeId"`
 }
 
-// DetachVpnGatewayRequest is undocumented.
-type DetachVpnGatewayRequest struct {
+// DetachVPNGatewayRequest is undocumented.
+type DetachVPNGatewayRequest struct {
 	DryRun       aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VPCID        aws.StringValue  `ec2:"VpcId" xml:"VpcId"`
-	VpnGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
+	VPNGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
 // DHCPConfiguration is undocumented.
@@ -4879,42 +4879,42 @@ type VPCPeeringConnectionVPCInfo struct {
 	VPCID     aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
-// VpnConnection is undocumented.
-type VpnConnection struct {
+// VPNConnection is undocumented.
+type VPNConnection struct {
 	CustomerGatewayConfiguration aws.StringValue       `ec2:"CustomerGatewayConfiguration" xml:"customerGatewayConfiguration"`
 	CustomerGatewayID            aws.StringValue       `ec2:"CustomerGatewayId" xml:"customerGatewayId"`
-	Options                      *VpnConnectionOptions `ec2:"Options" xml:"options"`
-	Routes                       []VpnStaticRoute      `ec2:"Routes" xml:"routes>item"`
+	Options                      *VPNConnectionOptions `ec2:"Options" xml:"options"`
+	Routes                       []VPNStaticRoute      `ec2:"Routes" xml:"routes>item"`
 	State                        aws.StringValue       `ec2:"State" xml:"state"`
 	Tags                         []Tag                 `ec2:"Tags" xml:"tagSet>item"`
 	Type                         aws.StringValue       `ec2:"Type" xml:"type"`
 	VgwTelemetry                 []VgwTelemetry        `ec2:"VgwTelemetry" xml:"vgwTelemetry>item"`
-	VpnConnectionID              aws.StringValue       `ec2:"VpnConnectionId" xml:"vpnConnectionId"`
-	VpnGatewayID                 aws.StringValue       `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
+	VPNConnectionID              aws.StringValue       `ec2:"VpnConnectionId" xml:"vpnConnectionId"`
+	VPNGatewayID                 aws.StringValue       `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
 }
 
-// VpnConnectionOptions is undocumented.
-type VpnConnectionOptions struct {
+// VPNConnectionOptions is undocumented.
+type VPNConnectionOptions struct {
 	StaticRoutesOnly aws.BooleanValue `ec2:"StaticRoutesOnly" xml:"staticRoutesOnly"`
 }
 
-// VpnConnectionOptionsSpecification is undocumented.
-type VpnConnectionOptionsSpecification struct {
+// VPNConnectionOptionsSpecification is undocumented.
+type VPNConnectionOptionsSpecification struct {
 	StaticRoutesOnly aws.BooleanValue `ec2:"StaticRoutesOnly" xml:"staticRoutesOnly"`
 }
 
-// VpnGateway is undocumented.
-type VpnGateway struct {
+// VPNGateway is undocumented.
+type VPNGateway struct {
 	AvailabilityZone aws.StringValue `ec2:"AvailabilityZone" xml:"availabilityZone"`
 	State            aws.StringValue `ec2:"State" xml:"state"`
 	Tags             []Tag           `ec2:"Tags" xml:"tagSet>item"`
 	Type             aws.StringValue `ec2:"Type" xml:"type"`
 	VPCAttachments   []VPCAttachment `ec2:"VpcAttachments" xml:"attachments>item"`
-	VpnGatewayID     aws.StringValue `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
+	VPNGatewayID     aws.StringValue `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
 }
 
-// VpnStaticRoute is undocumented.
-type VpnStaticRoute struct {
+// VPNStaticRoute is undocumented.
+type VPNStaticRoute struct {
 	DestinationCIDRBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
 	Source               aws.StringValue `ec2:"Source" xml:"source"`
 	State                aws.StringValue `ec2:"State" xml:"state"`
