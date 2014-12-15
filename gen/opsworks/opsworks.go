@@ -861,7 +861,7 @@ type CloneStackRequest struct {
 	CustomJSON                aws.StringValue            `json:"CustomJson,omitempty"`
 	DefaultAvailabilityZone   aws.StringValue            `json:"DefaultAvailabilityZone,omitempty"`
 	DefaultInstanceProfileARN aws.StringValue            `json:"DefaultInstanceProfileArn,omitempty"`
-	DefaultOs                 aws.StringValue            `json:"DefaultOs,omitempty"`
+	DefaultOS                 aws.StringValue            `json:"DefaultOs,omitempty"`
 	DefaultRootDeviceType     aws.StringValue            `json:"DefaultRootDeviceType,omitempty"`
 	DefaultSSHKeyName         aws.StringValue            `json:"DefaultSshKeyName,omitempty"`
 	DefaultSubnetID           aws.StringValue            `json:"DefaultSubnetId,omitempty"`
@@ -941,7 +941,7 @@ type CreateInstanceRequest struct {
 	InstallUpdatesOnBoot aws.BooleanValue `json:"InstallUpdatesOnBoot,omitempty"`
 	InstanceType         aws.StringValue  `json:"InstanceType"`
 	LayerIDs             []string         `json:"LayerIds"`
-	Os                   aws.StringValue  `json:"Os,omitempty"`
+	OS                   aws.StringValue  `json:"Os,omitempty"`
 	RootDeviceType       aws.StringValue  `json:"RootDeviceType,omitempty"`
 	SSHKeyName           aws.StringValue  `json:"SshKeyName,omitempty"`
 	StackID              aws.StringValue  `json:"StackId"`
@@ -988,7 +988,7 @@ type CreateStackRequest struct {
 	CustomJSON                aws.StringValue            `json:"CustomJson,omitempty"`
 	DefaultAvailabilityZone   aws.StringValue            `json:"DefaultAvailabilityZone,omitempty"`
 	DefaultInstanceProfileARN aws.StringValue            `json:"DefaultInstanceProfileArn"`
-	DefaultOs                 aws.StringValue            `json:"DefaultOs,omitempty"`
+	DefaultOS                 aws.StringValue            `json:"DefaultOs,omitempty"`
 	DefaultRootDeviceType     aws.StringValue            `json:"DefaultRootDeviceType,omitempty"`
 	DefaultSSHKeyName         aws.StringValue            `json:"DefaultSshKeyName,omitempty"`
 	DefaultSubnetID           aws.StringValue            `json:"DefaultSubnetId,omitempty"`
@@ -1370,13 +1370,13 @@ type Instance struct {
 	InstanceType             aws.StringValue  `json:"InstanceType,omitempty"`
 	LastServiceErrorID       aws.StringValue  `json:"LastServiceErrorId,omitempty"`
 	LayerIDs                 []string         `json:"LayerIds,omitempty"`
-	Os                       aws.StringValue  `json:"Os,omitempty"`
+	OS                       aws.StringValue  `json:"Os,omitempty"`
 	PrivateDNS               aws.StringValue  `json:"PrivateDns,omitempty"`
 	PrivateIP                aws.StringValue  `json:"PrivateIp,omitempty"`
 	PublicDNS                aws.StringValue  `json:"PublicDns,omitempty"`
 	PublicIP                 aws.StringValue  `json:"PublicIp,omitempty"`
 	RegisteredBy             aws.StringValue  `json:"RegisteredBy,omitempty"`
-	ReportedOs               *ReportedOs      `json:"ReportedOs,omitempty"`
+	ReportedOS               *ReportedOS      `json:"ReportedOs,omitempty"`
 	RootDeviceType           aws.StringValue  `json:"RootDeviceType,omitempty"`
 	RootDeviceVolumeID       aws.StringValue  `json:"RootDeviceVolumeId,omitempty"`
 	SecurityGroupIDs         []string         `json:"SecurityGroupIds,omitempty"`
@@ -1554,8 +1554,8 @@ type RegisterVolumeResult struct {
 	VolumeID aws.StringValue `json:"VolumeId,omitempty"`
 }
 
-// ReportedOs is undocumented.
-type ReportedOs struct {
+// ReportedOS is undocumented.
+type ReportedOS struct {
 	Family  aws.StringValue `json:"Family,omitempty"`
 	Name    aws.StringValue `json:"Name,omitempty"`
 	Version aws.StringValue `json:"Version,omitempty"`
@@ -1636,7 +1636,7 @@ type Stack struct {
 	CustomJSON                aws.StringValue            `json:"CustomJson,omitempty"`
 	DefaultAvailabilityZone   aws.StringValue            `json:"DefaultAvailabilityZone,omitempty"`
 	DefaultInstanceProfileARN aws.StringValue            `json:"DefaultInstanceProfileArn,omitempty"`
-	DefaultOs                 aws.StringValue            `json:"DefaultOs,omitempty"`
+	DefaultOS                 aws.StringValue            `json:"DefaultOs,omitempty"`
 	DefaultRootDeviceType     aws.StringValue            `json:"DefaultRootDeviceType,omitempty"`
 	DefaultSSHKeyName         aws.StringValue            `json:"DefaultSshKeyName,omitempty"`
 	DefaultSubnetID           aws.StringValue            `json:"DefaultSubnetId,omitempty"`
@@ -1734,7 +1734,7 @@ type UpdateInstanceRequest struct {
 	InstanceID           aws.StringValue  `json:"InstanceId"`
 	InstanceType         aws.StringValue  `json:"InstanceType,omitempty"`
 	LayerIDs             []string         `json:"LayerIds,omitempty"`
-	Os                   aws.StringValue  `json:"Os,omitempty"`
+	OS                   aws.StringValue  `json:"Os,omitempty"`
 	SSHKeyName           aws.StringValue  `json:"SshKeyName,omitempty"`
 }
 
@@ -1778,7 +1778,7 @@ type UpdateStackRequest struct {
 	CustomJSON                aws.StringValue            `json:"CustomJson,omitempty"`
 	DefaultAvailabilityZone   aws.StringValue            `json:"DefaultAvailabilityZone,omitempty"`
 	DefaultInstanceProfileARN aws.StringValue            `json:"DefaultInstanceProfileArn,omitempty"`
-	DefaultOs                 aws.StringValue            `json:"DefaultOs,omitempty"`
+	DefaultOS                 aws.StringValue            `json:"DefaultOs,omitempty"`
 	DefaultRootDeviceType     aws.StringValue            `json:"DefaultRootDeviceType,omitempty"`
 	DefaultSSHKeyName         aws.StringValue            `json:"DefaultSshKeyName,omitempty"`
 	DefaultSubnetID           aws.StringValue            `json:"DefaultSubnetId,omitempty"`
