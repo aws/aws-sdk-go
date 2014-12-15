@@ -885,7 +885,7 @@ type AudioParameters struct {
 
 // CancelJobRequest is undocumented.
 type CancelJobRequest struct {
-	ID aws.StringValue `json:"Id"`
+	ID aws.StringValue `json:"-"`
 }
 
 // CancelJobResponse is undocumented.
@@ -992,7 +992,7 @@ type CreatePresetResponse struct {
 
 // DeletePipelineRequest is undocumented.
 type DeletePipelineRequest struct {
-	ID aws.StringValue `json:"Id"`
+	ID aws.StringValue `json:"-"`
 }
 
 // DeletePipelineResponse is undocumented.
@@ -1001,7 +1001,7 @@ type DeletePipelineResponse struct {
 
 // DeletePresetRequest is undocumented.
 type DeletePresetRequest struct {
-	ID aws.StringValue `json:"Id"`
+	ID aws.StringValue `json:"-"`
 }
 
 // DeletePresetResponse is undocumented.
@@ -1076,9 +1076,9 @@ type JobWatermark struct {
 
 // ListJobsByPipelineRequest is undocumented.
 type ListJobsByPipelineRequest struct {
-	Ascending  aws.StringValue `json:"Ascending,omitempty"`
-	PageToken  aws.StringValue `json:"PageToken,omitempty"`
-	PipelineID aws.StringValue `json:"PipelineId"`
+	Ascending  aws.StringValue `json:"-"`
+	PageToken  aws.StringValue `json:"-"`
+	PipelineID aws.StringValue `json:"-"`
 }
 
 // ListJobsByPipelineResponse is undocumented.
@@ -1089,9 +1089,9 @@ type ListJobsByPipelineResponse struct {
 
 // ListJobsByStatusRequest is undocumented.
 type ListJobsByStatusRequest struct {
-	Ascending aws.StringValue `json:"Ascending,omitempty"`
-	PageToken aws.StringValue `json:"PageToken,omitempty"`
-	Status    aws.StringValue `json:"Status"`
+	Ascending aws.StringValue `json:"-"`
+	PageToken aws.StringValue `json:"-"`
+	Status    aws.StringValue `json:"-"`
 }
 
 // ListJobsByStatusResponse is undocumented.
@@ -1102,8 +1102,8 @@ type ListJobsByStatusResponse struct {
 
 // ListPipelinesRequest is undocumented.
 type ListPipelinesRequest struct {
-	Ascending aws.StringValue `json:"Ascending,omitempty"`
-	PageToken aws.StringValue `json:"PageToken,omitempty"`
+	Ascending aws.StringValue `json:"-"`
+	PageToken aws.StringValue `json:"-"`
 }
 
 // ListPipelinesResponse is undocumented.
@@ -1114,8 +1114,8 @@ type ListPipelinesResponse struct {
 
 // ListPresetsRequest is undocumented.
 type ListPresetsRequest struct {
-	Ascending aws.StringValue `json:"Ascending,omitempty"`
-	PageToken aws.StringValue `json:"PageToken,omitempty"`
+	Ascending aws.StringValue `json:"-"`
+	PageToken aws.StringValue `json:"-"`
 }
 
 // ListPresetsResponse is undocumented.
@@ -1199,7 +1199,7 @@ type PresetWatermark struct {
 
 // ReadJobRequest is undocumented.
 type ReadJobRequest struct {
-	ID aws.StringValue `json:"Id"`
+	ID aws.StringValue `json:"-"`
 }
 
 // ReadJobResponse is undocumented.
@@ -1209,7 +1209,7 @@ type ReadJobResponse struct {
 
 // ReadPipelineRequest is undocumented.
 type ReadPipelineRequest struct {
-	ID aws.StringValue `json:"Id"`
+	ID aws.StringValue `json:"-"`
 }
 
 // ReadPipelineResponse is undocumented.
@@ -1219,7 +1219,7 @@ type ReadPipelineResponse struct {
 
 // ReadPresetRequest is undocumented.
 type ReadPresetRequest struct {
-	ID aws.StringValue `json:"Id"`
+	ID aws.StringValue `json:"-"`
 }
 
 // ReadPresetResponse is undocumented.
@@ -1261,7 +1261,7 @@ type TimeSpan struct {
 
 // UpdatePipelineNotificationsRequest is undocumented.
 type UpdatePipelineNotificationsRequest struct {
-	ID            aws.StringValue `json:"Id"`
+	ID            aws.StringValue `json:"-"`
 	Notifications *Notifications  `json:"Notifications"`
 }
 
@@ -1274,7 +1274,7 @@ type UpdatePipelineNotificationsResponse struct {
 type UpdatePipelineRequest struct {
 	AwsKmsKeyARN    aws.StringValue       `json:"AwsKmsKeyArn,omitempty"`
 	ContentConfig   *PipelineOutputConfig `json:"ContentConfig,omitempty"`
-	ID              aws.StringValue       `json:"Id"`
+	ID              aws.StringValue       `json:"-"`
 	InputBucket     aws.StringValue       `json:"InputBucket,omitempty"`
 	Name            aws.StringValue       `json:"Name,omitempty"`
 	Notifications   *Notifications        `json:"Notifications,omitempty"`
@@ -1289,7 +1289,7 @@ type UpdatePipelineResponse struct {
 
 // UpdatePipelineStatusRequest is undocumented.
 type UpdatePipelineStatusRequest struct {
-	ID     aws.StringValue `json:"Id"`
+	ID     aws.StringValue `json:"-"`
 	Status aws.StringValue `json:"Status"`
 }
 

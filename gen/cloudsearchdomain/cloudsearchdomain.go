@@ -323,19 +323,19 @@ type Hits struct {
 
 // SearchRequest is undocumented.
 type SearchRequest struct {
-	Cursor       aws.StringValue  `json:"cursor,omitempty"`
-	Expr         aws.StringValue  `json:"expr,omitempty"`
-	Facet        aws.StringValue  `json:"facet,omitempty"`
-	FilterQuery  aws.StringValue  `json:"filterQuery,omitempty"`
-	Highlight    aws.StringValue  `json:"highlight,omitempty"`
-	Partial      aws.BooleanValue `json:"partial,omitempty"`
-	Query        aws.StringValue  `json:"query"`
-	QueryOptions aws.StringValue  `json:"queryOptions,omitempty"`
-	QueryParser  aws.StringValue  `json:"queryParser,omitempty"`
-	Return       aws.StringValue  `json:"return,omitempty"`
-	Size         aws.LongValue    `json:"size,omitempty"`
-	Sort         aws.StringValue  `json:"sort,omitempty"`
-	Start        aws.LongValue    `json:"start,omitempty"`
+	Cursor       aws.StringValue  `json:"-"`
+	Expr         aws.StringValue  `json:"-"`
+	Facet        aws.StringValue  `json:"-"`
+	FilterQuery  aws.StringValue  `json:"-"`
+	Highlight    aws.StringValue  `json:"-"`
+	Partial      aws.BooleanValue `json:"-"`
+	Query        aws.StringValue  `json:"-"`
+	QueryOptions aws.StringValue  `json:"-"`
+	QueryParser  aws.StringValue  `json:"-"`
+	Return       aws.StringValue  `json:"-"`
+	Size         aws.LongValue    `json:"-"`
+	Sort         aws.StringValue  `json:"-"`
+	Start        aws.LongValue    `json:"-"`
 }
 
 // SearchResponse is undocumented.
@@ -360,9 +360,9 @@ type SuggestModel struct {
 
 // SuggestRequest is undocumented.
 type SuggestRequest struct {
-	Query     aws.StringValue `json:"query"`
-	Size      aws.LongValue   `json:"size,omitempty"`
-	Suggester aws.StringValue `json:"suggester"`
+	Query     aws.StringValue `json:"-"`
+	Size      aws.LongValue   `json:"-"`
+	Suggester aws.StringValue `json:"-"`
 }
 
 // SuggestResponse is undocumented.
@@ -386,7 +386,7 @@ type SuggestionMatch struct {
 
 // UploadDocumentsRequest is undocumented.
 type UploadDocumentsRequest struct {
-	ContentType aws.StringValue `json:"contentType"`
+	ContentType aws.StringValue `json:"-"`
 	Documents   []byte          `json:"documents"`
 }
 

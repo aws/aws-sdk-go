@@ -654,7 +654,7 @@ type AddEventSourceRequest struct {
 
 // DeleteFunctionRequest is undocumented.
 type DeleteFunctionRequest struct {
-	FunctionName aws.StringValue `json:"FunctionName"`
+	FunctionName aws.StringValue `json:"-"`
 }
 
 // EventSourceConfiguration is undocumented.
@@ -694,17 +694,17 @@ type FunctionConfiguration struct {
 
 // GetEventSourceRequest is undocumented.
 type GetEventSourceRequest struct {
-	UUID aws.StringValue `json:"UUID"`
+	UUID aws.StringValue `json:"-"`
 }
 
 // GetFunctionConfigurationRequest is undocumented.
 type GetFunctionConfigurationRequest struct {
-	FunctionName aws.StringValue `json:"FunctionName"`
+	FunctionName aws.StringValue `json:"-"`
 }
 
 // GetFunctionRequest is undocumented.
 type GetFunctionRequest struct {
-	FunctionName aws.StringValue `json:"FunctionName"`
+	FunctionName aws.StringValue `json:"-"`
 }
 
 // GetFunctionResponse is undocumented.
@@ -715,21 +715,21 @@ type GetFunctionResponse struct {
 
 // InvokeAsyncRequest is undocumented.
 type InvokeAsyncRequest struct {
-	FunctionName aws.StringValue `json:"FunctionName"`
+	FunctionName aws.StringValue `json:"-"`
 	InvokeArgs   []byte          `json:"InvokeArgs"`
 }
 
 // InvokeAsyncResponse is undocumented.
 type InvokeAsyncResponse struct {
-	Status aws.IntegerValue `json:"Status,omitempty"`
+	Status aws.IntegerValue `json:"-"`
 }
 
 // ListEventSourcesRequest is undocumented.
 type ListEventSourcesRequest struct {
-	EventSourceARN aws.StringValue  `json:"EventSourceArn,omitempty"`
-	FunctionName   aws.StringValue  `json:"FunctionName,omitempty"`
-	Marker         aws.StringValue  `json:"Marker,omitempty"`
-	MaxItems       aws.IntegerValue `json:"MaxItems,omitempty"`
+	EventSourceARN aws.StringValue  `json:"-"`
+	FunctionName   aws.StringValue  `json:"-"`
+	Marker         aws.StringValue  `json:"-"`
+	MaxItems       aws.IntegerValue `json:"-"`
 }
 
 // ListEventSourcesResponse is undocumented.
@@ -740,8 +740,8 @@ type ListEventSourcesResponse struct {
 
 // ListFunctionsRequest is undocumented.
 type ListFunctionsRequest struct {
-	Marker   aws.StringValue  `json:"Marker,omitempty"`
-	MaxItems aws.IntegerValue `json:"MaxItems,omitempty"`
+	Marker   aws.StringValue  `json:"-"`
+	MaxItems aws.IntegerValue `json:"-"`
 }
 
 // ListFunctionsResponse is undocumented.
@@ -752,30 +752,30 @@ type ListFunctionsResponse struct {
 
 // RemoveEventSourceRequest is undocumented.
 type RemoveEventSourceRequest struct {
-	UUID aws.StringValue `json:"UUID"`
+	UUID aws.StringValue `json:"-"`
 }
 
 // UpdateFunctionConfigurationRequest is undocumented.
 type UpdateFunctionConfigurationRequest struct {
-	Description  aws.StringValue  `json:"Description,omitempty"`
-	FunctionName aws.StringValue  `json:"FunctionName"`
-	Handler      aws.StringValue  `json:"Handler,omitempty"`
-	MemorySize   aws.IntegerValue `json:"MemorySize,omitempty"`
-	Role         aws.StringValue  `json:"Role,omitempty"`
-	Timeout      aws.IntegerValue `json:"Timeout,omitempty"`
+	Description  aws.StringValue  `json:"-"`
+	FunctionName aws.StringValue  `json:"-"`
+	Handler      aws.StringValue  `json:"-"`
+	MemorySize   aws.IntegerValue `json:"-"`
+	Role         aws.StringValue  `json:"-"`
+	Timeout      aws.IntegerValue `json:"-"`
 }
 
 // UploadFunctionRequest is undocumented.
 type UploadFunctionRequest struct {
-	Description  aws.StringValue  `json:"Description,omitempty"`
-	FunctionName aws.StringValue  `json:"FunctionName"`
+	Description  aws.StringValue  `json:"-"`
+	FunctionName aws.StringValue  `json:"-"`
 	FunctionZip  []byte           `json:"FunctionZip"`
-	Handler      aws.StringValue  `json:"Handler"`
-	MemorySize   aws.IntegerValue `json:"MemorySize,omitempty"`
-	Mode         aws.StringValue  `json:"Mode"`
-	Role         aws.StringValue  `json:"Role"`
-	Runtime      aws.StringValue  `json:"Runtime"`
-	Timeout      aws.IntegerValue `json:"Timeout,omitempty"`
+	Handler      aws.StringValue  `json:"-"`
+	MemorySize   aws.IntegerValue `json:"-"`
+	Mode         aws.StringValue  `json:"-"`
+	Role         aws.StringValue  `json:"-"`
+	Runtime      aws.StringValue  `json:"-"`
+	Timeout      aws.IntegerValue `json:"-"`
 }
 
 // avoid errors if the packages aren't referenced

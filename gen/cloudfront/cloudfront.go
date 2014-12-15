@@ -1216,8 +1216,8 @@ type CreateCloudFrontOriginAccessIdentityRequest struct {
 // CreateCloudFrontOriginAccessIdentityResult is undocumented.
 type CreateCloudFrontOriginAccessIdentityResult struct {
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `xml:"CloudFrontOriginAccessIdentity"`
-	ETag                           aws.StringValue                 `xml:"ETag"`
-	Location                       aws.StringValue                 `xml:"Location"`
+	ETag                           aws.StringValue                 `xml:"-"`
+	Location                       aws.StringValue                 `xml:"-"`
 }
 
 // CreateDistributionRequest is undocumented.
@@ -1228,20 +1228,20 @@ type CreateDistributionRequest struct {
 // CreateDistributionResult is undocumented.
 type CreateDistributionResult struct {
 	Distribution *Distribution   `xml:"Distribution"`
-	ETag         aws.StringValue `xml:"ETag"`
-	Location     aws.StringValue `xml:"Location"`
+	ETag         aws.StringValue `xml:"-"`
+	Location     aws.StringValue `xml:"-"`
 }
 
 // CreateInvalidationRequest is undocumented.
 type CreateInvalidationRequest struct {
-	DistributionID    aws.StringValue    `xml:"DistributionId"`
+	DistributionID    aws.StringValue    `xml:"-"`
 	InvalidationBatch *InvalidationBatch `xml:"InvalidationBatch"`
 }
 
 // CreateInvalidationResult is undocumented.
 type CreateInvalidationResult struct {
 	Invalidation *Invalidation   `xml:"Invalidation"`
-	Location     aws.StringValue `xml:"Location"`
+	Location     aws.StringValue `xml:"-"`
 }
 
 // CreateStreamingDistributionRequest is undocumented.
@@ -1251,8 +1251,8 @@ type CreateStreamingDistributionRequest struct {
 
 // CreateStreamingDistributionResult is undocumented.
 type CreateStreamingDistributionResult struct {
-	ETag                  aws.StringValue        `xml:"ETag"`
-	Location              aws.StringValue        `xml:"Location"`
+	ETag                  aws.StringValue        `xml:"-"`
+	Location              aws.StringValue        `xml:"-"`
 	StreamingDistribution *StreamingDistribution `xml:"StreamingDistribution"`
 }
 
@@ -1290,20 +1290,20 @@ type DefaultCacheBehavior struct {
 
 // DeleteCloudFrontOriginAccessIdentityRequest is undocumented.
 type DeleteCloudFrontOriginAccessIdentityRequest struct {
-	ID      aws.StringValue `xml:"Id"`
-	IfMatch aws.StringValue `xml:"If-Match"`
+	ID      aws.StringValue `xml:"-"`
+	IfMatch aws.StringValue `xml:"-"`
 }
 
 // DeleteDistributionRequest is undocumented.
 type DeleteDistributionRequest struct {
-	ID      aws.StringValue `xml:"Id"`
-	IfMatch aws.StringValue `xml:"If-Match"`
+	ID      aws.StringValue `xml:"-"`
+	IfMatch aws.StringValue `xml:"-"`
 }
 
 // DeleteStreamingDistributionRequest is undocumented.
 type DeleteStreamingDistributionRequest struct {
-	ID      aws.StringValue `xml:"Id"`
-	IfMatch aws.StringValue `xml:"If-Match"`
+	ID      aws.StringValue `xml:"-"`
+	IfMatch aws.StringValue `xml:"-"`
 }
 
 // Distribution is undocumented.
@@ -1378,52 +1378,52 @@ type GeoRestriction struct {
 
 // GetCloudFrontOriginAccessIdentityConfigRequest is undocumented.
 type GetCloudFrontOriginAccessIdentityConfigRequest struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `xml:"-"`
 }
 
 // GetCloudFrontOriginAccessIdentityConfigResult is undocumented.
 type GetCloudFrontOriginAccessIdentityConfigResult struct {
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `xml:"CloudFrontOriginAccessIdentityConfig"`
-	ETag                                 aws.StringValue                       `xml:"ETag"`
+	ETag                                 aws.StringValue                       `xml:"-"`
 }
 
 // GetCloudFrontOriginAccessIdentityRequest is undocumented.
 type GetCloudFrontOriginAccessIdentityRequest struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `xml:"-"`
 }
 
 // GetCloudFrontOriginAccessIdentityResult is undocumented.
 type GetCloudFrontOriginAccessIdentityResult struct {
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `xml:"CloudFrontOriginAccessIdentity"`
-	ETag                           aws.StringValue                 `xml:"ETag"`
+	ETag                           aws.StringValue                 `xml:"-"`
 }
 
 // GetDistributionConfigRequest is undocumented.
 type GetDistributionConfigRequest struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `xml:"-"`
 }
 
 // GetDistributionConfigResult is undocumented.
 type GetDistributionConfigResult struct {
 	DistributionConfig *DistributionConfig `xml:"DistributionConfig"`
-	ETag               aws.StringValue     `xml:"ETag"`
+	ETag               aws.StringValue     `xml:"-"`
 }
 
 // GetDistributionRequest is undocumented.
 type GetDistributionRequest struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `xml:"-"`
 }
 
 // GetDistributionResult is undocumented.
 type GetDistributionResult struct {
 	Distribution *Distribution   `xml:"Distribution"`
-	ETag         aws.StringValue `xml:"ETag"`
+	ETag         aws.StringValue `xml:"-"`
 }
 
 // GetInvalidationRequest is undocumented.
 type GetInvalidationRequest struct {
-	DistributionID aws.StringValue `xml:"DistributionId"`
-	ID             aws.StringValue `xml:"Id"`
+	DistributionID aws.StringValue `xml:"-"`
+	ID             aws.StringValue `xml:"-"`
 }
 
 // GetInvalidationResult is undocumented.
@@ -1433,23 +1433,23 @@ type GetInvalidationResult struct {
 
 // GetStreamingDistributionConfigRequest is undocumented.
 type GetStreamingDistributionConfigRequest struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `xml:"-"`
 }
 
 // GetStreamingDistributionConfigResult is undocumented.
 type GetStreamingDistributionConfigResult struct {
-	ETag                        aws.StringValue              `xml:"ETag"`
+	ETag                        aws.StringValue              `xml:"-"`
 	StreamingDistributionConfig *StreamingDistributionConfig `xml:"StreamingDistributionConfig"`
 }
 
 // GetStreamingDistributionRequest is undocumented.
 type GetStreamingDistributionRequest struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `xml:"-"`
 }
 
 // GetStreamingDistributionResult is undocumented.
 type GetStreamingDistributionResult struct {
-	ETag                  aws.StringValue        `xml:"ETag"`
+	ETag                  aws.StringValue        `xml:"-"`
 	StreamingDistribution *StreamingDistribution `xml:"StreamingDistribution"`
 }
 
@@ -1498,8 +1498,8 @@ type KeyPairIds struct {
 
 // ListCloudFrontOriginAccessIdentitiesRequest is undocumented.
 type ListCloudFrontOriginAccessIdentitiesRequest struct {
-	Marker   aws.StringValue `xml:"Marker"`
-	MaxItems aws.StringValue `xml:"MaxItems"`
+	Marker   aws.StringValue `xml:"-"`
+	MaxItems aws.StringValue `xml:"-"`
 }
 
 // ListCloudFrontOriginAccessIdentitiesResult is undocumented.
@@ -1509,8 +1509,8 @@ type ListCloudFrontOriginAccessIdentitiesResult struct {
 
 // ListDistributionsRequest is undocumented.
 type ListDistributionsRequest struct {
-	Marker   aws.StringValue `xml:"Marker"`
-	MaxItems aws.StringValue `xml:"MaxItems"`
+	Marker   aws.StringValue `xml:"-"`
+	MaxItems aws.StringValue `xml:"-"`
 }
 
 // ListDistributionsResult is undocumented.
@@ -1520,9 +1520,9 @@ type ListDistributionsResult struct {
 
 // ListInvalidationsRequest is undocumented.
 type ListInvalidationsRequest struct {
-	DistributionID aws.StringValue `xml:"DistributionId"`
-	Marker         aws.StringValue `xml:"Marker"`
-	MaxItems       aws.StringValue `xml:"MaxItems"`
+	DistributionID aws.StringValue `xml:"-"`
+	Marker         aws.StringValue `xml:"-"`
+	MaxItems       aws.StringValue `xml:"-"`
 }
 
 // ListInvalidationsResult is undocumented.
@@ -1532,8 +1532,8 @@ type ListInvalidationsResult struct {
 
 // ListStreamingDistributionsRequest is undocumented.
 type ListStreamingDistributionsRequest struct {
-	Marker   aws.StringValue `xml:"Marker"`
-	MaxItems aws.StringValue `xml:"MaxItems"`
+	Marker   aws.StringValue `xml:"-"`
+	MaxItems aws.StringValue `xml:"-"`
 }
 
 // ListStreamingDistributionsResult is undocumented.
@@ -1654,39 +1654,39 @@ type TrustedSigners struct {
 // UpdateCloudFrontOriginAccessIdentityRequest is undocumented.
 type UpdateCloudFrontOriginAccessIdentityRequest struct {
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `xml:"CloudFrontOriginAccessIdentityConfig"`
-	ID                                   aws.StringValue                       `xml:"Id"`
-	IfMatch                              aws.StringValue                       `xml:"If-Match"`
+	ID                                   aws.StringValue                       `xml:"-"`
+	IfMatch                              aws.StringValue                       `xml:"-"`
 }
 
 // UpdateCloudFrontOriginAccessIdentityResult is undocumented.
 type UpdateCloudFrontOriginAccessIdentityResult struct {
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `xml:"CloudFrontOriginAccessIdentity"`
-	ETag                           aws.StringValue                 `xml:"ETag"`
+	ETag                           aws.StringValue                 `xml:"-"`
 }
 
 // UpdateDistributionRequest is undocumented.
 type UpdateDistributionRequest struct {
 	DistributionConfig *DistributionConfig `xml:"DistributionConfig"`
-	ID                 aws.StringValue     `xml:"Id"`
-	IfMatch            aws.StringValue     `xml:"If-Match"`
+	ID                 aws.StringValue     `xml:"-"`
+	IfMatch            aws.StringValue     `xml:"-"`
 }
 
 // UpdateDistributionResult is undocumented.
 type UpdateDistributionResult struct {
 	Distribution *Distribution   `xml:"Distribution"`
-	ETag         aws.StringValue `xml:"ETag"`
+	ETag         aws.StringValue `xml:"-"`
 }
 
 // UpdateStreamingDistributionRequest is undocumented.
 type UpdateStreamingDistributionRequest struct {
-	ID                          aws.StringValue              `xml:"Id"`
-	IfMatch                     aws.StringValue              `xml:"If-Match"`
+	ID                          aws.StringValue              `xml:"-"`
+	IfMatch                     aws.StringValue              `xml:"-"`
 	StreamingDistributionConfig *StreamingDistributionConfig `xml:"StreamingDistributionConfig"`
 }
 
 // UpdateStreamingDistributionResult is undocumented.
 type UpdateStreamingDistributionResult struct {
-	ETag                  aws.StringValue        `xml:"ETag"`
+	ETag                  aws.StringValue        `xml:"-"`
 	StreamingDistribution *StreamingDistribution `xml:"StreamingDistribution"`
 }
 

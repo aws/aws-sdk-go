@@ -3503,9 +3503,9 @@ func (c *S3) UploadPartCopy(req *UploadPartCopyRequest) (resp *UploadPartCopyOut
 
 // AbortMultipartUploadRequest is undocumented.
 type AbortMultipartUploadRequest struct {
-	Bucket   aws.StringValue `xml:"Bucket"`
-	Key      aws.StringValue `xml:"Key"`
-	UploadID aws.StringValue `xml:"uploadId"`
+	Bucket   aws.StringValue `xml:"-"`
+	Key      aws.StringValue `xml:"-"`
+	UploadID aws.StringValue `xml:"-"`
 }
 
 // AccessControlPolicy is undocumented.
@@ -3557,20 +3557,20 @@ type CommonPrefix struct {
 type CompleteMultipartUploadOutput struct {
 	Bucket               aws.StringValue `xml:"Bucket"`
 	ETag                 aws.StringValue `xml:"ETag"`
-	Expiration           time.Time       `xml:"x-amz-expiration"`
+	Expiration           time.Time       `xml:"-"`
 	Key                  aws.StringValue `xml:"Key"`
 	Location             aws.StringValue `xml:"Location"`
-	SSEKMSKeyID          aws.StringValue `xml:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption aws.StringValue `xml:"x-amz-server-side-encryption"`
-	VersionID            aws.StringValue `xml:"x-amz-version-id"`
+	SSEKMSKeyID          aws.StringValue `xml:"-"`
+	ServerSideEncryption aws.StringValue `xml:"-"`
+	VersionID            aws.StringValue `xml:"-"`
 }
 
 // CompleteMultipartUploadRequest is undocumented.
 type CompleteMultipartUploadRequest struct {
-	Bucket          aws.StringValue           `xml:"Bucket"`
-	Key             aws.StringValue           `xml:"Key"`
+	Bucket          aws.StringValue           `xml:"-"`
+	Key             aws.StringValue           `xml:"-"`
 	MultipartUpload *CompletedMultipartUpload `xml:"CompleteMultipartUpload"`
-	UploadID        aws.StringValue           `xml:"uploadId"`
+	UploadID        aws.StringValue           `xml:"-"`
 }
 
 // CompletedMultipartUpload is undocumented.
@@ -3593,46 +3593,46 @@ type Condition struct {
 // CopyObjectOutput is undocumented.
 type CopyObjectOutput struct {
 	CopyObjectResult     *CopyObjectResult `xml:"CopyObjectResult"`
-	CopySourceVersionID  aws.StringValue   `xml:"x-amz-copy-source-version-id"`
-	Expiration           time.Time         `xml:"x-amz-expiration"`
-	SSECustomerAlgorithm aws.StringValue   `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKeyMD5    aws.StringValue   `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID          aws.StringValue   `xml:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption aws.StringValue   `xml:"x-amz-server-side-encryption"`
+	CopySourceVersionID  aws.StringValue   `xml:"-"`
+	Expiration           time.Time         `xml:"-"`
+	SSECustomerAlgorithm aws.StringValue   `xml:"-"`
+	SSECustomerKeyMD5    aws.StringValue   `xml:"-"`
+	SSEKMSKeyID          aws.StringValue   `xml:"-"`
+	ServerSideEncryption aws.StringValue   `xml:"-"`
 }
 
 // CopyObjectRequest is undocumented.
 type CopyObjectRequest struct {
-	ACL                            aws.StringValue   `xml:"x-amz-acl"`
-	Bucket                         aws.StringValue   `xml:"Bucket"`
-	CacheControl                   aws.StringValue   `xml:"Cache-Control"`
-	ContentDisposition             aws.StringValue   `xml:"Content-Disposition"`
-	ContentEncoding                aws.StringValue   `xml:"Content-Encoding"`
-	ContentLanguage                aws.StringValue   `xml:"Content-Language"`
-	ContentType                    aws.StringValue   `xml:"Content-Type"`
-	CopySource                     aws.StringValue   `xml:"x-amz-copy-source"`
-	CopySourceIfMatch              aws.StringValue   `xml:"x-amz-copy-source-if-match"`
-	CopySourceIfModifiedSince      time.Time         `xml:"x-amz-copy-source-if-modified-since"`
-	CopySourceIfNoneMatch          aws.StringValue   `xml:"x-amz-copy-source-if-none-match"`
-	CopySourceIfUnmodifiedSince    time.Time         `xml:"x-amz-copy-source-if-unmodified-since"`
-	CopySourceSSECustomerAlgorithm aws.StringValue   `xml:"x-amz-copy-source-server-side-encryption-customer-algorithm"`
-	CopySourceSSECustomerKey       aws.StringValue   `xml:"x-amz-copy-source-server-side-encryption-customer-key"`
-	CopySourceSSECustomerKeyMD5    aws.StringValue   `xml:"x-amz-copy-source-server-side-encryption-customer-key-MD5"`
-	Expires                        time.Time         `xml:"Expires"`
-	GrantFullControl               aws.StringValue   `xml:"x-amz-grant-full-control"`
-	GrantRead                      aws.StringValue   `xml:"x-amz-grant-read"`
-	GrantReadACP                   aws.StringValue   `xml:"x-amz-grant-read-acp"`
-	GrantWriteACP                  aws.StringValue   `xml:"x-amz-grant-write-acp"`
-	Key                            aws.StringValue   `xml:"Key"`
-	Metadata                       map[string]string `xml:"x-amz-meta-"`
-	MetadataDirective              aws.StringValue   `xml:"x-amz-metadata-directive"`
-	SSECustomerAlgorithm           aws.StringValue   `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey                 aws.StringValue   `xml:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5              aws.StringValue   `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID                    aws.StringValue   `xml:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption           aws.StringValue   `xml:"x-amz-server-side-encryption"`
-	StorageClass                   aws.StringValue   `xml:"x-amz-storage-class"`
-	WebsiteRedirectLocation        aws.StringValue   `xml:"x-amz-website-redirect-location"`
+	ACL                            aws.StringValue   `xml:"-"`
+	Bucket                         aws.StringValue   `xml:"-"`
+	CacheControl                   aws.StringValue   `xml:"-"`
+	ContentDisposition             aws.StringValue   `xml:"-"`
+	ContentEncoding                aws.StringValue   `xml:"-"`
+	ContentLanguage                aws.StringValue   `xml:"-"`
+	ContentType                    aws.StringValue   `xml:"-"`
+	CopySource                     aws.StringValue   `xml:"-"`
+	CopySourceIfMatch              aws.StringValue   `xml:"-"`
+	CopySourceIfModifiedSince      time.Time         `xml:"-"`
+	CopySourceIfNoneMatch          aws.StringValue   `xml:"-"`
+	CopySourceIfUnmodifiedSince    time.Time         `xml:"-"`
+	CopySourceSSECustomerAlgorithm aws.StringValue   `xml:"-"`
+	CopySourceSSECustomerKey       aws.StringValue   `xml:"-"`
+	CopySourceSSECustomerKeyMD5    aws.StringValue   `xml:"-"`
+	Expires                        time.Time         `xml:"-"`
+	GrantFullControl               aws.StringValue   `xml:"-"`
+	GrantRead                      aws.StringValue   `xml:"-"`
+	GrantReadACP                   aws.StringValue   `xml:"-"`
+	GrantWriteACP                  aws.StringValue   `xml:"-"`
+	Key                            aws.StringValue   `xml:"-"`
+	Metadata                       map[string]string `xml:"-"`
+	MetadataDirective              aws.StringValue   `xml:"-"`
+	SSECustomerAlgorithm           aws.StringValue   `xml:"-"`
+	SSECustomerKey                 aws.StringValue   `xml:"-"`
+	SSECustomerKeyMD5              aws.StringValue   `xml:"-"`
+	SSEKMSKeyID                    aws.StringValue   `xml:"-"`
+	ServerSideEncryption           aws.StringValue   `xml:"-"`
+	StorageClass                   aws.StringValue   `xml:"-"`
+	WebsiteRedirectLocation        aws.StringValue   `xml:"-"`
 }
 
 // CopyObjectResult is undocumented.
@@ -3654,55 +3654,55 @@ type CreateBucketConfiguration struct {
 
 // CreateBucketOutput is undocumented.
 type CreateBucketOutput struct {
-	Location aws.StringValue `xml:"Location"`
+	Location aws.StringValue `xml:"-"`
 }
 
 // CreateBucketRequest is undocumented.
 type CreateBucketRequest struct {
-	ACL                       aws.StringValue            `xml:"x-amz-acl"`
-	Bucket                    aws.StringValue            `xml:"Bucket"`
+	ACL                       aws.StringValue            `xml:"-"`
+	Bucket                    aws.StringValue            `xml:"-"`
 	CreateBucketConfiguration *CreateBucketConfiguration `xml:"CreateBucketConfiguration"`
-	GrantFullControl          aws.StringValue            `xml:"x-amz-grant-full-control"`
-	GrantRead                 aws.StringValue            `xml:"x-amz-grant-read"`
-	GrantReadACP              aws.StringValue            `xml:"x-amz-grant-read-acp"`
-	GrantWrite                aws.StringValue            `xml:"x-amz-grant-write"`
-	GrantWriteACP             aws.StringValue            `xml:"x-amz-grant-write-acp"`
+	GrantFullControl          aws.StringValue            `xml:"-"`
+	GrantRead                 aws.StringValue            `xml:"-"`
+	GrantReadACP              aws.StringValue            `xml:"-"`
+	GrantWrite                aws.StringValue            `xml:"-"`
+	GrantWriteACP             aws.StringValue            `xml:"-"`
 }
 
 // CreateMultipartUploadOutput is undocumented.
 type CreateMultipartUploadOutput struct {
 	Bucket               aws.StringValue `xml:"Bucket"`
 	Key                  aws.StringValue `xml:"Key"`
-	SSECustomerAlgorithm aws.StringValue `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKeyMD5    aws.StringValue `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID          aws.StringValue `xml:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption aws.StringValue `xml:"x-amz-server-side-encryption"`
+	SSECustomerAlgorithm aws.StringValue `xml:"-"`
+	SSECustomerKeyMD5    aws.StringValue `xml:"-"`
+	SSEKMSKeyID          aws.StringValue `xml:"-"`
+	ServerSideEncryption aws.StringValue `xml:"-"`
 	UploadID             aws.StringValue `xml:"UploadId"`
 }
 
 // CreateMultipartUploadRequest is undocumented.
 type CreateMultipartUploadRequest struct {
-	ACL                     aws.StringValue   `xml:"x-amz-acl"`
-	Bucket                  aws.StringValue   `xml:"Bucket"`
-	CacheControl            aws.StringValue   `xml:"Cache-Control"`
-	ContentDisposition      aws.StringValue   `xml:"Content-Disposition"`
-	ContentEncoding         aws.StringValue   `xml:"Content-Encoding"`
-	ContentLanguage         aws.StringValue   `xml:"Content-Language"`
-	ContentType             aws.StringValue   `xml:"Content-Type"`
-	Expires                 time.Time         `xml:"Expires"`
-	GrantFullControl        aws.StringValue   `xml:"x-amz-grant-full-control"`
-	GrantRead               aws.StringValue   `xml:"x-amz-grant-read"`
-	GrantReadACP            aws.StringValue   `xml:"x-amz-grant-read-acp"`
-	GrantWriteACP           aws.StringValue   `xml:"x-amz-grant-write-acp"`
-	Key                     aws.StringValue   `xml:"Key"`
-	Metadata                map[string]string `xml:"x-amz-meta-"`
-	SSECustomerAlgorithm    aws.StringValue   `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey          aws.StringValue   `xml:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5       aws.StringValue   `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID             aws.StringValue   `xml:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption    aws.StringValue   `xml:"x-amz-server-side-encryption"`
-	StorageClass            aws.StringValue   `xml:"x-amz-storage-class"`
-	WebsiteRedirectLocation aws.StringValue   `xml:"x-amz-website-redirect-location"`
+	ACL                     aws.StringValue   `xml:"-"`
+	Bucket                  aws.StringValue   `xml:"-"`
+	CacheControl            aws.StringValue   `xml:"-"`
+	ContentDisposition      aws.StringValue   `xml:"-"`
+	ContentEncoding         aws.StringValue   `xml:"-"`
+	ContentLanguage         aws.StringValue   `xml:"-"`
+	ContentType             aws.StringValue   `xml:"-"`
+	Expires                 time.Time         `xml:"-"`
+	GrantFullControl        aws.StringValue   `xml:"-"`
+	GrantRead               aws.StringValue   `xml:"-"`
+	GrantReadACP            aws.StringValue   `xml:"-"`
+	GrantWriteACP           aws.StringValue   `xml:"-"`
+	Key                     aws.StringValue   `xml:"-"`
+	Metadata                map[string]string `xml:"-"`
+	SSECustomerAlgorithm    aws.StringValue   `xml:"-"`
+	SSECustomerKey          aws.StringValue   `xml:"-"`
+	SSECustomerKeyMD5       aws.StringValue   `xml:"-"`
+	SSEKMSKeyID             aws.StringValue   `xml:"-"`
+	ServerSideEncryption    aws.StringValue   `xml:"-"`
+	StorageClass            aws.StringValue   `xml:"-"`
+	WebsiteRedirectLocation aws.StringValue   `xml:"-"`
 }
 
 // Delete is undocumented.
@@ -3713,32 +3713,32 @@ type Delete struct {
 
 // DeleteBucketCorsRequest is undocumented.
 type DeleteBucketCorsRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // DeleteBucketLifecycleRequest is undocumented.
 type DeleteBucketLifecycleRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // DeleteBucketPolicyRequest is undocumented.
 type DeleteBucketPolicyRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // DeleteBucketRequest is undocumented.
 type DeleteBucketRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // DeleteBucketTaggingRequest is undocumented.
 type DeleteBucketTaggingRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // DeleteBucketWebsiteRequest is undocumented.
 type DeleteBucketWebsiteRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // DeleteMarkerEntry is undocumented.
@@ -3752,16 +3752,16 @@ type DeleteMarkerEntry struct {
 
 // DeleteObjectOutput is undocumented.
 type DeleteObjectOutput struct {
-	DeleteMarker aws.BooleanValue `xml:"x-amz-delete-marker"`
-	VersionID    aws.StringValue  `xml:"x-amz-version-id"`
+	DeleteMarker aws.BooleanValue `xml:"-"`
+	VersionID    aws.StringValue  `xml:"-"`
 }
 
 // DeleteObjectRequest is undocumented.
 type DeleteObjectRequest struct {
-	Bucket    aws.StringValue `xml:"Bucket"`
-	Key       aws.StringValue `xml:"Key"`
-	MFA       aws.StringValue `xml:"x-amz-mfa"`
-	VersionID aws.StringValue `xml:"versionId"`
+	Bucket    aws.StringValue `xml:"-"`
+	Key       aws.StringValue `xml:"-"`
+	MFA       aws.StringValue `xml:"-"`
+	VersionID aws.StringValue `xml:"-"`
 }
 
 // DeleteObjectsOutput is undocumented.
@@ -3772,9 +3772,9 @@ type DeleteObjectsOutput struct {
 
 // DeleteObjectsRequest is undocumented.
 type DeleteObjectsRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 	Delete *Delete         `xml:"Delete"`
-	MFA    aws.StringValue `xml:"x-amz-mfa"`
+	MFA    aws.StringValue `xml:"-"`
 }
 
 // DeletedObject is undocumented.
@@ -3806,7 +3806,7 @@ type GetBucketAclOutput struct {
 
 // GetBucketAclRequest is undocumented.
 type GetBucketAclRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // GetBucketCorsOutput is undocumented.
@@ -3816,7 +3816,7 @@ type GetBucketCorsOutput struct {
 
 // GetBucketCorsRequest is undocumented.
 type GetBucketCorsRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // GetBucketLifecycleOutput is undocumented.
@@ -3826,7 +3826,7 @@ type GetBucketLifecycleOutput struct {
 
 // GetBucketLifecycleRequest is undocumented.
 type GetBucketLifecycleRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // GetBucketLocationOutput is undocumented.
@@ -3836,7 +3836,7 @@ type GetBucketLocationOutput struct {
 
 // GetBucketLocationRequest is undocumented.
 type GetBucketLocationRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // GetBucketLoggingOutput is undocumented.
@@ -3846,7 +3846,7 @@ type GetBucketLoggingOutput struct {
 
 // GetBucketLoggingRequest is undocumented.
 type GetBucketLoggingRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // GetBucketNotificationOutput is undocumented.
@@ -3858,7 +3858,7 @@ type GetBucketNotificationOutput struct {
 
 // GetBucketNotificationRequest is undocumented.
 type GetBucketNotificationRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // GetBucketPolicyOutput is undocumented.
@@ -3868,7 +3868,7 @@ type GetBucketPolicyOutput struct {
 
 // GetBucketPolicyRequest is undocumented.
 type GetBucketPolicyRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // GetBucketRequestPaymentOutput is undocumented.
@@ -3878,7 +3878,7 @@ type GetBucketRequestPaymentOutput struct {
 
 // GetBucketRequestPaymentRequest is undocumented.
 type GetBucketRequestPaymentRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // GetBucketTaggingOutput is undocumented.
@@ -3888,7 +3888,7 @@ type GetBucketTaggingOutput struct {
 
 // GetBucketTaggingRequest is undocumented.
 type GetBucketTaggingRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // GetBucketVersioningOutput is undocumented.
@@ -3899,7 +3899,7 @@ type GetBucketVersioningOutput struct {
 
 // GetBucketVersioningRequest is undocumented.
 type GetBucketVersioningRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // GetBucketWebsiteOutput is undocumented.
@@ -3912,7 +3912,7 @@ type GetBucketWebsiteOutput struct {
 
 // GetBucketWebsiteRequest is undocumented.
 type GetBucketWebsiteRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // GetObjectAclOutput is undocumented.
@@ -3923,67 +3923,67 @@ type GetObjectAclOutput struct {
 
 // GetObjectAclRequest is undocumented.
 type GetObjectAclRequest struct {
-	Bucket    aws.StringValue `xml:"Bucket"`
-	Key       aws.StringValue `xml:"Key"`
-	VersionID aws.StringValue `xml:"versionId"`
+	Bucket    aws.StringValue `xml:"-"`
+	Key       aws.StringValue `xml:"-"`
+	VersionID aws.StringValue `xml:"-"`
 }
 
 // GetObjectOutput is undocumented.
 type GetObjectOutput struct {
-	AcceptRanges            aws.StringValue   `xml:"accept-ranges"`
-	Body                    io.ReadCloser     `xml:"Body"`
-	CacheControl            aws.StringValue   `xml:"Cache-Control"`
-	ContentDisposition      aws.StringValue   `xml:"Content-Disposition"`
-	ContentEncoding         aws.StringValue   `xml:"Content-Encoding"`
-	ContentLanguage         aws.StringValue   `xml:"Content-Language"`
-	ContentLength           aws.IntegerValue  `xml:"Content-Length"`
-	ContentType             aws.StringValue   `xml:"Content-Type"`
-	DeleteMarker            aws.BooleanValue  `xml:"x-amz-delete-marker"`
-	ETag                    aws.StringValue   `xml:"ETag"`
-	Expiration              time.Time         `xml:"x-amz-expiration"`
-	Expires                 time.Time         `xml:"Expires"`
-	LastModified            time.Time         `xml:"Last-Modified"`
-	Metadata                map[string]string `xml:"x-amz-meta-"`
-	MissingMeta             aws.IntegerValue  `xml:"x-amz-missing-meta"`
-	Restore                 aws.StringValue   `xml:"x-amz-restore"`
-	SSECustomerAlgorithm    aws.StringValue   `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKeyMD5       aws.StringValue   `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID             aws.StringValue   `xml:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption    aws.StringValue   `xml:"x-amz-server-side-encryption"`
-	VersionID               aws.StringValue   `xml:"x-amz-version-id"`
-	WebsiteRedirectLocation aws.StringValue   `xml:"x-amz-website-redirect-location"`
+	AcceptRanges            aws.StringValue   `xml:"-"`
+	Body                    io.ReadCloser     `xml:"-"`
+	CacheControl            aws.StringValue   `xml:"-"`
+	ContentDisposition      aws.StringValue   `xml:"-"`
+	ContentEncoding         aws.StringValue   `xml:"-"`
+	ContentLanguage         aws.StringValue   `xml:"-"`
+	ContentLength           aws.IntegerValue  `xml:"-"`
+	ContentType             aws.StringValue   `xml:"-"`
+	DeleteMarker            aws.BooleanValue  `xml:"-"`
+	ETag                    aws.StringValue   `xml:"-"`
+	Expiration              time.Time         `xml:"-"`
+	Expires                 time.Time         `xml:"-"`
+	LastModified            time.Time         `xml:"-"`
+	Metadata                map[string]string `xml:"-"`
+	MissingMeta             aws.IntegerValue  `xml:"-"`
+	Restore                 aws.StringValue   `xml:"-"`
+	SSECustomerAlgorithm    aws.StringValue   `xml:"-"`
+	SSECustomerKeyMD5       aws.StringValue   `xml:"-"`
+	SSEKMSKeyID             aws.StringValue   `xml:"-"`
+	ServerSideEncryption    aws.StringValue   `xml:"-"`
+	VersionID               aws.StringValue   `xml:"-"`
+	WebsiteRedirectLocation aws.StringValue   `xml:"-"`
 }
 
 // GetObjectRequest is undocumented.
 type GetObjectRequest struct {
-	Bucket                     aws.StringValue `xml:"Bucket"`
-	IfMatch                    aws.StringValue `xml:"If-Match"`
-	IfModifiedSince            time.Time       `xml:"If-Modified-Since"`
-	IfNoneMatch                aws.StringValue `xml:"If-None-Match"`
-	IfUnmodifiedSince          time.Time       `xml:"If-Unmodified-Since"`
-	Key                        aws.StringValue `xml:"Key"`
-	Range                      aws.StringValue `xml:"Range"`
-	ResponseCacheControl       aws.StringValue `xml:"response-cache-control"`
-	ResponseContentDisposition aws.StringValue `xml:"response-content-disposition"`
-	ResponseContentEncoding    aws.StringValue `xml:"response-content-encoding"`
-	ResponseContentLanguage    aws.StringValue `xml:"response-content-language"`
-	ResponseContentType        aws.StringValue `xml:"response-content-type"`
-	ResponseExpires            time.Time       `xml:"response-expires"`
-	SSECustomerAlgorithm       aws.StringValue `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey             aws.StringValue `xml:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5          aws.StringValue `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	VersionID                  aws.StringValue `xml:"versionId"`
+	Bucket                     aws.StringValue `xml:"-"`
+	IfMatch                    aws.StringValue `xml:"-"`
+	IfModifiedSince            time.Time       `xml:"-"`
+	IfNoneMatch                aws.StringValue `xml:"-"`
+	IfUnmodifiedSince          time.Time       `xml:"-"`
+	Key                        aws.StringValue `xml:"-"`
+	Range                      aws.StringValue `xml:"-"`
+	ResponseCacheControl       aws.StringValue `xml:"-"`
+	ResponseContentDisposition aws.StringValue `xml:"-"`
+	ResponseContentEncoding    aws.StringValue `xml:"-"`
+	ResponseContentLanguage    aws.StringValue `xml:"-"`
+	ResponseContentType        aws.StringValue `xml:"-"`
+	ResponseExpires            time.Time       `xml:"-"`
+	SSECustomerAlgorithm       aws.StringValue `xml:"-"`
+	SSECustomerKey             aws.StringValue `xml:"-"`
+	SSECustomerKeyMD5          aws.StringValue `xml:"-"`
+	VersionID                  aws.StringValue `xml:"-"`
 }
 
 // GetObjectTorrentOutput is undocumented.
 type GetObjectTorrentOutput struct {
-	Body io.ReadCloser `xml:"Body"`
+	Body io.ReadCloser `xml:"-"`
 }
 
 // GetObjectTorrentRequest is undocumented.
 type GetObjectTorrentRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
-	Key    aws.StringValue `xml:"Key"`
+	Bucket aws.StringValue `xml:"-"`
+	Key    aws.StringValue `xml:"-"`
 }
 
 // Grant is undocumented.
@@ -4003,47 +4003,47 @@ type Grantee struct {
 
 // HeadBucketRequest is undocumented.
 type HeadBucketRequest struct {
-	Bucket aws.StringValue `xml:"Bucket"`
+	Bucket aws.StringValue `xml:"-"`
 }
 
 // HeadObjectOutput is undocumented.
 type HeadObjectOutput struct {
-	AcceptRanges            aws.StringValue   `xml:"accept-ranges"`
-	CacheControl            aws.StringValue   `xml:"Cache-Control"`
-	ContentDisposition      aws.StringValue   `xml:"Content-Disposition"`
-	ContentEncoding         aws.StringValue   `xml:"Content-Encoding"`
-	ContentLanguage         aws.StringValue   `xml:"Content-Language"`
-	ContentLength           aws.IntegerValue  `xml:"Content-Length"`
-	ContentType             aws.StringValue   `xml:"Content-Type"`
-	DeleteMarker            aws.BooleanValue  `xml:"x-amz-delete-marker"`
-	ETag                    aws.StringValue   `xml:"ETag"`
-	Expiration              time.Time         `xml:"x-amz-expiration"`
-	Expires                 time.Time         `xml:"Expires"`
-	LastModified            time.Time         `xml:"Last-Modified"`
-	Metadata                map[string]string `xml:"x-amz-meta-"`
-	MissingMeta             aws.IntegerValue  `xml:"x-amz-missing-meta"`
-	Restore                 aws.StringValue   `xml:"x-amz-restore"`
-	SSECustomerAlgorithm    aws.StringValue   `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKeyMD5       aws.StringValue   `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID             aws.StringValue   `xml:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption    aws.StringValue   `xml:"x-amz-server-side-encryption"`
-	VersionID               aws.StringValue   `xml:"x-amz-version-id"`
-	WebsiteRedirectLocation aws.StringValue   `xml:"x-amz-website-redirect-location"`
+	AcceptRanges            aws.StringValue   `xml:"-"`
+	CacheControl            aws.StringValue   `xml:"-"`
+	ContentDisposition      aws.StringValue   `xml:"-"`
+	ContentEncoding         aws.StringValue   `xml:"-"`
+	ContentLanguage         aws.StringValue   `xml:"-"`
+	ContentLength           aws.IntegerValue  `xml:"-"`
+	ContentType             aws.StringValue   `xml:"-"`
+	DeleteMarker            aws.BooleanValue  `xml:"-"`
+	ETag                    aws.StringValue   `xml:"-"`
+	Expiration              time.Time         `xml:"-"`
+	Expires                 time.Time         `xml:"-"`
+	LastModified            time.Time         `xml:"-"`
+	Metadata                map[string]string `xml:"-"`
+	MissingMeta             aws.IntegerValue  `xml:"-"`
+	Restore                 aws.StringValue   `xml:"-"`
+	SSECustomerAlgorithm    aws.StringValue   `xml:"-"`
+	SSECustomerKeyMD5       aws.StringValue   `xml:"-"`
+	SSEKMSKeyID             aws.StringValue   `xml:"-"`
+	ServerSideEncryption    aws.StringValue   `xml:"-"`
+	VersionID               aws.StringValue   `xml:"-"`
+	WebsiteRedirectLocation aws.StringValue   `xml:"-"`
 }
 
 // HeadObjectRequest is undocumented.
 type HeadObjectRequest struct {
-	Bucket               aws.StringValue `xml:"Bucket"`
-	IfMatch              aws.StringValue `xml:"If-Match"`
-	IfModifiedSince      time.Time       `xml:"If-Modified-Since"`
-	IfNoneMatch          aws.StringValue `xml:"If-None-Match"`
-	IfUnmodifiedSince    time.Time       `xml:"If-Unmodified-Since"`
-	Key                  aws.StringValue `xml:"Key"`
-	Range                aws.StringValue `xml:"Range"`
-	SSECustomerAlgorithm aws.StringValue `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey       aws.StringValue `xml:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5    aws.StringValue `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	VersionID            aws.StringValue `xml:"versionId"`
+	Bucket               aws.StringValue `xml:"-"`
+	IfMatch              aws.StringValue `xml:"-"`
+	IfModifiedSince      time.Time       `xml:"-"`
+	IfNoneMatch          aws.StringValue `xml:"-"`
+	IfUnmodifiedSince    time.Time       `xml:"-"`
+	Key                  aws.StringValue `xml:"-"`
+	Range                aws.StringValue `xml:"-"`
+	SSECustomerAlgorithm aws.StringValue `xml:"-"`
+	SSECustomerKey       aws.StringValue `xml:"-"`
+	SSECustomerKeyMD5    aws.StringValue `xml:"-"`
+	VersionID            aws.StringValue `xml:"-"`
 }
 
 // IndexDocument is undocumented.
@@ -4092,13 +4092,13 @@ type ListMultipartUploadsOutput struct {
 
 // ListMultipartUploadsRequest is undocumented.
 type ListMultipartUploadsRequest struct {
-	Bucket         aws.StringValue  `xml:"Bucket"`
-	Delimiter      aws.StringValue  `xml:"delimiter"`
-	EncodingType   aws.StringValue  `xml:"encoding-type"`
-	KeyMarker      aws.StringValue  `xml:"key-marker"`
-	MaxUploads     aws.IntegerValue `xml:"max-uploads"`
-	Prefix         aws.StringValue  `xml:"prefix"`
-	UploadIDMarker aws.StringValue  `xml:"upload-id-marker"`
+	Bucket         aws.StringValue  `xml:"-"`
+	Delimiter      aws.StringValue  `xml:"-"`
+	EncodingType   aws.StringValue  `xml:"-"`
+	KeyMarker      aws.StringValue  `xml:"-"`
+	MaxUploads     aws.IntegerValue `xml:"-"`
+	Prefix         aws.StringValue  `xml:"-"`
+	UploadIDMarker aws.StringValue  `xml:"-"`
 }
 
 // ListObjectVersionsOutput is undocumented.
@@ -4120,13 +4120,13 @@ type ListObjectVersionsOutput struct {
 
 // ListObjectVersionsRequest is undocumented.
 type ListObjectVersionsRequest struct {
-	Bucket          aws.StringValue  `xml:"Bucket"`
-	Delimiter       aws.StringValue  `xml:"delimiter"`
-	EncodingType    aws.StringValue  `xml:"encoding-type"`
-	KeyMarker       aws.StringValue  `xml:"key-marker"`
-	MaxKeys         aws.IntegerValue `xml:"max-keys"`
-	Prefix          aws.StringValue  `xml:"prefix"`
-	VersionIDMarker aws.StringValue  `xml:"version-id-marker"`
+	Bucket          aws.StringValue  `xml:"-"`
+	Delimiter       aws.StringValue  `xml:"-"`
+	EncodingType    aws.StringValue  `xml:"-"`
+	KeyMarker       aws.StringValue  `xml:"-"`
+	MaxKeys         aws.IntegerValue `xml:"-"`
+	Prefix          aws.StringValue  `xml:"-"`
+	VersionIDMarker aws.StringValue  `xml:"-"`
 }
 
 // ListObjectsOutput is undocumented.
@@ -4145,12 +4145,12 @@ type ListObjectsOutput struct {
 
 // ListObjectsRequest is undocumented.
 type ListObjectsRequest struct {
-	Bucket       aws.StringValue  `xml:"Bucket"`
-	Delimiter    aws.StringValue  `xml:"delimiter"`
-	EncodingType aws.StringValue  `xml:"encoding-type"`
-	Marker       aws.StringValue  `xml:"marker"`
-	MaxKeys      aws.IntegerValue `xml:"max-keys"`
-	Prefix       aws.StringValue  `xml:"prefix"`
+	Bucket       aws.StringValue  `xml:"-"`
+	Delimiter    aws.StringValue  `xml:"-"`
+	EncodingType aws.StringValue  `xml:"-"`
+	Marker       aws.StringValue  `xml:"-"`
+	MaxKeys      aws.IntegerValue `xml:"-"`
+	Prefix       aws.StringValue  `xml:"-"`
 }
 
 // ListPartsOutput is undocumented.
@@ -4170,11 +4170,11 @@ type ListPartsOutput struct {
 
 // ListPartsRequest is undocumented.
 type ListPartsRequest struct {
-	Bucket           aws.StringValue  `xml:"Bucket"`
-	Key              aws.StringValue  `xml:"Key"`
-	MaxParts         aws.IntegerValue `xml:"max-parts"`
-	PartNumberMarker aws.IntegerValue `xml:"part-number-marker"`
-	UploadID         aws.StringValue  `xml:"uploadId"`
+	Bucket           aws.StringValue  `xml:"-"`
+	Key              aws.StringValue  `xml:"-"`
+	MaxParts         aws.IntegerValue `xml:"-"`
+	PartNumberMarker aws.IntegerValue `xml:"-"`
+	UploadID         aws.StringValue  `xml:"-"`
 }
 
 // LoggingEnabled is undocumented.
@@ -4256,132 +4256,132 @@ type Part struct {
 
 // PutBucketAclRequest is undocumented.
 type PutBucketAclRequest struct {
-	ACL                 aws.StringValue      `xml:"x-amz-acl"`
+	ACL                 aws.StringValue      `xml:"-"`
 	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy"`
-	Bucket              aws.StringValue      `xml:"Bucket"`
-	ContentMD5          aws.StringValue      `xml:"Content-MD5"`
-	GrantFullControl    aws.StringValue      `xml:"x-amz-grant-full-control"`
-	GrantRead           aws.StringValue      `xml:"x-amz-grant-read"`
-	GrantReadACP        aws.StringValue      `xml:"x-amz-grant-read-acp"`
-	GrantWrite          aws.StringValue      `xml:"x-amz-grant-write"`
-	GrantWriteACP       aws.StringValue      `xml:"x-amz-grant-write-acp"`
+	Bucket              aws.StringValue      `xml:"-"`
+	ContentMD5          aws.StringValue      `xml:"-"`
+	GrantFullControl    aws.StringValue      `xml:"-"`
+	GrantRead           aws.StringValue      `xml:"-"`
+	GrantReadACP        aws.StringValue      `xml:"-"`
+	GrantWrite          aws.StringValue      `xml:"-"`
+	GrantWriteACP       aws.StringValue      `xml:"-"`
 }
 
 // PutBucketCorsRequest is undocumented.
 type PutBucketCorsRequest struct {
-	Bucket            aws.StringValue    `xml:"Bucket"`
+	Bucket            aws.StringValue    `xml:"-"`
 	CORSConfiguration *CORSConfiguration `xml:"CORSConfiguration"`
-	ContentMD5        aws.StringValue    `xml:"Content-MD5"`
+	ContentMD5        aws.StringValue    `xml:"-"`
 }
 
 // PutBucketLifecycleRequest is undocumented.
 type PutBucketLifecycleRequest struct {
-	Bucket                 aws.StringValue         `xml:"Bucket"`
-	ContentMD5             aws.StringValue         `xml:"Content-MD5"`
+	Bucket                 aws.StringValue         `xml:"-"`
+	ContentMD5             aws.StringValue         `xml:"-"`
 	LifecycleConfiguration *LifecycleConfiguration `xml:"LifecycleConfiguration"`
 }
 
 // PutBucketLoggingRequest is undocumented.
 type PutBucketLoggingRequest struct {
-	Bucket              aws.StringValue      `xml:"Bucket"`
+	Bucket              aws.StringValue      `xml:"-"`
 	BucketLoggingStatus *BucketLoggingStatus `xml:"BucketLoggingStatus"`
-	ContentMD5          aws.StringValue      `xml:"Content-MD5"`
+	ContentMD5          aws.StringValue      `xml:"-"`
 }
 
 // PutBucketNotificationRequest is undocumented.
 type PutBucketNotificationRequest struct {
-	Bucket                    aws.StringValue            `xml:"Bucket"`
-	ContentMD5                aws.StringValue            `xml:"Content-MD5"`
+	Bucket                    aws.StringValue            `xml:"-"`
+	ContentMD5                aws.StringValue            `xml:"-"`
 	NotificationConfiguration *NotificationConfiguration `xml:"NotificationConfiguration"`
 }
 
 // PutBucketPolicyRequest is undocumented.
 type PutBucketPolicyRequest struct {
-	Bucket     aws.StringValue `xml:"Bucket"`
-	ContentMD5 aws.StringValue `xml:"Content-MD5"`
+	Bucket     aws.StringValue `xml:"-"`
+	ContentMD5 aws.StringValue `xml:"-"`
 	Policy     aws.StringValue `xml:"Policy"`
 }
 
 // PutBucketRequestPaymentRequest is undocumented.
 type PutBucketRequestPaymentRequest struct {
-	Bucket                      aws.StringValue              `xml:"Bucket"`
-	ContentMD5                  aws.StringValue              `xml:"Content-MD5"`
+	Bucket                      aws.StringValue              `xml:"-"`
+	ContentMD5                  aws.StringValue              `xml:"-"`
 	RequestPaymentConfiguration *RequestPaymentConfiguration `xml:"RequestPaymentConfiguration"`
 }
 
 // PutBucketTaggingRequest is undocumented.
 type PutBucketTaggingRequest struct {
-	Bucket     aws.StringValue `xml:"Bucket"`
-	ContentMD5 aws.StringValue `xml:"Content-MD5"`
+	Bucket     aws.StringValue `xml:"-"`
+	ContentMD5 aws.StringValue `xml:"-"`
 	Tagging    *Tagging        `xml:"Tagging"`
 }
 
 // PutBucketVersioningRequest is undocumented.
 type PutBucketVersioningRequest struct {
-	Bucket                  aws.StringValue          `xml:"Bucket"`
-	ContentMD5              aws.StringValue          `xml:"Content-MD5"`
-	MFA                     aws.StringValue          `xml:"x-amz-mfa"`
+	Bucket                  aws.StringValue          `xml:"-"`
+	ContentMD5              aws.StringValue          `xml:"-"`
+	MFA                     aws.StringValue          `xml:"-"`
 	VersioningConfiguration *VersioningConfiguration `xml:"VersioningConfiguration"`
 }
 
 // PutBucketWebsiteRequest is undocumented.
 type PutBucketWebsiteRequest struct {
-	Bucket               aws.StringValue       `xml:"Bucket"`
-	ContentMD5           aws.StringValue       `xml:"Content-MD5"`
+	Bucket               aws.StringValue       `xml:"-"`
+	ContentMD5           aws.StringValue       `xml:"-"`
 	WebsiteConfiguration *WebsiteConfiguration `xml:"WebsiteConfiguration"`
 }
 
 // PutObjectAclRequest is undocumented.
 type PutObjectAclRequest struct {
-	ACL                 aws.StringValue      `xml:"x-amz-acl"`
+	ACL                 aws.StringValue      `xml:"-"`
 	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy"`
-	Bucket              aws.StringValue      `xml:"Bucket"`
-	ContentMD5          aws.StringValue      `xml:"Content-MD5"`
-	GrantFullControl    aws.StringValue      `xml:"x-amz-grant-full-control"`
-	GrantRead           aws.StringValue      `xml:"x-amz-grant-read"`
-	GrantReadACP        aws.StringValue      `xml:"x-amz-grant-read-acp"`
-	GrantWrite          aws.StringValue      `xml:"x-amz-grant-write"`
-	GrantWriteACP       aws.StringValue      `xml:"x-amz-grant-write-acp"`
-	Key                 aws.StringValue      `xml:"Key"`
+	Bucket              aws.StringValue      `xml:"-"`
+	ContentMD5          aws.StringValue      `xml:"-"`
+	GrantFullControl    aws.StringValue      `xml:"-"`
+	GrantRead           aws.StringValue      `xml:"-"`
+	GrantReadACP        aws.StringValue      `xml:"-"`
+	GrantWrite          aws.StringValue      `xml:"-"`
+	GrantWriteACP       aws.StringValue      `xml:"-"`
+	Key                 aws.StringValue      `xml:"-"`
 }
 
 // PutObjectOutput is undocumented.
 type PutObjectOutput struct {
-	ETag                 aws.StringValue `xml:"ETag"`
-	Expiration           time.Time       `xml:"x-amz-expiration"`
-	SSECustomerAlgorithm aws.StringValue `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKeyMD5    aws.StringValue `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID          aws.StringValue `xml:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption aws.StringValue `xml:"x-amz-server-side-encryption"`
-	VersionID            aws.StringValue `xml:"x-amz-version-id"`
+	ETag                 aws.StringValue `xml:"-"`
+	Expiration           time.Time       `xml:"-"`
+	SSECustomerAlgorithm aws.StringValue `xml:"-"`
+	SSECustomerKeyMD5    aws.StringValue `xml:"-"`
+	SSEKMSKeyID          aws.StringValue `xml:"-"`
+	ServerSideEncryption aws.StringValue `xml:"-"`
+	VersionID            aws.StringValue `xml:"-"`
 }
 
 // PutObjectRequest is undocumented.
 type PutObjectRequest struct {
-	ACL                     aws.StringValue   `xml:"x-amz-acl"`
-	Body                    io.ReadCloser     `xml:"Body"`
-	Bucket                  aws.StringValue   `xml:"Bucket"`
-	CacheControl            aws.StringValue   `xml:"Cache-Control"`
-	ContentDisposition      aws.StringValue   `xml:"Content-Disposition"`
-	ContentEncoding         aws.StringValue   `xml:"Content-Encoding"`
-	ContentLanguage         aws.StringValue   `xml:"Content-Language"`
-	ContentLength           aws.IntegerValue  `xml:"Content-Length"`
-	ContentMD5              aws.StringValue   `xml:"Content-MD5"`
-	ContentType             aws.StringValue   `xml:"Content-Type"`
-	Expires                 time.Time         `xml:"Expires"`
-	GrantFullControl        aws.StringValue   `xml:"x-amz-grant-full-control"`
-	GrantRead               aws.StringValue   `xml:"x-amz-grant-read"`
-	GrantReadACP            aws.StringValue   `xml:"x-amz-grant-read-acp"`
-	GrantWriteACP           aws.StringValue   `xml:"x-amz-grant-write-acp"`
-	Key                     aws.StringValue   `xml:"Key"`
-	Metadata                map[string]string `xml:"x-amz-meta-"`
-	SSECustomerAlgorithm    aws.StringValue   `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey          aws.StringValue   `xml:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5       aws.StringValue   `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID             aws.StringValue   `xml:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption    aws.StringValue   `xml:"x-amz-server-side-encryption"`
-	StorageClass            aws.StringValue   `xml:"x-amz-storage-class"`
-	WebsiteRedirectLocation aws.StringValue   `xml:"x-amz-website-redirect-location"`
+	ACL                     aws.StringValue   `xml:"-"`
+	Body                    io.ReadCloser     `xml:"-"`
+	Bucket                  aws.StringValue   `xml:"-"`
+	CacheControl            aws.StringValue   `xml:"-"`
+	ContentDisposition      aws.StringValue   `xml:"-"`
+	ContentEncoding         aws.StringValue   `xml:"-"`
+	ContentLanguage         aws.StringValue   `xml:"-"`
+	ContentLength           aws.IntegerValue  `xml:"-"`
+	ContentMD5              aws.StringValue   `xml:"-"`
+	ContentType             aws.StringValue   `xml:"-"`
+	Expires                 time.Time         `xml:"-"`
+	GrantFullControl        aws.StringValue   `xml:"-"`
+	GrantRead               aws.StringValue   `xml:"-"`
+	GrantReadACP            aws.StringValue   `xml:"-"`
+	GrantWriteACP           aws.StringValue   `xml:"-"`
+	Key                     aws.StringValue   `xml:"-"`
+	Metadata                map[string]string `xml:"-"`
+	SSECustomerAlgorithm    aws.StringValue   `xml:"-"`
+	SSECustomerKey          aws.StringValue   `xml:"-"`
+	SSECustomerKeyMD5       aws.StringValue   `xml:"-"`
+	SSEKMSKeyID             aws.StringValue   `xml:"-"`
+	ServerSideEncryption    aws.StringValue   `xml:"-"`
+	StorageClass            aws.StringValue   `xml:"-"`
+	WebsiteRedirectLocation aws.StringValue   `xml:"-"`
 }
 
 // QueueConfiguration is undocumented.
@@ -4414,10 +4414,10 @@ type RequestPaymentConfiguration struct {
 
 // RestoreObjectRequest is undocumented.
 type RestoreObjectRequest struct {
-	Bucket         aws.StringValue `xml:"Bucket"`
-	Key            aws.StringValue `xml:"Key"`
+	Bucket         aws.StringValue `xml:"-"`
+	Key            aws.StringValue `xml:"-"`
 	RestoreRequest *RestoreRequest `xml:"RestoreRequest"`
-	VersionID      aws.StringValue `xml:"versionId"`
+	VersionID      aws.StringValue `xml:"-"`
 }
 
 // RestoreRequest is undocumented.
@@ -4477,54 +4477,54 @@ type Transition struct {
 // UploadPartCopyOutput is undocumented.
 type UploadPartCopyOutput struct {
 	CopyPartResult       *CopyPartResult `xml:"CopyPartResult"`
-	CopySourceVersionID  aws.StringValue `xml:"x-amz-copy-source-version-id"`
-	SSECustomerAlgorithm aws.StringValue `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKeyMD5    aws.StringValue `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID          aws.StringValue `xml:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption aws.StringValue `xml:"x-amz-server-side-encryption"`
+	CopySourceVersionID  aws.StringValue `xml:"-"`
+	SSECustomerAlgorithm aws.StringValue `xml:"-"`
+	SSECustomerKeyMD5    aws.StringValue `xml:"-"`
+	SSEKMSKeyID          aws.StringValue `xml:"-"`
+	ServerSideEncryption aws.StringValue `xml:"-"`
 }
 
 // UploadPartCopyRequest is undocumented.
 type UploadPartCopyRequest struct {
-	Bucket                         aws.StringValue  `xml:"Bucket"`
-	CopySource                     aws.StringValue  `xml:"x-amz-copy-source"`
-	CopySourceIfMatch              aws.StringValue  `xml:"x-amz-copy-source-if-match"`
-	CopySourceIfModifiedSince      time.Time        `xml:"x-amz-copy-source-if-modified-since"`
-	CopySourceIfNoneMatch          aws.StringValue  `xml:"x-amz-copy-source-if-none-match"`
-	CopySourceIfUnmodifiedSince    time.Time        `xml:"x-amz-copy-source-if-unmodified-since"`
-	CopySourceRange                aws.StringValue  `xml:"x-amz-copy-source-range"`
-	CopySourceSSECustomerAlgorithm aws.StringValue  `xml:"x-amz-copy-source-server-side-encryption-customer-algorithm"`
-	CopySourceSSECustomerKey       aws.StringValue  `xml:"x-amz-copy-source-server-side-encryption-customer-key"`
-	CopySourceSSECustomerKeyMD5    aws.StringValue  `xml:"x-amz-copy-source-server-side-encryption-customer-key-MD5"`
-	Key                            aws.StringValue  `xml:"Key"`
-	PartNumber                     aws.IntegerValue `xml:"partNumber"`
-	SSECustomerAlgorithm           aws.StringValue  `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey                 aws.StringValue  `xml:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5              aws.StringValue  `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	UploadID                       aws.StringValue  `xml:"uploadId"`
+	Bucket                         aws.StringValue  `xml:"-"`
+	CopySource                     aws.StringValue  `xml:"-"`
+	CopySourceIfMatch              aws.StringValue  `xml:"-"`
+	CopySourceIfModifiedSince      time.Time        `xml:"-"`
+	CopySourceIfNoneMatch          aws.StringValue  `xml:"-"`
+	CopySourceIfUnmodifiedSince    time.Time        `xml:"-"`
+	CopySourceRange                aws.StringValue  `xml:"-"`
+	CopySourceSSECustomerAlgorithm aws.StringValue  `xml:"-"`
+	CopySourceSSECustomerKey       aws.StringValue  `xml:"-"`
+	CopySourceSSECustomerKeyMD5    aws.StringValue  `xml:"-"`
+	Key                            aws.StringValue  `xml:"-"`
+	PartNumber                     aws.IntegerValue `xml:"-"`
+	SSECustomerAlgorithm           aws.StringValue  `xml:"-"`
+	SSECustomerKey                 aws.StringValue  `xml:"-"`
+	SSECustomerKeyMD5              aws.StringValue  `xml:"-"`
+	UploadID                       aws.StringValue  `xml:"-"`
 }
 
 // UploadPartOutput is undocumented.
 type UploadPartOutput struct {
-	ETag                 aws.StringValue `xml:"ETag"`
-	SSECustomerAlgorithm aws.StringValue `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKeyMD5    aws.StringValue `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID          aws.StringValue `xml:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption aws.StringValue `xml:"x-amz-server-side-encryption"`
+	ETag                 aws.StringValue `xml:"-"`
+	SSECustomerAlgorithm aws.StringValue `xml:"-"`
+	SSECustomerKeyMD5    aws.StringValue `xml:"-"`
+	SSEKMSKeyID          aws.StringValue `xml:"-"`
+	ServerSideEncryption aws.StringValue `xml:"-"`
 }
 
 // UploadPartRequest is undocumented.
 type UploadPartRequest struct {
-	Body                 io.ReadCloser    `xml:"Body"`
-	Bucket               aws.StringValue  `xml:"Bucket"`
-	ContentLength        aws.IntegerValue `xml:"Content-Length"`
-	ContentMD5           aws.StringValue  `xml:"Content-MD5"`
-	Key                  aws.StringValue  `xml:"Key"`
-	PartNumber           aws.IntegerValue `xml:"partNumber"`
-	SSECustomerAlgorithm aws.StringValue  `xml:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey       aws.StringValue  `xml:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5    aws.StringValue  `xml:"x-amz-server-side-encryption-customer-key-MD5"`
-	UploadID             aws.StringValue  `xml:"uploadId"`
+	Body                 io.ReadCloser    `xml:"-"`
+	Bucket               aws.StringValue  `xml:"-"`
+	ContentLength        aws.IntegerValue `xml:"-"`
+	ContentMD5           aws.StringValue  `xml:"-"`
+	Key                  aws.StringValue  `xml:"-"`
+	PartNumber           aws.IntegerValue `xml:"-"`
+	SSECustomerAlgorithm aws.StringValue  `xml:"-"`
+	SSECustomerKey       aws.StringValue  `xml:"-"`
+	SSECustomerKeyMD5    aws.StringValue  `xml:"-"`
+	UploadID             aws.StringValue  `xml:"-"`
 }
 
 // VersioningConfiguration is undocumented.
