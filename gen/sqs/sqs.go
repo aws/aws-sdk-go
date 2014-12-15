@@ -369,7 +369,7 @@ func (c *SQS) SetQueueAttributes(req *SetQueueAttributesRequest) (err error) {
 
 // AddPermissionRequest is undocumented.
 type AddPermissionRequest struct {
-	AWSAccountIds []string        `xml:"AWSAccountIds>AWSAccountId"`
+	AWSAccountIDs []string        `xml:"AWSAccountIds>AWSAccountId"`
 	Actions       []string        `xml:"Actions>ActionName"`
 	Label         aws.StringValue `xml:"Label"`
 	QueueURL      aws.StringValue `xml:"QueueUrl"`

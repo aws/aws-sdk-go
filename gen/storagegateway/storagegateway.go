@@ -632,7 +632,7 @@ type ActivateGatewayOutput struct {
 
 // AddCacheInput is undocumented.
 type AddCacheInput struct {
-	DiskIds    []string        `json:"DiskIds"`
+	DiskIDs    []string        `json:"DiskIds"`
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 }
 
@@ -643,7 +643,7 @@ type AddCacheOutput struct {
 
 // AddUploadBufferInput is undocumented.
 type AddUploadBufferInput struct {
-	DiskIds    []string        `json:"DiskIds"`
+	DiskIDs    []string        `json:"DiskIds"`
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 }
 
@@ -654,7 +654,7 @@ type AddUploadBufferOutput struct {
 
 // AddWorkingStorageInput is undocumented.
 type AddWorkingStorageInput struct {
-	DiskIds    []string        `json:"DiskIds"`
+	DiskIDs    []string        `json:"DiskIds"`
 	GatewayARN aws.StringValue `json:"GatewayARN"`
 }
 
@@ -875,7 +875,7 @@ type DescribeCacheOutput struct {
 	CacheHitPercentage    aws.DoubleValue `json:"CacheHitPercentage,omitempty"`
 	CacheMissPercentage   aws.DoubleValue `json:"CacheMissPercentage,omitempty"`
 	CacheUsedPercentage   aws.DoubleValue `json:"CacheUsedPercentage,omitempty"`
-	DiskIds               []string        `json:"DiskIds,omitempty"`
+	DiskIDs               []string        `json:"DiskIds,omitempty"`
 	GatewayARN            aws.StringValue `json:"GatewayARN,omitempty"`
 }
 
@@ -1001,7 +1001,7 @@ type DescribeUploadBufferInput struct {
 
 // DescribeUploadBufferOutput is undocumented.
 type DescribeUploadBufferOutput struct {
-	DiskIds                      []string        `json:"DiskIds,omitempty"`
+	DiskIDs                      []string        `json:"DiskIds,omitempty"`
 	GatewayARN                   aws.StringValue `json:"GatewayARN,omitempty"`
 	UploadBufferAllocatedInBytes aws.LongValue   `json:"UploadBufferAllocatedInBytes,omitempty"`
 	UploadBufferUsedInBytes      aws.LongValue   `json:"UploadBufferUsedInBytes,omitempty"`
@@ -1029,7 +1029,7 @@ type DescribeWorkingStorageInput struct {
 
 // DescribeWorkingStorageOutput is undocumented.
 type DescribeWorkingStorageOutput struct {
-	DiskIds                        []string        `json:"DiskIds,omitempty"`
+	DiskIDs                        []string        `json:"DiskIds,omitempty"`
 	GatewayARN                     aws.StringValue `json:"GatewayARN,omitempty"`
 	WorkingStorageAllocatedInBytes aws.LongValue   `json:"WorkingStorageAllocatedInBytes,omitempty"`
 	WorkingStorageUsedInBytes      aws.LongValue   `json:"WorkingStorageUsedInBytes,omitempty"`

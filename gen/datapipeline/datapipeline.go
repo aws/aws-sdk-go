@@ -267,7 +267,7 @@ type DeletePipelineInput struct {
 type DescribeObjectsInput struct {
 	EvaluateExpressions aws.BooleanValue `json:"evaluateExpressions,omitempty"`
 	Marker              aws.StringValue  `json:"marker,omitempty"`
-	ObjectIds           []string         `json:"objectIds"`
+	ObjectIDs           []string         `json:"objectIds"`
 	PipelineID          aws.StringValue  `json:"pipelineId"`
 }
 
@@ -280,7 +280,7 @@ type DescribeObjectsOutput struct {
 
 // DescribePipelinesInput is undocumented.
 type DescribePipelinesInput struct {
-	PipelineIds []string `json:"pipelineIds"`
+	PipelineIDs []string `json:"pipelineIds"`
 }
 
 // DescribePipelinesOutput is undocumented.
@@ -427,7 +427,7 @@ type QueryObjectsInput struct {
 // QueryObjectsOutput is undocumented.
 type QueryObjectsOutput struct {
 	HasMoreResults aws.BooleanValue `json:"hasMoreResults,omitempty"`
-	Ids            []string         `json:"ids,omitempty"`
+	IDs            []string         `json:"ids,omitempty"`
 	Marker         aws.StringValue  `json:"marker,omitempty"`
 }
 
@@ -462,7 +462,7 @@ type Selector struct {
 
 // SetStatusInput is undocumented.
 type SetStatusInput struct {
-	ObjectIds  []string        `json:"objectIds"`
+	ObjectIDs  []string        `json:"objectIds"`
 	PipelineID aws.StringValue `json:"pipelineId"`
 	Status     aws.StringValue `json:"status"`
 }

@@ -957,7 +957,7 @@ type CreateClusterMessage struct {
 	PreferredMaintenanceWindow       aws.StringValue  `xml:"PreferredMaintenanceWindow"`
 	PubliclyAccessible               aws.BooleanValue `xml:"PubliclyAccessible"`
 	Tags                             []Tag            `xml:"Tags>Tag"`
-	VpcSecurityGroupIds              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VpcSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // CreateClusterParameterGroupMessage is undocumented.
@@ -1006,7 +1006,7 @@ type CreateClusterSnapshotResult struct {
 type CreateClusterSubnetGroupMessage struct {
 	ClusterSubnetGroupName aws.StringValue `xml:"ClusterSubnetGroupName"`
 	Description            aws.StringValue `xml:"Description"`
-	SubnetIds              []string        `xml:"SubnetIds>SubnetIdentifier"`
+	SubnetIDs              []string        `xml:"SubnetIds>SubnetIdentifier"`
 	Tags                   []Tag           `xml:"Tags>Tag"`
 }
 
@@ -1021,7 +1021,7 @@ type CreateEventSubscriptionMessage struct {
 	EventCategories  []string         `xml:"EventCategories>EventCategory"`
 	Severity         aws.StringValue  `xml:"Severity"`
 	SnsTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
-	SourceIds        []string         `xml:"SourceIds>SourceId"`
+	SourceIDs        []string         `xml:"SourceIds>SourceId"`
 	SourceType       aws.StringValue  `xml:"SourceType"`
 	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
 	Tags             []Tag            `xml:"Tags>Tag"`
@@ -1384,7 +1384,7 @@ type EventSubscription struct {
 	EventCategoriesList      []string         `xml:"EventCategoriesList>EventCategory"`
 	Severity                 aws.StringValue  `xml:"Severity"`
 	SnsTopicARN              aws.StringValue  `xml:"SnsTopicArn"`
-	SourceIdsList            []string         `xml:"SourceIdsList>SourceId"`
+	SourceIDsList            []string         `xml:"SourceIdsList>SourceId"`
 	SourceType               aws.StringValue  `xml:"SourceType"`
 	Status                   aws.StringValue  `xml:"Status"`
 	SubscriptionCreationTime time.Time        `xml:"SubscriptionCreationTime"`
@@ -1471,7 +1471,7 @@ type ModifyClusterMessage struct {
 	NodeType                         aws.StringValue  `xml:"NodeType"`
 	NumberOfNodes                    aws.IntegerValue `xml:"NumberOfNodes"`
 	PreferredMaintenanceWindow       aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	VpcSecurityGroupIds              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VpcSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // ModifyClusterParameterGroupMessage is undocumented.
@@ -1489,7 +1489,7 @@ type ModifyClusterResult struct {
 type ModifyClusterSubnetGroupMessage struct {
 	ClusterSubnetGroupName aws.StringValue `xml:"ClusterSubnetGroupName"`
 	Description            aws.StringValue `xml:"Description"`
-	SubnetIds              []string        `xml:"SubnetIds>SubnetIdentifier"`
+	SubnetIDs              []string        `xml:"SubnetIds>SubnetIdentifier"`
 }
 
 // ModifyClusterSubnetGroupResult is undocumented.
@@ -1503,7 +1503,7 @@ type ModifyEventSubscriptionMessage struct {
 	EventCategories  []string         `xml:"EventCategories>EventCategory"`
 	Severity         aws.StringValue  `xml:"Severity"`
 	SnsTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
-	SourceIds        []string         `xml:"SourceIds>SourceId"`
+	SourceIDs        []string         `xml:"SourceIds>SourceId"`
 	SourceType       aws.StringValue  `xml:"SourceType"`
 	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
 }
@@ -1670,7 +1670,7 @@ type RestoreFromClusterSnapshotMessage struct {
 	PubliclyAccessible               aws.BooleanValue `xml:"PubliclyAccessible"`
 	SnapshotClusterIdentifier        aws.StringValue  `xml:"SnapshotClusterIdentifier"`
 	SnapshotIdentifier               aws.StringValue  `xml:"SnapshotIdentifier"`
-	VpcSecurityGroupIds              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VpcSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // RestoreFromClusterSnapshotResult is undocumented.

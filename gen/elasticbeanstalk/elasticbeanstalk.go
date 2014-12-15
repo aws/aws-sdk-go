@@ -510,7 +510,7 @@ type DescribeEnvironmentResourcesMessage struct {
 // DescribeEnvironmentsMessage is undocumented.
 type DescribeEnvironmentsMessage struct {
 	ApplicationName       aws.StringValue  `xml:"ApplicationName"`
-	EnvironmentIds        []string         `xml:"EnvironmentIds>member"`
+	EnvironmentIDs        []string         `xml:"EnvironmentIds>member"`
 	EnvironmentNames      []string         `xml:"EnvironmentNames>member"`
 	IncludeDeleted        aws.BooleanValue `xml:"IncludeDeleted"`
 	IncludedDeletedBackTo time.Time        `xml:"IncludedDeletedBackTo"`

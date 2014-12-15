@@ -389,7 +389,7 @@ type DescribeSeverityLevelsResponse struct {
 
 // DescribeTrustedAdvisorCheckRefreshStatusesRequest is undocumented.
 type DescribeTrustedAdvisorCheckRefreshStatusesRequest struct {
-	CheckIds []string `json:"checkIds"`
+	CheckIDs []string `json:"checkIds"`
 }
 
 // DescribeTrustedAdvisorCheckRefreshStatusesResponse is undocumented.
@@ -410,7 +410,7 @@ type DescribeTrustedAdvisorCheckResultResponse struct {
 
 // DescribeTrustedAdvisorCheckSummariesRequest is undocumented.
 type DescribeTrustedAdvisorCheckSummariesRequest struct {
-	CheckIds []string `json:"checkIds"`
+	CheckIDs []string `json:"checkIds"`
 }
 
 // DescribeTrustedAdvisorCheckSummariesResponse is undocumented.

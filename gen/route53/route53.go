@@ -1889,7 +1889,7 @@ type ListTagsForResourceResponse struct {
 
 // ListTagsForResourcesRequest is undocumented.
 type ListTagsForResourcesRequest struct {
-	ResourceIds  []string        `xml:"ResourceIds"`
+	ResourceIDs  []string        `xml:"ResourceIds"`
 	ResourceType aws.StringValue `xml:"-"`
 }
 

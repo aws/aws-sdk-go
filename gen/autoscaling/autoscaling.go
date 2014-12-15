@@ -555,7 +555,7 @@ type Alarm struct {
 // AttachInstancesQuery is undocumented.
 type AttachInstancesQuery struct {
 	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	InstanceIds          []string        `xml:"InstanceIds>member"`
+	InstanceIDs          []string        `xml:"InstanceIds>member"`
 }
 
 // AutoScalingGroup is undocumented.
@@ -727,7 +727,7 @@ type DescribeAdjustmentTypesAnswer struct {
 
 // DescribeAutoScalingInstancesType is undocumented.
 type DescribeAutoScalingInstancesType struct {
-	InstanceIds []string         `xml:"InstanceIds>member"`
+	InstanceIDs []string         `xml:"InstanceIds>member"`
 	MaxRecords  aws.IntegerValue `xml:"MaxRecords"`
 	NextToken   aws.StringValue  `xml:"NextToken"`
 }
@@ -782,7 +782,7 @@ type DescribePoliciesType struct {
 
 // DescribeScalingActivitiesType is undocumented.
 type DescribeScalingActivitiesType struct {
-	ActivityIds          []string         `xml:"ActivityIds>member"`
+	ActivityIDs          []string         `xml:"ActivityIds>member"`
 	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
 	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
 	NextToken            aws.StringValue  `xml:"NextToken"`
@@ -818,7 +818,7 @@ type DetachInstancesAnswer struct {
 // DetachInstancesQuery is undocumented.
 type DetachInstancesQuery struct {
 	AutoScalingGroupName           aws.StringValue  `xml:"AutoScalingGroupName"`
-	InstanceIds                    []string         `xml:"InstanceIds>member"`
+	InstanceIDs                    []string         `xml:"InstanceIds>member"`
 	ShouldDecrementDesiredCapacity aws.BooleanValue `xml:"ShouldDecrementDesiredCapacity"`
 }
 
@@ -858,7 +858,7 @@ type EnterStandbyAnswer struct {
 // EnterStandbyQuery is undocumented.
 type EnterStandbyQuery struct {
 	AutoScalingGroupName           aws.StringValue  `xml:"AutoScalingGroupName"`
-	InstanceIds                    []string         `xml:"InstanceIds>member"`
+	InstanceIDs                    []string         `xml:"InstanceIds>member"`
 	ShouldDecrementDesiredCapacity aws.BooleanValue `xml:"ShouldDecrementDesiredCapacity"`
 }
 
@@ -877,7 +877,7 @@ type ExitStandbyAnswer struct {
 // ExitStandbyQuery is undocumented.
 type ExitStandbyQuery struct {
 	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	InstanceIds          []string        `xml:"InstanceIds>member"`
+	InstanceIDs          []string        `xml:"InstanceIds>member"`
 }
 
 // Filter is undocumented.

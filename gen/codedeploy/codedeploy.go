@@ -253,7 +253,7 @@ type BatchGetApplicationsOutput struct {
 
 // BatchGetDeploymentsInput is undocumented.
 type BatchGetDeploymentsInput struct {
-	DeploymentIds []string `json:"deploymentIds,omitempty"`
+	DeploymentIDs []string `json:"deploymentIds,omitempty"`
 }
 
 // BatchGetDeploymentsOutput is undocumented.

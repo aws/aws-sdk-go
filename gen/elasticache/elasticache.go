@@ -505,7 +505,7 @@ type CacheParameterGroupNameMessage struct {
 
 // CacheParameterGroupStatus is undocumented.
 type CacheParameterGroupStatus struct {
-	CacheNodeIdsToReboot    []string        `xml:"CacheNodeIdsToReboot>CacheNodeId"`
+	CacheNodeIDsToReboot    []string        `xml:"CacheNodeIdsToReboot>CacheNodeId"`
 	CacheParameterGroupName aws.StringValue `xml:"CacheParameterGroupName"`
 	ParameterApplyStatus    aws.StringValue `xml:"ParameterApplyStatus"`
 }
@@ -579,7 +579,7 @@ type CreateCacheClusterMessage struct {
 	PreferredAvailabilityZones []string         `xml:"PreferredAvailabilityZones>PreferredAvailabilityZone"`
 	PreferredMaintenanceWindow aws.StringValue  `xml:"PreferredMaintenanceWindow"`
 	ReplicationGroupID         aws.StringValue  `xml:"ReplicationGroupId"`
-	SecurityGroupIds           []string         `xml:"SecurityGroupIds>SecurityGroupId"`
+	SecurityGroupIDs           []string         `xml:"SecurityGroupIds>SecurityGroupId"`
 	SnapshotARNs               []string         `xml:"SnapshotArns>SnapshotArn"`
 	SnapshotName               aws.StringValue  `xml:"SnapshotName"`
 	SnapshotRetentionLimit     aws.IntegerValue `xml:"SnapshotRetentionLimit"`
@@ -618,7 +618,7 @@ type CreateCacheSecurityGroupResult struct {
 type CreateCacheSubnetGroupMessage struct {
 	CacheSubnetGroupDescription aws.StringValue `xml:"CacheSubnetGroupDescription"`
 	CacheSubnetGroupName        aws.StringValue `xml:"CacheSubnetGroupName"`
-	SubnetIds                   []string        `xml:"SubnetIds>SubnetIdentifier"`
+	SubnetIDs                   []string        `xml:"SubnetIds>SubnetIdentifier"`
 }
 
 // CreateCacheSubnetGroupResult is undocumented.
@@ -644,7 +644,7 @@ type CreateReplicationGroupMessage struct {
 	PrimaryClusterID            aws.StringValue  `xml:"PrimaryClusterId"`
 	ReplicationGroupDescription aws.StringValue  `xml:"ReplicationGroupDescription"`
 	ReplicationGroupID          aws.StringValue  `xml:"ReplicationGroupId"`
-	SecurityGroupIds            []string         `xml:"SecurityGroupIds>SecurityGroupId"`
+	SecurityGroupIDs            []string         `xml:"SecurityGroupIds>SecurityGroupId"`
 	SnapshotARNs                []string         `xml:"SnapshotArns>SnapshotArn"`
 	SnapshotName                aws.StringValue  `xml:"SnapshotName"`
 	SnapshotRetentionLimit      aws.IntegerValue `xml:"SnapshotRetentionLimit"`
@@ -871,7 +871,7 @@ type ModifyCacheClusterMessage struct {
 	ApplyImmediately           aws.BooleanValue `xml:"ApplyImmediately"`
 	AutoMinorVersionUpgrade    aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
 	CacheClusterID             aws.StringValue  `xml:"CacheClusterId"`
-	CacheNodeIdsToRemove       []string         `xml:"CacheNodeIdsToRemove>CacheNodeId"`
+	CacheNodeIDsToRemove       []string         `xml:"CacheNodeIdsToRemove>CacheNodeId"`
 	CacheParameterGroupName    aws.StringValue  `xml:"CacheParameterGroupName"`
 	CacheSecurityGroupNames    []string         `xml:"CacheSecurityGroupNames>CacheSecurityGroupName"`
 	EngineVersion              aws.StringValue  `xml:"EngineVersion"`
@@ -880,7 +880,7 @@ type ModifyCacheClusterMessage struct {
 	NotificationTopicStatus    aws.StringValue  `xml:"NotificationTopicStatus"`
 	NumCacheNodes              aws.IntegerValue `xml:"NumCacheNodes"`
 	PreferredMaintenanceWindow aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	SecurityGroupIds           []string         `xml:"SecurityGroupIds>SecurityGroupId"`
+	SecurityGroupIDs           []string         `xml:"SecurityGroupIds>SecurityGroupId"`
 	SnapshotRetentionLimit     aws.IntegerValue `xml:"SnapshotRetentionLimit"`
 	SnapshotWindow             aws.StringValue  `xml:"SnapshotWindow"`
 }
@@ -900,7 +900,7 @@ type ModifyCacheParameterGroupMessage struct {
 type ModifyCacheSubnetGroupMessage struct {
 	CacheSubnetGroupDescription aws.StringValue `xml:"CacheSubnetGroupDescription"`
 	CacheSubnetGroupName        aws.StringValue `xml:"CacheSubnetGroupName"`
-	SubnetIds                   []string        `xml:"SubnetIds>SubnetIdentifier"`
+	SubnetIDs                   []string        `xml:"SubnetIds>SubnetIdentifier"`
 }
 
 // ModifyCacheSubnetGroupResult is undocumented.
@@ -922,7 +922,7 @@ type ModifyReplicationGroupMessage struct {
 	PrimaryClusterID            aws.StringValue  `xml:"PrimaryClusterId"`
 	ReplicationGroupDescription aws.StringValue  `xml:"ReplicationGroupDescription"`
 	ReplicationGroupID          aws.StringValue  `xml:"ReplicationGroupId"`
-	SecurityGroupIds            []string         `xml:"SecurityGroupIds>SecurityGroupId"`
+	SecurityGroupIDs            []string         `xml:"SecurityGroupIds>SecurityGroupId"`
 	SnapshotRetentionLimit      aws.IntegerValue `xml:"SnapshotRetentionLimit"`
 	SnapshotWindow              aws.StringValue  `xml:"SnapshotWindow"`
 	SnapshottingClusterID       aws.StringValue  `xml:"SnapshottingClusterId"`
@@ -984,7 +984,7 @@ type ParameterNameValue struct {
 
 // PendingModifiedValues is undocumented.
 type PendingModifiedValues struct {
-	CacheNodeIdsToRemove []string         `xml:"CacheNodeIdsToRemove>CacheNodeId"`
+	CacheNodeIDsToRemove []string         `xml:"CacheNodeIdsToRemove>CacheNodeId"`
 	EngineVersion        aws.StringValue  `xml:"EngineVersion"`
 	NumCacheNodes        aws.IntegerValue `xml:"NumCacheNodes"`
 }
@@ -1004,7 +1004,7 @@ type PurchaseReservedCacheNodesOfferingResult struct {
 // RebootCacheClusterMessage is undocumented.
 type RebootCacheClusterMessage struct {
 	CacheClusterID       aws.StringValue `xml:"CacheClusterId"`
-	CacheNodeIdsToReboot []string        `xml:"CacheNodeIdsToReboot>CacheNodeId"`
+	CacheNodeIDsToReboot []string        `xml:"CacheNodeIdsToReboot>CacheNodeId"`
 }
 
 // RebootCacheClusterResult is undocumented.

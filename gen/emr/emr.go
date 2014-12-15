@@ -262,7 +262,7 @@ type AddInstanceGroupsInput struct {
 
 // AddInstanceGroupsOutput is undocumented.
 type AddInstanceGroupsOutput struct {
-	InstanceGroupIds []string        `json:"InstanceGroupIds,omitempty"`
+	InstanceGroupIDs []string        `json:"InstanceGroupIds,omitempty"`
 	JobFlowID        aws.StringValue `json:"JobFlowId,omitempty"`
 }
 
@@ -274,7 +274,7 @@ type AddJobFlowStepsInput struct {
 
 // AddJobFlowStepsOutput is undocumented.
 type AddJobFlowStepsOutput struct {
-	StepIds []string `json:"StepIds,omitempty"`
+	StepIDs []string `json:"StepIds,omitempty"`
 }
 
 // AddTagsInput is undocumented.
@@ -371,7 +371,7 @@ type DescribeClusterOutput struct {
 type DescribeJobFlowsInput struct {
 	CreatedAfter  time.Time `json:"CreatedAfter,omitempty"`
 	CreatedBefore time.Time `json:"CreatedBefore,omitempty"`
-	JobFlowIds    []string  `json:"JobFlowIds,omitempty"`
+	JobFlowIDs    []string  `json:"JobFlowIds,omitempty"`
 	JobFlowStates []string  `json:"JobFlowStates,omitempty"`
 }
 
@@ -469,7 +469,7 @@ type InstanceGroupDetail struct {
 
 // InstanceGroupModifyConfig is undocumented.
 type InstanceGroupModifyConfig struct {
-	EC2InstanceIdsToTerminate []string         `json:"EC2InstanceIdsToTerminate,omitempty"`
+	EC2InstanceIDsToTerminate []string         `json:"EC2InstanceIdsToTerminate,omitempty"`
 	InstanceCount             aws.IntegerValue `json:"InstanceCount,omitempty"`
 	InstanceGroupID           aws.StringValue  `json:"InstanceGroupId"`
 }
@@ -692,13 +692,13 @@ type ScriptBootstrapActionConfig struct {
 
 // SetTerminationProtectionInput is undocumented.
 type SetTerminationProtectionInput struct {
-	JobFlowIds           []string         `json:"JobFlowIds"`
+	JobFlowIDs           []string         `json:"JobFlowIds"`
 	TerminationProtected aws.BooleanValue `json:"TerminationProtected"`
 }
 
 // SetVisibleToAllUsersInput is undocumented.
 type SetVisibleToAllUsersInput struct {
-	JobFlowIds        []string         `json:"JobFlowIds"`
+	JobFlowIDs        []string         `json:"JobFlowIds"`
 	VisibleToAllUsers aws.BooleanValue `json:"VisibleToAllUsers"`
 }
 
@@ -774,7 +774,7 @@ type Tag struct {
 
 // TerminateJobFlowsInput is undocumented.
 type TerminateJobFlowsInput struct {
-	JobFlowIds []string `json:"JobFlowIds"`
+	JobFlowIDs []string `json:"JobFlowIds"`
 }
 
 // avoid errors if the packages aren't referenced

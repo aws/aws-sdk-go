@@ -1490,8 +1490,8 @@ type InvalidationSummary struct {
 	Status     aws.StringValue `xml:"Status"`
 }
 
-// KeyPairIds is undocumented.
-type KeyPairIds struct {
+// KeyPairIDs is undocumented.
+type KeyPairIDs struct {
 	Items    []string         `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
@@ -1588,7 +1588,7 @@ type S3OriginConfig struct {
 // Signer is undocumented.
 type Signer struct {
 	AwsAccountNumber aws.StringValue `xml:"AwsAccountNumber"`
-	KeyPairIds       *KeyPairIds     `xml:"KeyPairIds"`
+	KeyPairIDs       *KeyPairIDs     `xml:"KeyPairIds"`
 }
 
 // StreamingDistribution is undocumented.

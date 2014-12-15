@@ -684,7 +684,7 @@ type CreateDBInstanceMessage struct {
 	Tags                       []Tag            `xml:"Tags>Tag"`
 	TdeCredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
 	TdeCredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
-	VpcSecurityGroupIds        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VpcSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // CreateDBInstanceReadReplicaMessage is undocumented.
@@ -754,7 +754,7 @@ type CreateDBSnapshotResult struct {
 type CreateDBSubnetGroupMessage struct {
 	DBSubnetGroupDescription aws.StringValue `xml:"DBSubnetGroupDescription"`
 	DBSubnetGroupName        aws.StringValue `xml:"DBSubnetGroupName"`
-	SubnetIds                []string        `xml:"SubnetIds>SubnetIdentifier"`
+	SubnetIDs                []string        `xml:"SubnetIds>SubnetIdentifier"`
 	Tags                     []Tag           `xml:"Tags>Tag"`
 }
 
@@ -768,7 +768,7 @@ type CreateEventSubscriptionMessage struct {
 	Enabled          aws.BooleanValue `xml:"Enabled"`
 	EventCategories  []string         `xml:"EventCategories>EventCategory"`
 	SnsTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
-	SourceIds        []string         `xml:"SourceIds>SourceId"`
+	SourceIDs        []string         `xml:"SourceIds>SourceId"`
 	SourceType       aws.StringValue  `xml:"SourceType"`
 	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
 	Tags             []Tag            `xml:"Tags>Tag"`
@@ -1258,7 +1258,7 @@ type EventSubscription struct {
 	Enabled                  aws.BooleanValue `xml:"Enabled"`
 	EventCategoriesList      []string         `xml:"EventCategoriesList>EventCategory"`
 	SnsTopicARN              aws.StringValue  `xml:"SnsTopicArn"`
-	SourceIdsList            []string         `xml:"SourceIdsList>SourceId"`
+	SourceIDsList            []string         `xml:"SourceIdsList>SourceId"`
 	SourceType               aws.StringValue  `xml:"SourceType"`
 	Status                   aws.StringValue  `xml:"Status"`
 	SubscriptionCreationTime aws.StringValue  `xml:"SubscriptionCreationTime"`
@@ -1316,7 +1316,7 @@ type ModifyDBInstanceMessage struct {
 	StorageType                aws.StringValue  `xml:"StorageType"`
 	TdeCredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
 	TdeCredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
-	VpcSecurityGroupIds        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	VpcSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // ModifyDBInstanceResult is undocumented.
@@ -1334,7 +1334,7 @@ type ModifyDBParameterGroupMessage struct {
 type ModifyDBSubnetGroupMessage struct {
 	DBSubnetGroupDescription aws.StringValue `xml:"DBSubnetGroupDescription"`
 	DBSubnetGroupName        aws.StringValue `xml:"DBSubnetGroupName"`
-	SubnetIds                []string        `xml:"SubnetIds>SubnetIdentifier"`
+	SubnetIDs                []string        `xml:"SubnetIds>SubnetIdentifier"`
 }
 
 // ModifyDBSubnetGroupResult is undocumented.

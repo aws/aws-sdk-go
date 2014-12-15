@@ -813,7 +813,7 @@ type App struct {
 // AssignInstanceRequest is undocumented.
 type AssignInstanceRequest struct {
 	InstanceID aws.StringValue `json:"InstanceId"`
-	LayerIds   []string        `json:"LayerIds"`
+	LayerIDs   []string        `json:"LayerIds"`
 }
 
 // AssignVolumeRequest is undocumented.
@@ -854,7 +854,7 @@ type ChefConfiguration struct {
 type CloneStackRequest struct {
 	Attributes                map[string]string          `json:"Attributes,omitempty"`
 	ChefConfiguration         *ChefConfiguration         `json:"ChefConfiguration,omitempty"`
-	CloneAppIds               []string                   `json:"CloneAppIds,omitempty"`
+	CloneAppIDs               []string                   `json:"CloneAppIds,omitempty"`
 	ClonePermissions          aws.BooleanValue           `json:"ClonePermissions,omitempty"`
 	ConfigurationManager      *StackConfigurationManager `json:"ConfigurationManager,omitempty"`
 	CustomCookbooksSource     *Source                    `json:"CustomCookbooksSource,omitempty"`
@@ -921,7 +921,7 @@ type CreateDeploymentRequest struct {
 	Command     *DeploymentCommand `json:"Command"`
 	Comment     aws.StringValue    `json:"Comment,omitempty"`
 	CustomJSON  aws.StringValue    `json:"CustomJson,omitempty"`
-	InstanceIds []string           `json:"InstanceIds,omitempty"`
+	InstanceIDs []string           `json:"InstanceIds,omitempty"`
 	StackID     aws.StringValue    `json:"StackId"`
 }
 
@@ -940,7 +940,7 @@ type CreateInstanceRequest struct {
 	Hostname             aws.StringValue  `json:"Hostname,omitempty"`
 	InstallUpdatesOnBoot aws.BooleanValue `json:"InstallUpdatesOnBoot,omitempty"`
 	InstanceType         aws.StringValue  `json:"InstanceType"`
-	LayerIds             []string         `json:"LayerIds"`
+	LayerIDs             []string         `json:"LayerIds"`
 	Os                   aws.StringValue  `json:"Os,omitempty"`
 	RootDeviceType       aws.StringValue  `json:"RootDeviceType,omitempty"`
 	SSHKeyName           aws.StringValue  `json:"SshKeyName,omitempty"`
@@ -961,7 +961,7 @@ type CreateLayerRequest struct {
 	AutoAssignPublicIPs         aws.BooleanValue             `json:"AutoAssignPublicIps,omitempty"`
 	CustomInstanceProfileARN    aws.StringValue              `json:"CustomInstanceProfileArn,omitempty"`
 	CustomRecipes               *Recipes                     `json:"CustomRecipes,omitempty"`
-	CustomSecurityGroupIds      []string                     `json:"CustomSecurityGroupIds,omitempty"`
+	CustomSecurityGroupIDs      []string                     `json:"CustomSecurityGroupIds,omitempty"`
 	EnableAutoHealing           aws.BooleanValue             `json:"EnableAutoHealing,omitempty"`
 	InstallUpdatesOnBoot        aws.BooleanValue             `json:"InstallUpdatesOnBoot,omitempty"`
 	LifecycleEventConfiguration *LifecycleEventConfiguration `json:"LifecycleEventConfiguration,omitempty"`
@@ -1064,7 +1064,7 @@ type Deployment struct {
 	DeploymentID aws.StringValue    `json:"DeploymentId,omitempty"`
 	Duration     aws.IntegerValue   `json:"Duration,omitempty"`
 	IamUserARN   aws.StringValue    `json:"IamUserArn,omitempty"`
-	InstanceIds  []string           `json:"InstanceIds,omitempty"`
+	InstanceIDs  []string           `json:"InstanceIds,omitempty"`
 	StackID      aws.StringValue    `json:"StackId,omitempty"`
 	Status       aws.StringValue    `json:"Status,omitempty"`
 }
@@ -1097,7 +1097,7 @@ type DeregisterVolumeRequest struct {
 
 // DescribeAppsRequest is undocumented.
 type DescribeAppsRequest struct {
-	AppIds  []string        `json:"AppIds,omitempty"`
+	AppIDs  []string        `json:"AppIds,omitempty"`
 	StackID aws.StringValue `json:"StackId,omitempty"`
 }
 
@@ -1108,7 +1108,7 @@ type DescribeAppsResult struct {
 
 // DescribeCommandsRequest is undocumented.
 type DescribeCommandsRequest struct {
-	CommandIds   []string        `json:"CommandIds,omitempty"`
+	CommandIDs   []string        `json:"CommandIds,omitempty"`
 	DeploymentID aws.StringValue `json:"DeploymentId,omitempty"`
 	InstanceID   aws.StringValue `json:"InstanceId,omitempty"`
 }
@@ -1121,7 +1121,7 @@ type DescribeCommandsResult struct {
 // DescribeDeploymentsRequest is undocumented.
 type DescribeDeploymentsRequest struct {
 	AppID         aws.StringValue `json:"AppId,omitempty"`
-	DeploymentIds []string        `json:"DeploymentIds,omitempty"`
+	DeploymentIDs []string        `json:"DeploymentIds,omitempty"`
 	StackID       aws.StringValue `json:"StackId,omitempty"`
 }
 
@@ -1144,7 +1144,7 @@ type DescribeElasticIPsResult struct {
 
 // DescribeElasticLoadBalancersRequest is undocumented.
 type DescribeElasticLoadBalancersRequest struct {
-	LayerIds []string        `json:"LayerIds,omitempty"`
+	LayerIDs []string        `json:"LayerIds,omitempty"`
 	StackID  aws.StringValue `json:"StackId,omitempty"`
 }
 
@@ -1155,7 +1155,7 @@ type DescribeElasticLoadBalancersResult struct {
 
 // DescribeInstancesRequest is undocumented.
 type DescribeInstancesRequest struct {
-	InstanceIds []string        `json:"InstanceIds,omitempty"`
+	InstanceIDs []string        `json:"InstanceIds,omitempty"`
 	LayerID     aws.StringValue `json:"LayerId,omitempty"`
 	StackID     aws.StringValue `json:"StackId,omitempty"`
 }
@@ -1167,7 +1167,7 @@ type DescribeInstancesResult struct {
 
 // DescribeLayersRequest is undocumented.
 type DescribeLayersRequest struct {
-	LayerIds []string        `json:"LayerIds,omitempty"`
+	LayerIDs []string        `json:"LayerIds,omitempty"`
 	StackID  aws.StringValue `json:"StackId,omitempty"`
 }
 
@@ -1178,7 +1178,7 @@ type DescribeLayersResult struct {
 
 // DescribeLoadBasedAutoScalingRequest is undocumented.
 type DescribeLoadBasedAutoScalingRequest struct {
-	LayerIds []string `json:"LayerIds"`
+	LayerIDs []string `json:"LayerIds"`
 }
 
 // DescribeLoadBasedAutoScalingResult is undocumented.
@@ -1205,7 +1205,7 @@ type DescribePermissionsResult struct {
 // DescribeRaidArraysRequest is undocumented.
 type DescribeRaidArraysRequest struct {
 	InstanceID   aws.StringValue `json:"InstanceId,omitempty"`
-	RaidArrayIds []string        `json:"RaidArrayIds,omitempty"`
+	RaidArrayIDs []string        `json:"RaidArrayIds,omitempty"`
 	StackID      aws.StringValue `json:"StackId,omitempty"`
 }
 
@@ -1228,7 +1228,7 @@ type DescribeRdsDbInstancesResult struct {
 // DescribeServiceErrorsRequest is undocumented.
 type DescribeServiceErrorsRequest struct {
 	InstanceID      aws.StringValue `json:"InstanceId,omitempty"`
-	ServiceErrorIds []string        `json:"ServiceErrorIds,omitempty"`
+	ServiceErrorIDs []string        `json:"ServiceErrorIds,omitempty"`
 	StackID         aws.StringValue `json:"StackId,omitempty"`
 }
 
@@ -1260,7 +1260,7 @@ type DescribeStackSummaryResult struct {
 
 // DescribeStacksRequest is undocumented.
 type DescribeStacksRequest struct {
-	StackIds []string `json:"StackIds,omitempty"`
+	StackIDs []string `json:"StackIds,omitempty"`
 }
 
 // DescribeStacksResult is undocumented.
@@ -1270,7 +1270,7 @@ type DescribeStacksResult struct {
 
 // DescribeTimeBasedAutoScalingRequest is undocumented.
 type DescribeTimeBasedAutoScalingRequest struct {
-	InstanceIds []string `json:"InstanceIds"`
+	InstanceIDs []string `json:"InstanceIds"`
 }
 
 // DescribeTimeBasedAutoScalingResult is undocumented.
@@ -1293,7 +1293,7 @@ type DescribeVolumesRequest struct {
 	InstanceID  aws.StringValue `json:"InstanceId,omitempty"`
 	RaidArrayID aws.StringValue `json:"RaidArrayId,omitempty"`
 	StackID     aws.StringValue `json:"StackId,omitempty"`
-	VolumeIds   []string        `json:"VolumeIds,omitempty"`
+	VolumeIDs   []string        `json:"VolumeIds,omitempty"`
 }
 
 // DescribeVolumesResult is undocumented.
@@ -1325,12 +1325,12 @@ type ElasticIP struct {
 type ElasticLoadBalancer struct {
 	AvailabilityZones       []string        `json:"AvailabilityZones,omitempty"`
 	DNSName                 aws.StringValue `json:"DnsName,omitempty"`
-	Ec2InstanceIds          []string        `json:"Ec2InstanceIds,omitempty"`
+	Ec2InstanceIDs          []string        `json:"Ec2InstanceIds,omitempty"`
 	ElasticLoadBalancerName aws.StringValue `json:"ElasticLoadBalancerName,omitempty"`
 	LayerID                 aws.StringValue `json:"LayerId,omitempty"`
 	Region                  aws.StringValue `json:"Region,omitempty"`
 	StackID                 aws.StringValue `json:"StackId,omitempty"`
-	SubnetIds               []string        `json:"SubnetIds,omitempty"`
+	SubnetIDs               []string        `json:"SubnetIds,omitempty"`
 	VpcID                   aws.StringValue `json:"VpcId,omitempty"`
 }
 
@@ -1369,7 +1369,7 @@ type Instance struct {
 	InstanceProfileARN       aws.StringValue  `json:"InstanceProfileArn,omitempty"`
 	InstanceType             aws.StringValue  `json:"InstanceType,omitempty"`
 	LastServiceErrorID       aws.StringValue  `json:"LastServiceErrorId,omitempty"`
-	LayerIds                 []string         `json:"LayerIds,omitempty"`
+	LayerIDs                 []string         `json:"LayerIds,omitempty"`
 	Os                       aws.StringValue  `json:"Os,omitempty"`
 	PrivateDNS               aws.StringValue  `json:"PrivateDns,omitempty"`
 	PrivateIP                aws.StringValue  `json:"PrivateIp,omitempty"`
@@ -1379,7 +1379,7 @@ type Instance struct {
 	ReportedOs               *ReportedOs      `json:"ReportedOs,omitempty"`
 	RootDeviceType           aws.StringValue  `json:"RootDeviceType,omitempty"`
 	RootDeviceVolumeID       aws.StringValue  `json:"RootDeviceVolumeId,omitempty"`
-	SecurityGroupIds         []string         `json:"SecurityGroupIds,omitempty"`
+	SecurityGroupIDs         []string         `json:"SecurityGroupIds,omitempty"`
 	SSHHostDsaKeyFingerprint aws.StringValue  `json:"SshHostDsaKeyFingerprint,omitempty"`
 	SSHHostRsaKeyFingerprint aws.StringValue  `json:"SshHostRsaKeyFingerprint,omitempty"`
 	SSHKeyName               aws.StringValue  `json:"SshKeyName,omitempty"`
@@ -1426,7 +1426,7 @@ type Layer struct {
 	CreatedAt                   aws.StringValue              `json:"CreatedAt,omitempty"`
 	CustomInstanceProfileARN    aws.StringValue              `json:"CustomInstanceProfileArn,omitempty"`
 	CustomRecipes               *Recipes                     `json:"CustomRecipes,omitempty"`
-	CustomSecurityGroupIds      []string                     `json:"CustomSecurityGroupIds,omitempty"`
+	CustomSecurityGroupIDs      []string                     `json:"CustomSecurityGroupIds,omitempty"`
 	DefaultRecipes              *Recipes                     `json:"DefaultRecipes,omitempty"`
 	DefaultSecurityGroupNames   []string                     `json:"DefaultSecurityGroupNames,omitempty"`
 	EnableAutoHealing           aws.BooleanValue             `json:"EnableAutoHealing,omitempty"`
@@ -1733,7 +1733,7 @@ type UpdateInstanceRequest struct {
 	InstallUpdatesOnBoot aws.BooleanValue `json:"InstallUpdatesOnBoot,omitempty"`
 	InstanceID           aws.StringValue  `json:"InstanceId"`
 	InstanceType         aws.StringValue  `json:"InstanceType,omitempty"`
-	LayerIds             []string         `json:"LayerIds,omitempty"`
+	LayerIDs             []string         `json:"LayerIds,omitempty"`
 	Os                   aws.StringValue  `json:"Os,omitempty"`
 	SSHKeyName           aws.StringValue  `json:"SshKeyName,omitempty"`
 }
@@ -1745,7 +1745,7 @@ type UpdateLayerRequest struct {
 	AutoAssignPublicIPs         aws.BooleanValue             `json:"AutoAssignPublicIps,omitempty"`
 	CustomInstanceProfileARN    aws.StringValue              `json:"CustomInstanceProfileArn,omitempty"`
 	CustomRecipes               *Recipes                     `json:"CustomRecipes,omitempty"`
-	CustomSecurityGroupIds      []string                     `json:"CustomSecurityGroupIds,omitempty"`
+	CustomSecurityGroupIDs      []string                     `json:"CustomSecurityGroupIds,omitempty"`
 	EnableAutoHealing           aws.BooleanValue             `json:"EnableAutoHealing,omitempty"`
 	InstallUpdatesOnBoot        aws.BooleanValue             `json:"InstallUpdatesOnBoot,omitempty"`
 	LayerID                     aws.StringValue              `json:"LayerId"`
