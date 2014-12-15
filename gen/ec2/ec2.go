@@ -1508,9 +1508,9 @@ func (c *EC2) DetachVPNGateway(req *DetachVPNGatewayRequest) (err error) {
 	return
 }
 
-// DisableVgwRoutePropagation disables a virtual private gateway from
+// DisableVGWRoutePropagation disables a virtual private gateway from
 // propagating routes to a specified route table of a
-func (c *EC2) DisableVgwRoutePropagation(req *DisableVgwRoutePropagationRequest) (err error) {
+func (c *EC2) DisableVGWRoutePropagation(req *DisableVGWRoutePropagationRequest) (err error) {
 	// NRE
 	err = c.client.Do("DisableVgwRoutePropagation", "POST", "/", req, nil)
 	return
@@ -1539,9 +1539,9 @@ func (c *EC2) DisassociateRouteTable(req *DisassociateRouteTableRequest) (err er
 	return
 }
 
-// EnableVgwRoutePropagation enables a virtual private gateway to propagate
+// EnableVGWRoutePropagation enables a virtual private gateway to propagate
 // routes to the specified route table of a
-func (c *EC2) EnableVgwRoutePropagation(req *EnableVgwRoutePropagationRequest) (err error) {
+func (c *EC2) EnableVGWRoutePropagation(req *EnableVGWRoutePropagationRequest) (err error) {
 	// NRE
 	err = c.client.Do("EnableVgwRoutePropagation", "POST", "/", req, nil)
 	return
@@ -3390,8 +3390,8 @@ type DHCPOptions struct {
 	Tags               []Tag               `ec2:"Tags" xml:"tagSet>item"`
 }
 
-// DisableVgwRoutePropagationRequest is undocumented.
-type DisableVgwRoutePropagationRequest struct {
+// DisableVGWRoutePropagationRequest is undocumented.
+type DisableVGWRoutePropagationRequest struct {
 	GatewayID    aws.StringValue `ec2:"GatewayId" xml:"GatewayId"`
 	RouteTableID aws.StringValue `ec2:"RouteTableId" xml:"RouteTableId"`
 }
@@ -3461,8 +3461,8 @@ type EBSInstanceBlockDeviceSpecification struct {
 	VolumeID            aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
 
-// EnableVgwRoutePropagationRequest is undocumented.
-type EnableVgwRoutePropagationRequest struct {
+// EnableVGWRoutePropagationRequest is undocumented.
+type EnableVGWRoutePropagationRequest struct {
 	GatewayID    aws.StringValue `ec2:"GatewayId" xml:"GatewayId"`
 	RouteTableID aws.StringValue `ec2:"RouteTableId" xml:"RouteTableId"`
 }
@@ -4184,8 +4184,8 @@ type ProductCode struct {
 	ProductCodeType aws.StringValue `ec2:"ProductCodeType" xml:"type"`
 }
 
-// PropagatingVgw is undocumented.
-type PropagatingVgw struct {
+// PropagatingVGW is undocumented.
+type PropagatingVGW struct {
 	GatewayID aws.StringValue `ec2:"GatewayId" xml:"gatewayId"`
 }
 
@@ -4523,7 +4523,7 @@ type Route struct {
 // RouteTable is undocumented.
 type RouteTable struct {
 	Associations    []RouteTableAssociation `ec2:"Associations" xml:"associationSet>item"`
-	PropagatingVgws []PropagatingVgw        `ec2:"PropagatingVgws" xml:"propagatingVgwSet>item"`
+	PropagatingVGWs []PropagatingVGW        `ec2:"PropagatingVgws" xml:"propagatingVgwSet>item"`
 	RouteTableID    aws.StringValue         `ec2:"RouteTableId" xml:"routeTableId"`
 	Routes          []Route                 `ec2:"Routes" xml:"routeSet>item"`
 	Tags            []Tag                   `ec2:"Tags" xml:"tagSet>item"`
@@ -4761,8 +4761,8 @@ type UserIDGroupPair struct {
 	UserID    aws.StringValue `ec2:"UserId" xml:"userId"`
 }
 
-// VgwTelemetry is undocumented.
-type VgwTelemetry struct {
+// VGWTelemetry is undocumented.
+type VGWTelemetry struct {
 	AcceptedRouteCount aws.IntegerValue `ec2:"AcceptedRouteCount" xml:"acceptedRouteCount"`
 	LastStatusChange   time.Time        `ec2:"LastStatusChange" xml:"lastStatusChange"`
 	OutsideIPAddress   aws.StringValue  `ec2:"OutsideIpAddress" xml:"outsideIpAddress"`
@@ -4888,7 +4888,7 @@ type VPNConnection struct {
 	State                        aws.StringValue       `ec2:"State" xml:"state"`
 	Tags                         []Tag                 `ec2:"Tags" xml:"tagSet>item"`
 	Type                         aws.StringValue       `ec2:"Type" xml:"type"`
-	VgwTelemetry                 []VgwTelemetry        `ec2:"VgwTelemetry" xml:"vgwTelemetry>item"`
+	VGWTelemetry                 []VGWTelemetry        `ec2:"VgwTelemetry" xml:"vgwTelemetry>item"`
 	VPNConnectionID              aws.StringValue       `ec2:"VpnConnectionId" xml:"vpnConnectionId"`
 	VPNGatewayID                 aws.StringValue       `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
 }
