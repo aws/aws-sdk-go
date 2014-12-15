@@ -3574,7 +3574,7 @@ type Image struct {
 	RamdiskID           aws.StringValue      `ec2:"RamdiskId" xml:"ramdiskId"`
 	RootDeviceName      aws.StringValue      `ec2:"RootDeviceName" xml:"rootDeviceName"`
 	RootDeviceType      aws.StringValue      `ec2:"RootDeviceType" xml:"rootDeviceType"`
-	SriovNetSupport     aws.StringValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+	SRIOVNetSupport     aws.StringValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 	State               aws.StringValue      `ec2:"State" xml:"imageState"`
 	StateReason         *StateReason         `ec2:"StateReason" xml:"stateReason"`
 	Tags                []Tag                `ec2:"Tags" xml:"tagSet>item"`
@@ -3590,7 +3590,7 @@ type ImageAttribute struct {
 	LaunchPermissions   []LaunchPermission   `ec2:"LaunchPermissions" xml:"launchPermission>item"`
 	ProductCodes        []ProductCode        `ec2:"ProductCodes" xml:"productCodes>item"`
 	RamdiskID           *AttributeValue      `ec2:"RamdiskId" xml:"ramdisk"`
-	SriovNetSupport     *AttributeValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+	SRIOVNetSupport     *AttributeValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 }
 
 // ImportInstanceLaunchSpecification is undocumented.
@@ -3708,7 +3708,7 @@ type Instance struct {
 	SecurityGroups        []GroupIdentifier            `ec2:"SecurityGroups" xml:"groupSet>item"`
 	SourceDestCheck       aws.BooleanValue             `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
 	SpotInstanceRequestID aws.StringValue              `ec2:"SpotInstanceRequestId" xml:"spotInstanceRequestId"`
-	SriovNetSupport       aws.StringValue              `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+	SRIOVNetSupport       aws.StringValue              `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 	State                 *InstanceState               `ec2:"State" xml:"instanceState"`
 	StateReason           *StateReason                 `ec2:"StateReason" xml:"stateReason"`
 	StateTransitionReason aws.StringValue              `ec2:"StateTransitionReason" xml:"reason"`
@@ -3732,7 +3732,7 @@ type InstanceAttribute struct {
 	RamdiskID                         *AttributeValue              `ec2:"RamdiskId" xml:"ramdisk"`
 	RootDeviceName                    *AttributeValue              `ec2:"RootDeviceName" xml:"rootDeviceName"`
 	SourceDestCheck                   *AttributeBooleanValue       `ec2:"SourceDestCheck" xml:"sourceDestCheck"`
-	SriovNetSupport                   *AttributeValue              `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+	SRIOVNetSupport                   *AttributeValue              `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 	UserData                          *AttributeValue              `ec2:"UserData" xml:"userData"`
 }
 
@@ -3967,7 +3967,7 @@ type ModifyInstanceAttributeRequest struct {
 	Kernel                            *AttributeValue                           `ec2:"Kernel" xml:"kernel"`
 	Ramdisk                           *AttributeValue                           `ec2:"Ramdisk" xml:"ramdisk"`
 	SourceDestCheck                   *AttributeBooleanValue                    `ec2:"SourceDestCheck" xml:"SourceDestCheck"`
-	SriovNetSupport                   *AttributeValue                           `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+	SRIOVNetSupport                   *AttributeValue                           `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 	UserData                          *BlobAttributeValue                       `ec2:"UserData" xml:"userData"`
 	Value                             aws.StringValue                           `ec2:"Value" xml:"value"`
 }
@@ -4231,7 +4231,7 @@ type RegisterImageRequest struct {
 	Name                aws.StringValue      `ec2:"Name" xml:"name"`
 	RamdiskID           aws.StringValue      `ec2:"RamdiskId" xml:"ramdiskId"`
 	RootDeviceName      aws.StringValue      `ec2:"RootDeviceName" xml:"rootDeviceName"`
-	SriovNetSupport     aws.StringValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
+	SRIOVNetSupport     aws.StringValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 	VirtualizationType  aws.StringValue      `ec2:"VirtualizationType" xml:"virtualizationType"`
 }
 

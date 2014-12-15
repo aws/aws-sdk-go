@@ -73,6 +73,7 @@ var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Json`):       "JSON",
 	regexp.MustCompile(`Kms`):        "KMS",
 	regexp.MustCompile(`Sns`):        "SNS",
+	regexp.MustCompile(`Sriov`):      "SRIOV",
 	regexp.MustCompile(`Ssh`):        "SSH",
 	regexp.MustCompile(`Uri`):        "URI",
 	regexp.MustCompile(`Url`):        "URL",
