@@ -254,12 +254,12 @@ func (c *OpsWorks) DeregisterInstance(req *DeregisterInstanceRequest) (err error
 	return
 }
 
-// DeregisterRDSDbInstance deregisters an Amazon RDS instance. Required
+// DeregisterRDSDBInstance deregisters an Amazon RDS instance. Required
 // Permissions : To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly
 // grants permissions. For more information on user permissions, see
 // Managing User Permissions
-func (c *OpsWorks) DeregisterRDSDbInstance(req *DeregisterRDSDbInstanceRequest) (err error) {
+func (c *OpsWorks) DeregisterRDSDBInstance(req *DeregisterRDSDBInstanceRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeregisterRdsDbInstance", "POST", "/", req, nil)
 	return
@@ -401,13 +401,13 @@ func (c *OpsWorks) DescribeRaidArrays(req *DescribeRaidArraysRequest) (resp *Des
 	return
 }
 
-// DescribeRDSDbInstances describes Amazon RDS instances. Required
+// DescribeRDSDBInstances describes Amazon RDS instances. Required
 // Permissions : To use this action, an IAM user must have a Show, Deploy,
 // or Manage permissions level for the stack, or an attached policy that
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
-func (c *OpsWorks) DescribeRDSDbInstances(req *DescribeRDSDbInstancesRequest) (resp *DescribeRDSDbInstancesResult, err error) {
-	resp = &DescribeRDSDbInstancesResult{}
+func (c *OpsWorks) DescribeRDSDBInstances(req *DescribeRDSDBInstancesRequest) (resp *DescribeRDSDBInstancesResult, err error) {
+	resp = &DescribeRDSDBInstancesResult{}
 	err = c.client.Do("DescribeRdsDbInstances", "POST", "/", req, resp)
 	return
 }
@@ -565,12 +565,12 @@ func (c *OpsWorks) RegisterInstance(req *RegisterInstanceRequest) (resp *Registe
 	return
 }
 
-// RegisterRDSDbInstance registers an Amazon RDS instance with a stack.
+// RegisterRDSDBInstance registers an Amazon RDS instance with a stack.
 // Required Permissions : To use this action, an IAM user must have a
 // Manage permissions level for the stack, or an attached policy that
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions
-func (c *OpsWorks) RegisterRDSDbInstance(req *RegisterRDSDbInstanceRequest) (err error) {
+func (c *OpsWorks) RegisterRDSDBInstance(req *RegisterRDSDBInstanceRequest) (err error) {
 	// NRE
 	err = c.client.Do("RegisterRdsDbInstance", "POST", "/", req, nil)
 	return
@@ -751,11 +751,11 @@ func (c *OpsWorks) UpdateMyUserProfile(req *UpdateMyUserProfileRequest) (err err
 	return
 }
 
-// UpdateRDSDbInstance updates an Amazon RDS instance. Required Permissions
+// UpdateRDSDBInstance updates an Amazon RDS instance. Required Permissions
 // : To use this action, an IAM user must have a Manage permissions level
 // for the stack, or an attached policy that explicitly grants permissions.
 // For more information on user permissions, see Managing User Permissions
-func (c *OpsWorks) UpdateRDSDbInstance(req *UpdateRDSDbInstanceRequest) (err error) {
+func (c *OpsWorks) UpdateRDSDBInstance(req *UpdateRDSDBInstanceRequest) (err error) {
 	// NRE
 	err = c.client.Do("UpdateRdsDbInstance", "POST", "/", req, nil)
 	return
@@ -1085,9 +1085,9 @@ type DeregisterInstanceRequest struct {
 	InstanceID aws.StringValue `json:"InstanceId"`
 }
 
-// DeregisterRDSDbInstanceRequest is undocumented.
-type DeregisterRDSDbInstanceRequest struct {
-	RDSDbInstanceARN aws.StringValue `json:"RdsDbInstanceArn"`
+// DeregisterRDSDBInstanceRequest is undocumented.
+type DeregisterRDSDBInstanceRequest struct {
+	RDSDBInstanceARN aws.StringValue `json:"RdsDbInstanceArn"`
 }
 
 // DeregisterVolumeRequest is undocumented.
@@ -1214,15 +1214,15 @@ type DescribeRaidArraysResult struct {
 	RaidArrays []RaidArray `json:"RaidArrays,omitempty"`
 }
 
-// DescribeRDSDbInstancesRequest is undocumented.
-type DescribeRDSDbInstancesRequest struct {
-	RDSDbInstanceARNs []string        `json:"RdsDbInstanceArns,omitempty"`
+// DescribeRDSDBInstancesRequest is undocumented.
+type DescribeRDSDBInstancesRequest struct {
+	RDSDBInstanceARNs []string        `json:"RdsDbInstanceArns,omitempty"`
 	StackID           aws.StringValue `json:"StackId"`
 }
 
-// DescribeRDSDbInstancesResult is undocumented.
-type DescribeRDSDbInstancesResult struct {
-	RDSDbInstances []RDSDbInstance `json:"RdsDbInstances,omitempty"`
+// DescribeRDSDBInstancesResult is undocumented.
+type DescribeRDSDBInstancesResult struct {
+	RDSDBInstances []RDSDBInstance `json:"RdsDbInstances,omitempty"`
 }
 
 // DescribeServiceErrorsRequest is undocumented.
@@ -1481,15 +1481,15 @@ type RaidArray struct {
 	VolumeType       aws.StringValue  `json:"VolumeType,omitempty"`
 }
 
-// RDSDbInstance is undocumented.
-type RDSDbInstance struct {
+// RDSDBInstance is undocumented.
+type RDSDBInstance struct {
 	Address              aws.StringValue  `json:"Address,omitempty"`
-	DbInstanceIdentifier aws.StringValue  `json:"DbInstanceIdentifier,omitempty"`
-	DbPassword           aws.StringValue  `json:"DbPassword,omitempty"`
-	DbUser               aws.StringValue  `json:"DbUser,omitempty"`
+	DBInstanceIdentifier aws.StringValue  `json:"DbInstanceIdentifier,omitempty"`
+	DBPassword           aws.StringValue  `json:"DbPassword,omitempty"`
+	DBUser               aws.StringValue  `json:"DbUser,omitempty"`
 	Engine               aws.StringValue  `json:"Engine,omitempty"`
 	MissingOnRDS         aws.BooleanValue `json:"MissingOnRds,omitempty"`
-	RDSDbInstanceARN     aws.StringValue  `json:"RdsDbInstanceArn,omitempty"`
+	RDSDBInstanceARN     aws.StringValue  `json:"RdsDbInstanceArn,omitempty"`
 	Region               aws.StringValue  `json:"Region,omitempty"`
 	StackID              aws.StringValue  `json:"StackId,omitempty"`
 }
@@ -1535,11 +1535,11 @@ type RegisterInstanceResult struct {
 	InstanceID aws.StringValue `json:"InstanceId,omitempty"`
 }
 
-// RegisterRDSDbInstanceRequest is undocumented.
-type RegisterRDSDbInstanceRequest struct {
-	DbPassword       aws.StringValue `json:"DbPassword"`
-	DbUser           aws.StringValue `json:"DbUser"`
-	RDSDbInstanceARN aws.StringValue `json:"RdsDbInstanceArn"`
+// RegisterRDSDBInstanceRequest is undocumented.
+type RegisterRDSDBInstanceRequest struct {
+	DBPassword       aws.StringValue `json:"DbPassword"`
+	DBUser           aws.StringValue `json:"DbUser"`
+	RDSDBInstanceARN aws.StringValue `json:"RdsDbInstanceArn"`
 	StackID          aws.StringValue `json:"StackId"`
 }
 
@@ -1762,11 +1762,11 @@ type UpdateMyUserProfileRequest struct {
 	SSHPublicKey aws.StringValue `json:"SshPublicKey,omitempty"`
 }
 
-// UpdateRDSDbInstanceRequest is undocumented.
-type UpdateRDSDbInstanceRequest struct {
-	DbPassword       aws.StringValue `json:"DbPassword,omitempty"`
-	DbUser           aws.StringValue `json:"DbUser,omitempty"`
-	RDSDbInstanceARN aws.StringValue `json:"RdsDbInstanceArn"`
+// UpdateRDSDBInstanceRequest is undocumented.
+type UpdateRDSDBInstanceRequest struct {
+	DBPassword       aws.StringValue `json:"DbPassword,omitempty"`
+	DBUser           aws.StringValue `json:"DbUser,omitempty"`
+	RDSDBInstanceARN aws.StringValue `json:"RdsDbInstanceArn"`
 }
 
 // UpdateStackRequest is undocumented.
