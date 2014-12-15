@@ -3774,7 +3774,7 @@ type InstanceNetworkInterface struct {
 	Attachment         *InstanceNetworkInterfaceAttachment  `ec2:"Attachment" xml:"attachment"`
 	Description        aws.StringValue                      `ec2:"Description" xml:"description"`
 	Groups             []GroupIdentifier                    `ec2:"Groups" xml:"groupSet>item"`
-	MacAddress         aws.StringValue                      `ec2:"MacAddress" xml:"macAddress"`
+	MACAddress         aws.StringValue                      `ec2:"MacAddress" xml:"macAddress"`
 	NetworkInterfaceID aws.StringValue                      `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 	OwnerID            aws.StringValue                      `ec2:"OwnerId" xml:"ownerId"`
 	PrivateDNSName     aws.StringValue                      `ec2:"PrivateDnsName" xml:"privateDnsName"`
@@ -4076,7 +4076,7 @@ type NetworkInterface struct {
 	AvailabilityZone   aws.StringValue                    `ec2:"AvailabilityZone" xml:"availabilityZone"`
 	Description        aws.StringValue                    `ec2:"Description" xml:"description"`
 	Groups             []GroupIdentifier                  `ec2:"Groups" xml:"groupSet>item"`
-	MacAddress         aws.StringValue                    `ec2:"MacAddress" xml:"macAddress"`
+	MACAddress         aws.StringValue                    `ec2:"MacAddress" xml:"macAddress"`
 	NetworkInterfaceID aws.StringValue                    `ec2:"NetworkInterfaceId" xml:"networkInterfaceId"`
 	OwnerID            aws.StringValue                    `ec2:"OwnerId" xml:"ownerId"`
 	PrivateDNSName     aws.StringValue                    `ec2:"PrivateDnsName" xml:"privateDnsName"`

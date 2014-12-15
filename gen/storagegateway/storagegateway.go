@@ -1122,7 +1122,7 @@ type ListVolumesOutput struct {
 type NetworkInterface struct {
 	IPv4Address aws.StringValue `json:"Ipv4Address,omitempty"`
 	IPv6Address aws.StringValue `json:"Ipv6Address,omitempty"`
-	MacAddress  aws.StringValue `json:"MacAddress,omitempty"`
+	MACAddress  aws.StringValue `json:"MacAddress,omitempty"`
 }
 
 // RetrieveTapeArchiveInput is undocumented.
