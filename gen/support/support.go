@@ -252,7 +252,7 @@ type AddAttachmentsToSetResponse struct {
 type AddCommunicationToCaseRequest struct {
 	AttachmentSetID   aws.StringValue `json:"attachmentSetId,omitempty"`
 	CaseID            aws.StringValue `json:"caseId,omitempty"`
-	CcEmailAddresses  []string        `json:"ccEmailAddresses,omitempty"`
+	CCEmailAddresses  []string        `json:"ccEmailAddresses,omitempty"`
 	CommunicationBody aws.StringValue `json:"communicationBody"`
 }
 
@@ -277,7 +277,7 @@ type AttachmentDetails struct {
 type CaseDetails struct {
 	CaseID               aws.StringValue           `json:"caseId,omitempty"`
 	CategoryCode         aws.StringValue           `json:"categoryCode,omitempty"`
-	CcEmailAddresses     []string                  `json:"ccEmailAddresses,omitempty"`
+	CCEmailAddresses     []string                  `json:"ccEmailAddresses,omitempty"`
 	DisplayID            aws.StringValue           `json:"displayId,omitempty"`
 	Language             aws.StringValue           `json:"language,omitempty"`
 	RecentCommunications *RecentCaseCommunications `json:"recentCommunications,omitempty"`
@@ -308,7 +308,7 @@ type Communication struct {
 type CreateCaseRequest struct {
 	AttachmentSetID   aws.StringValue `json:"attachmentSetId,omitempty"`
 	CategoryCode      aws.StringValue `json:"categoryCode,omitempty"`
-	CcEmailAddresses  []string        `json:"ccEmailAddresses,omitempty"`
+	CCEmailAddresses  []string        `json:"ccEmailAddresses,omitempty"`
 	CommunicationBody aws.StringValue `json:"communicationBody"`
 	IssueType         aws.StringValue `json:"issueType,omitempty"`
 	Language          aws.StringValue `json:"language,omitempty"`
