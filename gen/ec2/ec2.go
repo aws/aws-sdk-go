@@ -2386,7 +2386,7 @@ type CopySnapshotResult struct {
 
 // CreateCustomerGatewayRequest is undocumented.
 type CreateCustomerGatewayRequest struct {
-	BgpASN   aws.IntegerValue `ec2:"BgpAsn" xml:"BgpAsn"`
+	BGPASN   aws.IntegerValue `ec2:"BgpAsn" xml:"BgpAsn"`
 	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	PublicIP aws.StringValue  `ec2:"IpAddress" xml:"IpAddress"`
 	Type     aws.StringValue  `ec2:"Type" xml:"Type"`
@@ -2669,7 +2669,7 @@ type CreateVpnGatewayResult struct {
 
 // CustomerGateway is undocumented.
 type CustomerGateway struct {
-	BgpASN            aws.StringValue `ec2:"BgpAsn" xml:"bgpAsn"`
+	BGPASN            aws.StringValue `ec2:"BgpAsn" xml:"bgpAsn"`
 	CustomerGatewayID aws.StringValue `ec2:"CustomerGatewayId" xml:"customerGatewayId"`
 	IPAddress         aws.StringValue `ec2:"IpAddress" xml:"ipAddress"`
 	State             aws.StringValue `ec2:"State" xml:"state"`
