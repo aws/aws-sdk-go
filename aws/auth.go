@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"sync"
+	"time"
 
 	"github.com/juju/errors"
 )
@@ -82,11 +83,12 @@ func (c *staticCreds) Fetch() (RequestCredentials, error) {
 
 type instanceRoleCredentials struct {
 	m                sync.Mutex
-	id               string `json:"AccessKeyId"`
-	secret           string `json:"SecretAccessKey"`
-	token            string `json:"Token"`
-	expirationString string `json:"Expiration"`
-	apiResponseCode  string `json:"Code"`
+	expires          time.Time
+	ID               string `json:"AccessKeyId"`
+	Secret           string `json:"SecretAccessKey"`
+	Token            string `json:"Token"`
+	ExpirationString string `json:"Expiration"`
+	APIResponseCode  string `json:"Code"`
 }
 
 func InstanceRoleCredentials() Credentials {
@@ -107,8 +109,16 @@ var metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam/s
 
 // Retrieve credentials from the EC2 Metadata endpoint
 func (c *instanceRoleCredentials) obtainCredentialsLazily() error {
-	// TODO: Do we need to refresh?
+	zeroTime := time.Time{}
+	if c.expires != zeroTime || -time.Since(c.expires) > 10*time.Second {
+		// Reuse existing credentials
+		return nil
+	}
 
+	c.m.Lock()
+	defer c.m.Unlock()
+
+	// Query the security-credentials/ endpoint
 	r, err := http.Get(metadataCredentialsEndpoint)
 	if err != nil {
 		return err
@@ -121,6 +131,7 @@ func (c *instanceRoleCredentials) obtainCredentialsLazily() error {
 	}
 	firstLine := s.Text()
 
+	// Query the role that it returns
 	r, err = http.Get(metadataCredentialsEndpoint + firstLine)
 	if err != nil {
 		return err
@@ -130,13 +141,17 @@ func (c *instanceRoleCredentials) obtainCredentialsLazily() error {
 	if err != nil {
 		return err
 	}
-	if c.apiResponseCode != "success" {
-		return fmt.Errorf("Metadata endpoint did not succeed. Code:", c.apiResponseCode)
+	if c.APIResponseCode != "Success" {
+		return fmt.Errorf("Metadata endpoint did not succeed. Code: %#+v", c)
+	}
+	c.expires, err = time.Parse("2006-01-02T15:04:05Z", c.ExpirationString)
+	if err != nil {
+		return err
 	}
 	return nil
 }
 
 func (c *instanceRoleCredentials) Fetch() (RequestCredentials, error) {
 	err := c.obtainCredentialsLazily()
-	return RequestCredentials{c.id, c.secret, c.token}, err
+	return RequestCredentials{c.ID, c.Secret, c.Token}, err
 }
