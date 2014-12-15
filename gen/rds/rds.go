@@ -682,8 +682,8 @@ type CreateDBInstanceMessage struct {
 	PubliclyAccessible         aws.BooleanValue `xml:"PubliclyAccessible"`
 	StorageType                aws.StringValue  `xml:"StorageType"`
 	Tags                       []Tag            `xml:"Tags>Tag"`
-	TdeCredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
-	TdeCredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
+	TDECredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
+	TDECredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
 	VPCSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
@@ -843,7 +843,7 @@ type DBInstance struct {
 	SecondaryAvailabilityZone             aws.StringValue              `xml:"SecondaryAvailabilityZone"`
 	StatusInfos                           []DBInstanceStatusInfo       `xml:"StatusInfos>DBInstanceStatusInfo"`
 	StorageType                           aws.StringValue              `xml:"StorageType"`
-	TdeCredentialARN                      aws.StringValue              `xml:"TdeCredentialArn"`
+	TDECredentialARN                      aws.StringValue              `xml:"TdeCredentialArn"`
 	VPCSecurityGroups                     []VPCSecurityGroupMembership `xml:"VpcSecurityGroups>VpcSecurityGroupMembership"`
 }
 
@@ -933,7 +933,7 @@ type DBSnapshot struct {
 	SourceRegion         aws.StringValue  `xml:"SourceRegion"`
 	Status               aws.StringValue  `xml:"Status"`
 	StorageType          aws.StringValue  `xml:"StorageType"`
-	TdeCredentialARN     aws.StringValue  `xml:"TdeCredentialArn"`
+	TDECredentialARN     aws.StringValue  `xml:"TdeCredentialArn"`
 	VPCID                aws.StringValue  `xml:"VpcId"`
 }
 
@@ -1314,8 +1314,8 @@ type ModifyDBInstanceMessage struct {
 	PreferredBackupWindow      aws.StringValue  `xml:"PreferredBackupWindow"`
 	PreferredMaintenanceWindow aws.StringValue  `xml:"PreferredMaintenanceWindow"`
 	StorageType                aws.StringValue  `xml:"StorageType"`
-	TdeCredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
-	TdeCredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
+	TDECredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
+	TDECredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
 	VPCSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
@@ -1633,8 +1633,8 @@ type RestoreDBInstanceFromDBSnapshotMessage struct {
 	PubliclyAccessible      aws.BooleanValue `xml:"PubliclyAccessible"`
 	StorageType             aws.StringValue  `xml:"StorageType"`
 	Tags                    []Tag            `xml:"Tags>Tag"`
-	TdeCredentialARN        aws.StringValue  `xml:"TdeCredentialArn"`
-	TdeCredentialPassword   aws.StringValue  `xml:"TdeCredentialPassword"`
+	TDECredentialARN        aws.StringValue  `xml:"TdeCredentialArn"`
+	TDECredentialPassword   aws.StringValue  `xml:"TdeCredentialPassword"`
 }
 
 // RestoreDBInstanceFromDBSnapshotResult is undocumented.
@@ -1661,8 +1661,8 @@ type RestoreDBInstanceToPointInTimeMessage struct {
 	StorageType                aws.StringValue  `xml:"StorageType"`
 	Tags                       []Tag            `xml:"Tags>Tag"`
 	TargetDBInstanceIdentifier aws.StringValue  `xml:"TargetDBInstanceIdentifier"`
-	TdeCredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
-	TdeCredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
+	TDECredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
+	TDECredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
 	UseLatestRestorableTime    aws.BooleanValue `xml:"UseLatestRestorableTime"`
 }
 
