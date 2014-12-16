@@ -4326,7 +4326,7 @@ const (
 
 const (
 	ProtocolHTTP  = "http"
-	ProtocolHTTPs = "https"
+	ProtocolHTTPS = "https"
 )
 
 // PutBucketACLRequest is undocumented.

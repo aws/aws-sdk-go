@@ -1743,8 +1743,8 @@ type ViewerCertificate struct {
 
 const (
 	ViewerProtocolPolicyAllowAll        = "allow-all"
-	ViewerProtocolPolicyHTTPsOnly       = "https-only"
-	ViewerProtocolPolicyRedirectToHTTPs = "redirect-to-https"
+	ViewerProtocolPolicyHTTPSOnly       = "https-only"
+	ViewerProtocolPolicyRedirectToHTTPS = "redirect-to-https"
 )
 
 // avoid errors if the packages aren't referenced

@@ -1791,9 +1791,9 @@ type HealthCheckObservation struct {
 
 const (
 	HealthCheckTypeHTTP          = "HTTP"
+	HealthCheckTypeHTTPS         = "HTTPS"
+	HealthCheckTypeHTTPSStrMatch = "HTTPS_STR_MATCH"
 	HealthCheckTypeHTTPStrMatch  = "HTTP_STR_MATCH"
-	HealthCheckTypeHTTPs         = "HTTPS"
-	HealthCheckTypeHTTPsStrMatch = "HTTPS_STR_MATCH"
 	HealthCheckTypeTcp           = "TCP"
 )
 
