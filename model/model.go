@@ -336,6 +336,12 @@ func (s *Shape) Type() string {
 	case "blob":
 		return "[]byte"
 	case "timestamp":
+		// DynamoDB has a magical date format of floating point epoch
+		// seconds. It's only used for a few calls, so we special-case it here
+		// rather than allow that to screw up all the other packages.
+		if service.PackageName == "dynamodb" {
+			return "float64"
+		}
 		return "time.Time"
 	}
 
