@@ -352,6 +352,7 @@ type CheckDNSAvailabilityResultMessage struct {
 	FullyQualifiedCNAME aws.StringValue  `xml:"CheckDNSAvailabilityResult>FullyQualifiedCNAME"`
 }
 
+// Possible values for ElasticBeanstalk.
 const (
 	ConfigurationDeploymentStatusDeployed = "deployed"
 	ConfigurationDeploymentStatusFailed   = "failed"
@@ -380,6 +381,7 @@ type ConfigurationOptionSetting struct {
 	Value      aws.StringValue `xml:"Value"`
 }
 
+// Possible values for ElasticBeanstalk.
 const (
 	ConfigurationOptionValueTypeList   = "List"
 	ConfigurationOptionValueTypeScalar = "Scalar"
@@ -567,6 +569,7 @@ type EnvironmentDescriptionsMessage struct {
 	Environments []EnvironmentDescription `xml:"DescribeEnvironmentsResult>Environments>member"`
 }
 
+// Possible values for ElasticBeanstalk.
 const (
 	EnvironmentHealthGreen  = "Green"
 	EnvironmentHealthGrey   = "Grey"
@@ -582,6 +585,7 @@ type EnvironmentInfoDescription struct {
 	SampleTimestamp time.Time       `xml:"SampleTimestamp"`
 }
 
+// Possible values for ElasticBeanstalk.
 const (
 	EnvironmentInfoTypeTail = "tail"
 )
@@ -607,6 +611,7 @@ type EnvironmentResourcesDescription struct {
 	LoadBalancer *LoadBalancerDescription `xml:"LoadBalancer"`
 }
 
+// Possible values for ElasticBeanstalk.
 const (
 	EnvironmentStatusLaunching   = "Launching"
 	EnvironmentStatusReady       = "Ready"
@@ -640,6 +645,7 @@ type EventDescriptionsMessage struct {
 	NextToken aws.StringValue    `xml:"DescribeEventsResult>NextToken"`
 }
 
+// Possible values for ElasticBeanstalk.
 const (
 	EventSeverityDebug = "DEBUG"
 	EventSeverityError = "ERROR"
@@ -826,6 +832,7 @@ type ValidationMessage struct {
 	Severity   aws.StringValue `xml:"Severity"`
 }
 
+// Possible values for ElasticBeanstalk.
 const (
 	ValidationSeverityError   = "error"
 	ValidationSeverityWarning = "warning"

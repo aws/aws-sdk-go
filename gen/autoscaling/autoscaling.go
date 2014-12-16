@@ -952,6 +952,7 @@ type LifecycleHook struct {
 	RoleARN               aws.StringValue  `xml:"RoleARN"`
 }
 
+// Possible values for AutoScaling.
 const (
 	LifecycleStateDetached           = "Detached"
 	LifecycleStateDetaching          = "Detaching"
@@ -1063,6 +1064,7 @@ type RecordLifecycleActionHeartbeatType struct {
 	LifecycleHookName    aws.StringValue `xml:"LifecycleHookName"`
 }
 
+// Possible values for AutoScaling.
 const (
 	ScalingActivityStatusCodeCancelled                       = "Cancelled"
 	ScalingActivityStatusCodeFailed                          = "Failed"

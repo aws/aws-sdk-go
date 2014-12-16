@@ -750,6 +750,7 @@ type ListFunctionsResponse struct {
 	NextMarker aws.StringValue         `json:"NextMarker,omitempty"`
 }
 
+// Possible values for Lambda.
 const (
 	ModeEvent = "event"
 )
@@ -759,6 +760,7 @@ type RemoveEventSourceRequest struct {
 	UUID aws.StringValue `json:"-"`
 }
 
+// Possible values for Lambda.
 const (
 	RuntimeNodejs = "nodejs"
 )

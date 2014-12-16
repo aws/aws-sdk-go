@@ -1063,6 +1063,7 @@ type Disk struct {
 	DiskSizeInBytes        aws.LongValue   `json:"DiskSizeInBytes,omitempty"`
 }
 
+// Possible values for StorageGateway.
 const (
 	ErrorCodeActivationKeyExpired              = "ActivationKeyExpired"
 	ErrorCodeActivationKeyInvalid              = "ActivationKeyInvalid"

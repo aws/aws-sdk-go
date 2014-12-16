@@ -1517,6 +1517,7 @@ type Change struct {
 	ResourceRecordSet *ResourceRecordSet `xml:"ResourceRecordSet"`
 }
 
+// Possible values for Route53.
 const (
 	ChangeActionCreate = "CREATE"
 	ChangeActionDelete = "DELETE"
@@ -1548,6 +1549,7 @@ type ChangeResourceRecordSetsResponse struct {
 	ChangeInfo *ChangeInfo `xml:"ChangeInfo"`
 }
 
+// Possible values for Route53.
 const (
 	ChangeStatusInsync  = "INSYNC"
 	ChangeStatusPending = "PENDING"
@@ -1789,6 +1791,7 @@ type HealthCheckObservation struct {
 	StatusReport *StatusReport   `xml:"StatusReport"`
 }
 
+// Possible values for Route53.
 const (
 	HealthCheckTypeHTTP          = "HTTP"
 	HealthCheckTypeHTTPS         = "HTTPS"
@@ -1917,6 +1920,7 @@ type ListTagsForResourcesResponse struct {
 	ResourceTagSets []ResourceTagSet `xml:"ResourceTagSets"`
 }
 
+// Possible values for Route53.
 const (
 	RRTypeA     = "A"
 	RRTypeAaaa  = "AAAA"
@@ -1950,11 +1954,13 @@ type ResourceRecordSet struct {
 	Weight          aws.LongValue    `xml:"Weight"`
 }
 
+// Possible values for Route53.
 const (
 	ResourceRecordSetFailoverPrimary   = "PRIMARY"
 	ResourceRecordSetFailoverSecondary = "SECONDARY"
 )
 
+// Possible values for Route53.
 const (
 	ResourceRecordSetRegionApNortheast1 = "ap-northeast-1"
 	ResourceRecordSetRegionApSoutheast1 = "ap-southeast-1"
@@ -1987,6 +1993,7 @@ type Tag struct {
 	Value aws.StringValue `xml:"Value"`
 }
 
+// Possible values for Route53.
 const (
 	TagResourceTypeHealthcheck = "healthcheck"
 	TagResourceTypeHostedzone  = "hostedzone"
@@ -2026,6 +2033,7 @@ type VPC struct {
 	VPCRegion aws.StringValue `xml:"VPCRegion"`
 }
 
+// Possible values for Route53.
 const (
 	VPCRegionApNortheast1 = "ap-northeast-1"
 	VPCRegionApSoutheast1 = "ap-southeast-1"

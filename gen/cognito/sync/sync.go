@@ -902,11 +902,13 @@ type ListRecordsResponse struct {
 	SyncSessionToken                      aws.StringValue  `json:"SyncSessionToken,omitempty"`
 }
 
+// Possible values for CognitoSync.
 const (
 	OperationRemove  = "remove"
 	OperationReplace = "replace"
 )
 
+// Possible values for CognitoSync.
 const (
 	PlatformAdm         = "ADM"
 	PlatformApns        = "APNS"

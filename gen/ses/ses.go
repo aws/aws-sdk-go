@@ -362,6 +362,7 @@ type IdentityNotificationAttributes struct {
 	ForwardingEnabled aws.BooleanValue `xml:"ForwardingEnabled"`
 }
 
+// Possible values for SES.
 const (
 	IdentityTypeDomain       = "Domain"
 	IdentityTypeEmailAddress = "EmailAddress"
@@ -397,6 +398,7 @@ type Message struct {
 	Subject *Content `xml:"Subject"`
 }
 
+// Possible values for SES.
 const (
 	NotificationTypeBounce    = "Bounce"
 	NotificationTypeComplaint = "Complaint"
@@ -474,6 +476,7 @@ type SetIdentityNotificationTopicRequest struct {
 type SetIdentityNotificationTopicResponse struct {
 }
 
+// Possible values for SES.
 const (
 	VerificationStatusFailed           = "Failed"
 	VerificationStatusNotStarted       = "NotStarted"

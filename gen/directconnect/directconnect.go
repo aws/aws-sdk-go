@@ -318,6 +318,7 @@ type Connection struct {
 	VLAN            aws.IntegerValue `json:"vlan,omitempty"`
 }
 
+// Possible values for DirectConnect.
 const (
 	ConnectionStateAvailable = "available"
 	ConnectionStateDeleted   = "deleted"
@@ -416,6 +417,7 @@ type Interconnect struct {
 	Region            aws.StringValue `json:"region,omitempty"`
 }
 
+// Possible values for DirectConnect.
 const (
 	InterconnectStateAvailable = "available"
 	InterconnectStateDeleted   = "deleted"
@@ -519,6 +521,7 @@ type VirtualInterface struct {
 	VLAN                  aws.IntegerValue    `json:"vlan,omitempty"`
 }
 
+// Possible values for DirectConnect.
 const (
 	VirtualInterfaceStateAvailable  = "available"
 	VirtualInterfaceStateConfirming = "confirming"

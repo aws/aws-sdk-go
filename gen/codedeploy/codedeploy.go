@@ -235,6 +235,7 @@ type ApplicationInfo struct {
 	LinkedToGitHub  aws.BooleanValue `json:"linkedToGitHub,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	ApplicationRevisionSortByFirstUsedTime = "firstUsedTime"
 	ApplicationRevisionSortByLastUsedTime  = "lastUsedTime"
@@ -267,6 +268,7 @@ type BatchGetDeploymentsOutput struct {
 	DeploymentsInfo []DeploymentInfo `json:"deploymentsInfo,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	BundleTypeTAR = "tar"
 	BundleTypeTGZ = "tgz"
@@ -353,6 +355,7 @@ type DeploymentConfigInfo struct {
 	MinimumHealthyHosts  *MinimumHealthyHosts `json:"minimumHealthyHosts,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	DeploymentCreatorAutoscaling = "autoscaling"
 	DeploymentCreatorUser        = "user"
@@ -397,6 +400,7 @@ type DeploymentOverview struct {
 	Succeeded  aws.LongValue `json:"Succeeded,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	DeploymentStatusCreated    = "Created"
 	DeploymentStatusFailed     = "Failed"
@@ -421,12 +425,14 @@ type EC2TagFilter struct {
 	Value aws.StringValue `json:"Value,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	EC2TagFilterTypeKeyAndValue = "KEY_AND_VALUE"
 	EC2TagFilterTypeKeyOnly     = "KEY_ONLY"
 	EC2TagFilterTypeValueOnly   = "VALUE_ONLY"
 )
 
+// Possible values for CodeDeploy.
 const (
 	ErrorCodeApplicationMissing       = "APPLICATION_MISSING"
 	ErrorCodeDeploymentGroupMissing   = "DEPLOYMENT_GROUP_MISSING"
@@ -527,6 +533,7 @@ type GitHubLocation struct {
 	Repository aws.StringValue `json:"repository,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	InstanceStatusFailed     = "Failed"
 	InstanceStatusInProgress = "InProgress"
@@ -545,6 +552,7 @@ type InstanceSummary struct {
 	Status          aws.StringValue  `json:"status,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	LifecycleErrorCodeScriptFailed        = "ScriptFailed"
 	LifecycleErrorCodeScriptMissing       = "ScriptMissing"
@@ -563,6 +571,7 @@ type LifecycleEvent struct {
 	Status             aws.StringValue `json:"status,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	LifecycleEventStatusFailed     = "Failed"
 	LifecycleEventStatusInProgress = "InProgress"
@@ -652,6 +661,7 @@ type ListDeploymentsOutput struct {
 	NextToken   aws.StringValue `json:"nextToken,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	ListStateFilterActionExclude = "exclude"
 	ListStateFilterActionIgnore  = "ignore"
@@ -664,6 +674,7 @@ type MinimumHealthyHosts struct {
 	Value aws.IntegerValue `json:"value,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	MinimumHealthyHostsTypeFleetPercent = "FLEET_PERCENT"
 	MinimumHealthyHostsTypeHostCount    = "HOST_COUNT"
@@ -683,6 +694,7 @@ type RevisionLocation struct {
 	S3Location     *S3Location     `json:"s3Location,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	RevisionLocationTypeGitHub = "GitHub"
 	RevisionLocationTypeS3     = "S3"
@@ -697,6 +709,7 @@ type S3Location struct {
 	Version    aws.StringValue `json:"version,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	SortOrderAscending  = "ascending"
 	SortOrderDescending = "descending"
@@ -713,6 +726,7 @@ type StopDeploymentOutput struct {
 	StatusMessage aws.StringValue `json:"statusMessage,omitempty"`
 }
 
+// Possible values for CodeDeploy.
 const (
 	StopStatusPending   = "Pending"
 	StopStatusSucceeded = "Succeeded"

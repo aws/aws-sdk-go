@@ -117,6 +117,7 @@ type {{ exportable $name }} struct {
 
 {{ end }}
 {{ else if $s.Enum }}
+// Possible values for {{ $.Name }}.
 const (
 {{ range $name, $value := $s.Enums }}
 {{ $name }} = {{ $value }}{{ end }}
@@ -185,6 +186,7 @@ type {{ exportable $name }} struct {
 
 {{ end }}
 {{ else if $s.Enum }}
+// Possible values for {{ $.Name }}.
 const (
 {{ range $name, $value := $s.Enums }}
 {{ $name }} = {{ $value }}{{ end }}
@@ -263,6 +265,7 @@ type {{ exportable $name }} struct {
 
 {{ end }}
 {{ else if $s.Enum }}
+// Possible values for {{ $.Name }}.
 const (
 {{ range $name, $value := $s.Enums }}
 {{ $name }} = {{ $value }}{{ end }}
@@ -581,6 +584,7 @@ type {{ exportable $name }} struct {
 
 {{ end }}
 {{ else if $s.Enum }}
+// Possible values for {{ $.Name }}.
 const (
 {{ range $name, $value := $s.Enums }}
 {{ $name }} = {{ $value }}{{ end }}
@@ -737,6 +741,7 @@ type {{ exportable $name }} struct {
 
 {{ end }}
 {{ else if $s.Enum }}
+// Possible values for {{ $.Name }}.
 const (
 {{ range $name, $value := $s.Enums }}
 {{ $name }} = {{ $value }}{{ end }}

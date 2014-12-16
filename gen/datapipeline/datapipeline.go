@@ -344,6 +344,7 @@ type Operator struct {
 	Values []string        `json:"values,omitempty"`
 }
 
+// Possible values for DataPipeline.
 const (
 	OperatorTypeBetween = "BETWEEN"
 	OperatorTypeEq      = "EQ"
@@ -496,6 +497,7 @@ type TaskObject struct {
 	TaskID     aws.StringValue           `json:"taskId,omitempty"`
 }
 
+// Possible values for DataPipeline.
 const (
 	TaskStatusFailed   = "FAILED"
 	TaskStatusFalse    = "FALSE"

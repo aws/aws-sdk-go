@@ -526,6 +526,7 @@ type PurgeQueueRequest struct {
 	QueueURL aws.StringValue `xml:"QueueUrl"`
 }
 
+// Possible values for SQS.
 const (
 	QueueAttributeNameApproximateNumberOfMessages           = "ApproximateNumberOfMessages"
 	QueueAttributeNameApproximateNumberOfMessagesDelayed    = "ApproximateNumberOfMessagesDelayed"

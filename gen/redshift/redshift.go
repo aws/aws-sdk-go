@@ -1760,6 +1760,7 @@ type SnapshotMessage struct {
 	Snapshots []Snapshot      `xml:"DescribeClusterSnapshotsResult>Snapshots>Snapshot"`
 }
 
+// Possible values for RedShift.
 const (
 	SourceTypeCluster               = "cluster"
 	SourceTypeClusterParameterGroup = "cluster-parameter-group"

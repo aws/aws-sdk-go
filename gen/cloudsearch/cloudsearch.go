@@ -302,6 +302,7 @@ type AccessPoliciesStatus struct {
 	Status  *OptionStatus   `xml:"Status"`
 }
 
+// Possible values for CloudSearch.
 const (
 	AlgorithmicStemmingFull    = "full"
 	AlgorithmicStemmingLight   = "light"
@@ -325,6 +326,7 @@ type AnalysisScheme struct {
 	AnalysisSchemeName     aws.StringValue  `xml:"AnalysisSchemeName"`
 }
 
+// Possible values for CloudSearch.
 const (
 	AnalysisSchemeLanguageAr     = "ar"
 	AnalysisSchemeLanguageBg     = "bg"
@@ -690,6 +692,7 @@ type IndexFieldStatus struct {
 	Status  *OptionStatus `xml:"Status"`
 }
 
+// Possible values for CloudSearch.
 const (
 	IndexFieldTypeDate         = "date"
 	IndexFieldTypeDateArray    = "date-array"
@@ -763,6 +766,7 @@ type LiteralOptions struct {
 	SourceField   aws.StringValue  `xml:"SourceField"`
 }
 
+// Possible values for CloudSearch.
 const (
 	OptionStateActive                 = "Active"
 	OptionStateFailedToValidate       = "FailedToValidate"
@@ -779,6 +783,7 @@ type OptionStatus struct {
 	UpdateVersion   aws.IntegerValue `xml:"UpdateVersion"`
 }
 
+// Possible values for CloudSearch.
 const (
 	PartitionInstanceTypeSearchM1Large   = "search.m1.large"
 	PartitionInstanceTypeSearchM1Small   = "search.m1.small"
@@ -810,6 +815,7 @@ type Suggester struct {
 	SuggesterName            aws.StringValue           `xml:"SuggesterName"`
 }
 
+// Possible values for CloudSearch.
 const (
 	SuggesterFuzzyMatchingHigh = "high"
 	SuggesterFuzzyMatchingLow  = "low"

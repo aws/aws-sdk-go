@@ -2075,6 +2075,7 @@ type AccountAttribute struct {
 	AttributeValues []AccountAttributeValue `ec2:"AttributeValues" xml:"attributeValueSet>item"`
 }
 
+// Possible values for EC2.
 const (
 	AccountAttributeNameDefaultVPC         = "default-vpc"
 	AccountAttributeNameSupportedPlatforms = "supported-platforms"
@@ -2110,6 +2111,7 @@ type AllocateAddressResult struct {
 	PublicIP     aws.StringValue `ec2:"PublicIp" xml:"publicIp"`
 }
 
+// Possible values for EC2.
 const (
 	ArchitectureValuesI386  = "i386"
 	ArchitectureValuesX8664 = "x86_64"
@@ -2198,6 +2200,7 @@ type AttachVPNGatewayResult struct {
 	VPCAttachment *VPCAttachment `ec2:"VpcAttachment" xml:"attachment"`
 }
 
+// Possible values for EC2.
 const (
 	AttachmentStatusAttached  = "attached"
 	AttachmentStatusAttaching = "attaching"
@@ -2255,6 +2258,7 @@ type AvailabilityZoneMessage struct {
 	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
+// Possible values for EC2.
 const (
 	AvailabilityZoneStateAvailable = "available"
 )
@@ -2302,6 +2306,7 @@ type BundleTaskError struct {
 	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
+// Possible values for EC2.
 const (
 	BundleTaskStateBundling           = "bundling"
 	BundleTaskStateCancelling         = "cancelling"
@@ -2345,6 +2350,7 @@ type CancelReservedInstancesListingResult struct {
 	ReservedInstancesListings []ReservedInstancesListing `ec2:"ReservedInstancesListings" xml:"reservedInstancesListingsSet>item"`
 }
 
+// Possible values for EC2.
 const (
 	CancelSpotInstanceRequestStateActive    = "active"
 	CancelSpotInstanceRequestStateCancelled = "cancelled"
@@ -2382,6 +2388,7 @@ type ConfirmProductInstanceResult struct {
 	OwnerID aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
 }
 
+// Possible values for EC2.
 const (
 	ContainerFormatOva = "ova"
 )
@@ -2397,6 +2404,7 @@ type ConversionTask struct {
 	Tags             []Tag                      `ec2:"Tags" xml:"tagSet>item"`
 }
 
+// Possible values for EC2.
 const (
 	ConversionTaskStateActive     = "active"
 	ConversionTaskStateCancelled  = "cancelled"
@@ -2717,6 +2725,7 @@ type CreateVPNGatewayResult struct {
 	VPNGateway *VPNGateway `ec2:"VpnGateway" xml:"vpnGateway"`
 }
 
+// Possible values for EC2.
 const (
 	CurrencyCodeValuesUsd = "USD"
 )
@@ -2731,6 +2740,7 @@ type CustomerGateway struct {
 	Type              aws.StringValue `ec2:"Type" xml:"type"`
 }
 
+// Possible values for EC2.
 const (
 	DatafeedSubscriptionStateActive   = "Active"
 	DatafeedSubscriptionStateInactive = "Inactive"
@@ -3436,6 +3446,7 @@ type DetachVPNGatewayRequest struct {
 	VPNGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
+// Possible values for EC2.
 const (
 	DeviceTypeEBS           = "ebs"
 	DeviceTypeInstanceStore = "instance-store"
@@ -3495,6 +3506,7 @@ type DiskImageDetail struct {
 	ImportManifestURL aws.StringValue `ec2:"ImportManifestUrl" xml:"importManifestUrl"`
 }
 
+// Possible values for EC2.
 const (
 	DiskImageFormatRaw  = "RAW"
 	DiskImageFormatVHD  = "VHD"
@@ -3507,6 +3519,7 @@ type DiskImageVolumeDescription struct {
 	Size aws.LongValue   `ec2:"Size" xml:"size"`
 }
 
+// Possible values for EC2.
 const (
 	DomainTypeStandard = "standard"
 	DomainTypeVPC      = "vpc"
@@ -3548,6 +3561,7 @@ type EnableVolumeIORequest struct {
 	VolumeID aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
 
+// Possible values for EC2.
 const (
 	EventCodeInstanceReboot     = "instance-reboot"
 	EventCodeInstanceRetirement = "instance-retirement"
@@ -3556,6 +3570,7 @@ const (
 	EventCodeSystemReboot       = "system-reboot"
 )
 
+// Possible values for EC2.
 const (
 	ExportEnvironmentCitrix    = "citrix"
 	ExportEnvironmentMicrosoft = "microsoft"
@@ -3572,6 +3587,7 @@ type ExportTask struct {
 	StatusMessage         aws.StringValue        `ec2:"StatusMessage" xml:"statusMessage"`
 }
 
+// Possible values for EC2.
 const (
 	ExportTaskStateActive     = "active"
 	ExportTaskStateCancelled  = "cancelled"
@@ -3601,6 +3617,7 @@ type Filter struct {
 	Values []string        `ec2:"Value" xml:"Value>item"`
 }
 
+// Possible values for EC2.
 const (
 	GatewayTypeIPsec1 = "ipsec.1"
 )
@@ -3637,6 +3654,7 @@ type GroupIdentifier struct {
 	GroupName aws.StringValue `ec2:"GroupName" xml:"groupName"`
 }
 
+// Possible values for EC2.
 const (
 	HypervisorTypeOvm = "ovm"
 	HypervisorTypeXen = "xen"
@@ -3698,6 +3716,7 @@ type ImageAttribute struct {
 	SRIOVNetSupport     *AttributeValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 }
 
+// Possible values for EC2.
 const (
 	ImageAttributeNameBlockDeviceMapping = "blockDeviceMapping"
 	ImageAttributeNameDescription        = "description"
@@ -3707,11 +3726,13 @@ const (
 	ImageAttributeNameRAMDisk            = "ramdisk"
 )
 
+// Possible values for EC2.
 const (
 	ImageStateAvailable    = "available"
 	ImageStateDeregistered = "deregistered"
 )
 
+// Possible values for EC2.
 const (
 	ImageTypeValuesKernel  = "kernel"
 	ImageTypeValuesMachine = "machine"
@@ -3861,6 +3882,7 @@ type InstanceAttribute struct {
 	UserData                          *AttributeValue              `ec2:"UserData" xml:"userData"`
 }
 
+// Possible values for EC2.
 const (
 	InstanceAttributeNameBlockDeviceMapping                = "blockDeviceMapping"
 	InstanceAttributeNameDisableAPITermination             = "disableApiTermination"
@@ -3903,6 +3925,7 @@ type InstanceExportDetails struct {
 	TargetEnvironment aws.StringValue `ec2:"TargetEnvironment" xml:"targetEnvironment"`
 }
 
+// Possible values for EC2.
 const (
 	InstanceLifecycleTypeSpot = "spot"
 )
@@ -3982,6 +4005,7 @@ type InstanceStateChange struct {
 	PreviousState *InstanceState  `ec2:"PreviousState" xml:"previousState"`
 }
 
+// Possible values for EC2.
 const (
 	InstanceStateNamePending      = "pending"
 	InstanceStateNameRunning      = "running"
@@ -4022,6 +4046,7 @@ type InstanceStatusSummary struct {
 	Status  aws.StringValue         `ec2:"Status" xml:"status"`
 }
 
+// Possible values for EC2.
 const (
 	InstanceTypeC1Medium   = "c1.medium"
 	InstanceTypeC1Xlarge   = "c1.xlarge"
@@ -4134,6 +4159,7 @@ type LaunchSpecification struct {
 	UserData            aws.StringValue                         `ec2:"UserData" xml:"userData"`
 }
 
+// Possible values for EC2.
 const (
 	ListingStateAvailable = "available"
 	ListingStateCancelled = "cancelled"
@@ -4141,6 +4167,7 @@ const (
 	ListingStateSold      = "sold"
 )
 
+// Possible values for EC2.
 const (
 	ListingStatusActive    = "active"
 	ListingStatusCancelled = "cancelled"
@@ -4250,6 +4277,7 @@ type Monitoring struct {
 	State aws.StringValue `ec2:"State" xml:"state"`
 }
 
+// Possible values for EC2.
 const (
 	MonitoringStateDisabled = "disabled"
 	MonitoringStateEnabled  = "enabled"
@@ -4332,6 +4360,7 @@ type NetworkInterfaceAttachmentChanges struct {
 	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
 }
 
+// Possible values for EC2.
 const (
 	NetworkInterfaceAttributeAttachment      = "attachment"
 	NetworkInterfaceAttributeDescription     = "description"
@@ -4347,6 +4376,7 @@ type NetworkInterfacePrivateIPAddress struct {
 	PrivateIPAddress aws.StringValue              `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 }
 
+// Possible values for EC2.
 const (
 	NetworkInterfaceStatusAttaching = "attaching"
 	NetworkInterfaceStatusAvailable = "available"
@@ -4360,12 +4390,14 @@ type NewDHCPConfiguration struct {
 	Values []string        `ec2:"Value" xml:"Value>item"`
 }
 
+// Possible values for EC2.
 const (
 	OfferingTypeValuesHeavyUtilization  = "Heavy Utilization"
 	OfferingTypeValuesLightUtilization  = "Light Utilization"
 	OfferingTypeValuesMediumUtilization = "Medium Utilization"
 )
 
+// Possible values for EC2.
 const (
 	PermissionGroupAll = "all"
 )
@@ -4384,6 +4416,7 @@ type PlacementGroup struct {
 	Strategy  aws.StringValue `ec2:"Strategy" xml:"strategy"`
 }
 
+// Possible values for EC2.
 const (
 	PlacementGroupStateAvailable = "available"
 	PlacementGroupStateDeleted   = "deleted"
@@ -4391,10 +4424,12 @@ const (
 	PlacementGroupStatePending   = "pending"
 )
 
+// Possible values for EC2.
 const (
 	PlacementStrategyCluster = "cluster"
 )
 
+// Possible values for EC2.
 const (
 	PlatformValuesWindows = "Windows"
 )
@@ -4438,6 +4473,7 @@ type ProductCode struct {
 	ProductCodeType aws.StringValue `ec2:"ProductCodeType" xml:"type"`
 }
 
+// Possible values for EC2.
 const (
 	ProductCodeValuesDevpay      = "devpay"
 	ProductCodeValuesMarketplace = "marketplace"
@@ -4461,6 +4497,7 @@ type PurchaseReservedInstancesOfferingResult struct {
 	ReservedInstancesID aws.StringValue `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
 }
 
+// Possible values for EC2.
 const (
 	RIProductDescriptionLinuxUnix          = "Linux/UNIX"
 	RIProductDescriptionLinuxUnixamazonVPC = "Linux/UNIX (Amazon VPC)"
@@ -4480,6 +4517,7 @@ type RecurringCharge struct {
 	Frequency aws.StringValue `ec2:"Frequency" xml:"frequency"`
 }
 
+// Possible values for EC2.
 const (
 	RecurringChargeFrequencyHourly = "Hourly"
 )
@@ -4576,6 +4614,7 @@ type ReplaceRouteTableAssociationResult struct {
 	NewAssociationID aws.StringValue `ec2:"NewAssociationId" xml:"newAssociationId"`
 }
 
+// Possible values for EC2.
 const (
 	ReportInstanceReasonCodesInstanceStuckInState     = "instance-stuck-in-state"
 	ReportInstanceReasonCodesNotAcceptingCredentials  = "not-accepting-credentials"
@@ -4599,6 +4638,7 @@ type ReportInstanceStatusRequest struct {
 	Status      aws.StringValue  `ec2:"Status" xml:"status"`
 }
 
+// Possible values for EC2.
 const (
 	ReportStatusTypeImpaired = "impaired"
 	ReportStatusTypeOK       = "ok"
@@ -4657,6 +4697,7 @@ type ReservedInstanceLimitPrice struct {
 	CurrencyCode aws.StringValue `ec2:"CurrencyCode" xml:"currencyCode"`
 }
 
+// Possible values for EC2.
 const (
 	ReservedInstanceStateActive         = "active"
 	ReservedInstanceStatePaymentFailed  = "payment-failed"
@@ -4747,6 +4788,7 @@ type ReservedInstancesOffering struct {
 	UsagePrice                  aws.FloatValue    `ec2:"UsagePrice" xml:"usagePrice"`
 }
 
+// Possible values for EC2.
 const (
 	ResetImageAttributeNameLaunchPermission = "launchPermission"
 )
@@ -4779,6 +4821,7 @@ type ResetSnapshotAttributeRequest struct {
 	SnapshotID aws.StringValue  `ec2:"SnapshotId" xml:"SnapshotId"`
 }
 
+// Possible values for EC2.
 const (
 	ResourceTypeCustomerGateway      = "customer-gateway"
 	ResourceTypeDHCPOptions          = "dhcp-options"
@@ -4838,12 +4881,14 @@ type Route struct {
 	VPCPeeringConnectionID aws.StringValue `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
+// Possible values for EC2.
 const (
 	RouteOriginCreateRoute               = "CreateRoute"
 	RouteOriginCreateRouteTable          = "CreateRouteTable"
 	RouteOriginEnableVGWRoutePropagation = "EnableVgwRoutePropagation"
 )
 
+// Possible values for EC2.
 const (
 	RouteStateActive    = "active"
 	RouteStateBlackhole = "blackhole"
@@ -4867,6 +4912,7 @@ type RouteTableAssociation struct {
 	SubnetID                aws.StringValue  `ec2:"SubnetId" xml:"subnetId"`
 }
 
+// Possible values for EC2.
 const (
 	RuleActionAllow = "allow"
 	RuleActionDeny  = "deny"
@@ -4925,6 +4971,7 @@ type SecurityGroup struct {
 	VPCID               aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
+// Possible values for EC2.
 const (
 	ShutdownBehaviorStop      = "stop"
 	ShutdownBehaviorTerminate = "terminate"
@@ -4946,11 +4993,13 @@ type Snapshot struct {
 	VolumeSize  aws.IntegerValue `ec2:"VolumeSize" xml:"volumeSize"`
 }
 
+// Possible values for EC2.
 const (
 	SnapshotAttributeNameCreateVolumePermission = "createVolumePermission"
 	SnapshotAttributeNameProductCodes           = "productCodes"
 )
 
+// Possible values for EC2.
 const (
 	SnapshotStateCompleted = "completed"
 	SnapshotStateError     = "error"
@@ -4986,6 +5035,7 @@ type SpotInstanceRequest struct {
 	ValidUntil               time.Time               `ec2:"ValidUntil" xml:"validUntil"`
 }
 
+// Possible values for EC2.
 const (
 	SpotInstanceStateActive    = "active"
 	SpotInstanceStateCancelled = "cancelled"
@@ -5007,6 +5057,7 @@ type SpotInstanceStatus struct {
 	UpdateTime time.Time       `ec2:"UpdateTime" xml:"updateTime"`
 }
 
+// Possible values for EC2.
 const (
 	SpotInstanceTypeOneTime    = "one-time"
 	SpotInstanceTypePersistent = "persistent"
@@ -5045,10 +5096,12 @@ type StateReason struct {
 	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
+// Possible values for EC2.
 const (
 	StatusNameReachability = "reachability"
 )
 
+// Possible values for EC2.
 const (
 	StatusTypeFailed           = "failed"
 	StatusTypeInsufficientData = "insufficient-data"
@@ -5085,11 +5138,13 @@ type Subnet struct {
 	VPCID                   aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
+// Possible values for EC2.
 const (
 	SubnetStateAvailable = "available"
 	SubnetStatePending   = "pending"
 )
 
+// Possible values for EC2.
 const (
 	SummaryStatusImpaired         = "impaired"
 	SummaryStatusInsufficientData = "insufficient-data"
@@ -5111,11 +5166,13 @@ type TagDescription struct {
 	Value        aws.StringValue `ec2:"Value" xml:"value"`
 }
 
+// Possible values for EC2.
 const (
 	TelemetryStatusDown = "DOWN"
 	TelemetryStatusUp   = "UP"
 )
 
+// Possible values for EC2.
 const (
 	TenancyDedicated = "dedicated"
 	TenancyDefault   = "default"
@@ -5165,6 +5222,7 @@ type VGWTelemetry struct {
 	StatusMessage      aws.StringValue  `ec2:"StatusMessage" xml:"statusMessage"`
 }
 
+// Possible values for EC2.
 const (
 	VirtualizationTypeHVM         = "hvm"
 	VirtualizationTypeParavirtual = "paravirtual"
@@ -5196,6 +5254,7 @@ type VolumeAttachment struct {
 	VolumeID            aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
 
+// Possible values for EC2.
 const (
 	VolumeAttachmentStateAttached  = "attached"
 	VolumeAttachmentStateAttaching = "attaching"
@@ -5203,6 +5262,7 @@ const (
 	VolumeAttachmentStateDetaching = "detaching"
 )
 
+// Possible values for EC2.
 const (
 	VolumeAttributeNameAutoEnableIo = "autoEnableIO"
 	VolumeAttributeNameProductCodes = "productCodes"
@@ -5213,6 +5273,7 @@ type VolumeDetail struct {
 	Size aws.LongValue `ec2:"Size" xml:"size"`
 }
 
+// Possible values for EC2.
 const (
 	VolumeStateAvailable = "available"
 	VolumeStateCreating  = "creating"
@@ -5251,6 +5312,7 @@ type VolumeStatusInfo struct {
 	Status  aws.StringValue       `ec2:"Status" xml:"status"`
 }
 
+// Possible values for EC2.
 const (
 	VolumeStatusInfoStatusImpaired         = "impaired"
 	VolumeStatusInfoStatusInsufficientData = "insufficient-data"
@@ -5266,11 +5328,13 @@ type VolumeStatusItem struct {
 	VolumeStatus     *VolumeStatusInfo    `ec2:"VolumeStatus" xml:"volumeStatus"`
 }
 
+// Possible values for EC2.
 const (
 	VolumeStatusNameIoEnabled     = "io-enabled"
 	VolumeStatusNameIoPerformance = "io-performance"
 )
 
+// Possible values for EC2.
 const (
 	VolumeTypeGp2      = "gp2"
 	VolumeTypeIo1      = "io1"
@@ -5294,6 +5358,7 @@ type VPCAttachment struct {
 	VPCID aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
+// Possible values for EC2.
 const (
 	VPCAttributeNameEnableDNSHostnames = "enableDnsHostnames"
 	VPCAttributeNameEnableDNSSupport   = "enableDnsSupport"
@@ -5322,6 +5387,7 @@ type VPCPeeringConnectionVPCInfo struct {
 	VPCID     aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
+// Possible values for EC2.
 const (
 	VPCStateAvailable = "available"
 	VPCStatePending   = "pending"
@@ -5361,6 +5427,7 @@ type VPNGateway struct {
 	VPNGatewayID     aws.StringValue `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
 }
 
+// Possible values for EC2.
 const (
 	VPNStateAvailable = "available"
 	VPNStateDeleted   = "deleted"
@@ -5375,6 +5442,7 @@ type VPNStaticRoute struct {
 	State                aws.StringValue `ec2:"State" xml:"state"`
 }
 
+// Possible values for EC2.
 const (
 	VPNStaticRouteSourceStatic = "Static"
 )

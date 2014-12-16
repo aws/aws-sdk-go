@@ -3495,6 +3495,7 @@ type Bucket struct {
 	Name         aws.StringValue `xml:"Name"`
 }
 
+// Possible values for S3.
 const (
 	BucketCannedACLAuthenticatedRead = "authenticated-read"
 	BucketCannedACLPrivate           = "private"
@@ -3502,6 +3503,7 @@ const (
 	BucketCannedACLPublicReadWrite   = "public-read-write"
 )
 
+// Possible values for S3.
 const (
 	BucketLocationConstraintApNortheast1 = "ap-northeast-1"
 	BucketLocationConstraintApSoutheast1 = "ap-southeast-1"
@@ -3520,12 +3522,14 @@ type BucketLoggingStatus struct {
 	LoggingEnabled *LoggingEnabled `xml:"LoggingEnabled"`
 }
 
+// Possible values for S3.
 const (
 	BucketLogsPermissionFullControl = "FULL_CONTROL"
 	BucketLogsPermissionRead        = "READ"
 	BucketLogsPermissionWrite       = "WRITE"
 )
 
+// Possible values for S3.
 const (
 	BucketVersioningStatusEnabled   = "Enabled"
 	BucketVersioningStatusSuspended = "Suspended"
@@ -3791,6 +3795,7 @@ type DeletedObject struct {
 	VersionID             aws.StringValue  `xml:"VersionId"`
 }
 
+// Possible values for S3.
 const (
 	EncodingTypeURL = "url"
 )
@@ -3808,6 +3813,7 @@ type ErrorDocument struct {
 	Key aws.StringValue `xml:"Key"`
 }
 
+// Possible values for S3.
 const (
 	EventS3ObjectCreatedCompleteMultipartUpload = "s3:ObjectCreated:CompleteMultipartUpload"
 	EventS3ObjectCreatedCopy                    = "s3:ObjectCreated:Copy"
@@ -3816,6 +3822,7 @@ const (
 	EventS3ReducedRedundancyLostObject          = "s3:ReducedRedundancyLostObject"
 )
 
+// Possible values for S3.
 const (
 	ExpirationStatusDisabled = "Disabled"
 	ExpirationStatusEnabled  = "Enabled"
@@ -4207,16 +4214,19 @@ type LoggingEnabled struct {
 	TargetPrefix aws.StringValue `xml:"TargetPrefix"`
 }
 
+// Possible values for S3.
 const (
 	MFADeleteDisabled = "Disabled"
 	MFADeleteEnabled  = "Enabled"
 )
 
+// Possible values for S3.
 const (
 	MFADeleteStatusDisabled = "Disabled"
 	MFADeleteStatusEnabled  = "Enabled"
 )
 
+// Possible values for S3.
 const (
 	MetadataDirectiveCopy    = "COPY"
 	MetadataDirectiveReplace = "REPLACE"
@@ -4260,6 +4270,7 @@ type Object struct {
 	StorageClass aws.StringValue  `xml:"StorageClass"`
 }
 
+// Possible values for S3.
 const (
 	ObjectCannedACLAuthenticatedRead      = "authenticated-read"
 	ObjectCannedACLBucketOwnerFullControl = "bucket-owner-full-control"
@@ -4275,6 +4286,7 @@ type ObjectIdentifier struct {
 	VersionID aws.StringValue `xml:"VersionId"`
 }
 
+// Possible values for S3.
 const (
 	ObjectStorageClassGlacier           = "GLACIER"
 	ObjectStorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
@@ -4293,6 +4305,7 @@ type ObjectVersion struct {
 	VersionID    aws.StringValue  `xml:"VersionId"`
 }
 
+// Possible values for S3.
 const (
 	ObjectVersionStorageClassStandard = "STANDARD"
 )
@@ -4311,11 +4324,13 @@ type Part struct {
 	Size         aws.IntegerValue `xml:"Size"`
 }
 
+// Possible values for S3.
 const (
 	PayerBucketOwner = "BucketOwner"
 	PayerRequester   = "Requester"
 )
 
+// Possible values for S3.
 const (
 	PermissionFullControl = "FULL_CONTROL"
 	PermissionRead        = "READ"
@@ -4324,6 +4339,7 @@ const (
 	PermissionWriteAcp    = "WRITE_ACP"
 )
 
+// Possible values for S3.
 const (
 	ProtocolHTTP  = "http"
 	ProtocolHTTPS = "https"
@@ -4517,10 +4533,12 @@ type Rule struct {
 	Transition                  *Transition                  `xml:"Transition"`
 }
 
+// Possible values for S3.
 const (
 	ServerSideEncryptionAES256 = "AES256"
 )
 
+// Possible values for S3.
 const (
 	StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
 	StorageClassStandard          = "STANDARD"
@@ -4558,10 +4576,12 @@ type Transition struct {
 	StorageClass aws.StringValue  `xml:"StorageClass"`
 }
 
+// Possible values for S3.
 const (
 	TransitionStorageClassGlacier = "GLACIER"
 )
 
+// Possible values for S3.
 const (
 	TypeAmazonCustomerByEmail = "AmazonCustomerByEmail"
 	TypeCanonicalUser         = "CanonicalUser"

@@ -153,6 +153,7 @@ type Job struct {
 	JobType      aws.StringValue  `xml:"JobType"`
 }
 
+// Possible values for ImportExport.
 const (
 	JobTypeExport = "Export"
 	JobTypeImport = "Import"

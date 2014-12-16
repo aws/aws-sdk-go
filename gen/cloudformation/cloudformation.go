@@ -226,6 +226,7 @@ type CancelUpdateStackInput struct {
 	StackName aws.StringValue `xml:"StackName"`
 }
 
+// Possible values for CloudFormation.
 const (
 	CapabilityCapabilityIAM = "CAPABILITY_IAM"
 )
@@ -375,6 +376,7 @@ type ListStacksOutput struct {
 	StackSummaries []StackSummary  `xml:"ListStacksResult>StackSummaries>member"`
 }
 
+// Possible values for CloudFormation.
 const (
 	OnFailureDelete    = "DELETE"
 	OnFailureDoNothing = "DO_NOTHING"
@@ -404,11 +406,13 @@ type ParameterDeclaration struct {
 	ParameterType aws.StringValue  `xml:"ParameterType"`
 }
 
+// Possible values for CloudFormation.
 const (
 	ResourceSignalStatusFailure = "FAILURE"
 	ResourceSignalStatusSuccess = "SUCCESS"
 )
 
+// Possible values for CloudFormation.
 const (
 	ResourceStatusCreateComplete   = "CREATE_COMPLETE"
 	ResourceStatusCreateFailed     = "CREATE_FAILED"
@@ -506,6 +510,7 @@ type StackResourceSummary struct {
 	ResourceType         aws.StringValue `xml:"ResourceType"`
 }
 
+// Possible values for CloudFormation.
 const (
 	StackStatusCreateComplete                          = "CREATE_COMPLETE"
 	StackStatusCreateFailed                            = "CREATE_FAILED"

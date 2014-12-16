@@ -1376,6 +1376,7 @@ type GeoRestriction struct {
 	RestrictionType aws.StringValue  `xml:"RestrictionType"`
 }
 
+// Possible values for CloudFront.
 const (
 	GeoRestrictionTypeBlacklist = "blacklist"
 	GeoRestrictionTypeNone      = "none"
@@ -1496,6 +1497,7 @@ type InvalidationSummary struct {
 	Status     aws.StringValue `xml:"Status"`
 }
 
+// Possible values for CloudFront.
 const (
 	ItemSelectionAll       = "all"
 	ItemSelectionNone      = "none"
@@ -1561,6 +1563,7 @@ type LoggingConfig struct {
 	Prefix         aws.StringValue  `xml:"Prefix"`
 }
 
+// Possible values for CloudFront.
 const (
 	MethodDelete  = "DELETE"
 	MethodGet     = "GET"
@@ -1571,6 +1574,7 @@ const (
 	MethodPut     = "PUT"
 )
 
+// Possible values for CloudFront.
 const (
 	MinimumProtocolVersionSSLv3 = "SSLv3"
 	MinimumProtocolVersionTLSv1 = "TLSv1"
@@ -1584,6 +1588,7 @@ type Origin struct {
 	S3OriginConfig     *S3OriginConfig     `xml:"S3OriginConfig"`
 }
 
+// Possible values for CloudFront.
 const (
 	OriginProtocolPolicyHTTPOnly    = "http-only"
 	OriginProtocolPolicyMatchViewer = "match-viewer"
@@ -1601,6 +1606,7 @@ type Paths struct {
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
+// Possible values for CloudFront.
 const (
 	PriceClassPriceClass100 = "PriceClass_100"
 	PriceClassPriceClass200 = "PriceClass_200"
@@ -1623,6 +1629,7 @@ type S3OriginConfig struct {
 	OriginAccessIdentity aws.StringValue `xml:"OriginAccessIdentity"`
 }
 
+// Possible values for CloudFront.
 const (
 	SSLSupportMethodSNIOnly = "sni-only"
 	SSLSupportMethodVIP     = "vip"
@@ -1741,6 +1748,7 @@ type ViewerCertificate struct {
 	SSLSupportMethod             aws.StringValue  `xml:"SSLSupportMethod"`
 }
 
+// Possible values for CloudFront.
 const (
 	ViewerProtocolPolicyAllowAll        = "allow-all"
 	ViewerProtocolPolicyHTTPSOnly       = "https-only"
