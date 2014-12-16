@@ -98,23 +98,26 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 
 		resp, err := http.Get(metadataCredentialsEndpoint)
 		if err != nil {
-			return nil, err
+			return nil, errors.Annotate(err, "listing IAM credentials")
 		}
 		defer resp.Body.Close()
+
 		// Take the first line of the body of the metadata endpoint
 		s := bufio.NewScanner(resp.Body)
-		s.Scan()
-		if s.Err() != nil {
-			return nil, s.Err()
+		if !s.Scan() {
+			return nil, errors.NotFoundf("unable to find default IAM credentials")
+		} else if s.Err() != nil {
+			return nil, errors.Annotate(s.Err(), "listing IAM credentials")
 		}
 
 		resp, err = http.Get(metadataCredentialsEndpoint + s.Text())
 		if err != nil {
-			return nil, err
+			return nil, errors.Annotatef(err, "getting %s IAM credentials", s.Text())
 		}
 		defer resp.Body.Close()
+
 		if err := json.NewDecoder(resp.Body).Decode(&body); err != nil {
-			return nil, err
+			return nil, errors.Annotatef(err, "decoding %s IAM credentials", s.Text())
 		}
 
 		p.creds = Credentials{
