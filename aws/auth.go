@@ -18,7 +18,7 @@ type Credentials struct {
 type CredentialsProvider interface {
 	// Credentials returns a set of credentials (or an error if no credentials
 	// could be provided).
-	Credentials() (Credentials, error)
+	Credentials() (*Credentials, error)
 }
 
 var (
@@ -69,6 +69,6 @@ type staticCredentialsProvider struct {
 	creds Credentials
 }
 
-func (p staticCredentialsProvider) Credentials() (Credentials, error) {
-	return p.creds, nil
+func (p staticCredentialsProvider) Credentials() (*Credentials, error) {
+	return &p.creds, nil
 }
