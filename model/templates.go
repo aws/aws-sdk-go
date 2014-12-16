@@ -116,6 +116,11 @@ type {{ exportable $name }} struct {
 }
 
 {{ end }}
+{{ else if $s.Enum }}
+const (
+{{ range $name, $value := $s.Enums }}
+{{ $name }} = {{ $value }}{{ end }}
+)
 {{ end }}
 {{ end }}
 
@@ -179,6 +184,11 @@ type {{ exportable $name }} struct {
 }
 
 {{ end }}
+{{ else if $s.Enum }}
+const (
+{{ range $name, $value := $s.Enums }}
+{{ $name }} = {{ $value }}{{ end }}
+)
 {{ end }}
 {{ end }}
 
@@ -252,6 +262,11 @@ type {{ exportable $name }} struct {
 }
 
 {{ end }}
+{{ else if $s.Enum }}
+const (
+{{ range $name, $value := $s.Enums }}
+{{ $name }} = {{ $value }}{{ end }}
+)
 {{ end }}
 {{ end }}
 
@@ -565,6 +580,11 @@ type {{ exportable $name }} struct {
 }
 
 {{ end }}
+{{ else if $s.Enum }}
+const (
+{{ range $name, $value := $s.Enums }}
+{{ $name }} = {{ $value }}{{ end }}
+)
 {{ end }}
 {{ end }}
 
@@ -716,6 +736,11 @@ type {{ exportable $name }} struct {
 }
 
 {{ end }}
+{{ else if $s.Enum }}
+const (
+{{ range $name, $value := $s.Enums }}
+{{ $name }} = {{ $value }}{{ end }}
+)
 {{ end }}
 {{ end }}
 

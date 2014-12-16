@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"regexp"
 	"strings"
 )
 
@@ -216,6 +217,39 @@ type Shape struct {
 	Sensitive     bool
 	Wrapper       bool
 	Payload       string
+	Enum          []string
+}
+
+var enumStrip = regexp.MustCompile(`[()\s]`)
+var enumDelims = regexp.MustCompile(`[-_:\./]+`)
+var enumCamelCase = regexp.MustCompile(`([a-z])([A-Z])`)
+
+// Enums returns a map of enum constant names to their values.
+func (s *Shape) Enums() map[string]string {
+	if s.Enum == nil {
+		return nil
+	}
+
+	fix := func(s string) string {
+		s = enumStrip.ReplaceAllLiteralString(s, "")
+		s = enumCamelCase.ReplaceAllString(s, "$1-$2")
+		parts := enumDelims.Split(s, -1)
+		for i, v := range parts {
+			v = strings.ToLower(v)
+			parts[i] = exportable(v)
+		}
+		return strings.Join(parts, "")
+	}
+
+	enums := map[string]string{}
+	name := exportable(s.Name)
+	for _, e := range s.Enum {
+		if e != "" {
+			enums[name+fix(e)] = fmt.Sprintf("%q", e)
+		}
+	}
+
+	return enums
 }
 
 // Key returns the shape's key shape, if any.
