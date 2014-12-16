@@ -303,7 +303,7 @@ type BucketInfo struct {
 
 const (
 	ContentTypeApplicationJSON = "application/json"
-	ContentTypeApplicationXml  = "application/xml"
+	ContentTypeApplicationXML  = "application/xml"
 )
 
 // DocumentServiceWarning is undocumented.

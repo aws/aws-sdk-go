@@ -102,4 +102,5 @@ var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Vlan`):         "VLAN",
 	regexp.MustCompile(`Vpc`):          "VPC",
 	regexp.MustCompile(`Vpn`):          "VPN",
+	regexp.MustCompile(`Xml`):          "XML",
 }
