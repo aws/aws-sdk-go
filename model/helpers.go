@@ -98,6 +98,7 @@ var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Uri`):          "URI",
 	regexp.MustCompile(`Url`):          "URL",
 	regexp.MustCompile(`Vgw`):          "VGW",
+	regexp.MustCompile(`Vip`):          "VIP",
 	regexp.MustCompile(`Vlan`):         "VLAN",
 	regexp.MustCompile(`Vpc`):          "VPC",
 	regexp.MustCompile(`Vpn`):          "VPN",

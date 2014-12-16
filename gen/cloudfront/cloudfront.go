@@ -1625,7 +1625,7 @@ type S3OriginConfig struct {
 
 const (
 	SSLSupportMethodSNIOnly = "sni-only"
-	SSLSupportMethodVip     = "vip"
+	SSLSupportMethodVIP     = "vip"
 )
 
 // Signer is undocumented.
