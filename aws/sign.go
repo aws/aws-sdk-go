@@ -19,7 +19,7 @@ import (
 type Context struct {
 	Service     string
 	Region      string
-	Credentials Credentials
+	Credentials CredentialsProvider
 }
 
 func (c *Context) sign(r *http.Request) error {
@@ -40,16 +40,21 @@ func (c *Context) sign(r *http.Request) error {
 	}
 	r.Header.Set("x-amz-content-sha256", chash)
 
-	if s := c.Credentials.SecurityToken(); s != "" {
+	creds, err := c.Credentials()
+	if err != nil {
+		return err
+	}
+
+	if s := creds.SecurityToken; s != "" {
 		r.Header.Set("X-Amz-Security-Token", s)
 	}
 
-	k := c.signature(t)
+	k := c.signature(creds.SecretAccessKey, t)
 	h := hmac.New(sha256.New, k)
 	c.writeStringToSign(h, t, r, chash)
 
 	auth := bytes.NewBufferString("AWS4-HMAC-SHA256 ")
-	auth.Write([]byte("Credential=" + c.Credentials.AccessKeyID() + "/" + c.creds(t)))
+	auth.Write([]byte("Credential=" + creds.AccessKeyID + "/" + c.creds(t)))
 	auth.Write([]byte{',', ' '})
 	auth.Write([]byte("SignedHeaders="))
 	c.writeHeaderList(auth, r)
@@ -201,9 +206,9 @@ func payloadHash(r *http.Request) (string, error) {
 	return fmt.Sprintf("%x", h.Sum(nil)), nil
 }
 
-func (c *Context) signature(t time.Time) []byte {
+func (c *Context) signature(secretAccessKey string, t time.Time) []byte {
 	h := ghmac(
-		[]byte("AWS4"+c.Credentials.SecretAccessKey()),
+		[]byte("AWS4"+secretAccessKey),
 		[]byte(t.Format(iso8601BasicFormatShort)),
 	)
 	h = ghmac(h, []byte(c.Region))

@@ -75,7 +75,7 @@ type {{ .Name }} struct {
 }
 
 // New returns a new {{ .Name }} client.
-func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }} {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
      client = http.DefaultClient
   }
@@ -138,7 +138,7 @@ type {{ .Name }} struct {
 }
 
 // New returns a new {{ .Name }} client.
-func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }} {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
      client = http.DefaultClient
   }
@@ -211,7 +211,7 @@ type {{ .Name }} struct {
 }
 
 // New returns a new {{ .Name }} client.
-func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }} {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
      client = http.DefaultClient
   }
@@ -454,7 +454,7 @@ type {{ .Name }} struct {
 }
 
 // New returns a new {{ .Name }} client.
-func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }} {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
      client = http.DefaultClient
   }
@@ -604,7 +604,7 @@ type {{ .Name }} struct {
 }
 
 // New returns a new {{ .Name }} client.
-func New(creds aws.Credentials, region string, client *http.Client) *{{ .Name }} {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
      client = http.DefaultClient
   }

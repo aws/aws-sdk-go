@@ -16,15 +16,20 @@ func TestEnvCreds(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if v, want := auth.AccessKeyID(), "access"; v != want {
+	creds, err := auth()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if v, want := creds.AccessKeyID, "access"; v != want {
 		t.Errorf("Access key ID was %v, expected %v", v, want)
 	}
 
-	if v, want := auth.SecretAccessKey(), "secret"; v != want {
+	if v, want := creds.SecretAccessKey, "secret"; v != want {
 		t.Errorf("Secret access key was %v, expected %v", v, want)
 	}
 
-	if v, want := auth.SecurityToken(), "token"; v != want {
+	if v, want := creds.SecurityToken, "token"; v != want {
 		t.Errorf("Security token was %v, expected %v", v, want)
 	}
 }
@@ -59,11 +64,16 @@ func TestEnvCredsAlternateNames(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if v, want := auth.AccessKeyID(), "access"; v != want {
+	creds, err := auth()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if v, want := creds.AccessKeyID, "access"; v != want {
 		t.Errorf("Access key ID was %v, expected %v", v, want)
 	}
 
-	if v, want := auth.SecretAccessKey(), "secret"; v != want {
+	if v, want := creds.SecretAccessKey, "secret"; v != want {
 		t.Errorf("Secret access key was %v, expected %v", v, want)
 	}
 }

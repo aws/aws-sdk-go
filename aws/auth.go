@@ -8,11 +8,15 @@ import (
 
 // Credentials are used to authenticate and authorize calls that you make to
 // AWS.
-type Credentials interface {
-	AccessKeyID() string
-	SecretAccessKey() string
-	SecurityToken() string
+type Credentials struct {
+	AccessKeyID     string
+	SecretAccessKey string
+	SecurityToken   string
 }
+
+// A CredentialsProvider returns a set of credentials (or an error if no
+// credentials could be provided).
+type CredentialsProvider func() (Credentials, error)
 
 var (
 	// ErrAccessKeyIDNotFound is returned when the AWS Access Key ID can't be
@@ -23,9 +27,9 @@ var (
 	ErrSecretAccessKeyNotFound = errors.NotFoundf("AWS_SECRET_ACCESS_KEY or AWS_SECRET_KEY not found in environment")
 )
 
-// EnvCreds returns the AWS credentials from the process's environment, or an
-// error if none are found.
-func EnvCreds() (Credentials, error) {
+// EnvCreds returns a static provider of AWS credentials from the process's
+// environment, or an error if none are found.
+func EnvCreds() (CredentialsProvider, error) {
 	id := os.Getenv("AWS_ACCESS_KEY_ID")
 	if id == "" {
 		id = os.Getenv("AWS_ACCESS_KEY")
@@ -47,29 +51,14 @@ func EnvCreds() (Credentials, error) {
 	return Creds(id, secret, os.Getenv("AWS_SESSION_TOKEN")), nil
 }
 
-// Creds returns a static set of credentials.
-func Creds(accessKeyID, secretAccessKey, securityToken string) Credentials {
-	return &staticCreds{
-		id:     accessKeyID,
-		secret: secretAccessKey,
-		token:  securityToken,
+// Creds returns a static provider of credentials.
+func Creds(accessKeyID, secretAccessKey, securityToken string) CredentialsProvider {
+	creds := Credentials{
+		AccessKeyID:     accessKeyID,
+		SecretAccessKey: secretAccessKey,
+		SecurityToken:   securityToken,
 	}
-}
-
-type staticCreds struct {
-	id     string
-	secret string
-	token  string
-}
-
-func (c *staticCreds) AccessKeyID() string {
-	return c.id
-}
-
-func (c *staticCreds) SecretAccessKey() string {
-	return c.secret
-}
-
-func (c *staticCreds) SecurityToken() string {
-	return c.token
+	return func() (Credentials, error) {
+		return creds, nil
+	}
 }
