@@ -1624,7 +1624,7 @@ type S3OriginConfig struct {
 }
 
 const (
-	SSLSupportMethodSniOnly = "sni-only"
+	SSLSupportMethodSNIOnly = "sni-only"
 	SSLSupportMethodVip     = "vip"
 )
 
