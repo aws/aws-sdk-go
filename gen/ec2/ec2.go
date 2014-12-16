@@ -3714,7 +3714,7 @@ const (
 
 const (
 	ImageTypeValuesKernel  = "kernel"
-	ImageTypeValuesMAChine = "machine"
+	ImageTypeValuesMachine = "machine"
 	ImageTypeValuesRAMDisk = "ramdisk"
 )
 
