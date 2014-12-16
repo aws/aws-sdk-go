@@ -84,12 +84,16 @@ func TestEnvCredsAlternateNames(t *testing.T) {
 
 func TestIAMCreds(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, `{
+		if r.RequestURI == "/" {
+			fmt.Fprintln(w, "/creds")
+		} else {
+			fmt.Fprintln(w, `{
   "AccessKeyId" : "accessKey",
   "SecretAccessKey" : "secret",
   "Token" : "token",
   "Expiration" : "2014-12-16T01:51:37Z"
 }`)
+		}
 	}))
 	defer server.Close()
 
@@ -106,17 +110,36 @@ func TestIAMCreds(t *testing.T) {
 	}
 
 	prov := IAMCreds()
-	t.Log(prov.Credentials())
+	creds, err := prov.Credentials()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if v, want := creds.AccessKeyID, "accessKey"; v != want {
+		t.Errorf("AcccessKeyID was %v, but expected %v", v, want)
+	}
+
+	if v, want := creds.SecretAccessKey, "secret"; v != want {
+		t.Errorf("SecretAccessKey was %v, but expected %v", v, want)
+	}
+
+	if v, want := creds.SecurityToken, "token"; v != want {
+		t.Errorf("SecurityToken was %v, but expected %v", v, want)
+	}
 }
 
 func BenchmarkIAMCreds(b *testing.B) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, `{
+		if r.RequestURI == "/" {
+			fmt.Fprintln(w, "/creds")
+		} else {
+			fmt.Fprintln(w, `{
   "AccessKeyId" : "accessKey",
   "SecretAccessKey" : "secret",
   "Token" : "token",
   "Expiration" : "2014-12-16T01:51:37Z"
 }`)
+		}
 	}))
 	defer server.Close()
 
@@ -138,7 +161,10 @@ func BenchmarkIAMCreds(b *testing.B) {
 
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
-			prov.Credentials()
+			_, err := prov.Credentials()
+			if err != nil {
+				b.Fatal(err)
+			}
 		}
 	})
 }
