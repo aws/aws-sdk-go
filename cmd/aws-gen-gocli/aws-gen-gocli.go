@@ -5,6 +5,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/stripe/aws-go/model"
@@ -28,6 +29,7 @@ func main() {
 	}
 
 	if err := model.Generate(out); err != nil {
+		fmt.Fprintf(os.Stderr, "error generating %s\n", os.Args[3])
 		panic(err)
 	}
 }

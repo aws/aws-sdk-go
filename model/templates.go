@@ -2,10 +2,8 @@ package model
 
 import (
 	"bytes"
-	"fmt"
 	"go/format"
 	"io"
-	"os"
 	"text/template"
 )
 
@@ -30,7 +28,7 @@ func Generate(w io.Writer) error {
 
 	b, err := format.Source(out.Bytes())
 	if err != nil {
-		fmt.Fprint(os.Stdout, out.String())
+		_, _ = w.Write(out.Bytes())
 		return err
 	}
 
