@@ -820,7 +820,7 @@ const (
 	AppTypeJava   = "java"
 	AppTypeNodejs = "nodejs"
 	AppTypeOther  = "other"
-	AppTypePhp    = "php"
+	AppTypePHP    = "php"
 	AppTypeRails  = "rails"
 	AppTypeStatic = "static"
 )
@@ -1491,11 +1491,11 @@ const (
 	LayerAttributesKeysHaproxyStatsPassword        = "HaproxyStatsPassword"
 	LayerAttributesKeysHaproxyStatsURL             = "HaproxyStatsUrl"
 	LayerAttributesKeysHaproxyStatsUser            = "HaproxyStatsUser"
+	LayerAttributesKeysJVM                         = "Jvm"
+	LayerAttributesKeysJVMOptions                  = "JvmOptions"
+	LayerAttributesKeysJVMVersion                  = "JvmVersion"
 	LayerAttributesKeysJavaAppServer               = "JavaAppServer"
 	LayerAttributesKeysJavaAppServerVersion        = "JavaAppServerVersion"
-	LayerAttributesKeysJvm                         = "Jvm"
-	LayerAttributesKeysJvmOptions                  = "JvmOptions"
-	LayerAttributesKeysJvmVersion                  = "JvmVersion"
 	LayerAttributesKeysManageBundler               = "ManageBundler"
 	LayerAttributesKeysMemcachedMemory             = "MemcachedMemory"
 	LayerAttributesKeysMysqlRootPassword           = "MysqlRootPassword"
@@ -1515,7 +1515,7 @@ const (
 	LayerTypeMemcached        = "memcached"
 	LayerTypeMonitoringMaster = "monitoring-master"
 	LayerTypeNodejsApp        = "nodejs-app"
-	LayerTypePhpApp           = "php-app"
+	LayerTypePHPApp           = "php-app"
 	LayerTypeRailsApp         = "rails-app"
 	LayerTypeWeb              = "web"
 )
@@ -1705,7 +1705,7 @@ const (
 	SourceTypeArchive = "archive"
 	SourceTypeGit     = "git"
 	SourceTypeS3      = "s3"
-	SourceTypeSvn     = "svn"
+	SourceTypeSVN     = "svn"
 )
 
 // SSLConfiguration is undocumented.
@@ -1909,7 +1909,7 @@ type UserProfile struct {
 }
 
 const (
-	VirtualizationTypeHvm         = "hvm"
+	VirtualizationTypeHVM         = "hvm"
 	VirtualizationTypeParavirtual = "paravirtual"
 )
 

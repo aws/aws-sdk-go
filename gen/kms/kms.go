@@ -287,8 +287,8 @@ type CreateKeyResponse struct {
 }
 
 const (
-	DataKeySpecAes128 = "AES_128"
-	DataKeySpecAes256 = "AES_256"
+	DataKeySpecAES128 = "AES_128"
+	DataKeySpecAES256 = "AES_256"
 )
 
 // DecryptRequest is undocumented.

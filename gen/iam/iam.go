@@ -1734,7 +1734,7 @@ type RemoveUserFromGroupRequest struct {
 }
 
 const (
-	ReportFormatTypeTextCsv = "text/csv"
+	ReportFormatTypeTextCSV = "text/csv"
 )
 
 const (
@@ -1952,13 +1952,13 @@ const (
 
 const (
 	SummaryKeyTypeAccessKeysPerUserQuota          = "AccessKeysPerUserQuota"
-	SummaryKeyTypeAccountMfaenabled               = "AccountMFAEnabled"
+	SummaryKeyTypeAccountMFAenabled               = "AccountMFAEnabled"
 	SummaryKeyTypeGroupPolicySizeQuota            = "GroupPolicySizeQuota"
 	SummaryKeyTypeGroups                          = "Groups"
 	SummaryKeyTypeGroupsPerUserQuota              = "GroupsPerUserQuota"
 	SummaryKeyTypeGroupsQuota                     = "GroupsQuota"
-	SummaryKeyTypeMfadevices                      = "MFADevices"
-	SummaryKeyTypeMfadevicesInUse                 = "MFADevicesInUse"
+	SummaryKeyTypeMFAdevices                      = "MFADevices"
+	SummaryKeyTypeMFAdevicesInUse                 = "MFADevicesInUse"
 	SummaryKeyTypeServerCertificates              = "ServerCertificates"
 	SummaryKeyTypeServerCertificatesQuota         = "ServerCertificatesQuota"
 	SummaryKeyTypeSigningCertificatesPerUserQuota = "SigningCertificatesPerUserQuota"

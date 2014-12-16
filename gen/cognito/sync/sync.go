@@ -911,7 +911,7 @@ const (
 	PlatformAdm         = "ADM"
 	PlatformApns        = "APNS"
 	PlatformApnsSandbox = "APNS_SANDBOX"
-	PlatformGcm         = "GCM"
+	PlatformGCM         = "GCM"
 )
 
 // PushSync is undocumented.

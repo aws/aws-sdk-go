@@ -4518,7 +4518,7 @@ type Rule struct {
 }
 
 const (
-	ServerSideEncryptionAes256 = "AES256"
+	ServerSideEncryptionAES256 = "AES256"
 )
 
 const (

@@ -1794,7 +1794,7 @@ const (
 	HealthCheckTypeHTTPS         = "HTTPS"
 	HealthCheckTypeHTTPSStrMatch = "HTTPS_STR_MATCH"
 	HealthCheckTypeHTTPStrMatch  = "HTTP_STR_MATCH"
-	HealthCheckTypeTcp           = "TCP"
+	HealthCheckTypeTCP           = "TCP"
 )
 
 // HostedZone is undocumented.

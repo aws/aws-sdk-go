@@ -3497,8 +3497,8 @@ type DiskImageDetail struct {
 
 const (
 	DiskImageFormatRaw  = "RAW"
-	DiskImageFormatVhd  = "VHD"
-	DiskImageFormatVmdk = "VMDK"
+	DiskImageFormatVHD  = "VHD"
+	DiskImageFormatVMDK = "VMDK"
 )
 
 // DiskImageVolumeDescription is undocumented.
@@ -3559,7 +3559,7 @@ const (
 const (
 	ExportEnvironmentCitrix    = "citrix"
 	ExportEnvironmentMicrosoft = "microsoft"
-	ExportEnvironmentVmware    = "vmware"
+	ExportEnvironmentVMware    = "vmware"
 )
 
 // ExportTask is undocumented.
@@ -5166,7 +5166,7 @@ type VGWTelemetry struct {
 }
 
 const (
-	VirtualizationTypeHvm         = "hvm"
+	VirtualizationTypeHVM         = "hvm"
 	VirtualizationTypeParavirtual = "paravirtual"
 )
 

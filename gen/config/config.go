@@ -340,7 +340,7 @@ type Relationship struct {
 const (
 	ResourceTypeAWSCloudTrailTrail     = "AWS::CloudTrail::Trail"
 	ResourceTypeAWSEC2CustomerGateway  = "AWS::EC2::CustomerGateway"
-	ResourceTypeAWSEC2Eip              = "AWS::EC2::EIP"
+	ResourceTypeAWSEC2EIP              = "AWS::EC2::EIP"
 	ResourceTypeAWSEC2Instance         = "AWS::EC2::Instance"
 	ResourceTypeAWSEC2InternetGateway  = "AWS::EC2::InternetGateway"
 	ResourceTypeAWSEC2NetworkACL       = "AWS::EC2::NetworkAcl"
