@@ -200,7 +200,7 @@ const (
 	ConfigurationItemStatusDeleted    = "Deleted"
 	ConfigurationItemStatusDiscovered = "Discovered"
 	ConfigurationItemStatusFailed     = "Failed"
-	ConfigurationItemStatusOk         = "Ok"
+	ConfigurationItemStatusOK         = "Ok"
 )
 
 // ConfigurationRecorder is undocumented.

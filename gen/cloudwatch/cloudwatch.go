@@ -417,7 +417,7 @@ const (
 const (
 	StateValueAlarm            = "ALARM"
 	StateValueInsufficientData = "INSUFFICIENT_DATA"
-	StateValueOk               = "OK"
+	StateValueOK               = "OK"
 )
 
 const (

@@ -84,6 +84,7 @@ var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Kms`):          "KMS",
 	regexp.MustCompile(`Mac([^h]|$)`):  "MAC$1",
 	regexp.MustCompile(`Md5`):          "MD5",
+	regexp.MustCompile(`Ok`):           "OK",
 	regexp.MustCompile(`Os`):           "OS",
 	regexp.MustCompile(`Raid`):         "RAID",
 	regexp.MustCompile(`Ramdisk`):      "RAMDisk",

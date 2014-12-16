@@ -4601,7 +4601,7 @@ type ReportInstanceStatusRequest struct {
 
 const (
 	ReportStatusTypeImpaired = "impaired"
-	ReportStatusTypeOk       = "ok"
+	ReportStatusTypeOK       = "ok"
 )
 
 // RequestSpotInstancesRequest is undocumented.
@@ -5094,7 +5094,7 @@ const (
 	SummaryStatusImpaired         = "impaired"
 	SummaryStatusInsufficientData = "insufficient-data"
 	SummaryStatusNotApplicable    = "not-applicable"
-	SummaryStatusOk               = "ok"
+	SummaryStatusOK               = "ok"
 )
 
 // Tag is undocumented.
@@ -5254,7 +5254,7 @@ type VolumeStatusInfo struct {
 const (
 	VolumeStatusInfoStatusImpaired         = "impaired"
 	VolumeStatusInfoStatusInsufficientData = "insufficient-data"
-	VolumeStatusInfoStatusOk               = "ok"
+	VolumeStatusInfoStatusOK               = "ok"
 )
 
 // VolumeStatusItem is undocumented.
