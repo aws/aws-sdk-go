@@ -564,8 +564,8 @@ type ProvisionedThroughput struct {
 
 // ProvisionedThroughputDescription is undocumented.
 type ProvisionedThroughputDescription struct {
-	LastDecreaseDateTime   time.Time     `json:"LastDecreaseDateTime,omitempty"`
-	LastIncreaseDateTime   time.Time     `json:"LastIncreaseDateTime,omitempty"`
+	LastDecreaseDateTime   float64       `json:"LastDecreaseDateTime,omitempty"`
+	LastIncreaseDateTime   float64       `json:"LastIncreaseDateTime,omitempty"`
 	NumberOfDecreasesToday aws.LongValue `json:"NumberOfDecreasesToday,omitempty"`
 	ReadCapacityUnits      aws.LongValue `json:"ReadCapacityUnits,omitempty"`
 	WriteCapacityUnits     aws.LongValue `json:"WriteCapacityUnits,omitempty"`
@@ -656,7 +656,7 @@ type ScanOutput struct {
 // TableDescription is undocumented.
 type TableDescription struct {
 	AttributeDefinitions   []AttributeDefinition             `json:"AttributeDefinitions,omitempty"`
-	CreationDateTime       time.Time                         `json:"CreationDateTime,omitempty"`
+	CreationDateTime       float64                           `json:"CreationDateTime,omitempty"`
 	GlobalSecondaryIndexes []GlobalSecondaryIndexDescription `json:"GlobalSecondaryIndexes,omitempty"`
 	ItemCount              aws.LongValue                     `json:"ItemCount,omitempty"`
 	KeySchema              []KeySchemaElement                `json:"KeySchema,omitempty"`
