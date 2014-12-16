@@ -1573,7 +1573,7 @@ const (
 
 const (
 	MinimumProtocolVersionSSLv3 = "SSLv3"
-	MinimumProtocolVersionTlsv1 = "TLSv1"
+	MinimumProtocolVersionTLSv1 = "TLSv1"
 )
 
 // Origin is undocumented.
