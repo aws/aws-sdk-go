@@ -1,5 +1,7 @@
 package cfn
 
+import "time"
+
 // An AutoScalingGroup resource creates an Auto Scaling group.
 type AutoScalingGroup struct {
 	AvailabilityZones         interface{}
@@ -96,4 +98,17 @@ type ScalingPolicy struct {
 	AutoScalingGroupName interface{}
 	Cooldown             string `json:",omitempty"`
 	ScalingAdjustment    string
+}
+
+// ScheduledAction creates a scheduled scaling action for an Auto Scaling group,
+// changing the number of servers available for your application in response to
+// predictable load changes.
+type ScheduledAction struct {
+	AutoScalingGroupName interface{}
+	DesiredCapacity      int       `json:",omitempty"`
+	EndTime              time.Time `json:",omitempty"`
+	MaxSize              int       `json:",omitempty"`
+	MinSize              int       `json:",omitempty"`
+	Recurrence           time.Time `json:",omitempty"`
+	StartTime            time.Time `json:",omitempty"`
 }
