@@ -1,7 +1,11 @@
 package aws
 
 import (
+	"encoding/json"
+	"net/http"
 	"os"
+	"sync"
+	"time"
 
 	"github.com/juju/errors"
 )
@@ -63,6 +67,53 @@ func Creds(accessKeyID, secretAccessKey, securityToken string) CredentialsProvid
 			SecurityToken:   securityToken,
 		},
 	}
+}
+
+// IAMCreds returns a provider which pulls credentials from the local EC2
+// instance's IAM roles.
+func IAMCreds() CredentialsProvider {
+	return &iamProvider{}
+}
+
+type iamProvider struct {
+	creds      Credentials
+	m          sync.Mutex
+	expiration time.Time
+}
+
+var metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam/security-credentials/"
+
+func (p *iamProvider) Credentials() (*Credentials, error) {
+	p.m.Lock()
+	defer p.m.Unlock()
+
+	if p.expiration.Before(currentTime()) {
+		var body struct {
+			Expiration      time.Time
+			AccessKeyID     string
+			SecretAccessKey string
+			Token           string
+		}
+
+		resp, err := http.Get(metadataCredentialsEndpoint)
+		if err != nil {
+			return nil, err
+		}
+		defer resp.Body.Close()
+
+		if err := json.NewDecoder(resp.Body).Decode(&body); err != nil {
+			return nil, err
+		}
+
+		p.creds = Credentials{
+			AccessKeyID:     body.AccessKeyID,
+			SecretAccessKey: body.SecretAccessKey,
+			SecurityToken:   body.Token,
+		}
+		p.expiration = body.Expiration
+	}
+
+	return &p.creds, nil
 }
 
 type staticCredentialsProvider struct {
