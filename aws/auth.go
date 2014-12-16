@@ -26,18 +26,9 @@ var (
 // EnvCreds returns the AWS credentials from the process's environment, or an
 // error if none are found.
 func EnvCreds() (Credentials, error) {
-	token := os.Getenv("AWS_SESSION_TOKEN")
-	if token != "" {
-		return Creds("", "", os.Getenv("AWS_SESSION_TOKEN")), nil
-	}
-
 	id := os.Getenv("AWS_ACCESS_KEY_ID")
 	if id == "" {
 		id = os.Getenv("AWS_ACCESS_KEY")
-	}
-
-	if id == "" {
-		return nil, ErrAccessKeyIDNotFound
 	}
 
 	secret := os.Getenv("AWS_SECRET_ACCESS_KEY")
@@ -45,11 +36,15 @@ func EnvCreds() (Credentials, error) {
 		secret = os.Getenv("AWS_SECRET_KEY")
 	}
 
+	if id == "" {
+		return nil, ErrAccessKeyIDNotFound
+	}
+
 	if secret == "" {
 		return nil, ErrSecretAccessKeyNotFound
 	}
 
-	return Creds(id, secret, token), nil
+	return Creds(id, secret, os.Getenv("AWS_SESSION_TOKEN")), nil
 }
 
 // Creds returns a static set of credentials.
