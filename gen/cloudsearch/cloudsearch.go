@@ -302,6 +302,13 @@ type AccessPoliciesStatus struct {
 	Status  *OptionStatus   `xml:"Status"`
 }
 
+const (
+	AlgorithmicStemmingFull    = "full"
+	AlgorithmicStemmingLight   = "light"
+	AlgorithmicStemmingMinimal = "minimal"
+	AlgorithmicStemmingNone    = "none"
+)
+
 // AnalysisOptions is undocumented.
 type AnalysisOptions struct {
 	AlgorithmicStemming            aws.StringValue `xml:"AlgorithmicStemming"`
@@ -317,6 +324,44 @@ type AnalysisScheme struct {
 	AnalysisSchemeLanguage aws.StringValue  `xml:"AnalysisSchemeLanguage"`
 	AnalysisSchemeName     aws.StringValue  `xml:"AnalysisSchemeName"`
 }
+
+const (
+	AnalysisSchemeLanguageAr     = "ar"
+	AnalysisSchemeLanguageBg     = "bg"
+	AnalysisSchemeLanguageCa     = "ca"
+	AnalysisSchemeLanguageCs     = "cs"
+	AnalysisSchemeLanguageDa     = "da"
+	AnalysisSchemeLanguageDe     = "de"
+	AnalysisSchemeLanguageEl     = "el"
+	AnalysisSchemeLanguageEn     = "en"
+	AnalysisSchemeLanguageEs     = "es"
+	AnalysisSchemeLanguageEu     = "eu"
+	AnalysisSchemeLanguageFa     = "fa"
+	AnalysisSchemeLanguageFi     = "fi"
+	AnalysisSchemeLanguageFr     = "fr"
+	AnalysisSchemeLanguageGa     = "ga"
+	AnalysisSchemeLanguageGl     = "gl"
+	AnalysisSchemeLanguageHe     = "he"
+	AnalysisSchemeLanguageHi     = "hi"
+	AnalysisSchemeLanguageHu     = "hu"
+	AnalysisSchemeLanguageHy     = "hy"
+	AnalysisSchemeLanguageID     = "id"
+	AnalysisSchemeLanguageIt     = "it"
+	AnalysisSchemeLanguageJa     = "ja"
+	AnalysisSchemeLanguageKo     = "ko"
+	AnalysisSchemeLanguageLv     = "lv"
+	AnalysisSchemeLanguageMul    = "mul"
+	AnalysisSchemeLanguageNl     = "nl"
+	AnalysisSchemeLanguageNo     = "no"
+	AnalysisSchemeLanguagePt     = "pt"
+	AnalysisSchemeLanguageRo     = "ro"
+	AnalysisSchemeLanguageRu     = "ru"
+	AnalysisSchemeLanguageSv     = "sv"
+	AnalysisSchemeLanguageTh     = "th"
+	AnalysisSchemeLanguageTr     = "tr"
+	AnalysisSchemeLanguageZhHans = "zh-Hans"
+	AnalysisSchemeLanguageZhHant = "zh-Hant"
+)
 
 // AnalysisSchemeStatus is undocumented.
 type AnalysisSchemeStatus struct {
@@ -645,6 +690,20 @@ type IndexFieldStatus struct {
 	Status  *OptionStatus `xml:"Status"`
 }
 
+const (
+	IndexFieldTypeDate         = "date"
+	IndexFieldTypeDateArray    = "date-array"
+	IndexFieldTypeDouble       = "double"
+	IndexFieldTypeDoubleArray  = "double-array"
+	IndexFieldTypeInt          = "int"
+	IndexFieldTypeIntArray     = "int-array"
+	IndexFieldTypeLatlon       = "latlon"
+	IndexFieldTypeLiteral      = "literal"
+	IndexFieldTypeLiteralArray = "literal-array"
+	IndexFieldTypeText         = "text"
+	IndexFieldTypeTextArray    = "text-array"
+)
+
 // IntArrayOptions is undocumented.
 type IntArrayOptions struct {
 	DefaultValue  aws.LongValue    `xml:"DefaultValue"`
@@ -704,6 +763,13 @@ type LiteralOptions struct {
 	SourceField   aws.StringValue  `xml:"SourceField"`
 }
 
+const (
+	OptionStateActive                 = "Active"
+	OptionStateFailedToValidate       = "FailedToValidate"
+	OptionStateProcessing             = "Processing"
+	OptionStateRequiresIndexDocuments = "RequiresIndexDocuments"
+)
+
 // OptionStatus is undocumented.
 type OptionStatus struct {
 	CreationDate    time.Time        `xml:"CreationDate"`
@@ -712,6 +778,13 @@ type OptionStatus struct {
 	UpdateDate      time.Time        `xml:"UpdateDate"`
 	UpdateVersion   aws.IntegerValue `xml:"UpdateVersion"`
 }
+
+const (
+	PartitionInstanceTypeSearchM1Large   = "search.m1.large"
+	PartitionInstanceTypeSearchM1Small   = "search.m1.small"
+	PartitionInstanceTypeSearchM22xlarge = "search.m2.2xlarge"
+	PartitionInstanceTypeSearchM2Xlarge  = "search.m2.xlarge"
+)
 
 // ScalingParameters is undocumented.
 type ScalingParameters struct {
@@ -736,6 +809,12 @@ type Suggester struct {
 	DocumentSuggesterOptions *DocumentSuggesterOptions `xml:"DocumentSuggesterOptions"`
 	SuggesterName            aws.StringValue           `xml:"SuggesterName"`
 }
+
+const (
+	SuggesterFuzzyMatchingHigh = "high"
+	SuggesterFuzzyMatchingLow  = "low"
+	SuggesterFuzzyMatchingNone = "none"
+)
 
 // SuggesterStatus is undocumented.
 type SuggesterStatus struct {

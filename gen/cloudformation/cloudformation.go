@@ -226,6 +226,10 @@ type CancelUpdateStackInput struct {
 	StackName aws.StringValue `xml:"StackName"`
 }
 
+const (
+	CapabilityCapabilityIAM = "CAPABILITY_IAM"
+)
+
 // CreateStackInput is undocumented.
 type CreateStackInput struct {
 	Capabilities     []string         `xml:"Capabilities>member"`
@@ -371,6 +375,12 @@ type ListStacksOutput struct {
 	StackSummaries []StackSummary  `xml:"ListStacksResult>StackSummaries>member"`
 }
 
+const (
+	OnFailureDelete    = "DELETE"
+	OnFailureDoNothing = "DO_NOTHING"
+	OnFailureRollback  = "ROLLBACK"
+)
+
 // Output is undocumented.
 type Output struct {
 	Description aws.StringValue `xml:"Description"`
@@ -393,6 +403,24 @@ type ParameterDeclaration struct {
 	ParameterKey  aws.StringValue  `xml:"ParameterKey"`
 	ParameterType aws.StringValue  `xml:"ParameterType"`
 }
+
+const (
+	ResourceSignalStatusFailure = "FAILURE"
+	ResourceSignalStatusSuccess = "SUCCESS"
+)
+
+const (
+	ResourceStatusCreateComplete   = "CREATE_COMPLETE"
+	ResourceStatusCreateFailed     = "CREATE_FAILED"
+	ResourceStatusCreateInProgress = "CREATE_IN_PROGRESS"
+	ResourceStatusDeleteComplete   = "DELETE_COMPLETE"
+	ResourceStatusDeleteFailed     = "DELETE_FAILED"
+	ResourceStatusDeleteInProgress = "DELETE_IN_PROGRESS"
+	ResourceStatusDeleteSkipped    = "DELETE_SKIPPED"
+	ResourceStatusUpdateComplete   = "UPDATE_COMPLETE"
+	ResourceStatusUpdateFailed     = "UPDATE_FAILED"
+	ResourceStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
+)
 
 // SetStackPolicyInput is undocumented.
 type SetStackPolicyInput struct {
@@ -477,6 +505,25 @@ type StackResourceSummary struct {
 	ResourceStatusReason aws.StringValue `xml:"ResourceStatusReason"`
 	ResourceType         aws.StringValue `xml:"ResourceType"`
 }
+
+const (
+	StackStatusCreateComplete                          = "CREATE_COMPLETE"
+	StackStatusCreateFailed                            = "CREATE_FAILED"
+	StackStatusCreateInProgress                        = "CREATE_IN_PROGRESS"
+	StackStatusDeleteComplete                          = "DELETE_COMPLETE"
+	StackStatusDeleteFailed                            = "DELETE_FAILED"
+	StackStatusDeleteInProgress                        = "DELETE_IN_PROGRESS"
+	StackStatusRollbackComplete                        = "ROLLBACK_COMPLETE"
+	StackStatusRollbackFailed                          = "ROLLBACK_FAILED"
+	StackStatusRollbackInProgress                      = "ROLLBACK_IN_PROGRESS"
+	StackStatusUpdateComplete                          = "UPDATE_COMPLETE"
+	StackStatusUpdateCompleteCleanupInProgress         = "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS"
+	StackStatusUpdateInProgress                        = "UPDATE_IN_PROGRESS"
+	StackStatusUpdateRollbackComplete                  = "UPDATE_ROLLBACK_COMPLETE"
+	StackStatusUpdateRollbackCompleteCleanupInProgress = "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS"
+	StackStatusUpdateRollbackFailed                    = "UPDATE_ROLLBACK_FAILED"
+	StackStatusUpdateRollbackInProgress                = "UPDATE_ROLLBACK_IN_PROGRESS"
+)
 
 // StackSummary is undocumented.
 type StackSummary struct {

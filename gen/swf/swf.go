@@ -793,6 +793,13 @@ type ActivityTaskTimedOutEventAttributes struct {
 	TimeoutType      aws.StringValue `json:"timeoutType"`
 }
 
+const (
+	ActivityTaskTimeoutTypeHeartbeat       = "HEARTBEAT"
+	ActivityTaskTimeoutTypeScheduleToClose = "SCHEDULE_TO_CLOSE"
+	ActivityTaskTimeoutTypeScheduleToStart = "SCHEDULE_TO_START"
+	ActivityTaskTimeoutTypeStartToClose    = "START_TO_CLOSE"
+)
+
 // ActivityType is undocumented.
 type ActivityType struct {
 	Name    aws.StringValue `json:"name"`
@@ -834,6 +841,11 @@ type CancelTimerDecisionAttributes struct {
 	TimerID aws.StringValue `json:"timerId"`
 }
 
+const (
+	CancelTimerFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+	CancelTimerFailedCauseTimerIDUnknown        = "TIMER_ID_UNKNOWN"
+)
+
 // CancelTimerFailedEventAttributes is undocumented.
 type CancelTimerFailedEventAttributes struct {
 	Cause                        aws.StringValue `json:"cause"`
@@ -846,11 +858,22 @@ type CancelWorkflowExecutionDecisionAttributes struct {
 	Details aws.StringValue `json:"details,omitempty"`
 }
 
+const (
+	CancelWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+	CancelWorkflowExecutionFailedCauseUnhandledDecision     = "UNHANDLED_DECISION"
+)
+
 // CancelWorkflowExecutionFailedEventAttributes is undocumented.
 type CancelWorkflowExecutionFailedEventAttributes struct {
 	Cause                        aws.StringValue `json:"cause"`
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
 }
+
+const (
+	ChildPolicyAbandon       = "ABANDON"
+	ChildPolicyRequestCancel = "REQUEST_CANCEL"
+	ChildPolicyTerminate     = "TERMINATE"
+)
 
 // ChildWorkflowExecutionCanceledEventAttributes is undocumented.
 type ChildWorkflowExecutionCanceledEventAttributes struct {
@@ -904,6 +927,15 @@ type ChildWorkflowExecutionTimedOutEventAttributes struct {
 	WorkflowType      *WorkflowType      `json:"workflowType"`
 }
 
+const (
+	CloseStatusCanceled       = "CANCELED"
+	CloseStatusCompleted      = "COMPLETED"
+	CloseStatusContinuedAsNew = "CONTINUED_AS_NEW"
+	CloseStatusFailed         = "FAILED"
+	CloseStatusTerminated     = "TERMINATED"
+	CloseStatusTimedOut       = "TIMED_OUT"
+)
+
 // CloseStatusFilter is undocumented.
 type CloseStatusFilter struct {
 	Status aws.StringValue `json:"status"`
@@ -913,6 +945,11 @@ type CloseStatusFilter struct {
 type CompleteWorkflowExecutionDecisionAttributes struct {
 	Result aws.StringValue `json:"result,omitempty"`
 }
+
+const (
+	CompleteWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+	CompleteWorkflowExecutionFailedCauseUnhandledDecision     = "UNHANDLED_DECISION"
+)
 
 // CompleteWorkflowExecutionFailedEventAttributes is undocumented.
 type CompleteWorkflowExecutionFailedEventAttributes struct {
@@ -930,6 +967,17 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	TaskStartToCloseTimeout      aws.StringValue `json:"taskStartToCloseTimeout,omitempty"`
 	WorkflowTypeVersion          aws.StringValue `json:"workflowTypeVersion,omitempty"`
 }
+
+const (
+	ContinueAsNewWorkflowExecutionFailedCauseDefaultChildPolicyUndefined                  = "DEFAULT_CHILD_POLICY_UNDEFINED"
+	ContinueAsNewWorkflowExecutionFailedCauseDefaultExecutionStartToCloseTimeoutUndefined = "DEFAULT_EXECUTION_START_TO_CLOSE_TIMEOUT_UNDEFINED"
+	ContinueAsNewWorkflowExecutionFailedCauseDefaultTaskListUndefined                     = "DEFAULT_TASK_LIST_UNDEFINED"
+	ContinueAsNewWorkflowExecutionFailedCauseDefaultTaskStartToCloseTimeoutUndefined      = "DEFAULT_TASK_START_TO_CLOSE_TIMEOUT_UNDEFINED"
+	ContinueAsNewWorkflowExecutionFailedCauseOperationNotPermitted                        = "OPERATION_NOT_PERMITTED"
+	ContinueAsNewWorkflowExecutionFailedCauseUnhandledDecision                            = "UNHANDLED_DECISION"
+	ContinueAsNewWorkflowExecutionFailedCauseWorkflowTypeDeprecated                       = "WORKFLOW_TYPE_DEPRECATED"
+	ContinueAsNewWorkflowExecutionFailedCauseWorkflowTypeDoesNotExist                     = "WORKFLOW_TYPE_DOES_NOT_EXIST"
+)
 
 // ContinueAsNewWorkflowExecutionFailedEventAttributes is undocumented.
 type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
@@ -1023,6 +1071,25 @@ type DecisionTaskTimedOutEventAttributes struct {
 	TimeoutType      aws.StringValue `json:"timeoutType"`
 }
 
+const (
+	DecisionTaskTimeoutTypeStartToClose = "START_TO_CLOSE"
+)
+
+const (
+	DecisionTypeCancelTimer                            = "CancelTimer"
+	DecisionTypeCancelWorkflowExecution                = "CancelWorkflowExecution"
+	DecisionTypeCompleteWorkflowExecution              = "CompleteWorkflowExecution"
+	DecisionTypeContinueAsNewWorkflowExecution         = "ContinueAsNewWorkflowExecution"
+	DecisionTypeFailWorkflowExecution                  = "FailWorkflowExecution"
+	DecisionTypeRecordMarker                           = "RecordMarker"
+	DecisionTypeRequestCancelActivityTask              = "RequestCancelActivityTask"
+	DecisionTypeRequestCancelExternalWorkflowExecution = "RequestCancelExternalWorkflowExecution"
+	DecisionTypeScheduleActivityTask                   = "ScheduleActivityTask"
+	DecisionTypeSignalExternalWorkflowExecution        = "SignalExternalWorkflowExecution"
+	DecisionTypeStartChildWorkflowExecution            = "StartChildWorkflowExecution"
+	DecisionTypeStartTimer                             = "StartTimer"
+)
+
 // DeprecateActivityTypeInput is undocumented.
 type DeprecateActivityTypeInput struct {
 	ActivityType *ActivityType   `json:"activityType"`
@@ -1087,6 +1154,61 @@ type DomainInfos struct {
 	NextPageToken aws.StringValue `json:"nextPageToken,omitempty"`
 }
 
+const (
+	EventTypeActivityTaskCancelRequested                     = "ActivityTaskCancelRequested"
+	EventTypeActivityTaskCanceled                            = "ActivityTaskCanceled"
+	EventTypeActivityTaskCompleted                           = "ActivityTaskCompleted"
+	EventTypeActivityTaskFailed                              = "ActivityTaskFailed"
+	EventTypeActivityTaskScheduled                           = "ActivityTaskScheduled"
+	EventTypeActivityTaskStarted                             = "ActivityTaskStarted"
+	EventTypeActivityTaskTimedOut                            = "ActivityTaskTimedOut"
+	EventTypeCancelTimerFailed                               = "CancelTimerFailed"
+	EventTypeCancelWorkflowExecutionFailed                   = "CancelWorkflowExecutionFailed"
+	EventTypeChildWorkflowExecutionCanceled                  = "ChildWorkflowExecutionCanceled"
+	EventTypeChildWorkflowExecutionCompleted                 = "ChildWorkflowExecutionCompleted"
+	EventTypeChildWorkflowExecutionFailed                    = "ChildWorkflowExecutionFailed"
+	EventTypeChildWorkflowExecutionStarted                   = "ChildWorkflowExecutionStarted"
+	EventTypeChildWorkflowExecutionTerminated                = "ChildWorkflowExecutionTerminated"
+	EventTypeChildWorkflowExecutionTimedOut                  = "ChildWorkflowExecutionTimedOut"
+	EventTypeCompleteWorkflowExecutionFailed                 = "CompleteWorkflowExecutionFailed"
+	EventTypeContinueAsNewWorkflowExecutionFailed            = "ContinueAsNewWorkflowExecutionFailed"
+	EventTypeDecisionTaskCompleted                           = "DecisionTaskCompleted"
+	EventTypeDecisionTaskScheduled                           = "DecisionTaskScheduled"
+	EventTypeDecisionTaskStarted                             = "DecisionTaskStarted"
+	EventTypeDecisionTaskTimedOut                            = "DecisionTaskTimedOut"
+	EventTypeExternalWorkflowExecutionCancelRequested        = "ExternalWorkflowExecutionCancelRequested"
+	EventTypeExternalWorkflowExecutionSignaled               = "ExternalWorkflowExecutionSignaled"
+	EventTypeFailWorkflowExecutionFailed                     = "FailWorkflowExecutionFailed"
+	EventTypeMarkerRecorded                                  = "MarkerRecorded"
+	EventTypeRecordMarkerFailed                              = "RecordMarkerFailed"
+	EventTypeRequestCancelActivityTaskFailed                 = "RequestCancelActivityTaskFailed"
+	EventTypeRequestCancelExternalWorkflowExecutionFailed    = "RequestCancelExternalWorkflowExecutionFailed"
+	EventTypeRequestCancelExternalWorkflowExecutionInitiated = "RequestCancelExternalWorkflowExecutionInitiated"
+	EventTypeScheduleActivityTaskFailed                      = "ScheduleActivityTaskFailed"
+	EventTypeSignalExternalWorkflowExecutionFailed           = "SignalExternalWorkflowExecutionFailed"
+	EventTypeSignalExternalWorkflowExecutionInitiated        = "SignalExternalWorkflowExecutionInitiated"
+	EventTypeStartChildWorkflowExecutionFailed               = "StartChildWorkflowExecutionFailed"
+	EventTypeStartChildWorkflowExecutionInitiated            = "StartChildWorkflowExecutionInitiated"
+	EventTypeStartTimerFailed                                = "StartTimerFailed"
+	EventTypeTimerCanceled                                   = "TimerCanceled"
+	EventTypeTimerFired                                      = "TimerFired"
+	EventTypeTimerStarted                                    = "TimerStarted"
+	EventTypeWorkflowExecutionCancelRequested                = "WorkflowExecutionCancelRequested"
+	EventTypeWorkflowExecutionCanceled                       = "WorkflowExecutionCanceled"
+	EventTypeWorkflowExecutionCompleted                      = "WorkflowExecutionCompleted"
+	EventTypeWorkflowExecutionContinuedAsNew                 = "WorkflowExecutionContinuedAsNew"
+	EventTypeWorkflowExecutionFailed                         = "WorkflowExecutionFailed"
+	EventTypeWorkflowExecutionSignaled                       = "WorkflowExecutionSignaled"
+	EventTypeWorkflowExecutionStarted                        = "WorkflowExecutionStarted"
+	EventTypeWorkflowExecutionTerminated                     = "WorkflowExecutionTerminated"
+	EventTypeWorkflowExecutionTimedOut                       = "WorkflowExecutionTimedOut"
+)
+
+const (
+	ExecutionStatusClosed = "CLOSED"
+	ExecutionStatusOpen   = "OPEN"
+)
+
 // ExecutionTimeFilter is undocumented.
 type ExecutionTimeFilter struct {
 	LatestDate time.Time `json:"latestDate,omitempty"`
@@ -1110,6 +1232,11 @@ type FailWorkflowExecutionDecisionAttributes struct {
 	Details aws.StringValue `json:"details,omitempty"`
 	Reason  aws.StringValue `json:"reason,omitempty"`
 }
+
+const (
+	FailWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+	FailWorkflowExecutionFailedCauseUnhandledDecision     = "UNHANDLED_DECISION"
+)
 
 // FailWorkflowExecutionFailedEventAttributes is undocumented.
 type FailWorkflowExecutionFailedEventAttributes struct {
@@ -1282,6 +1409,10 @@ type RecordMarkerDecisionAttributes struct {
 	MarkerName aws.StringValue `json:"markerName"`
 }
 
+const (
+	RecordMarkerFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
 // RecordMarkerFailedEventAttributes is undocumented.
 type RecordMarkerFailedEventAttributes struct {
 	Cause                        aws.StringValue `json:"cause"`
@@ -1321,10 +1452,20 @@ type RegisterWorkflowTypeInput struct {
 	Version                             aws.StringValue `json:"version"`
 }
 
+const (
+	RegistrationStatusDeprecated = "DEPRECATED"
+	RegistrationStatusRegistered = "REGISTERED"
+)
+
 // RequestCancelActivityTaskDecisionAttributes is undocumented.
 type RequestCancelActivityTaskDecisionAttributes struct {
 	ActivityID aws.StringValue `json:"activityId"`
 }
+
+const (
+	RequestCancelActivityTaskFailedCauseActivityIDUnknown     = "ACTIVITY_ID_UNKNOWN"
+	RequestCancelActivityTaskFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
 
 // RequestCancelActivityTaskFailedEventAttributes is undocumented.
 type RequestCancelActivityTaskFailedEventAttributes struct {
@@ -1339,6 +1480,12 @@ type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 	RunID      aws.StringValue `json:"runId,omitempty"`
 	WorkflowID aws.StringValue `json:"workflowId"`
 }
+
+const (
+	RequestCancelExternalWorkflowExecutionFailedCauseOperationNotPermitted                              = "OPERATION_NOT_PERMITTED"
+	RequestCancelExternalWorkflowExecutionFailedCauseRequestCancelExternalWorkflowExecutionRateExceeded = "REQUEST_CANCEL_EXTERNAL_WORKFLOW_EXECUTION_RATE_EXCEEDED"
+	RequestCancelExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution                   = "UNKNOWN_EXTERNAL_WORKFLOW_EXECUTION"
+)
 
 // RequestCancelExternalWorkflowExecutionFailedEventAttributes is undocumented.
 type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
@@ -1409,6 +1556,20 @@ type ScheduleActivityTaskDecisionAttributes struct {
 	TaskList               *TaskList       `json:"taskList,omitempty"`
 }
 
+const (
+	ScheduleActivityTaskFailedCauseActivityCreationRateExceeded           = "ACTIVITY_CREATION_RATE_EXCEEDED"
+	ScheduleActivityTaskFailedCauseActivityIDAlreadyInUse                 = "ACTIVITY_ID_ALREADY_IN_USE"
+	ScheduleActivityTaskFailedCauseActivityTypeDeprecated                 = "ACTIVITY_TYPE_DEPRECATED"
+	ScheduleActivityTaskFailedCauseActivityTypeDoesNotExist               = "ACTIVITY_TYPE_DOES_NOT_EXIST"
+	ScheduleActivityTaskFailedCauseDefaultHeartbeatTimeoutUndefined       = "DEFAULT_HEARTBEAT_TIMEOUT_UNDEFINED"
+	ScheduleActivityTaskFailedCauseDefaultScheduleToCloseTimeoutUndefined = "DEFAULT_SCHEDULE_TO_CLOSE_TIMEOUT_UNDEFINED"
+	ScheduleActivityTaskFailedCauseDefaultScheduleToStartTimeoutUndefined = "DEFAULT_SCHEDULE_TO_START_TIMEOUT_UNDEFINED"
+	ScheduleActivityTaskFailedCauseDefaultStartToCloseTimeoutUndefined    = "DEFAULT_START_TO_CLOSE_TIMEOUT_UNDEFINED"
+	ScheduleActivityTaskFailedCauseDefaultTaskListUndefined               = "DEFAULT_TASK_LIST_UNDEFINED"
+	ScheduleActivityTaskFailedCauseOpenActivitiesLimitExceeded            = "OPEN_ACTIVITIES_LIMIT_EXCEEDED"
+	ScheduleActivityTaskFailedCauseOperationNotPermitted                  = "OPERATION_NOT_PERMITTED"
+)
+
 // ScheduleActivityTaskFailedEventAttributes is undocumented.
 type ScheduleActivityTaskFailedEventAttributes struct {
 	ActivityID                   aws.StringValue `json:"activityId"`
@@ -1425,6 +1586,12 @@ type SignalExternalWorkflowExecutionDecisionAttributes struct {
 	SignalName aws.StringValue `json:"signalName"`
 	WorkflowID aws.StringValue `json:"workflowId"`
 }
+
+const (
+	SignalExternalWorkflowExecutionFailedCauseOperationNotPermitted                       = "OPERATION_NOT_PERMITTED"
+	SignalExternalWorkflowExecutionFailedCauseSignalExternalWorkflowExecutionRateExceeded = "SIGNAL_EXTERNAL_WORKFLOW_EXECUTION_RATE_EXCEEDED"
+	SignalExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution            = "UNKNOWN_EXTERNAL_WORKFLOW_EXECUTION"
+)
 
 // SignalExternalWorkflowExecutionFailedEventAttributes is undocumented.
 type SignalExternalWorkflowExecutionFailedEventAttributes struct {
@@ -1468,6 +1635,20 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	WorkflowType                 *WorkflowType   `json:"workflowType"`
 }
 
+const (
+	StartChildWorkflowExecutionFailedCauseChildCreationRateExceeded                    = "CHILD_CREATION_RATE_EXCEEDED"
+	StartChildWorkflowExecutionFailedCauseDefaultChildPolicyUndefined                  = "DEFAULT_CHILD_POLICY_UNDEFINED"
+	StartChildWorkflowExecutionFailedCauseDefaultExecutionStartToCloseTimeoutUndefined = "DEFAULT_EXECUTION_START_TO_CLOSE_TIMEOUT_UNDEFINED"
+	StartChildWorkflowExecutionFailedCauseDefaultTaskListUndefined                     = "DEFAULT_TASK_LIST_UNDEFINED"
+	StartChildWorkflowExecutionFailedCauseDefaultTaskStartToCloseTimeoutUndefined      = "DEFAULT_TASK_START_TO_CLOSE_TIMEOUT_UNDEFINED"
+	StartChildWorkflowExecutionFailedCauseOpenChildrenLimitExceeded                    = "OPEN_CHILDREN_LIMIT_EXCEEDED"
+	StartChildWorkflowExecutionFailedCauseOpenWorkflowsLimitExceeded                   = "OPEN_WORKFLOWS_LIMIT_EXCEEDED"
+	StartChildWorkflowExecutionFailedCauseOperationNotPermitted                        = "OPERATION_NOT_PERMITTED"
+	StartChildWorkflowExecutionFailedCauseWorkflowAlreadyRunning                       = "WORKFLOW_ALREADY_RUNNING"
+	StartChildWorkflowExecutionFailedCauseWorkflowTypeDeprecated                       = "WORKFLOW_TYPE_DEPRECATED"
+	StartChildWorkflowExecutionFailedCauseWorkflowTypeDoesNotExist                     = "WORKFLOW_TYPE_DOES_NOT_EXIST"
+)
+
 // StartChildWorkflowExecutionFailedEventAttributes is undocumented.
 type StartChildWorkflowExecutionFailedEventAttributes struct {
 	Cause                        aws.StringValue `json:"cause"`
@@ -1498,6 +1679,13 @@ type StartTimerDecisionAttributes struct {
 	StartToFireTimeout aws.StringValue `json:"startToFireTimeout"`
 	TimerID            aws.StringValue `json:"timerId"`
 }
+
+const (
+	StartTimerFailedCauseOpenTimersLimitExceeded   = "OPEN_TIMERS_LIMIT_EXCEEDED"
+	StartTimerFailedCauseOperationNotPermitted     = "OPERATION_NOT_PERMITTED"
+	StartTimerFailedCauseTimerCreationRateExceeded = "TIMER_CREATION_RATE_EXCEEDED"
+	StartTimerFailedCauseTimerIDAlreadyInUse       = "TIMER_ID_ALREADY_IN_USE"
+)
 
 // StartTimerFailedEventAttributes is undocumented.
 type StartTimerFailedEventAttributes struct {
@@ -1565,6 +1753,10 @@ type WorkflowExecution struct {
 	RunID      aws.StringValue `json:"runId"`
 	WorkflowID aws.StringValue `json:"workflowId"`
 }
+
+const (
+	WorkflowExecutionCancelRequestedCauseChildPolicyApplied = "CHILD_POLICY_APPLIED"
+)
 
 // WorkflowExecutionCancelRequestedEventAttributes is undocumented.
 type WorkflowExecutionCancelRequestedEventAttributes struct {
@@ -1682,6 +1874,12 @@ type WorkflowExecutionStartedEventAttributes struct {
 	WorkflowType                 *WorkflowType      `json:"workflowType"`
 }
 
+const (
+	WorkflowExecutionTerminatedCauseChildPolicyApplied = "CHILD_POLICY_APPLIED"
+	WorkflowExecutionTerminatedCauseEventLimitExceeded = "EVENT_LIMIT_EXCEEDED"
+	WorkflowExecutionTerminatedCauseOperatorInitiated  = "OPERATOR_INITIATED"
+)
+
 // WorkflowExecutionTerminatedEventAttributes is undocumented.
 type WorkflowExecutionTerminatedEventAttributes struct {
 	Cause       aws.StringValue `json:"cause,omitempty"`
@@ -1695,6 +1893,10 @@ type WorkflowExecutionTimedOutEventAttributes struct {
 	ChildPolicy aws.StringValue `json:"childPolicy"`
 	TimeoutType aws.StringValue `json:"timeoutType"`
 }
+
+const (
+	WorkflowExecutionTimeoutTypeStartToClose = "START_TO_CLOSE"
+)
 
 // WorkflowType is undocumented.
 type WorkflowType struct {

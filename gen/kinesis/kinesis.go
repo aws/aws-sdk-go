@@ -565,6 +565,13 @@ type Shard struct {
 	ShardID               aws.StringValue      `json:"ShardId"`
 }
 
+const (
+	ShardIteratorTypeAfterSequenceNumber = "AFTER_SEQUENCE_NUMBER"
+	ShardIteratorTypeAtSequenceNumber    = "AT_SEQUENCE_NUMBER"
+	ShardIteratorTypeLatest              = "LATEST"
+	ShardIteratorTypeTrimHorizon         = "TRIM_HORIZON"
+)
+
 // SplitShardInput is undocumented.
 type SplitShardInput struct {
 	NewStartingHashKey aws.StringValue `json:"NewStartingHashKey"`
@@ -580,6 +587,13 @@ type StreamDescription struct {
 	StreamName    aws.StringValue  `json:"StreamName"`
 	StreamStatus  aws.StringValue  `json:"StreamStatus"`
 }
+
+const (
+	StreamStatusActive   = "ACTIVE"
+	StreamStatusCreating = "CREATING"
+	StreamStatusDeleting = "DELETING"
+	StreamStatusUpdating = "UPDATING"
+)
 
 // Tag is undocumented.
 type Tag struct {

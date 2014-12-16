@@ -254,6 +254,13 @@ func (c *EMR) TerminateJobFlows(req *TerminateJobFlowsInput) (err error) {
 	return
 }
 
+const (
+	ActionOnFailureCancelAndWait    = "CANCEL_AND_WAIT"
+	ActionOnFailureContinue         = "CONTINUE"
+	ActionOnFailureTerminateCluster = "TERMINATE_CLUSTER"
+	ActionOnFailureTerminateJobFlow = "TERMINATE_JOB_FLOW"
+)
+
 // AddInstanceGroupsInput is undocumented.
 type AddInstanceGroupsInput struct {
 	InstanceGroups []InstanceGroupConfig `json:"InstanceGroups"`
@@ -323,11 +330,31 @@ type Cluster struct {
 	VisibleToAllUsers     aws.BooleanValue       `json:"VisibleToAllUsers,omitempty"`
 }
 
+const (
+	ClusterStateBootstrapping        = "BOOTSTRAPPING"
+	ClusterStateRunning              = "RUNNING"
+	ClusterStateStarting             = "STARTING"
+	ClusterStateTerminated           = "TERMINATED"
+	ClusterStateTerminatedWithErrors = "TERMINATED_WITH_ERRORS"
+	ClusterStateTerminating          = "TERMINATING"
+	ClusterStateWaiting              = "WAITING"
+)
+
 // ClusterStateChangeReason is undocumented.
 type ClusterStateChangeReason struct {
 	Code    aws.StringValue `json:"Code,omitempty"`
 	Message aws.StringValue `json:"Message,omitempty"`
 }
+
+const (
+	ClusterStateChangeReasonCodeAllStepsCompleted = "ALL_STEPS_COMPLETED"
+	ClusterStateChangeReasonCodeBootstrapFailure  = "BOOTSTRAP_FAILURE"
+	ClusterStateChangeReasonCodeInstanceFailure   = "INSTANCE_FAILURE"
+	ClusterStateChangeReasonCodeInternalError     = "INTERNAL_ERROR"
+	ClusterStateChangeReasonCodeStepFailure       = "STEP_FAILURE"
+	ClusterStateChangeReasonCodeUserRequest       = "USER_REQUEST"
+	ClusterStateChangeReasonCodeValidationError   = "VALIDATION_ERROR"
+)
 
 // ClusterStatus is undocumented.
 type ClusterStatus struct {
@@ -474,11 +501,31 @@ type InstanceGroupModifyConfig struct {
 	InstanceGroupID           aws.StringValue  `json:"InstanceGroupId"`
 }
 
+const (
+	InstanceGroupStateArrested      = "ARRESTED"
+	InstanceGroupStateBootstrapping = "BOOTSTRAPPING"
+	InstanceGroupStateEnded         = "ENDED"
+	InstanceGroupStateProvisioning  = "PROVISIONING"
+	InstanceGroupStateResizing      = "RESIZING"
+	InstanceGroupStateRunning       = "RUNNING"
+	InstanceGroupStateShuttingDown  = "SHUTTING_DOWN"
+	InstanceGroupStateSuspended     = "SUSPENDED"
+	InstanceGroupStateTerminated    = "TERMINATED"
+	InstanceGroupStateTerminating   = "TERMINATING"
+)
+
 // InstanceGroupStateChangeReason is undocumented.
 type InstanceGroupStateChangeReason struct {
 	Code    aws.StringValue `json:"Code,omitempty"`
 	Message aws.StringValue `json:"Message,omitempty"`
 }
+
+const (
+	InstanceGroupStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
+	InstanceGroupStateChangeReasonCodeInstanceFailure   = "INSTANCE_FAILURE"
+	InstanceGroupStateChangeReasonCodeInternalError     = "INTERNAL_ERROR"
+	InstanceGroupStateChangeReasonCodeValidationError   = "VALIDATION_ERROR"
+)
 
 // InstanceGroupStatus is undocumented.
 type InstanceGroupStatus struct {
@@ -494,11 +541,39 @@ type InstanceGroupTimeline struct {
 	ReadyDateTime    time.Time `json:"ReadyDateTime,omitempty"`
 }
 
+const (
+	InstanceGroupTypeCore   = "CORE"
+	InstanceGroupTypeMaster = "MASTER"
+	InstanceGroupTypeTask   = "TASK"
+)
+
+const (
+	InstanceRoleTypeCore   = "CORE"
+	InstanceRoleTypeMaster = "MASTER"
+	InstanceRoleTypeTask   = "TASK"
+)
+
+const (
+	InstanceStateAwaitingFulfillment = "AWAITING_FULFILLMENT"
+	InstanceStateBootstrapping       = "BOOTSTRAPPING"
+	InstanceStateProvisioning        = "PROVISIONING"
+	InstanceStateRunning             = "RUNNING"
+	InstanceStateTerminated          = "TERMINATED"
+)
+
 // InstanceStateChangeReason is undocumented.
 type InstanceStateChangeReason struct {
 	Code    aws.StringValue `json:"Code,omitempty"`
 	Message aws.StringValue `json:"Message,omitempty"`
 }
+
+const (
+	InstanceStateChangeReasonCodeBootstrapFailure  = "BOOTSTRAP_FAILURE"
+	InstanceStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
+	InstanceStateChangeReasonCodeInstanceFailure   = "INSTANCE_FAILURE"
+	InstanceStateChangeReasonCodeInternalError     = "INTERNAL_ERROR"
+	InstanceStateChangeReasonCodeValidationError   = "VALIDATION_ERROR"
+)
 
 // InstanceStatus is undocumented.
 type InstanceStatus struct {
@@ -529,6 +604,17 @@ type JobFlowDetail struct {
 	SupportedProducts     []string                      `json:"SupportedProducts,omitempty"`
 	VisibleToAllUsers     aws.BooleanValue              `json:"VisibleToAllUsers,omitempty"`
 }
+
+const (
+	JobFlowExecutionStateBootstrapping = "BOOTSTRAPPING"
+	JobFlowExecutionStateCompleted     = "COMPLETED"
+	JobFlowExecutionStateFailed        = "FAILED"
+	JobFlowExecutionStateRunning       = "RUNNING"
+	JobFlowExecutionStateShuttingDown  = "SHUTTING_DOWN"
+	JobFlowExecutionStateStarting      = "STARTING"
+	JobFlowExecutionStateTerminated    = "TERMINATED"
+	JobFlowExecutionStateWaiting       = "WAITING"
+)
 
 // JobFlowExecutionStatusDetail is undocumented.
 type JobFlowExecutionStatusDetail struct {
@@ -642,6 +728,11 @@ type ListStepsOutput struct {
 	Steps  []StepSummary   `json:"Steps,omitempty"`
 }
 
+const (
+	MarketTypeOnDemand = "ON_DEMAND"
+	MarketTypeSpot     = "SPOT"
+)
+
 // ModifyInstanceGroupsInput is undocumented.
 type ModifyInstanceGroupsInput struct {
 	InstanceGroups []InstanceGroupModifyConfig `json:"InstanceGroups,omitempty"`
@@ -724,6 +815,16 @@ type StepDetail struct {
 	StepConfig            *StepConfig                `json:"StepConfig"`
 }
 
+const (
+	StepExecutionStateCancelled   = "CANCELLED"
+	StepExecutionStateCompleted   = "COMPLETED"
+	StepExecutionStateContinue    = "CONTINUE"
+	StepExecutionStateFailed      = "FAILED"
+	StepExecutionStateInterrupted = "INTERRUPTED"
+	StepExecutionStatePending     = "PENDING"
+	StepExecutionStateRunning     = "RUNNING"
+)
+
 // StepExecutionStatusDetail is undocumented.
 type StepExecutionStatusDetail struct {
 	CreationDateTime      time.Time       `json:"CreationDateTime"`
@@ -733,11 +834,24 @@ type StepExecutionStatusDetail struct {
 	State                 aws.StringValue `json:"State"`
 }
 
+const (
+	StepStateCancelled   = "CANCELLED"
+	StepStateCompleted   = "COMPLETED"
+	StepStateFailed      = "FAILED"
+	StepStateInterrupted = "INTERRUPTED"
+	StepStatePending     = "PENDING"
+	StepStateRunning     = "RUNNING"
+)
+
 // StepStateChangeReason is undocumented.
 type StepStateChangeReason struct {
 	Code    aws.StringValue `json:"Code,omitempty"`
 	Message aws.StringValue `json:"Message,omitempty"`
 }
+
+const (
+	StepStateChangeReasonCodeNone = "NONE"
+)
 
 // StepStatus is undocumented.
 type StepStatus struct {

@@ -391,6 +391,11 @@ func (c *ElasticCache) RevokeCacheSecurityGroupIngress(req *RevokeCacheSecurityG
 	return
 }
 
+const (
+	AZModeCrossAz  = "cross-az"
+	AZModeSingleAz = "single-az"
+)
+
 // AuthorizeCacheSecurityGroupIngressMessage is undocumented.
 type AuthorizeCacheSecurityGroupIngressMessage struct {
 	CacheSecurityGroupName  aws.StringValue `xml:"CacheSecurityGroupName"`
@@ -402,6 +407,13 @@ type AuthorizeCacheSecurityGroupIngressMessage struct {
 type AuthorizeCacheSecurityGroupIngressResult struct {
 	CacheSecurityGroup *CacheSecurityGroup `xml:"AuthorizeCacheSecurityGroupIngressResult>CacheSecurityGroup"`
 }
+
+const (
+	AutomaticFailoverStatusDisabled  = "disabled"
+	AutomaticFailoverStatusDisabling = "disabling"
+	AutomaticFailoverStatusEnabled   = "enabled"
+	AutomaticFailoverStatusEnabling  = "enabling"
+)
 
 // AvailabilityZone is undocumented.
 type AvailabilityZone struct {
@@ -982,6 +994,11 @@ type ParameterNameValue struct {
 	ParameterValue aws.StringValue `xml:"ParameterValue"`
 }
 
+const (
+	PendingAutomaticFailoverStatusDisabled = "disabled"
+	PendingAutomaticFailoverStatusEnabled  = "enabled"
+)
+
 // PendingModifiedValues is undocumented.
 type PendingModifiedValues struct {
 	CacheNodeIDsToRemove []string         `xml:"CacheNodeIdsToRemove>CacheNodeId"`
@@ -1130,6 +1147,13 @@ type Snapshot struct {
 	TopicARN                   aws.StringValue  `xml:"TopicArn"`
 	VPCID                      aws.StringValue  `xml:"VpcId"`
 }
+
+const (
+	SourceTypeCacheCluster        = "cache-cluster"
+	SourceTypeCacheParameterGroup = "cache-parameter-group"
+	SourceTypeCacheSecurityGroup  = "cache-security-group"
+	SourceTypeCacheSubnetGroup    = "cache-subnet-group"
+)
 
 // Subnet is undocumented.
 type Subnet struct {

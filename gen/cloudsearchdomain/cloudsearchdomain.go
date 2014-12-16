@@ -301,6 +301,11 @@ type BucketInfo struct {
 	Buckets []Bucket `json:"buckets,omitempty"`
 }
 
+const (
+	ContentTypeApplicationJSON = "application/json"
+	ContentTypeApplicationXml  = "application/xml"
+)
+
 // DocumentServiceWarning is undocumented.
 type DocumentServiceWarning struct {
 	Message aws.StringValue `json:"message,omitempty"`
@@ -320,6 +325,13 @@ type Hits struct {
 	Hit    []Hit           `json:"hit,omitempty"`
 	Start  aws.LongValue   `json:"start,omitempty"`
 }
+
+const (
+	QueryParserDismax     = "dismax"
+	QueryParserLucene     = "lucene"
+	QueryParserSimple     = "simple"
+	QueryParserStructured = "structured"
+)
 
 // SearchRequest is undocumented.
 type SearchRequest struct {

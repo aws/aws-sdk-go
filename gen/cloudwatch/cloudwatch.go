@@ -179,6 +179,13 @@ type AlarmHistoryItem struct {
 	Timestamp       time.Time       `xml:"Timestamp"`
 }
 
+const (
+	ComparisonOperatorGreaterThanOrEqualToThreshold = "GreaterThanOrEqualToThreshold"
+	ComparisonOperatorGreaterThanThreshold          = "GreaterThanThreshold"
+	ComparisonOperatorLessThanOrEqualToThreshold    = "LessThanOrEqualToThreshold"
+	ComparisonOperatorLessThanThreshold             = "LessThanThreshold"
+)
+
 // Datapoint is undocumented.
 type Datapoint struct {
 	Average     aws.DoubleValue `xml:"Average"`
@@ -282,6 +289,12 @@ type GetMetricStatisticsOutput struct {
 	Label      aws.StringValue `xml:"GetMetricStatisticsResult>Label"`
 }
 
+const (
+	HistoryItemTypeAction              = "Action"
+	HistoryItemTypeConfigurationUpdate = "ConfigurationUpdate"
+	HistoryItemTypeStateUpdate         = "StateUpdate"
+)
+
 // ListMetricsInput is undocumented.
 type ListMetricsInput struct {
 	Dimensions []DimensionFilter `xml:"Dimensions>member"`
@@ -370,6 +383,50 @@ type SetAlarmStateInput struct {
 	StateReasonData aws.StringValue `xml:"StateReasonData"`
 	StateValue      aws.StringValue `xml:"StateValue"`
 }
+
+const (
+	StandardUnitBits            = "Bits"
+	StandardUnitBitsSecond      = "Bits/Second"
+	StandardUnitBytes           = "Bytes"
+	StandardUnitBytesSecond     = "Bytes/Second"
+	StandardUnitCount           = "Count"
+	StandardUnitCountSecond     = "Count/Second"
+	StandardUnitGigabits        = "Gigabits"
+	StandardUnitGigabitsSecond  = "Gigabits/Second"
+	StandardUnitGigabytes       = "Gigabytes"
+	StandardUnitGigabytesSecond = "Gigabytes/Second"
+	StandardUnitKilobits        = "Kilobits"
+	StandardUnitKilobitsSecond  = "Kilobits/Second"
+	StandardUnitKilobytes       = "Kilobytes"
+	StandardUnitKilobytesSecond = "Kilobytes/Second"
+	StandardUnitMegabits        = "Megabits"
+	StandardUnitMegabitsSecond  = "Megabits/Second"
+	StandardUnitMegabytes       = "Megabytes"
+	StandardUnitMegabytesSecond = "Megabytes/Second"
+	StandardUnitMicroseconds    = "Microseconds"
+	StandardUnitMilliseconds    = "Milliseconds"
+	StandardUnitNone            = "None"
+	StandardUnitPercent         = "Percent"
+	StandardUnitSeconds         = "Seconds"
+	StandardUnitTerabits        = "Terabits"
+	StandardUnitTerabitsSecond  = "Terabits/Second"
+	StandardUnitTerabytes       = "Terabytes"
+	StandardUnitTerabytesSecond = "Terabytes/Second"
+)
+
+const (
+	StateValueAlarm            = "ALARM"
+	StateValueInsufficientData = "INSUFFICIENT_DATA"
+	StateValueOk               = "OK"
+)
+
+const (
+	StatisticAverage     = "Average"
+	StatisticMaximum     = "Maximum"
+	StatisticMinimum     = "Minimum"
+	StatisticSampleCount = "SampleCount"
+	StatisticSum         = "Sum"
+)
 
 // StatisticSet is undocumented.
 type StatisticSet struct {

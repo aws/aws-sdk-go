@@ -810,6 +810,26 @@ type App struct {
 	Type             aws.StringValue       `json:"Type,omitempty"`
 }
 
+const (
+	AppAttributesKeysAutoBundleOnDeploy = "AutoBundleOnDeploy"
+	AppAttributesKeysDocumentRoot       = "DocumentRoot"
+	AppAttributesKeysRailsEnv           = "RailsEnv"
+)
+
+const (
+	AppTypeJava   = "java"
+	AppTypeNodejs = "nodejs"
+	AppTypeOther  = "other"
+	AppTypePhp    = "php"
+	AppTypeRails  = "rails"
+	AppTypeStatic = "static"
+)
+
+const (
+	ArchitectureI386  = "i386"
+	ArchitectureX8664 = "x86_64"
+)
+
 // AssignInstanceRequest is undocumented.
 type AssignInstanceRequest struct {
 	InstanceID aws.StringValue `json:"InstanceId"`
@@ -843,6 +863,11 @@ type AutoScalingThresholds struct {
 	MemoryThreshold    aws.DoubleValue  `json:"MemoryThreshold,omitempty"`
 	ThresholdsWaitTime aws.IntegerValue `json:"ThresholdsWaitTime,omitempty"`
 }
+
+const (
+	AutoScalingTypeLoad  = "load"
+	AutoScalingTypeTimer = "timer"
+)
 
 // ChefConfiguration is undocumented.
 type ChefConfiguration struct {
@@ -1074,6 +1099,19 @@ type DeploymentCommand struct {
 	Args map[string][]string `json:"Args,omitempty"`
 	Name aws.StringValue     `json:"Name"`
 }
+
+const (
+	DeploymentCommandNameDeploy                = "deploy"
+	DeploymentCommandNameExecuteRecipes        = "execute_recipes"
+	DeploymentCommandNameInstallDependencies   = "install_dependencies"
+	DeploymentCommandNameRestart               = "restart"
+	DeploymentCommandNameRollback              = "rollback"
+	DeploymentCommandNameStart                 = "start"
+	DeploymentCommandNameStop                  = "stop"
+	DeploymentCommandNameUndeploy              = "undeploy"
+	DeploymentCommandNameUpdateCustomCookbooks = "update_custom_cookbooks"
+	DeploymentCommandNameUpdateDependencies    = "update_dependencies"
+)
 
 // DeregisterElasticIPRequest is undocumented.
 type DeregisterElasticIPRequest struct {
@@ -1442,6 +1480,46 @@ type Layer struct {
 	VolumeConfigurations        []VolumeConfiguration        `json:"VolumeConfigurations,omitempty"`
 }
 
+const (
+	LayerAttributesKeysBundlerVersion              = "BundlerVersion"
+	LayerAttributesKeysEnableHaproxyStats          = "EnableHaproxyStats"
+	LayerAttributesKeysGangliaPassword             = "GangliaPassword"
+	LayerAttributesKeysGangliaURL                  = "GangliaUrl"
+	LayerAttributesKeysGangliaUser                 = "GangliaUser"
+	LayerAttributesKeysHaproxyHealthCheckMethod    = "HaproxyHealthCheckMethod"
+	LayerAttributesKeysHaproxyHealthCheckURL       = "HaproxyHealthCheckUrl"
+	LayerAttributesKeysHaproxyStatsPassword        = "HaproxyStatsPassword"
+	LayerAttributesKeysHaproxyStatsURL             = "HaproxyStatsUrl"
+	LayerAttributesKeysHaproxyStatsUser            = "HaproxyStatsUser"
+	LayerAttributesKeysJavaAppServer               = "JavaAppServer"
+	LayerAttributesKeysJavaAppServerVersion        = "JavaAppServerVersion"
+	LayerAttributesKeysJvm                         = "Jvm"
+	LayerAttributesKeysJvmOptions                  = "JvmOptions"
+	LayerAttributesKeysJvmVersion                  = "JvmVersion"
+	LayerAttributesKeysManageBundler               = "ManageBundler"
+	LayerAttributesKeysMemcachedMemory             = "MemcachedMemory"
+	LayerAttributesKeysMysqlRootPassword           = "MysqlRootPassword"
+	LayerAttributesKeysMysqlRootPasswordUbiquitous = "MysqlRootPasswordUbiquitous"
+	LayerAttributesKeysNodejsVersion               = "NodejsVersion"
+	LayerAttributesKeysPassengerVersion            = "PassengerVersion"
+	LayerAttributesKeysRailsStack                  = "RailsStack"
+	LayerAttributesKeysRubyVersion                 = "RubyVersion"
+	LayerAttributesKeysRubygemsVersion             = "RubygemsVersion"
+)
+
+const (
+	LayerTypeCustom           = "custom"
+	LayerTypeDBMaster         = "db-master"
+	LayerTypeJavaApp          = "java-app"
+	LayerTypeLb               = "lb"
+	LayerTypeMemcached        = "memcached"
+	LayerTypeMonitoringMaster = "monitoring-master"
+	LayerTypeNodejsApp        = "nodejs-app"
+	LayerTypePhpApp           = "php-app"
+	LayerTypeRailsApp         = "rails-app"
+	LayerTypeWeb              = "web"
+)
+
 // LifecycleEventConfiguration is undocumented.
 type LifecycleEventConfiguration struct {
 	Shutdown *ShutdownEventConfiguration `json:"Shutdown,omitempty"`
@@ -1561,6 +1639,11 @@ type ReportedOS struct {
 	Version aws.StringValue `json:"Version,omitempty"`
 }
 
+const (
+	RootDeviceTypeEBS           = "ebs"
+	RootDeviceTypeInstanceStore = "instance-store"
+)
+
 // SelfUserProfile is undocumented.
 type SelfUserProfile struct {
 	IAMUserARN   aws.StringValue `json:"IamUserArn,omitempty"`
@@ -1618,6 +1701,13 @@ type Source struct {
 	Username aws.StringValue `json:"Username,omitempty"`
 }
 
+const (
+	SourceTypeArchive = "archive"
+	SourceTypeGit     = "git"
+	SourceTypeS3      = "s3"
+	SourceTypeSvn     = "svn"
+)
+
 // SSLConfiguration is undocumented.
 type SSLConfiguration struct {
 	Certificate aws.StringValue `json:"Certificate"`
@@ -1649,6 +1739,10 @@ type Stack struct {
 	UseOpsworksSecurityGroups aws.BooleanValue           `json:"UseOpsworksSecurityGroups,omitempty"`
 	VPCID                     aws.StringValue            `json:"VpcId,omitempty"`
 }
+
+const (
+	StackAttributesKeysColor = "Color"
+)
 
 // StackConfigurationManager is undocumented.
 type StackConfigurationManager struct {
@@ -1813,6 +1907,11 @@ type UserProfile struct {
 	SSHPublicKey        aws.StringValue  `json:"SshPublicKey,omitempty"`
 	SSHUsername         aws.StringValue  `json:"SshUsername,omitempty"`
 }
+
+const (
+	VirtualizationTypeHvm         = "hvm"
+	VirtualizationTypeParavirtual = "paravirtual"
+)
 
 // Volume is undocumented.
 type Volume struct {

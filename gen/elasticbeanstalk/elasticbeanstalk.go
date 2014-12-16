@@ -352,6 +352,12 @@ type CheckDNSAvailabilityResultMessage struct {
 	FullyQualifiedCNAME aws.StringValue  `xml:"CheckDNSAvailabilityResult>FullyQualifiedCNAME"`
 }
 
+const (
+	ConfigurationDeploymentStatusDeployed = "deployed"
+	ConfigurationDeploymentStatusFailed   = "failed"
+	ConfigurationDeploymentStatusPending  = "pending"
+)
+
 // ConfigurationOptionDescription is undocumented.
 type ConfigurationOptionDescription struct {
 	ChangeSeverity aws.StringValue         `xml:"ChangeSeverity"`
@@ -373,6 +379,11 @@ type ConfigurationOptionSetting struct {
 	OptionName aws.StringValue `xml:"OptionName"`
 	Value      aws.StringValue `xml:"Value"`
 }
+
+const (
+	ConfigurationOptionValueTypeList   = "List"
+	ConfigurationOptionValueTypeScalar = "Scalar"
+)
 
 // ConfigurationOptionsDescription is undocumented.
 type ConfigurationOptionsDescription struct {
@@ -556,6 +567,13 @@ type EnvironmentDescriptionsMessage struct {
 	Environments []EnvironmentDescription `xml:"DescribeEnvironmentsResult>Environments>member"`
 }
 
+const (
+	EnvironmentHealthGreen  = "Green"
+	EnvironmentHealthGrey   = "Grey"
+	EnvironmentHealthRed    = "Red"
+	EnvironmentHealthYellow = "Yellow"
+)
+
 // EnvironmentInfoDescription is undocumented.
 type EnvironmentInfoDescription struct {
 	EC2InstanceID   aws.StringValue `xml:"Ec2InstanceId"`
@@ -563,6 +581,10 @@ type EnvironmentInfoDescription struct {
 	Message         aws.StringValue `xml:"Message"`
 	SampleTimestamp time.Time       `xml:"SampleTimestamp"`
 }
+
+const (
+	EnvironmentInfoTypeTail = "tail"
+)
 
 // EnvironmentResourceDescription is undocumented.
 type EnvironmentResourceDescription struct {
@@ -584,6 +606,14 @@ type EnvironmentResourceDescriptionsMessage struct {
 type EnvironmentResourcesDescription struct {
 	LoadBalancer *LoadBalancerDescription `xml:"LoadBalancer"`
 }
+
+const (
+	EnvironmentStatusLaunching   = "Launching"
+	EnvironmentStatusReady       = "Ready"
+	EnvironmentStatusTerminated  = "Terminated"
+	EnvironmentStatusTerminating = "Terminating"
+	EnvironmentStatusUpdating    = "Updating"
+)
 
 // EnvironmentTier is undocumented.
 type EnvironmentTier struct {
@@ -609,6 +639,15 @@ type EventDescriptionsMessage struct {
 	Events    []EventDescription `xml:"DescribeEventsResult>Events>member"`
 	NextToken aws.StringValue    `xml:"DescribeEventsResult>NextToken"`
 }
+
+const (
+	EventSeverityDebug = "DEBUG"
+	EventSeverityError = "ERROR"
+	EventSeverityFatal = "FATAL"
+	EventSeverityInfo  = "INFO"
+	EventSeverityTrace = "TRACE"
+	EventSeverityWarn  = "WARN"
+)
 
 // Instance is undocumented.
 type Instance struct {
@@ -786,6 +825,11 @@ type ValidationMessage struct {
 	OptionName aws.StringValue `xml:"OptionName"`
 	Severity   aws.StringValue `xml:"Severity"`
 }
+
+const (
+	ValidationSeverityError   = "error"
+	ValidationSeverityWarning = "warning"
+)
 
 // CheckDNSAvailabilityResult is a wrapper for CheckDNSAvailabilityResultMessage.
 type CheckDNSAvailabilityResult struct {

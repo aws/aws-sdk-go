@@ -362,6 +362,11 @@ type IdentityNotificationAttributes struct {
 	ForwardingEnabled aws.BooleanValue `xml:"ForwardingEnabled"`
 }
 
+const (
+	IdentityTypeDomain       = "Domain"
+	IdentityTypeEmailAddress = "EmailAddress"
+)
+
 // IdentityVerificationAttributes is undocumented.
 type IdentityVerificationAttributes struct {
 	VerificationStatus aws.StringValue `xml:"VerificationStatus"`
@@ -391,6 +396,12 @@ type Message struct {
 	Body    *Body    `xml:"Body"`
 	Subject *Content `xml:"Subject"`
 }
+
+const (
+	NotificationTypeBounce    = "Bounce"
+	NotificationTypeComplaint = "Complaint"
+	NotificationTypeDelivery  = "Delivery"
+)
 
 // RawMessage is undocumented.
 type RawMessage struct {
@@ -462,6 +473,14 @@ type SetIdentityNotificationTopicRequest struct {
 // SetIdentityNotificationTopicResponse is undocumented.
 type SetIdentityNotificationTopicResponse struct {
 }
+
+const (
+	VerificationStatusFailed           = "Failed"
+	VerificationStatusNotStarted       = "NotStarted"
+	VerificationStatusPending          = "Pending"
+	VerificationStatusSuccess          = "Success"
+	VerificationStatusTemporaryFailure = "TemporaryFailure"
+)
 
 // VerifyDomainDkimRequest is undocumented.
 type VerifyDomainDkimRequest struct {

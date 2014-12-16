@@ -902,6 +902,18 @@ type ListRecordsResponse struct {
 	SyncSessionToken                      aws.StringValue  `json:"SyncSessionToken,omitempty"`
 }
 
+const (
+	OperationRemove  = "remove"
+	OperationReplace = "replace"
+)
+
+const (
+	PlatformAdm         = "ADM"
+	PlatformApns        = "APNS"
+	PlatformApnsSandbox = "APNS_SANDBOX"
+	PlatformGcm         = "GCM"
+)
+
 // PushSync is undocumented.
 type PushSync struct {
 	ApplicationARNs []string        `json:"ApplicationArns,omitempty"`

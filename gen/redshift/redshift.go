@@ -1760,6 +1760,13 @@ type SnapshotMessage struct {
 	Snapshots []Snapshot      `xml:"DescribeClusterSnapshotsResult>Snapshots>Snapshot"`
 }
 
+const (
+	SourceTypeCluster               = "cluster"
+	SourceTypeClusterParameterGroup = "cluster-parameter-group"
+	SourceTypeClusterSecurityGroup  = "cluster-security-group"
+	SourceTypeClusterSnapshot       = "cluster-snapshot"
+)
+
 // Subnet is undocumented.
 type Subnet struct {
 	SubnetAvailabilityZone *AvailabilityZone `xml:"SubnetAvailabilityZone"`

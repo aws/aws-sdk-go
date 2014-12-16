@@ -318,6 +318,17 @@ type Connection struct {
 	VLAN            aws.IntegerValue `json:"vlan,omitempty"`
 }
 
+const (
+	ConnectionStateAvailable = "available"
+	ConnectionStateDeleted   = "deleted"
+	ConnectionStateDeleting  = "deleting"
+	ConnectionStateDown      = "down"
+	ConnectionStateOrdering  = "ordering"
+	ConnectionStatePending   = "pending"
+	ConnectionStateRejected  = "rejected"
+	ConnectionStateRequested = "requested"
+)
+
 // Connections is undocumented.
 type Connections struct {
 	Connections []Connection `json:"connections,omitempty"`
@@ -404,6 +415,15 @@ type Interconnect struct {
 	Location          aws.StringValue `json:"location,omitempty"`
 	Region            aws.StringValue `json:"region,omitempty"`
 }
+
+const (
+	InterconnectStateAvailable = "available"
+	InterconnectStateDeleted   = "deleted"
+	InterconnectStateDeleting  = "deleting"
+	InterconnectStateDown      = "down"
+	InterconnectStatePending   = "pending"
+	InterconnectStateRequested = "requested"
+)
 
 // Interconnects is undocumented.
 type Interconnects struct {
@@ -498,6 +518,16 @@ type VirtualInterface struct {
 	VirtualInterfaceType  aws.StringValue     `json:"virtualInterfaceType,omitempty"`
 	VLAN                  aws.IntegerValue    `json:"vlan,omitempty"`
 }
+
+const (
+	VirtualInterfaceStateAvailable  = "available"
+	VirtualInterfaceStateConfirming = "confirming"
+	VirtualInterfaceStateDeleted    = "deleted"
+	VirtualInterfaceStateDeleting   = "deleting"
+	VirtualInterfaceStatePending    = "pending"
+	VirtualInterfaceStateRejected   = "rejected"
+	VirtualInterfaceStateVerifying  = "verifying"
+)
 
 // VirtualInterfaces is undocumented.
 type VirtualInterfaces struct {

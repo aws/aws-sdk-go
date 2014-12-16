@@ -153,6 +153,11 @@ type Job struct {
 	JobType      aws.StringValue  `xml:"JobType"`
 }
 
+const (
+	JobTypeExport = "Export"
+	JobTypeImport = "Import"
+)
+
 // ListJobsInput is undocumented.
 type ListJobsInput struct {
 	Marker  aws.StringValue  `xml:"Marker"`

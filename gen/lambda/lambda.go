@@ -750,10 +750,18 @@ type ListFunctionsResponse struct {
 	NextMarker aws.StringValue         `json:"NextMarker,omitempty"`
 }
 
+const (
+	ModeEvent = "event"
+)
+
 // RemoveEventSourceRequest is undocumented.
 type RemoveEventSourceRequest struct {
 	UUID aws.StringValue `json:"-"`
 }
+
+const (
+	RuntimeNodejs = "nodejs"
+)
 
 // UpdateFunctionConfigurationRequest is undocumented.
 type UpdateFunctionConfigurationRequest struct {

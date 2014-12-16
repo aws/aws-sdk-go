@@ -3495,10 +3495,41 @@ type Bucket struct {
 	Name         aws.StringValue `xml:"Name"`
 }
 
+const (
+	BucketCannedACLAuthenticatedRead = "authenticated-read"
+	BucketCannedACLPrivate           = "private"
+	BucketCannedACLPublicRead        = "public-read"
+	BucketCannedACLPublicReadWrite   = "public-read-write"
+)
+
+const (
+	BucketLocationConstraintApNortheast1 = "ap-northeast-1"
+	BucketLocationConstraintApSoutheast1 = "ap-southeast-1"
+	BucketLocationConstraintApSoutheast2 = "ap-southeast-2"
+	BucketLocationConstraintCnNorth1     = "cn-north-1"
+	BucketLocationConstraintEu           = "EU"
+	BucketLocationConstraintEuCentral1   = "eu-central-1"
+	BucketLocationConstraintEuWest1      = "eu-west-1"
+	BucketLocationConstraintSaEast1      = "sa-east-1"
+	BucketLocationConstraintUsWest1      = "us-west-1"
+	BucketLocationConstraintUsWest2      = "us-west-2"
+)
+
 // BucketLoggingStatus is undocumented.
 type BucketLoggingStatus struct {
 	LoggingEnabled *LoggingEnabled `xml:"LoggingEnabled"`
 }
+
+const (
+	BucketLogsPermissionFullControl = "FULL_CONTROL"
+	BucketLogsPermissionRead        = "READ"
+	BucketLogsPermissionWrite       = "WRITE"
+)
+
+const (
+	BucketVersioningStatusEnabled   = "Enabled"
+	BucketVersioningStatusSuspended = "Suspended"
+)
 
 // CORSConfiguration is undocumented.
 type CORSConfiguration struct {
@@ -3760,6 +3791,10 @@ type DeletedObject struct {
 	VersionID             aws.StringValue  `xml:"VersionId"`
 }
 
+const (
+	EncodingTypeURL = "url"
+)
+
 // Error is undocumented.
 type Error struct {
 	Code      aws.StringValue `xml:"Code"`
@@ -3772,6 +3807,19 @@ type Error struct {
 type ErrorDocument struct {
 	Key aws.StringValue `xml:"Key"`
 }
+
+const (
+	EventS3ObjectCreatedCompleteMultipartUpload = "s3:ObjectCreated:CompleteMultipartUpload"
+	EventS3ObjectCreatedCopy                    = "s3:ObjectCreated:Copy"
+	EventS3ObjectCreatedPost                    = "s3:ObjectCreated:Post"
+	EventS3ObjectCreatedPut                     = "s3:ObjectCreated:Put"
+	EventS3ReducedRedundancyLostObject          = "s3:ReducedRedundancyLostObject"
+)
+
+const (
+	ExpirationStatusDisabled = "Disabled"
+	ExpirationStatusEnabled  = "Enabled"
+)
 
 // GetBucketACLOutput is undocumented.
 type GetBucketACLOutput struct {
@@ -4159,6 +4207,21 @@ type LoggingEnabled struct {
 	TargetPrefix aws.StringValue `xml:"TargetPrefix"`
 }
 
+const (
+	MFADeleteDisabled = "Disabled"
+	MFADeleteEnabled  = "Enabled"
+)
+
+const (
+	MFADeleteStatusDisabled = "Disabled"
+	MFADeleteStatusEnabled  = "Enabled"
+)
+
+const (
+	MetadataDirectiveCopy    = "COPY"
+	MetadataDirectiveReplace = "REPLACE"
+)
+
 // MultipartUpload is undocumented.
 type MultipartUpload struct {
 	Initiated    time.Time       `xml:"Initiated"`
@@ -4197,11 +4260,26 @@ type Object struct {
 	StorageClass aws.StringValue  `xml:"StorageClass"`
 }
 
+const (
+	ObjectCannedACLAuthenticatedRead      = "authenticated-read"
+	ObjectCannedACLBucketOwnerFullControl = "bucket-owner-full-control"
+	ObjectCannedACLBucketOwnerRead        = "bucket-owner-read"
+	ObjectCannedACLPrivate                = "private"
+	ObjectCannedACLPublicRead             = "public-read"
+	ObjectCannedACLPublicReadWrite        = "public-read-write"
+)
+
 // ObjectIdentifier is undocumented.
 type ObjectIdentifier struct {
 	Key       aws.StringValue `xml:"Key"`
 	VersionID aws.StringValue `xml:"VersionId"`
 }
+
+const (
+	ObjectStorageClassGlacier           = "GLACIER"
+	ObjectStorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+	ObjectStorageClassStandard          = "STANDARD"
+)
 
 // ObjectVersion is undocumented.
 type ObjectVersion struct {
@@ -4214,6 +4292,10 @@ type ObjectVersion struct {
 	StorageClass aws.StringValue  `xml:"StorageClass"`
 	VersionID    aws.StringValue  `xml:"VersionId"`
 }
+
+const (
+	ObjectVersionStorageClassStandard = "STANDARD"
+)
 
 // Owner is undocumented.
 type Owner struct {
@@ -4228,6 +4310,24 @@ type Part struct {
 	PartNumber   aws.IntegerValue `xml:"PartNumber"`
 	Size         aws.IntegerValue `xml:"Size"`
 }
+
+const (
+	PayerBucketOwner = "BucketOwner"
+	PayerRequester   = "Requester"
+)
+
+const (
+	PermissionFullControl = "FULL_CONTROL"
+	PermissionRead        = "READ"
+	PermissionReadAcp     = "READ_ACP"
+	PermissionWrite       = "WRITE"
+	PermissionWriteAcp    = "WRITE_ACP"
+)
+
+const (
+	ProtocolHTTP  = "http"
+	ProtocolHTTPs = "https"
+)
 
 // PutBucketACLRequest is undocumented.
 type PutBucketACLRequest struct {
@@ -4417,6 +4517,15 @@ type Rule struct {
 	Transition                  *Transition                  `xml:"Transition"`
 }
 
+const (
+	ServerSideEncryptionAes256 = "AES256"
+)
+
+const (
+	StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+	StorageClassStandard          = "STANDARD"
+)
+
 // Tag is undocumented.
 type Tag struct {
 	Key   aws.StringValue `xml:"Key"`
@@ -4448,6 +4557,16 @@ type Transition struct {
 	Days         aws.IntegerValue `xml:"Days"`
 	StorageClass aws.StringValue  `xml:"StorageClass"`
 }
+
+const (
+	TransitionStorageClassGlacier = "GLACIER"
+)
+
+const (
+	TypeAmazonCustomerByEmail = "AmazonCustomerByEmail"
+	TypeCanonicalUser         = "CanonicalUser"
+	TypeGroup                 = "Group"
+)
 
 // UploadPartCopyOutput is undocumented.
 type UploadPartCopyOutput struct {

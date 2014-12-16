@@ -1225,6 +1225,12 @@ type EnableMFADeviceRequest struct {
 	UserName            aws.StringValue `xml:"UserName"`
 }
 
+const (
+	EntityTypeGroup = "Group"
+	EntityTypeRole  = "Role"
+	EntityTypeUser  = "User"
+)
+
 // GenerateCredentialReportResponse is undocumented.
 type GenerateCredentialReportResponse struct {
 	Description aws.StringValue `xml:"GenerateCredentialReportResult>Description"`
@@ -1727,6 +1733,16 @@ type RemoveUserFromGroupRequest struct {
 	UserName  aws.StringValue `xml:"UserName"`
 }
 
+const (
+	ReportFormatTypeTextCsv = "text/csv"
+)
+
+const (
+	ReportStateTypeComplete   = "COMPLETE"
+	ReportStateTypeInprogress = "INPROGRESS"
+	ReportStateTypeStarted    = "STARTED"
+)
+
 // ResyncMFADeviceRequest is undocumented.
 type ResyncMFADeviceRequest struct {
 	AuthenticationCode1 aws.StringValue `xml:"AuthenticationCode1"`
@@ -1922,6 +1938,34 @@ type VirtualMFADevice struct {
 	SerialNumber     aws.StringValue `xml:"SerialNumber"`
 	User             *User           `xml:"User"`
 }
+
+const (
+	AssignmentStatusTypeAny        = "Any"
+	AssignmentStatusTypeAssigned   = "Assigned"
+	AssignmentStatusTypeUnassigned = "Unassigned"
+)
+
+const (
+	StatusTypeActive   = "Active"
+	StatusTypeInactive = "Inactive"
+)
+
+const (
+	SummaryKeyTypeAccessKeysPerUserQuota          = "AccessKeysPerUserQuota"
+	SummaryKeyTypeAccountMfaenabled               = "AccountMFAEnabled"
+	SummaryKeyTypeGroupPolicySizeQuota            = "GroupPolicySizeQuota"
+	SummaryKeyTypeGroups                          = "Groups"
+	SummaryKeyTypeGroupsPerUserQuota              = "GroupsPerUserQuota"
+	SummaryKeyTypeGroupsQuota                     = "GroupsQuota"
+	SummaryKeyTypeMfadevices                      = "MFADevices"
+	SummaryKeyTypeMfadevicesInUse                 = "MFADevicesInUse"
+	SummaryKeyTypeServerCertificates              = "ServerCertificates"
+	SummaryKeyTypeServerCertificatesQuota         = "ServerCertificatesQuota"
+	SummaryKeyTypeSigningCertificatesPerUserQuota = "SigningCertificatesPerUserQuota"
+	SummaryKeyTypeUserPolicySizeQuota             = "UserPolicySizeQuota"
+	SummaryKeyTypeUsers                           = "Users"
+	SummaryKeyTypeUsersQuota                      = "UsersQuota"
+)
 
 // CreateAccessKeyResult is a wrapper for CreateAccessKeyResponse.
 type CreateAccessKeyResult struct {

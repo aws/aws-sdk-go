@@ -286,6 +286,11 @@ type CreateKeyResponse struct {
 	KeyMetadata *KeyMetadata `json:"KeyMetadata,omitempty"`
 }
 
+const (
+	DataKeySpecAes128 = "AES_128"
+	DataKeySpecAes256 = "AES_256"
+)
+
 // DecryptRequest is undocumented.
 type DecryptRequest struct {
 	CiphertextBlob    []byte            `json:"CiphertextBlob"`
@@ -426,6 +431,17 @@ type GrantListEntry struct {
 	RetiringPrincipal aws.StringValue   `json:"RetiringPrincipal,omitempty"`
 }
 
+const (
+	GrantOperationCreateGrant                     = "CreateGrant"
+	GrantOperationDecrypt                         = "Decrypt"
+	GrantOperationEncrypt                         = "Encrypt"
+	GrantOperationGenerateDataKey                 = "GenerateDataKey"
+	GrantOperationGenerateDataKeyWithoutPlaintext = "GenerateDataKeyWithoutPlaintext"
+	GrantOperationReEncryptFrom                   = "ReEncryptFrom"
+	GrantOperationReEncryptTo                     = "ReEncryptTo"
+	GrantOperationRetireGrant                     = "RetireGrant"
+)
+
 // KeyListEntry is undocumented.
 type KeyListEntry struct {
 	KeyARN aws.StringValue `json:"KeyArn,omitempty"`
@@ -442,6 +458,10 @@ type KeyMetadata struct {
 	KeyID        aws.StringValue  `json:"KeyId"`
 	KeyUsage     aws.StringValue  `json:"KeyUsage,omitempty"`
 }
+
+const (
+	KeyUsageTypeEncryptDecrypt = "ENCRYPT_DECRYPT"
+)
 
 // ListAliasesRequest is undocumented.
 type ListAliasesRequest struct {

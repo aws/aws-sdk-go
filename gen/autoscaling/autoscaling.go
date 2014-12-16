@@ -952,6 +952,22 @@ type LifecycleHook struct {
 	RoleARN               aws.StringValue  `xml:"RoleARN"`
 }
 
+const (
+	LifecycleStateDetached           = "Detached"
+	LifecycleStateDetaching          = "Detaching"
+	LifecycleStateEnteringStandby    = "EnteringStandby"
+	LifecycleStateInService          = "InService"
+	LifecycleStatePending            = "Pending"
+	LifecycleStatePendingProceed     = "Pending:Proceed"
+	LifecycleStatePendingWait        = "Pending:Wait"
+	LifecycleStateQuarantined        = "Quarantined"
+	LifecycleStateStandby            = "Standby"
+	LifecycleStateTerminated         = "Terminated"
+	LifecycleStateTerminating        = "Terminating"
+	LifecycleStateTerminatingProceed = "Terminating:Proceed"
+	LifecycleStateTerminatingWait    = "Terminating:Wait"
+)
+
 // MetricCollectionType is undocumented.
 type MetricCollectionType struct {
 	Metric aws.StringValue `xml:"Metric"`
@@ -1046,6 +1062,19 @@ type RecordLifecycleActionHeartbeatType struct {
 	LifecycleActionToken aws.StringValue `xml:"LifecycleActionToken"`
 	LifecycleHookName    aws.StringValue `xml:"LifecycleHookName"`
 }
+
+const (
+	ScalingActivityStatusCodeCancelled                       = "Cancelled"
+	ScalingActivityStatusCodeFailed                          = "Failed"
+	ScalingActivityStatusCodeInProgress                      = "InProgress"
+	ScalingActivityStatusCodeMidLifecycleAction              = "MidLifecycleAction"
+	ScalingActivityStatusCodePreInService                    = "PreInService"
+	ScalingActivityStatusCodeSuccessful                      = "Successful"
+	ScalingActivityStatusCodeWaitingForElbconnectionDraining = "WaitingForELBConnectionDraining"
+	ScalingActivityStatusCodeWaitingForInstanceID            = "WaitingForInstanceId"
+	ScalingActivityStatusCodeWaitingForSpotInstanceID        = "WaitingForSpotInstanceId"
+	ScalingActivityStatusCodeWaitingForSpotInstanceRequestID = "WaitingForSpotInstanceRequestId"
+)
 
 // ScalingPolicy is undocumented.
 type ScalingPolicy struct {

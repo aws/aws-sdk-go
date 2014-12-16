@@ -526,6 +526,22 @@ type PurgeQueueRequest struct {
 	QueueURL aws.StringValue `xml:"QueueUrl"`
 }
 
+const (
+	QueueAttributeNameApproximateNumberOfMessages           = "ApproximateNumberOfMessages"
+	QueueAttributeNameApproximateNumberOfMessagesDelayed    = "ApproximateNumberOfMessagesDelayed"
+	QueueAttributeNameApproximateNumberOfMessagesNotVisible = "ApproximateNumberOfMessagesNotVisible"
+	QueueAttributeNameCreatedTimestamp                      = "CreatedTimestamp"
+	QueueAttributeNameDelaySeconds                          = "DelaySeconds"
+	QueueAttributeNameLastModifiedTimestamp                 = "LastModifiedTimestamp"
+	QueueAttributeNameMaximumMessageSize                    = "MaximumMessageSize"
+	QueueAttributeNameMessageRetentionPeriod                = "MessageRetentionPeriod"
+	QueueAttributeNamePolicy                                = "Policy"
+	QueueAttributeNameQueueARN                              = "QueueArn"
+	QueueAttributeNameReceiveMessageWaitTimeSeconds         = "ReceiveMessageWaitTimeSeconds"
+	QueueAttributeNameRedrivePolicy                         = "RedrivePolicy"
+	QueueAttributeNameVisibilityTimeout                     = "VisibilityTimeout"
+)
+
 // ReceiveMessageRequest is undocumented.
 type ReceiveMessageRequest struct {
 	AttributeNames        []string         `xml:"AttributeNames>AttributeName"`

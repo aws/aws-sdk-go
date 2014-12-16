@@ -2075,6 +2075,11 @@ type AccountAttribute struct {
 	AttributeValues []AccountAttributeValue `ec2:"AttributeValues" xml:"attributeValueSet>item"`
 }
 
+const (
+	AccountAttributeNameDefaultVPC         = "default-vpc"
+	AccountAttributeNameSupportedPlatforms = "supported-platforms"
+)
+
 // AccountAttributeValue is undocumented.
 type AccountAttributeValue struct {
 	AttributeValue aws.StringValue `ec2:"AttributeValue" xml:"attributeValue"`
@@ -2104,6 +2109,11 @@ type AllocateAddressResult struct {
 	Domain       aws.StringValue `ec2:"Domain" xml:"domain"`
 	PublicIP     aws.StringValue `ec2:"PublicIp" xml:"publicIp"`
 }
+
+const (
+	ArchitectureValuesI386  = "i386"
+	ArchitectureValuesX8664 = "x86_64"
+)
 
 // AssignPrivateIPAddressesRequest is undocumented.
 type AssignPrivateIPAddressesRequest struct {
@@ -2188,6 +2198,13 @@ type AttachVPNGatewayResult struct {
 	VPCAttachment *VPCAttachment `ec2:"VpcAttachment" xml:"attachment"`
 }
 
+const (
+	AttachmentStatusAttached  = "attached"
+	AttachmentStatusAttaching = "attaching"
+	AttachmentStatusDetached  = "detached"
+	AttachmentStatusDetaching = "detaching"
+)
+
 // AttributeBooleanValue is undocumented.
 type AttributeBooleanValue struct {
 	Value aws.BooleanValue `ec2:"Value" xml:"value"`
@@ -2238,6 +2255,10 @@ type AvailabilityZoneMessage struct {
 	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
+const (
+	AvailabilityZoneStateAvailable = "available"
+)
+
 // BlobAttributeValue is undocumented.
 type BlobAttributeValue struct {
 	Value []byte `ec2:"Value" xml:"value"`
@@ -2281,6 +2302,16 @@ type BundleTaskError struct {
 	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
+const (
+	BundleTaskStateBundling           = "bundling"
+	BundleTaskStateCancelling         = "cancelling"
+	BundleTaskStateComplete           = "complete"
+	BundleTaskStateFailed             = "failed"
+	BundleTaskStatePending            = "pending"
+	BundleTaskStateStoring            = "storing"
+	BundleTaskStateWaitingForShutdown = "waiting-for-shutdown"
+)
+
 // CancelBundleTaskRequest is undocumented.
 type CancelBundleTaskRequest struct {
 	BundleID aws.StringValue  `ec2:"BundleId" xml:"BundleId"`
@@ -2314,6 +2345,14 @@ type CancelReservedInstancesListingResult struct {
 	ReservedInstancesListings []ReservedInstancesListing `ec2:"ReservedInstancesListings" xml:"reservedInstancesListingsSet>item"`
 }
 
+const (
+	CancelSpotInstanceRequestStateActive    = "active"
+	CancelSpotInstanceRequestStateCancelled = "cancelled"
+	CancelSpotInstanceRequestStateClosed    = "closed"
+	CancelSpotInstanceRequestStateCompleted = "completed"
+	CancelSpotInstanceRequestStateOpen      = "open"
+)
+
 // CancelSpotInstanceRequestsRequest is undocumented.
 type CancelSpotInstanceRequestsRequest struct {
 	DryRun                 aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
@@ -2343,6 +2382,10 @@ type ConfirmProductInstanceResult struct {
 	OwnerID aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
 }
 
+const (
+	ContainerFormatOva = "ova"
+)
+
 // ConversionTask is undocumented.
 type ConversionTask struct {
 	ConversionTaskID aws.StringValue            `ec2:"ConversionTaskId" xml:"conversionTaskId"`
@@ -2353,6 +2396,13 @@ type ConversionTask struct {
 	StatusMessage    aws.StringValue            `ec2:"StatusMessage" xml:"statusMessage"`
 	Tags             []Tag                      `ec2:"Tags" xml:"tagSet>item"`
 }
+
+const (
+	ConversionTaskStateActive     = "active"
+	ConversionTaskStateCancelled  = "cancelled"
+	ConversionTaskStateCancelling = "cancelling"
+	ConversionTaskStateCompleted  = "completed"
+)
 
 // CopyImageRequest is undocumented.
 type CopyImageRequest struct {
@@ -2667,6 +2717,10 @@ type CreateVPNGatewayResult struct {
 	VPNGateway *VPNGateway `ec2:"VpnGateway" xml:"vpnGateway"`
 }
 
+const (
+	CurrencyCodeValuesUsd = "USD"
+)
+
 // CustomerGateway is undocumented.
 type CustomerGateway struct {
 	BGPASN            aws.StringValue `ec2:"BgpAsn" xml:"bgpAsn"`
@@ -2676,6 +2730,11 @@ type CustomerGateway struct {
 	Tags              []Tag           `ec2:"Tags" xml:"tagSet>item"`
 	Type              aws.StringValue `ec2:"Type" xml:"type"`
 }
+
+const (
+	DatafeedSubscriptionStateActive   = "Active"
+	DatafeedSubscriptionStateInactive = "Inactive"
+)
 
 // DeleteCustomerGatewayRequest is undocumented.
 type DeleteCustomerGatewayRequest struct {
@@ -3377,6 +3436,11 @@ type DetachVPNGatewayRequest struct {
 	VPNGatewayID aws.StringValue  `ec2:"VpnGatewayId" xml:"VpnGatewayId"`
 }
 
+const (
+	DeviceTypeEBS           = "ebs"
+	DeviceTypeInstanceStore = "instance-store"
+)
+
 // DHCPConfiguration is undocumented.
 type DHCPConfiguration struct {
 	Key    aws.StringValue  `ec2:"Key" xml:"key"`
@@ -3431,11 +3495,22 @@ type DiskImageDetail struct {
 	ImportManifestURL aws.StringValue `ec2:"ImportManifestUrl" xml:"importManifestUrl"`
 }
 
+const (
+	DiskImageFormatRaw  = "RAW"
+	DiskImageFormatVhd  = "VHD"
+	DiskImageFormatVmdk = "VMDK"
+)
+
 // DiskImageVolumeDescription is undocumented.
 type DiskImageVolumeDescription struct {
 	ID   aws.StringValue `ec2:"Id" xml:"id"`
 	Size aws.LongValue   `ec2:"Size" xml:"size"`
 }
+
+const (
+	DomainTypeStandard = "standard"
+	DomainTypeVPC      = "vpc"
+)
 
 // EBSBlockDevice is undocumented.
 type EBSBlockDevice struct {
@@ -3473,6 +3548,20 @@ type EnableVolumeIORequest struct {
 	VolumeID aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
 
+const (
+	EventCodeInstanceReboot     = "instance-reboot"
+	EventCodeInstanceRetirement = "instance-retirement"
+	EventCodeInstanceStop       = "instance-stop"
+	EventCodeSystemMaintenance  = "system-maintenance"
+	EventCodeSystemReboot       = "system-reboot"
+)
+
+const (
+	ExportEnvironmentCitrix    = "citrix"
+	ExportEnvironmentMicrosoft = "microsoft"
+	ExportEnvironmentVmware    = "vmware"
+)
+
 // ExportTask is undocumented.
 type ExportTask struct {
 	Description           aws.StringValue        `ec2:"Description" xml:"description"`
@@ -3482,6 +3571,13 @@ type ExportTask struct {
 	State                 aws.StringValue        `ec2:"State" xml:"state"`
 	StatusMessage         aws.StringValue        `ec2:"StatusMessage" xml:"statusMessage"`
 }
+
+const (
+	ExportTaskStateActive     = "active"
+	ExportTaskStateCancelled  = "cancelled"
+	ExportTaskStateCancelling = "cancelling"
+	ExportTaskStateCompleted  = "completed"
+)
 
 // ExportToS3Task is undocumented.
 type ExportToS3Task struct {
@@ -3504,6 +3600,10 @@ type Filter struct {
 	Name   aws.StringValue `ec2:"Name" xml:"Name"`
 	Values []string        `ec2:"Value" xml:"Value>item"`
 }
+
+const (
+	GatewayTypeIPsec1 = "ipsec.1"
+)
 
 // GetConsoleOutputRequest is undocumented.
 type GetConsoleOutputRequest struct {
@@ -3536,6 +3636,11 @@ type GroupIdentifier struct {
 	GroupID   aws.StringValue `ec2:"GroupId" xml:"groupId"`
 	GroupName aws.StringValue `ec2:"GroupName" xml:"groupName"`
 }
+
+const (
+	HypervisorTypeOvm = "ovm"
+	HypervisorTypeXen = "xen"
+)
 
 // IAMInstanceProfile is undocumented.
 type IAMInstanceProfile struct {
@@ -3592,6 +3697,26 @@ type ImageAttribute struct {
 	RAMDiskID           *AttributeValue      `ec2:"RamdiskId" xml:"ramdisk"`
 	SRIOVNetSupport     *AttributeValue      `ec2:"SriovNetSupport" xml:"sriovNetSupport"`
 }
+
+const (
+	ImageAttributeNameBlockDeviceMapping = "blockDeviceMapping"
+	ImageAttributeNameDescription        = "description"
+	ImageAttributeNameKernel             = "kernel"
+	ImageAttributeNameLaunchPermission   = "launchPermission"
+	ImageAttributeNameProductCodes       = "productCodes"
+	ImageAttributeNameRAMDisk            = "ramdisk"
+)
+
+const (
+	ImageStateAvailable    = "available"
+	ImageStateDeregistered = "deregistered"
+)
+
+const (
+	ImageTypeValuesKernel  = "kernel"
+	ImageTypeValuesMAChine = "machine"
+	ImageTypeValuesRAMDisk = "ramdisk"
+)
 
 // ImportInstanceLaunchSpecification is undocumented.
 type ImportInstanceLaunchSpecification struct {
@@ -3736,6 +3861,22 @@ type InstanceAttribute struct {
 	UserData                          *AttributeValue              `ec2:"UserData" xml:"userData"`
 }
 
+const (
+	InstanceAttributeNameBlockDeviceMapping                = "blockDeviceMapping"
+	InstanceAttributeNameDisableAPITermination             = "disableApiTermination"
+	InstanceAttributeNameEBSOptimized                      = "ebsOptimized"
+	InstanceAttributeNameGroupSet                          = "groupSet"
+	InstanceAttributeNameInstanceInitiatedShutdownBehavior = "instanceInitiatedShutdownBehavior"
+	InstanceAttributeNameInstanceType                      = "instanceType"
+	InstanceAttributeNameKernel                            = "kernel"
+	InstanceAttributeNameProductCodes                      = "productCodes"
+	InstanceAttributeNameRAMDisk                           = "ramdisk"
+	InstanceAttributeNameRootDeviceName                    = "rootDeviceName"
+	InstanceAttributeNameSRIOVNetSupport                   = "sriovNetSupport"
+	InstanceAttributeNameSourceDestCheck                   = "sourceDestCheck"
+	InstanceAttributeNameUserData                          = "userData"
+)
+
 // InstanceBlockDeviceMapping is undocumented.
 type InstanceBlockDeviceMapping struct {
 	DeviceName aws.StringValue         `ec2:"DeviceName" xml:"deviceName"`
@@ -3761,6 +3902,10 @@ type InstanceExportDetails struct {
 	InstanceID        aws.StringValue `ec2:"InstanceId" xml:"instanceId"`
 	TargetEnvironment aws.StringValue `ec2:"TargetEnvironment" xml:"targetEnvironment"`
 }
+
+const (
+	InstanceLifecycleTypeSpot = "spot"
+)
 
 // InstanceMonitoring is undocumented.
 type InstanceMonitoring struct {
@@ -3837,6 +3982,15 @@ type InstanceStateChange struct {
 	PreviousState *InstanceState  `ec2:"PreviousState" xml:"previousState"`
 }
 
+const (
+	InstanceStateNamePending      = "pending"
+	InstanceStateNameRunning      = "running"
+	InstanceStateNameShuttingDown = "shutting-down"
+	InstanceStateNameStopped      = "stopped"
+	InstanceStateNameStopping     = "stopping"
+	InstanceStateNameTerminated   = "terminated"
+)
+
 // InstanceStatus is undocumented.
 type InstanceStatus struct {
 	AvailabilityZone aws.StringValue        `ec2:"AvailabilityZone" xml:"availabilityZone"`
@@ -3867,6 +4021,47 @@ type InstanceStatusSummary struct {
 	Details []InstanceStatusDetails `ec2:"Details" xml:"details>item"`
 	Status  aws.StringValue         `ec2:"Status" xml:"status"`
 }
+
+const (
+	InstanceTypeC1Medium   = "c1.medium"
+	InstanceTypeC1Xlarge   = "c1.xlarge"
+	InstanceTypeC32xlarge  = "c3.2xlarge"
+	InstanceTypeC34xlarge  = "c3.4xlarge"
+	InstanceTypeC38xlarge  = "c3.8xlarge"
+	InstanceTypeC3Large    = "c3.large"
+	InstanceTypeC3Xlarge   = "c3.xlarge"
+	InstanceTypeCc14xlarge = "cc1.4xlarge"
+	InstanceTypeCc28xlarge = "cc2.8xlarge"
+	InstanceTypeCg14xlarge = "cg1.4xlarge"
+	InstanceTypeCr18xlarge = "cr1.8xlarge"
+	InstanceTypeG22xlarge  = "g2.2xlarge"
+	InstanceTypeHi14xlarge = "hi1.4xlarge"
+	InstanceTypeHs18xlarge = "hs1.8xlarge"
+	InstanceTypeI22xlarge  = "i2.2xlarge"
+	InstanceTypeI24xlarge  = "i2.4xlarge"
+	InstanceTypeI28xlarge  = "i2.8xlarge"
+	InstanceTypeI2Xlarge   = "i2.xlarge"
+	InstanceTypeM1Large    = "m1.large"
+	InstanceTypeM1Medium   = "m1.medium"
+	InstanceTypeM1Small    = "m1.small"
+	InstanceTypeM1Xlarge   = "m1.xlarge"
+	InstanceTypeM22xlarge  = "m2.2xlarge"
+	InstanceTypeM24xlarge  = "m2.4xlarge"
+	InstanceTypeM2Xlarge   = "m2.xlarge"
+	InstanceTypeM32xlarge  = "m3.2xlarge"
+	InstanceTypeM3Large    = "m3.large"
+	InstanceTypeM3Medium   = "m3.medium"
+	InstanceTypeM3Xlarge   = "m3.xlarge"
+	InstanceTypeR32xlarge  = "r3.2xlarge"
+	InstanceTypeR34xlarge  = "r3.4xlarge"
+	InstanceTypeR38xlarge  = "r3.8xlarge"
+	InstanceTypeR3Large    = "r3.large"
+	InstanceTypeR3Xlarge   = "r3.xlarge"
+	InstanceTypeT1Micro    = "t1.micro"
+	InstanceTypeT2Medium   = "t2.medium"
+	InstanceTypeT2Micro    = "t2.micro"
+	InstanceTypeT2Small    = "t2.small"
+)
 
 // InternetGateway is undocumented.
 type InternetGateway struct {
@@ -3938,6 +4133,20 @@ type LaunchSpecification struct {
 	SubnetID            aws.StringValue                         `ec2:"SubnetId" xml:"subnetId"`
 	UserData            aws.StringValue                         `ec2:"UserData" xml:"userData"`
 }
+
+const (
+	ListingStateAvailable = "available"
+	ListingStateCancelled = "cancelled"
+	ListingStatePending   = "pending"
+	ListingStateSold      = "sold"
+)
+
+const (
+	ListingStatusActive    = "active"
+	ListingStatusCancelled = "cancelled"
+	ListingStatusClosed    = "closed"
+	ListingStatusPending   = "pending"
+)
 
 // ModifyImageAttributeRequest is undocumented.
 type ModifyImageAttributeRequest struct {
@@ -4041,6 +4250,12 @@ type Monitoring struct {
 	State aws.StringValue `ec2:"State" xml:"state"`
 }
 
+const (
+	MonitoringStateDisabled = "disabled"
+	MonitoringStateEnabled  = "enabled"
+	MonitoringStatePending  = "pending"
+)
+
 // NetworkACL is undocumented.
 type NetworkACL struct {
 	Associations []NetworkACLAssociation `ec2:"Associations" xml:"associationSet>item"`
@@ -4117,6 +4332,13 @@ type NetworkInterfaceAttachmentChanges struct {
 	DeleteOnTermination aws.BooleanValue `ec2:"DeleteOnTermination" xml:"deleteOnTermination"`
 }
 
+const (
+	NetworkInterfaceAttributeAttachment      = "attachment"
+	NetworkInterfaceAttributeDescription     = "description"
+	NetworkInterfaceAttributeGroupSet        = "groupSet"
+	NetworkInterfaceAttributeSourceDestCheck = "sourceDestCheck"
+)
+
 // NetworkInterfacePrivateIPAddress is undocumented.
 type NetworkInterfacePrivateIPAddress struct {
 	Association      *NetworkInterfaceAssociation `ec2:"Association" xml:"association"`
@@ -4125,11 +4347,28 @@ type NetworkInterfacePrivateIPAddress struct {
 	PrivateIPAddress aws.StringValue              `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 }
 
+const (
+	NetworkInterfaceStatusAttaching = "attaching"
+	NetworkInterfaceStatusAvailable = "available"
+	NetworkInterfaceStatusDetaching = "detaching"
+	NetworkInterfaceStatusInUse     = "in-use"
+)
+
 // NewDHCPConfiguration is undocumented.
 type NewDHCPConfiguration struct {
 	Key    aws.StringValue `ec2:"Key" xml:"key"`
 	Values []string        `ec2:"Value" xml:"Value>item"`
 }
+
+const (
+	OfferingTypeValuesHeavyUtilization  = "Heavy Utilization"
+	OfferingTypeValuesLightUtilization  = "Light Utilization"
+	OfferingTypeValuesMediumUtilization = "Medium Utilization"
+)
+
+const (
+	PermissionGroupAll = "all"
+)
 
 // Placement is undocumented.
 type Placement struct {
@@ -4144,6 +4383,21 @@ type PlacementGroup struct {
 	State     aws.StringValue `ec2:"State" xml:"state"`
 	Strategy  aws.StringValue `ec2:"Strategy" xml:"strategy"`
 }
+
+const (
+	PlacementGroupStateAvailable = "available"
+	PlacementGroupStateDeleted   = "deleted"
+	PlacementGroupStateDeleting  = "deleting"
+	PlacementGroupStatePending   = "pending"
+)
+
+const (
+	PlacementStrategyCluster = "cluster"
+)
+
+const (
+	PlatformValuesWindows = "Windows"
+)
 
 // PortRange is undocumented.
 type PortRange struct {
@@ -4184,6 +4438,11 @@ type ProductCode struct {
 	ProductCodeType aws.StringValue `ec2:"ProductCodeType" xml:"type"`
 }
 
+const (
+	ProductCodeValuesDevpay      = "devpay"
+	ProductCodeValuesMarketplace = "marketplace"
+)
+
 // PropagatingVGW is undocumented.
 type PropagatingVGW struct {
 	GatewayID aws.StringValue `ec2:"GatewayId" xml:"gatewayId"`
@@ -4202,6 +4461,13 @@ type PurchaseReservedInstancesOfferingResult struct {
 	ReservedInstancesID aws.StringValue `ec2:"ReservedInstancesId" xml:"reservedInstancesId"`
 }
 
+const (
+	RIProductDescriptionLinuxUnix          = "Linux/UNIX"
+	RIProductDescriptionLinuxUnixamazonVPC = "Linux/UNIX (Amazon VPC)"
+	RIProductDescriptionWindows            = "Windows"
+	RIProductDescriptionWindowsAmazonVPC   = "Windows (Amazon VPC)"
+)
+
 // RebootInstancesRequest is undocumented.
 type RebootInstancesRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
@@ -4213,6 +4479,10 @@ type RecurringCharge struct {
 	Amount    aws.DoubleValue `ec2:"Amount" xml:"amount"`
 	Frequency aws.StringValue `ec2:"Frequency" xml:"frequency"`
 }
+
+const (
+	RecurringChargeFrequencyHourly = "Hourly"
+)
 
 // Region is undocumented.
 type Region struct {
@@ -4306,6 +4576,18 @@ type ReplaceRouteTableAssociationResult struct {
 	NewAssociationID aws.StringValue `ec2:"NewAssociationId" xml:"newAssociationId"`
 }
 
+const (
+	ReportInstanceReasonCodesInstanceStuckInState     = "instance-stuck-in-state"
+	ReportInstanceReasonCodesNotAcceptingCredentials  = "not-accepting-credentials"
+	ReportInstanceReasonCodesOther                    = "other"
+	ReportInstanceReasonCodesPasswordNotAvailable     = "password-not-available"
+	ReportInstanceReasonCodesPerformanceEBSVolume     = "performance-ebs-volume"
+	ReportInstanceReasonCodesPerformanceInstanceStore = "performance-instance-store"
+	ReportInstanceReasonCodesPerformanceNetwork       = "performance-network"
+	ReportInstanceReasonCodesPerformanceOther         = "performance-other"
+	ReportInstanceReasonCodesUnresponsive             = "unresponsive"
+)
+
 // ReportInstanceStatusRequest is undocumented.
 type ReportInstanceStatusRequest struct {
 	Description aws.StringValue  `ec2:"Description" xml:"description"`
@@ -4316,6 +4598,11 @@ type ReportInstanceStatusRequest struct {
 	StartTime   time.Time        `ec2:"StartTime" xml:"startTime"`
 	Status      aws.StringValue  `ec2:"Status" xml:"status"`
 }
+
+const (
+	ReportStatusTypeImpaired = "impaired"
+	ReportStatusTypeOk       = "ok"
+)
 
 // RequestSpotInstancesRequest is undocumented.
 type RequestSpotInstancesRequest struct {
@@ -4369,6 +4656,13 @@ type ReservedInstanceLimitPrice struct {
 	Amount       aws.DoubleValue `ec2:"Amount" xml:"amount"`
 	CurrencyCode aws.StringValue `ec2:"CurrencyCode" xml:"currencyCode"`
 }
+
+const (
+	ReservedInstanceStateActive         = "active"
+	ReservedInstanceStatePaymentFailed  = "payment-failed"
+	ReservedInstanceStatePaymentPending = "payment-pending"
+	ReservedInstanceStateRetired        = "retired"
+)
 
 // ReservedInstances is undocumented.
 type ReservedInstances struct {
@@ -4453,6 +4747,10 @@ type ReservedInstancesOffering struct {
 	UsagePrice                  aws.FloatValue    `ec2:"UsagePrice" xml:"usagePrice"`
 }
 
+const (
+	ResetImageAttributeNameLaunchPermission = "launchPermission"
+)
+
 // ResetImageAttributeRequest is undocumented.
 type ResetImageAttributeRequest struct {
 	Attribute aws.StringValue  `ec2:"Attribute" xml:"Attribute"`
@@ -4480,6 +4778,26 @@ type ResetSnapshotAttributeRequest struct {
 	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	SnapshotID aws.StringValue  `ec2:"SnapshotId" xml:"SnapshotId"`
 }
+
+const (
+	ResourceTypeCustomerGateway      = "customer-gateway"
+	ResourceTypeDHCPOptions          = "dhcp-options"
+	ResourceTypeImage                = "image"
+	ResourceTypeInstance             = "instance"
+	ResourceTypeInternetGateway      = "internet-gateway"
+	ResourceTypeNetworkACL           = "network-acl"
+	ResourceTypeNetworkInterface     = "network-interface"
+	ResourceTypeReservedInstances    = "reserved-instances"
+	ResourceTypeRouteTable           = "route-table"
+	ResourceTypeSecurityGroup        = "security-group"
+	ResourceTypeSnapshot             = "snapshot"
+	ResourceTypeSpotInstancesRequest = "spot-instances-request"
+	ResourceTypeSubnet               = "subnet"
+	ResourceTypeVPC                  = "vpc"
+	ResourceTypeVPNConnection        = "vpn-connection"
+	ResourceTypeVPNGateway           = "vpn-gateway"
+	ResourceTypeVolume               = "volume"
+)
 
 // RevokeSecurityGroupEgressRequest is undocumented.
 type RevokeSecurityGroupEgressRequest struct {
@@ -4520,6 +4838,17 @@ type Route struct {
 	VPCPeeringConnectionID aws.StringValue `ec2:"VpcPeeringConnectionId" xml:"vpcPeeringConnectionId"`
 }
 
+const (
+	RouteOriginCreateRoute               = "CreateRoute"
+	RouteOriginCreateRouteTable          = "CreateRouteTable"
+	RouteOriginEnableVGWRoutePropagation = "EnableVgwRoutePropagation"
+)
+
+const (
+	RouteStateActive    = "active"
+	RouteStateBlackhole = "blackhole"
+)
+
 // RouteTable is undocumented.
 type RouteTable struct {
 	Associations    []RouteTableAssociation `ec2:"Associations" xml:"associationSet>item"`
@@ -4537,6 +4866,11 @@ type RouteTableAssociation struct {
 	RouteTableID            aws.StringValue  `ec2:"RouteTableId" xml:"routeTableId"`
 	SubnetID                aws.StringValue  `ec2:"SubnetId" xml:"subnetId"`
 }
+
+const (
+	RuleActionAllow = "allow"
+	RuleActionDeny  = "deny"
+)
 
 // RunInstancesMonitoringEnabled is undocumented.
 type RunInstancesMonitoringEnabled struct {
@@ -4591,6 +4925,11 @@ type SecurityGroup struct {
 	VPCID               aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
 
+const (
+	ShutdownBehaviorStop      = "stop"
+	ShutdownBehaviorTerminate = "terminate"
+)
+
 // Snapshot is undocumented.
 type Snapshot struct {
 	Description aws.StringValue  `ec2:"Description" xml:"description"`
@@ -4606,6 +4945,17 @@ type Snapshot struct {
 	VolumeID    aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 	VolumeSize  aws.IntegerValue `ec2:"VolumeSize" xml:"volumeSize"`
 }
+
+const (
+	SnapshotAttributeNameCreateVolumePermission = "createVolumePermission"
+	SnapshotAttributeNameProductCodes           = "productCodes"
+)
+
+const (
+	SnapshotStateCompleted = "completed"
+	SnapshotStateError     = "error"
+	SnapshotStatePending   = "pending"
+)
 
 // SpotDatafeedSubscription is undocumented.
 type SpotDatafeedSubscription struct {
@@ -4636,6 +4986,14 @@ type SpotInstanceRequest struct {
 	ValidUntil               time.Time               `ec2:"ValidUntil" xml:"validUntil"`
 }
 
+const (
+	SpotInstanceStateActive    = "active"
+	SpotInstanceStateCancelled = "cancelled"
+	SpotInstanceStateClosed    = "closed"
+	SpotInstanceStateFailed    = "failed"
+	SpotInstanceStateOpen      = "open"
+)
+
 // SpotInstanceStateFault is undocumented.
 type SpotInstanceStateFault struct {
 	Code    aws.StringValue `ec2:"Code" xml:"code"`
@@ -4648,6 +5006,11 @@ type SpotInstanceStatus struct {
 	Message    aws.StringValue `ec2:"Message" xml:"message"`
 	UpdateTime time.Time       `ec2:"UpdateTime" xml:"updateTime"`
 }
+
+const (
+	SpotInstanceTypeOneTime    = "one-time"
+	SpotInstanceTypePersistent = "persistent"
+)
 
 // SpotPlacement is undocumented.
 type SpotPlacement struct {
@@ -4682,6 +5045,16 @@ type StateReason struct {
 	Message aws.StringValue `ec2:"Message" xml:"message"`
 }
 
+const (
+	StatusNameReachability = "reachability"
+)
+
+const (
+	StatusTypeFailed           = "failed"
+	StatusTypeInsufficientData = "insufficient-data"
+	StatusTypePassed           = "passed"
+)
+
 // StopInstancesRequest is undocumented.
 type StopInstancesRequest struct {
 	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
@@ -4712,6 +5085,18 @@ type Subnet struct {
 	VPCID                   aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
 }
 
+const (
+	SubnetStateAvailable = "available"
+	SubnetStatePending   = "pending"
+)
+
+const (
+	SummaryStatusImpaired         = "impaired"
+	SummaryStatusInsufficientData = "insufficient-data"
+	SummaryStatusNotApplicable    = "not-applicable"
+	SummaryStatusOk               = "ok"
+)
+
 // Tag is undocumented.
 type Tag struct {
 	Key   aws.StringValue `ec2:"Key" xml:"key"`
@@ -4725,6 +5110,16 @@ type TagDescription struct {
 	ResourceType aws.StringValue `ec2:"ResourceType" xml:"resourceType"`
 	Value        aws.StringValue `ec2:"Value" xml:"value"`
 }
+
+const (
+	TelemetryStatusDown = "DOWN"
+	TelemetryStatusUp   = "UP"
+)
+
+const (
+	TenancyDedicated = "dedicated"
+	TenancyDefault   = "default"
+)
 
 // TerminateInstancesRequest is undocumented.
 type TerminateInstancesRequest struct {
@@ -4770,6 +5165,11 @@ type VGWTelemetry struct {
 	StatusMessage      aws.StringValue  `ec2:"StatusMessage" xml:"statusMessage"`
 }
 
+const (
+	VirtualizationTypeHvm         = "hvm"
+	VirtualizationTypeParavirtual = "paravirtual"
+)
+
 // Volume is undocumented.
 type Volume struct {
 	Attachments      []VolumeAttachment `ec2:"Attachments" xml:"attachmentSet>item"`
@@ -4796,10 +5196,31 @@ type VolumeAttachment struct {
 	VolumeID            aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
 }
 
+const (
+	VolumeAttachmentStateAttached  = "attached"
+	VolumeAttachmentStateAttaching = "attaching"
+	VolumeAttachmentStateDetached  = "detached"
+	VolumeAttachmentStateDetaching = "detaching"
+)
+
+const (
+	VolumeAttributeNameAutoEnableIo = "autoEnableIO"
+	VolumeAttributeNameProductCodes = "productCodes"
+)
+
 // VolumeDetail is undocumented.
 type VolumeDetail struct {
 	Size aws.LongValue `ec2:"Size" xml:"size"`
 }
+
+const (
+	VolumeStateAvailable = "available"
+	VolumeStateCreating  = "creating"
+	VolumeStateDeleted   = "deleted"
+	VolumeStateDeleting  = "deleting"
+	VolumeStateError     = "error"
+	VolumeStateInUse     = "in-use"
+)
 
 // VolumeStatusAction is undocumented.
 type VolumeStatusAction struct {
@@ -4830,6 +5251,12 @@ type VolumeStatusInfo struct {
 	Status  aws.StringValue       `ec2:"Status" xml:"status"`
 }
 
+const (
+	VolumeStatusInfoStatusImpaired         = "impaired"
+	VolumeStatusInfoStatusInsufficientData = "insufficient-data"
+	VolumeStatusInfoStatusOk               = "ok"
+)
+
 // VolumeStatusItem is undocumented.
 type VolumeStatusItem struct {
 	Actions          []VolumeStatusAction `ec2:"Actions" xml:"actionsSet>item"`
@@ -4838,6 +5265,17 @@ type VolumeStatusItem struct {
 	VolumeID         aws.StringValue      `ec2:"VolumeId" xml:"volumeId"`
 	VolumeStatus     *VolumeStatusInfo    `ec2:"VolumeStatus" xml:"volumeStatus"`
 }
+
+const (
+	VolumeStatusNameIoEnabled     = "io-enabled"
+	VolumeStatusNameIoPerformance = "io-performance"
+)
+
+const (
+	VolumeTypeGp2      = "gp2"
+	VolumeTypeIo1      = "io1"
+	VolumeTypeStandard = "standard"
+)
 
 // VPC is undocumented.
 type VPC struct {
@@ -4855,6 +5293,11 @@ type VPCAttachment struct {
 	State aws.StringValue `ec2:"State" xml:"state"`
 	VPCID aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
+
+const (
+	VPCAttributeNameEnableDNSHostnames = "enableDnsHostnames"
+	VPCAttributeNameEnableDNSSupport   = "enableDnsSupport"
+)
 
 // VPCPeeringConnection is undocumented.
 type VPCPeeringConnection struct {
@@ -4878,6 +5321,11 @@ type VPCPeeringConnectionVPCInfo struct {
 	OwnerID   aws.StringValue `ec2:"OwnerId" xml:"ownerId"`
 	VPCID     aws.StringValue `ec2:"VpcId" xml:"vpcId"`
 }
+
+const (
+	VPCStateAvailable = "available"
+	VPCStatePending   = "pending"
+)
 
 // VPNConnection is undocumented.
 type VPNConnection struct {
@@ -4913,12 +5361,23 @@ type VPNGateway struct {
 	VPNGatewayID     aws.StringValue `ec2:"VpnGatewayId" xml:"vpnGatewayId"`
 }
 
+const (
+	VPNStateAvailable = "available"
+	VPNStateDeleted   = "deleted"
+	VPNStateDeleting  = "deleting"
+	VPNStatePending   = "pending"
+)
+
 // VPNStaticRoute is undocumented.
 type VPNStaticRoute struct {
 	DestinationCIDRBlock aws.StringValue `ec2:"DestinationCidrBlock" xml:"destinationCidrBlock"`
 	Source               aws.StringValue `ec2:"Source" xml:"source"`
 	State                aws.StringValue `ec2:"State" xml:"state"`
 }
+
+const (
+	VPNStaticRouteSourceStatic = "Static"
+)
 
 // avoid errors if the packages aren't referenced
 var _ time.Time

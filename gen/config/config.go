@@ -155,6 +155,11 @@ func (c *Config) StopConfigurationRecorder(req *StopConfigurationRecorderRequest
 	return
 }
 
+const (
+	ChronologicalOrderForward = "Forward"
+	ChronologicalOrderReverse = "Reverse"
+)
+
 // ConfigExportDeliveryInfo is undocumented.
 type ConfigExportDeliveryInfo struct {
 	LastAttemptTime    time.Time       `json:"lastAttemptTime,omitempty"`
@@ -190,6 +195,13 @@ type ConfigurationItem struct {
 	Tags                         map[string]string `json:"tags,omitempty"`
 	Version                      aws.StringValue   `json:"version,omitempty"`
 }
+
+const (
+	ConfigurationItemStatusDeleted    = "Deleted"
+	ConfigurationItemStatusDiscovered = "Discovered"
+	ConfigurationItemStatusFailed     = "Failed"
+	ConfigurationItemStatusOk         = "Ok"
+)
 
 // ConfigurationRecorder is undocumented.
 type ConfigurationRecorder struct {
@@ -239,6 +251,11 @@ type DeliveryChannelStatus struct {
 	ConfigStreamDeliveryInfo   *ConfigStreamDeliveryInfo `json:"configStreamDeliveryInfo,omitempty"`
 	Name                       aws.StringValue           `json:"name,omitempty"`
 }
+
+const (
+	DeliveryStatusFailure = "Failure"
+	DeliveryStatusSuccess = "Success"
+)
 
 // DescribeConfigurationRecorderStatusRequest is undocumented.
 type DescribeConfigurationRecorderStatusRequest struct {
@@ -307,12 +324,35 @@ type PutDeliveryChannelRequest struct {
 	DeliveryChannel *DeliveryChannel `json:"DeliveryChannel"`
 }
 
+const (
+	RecorderStatusFailure = "Failure"
+	RecorderStatusPending = "Pending"
+	RecorderStatusSuccess = "Success"
+)
+
 // Relationship is undocumented.
 type Relationship struct {
 	RelationshipName aws.StringValue `json:"relationshipName,omitempty"`
 	ResourceID       aws.StringValue `json:"resourceId,omitempty"`
 	ResourceType     aws.StringValue `json:"resourceType,omitempty"`
 }
+
+const (
+	ResourceTypeAWSCloudTrailTrail     = "AWS::CloudTrail::Trail"
+	ResourceTypeAWSEC2CustomerGateway  = "AWS::EC2::CustomerGateway"
+	ResourceTypeAWSEC2Eip              = "AWS::EC2::EIP"
+	ResourceTypeAWSEC2Instance         = "AWS::EC2::Instance"
+	ResourceTypeAWSEC2InternetGateway  = "AWS::EC2::InternetGateway"
+	ResourceTypeAWSEC2NetworkACL       = "AWS::EC2::NetworkAcl"
+	ResourceTypeAWSEC2NetworkInterface = "AWS::EC2::NetworkInterface"
+	ResourceTypeAWSEC2RouteTable       = "AWS::EC2::RouteTable"
+	ResourceTypeAWSEC2SecurityGroup    = "AWS::EC2::SecurityGroup"
+	ResourceTypeAWSEC2Subnet           = "AWS::EC2::Subnet"
+	ResourceTypeAWSEC2VPC              = "AWS::EC2::VPC"
+	ResourceTypeAWSEC2VPNconnection    = "AWS::EC2::VPNConnection"
+	ResourceTypeAWSEC2VPNgateway       = "AWS::EC2::VPNGateway"
+	ResourceTypeAWSEC2Volume           = "AWS::EC2::Volume"
+)
 
 // StartConfigurationRecorderRequest is undocumented.
 type StartConfigurationRecorderRequest struct {

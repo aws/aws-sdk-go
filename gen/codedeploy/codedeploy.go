@@ -235,6 +235,12 @@ type ApplicationInfo struct {
 	LinkedToGitHub  aws.BooleanValue `json:"linkedToGitHub,omitempty"`
 }
 
+const (
+	ApplicationRevisionSortByFirstUsedTime = "firstUsedTime"
+	ApplicationRevisionSortByLastUsedTime  = "lastUsedTime"
+	ApplicationRevisionSortByRegisterTime  = "registerTime"
+)
+
 // AutoScalingGroup is undocumented.
 type AutoScalingGroup struct {
 	Hook aws.StringValue `json:"hook,omitempty"`
@@ -260,6 +266,12 @@ type BatchGetDeploymentsInput struct {
 type BatchGetDeploymentsOutput struct {
 	DeploymentsInfo []DeploymentInfo `json:"deploymentsInfo,omitempty"`
 }
+
+const (
+	BundleTypeTar = "tar"
+	BundleTypeTgz = "tgz"
+	BundleTypeZip = "zip"
+)
 
 // CreateApplicationInput is undocumented.
 type CreateApplicationInput struct {
@@ -341,6 +353,11 @@ type DeploymentConfigInfo struct {
 	MinimumHealthyHosts  *MinimumHealthyHosts `json:"minimumHealthyHosts,omitempty"`
 }
 
+const (
+	DeploymentCreatorAutoscaling = "autoscaling"
+	DeploymentCreatorUser        = "user"
+)
+
 // DeploymentGroupInfo is undocumented.
 type DeploymentGroupInfo struct {
 	ApplicationName      aws.StringValue    `json:"applicationName,omitempty"`
@@ -380,6 +397,15 @@ type DeploymentOverview struct {
 	Succeeded  aws.LongValue `json:"Succeeded,omitempty"`
 }
 
+const (
+	DeploymentStatusCreated    = "Created"
+	DeploymentStatusFailed     = "Failed"
+	DeploymentStatusInProgress = "InProgress"
+	DeploymentStatusQueued     = "Queued"
+	DeploymentStatusStopped    = "Stopped"
+	DeploymentStatusSucceeded  = "Succeeded"
+)
+
 // Diagnostics is undocumented.
 type Diagnostics struct {
 	ErrorCode  aws.StringValue `json:"errorCode,omitempty"`
@@ -394,6 +420,26 @@ type EC2TagFilter struct {
 	Type  aws.StringValue `json:"Type,omitempty"`
 	Value aws.StringValue `json:"Value,omitempty"`
 }
+
+const (
+	EC2TagFilterTypeKeyAndValue = "KEY_AND_VALUE"
+	EC2TagFilterTypeKeyOnly     = "KEY_ONLY"
+	EC2TagFilterTypeValueOnly   = "VALUE_ONLY"
+)
+
+const (
+	ErrorCodeApplicationMissing       = "APPLICATION_MISSING"
+	ErrorCodeDeploymentGroupMissing   = "DEPLOYMENT_GROUP_MISSING"
+	ErrorCodeHealthConstraints        = "HEALTH_CONSTRAINTS"
+	ErrorCodeHealthConstraintsInvalid = "HEALTH_CONSTRAINTS_INVALID"
+	ErrorCodeIAMRoleMissing           = "IAM_ROLE_MISSING"
+	ErrorCodeIAMRolePermissions       = "IAM_ROLE_PERMISSIONS"
+	ErrorCodeInternalError            = "INTERNAL_ERROR"
+	ErrorCodeNoInstances              = "NO_INSTANCES"
+	ErrorCodeOverMaxInstances         = "OVER_MAX_INSTANCES"
+	ErrorCodeRevisionMissing          = "REVISION_MISSING"
+	ErrorCodeTimeout                  = "TIMEOUT"
+)
 
 // ErrorInformation is undocumented.
 type ErrorInformation struct {
@@ -481,6 +527,15 @@ type GitHubLocation struct {
 	Repository aws.StringValue `json:"repository,omitempty"`
 }
 
+const (
+	InstanceStatusFailed     = "Failed"
+	InstanceStatusInProgress = "InProgress"
+	InstanceStatusPending    = "Pending"
+	InstanceStatusSkipped    = "Skipped"
+	InstanceStatusSucceeded  = "Succeeded"
+	InstanceStatusUnknown    = "Unknown"
+)
+
 // InstanceSummary is undocumented.
 type InstanceSummary struct {
 	DeploymentID    aws.StringValue  `json:"deploymentId,omitempty"`
@@ -490,6 +545,15 @@ type InstanceSummary struct {
 	Status          aws.StringValue  `json:"status,omitempty"`
 }
 
+const (
+	LifecycleErrorCodeScriptFailed        = "ScriptFailed"
+	LifecycleErrorCodeScriptMissing       = "ScriptMissing"
+	LifecycleErrorCodeScriptNotExecutable = "ScriptNotExecutable"
+	LifecycleErrorCodeScriptTimedOut      = "ScriptTimedOut"
+	LifecycleErrorCodeSuccess             = "Success"
+	LifecycleErrorCodeUnknownError        = "UnknownError"
+)
+
 // LifecycleEvent is undocumented.
 type LifecycleEvent struct {
 	Diagnostics        *Diagnostics    `json:"diagnostics,omitempty"`
@@ -498,6 +562,15 @@ type LifecycleEvent struct {
 	StartTime          time.Time       `json:"startTime,omitempty"`
 	Status             aws.StringValue `json:"status,omitempty"`
 }
+
+const (
+	LifecycleEventStatusFailed     = "Failed"
+	LifecycleEventStatusInProgress = "InProgress"
+	LifecycleEventStatusPending    = "Pending"
+	LifecycleEventStatusSkipped    = "Skipped"
+	LifecycleEventStatusSucceeded  = "Succeeded"
+	LifecycleEventStatusUnknown    = "Unknown"
+)
 
 // ListApplicationRevisionsInput is undocumented.
 type ListApplicationRevisionsInput struct {
@@ -579,11 +652,22 @@ type ListDeploymentsOutput struct {
 	NextToken   aws.StringValue `json:"nextToken,omitempty"`
 }
 
+const (
+	ListStateFilterActionExclude = "exclude"
+	ListStateFilterActionIgnore  = "ignore"
+	ListStateFilterActionInclude = "include"
+)
+
 // MinimumHealthyHosts is undocumented.
 type MinimumHealthyHosts struct {
 	Type  aws.StringValue  `json:"type,omitempty"`
 	Value aws.IntegerValue `json:"value,omitempty"`
 }
+
+const (
+	MinimumHealthyHostsTypeFleetPercent = "FLEET_PERCENT"
+	MinimumHealthyHostsTypeHostCount    = "HOST_COUNT"
+)
 
 // RegisterApplicationRevisionInput is undocumented.
 type RegisterApplicationRevisionInput struct {
@@ -599,6 +683,11 @@ type RevisionLocation struct {
 	S3Location     *S3Location     `json:"s3Location,omitempty"`
 }
 
+const (
+	RevisionLocationTypeGitHub = "GitHub"
+	RevisionLocationTypeS3     = "S3"
+)
+
 // S3Location is undocumented.
 type S3Location struct {
 	Bucket     aws.StringValue `json:"bucket,omitempty"`
@@ -607,6 +696,11 @@ type S3Location struct {
 	Key        aws.StringValue `json:"key,omitempty"`
 	Version    aws.StringValue `json:"version,omitempty"`
 }
+
+const (
+	SortOrderAscending  = "ascending"
+	SortOrderDescending = "descending"
+)
 
 // StopDeploymentInput is undocumented.
 type StopDeploymentInput struct {
@@ -618,6 +712,11 @@ type StopDeploymentOutput struct {
 	Status        aws.StringValue `json:"status,omitempty"`
 	StatusMessage aws.StringValue `json:"statusMessage,omitempty"`
 }
+
+const (
+	StopStatusPending   = "Pending"
+	StopStatusSucceeded = "Succeeded"
+)
 
 // TimeRange is undocumented.
 type TimeRange struct {

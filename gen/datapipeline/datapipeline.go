@@ -344,6 +344,14 @@ type Operator struct {
 	Values []string        `json:"values,omitempty"`
 }
 
+const (
+	OperatorTypeBetween = "BETWEEN"
+	OperatorTypeEq      = "EQ"
+	OperatorTypeGe      = "GE"
+	OperatorTypeLe      = "LE"
+	OperatorTypeRefEq   = "REF_EQ"
+)
+
 // ParameterAttribute is undocumented.
 type ParameterAttribute struct {
 	Key         aws.StringValue `json:"key"`
@@ -487,6 +495,12 @@ type TaskObject struct {
 	PipelineID aws.StringValue           `json:"pipelineId,omitempty"`
 	TaskID     aws.StringValue           `json:"taskId,omitempty"`
 }
+
+const (
+	TaskStatusFailed   = "FAILED"
+	TaskStatusFalse    = "FALSE"
+	TaskStatusFinished = "FINISHED"
+)
 
 // ValidatePipelineDefinitionInput is undocumented.
 type ValidatePipelineDefinitionInput struct {

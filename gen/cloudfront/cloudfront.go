@@ -1376,6 +1376,12 @@ type GeoRestriction struct {
 	RestrictionType aws.StringValue  `xml:"RestrictionType"`
 }
 
+const (
+	GeoRestrictionTypeBlacklist = "blacklist"
+	GeoRestrictionTypeNone      = "none"
+	GeoRestrictionTypeWhitelist = "whitelist"
+)
+
 // GetCloudFrontOriginAccessIdentityConfigRequest is undocumented.
 type GetCloudFrontOriginAccessIdentityConfigRequest struct {
 	ID aws.StringValue `xml:"-"`
@@ -1490,6 +1496,12 @@ type InvalidationSummary struct {
 	Status     aws.StringValue `xml:"Status"`
 }
 
+const (
+	ItemSelectionAll       = "all"
+	ItemSelectionNone      = "none"
+	ItemSelectionWhitelist = "whitelist"
+)
+
 // KeyPairIDs is undocumented.
 type KeyPairIDs struct {
 	Items    []string         `xml:"Items"`
@@ -1549,6 +1561,21 @@ type LoggingConfig struct {
 	Prefix         aws.StringValue  `xml:"Prefix"`
 }
 
+const (
+	MethodDelete  = "DELETE"
+	MethodGet     = "GET"
+	MethodHead    = "HEAD"
+	MethodOptions = "OPTIONS"
+	MethodPatch   = "PATCH"
+	MethodPost    = "POST"
+	MethodPut     = "PUT"
+)
+
+const (
+	MinimumProtocolVersionSSLv3 = "SSLv3"
+	MinimumProtocolVersionTlsv1 = "TLSv1"
+)
+
 // Origin is undocumented.
 type Origin struct {
 	CustomOriginConfig *CustomOriginConfig `xml:"CustomOriginConfig"`
@@ -1556,6 +1583,11 @@ type Origin struct {
 	ID                 aws.StringValue     `xml:"Id"`
 	S3OriginConfig     *S3OriginConfig     `xml:"S3OriginConfig"`
 }
+
+const (
+	OriginProtocolPolicyHTTPOnly    = "http-only"
+	OriginProtocolPolicyMatchViewer = "match-viewer"
+)
 
 // Origins is undocumented.
 type Origins struct {
@@ -1568,6 +1600,12 @@ type Paths struct {
 	Items    []string         `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
+
+const (
+	PriceClassPriceClass100 = "PriceClass_100"
+	PriceClassPriceClass200 = "PriceClass_200"
+	PriceClassPriceClassAll = "PriceClass_All"
+)
 
 // Restrictions is undocumented.
 type Restrictions struct {
@@ -1584,6 +1622,11 @@ type S3Origin struct {
 type S3OriginConfig struct {
 	OriginAccessIdentity aws.StringValue `xml:"OriginAccessIdentity"`
 }
+
+const (
+	SSLSupportMethodSniOnly = "sni-only"
+	SSLSupportMethodVip     = "vip"
+)
 
 // Signer is undocumented.
 type Signer struct {
@@ -1697,6 +1740,12 @@ type ViewerCertificate struct {
 	MinimumProtocolVersion       aws.StringValue  `xml:"MinimumProtocolVersion"`
 	SSLSupportMethod             aws.StringValue  `xml:"SSLSupportMethod"`
 }
+
+const (
+	ViewerProtocolPolicyAllowAll        = "allow-all"
+	ViewerProtocolPolicyHTTPsOnly       = "https-only"
+	ViewerProtocolPolicyRedirectToHTTPs = "redirect-to-https"
+)
 
 // avoid errors if the packages aren't referenced
 var _ time.Time

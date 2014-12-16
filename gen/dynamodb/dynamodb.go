@@ -318,6 +318,12 @@ func (c *DynamoDB) UpdateTable(req *UpdateTableInput) (resp *UpdateTableOutput, 
 	return
 }
 
+const (
+	AttributeActionAdd    = "ADD"
+	AttributeActionDelete = "DELETE"
+	AttributeActionPut    = "PUT"
+)
+
 // AttributeDefinition is undocumented.
 type AttributeDefinition struct {
 	AttributeName aws.StringValue `json:"AttributeName"`
@@ -376,11 +382,32 @@ type Capacity struct {
 	CapacityUnits aws.DoubleValue `json:"CapacityUnits,omitempty"`
 }
 
+const (
+	ComparisonOperatorBeginsWith  = "BEGINS_WITH"
+	ComparisonOperatorBetween     = "BETWEEN"
+	ComparisonOperatorContains    = "CONTAINS"
+	ComparisonOperatorEq          = "EQ"
+	ComparisonOperatorGe          = "GE"
+	ComparisonOperatorGt          = "GT"
+	ComparisonOperatorIn          = "IN"
+	ComparisonOperatorLe          = "LE"
+	ComparisonOperatorLt          = "LT"
+	ComparisonOperatorNe          = "NE"
+	ComparisonOperatorNotContains = "NOT_CONTAINS"
+	ComparisonOperatorNotNull     = "NOT_NULL"
+	ComparisonOperatorNull        = "NULL"
+)
+
 // Condition is undocumented.
 type Condition struct {
 	AttributeValueList []AttributeValue `json:"AttributeValueList,omitempty"`
 	ComparisonOperator aws.StringValue  `json:"ComparisonOperator"`
 }
+
+const (
+	ConditionalOperatorAnd = "AND"
+	ConditionalOperatorOr  = "OR"
+)
 
 // ConsumedCapacity is undocumented.
 type ConsumedCapacity struct {
@@ -501,6 +528,13 @@ type GlobalSecondaryIndexUpdate struct {
 	Update *UpdateGlobalSecondaryIndexAction `json:"Update,omitempty"`
 }
 
+const (
+	IndexStatusActive   = "ACTIVE"
+	IndexStatusCreating = "CREATING"
+	IndexStatusDeleting = "DELETING"
+	IndexStatusUpdating = "UPDATING"
+)
+
 // ItemCollectionMetrics is undocumented.
 type ItemCollectionMetrics struct {
 	ItemCollectionKey   map[string]AttributeValue `json:"ItemCollectionKey,omitempty"`
@@ -512,6 +546,11 @@ type KeySchemaElement struct {
 	AttributeName aws.StringValue `json:"AttributeName"`
 	KeyType       aws.StringValue `json:"KeyType"`
 }
+
+const (
+	KeyTypeHash  = "HASH"
+	KeyTypeRange = "RANGE"
+)
 
 // KeysAndAttributes is undocumented.
 type KeysAndAttributes struct {
@@ -555,6 +594,12 @@ type Projection struct {
 	NonKeyAttributes []string        `json:"NonKeyAttributes,omitempty"`
 	ProjectionType   aws.StringValue `json:"ProjectionType,omitempty"`
 }
+
+const (
+	ProjectionTypeAll      = "ALL"
+	ProjectionTypeInclude  = "INCLUDE"
+	ProjectionTypeKeysOnly = "KEYS_ONLY"
+)
 
 // ProvisionedThroughput is undocumented.
 type ProvisionedThroughput struct {
@@ -626,6 +671,31 @@ type QueryOutput struct {
 	ScannedCount     aws.IntegerValue            `json:"ScannedCount,omitempty"`
 }
 
+const (
+	ReturnConsumedCapacityIndexes = "INDEXES"
+	ReturnConsumedCapacityNone    = "NONE"
+	ReturnConsumedCapacityTotal   = "TOTAL"
+)
+
+const (
+	ReturnItemCollectionMetricsNone = "NONE"
+	ReturnItemCollectionMetricsSize = "SIZE"
+)
+
+const (
+	ReturnValueAllNew     = "ALL_NEW"
+	ReturnValueAllOld     = "ALL_OLD"
+	ReturnValueNone       = "NONE"
+	ReturnValueUpdatedNew = "UPDATED_NEW"
+	ReturnValueUpdatedOld = "UPDATED_OLD"
+)
+
+const (
+	ScalarAttributeTypeB = "B"
+	ScalarAttributeTypeN = "N"
+	ScalarAttributeTypeS = "S"
+)
+
 // ScanInput is undocumented.
 type ScanInput struct {
 	AttributesToGet           []string                  `json:"AttributesToGet,omitempty"`
@@ -653,6 +723,13 @@ type ScanOutput struct {
 	ScannedCount     aws.IntegerValue            `json:"ScannedCount,omitempty"`
 }
 
+const (
+	SelectAllAttributes          = "ALL_ATTRIBUTES"
+	SelectAllProjectedAttributes = "ALL_PROJECTED_ATTRIBUTES"
+	SelectCount                  = "COUNT"
+	SelectSpecificAttributes     = "SPECIFIC_ATTRIBUTES"
+)
+
 // TableDescription is undocumented.
 type TableDescription struct {
 	AttributeDefinitions   []AttributeDefinition             `json:"AttributeDefinitions,omitempty"`
@@ -666,6 +743,13 @@ type TableDescription struct {
 	TableSizeBytes         aws.LongValue                     `json:"TableSizeBytes,omitempty"`
 	TableStatus            aws.StringValue                   `json:"TableStatus,omitempty"`
 }
+
+const (
+	TableStatusActive   = "ACTIVE"
+	TableStatusCreating = "CREATING"
+	TableStatusDeleting = "DELETING"
+	TableStatusUpdating = "UPDATING"
+)
 
 // UpdateGlobalSecondaryIndexAction is undocumented.
 type UpdateGlobalSecondaryIndexAction struct {

@@ -1517,6 +1517,12 @@ type Change struct {
 	ResourceRecordSet *ResourceRecordSet `xml:"ResourceRecordSet"`
 }
 
+const (
+	ChangeActionCreate = "CREATE"
+	ChangeActionDelete = "DELETE"
+	ChangeActionUpsert = "UPSERT"
+)
+
 // ChangeBatch is undocumented.
 type ChangeBatch struct {
 	Changes []Change        `xml:"Changes"`
@@ -1541,6 +1547,11 @@ type ChangeResourceRecordSetsRequest struct {
 type ChangeResourceRecordSetsResponse struct {
 	ChangeInfo *ChangeInfo `xml:"ChangeInfo"`
 }
+
+const (
+	ChangeStatusInsync  = "INSYNC"
+	ChangeStatusPending = "PENDING"
+)
 
 // ChangeTagsForResourceRequest is undocumented.
 type ChangeTagsForResourceRequest struct {
@@ -1778,6 +1789,14 @@ type HealthCheckObservation struct {
 	StatusReport *StatusReport   `xml:"StatusReport"`
 }
 
+const (
+	HealthCheckTypeHTTP          = "HTTP"
+	HealthCheckTypeHTTPStrMatch  = "HTTP_STR_MATCH"
+	HealthCheckTypeHTTPs         = "HTTPS"
+	HealthCheckTypeHTTPsStrMatch = "HTTPS_STR_MATCH"
+	HealthCheckTypeTcp           = "TCP"
+)
+
 // HostedZone is undocumented.
 type HostedZone struct {
 	CallerReference        aws.StringValue   `xml:"CallerReference"`
@@ -1898,6 +1917,19 @@ type ListTagsForResourcesResponse struct {
 	ResourceTagSets []ResourceTagSet `xml:"ResourceTagSets"`
 }
 
+const (
+	RRTypeA     = "A"
+	RRTypeAaaa  = "AAAA"
+	RRTypeCname = "CNAME"
+	RRTypeMx    = "MX"
+	RRTypeNs    = "NS"
+	RRTypePtr   = "PTR"
+	RRTypeSoa   = "SOA"
+	RRTypeSpf   = "SPF"
+	RRTypeSrv   = "SRV"
+	RRTypeTxt   = "TXT"
+)
+
 // ResourceRecord is undocumented.
 type ResourceRecord struct {
 	Value aws.StringValue `xml:"Value"`
@@ -1918,6 +1950,24 @@ type ResourceRecordSet struct {
 	Weight          aws.LongValue    `xml:"Weight"`
 }
 
+const (
+	ResourceRecordSetFailoverPrimary   = "PRIMARY"
+	ResourceRecordSetFailoverSecondary = "SECONDARY"
+)
+
+const (
+	ResourceRecordSetRegionApNortheast1 = "ap-northeast-1"
+	ResourceRecordSetRegionApSoutheast1 = "ap-southeast-1"
+	ResourceRecordSetRegionApSoutheast2 = "ap-southeast-2"
+	ResourceRecordSetRegionCnNorth1     = "cn-north-1"
+	ResourceRecordSetRegionEuCentral1   = "eu-central-1"
+	ResourceRecordSetRegionEuWest1      = "eu-west-1"
+	ResourceRecordSetRegionSaEast1      = "sa-east-1"
+	ResourceRecordSetRegionUsEast1      = "us-east-1"
+	ResourceRecordSetRegionUsWest1      = "us-west-1"
+	ResourceRecordSetRegionUsWest2      = "us-west-2"
+)
+
 // ResourceTagSet is undocumented.
 type ResourceTagSet struct {
 	ResourceID   aws.StringValue `xml:"ResourceId"`
@@ -1936,6 +1986,11 @@ type Tag struct {
 	Key   aws.StringValue `xml:"Key"`
 	Value aws.StringValue `xml:"Value"`
 }
+
+const (
+	TagResourceTypeHealthcheck = "healthcheck"
+	TagResourceTypeHostedzone  = "hostedzone"
+)
 
 // UpdateHealthCheckRequest is undocumented.
 type UpdateHealthCheckRequest struct {
@@ -1970,6 +2025,19 @@ type VPC struct {
 	VPCID     aws.StringValue `xml:"VPCId"`
 	VPCRegion aws.StringValue `xml:"VPCRegion"`
 }
+
+const (
+	VPCRegionApNortheast1 = "ap-northeast-1"
+	VPCRegionApSoutheast1 = "ap-southeast-1"
+	VPCRegionApSoutheast2 = "ap-southeast-2"
+	VPCRegionCnNorth1     = "cn-north-1"
+	VPCRegionEuCentral1   = "eu-central-1"
+	VPCRegionEuWest1      = "eu-west-1"
+	VPCRegionSaEast1      = "sa-east-1"
+	VPCRegionUsEast1      = "us-east-1"
+	VPCRegionUsWest1      = "us-west-1"
+	VPCRegionUsWest2      = "us-west-2"
+)
 
 // avoid errors if the packages aren't referenced
 var _ time.Time

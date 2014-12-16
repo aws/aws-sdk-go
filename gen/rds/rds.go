@@ -592,6 +592,11 @@ type AddTagsToResourceMessage struct {
 	Tags         []Tag           `xml:"Tags>Tag"`
 }
 
+const (
+	ApplyMethodImmediate     = "immediate"
+	ApplyMethodPendingReboot = "pending-reboot"
+)
+
 // AuthorizeDBSecurityGroupIngressMessage is undocumented.
 type AuthorizeDBSecurityGroupIngressMessage struct {
 	CIDRIP                  aws.StringValue `xml:"CIDRIP"`
@@ -1684,6 +1689,13 @@ type RevokeDBSecurityGroupIngressMessage struct {
 type RevokeDBSecurityGroupIngressResult struct {
 	DBSecurityGroup *DBSecurityGroup `xml:"RevokeDBSecurityGroupIngressResult>DBSecurityGroup"`
 }
+
+const (
+	SourceTypeDBInstance       = "db-instance"
+	SourceTypeDBParameterGroup = "db-parameter-group"
+	SourceTypeDBSecurityGroup  = "db-security-group"
+	SourceTypeDBSnapshot       = "db-snapshot"
+)
 
 // Subnet is undocumented.
 type Subnet struct {
