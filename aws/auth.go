@@ -14,9 +14,12 @@ type Credentials struct {
 	SecurityToken   string
 }
 
-// A CredentialsProvider returns a set of credentials (or an error if no
-// credentials could be provided).
-type CredentialsProvider func() (Credentials, error)
+// A CredentialsProvider is a provider of credentials.
+type CredentialsProvider interface {
+	// Credentials returns a set of credentials (or an error if no credentials
+	// could be provided).
+	Credentials() (Credentials, error)
+}
 
 var (
 	// ErrAccessKeyIDNotFound is returned when the AWS Access Key ID can't be
@@ -53,12 +56,19 @@ func EnvCreds() (CredentialsProvider, error) {
 
 // Creds returns a static provider of credentials.
 func Creds(accessKeyID, secretAccessKey, securityToken string) CredentialsProvider {
-	creds := Credentials{
-		AccessKeyID:     accessKeyID,
-		SecretAccessKey: secretAccessKey,
-		SecurityToken:   securityToken,
+	return staticCredentialsProvider{
+		creds: Credentials{
+			AccessKeyID:     accessKeyID,
+			SecretAccessKey: secretAccessKey,
+			SecurityToken:   securityToken,
+		},
 	}
-	return func() (Credentials, error) {
-		return creds, nil
-	}
+}
+
+type staticCredentialsProvider struct {
+	creds Credentials
+}
+
+func (p staticCredentialsProvider) Credentials() (Credentials, error) {
+	return p.creds, nil
 }

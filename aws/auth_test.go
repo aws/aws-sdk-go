@@ -11,12 +11,12 @@ func TestEnvCreds(t *testing.T) {
 	os.Setenv("AWS_SECRET_ACCESS_KEY", "secret")
 	os.Setenv("AWS_SESSION_TOKEN", "token")
 
-	auth, err := EnvCreds()
+	prov, err := EnvCreds()
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	creds, err := auth()
+	creds, err := prov.Credentials()
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -38,9 +38,9 @@ func TestEnvCredsNoAccessKeyID(t *testing.T) {
 	os.Clearenv()
 	os.Setenv("AWS_SECRET_ACCESS_KEY", "secret")
 
-	auth, err := EnvCreds()
+	prov, err := EnvCreds()
 	if err != ErrAccessKeyIDNotFound {
-		t.Fatalf("ErrAccessKeyIDNotFound expected, but was %#v/%#v", auth, err)
+		t.Fatalf("ErrAccessKeyIDNotFound expected, but was %#v/%#v", prov, err)
 	}
 }
 
@@ -48,9 +48,9 @@ func TestEnvCredsNoSecretAccessKey(t *testing.T) {
 	os.Clearenv()
 	os.Setenv("AWS_ACCESS_KEY_ID", "access")
 
-	auth, err := EnvCreds()
+	prov, err := EnvCreds()
 	if err != ErrSecretAccessKeyNotFound {
-		t.Fatalf("ErrSecretAccessKeyNotFound expected, but was %#v/%#v", auth, err)
+		t.Fatalf("ErrSecretAccessKeyNotFound expected, but was %#v/%#v", prov, err)
 	}
 }
 
@@ -59,12 +59,12 @@ func TestEnvCredsAlternateNames(t *testing.T) {
 	os.Setenv("AWS_ACCESS_KEY", "access")
 	os.Setenv("AWS_SECRET_KEY", "secret")
 
-	auth, err := EnvCreds()
+	prov, err := EnvCreds()
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	creds, err := auth()
+	creds, err := prov.Credentials()
 	if err != nil {
 		t.Fatal(err)
 	}

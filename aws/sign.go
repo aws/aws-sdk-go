@@ -40,7 +40,7 @@ func (c *Context) sign(r *http.Request) error {
 	}
 	r.Header.Set("x-amz-content-sha256", chash)
 
-	creds, err := c.Credentials()
+	creds, err := c.Credentials.Credentials()
 	if err != nil {
 		return err
 	}
