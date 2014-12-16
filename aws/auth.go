@@ -38,6 +38,41 @@ var (
 	ErrSecretAccessKeyNotFound = errors.NotFoundf("AWS_SECRET_ACCESS_KEY or AWS_SECRET_KEY not found in environment")
 )
 
+// DetectCreds returns a CredentialsProvider based on the available information.
+//
+// If the access key ID and secret access key are provided, it returns a basic
+// provider.
+//
+// If credentials are available via environment variables, it returns an
+// environment provider.
+//
+// If a profile configuration file is available in the default location and has
+// a default profile configured, it returns a profile provider.
+//
+// Otherwise, it returns an IAM instance provider.
+func DetectCreds(accessKeyID, secretAccessKey, securityToken string) CredentialsProvider {
+	if accessKeyID != "" && secretAccessKey != "" {
+		return Creds(accessKeyID, secretAccessKey, securityToken)
+	}
+
+	env, err := EnvCreds()
+	if err == nil {
+		return env
+	}
+
+	profile, err := ProfileCreds("", "", 10*time.Minute)
+	if err != nil {
+		return IAMCreds()
+	}
+
+	_, err = profile.Credentials()
+	if err != nil {
+		return IAMCreds()
+	}
+
+	return profile
+}
+
 // EnvCreds returns a static provider of AWS credentials from the process's
 // environment, or an error if none are found.
 func EnvCreds() (CredentialsProvider, error) {
