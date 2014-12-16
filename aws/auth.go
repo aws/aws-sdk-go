@@ -5,10 +5,13 @@ import (
 	"encoding/json"
 	"net/http"
 	"os"
+	"os/user"
+	"path"
 	"sync"
 	"time"
 
 	"github.com/juju/errors"
+	"github.com/vaughan0/go-ini"
 )
 
 // Credentials are used to authenticate and authorize calls that you make to
@@ -74,6 +77,78 @@ func Creds(accessKeyID, secretAccessKey, securityToken string) CredentialsProvid
 // instance's IAM roles.
 func IAMCreds() CredentialsProvider {
 	return &iamProvider{}
+}
+
+// ProfileCreds returns a provider which pulls credentials from the profile
+// configuration file.
+func ProfileCreds(filename, profile string, expiry time.Duration) (CredentialsProvider, error) {
+	if filename == "" {
+		u, err := user.Current()
+		if err != nil {
+			return nil, err
+		}
+
+		filename = path.Join(u.HomeDir, ".aws", "credentials")
+	}
+
+	if profile == "" {
+		profile = "default"
+	}
+
+	return &profileProvider{
+		filename: filename,
+		profile:  profile,
+		expiry:   expiry,
+	}, nil
+}
+
+type profileProvider struct {
+	filename string
+	profile  string
+	expiry   time.Duration
+
+	creds      Credentials
+	m          sync.Mutex
+	expiration time.Time
+}
+
+func (p *profileProvider) Credentials() (*Credentials, error) {
+	p.m.Lock()
+	defer p.m.Unlock()
+
+	if p.expiration.After(currentTime()) {
+		return &p.creds, nil
+	}
+
+	config, err := ini.LoadFile(p.filename)
+	if err != nil {
+		return nil, err
+	}
+	profile := config.Section(p.profile)
+
+	accessKeyID, ok := profile["aws_access_key_id"]
+	if !ok {
+		return nil, errors.NotFoundf("profile %s in %s did not contain aws_access_key_id", p.profile, p.filename)
+	}
+
+	secretAccessKey, ok := profile["aws_secret_access_key"]
+	if !ok {
+		return nil, errors.NotFoundf("profile %s in %s did not contain aws_secret_access_key", p.profile, p.filename)
+	}
+
+	securityToken, ok := profile["aws_session_token"]
+	if !ok {
+		return nil, errors.NotFoundf("profile %s in %s did not contain aws_session_token", p.profile, p.filename)
+	}
+
+	p.creds = Credentials{
+		AccessKeyID:     accessKeyID,
+		SecretAccessKey: secretAccessKey,
+		SecurityToken:   securityToken,
+	}
+	p.expiration = currentTime().Add(p.expiry)
+
+	return &p.creds, nil
 }
 
 type iamProvider struct {
