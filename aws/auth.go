@@ -1,6 +1,7 @@
 package aws
 
 import (
+	"bufio"
 	"encoding/json"
 	"net/http"
 	"os"
@@ -100,7 +101,18 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 			return nil, err
 		}
 		defer resp.Body.Close()
+		// Take the first line of the body of the metadata endpoint
+		s := bufio.NewScanner(resp.Body)
+		s.Scan()
+		if s.Err() != nil {
+			return nil, s.Err()
+		}
 
+		resp, err = http.Get(metadataCredentialsEndpoint + s.Text())
+		if err != nil {
+			return nil, err
+		}
+		defer resp.Body.Close()
 		if err := json.NewDecoder(resp.Body).Decode(&body); err != nil {
 			return nil, err
 		}
