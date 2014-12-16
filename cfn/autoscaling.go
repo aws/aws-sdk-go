@@ -81,3 +81,19 @@ type EBSBlockDevice struct {
 	VolumeSize          int    `json:",omitempty"`
 	VolumeType          string `json:",omitempty"`
 }
+
+// Possible values for ScalingPolicy's AdjustmentType.
+const (
+	ChangeInCapacityAdjustment        = "ChangeInCapacity"
+	ExactCapacityAdjustment           = "ExactCapacity"
+	PercentChangeInCapacityAdjustment = "PercentChangeInCapacity"
+)
+
+// A ScalingPolicy specifies whether to scale the auto scaling group up or down,
+// and by how much.
+type ScalingPolicy struct {
+	AdjustmentType       string
+	AutoScalingGroupName interface{}
+	Cooldown             string `json:",omitempty"`
+	ScalingAdjustment    string
+}
