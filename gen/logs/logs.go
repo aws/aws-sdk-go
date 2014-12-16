@@ -17,7 +17,7 @@ type Logs struct {
 }
 
 // New returns a new Logs client.
-func New(creds aws.Credentials, region string, client *http.Client) *Logs {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *Logs {
 	if client == nil {
 		client = http.DefaultClient
 	}

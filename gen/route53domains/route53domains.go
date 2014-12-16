@@ -17,7 +17,7 @@ type Route53Domains struct {
 }
 
 // New returns a new Route53Domains client.
-func New(creds aws.Credentials, region string, client *http.Client) *Route53Domains {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *Route53Domains {
 	if client == nil {
 		client = http.DefaultClient
 	}

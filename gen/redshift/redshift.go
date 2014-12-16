@@ -17,7 +17,7 @@ type RedShift struct {
 }
 
 // New returns a new RedShift client.
-func New(creds aws.Credentials, region string, client *http.Client) *RedShift {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *RedShift {
 	if client == nil {
 		client = http.DefaultClient
 	}

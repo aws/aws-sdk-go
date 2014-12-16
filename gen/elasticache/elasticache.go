@@ -17,7 +17,7 @@ type ElasticCache struct {
 }
 
 // New returns a new ElasticCache client.
-func New(creds aws.Credentials, region string, client *http.Client) *ElasticCache {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *ElasticCache {
 	if client == nil {
 		client = http.DefaultClient
 	}

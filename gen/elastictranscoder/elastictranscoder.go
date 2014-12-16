@@ -28,7 +28,7 @@ type ElasticTranscoder struct {
 }
 
 // New returns a new ElasticTranscoder client.
-func New(creds aws.Credentials, region string, client *http.Client) *ElasticTranscoder {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *ElasticTranscoder {
 	if client == nil {
 		client = http.DefaultClient
 	}

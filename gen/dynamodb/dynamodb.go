@@ -17,7 +17,7 @@ type DynamoDB struct {
 }
 
 // New returns a new DynamoDB client.
-func New(creds aws.Credentials, region string, client *http.Client) *DynamoDB {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *DynamoDB {
 	if client == nil {
 		client = http.DefaultClient
 	}

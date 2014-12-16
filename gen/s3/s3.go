@@ -28,7 +28,7 @@ type S3 struct {
 }
 
 // New returns a new S3 client.
-func New(creds aws.Credentials, region string, client *http.Client) *S3 {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *S3 {
 	if client == nil {
 		client = http.DefaultClient
 	}

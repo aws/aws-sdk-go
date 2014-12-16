@@ -17,7 +17,7 @@ type KMS struct {
 }
 
 // New returns a new KMS client.
-func New(creds aws.Credentials, region string, client *http.Client) *KMS {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *KMS {
 	if client == nil {
 		client = http.DefaultClient
 	}

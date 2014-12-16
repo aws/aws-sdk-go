@@ -17,7 +17,7 @@ type SES struct {
 }
 
 // New returns a new SES client.
-func New(creds aws.Credentials, region string, client *http.Client) *SES {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *SES {
 	if client == nil {
 		client = http.DefaultClient
 	}

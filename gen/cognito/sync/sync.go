@@ -28,7 +28,7 @@ type CognitoSync struct {
 }
 
 // New returns a new CognitoSync client.
-func New(creds aws.Credentials, region string, client *http.Client) *CognitoSync {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *CognitoSync {
 	if client == nil {
 		client = http.DefaultClient
 	}

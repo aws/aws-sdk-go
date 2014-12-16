@@ -17,7 +17,7 @@ type ImportExport struct {
 }
 
 // New returns a new ImportExport client.
-func New(creds aws.Credentials, region string, client *http.Client) *ImportExport {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *ImportExport {
 	if client == nil {
 		client = http.DefaultClient
 	}

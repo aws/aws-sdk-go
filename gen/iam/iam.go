@@ -17,7 +17,7 @@ type IAM struct {
 }
 
 // New returns a new IAM client.
-func New(creds aws.Credentials, region string, client *http.Client) *IAM {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *IAM {
 	if client == nil {
 		client = http.DefaultClient
 	}

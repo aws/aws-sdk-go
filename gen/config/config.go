@@ -17,7 +17,7 @@ type Config struct {
 }
 
 // New returns a new Config client.
-func New(creds aws.Credentials, region string, client *http.Client) *Config {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *Config {
 	if client == nil {
 		client = http.DefaultClient
 	}

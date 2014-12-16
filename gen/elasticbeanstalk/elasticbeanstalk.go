@@ -17,7 +17,7 @@ type ElasticBeanstalk struct {
 }
 
 // New returns a new ElasticBeanstalk client.
-func New(creds aws.Credentials, region string, client *http.Client) *ElasticBeanstalk {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *ElasticBeanstalk {
 	if client == nil {
 		client = http.DefaultClient
 	}

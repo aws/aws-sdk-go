@@ -17,7 +17,7 @@ type Support struct {
 }
 
 // New returns a new Support client.
-func New(creds aws.Credentials, region string, client *http.Client) *Support {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *Support {
 	if client == nil {
 		client = http.DefaultClient
 	}

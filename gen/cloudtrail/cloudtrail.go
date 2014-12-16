@@ -17,7 +17,7 @@ type CloudTrail struct {
 }
 
 // New returns a new CloudTrail client.
-func New(creds aws.Credentials, region string, client *http.Client) *CloudTrail {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudTrail {
 	if client == nil {
 		client = http.DefaultClient
 	}

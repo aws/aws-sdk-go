@@ -17,7 +17,7 @@ type StorageGateway struct {
 }
 
 // New returns a new StorageGateway client.
-func New(creds aws.Credentials, region string, client *http.Client) *StorageGateway {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *StorageGateway {
 	if client == nil {
 		client = http.DefaultClient
 	}

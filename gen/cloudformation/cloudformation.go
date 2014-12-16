@@ -17,7 +17,7 @@ type CloudFormation struct {
 }
 
 // New returns a new CloudFormation client.
-func New(creds aws.Credentials, region string, client *http.Client) *CloudFormation {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudFormation {
 	if client == nil {
 		client = http.DefaultClient
 	}

@@ -17,7 +17,7 @@ type AutoScaling struct {
 }
 
 // New returns a new AutoScaling client.
-func New(creds aws.Credentials, region string, client *http.Client) *AutoScaling {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *AutoScaling {
 	if client == nil {
 		client = http.DefaultClient
 	}

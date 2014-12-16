@@ -17,7 +17,7 @@ type SNS struct {
 }
 
 // New returns a new SNS client.
-func New(creds aws.Credentials, region string, client *http.Client) *SNS {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *SNS {
 	if client == nil {
 		client = http.DefaultClient
 	}

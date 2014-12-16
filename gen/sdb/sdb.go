@@ -17,7 +17,7 @@ type SDB struct {
 }
 
 // New returns a new SDB client.
-func New(creds aws.Credentials, region string, client *http.Client) *SDB {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *SDB {
 	if client == nil {
 		client = http.DefaultClient
 	}

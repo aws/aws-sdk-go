@@ -17,7 +17,7 @@ type DataPipeline struct {
 }
 
 // New returns a new DataPipeline client.
-func New(creds aws.Credentials, region string, client *http.Client) *DataPipeline {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *DataPipeline {
 	if client == nil {
 		client = http.DefaultClient
 	}

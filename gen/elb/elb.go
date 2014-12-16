@@ -17,7 +17,7 @@ type ELB struct {
 }
 
 // New returns a new ELB client.
-func New(creds aws.Credentials, region string, client *http.Client) *ELB {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *ELB {
 	if client == nil {
 		client = http.DefaultClient
 	}

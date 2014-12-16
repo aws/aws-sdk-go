@@ -17,7 +17,7 @@ type CognitoIdentity struct {
 }
 
 // New returns a new CognitoIdentity client.
-func New(creds aws.Credentials, region string, client *http.Client) *CognitoIdentity {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *CognitoIdentity {
 	if client == nil {
 		client = http.DefaultClient
 	}

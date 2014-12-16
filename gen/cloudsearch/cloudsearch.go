@@ -17,7 +17,7 @@ type CloudSearch struct {
 }
 
 // New returns a new CloudSearch client.
-func New(creds aws.Credentials, region string, client *http.Client) *CloudSearch {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudSearch {
 	if client == nil {
 		client = http.DefaultClient
 	}

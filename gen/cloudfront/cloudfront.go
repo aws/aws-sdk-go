@@ -28,7 +28,7 @@ type CloudFront struct {
 }
 
 // New returns a new CloudFront client.
-func New(creds aws.Credentials, region string, client *http.Client) *CloudFront {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudFront {
 	if client == nil {
 		client = http.DefaultClient
 	}

@@ -17,7 +17,7 @@ type EMR struct {
 }
 
 // New returns a new EMR client.
-func New(creds aws.Credentials, region string, client *http.Client) *EMR {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *EMR {
 	if client == nil {
 		client = http.DefaultClient
 	}

@@ -17,7 +17,7 @@ type DirectConnect struct {
 }
 
 // New returns a new DirectConnect client.
-func New(creds aws.Credentials, region string, client *http.Client) *DirectConnect {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *DirectConnect {
 	if client == nil {
 		client = http.DefaultClient
 	}

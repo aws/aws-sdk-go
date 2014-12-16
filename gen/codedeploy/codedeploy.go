@@ -17,7 +17,7 @@ type CodeDeploy struct {
 }
 
 // New returns a new CodeDeploy client.
-func New(creds aws.Credentials, region string, client *http.Client) *CodeDeploy {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *CodeDeploy {
 	if client == nil {
 		client = http.DefaultClient
 	}

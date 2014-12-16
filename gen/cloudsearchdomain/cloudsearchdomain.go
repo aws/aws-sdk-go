@@ -28,7 +28,7 @@ type CloudSearchDomain struct {
 }
 
 // New returns a new CloudSearchDomain client.
-func New(creds aws.Credentials, region string, client *http.Client) *CloudSearchDomain {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudSearchDomain {
 	if client == nil {
 		client = http.DefaultClient
 	}

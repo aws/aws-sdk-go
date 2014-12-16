@@ -17,7 +17,7 @@ type CloudWatch struct {
 }
 
 // New returns a new CloudWatch client.
-func New(creds aws.Credentials, region string, client *http.Client) *CloudWatch {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudWatch {
 	if client == nil {
 		client = http.DefaultClient
 	}

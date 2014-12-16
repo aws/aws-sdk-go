@@ -17,7 +17,7 @@ type SWF struct {
 }
 
 // New returns a new SWF client.
-func New(creds aws.Credentials, region string, client *http.Client) *SWF {
+func New(creds aws.CredentialsProvider, region string, client *http.Client) *SWF {
 	if client == nil {
 		client = http.DefaultClient
 	}
