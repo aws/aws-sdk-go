@@ -2,3 +2,5 @@ language: go
 
 go:
   - 1.4
+
+install: go get -u -t ./...
