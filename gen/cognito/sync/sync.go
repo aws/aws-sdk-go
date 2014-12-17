@@ -910,9 +910,9 @@ const (
 
 // Possible values for CognitoSync.
 const (
-	PlatformAdm         = "ADM"
-	PlatformApns        = "APNS"
-	PlatformApnsSandbox = "APNS_SANDBOX"
+	PlatformADM         = "ADM"
+	PlatformAPNS        = "APNS"
+	PlatformAPNSSandbox = "APNS_SANDBOX"
 	PlatformGCM         = "GCM"
 )
 
