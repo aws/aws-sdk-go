@@ -131,6 +131,10 @@ func (c *EC2Client) loadStruct(v url.Values, value reflect.Value, prefix string)
 					v.Set(name, "false")
 				}
 			}
+		case IntegerValue:
+			if *casted != 0 {
+				v.Set(name, fmt.Sprintf("%d", *casted))
+			}
 		case int64:
 			if casted != 0 {
 				v.Set(name, fmt.Sprintf("%d", casted))
