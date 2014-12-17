@@ -81,33 +81,14 @@ func (c *QueryClient) loadValues(v url.Values, i interface{}, prefix string) err
 		value = value.Elem()
 	}
 
-	switch value.Kind() {
-	case reflect.Struct:
-		if err := c.loadStruct(v, value, prefix); err == nil {
-			return err
-		}
-	case reflect.Slice:
-		for i := 0; i < value.Len(); i++ {
-
-			var eprefix string
-			if prefix == "" {
-				eprefix = fmt.Sprintf("%d", i+1)
-			} else {
-				eprefix = fmt.Sprintf("%s.%d", prefix, i+1)
-			}
-
-			elem := value.Index(i).Interface()
-
-			if err := c.loadValues(v, elem, eprefix); err != nil {
-				return err
-			}
-		}
-	}
-
-	return nil
+	return c.loadStruct(v, value, prefix)
 }
 
 func (c *QueryClient) loadStruct(v url.Values, value reflect.Value, prefix string) error {
+	if !value.IsValid() {
+		return nil
+	}
+
 	t := value.Type()
 	for i := 0; i < value.NumField(); i++ {
 		value := value.Field(i)

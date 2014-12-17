@@ -12,7 +12,7 @@ import (
 	"github.com/stripe/aws-go/aws"
 )
 
-func TestQueryRequest(t *testing.T) {
+func TestEC2Request(t *testing.T) {
 	var m sync.Mutex
 	var httpReq *http.Request
 	var form url.Values
@@ -34,7 +34,7 @@ func TestQueryRequest(t *testing.T) {
 	))
 	defer server.Close()
 
-	client := aws.QueryClient{
+	client := aws.EC2Client{
 		Context: aws.Context{
 			Service: "animals",
 			Region:  "us-west-2",
@@ -49,7 +49,7 @@ func TestQueryRequest(t *testing.T) {
 		APIVersion: "1.1",
 	}
 
-	req := fakeQueryRequest{
+	req := fakeEC2Request{
 		PresentString:  aws.String("string"),
 		PresentBoolean: aws.True(),
 		PresentInteger: aws.Integer(1),
@@ -59,7 +59,7 @@ func TestQueryRequest(t *testing.T) {
 		PresentSlice:   []string{"one", "two"},
 		PresentStruct:  &embeddedStruct{Value: aws.String("v")},
 	}
-	var resp fakeQueryResponse
+	var resp fakeEC2Response
 	if err := client.Do("GetIP", "POST", "/", &req, &resp); err != nil {
 		t.Fatal(err)
 	}
@@ -88,29 +88,29 @@ func TestQueryRequest(t *testing.T) {
 	}
 
 	expectedForm := url.Values{
-		"Action":                []string{"GetIP"},
-		"Version":               []string{"1.1"},
-		"PresentString":         []string{"string"},
-		"PresentBoolean":        []string{"true"},
-		"PresentInteger":        []string{"1"},
-		"PresentLong":           []string{"2"},
-		"PresentDouble":         []string{"1.2"},
-		"PresentFloat":          []string{"2.3"},
-		"PresentSlice.member.1": []string{"one"},
-		"PresentSlice.member.2": []string{"two"},
-		"PresentStruct.Value":   []string{"v"},
+		"Action":              []string{"GetIP"},
+		"Version":             []string{"1.1"},
+		"PresentString":       []string{"string"},
+		"PresentBoolean":      []string{"true"},
+		"PresentInteger":      []string{"1"},
+		"PresentLong":         []string{"2"},
+		"PresentDouble":       []string{"1.2"},
+		"PresentFloat":        []string{"2.3"},
+		"PresentSlice.1":      []string{"one"},
+		"PresentSlice.2":      []string{"two"},
+		"PresentStruct.Value": []string{"v"},
 	}
 
 	if !reflect.DeepEqual(form, expectedForm) {
 		t.Errorf("Post body was \n%s\n but expected \n%s", form.Encode(), expectedForm.Encode())
 	}
 
-	if want := (fakeQueryResponse{IPAddress: "woo"}); want != resp {
+	if want := (fakeEC2Response{IPAddress: "woo"}); want != resp {
 		t.Errorf("Response was %#v, but expected %#v", resp, want)
 	}
 }
 
-func TestQueryRequestError(t *testing.T) {
+func TestEC2RequestError(t *testing.T) {
 	var m sync.Mutex
 	var httpReq *http.Request
 	var form url.Values
@@ -128,19 +128,21 @@ func TestQueryRequestError(t *testing.T) {
 			form = r.Form
 
 			w.WriteHeader(400)
-			fmt.Fprintln(w, `<ErrorResponse>
+			fmt.Fprintln(w, `<Response>
 <RequestId>woo</RequestId>
+<Errors>
 <Error>
 <Type>Problem</Type>
 <Code>Uh Oh</Code>
 <Message>You done did it</Message>
 </Error>
-</ErrorResponse>`)
+</Errors>
+</Response>`)
 		},
 	))
 	defer server.Close()
 
-	client := aws.QueryClient{
+	client := aws.EC2Client{
 		Context: aws.Context{
 			Service: "animals",
 			Region:  "us-west-2",
@@ -155,8 +157,8 @@ func TestQueryRequestError(t *testing.T) {
 		APIVersion: "1.1",
 	}
 
-	req := fakeQueryRequest{}
-	var resp fakeQueryResponse
+	req := fakeEC2Request{}
+	var resp fakeEC2Response
 	err := client.Do("GetIP", "POST", "/", &req, &resp)
 	if err == nil {
 		t.Fatal("Expected an error but none was returned")
@@ -179,36 +181,32 @@ func TestQueryRequestError(t *testing.T) {
 	}
 }
 
-type fakeQueryRequest struct {
-	PresentString aws.StringValue `xml:"PresentString"`
-	MissingString aws.StringValue `xml:"MissingString"`
+type fakeEC2Request struct {
+	PresentString aws.StringValue `ec2:"PresentString"`
+	MissingString aws.StringValue `ec2:"MissingString"`
 
-	PresentInteger aws.IntegerValue `xml:"PresentInteger"`
-	MissingInteger aws.IntegerValue `xml:"MissingInteger"`
+	PresentInteger aws.IntegerValue `ec2:"PresentInteger"`
+	MissingInteger aws.IntegerValue `ec2:"MissingInteger"`
 
-	PresentLong aws.LongValue `xml:"PresentLong"`
-	MissingLong aws.LongValue `xml:"MissingLong"`
+	PresentLong aws.LongValue `ec2:"PresentLong"`
+	MissingLong aws.LongValue `ec2:"MissingLong"`
 
-	PresentDouble aws.DoubleValue `xml:"PresentDouble"`
-	MissingDouble aws.DoubleValue `xml:"MissingDouble"`
+	PresentDouble aws.DoubleValue `ec2:"PresentDouble"`
+	MissingDouble aws.DoubleValue `ec2:"MissingDouble"`
 
-	PresentFloat aws.FloatValue `xml:"PresentFloat"`
-	MissingFloat aws.FloatValue `xml:"MissingFloat"`
+	PresentFloat aws.FloatValue `ec2:"PresentFloat"`
+	MissingFloat aws.FloatValue `ec2:"MissingFloat"`
 
-	PresentBoolean aws.BooleanValue `xml:"PresentBoolean"`
-	MissingBoolean aws.BooleanValue `xml:"MissingBoolean"`
+	PresentBoolean aws.BooleanValue `ec2:"PresentBoolean"`
+	MissingBoolean aws.BooleanValue `ec2:"MissingBoolean"`
 
-	PresentSlice []string `xml:"PresentSlice"`
-	MissingSlice []string `xml:"MissingSlice"`
+	PresentSlice []string `ec2:"PresentSlice"`
+	MissingSlice []string `ec2:"MissingSlice"`
 
-	PresentStruct *embeddedStruct `xml:"PresentStruct"`
-	MissingStruct *embeddedStruct `xml:"MissingStruct"`
+	PresentStruct *embeddedStruct `ec2:"PresentStruct"`
+	MissingStruct *embeddedStruct `ec2:"MissingStruct"`
 }
 
-type embeddedStruct struct {
-	Value aws.StringValue
-}
-
-type fakeQueryResponse struct {
+type fakeEC2Response struct {
 	IPAddress string `xml:"IpAddress"`
 }
