@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"strconv"
 	"strings"
 )
 
@@ -126,19 +127,23 @@ func (c *QueryClient) loadStruct(v url.Values, value reflect.Value, prefix strin
 			}
 		case BooleanValue:
 			if casted != nil {
-				if *casted {
-					v.Set(name, "true")
-				} else {
-					v.Set(name, "false")
-				}
+				v.Set(name, strconv.FormatBool(*casted))
 			}
 		case LongValue:
 			if casted != nil {
-				v.Set(name, fmt.Sprintf("%d", *casted))
+				v.Set(name, strconv.FormatInt(*casted, 10))
 			}
 		case IntegerValue:
 			if casted != nil {
-				v.Set(name, fmt.Sprintf("%d", *casted))
+				v.Set(name, strconv.Itoa(*casted))
+			}
+		case DoubleValue:
+			if casted != nil {
+				v.Set(name, strconv.FormatFloat(*casted, 'f', -1, 64))
+			}
+		case FloatValue:
+			if casted != nil {
+				v.Set(name, strconv.FormatFloat(float64(*casted), 'f', -1, 32))
 			}
 		case []string:
 			if len(casted) != 0 {
