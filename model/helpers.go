@@ -50,7 +50,7 @@ func exportable(name string) string {
 
 var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Acl`):          "ACL",
-	regexp.MustCompile(`Adm([^i]|$)`):  "ADM",
+	regexp.MustCompile(`Adm([^i]|$)`):  "ADM$1",
 	regexp.MustCompile(`Aes`):          "AES",
 	regexp.MustCompile(`Api`):          "API",
 	regexp.MustCompile(`Ami`):          "AMI",
