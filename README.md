@@ -1,5 +1,7 @@
 # aws-go
 
+[![GoDoc](https://godoc.org/github.com/stripe/aws-go?status.svg)](http://godoc.org/github.com/stripe/aws-go)
+
 aws-go is a set of clients for all Amazon Web Services APIs,
 automatically generated from the JSON schemas shipped with
 [botocore](http://github.com/boto/botocore).
