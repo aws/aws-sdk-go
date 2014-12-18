@@ -138,10 +138,12 @@ func (m Member) QueryTag(wrapper string) string {
 		path = append(path, wrapper)
 	}
 
-	if m.LocationName != "" {
-		path = append(path, m.LocationName)
-	} else {
-		path = append(path, m.Name)
+	if !m.Shape().Flattened {
+		if m.LocationName != "" {
+			path = append(path, m.LocationName)
+		} else {
+			path = append(path, m.Name)
+		}
 	}
 
 	if m.Shape().ShapeType == "list" {
@@ -218,6 +220,7 @@ type Shape struct {
 	Wrapper       bool
 	Payload       string
 	Enum          []string
+	Flattened     bool
 }
 
 var enumStrip = regexp.MustCompile(`[()\s]`)

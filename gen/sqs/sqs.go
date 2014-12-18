@@ -369,8 +369,8 @@ func (c *SQS) SetQueueAttributes(req *SetQueueAttributesRequest) (err error) {
 
 // AddPermissionRequest is undocumented.
 type AddPermissionRequest struct {
-	AWSAccountIDs []string        `xml:"AWSAccountIds>AWSAccountId"`
-	Actions       []string        `xml:"Actions>ActionName"`
+	AWSAccountIDs []string        `xml:"AWSAccountId"`
+	Actions       []string        `xml:"ActionName"`
 	Label         aws.StringValue `xml:"Label"`
 	QueueURL      aws.StringValue `xml:"QueueUrl"`
 }
@@ -385,7 +385,7 @@ type BatchResultErrorEntry struct {
 
 // ChangeMessageVisibilityBatchRequest is undocumented.
 type ChangeMessageVisibilityBatchRequest struct {
-	Entries  []ChangeMessageVisibilityBatchRequestEntry `xml:"Entries>ChangeMessageVisibilityBatchRequestEntry"`
+	Entries  []ChangeMessageVisibilityBatchRequestEntry `xml:"ChangeMessageVisibilityBatchRequestEntry"`
 	QueueURL aws.StringValue                            `xml:"QueueUrl"`
 }
 
@@ -398,8 +398,8 @@ type ChangeMessageVisibilityBatchRequestEntry struct {
 
 // ChangeMessageVisibilityBatchResult is undocumented.
 type ChangeMessageVisibilityBatchResult struct {
-	Failed     []BatchResultErrorEntry                   `xml:"ChangeMessageVisibilityBatchResult>Failed>BatchResultErrorEntry"`
-	Successful []ChangeMessageVisibilityBatchResultEntry `xml:"ChangeMessageVisibilityBatchResult>Successful>ChangeMessageVisibilityBatchResultEntry"`
+	Failed     []BatchResultErrorEntry                   `xml:"ChangeMessageVisibilityBatchResult>BatchResultErrorEntry"`
+	Successful []ChangeMessageVisibilityBatchResultEntry `xml:"ChangeMessageVisibilityBatchResult>ChangeMessageVisibilityBatchResultEntry"`
 }
 
 // ChangeMessageVisibilityBatchResultEntry is undocumented.
@@ -416,7 +416,7 @@ type ChangeMessageVisibilityRequest struct {
 
 // CreateQueueRequest is undocumented.
 type CreateQueueRequest struct {
-	Attributes map[string]string `xml:"Attribute"`
+	Attributes map[string]string `xml:""`
 	QueueName  aws.StringValue   `xml:"QueueName"`
 }
 
@@ -427,7 +427,7 @@ type CreateQueueResult struct {
 
 // DeleteMessageBatchRequest is undocumented.
 type DeleteMessageBatchRequest struct {
-	Entries  []DeleteMessageBatchRequestEntry `xml:"Entries>DeleteMessageBatchRequestEntry"`
+	Entries  []DeleteMessageBatchRequestEntry `xml:"DeleteMessageBatchRequestEntry"`
 	QueueURL aws.StringValue                  `xml:"QueueUrl"`
 }
 
@@ -439,8 +439,8 @@ type DeleteMessageBatchRequestEntry struct {
 
 // DeleteMessageBatchResult is undocumented.
 type DeleteMessageBatchResult struct {
-	Failed     []BatchResultErrorEntry         `xml:"DeleteMessageBatchResult>Failed>BatchResultErrorEntry"`
-	Successful []DeleteMessageBatchResultEntry `xml:"DeleteMessageBatchResult>Successful>DeleteMessageBatchResultEntry"`
+	Failed     []BatchResultErrorEntry         `xml:"DeleteMessageBatchResult>BatchResultErrorEntry"`
+	Successful []DeleteMessageBatchResultEntry `xml:"DeleteMessageBatchResult>DeleteMessageBatchResultEntry"`
 }
 
 // DeleteMessageBatchResultEntry is undocumented.
@@ -461,13 +461,13 @@ type DeleteQueueRequest struct {
 
 // GetQueueAttributesRequest is undocumented.
 type GetQueueAttributesRequest struct {
-	AttributeNames []string        `xml:"AttributeNames>AttributeName"`
+	AttributeNames []string        `xml:"AttributeName"`
 	QueueURL       aws.StringValue `xml:"QueueUrl"`
 }
 
 // GetQueueAttributesResult is undocumented.
 type GetQueueAttributesResult struct {
-	Attributes map[string]string `xml:"GetQueueAttributesResult>Attribute"`
+	Attributes map[string]string `xml:"GetQueueAttributesResult"`
 }
 
 // GetQueueURLRequest is undocumented.
@@ -488,7 +488,7 @@ type ListDeadLetterSourceQueuesRequest struct {
 
 // ListDeadLetterSourceQueuesResult is undocumented.
 type ListDeadLetterSourceQueuesResult struct {
-	QueueURLs []string `xml:"ListDeadLetterSourceQueuesResult>queueUrls>QueueUrl"`
+	QueueURLs []string `xml:"ListDeadLetterSourceQueuesResult>QueueUrl"`
 }
 
 // ListQueuesRequest is undocumented.
@@ -498,16 +498,16 @@ type ListQueuesRequest struct {
 
 // ListQueuesResult is undocumented.
 type ListQueuesResult struct {
-	QueueURLs []string `xml:"ListQueuesResult>QueueUrls>QueueUrl"`
+	QueueURLs []string `xml:"ListQueuesResult>QueueUrl"`
 }
 
 // Message is undocumented.
 type Message struct {
-	Attributes             map[string]string                `xml:"Attribute"`
+	Attributes             map[string]string                `xml:""`
 	Body                   aws.StringValue                  `xml:"Body"`
 	MD5OfBody              aws.StringValue                  `xml:"MD5OfBody"`
 	MD5OfMessageAttributes aws.StringValue                  `xml:"MD5OfMessageAttributes"`
-	MessageAttributes      map[string]MessageAttributeValue `xml:"MessageAttribute"`
+	MessageAttributes      map[string]MessageAttributeValue `xml:""`
 	MessageID              aws.StringValue                  `xml:"MessageId"`
 	ReceiptHandle          aws.StringValue                  `xml:"ReceiptHandle"`
 }
@@ -545,9 +545,9 @@ const (
 
 // ReceiveMessageRequest is undocumented.
 type ReceiveMessageRequest struct {
-	AttributeNames        []string         `xml:"AttributeNames>AttributeName"`
+	AttributeNames        []string         `xml:"AttributeName"`
 	MaxNumberOfMessages   aws.IntegerValue `xml:"MaxNumberOfMessages"`
-	MessageAttributeNames []string         `xml:"MessageAttributeNames>MessageAttributeName"`
+	MessageAttributeNames []string         `xml:"MessageAttributeName"`
 	QueueURL              aws.StringValue  `xml:"QueueUrl"`
 	VisibilityTimeout     aws.IntegerValue `xml:"VisibilityTimeout"`
 	WaitTimeSeconds       aws.IntegerValue `xml:"WaitTimeSeconds"`
@@ -555,7 +555,7 @@ type ReceiveMessageRequest struct {
 
 // ReceiveMessageResult is undocumented.
 type ReceiveMessageResult struct {
-	Messages []Message `xml:"ReceiveMessageResult>Messages>Message"`
+	Messages []Message `xml:"ReceiveMessageResult>Message"`
 }
 
 // RemovePermissionRequest is undocumented.
@@ -566,7 +566,7 @@ type RemovePermissionRequest struct {
 
 // SendMessageBatchRequest is undocumented.
 type SendMessageBatchRequest struct {
-	Entries  []SendMessageBatchRequestEntry `xml:"Entries>SendMessageBatchRequestEntry"`
+	Entries  []SendMessageBatchRequestEntry `xml:"SendMessageBatchRequestEntry"`
 	QueueURL aws.StringValue                `xml:"QueueUrl"`
 }
 
@@ -574,14 +574,14 @@ type SendMessageBatchRequest struct {
 type SendMessageBatchRequestEntry struct {
 	DelaySeconds      aws.IntegerValue                 `xml:"DelaySeconds"`
 	ID                aws.StringValue                  `xml:"Id"`
-	MessageAttributes map[string]MessageAttributeValue `xml:"MessageAttribute"`
+	MessageAttributes map[string]MessageAttributeValue `xml:""`
 	MessageBody       aws.StringValue                  `xml:"MessageBody"`
 }
 
 // SendMessageBatchResult is undocumented.
 type SendMessageBatchResult struct {
-	Failed     []BatchResultErrorEntry       `xml:"SendMessageBatchResult>Failed>BatchResultErrorEntry"`
-	Successful []SendMessageBatchResultEntry `xml:"SendMessageBatchResult>Successful>SendMessageBatchResultEntry"`
+	Failed     []BatchResultErrorEntry       `xml:"SendMessageBatchResult>BatchResultErrorEntry"`
+	Successful []SendMessageBatchResultEntry `xml:"SendMessageBatchResult>SendMessageBatchResultEntry"`
 }
 
 // SendMessageBatchResultEntry is undocumented.
@@ -595,7 +595,7 @@ type SendMessageBatchResultEntry struct {
 // SendMessageRequest is undocumented.
 type SendMessageRequest struct {
 	DelaySeconds      aws.IntegerValue                 `xml:"DelaySeconds"`
-	MessageAttributes map[string]MessageAttributeValue `xml:"MessageAttribute"`
+	MessageAttributes map[string]MessageAttributeValue `xml:""`
 	MessageBody       aws.StringValue                  `xml:"MessageBody"`
 	QueueURL          aws.StringValue                  `xml:"QueueUrl"`
 }
@@ -609,7 +609,7 @@ type SendMessageResult struct {
 
 // SetQueueAttributesRequest is undocumented.
 type SetQueueAttributesRequest struct {
-	Attributes map[string]string `xml:"Attribute"`
+	Attributes map[string]string `xml:""`
 	QueueURL   aws.StringValue   `xml:"QueueUrl"`
 }
 

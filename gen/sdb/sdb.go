@@ -214,13 +214,13 @@ type Attribute struct {
 // BatchDeleteAttributesRequest is undocumented.
 type BatchDeleteAttributesRequest struct {
 	DomainName aws.StringValue `xml:"DomainName"`
-	Items      []DeletableItem `xml:"Items>Item"`
+	Items      []DeletableItem `xml:"Item"`
 }
 
 // BatchPutAttributesRequest is undocumented.
 type BatchPutAttributesRequest struct {
 	DomainName aws.StringValue   `xml:"DomainName"`
-	Items      []ReplaceableItem `xml:"Items>Item"`
+	Items      []ReplaceableItem `xml:"Item"`
 }
 
 // CreateDomainRequest is undocumented.
@@ -230,13 +230,13 @@ type CreateDomainRequest struct {
 
 // DeletableItem is undocumented.
 type DeletableItem struct {
-	Attributes []Attribute     `xml:"Attributes>Attribute"`
+	Attributes []Attribute     `xml:"Attribute"`
 	Name       aws.StringValue `xml:"ItemName"`
 }
 
 // DeleteAttributesRequest is undocumented.
 type DeleteAttributesRequest struct {
-	Attributes []Attribute      `xml:"Attributes>Attribute"`
+	Attributes []Attribute      `xml:"Attribute"`
 	DomainName aws.StringValue  `xml:"DomainName"`
 	Expected   *UpdateCondition `xml:"Expected"`
 	ItemName   aws.StringValue  `xml:"ItemName"`
@@ -265,7 +265,7 @@ type DomainMetadataResult struct {
 
 // GetAttributesRequest is undocumented.
 type GetAttributesRequest struct {
-	AttributeNames []string         `xml:"AttributeNames>AttributeName"`
+	AttributeNames []string         `xml:"AttributeName"`
 	ConsistentRead aws.BooleanValue `xml:"ConsistentRead"`
 	DomainName     aws.StringValue  `xml:"DomainName"`
 	ItemName       aws.StringValue  `xml:"ItemName"`
@@ -273,13 +273,13 @@ type GetAttributesRequest struct {
 
 // GetAttributesResult is undocumented.
 type GetAttributesResult struct {
-	Attributes []Attribute `xml:"GetAttributesResult>Attributes>Attribute"`
+	Attributes []Attribute `xml:"GetAttributesResult>Attribute"`
 }
 
 // Item is undocumented.
 type Item struct {
 	AlternateNameEncoding aws.StringValue `xml:"AlternateNameEncoding"`
-	Attributes            []Attribute     `xml:"Attributes>Attribute"`
+	Attributes            []Attribute     `xml:"Attribute"`
 	Name                  aws.StringValue `xml:"Name"`
 }
 
@@ -291,13 +291,13 @@ type ListDomainsRequest struct {
 
 // ListDomainsResult is undocumented.
 type ListDomainsResult struct {
-	DomainNames []string        `xml:"ListDomainsResult>DomainNames>DomainName"`
+	DomainNames []string        `xml:"ListDomainsResult>DomainName"`
 	NextToken   aws.StringValue `xml:"ListDomainsResult>NextToken"`
 }
 
 // PutAttributesRequest is undocumented.
 type PutAttributesRequest struct {
-	Attributes []ReplaceableAttribute `xml:"Attributes>Attribute"`
+	Attributes []ReplaceableAttribute `xml:"Attribute"`
 	DomainName aws.StringValue        `xml:"DomainName"`
 	Expected   *UpdateCondition       `xml:"Expected"`
 	ItemName   aws.StringValue        `xml:"ItemName"`
@@ -312,7 +312,7 @@ type ReplaceableAttribute struct {
 
 // ReplaceableItem is undocumented.
 type ReplaceableItem struct {
-	Attributes []ReplaceableAttribute `xml:"Attributes>Attribute"`
+	Attributes []ReplaceableAttribute `xml:"Attribute"`
 	Name       aws.StringValue        `xml:"ItemName"`
 }
 
@@ -325,7 +325,7 @@ type SelectRequest struct {
 
 // SelectResult is undocumented.
 type SelectResult struct {
-	Items     []Item          `xml:"SelectResult>Items>Item"`
+	Items     []Item          `xml:"SelectResult>Item"`
 	NextToken aws.StringValue `xml:"SelectResult>NextToken"`
 }
 
