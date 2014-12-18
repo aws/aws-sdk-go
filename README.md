@@ -1,7 +1,7 @@
 # aws-go
 
-[![GoDoc](https://godoc.org/github.com/stripe/aws-go?status.svg)](http://godoc.org/github.com/stripe/aws-go)
-[![Build Status](https://travis-ci.org/stripe/aws-go.svg?branch=master)](https://travis-ci.org/stripe/aws-go)
+[![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/stripe/aws-go)
+[![Build Status](https://img.shields.io/travis/stripe/aws-go.svg)](https://travis-ci.org/stripe/aws-go)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/stripe/aws-go/blob/master/LICENSE)
 
 aws-go is a set of clients for all Amazon Web Services APIs,
