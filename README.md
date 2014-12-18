@@ -2,6 +2,7 @@
 
 [![GoDoc](https://godoc.org/github.com/stripe/aws-go?status.svg)](http://godoc.org/github.com/stripe/aws-go)
 [![Build Status](https://travis-ci.org/stripe/aws-go.svg?branch=master)](https://travis-ci.org/stripe/aws-go)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/stripe/aws-go/blob/master/LICENSE)
 
 aws-go is a set of clients for all Amazon Web Services APIs,
 automatically generated from the JSON schemas shipped with
