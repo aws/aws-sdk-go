@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -81,7 +82,15 @@ func (c *QueryClient) loadValues(v url.Values, i interface{}, prefix string) err
 		value = value.Elem()
 	}
 
-	if value.Kind() == reflect.Slice {
+	// no need to handle zero values
+	if !value.IsValid() {
+		return nil
+	}
+
+	switch value.Kind() {
+	case reflect.Struct:
+		return c.loadStruct(v, value, prefix)
+	case reflect.Slice:
 		for i := 0; i < value.Len(); i++ {
 			if prefix == "" {
 				prefix = strconv.Itoa(i + 1)
@@ -93,9 +102,48 @@ func (c *QueryClient) loadValues(v url.Values, i interface{}, prefix string) err
 			}
 		}
 		return nil
-	}
+	case reflect.Map:
+		sortedKeys := []string{}
+		keysByString := map[string]reflect.Value{}
+		for _, k := range value.MapKeys() {
+			s := fmt.Sprintf("%v", k.Interface())
+			sortedKeys = append(sortedKeys, s)
+			keysByString[s] = k
+		}
+		sort.Strings(sortedKeys)
 
-	return c.loadStruct(v, value, prefix)
+		for i, sortKey := range sortedKeys {
+			mapKey := keysByString[sortKey]
+
+			var keyName string
+			if prefix == "" {
+				keyName = strconv.Itoa(i+1) + ".Name"
+			} else {
+				keyName = prefix + "." + strconv.Itoa(i+1) + ".Name"
+			}
+
+			if err := c.loadValue(v, mapKey, keyName); err != nil {
+				return err
+			}
+
+			mapValue := value.MapIndex(mapKey)
+
+			var valueName string
+			if prefix == "" {
+				valueName = strconv.Itoa(i+1) + ".Value"
+			} else {
+				valueName = prefix + "." + strconv.Itoa(i+1) + ".Value"
+			}
+
+			if err := c.loadValue(v, mapValue, valueName); err != nil {
+				return err
+			}
+		}
+
+		return nil
+	default:
+		panic("unknown request member type: " + value.String())
+	}
 }
 
 func (c *QueryClient) loadStruct(v url.Values, value reflect.Value, prefix string) error {
@@ -115,41 +163,52 @@ func (c *QueryClient) loadStruct(v url.Values, value reflect.Value, prefix strin
 		if prefix != "" {
 			name = prefix + "." + name
 		}
-		switch casted := value.Interface().(type) {
-		case StringValue:
-			if casted != nil {
-				v.Set(name, *casted)
+		if err := c.loadValue(v, value, name); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (c *QueryClient) loadValue(v url.Values, value reflect.Value, name string) error {
+	switch casted := value.Interface().(type) {
+	case string:
+		if casted != "" {
+			v.Set(name, casted)
+		}
+	case StringValue:
+		if casted != nil {
+			v.Set(name, *casted)
+		}
+	case BooleanValue:
+		if casted != nil {
+			v.Set(name, strconv.FormatBool(*casted))
+		}
+	case LongValue:
+		if casted != nil {
+			v.Set(name, strconv.FormatInt(*casted, 10))
+		}
+	case IntegerValue:
+		if casted != nil {
+			v.Set(name, strconv.Itoa(*casted))
+		}
+	case DoubleValue:
+		if casted != nil {
+			v.Set(name, strconv.FormatFloat(*casted, 'f', -1, 64))
+		}
+	case FloatValue:
+		if casted != nil {
+			v.Set(name, strconv.FormatFloat(float64(*casted), 'f', -1, 32))
+		}
+	case []string:
+		if len(casted) != 0 {
+			for i, val := range casted {
+				v.Set(fmt.Sprintf("%s.member.%d", name, i+1), val)
 			}
-		case BooleanValue:
-			if casted != nil {
-				v.Set(name, strconv.FormatBool(*casted))
-			}
-		case LongValue:
-			if casted != nil {
-				v.Set(name, strconv.FormatInt(*casted, 10))
-			}
-		case IntegerValue:
-			if casted != nil {
-				v.Set(name, strconv.Itoa(*casted))
-			}
-		case DoubleValue:
-			if casted != nil {
-				v.Set(name, strconv.FormatFloat(*casted, 'f', -1, 64))
-			}
-		case FloatValue:
-			if casted != nil {
-				v.Set(name, strconv.FormatFloat(float64(*casted), 'f', -1, 32))
-			}
-		case []string:
-			if len(casted) != 0 {
-				for i, val := range casted {
-					v.Set(fmt.Sprintf("%s.member.%d", name, i+1), val)
-				}
-			}
-		default:
-			if err := c.loadValues(v, value.Interface(), name); err != nil {
-				return err
-			}
+		}
+	default:
+		if err := c.loadValues(v, value.Interface(), name); err != nil {
+			return err
 		}
 	}
 	return nil

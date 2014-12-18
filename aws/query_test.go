@@ -59,6 +59,10 @@ func TestQueryRequest(t *testing.T) {
 		PresentSlice:       []string{"one", "two"},
 		PresentStruct:      &EmbeddedStruct{Value: aws.String("v")},
 		PresentStructSlice: []EmbeddedStruct{{Value: aws.String("p")}},
+		PresentMap: map[string]EmbeddedStruct{
+			"aa": EmbeddedStruct{Value: aws.String("AA")},
+			"bb": EmbeddedStruct{Value: aws.String("BB")},
+		},
 	}
 	var resp fakeQueryResponse
 	if err := client.Do("GetIP", "POST", "/", &req, &resp); err != nil {
@@ -101,6 +105,10 @@ func TestQueryRequest(t *testing.T) {
 		"PresentSlice.member.2":             []string{"two"},
 		"PresentStruct.Value":               []string{"v"},
 		"PresentStructSlice.member.1.Value": []string{"p"},
+		"PresentMap.1.Name":                 []string{"aa"},
+		"PresentMap.1.Value.Value":          []string{"AA"},
+		"PresentMap.2.Name":                 []string{"bb"},
+		"PresentMap.2.Value.Value":          []string{"BB"},
 	}
 
 	if !reflect.DeepEqual(form, expectedForm) {
@@ -205,6 +213,9 @@ type fakeQueryRequest struct {
 
 	PresentStructSlice []EmbeddedStruct `xml:"PresentStructSlice"`
 	MissingStructSlice []EmbeddedStruct `xml:"MissingStructSlice"`
+
+	PresentMap map[string]EmbeddedStruct `xml:"PresentMap"`
+	MissingMap map[string]EmbeddedStruct `xml:"MissingMap"`
 
 	PresentStruct *EmbeddedStruct `xml:"PresentStruct"`
 	MissingStruct *EmbeddedStruct `xml:"MissingStruct"`
