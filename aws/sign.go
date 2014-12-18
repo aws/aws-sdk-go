@@ -186,26 +186,6 @@ func (c *Context) creds(t time.Time) string {
 	return t.Format(iso8601BasicFormatShort) + "/" + c.Region + "/" + c.Service + "/aws4_request"
 }
 
-func payloadHash(r *http.Request) (string, error) {
-	var b []byte
-	// If the payload is empty, use the empty string as the input to the SHA256 function
-	// http://docs.amazonwebservices.com/general/latest/gr/sigv4-create-canonical-request.html
-	if r.Body == nil {
-		b = []byte("")
-	} else {
-		body, err := ioutil.ReadAll(r.Body)
-		if err != nil {
-			return "", err
-		}
-		b = body
-		r.Body = ioutil.NopCloser(bytes.NewBuffer(body))
-	}
-
-	h := sha256.New()
-	h.Write(b)
-	return fmt.Sprintf("%x", h.Sum(nil)), nil
-}
-
 func (c *Context) signature(secretAccessKey string, t time.Time) []byte {
 	h := ghmac(
 		[]byte("AWS4"+secretAccessKey),
