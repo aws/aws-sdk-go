@@ -140,8 +140,6 @@ func (m Member) QueryTag(wrapper string) string {
 
 	if m.LocationName != "" {
 		path = append(path, m.LocationName)
-	} else {
-		path = append(path, m.Name)
 	}
 
 	if m.Shape().ShapeType == "list" {
