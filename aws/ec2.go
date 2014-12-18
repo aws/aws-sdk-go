@@ -81,6 +81,15 @@ func (c *EC2Client) loadValues(v url.Values, i interface{}, prefix string) error
 		value = value.Elem()
 	}
 
+	if value.Kind() == reflect.Slice {
+		for i := 0; i < value.Len(); i++ {
+			if err := c.loadValues(v, value.Index(i), prefix); err != nil {
+				return err
+			}
+		}
+		return nil
+	}
+
 	return c.loadStruct(v, value, prefix)
 }
 
