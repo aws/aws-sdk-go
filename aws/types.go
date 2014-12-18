@@ -18,18 +18,13 @@ func Boolean(v bool) BooleanValue {
 
 // True is the BooleanValue equivalent of the Go literal true.
 func True() BooleanValue {
-	return &t
+	return Boolean(true)
 }
 
 // False is the BooleanValue equivalent of the Go literal false.
 func False() BooleanValue {
-	return &f
+	return Boolean(false)
 }
-
-var (
-	t = true
-	f = false
-)
 
 // An IntegerValue is an integer which may or may not be present.
 type IntegerValue *int
