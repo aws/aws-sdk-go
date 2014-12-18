@@ -201,26 +201,39 @@ func (m Member) Type() string {
 	return m.Shape().Type()
 }
 
+// An XMLNamespace is an XML namespace. *shrug*
+type XMLNamespace struct {
+	URI string
+}
+
 // Shape is a type used in an API.
 type Shape struct {
-	Name          string
-	ShapeType     string `json:"Type"`
-	Required      []string
-	MemberRefs    map[string]ShapeRef `json:"Members"`
-	MemberRef     *ShapeRef           `json:"Member"`
-	KeyRef        *ShapeRef           `json:"Key"`
-	ValueRef      *ShapeRef           `json:"Value"`
-	Error         Error
-	Exception     bool
-	Documentation string
-	Min           int
-	Max           int
-	Pattern       string
-	Sensitive     bool
-	Wrapper       bool
-	Payload       string
-	Enum          []string
-	Flattened     bool
+	Box             bool
+	Documentation   string
+	Enum            []string
+	Error           Error
+	Exception       bool
+	Fault           bool
+	Flattened       bool
+	KeyRef          *ShapeRef `json:"Key"`
+	LocationName    string
+	Max             int
+	MemberRef       *ShapeRef           `json:"Member"`
+	MemberRefs      map[string]ShapeRef `json:"Members"`
+	Min             int
+	Name            string
+	Pattern         string
+	Payload         string
+	Required        []string
+	Sensitive       bool
+	Streaming       bool
+	TimestampFormat string
+	ShapeType       string    `json:"Type"`
+	ValueRef        *ShapeRef `json:"Value"`
+	Wrapper         bool
+	XMLAttribute    bool
+	XMLNamespace    XMLNamespace
+	XMLOrder        []string
 }
 
 var enumStrip = regexp.MustCompile(`[()\s]`)
