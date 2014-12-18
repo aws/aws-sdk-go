@@ -54,25 +54,25 @@ func (c *Context) sign(r *http.Request) error {
 	c.writeStringToSign(h, t, r, chash)
 
 	auth := bytes.NewBufferString("AWS4-HMAC-SHA256 ")
-	_, _ = auth.Write([]byte("Credential=" + creds.AccessKeyID + "/" + c.creds(t)))
-	_, _ = auth.Write([]byte{',', ' '})
-	_, _ = auth.Write([]byte("SignedHeaders="))
+	_, _ = auth.WriteString("Credential=" + creds.AccessKeyID + "/" + c.creds(t))
+	_, _ = auth.WriteString(", ")
+	_, _ = auth.WriteString("SignedHeaders=")
 	c.writeHeaderList(auth, r)
-	_, _ = auth.Write([]byte{',', ' '})
-	_, _ = auth.Write([]byte("Signature=" + fmt.Sprintf("%x", h.Sum(nil))))
+	_, _ = auth.WriteString(", ")
+	_, _ = auth.WriteString(fmt.Sprintf("Signature=%x", h.Sum(nil)))
 
 	r.Header.Set("Authorization", auth.String())
 	return nil
 }
 
 func (c *Context) writeStringToSign(w io.Writer, t time.Time, r *http.Request, chash string) {
-	_, _ = w.Write([]byte("AWS4-HMAC-SHA256"))
-	_, _ = w.Write(lf)
-	_, _ = w.Write([]byte(t.Format(iso8601BasicFormat)))
-	_, _ = w.Write(lf)
+	_, _ = io.WriteString(w, "AWS4-HMAC-SHA256")
+	_, _ = io.WriteString(w, lf)
+	_, _ = io.WriteString(w, t.Format(iso8601BasicFormat))
+	_, _ = io.WriteString(w, lf)
 
-	_, _ = w.Write([]byte(c.creds(t)))
-	_, _ = w.Write(lf)
+	_, _ = io.WriteString(w, c.creds(t))
+	_, _ = io.WriteString(w, lf)
 
 	h := sha256.New()
 	c.writeRequest(h, r, chash)
@@ -82,17 +82,17 @@ func (c *Context) writeStringToSign(w io.Writer, t time.Time, r *http.Request, c
 func (c *Context) writeRequest(w io.Writer, r *http.Request, chash string) {
 	r.Header.Set("host", r.Host)
 
-	_, _ = w.Write([]byte(r.Method))
-	_, _ = w.Write(lf)
+	_, _ = io.WriteString(w, r.Method)
+	_, _ = io.WriteString(w, lf)
 	c.writeURI(w, r)
-	_, _ = w.Write(lf)
+	_, _ = io.WriteString(w, lf)
 	c.writeQuery(w, r)
-	_, _ = w.Write(lf)
+	_, _ = io.WriteString(w, lf)
 	c.writeHeader(w, r)
-	_, _ = w.Write(lf)
-	_, _ = w.Write(lf)
+	_, _ = io.WriteString(w, lf)
+	_, _ = io.WriteString(w, lf)
 	c.writeHeaderList(w, r)
-	_, _ = w.Write(lf)
+	_, _ = io.WriteString(w, lf)
 	fmt.Fprint(w, chash)
 }
 
@@ -126,7 +126,7 @@ func (c *Context) writeURI(w io.Writer, r *http.Request) {
 	if p != "/" && slash {
 		p += "/"
 	}
-	_, _ = w.Write([]byte(p))
+	_, _ = io.WriteString(w, p)
 }
 
 func (c *Context) writeQuery(w io.Writer, r *http.Request) {
@@ -145,9 +145,9 @@ func (c *Context) writeQuery(w io.Writer, r *http.Request) {
 	sort.Strings(a)
 	for i, s := range a {
 		if i > 0 {
-			_, _ = w.Write([]byte{'&'})
+			_, _ = io.WriteString(w, "&")
 		}
-		_, _ = w.Write([]byte(s))
+		_, _ = io.WriteString(w, s)
 	}
 }
 
@@ -161,7 +161,7 @@ func (c *Context) writeHeader(w io.Writer, r *http.Request) {
 	sort.Strings(a)
 	for i, s := range a {
 		if i > 0 {
-			_, _ = w.Write(lf)
+			_, _ = io.WriteString(w, lf)
 		}
 		_, _ = io.WriteString(w, s)
 	}
@@ -176,9 +176,9 @@ func (c *Context) writeHeaderList(w io.Writer, r *http.Request) {
 	sort.Strings(a)
 	for i, s := range a {
 		if i > 0 {
-			_, _ = w.Write([]byte{';'})
+			_, _ = io.WriteString(w, ";")
 		}
-		_, _ = w.Write([]byte(s))
+		_, _ = io.WriteString(w, s)
 	}
 }
 
@@ -203,10 +203,10 @@ func ghmac(key, data []byte) []byte {
 	return h.Sum(nil)
 }
 
-var lf = []byte{'\n'}
 var currentTime = time.Now
 
 const (
+	lf                      = "\n"
 	iso8601BasicFormat      = "20060102T150405Z"
 	iso8601BasicFormatShort = "20060102"
 )
