@@ -50,14 +50,15 @@ func TestEC2Request(t *testing.T) {
 	}
 
 	req := fakeEC2Request{
-		PresentString:  aws.String("string"),
-		PresentBoolean: aws.True(),
-		PresentInteger: aws.Integer(1),
-		PresentLong:    aws.Long(2),
-		PresentDouble:  aws.Double(1.2),
-		PresentFloat:   aws.Float(2.3),
-		PresentSlice:   []string{"one", "two"},
-		PresentStruct:  &embeddedStruct{Value: aws.String("v")},
+		PresentString:      aws.String("string"),
+		PresentBoolean:     aws.True(),
+		PresentInteger:     aws.Integer(1),
+		PresentLong:        aws.Long(2),
+		PresentDouble:      aws.Double(1.2),
+		PresentFloat:       aws.Float(2.3),
+		PresentSlice:       []string{"one", "two"},
+		PresentStruct:      &EmbeddedStruct{Value: aws.String("v")},
+		PresentStructSlice: []EmbeddedStruct{{Value: aws.String("p")}},
 	}
 	var resp fakeEC2Response
 	if err := client.Do("GetIP", "POST", "/", &req, &resp); err != nil {
@@ -88,17 +89,18 @@ func TestEC2Request(t *testing.T) {
 	}
 
 	expectedForm := url.Values{
-		"Action":              []string{"GetIP"},
-		"Version":             []string{"1.1"},
-		"PresentString":       []string{"string"},
-		"PresentBoolean":      []string{"true"},
-		"PresentInteger":      []string{"1"},
-		"PresentLong":         []string{"2"},
-		"PresentDouble":       []string{"1.2"},
-		"PresentFloat":        []string{"2.3"},
-		"PresentSlice.1":      []string{"one"},
-		"PresentSlice.2":      []string{"two"},
-		"PresentStruct.Value": []string{"v"},
+		"Action":                     []string{"GetIP"},
+		"Version":                    []string{"1.1"},
+		"PresentString":              []string{"string"},
+		"PresentBoolean":             []string{"true"},
+		"PresentInteger":             []string{"1"},
+		"PresentLong":                []string{"2"},
+		"PresentDouble":              []string{"1.2"},
+		"PresentFloat":               []string{"2.3"},
+		"PresentSlice.1":             []string{"one"},
+		"PresentSlice.2":             []string{"two"},
+		"PresentStruct.Value":        []string{"v"},
+		"PresentStructSlice.1.Value": []string{"p"},
 	}
 
 	if !reflect.DeepEqual(form, expectedForm) {
@@ -203,8 +205,11 @@ type fakeEC2Request struct {
 	PresentSlice []string `ec2:"PresentSlice"`
 	MissingSlice []string `ec2:"MissingSlice"`
 
-	PresentStruct *embeddedStruct `ec2:"PresentStruct"`
-	MissingStruct *embeddedStruct `ec2:"MissingStruct"`
+	PresentStructSlice []EmbeddedStruct `ec2:"PresentStructSlice"`
+	MissingStructSlice []EmbeddedStruct `ec2:"MissingStructSlice"`
+
+	PresentStruct *EmbeddedStruct `ec2:"PresentStruct"`
+	MissingStruct *EmbeddedStruct `ec2:"MissingStruct"`
 }
 
 type fakeEC2Response struct {

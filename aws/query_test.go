@@ -50,14 +50,15 @@ func TestQueryRequest(t *testing.T) {
 	}
 
 	req := fakeQueryRequest{
-		PresentString:  aws.String("string"),
-		PresentBoolean: aws.True(),
-		PresentInteger: aws.Integer(1),
-		PresentLong:    aws.Long(2),
-		PresentDouble:  aws.Double(1.2),
-		PresentFloat:   aws.Float(2.3),
-		PresentSlice:   []string{"one", "two"},
-		PresentStruct:  &embeddedStruct{Value: aws.String("v")},
+		PresentString:      aws.String("string"),
+		PresentBoolean:     aws.True(),
+		PresentInteger:     aws.Integer(1),
+		PresentLong:        aws.Long(2),
+		PresentDouble:      aws.Double(1.2),
+		PresentFloat:       aws.Float(2.3),
+		PresentSlice:       []string{"one", "two"},
+		PresentStruct:      &EmbeddedStruct{Value: aws.String("v")},
+		PresentStructSlice: []EmbeddedStruct{{Value: aws.String("p")}},
 	}
 	var resp fakeQueryResponse
 	if err := client.Do("GetIP", "POST", "/", &req, &resp); err != nil {
@@ -88,17 +89,18 @@ func TestQueryRequest(t *testing.T) {
 	}
 
 	expectedForm := url.Values{
-		"Action":                []string{"GetIP"},
-		"Version":               []string{"1.1"},
-		"PresentString":         []string{"string"},
-		"PresentBoolean":        []string{"true"},
-		"PresentInteger":        []string{"1"},
-		"PresentLong":           []string{"2"},
-		"PresentDouble":         []string{"1.2"},
-		"PresentFloat":          []string{"2.3"},
-		"PresentSlice.member.1": []string{"one"},
-		"PresentSlice.member.2": []string{"two"},
-		"PresentStruct.Value":   []string{"v"},
+		"Action":                            []string{"GetIP"},
+		"Version":                           []string{"1.1"},
+		"PresentString":                     []string{"string"},
+		"PresentBoolean":                    []string{"true"},
+		"PresentInteger":                    []string{"1"},
+		"PresentLong":                       []string{"2"},
+		"PresentDouble":                     []string{"1.2"},
+		"PresentFloat":                      []string{"2.3"},
+		"PresentSlice.member.1":             []string{"one"},
+		"PresentSlice.member.2":             []string{"two"},
+		"PresentStruct.Value":               []string{"v"},
+		"PresentStructSlice.member.1.Value": []string{"p"},
 	}
 
 	if !reflect.DeepEqual(form, expectedForm) {
@@ -201,11 +203,14 @@ type fakeQueryRequest struct {
 	PresentSlice []string `xml:"PresentSlice"`
 	MissingSlice []string `xml:"MissingSlice"`
 
-	PresentStruct *embeddedStruct `xml:"PresentStruct"`
-	MissingStruct *embeddedStruct `xml:"MissingStruct"`
+	PresentStructSlice []EmbeddedStruct `xml:"PresentStructSlice"`
+	MissingStructSlice []EmbeddedStruct `xml:"MissingStructSlice"`
+
+	PresentStruct *EmbeddedStruct `xml:"PresentStruct"`
+	MissingStruct *EmbeddedStruct `xml:"MissingStruct"`
 }
 
-type embeddedStruct struct {
+type EmbeddedStruct struct {
 	Value aws.StringValue
 }
 
