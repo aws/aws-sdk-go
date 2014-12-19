@@ -38,7 +38,9 @@ func (c *JSONClient) Do(op, method, uri string, req, resp interface{}) error {
 	if err != nil {
 		return err
 	}
-	defer httpResp.Body.Close()
+	defer func() {
+		_ = httpResp.Body.Close()
+	}()
 
 	if httpResp.StatusCode != http.StatusOK {
 		var err jsonErrorResponse

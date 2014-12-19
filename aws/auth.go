@@ -213,7 +213,9 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 	if err != nil {
 		return nil, errors.Annotate(err, "listing IAM credentials")
 	}
-	defer resp.Body.Close()
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	// Take the first line of the body of the metadata endpoint
 	s := bufio.NewScanner(resp.Body)
@@ -227,7 +229,9 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 	if err != nil {
 		return nil, errors.Annotatef(err, "getting %s IAM credentials", s.Text())
 	}
-	defer resp.Body.Close()
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	if err := json.NewDecoder(resp.Body).Decode(&body); err != nil {
 		return nil, errors.Annotatef(err, "decoding %s IAM credentials", s.Text())
