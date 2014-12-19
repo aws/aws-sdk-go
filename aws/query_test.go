@@ -8,6 +8,7 @@ import (
 	"reflect"
 	"sync"
 	"testing"
+	"time"
 
 	"github.com/stripe/aws-go/aws"
 )
@@ -56,6 +57,7 @@ func TestQueryRequest(t *testing.T) {
 		PresentLong:        aws.Long(2),
 		PresentDouble:      aws.Double(1.2),
 		PresentFloat:       aws.Float(2.3),
+		PresentTime:        time.Date(2001, 1, 1, 2, 1, 1, 0, time.FixedZone("UTC+1", 3600)),
 		PresentSlice:       []string{"one", "two"},
 		PresentStruct:      &EmbeddedStruct{Value: aws.String("v")},
 		PresentStructSlice: []EmbeddedStruct{{Value: aws.String("p")}},
@@ -101,6 +103,7 @@ func TestQueryRequest(t *testing.T) {
 		"PresentLong":                       []string{"2"},
 		"PresentDouble":                     []string{"1.2"},
 		"PresentFloat":                      []string{"2.3"},
+		"PresentTime":                       []string{"2001-01-01T01:01:01Z"},
 		"PresentSlice.member.1":             []string{"one"},
 		"PresentSlice.member.2":             []string{"two"},
 		"PresentStruct.Value":               []string{"v"},
@@ -207,6 +210,9 @@ type fakeQueryRequest struct {
 
 	PresentBoolean aws.BooleanValue `xml:"PresentBoolean"`
 	MissingBoolean aws.BooleanValue `xml:"MissingBoolean"`
+
+	PresentTime time.Time `xml:"PresentTime"`
+	MissingTime time.Time `xml:"MissingTime"`
 
 	PresentSlice []string `xml:"PresentSlice"`
 	MissingSlice []string `xml:"MissingSlice"`
