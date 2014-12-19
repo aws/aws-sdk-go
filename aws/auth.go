@@ -171,10 +171,7 @@ func (p *profileProvider) Credentials() (*Credentials, error) {
 		return nil, errors.NotFoundf("profile %s in %s did not contain aws_secret_access_key", p.profile, p.filename)
 	}
 
-	securityToken, ok := profile["aws_session_token"]
-	if !ok {
-		return nil, errors.NotFoundf("profile %s in %s did not contain aws_session_token", p.profile, p.filename)
-	}
+	securityToken := profile["aws_session_token"]
 
 	p.creds = Credentials{
 		AccessKeyID:     accessKeyID,

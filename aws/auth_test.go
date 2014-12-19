@@ -152,6 +152,30 @@ func TestProfileCreds(t *testing.T) {
 	}
 }
 
+func TestProfileCredsWithoutToken(t *testing.T) {
+	prov, err := ProfileCreds("example.ini", "no_token", 10*time.Minute)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	creds, err := prov.Credentials()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if v, want := creds.AccessKeyID, "accessKey"; v != want {
+		t.Errorf("AcccessKeyID was %v, but expected %v", v, want)
+	}
+
+	if v, want := creds.SecretAccessKey, "secret"; v != want {
+		t.Errorf("SecretAccessKey was %v, but expected %v", v, want)
+	}
+
+	if v, want := creds.SecurityToken, ""; v != want {
+		t.Errorf("SecurityToken was %v, but expected %v", v, want)
+	}
+}
+
 func BenchmarkProfileCreds(b *testing.B) {
 	prov, err := ProfileCreds("example.ini", "", 10*time.Minute)
 	if err != nil {
