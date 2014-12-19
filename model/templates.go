@@ -586,6 +586,7 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 
 // {{ exportable $name }} is undocumented.
 type {{ exportable $name }} struct {
+  XMLName xml.Name {{ $s.XMLName }}
 {{ range $name, $m := $s.Members }}
 {{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.ResultWrapper }}  {{ end }}
 }
