@@ -9,6 +9,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // QueryClient is the underlying client for Query APIs.
@@ -201,6 +202,11 @@ func (c *QueryClient) loadValue(v url.Values, value reflect.Value, name string) 
 	case FloatValue:
 		if casted != nil {
 			v.Set(name, strconv.FormatFloat(float64(*casted), 'f', -1, 32))
+		}
+	case time.Time:
+		if !casted.IsZero() {
+			const ISO8601UTC = "2006-01-02T15:04:05Z"
+			v.Set(name, casted.UTC().Format(ISO8601UTC))
 		}
 	case []string:
 		if len(casted) != 0 {
