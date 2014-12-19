@@ -65,6 +65,13 @@ func (c *Route53) AssociateVPCWithHostedZone(req *AssociateVPCWithHostedZoneRequ
 	var body io.Reader
 	var contentType string
 
+	contentType = "application/xml"
+	b, err := xml.Marshal(req)
+	if err != nil {
+		return
+	}
+	body = bytes.NewReader(b)
+
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}/associatevpc"
 
 	if req.HostedZoneID != nil {
@@ -128,6 +135,13 @@ func (c *Route53) ChangeResourceRecordSets(req *ChangeResourceRecordSetsRequest)
 	var body io.Reader
 	var contentType string
 
+	contentType = "application/xml"
+	b, err := xml.Marshal(req)
+	if err != nil {
+		return
+	}
+	body = bytes.NewReader(b)
+
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}/rrset/"
 
 	if req.HostedZoneID != nil {
@@ -170,6 +184,13 @@ func (c *Route53) ChangeTagsForResource(req *ChangeTagsForResourceRequest) (resp
 
 	var body io.Reader
 	var contentType string
+
+	contentType = "application/xml"
+	b, err := xml.Marshal(req)
+	if err != nil {
+		return
+	}
+	body = bytes.NewReader(b)
 
 	uri := c.client.Endpoint + "/2013-04-01/tags/{ResourceType}/{ResourceId}"
 
@@ -223,6 +244,13 @@ func (c *Route53) CreateHealthCheck(req *CreateHealthCheckRequest) (resp *Create
 
 	var body io.Reader
 	var contentType string
+
+	contentType = "application/xml"
+	b, err := xml.Marshal(req)
+	if err != nil {
+		return
+	}
+	body = bytes.NewReader(b)
 
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck"
 
@@ -283,6 +311,13 @@ func (c *Route53) CreateHostedZone(req *CreateHostedZoneRequest) (resp *CreateHo
 	var body io.Reader
 	var contentType string
 
+	contentType = "application/xml"
+	b, err := xml.Marshal(req)
+	if err != nil {
+		return
+	}
+	body = bytes.NewReader(b)
+
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone"
 
 	q := url.Values{}
@@ -333,6 +368,13 @@ func (c *Route53) CreateReusableDelegationSet(req *CreateReusableDelegationSetRe
 
 	var body io.Reader
 	var contentType string
+
+	contentType = "application/xml"
+	b, err := xml.Marshal(req)
+	if err != nil {
+		return
+	}
+	body = bytes.NewReader(b)
 
 	uri := c.client.Endpoint + "/2013-04-01/delegationset"
 
@@ -540,6 +582,13 @@ func (c *Route53) DisassociateVPCFromHostedZone(req *DisassociateVPCFromHostedZo
 
 	var body io.Reader
 	var contentType string
+
+	contentType = "application/xml"
+	b, err := xml.Marshal(req)
+	if err != nil {
+		return
+	}
+	body = bytes.NewReader(b)
 
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}/disassociatevpc"
 
@@ -1361,6 +1410,13 @@ func (c *Route53) ListTagsForResources(req *ListTagsForResourcesRequest) (resp *
 	var body io.Reader
 	var contentType string
 
+	contentType = "application/xml"
+	b, err := xml.Marshal(req)
+	if err != nil {
+		return
+	}
+	body = bytes.NewReader(b)
+
 	uri := c.client.Endpoint + "/2013-04-01/tags/{ResourceType}"
 
 	if req.ResourceType != nil {
@@ -1409,6 +1465,13 @@ func (c *Route53) UpdateHealthCheck(req *UpdateHealthCheckRequest) (resp *Update
 	var body io.Reader
 	var contentType string
 
+	contentType = "application/xml"
+	b, err := xml.Marshal(req)
+	if err != nil {
+		return
+	}
+	body = bytes.NewReader(b)
+
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck/{HealthCheckId}"
 
 	if req.HealthCheckID != nil {
@@ -1455,6 +1518,13 @@ func (c *Route53) UpdateHostedZoneComment(req *UpdateHostedZoneCommentRequest) (
 
 	var body io.Reader
 	var contentType string
+
+	contentType = "application/xml"
+	b, err := xml.Marshal(req)
+	if err != nil {
+		return
+	}
+	body = bytes.NewReader(b)
 
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}"
 

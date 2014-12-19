@@ -500,6 +500,7 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
   var body io.Reader
   var contentType string
   {{ if $op.Input }}
+
   {{ if $op.Input.Payload }}
   {{ with $m := index $op.Input.Members $op.Input.Payload }}
   {{ if $m.Streaming }}
@@ -513,6 +514,13 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
   body = bytes.NewReader(b)
   {{ end }}
   {{ end }}
+  {{ else if $op.InputRef.LocationName }}
+  contentType = "application/xml"
+  b, err := xml.Marshal(req)
+  if err != nil {
+    return
+  }
+  body = bytes.NewReader(b)
   {{ end }}
   {{ end }}
 
