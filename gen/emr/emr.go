@@ -375,9 +375,9 @@ type ClusterSummary struct {
 
 // ClusterTimeline is undocumented.
 type ClusterTimeline struct {
-	CreationDateTime time.Time `json:"CreationDateTime,omitempty"`
-	EndDateTime      time.Time `json:"EndDateTime,omitempty"`
-	ReadyDateTime    time.Time `json:"ReadyDateTime,omitempty"`
+	CreationDateTime aws.LongTimestamp `json:"CreationDateTime,omitempty"`
+	EndDateTime      aws.LongTimestamp `json:"EndDateTime,omitempty"`
+	ReadyDateTime    aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
 }
 
 // Command is undocumented.
@@ -399,10 +399,10 @@ type DescribeClusterOutput struct {
 
 // DescribeJobFlowsInput is undocumented.
 type DescribeJobFlowsInput struct {
-	CreatedAfter  time.Time `json:"CreatedAfter,omitempty"`
-	CreatedBefore time.Time `json:"CreatedBefore,omitempty"`
-	JobFlowIDs    []string  `json:"JobFlowIds,omitempty"`
-	JobFlowStates []string  `json:"JobFlowStates,omitempty"`
+	CreatedAfter  aws.LongTimestamp `json:"CreatedAfter,omitempty"`
+	CreatedBefore aws.LongTimestamp `json:"CreatedBefore,omitempty"`
+	JobFlowIDs    []string          `json:"JobFlowIds,omitempty"`
+	JobFlowStates []string          `json:"JobFlowStates,omitempty"`
 }
 
 // DescribeJobFlowsOutput is undocumented.
@@ -481,20 +481,20 @@ type InstanceGroupConfig struct {
 
 // InstanceGroupDetail is undocumented.
 type InstanceGroupDetail struct {
-	BidPrice              aws.StringValue  `json:"BidPrice,omitempty"`
-	CreationDateTime      time.Time        `json:"CreationDateTime"`
-	EndDateTime           time.Time        `json:"EndDateTime,omitempty"`
-	InstanceGroupID       aws.StringValue  `json:"InstanceGroupId,omitempty"`
-	InstanceRequestCount  aws.IntegerValue `json:"InstanceRequestCount"`
-	InstanceRole          aws.StringValue  `json:"InstanceRole"`
-	InstanceRunningCount  aws.IntegerValue `json:"InstanceRunningCount"`
-	InstanceType          aws.StringValue  `json:"InstanceType"`
-	LastStateChangeReason aws.StringValue  `json:"LastStateChangeReason,omitempty"`
-	Market                aws.StringValue  `json:"Market"`
-	Name                  aws.StringValue  `json:"Name,omitempty"`
-	ReadyDateTime         time.Time        `json:"ReadyDateTime,omitempty"`
-	StartDateTime         time.Time        `json:"StartDateTime,omitempty"`
-	State                 aws.StringValue  `json:"State"`
+	BidPrice              aws.StringValue   `json:"BidPrice,omitempty"`
+	CreationDateTime      aws.LongTimestamp `json:"CreationDateTime"`
+	EndDateTime           aws.LongTimestamp `json:"EndDateTime,omitempty"`
+	InstanceGroupID       aws.StringValue   `json:"InstanceGroupId,omitempty"`
+	InstanceRequestCount  aws.IntegerValue  `json:"InstanceRequestCount"`
+	InstanceRole          aws.StringValue   `json:"InstanceRole"`
+	InstanceRunningCount  aws.IntegerValue  `json:"InstanceRunningCount"`
+	InstanceType          aws.StringValue   `json:"InstanceType"`
+	LastStateChangeReason aws.StringValue   `json:"LastStateChangeReason,omitempty"`
+	Market                aws.StringValue   `json:"Market"`
+	Name                  aws.StringValue   `json:"Name,omitempty"`
+	ReadyDateTime         aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
+	StartDateTime         aws.LongTimestamp `json:"StartDateTime,omitempty"`
+	State                 aws.StringValue   `json:"State"`
 }
 
 // InstanceGroupModifyConfig is undocumented.
@@ -541,9 +541,9 @@ type InstanceGroupStatus struct {
 
 // InstanceGroupTimeline is undocumented.
 type InstanceGroupTimeline struct {
-	CreationDateTime time.Time `json:"CreationDateTime,omitempty"`
-	EndDateTime      time.Time `json:"EndDateTime,omitempty"`
-	ReadyDateTime    time.Time `json:"ReadyDateTime,omitempty"`
+	CreationDateTime aws.LongTimestamp `json:"CreationDateTime,omitempty"`
+	EndDateTime      aws.LongTimestamp `json:"EndDateTime,omitempty"`
+	ReadyDateTime    aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
 }
 
 // Possible values for EMR.
@@ -593,9 +593,9 @@ type InstanceStatus struct {
 
 // InstanceTimeline is undocumented.
 type InstanceTimeline struct {
-	CreationDateTime time.Time `json:"CreationDateTime,omitempty"`
-	EndDateTime      time.Time `json:"EndDateTime,omitempty"`
-	ReadyDateTime    time.Time `json:"ReadyDateTime,omitempty"`
+	CreationDateTime aws.LongTimestamp `json:"CreationDateTime,omitempty"`
+	EndDateTime      aws.LongTimestamp `json:"EndDateTime,omitempty"`
+	ReadyDateTime    aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
 }
 
 // JobFlowDetail is undocumented.
@@ -628,12 +628,12 @@ const (
 
 // JobFlowExecutionStatusDetail is undocumented.
 type JobFlowExecutionStatusDetail struct {
-	CreationDateTime      time.Time       `json:"CreationDateTime"`
-	EndDateTime           time.Time       `json:"EndDateTime,omitempty"`
-	LastStateChangeReason aws.StringValue `json:"LastStateChangeReason,omitempty"`
-	ReadyDateTime         time.Time       `json:"ReadyDateTime,omitempty"`
-	StartDateTime         time.Time       `json:"StartDateTime,omitempty"`
-	State                 aws.StringValue `json:"State"`
+	CreationDateTime      aws.LongTimestamp `json:"CreationDateTime"`
+	EndDateTime           aws.LongTimestamp `json:"EndDateTime,omitempty"`
+	LastStateChangeReason aws.StringValue   `json:"LastStateChangeReason,omitempty"`
+	ReadyDateTime         aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
+	StartDateTime         aws.LongTimestamp `json:"StartDateTime,omitempty"`
+	State                 aws.StringValue   `json:"State"`
 }
 
 // JobFlowInstancesConfig is undocumented.
@@ -687,10 +687,10 @@ type ListBootstrapActionsOutput struct {
 
 // ListClustersInput is undocumented.
 type ListClustersInput struct {
-	ClusterStates []string        `json:"ClusterStates,omitempty"`
-	CreatedAfter  time.Time       `json:"CreatedAfter,omitempty"`
-	CreatedBefore time.Time       `json:"CreatedBefore,omitempty"`
-	Marker        aws.StringValue `json:"Marker,omitempty"`
+	ClusterStates []string          `json:"ClusterStates,omitempty"`
+	CreatedAfter  aws.LongTimestamp `json:"CreatedAfter,omitempty"`
+	CreatedBefore aws.LongTimestamp `json:"CreatedBefore,omitempty"`
+	Marker        aws.StringValue   `json:"Marker,omitempty"`
 }
 
 // ListClustersOutput is undocumented.
@@ -839,11 +839,11 @@ const (
 
 // StepExecutionStatusDetail is undocumented.
 type StepExecutionStatusDetail struct {
-	CreationDateTime      time.Time       `json:"CreationDateTime"`
-	EndDateTime           time.Time       `json:"EndDateTime,omitempty"`
-	LastStateChangeReason aws.StringValue `json:"LastStateChangeReason,omitempty"`
-	StartDateTime         time.Time       `json:"StartDateTime,omitempty"`
-	State                 aws.StringValue `json:"State"`
+	CreationDateTime      aws.LongTimestamp `json:"CreationDateTime"`
+	EndDateTime           aws.LongTimestamp `json:"EndDateTime,omitempty"`
+	LastStateChangeReason aws.StringValue   `json:"LastStateChangeReason,omitempty"`
+	StartDateTime         aws.LongTimestamp `json:"StartDateTime,omitempty"`
+	State                 aws.StringValue   `json:"State"`
 }
 
 // Possible values for EMR.
@@ -883,9 +883,9 @@ type StepSummary struct {
 
 // StepTimeline is undocumented.
 type StepTimeline struct {
-	CreationDateTime time.Time `json:"CreationDateTime,omitempty"`
-	EndDateTime      time.Time `json:"EndDateTime,omitempty"`
-	StartDateTime    time.Time `json:"StartDateTime,omitempty"`
+	CreationDateTime aws.LongTimestamp `json:"CreationDateTime,omitempty"`
+	EndDateTime      aws.LongTimestamp `json:"EndDateTime,omitempty"`
+	StartDateTime    aws.LongTimestamp `json:"StartDateTime,omitempty"`
 }
 
 // SupportedProductConfig is undocumented.
