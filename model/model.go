@@ -134,6 +134,12 @@ func (m Member) XMLTag(wrapper string) string {
 		if loc != "" {
 			path = append(path, loc)
 		}
+	}
+
+	// We can't omit all empty values, because encoding/xml makes it impossible
+	// to marshal pointers to empty values.
+	// https://github.com/golang/go/issues/5452
+	if m.Shape().ShapeType == "list" || m.Shape().ShapeType == "structure" {
 		return fmt.Sprintf("`xml:%q`", strings.Join(path, ">")+",omitempty")
 	}
 

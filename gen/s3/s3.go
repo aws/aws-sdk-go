@@ -3490,7 +3490,7 @@ type AccessControlPolicy struct {
 	XMLName xml.Name `xml:"AccessControlPolicy"`
 
 	Grants []Grant `xml:"AccessControlList>Grant,omitempty"`
-	Owner  *Owner  `xml:"Owner"`
+	Owner  *Owner  `xml:"Owner,omitempty"`
 }
 
 // Bucket is undocumented.
@@ -3527,7 +3527,7 @@ const (
 type BucketLoggingStatus struct {
 	XMLName xml.Name `xml:"BucketLoggingStatus"`
 
-	LoggingEnabled *LoggingEnabled `xml:"LoggingEnabled"`
+	LoggingEnabled *LoggingEnabled `xml:"LoggingEnabled,omitempty"`
 }
 
 // Possible values for S3.
@@ -3599,7 +3599,7 @@ type CompleteMultipartUploadRequest struct {
 
 	Bucket          aws.StringValue           `xml:"-"`
 	Key             aws.StringValue           `xml:"-"`
-	MultipartUpload *CompletedMultipartUpload `xml:"CompleteMultipartUpload"`
+	MultipartUpload *CompletedMultipartUpload `xml:"CompleteMultipartUpload,omitempty"`
 	UploadID        aws.StringValue           `xml:"-"`
 }
 
@@ -3630,7 +3630,7 @@ type Condition struct {
 type CopyObjectOutput struct {
 	XMLName xml.Name `xml:"CopyObjectOutput"`
 
-	CopyObjectResult     *CopyObjectResult `xml:"CopyObjectResult"`
+	CopyObjectResult     *CopyObjectResult `xml:"CopyObjectResult,omitempty"`
 	CopySourceVersionID  aws.StringValue   `xml:"-"`
 	Expiration           aws.StringValue   `xml:"-"`
 	SSECustomerAlgorithm aws.StringValue   `xml:"-"`
@@ -3711,7 +3711,7 @@ type CreateBucketRequest struct {
 
 	ACL                       aws.StringValue            `xml:"-"`
 	Bucket                    aws.StringValue            `xml:"-"`
-	CreateBucketConfiguration *CreateBucketConfiguration `xml:"CreateBucketConfiguration"`
+	CreateBucketConfiguration *CreateBucketConfiguration `xml:"CreateBucketConfiguration,omitempty"`
 	GrantFullControl          aws.StringValue            `xml:"-"`
 	GrantRead                 aws.StringValue            `xml:"-"`
 	GrantReadACP              aws.StringValue            `xml:"-"`
@@ -3816,7 +3816,7 @@ type DeleteMarkerEntry struct {
 	IsLatest     aws.BooleanValue `xml:"IsLatest"`
 	Key          aws.StringValue  `xml:"Key"`
 	LastModified time.Time        `xml:"LastModified"`
-	Owner        *Owner           `xml:"Owner"`
+	Owner        *Owner           `xml:"Owner,omitempty"`
 	VersionID    aws.StringValue  `xml:"VersionId"`
 }
 
@@ -3851,7 +3851,7 @@ type DeleteObjectsRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
-	Delete *Delete         `xml:"Delete"`
+	Delete *Delete         `xml:"Delete,omitempty"`
 	MFA    aws.StringValue `xml:"-"`
 }
 
@@ -3907,7 +3907,7 @@ type GetBucketACLOutput struct {
 	XMLName xml.Name `xml:"GetBucketAclOutput"`
 
 	Grants []Grant `xml:"AccessControlList>Grant,omitempty"`
-	Owner  *Owner  `xml:"Owner"`
+	Owner  *Owner  `xml:"Owner,omitempty"`
 }
 
 // GetBucketACLRequest is undocumented.
@@ -3963,7 +3963,7 @@ type GetBucketLocationRequest struct {
 type GetBucketLoggingOutput struct {
 	XMLName xml.Name `xml:"GetBucketLoggingOutput"`
 
-	LoggingEnabled *LoggingEnabled `xml:"LoggingEnabled"`
+	LoggingEnabled *LoggingEnabled `xml:"LoggingEnabled,omitempty"`
 }
 
 // GetBucketLoggingRequest is undocumented.
@@ -3977,9 +3977,9 @@ type GetBucketLoggingRequest struct {
 type GetBucketNotificationOutput struct {
 	XMLName xml.Name `xml:"GetBucketNotificationOutput"`
 
-	CloudFunctionConfiguration *CloudFunctionConfiguration `xml:"CloudFunctionConfiguration"`
-	QueueConfiguration         *QueueConfiguration         `xml:"QueueConfiguration"`
-	TopicConfiguration         *TopicConfiguration         `xml:"TopicConfiguration"`
+	CloudFunctionConfiguration *CloudFunctionConfiguration `xml:"CloudFunctionConfiguration,omitempty"`
+	QueueConfiguration         *QueueConfiguration         `xml:"QueueConfiguration,omitempty"`
+	TopicConfiguration         *TopicConfiguration         `xml:"TopicConfiguration,omitempty"`
 }
 
 // GetBucketNotificationRequest is undocumented.
@@ -4050,9 +4050,9 @@ type GetBucketVersioningRequest struct {
 type GetBucketWebsiteOutput struct {
 	XMLName xml.Name `xml:"GetBucketWebsiteOutput"`
 
-	ErrorDocument         *ErrorDocument         `xml:"ErrorDocument"`
-	IndexDocument         *IndexDocument         `xml:"IndexDocument"`
-	RedirectAllRequestsTo *RedirectAllRequestsTo `xml:"RedirectAllRequestsTo"`
+	ErrorDocument         *ErrorDocument         `xml:"ErrorDocument,omitempty"`
+	IndexDocument         *IndexDocument         `xml:"IndexDocument,omitempty"`
+	RedirectAllRequestsTo *RedirectAllRequestsTo `xml:"RedirectAllRequestsTo,omitempty"`
 	RoutingRules          []RoutingRule          `xml:"RoutingRules>RoutingRule,omitempty"`
 }
 
@@ -4068,7 +4068,7 @@ type GetObjectACLOutput struct {
 	XMLName xml.Name `xml:"GetObjectAclOutput"`
 
 	Grants []Grant `xml:"AccessControlList>Grant,omitempty"`
-	Owner  *Owner  `xml:"Owner"`
+	Owner  *Owner  `xml:"Owner,omitempty"`
 }
 
 // GetObjectACLRequest is undocumented.
@@ -4150,7 +4150,7 @@ type GetObjectTorrentRequest struct {
 type Grant struct {
 	XMLName xml.Name `xml:"Grant"`
 
-	Grantee    *Grantee        `xml:"Grantee"`
+	Grantee    *Grantee        `xml:"Grantee,omitempty"`
 	Permission aws.StringValue `xml:"Permission"`
 }
 
@@ -4251,7 +4251,7 @@ type ListBucketsOutput struct {
 	XMLName xml.Name `xml:"ListBucketsOutput"`
 
 	Buckets []Bucket `xml:"Buckets>Bucket,omitempty"`
-	Owner   *Owner   `xml:"Owner"`
+	Owner   *Owner   `xml:"Owner,omitempty"`
 }
 
 // ListMultipartUploadsOutput is undocumented.
@@ -4350,12 +4350,12 @@ type ListPartsOutput struct {
 	XMLName xml.Name `xml:"ListPartsOutput"`
 
 	Bucket               aws.StringValue  `xml:"Bucket"`
-	Initiator            *Initiator       `xml:"Initiator"`
+	Initiator            *Initiator       `xml:"Initiator,omitempty"`
 	IsTruncated          aws.BooleanValue `xml:"IsTruncated"`
 	Key                  aws.StringValue  `xml:"Key"`
 	MaxParts             aws.IntegerValue `xml:"MaxParts"`
 	NextPartNumberMarker aws.IntegerValue `xml:"NextPartNumberMarker"`
-	Owner                *Owner           `xml:"Owner"`
+	Owner                *Owner           `xml:"Owner,omitempty"`
 	PartNumberMarker     aws.IntegerValue `xml:"PartNumberMarker"`
 	Parts                []Part           `xml:"Part,omitempty"`
 	StorageClass         aws.StringValue  `xml:"StorageClass"`
@@ -4405,9 +4405,9 @@ type MultipartUpload struct {
 	XMLName xml.Name `xml:"MultipartUpload"`
 
 	Initiated    time.Time       `xml:"Initiated"`
-	Initiator    *Initiator      `xml:"Initiator"`
+	Initiator    *Initiator      `xml:"Initiator,omitempty"`
 	Key          aws.StringValue `xml:"Key"`
-	Owner        *Owner          `xml:"Owner"`
+	Owner        *Owner          `xml:"Owner,omitempty"`
 	StorageClass aws.StringValue `xml:"StorageClass"`
 	UploadID     aws.StringValue `xml:"UploadId"`
 }
@@ -4431,9 +4431,9 @@ type NoncurrentVersionTransition struct {
 type NotificationConfiguration struct {
 	XMLName xml.Name `xml:"NotificationConfiguration"`
 
-	CloudFunctionConfiguration *CloudFunctionConfiguration `xml:"CloudFunctionConfiguration"`
-	QueueConfiguration         *QueueConfiguration         `xml:"QueueConfiguration"`
-	TopicConfiguration         *TopicConfiguration         `xml:"TopicConfiguration"`
+	CloudFunctionConfiguration *CloudFunctionConfiguration `xml:"CloudFunctionConfiguration,omitempty"`
+	QueueConfiguration         *QueueConfiguration         `xml:"QueueConfiguration,omitempty"`
+	TopicConfiguration         *TopicConfiguration         `xml:"TopicConfiguration,omitempty"`
 }
 
 // Object is undocumented.
@@ -4443,7 +4443,7 @@ type Object struct {
 	ETag         aws.StringValue  `xml:"ETag"`
 	Key          aws.StringValue  `xml:"Key"`
 	LastModified time.Time        `xml:"LastModified"`
-	Owner        *Owner           `xml:"Owner"`
+	Owner        *Owner           `xml:"Owner,omitempty"`
 	Size         aws.IntegerValue `xml:"Size"`
 	StorageClass aws.StringValue  `xml:"StorageClass"`
 }
@@ -4481,7 +4481,7 @@ type ObjectVersion struct {
 	IsLatest     aws.BooleanValue `xml:"IsLatest"`
 	Key          aws.StringValue  `xml:"Key"`
 	LastModified time.Time        `xml:"LastModified"`
-	Owner        *Owner           `xml:"Owner"`
+	Owner        *Owner           `xml:"Owner,omitempty"`
 	Size         aws.IntegerValue `xml:"Size"`
 	StorageClass aws.StringValue  `xml:"StorageClass"`
 	VersionID    aws.StringValue  `xml:"VersionId"`
@@ -4536,7 +4536,7 @@ type PutBucketACLRequest struct {
 	XMLName xml.Name `xml:""`
 
 	ACL                 aws.StringValue      `xml:"-"`
-	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy"`
+	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy,omitempty"`
 	Bucket              aws.StringValue      `xml:"-"`
 	ContentMD5          aws.StringValue      `xml:"-"`
 	GrantFullControl    aws.StringValue      `xml:"-"`
@@ -4551,7 +4551,7 @@ type PutBucketCORSRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket            aws.StringValue    `xml:"-"`
-	CORSConfiguration *CORSConfiguration `xml:"CORSConfiguration"`
+	CORSConfiguration *CORSConfiguration `xml:"CORSConfiguration,omitempty"`
 	ContentMD5        aws.StringValue    `xml:"-"`
 }
 
@@ -4561,7 +4561,7 @@ type PutBucketLifecycleRequest struct {
 
 	Bucket                 aws.StringValue         `xml:"-"`
 	ContentMD5             aws.StringValue         `xml:"-"`
-	LifecycleConfiguration *LifecycleConfiguration `xml:"LifecycleConfiguration"`
+	LifecycleConfiguration *LifecycleConfiguration `xml:"LifecycleConfiguration,omitempty"`
 }
 
 // PutBucketLoggingRequest is undocumented.
@@ -4569,7 +4569,7 @@ type PutBucketLoggingRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket              aws.StringValue      `xml:"-"`
-	BucketLoggingStatus *BucketLoggingStatus `xml:"BucketLoggingStatus"`
+	BucketLoggingStatus *BucketLoggingStatus `xml:"BucketLoggingStatus,omitempty"`
 	ContentMD5          aws.StringValue      `xml:"-"`
 }
 
@@ -4579,7 +4579,7 @@ type PutBucketNotificationRequest struct {
 
 	Bucket                    aws.StringValue            `xml:"-"`
 	ContentMD5                aws.StringValue            `xml:"-"`
-	NotificationConfiguration *NotificationConfiguration `xml:"NotificationConfiguration"`
+	NotificationConfiguration *NotificationConfiguration `xml:"NotificationConfiguration,omitempty"`
 }
 
 // PutBucketPolicyRequest is undocumented.
@@ -4597,7 +4597,7 @@ type PutBucketRequestPaymentRequest struct {
 
 	Bucket                      aws.StringValue              `xml:"-"`
 	ContentMD5                  aws.StringValue              `xml:"-"`
-	RequestPaymentConfiguration *RequestPaymentConfiguration `xml:"RequestPaymentConfiguration"`
+	RequestPaymentConfiguration *RequestPaymentConfiguration `xml:"RequestPaymentConfiguration,omitempty"`
 }
 
 // PutBucketTaggingRequest is undocumented.
@@ -4606,7 +4606,7 @@ type PutBucketTaggingRequest struct {
 
 	Bucket     aws.StringValue `xml:"-"`
 	ContentMD5 aws.StringValue `xml:"-"`
-	Tagging    *Tagging        `xml:"Tagging"`
+	Tagging    *Tagging        `xml:"Tagging,omitempty"`
 }
 
 // PutBucketVersioningRequest is undocumented.
@@ -4616,7 +4616,7 @@ type PutBucketVersioningRequest struct {
 	Bucket                  aws.StringValue          `xml:"-"`
 	ContentMD5              aws.StringValue          `xml:"-"`
 	MFA                     aws.StringValue          `xml:"-"`
-	VersioningConfiguration *VersioningConfiguration `xml:"VersioningConfiguration"`
+	VersioningConfiguration *VersioningConfiguration `xml:"VersioningConfiguration,omitempty"`
 }
 
 // PutBucketWebsiteRequest is undocumented.
@@ -4625,7 +4625,7 @@ type PutBucketWebsiteRequest struct {
 
 	Bucket               aws.StringValue       `xml:"-"`
 	ContentMD5           aws.StringValue       `xml:"-"`
-	WebsiteConfiguration *WebsiteConfiguration `xml:"WebsiteConfiguration"`
+	WebsiteConfiguration *WebsiteConfiguration `xml:"WebsiteConfiguration,omitempty"`
 }
 
 // PutObjectACLRequest is undocumented.
@@ -4633,7 +4633,7 @@ type PutObjectACLRequest struct {
 	XMLName xml.Name `xml:""`
 
 	ACL                 aws.StringValue      `xml:"-"`
-	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy"`
+	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy,omitempty"`
 	Bucket              aws.StringValue      `xml:"-"`
 	ContentMD5          aws.StringValue      `xml:"-"`
 	GrantFullControl    aws.StringValue      `xml:"-"`
@@ -4729,7 +4729,7 @@ type RestoreObjectRequest struct {
 
 	Bucket         aws.StringValue `xml:"-"`
 	Key            aws.StringValue `xml:"-"`
-	RestoreRequest *RestoreRequest `xml:"RestoreRequest"`
+	RestoreRequest *RestoreRequest `xml:"RestoreRequest,omitempty"`
 	VersionID      aws.StringValue `xml:"-"`
 }
 
@@ -4744,21 +4744,21 @@ type RestoreRequest struct {
 type RoutingRule struct {
 	XMLName xml.Name `xml:"RoutingRule"`
 
-	Condition *Condition `xml:"Condition"`
-	Redirect  *Redirect  `xml:"Redirect"`
+	Condition *Condition `xml:"Condition,omitempty"`
+	Redirect  *Redirect  `xml:"Redirect,omitempty"`
 }
 
 // Rule is undocumented.
 type Rule struct {
 	XMLName xml.Name `xml:"Rule"`
 
-	Expiration                  *LifecycleExpiration         `xml:"Expiration"`
+	Expiration                  *LifecycleExpiration         `xml:"Expiration,omitempty"`
 	ID                          aws.StringValue              `xml:"ID"`
-	NoncurrentVersionExpiration *NoncurrentVersionExpiration `xml:"NoncurrentVersionExpiration"`
-	NoncurrentVersionTransition *NoncurrentVersionTransition `xml:"NoncurrentVersionTransition"`
+	NoncurrentVersionExpiration *NoncurrentVersionExpiration `xml:"NoncurrentVersionExpiration,omitempty"`
+	NoncurrentVersionTransition *NoncurrentVersionTransition `xml:"NoncurrentVersionTransition,omitempty"`
 	Prefix                      aws.StringValue              `xml:"Prefix"`
 	Status                      aws.StringValue              `xml:"Status"`
-	Transition                  *Transition                  `xml:"Transition"`
+	Transition                  *Transition                  `xml:"Transition,omitempty"`
 }
 
 // Possible values for S3.
@@ -4791,7 +4791,7 @@ type Tagging struct {
 type TargetGrant struct {
 	XMLName xml.Name `xml:"TargetGrant"`
 
-	Grantee    *Grantee        `xml:"Grantee"`
+	Grantee    *Grantee        `xml:"Grantee,omitempty"`
 	Permission aws.StringValue `xml:"Permission"`
 }
 
@@ -4830,7 +4830,7 @@ const (
 type UploadPartCopyOutput struct {
 	XMLName xml.Name `xml:"UploadPartCopyOutput"`
 
-	CopyPartResult       *CopyPartResult `xml:"CopyPartResult"`
+	CopyPartResult       *CopyPartResult `xml:"CopyPartResult,omitempty"`
 	CopySourceVersionID  aws.StringValue `xml:"-"`
 	SSECustomerAlgorithm aws.StringValue `xml:"-"`
 	SSECustomerKeyMD5    aws.StringValue `xml:"-"`
@@ -4899,9 +4899,9 @@ type VersioningConfiguration struct {
 type WebsiteConfiguration struct {
 	XMLName xml.Name `xml:"WebsiteConfiguration"`
 
-	ErrorDocument         *ErrorDocument         `xml:"ErrorDocument"`
-	IndexDocument         *IndexDocument         `xml:"IndexDocument"`
-	RedirectAllRequestsTo *RedirectAllRequestsTo `xml:"RedirectAllRequestsTo"`
+	ErrorDocument         *ErrorDocument         `xml:"ErrorDocument,omitempty"`
+	IndexDocument         *IndexDocument         `xml:"IndexDocument,omitempty"`
+	RedirectAllRequestsTo *RedirectAllRequestsTo `xml:"RedirectAllRequestsTo,omitempty"`
 	RoutingRules          []RoutingRule          `xml:"RoutingRules>RoutingRule,omitempty"`
 }
 
