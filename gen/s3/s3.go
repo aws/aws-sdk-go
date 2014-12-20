@@ -3485,6 +3485,10 @@ type AbortMultipartUploadRequest struct {
 	UploadID aws.StringValue `xml:"-"`
 }
 
+func (v *AbortMultipartUploadRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // AccessControlPolicy is undocumented.
 type AccessControlPolicy struct {
 	XMLName xml.Name `xml:"AccessControlPolicy"`
@@ -3493,12 +3497,20 @@ type AccessControlPolicy struct {
 	Owner  *Owner  `xml:"Owner,omitempty"`
 }
 
+func (v *AccessControlPolicy) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Bucket is undocumented.
 type Bucket struct {
 	XMLName xml.Name `xml:"Bucket"`
 
 	CreationDate time.Time       `xml:"CreationDate"`
 	Name         aws.StringValue `xml:"Name"`
+}
+
+func (v *Bucket) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for S3.
@@ -3530,6 +3542,10 @@ type BucketLoggingStatus struct {
 	LoggingEnabled *LoggingEnabled `xml:"LoggingEnabled,omitempty"`
 }
 
+func (v *BucketLoggingStatus) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Possible values for S3.
 const (
 	BucketLogsPermissionFullControl = "FULL_CONTROL"
@@ -3550,6 +3566,10 @@ type CORSConfiguration struct {
 	CORSRules []CORSRule `xml:"CORSRule,omitempty"`
 }
 
+func (v *CORSConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CORSRule is undocumented.
 type CORSRule struct {
 	XMLName xml.Name `xml:"CORSRule"`
@@ -3559,6 +3579,10 @@ type CORSRule struct {
 	AllowedOrigins []string         `xml:"AllowedOrigin,omitempty"`
 	ExposeHeaders  []string         `xml:"ExposeHeader,omitempty"`
 	MaxAgeSeconds  aws.IntegerValue `xml:"MaxAgeSeconds"`
+}
+
+func (v *CORSRule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CloudFunctionConfiguration is undocumented.
@@ -3572,11 +3596,19 @@ type CloudFunctionConfiguration struct {
 	InvocationRole aws.StringValue `xml:"InvocationRole"`
 }
 
+func (v *CloudFunctionConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CommonPrefix is undocumented.
 type CommonPrefix struct {
 	XMLName xml.Name `xml:"CommonPrefix"`
 
 	Prefix aws.StringValue `xml:"Prefix"`
+}
+
+func (v *CommonPrefix) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CompleteMultipartUploadOutput is undocumented.
@@ -3593,6 +3625,10 @@ type CompleteMultipartUploadOutput struct {
 	VersionID            aws.StringValue `xml:"-"`
 }
 
+func (v *CompleteMultipartUploadOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CompleteMultipartUploadRequest is undocumented.
 type CompleteMultipartUploadRequest struct {
 	XMLName xml.Name `xml:""`
@@ -3603,11 +3639,19 @@ type CompleteMultipartUploadRequest struct {
 	UploadID        aws.StringValue           `xml:"-"`
 }
 
+func (v *CompleteMultipartUploadRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CompletedMultipartUpload is undocumented.
 type CompletedMultipartUpload struct {
 	XMLName xml.Name `xml:"CompletedMultipartUpload"`
 
 	Parts []CompletedPart `xml:"Part,omitempty"`
+}
+
+func (v *CompletedMultipartUpload) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CompletedPart is undocumented.
@@ -3618,12 +3662,20 @@ type CompletedPart struct {
 	PartNumber aws.IntegerValue `xml:"PartNumber"`
 }
 
+func (v *CompletedPart) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Condition is undocumented.
 type Condition struct {
 	XMLName xml.Name `xml:"Condition"`
 
 	HTTPErrorCodeReturnedEquals aws.StringValue `xml:"HttpErrorCodeReturnedEquals"`
 	KeyPrefixEquals             aws.StringValue `xml:"KeyPrefixEquals"`
+}
+
+func (v *Condition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CopyObjectOutput is undocumented.
@@ -3637,6 +3689,10 @@ type CopyObjectOutput struct {
 	SSECustomerKeyMD5    aws.StringValue   `xml:"-"`
 	SSEKMSKeyID          aws.StringValue   `xml:"-"`
 	ServerSideEncryption aws.StringValue   `xml:"-"`
+}
+
+func (v *CopyObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CopyObjectRequest is undocumented.
@@ -3675,12 +3731,20 @@ type CopyObjectRequest struct {
 	WebsiteRedirectLocation        aws.StringValue   `xml:"-"`
 }
 
+func (v *CopyObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CopyObjectResult is undocumented.
 type CopyObjectResult struct {
 	XMLName xml.Name `xml:"CopyObjectResult"`
 
 	ETag         aws.StringValue `xml:"ETag"`
 	LastModified time.Time       `xml:"LastModified"`
+}
+
+func (v *CopyObjectResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CopyPartResult is undocumented.
@@ -3691,6 +3755,10 @@ type CopyPartResult struct {
 	LastModified time.Time       `xml:"LastModified"`
 }
 
+func (v *CopyPartResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CreateBucketConfiguration is undocumented.
 type CreateBucketConfiguration struct {
 	XMLName xml.Name `xml:"CreateBucketConfiguration"`
@@ -3698,11 +3766,19 @@ type CreateBucketConfiguration struct {
 	LocationConstraint aws.StringValue `xml:"LocationConstraint"`
 }
 
+func (v *CreateBucketConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CreateBucketOutput is undocumented.
 type CreateBucketOutput struct {
 	XMLName xml.Name `xml:"CreateBucketOutput"`
 
 	Location aws.StringValue `xml:"-"`
+}
+
+func (v *CreateBucketOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CreateBucketRequest is undocumented.
@@ -3719,6 +3795,10 @@ type CreateBucketRequest struct {
 	GrantWriteACP             aws.StringValue            `xml:"-"`
 }
 
+func (v *CreateBucketRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CreateMultipartUploadOutput is undocumented.
 type CreateMultipartUploadOutput struct {
 	XMLName xml.Name `xml:"CreateMultipartUploadOutput"`
@@ -3730,6 +3810,10 @@ type CreateMultipartUploadOutput struct {
 	SSEKMSKeyID          aws.StringValue `xml:"-"`
 	ServerSideEncryption aws.StringValue `xml:"-"`
 	UploadID             aws.StringValue `xml:"UploadId"`
+}
+
+func (v *CreateMultipartUploadOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CreateMultipartUploadRequest is undocumented.
@@ -3759,12 +3843,20 @@ type CreateMultipartUploadRequest struct {
 	WebsiteRedirectLocation aws.StringValue   `xml:"-"`
 }
 
+func (v *CreateMultipartUploadRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Delete is undocumented.
 type Delete struct {
 	XMLName xml.Name `xml:"Delete"`
 
 	Objects []ObjectIdentifier `xml:"Object,omitempty"`
 	Quiet   aws.BooleanValue   `xml:"Quiet"`
+}
+
+func (v *Delete) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // DeleteBucketCORSRequest is undocumented.
@@ -3774,11 +3866,19 @@ type DeleteBucketCORSRequest struct {
 	Bucket aws.StringValue `xml:"-"`
 }
 
+func (v *DeleteBucketCORSRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // DeleteBucketLifecycleRequest is undocumented.
 type DeleteBucketLifecycleRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *DeleteBucketLifecycleRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // DeleteBucketPolicyRequest is undocumented.
@@ -3788,11 +3888,19 @@ type DeleteBucketPolicyRequest struct {
 	Bucket aws.StringValue `xml:"-"`
 }
 
+func (v *DeleteBucketPolicyRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // DeleteBucketRequest is undocumented.
 type DeleteBucketRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *DeleteBucketRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // DeleteBucketTaggingRequest is undocumented.
@@ -3802,11 +3910,19 @@ type DeleteBucketTaggingRequest struct {
 	Bucket aws.StringValue `xml:"-"`
 }
 
+func (v *DeleteBucketTaggingRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // DeleteBucketWebsiteRequest is undocumented.
 type DeleteBucketWebsiteRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *DeleteBucketWebsiteRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // DeleteMarkerEntry is undocumented.
@@ -3820,12 +3936,20 @@ type DeleteMarkerEntry struct {
 	VersionID    aws.StringValue  `xml:"VersionId"`
 }
 
+func (v *DeleteMarkerEntry) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // DeleteObjectOutput is undocumented.
 type DeleteObjectOutput struct {
 	XMLName xml.Name `xml:"DeleteObjectOutput"`
 
 	DeleteMarker aws.BooleanValue `xml:"-"`
 	VersionID    aws.StringValue  `xml:"-"`
+}
+
+func (v *DeleteObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // DeleteObjectRequest is undocumented.
@@ -3838,12 +3962,20 @@ type DeleteObjectRequest struct {
 	VersionID aws.StringValue `xml:"-"`
 }
 
+func (v *DeleteObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // DeleteObjectsOutput is undocumented.
 type DeleteObjectsOutput struct {
 	XMLName xml.Name `xml:"DeleteObjectsOutput"`
 
 	Deleted []DeletedObject `xml:"Deleted,omitempty"`
 	Errors  []Error         `xml:"Error,omitempty"`
+}
+
+func (v *DeleteObjectsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // DeleteObjectsRequest is undocumented.
@@ -3855,6 +3987,10 @@ type DeleteObjectsRequest struct {
 	MFA    aws.StringValue `xml:"-"`
 }
 
+func (v *DeleteObjectsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // DeletedObject is undocumented.
 type DeletedObject struct {
 	XMLName xml.Name `xml:"DeletedObject"`
@@ -3863,6 +3999,10 @@ type DeletedObject struct {
 	DeleteMarkerVersionID aws.StringValue  `xml:"DeleteMarkerVersionId"`
 	Key                   aws.StringValue  `xml:"Key"`
 	VersionID             aws.StringValue  `xml:"VersionId"`
+}
+
+func (v *DeletedObject) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for S3.
@@ -3880,11 +4020,19 @@ type Error struct {
 	VersionID aws.StringValue `xml:"VersionId"`
 }
 
+func (v *Error) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ErrorDocument is undocumented.
 type ErrorDocument struct {
 	XMLName xml.Name `xml:"ErrorDocument"`
 
 	Key aws.StringValue `xml:"Key"`
+}
+
+func (v *ErrorDocument) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for S3.
@@ -3910,11 +4058,19 @@ type GetBucketACLOutput struct {
 	Owner  *Owner  `xml:"Owner,omitempty"`
 }
 
+func (v *GetBucketACLOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetBucketACLRequest is undocumented.
 type GetBucketACLRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *GetBucketACLRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetBucketCORSOutput is undocumented.
@@ -3924,11 +4080,19 @@ type GetBucketCORSOutput struct {
 	CORSRules []CORSRule `xml:"CORSRule,omitempty"`
 }
 
+func (v *GetBucketCORSOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetBucketCORSRequest is undocumented.
 type GetBucketCORSRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *GetBucketCORSRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetBucketLifecycleOutput is undocumented.
@@ -3938,11 +4102,19 @@ type GetBucketLifecycleOutput struct {
 	Rules []Rule `xml:"Rule,omitempty"`
 }
 
+func (v *GetBucketLifecycleOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetBucketLifecycleRequest is undocumented.
 type GetBucketLifecycleRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *GetBucketLifecycleRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetBucketLocationOutput is undocumented.
@@ -3952,11 +4124,19 @@ type GetBucketLocationOutput struct {
 	LocationConstraint aws.StringValue `xml:"LocationConstraint"`
 }
 
+func (v *GetBucketLocationOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetBucketLocationRequest is undocumented.
 type GetBucketLocationRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *GetBucketLocationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetBucketLoggingOutput is undocumented.
@@ -3966,11 +4146,19 @@ type GetBucketLoggingOutput struct {
 	LoggingEnabled *LoggingEnabled `xml:"LoggingEnabled,omitempty"`
 }
 
+func (v *GetBucketLoggingOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetBucketLoggingRequest is undocumented.
 type GetBucketLoggingRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *GetBucketLoggingRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetBucketNotificationOutput is undocumented.
@@ -3982,11 +4170,19 @@ type GetBucketNotificationOutput struct {
 	TopicConfiguration         *TopicConfiguration         `xml:"TopicConfiguration,omitempty"`
 }
 
+func (v *GetBucketNotificationOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetBucketNotificationRequest is undocumented.
 type GetBucketNotificationRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *GetBucketNotificationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetBucketPolicyOutput is undocumented.
@@ -3996,11 +4192,19 @@ type GetBucketPolicyOutput struct {
 	Policy aws.StringValue `xml:"Policy"`
 }
 
+func (v *GetBucketPolicyOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetBucketPolicyRequest is undocumented.
 type GetBucketPolicyRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *GetBucketPolicyRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetBucketRequestPaymentOutput is undocumented.
@@ -4010,11 +4214,19 @@ type GetBucketRequestPaymentOutput struct {
 	Payer aws.StringValue `xml:"Payer"`
 }
 
+func (v *GetBucketRequestPaymentOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetBucketRequestPaymentRequest is undocumented.
 type GetBucketRequestPaymentRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *GetBucketRequestPaymentRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetBucketTaggingOutput is undocumented.
@@ -4024,11 +4236,19 @@ type GetBucketTaggingOutput struct {
 	TagSet []Tag `xml:"TagSet>Tag,omitempty"`
 }
 
+func (v *GetBucketTaggingOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetBucketTaggingRequest is undocumented.
 type GetBucketTaggingRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *GetBucketTaggingRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetBucketVersioningOutput is undocumented.
@@ -4039,11 +4259,19 @@ type GetBucketVersioningOutput struct {
 	Status    aws.StringValue `xml:"Status"`
 }
 
+func (v *GetBucketVersioningOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetBucketVersioningRequest is undocumented.
 type GetBucketVersioningRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *GetBucketVersioningRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetBucketWebsiteOutput is undocumented.
@@ -4056,11 +4284,19 @@ type GetBucketWebsiteOutput struct {
 	RoutingRules          []RoutingRule          `xml:"RoutingRules>RoutingRule,omitempty"`
 }
 
+func (v *GetBucketWebsiteOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetBucketWebsiteRequest is undocumented.
 type GetBucketWebsiteRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *GetBucketWebsiteRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetObjectACLOutput is undocumented.
@@ -4071,6 +4307,10 @@ type GetObjectACLOutput struct {
 	Owner  *Owner  `xml:"Owner,omitempty"`
 }
 
+func (v *GetObjectACLOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetObjectACLRequest is undocumented.
 type GetObjectACLRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4078,6 +4318,10 @@ type GetObjectACLRequest struct {
 	Bucket    aws.StringValue `xml:"-"`
 	Key       aws.StringValue `xml:"-"`
 	VersionID aws.StringValue `xml:"-"`
+}
+
+func (v *GetObjectACLRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetObjectOutput is undocumented.
@@ -4108,6 +4352,10 @@ type GetObjectOutput struct {
 	WebsiteRedirectLocation aws.StringValue   `xml:"-"`
 }
 
+func (v *GetObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetObjectRequest is undocumented.
 type GetObjectRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4131,11 +4379,19 @@ type GetObjectRequest struct {
 	VersionID                  aws.StringValue `xml:"-"`
 }
 
+func (v *GetObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetObjectTorrentOutput is undocumented.
 type GetObjectTorrentOutput struct {
 	XMLName xml.Name `xml:"GetObjectTorrentOutput"`
 
 	Body io.ReadCloser `xml:"-"`
+}
+
+func (v *GetObjectTorrentOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetObjectTorrentRequest is undocumented.
@@ -4146,12 +4402,20 @@ type GetObjectTorrentRequest struct {
 	Key    aws.StringValue `xml:"-"`
 }
 
+func (v *GetObjectTorrentRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Grant is undocumented.
 type Grant struct {
 	XMLName xml.Name `xml:"Grant"`
 
 	Grantee    *Grantee        `xml:"Grantee,omitempty"`
 	Permission aws.StringValue `xml:"Permission"`
+}
+
+func (v *Grant) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Grantee is undocumented.
@@ -4165,11 +4429,19 @@ type Grantee struct {
 	URI          aws.StringValue `xml:"URI"`
 }
 
+func (v *Grantee) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // HeadBucketRequest is undocumented.
 type HeadBucketRequest struct {
 	XMLName xml.Name `xml:""`
 
 	Bucket aws.StringValue `xml:"-"`
+}
+
+func (v *HeadBucketRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // HeadObjectOutput is undocumented.
@@ -4199,6 +4471,10 @@ type HeadObjectOutput struct {
 	WebsiteRedirectLocation aws.StringValue   `xml:"-"`
 }
 
+func (v *HeadObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // HeadObjectRequest is undocumented.
 type HeadObjectRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4216,11 +4492,19 @@ type HeadObjectRequest struct {
 	VersionID            aws.StringValue `xml:"-"`
 }
 
+func (v *HeadObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // IndexDocument is undocumented.
 type IndexDocument struct {
 	XMLName xml.Name `xml:"IndexDocument"`
 
 	Suffix aws.StringValue `xml:"Suffix"`
+}
+
+func (v *IndexDocument) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Initiator is undocumented.
@@ -4231,11 +4515,19 @@ type Initiator struct {
 	ID          aws.StringValue `xml:"ID"`
 }
 
+func (v *Initiator) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // LifecycleConfiguration is undocumented.
 type LifecycleConfiguration struct {
 	XMLName xml.Name `xml:"LifecycleConfiguration"`
 
 	Rules []Rule `xml:"Rule,omitempty"`
+}
+
+func (v *LifecycleConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // LifecycleExpiration is undocumented.
@@ -4246,12 +4538,20 @@ type LifecycleExpiration struct {
 	Days aws.IntegerValue `xml:"Days"`
 }
 
+func (v *LifecycleExpiration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ListBucketsOutput is undocumented.
 type ListBucketsOutput struct {
 	XMLName xml.Name `xml:"ListBucketsOutput"`
 
 	Buckets []Bucket `xml:"Buckets>Bucket,omitempty"`
 	Owner   *Owner   `xml:"Owner,omitempty"`
+}
+
+func (v *ListBucketsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // ListMultipartUploadsOutput is undocumented.
@@ -4272,6 +4572,10 @@ type ListMultipartUploadsOutput struct {
 	Uploads            []MultipartUpload `xml:"Upload,omitempty"`
 }
 
+func (v *ListMultipartUploadsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ListMultipartUploadsRequest is undocumented.
 type ListMultipartUploadsRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4283,6 +4587,10 @@ type ListMultipartUploadsRequest struct {
 	MaxUploads     aws.IntegerValue `xml:"-"`
 	Prefix         aws.StringValue  `xml:"-"`
 	UploadIDMarker aws.StringValue  `xml:"-"`
+}
+
+func (v *ListMultipartUploadsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // ListObjectVersionsOutput is undocumented.
@@ -4304,6 +4612,10 @@ type ListObjectVersionsOutput struct {
 	Versions            []ObjectVersion     `xml:"Version,omitempty"`
 }
 
+func (v *ListObjectVersionsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ListObjectVersionsRequest is undocumented.
 type ListObjectVersionsRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4315,6 +4627,10 @@ type ListObjectVersionsRequest struct {
 	MaxKeys         aws.IntegerValue `xml:"-"`
 	Prefix          aws.StringValue  `xml:"-"`
 	VersionIDMarker aws.StringValue  `xml:"-"`
+}
+
+func (v *ListObjectVersionsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // ListObjectsOutput is undocumented.
@@ -4333,6 +4649,10 @@ type ListObjectsOutput struct {
 	Prefix         aws.StringValue  `xml:"Prefix"`
 }
 
+func (v *ListObjectsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ListObjectsRequest is undocumented.
 type ListObjectsRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4343,6 +4663,10 @@ type ListObjectsRequest struct {
 	Marker       aws.StringValue  `xml:"-"`
 	MaxKeys      aws.IntegerValue `xml:"-"`
 	Prefix       aws.StringValue  `xml:"-"`
+}
+
+func (v *ListObjectsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // ListPartsOutput is undocumented.
@@ -4362,6 +4686,10 @@ type ListPartsOutput struct {
 	UploadID             aws.StringValue  `xml:"UploadId"`
 }
 
+func (v *ListPartsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ListPartsRequest is undocumented.
 type ListPartsRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4373,6 +4701,10 @@ type ListPartsRequest struct {
 	UploadID         aws.StringValue  `xml:"-"`
 }
 
+func (v *ListPartsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // LoggingEnabled is undocumented.
 type LoggingEnabled struct {
 	XMLName xml.Name `xml:"LoggingEnabled"`
@@ -4380,6 +4712,10 @@ type LoggingEnabled struct {
 	TargetBucket aws.StringValue `xml:"TargetBucket"`
 	TargetGrants []TargetGrant   `xml:"TargetGrants>Grant,omitempty"`
 	TargetPrefix aws.StringValue `xml:"TargetPrefix"`
+}
+
+func (v *LoggingEnabled) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for S3.
@@ -4412,11 +4748,19 @@ type MultipartUpload struct {
 	UploadID     aws.StringValue `xml:"UploadId"`
 }
 
+func (v *MultipartUpload) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // NoncurrentVersionExpiration is undocumented.
 type NoncurrentVersionExpiration struct {
 	XMLName xml.Name `xml:"NoncurrentVersionExpiration"`
 
 	NoncurrentDays aws.IntegerValue `xml:"NoncurrentDays"`
+}
+
+func (v *NoncurrentVersionExpiration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // NoncurrentVersionTransition is undocumented.
@@ -4427,6 +4771,10 @@ type NoncurrentVersionTransition struct {
 	StorageClass   aws.StringValue  `xml:"StorageClass"`
 }
 
+func (v *NoncurrentVersionTransition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // NotificationConfiguration is undocumented.
 type NotificationConfiguration struct {
 	XMLName xml.Name `xml:"NotificationConfiguration"`
@@ -4434,6 +4782,10 @@ type NotificationConfiguration struct {
 	CloudFunctionConfiguration *CloudFunctionConfiguration `xml:"CloudFunctionConfiguration,omitempty"`
 	QueueConfiguration         *QueueConfiguration         `xml:"QueueConfiguration,omitempty"`
 	TopicConfiguration         *TopicConfiguration         `xml:"TopicConfiguration,omitempty"`
+}
+
+func (v *NotificationConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Object is undocumented.
@@ -4446,6 +4798,10 @@ type Object struct {
 	Owner        *Owner           `xml:"Owner,omitempty"`
 	Size         aws.IntegerValue `xml:"Size"`
 	StorageClass aws.StringValue  `xml:"StorageClass"`
+}
+
+func (v *Object) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for S3.
@@ -4464,6 +4820,10 @@ type ObjectIdentifier struct {
 
 	Key       aws.StringValue `xml:"Key"`
 	VersionID aws.StringValue `xml:"VersionId"`
+}
+
+func (v *ObjectIdentifier) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for S3.
@@ -4487,6 +4847,10 @@ type ObjectVersion struct {
 	VersionID    aws.StringValue  `xml:"VersionId"`
 }
 
+func (v *ObjectVersion) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Possible values for S3.
 const (
 	ObjectVersionStorageClassStandard = "STANDARD"
@@ -4500,6 +4864,10 @@ type Owner struct {
 	ID          aws.StringValue `xml:"ID"`
 }
 
+func (v *Owner) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Part is undocumented.
 type Part struct {
 	XMLName xml.Name `xml:"Part"`
@@ -4508,6 +4876,10 @@ type Part struct {
 	LastModified time.Time        `xml:"LastModified"`
 	PartNumber   aws.IntegerValue `xml:"PartNumber"`
 	Size         aws.IntegerValue `xml:"Size"`
+}
+
+func (v *Part) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for S3.
@@ -4546,6 +4918,10 @@ type PutBucketACLRequest struct {
 	GrantWriteACP       aws.StringValue      `xml:"-"`
 }
 
+func (v *PutBucketACLRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // PutBucketCORSRequest is undocumented.
 type PutBucketCORSRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4553,6 +4929,10 @@ type PutBucketCORSRequest struct {
 	Bucket            aws.StringValue    `xml:"-"`
 	CORSConfiguration *CORSConfiguration `xml:"CORSConfiguration,omitempty"`
 	ContentMD5        aws.StringValue    `xml:"-"`
+}
+
+func (v *PutBucketCORSRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // PutBucketLifecycleRequest is undocumented.
@@ -4564,6 +4944,10 @@ type PutBucketLifecycleRequest struct {
 	LifecycleConfiguration *LifecycleConfiguration `xml:"LifecycleConfiguration,omitempty"`
 }
 
+func (v *PutBucketLifecycleRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // PutBucketLoggingRequest is undocumented.
 type PutBucketLoggingRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4571,6 +4955,10 @@ type PutBucketLoggingRequest struct {
 	Bucket              aws.StringValue      `xml:"-"`
 	BucketLoggingStatus *BucketLoggingStatus `xml:"BucketLoggingStatus,omitempty"`
 	ContentMD5          aws.StringValue      `xml:"-"`
+}
+
+func (v *PutBucketLoggingRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // PutBucketNotificationRequest is undocumented.
@@ -4582,6 +4970,10 @@ type PutBucketNotificationRequest struct {
 	NotificationConfiguration *NotificationConfiguration `xml:"NotificationConfiguration,omitempty"`
 }
 
+func (v *PutBucketNotificationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // PutBucketPolicyRequest is undocumented.
 type PutBucketPolicyRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4589,6 +4981,10 @@ type PutBucketPolicyRequest struct {
 	Bucket     aws.StringValue `xml:"-"`
 	ContentMD5 aws.StringValue `xml:"-"`
 	Policy     aws.StringValue `xml:"Policy"`
+}
+
+func (v *PutBucketPolicyRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // PutBucketRequestPaymentRequest is undocumented.
@@ -4600,6 +4996,10 @@ type PutBucketRequestPaymentRequest struct {
 	RequestPaymentConfiguration *RequestPaymentConfiguration `xml:"RequestPaymentConfiguration,omitempty"`
 }
 
+func (v *PutBucketRequestPaymentRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // PutBucketTaggingRequest is undocumented.
 type PutBucketTaggingRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4607,6 +5007,10 @@ type PutBucketTaggingRequest struct {
 	Bucket     aws.StringValue `xml:"-"`
 	ContentMD5 aws.StringValue `xml:"-"`
 	Tagging    *Tagging        `xml:"Tagging,omitempty"`
+}
+
+func (v *PutBucketTaggingRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // PutBucketVersioningRequest is undocumented.
@@ -4619,6 +5023,10 @@ type PutBucketVersioningRequest struct {
 	VersioningConfiguration *VersioningConfiguration `xml:"VersioningConfiguration,omitempty"`
 }
 
+func (v *PutBucketVersioningRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // PutBucketWebsiteRequest is undocumented.
 type PutBucketWebsiteRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4626,6 +5034,10 @@ type PutBucketWebsiteRequest struct {
 	Bucket               aws.StringValue       `xml:"-"`
 	ContentMD5           aws.StringValue       `xml:"-"`
 	WebsiteConfiguration *WebsiteConfiguration `xml:"WebsiteConfiguration,omitempty"`
+}
+
+func (v *PutBucketWebsiteRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // PutObjectACLRequest is undocumented.
@@ -4644,6 +5056,10 @@ type PutObjectACLRequest struct {
 	Key                 aws.StringValue      `xml:"-"`
 }
 
+func (v *PutObjectACLRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // PutObjectOutput is undocumented.
 type PutObjectOutput struct {
 	XMLName xml.Name `xml:"PutObjectOutput"`
@@ -4655,6 +5071,10 @@ type PutObjectOutput struct {
 	SSEKMSKeyID          aws.StringValue `xml:"-"`
 	ServerSideEncryption aws.StringValue `xml:"-"`
 	VersionID            aws.StringValue `xml:"-"`
+}
+
+func (v *PutObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // PutObjectRequest is undocumented.
@@ -4687,6 +5107,10 @@ type PutObjectRequest struct {
 	WebsiteRedirectLocation aws.StringValue   `xml:"-"`
 }
 
+func (v *PutObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // QueueConfiguration is undocumented.
 type QueueConfiguration struct {
 	XMLName xml.Name `xml:"QueueConfiguration"`
@@ -4695,6 +5119,10 @@ type QueueConfiguration struct {
 	Events []string        `xml:"Event,omitempty"`
 	ID     aws.StringValue `xml:"Id"`
 	Queue  aws.StringValue `xml:"Queue"`
+}
+
+func (v *QueueConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Redirect is undocumented.
@@ -4708,6 +5136,10 @@ type Redirect struct {
 	ReplaceKeyWith       aws.StringValue `xml:"ReplaceKeyWith"`
 }
 
+func (v *Redirect) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // RedirectAllRequestsTo is undocumented.
 type RedirectAllRequestsTo struct {
 	XMLName xml.Name `xml:"RedirectAllRequestsTo"`
@@ -4716,11 +5148,19 @@ type RedirectAllRequestsTo struct {
 	Protocol aws.StringValue `xml:"Protocol"`
 }
 
+func (v *RedirectAllRequestsTo) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // RequestPaymentConfiguration is undocumented.
 type RequestPaymentConfiguration struct {
 	XMLName xml.Name `xml:"RequestPaymentConfiguration"`
 
 	Payer aws.StringValue `xml:"Payer"`
+}
+
+func (v *RequestPaymentConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // RestoreObjectRequest is undocumented.
@@ -4733,11 +5173,19 @@ type RestoreObjectRequest struct {
 	VersionID      aws.StringValue `xml:"-"`
 }
 
+func (v *RestoreObjectRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // RestoreRequest is undocumented.
 type RestoreRequest struct {
 	XMLName xml.Name `xml:"RestoreRequest"`
 
 	Days aws.IntegerValue `xml:"Days"`
+}
+
+func (v *RestoreRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // RoutingRule is undocumented.
@@ -4746,6 +5194,10 @@ type RoutingRule struct {
 
 	Condition *Condition `xml:"Condition,omitempty"`
 	Redirect  *Redirect  `xml:"Redirect,omitempty"`
+}
+
+func (v *RoutingRule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Rule is undocumented.
@@ -4759,6 +5211,10 @@ type Rule struct {
 	Prefix                      aws.StringValue              `xml:"Prefix"`
 	Status                      aws.StringValue              `xml:"Status"`
 	Transition                  *Transition                  `xml:"Transition,omitempty"`
+}
+
+func (v *Rule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for S3.
@@ -4780,11 +5236,19 @@ type Tag struct {
 	Value aws.StringValue `xml:"Value"`
 }
 
+func (v *Tag) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Tagging is undocumented.
 type Tagging struct {
 	XMLName xml.Name `xml:"Tagging"`
 
 	TagSet []Tag `xml:"TagSet>Tag,omitempty"`
+}
+
+func (v *Tagging) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // TargetGrant is undocumented.
@@ -4793,6 +5257,10 @@ type TargetGrant struct {
 
 	Grantee    *Grantee        `xml:"Grantee,omitempty"`
 	Permission aws.StringValue `xml:"Permission"`
+}
+
+func (v *TargetGrant) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // TopicConfiguration is undocumented.
@@ -4805,6 +5273,10 @@ type TopicConfiguration struct {
 	Topic  aws.StringValue `xml:"Topic"`
 }
 
+func (v *TopicConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Transition is undocumented.
 type Transition struct {
 	XMLName xml.Name `xml:"Transition"`
@@ -4812,6 +5284,10 @@ type Transition struct {
 	Date         time.Time        `xml:"Date"`
 	Days         aws.IntegerValue `xml:"Days"`
 	StorageClass aws.StringValue  `xml:"StorageClass"`
+}
+
+func (v *Transition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for S3.
@@ -4838,6 +5314,10 @@ type UploadPartCopyOutput struct {
 	ServerSideEncryption aws.StringValue `xml:"-"`
 }
 
+func (v *UploadPartCopyOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // UploadPartCopyRequest is undocumented.
 type UploadPartCopyRequest struct {
 	XMLName xml.Name `xml:""`
@@ -4860,6 +5340,10 @@ type UploadPartCopyRequest struct {
 	UploadID                       aws.StringValue  `xml:"-"`
 }
 
+func (v *UploadPartCopyRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // UploadPartOutput is undocumented.
 type UploadPartOutput struct {
 	XMLName xml.Name `xml:"UploadPartOutput"`
@@ -4869,6 +5353,10 @@ type UploadPartOutput struct {
 	SSECustomerKeyMD5    aws.StringValue `xml:"-"`
 	SSEKMSKeyID          aws.StringValue `xml:"-"`
 	ServerSideEncryption aws.StringValue `xml:"-"`
+}
+
+func (v *UploadPartOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // UploadPartRequest is undocumented.
@@ -4887,12 +5375,20 @@ type UploadPartRequest struct {
 	UploadID             aws.StringValue  `xml:"-"`
 }
 
+func (v *UploadPartRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // VersioningConfiguration is undocumented.
 type VersioningConfiguration struct {
 	XMLName xml.Name `xml:"VersioningConfiguration"`
 
 	MFADelete aws.StringValue `xml:"MfaDelete"`
 	Status    aws.StringValue `xml:"Status"`
+}
+
+func (v *VersioningConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // WebsiteConfiguration is undocumented.
@@ -4903,6 +5399,10 @@ type WebsiteConfiguration struct {
 	IndexDocument         *IndexDocument         `xml:"IndexDocument,omitempty"`
 	RedirectAllRequestsTo *RedirectAllRequestsTo `xml:"RedirectAllRequestsTo,omitempty"`
 	RoutingRules          []RoutingRule          `xml:"RoutingRules>RoutingRule,omitempty"`
+}
+
+func (v *WebsiteConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // avoid errors if the packages aren't referenced
