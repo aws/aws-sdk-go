@@ -1131,12 +1131,20 @@ type ActiveTrustedSigners struct {
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
+func (v *ActiveTrustedSigners) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Aliases is undocumented.
 type Aliases struct {
 	XMLName xml.Name `xml:"Aliases"`
 
 	Items    []string         `xml:"Items>CNAME,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
+}
+
+func (v *Aliases) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // AllowedMethods is undocumented.
@@ -1146,6 +1154,10 @@ type AllowedMethods struct {
 	CachedMethods *CachedMethods   `xml:"CachedMethods,omitempty"`
 	Items         []string         `xml:"Items>Method,omitempty"`
 	Quantity      aws.IntegerValue `xml:"Quantity"`
+}
+
+func (v *AllowedMethods) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CacheBehavior is undocumented.
@@ -1162,6 +1174,10 @@ type CacheBehavior struct {
 	ViewerProtocolPolicy aws.StringValue  `xml:"ViewerProtocolPolicy"`
 }
 
+func (v *CacheBehavior) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CacheBehaviors is undocumented.
 type CacheBehaviors struct {
 	XMLName xml.Name `xml:"CacheBehaviors"`
@@ -1170,12 +1186,20 @@ type CacheBehaviors struct {
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
+func (v *CacheBehaviors) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CachedMethods is undocumented.
 type CachedMethods struct {
 	XMLName xml.Name `xml:"CachedMethods"`
 
 	Items    []string         `xml:"Items>Method,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
+}
+
+func (v *CachedMethods) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CloudFrontOriginAccessIdentity is undocumented.
@@ -1187,12 +1211,20 @@ type CloudFrontOriginAccessIdentity struct {
 	S3CanonicalUserID                    aws.StringValue                       `xml:"S3CanonicalUserId"`
 }
 
+func (v *CloudFrontOriginAccessIdentity) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CloudFrontOriginAccessIdentityConfig is undocumented.
 type CloudFrontOriginAccessIdentityConfig struct {
 	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentityConfig"`
 
 	CallerReference aws.StringValue `xml:"CallerReference"`
 	Comment         aws.StringValue `xml:"Comment"`
+}
+
+func (v *CloudFrontOriginAccessIdentityConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CloudFrontOriginAccessIdentityList is undocumented.
@@ -1207,6 +1239,10 @@ type CloudFrontOriginAccessIdentityList struct {
 	Quantity    aws.IntegerValue                        `xml:"Quantity"`
 }
 
+func (v *CloudFrontOriginAccessIdentityList) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CloudFrontOriginAccessIdentitySummary is undocumented.
 type CloudFrontOriginAccessIdentitySummary struct {
 	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentitySummary"`
@@ -1214,6 +1250,10 @@ type CloudFrontOriginAccessIdentitySummary struct {
 	Comment           aws.StringValue `xml:"Comment"`
 	ID                aws.StringValue `xml:"Id"`
 	S3CanonicalUserID aws.StringValue `xml:"S3CanonicalUserId"`
+}
+
+func (v *CloudFrontOriginAccessIdentitySummary) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CookieNames is undocumented.
@@ -1224,6 +1264,10 @@ type CookieNames struct {
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
+func (v *CookieNames) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CookiePreference is undocumented.
 type CookiePreference struct {
 	XMLName xml.Name `xml:"CookiePreference"`
@@ -1232,11 +1276,19 @@ type CookiePreference struct {
 	WhitelistedNames *CookieNames    `xml:"WhitelistedNames,omitempty"`
 }
 
+func (v *CookiePreference) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CreateCloudFrontOriginAccessIdentityRequest is undocumented.
 type CreateCloudFrontOriginAccessIdentityRequest struct {
 	XMLName xml.Name `xml:""`
 
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `xml:"CloudFrontOriginAccessIdentityConfig,omitempty"`
+}
+
+func (v *CreateCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CreateCloudFrontOriginAccessIdentityResult is undocumented.
@@ -1248,11 +1300,19 @@ type CreateCloudFrontOriginAccessIdentityResult struct {
 	Location                       aws.StringValue                 `xml:"-"`
 }
 
+func (v *CreateCloudFrontOriginAccessIdentityResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CreateDistributionRequest is undocumented.
 type CreateDistributionRequest struct {
 	XMLName xml.Name `xml:""`
 
 	DistributionConfig *DistributionConfig `xml:"DistributionConfig,omitempty"`
+}
+
+func (v *CreateDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CreateDistributionResult is undocumented.
@@ -1264,12 +1324,20 @@ type CreateDistributionResult struct {
 	Location     aws.StringValue `xml:"-"`
 }
 
+func (v *CreateDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CreateInvalidationRequest is undocumented.
 type CreateInvalidationRequest struct {
 	XMLName xml.Name `xml:""`
 
 	DistributionID    aws.StringValue    `xml:"-"`
 	InvalidationBatch *InvalidationBatch `xml:"InvalidationBatch,omitempty"`
+}
+
+func (v *CreateInvalidationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CreateInvalidationResult is undocumented.
@@ -1280,11 +1348,19 @@ type CreateInvalidationResult struct {
 	Location     aws.StringValue `xml:"-"`
 }
 
+func (v *CreateInvalidationResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CreateStreamingDistributionRequest is undocumented.
 type CreateStreamingDistributionRequest struct {
 	XMLName xml.Name `xml:""`
 
 	StreamingDistributionConfig *StreamingDistributionConfig `xml:"StreamingDistributionConfig,omitempty"`
+}
+
+func (v *CreateStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CreateStreamingDistributionResult is undocumented.
@@ -1294,6 +1370,10 @@ type CreateStreamingDistributionResult struct {
 	ETag                  aws.StringValue        `xml:"-"`
 	Location              aws.StringValue        `xml:"-"`
 	StreamingDistribution *StreamingDistribution `xml:"StreamingDistribution,omitempty"`
+}
+
+func (v *CreateStreamingDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CustomErrorResponse is undocumented.
@@ -1306,12 +1386,20 @@ type CustomErrorResponse struct {
 	ResponsePagePath   aws.StringValue  `xml:"ResponsePagePath"`
 }
 
+func (v *CustomErrorResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // CustomErrorResponses is undocumented.
 type CustomErrorResponses struct {
 	XMLName xml.Name `xml:"CustomErrorResponses"`
 
 	Items    []CustomErrorResponse `xml:"Items>CustomErrorResponse,omitempty"`
 	Quantity aws.IntegerValue      `xml:"Quantity"`
+}
+
+func (v *CustomErrorResponses) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // CustomOriginConfig is undocumented.
@@ -1321,6 +1409,10 @@ type CustomOriginConfig struct {
 	HTTPPort             aws.IntegerValue `xml:"HTTPPort"`
 	HTTPSPort            aws.IntegerValue `xml:"HTTPSPort"`
 	OriginProtocolPolicy aws.StringValue  `xml:"OriginProtocolPolicy"`
+}
+
+func (v *CustomOriginConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // DefaultCacheBehavior is undocumented.
@@ -1336,12 +1428,20 @@ type DefaultCacheBehavior struct {
 	ViewerProtocolPolicy aws.StringValue  `xml:"ViewerProtocolPolicy"`
 }
 
+func (v *DefaultCacheBehavior) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // DeleteCloudFrontOriginAccessIdentityRequest is undocumented.
 type DeleteCloudFrontOriginAccessIdentityRequest struct {
 	XMLName xml.Name `xml:""`
 
 	ID      aws.StringValue `xml:"-"`
 	IfMatch aws.StringValue `xml:"-"`
+}
+
+func (v *DeleteCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // DeleteDistributionRequest is undocumented.
@@ -1352,12 +1452,20 @@ type DeleteDistributionRequest struct {
 	IfMatch aws.StringValue `xml:"-"`
 }
 
+func (v *DeleteDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // DeleteStreamingDistributionRequest is undocumented.
 type DeleteStreamingDistributionRequest struct {
 	XMLName xml.Name `xml:""`
 
 	ID      aws.StringValue `xml:"-"`
 	IfMatch aws.StringValue `xml:"-"`
+}
+
+func (v *DeleteStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Distribution is undocumented.
@@ -1371,6 +1479,10 @@ type Distribution struct {
 	InProgressInvalidationBatches aws.IntegerValue      `xml:"InProgressInvalidationBatches"`
 	LastModifiedTime              time.Time             `xml:"LastModifiedTime"`
 	Status                        aws.StringValue       `xml:"Status"`
+}
+
+func (v *Distribution) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // DistributionConfig is undocumented.
@@ -1392,6 +1504,10 @@ type DistributionConfig struct {
 	ViewerCertificate    *ViewerCertificate    `xml:"ViewerCertificate,omitempty"`
 }
 
+func (v *DistributionConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // DistributionList is undocumented.
 type DistributionList struct {
 	XMLName xml.Name `xml:"DistributionList"`
@@ -1402,6 +1518,10 @@ type DistributionList struct {
 	MaxItems    aws.IntegerValue      `xml:"MaxItems"`
 	NextMarker  aws.StringValue       `xml:"NextMarker"`
 	Quantity    aws.IntegerValue      `xml:"Quantity"`
+}
+
+func (v *DistributionList) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // DistributionSummary is undocumented.
@@ -1424,6 +1544,10 @@ type DistributionSummary struct {
 	ViewerCertificate    *ViewerCertificate    `xml:"ViewerCertificate,omitempty"`
 }
 
+func (v *DistributionSummary) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ForwardedValues is undocumented.
 type ForwardedValues struct {
 	XMLName xml.Name `xml:"ForwardedValues"`
@@ -1433,6 +1557,10 @@ type ForwardedValues struct {
 	QueryString aws.BooleanValue  `xml:"QueryString"`
 }
 
+func (v *ForwardedValues) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GeoRestriction is undocumented.
 type GeoRestriction struct {
 	XMLName xml.Name `xml:"GeoRestriction"`
@@ -1440,6 +1568,10 @@ type GeoRestriction struct {
 	Items           []string         `xml:"Items>Location,omitempty"`
 	Quantity        aws.IntegerValue `xml:"Quantity"`
 	RestrictionType aws.StringValue  `xml:"RestrictionType"`
+}
+
+func (v *GeoRestriction) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for CloudFront.
@@ -1456,6 +1588,10 @@ type GetCloudFrontOriginAccessIdentityConfigRequest struct {
 	ID aws.StringValue `xml:"-"`
 }
 
+func (v *GetCloudFrontOriginAccessIdentityConfigRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetCloudFrontOriginAccessIdentityConfigResult is undocumented.
 type GetCloudFrontOriginAccessIdentityConfigResult struct {
 	XMLName xml.Name `xml:"GetCloudFrontOriginAccessIdentityConfigResult"`
@@ -1464,11 +1600,19 @@ type GetCloudFrontOriginAccessIdentityConfigResult struct {
 	ETag                                 aws.StringValue                       `xml:"-"`
 }
 
+func (v *GetCloudFrontOriginAccessIdentityConfigResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetCloudFrontOriginAccessIdentityRequest is undocumented.
 type GetCloudFrontOriginAccessIdentityRequest struct {
 	XMLName xml.Name `xml:""`
 
 	ID aws.StringValue `xml:"-"`
+}
+
+func (v *GetCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetCloudFrontOriginAccessIdentityResult is undocumented.
@@ -1479,11 +1623,19 @@ type GetCloudFrontOriginAccessIdentityResult struct {
 	ETag                           aws.StringValue                 `xml:"-"`
 }
 
+func (v *GetCloudFrontOriginAccessIdentityResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetDistributionConfigRequest is undocumented.
 type GetDistributionConfigRequest struct {
 	XMLName xml.Name `xml:""`
 
 	ID aws.StringValue `xml:"-"`
+}
+
+func (v *GetDistributionConfigRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetDistributionConfigResult is undocumented.
@@ -1494,11 +1646,19 @@ type GetDistributionConfigResult struct {
 	ETag               aws.StringValue     `xml:"-"`
 }
 
+func (v *GetDistributionConfigResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetDistributionRequest is undocumented.
 type GetDistributionRequest struct {
 	XMLName xml.Name `xml:""`
 
 	ID aws.StringValue `xml:"-"`
+}
+
+func (v *GetDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetDistributionResult is undocumented.
@@ -1509,12 +1669,20 @@ type GetDistributionResult struct {
 	ETag         aws.StringValue `xml:"-"`
 }
 
+func (v *GetDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetInvalidationRequest is undocumented.
 type GetInvalidationRequest struct {
 	XMLName xml.Name `xml:""`
 
 	DistributionID aws.StringValue `xml:"-"`
 	ID             aws.StringValue `xml:"-"`
+}
+
+func (v *GetInvalidationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetInvalidationResult is undocumented.
@@ -1524,11 +1692,19 @@ type GetInvalidationResult struct {
 	Invalidation *Invalidation `xml:"Invalidation,omitempty"`
 }
 
+func (v *GetInvalidationResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetStreamingDistributionConfigRequest is undocumented.
 type GetStreamingDistributionConfigRequest struct {
 	XMLName xml.Name `xml:""`
 
 	ID aws.StringValue `xml:"-"`
+}
+
+func (v *GetStreamingDistributionConfigRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetStreamingDistributionConfigResult is undocumented.
@@ -1539,11 +1715,19 @@ type GetStreamingDistributionConfigResult struct {
 	StreamingDistributionConfig *StreamingDistributionConfig `xml:"StreamingDistributionConfig,omitempty"`
 }
 
+func (v *GetStreamingDistributionConfigResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetStreamingDistributionRequest is undocumented.
 type GetStreamingDistributionRequest struct {
 	XMLName xml.Name `xml:""`
 
 	ID aws.StringValue `xml:"-"`
+}
+
+func (v *GetStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // GetStreamingDistributionResult is undocumented.
@@ -1554,12 +1738,20 @@ type GetStreamingDistributionResult struct {
 	StreamingDistribution *StreamingDistribution `xml:"StreamingDistribution,omitempty"`
 }
 
+func (v *GetStreamingDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Headers is undocumented.
 type Headers struct {
 	XMLName xml.Name `xml:"Headers"`
 
 	Items    []string         `xml:"Items>Name,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
+}
+
+func (v *Headers) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Invalidation is undocumented.
@@ -1572,12 +1764,20 @@ type Invalidation struct {
 	Status            aws.StringValue    `xml:"Status"`
 }
 
+func (v *Invalidation) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // InvalidationBatch is undocumented.
 type InvalidationBatch struct {
 	XMLName xml.Name `xml:"InvalidationBatch"`
 
 	CallerReference aws.StringValue `xml:"CallerReference"`
 	Paths           *Paths          `xml:"Paths,omitempty"`
+}
+
+func (v *InvalidationBatch) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // InvalidationList is undocumented.
@@ -1592,6 +1792,10 @@ type InvalidationList struct {
 	Quantity    aws.IntegerValue      `xml:"Quantity"`
 }
 
+func (v *InvalidationList) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // InvalidationSummary is undocumented.
 type InvalidationSummary struct {
 	XMLName xml.Name `xml:"InvalidationSummary"`
@@ -1599,6 +1803,10 @@ type InvalidationSummary struct {
 	CreateTime time.Time       `xml:"CreateTime"`
 	ID         aws.StringValue `xml:"Id"`
 	Status     aws.StringValue `xml:"Status"`
+}
+
+func (v *InvalidationSummary) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for CloudFront.
@@ -1616,6 +1824,10 @@ type KeyPairIDs struct {
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
+func (v *KeyPairIDs) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ListCloudFrontOriginAccessIdentitiesRequest is undocumented.
 type ListCloudFrontOriginAccessIdentitiesRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1624,11 +1836,19 @@ type ListCloudFrontOriginAccessIdentitiesRequest struct {
 	MaxItems aws.StringValue `xml:"-"`
 }
 
+func (v *ListCloudFrontOriginAccessIdentitiesRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ListCloudFrontOriginAccessIdentitiesResult is undocumented.
 type ListCloudFrontOriginAccessIdentitiesResult struct {
 	XMLName xml.Name `xml:"ListCloudFrontOriginAccessIdentitiesResult"`
 
 	CloudFrontOriginAccessIdentityList *CloudFrontOriginAccessIdentityList `xml:"CloudFrontOriginAccessIdentityList,omitempty"`
+}
+
+func (v *ListCloudFrontOriginAccessIdentitiesResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // ListDistributionsRequest is undocumented.
@@ -1639,11 +1859,19 @@ type ListDistributionsRequest struct {
 	MaxItems aws.StringValue `xml:"-"`
 }
 
+func (v *ListDistributionsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ListDistributionsResult is undocumented.
 type ListDistributionsResult struct {
 	XMLName xml.Name `xml:"ListDistributionsResult"`
 
 	DistributionList *DistributionList `xml:"DistributionList,omitempty"`
+}
+
+func (v *ListDistributionsResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // ListInvalidationsRequest is undocumented.
@@ -1655,11 +1883,19 @@ type ListInvalidationsRequest struct {
 	MaxItems       aws.StringValue `xml:"-"`
 }
 
+func (v *ListInvalidationsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ListInvalidationsResult is undocumented.
 type ListInvalidationsResult struct {
 	XMLName xml.Name `xml:"ListInvalidationsResult"`
 
 	InvalidationList *InvalidationList `xml:"InvalidationList,omitempty"`
+}
+
+func (v *ListInvalidationsResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // ListStreamingDistributionsRequest is undocumented.
@@ -1670,11 +1906,19 @@ type ListStreamingDistributionsRequest struct {
 	MaxItems aws.StringValue `xml:"-"`
 }
 
+func (v *ListStreamingDistributionsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // ListStreamingDistributionsResult is undocumented.
 type ListStreamingDistributionsResult struct {
 	XMLName xml.Name `xml:"ListStreamingDistributionsResult"`
 
 	StreamingDistributionList *StreamingDistributionList `xml:"StreamingDistributionList,omitempty"`
+}
+
+func (v *ListStreamingDistributionsResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // LoggingConfig is undocumented.
@@ -1685,6 +1929,10 @@ type LoggingConfig struct {
 	Enabled        aws.BooleanValue `xml:"Enabled"`
 	IncludeCookies aws.BooleanValue `xml:"IncludeCookies"`
 	Prefix         aws.StringValue  `xml:"Prefix"`
+}
+
+func (v *LoggingConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for CloudFront.
@@ -1714,6 +1962,10 @@ type Origin struct {
 	S3OriginConfig     *S3OriginConfig     `xml:"S3OriginConfig,omitempty"`
 }
 
+func (v *Origin) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Possible values for CloudFront.
 const (
 	OriginProtocolPolicyHTTPOnly    = "http-only"
@@ -1728,12 +1980,20 @@ type Origins struct {
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
+func (v *Origins) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Paths is undocumented.
 type Paths struct {
 	XMLName xml.Name `xml:"Paths"`
 
 	Items    []string         `xml:"Items>Path,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
+}
+
+func (v *Paths) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for CloudFront.
@@ -1750,6 +2010,10 @@ type Restrictions struct {
 	GeoRestriction *GeoRestriction `xml:"GeoRestriction,omitempty"`
 }
 
+func (v *Restrictions) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // S3Origin is undocumented.
 type S3Origin struct {
 	XMLName xml.Name `xml:"S3Origin"`
@@ -1758,11 +2022,19 @@ type S3Origin struct {
 	OriginAccessIdentity aws.StringValue `xml:"OriginAccessIdentity"`
 }
 
+func (v *S3Origin) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // S3OriginConfig is undocumented.
 type S3OriginConfig struct {
 	XMLName xml.Name `xml:"S3OriginConfig"`
 
 	OriginAccessIdentity aws.StringValue `xml:"OriginAccessIdentity"`
+}
+
+func (v *S3OriginConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for CloudFront.
@@ -1779,6 +2051,10 @@ type Signer struct {
 	KeyPairIDs       *KeyPairIDs     `xml:"KeyPairIds,omitempty"`
 }
 
+func (v *Signer) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // StreamingDistribution is undocumented.
 type StreamingDistribution struct {
 	XMLName xml.Name `xml:"StreamingDistribution"`
@@ -1789,6 +2065,10 @@ type StreamingDistribution struct {
 	LastModifiedTime            time.Time                    `xml:"LastModifiedTime"`
 	Status                      aws.StringValue              `xml:"Status"`
 	StreamingDistributionConfig *StreamingDistributionConfig `xml:"StreamingDistributionConfig,omitempty"`
+}
+
+func (v *StreamingDistribution) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // StreamingDistributionConfig is undocumented.
@@ -1805,6 +2085,10 @@ type StreamingDistributionConfig struct {
 	TrustedSigners  *TrustedSigners         `xml:"TrustedSigners,omitempty"`
 }
 
+func (v *StreamingDistributionConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // StreamingDistributionList is undocumented.
 type StreamingDistributionList struct {
 	XMLName xml.Name `xml:"StreamingDistributionList"`
@@ -1815,6 +2099,10 @@ type StreamingDistributionList struct {
 	MaxItems    aws.IntegerValue               `xml:"MaxItems"`
 	NextMarker  aws.StringValue                `xml:"NextMarker"`
 	Quantity    aws.IntegerValue               `xml:"Quantity"`
+}
+
+func (v *StreamingDistributionList) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // StreamingDistributionSummary is undocumented.
@@ -1833,6 +2121,10 @@ type StreamingDistributionSummary struct {
 	TrustedSigners   *TrustedSigners  `xml:"TrustedSigners,omitempty"`
 }
 
+func (v *StreamingDistributionSummary) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // StreamingLoggingConfig is undocumented.
 type StreamingLoggingConfig struct {
 	XMLName xml.Name `xml:"StreamingLoggingConfig"`
@@ -1840,6 +2132,10 @@ type StreamingLoggingConfig struct {
 	Bucket  aws.StringValue  `xml:"Bucket"`
 	Enabled aws.BooleanValue `xml:"Enabled"`
 	Prefix  aws.StringValue  `xml:"Prefix"`
+}
+
+func (v *StreamingLoggingConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // TrustedSigners is undocumented.
@@ -1851,6 +2147,10 @@ type TrustedSigners struct {
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
+func (v *TrustedSigners) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // UpdateCloudFrontOriginAccessIdentityRequest is undocumented.
 type UpdateCloudFrontOriginAccessIdentityRequest struct {
 	XMLName xml.Name `xml:""`
@@ -1860,12 +2160,20 @@ type UpdateCloudFrontOriginAccessIdentityRequest struct {
 	IfMatch                              aws.StringValue                       `xml:"-"`
 }
 
+func (v *UpdateCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // UpdateCloudFrontOriginAccessIdentityResult is undocumented.
 type UpdateCloudFrontOriginAccessIdentityResult struct {
 	XMLName xml.Name `xml:"UpdateCloudFrontOriginAccessIdentityResult"`
 
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `xml:"CloudFrontOriginAccessIdentity,omitempty"`
 	ETag                           aws.StringValue                 `xml:"-"`
+}
+
+func (v *UpdateCloudFrontOriginAccessIdentityResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // UpdateDistributionRequest is undocumented.
@@ -1877,12 +2185,20 @@ type UpdateDistributionRequest struct {
 	IfMatch            aws.StringValue     `xml:"-"`
 }
 
+func (v *UpdateDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // UpdateDistributionResult is undocumented.
 type UpdateDistributionResult struct {
 	XMLName xml.Name `xml:"UpdateDistributionResult"`
 
 	Distribution *Distribution   `xml:"Distribution,omitempty"`
 	ETag         aws.StringValue `xml:"-"`
+}
+
+func (v *UpdateDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // UpdateStreamingDistributionRequest is undocumented.
@@ -1894,12 +2210,20 @@ type UpdateStreamingDistributionRequest struct {
 	StreamingDistributionConfig *StreamingDistributionConfig `xml:"StreamingDistributionConfig,omitempty"`
 }
 
+func (v *UpdateStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // UpdateStreamingDistributionResult is undocumented.
 type UpdateStreamingDistributionResult struct {
 	XMLName xml.Name `xml:"UpdateStreamingDistributionResult"`
 
 	ETag                  aws.StringValue        `xml:"-"`
 	StreamingDistribution *StreamingDistribution `xml:"StreamingDistribution,omitempty"`
+}
+
+func (v *UpdateStreamingDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // ViewerCertificate is undocumented.
@@ -1910,6 +2234,10 @@ type ViewerCertificate struct {
 	IAMCertificateID             aws.StringValue  `xml:"IAMCertificateId"`
 	MinimumProtocolVersion       aws.StringValue  `xml:"MinimumProtocolVersion"`
 	SSLSupportMethod             aws.StringValue  `xml:"SSLSupportMethod"`
+}
+
+func (v *ViewerCertificate) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
 }
 
 // Possible values for CloudFront.

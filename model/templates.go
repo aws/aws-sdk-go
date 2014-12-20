@@ -591,6 +591,10 @@ type {{ exportable $name }} struct {
 {{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.ResultWrapper }}  {{ end }}
 }
 
+func (v *{{ exportable $name }}) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 {{ end }}
 {{ else if $s.Enum }}
 // Possible values for {{ $.Name }}.
