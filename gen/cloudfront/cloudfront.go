@@ -1124,6 +1124,8 @@ func (c *CloudFront) UpdateStreamingDistribution(req *UpdateStreamingDistributio
 
 // ActiveTrustedSigners is undocumented.
 type ActiveTrustedSigners struct {
+	XMLName xml.Name `xml:"ActiveTrustedSigners"`
+
 	Enabled  aws.BooleanValue `xml:"Enabled"`
 	Items    []Signer         `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
@@ -1131,12 +1133,16 @@ type ActiveTrustedSigners struct {
 
 // Aliases is undocumented.
 type Aliases struct {
+	XMLName xml.Name `xml:"Aliases"`
+
 	Items    []string         `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
 // AllowedMethods is undocumented.
 type AllowedMethods struct {
+	XMLName xml.Name `xml:"AllowedMethods"`
+
 	CachedMethods *CachedMethods   `xml:"CachedMethods"`
 	Items         []string         `xml:"Items"`
 	Quantity      aws.IntegerValue `xml:"Quantity"`
@@ -1144,6 +1150,8 @@ type AllowedMethods struct {
 
 // CacheBehavior is undocumented.
 type CacheBehavior struct {
+	XMLName xml.Name `xml:"CacheBehavior"`
+
 	AllowedMethods       *AllowedMethods  `xml:"AllowedMethods"`
 	ForwardedValues      *ForwardedValues `xml:"ForwardedValues"`
 	MinTTL               aws.LongValue    `xml:"MinTTL"`
@@ -1156,18 +1164,24 @@ type CacheBehavior struct {
 
 // CacheBehaviors is undocumented.
 type CacheBehaviors struct {
+	XMLName xml.Name `xml:"CacheBehaviors"`
+
 	Items    []CacheBehavior  `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
 // CachedMethods is undocumented.
 type CachedMethods struct {
+	XMLName xml.Name `xml:"CachedMethods"`
+
 	Items    []string         `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
 // CloudFrontOriginAccessIdentity is undocumented.
 type CloudFrontOriginAccessIdentity struct {
+	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentity"`
+
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `xml:"CloudFrontOriginAccessIdentityConfig"`
 	ID                                   aws.StringValue                       `xml:"Id"`
 	S3CanonicalUserID                    aws.StringValue                       `xml:"S3CanonicalUserId"`
@@ -1175,12 +1189,16 @@ type CloudFrontOriginAccessIdentity struct {
 
 // CloudFrontOriginAccessIdentityConfig is undocumented.
 type CloudFrontOriginAccessIdentityConfig struct {
+	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentityConfig"`
+
 	CallerReference aws.StringValue `xml:"CallerReference"`
 	Comment         aws.StringValue `xml:"Comment"`
 }
 
 // CloudFrontOriginAccessIdentityList is undocumented.
 type CloudFrontOriginAccessIdentityList struct {
+	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentityList"`
+
 	IsTruncated aws.BooleanValue                        `xml:"IsTruncated"`
 	Items       []CloudFrontOriginAccessIdentitySummary `xml:"Items"`
 	Marker      aws.StringValue                         `xml:"Marker"`
@@ -1191,6 +1209,8 @@ type CloudFrontOriginAccessIdentityList struct {
 
 // CloudFrontOriginAccessIdentitySummary is undocumented.
 type CloudFrontOriginAccessIdentitySummary struct {
+	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentitySummary"`
+
 	Comment           aws.StringValue `xml:"Comment"`
 	ID                aws.StringValue `xml:"Id"`
 	S3CanonicalUserID aws.StringValue `xml:"S3CanonicalUserId"`
@@ -1198,23 +1218,31 @@ type CloudFrontOriginAccessIdentitySummary struct {
 
 // CookieNames is undocumented.
 type CookieNames struct {
+	XMLName xml.Name `xml:"CookieNames"`
+
 	Items    []string         `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
 // CookiePreference is undocumented.
 type CookiePreference struct {
+	XMLName xml.Name `xml:"CookiePreference"`
+
 	Forward          aws.StringValue `xml:"Forward"`
 	WhitelistedNames *CookieNames    `xml:"WhitelistedNames"`
 }
 
 // CreateCloudFrontOriginAccessIdentityRequest is undocumented.
 type CreateCloudFrontOriginAccessIdentityRequest struct {
+	XMLName xml.Name `xml:""`
+
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `xml:"CloudFrontOriginAccessIdentityConfig"`
 }
 
 // CreateCloudFrontOriginAccessIdentityResult is undocumented.
 type CreateCloudFrontOriginAccessIdentityResult struct {
+	XMLName xml.Name `xml:"CreateCloudFrontOriginAccessIdentityResult"`
+
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `xml:"CloudFrontOriginAccessIdentity"`
 	ETag                           aws.StringValue                 `xml:"-"`
 	Location                       aws.StringValue                 `xml:"-"`
@@ -1222,11 +1250,15 @@ type CreateCloudFrontOriginAccessIdentityResult struct {
 
 // CreateDistributionRequest is undocumented.
 type CreateDistributionRequest struct {
+	XMLName xml.Name `xml:""`
+
 	DistributionConfig *DistributionConfig `xml:"DistributionConfig"`
 }
 
 // CreateDistributionResult is undocumented.
 type CreateDistributionResult struct {
+	XMLName xml.Name `xml:"CreateDistributionResult"`
+
 	Distribution *Distribution   `xml:"Distribution"`
 	ETag         aws.StringValue `xml:"-"`
 	Location     aws.StringValue `xml:"-"`
@@ -1234,23 +1266,31 @@ type CreateDistributionResult struct {
 
 // CreateInvalidationRequest is undocumented.
 type CreateInvalidationRequest struct {
+	XMLName xml.Name `xml:""`
+
 	DistributionID    aws.StringValue    `xml:"-"`
 	InvalidationBatch *InvalidationBatch `xml:"InvalidationBatch"`
 }
 
 // CreateInvalidationResult is undocumented.
 type CreateInvalidationResult struct {
+	XMLName xml.Name `xml:"CreateInvalidationResult"`
+
 	Invalidation *Invalidation   `xml:"Invalidation"`
 	Location     aws.StringValue `xml:"-"`
 }
 
 // CreateStreamingDistributionRequest is undocumented.
 type CreateStreamingDistributionRequest struct {
+	XMLName xml.Name `xml:""`
+
 	StreamingDistributionConfig *StreamingDistributionConfig `xml:"StreamingDistributionConfig"`
 }
 
 // CreateStreamingDistributionResult is undocumented.
 type CreateStreamingDistributionResult struct {
+	XMLName xml.Name `xml:"CreateStreamingDistributionResult"`
+
 	ETag                  aws.StringValue        `xml:"-"`
 	Location              aws.StringValue        `xml:"-"`
 	StreamingDistribution *StreamingDistribution `xml:"StreamingDistribution"`
@@ -1258,6 +1298,8 @@ type CreateStreamingDistributionResult struct {
 
 // CustomErrorResponse is undocumented.
 type CustomErrorResponse struct {
+	XMLName xml.Name `xml:"CustomErrorResponse"`
+
 	ErrorCachingMinTTL aws.LongValue    `xml:"ErrorCachingMinTTL"`
 	ErrorCode          aws.IntegerValue `xml:"ErrorCode"`
 	ResponseCode       aws.StringValue  `xml:"ResponseCode"`
@@ -1266,12 +1308,16 @@ type CustomErrorResponse struct {
 
 // CustomErrorResponses is undocumented.
 type CustomErrorResponses struct {
+	XMLName xml.Name `xml:"CustomErrorResponses"`
+
 	Items    []CustomErrorResponse `xml:"Items"`
 	Quantity aws.IntegerValue      `xml:"Quantity"`
 }
 
 // CustomOriginConfig is undocumented.
 type CustomOriginConfig struct {
+	XMLName xml.Name `xml:"CustomOriginConfig"`
+
 	HTTPPort             aws.IntegerValue `xml:"HTTPPort"`
 	HTTPSPort            aws.IntegerValue `xml:"HTTPSPort"`
 	OriginProtocolPolicy aws.StringValue  `xml:"OriginProtocolPolicy"`
@@ -1279,6 +1325,8 @@ type CustomOriginConfig struct {
 
 // DefaultCacheBehavior is undocumented.
 type DefaultCacheBehavior struct {
+	XMLName xml.Name `xml:"DefaultCacheBehavior"`
+
 	AllowedMethods       *AllowedMethods  `xml:"AllowedMethods"`
 	ForwardedValues      *ForwardedValues `xml:"ForwardedValues"`
 	MinTTL               aws.LongValue    `xml:"MinTTL"`
@@ -1290,24 +1338,32 @@ type DefaultCacheBehavior struct {
 
 // DeleteCloudFrontOriginAccessIdentityRequest is undocumented.
 type DeleteCloudFrontOriginAccessIdentityRequest struct {
+	XMLName xml.Name `xml:""`
+
 	ID      aws.StringValue `xml:"-"`
 	IfMatch aws.StringValue `xml:"-"`
 }
 
 // DeleteDistributionRequest is undocumented.
 type DeleteDistributionRequest struct {
+	XMLName xml.Name `xml:""`
+
 	ID      aws.StringValue `xml:"-"`
 	IfMatch aws.StringValue `xml:"-"`
 }
 
 // DeleteStreamingDistributionRequest is undocumented.
 type DeleteStreamingDistributionRequest struct {
+	XMLName xml.Name `xml:""`
+
 	ID      aws.StringValue `xml:"-"`
 	IfMatch aws.StringValue `xml:"-"`
 }
 
 // Distribution is undocumented.
 type Distribution struct {
+	XMLName xml.Name `xml:"Distribution"`
+
 	ActiveTrustedSigners          *ActiveTrustedSigners `xml:"ActiveTrustedSigners"`
 	DistributionConfig            *DistributionConfig   `xml:"DistributionConfig"`
 	DomainName                    aws.StringValue       `xml:"DomainName"`
@@ -1319,6 +1375,8 @@ type Distribution struct {
 
 // DistributionConfig is undocumented.
 type DistributionConfig struct {
+	XMLName xml.Name `xml:"DistributionConfig"`
+
 	Aliases              *Aliases              `xml:"Aliases"`
 	CacheBehaviors       *CacheBehaviors       `xml:"CacheBehaviors"`
 	CallerReference      aws.StringValue       `xml:"CallerReference"`
@@ -1336,6 +1394,8 @@ type DistributionConfig struct {
 
 // DistributionList is undocumented.
 type DistributionList struct {
+	XMLName xml.Name `xml:"DistributionList"`
+
 	IsTruncated aws.BooleanValue      `xml:"IsTruncated"`
 	Items       []DistributionSummary `xml:"Items"`
 	Marker      aws.StringValue       `xml:"Marker"`
@@ -1346,6 +1406,8 @@ type DistributionList struct {
 
 // DistributionSummary is undocumented.
 type DistributionSummary struct {
+	XMLName xml.Name `xml:"DistributionSummary"`
+
 	Aliases              *Aliases              `xml:"Aliases"`
 	CacheBehaviors       *CacheBehaviors       `xml:"CacheBehaviors"`
 	Comment              aws.StringValue       `xml:"Comment"`
@@ -1364,6 +1426,8 @@ type DistributionSummary struct {
 
 // ForwardedValues is undocumented.
 type ForwardedValues struct {
+	XMLName xml.Name `xml:"ForwardedValues"`
+
 	Cookies     *CookiePreference `xml:"Cookies"`
 	Headers     *Headers          `xml:"Headers"`
 	QueryString aws.BooleanValue  `xml:"QueryString"`
@@ -1371,6 +1435,8 @@ type ForwardedValues struct {
 
 // GeoRestriction is undocumented.
 type GeoRestriction struct {
+	XMLName xml.Name `xml:"GeoRestriction"`
+
 	Items           []string         `xml:"Items"`
 	Quantity        aws.IntegerValue `xml:"Quantity"`
 	RestrictionType aws.StringValue  `xml:"RestrictionType"`
@@ -1385,89 +1451,121 @@ const (
 
 // GetCloudFrontOriginAccessIdentityConfigRequest is undocumented.
 type GetCloudFrontOriginAccessIdentityConfigRequest struct {
+	XMLName xml.Name `xml:""`
+
 	ID aws.StringValue `xml:"-"`
 }
 
 // GetCloudFrontOriginAccessIdentityConfigResult is undocumented.
 type GetCloudFrontOriginAccessIdentityConfigResult struct {
+	XMLName xml.Name `xml:"GetCloudFrontOriginAccessIdentityConfigResult"`
+
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `xml:"CloudFrontOriginAccessIdentityConfig"`
 	ETag                                 aws.StringValue                       `xml:"-"`
 }
 
 // GetCloudFrontOriginAccessIdentityRequest is undocumented.
 type GetCloudFrontOriginAccessIdentityRequest struct {
+	XMLName xml.Name `xml:""`
+
 	ID aws.StringValue `xml:"-"`
 }
 
 // GetCloudFrontOriginAccessIdentityResult is undocumented.
 type GetCloudFrontOriginAccessIdentityResult struct {
+	XMLName xml.Name `xml:"GetCloudFrontOriginAccessIdentityResult"`
+
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `xml:"CloudFrontOriginAccessIdentity"`
 	ETag                           aws.StringValue                 `xml:"-"`
 }
 
 // GetDistributionConfigRequest is undocumented.
 type GetDistributionConfigRequest struct {
+	XMLName xml.Name `xml:""`
+
 	ID aws.StringValue `xml:"-"`
 }
 
 // GetDistributionConfigResult is undocumented.
 type GetDistributionConfigResult struct {
+	XMLName xml.Name `xml:"GetDistributionConfigResult"`
+
 	DistributionConfig *DistributionConfig `xml:"DistributionConfig"`
 	ETag               aws.StringValue     `xml:"-"`
 }
 
 // GetDistributionRequest is undocumented.
 type GetDistributionRequest struct {
+	XMLName xml.Name `xml:""`
+
 	ID aws.StringValue `xml:"-"`
 }
 
 // GetDistributionResult is undocumented.
 type GetDistributionResult struct {
+	XMLName xml.Name `xml:"GetDistributionResult"`
+
 	Distribution *Distribution   `xml:"Distribution"`
 	ETag         aws.StringValue `xml:"-"`
 }
 
 // GetInvalidationRequest is undocumented.
 type GetInvalidationRequest struct {
+	XMLName xml.Name `xml:""`
+
 	DistributionID aws.StringValue `xml:"-"`
 	ID             aws.StringValue `xml:"-"`
 }
 
 // GetInvalidationResult is undocumented.
 type GetInvalidationResult struct {
+	XMLName xml.Name `xml:"GetInvalidationResult"`
+
 	Invalidation *Invalidation `xml:"Invalidation"`
 }
 
 // GetStreamingDistributionConfigRequest is undocumented.
 type GetStreamingDistributionConfigRequest struct {
+	XMLName xml.Name `xml:""`
+
 	ID aws.StringValue `xml:"-"`
 }
 
 // GetStreamingDistributionConfigResult is undocumented.
 type GetStreamingDistributionConfigResult struct {
+	XMLName xml.Name `xml:"GetStreamingDistributionConfigResult"`
+
 	ETag                        aws.StringValue              `xml:"-"`
 	StreamingDistributionConfig *StreamingDistributionConfig `xml:"StreamingDistributionConfig"`
 }
 
 // GetStreamingDistributionRequest is undocumented.
 type GetStreamingDistributionRequest struct {
+	XMLName xml.Name `xml:""`
+
 	ID aws.StringValue `xml:"-"`
 }
 
 // GetStreamingDistributionResult is undocumented.
 type GetStreamingDistributionResult struct {
+	XMLName xml.Name `xml:"GetStreamingDistributionResult"`
+
 	ETag                  aws.StringValue        `xml:"-"`
 	StreamingDistribution *StreamingDistribution `xml:"StreamingDistribution"`
 }
 
 // Headers is undocumented.
 type Headers struct {
+	XMLName xml.Name `xml:"Headers"`
+
 	Items    []string         `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
 // Invalidation is undocumented.
 type Invalidation struct {
+	XMLName xml.Name `xml:"Invalidation"`
+
 	CreateTime        time.Time          `xml:"CreateTime"`
 	ID                aws.StringValue    `xml:"Id"`
 	InvalidationBatch *InvalidationBatch `xml:"InvalidationBatch"`
@@ -1476,12 +1574,16 @@ type Invalidation struct {
 
 // InvalidationBatch is undocumented.
 type InvalidationBatch struct {
+	XMLName xml.Name `xml:"InvalidationBatch"`
+
 	CallerReference aws.StringValue `xml:"CallerReference"`
 	Paths           *Paths          `xml:"Paths"`
 }
 
 // InvalidationList is undocumented.
 type InvalidationList struct {
+	XMLName xml.Name `xml:"InvalidationList"`
+
 	IsTruncated aws.BooleanValue      `xml:"IsTruncated"`
 	Items       []InvalidationSummary `xml:"Items"`
 	Marker      aws.StringValue       `xml:"Marker"`
@@ -1492,6 +1594,8 @@ type InvalidationList struct {
 
 // InvalidationSummary is undocumented.
 type InvalidationSummary struct {
+	XMLName xml.Name `xml:"InvalidationSummary"`
+
 	CreateTime time.Time       `xml:"CreateTime"`
 	ID         aws.StringValue `xml:"Id"`
 	Status     aws.StringValue `xml:"Status"`
@@ -1506,34 +1610,46 @@ const (
 
 // KeyPairIDs is undocumented.
 type KeyPairIDs struct {
+	XMLName xml.Name `xml:"KeyPairIds"`
+
 	Items    []string         `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
 // ListCloudFrontOriginAccessIdentitiesRequest is undocumented.
 type ListCloudFrontOriginAccessIdentitiesRequest struct {
+	XMLName xml.Name `xml:""`
+
 	Marker   aws.StringValue `xml:"-"`
 	MaxItems aws.StringValue `xml:"-"`
 }
 
 // ListCloudFrontOriginAccessIdentitiesResult is undocumented.
 type ListCloudFrontOriginAccessIdentitiesResult struct {
+	XMLName xml.Name `xml:"ListCloudFrontOriginAccessIdentitiesResult"`
+
 	CloudFrontOriginAccessIdentityList *CloudFrontOriginAccessIdentityList `xml:"CloudFrontOriginAccessIdentityList"`
 }
 
 // ListDistributionsRequest is undocumented.
 type ListDistributionsRequest struct {
+	XMLName xml.Name `xml:""`
+
 	Marker   aws.StringValue `xml:"-"`
 	MaxItems aws.StringValue `xml:"-"`
 }
 
 // ListDistributionsResult is undocumented.
 type ListDistributionsResult struct {
+	XMLName xml.Name `xml:"ListDistributionsResult"`
+
 	DistributionList *DistributionList `xml:"DistributionList"`
 }
 
 // ListInvalidationsRequest is undocumented.
 type ListInvalidationsRequest struct {
+	XMLName xml.Name `xml:""`
+
 	DistributionID aws.StringValue `xml:"-"`
 	Marker         aws.StringValue `xml:"-"`
 	MaxItems       aws.StringValue `xml:"-"`
@@ -1541,22 +1657,30 @@ type ListInvalidationsRequest struct {
 
 // ListInvalidationsResult is undocumented.
 type ListInvalidationsResult struct {
+	XMLName xml.Name `xml:"ListInvalidationsResult"`
+
 	InvalidationList *InvalidationList `xml:"InvalidationList"`
 }
 
 // ListStreamingDistributionsRequest is undocumented.
 type ListStreamingDistributionsRequest struct {
+	XMLName xml.Name `xml:""`
+
 	Marker   aws.StringValue `xml:"-"`
 	MaxItems aws.StringValue `xml:"-"`
 }
 
 // ListStreamingDistributionsResult is undocumented.
 type ListStreamingDistributionsResult struct {
+	XMLName xml.Name `xml:"ListStreamingDistributionsResult"`
+
 	StreamingDistributionList *StreamingDistributionList `xml:"StreamingDistributionList"`
 }
 
 // LoggingConfig is undocumented.
 type LoggingConfig struct {
+	XMLName xml.Name `xml:"LoggingConfig"`
+
 	Bucket         aws.StringValue  `xml:"Bucket"`
 	Enabled        aws.BooleanValue `xml:"Enabled"`
 	IncludeCookies aws.BooleanValue `xml:"IncludeCookies"`
@@ -1582,6 +1706,8 @@ const (
 
 // Origin is undocumented.
 type Origin struct {
+	XMLName xml.Name `xml:"Origin"`
+
 	CustomOriginConfig *CustomOriginConfig `xml:"CustomOriginConfig"`
 	DomainName         aws.StringValue     `xml:"DomainName"`
 	ID                 aws.StringValue     `xml:"Id"`
@@ -1596,12 +1722,16 @@ const (
 
 // Origins is undocumented.
 type Origins struct {
+	XMLName xml.Name `xml:"Origins"`
+
 	Items    []Origin         `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
 // Paths is undocumented.
 type Paths struct {
+	XMLName xml.Name `xml:"Paths"`
+
 	Items    []string         `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
@@ -1615,17 +1745,23 @@ const (
 
 // Restrictions is undocumented.
 type Restrictions struct {
+	XMLName xml.Name `xml:"Restrictions"`
+
 	GeoRestriction *GeoRestriction `xml:"GeoRestriction"`
 }
 
 // S3Origin is undocumented.
 type S3Origin struct {
+	XMLName xml.Name `xml:"S3Origin"`
+
 	DomainName           aws.StringValue `xml:"DomainName"`
 	OriginAccessIdentity aws.StringValue `xml:"OriginAccessIdentity"`
 }
 
 // S3OriginConfig is undocumented.
 type S3OriginConfig struct {
+	XMLName xml.Name `xml:"S3OriginConfig"`
+
 	OriginAccessIdentity aws.StringValue `xml:"OriginAccessIdentity"`
 }
 
@@ -1637,12 +1773,16 @@ const (
 
 // Signer is undocumented.
 type Signer struct {
+	XMLName xml.Name `xml:"Signer"`
+
 	AWSAccountNumber aws.StringValue `xml:"AwsAccountNumber"`
 	KeyPairIDs       *KeyPairIDs     `xml:"KeyPairIds"`
 }
 
 // StreamingDistribution is undocumented.
 type StreamingDistribution struct {
+	XMLName xml.Name `xml:"StreamingDistribution"`
+
 	ActiveTrustedSigners        *ActiveTrustedSigners        `xml:"ActiveTrustedSigners"`
 	DomainName                  aws.StringValue              `xml:"DomainName"`
 	ID                          aws.StringValue              `xml:"Id"`
@@ -1653,6 +1793,8 @@ type StreamingDistribution struct {
 
 // StreamingDistributionConfig is undocumented.
 type StreamingDistributionConfig struct {
+	XMLName xml.Name `xml:"StreamingDistributionConfig"`
+
 	Aliases         *Aliases                `xml:"Aliases"`
 	CallerReference aws.StringValue         `xml:"CallerReference"`
 	Comment         aws.StringValue         `xml:"Comment"`
@@ -1665,6 +1807,8 @@ type StreamingDistributionConfig struct {
 
 // StreamingDistributionList is undocumented.
 type StreamingDistributionList struct {
+	XMLName xml.Name `xml:"StreamingDistributionList"`
+
 	IsTruncated aws.BooleanValue               `xml:"IsTruncated"`
 	Items       []StreamingDistributionSummary `xml:"Items"`
 	Marker      aws.StringValue                `xml:"Marker"`
@@ -1675,6 +1819,8 @@ type StreamingDistributionList struct {
 
 // StreamingDistributionSummary is undocumented.
 type StreamingDistributionSummary struct {
+	XMLName xml.Name `xml:"StreamingDistributionSummary"`
+
 	Aliases          *Aliases         `xml:"Aliases"`
 	Comment          aws.StringValue  `xml:"Comment"`
 	DomainName       aws.StringValue  `xml:"DomainName"`
@@ -1689,6 +1835,8 @@ type StreamingDistributionSummary struct {
 
 // StreamingLoggingConfig is undocumented.
 type StreamingLoggingConfig struct {
+	XMLName xml.Name `xml:"StreamingLoggingConfig"`
+
 	Bucket  aws.StringValue  `xml:"Bucket"`
 	Enabled aws.BooleanValue `xml:"Enabled"`
 	Prefix  aws.StringValue  `xml:"Prefix"`
@@ -1696,6 +1844,8 @@ type StreamingLoggingConfig struct {
 
 // TrustedSigners is undocumented.
 type TrustedSigners struct {
+	XMLName xml.Name `xml:"TrustedSigners"`
+
 	Enabled  aws.BooleanValue `xml:"Enabled"`
 	Items    []string         `xml:"Items"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
@@ -1703,6 +1853,8 @@ type TrustedSigners struct {
 
 // UpdateCloudFrontOriginAccessIdentityRequest is undocumented.
 type UpdateCloudFrontOriginAccessIdentityRequest struct {
+	XMLName xml.Name `xml:""`
+
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `xml:"CloudFrontOriginAccessIdentityConfig"`
 	ID                                   aws.StringValue                       `xml:"-"`
 	IfMatch                              aws.StringValue                       `xml:"-"`
@@ -1710,12 +1862,16 @@ type UpdateCloudFrontOriginAccessIdentityRequest struct {
 
 // UpdateCloudFrontOriginAccessIdentityResult is undocumented.
 type UpdateCloudFrontOriginAccessIdentityResult struct {
+	XMLName xml.Name `xml:"UpdateCloudFrontOriginAccessIdentityResult"`
+
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `xml:"CloudFrontOriginAccessIdentity"`
 	ETag                           aws.StringValue                 `xml:"-"`
 }
 
 // UpdateDistributionRequest is undocumented.
 type UpdateDistributionRequest struct {
+	XMLName xml.Name `xml:""`
+
 	DistributionConfig *DistributionConfig `xml:"DistributionConfig"`
 	ID                 aws.StringValue     `xml:"-"`
 	IfMatch            aws.StringValue     `xml:"-"`
@@ -1723,12 +1879,16 @@ type UpdateDistributionRequest struct {
 
 // UpdateDistributionResult is undocumented.
 type UpdateDistributionResult struct {
+	XMLName xml.Name `xml:"UpdateDistributionResult"`
+
 	Distribution *Distribution   `xml:"Distribution"`
 	ETag         aws.StringValue `xml:"-"`
 }
 
 // UpdateStreamingDistributionRequest is undocumented.
 type UpdateStreamingDistributionRequest struct {
+	XMLName xml.Name `xml:""`
+
 	ID                          aws.StringValue              `xml:"-"`
 	IfMatch                     aws.StringValue              `xml:"-"`
 	StreamingDistributionConfig *StreamingDistributionConfig `xml:"StreamingDistributionConfig"`
@@ -1736,12 +1896,16 @@ type UpdateStreamingDistributionRequest struct {
 
 // UpdateStreamingDistributionResult is undocumented.
 type UpdateStreamingDistributionResult struct {
+	XMLName xml.Name `xml:"UpdateStreamingDistributionResult"`
+
 	ETag                  aws.StringValue        `xml:"-"`
 	StreamingDistribution *StreamingDistribution `xml:"StreamingDistribution"`
 }
 
 // ViewerCertificate is undocumented.
 type ViewerCertificate struct {
+	XMLName xml.Name `xml:"ViewerCertificate"`
+
 	CloudFrontDefaultCertificate aws.BooleanValue `xml:"CloudFrontDefaultCertificate"`
 	IAMCertificateID             aws.StringValue  `xml:"IAMCertificateId"`
 	MinimumProtocolVersion       aws.StringValue  `xml:"MinimumProtocolVersion"`

@@ -65,6 +65,7 @@ type ShapeRef struct {
 	Wrapper       bool
 	ResultWrapper string
 	Streaming     bool
+	XMLNamespace  XMLNamespace
 }
 
 // WrappedType returns the Go type of the reference shape, wrapped if a result
@@ -396,6 +397,18 @@ func (s *Shape) Type() string {
 	}
 
 	panic(fmt.Errorf("type %q (%q) not found", s.Name, s.ShapeType))
+}
+
+func (s *Shape) XMLName() string {
+	for _, op := range service.Operations {
+		if op.InputRef != nil && op.InputRef.ShapeName == s.Name {
+			if op.InputRef.XMLNamespace.URI != "" {
+				return fmt.Sprintf("`xml:%q`", op.InputRef.XMLNamespace.URI+" "+op.InputRef.LocationName)
+			}
+			return fmt.Sprintf("`xml:%q`", op.InputRef.LocationName)
+		}
+	}
+	return fmt.Sprintf("`xml:%q`", s.Name)
 }
 
 // A Service is an AWS service.
