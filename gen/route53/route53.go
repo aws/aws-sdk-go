@@ -1566,33 +1566,33 @@ func (c *Route53) UpdateHostedZoneComment(req *UpdateHostedZoneCommentRequest) (
 type AliasTarget struct {
 	XMLName xml.Name `xml:"AliasTarget"`
 
-	DNSName              aws.StringValue  `xml:"DNSName,omitempty"`
-	EvaluateTargetHealth aws.BooleanValue `xml:"EvaluateTargetHealth,omitempty"`
-	HostedZoneID         aws.StringValue  `xml:"HostedZoneId,omitempty"`
+	DNSName              aws.StringValue  `xml:"DNSName"`
+	EvaluateTargetHealth aws.BooleanValue `xml:"EvaluateTargetHealth"`
+	HostedZoneID         aws.StringValue  `xml:"HostedZoneId"`
 }
 
 // AssociateVPCWithHostedZoneRequest is undocumented.
 type AssociateVPCWithHostedZoneRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ AssociateVPCWithHostedZoneRequest"`
 
-	Comment      aws.StringValue `xml:"Comment,omitempty"`
+	Comment      aws.StringValue `xml:"Comment"`
 	HostedZoneID aws.StringValue `xml:"-"`
-	VPC          *VPC            `xml:"VPC,omitempty"`
+	VPC          *VPC            `xml:"VPC"`
 }
 
 // AssociateVPCWithHostedZoneResponse is undocumented.
 type AssociateVPCWithHostedZoneResponse struct {
 	XMLName xml.Name `xml:"AssociateVPCWithHostedZoneResponse"`
 
-	ChangeInfo *ChangeInfo `xml:"ChangeInfo,omitempty"`
+	ChangeInfo *ChangeInfo `xml:"ChangeInfo"`
 }
 
 // Change is undocumented.
 type Change struct {
 	XMLName xml.Name `xml:"Change"`
 
-	Action            aws.StringValue    `xml:"Action,omitempty"`
-	ResourceRecordSet *ResourceRecordSet `xml:"ResourceRecordSet,omitempty"`
+	Action            aws.StringValue    `xml:"Action"`
+	ResourceRecordSet *ResourceRecordSet `xml:"ResourceRecordSet"`
 }
 
 // Possible values for Route53.
@@ -1607,24 +1607,24 @@ type ChangeBatch struct {
 	XMLName xml.Name `xml:"ChangeBatch"`
 
 	Changes []Change        `xml:"Changes>Change,omitempty"`
-	Comment aws.StringValue `xml:"Comment,omitempty"`
+	Comment aws.StringValue `xml:"Comment"`
 }
 
 // ChangeInfo is undocumented.
 type ChangeInfo struct {
 	XMLName xml.Name `xml:"ChangeInfo"`
 
-	Comment     aws.StringValue `xml:"Comment,omitempty"`
-	ID          aws.StringValue `xml:"Id,omitempty"`
-	Status      aws.StringValue `xml:"Status,omitempty"`
-	SubmittedAt time.Time       `xml:"SubmittedAt,omitempty"`
+	Comment     aws.StringValue `xml:"Comment"`
+	ID          aws.StringValue `xml:"Id"`
+	Status      aws.StringValue `xml:"Status"`
+	SubmittedAt time.Time       `xml:"SubmittedAt"`
 }
 
 // ChangeResourceRecordSetsRequest is undocumented.
 type ChangeResourceRecordSetsRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ ChangeResourceRecordSetsRequest"`
 
-	ChangeBatch  *ChangeBatch    `xml:"ChangeBatch,omitempty"`
+	ChangeBatch  *ChangeBatch    `xml:"ChangeBatch"`
 	HostedZoneID aws.StringValue `xml:"-"`
 }
 
@@ -1632,7 +1632,7 @@ type ChangeResourceRecordSetsRequest struct {
 type ChangeResourceRecordSetsResponse struct {
 	XMLName xml.Name `xml:"ChangeResourceRecordSetsResponse"`
 
-	ChangeInfo *ChangeInfo `xml:"ChangeInfo,omitempty"`
+	ChangeInfo *ChangeInfo `xml:"ChangeInfo"`
 }
 
 // Possible values for Route53.
@@ -1660,15 +1660,15 @@ type ChangeTagsForResourceResponse struct {
 type CreateHealthCheckRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ CreateHealthCheckRequest"`
 
-	CallerReference   aws.StringValue    `xml:"CallerReference,omitempty"`
-	HealthCheckConfig *HealthCheckConfig `xml:"HealthCheckConfig,omitempty"`
+	CallerReference   aws.StringValue    `xml:"CallerReference"`
+	HealthCheckConfig *HealthCheckConfig `xml:"HealthCheckConfig"`
 }
 
 // CreateHealthCheckResponse is undocumented.
 type CreateHealthCheckResponse struct {
 	XMLName xml.Name `xml:"CreateHealthCheckResponse"`
 
-	HealthCheck *HealthCheck    `xml:"HealthCheck,omitempty"`
+	HealthCheck *HealthCheck    `xml:"HealthCheck"`
 	Location    aws.StringValue `xml:"-"`
 }
 
@@ -1676,37 +1676,37 @@ type CreateHealthCheckResponse struct {
 type CreateHostedZoneRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ CreateHostedZoneRequest"`
 
-	CallerReference  aws.StringValue   `xml:"CallerReference,omitempty"`
-	DelegationSetID  aws.StringValue   `xml:"DelegationSetId,omitempty"`
-	HostedZoneConfig *HostedZoneConfig `xml:"HostedZoneConfig,omitempty"`
-	Name             aws.StringValue   `xml:"Name,omitempty"`
-	VPC              *VPC              `xml:"VPC,omitempty"`
+	CallerReference  aws.StringValue   `xml:"CallerReference"`
+	DelegationSetID  aws.StringValue   `xml:"DelegationSetId"`
+	HostedZoneConfig *HostedZoneConfig `xml:"HostedZoneConfig"`
+	Name             aws.StringValue   `xml:"Name"`
+	VPC              *VPC              `xml:"VPC"`
 }
 
 // CreateHostedZoneResponse is undocumented.
 type CreateHostedZoneResponse struct {
 	XMLName xml.Name `xml:"CreateHostedZoneResponse"`
 
-	ChangeInfo    *ChangeInfo     `xml:"ChangeInfo,omitempty"`
-	DelegationSet *DelegationSet  `xml:"DelegationSet,omitempty"`
-	HostedZone    *HostedZone     `xml:"HostedZone,omitempty"`
+	ChangeInfo    *ChangeInfo     `xml:"ChangeInfo"`
+	DelegationSet *DelegationSet  `xml:"DelegationSet"`
+	HostedZone    *HostedZone     `xml:"HostedZone"`
 	Location      aws.StringValue `xml:"-"`
-	VPC           *VPC            `xml:"VPC,omitempty"`
+	VPC           *VPC            `xml:"VPC"`
 }
 
 // CreateReusableDelegationSetRequest is undocumented.
 type CreateReusableDelegationSetRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ CreateReusableDelegationSetRequest"`
 
-	CallerReference aws.StringValue `xml:"CallerReference,omitempty"`
-	HostedZoneID    aws.StringValue `xml:"HostedZoneId,omitempty"`
+	CallerReference aws.StringValue `xml:"CallerReference"`
+	HostedZoneID    aws.StringValue `xml:"HostedZoneId"`
 }
 
 // CreateReusableDelegationSetResponse is undocumented.
 type CreateReusableDelegationSetResponse struct {
 	XMLName xml.Name `xml:"CreateReusableDelegationSetResponse"`
 
-	DelegationSet *DelegationSet  `xml:"DelegationSet,omitempty"`
+	DelegationSet *DelegationSet  `xml:"DelegationSet"`
 	Location      aws.StringValue `xml:"-"`
 }
 
@@ -1714,8 +1714,8 @@ type CreateReusableDelegationSetResponse struct {
 type DelegationSet struct {
 	XMLName xml.Name `xml:"DelegationSet"`
 
-	CallerReference aws.StringValue `xml:"CallerReference,omitempty"`
-	ID              aws.StringValue `xml:"Id,omitempty"`
+	CallerReference aws.StringValue `xml:"CallerReference"`
+	ID              aws.StringValue `xml:"Id"`
 	NameServers     []string        `xml:"NameServers>NameServer,omitempty"`
 }
 
@@ -1742,7 +1742,7 @@ type DeleteHostedZoneRequest struct {
 type DeleteHostedZoneResponse struct {
 	XMLName xml.Name `xml:"DeleteHostedZoneResponse"`
 
-	ChangeInfo *ChangeInfo `xml:"ChangeInfo,omitempty"`
+	ChangeInfo *ChangeInfo `xml:"ChangeInfo"`
 }
 
 // DeleteReusableDelegationSetRequest is undocumented.
@@ -1761,37 +1761,37 @@ type DeleteReusableDelegationSetResponse struct {
 type DisassociateVPCFromHostedZoneRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ DisassociateVPCFromHostedZoneRequest"`
 
-	Comment      aws.StringValue `xml:"Comment,omitempty"`
+	Comment      aws.StringValue `xml:"Comment"`
 	HostedZoneID aws.StringValue `xml:"-"`
-	VPC          *VPC            `xml:"VPC,omitempty"`
+	VPC          *VPC            `xml:"VPC"`
 }
 
 // DisassociateVPCFromHostedZoneResponse is undocumented.
 type DisassociateVPCFromHostedZoneResponse struct {
 	XMLName xml.Name `xml:"DisassociateVPCFromHostedZoneResponse"`
 
-	ChangeInfo *ChangeInfo `xml:"ChangeInfo,omitempty"`
+	ChangeInfo *ChangeInfo `xml:"ChangeInfo"`
 }
 
 // GeoLocation is undocumented.
 type GeoLocation struct {
 	XMLName xml.Name `xml:"GeoLocation"`
 
-	ContinentCode   aws.StringValue `xml:"ContinentCode,omitempty"`
-	CountryCode     aws.StringValue `xml:"CountryCode,omitempty"`
-	SubdivisionCode aws.StringValue `xml:"SubdivisionCode,omitempty"`
+	ContinentCode   aws.StringValue `xml:"ContinentCode"`
+	CountryCode     aws.StringValue `xml:"CountryCode"`
+	SubdivisionCode aws.StringValue `xml:"SubdivisionCode"`
 }
 
 // GeoLocationDetails is undocumented.
 type GeoLocationDetails struct {
 	XMLName xml.Name `xml:"GeoLocationDetails"`
 
-	ContinentCode   aws.StringValue `xml:"ContinentCode,omitempty"`
-	ContinentName   aws.StringValue `xml:"ContinentName,omitempty"`
-	CountryCode     aws.StringValue `xml:"CountryCode,omitempty"`
-	CountryName     aws.StringValue `xml:"CountryName,omitempty"`
-	SubdivisionCode aws.StringValue `xml:"SubdivisionCode,omitempty"`
-	SubdivisionName aws.StringValue `xml:"SubdivisionName,omitempty"`
+	ContinentCode   aws.StringValue `xml:"ContinentCode"`
+	ContinentName   aws.StringValue `xml:"ContinentName"`
+	CountryCode     aws.StringValue `xml:"CountryCode"`
+	CountryName     aws.StringValue `xml:"CountryName"`
+	SubdivisionCode aws.StringValue `xml:"SubdivisionCode"`
+	SubdivisionName aws.StringValue `xml:"SubdivisionName"`
 }
 
 // GetChangeRequest is undocumented.
@@ -1805,7 +1805,7 @@ type GetChangeRequest struct {
 type GetChangeResponse struct {
 	XMLName xml.Name `xml:"GetChangeResponse"`
 
-	ChangeInfo *ChangeInfo `xml:"ChangeInfo,omitempty"`
+	ChangeInfo *ChangeInfo `xml:"ChangeInfo"`
 }
 
 // GetCheckerIPRangesRequest is undocumented.
@@ -1833,7 +1833,7 @@ type GetGeoLocationRequest struct {
 type GetGeoLocationResponse struct {
 	XMLName xml.Name `xml:"GetGeoLocationResponse"`
 
-	GeoLocationDetails *GeoLocationDetails `xml:"GeoLocationDetails,omitempty"`
+	GeoLocationDetails *GeoLocationDetails `xml:"GeoLocationDetails"`
 }
 
 // GetHealthCheckCountRequest is undocumented.
@@ -1845,7 +1845,7 @@ type GetHealthCheckCountRequest struct {
 type GetHealthCheckCountResponse struct {
 	XMLName xml.Name `xml:"GetHealthCheckCountResponse"`
 
-	HealthCheckCount aws.LongValue `xml:"HealthCheckCount,omitempty"`
+	HealthCheckCount aws.LongValue `xml:"HealthCheckCount"`
 }
 
 // GetHealthCheckLastFailureReasonRequest is undocumented.
@@ -1873,7 +1873,7 @@ type GetHealthCheckRequest struct {
 type GetHealthCheckResponse struct {
 	XMLName xml.Name `xml:"GetHealthCheckResponse"`
 
-	HealthCheck *HealthCheck `xml:"HealthCheck,omitempty"`
+	HealthCheck *HealthCheck `xml:"HealthCheck"`
 }
 
 // GetHealthCheckStatusRequest is undocumented.
@@ -1901,8 +1901,8 @@ type GetHostedZoneRequest struct {
 type GetHostedZoneResponse struct {
 	XMLName xml.Name `xml:"GetHostedZoneResponse"`
 
-	DelegationSet *DelegationSet `xml:"DelegationSet,omitempty"`
-	HostedZone    *HostedZone    `xml:"HostedZone,omitempty"`
+	DelegationSet *DelegationSet `xml:"DelegationSet"`
+	HostedZone    *HostedZone    `xml:"HostedZone"`
 	VPCs          []VPC          `xml:"VPCs>VPC,omitempty"`
 }
 
@@ -1917,39 +1917,39 @@ type GetReusableDelegationSetRequest struct {
 type GetReusableDelegationSetResponse struct {
 	XMLName xml.Name `xml:"GetReusableDelegationSetResponse"`
 
-	DelegationSet *DelegationSet `xml:"DelegationSet,omitempty"`
+	DelegationSet *DelegationSet `xml:"DelegationSet"`
 }
 
 // HealthCheck is undocumented.
 type HealthCheck struct {
 	XMLName xml.Name `xml:"HealthCheck"`
 
-	CallerReference    aws.StringValue    `xml:"CallerReference,omitempty"`
-	HealthCheckConfig  *HealthCheckConfig `xml:"HealthCheckConfig,omitempty"`
-	HealthCheckVersion aws.LongValue      `xml:"HealthCheckVersion,omitempty"`
-	ID                 aws.StringValue    `xml:"Id,omitempty"`
+	CallerReference    aws.StringValue    `xml:"CallerReference"`
+	HealthCheckConfig  *HealthCheckConfig `xml:"HealthCheckConfig"`
+	HealthCheckVersion aws.LongValue      `xml:"HealthCheckVersion"`
+	ID                 aws.StringValue    `xml:"Id"`
 }
 
 // HealthCheckConfig is undocumented.
 type HealthCheckConfig struct {
 	XMLName xml.Name `xml:"HealthCheckConfig"`
 
-	FailureThreshold         aws.IntegerValue `xml:"FailureThreshold,omitempty"`
-	FullyQualifiedDomainName aws.StringValue  `xml:"FullyQualifiedDomainName,omitempty"`
-	IPAddress                aws.StringValue  `xml:"IPAddress,omitempty"`
-	Port                     aws.IntegerValue `xml:"Port,omitempty"`
-	RequestInterval          aws.IntegerValue `xml:"RequestInterval,omitempty"`
-	ResourcePath             aws.StringValue  `xml:"ResourcePath,omitempty"`
-	SearchString             aws.StringValue  `xml:"SearchString,omitempty"`
-	Type                     aws.StringValue  `xml:"Type,omitempty"`
+	FailureThreshold         aws.IntegerValue `xml:"FailureThreshold"`
+	FullyQualifiedDomainName aws.StringValue  `xml:"FullyQualifiedDomainName"`
+	IPAddress                aws.StringValue  `xml:"IPAddress"`
+	Port                     aws.IntegerValue `xml:"Port"`
+	RequestInterval          aws.IntegerValue `xml:"RequestInterval"`
+	ResourcePath             aws.StringValue  `xml:"ResourcePath"`
+	SearchString             aws.StringValue  `xml:"SearchString"`
+	Type                     aws.StringValue  `xml:"Type"`
 }
 
 // HealthCheckObservation is undocumented.
 type HealthCheckObservation struct {
 	XMLName xml.Name `xml:"HealthCheckObservation"`
 
-	IPAddress    aws.StringValue `xml:"IPAddress,omitempty"`
-	StatusReport *StatusReport   `xml:"StatusReport,omitempty"`
+	IPAddress    aws.StringValue `xml:"IPAddress"`
+	StatusReport *StatusReport   `xml:"StatusReport"`
 }
 
 // Possible values for Route53.
@@ -1965,19 +1965,19 @@ const (
 type HostedZone struct {
 	XMLName xml.Name `xml:"HostedZone"`
 
-	CallerReference        aws.StringValue   `xml:"CallerReference,omitempty"`
-	Config                 *HostedZoneConfig `xml:"Config,omitempty"`
-	ID                     aws.StringValue   `xml:"Id,omitempty"`
-	Name                   aws.StringValue   `xml:"Name,omitempty"`
-	ResourceRecordSetCount aws.LongValue     `xml:"ResourceRecordSetCount,omitempty"`
+	CallerReference        aws.StringValue   `xml:"CallerReference"`
+	Config                 *HostedZoneConfig `xml:"Config"`
+	ID                     aws.StringValue   `xml:"Id"`
+	Name                   aws.StringValue   `xml:"Name"`
+	ResourceRecordSetCount aws.LongValue     `xml:"ResourceRecordSetCount"`
 }
 
 // HostedZoneConfig is undocumented.
 type HostedZoneConfig struct {
 	XMLName xml.Name `xml:"HostedZoneConfig"`
 
-	Comment     aws.StringValue  `xml:"Comment,omitempty"`
-	PrivateZone aws.BooleanValue `xml:"PrivateZone,omitempty"`
+	Comment     aws.StringValue  `xml:"Comment"`
+	PrivateZone aws.BooleanValue `xml:"PrivateZone"`
 }
 
 // ListGeoLocationsRequest is undocumented.
@@ -1995,11 +1995,11 @@ type ListGeoLocationsResponse struct {
 	XMLName xml.Name `xml:"ListGeoLocationsResponse"`
 
 	GeoLocationDetailsList []GeoLocationDetails `xml:"GeoLocationDetailsList>GeoLocationDetails,omitempty"`
-	IsTruncated            aws.BooleanValue     `xml:"IsTruncated,omitempty"`
-	MaxItems               aws.StringValue      `xml:"MaxItems,omitempty"`
-	NextContinentCode      aws.StringValue      `xml:"NextContinentCode,omitempty"`
-	NextCountryCode        aws.StringValue      `xml:"NextCountryCode,omitempty"`
-	NextSubdivisionCode    aws.StringValue      `xml:"NextSubdivisionCode,omitempty"`
+	IsTruncated            aws.BooleanValue     `xml:"IsTruncated"`
+	MaxItems               aws.StringValue      `xml:"MaxItems"`
+	NextContinentCode      aws.StringValue      `xml:"NextContinentCode"`
+	NextCountryCode        aws.StringValue      `xml:"NextCountryCode"`
+	NextSubdivisionCode    aws.StringValue      `xml:"NextSubdivisionCode"`
 }
 
 // ListHealthChecksRequest is undocumented.
@@ -2015,10 +2015,10 @@ type ListHealthChecksResponse struct {
 	XMLName xml.Name `xml:"ListHealthChecksResponse"`
 
 	HealthChecks []HealthCheck    `xml:"HealthChecks>HealthCheck,omitempty"`
-	IsTruncated  aws.BooleanValue `xml:"IsTruncated,omitempty"`
-	Marker       aws.StringValue  `xml:"Marker,omitempty"`
-	MaxItems     aws.StringValue  `xml:"MaxItems,omitempty"`
-	NextMarker   aws.StringValue  `xml:"NextMarker,omitempty"`
+	IsTruncated  aws.BooleanValue `xml:"IsTruncated"`
+	Marker       aws.StringValue  `xml:"Marker"`
+	MaxItems     aws.StringValue  `xml:"MaxItems"`
+	NextMarker   aws.StringValue  `xml:"NextMarker"`
 }
 
 // ListHostedZonesRequest is undocumented.
@@ -2035,10 +2035,10 @@ type ListHostedZonesResponse struct {
 	XMLName xml.Name `xml:"ListHostedZonesResponse"`
 
 	HostedZones []HostedZone     `xml:"HostedZones>HostedZone,omitempty"`
-	IsTruncated aws.BooleanValue `xml:"IsTruncated,omitempty"`
-	Marker      aws.StringValue  `xml:"Marker,omitempty"`
-	MaxItems    aws.StringValue  `xml:"MaxItems,omitempty"`
-	NextMarker  aws.StringValue  `xml:"NextMarker,omitempty"`
+	IsTruncated aws.BooleanValue `xml:"IsTruncated"`
+	Marker      aws.StringValue  `xml:"Marker"`
+	MaxItems    aws.StringValue  `xml:"MaxItems"`
+	NextMarker  aws.StringValue  `xml:"NextMarker"`
 }
 
 // ListResourceRecordSetsRequest is undocumented.
@@ -2056,11 +2056,11 @@ type ListResourceRecordSetsRequest struct {
 type ListResourceRecordSetsResponse struct {
 	XMLName xml.Name `xml:"ListResourceRecordSetsResponse"`
 
-	IsTruncated          aws.BooleanValue    `xml:"IsTruncated,omitempty"`
-	MaxItems             aws.StringValue     `xml:"MaxItems,omitempty"`
-	NextRecordIdentifier aws.StringValue     `xml:"NextRecordIdentifier,omitempty"`
-	NextRecordName       aws.StringValue     `xml:"NextRecordName,omitempty"`
-	NextRecordType       aws.StringValue     `xml:"NextRecordType,omitempty"`
+	IsTruncated          aws.BooleanValue    `xml:"IsTruncated"`
+	MaxItems             aws.StringValue     `xml:"MaxItems"`
+	NextRecordIdentifier aws.StringValue     `xml:"NextRecordIdentifier"`
+	NextRecordName       aws.StringValue     `xml:"NextRecordName"`
+	NextRecordType       aws.StringValue     `xml:"NextRecordType"`
 	ResourceRecordSets   []ResourceRecordSet `xml:"ResourceRecordSets>ResourceRecordSet,omitempty"`
 }
 
@@ -2077,10 +2077,10 @@ type ListReusableDelegationSetsResponse struct {
 	XMLName xml.Name `xml:"ListReusableDelegationSetsResponse"`
 
 	DelegationSets []DelegationSet  `xml:"DelegationSets>DelegationSet,omitempty"`
-	IsTruncated    aws.BooleanValue `xml:"IsTruncated,omitempty"`
-	Marker         aws.StringValue  `xml:"Marker,omitempty"`
-	MaxItems       aws.StringValue  `xml:"MaxItems,omitempty"`
-	NextMarker     aws.StringValue  `xml:"NextMarker,omitempty"`
+	IsTruncated    aws.BooleanValue `xml:"IsTruncated"`
+	Marker         aws.StringValue  `xml:"Marker"`
+	MaxItems       aws.StringValue  `xml:"MaxItems"`
+	NextMarker     aws.StringValue  `xml:"NextMarker"`
 }
 
 // ListTagsForResourceRequest is undocumented.
@@ -2095,7 +2095,7 @@ type ListTagsForResourceRequest struct {
 type ListTagsForResourceResponse struct {
 	XMLName xml.Name `xml:"ListTagsForResourceResponse"`
 
-	ResourceTagSet *ResourceTagSet `xml:"ResourceTagSet,omitempty"`
+	ResourceTagSet *ResourceTagSet `xml:"ResourceTagSet"`
 }
 
 // ListTagsForResourcesRequest is undocumented.
@@ -2131,24 +2131,24 @@ const (
 type ResourceRecord struct {
 	XMLName xml.Name `xml:"ResourceRecord"`
 
-	Value aws.StringValue `xml:"Value,omitempty"`
+	Value aws.StringValue `xml:"Value"`
 }
 
 // ResourceRecordSet is undocumented.
 type ResourceRecordSet struct {
 	XMLName xml.Name `xml:"ResourceRecordSet"`
 
-	AliasTarget     *AliasTarget     `xml:"AliasTarget,omitempty"`
-	Failover        aws.StringValue  `xml:"Failover,omitempty"`
-	GeoLocation     *GeoLocation     `xml:"GeoLocation,omitempty"`
-	HealthCheckID   aws.StringValue  `xml:"HealthCheckId,omitempty"`
-	Name            aws.StringValue  `xml:"Name,omitempty"`
-	Region          aws.StringValue  `xml:"Region,omitempty"`
+	AliasTarget     *AliasTarget     `xml:"AliasTarget"`
+	Failover        aws.StringValue  `xml:"Failover"`
+	GeoLocation     *GeoLocation     `xml:"GeoLocation"`
+	HealthCheckID   aws.StringValue  `xml:"HealthCheckId"`
+	Name            aws.StringValue  `xml:"Name"`
+	Region          aws.StringValue  `xml:"Region"`
 	ResourceRecords []ResourceRecord `xml:"ResourceRecords>ResourceRecord,omitempty"`
-	SetIdentifier   aws.StringValue  `xml:"SetIdentifier,omitempty"`
-	TTL             aws.LongValue    `xml:"TTL,omitempty"`
-	Type            aws.StringValue  `xml:"Type,omitempty"`
-	Weight          aws.LongValue    `xml:"Weight,omitempty"`
+	SetIdentifier   aws.StringValue  `xml:"SetIdentifier"`
+	TTL             aws.LongValue    `xml:"TTL"`
+	Type            aws.StringValue  `xml:"Type"`
+	Weight          aws.LongValue    `xml:"Weight"`
 }
 
 // Possible values for Route53.
@@ -2175,8 +2175,8 @@ const (
 type ResourceTagSet struct {
 	XMLName xml.Name `xml:"ResourceTagSet"`
 
-	ResourceID   aws.StringValue `xml:"ResourceId,omitempty"`
-	ResourceType aws.StringValue `xml:"ResourceType,omitempty"`
+	ResourceID   aws.StringValue `xml:"ResourceId"`
+	ResourceType aws.StringValue `xml:"ResourceType"`
 	Tags         []Tag           `xml:"Tags>Tag,omitempty"`
 }
 
@@ -2184,16 +2184,16 @@ type ResourceTagSet struct {
 type StatusReport struct {
 	XMLName xml.Name `xml:"StatusReport"`
 
-	CheckedTime time.Time       `xml:"CheckedTime,omitempty"`
-	Status      aws.StringValue `xml:"Status,omitempty"`
+	CheckedTime time.Time       `xml:"CheckedTime"`
+	Status      aws.StringValue `xml:"Status"`
 }
 
 // Tag is undocumented.
 type Tag struct {
 	XMLName xml.Name `xml:"Tag"`
 
-	Key   aws.StringValue `xml:"Key,omitempty"`
-	Value aws.StringValue `xml:"Value,omitempty"`
+	Key   aws.StringValue `xml:"Key"`
+	Value aws.StringValue `xml:"Value"`
 }
 
 // Possible values for Route53.
@@ -2206,28 +2206,28 @@ const (
 type UpdateHealthCheckRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ UpdateHealthCheckRequest"`
 
-	FailureThreshold         aws.IntegerValue `xml:"FailureThreshold,omitempty"`
-	FullyQualifiedDomainName aws.StringValue  `xml:"FullyQualifiedDomainName,omitempty"`
+	FailureThreshold         aws.IntegerValue `xml:"FailureThreshold"`
+	FullyQualifiedDomainName aws.StringValue  `xml:"FullyQualifiedDomainName"`
 	HealthCheckID            aws.StringValue  `xml:"-"`
-	HealthCheckVersion       aws.LongValue    `xml:"HealthCheckVersion,omitempty"`
-	IPAddress                aws.StringValue  `xml:"IPAddress,omitempty"`
-	Port                     aws.IntegerValue `xml:"Port,omitempty"`
-	ResourcePath             aws.StringValue  `xml:"ResourcePath,omitempty"`
-	SearchString             aws.StringValue  `xml:"SearchString,omitempty"`
+	HealthCheckVersion       aws.LongValue    `xml:"HealthCheckVersion"`
+	IPAddress                aws.StringValue  `xml:"IPAddress"`
+	Port                     aws.IntegerValue `xml:"Port"`
+	ResourcePath             aws.StringValue  `xml:"ResourcePath"`
+	SearchString             aws.StringValue  `xml:"SearchString"`
 }
 
 // UpdateHealthCheckResponse is undocumented.
 type UpdateHealthCheckResponse struct {
 	XMLName xml.Name `xml:"UpdateHealthCheckResponse"`
 
-	HealthCheck *HealthCheck `xml:"HealthCheck,omitempty"`
+	HealthCheck *HealthCheck `xml:"HealthCheck"`
 }
 
 // UpdateHostedZoneCommentRequest is undocumented.
 type UpdateHostedZoneCommentRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ UpdateHostedZoneCommentRequest"`
 
-	Comment aws.StringValue `xml:"Comment,omitempty"`
+	Comment aws.StringValue `xml:"Comment"`
 	ID      aws.StringValue `xml:"-"`
 }
 
@@ -2235,15 +2235,15 @@ type UpdateHostedZoneCommentRequest struct {
 type UpdateHostedZoneCommentResponse struct {
 	XMLName xml.Name `xml:"UpdateHostedZoneCommentResponse"`
 
-	HostedZone *HostedZone `xml:"HostedZone,omitempty"`
+	HostedZone *HostedZone `xml:"HostedZone"`
 }
 
 // VPC is undocumented.
 type VPC struct {
 	XMLName xml.Name `xml:"VPC"`
 
-	VPCID     aws.StringValue `xml:"VPCId,omitempty"`
-	VPCRegion aws.StringValue `xml:"VPCRegion,omitempty"`
+	VPCID     aws.StringValue `xml:"VPCId"`
+	VPCRegion aws.StringValue `xml:"VPCRegion"`
 }
 
 // Possible values for Route53.
