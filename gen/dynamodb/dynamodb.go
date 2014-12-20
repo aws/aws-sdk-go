@@ -615,11 +615,11 @@ type ProvisionedThroughput struct {
 
 // ProvisionedThroughputDescription is undocumented.
 type ProvisionedThroughputDescription struct {
-	LastDecreaseDateTime   aws.FloatTimestamp `json:"LastDecreaseDateTime,omitempty"`
-	LastIncreaseDateTime   aws.FloatTimestamp `json:"LastIncreaseDateTime,omitempty"`
-	NumberOfDecreasesToday aws.LongValue      `json:"NumberOfDecreasesToday,omitempty"`
-	ReadCapacityUnits      aws.LongValue      `json:"ReadCapacityUnits,omitempty"`
-	WriteCapacityUnits     aws.LongValue      `json:"WriteCapacityUnits,omitempty"`
+	LastDecreaseDateTime   *aws.FloatTimestamp `json:"LastDecreaseDateTime,omitempty"`
+	LastIncreaseDateTime   *aws.FloatTimestamp `json:"LastIncreaseDateTime,omitempty"`
+	NumberOfDecreasesToday aws.LongValue       `json:"NumberOfDecreasesToday,omitempty"`
+	ReadCapacityUnits      aws.LongValue       `json:"ReadCapacityUnits,omitempty"`
+	WriteCapacityUnits     aws.LongValue       `json:"WriteCapacityUnits,omitempty"`
 }
 
 // PutItemInput is undocumented.
@@ -744,7 +744,7 @@ const (
 // TableDescription is undocumented.
 type TableDescription struct {
 	AttributeDefinitions   []AttributeDefinition             `json:"AttributeDefinitions,omitempty"`
-	CreationDateTime       aws.FloatTimestamp                `json:"CreationDateTime,omitempty"`
+	CreationDateTime       *aws.FloatTimestamp               `json:"CreationDateTime,omitempty"`
 	GlobalSecondaryIndexes []GlobalSecondaryIndexDescription `json:"GlobalSecondaryIndexes,omitempty"`
 	ItemCount              aws.LongValue                     `json:"ItemCount,omitempty"`
 	KeySchema              []KeySchemaElement                `json:"KeySchema,omitempty"`
