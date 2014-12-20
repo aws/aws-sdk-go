@@ -10,6 +10,7 @@ import (
 
 func TestRoute53RequestSerialization(t *testing.T) {
 	r := &route53.ChangeResourceRecordSetsRequest{
+		HostedZoneID: aws.String("never see me"),
 		ChangeBatch: &route53.ChangeBatch{
 			Comment: aws.String("hello"),
 			Changes: []route53.Change{

@@ -10,7 +10,8 @@ import (
 type XMLRequest struct {
 	XMLName xml.Name `xml:"http://whatever Request"`
 
-	Integer aws.IntegerValue `xml:",omitempty"`
+	Integer    aws.IntegerValue `xml:",omitempty"`
+	DangerZone string           `xml:"-"`
 }
 
 func (r *XMLRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
@@ -19,7 +20,8 @@ func (r *XMLRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 func TestMarshalingXML(t *testing.T) {
 	r := &XMLRequest{
-		Integer: aws.Integer(0),
+		Integer:    aws.Integer(0),
+		DangerZone: "a zone of danger",
 	}
 
 	out, err := xml.Marshal(r)

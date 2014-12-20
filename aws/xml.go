@@ -44,6 +44,10 @@ func MarshalXML(v interface{}, e *xml.Encoder, start xml.StartElement) error {
 			fv := value.Field(i)
 			fi := parseXMLTag(ft.Tag.Get("xml"))
 
+			if fi.name == "-" {
+				continue
+			}
+
 			if fi.omit {
 				switch fv.Kind() {
 				case reflect.Ptr:
