@@ -136,7 +136,7 @@ func (m Member) XMLTag(wrapper string) string {
 		}
 	}
 
-	return fmt.Sprintf("`xml:\"%s\"`", strings.Join(path, ">"))
+	return fmt.Sprintf("`xml:%q`", strings.Join(path, ">")+",omitempty")
 }
 
 // QueryTag returns the field tag for Query protocol members.
