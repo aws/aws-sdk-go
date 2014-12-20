@@ -129,6 +129,13 @@ func (m Member) XMLTag(wrapper string) string {
 		path = append(path, m.Name)
 	}
 
+	if m.Shape().ShapeType == "list" {
+		loc := m.Shape().MemberRef.LocationName
+		if loc != "" {
+			path = append(path, loc)
+		}
+	}
+
 	return fmt.Sprintf("`xml:\"%s\"`", strings.Join(path, ">"))
 }
 

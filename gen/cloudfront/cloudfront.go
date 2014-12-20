@@ -1127,7 +1127,7 @@ type ActiveTrustedSigners struct {
 	XMLName xml.Name `xml:"ActiveTrustedSigners"`
 
 	Enabled  aws.BooleanValue `xml:"Enabled"`
-	Items    []Signer         `xml:"Items"`
+	Items    []Signer         `xml:"Items>Signer"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
@@ -1135,7 +1135,7 @@ type ActiveTrustedSigners struct {
 type Aliases struct {
 	XMLName xml.Name `xml:"Aliases"`
 
-	Items    []string         `xml:"Items"`
+	Items    []string         `xml:"Items>CNAME"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
@@ -1144,7 +1144,7 @@ type AllowedMethods struct {
 	XMLName xml.Name `xml:"AllowedMethods"`
 
 	CachedMethods *CachedMethods   `xml:"CachedMethods"`
-	Items         []string         `xml:"Items"`
+	Items         []string         `xml:"Items>Method"`
 	Quantity      aws.IntegerValue `xml:"Quantity"`
 }
 
@@ -1166,7 +1166,7 @@ type CacheBehavior struct {
 type CacheBehaviors struct {
 	XMLName xml.Name `xml:"CacheBehaviors"`
 
-	Items    []CacheBehavior  `xml:"Items"`
+	Items    []CacheBehavior  `xml:"Items>CacheBehavior"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
@@ -1174,7 +1174,7 @@ type CacheBehaviors struct {
 type CachedMethods struct {
 	XMLName xml.Name `xml:"CachedMethods"`
 
-	Items    []string         `xml:"Items"`
+	Items    []string         `xml:"Items>Method"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
@@ -1200,7 +1200,7 @@ type CloudFrontOriginAccessIdentityList struct {
 	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentityList"`
 
 	IsTruncated aws.BooleanValue                        `xml:"IsTruncated"`
-	Items       []CloudFrontOriginAccessIdentitySummary `xml:"Items"`
+	Items       []CloudFrontOriginAccessIdentitySummary `xml:"Items>CloudFrontOriginAccessIdentitySummary"`
 	Marker      aws.StringValue                         `xml:"Marker"`
 	MaxItems    aws.IntegerValue                        `xml:"MaxItems"`
 	NextMarker  aws.StringValue                         `xml:"NextMarker"`
@@ -1220,7 +1220,7 @@ type CloudFrontOriginAccessIdentitySummary struct {
 type CookieNames struct {
 	XMLName xml.Name `xml:"CookieNames"`
 
-	Items    []string         `xml:"Items"`
+	Items    []string         `xml:"Items>Name"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
@@ -1310,7 +1310,7 @@ type CustomErrorResponse struct {
 type CustomErrorResponses struct {
 	XMLName xml.Name `xml:"CustomErrorResponses"`
 
-	Items    []CustomErrorResponse `xml:"Items"`
+	Items    []CustomErrorResponse `xml:"Items>CustomErrorResponse"`
 	Quantity aws.IntegerValue      `xml:"Quantity"`
 }
 
@@ -1397,7 +1397,7 @@ type DistributionList struct {
 	XMLName xml.Name `xml:"DistributionList"`
 
 	IsTruncated aws.BooleanValue      `xml:"IsTruncated"`
-	Items       []DistributionSummary `xml:"Items"`
+	Items       []DistributionSummary `xml:"Items>DistributionSummary"`
 	Marker      aws.StringValue       `xml:"Marker"`
 	MaxItems    aws.IntegerValue      `xml:"MaxItems"`
 	NextMarker  aws.StringValue       `xml:"NextMarker"`
@@ -1437,7 +1437,7 @@ type ForwardedValues struct {
 type GeoRestriction struct {
 	XMLName xml.Name `xml:"GeoRestriction"`
 
-	Items           []string         `xml:"Items"`
+	Items           []string         `xml:"Items>Location"`
 	Quantity        aws.IntegerValue `xml:"Quantity"`
 	RestrictionType aws.StringValue  `xml:"RestrictionType"`
 }
@@ -1558,7 +1558,7 @@ type GetStreamingDistributionResult struct {
 type Headers struct {
 	XMLName xml.Name `xml:"Headers"`
 
-	Items    []string         `xml:"Items"`
+	Items    []string         `xml:"Items>Name"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
@@ -1585,7 +1585,7 @@ type InvalidationList struct {
 	XMLName xml.Name `xml:"InvalidationList"`
 
 	IsTruncated aws.BooleanValue      `xml:"IsTruncated"`
-	Items       []InvalidationSummary `xml:"Items"`
+	Items       []InvalidationSummary `xml:"Items>InvalidationSummary"`
 	Marker      aws.StringValue       `xml:"Marker"`
 	MaxItems    aws.IntegerValue      `xml:"MaxItems"`
 	NextMarker  aws.StringValue       `xml:"NextMarker"`
@@ -1612,7 +1612,7 @@ const (
 type KeyPairIDs struct {
 	XMLName xml.Name `xml:"KeyPairIds"`
 
-	Items    []string         `xml:"Items"`
+	Items    []string         `xml:"Items>KeyPairId"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
@@ -1724,7 +1724,7 @@ const (
 type Origins struct {
 	XMLName xml.Name `xml:"Origins"`
 
-	Items    []Origin         `xml:"Items"`
+	Items    []Origin         `xml:"Items>Origin"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
@@ -1732,7 +1732,7 @@ type Origins struct {
 type Paths struct {
 	XMLName xml.Name `xml:"Paths"`
 
-	Items    []string         `xml:"Items"`
+	Items    []string         `xml:"Items>Path"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 
@@ -1810,7 +1810,7 @@ type StreamingDistributionList struct {
 	XMLName xml.Name `xml:"StreamingDistributionList"`
 
 	IsTruncated aws.BooleanValue               `xml:"IsTruncated"`
-	Items       []StreamingDistributionSummary `xml:"Items"`
+	Items       []StreamingDistributionSummary `xml:"Items>StreamingDistributionSummary"`
 	Marker      aws.StringValue                `xml:"Marker"`
 	MaxItems    aws.IntegerValue               `xml:"MaxItems"`
 	NextMarker  aws.StringValue                `xml:"NextMarker"`
@@ -1847,7 +1847,7 @@ type TrustedSigners struct {
 	XMLName xml.Name `xml:"TrustedSigners"`
 
 	Enabled  aws.BooleanValue `xml:"Enabled"`
-	Items    []string         `xml:"Items"`
+	Items    []string         `xml:"Items>AwsAccountNumber"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
 }
 

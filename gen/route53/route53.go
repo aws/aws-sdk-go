@@ -1606,7 +1606,7 @@ const (
 type ChangeBatch struct {
 	XMLName xml.Name `xml:"ChangeBatch"`
 
-	Changes []Change        `xml:"Changes"`
+	Changes []Change        `xml:"Changes>Change"`
 	Comment aws.StringValue `xml:"Comment"`
 }
 
@@ -1645,8 +1645,8 @@ const (
 type ChangeTagsForResourceRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ ChangeTagsForResourceRequest"`
 
-	AddTags       []Tag           `xml:"AddTags"`
-	RemoveTagKeys []string        `xml:"RemoveTagKeys"`
+	AddTags       []Tag           `xml:"AddTags>Tag"`
+	RemoveTagKeys []string        `xml:"RemoveTagKeys>Key"`
 	ResourceID    aws.StringValue `xml:"-"`
 	ResourceType  aws.StringValue `xml:"-"`
 }
@@ -1716,7 +1716,7 @@ type DelegationSet struct {
 
 	CallerReference aws.StringValue `xml:"CallerReference"`
 	ID              aws.StringValue `xml:"Id"`
-	NameServers     []string        `xml:"NameServers"`
+	NameServers     []string        `xml:"NameServers>NameServer"`
 }
 
 // DeleteHealthCheckRequest is undocumented.
@@ -1859,7 +1859,7 @@ type GetHealthCheckLastFailureReasonRequest struct {
 type GetHealthCheckLastFailureReasonResponse struct {
 	XMLName xml.Name `xml:"GetHealthCheckLastFailureReasonResponse"`
 
-	HealthCheckObservations []HealthCheckObservation `xml:"HealthCheckObservations"`
+	HealthCheckObservations []HealthCheckObservation `xml:"HealthCheckObservations>HealthCheckObservation"`
 }
 
 // GetHealthCheckRequest is undocumented.
@@ -1887,7 +1887,7 @@ type GetHealthCheckStatusRequest struct {
 type GetHealthCheckStatusResponse struct {
 	XMLName xml.Name `xml:"GetHealthCheckStatusResponse"`
 
-	HealthCheckObservations []HealthCheckObservation `xml:"HealthCheckObservations"`
+	HealthCheckObservations []HealthCheckObservation `xml:"HealthCheckObservations>HealthCheckObservation"`
 }
 
 // GetHostedZoneRequest is undocumented.
@@ -1903,7 +1903,7 @@ type GetHostedZoneResponse struct {
 
 	DelegationSet *DelegationSet `xml:"DelegationSet"`
 	HostedZone    *HostedZone    `xml:"HostedZone"`
-	VPCs          []VPC          `xml:"VPCs"`
+	VPCs          []VPC          `xml:"VPCs>VPC"`
 }
 
 // GetReusableDelegationSetRequest is undocumented.
@@ -1994,7 +1994,7 @@ type ListGeoLocationsRequest struct {
 type ListGeoLocationsResponse struct {
 	XMLName xml.Name `xml:"ListGeoLocationsResponse"`
 
-	GeoLocationDetailsList []GeoLocationDetails `xml:"GeoLocationDetailsList"`
+	GeoLocationDetailsList []GeoLocationDetails `xml:"GeoLocationDetailsList>GeoLocationDetails"`
 	IsTruncated            aws.BooleanValue     `xml:"IsTruncated"`
 	MaxItems               aws.StringValue      `xml:"MaxItems"`
 	NextContinentCode      aws.StringValue      `xml:"NextContinentCode"`
@@ -2014,7 +2014,7 @@ type ListHealthChecksRequest struct {
 type ListHealthChecksResponse struct {
 	XMLName xml.Name `xml:"ListHealthChecksResponse"`
 
-	HealthChecks []HealthCheck    `xml:"HealthChecks"`
+	HealthChecks []HealthCheck    `xml:"HealthChecks>HealthCheck"`
 	IsTruncated  aws.BooleanValue `xml:"IsTruncated"`
 	Marker       aws.StringValue  `xml:"Marker"`
 	MaxItems     aws.StringValue  `xml:"MaxItems"`
@@ -2034,7 +2034,7 @@ type ListHostedZonesRequest struct {
 type ListHostedZonesResponse struct {
 	XMLName xml.Name `xml:"ListHostedZonesResponse"`
 
-	HostedZones []HostedZone     `xml:"HostedZones"`
+	HostedZones []HostedZone     `xml:"HostedZones>HostedZone"`
 	IsTruncated aws.BooleanValue `xml:"IsTruncated"`
 	Marker      aws.StringValue  `xml:"Marker"`
 	MaxItems    aws.StringValue  `xml:"MaxItems"`
@@ -2061,7 +2061,7 @@ type ListResourceRecordSetsResponse struct {
 	NextRecordIdentifier aws.StringValue     `xml:"NextRecordIdentifier"`
 	NextRecordName       aws.StringValue     `xml:"NextRecordName"`
 	NextRecordType       aws.StringValue     `xml:"NextRecordType"`
-	ResourceRecordSets   []ResourceRecordSet `xml:"ResourceRecordSets"`
+	ResourceRecordSets   []ResourceRecordSet `xml:"ResourceRecordSets>ResourceRecordSet"`
 }
 
 // ListReusableDelegationSetsRequest is undocumented.
@@ -2076,7 +2076,7 @@ type ListReusableDelegationSetsRequest struct {
 type ListReusableDelegationSetsResponse struct {
 	XMLName xml.Name `xml:"ListReusableDelegationSetsResponse"`
 
-	DelegationSets []DelegationSet  `xml:"DelegationSets"`
+	DelegationSets []DelegationSet  `xml:"DelegationSets>DelegationSet"`
 	IsTruncated    aws.BooleanValue `xml:"IsTruncated"`
 	Marker         aws.StringValue  `xml:"Marker"`
 	MaxItems       aws.StringValue  `xml:"MaxItems"`
@@ -2102,7 +2102,7 @@ type ListTagsForResourceResponse struct {
 type ListTagsForResourcesRequest struct {
 	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ ListTagsForResourcesRequest"`
 
-	ResourceIDs  []string        `xml:"ResourceIds"`
+	ResourceIDs  []string        `xml:"ResourceIds>ResourceId"`
 	ResourceType aws.StringValue `xml:"-"`
 }
 
@@ -2110,7 +2110,7 @@ type ListTagsForResourcesRequest struct {
 type ListTagsForResourcesResponse struct {
 	XMLName xml.Name `xml:"ListTagsForResourcesResponse"`
 
-	ResourceTagSets []ResourceTagSet `xml:"ResourceTagSets"`
+	ResourceTagSets []ResourceTagSet `xml:"ResourceTagSets>ResourceTagSet"`
 }
 
 // Possible values for Route53.
@@ -2144,7 +2144,7 @@ type ResourceRecordSet struct {
 	HealthCheckID   aws.StringValue  `xml:"HealthCheckId"`
 	Name            aws.StringValue  `xml:"Name"`
 	Region          aws.StringValue  `xml:"Region"`
-	ResourceRecords []ResourceRecord `xml:"ResourceRecords"`
+	ResourceRecords []ResourceRecord `xml:"ResourceRecords>ResourceRecord"`
 	SetIdentifier   aws.StringValue  `xml:"SetIdentifier"`
 	TTL             aws.LongValue    `xml:"TTL"`
 	Type            aws.StringValue  `xml:"Type"`
@@ -2177,7 +2177,7 @@ type ResourceTagSet struct {
 
 	ResourceID   aws.StringValue `xml:"ResourceId"`
 	ResourceType aws.StringValue `xml:"ResourceType"`
-	Tags         []Tag           `xml:"Tags"`
+	Tags         []Tag           `xml:"Tags>Tag"`
 }
 
 // StatusReport is undocumented.

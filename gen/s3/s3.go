@@ -3489,7 +3489,7 @@ type AbortMultipartUploadRequest struct {
 type AccessControlPolicy struct {
 	XMLName xml.Name `xml:"AccessControlPolicy"`
 
-	Grants []Grant `xml:"AccessControlList"`
+	Grants []Grant `xml:"AccessControlList>Grant"`
 	Owner  *Owner  `xml:"Owner"`
 }
 
@@ -3906,7 +3906,7 @@ const (
 type GetBucketACLOutput struct {
 	XMLName xml.Name `xml:"GetBucketAclOutput"`
 
-	Grants []Grant `xml:"AccessControlList"`
+	Grants []Grant `xml:"AccessControlList>Grant"`
 	Owner  *Owner  `xml:"Owner"`
 }
 
@@ -4021,7 +4021,7 @@ type GetBucketRequestPaymentRequest struct {
 type GetBucketTaggingOutput struct {
 	XMLName xml.Name `xml:"GetBucketTaggingOutput"`
 
-	TagSet []Tag `xml:"TagSet"`
+	TagSet []Tag `xml:"TagSet>Tag"`
 }
 
 // GetBucketTaggingRequest is undocumented.
@@ -4053,7 +4053,7 @@ type GetBucketWebsiteOutput struct {
 	ErrorDocument         *ErrorDocument         `xml:"ErrorDocument"`
 	IndexDocument         *IndexDocument         `xml:"IndexDocument"`
 	RedirectAllRequestsTo *RedirectAllRequestsTo `xml:"RedirectAllRequestsTo"`
-	RoutingRules          []RoutingRule          `xml:"RoutingRules"`
+	RoutingRules          []RoutingRule          `xml:"RoutingRules>RoutingRule"`
 }
 
 // GetBucketWebsiteRequest is undocumented.
@@ -4067,7 +4067,7 @@ type GetBucketWebsiteRequest struct {
 type GetObjectACLOutput struct {
 	XMLName xml.Name `xml:"GetObjectAclOutput"`
 
-	Grants []Grant `xml:"AccessControlList"`
+	Grants []Grant `xml:"AccessControlList>Grant"`
 	Owner  *Owner  `xml:"Owner"`
 }
 
@@ -4250,7 +4250,7 @@ type LifecycleExpiration struct {
 type ListBucketsOutput struct {
 	XMLName xml.Name `xml:"ListBucketsOutput"`
 
-	Buckets []Bucket `xml:"Buckets"`
+	Buckets []Bucket `xml:"Buckets>Bucket"`
 	Owner   *Owner   `xml:"Owner"`
 }
 
@@ -4378,7 +4378,7 @@ type LoggingEnabled struct {
 	XMLName xml.Name `xml:"LoggingEnabled"`
 
 	TargetBucket aws.StringValue `xml:"TargetBucket"`
-	TargetGrants []TargetGrant   `xml:"TargetGrants"`
+	TargetGrants []TargetGrant   `xml:"TargetGrants>Grant"`
 	TargetPrefix aws.StringValue `xml:"TargetPrefix"`
 }
 
@@ -4784,7 +4784,7 @@ type Tag struct {
 type Tagging struct {
 	XMLName xml.Name `xml:"Tagging"`
 
-	TagSet []Tag `xml:"TagSet"`
+	TagSet []Tag `xml:"TagSet>Tag"`
 }
 
 // TargetGrant is undocumented.
@@ -4902,7 +4902,7 @@ type WebsiteConfiguration struct {
 	ErrorDocument         *ErrorDocument         `xml:"ErrorDocument"`
 	IndexDocument         *IndexDocument         `xml:"IndexDocument"`
 	RedirectAllRequestsTo *RedirectAllRequestsTo `xml:"RedirectAllRequestsTo"`
-	RoutingRules          []RoutingRule          `xml:"RoutingRules"`
+	RoutingRules          []RoutingRule          `xml:"RoutingRules>RoutingRule"`
 }
 
 // avoid errors if the packages aren't referenced
