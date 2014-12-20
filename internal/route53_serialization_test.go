@@ -33,14 +33,16 @@ func TestRoute53RequestSerialization(t *testing.T) {
 
 	expected := `<ChangeResourceRecordSetsRequest xmlns="https://route53.amazonaws.com/doc/2013-04-01/">
   <ChangeBatch>
-    <Change>
-      <Action>dance</Action>
-      <ResourceRecordSet>
-        <AliasTarget>
-          <EvaluateTargetHealth>false</EvaluateTargetHealth>
-        </AliasTarget>
-      </ResourceRecordSet>
-    </Change>
+    <Changes>
+      <Change>
+        <Action>dance</Action>
+        <ResourceRecordSet>
+          <AliasTarget>
+            <EvaluateTargetHealth>false</EvaluateTargetHealth>
+          </AliasTarget>
+        </ResourceRecordSet>
+      </Change>
+    </Changes>
     <Comment>hello</Comment>
   </ChangeBatch>
 </ChangeResourceRecordSetsRequest>`

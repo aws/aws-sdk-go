@@ -30,8 +30,10 @@ func MarshalXML(v interface{}, e *xml.Encoder, start xml.StartElement) error {
 			}
 		}
 
-		if err := e.EncodeToken(rootInfo.start(t.Name())); err != nil {
-			return err
+		for _, start := range rootInfo.start(t.Name()) {
+			if err := e.EncodeToken(start); err != nil {
+				return err
+			}
 		}
 
 		for i := 0; i < value.NumField(); i++ {
@@ -54,6 +56,10 @@ func MarshalXML(v interface{}, e *xml.Encoder, start xml.StartElement) error {
 					if fv.IsNil() {
 						continue
 					}
+				case reflect.Slice, reflect.Map:
+					if fv.Len() == 0 {
+						continue
+					}
 				default:
 					if !fv.IsValid() {
 						continue
@@ -61,14 +67,29 @@ func MarshalXML(v interface{}, e *xml.Encoder, start xml.StartElement) error {
 				}
 			}
 
-			start := fi.start(ft.Name)
+			starts := fi.start(ft.Name)
+			for _, start := range starts[:len(starts)-1] {
+				if err := e.EncodeToken(start); err != nil {
+					return err
+				}
+			}
+
+			start := starts[len(starts)-1]
 			if err := e.EncodeElement(fv.Interface(), start); err != nil {
 				return err
 			}
+
+			for _, end := range fi.end(ft.Name)[1:] {
+				if err := e.EncodeToken(end); err != nil {
+					return err
+				}
+			}
 		}
 
-		if err := e.EncodeToken(rootInfo.end(t.Name())); err != nil {
-			return err
+		for _, end := range rootInfo.end(t.Name()) {
+			if err := e.EncodeToken(end); err != nil {
+				return err
+			}
 		}
 	default:
 		return e.Encode(v)
@@ -84,28 +105,40 @@ type xmlFieldInfo struct {
 	omit bool
 }
 
-func (fi xmlFieldInfo) start(name string) xml.StartElement {
+func (fi xmlFieldInfo) start(name string) []xml.StartElement {
 	if fi.name != "" {
 		name = fi.name
 	}
-	return xml.StartElement{
-		Name: xml.Name{
-			Local: name,
-			Space: fi.ns,
-		},
+
+	var elements []xml.StartElement
+	for _, part := range strings.Split(name, ">") {
+		elements = append(elements, xml.StartElement{
+			Name: xml.Name{
+				Local: part,
+				Space: fi.ns,
+			},
+		})
 	}
+	return elements
 }
 
-func (fi xmlFieldInfo) end(name string) xml.EndElement {
+func (fi xmlFieldInfo) end(name string) []xml.EndElement {
 	if fi.name != "" {
 		name = fi.name
 	}
-	return xml.EndElement{
-		Name: xml.Name{
-			Local: name,
-			Space: fi.ns,
-		},
+
+	var elements []xml.EndElement
+	parts := strings.Split(name, ">")
+	for i := range parts {
+		part := parts[len(parts)-i-1]
+		elements = append(elements, xml.EndElement{
+			Name: xml.Name{
+				Local: part,
+				Space: fi.ns,
+			},
+		})
 	}
+	return elements
 }
 
 func parseXMLTag(t string) xmlFieldInfo {
