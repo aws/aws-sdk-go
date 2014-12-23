@@ -55,6 +55,11 @@ func (c *RestClient) Do(req *http.Request) (*http.Response, error) {
 }
 
 type restErrorResponse struct {
+	XMLName xml.Name `xml:"ErrorResponse",json:"-"`
+	Error   restError
+}
+
+type restError struct {
 	XMLName    xml.Name `xml:"Error",json:"-"`
 	Code       string
 	BucketName string
@@ -65,12 +70,12 @@ type restErrorResponse struct {
 
 func (e restErrorResponse) Err() error {
 	return APIError{
-		Code:      e.Code,
-		Message:   e.Message,
-		RequestID: e.RequestID,
-		HostID:    e.HostID,
+		Code:      e.Error.Code,
+		Message:   e.Error.Message,
+		RequestID: e.Error.RequestID,
+		HostID:    e.Error.HostID,
 		Specifics: map[string]string{
-			"BucketName": e.BucketName,
+			"BucketName": e.Error.BucketName,
 		},
 	}
 }
