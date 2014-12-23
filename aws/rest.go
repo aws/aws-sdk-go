@@ -1,6 +1,7 @@
 package aws
 
 import (
+	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"errors"
@@ -30,7 +31,7 @@ func (c *RestClient) Do(req *http.Request) (*http.Response, error) {
 	}
 
 	if resp.StatusCode >= 400 {
-		var err restErrorResponse
+		var err restError
 		switch resp.Header.Get("Content-Type") {
 		case "application/json":
 			if err := json.NewDecoder(resp.Body).Decode(&err); err != nil {
@@ -38,7 +39,18 @@ func (c *RestClient) Do(req *http.Request) (*http.Response, error) {
 			}
 			return nil, err.Err()
 		case "application/xml", "text/xml":
-			if err := xml.NewDecoder(resp.Body).Decode(&err); err != nil {
+			bodyBytes, _ := ioutil.ReadAll(resp.Body)
+			resp.Body.Close()
+			body := bytes.NewReader(bodyBytes)
+
+			// AWS XML error documents can have a couple of different formats.
+			// Try each before returning a decode error.
+			var wrappedErr restErrorResponse
+			if err := xml.NewDecoder(body).Decode(&wrappedErr); err == nil {
+				return nil, wrappedErr.Error.Err()
+			}
+			body.Seek(0, 0)
+			if err := xml.NewDecoder(body).Decode(&err); err != nil {
 				return nil, err
 			}
 			return nil, err.Err()
@@ -68,14 +80,14 @@ type restError struct {
 	HostID     string
 }
 
-func (e restErrorResponse) Err() error {
+func (e restError) Err() error {
 	return APIError{
-		Code:      e.Error.Code,
-		Message:   e.Error.Message,
-		RequestID: e.Error.RequestID,
-		HostID:    e.Error.HostID,
+		Code:      e.Code,
+		Message:   e.Message,
+		RequestID: e.RequestID,
+		HostID:    e.HostID,
 		Specifics: map[string]string{
-			"BucketName": e.Error.BucketName,
+			"BucketName": e.BucketName,
 		},
 	}
 }
