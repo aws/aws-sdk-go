@@ -37,7 +37,7 @@ func (c *RestClient) Do(req *http.Request) (*http.Response, error) {
 				return nil, err
 			}
 			return nil, err.Err()
-		case "application/xml":
+		case "application/xml", "text/xml":
 			if err := xml.NewDecoder(resp.Body).Decode(&err); err != nil {
 				return nil, err
 			}
