@@ -507,7 +507,13 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
   body = req.{{ exportable $m.Name  }}
   {{ else }}
   contentType = "application/xml"
-  b, err := xml.Marshal(req.{{ exportable $m.Name  }})
+	{{ if ne $m.LocationName ""}}
+  req.{{ exportable $m.Name }}.XMLName = xml.Name{
+		Space: "{{ $m.XMLNamespace.URI }}",
+		Local: "{{ $m.LocationName }}",
+	}
+  {{ end }}
+  b, err := xml.Marshal(req.{{ exportable $m.Name }})
   if err != nil {
     return
   }
@@ -516,6 +522,10 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
   {{ end }}
   {{ else if $op.InputRef.LocationName }}
   contentType = "application/xml"
+  req.XMLName = xml.Name{
+		Space: "{{ $op.InputRef.XMLNamespace.URI }}",
+		Local: "{{ $op.InputRef.LocationName }}",
+	}
   b, err := xml.Marshal(req)
   if err != nil {
     return
@@ -586,7 +596,7 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 
 // {{ exportable $name }} is undocumented.
 type {{ exportable $name }} struct {
-  XMLName xml.Name {{ $s.XMLName }}
+  XMLName xml.Name
 {{ range $name, $m := $s.Members }}
 {{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.ResultWrapper }}  {{ end }}
 }

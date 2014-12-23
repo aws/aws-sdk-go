@@ -25,8 +25,17 @@ func MarshalXML(v interface{}, e *xml.Encoder, start xml.StartElement) error {
 		// detect xml.Name, if any
 		for i := 0; i < value.NumField(); i++ {
 			f := t.Field(i)
+			v := value.Field(i)
 			if f.Type == xmlName {
 				rootInfo = parseXMLTag(f.Tag.Get("xml"))
+				if rootInfo.name == "" {
+					// name not in tag, try value
+					name := v.Interface().(xml.Name)
+					rootInfo = xmlFieldInfo{
+						name: name.Local,
+						ns:   name.Space,
+					}
+				}
 			}
 		}
 

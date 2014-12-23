@@ -66,6 +66,10 @@ func (c *Route53) AssociateVPCWithHostedZone(req *AssociateVPCWithHostedZoneRequ
 	var contentType string
 
 	contentType = "application/xml"
+	req.XMLName = xml.Name{
+		Space: "https://route53.amazonaws.com/doc/2013-04-01/",
+		Local: "AssociateVPCWithHostedZoneRequest",
+	}
 	b, err := xml.Marshal(req)
 	if err != nil {
 		return
@@ -136,6 +140,10 @@ func (c *Route53) ChangeResourceRecordSets(req *ChangeResourceRecordSetsRequest)
 	var contentType string
 
 	contentType = "application/xml"
+	req.XMLName = xml.Name{
+		Space: "https://route53.amazonaws.com/doc/2013-04-01/",
+		Local: "ChangeResourceRecordSetsRequest",
+	}
 	b, err := xml.Marshal(req)
 	if err != nil {
 		return
@@ -186,6 +194,10 @@ func (c *Route53) ChangeTagsForResource(req *ChangeTagsForResourceRequest) (resp
 	var contentType string
 
 	contentType = "application/xml"
+	req.XMLName = xml.Name{
+		Space: "https://route53.amazonaws.com/doc/2013-04-01/",
+		Local: "ChangeTagsForResourceRequest",
+	}
 	b, err := xml.Marshal(req)
 	if err != nil {
 		return
@@ -246,6 +258,10 @@ func (c *Route53) CreateHealthCheck(req *CreateHealthCheckRequest) (resp *Create
 	var contentType string
 
 	contentType = "application/xml"
+	req.XMLName = xml.Name{
+		Space: "https://route53.amazonaws.com/doc/2013-04-01/",
+		Local: "CreateHealthCheckRequest",
+	}
 	b, err := xml.Marshal(req)
 	if err != nil {
 		return
@@ -312,6 +328,10 @@ func (c *Route53) CreateHostedZone(req *CreateHostedZoneRequest) (resp *CreateHo
 	var contentType string
 
 	contentType = "application/xml"
+	req.XMLName = xml.Name{
+		Space: "https://route53.amazonaws.com/doc/2013-04-01/",
+		Local: "CreateHostedZoneRequest",
+	}
 	b, err := xml.Marshal(req)
 	if err != nil {
 		return
@@ -370,6 +390,10 @@ func (c *Route53) CreateReusableDelegationSet(req *CreateReusableDelegationSetRe
 	var contentType string
 
 	contentType = "application/xml"
+	req.XMLName = xml.Name{
+		Space: "https://route53.amazonaws.com/doc/2013-04-01/",
+		Local: "CreateReusableDelegationSetRequest",
+	}
 	b, err := xml.Marshal(req)
 	if err != nil {
 		return
@@ -584,6 +608,10 @@ func (c *Route53) DisassociateVPCFromHostedZone(req *DisassociateVPCFromHostedZo
 	var contentType string
 
 	contentType = "application/xml"
+	req.XMLName = xml.Name{
+		Space: "https://route53.amazonaws.com/doc/2013-04-01/",
+		Local: "DisassociateVPCFromHostedZoneRequest",
+	}
 	b, err := xml.Marshal(req)
 	if err != nil {
 		return
@@ -1411,6 +1439,10 @@ func (c *Route53) ListTagsForResources(req *ListTagsForResourcesRequest) (resp *
 	var contentType string
 
 	contentType = "application/xml"
+	req.XMLName = xml.Name{
+		Space: "https://route53.amazonaws.com/doc/2013-04-01/",
+		Local: "ListTagsForResourcesRequest",
+	}
 	b, err := xml.Marshal(req)
 	if err != nil {
 		return
@@ -1466,6 +1498,10 @@ func (c *Route53) UpdateHealthCheck(req *UpdateHealthCheckRequest) (resp *Update
 	var contentType string
 
 	contentType = "application/xml"
+	req.XMLName = xml.Name{
+		Space: "https://route53.amazonaws.com/doc/2013-04-01/",
+		Local: "UpdateHealthCheckRequest",
+	}
 	b, err := xml.Marshal(req)
 	if err != nil {
 		return
@@ -1520,6 +1556,10 @@ func (c *Route53) UpdateHostedZoneComment(req *UpdateHostedZoneCommentRequest) (
 	var contentType string
 
 	contentType = "application/xml"
+	req.XMLName = xml.Name{
+		Space: "https://route53.amazonaws.com/doc/2013-04-01/",
+		Local: "UpdateHostedZoneCommentRequest",
+	}
 	b, err := xml.Marshal(req)
 	if err != nil {
 		return
@@ -1564,7 +1604,7 @@ func (c *Route53) UpdateHostedZoneComment(req *UpdateHostedZoneCommentRequest) (
 
 // AliasTarget is undocumented.
 type AliasTarget struct {
-	XMLName xml.Name `xml:"AliasTarget"`
+	XMLName xml.Name
 
 	DNSName              aws.StringValue  `xml:"DNSName"`
 	EvaluateTargetHealth aws.BooleanValue `xml:"EvaluateTargetHealth"`
@@ -1577,7 +1617,7 @@ func (v *AliasTarget) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // AssociateVPCWithHostedZoneRequest is undocumented.
 type AssociateVPCWithHostedZoneRequest struct {
-	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ AssociateVPCWithHostedZoneRequest"`
+	XMLName xml.Name
 
 	Comment      aws.StringValue `xml:"Comment"`
 	HostedZoneID aws.StringValue `xml:"-"`
@@ -1590,7 +1630,7 @@ func (v *AssociateVPCWithHostedZoneRequest) MarshalXML(e *xml.Encoder, start xml
 
 // AssociateVPCWithHostedZoneResponse is undocumented.
 type AssociateVPCWithHostedZoneResponse struct {
-	XMLName xml.Name `xml:"AssociateVPCWithHostedZoneResponse"`
+	XMLName xml.Name
 
 	ChangeInfo *ChangeInfo `xml:"ChangeInfo,omitempty"`
 }
@@ -1601,7 +1641,7 @@ func (v *AssociateVPCWithHostedZoneResponse) MarshalXML(e *xml.Encoder, start xm
 
 // Change is undocumented.
 type Change struct {
-	XMLName xml.Name `xml:"Change"`
+	XMLName xml.Name
 
 	Action            aws.StringValue    `xml:"Action"`
 	ResourceRecordSet *ResourceRecordSet `xml:"ResourceRecordSet,omitempty"`
@@ -1620,7 +1660,7 @@ const (
 
 // ChangeBatch is undocumented.
 type ChangeBatch struct {
-	XMLName xml.Name `xml:"ChangeBatch"`
+	XMLName xml.Name
 
 	Changes []Change        `xml:"Changes>Change,omitempty"`
 	Comment aws.StringValue `xml:"Comment"`
@@ -1632,7 +1672,7 @@ func (v *ChangeBatch) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // ChangeInfo is undocumented.
 type ChangeInfo struct {
-	XMLName xml.Name `xml:"ChangeInfo"`
+	XMLName xml.Name
 
 	Comment     aws.StringValue `xml:"Comment"`
 	ID          aws.StringValue `xml:"Id"`
@@ -1646,7 +1686,7 @@ func (v *ChangeInfo) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // ChangeResourceRecordSetsRequest is undocumented.
 type ChangeResourceRecordSetsRequest struct {
-	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ ChangeResourceRecordSetsRequest"`
+	XMLName xml.Name
 
 	ChangeBatch  *ChangeBatch    `xml:"ChangeBatch,omitempty"`
 	HostedZoneID aws.StringValue `xml:"-"`
@@ -1658,7 +1698,7 @@ func (v *ChangeResourceRecordSetsRequest) MarshalXML(e *xml.Encoder, start xml.S
 
 // ChangeResourceRecordSetsResponse is undocumented.
 type ChangeResourceRecordSetsResponse struct {
-	XMLName xml.Name `xml:"ChangeResourceRecordSetsResponse"`
+	XMLName xml.Name
 
 	ChangeInfo *ChangeInfo `xml:"ChangeInfo,omitempty"`
 }
@@ -1675,7 +1715,7 @@ const (
 
 // ChangeTagsForResourceRequest is undocumented.
 type ChangeTagsForResourceRequest struct {
-	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ ChangeTagsForResourceRequest"`
+	XMLName xml.Name
 
 	AddTags       []Tag           `xml:"AddTags>Tag,omitempty"`
 	RemoveTagKeys []string        `xml:"RemoveTagKeys>Key,omitempty"`
@@ -1689,7 +1729,7 @@ func (v *ChangeTagsForResourceRequest) MarshalXML(e *xml.Encoder, start xml.Star
 
 // ChangeTagsForResourceResponse is undocumented.
 type ChangeTagsForResourceResponse struct {
-	XMLName xml.Name `xml:"ChangeTagsForResourceResponse"`
+	XMLName xml.Name
 }
 
 func (v *ChangeTagsForResourceResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
@@ -1698,7 +1738,7 @@ func (v *ChangeTagsForResourceResponse) MarshalXML(e *xml.Encoder, start xml.Sta
 
 // CreateHealthCheckRequest is undocumented.
 type CreateHealthCheckRequest struct {
-	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ CreateHealthCheckRequest"`
+	XMLName xml.Name
 
 	CallerReference   aws.StringValue    `xml:"CallerReference"`
 	HealthCheckConfig *HealthCheckConfig `xml:"HealthCheckConfig,omitempty"`
@@ -1710,7 +1750,7 @@ func (v *CreateHealthCheckRequest) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // CreateHealthCheckResponse is undocumented.
 type CreateHealthCheckResponse struct {
-	XMLName xml.Name `xml:"CreateHealthCheckResponse"`
+	XMLName xml.Name
 
 	HealthCheck *HealthCheck    `xml:"HealthCheck,omitempty"`
 	Location    aws.StringValue `xml:"-"`
@@ -1722,7 +1762,7 @@ func (v *CreateHealthCheckResponse) MarshalXML(e *xml.Encoder, start xml.StartEl
 
 // CreateHostedZoneRequest is undocumented.
 type CreateHostedZoneRequest struct {
-	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ CreateHostedZoneRequest"`
+	XMLName xml.Name
 
 	CallerReference  aws.StringValue   `xml:"CallerReference"`
 	DelegationSetID  aws.StringValue   `xml:"DelegationSetId"`
@@ -1737,7 +1777,7 @@ func (v *CreateHostedZoneRequest) MarshalXML(e *xml.Encoder, start xml.StartElem
 
 // CreateHostedZoneResponse is undocumented.
 type CreateHostedZoneResponse struct {
-	XMLName xml.Name `xml:"CreateHostedZoneResponse"`
+	XMLName xml.Name
 
 	ChangeInfo    *ChangeInfo     `xml:"ChangeInfo,omitempty"`
 	DelegationSet *DelegationSet  `xml:"DelegationSet,omitempty"`
@@ -1752,7 +1792,7 @@ func (v *CreateHostedZoneResponse) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // CreateReusableDelegationSetRequest is undocumented.
 type CreateReusableDelegationSetRequest struct {
-	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ CreateReusableDelegationSetRequest"`
+	XMLName xml.Name
 
 	CallerReference aws.StringValue `xml:"CallerReference"`
 	HostedZoneID    aws.StringValue `xml:"HostedZoneId"`
@@ -1764,7 +1804,7 @@ func (v *CreateReusableDelegationSetRequest) MarshalXML(e *xml.Encoder, start xm
 
 // CreateReusableDelegationSetResponse is undocumented.
 type CreateReusableDelegationSetResponse struct {
-	XMLName xml.Name `xml:"CreateReusableDelegationSetResponse"`
+	XMLName xml.Name
 
 	DelegationSet *DelegationSet  `xml:"DelegationSet,omitempty"`
 	Location      aws.StringValue `xml:"-"`
@@ -1776,7 +1816,7 @@ func (v *CreateReusableDelegationSetResponse) MarshalXML(e *xml.Encoder, start x
 
 // DelegationSet is undocumented.
 type DelegationSet struct {
-	XMLName xml.Name `xml:"DelegationSet"`
+	XMLName xml.Name
 
 	CallerReference aws.StringValue `xml:"CallerReference"`
 	ID              aws.StringValue `xml:"Id"`
@@ -1789,7 +1829,7 @@ func (v *DelegationSet) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 
 // DeleteHealthCheckRequest is undocumented.
 type DeleteHealthCheckRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	HealthCheckID aws.StringValue `xml:"-"`
 }
@@ -1800,7 +1840,7 @@ func (v *DeleteHealthCheckRequest) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // DeleteHealthCheckResponse is undocumented.
 type DeleteHealthCheckResponse struct {
-	XMLName xml.Name `xml:"DeleteHealthCheckResponse"`
+	XMLName xml.Name
 }
 
 func (v *DeleteHealthCheckResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
@@ -1809,7 +1849,7 @@ func (v *DeleteHealthCheckResponse) MarshalXML(e *xml.Encoder, start xml.StartEl
 
 // DeleteHostedZoneRequest is undocumented.
 type DeleteHostedZoneRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID aws.StringValue `xml:"-"`
 }
@@ -1820,7 +1860,7 @@ func (v *DeleteHostedZoneRequest) MarshalXML(e *xml.Encoder, start xml.StartElem
 
 // DeleteHostedZoneResponse is undocumented.
 type DeleteHostedZoneResponse struct {
-	XMLName xml.Name `xml:"DeleteHostedZoneResponse"`
+	XMLName xml.Name
 
 	ChangeInfo *ChangeInfo `xml:"ChangeInfo,omitempty"`
 }
@@ -1831,7 +1871,7 @@ func (v *DeleteHostedZoneResponse) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // DeleteReusableDelegationSetRequest is undocumented.
 type DeleteReusableDelegationSetRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID aws.StringValue `xml:"-"`
 }
@@ -1842,7 +1882,7 @@ func (v *DeleteReusableDelegationSetRequest) MarshalXML(e *xml.Encoder, start xm
 
 // DeleteReusableDelegationSetResponse is undocumented.
 type DeleteReusableDelegationSetResponse struct {
-	XMLName xml.Name `xml:"DeleteReusableDelegationSetResponse"`
+	XMLName xml.Name
 }
 
 func (v *DeleteReusableDelegationSetResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
@@ -1851,7 +1891,7 @@ func (v *DeleteReusableDelegationSetResponse) MarshalXML(e *xml.Encoder, start x
 
 // DisassociateVPCFromHostedZoneRequest is undocumented.
 type DisassociateVPCFromHostedZoneRequest struct {
-	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ DisassociateVPCFromHostedZoneRequest"`
+	XMLName xml.Name
 
 	Comment      aws.StringValue `xml:"Comment"`
 	HostedZoneID aws.StringValue `xml:"-"`
@@ -1864,7 +1904,7 @@ func (v *DisassociateVPCFromHostedZoneRequest) MarshalXML(e *xml.Encoder, start 
 
 // DisassociateVPCFromHostedZoneResponse is undocumented.
 type DisassociateVPCFromHostedZoneResponse struct {
-	XMLName xml.Name `xml:"DisassociateVPCFromHostedZoneResponse"`
+	XMLName xml.Name
 
 	ChangeInfo *ChangeInfo `xml:"ChangeInfo,omitempty"`
 }
@@ -1875,7 +1915,7 @@ func (v *DisassociateVPCFromHostedZoneResponse) MarshalXML(e *xml.Encoder, start
 
 // GeoLocation is undocumented.
 type GeoLocation struct {
-	XMLName xml.Name `xml:"GeoLocation"`
+	XMLName xml.Name
 
 	ContinentCode   aws.StringValue `xml:"ContinentCode"`
 	CountryCode     aws.StringValue `xml:"CountryCode"`
@@ -1888,7 +1928,7 @@ func (v *GeoLocation) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // GeoLocationDetails is undocumented.
 type GeoLocationDetails struct {
-	XMLName xml.Name `xml:"GeoLocationDetails"`
+	XMLName xml.Name
 
 	ContinentCode   aws.StringValue `xml:"ContinentCode"`
 	ContinentName   aws.StringValue `xml:"ContinentName"`
@@ -1904,7 +1944,7 @@ func (v *GeoLocationDetails) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 
 // GetChangeRequest is undocumented.
 type GetChangeRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID aws.StringValue `xml:"-"`
 }
@@ -1915,7 +1955,7 @@ func (v *GetChangeRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 
 // GetChangeResponse is undocumented.
 type GetChangeResponse struct {
-	XMLName xml.Name `xml:"GetChangeResponse"`
+	XMLName xml.Name
 
 	ChangeInfo *ChangeInfo `xml:"ChangeInfo,omitempty"`
 }
@@ -1926,7 +1966,7 @@ func (v *GetChangeResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 
 // GetCheckerIPRangesRequest is undocumented.
 type GetCheckerIPRangesRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 }
 
 func (v *GetCheckerIPRangesRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
@@ -1935,7 +1975,7 @@ func (v *GetCheckerIPRangesRequest) MarshalXML(e *xml.Encoder, start xml.StartEl
 
 // GetCheckerIPRangesResponse is undocumented.
 type GetCheckerIPRangesResponse struct {
-	XMLName xml.Name `xml:"GetCheckerIpRangesResponse"`
+	XMLName xml.Name
 
 	CheckerIPRanges []string `xml:"CheckerIpRanges,omitempty"`
 }
@@ -1946,7 +1986,7 @@ func (v *GetCheckerIPRangesResponse) MarshalXML(e *xml.Encoder, start xml.StartE
 
 // GetGeoLocationRequest is undocumented.
 type GetGeoLocationRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ContinentCode   aws.StringValue `xml:"-"`
 	CountryCode     aws.StringValue `xml:"-"`
@@ -1959,7 +1999,7 @@ func (v *GetGeoLocationRequest) MarshalXML(e *xml.Encoder, start xml.StartElemen
 
 // GetGeoLocationResponse is undocumented.
 type GetGeoLocationResponse struct {
-	XMLName xml.Name `xml:"GetGeoLocationResponse"`
+	XMLName xml.Name
 
 	GeoLocationDetails *GeoLocationDetails `xml:"GeoLocationDetails,omitempty"`
 }
@@ -1970,7 +2010,7 @@ func (v *GetGeoLocationResponse) MarshalXML(e *xml.Encoder, start xml.StartEleme
 
 // GetHealthCheckCountRequest is undocumented.
 type GetHealthCheckCountRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 }
 
 func (v *GetHealthCheckCountRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
@@ -1979,7 +2019,7 @@ func (v *GetHealthCheckCountRequest) MarshalXML(e *xml.Encoder, start xml.StartE
 
 // GetHealthCheckCountResponse is undocumented.
 type GetHealthCheckCountResponse struct {
-	XMLName xml.Name `xml:"GetHealthCheckCountResponse"`
+	XMLName xml.Name
 
 	HealthCheckCount aws.LongValue `xml:"HealthCheckCount"`
 }
@@ -1990,7 +2030,7 @@ func (v *GetHealthCheckCountResponse) MarshalXML(e *xml.Encoder, start xml.Start
 
 // GetHealthCheckLastFailureReasonRequest is undocumented.
 type GetHealthCheckLastFailureReasonRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	HealthCheckID aws.StringValue `xml:"-"`
 }
@@ -2001,7 +2041,7 @@ func (v *GetHealthCheckLastFailureReasonRequest) MarshalXML(e *xml.Encoder, star
 
 // GetHealthCheckLastFailureReasonResponse is undocumented.
 type GetHealthCheckLastFailureReasonResponse struct {
-	XMLName xml.Name `xml:"GetHealthCheckLastFailureReasonResponse"`
+	XMLName xml.Name
 
 	HealthCheckObservations []HealthCheckObservation `xml:"HealthCheckObservations>HealthCheckObservation,omitempty"`
 }
@@ -2012,7 +2052,7 @@ func (v *GetHealthCheckLastFailureReasonResponse) MarshalXML(e *xml.Encoder, sta
 
 // GetHealthCheckRequest is undocumented.
 type GetHealthCheckRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	HealthCheckID aws.StringValue `xml:"-"`
 }
@@ -2023,7 +2063,7 @@ func (v *GetHealthCheckRequest) MarshalXML(e *xml.Encoder, start xml.StartElemen
 
 // GetHealthCheckResponse is undocumented.
 type GetHealthCheckResponse struct {
-	XMLName xml.Name `xml:"GetHealthCheckResponse"`
+	XMLName xml.Name
 
 	HealthCheck *HealthCheck `xml:"HealthCheck,omitempty"`
 }
@@ -2034,7 +2074,7 @@ func (v *GetHealthCheckResponse) MarshalXML(e *xml.Encoder, start xml.StartEleme
 
 // GetHealthCheckStatusRequest is undocumented.
 type GetHealthCheckStatusRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	HealthCheckID aws.StringValue `xml:"-"`
 }
@@ -2045,7 +2085,7 @@ func (v *GetHealthCheckStatusRequest) MarshalXML(e *xml.Encoder, start xml.Start
 
 // GetHealthCheckStatusResponse is undocumented.
 type GetHealthCheckStatusResponse struct {
-	XMLName xml.Name `xml:"GetHealthCheckStatusResponse"`
+	XMLName xml.Name
 
 	HealthCheckObservations []HealthCheckObservation `xml:"HealthCheckObservations>HealthCheckObservation,omitempty"`
 }
@@ -2056,7 +2096,7 @@ func (v *GetHealthCheckStatusResponse) MarshalXML(e *xml.Encoder, start xml.Star
 
 // GetHostedZoneRequest is undocumented.
 type GetHostedZoneRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID aws.StringValue `xml:"-"`
 }
@@ -2067,7 +2107,7 @@ func (v *GetHostedZoneRequest) MarshalXML(e *xml.Encoder, start xml.StartElement
 
 // GetHostedZoneResponse is undocumented.
 type GetHostedZoneResponse struct {
-	XMLName xml.Name `xml:"GetHostedZoneResponse"`
+	XMLName xml.Name
 
 	DelegationSet *DelegationSet `xml:"DelegationSet,omitempty"`
 	HostedZone    *HostedZone    `xml:"HostedZone,omitempty"`
@@ -2080,7 +2120,7 @@ func (v *GetHostedZoneResponse) MarshalXML(e *xml.Encoder, start xml.StartElemen
 
 // GetReusableDelegationSetRequest is undocumented.
 type GetReusableDelegationSetRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID aws.StringValue `xml:"-"`
 }
@@ -2091,7 +2131,7 @@ func (v *GetReusableDelegationSetRequest) MarshalXML(e *xml.Encoder, start xml.S
 
 // GetReusableDelegationSetResponse is undocumented.
 type GetReusableDelegationSetResponse struct {
-	XMLName xml.Name `xml:"GetReusableDelegationSetResponse"`
+	XMLName xml.Name
 
 	DelegationSet *DelegationSet `xml:"DelegationSet,omitempty"`
 }
@@ -2102,7 +2142,7 @@ func (v *GetReusableDelegationSetResponse) MarshalXML(e *xml.Encoder, start xml.
 
 // HealthCheck is undocumented.
 type HealthCheck struct {
-	XMLName xml.Name `xml:"HealthCheck"`
+	XMLName xml.Name
 
 	CallerReference    aws.StringValue    `xml:"CallerReference"`
 	HealthCheckConfig  *HealthCheckConfig `xml:"HealthCheckConfig,omitempty"`
@@ -2116,7 +2156,7 @@ func (v *HealthCheck) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // HealthCheckConfig is undocumented.
 type HealthCheckConfig struct {
-	XMLName xml.Name `xml:"HealthCheckConfig"`
+	XMLName xml.Name
 
 	FailureThreshold         aws.IntegerValue `xml:"FailureThreshold"`
 	FullyQualifiedDomainName aws.StringValue  `xml:"FullyQualifiedDomainName"`
@@ -2134,7 +2174,7 @@ func (v *HealthCheckConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 
 // HealthCheckObservation is undocumented.
 type HealthCheckObservation struct {
-	XMLName xml.Name `xml:"HealthCheckObservation"`
+	XMLName xml.Name
 
 	IPAddress    aws.StringValue `xml:"IPAddress"`
 	StatusReport *StatusReport   `xml:"StatusReport,omitempty"`
@@ -2155,7 +2195,7 @@ const (
 
 // HostedZone is undocumented.
 type HostedZone struct {
-	XMLName xml.Name `xml:"HostedZone"`
+	XMLName xml.Name
 
 	CallerReference        aws.StringValue   `xml:"CallerReference"`
 	Config                 *HostedZoneConfig `xml:"Config,omitempty"`
@@ -2170,7 +2210,7 @@ func (v *HostedZone) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // HostedZoneConfig is undocumented.
 type HostedZoneConfig struct {
-	XMLName xml.Name `xml:"HostedZoneConfig"`
+	XMLName xml.Name
 
 	Comment     aws.StringValue  `xml:"Comment"`
 	PrivateZone aws.BooleanValue `xml:"PrivateZone"`
@@ -2182,7 +2222,7 @@ func (v *HostedZoneConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 
 // ListGeoLocationsRequest is undocumented.
 type ListGeoLocationsRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	MaxItems             aws.StringValue `xml:"-"`
 	StartContinentCode   aws.StringValue `xml:"-"`
@@ -2196,7 +2236,7 @@ func (v *ListGeoLocationsRequest) MarshalXML(e *xml.Encoder, start xml.StartElem
 
 // ListGeoLocationsResponse is undocumented.
 type ListGeoLocationsResponse struct {
-	XMLName xml.Name `xml:"ListGeoLocationsResponse"`
+	XMLName xml.Name
 
 	GeoLocationDetailsList []GeoLocationDetails `xml:"GeoLocationDetailsList>GeoLocationDetails,omitempty"`
 	IsTruncated            aws.BooleanValue     `xml:"IsTruncated"`
@@ -2212,7 +2252,7 @@ func (v *ListGeoLocationsResponse) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // ListHealthChecksRequest is undocumented.
 type ListHealthChecksRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	Marker   aws.StringValue `xml:"-"`
 	MaxItems aws.StringValue `xml:"-"`
@@ -2224,7 +2264,7 @@ func (v *ListHealthChecksRequest) MarshalXML(e *xml.Encoder, start xml.StartElem
 
 // ListHealthChecksResponse is undocumented.
 type ListHealthChecksResponse struct {
-	XMLName xml.Name `xml:"ListHealthChecksResponse"`
+	XMLName xml.Name
 
 	HealthChecks []HealthCheck    `xml:"HealthChecks>HealthCheck,omitempty"`
 	IsTruncated  aws.BooleanValue `xml:"IsTruncated"`
@@ -2239,7 +2279,7 @@ func (v *ListHealthChecksResponse) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // ListHostedZonesRequest is undocumented.
 type ListHostedZonesRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	DelegationSetID aws.StringValue `xml:"-"`
 	Marker          aws.StringValue `xml:"-"`
@@ -2252,7 +2292,7 @@ func (v *ListHostedZonesRequest) MarshalXML(e *xml.Encoder, start xml.StartEleme
 
 // ListHostedZonesResponse is undocumented.
 type ListHostedZonesResponse struct {
-	XMLName xml.Name `xml:"ListHostedZonesResponse"`
+	XMLName xml.Name
 
 	HostedZones []HostedZone     `xml:"HostedZones>HostedZone,omitempty"`
 	IsTruncated aws.BooleanValue `xml:"IsTruncated"`
@@ -2267,7 +2307,7 @@ func (v *ListHostedZonesResponse) MarshalXML(e *xml.Encoder, start xml.StartElem
 
 // ListResourceRecordSetsRequest is undocumented.
 type ListResourceRecordSetsRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	HostedZoneID          aws.StringValue `xml:"-"`
 	MaxItems              aws.StringValue `xml:"-"`
@@ -2282,7 +2322,7 @@ func (v *ListResourceRecordSetsRequest) MarshalXML(e *xml.Encoder, start xml.Sta
 
 // ListResourceRecordSetsResponse is undocumented.
 type ListResourceRecordSetsResponse struct {
-	XMLName xml.Name `xml:"ListResourceRecordSetsResponse"`
+	XMLName xml.Name
 
 	IsTruncated          aws.BooleanValue    `xml:"IsTruncated"`
 	MaxItems             aws.StringValue     `xml:"MaxItems"`
@@ -2298,7 +2338,7 @@ func (v *ListResourceRecordSetsResponse) MarshalXML(e *xml.Encoder, start xml.St
 
 // ListReusableDelegationSetsRequest is undocumented.
 type ListReusableDelegationSetsRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	Marker   aws.StringValue `xml:"-"`
 	MaxItems aws.StringValue `xml:"-"`
@@ -2310,7 +2350,7 @@ func (v *ListReusableDelegationSetsRequest) MarshalXML(e *xml.Encoder, start xml
 
 // ListReusableDelegationSetsResponse is undocumented.
 type ListReusableDelegationSetsResponse struct {
-	XMLName xml.Name `xml:"ListReusableDelegationSetsResponse"`
+	XMLName xml.Name
 
 	DelegationSets []DelegationSet  `xml:"DelegationSets>DelegationSet,omitempty"`
 	IsTruncated    aws.BooleanValue `xml:"IsTruncated"`
@@ -2325,7 +2365,7 @@ func (v *ListReusableDelegationSetsResponse) MarshalXML(e *xml.Encoder, start xm
 
 // ListTagsForResourceRequest is undocumented.
 type ListTagsForResourceRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ResourceID   aws.StringValue `xml:"-"`
 	ResourceType aws.StringValue `xml:"-"`
@@ -2337,7 +2377,7 @@ func (v *ListTagsForResourceRequest) MarshalXML(e *xml.Encoder, start xml.StartE
 
 // ListTagsForResourceResponse is undocumented.
 type ListTagsForResourceResponse struct {
-	XMLName xml.Name `xml:"ListTagsForResourceResponse"`
+	XMLName xml.Name
 
 	ResourceTagSet *ResourceTagSet `xml:"ResourceTagSet,omitempty"`
 }
@@ -2348,7 +2388,7 @@ func (v *ListTagsForResourceResponse) MarshalXML(e *xml.Encoder, start xml.Start
 
 // ListTagsForResourcesRequest is undocumented.
 type ListTagsForResourcesRequest struct {
-	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ ListTagsForResourcesRequest"`
+	XMLName xml.Name
 
 	ResourceIDs  []string        `xml:"ResourceIds>ResourceId,omitempty"`
 	ResourceType aws.StringValue `xml:"-"`
@@ -2360,7 +2400,7 @@ func (v *ListTagsForResourcesRequest) MarshalXML(e *xml.Encoder, start xml.Start
 
 // ListTagsForResourcesResponse is undocumented.
 type ListTagsForResourcesResponse struct {
-	XMLName xml.Name `xml:"ListTagsForResourcesResponse"`
+	XMLName xml.Name
 
 	ResourceTagSets []ResourceTagSet `xml:"ResourceTagSets>ResourceTagSet,omitempty"`
 }
@@ -2385,7 +2425,7 @@ const (
 
 // ResourceRecord is undocumented.
 type ResourceRecord struct {
-	XMLName xml.Name `xml:"ResourceRecord"`
+	XMLName xml.Name
 
 	Value aws.StringValue `xml:"Value"`
 }
@@ -2396,7 +2436,7 @@ func (v *ResourceRecord) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 
 // ResourceRecordSet is undocumented.
 type ResourceRecordSet struct {
-	XMLName xml.Name `xml:"ResourceRecordSet"`
+	XMLName xml.Name
 
 	AliasTarget     *AliasTarget     `xml:"AliasTarget,omitempty"`
 	Failover        aws.StringValue  `xml:"Failover"`
@@ -2437,7 +2477,7 @@ const (
 
 // ResourceTagSet is undocumented.
 type ResourceTagSet struct {
-	XMLName xml.Name `xml:"ResourceTagSet"`
+	XMLName xml.Name
 
 	ResourceID   aws.StringValue `xml:"ResourceId"`
 	ResourceType aws.StringValue `xml:"ResourceType"`
@@ -2450,7 +2490,7 @@ func (v *ResourceTagSet) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 
 // StatusReport is undocumented.
 type StatusReport struct {
-	XMLName xml.Name `xml:"StatusReport"`
+	XMLName xml.Name
 
 	CheckedTime time.Time       `xml:"CheckedTime"`
 	Status      aws.StringValue `xml:"Status"`
@@ -2462,7 +2502,7 @@ func (v *StatusReport) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 
 // Tag is undocumented.
 type Tag struct {
-	XMLName xml.Name `xml:"Tag"`
+	XMLName xml.Name
 
 	Key   aws.StringValue `xml:"Key"`
 	Value aws.StringValue `xml:"Value"`
@@ -2480,7 +2520,7 @@ const (
 
 // UpdateHealthCheckRequest is undocumented.
 type UpdateHealthCheckRequest struct {
-	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ UpdateHealthCheckRequest"`
+	XMLName xml.Name
 
 	FailureThreshold         aws.IntegerValue `xml:"FailureThreshold"`
 	FullyQualifiedDomainName aws.StringValue  `xml:"FullyQualifiedDomainName"`
@@ -2498,7 +2538,7 @@ func (v *UpdateHealthCheckRequest) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // UpdateHealthCheckResponse is undocumented.
 type UpdateHealthCheckResponse struct {
-	XMLName xml.Name `xml:"UpdateHealthCheckResponse"`
+	XMLName xml.Name
 
 	HealthCheck *HealthCheck `xml:"HealthCheck,omitempty"`
 }
@@ -2509,7 +2549,7 @@ func (v *UpdateHealthCheckResponse) MarshalXML(e *xml.Encoder, start xml.StartEl
 
 // UpdateHostedZoneCommentRequest is undocumented.
 type UpdateHostedZoneCommentRequest struct {
-	XMLName xml.Name `xml:"https://route53.amazonaws.com/doc/2013-04-01/ UpdateHostedZoneCommentRequest"`
+	XMLName xml.Name
 
 	Comment aws.StringValue `xml:"Comment"`
 	ID      aws.StringValue `xml:"-"`
@@ -2521,7 +2561,7 @@ func (v *UpdateHostedZoneCommentRequest) MarshalXML(e *xml.Encoder, start xml.St
 
 // UpdateHostedZoneCommentResponse is undocumented.
 type UpdateHostedZoneCommentResponse struct {
-	XMLName xml.Name `xml:"UpdateHostedZoneCommentResponse"`
+	XMLName xml.Name
 
 	HostedZone *HostedZone `xml:"HostedZone,omitempty"`
 }
@@ -2532,7 +2572,7 @@ func (v *UpdateHostedZoneCommentResponse) MarshalXML(e *xml.Encoder, start xml.S
 
 // VPC is undocumented.
 type VPC struct {
-	XMLName xml.Name `xml:"VPC"`
+	XMLName xml.Name
 
 	VPCID     aws.StringValue `xml:"VPCId"`
 	VPCRegion aws.StringValue `xml:"VPCRegion"`
