@@ -1,7 +1,7 @@
 // Command aws-gen-goendpoints parses a JSON description of the AWS endpoint
 // discovery logic and generates a Go file which returns an endpoint.
 //
-//     aws-gen-goendpoints apis/_endpoints.json gen/endpoints/endpoints.json
+//     aws-gen-goendpoints apis/_endpoints.json gen/endpoints/endpoints.go
 package main
 
 import (
