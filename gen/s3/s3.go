@@ -1603,8 +1603,9 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 	if s := httpResp.Header.Get("Content-Length"); s != "" {
 
-		var n int
-		n, err = strconv.Atoi(s)
+		var n int64
+		n, err = strconv.ParseInt(s, 10, 64)
+
 		if err != nil {
 			return
 		}
@@ -1674,6 +1675,7 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 		var n int
 		n, err = strconv.Atoi(s)
+
 		if err != nil {
 			return
 		}
@@ -1978,8 +1980,9 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 
 	if s := httpResp.Header.Get("Content-Length"); s != "" {
 
-		var n int
-		n, err = strconv.Atoi(s)
+		var n int64
+		n, err = strconv.ParseInt(s, 10, 64)
+
 		if err != nil {
 			return
 		}
@@ -2049,6 +2052,7 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 
 		var n int
 		n, err = strconv.Atoi(s)
+
 		if err != nil {
 			return
 		}
@@ -3051,7 +3055,7 @@ func (c *S3) PutObject(req *PutObjectRequest) (resp *PutObjectOutput, err error)
 	}
 
 	if req.ContentLength != nil {
-		httpReq.ContentLength = int64(*req.ContentLength)
+		httpReq.ContentLength = *req.ContentLength
 	}
 
 	if req.ContentMD5 != nil {
@@ -3363,7 +3367,7 @@ func (c *S3) UploadPart(req *UploadPartRequest) (resp *UploadPartOutput, err err
 	}
 
 	if req.ContentLength != nil {
-		httpReq.ContentLength = int64(*req.ContentLength)
+		httpReq.ContentLength = *req.ContentLength
 	}
 
 	if req.ContentMD5 != nil {
@@ -4419,7 +4423,7 @@ type GetObjectOutput struct {
 	ContentDisposition      aws.StringValue   `xml:"-"`
 	ContentEncoding         aws.StringValue   `xml:"-"`
 	ContentLanguage         aws.StringValue   `xml:"-"`
-	ContentLength           aws.IntegerValue  `xml:"-"`
+	ContentLength           aws.LongValue     `xml:"-"`
 	ContentType             aws.StringValue   `xml:"-"`
 	DeleteMarker            aws.BooleanValue  `xml:"-"`
 	ETag                    aws.StringValue   `xml:"-"`
@@ -4538,7 +4542,7 @@ type HeadObjectOutput struct {
 	ContentDisposition      aws.StringValue   `xml:"-"`
 	ContentEncoding         aws.StringValue   `xml:"-"`
 	ContentLanguage         aws.StringValue   `xml:"-"`
-	ContentLength           aws.IntegerValue  `xml:"-"`
+	ContentLength           aws.LongValue     `xml:"-"`
 	ContentType             aws.StringValue   `xml:"-"`
 	DeleteMarker            aws.BooleanValue  `xml:"-"`
 	ETag                    aws.StringValue   `xml:"-"`
@@ -5173,7 +5177,7 @@ type PutObjectRequest struct {
 	ContentDisposition      aws.StringValue   `xml:"-"`
 	ContentEncoding         aws.StringValue   `xml:"-"`
 	ContentLanguage         aws.StringValue   `xml:"-"`
-	ContentLength           aws.IntegerValue  `xml:"-"`
+	ContentLength           aws.LongValue     `xml:"-"`
 	ContentMD5              aws.StringValue   `xml:"-"`
 	ContentType             aws.StringValue   `xml:"-"`
 	Expires                 time.Time         `xml:"-"`
@@ -5450,7 +5454,7 @@ type UploadPartRequest struct {
 
 	Body                 io.ReadCloser    `xml:"-"`
 	Bucket               aws.StringValue  `xml:"-"`
-	ContentLength        aws.IntegerValue `xml:"-"`
+	ContentLength        aws.LongValue    `xml:"-"`
 	ContentMD5           aws.StringValue  `xml:"-"`
 	Key                  aws.StringValue  `xml:"-"`
 	PartNumber           aws.IntegerValue `xml:"-"`

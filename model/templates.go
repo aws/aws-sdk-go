@@ -373,7 +373,7 @@ func restCommon(t *template.Template) (*template.Template, error) {
   {{ if eq $m.LocationName "Content-Length" }}
 
   if req.{{ exportable $name }} != nil {
-    httpReq.ContentLength = int64(*req.{{ exportable $name }})
+    httpReq.ContentLength = *req.{{ exportable $name }}
   }
 
   {{ else }}
@@ -412,8 +412,13 @@ func restCommon(t *template.Template) (*template.Template, error) {
            }
            resp.{{ exportable $name }} = t
          {{ else if eq $m.Shape.ShapeType "integer" }}
+           {{ if eq $m.Shape.Name "ContentLength" }}
+           var n int64
+           n, err = strconv.ParseInt(s, 10, 64)
+           {{ else }}
            var n int
            n, err = strconv.Atoi(s)
+           {{ end }}
            if  err != nil {
              return
            }

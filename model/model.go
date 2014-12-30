@@ -383,6 +383,9 @@ func (s *Shape) Type() string {
 	case "structure":
 		return "*" + exportable(s.Name)
 	case "integer":
+		if s.Name == "ContentLength" {
+			return "aws.LongValue"
+		}
 		return "aws.IntegerValue"
 	case "long":
 		return "aws.LongValue"
