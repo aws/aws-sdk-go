@@ -51,15 +51,15 @@ func TestQueryRequest(t *testing.T) {
 	}
 
 	req := fakeQueryRequest{
-		PresentString:      aws.String("string"),
-		PresentBoolean:     aws.True(),
-		PresentInteger:     aws.Integer(1),
-		PresentLong:        aws.Long(2),
-		PresentDouble:      aws.Double(1.2),
-		PresentFloat:       aws.Float(2.3),
-		PresentTime:        time.Date(2001, 1, 1, 2, 1, 1, 0, time.FixedZone("UTC+1", 3600)),
-		PresentSlice:       []string{"one", "two"},
-		PresentStruct:      &EmbeddedStruct{Value: aws.String("v")},
+		PresentString:  aws.String("string"),
+		PresentBoolean: aws.True(),
+		PresentInteger: aws.Integer(1),
+		PresentLong:    aws.Long(2),
+		PresentDouble:  aws.Double(1.2),
+		PresentFloat:   aws.Float(2.3),
+		PresentTime:    time.Date(2001, 1, 1, 2, 1, 1, 0, time.FixedZone("UTC+1", 3600)),
+		PresentSlice:   []string{"one", "two"},
+		PresentStruct:  &EmbeddedStruct{Value: aws.String("v")},
 		PresentStructSlice: []EmbeddedStruct{
 			{Value: aws.String("p")},
 			{Value: aws.String("q")},
@@ -98,24 +98,24 @@ func TestQueryRequest(t *testing.T) {
 	}
 
 	expectedForm := url.Values{
-		"Action":                            []string{"GetIP"},
-		"Version":                           []string{"1.1"},
-		"PresentString":                     []string{"string"},
-		"PresentBoolean":                    []string{"true"},
-		"PresentInteger":                    []string{"1"},
-		"PresentLong":                       []string{"2"},
-		"PresentDouble":                     []string{"1.2"},
-		"PresentFloat":                      []string{"2.3"},
-		"PresentTime":                       []string{"2001-01-01T01:01:01Z"},
-		"PresentSlice.member.1":             []string{"one"},
-		"PresentSlice.member.2":             []string{"two"},
-		"PresentStruct.Value":               []string{"v"},
-		"PresentStructSlice.member.1.Value": []string{"p"},
-		"PresentStructSlice.member.2.Value": []string{"q"},
-		"PresentMap.1.Name":                 []string{"aa"},
-		"PresentMap.1.Value.Value":          []string{"AA"},
-		"PresentMap.2.Name":                 []string{"bb"},
-		"PresentMap.2.Value.Value":          []string{"BB"},
+		"Action":                     []string{"GetIP"},
+		"Version":                    []string{"1.1"},
+		"PresentString":              []string{"string"},
+		"PresentBoolean":             []string{"true"},
+		"PresentInteger":             []string{"1"},
+		"PresentLong":                []string{"2"},
+		"PresentDouble":              []string{"1.2"},
+		"PresentFloat":               []string{"2.3"},
+		"PresentTime":                []string{"2001-01-01T01:01:01Z"},
+		"PresentSlice.1":             []string{"one"},
+		"PresentSlice.2":             []string{"two"},
+		"PresentStruct.Value":        []string{"v"},
+		"PresentStructSlice.1.Value": []string{"p"},
+		"PresentStructSlice.2.Value": []string{"q"},
+		"PresentMap.1.Name":          []string{"aa"},
+		"PresentMap.1.Value.Value":   []string{"AA"},
+		"PresentMap.2.Name":          []string{"bb"},
+		"PresentMap.2.Value.Value":   []string{"BB"},
 	}
 
 	if !reflect.DeepEqual(form, expectedForm) {
@@ -197,38 +197,38 @@ func TestQueryRequestError(t *testing.T) {
 }
 
 type fakeQueryRequest struct {
-	PresentString aws.StringValue `xml:"PresentString"`
-	MissingString aws.StringValue `xml:"MissingString"`
+	PresentString aws.StringValue `query:"PresentString"`
+	MissingString aws.StringValue `query:"MissingString"`
 
-	PresentInteger aws.IntegerValue `xml:"PresentInteger"`
-	MissingInteger aws.IntegerValue `xml:"MissingInteger"`
+	PresentInteger aws.IntegerValue `query:"PresentInteger"`
+	MissingInteger aws.IntegerValue `query:"MissingInteger"`
 
-	PresentLong aws.LongValue `xml:"PresentLong"`
-	MissingLong aws.LongValue `xml:"MissingLong"`
+	PresentLong aws.LongValue `query:"PresentLong"`
+	MissingLong aws.LongValue `query:"MissingLong"`
 
-	PresentDouble aws.DoubleValue `xml:"PresentDouble"`
-	MissingDouble aws.DoubleValue `xml:"MissingDouble"`
+	PresentDouble aws.DoubleValue `query:"PresentDouble"`
+	MissingDouble aws.DoubleValue `query:"MissingDouble"`
 
-	PresentFloat aws.FloatValue `xml:"PresentFloat"`
-	MissingFloat aws.FloatValue `xml:"MissingFloat"`
+	PresentFloat aws.FloatValue `query:"PresentFloat"`
+	MissingFloat aws.FloatValue `query:"MissingFloat"`
 
-	PresentBoolean aws.BooleanValue `xml:"PresentBoolean"`
-	MissingBoolean aws.BooleanValue `xml:"MissingBoolean"`
+	PresentBoolean aws.BooleanValue `query:"PresentBoolean"`
+	MissingBoolean aws.BooleanValue `query:"MissingBoolean"`
 
-	PresentTime time.Time `xml:"PresentTime"`
-	MissingTime time.Time `xml:"MissingTime"`
+	PresentTime time.Time `query:"PresentTime"`
+	MissingTime time.Time `query:"MissingTime"`
 
-	PresentSlice []string `xml:"PresentSlice"`
-	MissingSlice []string `xml:"MissingSlice"`
+	PresentSlice []string `query:"PresentSlice"`
+	MissingSlice []string `query:"MissingSlice"`
 
-	PresentStructSlice []EmbeddedStruct `xml:"PresentStructSlice"`
-	MissingStructSlice []EmbeddedStruct `xml:"MissingStructSlice"`
+	PresentStructSlice []EmbeddedStruct `query:"PresentStructSlice"`
+	MissingStructSlice []EmbeddedStruct `query:"MissingStructSlice"`
 
-	PresentMap map[string]EmbeddedStruct `xml:"PresentMap"`
-	MissingMap map[string]EmbeddedStruct `xml:"MissingMap"`
+	PresentMap map[string]EmbeddedStruct `query:"PresentMap"`
+	MissingMap map[string]EmbeddedStruct `query:"MissingMap"`
 
-	PresentStruct *EmbeddedStruct `xml:"PresentStruct"`
-	MissingStruct *EmbeddedStruct `xml:"MissingStruct"`
+	PresentStruct *EmbeddedStruct `query:"PresentStruct"`
+	MissingStruct *EmbeddedStruct `query:"MissingStruct"`
 }
 
 type EmbeddedStruct struct {

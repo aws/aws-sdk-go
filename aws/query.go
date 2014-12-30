@@ -99,7 +99,7 @@ func (c *QueryClient) loadValues(v url.Values, i interface{}, prefix string) err
 			if slicePrefix == "" {
 				slicePrefix = strconv.Itoa(i + 1)
 			} else {
-				slicePrefix = prefix + ".member." + strconv.Itoa(i+1)
+				slicePrefix = slicePrefix + "." + strconv.Itoa(i+1)
 			}
 			if err := c.loadValues(v, value.Index(i).Interface(), slicePrefix); err != nil {
 				return err
@@ -158,9 +158,7 @@ func (c *QueryClient) loadStruct(v url.Values, value reflect.Value, prefix strin
 	t := value.Type()
 	for i := 0; i < value.NumField(); i++ {
 		value := value.Field(i)
-		paths := strings.Split(t.Field(i).Tag.Get("xml"), ">")
-		name := paths[0]
-
+		name := t.Field(i).Tag.Get("query")
 		if name == "" {
 			name = t.Field(i).Name
 		}
@@ -212,7 +210,7 @@ func (c *QueryClient) loadValue(v url.Values, value reflect.Value, name string) 
 	case []string:
 		if len(casted) != 0 {
 			for i, val := range casted {
-				v.Set(fmt.Sprintf("%s.member.%d", name, i+1), val)
+				v.Set(fmt.Sprintf("%s.%d", name, i+1), val)
 			}
 		}
 	default:
