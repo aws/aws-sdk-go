@@ -223,7 +223,7 @@ func (c *CloudFormation) ValidateTemplate(req *ValidateTemplateInput) (resp *Val
 
 // CancelUpdateStackInput is undocumented.
 type CancelUpdateStackInput struct {
-	StackName aws.StringValue `xml:"StackName"`
+	StackName aws.StringValue `query:"StackName" xml:"StackName"`
 }
 
 // Possible values for CloudFormation.
@@ -233,147 +233,147 @@ const (
 
 // CreateStackInput is undocumented.
 type CreateStackInput struct {
-	Capabilities     []string         `xml:"Capabilities>member"`
-	DisableRollback  aws.BooleanValue `xml:"DisableRollback"`
-	NotificationARNs []string         `xml:"NotificationARNs>member"`
-	OnFailure        aws.StringValue  `xml:"OnFailure"`
-	Parameters       []Parameter      `xml:"Parameters>member"`
-	StackName        aws.StringValue  `xml:"StackName"`
-	StackPolicyBody  aws.StringValue  `xml:"StackPolicyBody"`
-	StackPolicyURL   aws.StringValue  `xml:"StackPolicyURL"`
-	Tags             []Tag            `xml:"Tags>member"`
-	TemplateBody     aws.StringValue  `xml:"TemplateBody"`
-	TemplateURL      aws.StringValue  `xml:"TemplateURL"`
-	TimeoutInMinutes aws.IntegerValue `xml:"TimeoutInMinutes"`
+	Capabilities     []string         `query:"Capabilities.member" xml:"Capabilities>member"`
+	DisableRollback  aws.BooleanValue `query:"DisableRollback" xml:"DisableRollback"`
+	NotificationARNs []string         `query:"NotificationARNs.member" xml:"NotificationARNs>member"`
+	OnFailure        aws.StringValue  `query:"OnFailure" xml:"OnFailure"`
+	Parameters       []Parameter      `query:"Parameters.member" xml:"Parameters>member"`
+	StackName        aws.StringValue  `query:"StackName" xml:"StackName"`
+	StackPolicyBody  aws.StringValue  `query:"StackPolicyBody" xml:"StackPolicyBody"`
+	StackPolicyURL   aws.StringValue  `query:"StackPolicyURL" xml:"StackPolicyURL"`
+	Tags             []Tag            `query:"Tags.member" xml:"Tags>member"`
+	TemplateBody     aws.StringValue  `query:"TemplateBody" xml:"TemplateBody"`
+	TemplateURL      aws.StringValue  `query:"TemplateURL" xml:"TemplateURL"`
+	TimeoutInMinutes aws.IntegerValue `query:"TimeoutInMinutes" xml:"TimeoutInMinutes"`
 }
 
 // CreateStackOutput is undocumented.
 type CreateStackOutput struct {
-	StackID aws.StringValue `xml:"CreateStackResult>StackId"`
+	StackID aws.StringValue `query:"StackId" xml:"CreateStackResult>StackId"`
 }
 
 // DeleteStackInput is undocumented.
 type DeleteStackInput struct {
-	StackName aws.StringValue `xml:"StackName"`
+	StackName aws.StringValue `query:"StackName" xml:"StackName"`
 }
 
 // DescribeStackEventsInput is undocumented.
 type DescribeStackEventsInput struct {
-	NextToken aws.StringValue `xml:"NextToken"`
-	StackName aws.StringValue `xml:"StackName"`
+	NextToken aws.StringValue `query:"NextToken" xml:"NextToken"`
+	StackName aws.StringValue `query:"StackName" xml:"StackName"`
 }
 
 // DescribeStackEventsOutput is undocumented.
 type DescribeStackEventsOutput struct {
-	NextToken   aws.StringValue `xml:"DescribeStackEventsResult>NextToken"`
-	StackEvents []StackEvent    `xml:"DescribeStackEventsResult>StackEvents>member"`
+	NextToken   aws.StringValue `query:"NextToken" xml:"DescribeStackEventsResult>NextToken"`
+	StackEvents []StackEvent    `query:"StackEvents.member" xml:"DescribeStackEventsResult>StackEvents>member"`
 }
 
 // DescribeStackResourceInput is undocumented.
 type DescribeStackResourceInput struct {
-	LogicalResourceID aws.StringValue `xml:"LogicalResourceId"`
-	StackName         aws.StringValue `xml:"StackName"`
+	LogicalResourceID aws.StringValue `query:"LogicalResourceId" xml:"LogicalResourceId"`
+	StackName         aws.StringValue `query:"StackName" xml:"StackName"`
 }
 
 // DescribeStackResourceOutput is undocumented.
 type DescribeStackResourceOutput struct {
-	StackResourceDetail *StackResourceDetail `xml:"DescribeStackResourceResult>StackResourceDetail"`
+	StackResourceDetail *StackResourceDetail `query:"StackResourceDetail" xml:"DescribeStackResourceResult>StackResourceDetail"`
 }
 
 // DescribeStackResourcesInput is undocumented.
 type DescribeStackResourcesInput struct {
-	LogicalResourceID  aws.StringValue `xml:"LogicalResourceId"`
-	PhysicalResourceID aws.StringValue `xml:"PhysicalResourceId"`
-	StackName          aws.StringValue `xml:"StackName"`
+	LogicalResourceID  aws.StringValue `query:"LogicalResourceId" xml:"LogicalResourceId"`
+	PhysicalResourceID aws.StringValue `query:"PhysicalResourceId" xml:"PhysicalResourceId"`
+	StackName          aws.StringValue `query:"StackName" xml:"StackName"`
 }
 
 // DescribeStackResourcesOutput is undocumented.
 type DescribeStackResourcesOutput struct {
-	StackResources []StackResource `xml:"DescribeStackResourcesResult>StackResources>member"`
+	StackResources []StackResource `query:"StackResources.member" xml:"DescribeStackResourcesResult>StackResources>member"`
 }
 
 // DescribeStacksInput is undocumented.
 type DescribeStacksInput struct {
-	NextToken aws.StringValue `xml:"NextToken"`
-	StackName aws.StringValue `xml:"StackName"`
+	NextToken aws.StringValue `query:"NextToken" xml:"NextToken"`
+	StackName aws.StringValue `query:"StackName" xml:"StackName"`
 }
 
 // DescribeStacksOutput is undocumented.
 type DescribeStacksOutput struct {
-	NextToken aws.StringValue `xml:"DescribeStacksResult>NextToken"`
-	Stacks    []Stack         `xml:"DescribeStacksResult>Stacks>member"`
+	NextToken aws.StringValue `query:"NextToken" xml:"DescribeStacksResult>NextToken"`
+	Stacks    []Stack         `query:"Stacks.member" xml:"DescribeStacksResult>Stacks>member"`
 }
 
 // EstimateTemplateCostInput is undocumented.
 type EstimateTemplateCostInput struct {
-	Parameters   []Parameter     `xml:"Parameters>member"`
-	TemplateBody aws.StringValue `xml:"TemplateBody"`
-	TemplateURL  aws.StringValue `xml:"TemplateURL"`
+	Parameters   []Parameter     `query:"Parameters.member" xml:"Parameters>member"`
+	TemplateBody aws.StringValue `query:"TemplateBody" xml:"TemplateBody"`
+	TemplateURL  aws.StringValue `query:"TemplateURL" xml:"TemplateURL"`
 }
 
 // EstimateTemplateCostOutput is undocumented.
 type EstimateTemplateCostOutput struct {
-	URL aws.StringValue `xml:"EstimateTemplateCostResult>Url"`
+	URL aws.StringValue `query:"Url" xml:"EstimateTemplateCostResult>Url"`
 }
 
 // GetStackPolicyInput is undocumented.
 type GetStackPolicyInput struct {
-	StackName aws.StringValue `xml:"StackName"`
+	StackName aws.StringValue `query:"StackName" xml:"StackName"`
 }
 
 // GetStackPolicyOutput is undocumented.
 type GetStackPolicyOutput struct {
-	StackPolicyBody aws.StringValue `xml:"GetStackPolicyResult>StackPolicyBody"`
+	StackPolicyBody aws.StringValue `query:"StackPolicyBody" xml:"GetStackPolicyResult>StackPolicyBody"`
 }
 
 // GetTemplateInput is undocumented.
 type GetTemplateInput struct {
-	StackName aws.StringValue `xml:"StackName"`
+	StackName aws.StringValue `query:"StackName" xml:"StackName"`
 }
 
 // GetTemplateOutput is undocumented.
 type GetTemplateOutput struct {
-	TemplateBody aws.StringValue `xml:"GetTemplateResult>TemplateBody"`
+	TemplateBody aws.StringValue `query:"TemplateBody" xml:"GetTemplateResult>TemplateBody"`
 }
 
 // GetTemplateSummaryInput is undocumented.
 type GetTemplateSummaryInput struct {
-	StackName    aws.StringValue `xml:"StackName"`
-	TemplateBody aws.StringValue `xml:"TemplateBody"`
-	TemplateURL  aws.StringValue `xml:"TemplateURL"`
+	StackName    aws.StringValue `query:"StackName" xml:"StackName"`
+	TemplateBody aws.StringValue `query:"TemplateBody" xml:"TemplateBody"`
+	TemplateURL  aws.StringValue `query:"TemplateURL" xml:"TemplateURL"`
 }
 
 // GetTemplateSummaryOutput is undocumented.
 type GetTemplateSummaryOutput struct {
-	Capabilities       []string               `xml:"GetTemplateSummaryResult>Capabilities>member"`
-	CapabilitiesReason aws.StringValue        `xml:"GetTemplateSummaryResult>CapabilitiesReason"`
-	Description        aws.StringValue        `xml:"GetTemplateSummaryResult>Description"`
-	Parameters         []ParameterDeclaration `xml:"GetTemplateSummaryResult>Parameters>member"`
-	Version            aws.StringValue        `xml:"GetTemplateSummaryResult>Version"`
+	Capabilities       []string               `query:"Capabilities.member" xml:"GetTemplateSummaryResult>Capabilities>member"`
+	CapabilitiesReason aws.StringValue        `query:"CapabilitiesReason" xml:"GetTemplateSummaryResult>CapabilitiesReason"`
+	Description        aws.StringValue        `query:"Description" xml:"GetTemplateSummaryResult>Description"`
+	Parameters         []ParameterDeclaration `query:"Parameters.member" xml:"GetTemplateSummaryResult>Parameters>member"`
+	Version            aws.StringValue        `query:"Version" xml:"GetTemplateSummaryResult>Version"`
 }
 
 // ListStackResourcesInput is undocumented.
 type ListStackResourcesInput struct {
-	NextToken aws.StringValue `xml:"NextToken"`
-	StackName aws.StringValue `xml:"StackName"`
+	NextToken aws.StringValue `query:"NextToken" xml:"NextToken"`
+	StackName aws.StringValue `query:"StackName" xml:"StackName"`
 }
 
 // ListStackResourcesOutput is undocumented.
 type ListStackResourcesOutput struct {
-	NextToken              aws.StringValue        `xml:"ListStackResourcesResult>NextToken"`
-	StackResourceSummaries []StackResourceSummary `xml:"ListStackResourcesResult>StackResourceSummaries>member"`
+	NextToken              aws.StringValue        `query:"NextToken" xml:"ListStackResourcesResult>NextToken"`
+	StackResourceSummaries []StackResourceSummary `query:"StackResourceSummaries.member" xml:"ListStackResourcesResult>StackResourceSummaries>member"`
 }
 
 // ListStacksInput is undocumented.
 type ListStacksInput struct {
-	NextToken         aws.StringValue `xml:"NextToken"`
-	StackStatusFilter []string        `xml:"StackStatusFilter>member"`
+	NextToken         aws.StringValue `query:"NextToken" xml:"NextToken"`
+	StackStatusFilter []string        `query:"StackStatusFilter.member" xml:"StackStatusFilter>member"`
 }
 
 // ListStacksOutput is undocumented.
 type ListStacksOutput struct {
-	NextToken      aws.StringValue `xml:"ListStacksResult>NextToken"`
-	StackSummaries []StackSummary  `xml:"ListStacksResult>StackSummaries>member"`
+	NextToken      aws.StringValue `query:"NextToken" xml:"ListStacksResult>NextToken"`
+	StackSummaries []StackSummary  `query:"StackSummaries.member" xml:"ListStacksResult>StackSummaries>member"`
 }
 
 // Possible values for CloudFormation.
@@ -385,25 +385,25 @@ const (
 
 // Output is undocumented.
 type Output struct {
-	Description aws.StringValue `xml:"Description"`
-	OutputKey   aws.StringValue `xml:"OutputKey"`
-	OutputValue aws.StringValue `xml:"OutputValue"`
+	Description aws.StringValue `query:"Description" xml:"Description"`
+	OutputKey   aws.StringValue `query:"OutputKey" xml:"OutputKey"`
+	OutputValue aws.StringValue `query:"OutputValue" xml:"OutputValue"`
 }
 
 // Parameter is undocumented.
 type Parameter struct {
-	ParameterKey     aws.StringValue  `xml:"ParameterKey"`
-	ParameterValue   aws.StringValue  `xml:"ParameterValue"`
-	UsePreviousValue aws.BooleanValue `xml:"UsePreviousValue"`
+	ParameterKey     aws.StringValue  `query:"ParameterKey" xml:"ParameterKey"`
+	ParameterValue   aws.StringValue  `query:"ParameterValue" xml:"ParameterValue"`
+	UsePreviousValue aws.BooleanValue `query:"UsePreviousValue" xml:"UsePreviousValue"`
 }
 
 // ParameterDeclaration is undocumented.
 type ParameterDeclaration struct {
-	DefaultValue  aws.StringValue  `xml:"DefaultValue"`
-	Description   aws.StringValue  `xml:"Description"`
-	NoEcho        aws.BooleanValue `xml:"NoEcho"`
-	ParameterKey  aws.StringValue  `xml:"ParameterKey"`
-	ParameterType aws.StringValue  `xml:"ParameterType"`
+	DefaultValue  aws.StringValue  `query:"DefaultValue" xml:"DefaultValue"`
+	Description   aws.StringValue  `query:"Description" xml:"Description"`
+	NoEcho        aws.BooleanValue `query:"NoEcho" xml:"NoEcho"`
+	ParameterKey  aws.StringValue  `query:"ParameterKey" xml:"ParameterKey"`
+	ParameterType aws.StringValue  `query:"ParameterType" xml:"ParameterType"`
 }
 
 // Possible values for CloudFormation.
@@ -428,86 +428,86 @@ const (
 
 // SetStackPolicyInput is undocumented.
 type SetStackPolicyInput struct {
-	StackName       aws.StringValue `xml:"StackName"`
-	StackPolicyBody aws.StringValue `xml:"StackPolicyBody"`
-	StackPolicyURL  aws.StringValue `xml:"StackPolicyURL"`
+	StackName       aws.StringValue `query:"StackName" xml:"StackName"`
+	StackPolicyBody aws.StringValue `query:"StackPolicyBody" xml:"StackPolicyBody"`
+	StackPolicyURL  aws.StringValue `query:"StackPolicyURL" xml:"StackPolicyURL"`
 }
 
 // SignalResourceInput is undocumented.
 type SignalResourceInput struct {
-	LogicalResourceID aws.StringValue `xml:"LogicalResourceId"`
-	StackName         aws.StringValue `xml:"StackName"`
-	Status            aws.StringValue `xml:"Status"`
-	UniqueID          aws.StringValue `xml:"UniqueId"`
+	LogicalResourceID aws.StringValue `query:"LogicalResourceId" xml:"LogicalResourceId"`
+	StackName         aws.StringValue `query:"StackName" xml:"StackName"`
+	Status            aws.StringValue `query:"Status" xml:"Status"`
+	UniqueID          aws.StringValue `query:"UniqueId" xml:"UniqueId"`
 }
 
 // Stack is undocumented.
 type Stack struct {
-	Capabilities      []string         `xml:"Capabilities>member"`
-	CreationTime      time.Time        `xml:"CreationTime"`
-	Description       aws.StringValue  `xml:"Description"`
-	DisableRollback   aws.BooleanValue `xml:"DisableRollback"`
-	LastUpdatedTime   time.Time        `xml:"LastUpdatedTime"`
-	NotificationARNs  []string         `xml:"NotificationARNs>member"`
-	Outputs           []Output         `xml:"Outputs>member"`
-	Parameters        []Parameter      `xml:"Parameters>member"`
-	StackID           aws.StringValue  `xml:"StackId"`
-	StackName         aws.StringValue  `xml:"StackName"`
-	StackStatus       aws.StringValue  `xml:"StackStatus"`
-	StackStatusReason aws.StringValue  `xml:"StackStatusReason"`
-	Tags              []Tag            `xml:"Tags>member"`
-	TimeoutInMinutes  aws.IntegerValue `xml:"TimeoutInMinutes"`
+	Capabilities      []string         `query:"Capabilities.member" xml:"Capabilities>member"`
+	CreationTime      time.Time        `query:"CreationTime" xml:"CreationTime"`
+	Description       aws.StringValue  `query:"Description" xml:"Description"`
+	DisableRollback   aws.BooleanValue `query:"DisableRollback" xml:"DisableRollback"`
+	LastUpdatedTime   time.Time        `query:"LastUpdatedTime" xml:"LastUpdatedTime"`
+	NotificationARNs  []string         `query:"NotificationARNs.member" xml:"NotificationARNs>member"`
+	Outputs           []Output         `query:"Outputs.member" xml:"Outputs>member"`
+	Parameters        []Parameter      `query:"Parameters.member" xml:"Parameters>member"`
+	StackID           aws.StringValue  `query:"StackId" xml:"StackId"`
+	StackName         aws.StringValue  `query:"StackName" xml:"StackName"`
+	StackStatus       aws.StringValue  `query:"StackStatus" xml:"StackStatus"`
+	StackStatusReason aws.StringValue  `query:"StackStatusReason" xml:"StackStatusReason"`
+	Tags              []Tag            `query:"Tags.member" xml:"Tags>member"`
+	TimeoutInMinutes  aws.IntegerValue `query:"TimeoutInMinutes" xml:"TimeoutInMinutes"`
 }
 
 // StackEvent is undocumented.
 type StackEvent struct {
-	EventID              aws.StringValue `xml:"EventId"`
-	LogicalResourceID    aws.StringValue `xml:"LogicalResourceId"`
-	PhysicalResourceID   aws.StringValue `xml:"PhysicalResourceId"`
-	ResourceProperties   aws.StringValue `xml:"ResourceProperties"`
-	ResourceStatus       aws.StringValue `xml:"ResourceStatus"`
-	ResourceStatusReason aws.StringValue `xml:"ResourceStatusReason"`
-	ResourceType         aws.StringValue `xml:"ResourceType"`
-	StackID              aws.StringValue `xml:"StackId"`
-	StackName            aws.StringValue `xml:"StackName"`
-	Timestamp            time.Time       `xml:"Timestamp"`
+	EventID              aws.StringValue `query:"EventId" xml:"EventId"`
+	LogicalResourceID    aws.StringValue `query:"LogicalResourceId" xml:"LogicalResourceId"`
+	PhysicalResourceID   aws.StringValue `query:"PhysicalResourceId" xml:"PhysicalResourceId"`
+	ResourceProperties   aws.StringValue `query:"ResourceProperties" xml:"ResourceProperties"`
+	ResourceStatus       aws.StringValue `query:"ResourceStatus" xml:"ResourceStatus"`
+	ResourceStatusReason aws.StringValue `query:"ResourceStatusReason" xml:"ResourceStatusReason"`
+	ResourceType         aws.StringValue `query:"ResourceType" xml:"ResourceType"`
+	StackID              aws.StringValue `query:"StackId" xml:"StackId"`
+	StackName            aws.StringValue `query:"StackName" xml:"StackName"`
+	Timestamp            time.Time       `query:"Timestamp" xml:"Timestamp"`
 }
 
 // StackResource is undocumented.
 type StackResource struct {
-	Description          aws.StringValue `xml:"Description"`
-	LogicalResourceID    aws.StringValue `xml:"LogicalResourceId"`
-	PhysicalResourceID   aws.StringValue `xml:"PhysicalResourceId"`
-	ResourceStatus       aws.StringValue `xml:"ResourceStatus"`
-	ResourceStatusReason aws.StringValue `xml:"ResourceStatusReason"`
-	ResourceType         aws.StringValue `xml:"ResourceType"`
-	StackID              aws.StringValue `xml:"StackId"`
-	StackName            aws.StringValue `xml:"StackName"`
-	Timestamp            time.Time       `xml:"Timestamp"`
+	Description          aws.StringValue `query:"Description" xml:"Description"`
+	LogicalResourceID    aws.StringValue `query:"LogicalResourceId" xml:"LogicalResourceId"`
+	PhysicalResourceID   aws.StringValue `query:"PhysicalResourceId" xml:"PhysicalResourceId"`
+	ResourceStatus       aws.StringValue `query:"ResourceStatus" xml:"ResourceStatus"`
+	ResourceStatusReason aws.StringValue `query:"ResourceStatusReason" xml:"ResourceStatusReason"`
+	ResourceType         aws.StringValue `query:"ResourceType" xml:"ResourceType"`
+	StackID              aws.StringValue `query:"StackId" xml:"StackId"`
+	StackName            aws.StringValue `query:"StackName" xml:"StackName"`
+	Timestamp            time.Time       `query:"Timestamp" xml:"Timestamp"`
 }
 
 // StackResourceDetail is undocumented.
 type StackResourceDetail struct {
-	Description          aws.StringValue `xml:"Description"`
-	LastUpdatedTimestamp time.Time       `xml:"LastUpdatedTimestamp"`
-	LogicalResourceID    aws.StringValue `xml:"LogicalResourceId"`
-	Metadata             aws.StringValue `xml:"Metadata"`
-	PhysicalResourceID   aws.StringValue `xml:"PhysicalResourceId"`
-	ResourceStatus       aws.StringValue `xml:"ResourceStatus"`
-	ResourceStatusReason aws.StringValue `xml:"ResourceStatusReason"`
-	ResourceType         aws.StringValue `xml:"ResourceType"`
-	StackID              aws.StringValue `xml:"StackId"`
-	StackName            aws.StringValue `xml:"StackName"`
+	Description          aws.StringValue `query:"Description" xml:"Description"`
+	LastUpdatedTimestamp time.Time       `query:"LastUpdatedTimestamp" xml:"LastUpdatedTimestamp"`
+	LogicalResourceID    aws.StringValue `query:"LogicalResourceId" xml:"LogicalResourceId"`
+	Metadata             aws.StringValue `query:"Metadata" xml:"Metadata"`
+	PhysicalResourceID   aws.StringValue `query:"PhysicalResourceId" xml:"PhysicalResourceId"`
+	ResourceStatus       aws.StringValue `query:"ResourceStatus" xml:"ResourceStatus"`
+	ResourceStatusReason aws.StringValue `query:"ResourceStatusReason" xml:"ResourceStatusReason"`
+	ResourceType         aws.StringValue `query:"ResourceType" xml:"ResourceType"`
+	StackID              aws.StringValue `query:"StackId" xml:"StackId"`
+	StackName            aws.StringValue `query:"StackName" xml:"StackName"`
 }
 
 // StackResourceSummary is undocumented.
 type StackResourceSummary struct {
-	LastUpdatedTimestamp time.Time       `xml:"LastUpdatedTimestamp"`
-	LogicalResourceID    aws.StringValue `xml:"LogicalResourceId"`
-	PhysicalResourceID   aws.StringValue `xml:"PhysicalResourceId"`
-	ResourceStatus       aws.StringValue `xml:"ResourceStatus"`
-	ResourceStatusReason aws.StringValue `xml:"ResourceStatusReason"`
-	ResourceType         aws.StringValue `xml:"ResourceType"`
+	LastUpdatedTimestamp time.Time       `query:"LastUpdatedTimestamp" xml:"LastUpdatedTimestamp"`
+	LogicalResourceID    aws.StringValue `query:"LogicalResourceId" xml:"LogicalResourceId"`
+	PhysicalResourceID   aws.StringValue `query:"PhysicalResourceId" xml:"PhysicalResourceId"`
+	ResourceStatus       aws.StringValue `query:"ResourceStatus" xml:"ResourceStatus"`
+	ResourceStatusReason aws.StringValue `query:"ResourceStatusReason" xml:"ResourceStatusReason"`
+	ResourceType         aws.StringValue `query:"ResourceType" xml:"ResourceType"`
 }
 
 // Possible values for CloudFormation.
@@ -532,138 +532,138 @@ const (
 
 // StackSummary is undocumented.
 type StackSummary struct {
-	CreationTime        time.Time       `xml:"CreationTime"`
-	DeletionTime        time.Time       `xml:"DeletionTime"`
-	LastUpdatedTime     time.Time       `xml:"LastUpdatedTime"`
-	StackID             aws.StringValue `xml:"StackId"`
-	StackName           aws.StringValue `xml:"StackName"`
-	StackStatus         aws.StringValue `xml:"StackStatus"`
-	StackStatusReason   aws.StringValue `xml:"StackStatusReason"`
-	TemplateDescription aws.StringValue `xml:"TemplateDescription"`
+	CreationTime        time.Time       `query:"CreationTime" xml:"CreationTime"`
+	DeletionTime        time.Time       `query:"DeletionTime" xml:"DeletionTime"`
+	LastUpdatedTime     time.Time       `query:"LastUpdatedTime" xml:"LastUpdatedTime"`
+	StackID             aws.StringValue `query:"StackId" xml:"StackId"`
+	StackName           aws.StringValue `query:"StackName" xml:"StackName"`
+	StackStatus         aws.StringValue `query:"StackStatus" xml:"StackStatus"`
+	StackStatusReason   aws.StringValue `query:"StackStatusReason" xml:"StackStatusReason"`
+	TemplateDescription aws.StringValue `query:"TemplateDescription" xml:"TemplateDescription"`
 }
 
 // Tag is undocumented.
 type Tag struct {
-	Key   aws.StringValue `xml:"Key"`
-	Value aws.StringValue `xml:"Value"`
+	Key   aws.StringValue `query:"Key" xml:"Key"`
+	Value aws.StringValue `query:"Value" xml:"Value"`
 }
 
 // TemplateParameter is undocumented.
 type TemplateParameter struct {
-	DefaultValue aws.StringValue  `xml:"DefaultValue"`
-	Description  aws.StringValue  `xml:"Description"`
-	NoEcho       aws.BooleanValue `xml:"NoEcho"`
-	ParameterKey aws.StringValue  `xml:"ParameterKey"`
+	DefaultValue aws.StringValue  `query:"DefaultValue" xml:"DefaultValue"`
+	Description  aws.StringValue  `query:"Description" xml:"Description"`
+	NoEcho       aws.BooleanValue `query:"NoEcho" xml:"NoEcho"`
+	ParameterKey aws.StringValue  `query:"ParameterKey" xml:"ParameterKey"`
 }
 
 // UpdateStackInput is undocumented.
 type UpdateStackInput struct {
-	Capabilities                []string         `xml:"Capabilities>member"`
-	NotificationARNs            []string         `xml:"NotificationARNs>member"`
-	Parameters                  []Parameter      `xml:"Parameters>member"`
-	StackName                   aws.StringValue  `xml:"StackName"`
-	StackPolicyBody             aws.StringValue  `xml:"StackPolicyBody"`
-	StackPolicyDuringUpdateBody aws.StringValue  `xml:"StackPolicyDuringUpdateBody"`
-	StackPolicyDuringUpdateURL  aws.StringValue  `xml:"StackPolicyDuringUpdateURL"`
-	StackPolicyURL              aws.StringValue  `xml:"StackPolicyURL"`
-	TemplateBody                aws.StringValue  `xml:"TemplateBody"`
-	TemplateURL                 aws.StringValue  `xml:"TemplateURL"`
-	UsePreviousTemplate         aws.BooleanValue `xml:"UsePreviousTemplate"`
+	Capabilities                []string         `query:"Capabilities.member" xml:"Capabilities>member"`
+	NotificationARNs            []string         `query:"NotificationARNs.member" xml:"NotificationARNs>member"`
+	Parameters                  []Parameter      `query:"Parameters.member" xml:"Parameters>member"`
+	StackName                   aws.StringValue  `query:"StackName" xml:"StackName"`
+	StackPolicyBody             aws.StringValue  `query:"StackPolicyBody" xml:"StackPolicyBody"`
+	StackPolicyDuringUpdateBody aws.StringValue  `query:"StackPolicyDuringUpdateBody" xml:"StackPolicyDuringUpdateBody"`
+	StackPolicyDuringUpdateURL  aws.StringValue  `query:"StackPolicyDuringUpdateURL" xml:"StackPolicyDuringUpdateURL"`
+	StackPolicyURL              aws.StringValue  `query:"StackPolicyURL" xml:"StackPolicyURL"`
+	TemplateBody                aws.StringValue  `query:"TemplateBody" xml:"TemplateBody"`
+	TemplateURL                 aws.StringValue  `query:"TemplateURL" xml:"TemplateURL"`
+	UsePreviousTemplate         aws.BooleanValue `query:"UsePreviousTemplate" xml:"UsePreviousTemplate"`
 }
 
 // UpdateStackOutput is undocumented.
 type UpdateStackOutput struct {
-	StackID aws.StringValue `xml:"UpdateStackResult>StackId"`
+	StackID aws.StringValue `query:"StackId" xml:"UpdateStackResult>StackId"`
 }
 
 // ValidateTemplateInput is undocumented.
 type ValidateTemplateInput struct {
-	TemplateBody aws.StringValue `xml:"TemplateBody"`
-	TemplateURL  aws.StringValue `xml:"TemplateURL"`
+	TemplateBody aws.StringValue `query:"TemplateBody" xml:"TemplateBody"`
+	TemplateURL  aws.StringValue `query:"TemplateURL" xml:"TemplateURL"`
 }
 
 // ValidateTemplateOutput is undocumented.
 type ValidateTemplateOutput struct {
-	Capabilities       []string            `xml:"ValidateTemplateResult>Capabilities>member"`
-	CapabilitiesReason aws.StringValue     `xml:"ValidateTemplateResult>CapabilitiesReason"`
-	Description        aws.StringValue     `xml:"ValidateTemplateResult>Description"`
-	Parameters         []TemplateParameter `xml:"ValidateTemplateResult>Parameters>member"`
+	Capabilities       []string            `query:"Capabilities.member" xml:"ValidateTemplateResult>Capabilities>member"`
+	CapabilitiesReason aws.StringValue     `query:"CapabilitiesReason" xml:"ValidateTemplateResult>CapabilitiesReason"`
+	Description        aws.StringValue     `query:"Description" xml:"ValidateTemplateResult>Description"`
+	Parameters         []TemplateParameter `query:"Parameters.member" xml:"ValidateTemplateResult>Parameters>member"`
 }
 
 // CreateStackResult is a wrapper for CreateStackOutput.
 type CreateStackResult struct {
-	StackID aws.StringValue `xml:"CreateStackResult>StackId"`
+	StackID aws.StringValue `query:"StackId" xml:"CreateStackResult>StackId"`
 }
 
 // DescribeStackEventsResult is a wrapper for DescribeStackEventsOutput.
 type DescribeStackEventsResult struct {
-	NextToken   aws.StringValue `xml:"DescribeStackEventsResult>NextToken"`
-	StackEvents []StackEvent    `xml:"DescribeStackEventsResult>StackEvents>member"`
+	NextToken   aws.StringValue `query:"NextToken" xml:"DescribeStackEventsResult>NextToken"`
+	StackEvents []StackEvent    `query:"StackEvents.member" xml:"DescribeStackEventsResult>StackEvents>member"`
 }
 
 // DescribeStackResourceResult is a wrapper for DescribeStackResourceOutput.
 type DescribeStackResourceResult struct {
-	StackResourceDetail *StackResourceDetail `xml:"DescribeStackResourceResult>StackResourceDetail"`
+	StackResourceDetail *StackResourceDetail `query:"StackResourceDetail" xml:"DescribeStackResourceResult>StackResourceDetail"`
 }
 
 // DescribeStackResourcesResult is a wrapper for DescribeStackResourcesOutput.
 type DescribeStackResourcesResult struct {
-	StackResources []StackResource `xml:"DescribeStackResourcesResult>StackResources>member"`
+	StackResources []StackResource `query:"StackResources.member" xml:"DescribeStackResourcesResult>StackResources>member"`
 }
 
 // DescribeStacksResult is a wrapper for DescribeStacksOutput.
 type DescribeStacksResult struct {
-	NextToken aws.StringValue `xml:"DescribeStacksResult>NextToken"`
-	Stacks    []Stack         `xml:"DescribeStacksResult>Stacks>member"`
+	NextToken aws.StringValue `query:"NextToken" xml:"DescribeStacksResult>NextToken"`
+	Stacks    []Stack         `query:"Stacks.member" xml:"DescribeStacksResult>Stacks>member"`
 }
 
 // EstimateTemplateCostResult is a wrapper for EstimateTemplateCostOutput.
 type EstimateTemplateCostResult struct {
-	URL aws.StringValue `xml:"EstimateTemplateCostResult>Url"`
+	URL aws.StringValue `query:"Url" xml:"EstimateTemplateCostResult>Url"`
 }
 
 // GetStackPolicyResult is a wrapper for GetStackPolicyOutput.
 type GetStackPolicyResult struct {
-	StackPolicyBody aws.StringValue `xml:"GetStackPolicyResult>StackPolicyBody"`
+	StackPolicyBody aws.StringValue `query:"StackPolicyBody" xml:"GetStackPolicyResult>StackPolicyBody"`
 }
 
 // GetTemplateResult is a wrapper for GetTemplateOutput.
 type GetTemplateResult struct {
-	TemplateBody aws.StringValue `xml:"GetTemplateResult>TemplateBody"`
+	TemplateBody aws.StringValue `query:"TemplateBody" xml:"GetTemplateResult>TemplateBody"`
 }
 
 // GetTemplateSummaryResult is a wrapper for GetTemplateSummaryOutput.
 type GetTemplateSummaryResult struct {
-	Capabilities       []string               `xml:"GetTemplateSummaryResult>Capabilities>member"`
-	CapabilitiesReason aws.StringValue        `xml:"GetTemplateSummaryResult>CapabilitiesReason"`
-	Description        aws.StringValue        `xml:"GetTemplateSummaryResult>Description"`
-	Parameters         []ParameterDeclaration `xml:"GetTemplateSummaryResult>Parameters>member"`
-	Version            aws.StringValue        `xml:"GetTemplateSummaryResult>Version"`
+	Capabilities       []string               `query:"Capabilities.member" xml:"GetTemplateSummaryResult>Capabilities>member"`
+	CapabilitiesReason aws.StringValue        `query:"CapabilitiesReason" xml:"GetTemplateSummaryResult>CapabilitiesReason"`
+	Description        aws.StringValue        `query:"Description" xml:"GetTemplateSummaryResult>Description"`
+	Parameters         []ParameterDeclaration `query:"Parameters.member" xml:"GetTemplateSummaryResult>Parameters>member"`
+	Version            aws.StringValue        `query:"Version" xml:"GetTemplateSummaryResult>Version"`
 }
 
 // ListStackResourcesResult is a wrapper for ListStackResourcesOutput.
 type ListStackResourcesResult struct {
-	NextToken              aws.StringValue        `xml:"ListStackResourcesResult>NextToken"`
-	StackResourceSummaries []StackResourceSummary `xml:"ListStackResourcesResult>StackResourceSummaries>member"`
+	NextToken              aws.StringValue        `query:"NextToken" xml:"ListStackResourcesResult>NextToken"`
+	StackResourceSummaries []StackResourceSummary `query:"StackResourceSummaries.member" xml:"ListStackResourcesResult>StackResourceSummaries>member"`
 }
 
 // ListStacksResult is a wrapper for ListStacksOutput.
 type ListStacksResult struct {
-	NextToken      aws.StringValue `xml:"ListStacksResult>NextToken"`
-	StackSummaries []StackSummary  `xml:"ListStacksResult>StackSummaries>member"`
+	NextToken      aws.StringValue `query:"NextToken" xml:"ListStacksResult>NextToken"`
+	StackSummaries []StackSummary  `query:"StackSummaries.member" xml:"ListStacksResult>StackSummaries>member"`
 }
 
 // UpdateStackResult is a wrapper for UpdateStackOutput.
 type UpdateStackResult struct {
-	StackID aws.StringValue `xml:"UpdateStackResult>StackId"`
+	StackID aws.StringValue `query:"StackId" xml:"UpdateStackResult>StackId"`
 }
 
 // ValidateTemplateResult is a wrapper for ValidateTemplateOutput.
 type ValidateTemplateResult struct {
-	Capabilities       []string            `xml:"ValidateTemplateResult>Capabilities>member"`
-	CapabilitiesReason aws.StringValue     `xml:"ValidateTemplateResult>CapabilitiesReason"`
-	Description        aws.StringValue     `xml:"ValidateTemplateResult>Description"`
-	Parameters         []TemplateParameter `xml:"ValidateTemplateResult>Parameters>member"`
+	Capabilities       []string            `query:"Capabilities.member" xml:"ValidateTemplateResult>Capabilities>member"`
+	CapabilitiesReason aws.StringValue     `query:"CapabilitiesReason" xml:"ValidateTemplateResult>CapabilitiesReason"`
+	Description        aws.StringValue     `query:"Description" xml:"ValidateTemplateResult>Description"`
+	Parameters         []TemplateParameter `query:"Parameters.member" xml:"ValidateTemplateResult>Parameters>member"`
 }
 
 // avoid errors if the packages aren't referenced

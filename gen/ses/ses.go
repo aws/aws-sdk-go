@@ -274,19 +274,19 @@ func (c *SES) VerifyEmailIdentity(req *VerifyEmailIdentityRequest) (resp *Verify
 
 // Body is undocumented.
 type Body struct {
-	HTML *Content `xml:"Html"`
-	Text *Content `xml:"Text"`
+	HTML *Content `query:"Html" xml:"Html"`
+	Text *Content `query:"Text" xml:"Text"`
 }
 
 // Content is undocumented.
 type Content struct {
-	Charset aws.StringValue `xml:"Charset"`
-	Data    aws.StringValue `xml:"Data"`
+	Charset aws.StringValue `query:"Charset" xml:"Charset"`
+	Data    aws.StringValue `query:"Data" xml:"Data"`
 }
 
 // DeleteIdentityRequest is undocumented.
 type DeleteIdentityRequest struct {
-	Identity aws.StringValue `xml:"Identity"`
+	Identity aws.StringValue `query:"Identity" xml:"Identity"`
 }
 
 // DeleteIdentityResponse is undocumented.
@@ -295,71 +295,71 @@ type DeleteIdentityResponse struct {
 
 // DeleteVerifiedEmailAddressRequest is undocumented.
 type DeleteVerifiedEmailAddressRequest struct {
-	EmailAddress aws.StringValue `xml:"EmailAddress"`
+	EmailAddress aws.StringValue `query:"EmailAddress" xml:"EmailAddress"`
 }
 
 // Destination is undocumented.
 type Destination struct {
-	BCCAddresses []string `xml:"BccAddresses>member"`
-	CCAddresses  []string `xml:"CcAddresses>member"`
-	ToAddresses  []string `xml:"ToAddresses>member"`
+	BCCAddresses []string `query:"BccAddresses.member" xml:"BccAddresses>member"`
+	CCAddresses  []string `query:"CcAddresses.member" xml:"CcAddresses>member"`
+	ToAddresses  []string `query:"ToAddresses.member" xml:"ToAddresses>member"`
 }
 
 // GetIdentityDkimAttributesRequest is undocumented.
 type GetIdentityDkimAttributesRequest struct {
-	Identities []string `xml:"Identities>member"`
+	Identities []string `query:"Identities.member" xml:"Identities>member"`
 }
 
 // GetIdentityDkimAttributesResponse is undocumented.
 type GetIdentityDkimAttributesResponse struct {
-	DkimAttributes map[string]IdentityDkimAttributes `xml:"GetIdentityDkimAttributesResult>DkimAttributes"`
+	DkimAttributes map[string]IdentityDkimAttributes `query:"DkimAttributes" xml:"GetIdentityDkimAttributesResult>DkimAttributes"`
 }
 
 // GetIdentityNotificationAttributesRequest is undocumented.
 type GetIdentityNotificationAttributesRequest struct {
-	Identities []string `xml:"Identities>member"`
+	Identities []string `query:"Identities.member" xml:"Identities>member"`
 }
 
 // GetIdentityNotificationAttributesResponse is undocumented.
 type GetIdentityNotificationAttributesResponse struct {
-	NotificationAttributes map[string]IdentityNotificationAttributes `xml:"GetIdentityNotificationAttributesResult>NotificationAttributes"`
+	NotificationAttributes map[string]IdentityNotificationAttributes `query:"NotificationAttributes" xml:"GetIdentityNotificationAttributesResult>NotificationAttributes"`
 }
 
 // GetIdentityVerificationAttributesRequest is undocumented.
 type GetIdentityVerificationAttributesRequest struct {
-	Identities []string `xml:"Identities>member"`
+	Identities []string `query:"Identities.member" xml:"Identities>member"`
 }
 
 // GetIdentityVerificationAttributesResponse is undocumented.
 type GetIdentityVerificationAttributesResponse struct {
-	VerificationAttributes map[string]IdentityVerificationAttributes `xml:"GetIdentityVerificationAttributesResult>VerificationAttributes"`
+	VerificationAttributes map[string]IdentityVerificationAttributes `query:"VerificationAttributes" xml:"GetIdentityVerificationAttributesResult>VerificationAttributes"`
 }
 
 // GetSendQuotaResponse is undocumented.
 type GetSendQuotaResponse struct {
-	Max24HourSend   aws.DoubleValue `xml:"GetSendQuotaResult>Max24HourSend"`
-	MaxSendRate     aws.DoubleValue `xml:"GetSendQuotaResult>MaxSendRate"`
-	SentLast24Hours aws.DoubleValue `xml:"GetSendQuotaResult>SentLast24Hours"`
+	Max24HourSend   aws.DoubleValue `query:"Max24HourSend" xml:"GetSendQuotaResult>Max24HourSend"`
+	MaxSendRate     aws.DoubleValue `query:"MaxSendRate" xml:"GetSendQuotaResult>MaxSendRate"`
+	SentLast24Hours aws.DoubleValue `query:"SentLast24Hours" xml:"GetSendQuotaResult>SentLast24Hours"`
 }
 
 // GetSendStatisticsResponse is undocumented.
 type GetSendStatisticsResponse struct {
-	SendDataPoints []SendDataPoint `xml:"GetSendStatisticsResult>SendDataPoints>member"`
+	SendDataPoints []SendDataPoint `query:"SendDataPoints.member" xml:"GetSendStatisticsResult>SendDataPoints>member"`
 }
 
 // IdentityDkimAttributes is undocumented.
 type IdentityDkimAttributes struct {
-	DkimEnabled            aws.BooleanValue `xml:"DkimEnabled"`
-	DkimTokens             []string         `xml:"DkimTokens>member"`
-	DkimVerificationStatus aws.StringValue  `xml:"DkimVerificationStatus"`
+	DkimEnabled            aws.BooleanValue `query:"DkimEnabled" xml:"DkimEnabled"`
+	DkimTokens             []string         `query:"DkimTokens.member" xml:"DkimTokens>member"`
+	DkimVerificationStatus aws.StringValue  `query:"DkimVerificationStatus" xml:"DkimVerificationStatus"`
 }
 
 // IdentityNotificationAttributes is undocumented.
 type IdentityNotificationAttributes struct {
-	BounceTopic       aws.StringValue  `xml:"BounceTopic"`
-	ComplaintTopic    aws.StringValue  `xml:"ComplaintTopic"`
-	DeliveryTopic     aws.StringValue  `xml:"DeliveryTopic"`
-	ForwardingEnabled aws.BooleanValue `xml:"ForwardingEnabled"`
+	BounceTopic       aws.StringValue  `query:"BounceTopic" xml:"BounceTopic"`
+	ComplaintTopic    aws.StringValue  `query:"ComplaintTopic" xml:"ComplaintTopic"`
+	DeliveryTopic     aws.StringValue  `query:"DeliveryTopic" xml:"DeliveryTopic"`
+	ForwardingEnabled aws.BooleanValue `query:"ForwardingEnabled" xml:"ForwardingEnabled"`
 }
 
 // Possible values for SES.
@@ -370,32 +370,32 @@ const (
 
 // IdentityVerificationAttributes is undocumented.
 type IdentityVerificationAttributes struct {
-	VerificationStatus aws.StringValue `xml:"VerificationStatus"`
-	VerificationToken  aws.StringValue `xml:"VerificationToken"`
+	VerificationStatus aws.StringValue `query:"VerificationStatus" xml:"VerificationStatus"`
+	VerificationToken  aws.StringValue `query:"VerificationToken" xml:"VerificationToken"`
 }
 
 // ListIdentitiesRequest is undocumented.
 type ListIdentitiesRequest struct {
-	IdentityType aws.StringValue  `xml:"IdentityType"`
-	MaxItems     aws.IntegerValue `xml:"MaxItems"`
-	NextToken    aws.StringValue  `xml:"NextToken"`
+	IdentityType aws.StringValue  `query:"IdentityType" xml:"IdentityType"`
+	MaxItems     aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	NextToken    aws.StringValue  `query:"NextToken" xml:"NextToken"`
 }
 
 // ListIdentitiesResponse is undocumented.
 type ListIdentitiesResponse struct {
-	Identities []string        `xml:"ListIdentitiesResult>Identities>member"`
-	NextToken  aws.StringValue `xml:"ListIdentitiesResult>NextToken"`
+	Identities []string        `query:"Identities.member" xml:"ListIdentitiesResult>Identities>member"`
+	NextToken  aws.StringValue `query:"NextToken" xml:"ListIdentitiesResult>NextToken"`
 }
 
 // ListVerifiedEmailAddressesResponse is undocumented.
 type ListVerifiedEmailAddressesResponse struct {
-	VerifiedEmailAddresses []string `xml:"ListVerifiedEmailAddressesResult>VerifiedEmailAddresses>member"`
+	VerifiedEmailAddresses []string `query:"VerifiedEmailAddresses.member" xml:"ListVerifiedEmailAddressesResult>VerifiedEmailAddresses>member"`
 }
 
 // Message is undocumented.
 type Message struct {
-	Body    *Body    `xml:"Body"`
-	Subject *Content `xml:"Subject"`
+	Body    *Body    `query:"Body" xml:"Body"`
+	Subject *Content `query:"Subject" xml:"Subject"`
 }
 
 // Possible values for SES.
@@ -407,48 +407,48 @@ const (
 
 // RawMessage is undocumented.
 type RawMessage struct {
-	Data []byte `xml:"Data"`
+	Data []byte `query:"Data" xml:"Data"`
 }
 
 // SendDataPoint is undocumented.
 type SendDataPoint struct {
-	Bounces          aws.LongValue `xml:"Bounces"`
-	Complaints       aws.LongValue `xml:"Complaints"`
-	DeliveryAttempts aws.LongValue `xml:"DeliveryAttempts"`
-	Rejects          aws.LongValue `xml:"Rejects"`
-	Timestamp        time.Time     `xml:"Timestamp"`
+	Bounces          aws.LongValue `query:"Bounces" xml:"Bounces"`
+	Complaints       aws.LongValue `query:"Complaints" xml:"Complaints"`
+	DeliveryAttempts aws.LongValue `query:"DeliveryAttempts" xml:"DeliveryAttempts"`
+	Rejects          aws.LongValue `query:"Rejects" xml:"Rejects"`
+	Timestamp        time.Time     `query:"Timestamp" xml:"Timestamp"`
 }
 
 // SendEmailRequest is undocumented.
 type SendEmailRequest struct {
-	Destination      *Destination    `xml:"Destination"`
-	Message          *Message        `xml:"Message"`
-	ReplyToAddresses []string        `xml:"ReplyToAddresses>member"`
-	ReturnPath       aws.StringValue `xml:"ReturnPath"`
-	Source           aws.StringValue `xml:"Source"`
+	Destination      *Destination    `query:"Destination" xml:"Destination"`
+	Message          *Message        `query:"Message" xml:"Message"`
+	ReplyToAddresses []string        `query:"ReplyToAddresses.member" xml:"ReplyToAddresses>member"`
+	ReturnPath       aws.StringValue `query:"ReturnPath" xml:"ReturnPath"`
+	Source           aws.StringValue `query:"Source" xml:"Source"`
 }
 
 // SendEmailResponse is undocumented.
 type SendEmailResponse struct {
-	MessageID aws.StringValue `xml:"SendEmailResult>MessageId"`
+	MessageID aws.StringValue `query:"MessageId" xml:"SendEmailResult>MessageId"`
 }
 
 // SendRawEmailRequest is undocumented.
 type SendRawEmailRequest struct {
-	Destinations []string        `xml:"Destinations>member"`
-	RawMessage   *RawMessage     `xml:"RawMessage"`
-	Source       aws.StringValue `xml:"Source"`
+	Destinations []string        `query:"Destinations.member" xml:"Destinations>member"`
+	RawMessage   *RawMessage     `query:"RawMessage" xml:"RawMessage"`
+	Source       aws.StringValue `query:"Source" xml:"Source"`
 }
 
 // SendRawEmailResponse is undocumented.
 type SendRawEmailResponse struct {
-	MessageID aws.StringValue `xml:"SendRawEmailResult>MessageId"`
+	MessageID aws.StringValue `query:"MessageId" xml:"SendRawEmailResult>MessageId"`
 }
 
 // SetIdentityDkimEnabledRequest is undocumented.
 type SetIdentityDkimEnabledRequest struct {
-	DkimEnabled aws.BooleanValue `xml:"DkimEnabled"`
-	Identity    aws.StringValue  `xml:"Identity"`
+	DkimEnabled aws.BooleanValue `query:"DkimEnabled" xml:"DkimEnabled"`
+	Identity    aws.StringValue  `query:"Identity" xml:"Identity"`
 }
 
 // SetIdentityDkimEnabledResponse is undocumented.
@@ -457,8 +457,8 @@ type SetIdentityDkimEnabledResponse struct {
 
 // SetIdentityFeedbackForwardingEnabledRequest is undocumented.
 type SetIdentityFeedbackForwardingEnabledRequest struct {
-	ForwardingEnabled aws.BooleanValue `xml:"ForwardingEnabled"`
-	Identity          aws.StringValue  `xml:"Identity"`
+	ForwardingEnabled aws.BooleanValue `query:"ForwardingEnabled" xml:"ForwardingEnabled"`
+	Identity          aws.StringValue  `query:"Identity" xml:"Identity"`
 }
 
 // SetIdentityFeedbackForwardingEnabledResponse is undocumented.
@@ -467,9 +467,9 @@ type SetIdentityFeedbackForwardingEnabledResponse struct {
 
 // SetIdentityNotificationTopicRequest is undocumented.
 type SetIdentityNotificationTopicRequest struct {
-	Identity         aws.StringValue `xml:"Identity"`
-	NotificationType aws.StringValue `xml:"NotificationType"`
-	SNSTopic         aws.StringValue `xml:"SnsTopic"`
+	Identity         aws.StringValue `query:"Identity" xml:"Identity"`
+	NotificationType aws.StringValue `query:"NotificationType" xml:"NotificationType"`
+	SNSTopic         aws.StringValue `query:"SnsTopic" xml:"SnsTopic"`
 }
 
 // SetIdentityNotificationTopicResponse is undocumented.
@@ -487,32 +487,32 @@ const (
 
 // VerifyDomainDkimRequest is undocumented.
 type VerifyDomainDkimRequest struct {
-	Domain aws.StringValue `xml:"Domain"`
+	Domain aws.StringValue `query:"Domain" xml:"Domain"`
 }
 
 // VerifyDomainDkimResponse is undocumented.
 type VerifyDomainDkimResponse struct {
-	DkimTokens []string `xml:"VerifyDomainDkimResult>DkimTokens>member"`
+	DkimTokens []string `query:"DkimTokens.member" xml:"VerifyDomainDkimResult>DkimTokens>member"`
 }
 
 // VerifyDomainIdentityRequest is undocumented.
 type VerifyDomainIdentityRequest struct {
-	Domain aws.StringValue `xml:"Domain"`
+	Domain aws.StringValue `query:"Domain" xml:"Domain"`
 }
 
 // VerifyDomainIdentityResponse is undocumented.
 type VerifyDomainIdentityResponse struct {
-	VerificationToken aws.StringValue `xml:"VerifyDomainIdentityResult>VerificationToken"`
+	VerificationToken aws.StringValue `query:"VerificationToken" xml:"VerifyDomainIdentityResult>VerificationToken"`
 }
 
 // VerifyEmailAddressRequest is undocumented.
 type VerifyEmailAddressRequest struct {
-	EmailAddress aws.StringValue `xml:"EmailAddress"`
+	EmailAddress aws.StringValue `query:"EmailAddress" xml:"EmailAddress"`
 }
 
 // VerifyEmailIdentityRequest is undocumented.
 type VerifyEmailIdentityRequest struct {
-	EmailAddress aws.StringValue `xml:"EmailAddress"`
+	EmailAddress aws.StringValue `query:"EmailAddress" xml:"EmailAddress"`
 }
 
 // VerifyEmailIdentityResponse is undocumented.
@@ -525,50 +525,50 @@ type DeleteIdentityResult struct {
 
 // GetIdentityDkimAttributesResult is a wrapper for GetIdentityDkimAttributesResponse.
 type GetIdentityDkimAttributesResult struct {
-	DkimAttributes map[string]IdentityDkimAttributes `xml:"GetIdentityDkimAttributesResult>DkimAttributes"`
+	DkimAttributes map[string]IdentityDkimAttributes `query:"DkimAttributes" xml:"GetIdentityDkimAttributesResult>DkimAttributes"`
 }
 
 // GetIdentityNotificationAttributesResult is a wrapper for GetIdentityNotificationAttributesResponse.
 type GetIdentityNotificationAttributesResult struct {
-	NotificationAttributes map[string]IdentityNotificationAttributes `xml:"GetIdentityNotificationAttributesResult>NotificationAttributes"`
+	NotificationAttributes map[string]IdentityNotificationAttributes `query:"NotificationAttributes" xml:"GetIdentityNotificationAttributesResult>NotificationAttributes"`
 }
 
 // GetIdentityVerificationAttributesResult is a wrapper for GetIdentityVerificationAttributesResponse.
 type GetIdentityVerificationAttributesResult struct {
-	VerificationAttributes map[string]IdentityVerificationAttributes `xml:"GetIdentityVerificationAttributesResult>VerificationAttributes"`
+	VerificationAttributes map[string]IdentityVerificationAttributes `query:"VerificationAttributes" xml:"GetIdentityVerificationAttributesResult>VerificationAttributes"`
 }
 
 // GetSendQuotaResult is a wrapper for GetSendQuotaResponse.
 type GetSendQuotaResult struct {
-	Max24HourSend   aws.DoubleValue `xml:"GetSendQuotaResult>Max24HourSend"`
-	MaxSendRate     aws.DoubleValue `xml:"GetSendQuotaResult>MaxSendRate"`
-	SentLast24Hours aws.DoubleValue `xml:"GetSendQuotaResult>SentLast24Hours"`
+	Max24HourSend   aws.DoubleValue `query:"Max24HourSend" xml:"GetSendQuotaResult>Max24HourSend"`
+	MaxSendRate     aws.DoubleValue `query:"MaxSendRate" xml:"GetSendQuotaResult>MaxSendRate"`
+	SentLast24Hours aws.DoubleValue `query:"SentLast24Hours" xml:"GetSendQuotaResult>SentLast24Hours"`
 }
 
 // GetSendStatisticsResult is a wrapper for GetSendStatisticsResponse.
 type GetSendStatisticsResult struct {
-	SendDataPoints []SendDataPoint `xml:"GetSendStatisticsResult>SendDataPoints>member"`
+	SendDataPoints []SendDataPoint `query:"SendDataPoints.member" xml:"GetSendStatisticsResult>SendDataPoints>member"`
 }
 
 // ListIdentitiesResult is a wrapper for ListIdentitiesResponse.
 type ListIdentitiesResult struct {
-	Identities []string        `xml:"ListIdentitiesResult>Identities>member"`
-	NextToken  aws.StringValue `xml:"ListIdentitiesResult>NextToken"`
+	Identities []string        `query:"Identities.member" xml:"ListIdentitiesResult>Identities>member"`
+	NextToken  aws.StringValue `query:"NextToken" xml:"ListIdentitiesResult>NextToken"`
 }
 
 // ListVerifiedEmailAddressesResult is a wrapper for ListVerifiedEmailAddressesResponse.
 type ListVerifiedEmailAddressesResult struct {
-	VerifiedEmailAddresses []string `xml:"ListVerifiedEmailAddressesResult>VerifiedEmailAddresses>member"`
+	VerifiedEmailAddresses []string `query:"VerifiedEmailAddresses.member" xml:"ListVerifiedEmailAddressesResult>VerifiedEmailAddresses>member"`
 }
 
 // SendEmailResult is a wrapper for SendEmailResponse.
 type SendEmailResult struct {
-	MessageID aws.StringValue `xml:"SendEmailResult>MessageId"`
+	MessageID aws.StringValue `query:"MessageId" xml:"SendEmailResult>MessageId"`
 }
 
 // SendRawEmailResult is a wrapper for SendRawEmailResponse.
 type SendRawEmailResult struct {
-	MessageID aws.StringValue `xml:"SendRawEmailResult>MessageId"`
+	MessageID aws.StringValue `query:"MessageId" xml:"SendRawEmailResult>MessageId"`
 }
 
 // SetIdentityDkimEnabledResult is a wrapper for SetIdentityDkimEnabledResponse.
@@ -585,12 +585,12 @@ type SetIdentityNotificationTopicResult struct {
 
 // VerifyDomainDkimResult is a wrapper for VerifyDomainDkimResponse.
 type VerifyDomainDkimResult struct {
-	DkimTokens []string `xml:"VerifyDomainDkimResult>DkimTokens>member"`
+	DkimTokens []string `query:"DkimTokens.member" xml:"VerifyDomainDkimResult>DkimTokens>member"`
 }
 
 // VerifyDomainIdentityResult is a wrapper for VerifyDomainIdentityResponse.
 type VerifyDomainIdentityResult struct {
-	VerificationToken aws.StringValue `xml:"VerifyDomainIdentityResult>VerificationToken"`
+	VerificationToken aws.StringValue `query:"VerificationToken" xml:"VerifyDomainIdentityResult>VerificationToken"`
 }
 
 // VerifyEmailIdentityResult is a wrapper for VerifyEmailIdentityResponse.

@@ -298,8 +298,8 @@ func (c *CloudSearch) UpdateServiceAccessPolicies(req *UpdateServiceAccessPolici
 
 // AccessPoliciesStatus is undocumented.
 type AccessPoliciesStatus struct {
-	Options aws.StringValue `xml:"Options"`
-	Status  *OptionStatus   `xml:"Status"`
+	Options aws.StringValue `query:"Options" xml:"Options"`
+	Status  *OptionStatus   `query:"Status" xml:"Status"`
 }
 
 // Possible values for CloudSearch.
@@ -312,18 +312,18 @@ const (
 
 // AnalysisOptions is undocumented.
 type AnalysisOptions struct {
-	AlgorithmicStemming            aws.StringValue `xml:"AlgorithmicStemming"`
-	JapaneseTokenizationDictionary aws.StringValue `xml:"JapaneseTokenizationDictionary"`
-	StemmingDictionary             aws.StringValue `xml:"StemmingDictionary"`
-	Stopwords                      aws.StringValue `xml:"Stopwords"`
-	Synonyms                       aws.StringValue `xml:"Synonyms"`
+	AlgorithmicStemming            aws.StringValue `query:"AlgorithmicStemming" xml:"AlgorithmicStemming"`
+	JapaneseTokenizationDictionary aws.StringValue `query:"JapaneseTokenizationDictionary" xml:"JapaneseTokenizationDictionary"`
+	StemmingDictionary             aws.StringValue `query:"StemmingDictionary" xml:"StemmingDictionary"`
+	Stopwords                      aws.StringValue `query:"Stopwords" xml:"Stopwords"`
+	Synonyms                       aws.StringValue `query:"Synonyms" xml:"Synonyms"`
 }
 
 // AnalysisScheme is undocumented.
 type AnalysisScheme struct {
-	AnalysisOptions        *AnalysisOptions `xml:"AnalysisOptions"`
-	AnalysisSchemeLanguage aws.StringValue  `xml:"AnalysisSchemeLanguage"`
-	AnalysisSchemeName     aws.StringValue  `xml:"AnalysisSchemeName"`
+	AnalysisOptions        *AnalysisOptions `query:"AnalysisOptions" xml:"AnalysisOptions"`
+	AnalysisSchemeLanguage aws.StringValue  `query:"AnalysisSchemeLanguage" xml:"AnalysisSchemeLanguage"`
+	AnalysisSchemeName     aws.StringValue  `query:"AnalysisSchemeName" xml:"AnalysisSchemeName"`
 }
 
 // Possible values for CloudSearch.
@@ -367,329 +367,329 @@ const (
 
 // AnalysisSchemeStatus is undocumented.
 type AnalysisSchemeStatus struct {
-	Options *AnalysisScheme `xml:"Options"`
-	Status  *OptionStatus   `xml:"Status"`
+	Options *AnalysisScheme `query:"Options" xml:"Options"`
+	Status  *OptionStatus   `query:"Status" xml:"Status"`
 }
 
 // AvailabilityOptionsStatus is undocumented.
 type AvailabilityOptionsStatus struct {
-	Options aws.BooleanValue `xml:"Options"`
-	Status  *OptionStatus    `xml:"Status"`
+	Options aws.BooleanValue `query:"Options" xml:"Options"`
+	Status  *OptionStatus    `query:"Status" xml:"Status"`
 }
 
 // BuildSuggestersRequest is undocumented.
 type BuildSuggestersRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
 }
 
 // BuildSuggestersResponse is undocumented.
 type BuildSuggestersResponse struct {
-	FieldNames []string `xml:"BuildSuggestersResult>FieldNames>member"`
+	FieldNames []string `query:"FieldNames.member" xml:"BuildSuggestersResult>FieldNames>member"`
 }
 
 // CreateDomainRequest is undocumented.
 type CreateDomainRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
 }
 
 // CreateDomainResponse is undocumented.
 type CreateDomainResponse struct {
-	DomainStatus *DomainStatus `xml:"CreateDomainResult>DomainStatus"`
+	DomainStatus *DomainStatus `query:"DomainStatus" xml:"CreateDomainResult>DomainStatus"`
 }
 
 // DateArrayOptions is undocumented.
 type DateArrayOptions struct {
-	DefaultValue  aws.StringValue  `xml:"DefaultValue"`
-	FacetEnabled  aws.BooleanValue `xml:"FacetEnabled"`
-	ReturnEnabled aws.BooleanValue `xml:"ReturnEnabled"`
-	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
-	SourceFields  aws.StringValue  `xml:"SourceFields"`
+	DefaultValue  aws.StringValue  `query:"DefaultValue" xml:"DefaultValue"`
+	FacetEnabled  aws.BooleanValue `query:"FacetEnabled" xml:"FacetEnabled"`
+	ReturnEnabled aws.BooleanValue `query:"ReturnEnabled" xml:"ReturnEnabled"`
+	SearchEnabled aws.BooleanValue `query:"SearchEnabled" xml:"SearchEnabled"`
+	SourceFields  aws.StringValue  `query:"SourceFields" xml:"SourceFields"`
 }
 
 // DateOptions is undocumented.
 type DateOptions struct {
-	DefaultValue  aws.StringValue  `xml:"DefaultValue"`
-	FacetEnabled  aws.BooleanValue `xml:"FacetEnabled"`
-	ReturnEnabled aws.BooleanValue `xml:"ReturnEnabled"`
-	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
-	SortEnabled   aws.BooleanValue `xml:"SortEnabled"`
-	SourceField   aws.StringValue  `xml:"SourceField"`
+	DefaultValue  aws.StringValue  `query:"DefaultValue" xml:"DefaultValue"`
+	FacetEnabled  aws.BooleanValue `query:"FacetEnabled" xml:"FacetEnabled"`
+	ReturnEnabled aws.BooleanValue `query:"ReturnEnabled" xml:"ReturnEnabled"`
+	SearchEnabled aws.BooleanValue `query:"SearchEnabled" xml:"SearchEnabled"`
+	SortEnabled   aws.BooleanValue `query:"SortEnabled" xml:"SortEnabled"`
+	SourceField   aws.StringValue  `query:"SourceField" xml:"SourceField"`
 }
 
 // DefineAnalysisSchemeRequest is undocumented.
 type DefineAnalysisSchemeRequest struct {
-	AnalysisScheme *AnalysisScheme `xml:"AnalysisScheme"`
-	DomainName     aws.StringValue `xml:"DomainName"`
+	AnalysisScheme *AnalysisScheme `query:"AnalysisScheme" xml:"AnalysisScheme"`
+	DomainName     aws.StringValue `query:"DomainName" xml:"DomainName"`
 }
 
 // DefineAnalysisSchemeResponse is undocumented.
 type DefineAnalysisSchemeResponse struct {
-	AnalysisScheme *AnalysisSchemeStatus `xml:"DefineAnalysisSchemeResult>AnalysisScheme"`
+	AnalysisScheme *AnalysisSchemeStatus `query:"AnalysisScheme" xml:"DefineAnalysisSchemeResult>AnalysisScheme"`
 }
 
 // DefineExpressionRequest is undocumented.
 type DefineExpressionRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
-	Expression *Expression     `xml:"Expression"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
+	Expression *Expression     `query:"Expression" xml:"Expression"`
 }
 
 // DefineExpressionResponse is undocumented.
 type DefineExpressionResponse struct {
-	Expression *ExpressionStatus `xml:"DefineExpressionResult>Expression"`
+	Expression *ExpressionStatus `query:"Expression" xml:"DefineExpressionResult>Expression"`
 }
 
 // DefineIndexFieldRequest is undocumented.
 type DefineIndexFieldRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
-	IndexField *IndexField     `xml:"IndexField"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
+	IndexField *IndexField     `query:"IndexField" xml:"IndexField"`
 }
 
 // DefineIndexFieldResponse is undocumented.
 type DefineIndexFieldResponse struct {
-	IndexField *IndexFieldStatus `xml:"DefineIndexFieldResult>IndexField"`
+	IndexField *IndexFieldStatus `query:"IndexField" xml:"DefineIndexFieldResult>IndexField"`
 }
 
 // DefineSuggesterRequest is undocumented.
 type DefineSuggesterRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
-	Suggester  *Suggester      `xml:"Suggester"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
+	Suggester  *Suggester      `query:"Suggester" xml:"Suggester"`
 }
 
 // DefineSuggesterResponse is undocumented.
 type DefineSuggesterResponse struct {
-	Suggester *SuggesterStatus `xml:"DefineSuggesterResult>Suggester"`
+	Suggester *SuggesterStatus `query:"Suggester" xml:"DefineSuggesterResult>Suggester"`
 }
 
 // DeleteAnalysisSchemeRequest is undocumented.
 type DeleteAnalysisSchemeRequest struct {
-	AnalysisSchemeName aws.StringValue `xml:"AnalysisSchemeName"`
-	DomainName         aws.StringValue `xml:"DomainName"`
+	AnalysisSchemeName aws.StringValue `query:"AnalysisSchemeName" xml:"AnalysisSchemeName"`
+	DomainName         aws.StringValue `query:"DomainName" xml:"DomainName"`
 }
 
 // DeleteAnalysisSchemeResponse is undocumented.
 type DeleteAnalysisSchemeResponse struct {
-	AnalysisScheme *AnalysisSchemeStatus `xml:"DeleteAnalysisSchemeResult>AnalysisScheme"`
+	AnalysisScheme *AnalysisSchemeStatus `query:"AnalysisScheme" xml:"DeleteAnalysisSchemeResult>AnalysisScheme"`
 }
 
 // DeleteDomainRequest is undocumented.
 type DeleteDomainRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
 }
 
 // DeleteDomainResponse is undocumented.
 type DeleteDomainResponse struct {
-	DomainStatus *DomainStatus `xml:"DeleteDomainResult>DomainStatus"`
+	DomainStatus *DomainStatus `query:"DomainStatus" xml:"DeleteDomainResult>DomainStatus"`
 }
 
 // DeleteExpressionRequest is undocumented.
 type DeleteExpressionRequest struct {
-	DomainName     aws.StringValue `xml:"DomainName"`
-	ExpressionName aws.StringValue `xml:"ExpressionName"`
+	DomainName     aws.StringValue `query:"DomainName" xml:"DomainName"`
+	ExpressionName aws.StringValue `query:"ExpressionName" xml:"ExpressionName"`
 }
 
 // DeleteExpressionResponse is undocumented.
 type DeleteExpressionResponse struct {
-	Expression *ExpressionStatus `xml:"DeleteExpressionResult>Expression"`
+	Expression *ExpressionStatus `query:"Expression" xml:"DeleteExpressionResult>Expression"`
 }
 
 // DeleteIndexFieldRequest is undocumented.
 type DeleteIndexFieldRequest struct {
-	DomainName     aws.StringValue `xml:"DomainName"`
-	IndexFieldName aws.StringValue `xml:"IndexFieldName"`
+	DomainName     aws.StringValue `query:"DomainName" xml:"DomainName"`
+	IndexFieldName aws.StringValue `query:"IndexFieldName" xml:"IndexFieldName"`
 }
 
 // DeleteIndexFieldResponse is undocumented.
 type DeleteIndexFieldResponse struct {
-	IndexField *IndexFieldStatus `xml:"DeleteIndexFieldResult>IndexField"`
+	IndexField *IndexFieldStatus `query:"IndexField" xml:"DeleteIndexFieldResult>IndexField"`
 }
 
 // DeleteSuggesterRequest is undocumented.
 type DeleteSuggesterRequest struct {
-	DomainName    aws.StringValue `xml:"DomainName"`
-	SuggesterName aws.StringValue `xml:"SuggesterName"`
+	DomainName    aws.StringValue `query:"DomainName" xml:"DomainName"`
+	SuggesterName aws.StringValue `query:"SuggesterName" xml:"SuggesterName"`
 }
 
 // DeleteSuggesterResponse is undocumented.
 type DeleteSuggesterResponse struct {
-	Suggester *SuggesterStatus `xml:"DeleteSuggesterResult>Suggester"`
+	Suggester *SuggesterStatus `query:"Suggester" xml:"DeleteSuggesterResult>Suggester"`
 }
 
 // DescribeAnalysisSchemesRequest is undocumented.
 type DescribeAnalysisSchemesRequest struct {
-	AnalysisSchemeNames []string         `xml:"AnalysisSchemeNames>member"`
-	Deployed            aws.BooleanValue `xml:"Deployed"`
-	DomainName          aws.StringValue  `xml:"DomainName"`
+	AnalysisSchemeNames []string         `query:"AnalysisSchemeNames.member" xml:"AnalysisSchemeNames>member"`
+	Deployed            aws.BooleanValue `query:"Deployed" xml:"Deployed"`
+	DomainName          aws.StringValue  `query:"DomainName" xml:"DomainName"`
 }
 
 // DescribeAnalysisSchemesResponse is undocumented.
 type DescribeAnalysisSchemesResponse struct {
-	AnalysisSchemes []AnalysisSchemeStatus `xml:"DescribeAnalysisSchemesResult>AnalysisSchemes>member"`
+	AnalysisSchemes []AnalysisSchemeStatus `query:"AnalysisSchemes.member" xml:"DescribeAnalysisSchemesResult>AnalysisSchemes>member"`
 }
 
 // DescribeAvailabilityOptionsRequest is undocumented.
 type DescribeAvailabilityOptionsRequest struct {
-	Deployed   aws.BooleanValue `xml:"Deployed"`
-	DomainName aws.StringValue  `xml:"DomainName"`
+	Deployed   aws.BooleanValue `query:"Deployed" xml:"Deployed"`
+	DomainName aws.StringValue  `query:"DomainName" xml:"DomainName"`
 }
 
 // DescribeAvailabilityOptionsResponse is undocumented.
 type DescribeAvailabilityOptionsResponse struct {
-	AvailabilityOptions *AvailabilityOptionsStatus `xml:"DescribeAvailabilityOptionsResult>AvailabilityOptions"`
+	AvailabilityOptions *AvailabilityOptionsStatus `query:"AvailabilityOptions" xml:"DescribeAvailabilityOptionsResult>AvailabilityOptions"`
 }
 
 // DescribeDomainsRequest is undocumented.
 type DescribeDomainsRequest struct {
-	DomainNames []string `xml:"DomainNames>member"`
+	DomainNames []string `query:"DomainNames.member" xml:"DomainNames>member"`
 }
 
 // DescribeDomainsResponse is undocumented.
 type DescribeDomainsResponse struct {
-	DomainStatusList []DomainStatus `xml:"DescribeDomainsResult>DomainStatusList>member"`
+	DomainStatusList []DomainStatus `query:"DomainStatusList.member" xml:"DescribeDomainsResult>DomainStatusList>member"`
 }
 
 // DescribeExpressionsRequest is undocumented.
 type DescribeExpressionsRequest struct {
-	Deployed        aws.BooleanValue `xml:"Deployed"`
-	DomainName      aws.StringValue  `xml:"DomainName"`
-	ExpressionNames []string         `xml:"ExpressionNames>member"`
+	Deployed        aws.BooleanValue `query:"Deployed" xml:"Deployed"`
+	DomainName      aws.StringValue  `query:"DomainName" xml:"DomainName"`
+	ExpressionNames []string         `query:"ExpressionNames.member" xml:"ExpressionNames>member"`
 }
 
 // DescribeExpressionsResponse is undocumented.
 type DescribeExpressionsResponse struct {
-	Expressions []ExpressionStatus `xml:"DescribeExpressionsResult>Expressions>member"`
+	Expressions []ExpressionStatus `query:"Expressions.member" xml:"DescribeExpressionsResult>Expressions>member"`
 }
 
 // DescribeIndexFieldsRequest is undocumented.
 type DescribeIndexFieldsRequest struct {
-	Deployed   aws.BooleanValue `xml:"Deployed"`
-	DomainName aws.StringValue  `xml:"DomainName"`
-	FieldNames []string         `xml:"FieldNames>member"`
+	Deployed   aws.BooleanValue `query:"Deployed" xml:"Deployed"`
+	DomainName aws.StringValue  `query:"DomainName" xml:"DomainName"`
+	FieldNames []string         `query:"FieldNames.member" xml:"FieldNames>member"`
 }
 
 // DescribeIndexFieldsResponse is undocumented.
 type DescribeIndexFieldsResponse struct {
-	IndexFields []IndexFieldStatus `xml:"DescribeIndexFieldsResult>IndexFields>member"`
+	IndexFields []IndexFieldStatus `query:"IndexFields.member" xml:"DescribeIndexFieldsResult>IndexFields>member"`
 }
 
 // DescribeScalingParametersRequest is undocumented.
 type DescribeScalingParametersRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
 }
 
 // DescribeScalingParametersResponse is undocumented.
 type DescribeScalingParametersResponse struct {
-	ScalingParameters *ScalingParametersStatus `xml:"DescribeScalingParametersResult>ScalingParameters"`
+	ScalingParameters *ScalingParametersStatus `query:"ScalingParameters" xml:"DescribeScalingParametersResult>ScalingParameters"`
 }
 
 // DescribeServiceAccessPoliciesRequest is undocumented.
 type DescribeServiceAccessPoliciesRequest struct {
-	Deployed   aws.BooleanValue `xml:"Deployed"`
-	DomainName aws.StringValue  `xml:"DomainName"`
+	Deployed   aws.BooleanValue `query:"Deployed" xml:"Deployed"`
+	DomainName aws.StringValue  `query:"DomainName" xml:"DomainName"`
 }
 
 // DescribeServiceAccessPoliciesResponse is undocumented.
 type DescribeServiceAccessPoliciesResponse struct {
-	AccessPolicies *AccessPoliciesStatus `xml:"DescribeServiceAccessPoliciesResult>AccessPolicies"`
+	AccessPolicies *AccessPoliciesStatus `query:"AccessPolicies" xml:"DescribeServiceAccessPoliciesResult>AccessPolicies"`
 }
 
 // DescribeSuggestersRequest is undocumented.
 type DescribeSuggestersRequest struct {
-	Deployed       aws.BooleanValue `xml:"Deployed"`
-	DomainName     aws.StringValue  `xml:"DomainName"`
-	SuggesterNames []string         `xml:"SuggesterNames>member"`
+	Deployed       aws.BooleanValue `query:"Deployed" xml:"Deployed"`
+	DomainName     aws.StringValue  `query:"DomainName" xml:"DomainName"`
+	SuggesterNames []string         `query:"SuggesterNames.member" xml:"SuggesterNames>member"`
 }
 
 // DescribeSuggestersResponse is undocumented.
 type DescribeSuggestersResponse struct {
-	Suggesters []SuggesterStatus `xml:"DescribeSuggestersResult>Suggesters>member"`
+	Suggesters []SuggesterStatus `query:"Suggesters.member" xml:"DescribeSuggestersResult>Suggesters>member"`
 }
 
 // DocumentSuggesterOptions is undocumented.
 type DocumentSuggesterOptions struct {
-	FuzzyMatching  aws.StringValue `xml:"FuzzyMatching"`
-	SortExpression aws.StringValue `xml:"SortExpression"`
-	SourceField    aws.StringValue `xml:"SourceField"`
+	FuzzyMatching  aws.StringValue `query:"FuzzyMatching" xml:"FuzzyMatching"`
+	SortExpression aws.StringValue `query:"SortExpression" xml:"SortExpression"`
+	SourceField    aws.StringValue `query:"SourceField" xml:"SourceField"`
 }
 
 // DomainStatus is undocumented.
 type DomainStatus struct {
-	ARN                    aws.StringValue  `xml:"ARN"`
-	Created                aws.BooleanValue `xml:"Created"`
-	Deleted                aws.BooleanValue `xml:"Deleted"`
-	DocService             *ServiceEndpoint `xml:"DocService"`
-	DomainID               aws.StringValue  `xml:"DomainId"`
-	DomainName             aws.StringValue  `xml:"DomainName"`
-	Limits                 *Limits          `xml:"Limits"`
-	Processing             aws.BooleanValue `xml:"Processing"`
-	RequiresIndexDocuments aws.BooleanValue `xml:"RequiresIndexDocuments"`
-	SearchInstanceCount    aws.IntegerValue `xml:"SearchInstanceCount"`
-	SearchInstanceType     aws.StringValue  `xml:"SearchInstanceType"`
-	SearchPartitionCount   aws.IntegerValue `xml:"SearchPartitionCount"`
-	SearchService          *ServiceEndpoint `xml:"SearchService"`
+	ARN                    aws.StringValue  `query:"ARN" xml:"ARN"`
+	Created                aws.BooleanValue `query:"Created" xml:"Created"`
+	Deleted                aws.BooleanValue `query:"Deleted" xml:"Deleted"`
+	DocService             *ServiceEndpoint `query:"DocService" xml:"DocService"`
+	DomainID               aws.StringValue  `query:"DomainId" xml:"DomainId"`
+	DomainName             aws.StringValue  `query:"DomainName" xml:"DomainName"`
+	Limits                 *Limits          `query:"Limits" xml:"Limits"`
+	Processing             aws.BooleanValue `query:"Processing" xml:"Processing"`
+	RequiresIndexDocuments aws.BooleanValue `query:"RequiresIndexDocuments" xml:"RequiresIndexDocuments"`
+	SearchInstanceCount    aws.IntegerValue `query:"SearchInstanceCount" xml:"SearchInstanceCount"`
+	SearchInstanceType     aws.StringValue  `query:"SearchInstanceType" xml:"SearchInstanceType"`
+	SearchPartitionCount   aws.IntegerValue `query:"SearchPartitionCount" xml:"SearchPartitionCount"`
+	SearchService          *ServiceEndpoint `query:"SearchService" xml:"SearchService"`
 }
 
 // DoubleArrayOptions is undocumented.
 type DoubleArrayOptions struct {
-	DefaultValue  aws.DoubleValue  `xml:"DefaultValue"`
-	FacetEnabled  aws.BooleanValue `xml:"FacetEnabled"`
-	ReturnEnabled aws.BooleanValue `xml:"ReturnEnabled"`
-	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
-	SourceFields  aws.StringValue  `xml:"SourceFields"`
+	DefaultValue  aws.DoubleValue  `query:"DefaultValue" xml:"DefaultValue"`
+	FacetEnabled  aws.BooleanValue `query:"FacetEnabled" xml:"FacetEnabled"`
+	ReturnEnabled aws.BooleanValue `query:"ReturnEnabled" xml:"ReturnEnabled"`
+	SearchEnabled aws.BooleanValue `query:"SearchEnabled" xml:"SearchEnabled"`
+	SourceFields  aws.StringValue  `query:"SourceFields" xml:"SourceFields"`
 }
 
 // DoubleOptions is undocumented.
 type DoubleOptions struct {
-	DefaultValue  aws.DoubleValue  `xml:"DefaultValue"`
-	FacetEnabled  aws.BooleanValue `xml:"FacetEnabled"`
-	ReturnEnabled aws.BooleanValue `xml:"ReturnEnabled"`
-	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
-	SortEnabled   aws.BooleanValue `xml:"SortEnabled"`
-	SourceField   aws.StringValue  `xml:"SourceField"`
+	DefaultValue  aws.DoubleValue  `query:"DefaultValue" xml:"DefaultValue"`
+	FacetEnabled  aws.BooleanValue `query:"FacetEnabled" xml:"FacetEnabled"`
+	ReturnEnabled aws.BooleanValue `query:"ReturnEnabled" xml:"ReturnEnabled"`
+	SearchEnabled aws.BooleanValue `query:"SearchEnabled" xml:"SearchEnabled"`
+	SortEnabled   aws.BooleanValue `query:"SortEnabled" xml:"SortEnabled"`
+	SourceField   aws.StringValue  `query:"SourceField" xml:"SourceField"`
 }
 
 // Expression is undocumented.
 type Expression struct {
-	ExpressionName  aws.StringValue `xml:"ExpressionName"`
-	ExpressionValue aws.StringValue `xml:"ExpressionValue"`
+	ExpressionName  aws.StringValue `query:"ExpressionName" xml:"ExpressionName"`
+	ExpressionValue aws.StringValue `query:"ExpressionValue" xml:"ExpressionValue"`
 }
 
 // ExpressionStatus is undocumented.
 type ExpressionStatus struct {
-	Options *Expression   `xml:"Options"`
-	Status  *OptionStatus `xml:"Status"`
+	Options *Expression   `query:"Options" xml:"Options"`
+	Status  *OptionStatus `query:"Status" xml:"Status"`
 }
 
 // IndexDocumentsRequest is undocumented.
 type IndexDocumentsRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
 }
 
 // IndexDocumentsResponse is undocumented.
 type IndexDocumentsResponse struct {
-	FieldNames []string `xml:"IndexDocumentsResult>FieldNames>member"`
+	FieldNames []string `query:"FieldNames.member" xml:"IndexDocumentsResult>FieldNames>member"`
 }
 
 // IndexField is undocumented.
 type IndexField struct {
-	DateArrayOptions    *DateArrayOptions    `xml:"DateArrayOptions"`
-	DateOptions         *DateOptions         `xml:"DateOptions"`
-	DoubleArrayOptions  *DoubleArrayOptions  `xml:"DoubleArrayOptions"`
-	DoubleOptions       *DoubleOptions       `xml:"DoubleOptions"`
-	IndexFieldName      aws.StringValue      `xml:"IndexFieldName"`
-	IndexFieldType      aws.StringValue      `xml:"IndexFieldType"`
-	IntArrayOptions     *IntArrayOptions     `xml:"IntArrayOptions"`
-	IntOptions          *IntOptions          `xml:"IntOptions"`
-	LatLonOptions       *LatLonOptions       `xml:"LatLonOptions"`
-	LiteralArrayOptions *LiteralArrayOptions `xml:"LiteralArrayOptions"`
-	LiteralOptions      *LiteralOptions      `xml:"LiteralOptions"`
-	TextArrayOptions    *TextArrayOptions    `xml:"TextArrayOptions"`
-	TextOptions         *TextOptions         `xml:"TextOptions"`
+	DateArrayOptions    *DateArrayOptions    `query:"DateArrayOptions" xml:"DateArrayOptions"`
+	DateOptions         *DateOptions         `query:"DateOptions" xml:"DateOptions"`
+	DoubleArrayOptions  *DoubleArrayOptions  `query:"DoubleArrayOptions" xml:"DoubleArrayOptions"`
+	DoubleOptions       *DoubleOptions       `query:"DoubleOptions" xml:"DoubleOptions"`
+	IndexFieldName      aws.StringValue      `query:"IndexFieldName" xml:"IndexFieldName"`
+	IndexFieldType      aws.StringValue      `query:"IndexFieldType" xml:"IndexFieldType"`
+	IntArrayOptions     *IntArrayOptions     `query:"IntArrayOptions" xml:"IntArrayOptions"`
+	IntOptions          *IntOptions          `query:"IntOptions" xml:"IntOptions"`
+	LatLonOptions       *LatLonOptions       `query:"LatLonOptions" xml:"LatLonOptions"`
+	LiteralArrayOptions *LiteralArrayOptions `query:"LiteralArrayOptions" xml:"LiteralArrayOptions"`
+	LiteralOptions      *LiteralOptions      `query:"LiteralOptions" xml:"LiteralOptions"`
+	TextArrayOptions    *TextArrayOptions    `query:"TextArrayOptions" xml:"TextArrayOptions"`
+	TextOptions         *TextOptions         `query:"TextOptions" xml:"TextOptions"`
 }
 
 // IndexFieldStatus is undocumented.
 type IndexFieldStatus struct {
-	Options *IndexField   `xml:"Options"`
-	Status  *OptionStatus `xml:"Status"`
+	Options *IndexField   `query:"Options" xml:"Options"`
+	Status  *OptionStatus `query:"Status" xml:"Status"`
 }
 
 // Possible values for CloudSearch.
@@ -709,61 +709,61 @@ const (
 
 // IntArrayOptions is undocumented.
 type IntArrayOptions struct {
-	DefaultValue  aws.LongValue    `xml:"DefaultValue"`
-	FacetEnabled  aws.BooleanValue `xml:"FacetEnabled"`
-	ReturnEnabled aws.BooleanValue `xml:"ReturnEnabled"`
-	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
-	SourceFields  aws.StringValue  `xml:"SourceFields"`
+	DefaultValue  aws.LongValue    `query:"DefaultValue" xml:"DefaultValue"`
+	FacetEnabled  aws.BooleanValue `query:"FacetEnabled" xml:"FacetEnabled"`
+	ReturnEnabled aws.BooleanValue `query:"ReturnEnabled" xml:"ReturnEnabled"`
+	SearchEnabled aws.BooleanValue `query:"SearchEnabled" xml:"SearchEnabled"`
+	SourceFields  aws.StringValue  `query:"SourceFields" xml:"SourceFields"`
 }
 
 // IntOptions is undocumented.
 type IntOptions struct {
-	DefaultValue  aws.LongValue    `xml:"DefaultValue"`
-	FacetEnabled  aws.BooleanValue `xml:"FacetEnabled"`
-	ReturnEnabled aws.BooleanValue `xml:"ReturnEnabled"`
-	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
-	SortEnabled   aws.BooleanValue `xml:"SortEnabled"`
-	SourceField   aws.StringValue  `xml:"SourceField"`
+	DefaultValue  aws.LongValue    `query:"DefaultValue" xml:"DefaultValue"`
+	FacetEnabled  aws.BooleanValue `query:"FacetEnabled" xml:"FacetEnabled"`
+	ReturnEnabled aws.BooleanValue `query:"ReturnEnabled" xml:"ReturnEnabled"`
+	SearchEnabled aws.BooleanValue `query:"SearchEnabled" xml:"SearchEnabled"`
+	SortEnabled   aws.BooleanValue `query:"SortEnabled" xml:"SortEnabled"`
+	SourceField   aws.StringValue  `query:"SourceField" xml:"SourceField"`
 }
 
 // LatLonOptions is undocumented.
 type LatLonOptions struct {
-	DefaultValue  aws.StringValue  `xml:"DefaultValue"`
-	FacetEnabled  aws.BooleanValue `xml:"FacetEnabled"`
-	ReturnEnabled aws.BooleanValue `xml:"ReturnEnabled"`
-	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
-	SortEnabled   aws.BooleanValue `xml:"SortEnabled"`
-	SourceField   aws.StringValue  `xml:"SourceField"`
+	DefaultValue  aws.StringValue  `query:"DefaultValue" xml:"DefaultValue"`
+	FacetEnabled  aws.BooleanValue `query:"FacetEnabled" xml:"FacetEnabled"`
+	ReturnEnabled aws.BooleanValue `query:"ReturnEnabled" xml:"ReturnEnabled"`
+	SearchEnabled aws.BooleanValue `query:"SearchEnabled" xml:"SearchEnabled"`
+	SortEnabled   aws.BooleanValue `query:"SortEnabled" xml:"SortEnabled"`
+	SourceField   aws.StringValue  `query:"SourceField" xml:"SourceField"`
 }
 
 // Limits is undocumented.
 type Limits struct {
-	MaximumPartitionCount   aws.IntegerValue `xml:"MaximumPartitionCount"`
-	MaximumReplicationCount aws.IntegerValue `xml:"MaximumReplicationCount"`
+	MaximumPartitionCount   aws.IntegerValue `query:"MaximumPartitionCount" xml:"MaximumPartitionCount"`
+	MaximumReplicationCount aws.IntegerValue `query:"MaximumReplicationCount" xml:"MaximumReplicationCount"`
 }
 
 // ListDomainNamesResponse is undocumented.
 type ListDomainNamesResponse struct {
-	DomainNames map[string]string `xml:"ListDomainNamesResult>DomainNames"`
+	DomainNames map[string]string `query:"DomainNames" xml:"ListDomainNamesResult>DomainNames"`
 }
 
 // LiteralArrayOptions is undocumented.
 type LiteralArrayOptions struct {
-	DefaultValue  aws.StringValue  `xml:"DefaultValue"`
-	FacetEnabled  aws.BooleanValue `xml:"FacetEnabled"`
-	ReturnEnabled aws.BooleanValue `xml:"ReturnEnabled"`
-	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
-	SourceFields  aws.StringValue  `xml:"SourceFields"`
+	DefaultValue  aws.StringValue  `query:"DefaultValue" xml:"DefaultValue"`
+	FacetEnabled  aws.BooleanValue `query:"FacetEnabled" xml:"FacetEnabled"`
+	ReturnEnabled aws.BooleanValue `query:"ReturnEnabled" xml:"ReturnEnabled"`
+	SearchEnabled aws.BooleanValue `query:"SearchEnabled" xml:"SearchEnabled"`
+	SourceFields  aws.StringValue  `query:"SourceFields" xml:"SourceFields"`
 }
 
 // LiteralOptions is undocumented.
 type LiteralOptions struct {
-	DefaultValue  aws.StringValue  `xml:"DefaultValue"`
-	FacetEnabled  aws.BooleanValue `xml:"FacetEnabled"`
-	ReturnEnabled aws.BooleanValue `xml:"ReturnEnabled"`
-	SearchEnabled aws.BooleanValue `xml:"SearchEnabled"`
-	SortEnabled   aws.BooleanValue `xml:"SortEnabled"`
-	SourceField   aws.StringValue  `xml:"SourceField"`
+	DefaultValue  aws.StringValue  `query:"DefaultValue" xml:"DefaultValue"`
+	FacetEnabled  aws.BooleanValue `query:"FacetEnabled" xml:"FacetEnabled"`
+	ReturnEnabled aws.BooleanValue `query:"ReturnEnabled" xml:"ReturnEnabled"`
+	SearchEnabled aws.BooleanValue `query:"SearchEnabled" xml:"SearchEnabled"`
+	SortEnabled   aws.BooleanValue `query:"SortEnabled" xml:"SortEnabled"`
+	SourceField   aws.StringValue  `query:"SourceField" xml:"SourceField"`
 }
 
 // Possible values for CloudSearch.
@@ -776,11 +776,11 @@ const (
 
 // OptionStatus is undocumented.
 type OptionStatus struct {
-	CreationDate    time.Time        `xml:"CreationDate"`
-	PendingDeletion aws.BooleanValue `xml:"PendingDeletion"`
-	State           aws.StringValue  `xml:"State"`
-	UpdateDate      time.Time        `xml:"UpdateDate"`
-	UpdateVersion   aws.IntegerValue `xml:"UpdateVersion"`
+	CreationDate    time.Time        `query:"CreationDate" xml:"CreationDate"`
+	PendingDeletion aws.BooleanValue `query:"PendingDeletion" xml:"PendingDeletion"`
+	State           aws.StringValue  `query:"State" xml:"State"`
+	UpdateDate      time.Time        `query:"UpdateDate" xml:"UpdateDate"`
+	UpdateVersion   aws.IntegerValue `query:"UpdateVersion" xml:"UpdateVersion"`
 }
 
 // Possible values for CloudSearch.
@@ -793,26 +793,26 @@ const (
 
 // ScalingParameters is undocumented.
 type ScalingParameters struct {
-	DesiredInstanceType     aws.StringValue  `xml:"DesiredInstanceType"`
-	DesiredPartitionCount   aws.IntegerValue `xml:"DesiredPartitionCount"`
-	DesiredReplicationCount aws.IntegerValue `xml:"DesiredReplicationCount"`
+	DesiredInstanceType     aws.StringValue  `query:"DesiredInstanceType" xml:"DesiredInstanceType"`
+	DesiredPartitionCount   aws.IntegerValue `query:"DesiredPartitionCount" xml:"DesiredPartitionCount"`
+	DesiredReplicationCount aws.IntegerValue `query:"DesiredReplicationCount" xml:"DesiredReplicationCount"`
 }
 
 // ScalingParametersStatus is undocumented.
 type ScalingParametersStatus struct {
-	Options *ScalingParameters `xml:"Options"`
-	Status  *OptionStatus      `xml:"Status"`
+	Options *ScalingParameters `query:"Options" xml:"Options"`
+	Status  *OptionStatus      `query:"Status" xml:"Status"`
 }
 
 // ServiceEndpoint is undocumented.
 type ServiceEndpoint struct {
-	Endpoint aws.StringValue `xml:"Endpoint"`
+	Endpoint aws.StringValue `query:"Endpoint" xml:"Endpoint"`
 }
 
 // Suggester is undocumented.
 type Suggester struct {
-	DocumentSuggesterOptions *DocumentSuggesterOptions `xml:"DocumentSuggesterOptions"`
-	SuggesterName            aws.StringValue           `xml:"SuggesterName"`
+	DocumentSuggesterOptions *DocumentSuggesterOptions `query:"DocumentSuggesterOptions" xml:"DocumentSuggesterOptions"`
+	SuggesterName            aws.StringValue           `query:"SuggesterName" xml:"SuggesterName"`
 }
 
 // Possible values for CloudSearch.
@@ -824,180 +824,180 @@ const (
 
 // SuggesterStatus is undocumented.
 type SuggesterStatus struct {
-	Options *Suggester    `xml:"Options"`
-	Status  *OptionStatus `xml:"Status"`
+	Options *Suggester    `query:"Options" xml:"Options"`
+	Status  *OptionStatus `query:"Status" xml:"Status"`
 }
 
 // TextArrayOptions is undocumented.
 type TextArrayOptions struct {
-	AnalysisScheme   aws.StringValue  `xml:"AnalysisScheme"`
-	DefaultValue     aws.StringValue  `xml:"DefaultValue"`
-	HighlightEnabled aws.BooleanValue `xml:"HighlightEnabled"`
-	ReturnEnabled    aws.BooleanValue `xml:"ReturnEnabled"`
-	SourceFields     aws.StringValue  `xml:"SourceFields"`
+	AnalysisScheme   aws.StringValue  `query:"AnalysisScheme" xml:"AnalysisScheme"`
+	DefaultValue     aws.StringValue  `query:"DefaultValue" xml:"DefaultValue"`
+	HighlightEnabled aws.BooleanValue `query:"HighlightEnabled" xml:"HighlightEnabled"`
+	ReturnEnabled    aws.BooleanValue `query:"ReturnEnabled" xml:"ReturnEnabled"`
+	SourceFields     aws.StringValue  `query:"SourceFields" xml:"SourceFields"`
 }
 
 // TextOptions is undocumented.
 type TextOptions struct {
-	AnalysisScheme   aws.StringValue  `xml:"AnalysisScheme"`
-	DefaultValue     aws.StringValue  `xml:"DefaultValue"`
-	HighlightEnabled aws.BooleanValue `xml:"HighlightEnabled"`
-	ReturnEnabled    aws.BooleanValue `xml:"ReturnEnabled"`
-	SortEnabled      aws.BooleanValue `xml:"SortEnabled"`
-	SourceField      aws.StringValue  `xml:"SourceField"`
+	AnalysisScheme   aws.StringValue  `query:"AnalysisScheme" xml:"AnalysisScheme"`
+	DefaultValue     aws.StringValue  `query:"DefaultValue" xml:"DefaultValue"`
+	HighlightEnabled aws.BooleanValue `query:"HighlightEnabled" xml:"HighlightEnabled"`
+	ReturnEnabled    aws.BooleanValue `query:"ReturnEnabled" xml:"ReturnEnabled"`
+	SortEnabled      aws.BooleanValue `query:"SortEnabled" xml:"SortEnabled"`
+	SourceField      aws.StringValue  `query:"SourceField" xml:"SourceField"`
 }
 
 // UpdateAvailabilityOptionsRequest is undocumented.
 type UpdateAvailabilityOptionsRequest struct {
-	DomainName aws.StringValue  `xml:"DomainName"`
-	MultiAZ    aws.BooleanValue `xml:"MultiAZ"`
+	DomainName aws.StringValue  `query:"DomainName" xml:"DomainName"`
+	MultiAZ    aws.BooleanValue `query:"MultiAZ" xml:"MultiAZ"`
 }
 
 // UpdateAvailabilityOptionsResponse is undocumented.
 type UpdateAvailabilityOptionsResponse struct {
-	AvailabilityOptions *AvailabilityOptionsStatus `xml:"UpdateAvailabilityOptionsResult>AvailabilityOptions"`
+	AvailabilityOptions *AvailabilityOptionsStatus `query:"AvailabilityOptions" xml:"UpdateAvailabilityOptionsResult>AvailabilityOptions"`
 }
 
 // UpdateScalingParametersRequest is undocumented.
 type UpdateScalingParametersRequest struct {
-	DomainName        aws.StringValue    `xml:"DomainName"`
-	ScalingParameters *ScalingParameters `xml:"ScalingParameters"`
+	DomainName        aws.StringValue    `query:"DomainName" xml:"DomainName"`
+	ScalingParameters *ScalingParameters `query:"ScalingParameters" xml:"ScalingParameters"`
 }
 
 // UpdateScalingParametersResponse is undocumented.
 type UpdateScalingParametersResponse struct {
-	ScalingParameters *ScalingParametersStatus `xml:"UpdateScalingParametersResult>ScalingParameters"`
+	ScalingParameters *ScalingParametersStatus `query:"ScalingParameters" xml:"UpdateScalingParametersResult>ScalingParameters"`
 }
 
 // UpdateServiceAccessPoliciesRequest is undocumented.
 type UpdateServiceAccessPoliciesRequest struct {
-	AccessPolicies aws.StringValue `xml:"AccessPolicies"`
-	DomainName     aws.StringValue `xml:"DomainName"`
+	AccessPolicies aws.StringValue `query:"AccessPolicies" xml:"AccessPolicies"`
+	DomainName     aws.StringValue `query:"DomainName" xml:"DomainName"`
 }
 
 // UpdateServiceAccessPoliciesResponse is undocumented.
 type UpdateServiceAccessPoliciesResponse struct {
-	AccessPolicies *AccessPoliciesStatus `xml:"UpdateServiceAccessPoliciesResult>AccessPolicies"`
+	AccessPolicies *AccessPoliciesStatus `query:"AccessPolicies" xml:"UpdateServiceAccessPoliciesResult>AccessPolicies"`
 }
 
 // BuildSuggestersResult is a wrapper for BuildSuggestersResponse.
 type BuildSuggestersResult struct {
-	FieldNames []string `xml:"BuildSuggestersResult>FieldNames>member"`
+	FieldNames []string `query:"FieldNames.member" xml:"BuildSuggestersResult>FieldNames>member"`
 }
 
 // CreateDomainResult is a wrapper for CreateDomainResponse.
 type CreateDomainResult struct {
-	DomainStatus *DomainStatus `xml:"CreateDomainResult>DomainStatus"`
+	DomainStatus *DomainStatus `query:"DomainStatus" xml:"CreateDomainResult>DomainStatus"`
 }
 
 // DefineAnalysisSchemeResult is a wrapper for DefineAnalysisSchemeResponse.
 type DefineAnalysisSchemeResult struct {
-	AnalysisScheme *AnalysisSchemeStatus `xml:"DefineAnalysisSchemeResult>AnalysisScheme"`
+	AnalysisScheme *AnalysisSchemeStatus `query:"AnalysisScheme" xml:"DefineAnalysisSchemeResult>AnalysisScheme"`
 }
 
 // DefineExpressionResult is a wrapper for DefineExpressionResponse.
 type DefineExpressionResult struct {
-	Expression *ExpressionStatus `xml:"DefineExpressionResult>Expression"`
+	Expression *ExpressionStatus `query:"Expression" xml:"DefineExpressionResult>Expression"`
 }
 
 // DefineIndexFieldResult is a wrapper for DefineIndexFieldResponse.
 type DefineIndexFieldResult struct {
-	IndexField *IndexFieldStatus `xml:"DefineIndexFieldResult>IndexField"`
+	IndexField *IndexFieldStatus `query:"IndexField" xml:"DefineIndexFieldResult>IndexField"`
 }
 
 // DefineSuggesterResult is a wrapper for DefineSuggesterResponse.
 type DefineSuggesterResult struct {
-	Suggester *SuggesterStatus `xml:"DefineSuggesterResult>Suggester"`
+	Suggester *SuggesterStatus `query:"Suggester" xml:"DefineSuggesterResult>Suggester"`
 }
 
 // DeleteAnalysisSchemeResult is a wrapper for DeleteAnalysisSchemeResponse.
 type DeleteAnalysisSchemeResult struct {
-	AnalysisScheme *AnalysisSchemeStatus `xml:"DeleteAnalysisSchemeResult>AnalysisScheme"`
+	AnalysisScheme *AnalysisSchemeStatus `query:"AnalysisScheme" xml:"DeleteAnalysisSchemeResult>AnalysisScheme"`
 }
 
 // DeleteDomainResult is a wrapper for DeleteDomainResponse.
 type DeleteDomainResult struct {
-	DomainStatus *DomainStatus `xml:"DeleteDomainResult>DomainStatus"`
+	DomainStatus *DomainStatus `query:"DomainStatus" xml:"DeleteDomainResult>DomainStatus"`
 }
 
 // DeleteExpressionResult is a wrapper for DeleteExpressionResponse.
 type DeleteExpressionResult struct {
-	Expression *ExpressionStatus `xml:"DeleteExpressionResult>Expression"`
+	Expression *ExpressionStatus `query:"Expression" xml:"DeleteExpressionResult>Expression"`
 }
 
 // DeleteIndexFieldResult is a wrapper for DeleteIndexFieldResponse.
 type DeleteIndexFieldResult struct {
-	IndexField *IndexFieldStatus `xml:"DeleteIndexFieldResult>IndexField"`
+	IndexField *IndexFieldStatus `query:"IndexField" xml:"DeleteIndexFieldResult>IndexField"`
 }
 
 // DeleteSuggesterResult is a wrapper for DeleteSuggesterResponse.
 type DeleteSuggesterResult struct {
-	Suggester *SuggesterStatus `xml:"DeleteSuggesterResult>Suggester"`
+	Suggester *SuggesterStatus `query:"Suggester" xml:"DeleteSuggesterResult>Suggester"`
 }
 
 // DescribeAnalysisSchemesResult is a wrapper for DescribeAnalysisSchemesResponse.
 type DescribeAnalysisSchemesResult struct {
-	AnalysisSchemes []AnalysisSchemeStatus `xml:"DescribeAnalysisSchemesResult>AnalysisSchemes>member"`
+	AnalysisSchemes []AnalysisSchemeStatus `query:"AnalysisSchemes.member" xml:"DescribeAnalysisSchemesResult>AnalysisSchemes>member"`
 }
 
 // DescribeAvailabilityOptionsResult is a wrapper for DescribeAvailabilityOptionsResponse.
 type DescribeAvailabilityOptionsResult struct {
-	AvailabilityOptions *AvailabilityOptionsStatus `xml:"DescribeAvailabilityOptionsResult>AvailabilityOptions"`
+	AvailabilityOptions *AvailabilityOptionsStatus `query:"AvailabilityOptions" xml:"DescribeAvailabilityOptionsResult>AvailabilityOptions"`
 }
 
 // DescribeDomainsResult is a wrapper for DescribeDomainsResponse.
 type DescribeDomainsResult struct {
-	DomainStatusList []DomainStatus `xml:"DescribeDomainsResult>DomainStatusList>member"`
+	DomainStatusList []DomainStatus `query:"DomainStatusList.member" xml:"DescribeDomainsResult>DomainStatusList>member"`
 }
 
 // DescribeExpressionsResult is a wrapper for DescribeExpressionsResponse.
 type DescribeExpressionsResult struct {
-	Expressions []ExpressionStatus `xml:"DescribeExpressionsResult>Expressions>member"`
+	Expressions []ExpressionStatus `query:"Expressions.member" xml:"DescribeExpressionsResult>Expressions>member"`
 }
 
 // DescribeIndexFieldsResult is a wrapper for DescribeIndexFieldsResponse.
 type DescribeIndexFieldsResult struct {
-	IndexFields []IndexFieldStatus `xml:"DescribeIndexFieldsResult>IndexFields>member"`
+	IndexFields []IndexFieldStatus `query:"IndexFields.member" xml:"DescribeIndexFieldsResult>IndexFields>member"`
 }
 
 // DescribeScalingParametersResult is a wrapper for DescribeScalingParametersResponse.
 type DescribeScalingParametersResult struct {
-	ScalingParameters *ScalingParametersStatus `xml:"DescribeScalingParametersResult>ScalingParameters"`
+	ScalingParameters *ScalingParametersStatus `query:"ScalingParameters" xml:"DescribeScalingParametersResult>ScalingParameters"`
 }
 
 // DescribeServiceAccessPoliciesResult is a wrapper for DescribeServiceAccessPoliciesResponse.
 type DescribeServiceAccessPoliciesResult struct {
-	AccessPolicies *AccessPoliciesStatus `xml:"DescribeServiceAccessPoliciesResult>AccessPolicies"`
+	AccessPolicies *AccessPoliciesStatus `query:"AccessPolicies" xml:"DescribeServiceAccessPoliciesResult>AccessPolicies"`
 }
 
 // DescribeSuggestersResult is a wrapper for DescribeSuggestersResponse.
 type DescribeSuggestersResult struct {
-	Suggesters []SuggesterStatus `xml:"DescribeSuggestersResult>Suggesters>member"`
+	Suggesters []SuggesterStatus `query:"Suggesters.member" xml:"DescribeSuggestersResult>Suggesters>member"`
 }
 
 // IndexDocumentsResult is a wrapper for IndexDocumentsResponse.
 type IndexDocumentsResult struct {
-	FieldNames []string `xml:"IndexDocumentsResult>FieldNames>member"`
+	FieldNames []string `query:"FieldNames.member" xml:"IndexDocumentsResult>FieldNames>member"`
 }
 
 // ListDomainNamesResult is a wrapper for ListDomainNamesResponse.
 type ListDomainNamesResult struct {
-	DomainNames map[string]string `xml:"ListDomainNamesResult>DomainNames"`
+	DomainNames map[string]string `query:"DomainNames" xml:"ListDomainNamesResult>DomainNames"`
 }
 
 // UpdateAvailabilityOptionsResult is a wrapper for UpdateAvailabilityOptionsResponse.
 type UpdateAvailabilityOptionsResult struct {
-	AvailabilityOptions *AvailabilityOptionsStatus `xml:"UpdateAvailabilityOptionsResult>AvailabilityOptions"`
+	AvailabilityOptions *AvailabilityOptionsStatus `query:"AvailabilityOptions" xml:"UpdateAvailabilityOptionsResult>AvailabilityOptions"`
 }
 
 // UpdateScalingParametersResult is a wrapper for UpdateScalingParametersResponse.
 type UpdateScalingParametersResult struct {
-	ScalingParameters *ScalingParametersStatus `xml:"UpdateScalingParametersResult>ScalingParameters"`
+	ScalingParameters *ScalingParametersStatus `query:"ScalingParameters" xml:"UpdateScalingParametersResult>ScalingParameters"`
 }
 
 // UpdateServiceAccessPoliciesResult is a wrapper for UpdateServiceAccessPoliciesResponse.
 type UpdateServiceAccessPoliciesResult struct {
-	AccessPolicies *AccessPoliciesStatus `xml:"UpdateServiceAccessPoliciesResult>AccessPolicies"`
+	AccessPolicies *AccessPoliciesStatus `query:"AccessPolicies" xml:"UpdateServiceAccessPoliciesResult>AccessPolicies"`
 }
 
 // avoid errors if the packages aren't referenced

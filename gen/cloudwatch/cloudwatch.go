@@ -172,11 +172,11 @@ func (c *CloudWatch) SetAlarmState(req *SetAlarmStateInput) (err error) {
 
 // AlarmHistoryItem is undocumented.
 type AlarmHistoryItem struct {
-	AlarmName       aws.StringValue `xml:"AlarmName"`
-	HistoryData     aws.StringValue `xml:"HistoryData"`
-	HistoryItemType aws.StringValue `xml:"HistoryItemType"`
-	HistorySummary  aws.StringValue `xml:"HistorySummary"`
-	Timestamp       time.Time       `xml:"Timestamp"`
+	AlarmName       aws.StringValue `query:"AlarmName" xml:"AlarmName"`
+	HistoryData     aws.StringValue `query:"HistoryData" xml:"HistoryData"`
+	HistoryItemType aws.StringValue `query:"HistoryItemType" xml:"HistoryItemType"`
+	HistorySummary  aws.StringValue `query:"HistorySummary" xml:"HistorySummary"`
+	Timestamp       time.Time       `query:"Timestamp" xml:"Timestamp"`
 }
 
 // Possible values for CloudWatch.
@@ -189,105 +189,105 @@ const (
 
 // Datapoint is undocumented.
 type Datapoint struct {
-	Average     aws.DoubleValue `xml:"Average"`
-	Maximum     aws.DoubleValue `xml:"Maximum"`
-	Minimum     aws.DoubleValue `xml:"Minimum"`
-	SampleCount aws.DoubleValue `xml:"SampleCount"`
-	Sum         aws.DoubleValue `xml:"Sum"`
-	Timestamp   time.Time       `xml:"Timestamp"`
-	Unit        aws.StringValue `xml:"Unit"`
+	Average     aws.DoubleValue `query:"Average" xml:"Average"`
+	Maximum     aws.DoubleValue `query:"Maximum" xml:"Maximum"`
+	Minimum     aws.DoubleValue `query:"Minimum" xml:"Minimum"`
+	SampleCount aws.DoubleValue `query:"SampleCount" xml:"SampleCount"`
+	Sum         aws.DoubleValue `query:"Sum" xml:"Sum"`
+	Timestamp   time.Time       `query:"Timestamp" xml:"Timestamp"`
+	Unit        aws.StringValue `query:"Unit" xml:"Unit"`
 }
 
 // DeleteAlarmsInput is undocumented.
 type DeleteAlarmsInput struct {
-	AlarmNames []string `xml:"AlarmNames>member"`
+	AlarmNames []string `query:"AlarmNames.member" xml:"AlarmNames>member"`
 }
 
 // DescribeAlarmHistoryInput is undocumented.
 type DescribeAlarmHistoryInput struct {
-	AlarmName       aws.StringValue  `xml:"AlarmName"`
-	EndDate         time.Time        `xml:"EndDate"`
-	HistoryItemType aws.StringValue  `xml:"HistoryItemType"`
-	MaxRecords      aws.IntegerValue `xml:"MaxRecords"`
-	NextToken       aws.StringValue  `xml:"NextToken"`
-	StartDate       time.Time        `xml:"StartDate"`
+	AlarmName       aws.StringValue  `query:"AlarmName" xml:"AlarmName"`
+	EndDate         time.Time        `query:"EndDate" xml:"EndDate"`
+	HistoryItemType aws.StringValue  `query:"HistoryItemType" xml:"HistoryItemType"`
+	MaxRecords      aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NextToken       aws.StringValue  `query:"NextToken" xml:"NextToken"`
+	StartDate       time.Time        `query:"StartDate" xml:"StartDate"`
 }
 
 // DescribeAlarmHistoryOutput is undocumented.
 type DescribeAlarmHistoryOutput struct {
-	AlarmHistoryItems []AlarmHistoryItem `xml:"DescribeAlarmHistoryResult>AlarmHistoryItems>member"`
-	NextToken         aws.StringValue    `xml:"DescribeAlarmHistoryResult>NextToken"`
+	AlarmHistoryItems []AlarmHistoryItem `query:"AlarmHistoryItems.member" xml:"DescribeAlarmHistoryResult>AlarmHistoryItems>member"`
+	NextToken         aws.StringValue    `query:"NextToken" xml:"DescribeAlarmHistoryResult>NextToken"`
 }
 
 // DescribeAlarmsForMetricInput is undocumented.
 type DescribeAlarmsForMetricInput struct {
-	Dimensions []Dimension      `xml:"Dimensions>member"`
-	MetricName aws.StringValue  `xml:"MetricName"`
-	Namespace  aws.StringValue  `xml:"Namespace"`
-	Period     aws.IntegerValue `xml:"Period"`
-	Statistic  aws.StringValue  `xml:"Statistic"`
-	Unit       aws.StringValue  `xml:"Unit"`
+	Dimensions []Dimension      `query:"Dimensions.member" xml:"Dimensions>member"`
+	MetricName aws.StringValue  `query:"MetricName" xml:"MetricName"`
+	Namespace  aws.StringValue  `query:"Namespace" xml:"Namespace"`
+	Period     aws.IntegerValue `query:"Period" xml:"Period"`
+	Statistic  aws.StringValue  `query:"Statistic" xml:"Statistic"`
+	Unit       aws.StringValue  `query:"Unit" xml:"Unit"`
 }
 
 // DescribeAlarmsForMetricOutput is undocumented.
 type DescribeAlarmsForMetricOutput struct {
-	MetricAlarms []MetricAlarm `xml:"DescribeAlarmsForMetricResult>MetricAlarms>member"`
+	MetricAlarms []MetricAlarm `query:"MetricAlarms.member" xml:"DescribeAlarmsForMetricResult>MetricAlarms>member"`
 }
 
 // DescribeAlarmsInput is undocumented.
 type DescribeAlarmsInput struct {
-	ActionPrefix    aws.StringValue  `xml:"ActionPrefix"`
-	AlarmNamePrefix aws.StringValue  `xml:"AlarmNamePrefix"`
-	AlarmNames      []string         `xml:"AlarmNames>member"`
-	MaxRecords      aws.IntegerValue `xml:"MaxRecords"`
-	NextToken       aws.StringValue  `xml:"NextToken"`
-	StateValue      aws.StringValue  `xml:"StateValue"`
+	ActionPrefix    aws.StringValue  `query:"ActionPrefix" xml:"ActionPrefix"`
+	AlarmNamePrefix aws.StringValue  `query:"AlarmNamePrefix" xml:"AlarmNamePrefix"`
+	AlarmNames      []string         `query:"AlarmNames.member" xml:"AlarmNames>member"`
+	MaxRecords      aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NextToken       aws.StringValue  `query:"NextToken" xml:"NextToken"`
+	StateValue      aws.StringValue  `query:"StateValue" xml:"StateValue"`
 }
 
 // DescribeAlarmsOutput is undocumented.
 type DescribeAlarmsOutput struct {
-	MetricAlarms []MetricAlarm   `xml:"DescribeAlarmsResult>MetricAlarms>member"`
-	NextToken    aws.StringValue `xml:"DescribeAlarmsResult>NextToken"`
+	MetricAlarms []MetricAlarm   `query:"MetricAlarms.member" xml:"DescribeAlarmsResult>MetricAlarms>member"`
+	NextToken    aws.StringValue `query:"NextToken" xml:"DescribeAlarmsResult>NextToken"`
 }
 
 // Dimension is undocumented.
 type Dimension struct {
-	Name  aws.StringValue `xml:"Name"`
-	Value aws.StringValue `xml:"Value"`
+	Name  aws.StringValue `query:"Name" xml:"Name"`
+	Value aws.StringValue `query:"Value" xml:"Value"`
 }
 
 // DimensionFilter is undocumented.
 type DimensionFilter struct {
-	Name  aws.StringValue `xml:"Name"`
-	Value aws.StringValue `xml:"Value"`
+	Name  aws.StringValue `query:"Name" xml:"Name"`
+	Value aws.StringValue `query:"Value" xml:"Value"`
 }
 
 // DisableAlarmActionsInput is undocumented.
 type DisableAlarmActionsInput struct {
-	AlarmNames []string `xml:"AlarmNames>member"`
+	AlarmNames []string `query:"AlarmNames.member" xml:"AlarmNames>member"`
 }
 
 // EnableAlarmActionsInput is undocumented.
 type EnableAlarmActionsInput struct {
-	AlarmNames []string `xml:"AlarmNames>member"`
+	AlarmNames []string `query:"AlarmNames.member" xml:"AlarmNames>member"`
 }
 
 // GetMetricStatisticsInput is undocumented.
 type GetMetricStatisticsInput struct {
-	Dimensions []Dimension      `xml:"Dimensions>member"`
-	EndTime    time.Time        `xml:"EndTime"`
-	MetricName aws.StringValue  `xml:"MetricName"`
-	Namespace  aws.StringValue  `xml:"Namespace"`
-	Period     aws.IntegerValue `xml:"Period"`
-	StartTime  time.Time        `xml:"StartTime"`
-	Statistics []string         `xml:"Statistics>member"`
-	Unit       aws.StringValue  `xml:"Unit"`
+	Dimensions []Dimension      `query:"Dimensions.member" xml:"Dimensions>member"`
+	EndTime    time.Time        `query:"EndTime" xml:"EndTime"`
+	MetricName aws.StringValue  `query:"MetricName" xml:"MetricName"`
+	Namespace  aws.StringValue  `query:"Namespace" xml:"Namespace"`
+	Period     aws.IntegerValue `query:"Period" xml:"Period"`
+	StartTime  time.Time        `query:"StartTime" xml:"StartTime"`
+	Statistics []string         `query:"Statistics.member" xml:"Statistics>member"`
+	Unit       aws.StringValue  `query:"Unit" xml:"Unit"`
 }
 
 // GetMetricStatisticsOutput is undocumented.
 type GetMetricStatisticsOutput struct {
-	Datapoints []Datapoint     `xml:"GetMetricStatisticsResult>Datapoints>member"`
-	Label      aws.StringValue `xml:"GetMetricStatisticsResult>Label"`
+	Datapoints []Datapoint     `query:"Datapoints.member" xml:"GetMetricStatisticsResult>Datapoints>member"`
+	Label      aws.StringValue `query:"Label" xml:"GetMetricStatisticsResult>Label"`
 }
 
 // Possible values for CloudWatch.
@@ -299,91 +299,91 @@ const (
 
 // ListMetricsInput is undocumented.
 type ListMetricsInput struct {
-	Dimensions []DimensionFilter `xml:"Dimensions>member"`
-	MetricName aws.StringValue   `xml:"MetricName"`
-	Namespace  aws.StringValue   `xml:"Namespace"`
-	NextToken  aws.StringValue   `xml:"NextToken"`
+	Dimensions []DimensionFilter `query:"Dimensions.member" xml:"Dimensions>member"`
+	MetricName aws.StringValue   `query:"MetricName" xml:"MetricName"`
+	Namespace  aws.StringValue   `query:"Namespace" xml:"Namespace"`
+	NextToken  aws.StringValue   `query:"NextToken" xml:"NextToken"`
 }
 
 // ListMetricsOutput is undocumented.
 type ListMetricsOutput struct {
-	Metrics   []Metric        `xml:"ListMetricsResult>Metrics>member"`
-	NextToken aws.StringValue `xml:"ListMetricsResult>NextToken"`
+	Metrics   []Metric        `query:"Metrics.member" xml:"ListMetricsResult>Metrics>member"`
+	NextToken aws.StringValue `query:"NextToken" xml:"ListMetricsResult>NextToken"`
 }
 
 // Metric is undocumented.
 type Metric struct {
-	Dimensions []Dimension     `xml:"Dimensions>member"`
-	MetricName aws.StringValue `xml:"MetricName"`
-	Namespace  aws.StringValue `xml:"Namespace"`
+	Dimensions []Dimension     `query:"Dimensions.member" xml:"Dimensions>member"`
+	MetricName aws.StringValue `query:"MetricName" xml:"MetricName"`
+	Namespace  aws.StringValue `query:"Namespace" xml:"Namespace"`
 }
 
 // MetricAlarm is undocumented.
 type MetricAlarm struct {
-	ActionsEnabled                     aws.BooleanValue `xml:"ActionsEnabled"`
-	AlarmActions                       []string         `xml:"AlarmActions>member"`
-	AlarmARN                           aws.StringValue  `xml:"AlarmArn"`
-	AlarmConfigurationUpdatedTimestamp time.Time        `xml:"AlarmConfigurationUpdatedTimestamp"`
-	AlarmDescription                   aws.StringValue  `xml:"AlarmDescription"`
-	AlarmName                          aws.StringValue  `xml:"AlarmName"`
-	ComparisonOperator                 aws.StringValue  `xml:"ComparisonOperator"`
-	Dimensions                         []Dimension      `xml:"Dimensions>member"`
-	EvaluationPeriods                  aws.IntegerValue `xml:"EvaluationPeriods"`
-	InsufficientDataActions            []string         `xml:"InsufficientDataActions>member"`
-	MetricName                         aws.StringValue  `xml:"MetricName"`
-	Namespace                          aws.StringValue  `xml:"Namespace"`
-	OKActions                          []string         `xml:"OKActions>member"`
-	Period                             aws.IntegerValue `xml:"Period"`
-	StateReason                        aws.StringValue  `xml:"StateReason"`
-	StateReasonData                    aws.StringValue  `xml:"StateReasonData"`
-	StateUpdatedTimestamp              time.Time        `xml:"StateUpdatedTimestamp"`
-	StateValue                         aws.StringValue  `xml:"StateValue"`
-	Statistic                          aws.StringValue  `xml:"Statistic"`
-	Threshold                          aws.DoubleValue  `xml:"Threshold"`
-	Unit                               aws.StringValue  `xml:"Unit"`
+	ActionsEnabled                     aws.BooleanValue `query:"ActionsEnabled" xml:"ActionsEnabled"`
+	AlarmActions                       []string         `query:"AlarmActions.member" xml:"AlarmActions>member"`
+	AlarmARN                           aws.StringValue  `query:"AlarmArn" xml:"AlarmArn"`
+	AlarmConfigurationUpdatedTimestamp time.Time        `query:"AlarmConfigurationUpdatedTimestamp" xml:"AlarmConfigurationUpdatedTimestamp"`
+	AlarmDescription                   aws.StringValue  `query:"AlarmDescription" xml:"AlarmDescription"`
+	AlarmName                          aws.StringValue  `query:"AlarmName" xml:"AlarmName"`
+	ComparisonOperator                 aws.StringValue  `query:"ComparisonOperator" xml:"ComparisonOperator"`
+	Dimensions                         []Dimension      `query:"Dimensions.member" xml:"Dimensions>member"`
+	EvaluationPeriods                  aws.IntegerValue `query:"EvaluationPeriods" xml:"EvaluationPeriods"`
+	InsufficientDataActions            []string         `query:"InsufficientDataActions.member" xml:"InsufficientDataActions>member"`
+	MetricName                         aws.StringValue  `query:"MetricName" xml:"MetricName"`
+	Namespace                          aws.StringValue  `query:"Namespace" xml:"Namespace"`
+	OKActions                          []string         `query:"OKActions.member" xml:"OKActions>member"`
+	Period                             aws.IntegerValue `query:"Period" xml:"Period"`
+	StateReason                        aws.StringValue  `query:"StateReason" xml:"StateReason"`
+	StateReasonData                    aws.StringValue  `query:"StateReasonData" xml:"StateReasonData"`
+	StateUpdatedTimestamp              time.Time        `query:"StateUpdatedTimestamp" xml:"StateUpdatedTimestamp"`
+	StateValue                         aws.StringValue  `query:"StateValue" xml:"StateValue"`
+	Statistic                          aws.StringValue  `query:"Statistic" xml:"Statistic"`
+	Threshold                          aws.DoubleValue  `query:"Threshold" xml:"Threshold"`
+	Unit                               aws.StringValue  `query:"Unit" xml:"Unit"`
 }
 
 // MetricDatum is undocumented.
 type MetricDatum struct {
-	Dimensions      []Dimension     `xml:"Dimensions>member"`
-	MetricName      aws.StringValue `xml:"MetricName"`
-	StatisticValues *StatisticSet   `xml:"StatisticValues"`
-	Timestamp       time.Time       `xml:"Timestamp"`
-	Unit            aws.StringValue `xml:"Unit"`
-	Value           aws.DoubleValue `xml:"Value"`
+	Dimensions      []Dimension     `query:"Dimensions.member" xml:"Dimensions>member"`
+	MetricName      aws.StringValue `query:"MetricName" xml:"MetricName"`
+	StatisticValues *StatisticSet   `query:"StatisticValues" xml:"StatisticValues"`
+	Timestamp       time.Time       `query:"Timestamp" xml:"Timestamp"`
+	Unit            aws.StringValue `query:"Unit" xml:"Unit"`
+	Value           aws.DoubleValue `query:"Value" xml:"Value"`
 }
 
 // PutMetricAlarmInput is undocumented.
 type PutMetricAlarmInput struct {
-	ActionsEnabled          aws.BooleanValue `xml:"ActionsEnabled"`
-	AlarmActions            []string         `xml:"AlarmActions>member"`
-	AlarmDescription        aws.StringValue  `xml:"AlarmDescription"`
-	AlarmName               aws.StringValue  `xml:"AlarmName"`
-	ComparisonOperator      aws.StringValue  `xml:"ComparisonOperator"`
-	Dimensions              []Dimension      `xml:"Dimensions>member"`
-	EvaluationPeriods       aws.IntegerValue `xml:"EvaluationPeriods"`
-	InsufficientDataActions []string         `xml:"InsufficientDataActions>member"`
-	MetricName              aws.StringValue  `xml:"MetricName"`
-	Namespace               aws.StringValue  `xml:"Namespace"`
-	OKActions               []string         `xml:"OKActions>member"`
-	Period                  aws.IntegerValue `xml:"Period"`
-	Statistic               aws.StringValue  `xml:"Statistic"`
-	Threshold               aws.DoubleValue  `xml:"Threshold"`
-	Unit                    aws.StringValue  `xml:"Unit"`
+	ActionsEnabled          aws.BooleanValue `query:"ActionsEnabled" xml:"ActionsEnabled"`
+	AlarmActions            []string         `query:"AlarmActions.member" xml:"AlarmActions>member"`
+	AlarmDescription        aws.StringValue  `query:"AlarmDescription" xml:"AlarmDescription"`
+	AlarmName               aws.StringValue  `query:"AlarmName" xml:"AlarmName"`
+	ComparisonOperator      aws.StringValue  `query:"ComparisonOperator" xml:"ComparisonOperator"`
+	Dimensions              []Dimension      `query:"Dimensions.member" xml:"Dimensions>member"`
+	EvaluationPeriods       aws.IntegerValue `query:"EvaluationPeriods" xml:"EvaluationPeriods"`
+	InsufficientDataActions []string         `query:"InsufficientDataActions.member" xml:"InsufficientDataActions>member"`
+	MetricName              aws.StringValue  `query:"MetricName" xml:"MetricName"`
+	Namespace               aws.StringValue  `query:"Namespace" xml:"Namespace"`
+	OKActions               []string         `query:"OKActions.member" xml:"OKActions>member"`
+	Period                  aws.IntegerValue `query:"Period" xml:"Period"`
+	Statistic               aws.StringValue  `query:"Statistic" xml:"Statistic"`
+	Threshold               aws.DoubleValue  `query:"Threshold" xml:"Threshold"`
+	Unit                    aws.StringValue  `query:"Unit" xml:"Unit"`
 }
 
 // PutMetricDataInput is undocumented.
 type PutMetricDataInput struct {
-	MetricData []MetricDatum   `xml:"MetricData>member"`
-	Namespace  aws.StringValue `xml:"Namespace"`
+	MetricData []MetricDatum   `query:"MetricData.member" xml:"MetricData>member"`
+	Namespace  aws.StringValue `query:"Namespace" xml:"Namespace"`
 }
 
 // SetAlarmStateInput is undocumented.
 type SetAlarmStateInput struct {
-	AlarmName       aws.StringValue `xml:"AlarmName"`
-	StateReason     aws.StringValue `xml:"StateReason"`
-	StateReasonData aws.StringValue `xml:"StateReasonData"`
-	StateValue      aws.StringValue `xml:"StateValue"`
+	AlarmName       aws.StringValue `query:"AlarmName" xml:"AlarmName"`
+	StateReason     aws.StringValue `query:"StateReason" xml:"StateReason"`
+	StateReasonData aws.StringValue `query:"StateReasonData" xml:"StateReasonData"`
+	StateValue      aws.StringValue `query:"StateValue" xml:"StateValue"`
 }
 
 // Possible values for CloudWatch.
@@ -435,39 +435,39 @@ const (
 
 // StatisticSet is undocumented.
 type StatisticSet struct {
-	Maximum     aws.DoubleValue `xml:"Maximum"`
-	Minimum     aws.DoubleValue `xml:"Minimum"`
-	SampleCount aws.DoubleValue `xml:"SampleCount"`
-	Sum         aws.DoubleValue `xml:"Sum"`
+	Maximum     aws.DoubleValue `query:"Maximum" xml:"Maximum"`
+	Minimum     aws.DoubleValue `query:"Minimum" xml:"Minimum"`
+	SampleCount aws.DoubleValue `query:"SampleCount" xml:"SampleCount"`
+	Sum         aws.DoubleValue `query:"Sum" xml:"Sum"`
 }
 
 // DescribeAlarmHistoryResult is a wrapper for DescribeAlarmHistoryOutput.
 type DescribeAlarmHistoryResult struct {
-	AlarmHistoryItems []AlarmHistoryItem `xml:"DescribeAlarmHistoryResult>AlarmHistoryItems>member"`
-	NextToken         aws.StringValue    `xml:"DescribeAlarmHistoryResult>NextToken"`
+	AlarmHistoryItems []AlarmHistoryItem `query:"AlarmHistoryItems.member" xml:"DescribeAlarmHistoryResult>AlarmHistoryItems>member"`
+	NextToken         aws.StringValue    `query:"NextToken" xml:"DescribeAlarmHistoryResult>NextToken"`
 }
 
 // DescribeAlarmsForMetricResult is a wrapper for DescribeAlarmsForMetricOutput.
 type DescribeAlarmsForMetricResult struct {
-	MetricAlarms []MetricAlarm `xml:"DescribeAlarmsForMetricResult>MetricAlarms>member"`
+	MetricAlarms []MetricAlarm `query:"MetricAlarms.member" xml:"DescribeAlarmsForMetricResult>MetricAlarms>member"`
 }
 
 // DescribeAlarmsResult is a wrapper for DescribeAlarmsOutput.
 type DescribeAlarmsResult struct {
-	MetricAlarms []MetricAlarm   `xml:"DescribeAlarmsResult>MetricAlarms>member"`
-	NextToken    aws.StringValue `xml:"DescribeAlarmsResult>NextToken"`
+	MetricAlarms []MetricAlarm   `query:"MetricAlarms.member" xml:"DescribeAlarmsResult>MetricAlarms>member"`
+	NextToken    aws.StringValue `query:"NextToken" xml:"DescribeAlarmsResult>NextToken"`
 }
 
 // GetMetricStatisticsResult is a wrapper for GetMetricStatisticsOutput.
 type GetMetricStatisticsResult struct {
-	Datapoints []Datapoint     `xml:"GetMetricStatisticsResult>Datapoints>member"`
-	Label      aws.StringValue `xml:"GetMetricStatisticsResult>Label"`
+	Datapoints []Datapoint     `query:"Datapoints.member" xml:"GetMetricStatisticsResult>Datapoints>member"`
+	Label      aws.StringValue `query:"Label" xml:"GetMetricStatisticsResult>Label"`
 }
 
 // ListMetricsResult is a wrapper for ListMetricsOutput.
 type ListMetricsResult struct {
-	Metrics   []Metric        `xml:"ListMetricsResult>Metrics>member"`
-	NextToken aws.StringValue `xml:"ListMetricsResult>NextToken"`
+	Metrics   []Metric        `query:"Metrics.member" xml:"ListMetricsResult>Metrics>member"`
+	NextToken aws.StringValue `query:"NextToken" xml:"ListMetricsResult>NextToken"`
 }
 
 // avoid errors if the packages aren't referenced

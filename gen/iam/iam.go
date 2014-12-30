@@ -986,243 +986,243 @@ func (c *IAM) UploadSigningCertificate(req *UploadSigningCertificateRequest) (re
 
 // AccessKey is undocumented.
 type AccessKey struct {
-	AccessKeyID     aws.StringValue `xml:"AccessKeyId"`
-	CreateDate      time.Time       `xml:"CreateDate"`
-	SecretAccessKey aws.StringValue `xml:"SecretAccessKey"`
-	Status          aws.StringValue `xml:"Status"`
-	UserName        aws.StringValue `xml:"UserName"`
+	AccessKeyID     aws.StringValue `query:"AccessKeyId" xml:"AccessKeyId"`
+	CreateDate      time.Time       `query:"CreateDate" xml:"CreateDate"`
+	SecretAccessKey aws.StringValue `query:"SecretAccessKey" xml:"SecretAccessKey"`
+	Status          aws.StringValue `query:"Status" xml:"Status"`
+	UserName        aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // AccessKeyMetadata is undocumented.
 type AccessKeyMetadata struct {
-	AccessKeyID aws.StringValue `xml:"AccessKeyId"`
-	CreateDate  time.Time       `xml:"CreateDate"`
-	Status      aws.StringValue `xml:"Status"`
-	UserName    aws.StringValue `xml:"UserName"`
+	AccessKeyID aws.StringValue `query:"AccessKeyId" xml:"AccessKeyId"`
+	CreateDate  time.Time       `query:"CreateDate" xml:"CreateDate"`
+	Status      aws.StringValue `query:"Status" xml:"Status"`
+	UserName    aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // AddClientIDToOpenIDConnectProviderRequest is undocumented.
 type AddClientIDToOpenIDConnectProviderRequest struct {
-	ClientID                 aws.StringValue `xml:"ClientID"`
-	OpenIDConnectProviderARN aws.StringValue `xml:"OpenIDConnectProviderArn"`
+	ClientID                 aws.StringValue `query:"ClientID" xml:"ClientID"`
+	OpenIDConnectProviderARN aws.StringValue `query:"OpenIDConnectProviderArn" xml:"OpenIDConnectProviderArn"`
 }
 
 // AddRoleToInstanceProfileRequest is undocumented.
 type AddRoleToInstanceProfileRequest struct {
-	InstanceProfileName aws.StringValue `xml:"InstanceProfileName"`
-	RoleName            aws.StringValue `xml:"RoleName"`
+	InstanceProfileName aws.StringValue `query:"InstanceProfileName" xml:"InstanceProfileName"`
+	RoleName            aws.StringValue `query:"RoleName" xml:"RoleName"`
 }
 
 // AddUserToGroupRequest is undocumented.
 type AddUserToGroupRequest struct {
-	GroupName aws.StringValue `xml:"GroupName"`
-	UserName  aws.StringValue `xml:"UserName"`
+	GroupName aws.StringValue `query:"GroupName" xml:"GroupName"`
+	UserName  aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // ChangePasswordRequest is undocumented.
 type ChangePasswordRequest struct {
-	NewPassword aws.StringValue `xml:"NewPassword"`
-	OldPassword aws.StringValue `xml:"OldPassword"`
+	NewPassword aws.StringValue `query:"NewPassword" xml:"NewPassword"`
+	OldPassword aws.StringValue `query:"OldPassword" xml:"OldPassword"`
 }
 
 // CreateAccessKeyRequest is undocumented.
 type CreateAccessKeyRequest struct {
-	UserName aws.StringValue `xml:"UserName"`
+	UserName aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // CreateAccessKeyResponse is undocumented.
 type CreateAccessKeyResponse struct {
-	AccessKey *AccessKey `xml:"CreateAccessKeyResult>AccessKey"`
+	AccessKey *AccessKey `query:"AccessKey" xml:"CreateAccessKeyResult>AccessKey"`
 }
 
 // CreateAccountAliasRequest is undocumented.
 type CreateAccountAliasRequest struct {
-	AccountAlias aws.StringValue `xml:"AccountAlias"`
+	AccountAlias aws.StringValue `query:"AccountAlias" xml:"AccountAlias"`
 }
 
 // CreateGroupRequest is undocumented.
 type CreateGroupRequest struct {
-	GroupName aws.StringValue `xml:"GroupName"`
-	Path      aws.StringValue `xml:"Path"`
+	GroupName aws.StringValue `query:"GroupName" xml:"GroupName"`
+	Path      aws.StringValue `query:"Path" xml:"Path"`
 }
 
 // CreateGroupResponse is undocumented.
 type CreateGroupResponse struct {
-	Group *Group `xml:"CreateGroupResult>Group"`
+	Group *Group `query:"Group" xml:"CreateGroupResult>Group"`
 }
 
 // CreateInstanceProfileRequest is undocumented.
 type CreateInstanceProfileRequest struct {
-	InstanceProfileName aws.StringValue `xml:"InstanceProfileName"`
-	Path                aws.StringValue `xml:"Path"`
+	InstanceProfileName aws.StringValue `query:"InstanceProfileName" xml:"InstanceProfileName"`
+	Path                aws.StringValue `query:"Path" xml:"Path"`
 }
 
 // CreateInstanceProfileResponse is undocumented.
 type CreateInstanceProfileResponse struct {
-	InstanceProfile *InstanceProfile `xml:"CreateInstanceProfileResult>InstanceProfile"`
+	InstanceProfile *InstanceProfile `query:"InstanceProfile" xml:"CreateInstanceProfileResult>InstanceProfile"`
 }
 
 // CreateLoginProfileRequest is undocumented.
 type CreateLoginProfileRequest struct {
-	Password              aws.StringValue  `xml:"Password"`
-	PasswordResetRequired aws.BooleanValue `xml:"PasswordResetRequired"`
-	UserName              aws.StringValue  `xml:"UserName"`
+	Password              aws.StringValue  `query:"Password" xml:"Password"`
+	PasswordResetRequired aws.BooleanValue `query:"PasswordResetRequired" xml:"PasswordResetRequired"`
+	UserName              aws.StringValue  `query:"UserName" xml:"UserName"`
 }
 
 // CreateLoginProfileResponse is undocumented.
 type CreateLoginProfileResponse struct {
-	LoginProfile *LoginProfile `xml:"CreateLoginProfileResult>LoginProfile"`
+	LoginProfile *LoginProfile `query:"LoginProfile" xml:"CreateLoginProfileResult>LoginProfile"`
 }
 
 // CreateOpenIDConnectProviderRequest is undocumented.
 type CreateOpenIDConnectProviderRequest struct {
-	ClientIDList   []string        `xml:"ClientIDList>member"`
-	ThumbprintList []string        `xml:"ThumbprintList>member"`
-	URL            aws.StringValue `xml:"Url"`
+	ClientIDList   []string        `query:"ClientIDList.member" xml:"ClientIDList>member"`
+	ThumbprintList []string        `query:"ThumbprintList.member" xml:"ThumbprintList>member"`
+	URL            aws.StringValue `query:"Url" xml:"Url"`
 }
 
 // CreateOpenIDConnectProviderResponse is undocumented.
 type CreateOpenIDConnectProviderResponse struct {
-	OpenIDConnectProviderARN aws.StringValue `xml:"CreateOpenIDConnectProviderResult>OpenIDConnectProviderArn"`
+	OpenIDConnectProviderARN aws.StringValue `query:"OpenIDConnectProviderArn" xml:"CreateOpenIDConnectProviderResult>OpenIDConnectProviderArn"`
 }
 
 // CreateRoleRequest is undocumented.
 type CreateRoleRequest struct {
-	AssumeRolePolicyDocument aws.StringValue `xml:"AssumeRolePolicyDocument"`
-	Path                     aws.StringValue `xml:"Path"`
-	RoleName                 aws.StringValue `xml:"RoleName"`
+	AssumeRolePolicyDocument aws.StringValue `query:"AssumeRolePolicyDocument" xml:"AssumeRolePolicyDocument"`
+	Path                     aws.StringValue `query:"Path" xml:"Path"`
+	RoleName                 aws.StringValue `query:"RoleName" xml:"RoleName"`
 }
 
 // CreateRoleResponse is undocumented.
 type CreateRoleResponse struct {
-	Role *Role `xml:"CreateRoleResult>Role"`
+	Role *Role `query:"Role" xml:"CreateRoleResult>Role"`
 }
 
 // CreateSAMLProviderRequest is undocumented.
 type CreateSAMLProviderRequest struct {
-	Name                 aws.StringValue `xml:"Name"`
-	SAMLMetadataDocument aws.StringValue `xml:"SAMLMetadataDocument"`
+	Name                 aws.StringValue `query:"Name" xml:"Name"`
+	SAMLMetadataDocument aws.StringValue `query:"SAMLMetadataDocument" xml:"SAMLMetadataDocument"`
 }
 
 // CreateSAMLProviderResponse is undocumented.
 type CreateSAMLProviderResponse struct {
-	SAMLProviderARN aws.StringValue `xml:"CreateSAMLProviderResult>SAMLProviderArn"`
+	SAMLProviderARN aws.StringValue `query:"SAMLProviderArn" xml:"CreateSAMLProviderResult>SAMLProviderArn"`
 }
 
 // CreateUserRequest is undocumented.
 type CreateUserRequest struct {
-	Path     aws.StringValue `xml:"Path"`
-	UserName aws.StringValue `xml:"UserName"`
+	Path     aws.StringValue `query:"Path" xml:"Path"`
+	UserName aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // CreateUserResponse is undocumented.
 type CreateUserResponse struct {
-	User *User `xml:"CreateUserResult>User"`
+	User *User `query:"User" xml:"CreateUserResult>User"`
 }
 
 // CreateVirtualMFADeviceRequest is undocumented.
 type CreateVirtualMFADeviceRequest struct {
-	Path                 aws.StringValue `xml:"Path"`
-	VirtualMFADeviceName aws.StringValue `xml:"VirtualMFADeviceName"`
+	Path                 aws.StringValue `query:"Path" xml:"Path"`
+	VirtualMFADeviceName aws.StringValue `query:"VirtualMFADeviceName" xml:"VirtualMFADeviceName"`
 }
 
 // CreateVirtualMFADeviceResponse is undocumented.
 type CreateVirtualMFADeviceResponse struct {
-	VirtualMFADevice *VirtualMFADevice `xml:"CreateVirtualMFADeviceResult>VirtualMFADevice"`
+	VirtualMFADevice *VirtualMFADevice `query:"VirtualMFADevice" xml:"CreateVirtualMFADeviceResult>VirtualMFADevice"`
 }
 
 // DeactivateMFADeviceRequest is undocumented.
 type DeactivateMFADeviceRequest struct {
-	SerialNumber aws.StringValue `xml:"SerialNumber"`
-	UserName     aws.StringValue `xml:"UserName"`
+	SerialNumber aws.StringValue `query:"SerialNumber" xml:"SerialNumber"`
+	UserName     aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // DeleteAccessKeyRequest is undocumented.
 type DeleteAccessKeyRequest struct {
-	AccessKeyID aws.StringValue `xml:"AccessKeyId"`
-	UserName    aws.StringValue `xml:"UserName"`
+	AccessKeyID aws.StringValue `query:"AccessKeyId" xml:"AccessKeyId"`
+	UserName    aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // DeleteAccountAliasRequest is undocumented.
 type DeleteAccountAliasRequest struct {
-	AccountAlias aws.StringValue `xml:"AccountAlias"`
+	AccountAlias aws.StringValue `query:"AccountAlias" xml:"AccountAlias"`
 }
 
 // DeleteGroupPolicyRequest is undocumented.
 type DeleteGroupPolicyRequest struct {
-	GroupName  aws.StringValue `xml:"GroupName"`
-	PolicyName aws.StringValue `xml:"PolicyName"`
+	GroupName  aws.StringValue `query:"GroupName" xml:"GroupName"`
+	PolicyName aws.StringValue `query:"PolicyName" xml:"PolicyName"`
 }
 
 // DeleteGroupRequest is undocumented.
 type DeleteGroupRequest struct {
-	GroupName aws.StringValue `xml:"GroupName"`
+	GroupName aws.StringValue `query:"GroupName" xml:"GroupName"`
 }
 
 // DeleteInstanceProfileRequest is undocumented.
 type DeleteInstanceProfileRequest struct {
-	InstanceProfileName aws.StringValue `xml:"InstanceProfileName"`
+	InstanceProfileName aws.StringValue `query:"InstanceProfileName" xml:"InstanceProfileName"`
 }
 
 // DeleteLoginProfileRequest is undocumented.
 type DeleteLoginProfileRequest struct {
-	UserName aws.StringValue `xml:"UserName"`
+	UserName aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // DeleteOpenIDConnectProviderRequest is undocumented.
 type DeleteOpenIDConnectProviderRequest struct {
-	OpenIDConnectProviderARN aws.StringValue `xml:"OpenIDConnectProviderArn"`
+	OpenIDConnectProviderARN aws.StringValue `query:"OpenIDConnectProviderArn" xml:"OpenIDConnectProviderArn"`
 }
 
 // DeleteRolePolicyRequest is undocumented.
 type DeleteRolePolicyRequest struct {
-	PolicyName aws.StringValue `xml:"PolicyName"`
-	RoleName   aws.StringValue `xml:"RoleName"`
+	PolicyName aws.StringValue `query:"PolicyName" xml:"PolicyName"`
+	RoleName   aws.StringValue `query:"RoleName" xml:"RoleName"`
 }
 
 // DeleteRoleRequest is undocumented.
 type DeleteRoleRequest struct {
-	RoleName aws.StringValue `xml:"RoleName"`
+	RoleName aws.StringValue `query:"RoleName" xml:"RoleName"`
 }
 
 // DeleteSAMLProviderRequest is undocumented.
 type DeleteSAMLProviderRequest struct {
-	SAMLProviderARN aws.StringValue `xml:"SAMLProviderArn"`
+	SAMLProviderARN aws.StringValue `query:"SAMLProviderArn" xml:"SAMLProviderArn"`
 }
 
 // DeleteServerCertificateRequest is undocumented.
 type DeleteServerCertificateRequest struct {
-	ServerCertificateName aws.StringValue `xml:"ServerCertificateName"`
+	ServerCertificateName aws.StringValue `query:"ServerCertificateName" xml:"ServerCertificateName"`
 }
 
 // DeleteSigningCertificateRequest is undocumented.
 type DeleteSigningCertificateRequest struct {
-	CertificateID aws.StringValue `xml:"CertificateId"`
-	UserName      aws.StringValue `xml:"UserName"`
+	CertificateID aws.StringValue `query:"CertificateId" xml:"CertificateId"`
+	UserName      aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // DeleteUserPolicyRequest is undocumented.
 type DeleteUserPolicyRequest struct {
-	PolicyName aws.StringValue `xml:"PolicyName"`
-	UserName   aws.StringValue `xml:"UserName"`
+	PolicyName aws.StringValue `query:"PolicyName" xml:"PolicyName"`
+	UserName   aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // DeleteUserRequest is undocumented.
 type DeleteUserRequest struct {
-	UserName aws.StringValue `xml:"UserName"`
+	UserName aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // DeleteVirtualMFADeviceRequest is undocumented.
 type DeleteVirtualMFADeviceRequest struct {
-	SerialNumber aws.StringValue `xml:"SerialNumber"`
+	SerialNumber aws.StringValue `query:"SerialNumber" xml:"SerialNumber"`
 }
 
 // EnableMFADeviceRequest is undocumented.
 type EnableMFADeviceRequest struct {
-	AuthenticationCode1 aws.StringValue `xml:"AuthenticationCode1"`
-	AuthenticationCode2 aws.StringValue `xml:"AuthenticationCode2"`
-	SerialNumber        aws.StringValue `xml:"SerialNumber"`
-	UserName            aws.StringValue `xml:"UserName"`
+	AuthenticationCode1 aws.StringValue `query:"AuthenticationCode1" xml:"AuthenticationCode1"`
+	AuthenticationCode2 aws.StringValue `query:"AuthenticationCode2" xml:"AuthenticationCode2"`
+	SerialNumber        aws.StringValue `query:"SerialNumber" xml:"SerialNumber"`
+	UserName            aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // Possible values for IAM.
@@ -1234,310 +1234,310 @@ const (
 
 // GenerateCredentialReportResponse is undocumented.
 type GenerateCredentialReportResponse struct {
-	Description aws.StringValue `xml:"GenerateCredentialReportResult>Description"`
-	State       aws.StringValue `xml:"GenerateCredentialReportResult>State"`
+	Description aws.StringValue `query:"Description" xml:"GenerateCredentialReportResult>Description"`
+	State       aws.StringValue `query:"State" xml:"GenerateCredentialReportResult>State"`
 }
 
 // GetAccountAuthorizationDetailsRequest is undocumented.
 type GetAccountAuthorizationDetailsRequest struct {
-	Filter   []string         `xml:"Filter>member"`
-	Marker   aws.StringValue  `xml:"Marker"`
-	MaxItems aws.IntegerValue `xml:"MaxItems"`
+	Filter   []string         `query:"Filter.member" xml:"Filter>member"`
+	Marker   aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
 }
 
 // GetAccountAuthorizationDetailsResponse is undocumented.
 type GetAccountAuthorizationDetailsResponse struct {
-	GroupDetailList []GroupDetail    `xml:"GetAccountAuthorizationDetailsResult>GroupDetailList>member"`
-	IsTruncated     aws.BooleanValue `xml:"GetAccountAuthorizationDetailsResult>IsTruncated"`
-	Marker          aws.StringValue  `xml:"GetAccountAuthorizationDetailsResult>Marker"`
-	RoleDetailList  []RoleDetail     `xml:"GetAccountAuthorizationDetailsResult>RoleDetailList>member"`
-	UserDetailList  []UserDetail     `xml:"GetAccountAuthorizationDetailsResult>UserDetailList>member"`
+	GroupDetailList []GroupDetail    `query:"GroupDetailList.member" xml:"GetAccountAuthorizationDetailsResult>GroupDetailList>member"`
+	IsTruncated     aws.BooleanValue `query:"IsTruncated" xml:"GetAccountAuthorizationDetailsResult>IsTruncated"`
+	Marker          aws.StringValue  `query:"Marker" xml:"GetAccountAuthorizationDetailsResult>Marker"`
+	RoleDetailList  []RoleDetail     `query:"RoleDetailList.member" xml:"GetAccountAuthorizationDetailsResult>RoleDetailList>member"`
+	UserDetailList  []UserDetail     `query:"UserDetailList.member" xml:"GetAccountAuthorizationDetailsResult>UserDetailList>member"`
 }
 
 // GetAccountPasswordPolicyResponse is undocumented.
 type GetAccountPasswordPolicyResponse struct {
-	PasswordPolicy *PasswordPolicy `xml:"GetAccountPasswordPolicyResult>PasswordPolicy"`
+	PasswordPolicy *PasswordPolicy `query:"PasswordPolicy" xml:"GetAccountPasswordPolicyResult>PasswordPolicy"`
 }
 
 // GetAccountSummaryResponse is undocumented.
 type GetAccountSummaryResponse struct {
-	SummaryMap map[string]int `xml:"GetAccountSummaryResult>SummaryMap"`
+	SummaryMap map[string]int `query:"SummaryMap" xml:"GetAccountSummaryResult>SummaryMap"`
 }
 
 // GetCredentialReportResponse is undocumented.
 type GetCredentialReportResponse struct {
-	Content       []byte          `xml:"GetCredentialReportResult>Content"`
-	GeneratedTime time.Time       `xml:"GetCredentialReportResult>GeneratedTime"`
-	ReportFormat  aws.StringValue `xml:"GetCredentialReportResult>ReportFormat"`
+	Content       []byte          `query:"Content" xml:"GetCredentialReportResult>Content"`
+	GeneratedTime time.Time       `query:"GeneratedTime" xml:"GetCredentialReportResult>GeneratedTime"`
+	ReportFormat  aws.StringValue `query:"ReportFormat" xml:"GetCredentialReportResult>ReportFormat"`
 }
 
 // GetGroupPolicyRequest is undocumented.
 type GetGroupPolicyRequest struct {
-	GroupName  aws.StringValue `xml:"GroupName"`
-	PolicyName aws.StringValue `xml:"PolicyName"`
+	GroupName  aws.StringValue `query:"GroupName" xml:"GroupName"`
+	PolicyName aws.StringValue `query:"PolicyName" xml:"PolicyName"`
 }
 
 // GetGroupPolicyResponse is undocumented.
 type GetGroupPolicyResponse struct {
-	GroupName      aws.StringValue `xml:"GetGroupPolicyResult>GroupName"`
-	PolicyDocument aws.StringValue `xml:"GetGroupPolicyResult>PolicyDocument"`
-	PolicyName     aws.StringValue `xml:"GetGroupPolicyResult>PolicyName"`
+	GroupName      aws.StringValue `query:"GroupName" xml:"GetGroupPolicyResult>GroupName"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"GetGroupPolicyResult>PolicyDocument"`
+	PolicyName     aws.StringValue `query:"PolicyName" xml:"GetGroupPolicyResult>PolicyName"`
 }
 
 // GetGroupRequest is undocumented.
 type GetGroupRequest struct {
-	GroupName aws.StringValue  `xml:"GroupName"`
-	Marker    aws.StringValue  `xml:"Marker"`
-	MaxItems  aws.IntegerValue `xml:"MaxItems"`
+	GroupName aws.StringValue  `query:"GroupName" xml:"GroupName"`
+	Marker    aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems  aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
 }
 
 // GetGroupResponse is undocumented.
 type GetGroupResponse struct {
-	Group       *Group           `xml:"GetGroupResult>Group"`
-	IsTruncated aws.BooleanValue `xml:"GetGroupResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"GetGroupResult>Marker"`
-	Users       []User           `xml:"GetGroupResult>Users>member"`
+	Group       *Group           `query:"Group" xml:"GetGroupResult>Group"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"GetGroupResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"GetGroupResult>Marker"`
+	Users       []User           `query:"Users.member" xml:"GetGroupResult>Users>member"`
 }
 
 // GetInstanceProfileRequest is undocumented.
 type GetInstanceProfileRequest struct {
-	InstanceProfileName aws.StringValue `xml:"InstanceProfileName"`
+	InstanceProfileName aws.StringValue `query:"InstanceProfileName" xml:"InstanceProfileName"`
 }
 
 // GetInstanceProfileResponse is undocumented.
 type GetInstanceProfileResponse struct {
-	InstanceProfile *InstanceProfile `xml:"GetInstanceProfileResult>InstanceProfile"`
+	InstanceProfile *InstanceProfile `query:"InstanceProfile" xml:"GetInstanceProfileResult>InstanceProfile"`
 }
 
 // GetLoginProfileRequest is undocumented.
 type GetLoginProfileRequest struct {
-	UserName aws.StringValue `xml:"UserName"`
+	UserName aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // GetLoginProfileResponse is undocumented.
 type GetLoginProfileResponse struct {
-	LoginProfile *LoginProfile `xml:"GetLoginProfileResult>LoginProfile"`
+	LoginProfile *LoginProfile `query:"LoginProfile" xml:"GetLoginProfileResult>LoginProfile"`
 }
 
 // GetOpenIDConnectProviderRequest is undocumented.
 type GetOpenIDConnectProviderRequest struct {
-	OpenIDConnectProviderARN aws.StringValue `xml:"OpenIDConnectProviderArn"`
+	OpenIDConnectProviderARN aws.StringValue `query:"OpenIDConnectProviderArn" xml:"OpenIDConnectProviderArn"`
 }
 
 // GetOpenIDConnectProviderResponse is undocumented.
 type GetOpenIDConnectProviderResponse struct {
-	ClientIDList   []string        `xml:"GetOpenIDConnectProviderResult>ClientIDList>member"`
-	CreateDate     time.Time       `xml:"GetOpenIDConnectProviderResult>CreateDate"`
-	ThumbprintList []string        `xml:"GetOpenIDConnectProviderResult>ThumbprintList>member"`
-	URL            aws.StringValue `xml:"GetOpenIDConnectProviderResult>Url"`
+	ClientIDList   []string        `query:"ClientIDList.member" xml:"GetOpenIDConnectProviderResult>ClientIDList>member"`
+	CreateDate     time.Time       `query:"CreateDate" xml:"GetOpenIDConnectProviderResult>CreateDate"`
+	ThumbprintList []string        `query:"ThumbprintList.member" xml:"GetOpenIDConnectProviderResult>ThumbprintList>member"`
+	URL            aws.StringValue `query:"Url" xml:"GetOpenIDConnectProviderResult>Url"`
 }
 
 // GetRolePolicyRequest is undocumented.
 type GetRolePolicyRequest struct {
-	PolicyName aws.StringValue `xml:"PolicyName"`
-	RoleName   aws.StringValue `xml:"RoleName"`
+	PolicyName aws.StringValue `query:"PolicyName" xml:"PolicyName"`
+	RoleName   aws.StringValue `query:"RoleName" xml:"RoleName"`
 }
 
 // GetRolePolicyResponse is undocumented.
 type GetRolePolicyResponse struct {
-	PolicyDocument aws.StringValue `xml:"GetRolePolicyResult>PolicyDocument"`
-	PolicyName     aws.StringValue `xml:"GetRolePolicyResult>PolicyName"`
-	RoleName       aws.StringValue `xml:"GetRolePolicyResult>RoleName"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"GetRolePolicyResult>PolicyDocument"`
+	PolicyName     aws.StringValue `query:"PolicyName" xml:"GetRolePolicyResult>PolicyName"`
+	RoleName       aws.StringValue `query:"RoleName" xml:"GetRolePolicyResult>RoleName"`
 }
 
 // GetRoleRequest is undocumented.
 type GetRoleRequest struct {
-	RoleName aws.StringValue `xml:"RoleName"`
+	RoleName aws.StringValue `query:"RoleName" xml:"RoleName"`
 }
 
 // GetRoleResponse is undocumented.
 type GetRoleResponse struct {
-	Role *Role `xml:"GetRoleResult>Role"`
+	Role *Role `query:"Role" xml:"GetRoleResult>Role"`
 }
 
 // GetSAMLProviderRequest is undocumented.
 type GetSAMLProviderRequest struct {
-	SAMLProviderARN aws.StringValue `xml:"SAMLProviderArn"`
+	SAMLProviderARN aws.StringValue `query:"SAMLProviderArn" xml:"SAMLProviderArn"`
 }
 
 // GetSAMLProviderResponse is undocumented.
 type GetSAMLProviderResponse struct {
-	CreateDate           time.Time       `xml:"GetSAMLProviderResult>CreateDate"`
-	SAMLMetadataDocument aws.StringValue `xml:"GetSAMLProviderResult>SAMLMetadataDocument"`
-	ValidUntil           time.Time       `xml:"GetSAMLProviderResult>ValidUntil"`
+	CreateDate           time.Time       `query:"CreateDate" xml:"GetSAMLProviderResult>CreateDate"`
+	SAMLMetadataDocument aws.StringValue `query:"SAMLMetadataDocument" xml:"GetSAMLProviderResult>SAMLMetadataDocument"`
+	ValidUntil           time.Time       `query:"ValidUntil" xml:"GetSAMLProviderResult>ValidUntil"`
 }
 
 // GetServerCertificateRequest is undocumented.
 type GetServerCertificateRequest struct {
-	ServerCertificateName aws.StringValue `xml:"ServerCertificateName"`
+	ServerCertificateName aws.StringValue `query:"ServerCertificateName" xml:"ServerCertificateName"`
 }
 
 // GetServerCertificateResponse is undocumented.
 type GetServerCertificateResponse struct {
-	ServerCertificate *ServerCertificate `xml:"GetServerCertificateResult>ServerCertificate"`
+	ServerCertificate *ServerCertificate `query:"ServerCertificate" xml:"GetServerCertificateResult>ServerCertificate"`
 }
 
 // GetUserPolicyRequest is undocumented.
 type GetUserPolicyRequest struct {
-	PolicyName aws.StringValue `xml:"PolicyName"`
-	UserName   aws.StringValue `xml:"UserName"`
+	PolicyName aws.StringValue `query:"PolicyName" xml:"PolicyName"`
+	UserName   aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // GetUserPolicyResponse is undocumented.
 type GetUserPolicyResponse struct {
-	PolicyDocument aws.StringValue `xml:"GetUserPolicyResult>PolicyDocument"`
-	PolicyName     aws.StringValue `xml:"GetUserPolicyResult>PolicyName"`
-	UserName       aws.StringValue `xml:"GetUserPolicyResult>UserName"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"GetUserPolicyResult>PolicyDocument"`
+	PolicyName     aws.StringValue `query:"PolicyName" xml:"GetUserPolicyResult>PolicyName"`
+	UserName       aws.StringValue `query:"UserName" xml:"GetUserPolicyResult>UserName"`
 }
 
 // GetUserRequest is undocumented.
 type GetUserRequest struct {
-	UserName aws.StringValue `xml:"UserName"`
+	UserName aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // GetUserResponse is undocumented.
 type GetUserResponse struct {
-	User *User `xml:"GetUserResult>User"`
+	User *User `query:"User" xml:"GetUserResult>User"`
 }
 
 // Group is undocumented.
 type Group struct {
-	ARN        aws.StringValue `xml:"Arn"`
-	CreateDate time.Time       `xml:"CreateDate"`
-	GroupID    aws.StringValue `xml:"GroupId"`
-	GroupName  aws.StringValue `xml:"GroupName"`
-	Path       aws.StringValue `xml:"Path"`
+	ARN        aws.StringValue `query:"Arn" xml:"Arn"`
+	CreateDate time.Time       `query:"CreateDate" xml:"CreateDate"`
+	GroupID    aws.StringValue `query:"GroupId" xml:"GroupId"`
+	GroupName  aws.StringValue `query:"GroupName" xml:"GroupName"`
+	Path       aws.StringValue `query:"Path" xml:"Path"`
 }
 
 // GroupDetail is undocumented.
 type GroupDetail struct {
-	ARN             aws.StringValue `xml:"Arn"`
-	CreateDate      time.Time       `xml:"CreateDate"`
-	GroupID         aws.StringValue `xml:"GroupId"`
-	GroupName       aws.StringValue `xml:"GroupName"`
-	GroupPolicyList []PolicyDetail  `xml:"GroupPolicyList>member"`
-	Path            aws.StringValue `xml:"Path"`
+	ARN             aws.StringValue `query:"Arn" xml:"Arn"`
+	CreateDate      time.Time       `query:"CreateDate" xml:"CreateDate"`
+	GroupID         aws.StringValue `query:"GroupId" xml:"GroupId"`
+	GroupName       aws.StringValue `query:"GroupName" xml:"GroupName"`
+	GroupPolicyList []PolicyDetail  `query:"GroupPolicyList.member" xml:"GroupPolicyList>member"`
+	Path            aws.StringValue `query:"Path" xml:"Path"`
 }
 
 // InstanceProfile is undocumented.
 type InstanceProfile struct {
-	ARN                 aws.StringValue `xml:"Arn"`
-	CreateDate          time.Time       `xml:"CreateDate"`
-	InstanceProfileID   aws.StringValue `xml:"InstanceProfileId"`
-	InstanceProfileName aws.StringValue `xml:"InstanceProfileName"`
-	Path                aws.StringValue `xml:"Path"`
-	Roles               []Role          `xml:"Roles>member"`
+	ARN                 aws.StringValue `query:"Arn" xml:"Arn"`
+	CreateDate          time.Time       `query:"CreateDate" xml:"CreateDate"`
+	InstanceProfileID   aws.StringValue `query:"InstanceProfileId" xml:"InstanceProfileId"`
+	InstanceProfileName aws.StringValue `query:"InstanceProfileName" xml:"InstanceProfileName"`
+	Path                aws.StringValue `query:"Path" xml:"Path"`
+	Roles               []Role          `query:"Roles.member" xml:"Roles>member"`
 }
 
 // ListAccessKeysRequest is undocumented.
 type ListAccessKeysRequest struct {
-	Marker   aws.StringValue  `xml:"Marker"`
-	MaxItems aws.IntegerValue `xml:"MaxItems"`
-	UserName aws.StringValue  `xml:"UserName"`
+	Marker   aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	UserName aws.StringValue  `query:"UserName" xml:"UserName"`
 }
 
 // ListAccessKeysResponse is undocumented.
 type ListAccessKeysResponse struct {
-	AccessKeyMetadata []AccessKeyMetadata `xml:"ListAccessKeysResult>AccessKeyMetadata>member"`
-	IsTruncated       aws.BooleanValue    `xml:"ListAccessKeysResult>IsTruncated"`
-	Marker            aws.StringValue     `xml:"ListAccessKeysResult>Marker"`
+	AccessKeyMetadata []AccessKeyMetadata `query:"AccessKeyMetadata.member" xml:"ListAccessKeysResult>AccessKeyMetadata>member"`
+	IsTruncated       aws.BooleanValue    `query:"IsTruncated" xml:"ListAccessKeysResult>IsTruncated"`
+	Marker            aws.StringValue     `query:"Marker" xml:"ListAccessKeysResult>Marker"`
 }
 
 // ListAccountAliasesRequest is undocumented.
 type ListAccountAliasesRequest struct {
-	Marker   aws.StringValue  `xml:"Marker"`
-	MaxItems aws.IntegerValue `xml:"MaxItems"`
+	Marker   aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
 }
 
 // ListAccountAliasesResponse is undocumented.
 type ListAccountAliasesResponse struct {
-	AccountAliases []string         `xml:"ListAccountAliasesResult>AccountAliases>member"`
-	IsTruncated    aws.BooleanValue `xml:"ListAccountAliasesResult>IsTruncated"`
-	Marker         aws.StringValue  `xml:"ListAccountAliasesResult>Marker"`
+	AccountAliases []string         `query:"AccountAliases.member" xml:"ListAccountAliasesResult>AccountAliases>member"`
+	IsTruncated    aws.BooleanValue `query:"IsTruncated" xml:"ListAccountAliasesResult>IsTruncated"`
+	Marker         aws.StringValue  `query:"Marker" xml:"ListAccountAliasesResult>Marker"`
 }
 
 // ListGroupPoliciesRequest is undocumented.
 type ListGroupPoliciesRequest struct {
-	GroupName aws.StringValue  `xml:"GroupName"`
-	Marker    aws.StringValue  `xml:"Marker"`
-	MaxItems  aws.IntegerValue `xml:"MaxItems"`
+	GroupName aws.StringValue  `query:"GroupName" xml:"GroupName"`
+	Marker    aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems  aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
 }
 
 // ListGroupPoliciesResponse is undocumented.
 type ListGroupPoliciesResponse struct {
-	IsTruncated aws.BooleanValue `xml:"ListGroupPoliciesResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListGroupPoliciesResult>Marker"`
-	PolicyNames []string         `xml:"ListGroupPoliciesResult>PolicyNames>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListGroupPoliciesResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListGroupPoliciesResult>Marker"`
+	PolicyNames []string         `query:"PolicyNames.member" xml:"ListGroupPoliciesResult>PolicyNames>member"`
 }
 
 // ListGroupsForUserRequest is undocumented.
 type ListGroupsForUserRequest struct {
-	Marker   aws.StringValue  `xml:"Marker"`
-	MaxItems aws.IntegerValue `xml:"MaxItems"`
-	UserName aws.StringValue  `xml:"UserName"`
+	Marker   aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	UserName aws.StringValue  `query:"UserName" xml:"UserName"`
 }
 
 // ListGroupsForUserResponse is undocumented.
 type ListGroupsForUserResponse struct {
-	Groups      []Group          `xml:"ListGroupsForUserResult>Groups>member"`
-	IsTruncated aws.BooleanValue `xml:"ListGroupsForUserResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListGroupsForUserResult>Marker"`
+	Groups      []Group          `query:"Groups.member" xml:"ListGroupsForUserResult>Groups>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListGroupsForUserResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListGroupsForUserResult>Marker"`
 }
 
 // ListGroupsRequest is undocumented.
 type ListGroupsRequest struct {
-	Marker     aws.StringValue  `xml:"Marker"`
-	MaxItems   aws.IntegerValue `xml:"MaxItems"`
-	PathPrefix aws.StringValue  `xml:"PathPrefix"`
+	Marker     aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems   aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	PathPrefix aws.StringValue  `query:"PathPrefix" xml:"PathPrefix"`
 }
 
 // ListGroupsResponse is undocumented.
 type ListGroupsResponse struct {
-	Groups      []Group          `xml:"ListGroupsResult>Groups>member"`
-	IsTruncated aws.BooleanValue `xml:"ListGroupsResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListGroupsResult>Marker"`
+	Groups      []Group          `query:"Groups.member" xml:"ListGroupsResult>Groups>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListGroupsResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListGroupsResult>Marker"`
 }
 
 // ListInstanceProfilesForRoleRequest is undocumented.
 type ListInstanceProfilesForRoleRequest struct {
-	Marker   aws.StringValue  `xml:"Marker"`
-	MaxItems aws.IntegerValue `xml:"MaxItems"`
-	RoleName aws.StringValue  `xml:"RoleName"`
+	Marker   aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	RoleName aws.StringValue  `query:"RoleName" xml:"RoleName"`
 }
 
 // ListInstanceProfilesForRoleResponse is undocumented.
 type ListInstanceProfilesForRoleResponse struct {
-	InstanceProfiles []InstanceProfile `xml:"ListInstanceProfilesForRoleResult>InstanceProfiles>member"`
-	IsTruncated      aws.BooleanValue  `xml:"ListInstanceProfilesForRoleResult>IsTruncated"`
-	Marker           aws.StringValue   `xml:"ListInstanceProfilesForRoleResult>Marker"`
+	InstanceProfiles []InstanceProfile `query:"InstanceProfiles.member" xml:"ListInstanceProfilesForRoleResult>InstanceProfiles>member"`
+	IsTruncated      aws.BooleanValue  `query:"IsTruncated" xml:"ListInstanceProfilesForRoleResult>IsTruncated"`
+	Marker           aws.StringValue   `query:"Marker" xml:"ListInstanceProfilesForRoleResult>Marker"`
 }
 
 // ListInstanceProfilesRequest is undocumented.
 type ListInstanceProfilesRequest struct {
-	Marker     aws.StringValue  `xml:"Marker"`
-	MaxItems   aws.IntegerValue `xml:"MaxItems"`
-	PathPrefix aws.StringValue  `xml:"PathPrefix"`
+	Marker     aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems   aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	PathPrefix aws.StringValue  `query:"PathPrefix" xml:"PathPrefix"`
 }
 
 // ListInstanceProfilesResponse is undocumented.
 type ListInstanceProfilesResponse struct {
-	InstanceProfiles []InstanceProfile `xml:"ListInstanceProfilesResult>InstanceProfiles>member"`
-	IsTruncated      aws.BooleanValue  `xml:"ListInstanceProfilesResult>IsTruncated"`
-	Marker           aws.StringValue   `xml:"ListInstanceProfilesResult>Marker"`
+	InstanceProfiles []InstanceProfile `query:"InstanceProfiles.member" xml:"ListInstanceProfilesResult>InstanceProfiles>member"`
+	IsTruncated      aws.BooleanValue  `query:"IsTruncated" xml:"ListInstanceProfilesResult>IsTruncated"`
+	Marker           aws.StringValue   `query:"Marker" xml:"ListInstanceProfilesResult>Marker"`
 }
 
 // ListMFADevicesRequest is undocumented.
 type ListMFADevicesRequest struct {
-	Marker   aws.StringValue  `xml:"Marker"`
-	MaxItems aws.IntegerValue `xml:"MaxItems"`
-	UserName aws.StringValue  `xml:"UserName"`
+	Marker   aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	UserName aws.StringValue  `query:"UserName" xml:"UserName"`
 }
 
 // ListMFADevicesResponse is undocumented.
 type ListMFADevicesResponse struct {
-	IsTruncated aws.BooleanValue `xml:"ListMFADevicesResult>IsTruncated"`
-	MFADevices  []MFADevice      `xml:"ListMFADevicesResult>MFADevices>member"`
-	Marker      aws.StringValue  `xml:"ListMFADevicesResult>Marker"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListMFADevicesResult>IsTruncated"`
+	MFADevices  []MFADevice      `query:"MFADevices.member" xml:"ListMFADevicesResult>MFADevices>member"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListMFADevicesResult>Marker"`
 }
 
 // ListOpenIDConnectProvidersRequest is undocumented.
@@ -1546,35 +1546,35 @@ type ListOpenIDConnectProvidersRequest struct {
 
 // ListOpenIDConnectProvidersResponse is undocumented.
 type ListOpenIDConnectProvidersResponse struct {
-	OpenIDConnectProviderList []OpenIDConnectProviderListEntry `xml:"ListOpenIDConnectProvidersResult>OpenIDConnectProviderList>member"`
+	OpenIDConnectProviderList []OpenIDConnectProviderListEntry `query:"OpenIDConnectProviderList.member" xml:"ListOpenIDConnectProvidersResult>OpenIDConnectProviderList>member"`
 }
 
 // ListRolePoliciesRequest is undocumented.
 type ListRolePoliciesRequest struct {
-	Marker   aws.StringValue  `xml:"Marker"`
-	MaxItems aws.IntegerValue `xml:"MaxItems"`
-	RoleName aws.StringValue  `xml:"RoleName"`
+	Marker   aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	RoleName aws.StringValue  `query:"RoleName" xml:"RoleName"`
 }
 
 // ListRolePoliciesResponse is undocumented.
 type ListRolePoliciesResponse struct {
-	IsTruncated aws.BooleanValue `xml:"ListRolePoliciesResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListRolePoliciesResult>Marker"`
-	PolicyNames []string         `xml:"ListRolePoliciesResult>PolicyNames>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListRolePoliciesResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListRolePoliciesResult>Marker"`
+	PolicyNames []string         `query:"PolicyNames.member" xml:"ListRolePoliciesResult>PolicyNames>member"`
 }
 
 // ListRolesRequest is undocumented.
 type ListRolesRequest struct {
-	Marker     aws.StringValue  `xml:"Marker"`
-	MaxItems   aws.IntegerValue `xml:"MaxItems"`
-	PathPrefix aws.StringValue  `xml:"PathPrefix"`
+	Marker     aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems   aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	PathPrefix aws.StringValue  `query:"PathPrefix" xml:"PathPrefix"`
 }
 
 // ListRolesResponse is undocumented.
 type ListRolesResponse struct {
-	IsTruncated aws.BooleanValue `xml:"ListRolesResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListRolesResult>Marker"`
-	Roles       []Role           `xml:"ListRolesResult>Roles>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListRolesResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListRolesResult>Marker"`
+	Roles       []Role           `query:"Roles.member" xml:"ListRolesResult>Roles>member"`
 }
 
 // ListSAMLProvidersRequest is undocumented.
@@ -1583,155 +1583,155 @@ type ListSAMLProvidersRequest struct {
 
 // ListSAMLProvidersResponse is undocumented.
 type ListSAMLProvidersResponse struct {
-	SAMLProviderList []SAMLProviderListEntry `xml:"ListSAMLProvidersResult>SAMLProviderList>member"`
+	SAMLProviderList []SAMLProviderListEntry `query:"SAMLProviderList.member" xml:"ListSAMLProvidersResult>SAMLProviderList>member"`
 }
 
 // ListServerCertificatesRequest is undocumented.
 type ListServerCertificatesRequest struct {
-	Marker     aws.StringValue  `xml:"Marker"`
-	MaxItems   aws.IntegerValue `xml:"MaxItems"`
-	PathPrefix aws.StringValue  `xml:"PathPrefix"`
+	Marker     aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems   aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	PathPrefix aws.StringValue  `query:"PathPrefix" xml:"PathPrefix"`
 }
 
 // ListServerCertificatesResponse is undocumented.
 type ListServerCertificatesResponse struct {
-	IsTruncated                   aws.BooleanValue            `xml:"ListServerCertificatesResult>IsTruncated"`
-	Marker                        aws.StringValue             `xml:"ListServerCertificatesResult>Marker"`
-	ServerCertificateMetadataList []ServerCertificateMetadata `xml:"ListServerCertificatesResult>ServerCertificateMetadataList>member"`
+	IsTruncated                   aws.BooleanValue            `query:"IsTruncated" xml:"ListServerCertificatesResult>IsTruncated"`
+	Marker                        aws.StringValue             `query:"Marker" xml:"ListServerCertificatesResult>Marker"`
+	ServerCertificateMetadataList []ServerCertificateMetadata `query:"ServerCertificateMetadataList.member" xml:"ListServerCertificatesResult>ServerCertificateMetadataList>member"`
 }
 
 // ListSigningCertificatesRequest is undocumented.
 type ListSigningCertificatesRequest struct {
-	Marker   aws.StringValue  `xml:"Marker"`
-	MaxItems aws.IntegerValue `xml:"MaxItems"`
-	UserName aws.StringValue  `xml:"UserName"`
+	Marker   aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	UserName aws.StringValue  `query:"UserName" xml:"UserName"`
 }
 
 // ListSigningCertificatesResponse is undocumented.
 type ListSigningCertificatesResponse struct {
-	Certificates []SigningCertificate `xml:"ListSigningCertificatesResult>Certificates>member"`
-	IsTruncated  aws.BooleanValue     `xml:"ListSigningCertificatesResult>IsTruncated"`
-	Marker       aws.StringValue      `xml:"ListSigningCertificatesResult>Marker"`
+	Certificates []SigningCertificate `query:"Certificates.member" xml:"ListSigningCertificatesResult>Certificates>member"`
+	IsTruncated  aws.BooleanValue     `query:"IsTruncated" xml:"ListSigningCertificatesResult>IsTruncated"`
+	Marker       aws.StringValue      `query:"Marker" xml:"ListSigningCertificatesResult>Marker"`
 }
 
 // ListUserPoliciesRequest is undocumented.
 type ListUserPoliciesRequest struct {
-	Marker   aws.StringValue  `xml:"Marker"`
-	MaxItems aws.IntegerValue `xml:"MaxItems"`
-	UserName aws.StringValue  `xml:"UserName"`
+	Marker   aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	UserName aws.StringValue  `query:"UserName" xml:"UserName"`
 }
 
 // ListUserPoliciesResponse is undocumented.
 type ListUserPoliciesResponse struct {
-	IsTruncated aws.BooleanValue `xml:"ListUserPoliciesResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListUserPoliciesResult>Marker"`
-	PolicyNames []string         `xml:"ListUserPoliciesResult>PolicyNames>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListUserPoliciesResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListUserPoliciesResult>Marker"`
+	PolicyNames []string         `query:"PolicyNames.member" xml:"ListUserPoliciesResult>PolicyNames>member"`
 }
 
 // ListUsersRequest is undocumented.
 type ListUsersRequest struct {
-	Marker     aws.StringValue  `xml:"Marker"`
-	MaxItems   aws.IntegerValue `xml:"MaxItems"`
-	PathPrefix aws.StringValue  `xml:"PathPrefix"`
+	Marker     aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems   aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	PathPrefix aws.StringValue  `query:"PathPrefix" xml:"PathPrefix"`
 }
 
 // ListUsersResponse is undocumented.
 type ListUsersResponse struct {
-	IsTruncated aws.BooleanValue `xml:"ListUsersResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListUsersResult>Marker"`
-	Users       []User           `xml:"ListUsersResult>Users>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListUsersResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListUsersResult>Marker"`
+	Users       []User           `query:"Users.member" xml:"ListUsersResult>Users>member"`
 }
 
 // ListVirtualMFADevicesRequest is undocumented.
 type ListVirtualMFADevicesRequest struct {
-	AssignmentStatus aws.StringValue  `xml:"AssignmentStatus"`
-	Marker           aws.StringValue  `xml:"Marker"`
-	MaxItems         aws.IntegerValue `xml:"MaxItems"`
+	AssignmentStatus aws.StringValue  `query:"AssignmentStatus" xml:"AssignmentStatus"`
+	Marker           aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems         aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
 }
 
 // ListVirtualMFADevicesResponse is undocumented.
 type ListVirtualMFADevicesResponse struct {
-	IsTruncated       aws.BooleanValue   `xml:"ListVirtualMFADevicesResult>IsTruncated"`
-	Marker            aws.StringValue    `xml:"ListVirtualMFADevicesResult>Marker"`
-	VirtualMFADevices []VirtualMFADevice `xml:"ListVirtualMFADevicesResult>VirtualMFADevices>member"`
+	IsTruncated       aws.BooleanValue   `query:"IsTruncated" xml:"ListVirtualMFADevicesResult>IsTruncated"`
+	Marker            aws.StringValue    `query:"Marker" xml:"ListVirtualMFADevicesResult>Marker"`
+	VirtualMFADevices []VirtualMFADevice `query:"VirtualMFADevices.member" xml:"ListVirtualMFADevicesResult>VirtualMFADevices>member"`
 }
 
 // LoginProfile is undocumented.
 type LoginProfile struct {
-	CreateDate            time.Time        `xml:"CreateDate"`
-	PasswordResetRequired aws.BooleanValue `xml:"PasswordResetRequired"`
-	UserName              aws.StringValue  `xml:"UserName"`
+	CreateDate            time.Time        `query:"CreateDate" xml:"CreateDate"`
+	PasswordResetRequired aws.BooleanValue `query:"PasswordResetRequired" xml:"PasswordResetRequired"`
+	UserName              aws.StringValue  `query:"UserName" xml:"UserName"`
 }
 
 // MFADevice is undocumented.
 type MFADevice struct {
-	EnableDate   time.Time       `xml:"EnableDate"`
-	SerialNumber aws.StringValue `xml:"SerialNumber"`
-	UserName     aws.StringValue `xml:"UserName"`
+	EnableDate   time.Time       `query:"EnableDate" xml:"EnableDate"`
+	SerialNumber aws.StringValue `query:"SerialNumber" xml:"SerialNumber"`
+	UserName     aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // OpenIDConnectProviderListEntry is undocumented.
 type OpenIDConnectProviderListEntry struct {
-	ARN aws.StringValue `xml:"Arn"`
+	ARN aws.StringValue `query:"Arn" xml:"Arn"`
 }
 
 // PasswordPolicy is undocumented.
 type PasswordPolicy struct {
-	AllowUsersToChangePassword aws.BooleanValue `xml:"AllowUsersToChangePassword"`
-	ExpirePasswords            aws.BooleanValue `xml:"ExpirePasswords"`
-	HardExpiry                 aws.BooleanValue `xml:"HardExpiry"`
-	MaxPasswordAge             aws.IntegerValue `xml:"MaxPasswordAge"`
-	MinimumPasswordLength      aws.IntegerValue `xml:"MinimumPasswordLength"`
-	PasswordReusePrevention    aws.IntegerValue `xml:"PasswordReusePrevention"`
-	RequireLowercaseCharacters aws.BooleanValue `xml:"RequireLowercaseCharacters"`
-	RequireNumbers             aws.BooleanValue `xml:"RequireNumbers"`
-	RequireSymbols             aws.BooleanValue `xml:"RequireSymbols"`
-	RequireUppercaseCharacters aws.BooleanValue `xml:"RequireUppercaseCharacters"`
+	AllowUsersToChangePassword aws.BooleanValue `query:"AllowUsersToChangePassword" xml:"AllowUsersToChangePassword"`
+	ExpirePasswords            aws.BooleanValue `query:"ExpirePasswords" xml:"ExpirePasswords"`
+	HardExpiry                 aws.BooleanValue `query:"HardExpiry" xml:"HardExpiry"`
+	MaxPasswordAge             aws.IntegerValue `query:"MaxPasswordAge" xml:"MaxPasswordAge"`
+	MinimumPasswordLength      aws.IntegerValue `query:"MinimumPasswordLength" xml:"MinimumPasswordLength"`
+	PasswordReusePrevention    aws.IntegerValue `query:"PasswordReusePrevention" xml:"PasswordReusePrevention"`
+	RequireLowercaseCharacters aws.BooleanValue `query:"RequireLowercaseCharacters" xml:"RequireLowercaseCharacters"`
+	RequireNumbers             aws.BooleanValue `query:"RequireNumbers" xml:"RequireNumbers"`
+	RequireSymbols             aws.BooleanValue `query:"RequireSymbols" xml:"RequireSymbols"`
+	RequireUppercaseCharacters aws.BooleanValue `query:"RequireUppercaseCharacters" xml:"RequireUppercaseCharacters"`
 }
 
 // PolicyDetail is undocumented.
 type PolicyDetail struct {
-	PolicyDocument aws.StringValue `xml:"PolicyDocument"`
-	PolicyName     aws.StringValue `xml:"PolicyName"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"PolicyDocument"`
+	PolicyName     aws.StringValue `query:"PolicyName" xml:"PolicyName"`
 }
 
 // PutGroupPolicyRequest is undocumented.
 type PutGroupPolicyRequest struct {
-	GroupName      aws.StringValue `xml:"GroupName"`
-	PolicyDocument aws.StringValue `xml:"PolicyDocument"`
-	PolicyName     aws.StringValue `xml:"PolicyName"`
+	GroupName      aws.StringValue `query:"GroupName" xml:"GroupName"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"PolicyDocument"`
+	PolicyName     aws.StringValue `query:"PolicyName" xml:"PolicyName"`
 }
 
 // PutRolePolicyRequest is undocumented.
 type PutRolePolicyRequest struct {
-	PolicyDocument aws.StringValue `xml:"PolicyDocument"`
-	PolicyName     aws.StringValue `xml:"PolicyName"`
-	RoleName       aws.StringValue `xml:"RoleName"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"PolicyDocument"`
+	PolicyName     aws.StringValue `query:"PolicyName" xml:"PolicyName"`
+	RoleName       aws.StringValue `query:"RoleName" xml:"RoleName"`
 }
 
 // PutUserPolicyRequest is undocumented.
 type PutUserPolicyRequest struct {
-	PolicyDocument aws.StringValue `xml:"PolicyDocument"`
-	PolicyName     aws.StringValue `xml:"PolicyName"`
-	UserName       aws.StringValue `xml:"UserName"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"PolicyDocument"`
+	PolicyName     aws.StringValue `query:"PolicyName" xml:"PolicyName"`
+	UserName       aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // RemoveClientIDFromOpenIDConnectProviderRequest is undocumented.
 type RemoveClientIDFromOpenIDConnectProviderRequest struct {
-	ClientID                 aws.StringValue `xml:"ClientID"`
-	OpenIDConnectProviderARN aws.StringValue `xml:"OpenIDConnectProviderArn"`
+	ClientID                 aws.StringValue `query:"ClientID" xml:"ClientID"`
+	OpenIDConnectProviderARN aws.StringValue `query:"OpenIDConnectProviderArn" xml:"OpenIDConnectProviderArn"`
 }
 
 // RemoveRoleFromInstanceProfileRequest is undocumented.
 type RemoveRoleFromInstanceProfileRequest struct {
-	InstanceProfileName aws.StringValue `xml:"InstanceProfileName"`
-	RoleName            aws.StringValue `xml:"RoleName"`
+	InstanceProfileName aws.StringValue `query:"InstanceProfileName" xml:"InstanceProfileName"`
+	RoleName            aws.StringValue `query:"RoleName" xml:"RoleName"`
 }
 
 // RemoveUserFromGroupRequest is undocumented.
 type RemoveUserFromGroupRequest struct {
-	GroupName aws.StringValue `xml:"GroupName"`
-	UserName  aws.StringValue `xml:"UserName"`
+	GroupName aws.StringValue `query:"GroupName" xml:"GroupName"`
+	UserName  aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // Possible values for IAM.
@@ -1748,198 +1748,198 @@ const (
 
 // ResyncMFADeviceRequest is undocumented.
 type ResyncMFADeviceRequest struct {
-	AuthenticationCode1 aws.StringValue `xml:"AuthenticationCode1"`
-	AuthenticationCode2 aws.StringValue `xml:"AuthenticationCode2"`
-	SerialNumber        aws.StringValue `xml:"SerialNumber"`
-	UserName            aws.StringValue `xml:"UserName"`
+	AuthenticationCode1 aws.StringValue `query:"AuthenticationCode1" xml:"AuthenticationCode1"`
+	AuthenticationCode2 aws.StringValue `query:"AuthenticationCode2" xml:"AuthenticationCode2"`
+	SerialNumber        aws.StringValue `query:"SerialNumber" xml:"SerialNumber"`
+	UserName            aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // Role is undocumented.
 type Role struct {
-	ARN                      aws.StringValue `xml:"Arn"`
-	AssumeRolePolicyDocument aws.StringValue `xml:"AssumeRolePolicyDocument"`
-	CreateDate               time.Time       `xml:"CreateDate"`
-	Path                     aws.StringValue `xml:"Path"`
-	RoleID                   aws.StringValue `xml:"RoleId"`
-	RoleName                 aws.StringValue `xml:"RoleName"`
+	ARN                      aws.StringValue `query:"Arn" xml:"Arn"`
+	AssumeRolePolicyDocument aws.StringValue `query:"AssumeRolePolicyDocument" xml:"AssumeRolePolicyDocument"`
+	CreateDate               time.Time       `query:"CreateDate" xml:"CreateDate"`
+	Path                     aws.StringValue `query:"Path" xml:"Path"`
+	RoleID                   aws.StringValue `query:"RoleId" xml:"RoleId"`
+	RoleName                 aws.StringValue `query:"RoleName" xml:"RoleName"`
 }
 
 // RoleDetail is undocumented.
 type RoleDetail struct {
-	ARN                      aws.StringValue   `xml:"Arn"`
-	AssumeRolePolicyDocument aws.StringValue   `xml:"AssumeRolePolicyDocument"`
-	CreateDate               time.Time         `xml:"CreateDate"`
-	InstanceProfileList      []InstanceProfile `xml:"InstanceProfileList>member"`
-	Path                     aws.StringValue   `xml:"Path"`
-	RoleID                   aws.StringValue   `xml:"RoleId"`
-	RoleName                 aws.StringValue   `xml:"RoleName"`
-	RolePolicyList           []PolicyDetail    `xml:"RolePolicyList>member"`
+	ARN                      aws.StringValue   `query:"Arn" xml:"Arn"`
+	AssumeRolePolicyDocument aws.StringValue   `query:"AssumeRolePolicyDocument" xml:"AssumeRolePolicyDocument"`
+	CreateDate               time.Time         `query:"CreateDate" xml:"CreateDate"`
+	InstanceProfileList      []InstanceProfile `query:"InstanceProfileList.member" xml:"InstanceProfileList>member"`
+	Path                     aws.StringValue   `query:"Path" xml:"Path"`
+	RoleID                   aws.StringValue   `query:"RoleId" xml:"RoleId"`
+	RoleName                 aws.StringValue   `query:"RoleName" xml:"RoleName"`
+	RolePolicyList           []PolicyDetail    `query:"RolePolicyList.member" xml:"RolePolicyList>member"`
 }
 
 // SAMLProviderListEntry is undocumented.
 type SAMLProviderListEntry struct {
-	ARN        aws.StringValue `xml:"Arn"`
-	CreateDate time.Time       `xml:"CreateDate"`
-	ValidUntil time.Time       `xml:"ValidUntil"`
+	ARN        aws.StringValue `query:"Arn" xml:"Arn"`
+	CreateDate time.Time       `query:"CreateDate" xml:"CreateDate"`
+	ValidUntil time.Time       `query:"ValidUntil" xml:"ValidUntil"`
 }
 
 // ServerCertificate is undocumented.
 type ServerCertificate struct {
-	CertificateBody           aws.StringValue            `xml:"CertificateBody"`
-	CertificateChain          aws.StringValue            `xml:"CertificateChain"`
-	ServerCertificateMetadata *ServerCertificateMetadata `xml:"ServerCertificateMetadata"`
+	CertificateBody           aws.StringValue            `query:"CertificateBody" xml:"CertificateBody"`
+	CertificateChain          aws.StringValue            `query:"CertificateChain" xml:"CertificateChain"`
+	ServerCertificateMetadata *ServerCertificateMetadata `query:"ServerCertificateMetadata" xml:"ServerCertificateMetadata"`
 }
 
 // ServerCertificateMetadata is undocumented.
 type ServerCertificateMetadata struct {
-	ARN                   aws.StringValue `xml:"Arn"`
-	Expiration            time.Time       `xml:"Expiration"`
-	Path                  aws.StringValue `xml:"Path"`
-	ServerCertificateID   aws.StringValue `xml:"ServerCertificateId"`
-	ServerCertificateName aws.StringValue `xml:"ServerCertificateName"`
-	UploadDate            time.Time       `xml:"UploadDate"`
+	ARN                   aws.StringValue `query:"Arn" xml:"Arn"`
+	Expiration            time.Time       `query:"Expiration" xml:"Expiration"`
+	Path                  aws.StringValue `query:"Path" xml:"Path"`
+	ServerCertificateID   aws.StringValue `query:"ServerCertificateId" xml:"ServerCertificateId"`
+	ServerCertificateName aws.StringValue `query:"ServerCertificateName" xml:"ServerCertificateName"`
+	UploadDate            time.Time       `query:"UploadDate" xml:"UploadDate"`
 }
 
 // SigningCertificate is undocumented.
 type SigningCertificate struct {
-	CertificateBody aws.StringValue `xml:"CertificateBody"`
-	CertificateID   aws.StringValue `xml:"CertificateId"`
-	Status          aws.StringValue `xml:"Status"`
-	UploadDate      time.Time       `xml:"UploadDate"`
-	UserName        aws.StringValue `xml:"UserName"`
+	CertificateBody aws.StringValue `query:"CertificateBody" xml:"CertificateBody"`
+	CertificateID   aws.StringValue `query:"CertificateId" xml:"CertificateId"`
+	Status          aws.StringValue `query:"Status" xml:"Status"`
+	UploadDate      time.Time       `query:"UploadDate" xml:"UploadDate"`
+	UserName        aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // UpdateAccessKeyRequest is undocumented.
 type UpdateAccessKeyRequest struct {
-	AccessKeyID aws.StringValue `xml:"AccessKeyId"`
-	Status      aws.StringValue `xml:"Status"`
-	UserName    aws.StringValue `xml:"UserName"`
+	AccessKeyID aws.StringValue `query:"AccessKeyId" xml:"AccessKeyId"`
+	Status      aws.StringValue `query:"Status" xml:"Status"`
+	UserName    aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // UpdateAccountPasswordPolicyRequest is undocumented.
 type UpdateAccountPasswordPolicyRequest struct {
-	AllowUsersToChangePassword aws.BooleanValue `xml:"AllowUsersToChangePassword"`
-	HardExpiry                 aws.BooleanValue `xml:"HardExpiry"`
-	MaxPasswordAge             aws.IntegerValue `xml:"MaxPasswordAge"`
-	MinimumPasswordLength      aws.IntegerValue `xml:"MinimumPasswordLength"`
-	PasswordReusePrevention    aws.IntegerValue `xml:"PasswordReusePrevention"`
-	RequireLowercaseCharacters aws.BooleanValue `xml:"RequireLowercaseCharacters"`
-	RequireNumbers             aws.BooleanValue `xml:"RequireNumbers"`
-	RequireSymbols             aws.BooleanValue `xml:"RequireSymbols"`
-	RequireUppercaseCharacters aws.BooleanValue `xml:"RequireUppercaseCharacters"`
+	AllowUsersToChangePassword aws.BooleanValue `query:"AllowUsersToChangePassword" xml:"AllowUsersToChangePassword"`
+	HardExpiry                 aws.BooleanValue `query:"HardExpiry" xml:"HardExpiry"`
+	MaxPasswordAge             aws.IntegerValue `query:"MaxPasswordAge" xml:"MaxPasswordAge"`
+	MinimumPasswordLength      aws.IntegerValue `query:"MinimumPasswordLength" xml:"MinimumPasswordLength"`
+	PasswordReusePrevention    aws.IntegerValue `query:"PasswordReusePrevention" xml:"PasswordReusePrevention"`
+	RequireLowercaseCharacters aws.BooleanValue `query:"RequireLowercaseCharacters" xml:"RequireLowercaseCharacters"`
+	RequireNumbers             aws.BooleanValue `query:"RequireNumbers" xml:"RequireNumbers"`
+	RequireSymbols             aws.BooleanValue `query:"RequireSymbols" xml:"RequireSymbols"`
+	RequireUppercaseCharacters aws.BooleanValue `query:"RequireUppercaseCharacters" xml:"RequireUppercaseCharacters"`
 }
 
 // UpdateAssumeRolePolicyRequest is undocumented.
 type UpdateAssumeRolePolicyRequest struct {
-	PolicyDocument aws.StringValue `xml:"PolicyDocument"`
-	RoleName       aws.StringValue `xml:"RoleName"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"PolicyDocument"`
+	RoleName       aws.StringValue `query:"RoleName" xml:"RoleName"`
 }
 
 // UpdateGroupRequest is undocumented.
 type UpdateGroupRequest struct {
-	GroupName    aws.StringValue `xml:"GroupName"`
-	NewGroupName aws.StringValue `xml:"NewGroupName"`
-	NewPath      aws.StringValue `xml:"NewPath"`
+	GroupName    aws.StringValue `query:"GroupName" xml:"GroupName"`
+	NewGroupName aws.StringValue `query:"NewGroupName" xml:"NewGroupName"`
+	NewPath      aws.StringValue `query:"NewPath" xml:"NewPath"`
 }
 
 // UpdateLoginProfileRequest is undocumented.
 type UpdateLoginProfileRequest struct {
-	Password              aws.StringValue  `xml:"Password"`
-	PasswordResetRequired aws.BooleanValue `xml:"PasswordResetRequired"`
-	UserName              aws.StringValue  `xml:"UserName"`
+	Password              aws.StringValue  `query:"Password" xml:"Password"`
+	PasswordResetRequired aws.BooleanValue `query:"PasswordResetRequired" xml:"PasswordResetRequired"`
+	UserName              aws.StringValue  `query:"UserName" xml:"UserName"`
 }
 
 // UpdateOpenIDConnectProviderThumbprintRequest is undocumented.
 type UpdateOpenIDConnectProviderThumbprintRequest struct {
-	OpenIDConnectProviderARN aws.StringValue `xml:"OpenIDConnectProviderArn"`
-	ThumbprintList           []string        `xml:"ThumbprintList>member"`
+	OpenIDConnectProviderARN aws.StringValue `query:"OpenIDConnectProviderArn" xml:"OpenIDConnectProviderArn"`
+	ThumbprintList           []string        `query:"ThumbprintList.member" xml:"ThumbprintList>member"`
 }
 
 // UpdateSAMLProviderRequest is undocumented.
 type UpdateSAMLProviderRequest struct {
-	SAMLMetadataDocument aws.StringValue `xml:"SAMLMetadataDocument"`
-	SAMLProviderARN      aws.StringValue `xml:"SAMLProviderArn"`
+	SAMLMetadataDocument aws.StringValue `query:"SAMLMetadataDocument" xml:"SAMLMetadataDocument"`
+	SAMLProviderARN      aws.StringValue `query:"SAMLProviderArn" xml:"SAMLProviderArn"`
 }
 
 // UpdateSAMLProviderResponse is undocumented.
 type UpdateSAMLProviderResponse struct {
-	SAMLProviderARN aws.StringValue `xml:"UpdateSAMLProviderResult>SAMLProviderArn"`
+	SAMLProviderARN aws.StringValue `query:"SAMLProviderArn" xml:"UpdateSAMLProviderResult>SAMLProviderArn"`
 }
 
 // UpdateServerCertificateRequest is undocumented.
 type UpdateServerCertificateRequest struct {
-	NewPath                  aws.StringValue `xml:"NewPath"`
-	NewServerCertificateName aws.StringValue `xml:"NewServerCertificateName"`
-	ServerCertificateName    aws.StringValue `xml:"ServerCertificateName"`
+	NewPath                  aws.StringValue `query:"NewPath" xml:"NewPath"`
+	NewServerCertificateName aws.StringValue `query:"NewServerCertificateName" xml:"NewServerCertificateName"`
+	ServerCertificateName    aws.StringValue `query:"ServerCertificateName" xml:"ServerCertificateName"`
 }
 
 // UpdateSigningCertificateRequest is undocumented.
 type UpdateSigningCertificateRequest struct {
-	CertificateID aws.StringValue `xml:"CertificateId"`
-	Status        aws.StringValue `xml:"Status"`
-	UserName      aws.StringValue `xml:"UserName"`
+	CertificateID aws.StringValue `query:"CertificateId" xml:"CertificateId"`
+	Status        aws.StringValue `query:"Status" xml:"Status"`
+	UserName      aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // UpdateUserRequest is undocumented.
 type UpdateUserRequest struct {
-	NewPath     aws.StringValue `xml:"NewPath"`
-	NewUserName aws.StringValue `xml:"NewUserName"`
-	UserName    aws.StringValue `xml:"UserName"`
+	NewPath     aws.StringValue `query:"NewPath" xml:"NewPath"`
+	NewUserName aws.StringValue `query:"NewUserName" xml:"NewUserName"`
+	UserName    aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // UploadServerCertificateRequest is undocumented.
 type UploadServerCertificateRequest struct {
-	CertificateBody       aws.StringValue `xml:"CertificateBody"`
-	CertificateChain      aws.StringValue `xml:"CertificateChain"`
-	Path                  aws.StringValue `xml:"Path"`
-	PrivateKey            aws.StringValue `xml:"PrivateKey"`
-	ServerCertificateName aws.StringValue `xml:"ServerCertificateName"`
+	CertificateBody       aws.StringValue `query:"CertificateBody" xml:"CertificateBody"`
+	CertificateChain      aws.StringValue `query:"CertificateChain" xml:"CertificateChain"`
+	Path                  aws.StringValue `query:"Path" xml:"Path"`
+	PrivateKey            aws.StringValue `query:"PrivateKey" xml:"PrivateKey"`
+	ServerCertificateName aws.StringValue `query:"ServerCertificateName" xml:"ServerCertificateName"`
 }
 
 // UploadServerCertificateResponse is undocumented.
 type UploadServerCertificateResponse struct {
-	ServerCertificateMetadata *ServerCertificateMetadata `xml:"UploadServerCertificateResult>ServerCertificateMetadata"`
+	ServerCertificateMetadata *ServerCertificateMetadata `query:"ServerCertificateMetadata" xml:"UploadServerCertificateResult>ServerCertificateMetadata"`
 }
 
 // UploadSigningCertificateRequest is undocumented.
 type UploadSigningCertificateRequest struct {
-	CertificateBody aws.StringValue `xml:"CertificateBody"`
-	UserName        aws.StringValue `xml:"UserName"`
+	CertificateBody aws.StringValue `query:"CertificateBody" xml:"CertificateBody"`
+	UserName        aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // UploadSigningCertificateResponse is undocumented.
 type UploadSigningCertificateResponse struct {
-	Certificate *SigningCertificate `xml:"UploadSigningCertificateResult>Certificate"`
+	Certificate *SigningCertificate `query:"Certificate" xml:"UploadSigningCertificateResult>Certificate"`
 }
 
 // User is undocumented.
 type User struct {
-	ARN              aws.StringValue `xml:"Arn"`
-	CreateDate       time.Time       `xml:"CreateDate"`
-	PasswordLastUsed time.Time       `xml:"PasswordLastUsed"`
-	Path             aws.StringValue `xml:"Path"`
-	UserID           aws.StringValue `xml:"UserId"`
-	UserName         aws.StringValue `xml:"UserName"`
+	ARN              aws.StringValue `query:"Arn" xml:"Arn"`
+	CreateDate       time.Time       `query:"CreateDate" xml:"CreateDate"`
+	PasswordLastUsed time.Time       `query:"PasswordLastUsed" xml:"PasswordLastUsed"`
+	Path             aws.StringValue `query:"Path" xml:"Path"`
+	UserID           aws.StringValue `query:"UserId" xml:"UserId"`
+	UserName         aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // UserDetail is undocumented.
 type UserDetail struct {
-	ARN            aws.StringValue `xml:"Arn"`
-	CreateDate     time.Time       `xml:"CreateDate"`
-	GroupList      []string        `xml:"GroupList>member"`
-	Path           aws.StringValue `xml:"Path"`
-	UserID         aws.StringValue `xml:"UserId"`
-	UserName       aws.StringValue `xml:"UserName"`
-	UserPolicyList []PolicyDetail  `xml:"UserPolicyList>member"`
+	ARN            aws.StringValue `query:"Arn" xml:"Arn"`
+	CreateDate     time.Time       `query:"CreateDate" xml:"CreateDate"`
+	GroupList      []string        `query:"GroupList.member" xml:"GroupList>member"`
+	Path           aws.StringValue `query:"Path" xml:"Path"`
+	UserID         aws.StringValue `query:"UserId" xml:"UserId"`
+	UserName       aws.StringValue `query:"UserName" xml:"UserName"`
+	UserPolicyList []PolicyDetail  `query:"UserPolicyList.member" xml:"UserPolicyList>member"`
 }
 
 // VirtualMFADevice is undocumented.
 type VirtualMFADevice struct {
-	Base32StringSeed []byte          `xml:"Base32StringSeed"`
-	EnableDate       time.Time       `xml:"EnableDate"`
-	QRCodePNG        []byte          `xml:"QRCodePNG"`
-	SerialNumber     aws.StringValue `xml:"SerialNumber"`
-	User             *User           `xml:"User"`
+	Base32StringSeed []byte          `query:"Base32StringSeed" xml:"Base32StringSeed"`
+	EnableDate       time.Time       `query:"EnableDate" xml:"EnableDate"`
+	QRCodePNG        []byte          `query:"QRCodePNG" xml:"QRCodePNG"`
+	SerialNumber     aws.StringValue `query:"SerialNumber" xml:"SerialNumber"`
+	User             *User           `query:"User" xml:"User"`
 }
 
 // Possible values for IAM.
@@ -1975,278 +1975,278 @@ const (
 
 // CreateAccessKeyResult is a wrapper for CreateAccessKeyResponse.
 type CreateAccessKeyResult struct {
-	AccessKey *AccessKey `xml:"CreateAccessKeyResult>AccessKey"`
+	AccessKey *AccessKey `query:"AccessKey" xml:"CreateAccessKeyResult>AccessKey"`
 }
 
 // CreateGroupResult is a wrapper for CreateGroupResponse.
 type CreateGroupResult struct {
-	Group *Group `xml:"CreateGroupResult>Group"`
+	Group *Group `query:"Group" xml:"CreateGroupResult>Group"`
 }
 
 // CreateInstanceProfileResult is a wrapper for CreateInstanceProfileResponse.
 type CreateInstanceProfileResult struct {
-	InstanceProfile *InstanceProfile `xml:"CreateInstanceProfileResult>InstanceProfile"`
+	InstanceProfile *InstanceProfile `query:"InstanceProfile" xml:"CreateInstanceProfileResult>InstanceProfile"`
 }
 
 // CreateLoginProfileResult is a wrapper for CreateLoginProfileResponse.
 type CreateLoginProfileResult struct {
-	LoginProfile *LoginProfile `xml:"CreateLoginProfileResult>LoginProfile"`
+	LoginProfile *LoginProfile `query:"LoginProfile" xml:"CreateLoginProfileResult>LoginProfile"`
 }
 
 // CreateOpenIDConnectProviderResult is a wrapper for CreateOpenIDConnectProviderResponse.
 type CreateOpenIDConnectProviderResult struct {
-	OpenIDConnectProviderARN aws.StringValue `xml:"CreateOpenIDConnectProviderResult>OpenIDConnectProviderArn"`
+	OpenIDConnectProviderARN aws.StringValue `query:"OpenIDConnectProviderArn" xml:"CreateOpenIDConnectProviderResult>OpenIDConnectProviderArn"`
 }
 
 // CreateRoleResult is a wrapper for CreateRoleResponse.
 type CreateRoleResult struct {
-	Role *Role `xml:"CreateRoleResult>Role"`
+	Role *Role `query:"Role" xml:"CreateRoleResult>Role"`
 }
 
 // CreateSAMLProviderResult is a wrapper for CreateSAMLProviderResponse.
 type CreateSAMLProviderResult struct {
-	SAMLProviderARN aws.StringValue `xml:"CreateSAMLProviderResult>SAMLProviderArn"`
+	SAMLProviderARN aws.StringValue `query:"SAMLProviderArn" xml:"CreateSAMLProviderResult>SAMLProviderArn"`
 }
 
 // CreateUserResult is a wrapper for CreateUserResponse.
 type CreateUserResult struct {
-	User *User `xml:"CreateUserResult>User"`
+	User *User `query:"User" xml:"CreateUserResult>User"`
 }
 
 // CreateVirtualMFADeviceResult is a wrapper for CreateVirtualMFADeviceResponse.
 type CreateVirtualMFADeviceResult struct {
-	VirtualMFADevice *VirtualMFADevice `xml:"CreateVirtualMFADeviceResult>VirtualMFADevice"`
+	VirtualMFADevice *VirtualMFADevice `query:"VirtualMFADevice" xml:"CreateVirtualMFADeviceResult>VirtualMFADevice"`
 }
 
 // GenerateCredentialReportResult is a wrapper for GenerateCredentialReportResponse.
 type GenerateCredentialReportResult struct {
-	Description aws.StringValue `xml:"GenerateCredentialReportResult>Description"`
-	State       aws.StringValue `xml:"GenerateCredentialReportResult>State"`
+	Description aws.StringValue `query:"Description" xml:"GenerateCredentialReportResult>Description"`
+	State       aws.StringValue `query:"State" xml:"GenerateCredentialReportResult>State"`
 }
 
 // GetAccountAuthorizationDetailsResult is a wrapper for GetAccountAuthorizationDetailsResponse.
 type GetAccountAuthorizationDetailsResult struct {
-	GroupDetailList []GroupDetail    `xml:"GetAccountAuthorizationDetailsResult>GroupDetailList>member"`
-	IsTruncated     aws.BooleanValue `xml:"GetAccountAuthorizationDetailsResult>IsTruncated"`
-	Marker          aws.StringValue  `xml:"GetAccountAuthorizationDetailsResult>Marker"`
-	RoleDetailList  []RoleDetail     `xml:"GetAccountAuthorizationDetailsResult>RoleDetailList>member"`
-	UserDetailList  []UserDetail     `xml:"GetAccountAuthorizationDetailsResult>UserDetailList>member"`
+	GroupDetailList []GroupDetail    `query:"GroupDetailList.member" xml:"GetAccountAuthorizationDetailsResult>GroupDetailList>member"`
+	IsTruncated     aws.BooleanValue `query:"IsTruncated" xml:"GetAccountAuthorizationDetailsResult>IsTruncated"`
+	Marker          aws.StringValue  `query:"Marker" xml:"GetAccountAuthorizationDetailsResult>Marker"`
+	RoleDetailList  []RoleDetail     `query:"RoleDetailList.member" xml:"GetAccountAuthorizationDetailsResult>RoleDetailList>member"`
+	UserDetailList  []UserDetail     `query:"UserDetailList.member" xml:"GetAccountAuthorizationDetailsResult>UserDetailList>member"`
 }
 
 // GetAccountPasswordPolicyResult is a wrapper for GetAccountPasswordPolicyResponse.
 type GetAccountPasswordPolicyResult struct {
-	PasswordPolicy *PasswordPolicy `xml:"GetAccountPasswordPolicyResult>PasswordPolicy"`
+	PasswordPolicy *PasswordPolicy `query:"PasswordPolicy" xml:"GetAccountPasswordPolicyResult>PasswordPolicy"`
 }
 
 // GetAccountSummaryResult is a wrapper for GetAccountSummaryResponse.
 type GetAccountSummaryResult struct {
-	SummaryMap map[string]int `xml:"GetAccountSummaryResult>SummaryMap"`
+	SummaryMap map[string]int `query:"SummaryMap" xml:"GetAccountSummaryResult>SummaryMap"`
 }
 
 // GetCredentialReportResult is a wrapper for GetCredentialReportResponse.
 type GetCredentialReportResult struct {
-	Content       []byte          `xml:"GetCredentialReportResult>Content"`
-	GeneratedTime time.Time       `xml:"GetCredentialReportResult>GeneratedTime"`
-	ReportFormat  aws.StringValue `xml:"GetCredentialReportResult>ReportFormat"`
+	Content       []byte          `query:"Content" xml:"GetCredentialReportResult>Content"`
+	GeneratedTime time.Time       `query:"GeneratedTime" xml:"GetCredentialReportResult>GeneratedTime"`
+	ReportFormat  aws.StringValue `query:"ReportFormat" xml:"GetCredentialReportResult>ReportFormat"`
 }
 
 // GetGroupPolicyResult is a wrapper for GetGroupPolicyResponse.
 type GetGroupPolicyResult struct {
-	GroupName      aws.StringValue `xml:"GetGroupPolicyResult>GroupName"`
-	PolicyDocument aws.StringValue `xml:"GetGroupPolicyResult>PolicyDocument"`
-	PolicyName     aws.StringValue `xml:"GetGroupPolicyResult>PolicyName"`
+	GroupName      aws.StringValue `query:"GroupName" xml:"GetGroupPolicyResult>GroupName"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"GetGroupPolicyResult>PolicyDocument"`
+	PolicyName     aws.StringValue `query:"PolicyName" xml:"GetGroupPolicyResult>PolicyName"`
 }
 
 // GetGroupResult is a wrapper for GetGroupResponse.
 type GetGroupResult struct {
-	Group       *Group           `xml:"GetGroupResult>Group"`
-	IsTruncated aws.BooleanValue `xml:"GetGroupResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"GetGroupResult>Marker"`
-	Users       []User           `xml:"GetGroupResult>Users>member"`
+	Group       *Group           `query:"Group" xml:"GetGroupResult>Group"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"GetGroupResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"GetGroupResult>Marker"`
+	Users       []User           `query:"Users.member" xml:"GetGroupResult>Users>member"`
 }
 
 // GetInstanceProfileResult is a wrapper for GetInstanceProfileResponse.
 type GetInstanceProfileResult struct {
-	InstanceProfile *InstanceProfile `xml:"GetInstanceProfileResult>InstanceProfile"`
+	InstanceProfile *InstanceProfile `query:"InstanceProfile" xml:"GetInstanceProfileResult>InstanceProfile"`
 }
 
 // GetLoginProfileResult is a wrapper for GetLoginProfileResponse.
 type GetLoginProfileResult struct {
-	LoginProfile *LoginProfile `xml:"GetLoginProfileResult>LoginProfile"`
+	LoginProfile *LoginProfile `query:"LoginProfile" xml:"GetLoginProfileResult>LoginProfile"`
 }
 
 // GetOpenIDConnectProviderResult is a wrapper for GetOpenIDConnectProviderResponse.
 type GetOpenIDConnectProviderResult struct {
-	ClientIDList   []string        `xml:"GetOpenIDConnectProviderResult>ClientIDList>member"`
-	CreateDate     time.Time       `xml:"GetOpenIDConnectProviderResult>CreateDate"`
-	ThumbprintList []string        `xml:"GetOpenIDConnectProviderResult>ThumbprintList>member"`
-	URL            aws.StringValue `xml:"GetOpenIDConnectProviderResult>Url"`
+	ClientIDList   []string        `query:"ClientIDList.member" xml:"GetOpenIDConnectProviderResult>ClientIDList>member"`
+	CreateDate     time.Time       `query:"CreateDate" xml:"GetOpenIDConnectProviderResult>CreateDate"`
+	ThumbprintList []string        `query:"ThumbprintList.member" xml:"GetOpenIDConnectProviderResult>ThumbprintList>member"`
+	URL            aws.StringValue `query:"Url" xml:"GetOpenIDConnectProviderResult>Url"`
 }
 
 // GetRolePolicyResult is a wrapper for GetRolePolicyResponse.
 type GetRolePolicyResult struct {
-	PolicyDocument aws.StringValue `xml:"GetRolePolicyResult>PolicyDocument"`
-	PolicyName     aws.StringValue `xml:"GetRolePolicyResult>PolicyName"`
-	RoleName       aws.StringValue `xml:"GetRolePolicyResult>RoleName"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"GetRolePolicyResult>PolicyDocument"`
+	PolicyName     aws.StringValue `query:"PolicyName" xml:"GetRolePolicyResult>PolicyName"`
+	RoleName       aws.StringValue `query:"RoleName" xml:"GetRolePolicyResult>RoleName"`
 }
 
 // GetRoleResult is a wrapper for GetRoleResponse.
 type GetRoleResult struct {
-	Role *Role `xml:"GetRoleResult>Role"`
+	Role *Role `query:"Role" xml:"GetRoleResult>Role"`
 }
 
 // GetSAMLProviderResult is a wrapper for GetSAMLProviderResponse.
 type GetSAMLProviderResult struct {
-	CreateDate           time.Time       `xml:"GetSAMLProviderResult>CreateDate"`
-	SAMLMetadataDocument aws.StringValue `xml:"GetSAMLProviderResult>SAMLMetadataDocument"`
-	ValidUntil           time.Time       `xml:"GetSAMLProviderResult>ValidUntil"`
+	CreateDate           time.Time       `query:"CreateDate" xml:"GetSAMLProviderResult>CreateDate"`
+	SAMLMetadataDocument aws.StringValue `query:"SAMLMetadataDocument" xml:"GetSAMLProviderResult>SAMLMetadataDocument"`
+	ValidUntil           time.Time       `query:"ValidUntil" xml:"GetSAMLProviderResult>ValidUntil"`
 }
 
 // GetServerCertificateResult is a wrapper for GetServerCertificateResponse.
 type GetServerCertificateResult struct {
-	ServerCertificate *ServerCertificate `xml:"GetServerCertificateResult>ServerCertificate"`
+	ServerCertificate *ServerCertificate `query:"ServerCertificate" xml:"GetServerCertificateResult>ServerCertificate"`
 }
 
 // GetUserPolicyResult is a wrapper for GetUserPolicyResponse.
 type GetUserPolicyResult struct {
-	PolicyDocument aws.StringValue `xml:"GetUserPolicyResult>PolicyDocument"`
-	PolicyName     aws.StringValue `xml:"GetUserPolicyResult>PolicyName"`
-	UserName       aws.StringValue `xml:"GetUserPolicyResult>UserName"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"GetUserPolicyResult>PolicyDocument"`
+	PolicyName     aws.StringValue `query:"PolicyName" xml:"GetUserPolicyResult>PolicyName"`
+	UserName       aws.StringValue `query:"UserName" xml:"GetUserPolicyResult>UserName"`
 }
 
 // GetUserResult is a wrapper for GetUserResponse.
 type GetUserResult struct {
-	User *User `xml:"GetUserResult>User"`
+	User *User `query:"User" xml:"GetUserResult>User"`
 }
 
 // ListAccessKeysResult is a wrapper for ListAccessKeysResponse.
 type ListAccessKeysResult struct {
-	AccessKeyMetadata []AccessKeyMetadata `xml:"ListAccessKeysResult>AccessKeyMetadata>member"`
-	IsTruncated       aws.BooleanValue    `xml:"ListAccessKeysResult>IsTruncated"`
-	Marker            aws.StringValue     `xml:"ListAccessKeysResult>Marker"`
+	AccessKeyMetadata []AccessKeyMetadata `query:"AccessKeyMetadata.member" xml:"ListAccessKeysResult>AccessKeyMetadata>member"`
+	IsTruncated       aws.BooleanValue    `query:"IsTruncated" xml:"ListAccessKeysResult>IsTruncated"`
+	Marker            aws.StringValue     `query:"Marker" xml:"ListAccessKeysResult>Marker"`
 }
 
 // ListAccountAliasesResult is a wrapper for ListAccountAliasesResponse.
 type ListAccountAliasesResult struct {
-	AccountAliases []string         `xml:"ListAccountAliasesResult>AccountAliases>member"`
-	IsTruncated    aws.BooleanValue `xml:"ListAccountAliasesResult>IsTruncated"`
-	Marker         aws.StringValue  `xml:"ListAccountAliasesResult>Marker"`
+	AccountAliases []string         `query:"AccountAliases.member" xml:"ListAccountAliasesResult>AccountAliases>member"`
+	IsTruncated    aws.BooleanValue `query:"IsTruncated" xml:"ListAccountAliasesResult>IsTruncated"`
+	Marker         aws.StringValue  `query:"Marker" xml:"ListAccountAliasesResult>Marker"`
 }
 
 // ListGroupPoliciesResult is a wrapper for ListGroupPoliciesResponse.
 type ListGroupPoliciesResult struct {
-	IsTruncated aws.BooleanValue `xml:"ListGroupPoliciesResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListGroupPoliciesResult>Marker"`
-	PolicyNames []string         `xml:"ListGroupPoliciesResult>PolicyNames>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListGroupPoliciesResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListGroupPoliciesResult>Marker"`
+	PolicyNames []string         `query:"PolicyNames.member" xml:"ListGroupPoliciesResult>PolicyNames>member"`
 }
 
 // ListGroupsForUserResult is a wrapper for ListGroupsForUserResponse.
 type ListGroupsForUserResult struct {
-	Groups      []Group          `xml:"ListGroupsForUserResult>Groups>member"`
-	IsTruncated aws.BooleanValue `xml:"ListGroupsForUserResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListGroupsForUserResult>Marker"`
+	Groups      []Group          `query:"Groups.member" xml:"ListGroupsForUserResult>Groups>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListGroupsForUserResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListGroupsForUserResult>Marker"`
 }
 
 // ListGroupsResult is a wrapper for ListGroupsResponse.
 type ListGroupsResult struct {
-	Groups      []Group          `xml:"ListGroupsResult>Groups>member"`
-	IsTruncated aws.BooleanValue `xml:"ListGroupsResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListGroupsResult>Marker"`
+	Groups      []Group          `query:"Groups.member" xml:"ListGroupsResult>Groups>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListGroupsResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListGroupsResult>Marker"`
 }
 
 // ListInstanceProfilesForRoleResult is a wrapper for ListInstanceProfilesForRoleResponse.
 type ListInstanceProfilesForRoleResult struct {
-	InstanceProfiles []InstanceProfile `xml:"ListInstanceProfilesForRoleResult>InstanceProfiles>member"`
-	IsTruncated      aws.BooleanValue  `xml:"ListInstanceProfilesForRoleResult>IsTruncated"`
-	Marker           aws.StringValue   `xml:"ListInstanceProfilesForRoleResult>Marker"`
+	InstanceProfiles []InstanceProfile `query:"InstanceProfiles.member" xml:"ListInstanceProfilesForRoleResult>InstanceProfiles>member"`
+	IsTruncated      aws.BooleanValue  `query:"IsTruncated" xml:"ListInstanceProfilesForRoleResult>IsTruncated"`
+	Marker           aws.StringValue   `query:"Marker" xml:"ListInstanceProfilesForRoleResult>Marker"`
 }
 
 // ListInstanceProfilesResult is a wrapper for ListInstanceProfilesResponse.
 type ListInstanceProfilesResult struct {
-	InstanceProfiles []InstanceProfile `xml:"ListInstanceProfilesResult>InstanceProfiles>member"`
-	IsTruncated      aws.BooleanValue  `xml:"ListInstanceProfilesResult>IsTruncated"`
-	Marker           aws.StringValue   `xml:"ListInstanceProfilesResult>Marker"`
+	InstanceProfiles []InstanceProfile `query:"InstanceProfiles.member" xml:"ListInstanceProfilesResult>InstanceProfiles>member"`
+	IsTruncated      aws.BooleanValue  `query:"IsTruncated" xml:"ListInstanceProfilesResult>IsTruncated"`
+	Marker           aws.StringValue   `query:"Marker" xml:"ListInstanceProfilesResult>Marker"`
 }
 
 // ListMFADevicesResult is a wrapper for ListMFADevicesResponse.
 type ListMFADevicesResult struct {
-	IsTruncated aws.BooleanValue `xml:"ListMFADevicesResult>IsTruncated"`
-	MFADevices  []MFADevice      `xml:"ListMFADevicesResult>MFADevices>member"`
-	Marker      aws.StringValue  `xml:"ListMFADevicesResult>Marker"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListMFADevicesResult>IsTruncated"`
+	MFADevices  []MFADevice      `query:"MFADevices.member" xml:"ListMFADevicesResult>MFADevices>member"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListMFADevicesResult>Marker"`
 }
 
 // ListOpenIDConnectProvidersResult is a wrapper for ListOpenIDConnectProvidersResponse.
 type ListOpenIDConnectProvidersResult struct {
-	OpenIDConnectProviderList []OpenIDConnectProviderListEntry `xml:"ListOpenIDConnectProvidersResult>OpenIDConnectProviderList>member"`
+	OpenIDConnectProviderList []OpenIDConnectProviderListEntry `query:"OpenIDConnectProviderList.member" xml:"ListOpenIDConnectProvidersResult>OpenIDConnectProviderList>member"`
 }
 
 // ListRolePoliciesResult is a wrapper for ListRolePoliciesResponse.
 type ListRolePoliciesResult struct {
-	IsTruncated aws.BooleanValue `xml:"ListRolePoliciesResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListRolePoliciesResult>Marker"`
-	PolicyNames []string         `xml:"ListRolePoliciesResult>PolicyNames>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListRolePoliciesResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListRolePoliciesResult>Marker"`
+	PolicyNames []string         `query:"PolicyNames.member" xml:"ListRolePoliciesResult>PolicyNames>member"`
 }
 
 // ListRolesResult is a wrapper for ListRolesResponse.
 type ListRolesResult struct {
-	IsTruncated aws.BooleanValue `xml:"ListRolesResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListRolesResult>Marker"`
-	Roles       []Role           `xml:"ListRolesResult>Roles>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListRolesResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListRolesResult>Marker"`
+	Roles       []Role           `query:"Roles.member" xml:"ListRolesResult>Roles>member"`
 }
 
 // ListSAMLProvidersResult is a wrapper for ListSAMLProvidersResponse.
 type ListSAMLProvidersResult struct {
-	SAMLProviderList []SAMLProviderListEntry `xml:"ListSAMLProvidersResult>SAMLProviderList>member"`
+	SAMLProviderList []SAMLProviderListEntry `query:"SAMLProviderList.member" xml:"ListSAMLProvidersResult>SAMLProviderList>member"`
 }
 
 // ListServerCertificatesResult is a wrapper for ListServerCertificatesResponse.
 type ListServerCertificatesResult struct {
-	IsTruncated                   aws.BooleanValue            `xml:"ListServerCertificatesResult>IsTruncated"`
-	Marker                        aws.StringValue             `xml:"ListServerCertificatesResult>Marker"`
-	ServerCertificateMetadataList []ServerCertificateMetadata `xml:"ListServerCertificatesResult>ServerCertificateMetadataList>member"`
+	IsTruncated                   aws.BooleanValue            `query:"IsTruncated" xml:"ListServerCertificatesResult>IsTruncated"`
+	Marker                        aws.StringValue             `query:"Marker" xml:"ListServerCertificatesResult>Marker"`
+	ServerCertificateMetadataList []ServerCertificateMetadata `query:"ServerCertificateMetadataList.member" xml:"ListServerCertificatesResult>ServerCertificateMetadataList>member"`
 }
 
 // ListSigningCertificatesResult is a wrapper for ListSigningCertificatesResponse.
 type ListSigningCertificatesResult struct {
-	Certificates []SigningCertificate `xml:"ListSigningCertificatesResult>Certificates>member"`
-	IsTruncated  aws.BooleanValue     `xml:"ListSigningCertificatesResult>IsTruncated"`
-	Marker       aws.StringValue      `xml:"ListSigningCertificatesResult>Marker"`
+	Certificates []SigningCertificate `query:"Certificates.member" xml:"ListSigningCertificatesResult>Certificates>member"`
+	IsTruncated  aws.BooleanValue     `query:"IsTruncated" xml:"ListSigningCertificatesResult>IsTruncated"`
+	Marker       aws.StringValue      `query:"Marker" xml:"ListSigningCertificatesResult>Marker"`
 }
 
 // ListUserPoliciesResult is a wrapper for ListUserPoliciesResponse.
 type ListUserPoliciesResult struct {
-	IsTruncated aws.BooleanValue `xml:"ListUserPoliciesResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListUserPoliciesResult>Marker"`
-	PolicyNames []string         `xml:"ListUserPoliciesResult>PolicyNames>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListUserPoliciesResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListUserPoliciesResult>Marker"`
+	PolicyNames []string         `query:"PolicyNames.member" xml:"ListUserPoliciesResult>PolicyNames>member"`
 }
 
 // ListUsersResult is a wrapper for ListUsersResponse.
 type ListUsersResult struct {
-	IsTruncated aws.BooleanValue `xml:"ListUsersResult>IsTruncated"`
-	Marker      aws.StringValue  `xml:"ListUsersResult>Marker"`
-	Users       []User           `xml:"ListUsersResult>Users>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListUsersResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListUsersResult>Marker"`
+	Users       []User           `query:"Users.member" xml:"ListUsersResult>Users>member"`
 }
 
 // ListVirtualMFADevicesResult is a wrapper for ListVirtualMFADevicesResponse.
 type ListVirtualMFADevicesResult struct {
-	IsTruncated       aws.BooleanValue   `xml:"ListVirtualMFADevicesResult>IsTruncated"`
-	Marker            aws.StringValue    `xml:"ListVirtualMFADevicesResult>Marker"`
-	VirtualMFADevices []VirtualMFADevice `xml:"ListVirtualMFADevicesResult>VirtualMFADevices>member"`
+	IsTruncated       aws.BooleanValue   `query:"IsTruncated" xml:"ListVirtualMFADevicesResult>IsTruncated"`
+	Marker            aws.StringValue    `query:"Marker" xml:"ListVirtualMFADevicesResult>Marker"`
+	VirtualMFADevices []VirtualMFADevice `query:"VirtualMFADevices.member" xml:"ListVirtualMFADevicesResult>VirtualMFADevices>member"`
 }
 
 // UpdateSAMLProviderResult is a wrapper for UpdateSAMLProviderResponse.
 type UpdateSAMLProviderResult struct {
-	SAMLProviderARN aws.StringValue `xml:"UpdateSAMLProviderResult>SAMLProviderArn"`
+	SAMLProviderARN aws.StringValue `query:"SAMLProviderArn" xml:"UpdateSAMLProviderResult>SAMLProviderArn"`
 }
 
 // UploadServerCertificateResult is a wrapper for UploadServerCertificateResponse.
 type UploadServerCertificateResult struct {
-	ServerCertificateMetadata *ServerCertificateMetadata `xml:"UploadServerCertificateResult>ServerCertificateMetadata"`
+	ServerCertificateMetadata *ServerCertificateMetadata `query:"ServerCertificateMetadata" xml:"UploadServerCertificateResult>ServerCertificateMetadata"`
 }
 
 // UploadSigningCertificateResult is a wrapper for UploadSigningCertificateResponse.
 type UploadSigningCertificateResult struct {
-	Certificate *SigningCertificate `xml:"UploadSigningCertificateResult>Certificate"`
+	Certificate *SigningCertificate `query:"Certificate" xml:"UploadSigningCertificateResult>Certificate"`
 }
 
 // avoid errors if the packages aren't referenced

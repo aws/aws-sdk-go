@@ -298,58 +298,58 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettings(req *ValidateConfigurat
 
 // ApplicationDescription is undocumented.
 type ApplicationDescription struct {
-	ApplicationName        aws.StringValue `xml:"ApplicationName"`
-	ConfigurationTemplates []string        `xml:"ConfigurationTemplates>member"`
-	DateCreated            time.Time       `xml:"DateCreated"`
-	DateUpdated            time.Time       `xml:"DateUpdated"`
-	Description            aws.StringValue `xml:"Description"`
-	Versions               []string        `xml:"Versions>member"`
+	ApplicationName        aws.StringValue `query:"ApplicationName" xml:"ApplicationName"`
+	ConfigurationTemplates []string        `query:"ConfigurationTemplates.member" xml:"ConfigurationTemplates>member"`
+	DateCreated            time.Time       `query:"DateCreated" xml:"DateCreated"`
+	DateUpdated            time.Time       `query:"DateUpdated" xml:"DateUpdated"`
+	Description            aws.StringValue `query:"Description" xml:"Description"`
+	Versions               []string        `query:"Versions.member" xml:"Versions>member"`
 }
 
 // ApplicationDescriptionMessage is undocumented.
 type ApplicationDescriptionMessage struct {
-	Application *ApplicationDescription `xml:"Application"`
+	Application *ApplicationDescription `query:"Application" xml:"Application"`
 }
 
 // ApplicationDescriptionsMessage is undocumented.
 type ApplicationDescriptionsMessage struct {
-	Applications []ApplicationDescription `xml:"DescribeApplicationsResult>Applications>member"`
+	Applications []ApplicationDescription `query:"Applications.member" xml:"DescribeApplicationsResult>Applications>member"`
 }
 
 // ApplicationVersionDescription is undocumented.
 type ApplicationVersionDescription struct {
-	ApplicationName aws.StringValue `xml:"ApplicationName"`
-	DateCreated     time.Time       `xml:"DateCreated"`
-	DateUpdated     time.Time       `xml:"DateUpdated"`
-	Description     aws.StringValue `xml:"Description"`
-	SourceBundle    *S3Location     `xml:"SourceBundle"`
-	VersionLabel    aws.StringValue `xml:"VersionLabel"`
+	ApplicationName aws.StringValue `query:"ApplicationName" xml:"ApplicationName"`
+	DateCreated     time.Time       `query:"DateCreated" xml:"DateCreated"`
+	DateUpdated     time.Time       `query:"DateUpdated" xml:"DateUpdated"`
+	Description     aws.StringValue `query:"Description" xml:"Description"`
+	SourceBundle    *S3Location     `query:"SourceBundle" xml:"SourceBundle"`
+	VersionLabel    aws.StringValue `query:"VersionLabel" xml:"VersionLabel"`
 }
 
 // ApplicationVersionDescriptionMessage is undocumented.
 type ApplicationVersionDescriptionMessage struct {
-	ApplicationVersion *ApplicationVersionDescription `xml:"ApplicationVersion"`
+	ApplicationVersion *ApplicationVersionDescription `query:"ApplicationVersion" xml:"ApplicationVersion"`
 }
 
 // ApplicationVersionDescriptionsMessage is undocumented.
 type ApplicationVersionDescriptionsMessage struct {
-	ApplicationVersions []ApplicationVersionDescription `xml:"DescribeApplicationVersionsResult>ApplicationVersions>member"`
+	ApplicationVersions []ApplicationVersionDescription `query:"ApplicationVersions.member" xml:"DescribeApplicationVersionsResult>ApplicationVersions>member"`
 }
 
 // AutoScalingGroup is undocumented.
 type AutoScalingGroup struct {
-	Name aws.StringValue `xml:"Name"`
+	Name aws.StringValue `query:"Name" xml:"Name"`
 }
 
 // CheckDNSAvailabilityMessage is undocumented.
 type CheckDNSAvailabilityMessage struct {
-	CNAMEPrefix aws.StringValue `xml:"CNAMEPrefix"`
+	CNAMEPrefix aws.StringValue `query:"CNAMEPrefix" xml:"CNAMEPrefix"`
 }
 
 // CheckDNSAvailabilityResultMessage is undocumented.
 type CheckDNSAvailabilityResultMessage struct {
-	Available           aws.BooleanValue `xml:"CheckDNSAvailabilityResult>Available"`
-	FullyQualifiedCNAME aws.StringValue  `xml:"CheckDNSAvailabilityResult>FullyQualifiedCNAME"`
+	Available           aws.BooleanValue `query:"Available" xml:"CheckDNSAvailabilityResult>Available"`
+	FullyQualifiedCNAME aws.StringValue  `query:"FullyQualifiedCNAME" xml:"CheckDNSAvailabilityResult>FullyQualifiedCNAME"`
 }
 
 // Possible values for ElasticBeanstalk.
@@ -361,24 +361,24 @@ const (
 
 // ConfigurationOptionDescription is undocumented.
 type ConfigurationOptionDescription struct {
-	ChangeSeverity aws.StringValue         `xml:"ChangeSeverity"`
-	DefaultValue   aws.StringValue         `xml:"DefaultValue"`
-	MaxLength      aws.IntegerValue        `xml:"MaxLength"`
-	MaxValue       aws.IntegerValue        `xml:"MaxValue"`
-	MinValue       aws.IntegerValue        `xml:"MinValue"`
-	Name           aws.StringValue         `xml:"Name"`
-	Namespace      aws.StringValue         `xml:"Namespace"`
-	Regex          *OptionRestrictionRegex `xml:"Regex"`
-	UserDefined    aws.BooleanValue        `xml:"UserDefined"`
-	ValueOptions   []string                `xml:"ValueOptions>member"`
-	ValueType      aws.StringValue         `xml:"ValueType"`
+	ChangeSeverity aws.StringValue         `query:"ChangeSeverity" xml:"ChangeSeverity"`
+	DefaultValue   aws.StringValue         `query:"DefaultValue" xml:"DefaultValue"`
+	MaxLength      aws.IntegerValue        `query:"MaxLength" xml:"MaxLength"`
+	MaxValue       aws.IntegerValue        `query:"MaxValue" xml:"MaxValue"`
+	MinValue       aws.IntegerValue        `query:"MinValue" xml:"MinValue"`
+	Name           aws.StringValue         `query:"Name" xml:"Name"`
+	Namespace      aws.StringValue         `query:"Namespace" xml:"Namespace"`
+	Regex          *OptionRestrictionRegex `query:"Regex" xml:"Regex"`
+	UserDefined    aws.BooleanValue        `query:"UserDefined" xml:"UserDefined"`
+	ValueOptions   []string                `query:"ValueOptions.member" xml:"ValueOptions>member"`
+	ValueType      aws.StringValue         `query:"ValueType" xml:"ValueType"`
 }
 
 // ConfigurationOptionSetting is undocumented.
 type ConfigurationOptionSetting struct {
-	Namespace  aws.StringValue `xml:"Namespace"`
-	OptionName aws.StringValue `xml:"OptionName"`
-	Value      aws.StringValue `xml:"Value"`
+	Namespace  aws.StringValue `query:"Namespace" xml:"Namespace"`
+	OptionName aws.StringValue `query:"OptionName" xml:"OptionName"`
+	Value      aws.StringValue `query:"Value" xml:"Value"`
 }
 
 // Possible values for ElasticBeanstalk.
@@ -389,184 +389,184 @@ const (
 
 // ConfigurationOptionsDescription is undocumented.
 type ConfigurationOptionsDescription struct {
-	Options           []ConfigurationOptionDescription `xml:"DescribeConfigurationOptionsResult>Options>member"`
-	SolutionStackName aws.StringValue                  `xml:"DescribeConfigurationOptionsResult>SolutionStackName"`
+	Options           []ConfigurationOptionDescription `query:"Options.member" xml:"DescribeConfigurationOptionsResult>Options>member"`
+	SolutionStackName aws.StringValue                  `query:"SolutionStackName" xml:"DescribeConfigurationOptionsResult>SolutionStackName"`
 }
 
 // ConfigurationSettingsDescription is undocumented.
 type ConfigurationSettingsDescription struct {
-	ApplicationName   aws.StringValue              `xml:"ApplicationName"`
-	DateCreated       time.Time                    `xml:"DateCreated"`
-	DateUpdated       time.Time                    `xml:"DateUpdated"`
-	DeploymentStatus  aws.StringValue              `xml:"DeploymentStatus"`
-	Description       aws.StringValue              `xml:"Description"`
-	EnvironmentName   aws.StringValue              `xml:"EnvironmentName"`
-	OptionSettings    []ConfigurationOptionSetting `xml:"OptionSettings>member"`
-	SolutionStackName aws.StringValue              `xml:"SolutionStackName"`
-	TemplateName      aws.StringValue              `xml:"TemplateName"`
+	ApplicationName   aws.StringValue              `query:"ApplicationName" xml:"ApplicationName"`
+	DateCreated       time.Time                    `query:"DateCreated" xml:"DateCreated"`
+	DateUpdated       time.Time                    `query:"DateUpdated" xml:"DateUpdated"`
+	DeploymentStatus  aws.StringValue              `query:"DeploymentStatus" xml:"DeploymentStatus"`
+	Description       aws.StringValue              `query:"Description" xml:"Description"`
+	EnvironmentName   aws.StringValue              `query:"EnvironmentName" xml:"EnvironmentName"`
+	OptionSettings    []ConfigurationOptionSetting `query:"OptionSettings.member" xml:"OptionSettings>member"`
+	SolutionStackName aws.StringValue              `query:"SolutionStackName" xml:"SolutionStackName"`
+	TemplateName      aws.StringValue              `query:"TemplateName" xml:"TemplateName"`
 }
 
 // ConfigurationSettingsDescriptions is undocumented.
 type ConfigurationSettingsDescriptions struct {
-	ConfigurationSettings []ConfigurationSettingsDescription `xml:"DescribeConfigurationSettingsResult>ConfigurationSettings>member"`
+	ConfigurationSettings []ConfigurationSettingsDescription `query:"ConfigurationSettings.member" xml:"DescribeConfigurationSettingsResult>ConfigurationSettings>member"`
 }
 
 // ConfigurationSettingsValidationMessages is undocumented.
 type ConfigurationSettingsValidationMessages struct {
-	Messages []ValidationMessage `xml:"ValidateConfigurationSettingsResult>Messages>member"`
+	Messages []ValidationMessage `query:"Messages.member" xml:"ValidateConfigurationSettingsResult>Messages>member"`
 }
 
 // CreateApplicationMessage is undocumented.
 type CreateApplicationMessage struct {
-	ApplicationName aws.StringValue `xml:"ApplicationName"`
-	Description     aws.StringValue `xml:"Description"`
+	ApplicationName aws.StringValue `query:"ApplicationName" xml:"ApplicationName"`
+	Description     aws.StringValue `query:"Description" xml:"Description"`
 }
 
 // CreateApplicationVersionMessage is undocumented.
 type CreateApplicationVersionMessage struct {
-	ApplicationName       aws.StringValue  `xml:"ApplicationName"`
-	AutoCreateApplication aws.BooleanValue `xml:"AutoCreateApplication"`
-	Description           aws.StringValue  `xml:"Description"`
-	SourceBundle          *S3Location      `xml:"SourceBundle"`
-	VersionLabel          aws.StringValue  `xml:"VersionLabel"`
+	ApplicationName       aws.StringValue  `query:"ApplicationName" xml:"ApplicationName"`
+	AutoCreateApplication aws.BooleanValue `query:"AutoCreateApplication" xml:"AutoCreateApplication"`
+	Description           aws.StringValue  `query:"Description" xml:"Description"`
+	SourceBundle          *S3Location      `query:"SourceBundle" xml:"SourceBundle"`
+	VersionLabel          aws.StringValue  `query:"VersionLabel" xml:"VersionLabel"`
 }
 
 // CreateConfigurationTemplateMessage is undocumented.
 type CreateConfigurationTemplateMessage struct {
-	ApplicationName     aws.StringValue              `xml:"ApplicationName"`
-	Description         aws.StringValue              `xml:"Description"`
-	EnvironmentID       aws.StringValue              `xml:"EnvironmentId"`
-	OptionSettings      []ConfigurationOptionSetting `xml:"OptionSettings>member"`
-	SolutionStackName   aws.StringValue              `xml:"SolutionStackName"`
-	SourceConfiguration *SourceConfiguration         `xml:"SourceConfiguration"`
-	TemplateName        aws.StringValue              `xml:"TemplateName"`
+	ApplicationName     aws.StringValue              `query:"ApplicationName" xml:"ApplicationName"`
+	Description         aws.StringValue              `query:"Description" xml:"Description"`
+	EnvironmentID       aws.StringValue              `query:"EnvironmentId" xml:"EnvironmentId"`
+	OptionSettings      []ConfigurationOptionSetting `query:"OptionSettings.member" xml:"OptionSettings>member"`
+	SolutionStackName   aws.StringValue              `query:"SolutionStackName" xml:"SolutionStackName"`
+	SourceConfiguration *SourceConfiguration         `query:"SourceConfiguration" xml:"SourceConfiguration"`
+	TemplateName        aws.StringValue              `query:"TemplateName" xml:"TemplateName"`
 }
 
 // CreateEnvironmentMessage is undocumented.
 type CreateEnvironmentMessage struct {
-	ApplicationName   aws.StringValue              `xml:"ApplicationName"`
-	CNAMEPrefix       aws.StringValue              `xml:"CNAMEPrefix"`
-	Description       aws.StringValue              `xml:"Description"`
-	EnvironmentName   aws.StringValue              `xml:"EnvironmentName"`
-	OptionSettings    []ConfigurationOptionSetting `xml:"OptionSettings>member"`
-	OptionsToRemove   []OptionSpecification        `xml:"OptionsToRemove>member"`
-	SolutionStackName aws.StringValue              `xml:"SolutionStackName"`
-	Tags              []Tag                        `xml:"Tags>member"`
-	TemplateName      aws.StringValue              `xml:"TemplateName"`
-	Tier              *EnvironmentTier             `xml:"Tier"`
-	VersionLabel      aws.StringValue              `xml:"VersionLabel"`
+	ApplicationName   aws.StringValue              `query:"ApplicationName" xml:"ApplicationName"`
+	CNAMEPrefix       aws.StringValue              `query:"CNAMEPrefix" xml:"CNAMEPrefix"`
+	Description       aws.StringValue              `query:"Description" xml:"Description"`
+	EnvironmentName   aws.StringValue              `query:"EnvironmentName" xml:"EnvironmentName"`
+	OptionSettings    []ConfigurationOptionSetting `query:"OptionSettings.member" xml:"OptionSettings>member"`
+	OptionsToRemove   []OptionSpecification        `query:"OptionsToRemove.member" xml:"OptionsToRemove>member"`
+	SolutionStackName aws.StringValue              `query:"SolutionStackName" xml:"SolutionStackName"`
+	Tags              []Tag                        `query:"Tags.member" xml:"Tags>member"`
+	TemplateName      aws.StringValue              `query:"TemplateName" xml:"TemplateName"`
+	Tier              *EnvironmentTier             `query:"Tier" xml:"Tier"`
+	VersionLabel      aws.StringValue              `query:"VersionLabel" xml:"VersionLabel"`
 }
 
 // CreateStorageLocationResultMessage is undocumented.
 type CreateStorageLocationResultMessage struct {
-	S3Bucket aws.StringValue `xml:"CreateStorageLocationResult>S3Bucket"`
+	S3Bucket aws.StringValue `query:"S3Bucket" xml:"CreateStorageLocationResult>S3Bucket"`
 }
 
 // DeleteApplicationMessage is undocumented.
 type DeleteApplicationMessage struct {
-	ApplicationName     aws.StringValue  `xml:"ApplicationName"`
-	TerminateEnvByForce aws.BooleanValue `xml:"TerminateEnvByForce"`
+	ApplicationName     aws.StringValue  `query:"ApplicationName" xml:"ApplicationName"`
+	TerminateEnvByForce aws.BooleanValue `query:"TerminateEnvByForce" xml:"TerminateEnvByForce"`
 }
 
 // DeleteApplicationVersionMessage is undocumented.
 type DeleteApplicationVersionMessage struct {
-	ApplicationName    aws.StringValue  `xml:"ApplicationName"`
-	DeleteSourceBundle aws.BooleanValue `xml:"DeleteSourceBundle"`
-	VersionLabel       aws.StringValue  `xml:"VersionLabel"`
+	ApplicationName    aws.StringValue  `query:"ApplicationName" xml:"ApplicationName"`
+	DeleteSourceBundle aws.BooleanValue `query:"DeleteSourceBundle" xml:"DeleteSourceBundle"`
+	VersionLabel       aws.StringValue  `query:"VersionLabel" xml:"VersionLabel"`
 }
 
 // DeleteConfigurationTemplateMessage is undocumented.
 type DeleteConfigurationTemplateMessage struct {
-	ApplicationName aws.StringValue `xml:"ApplicationName"`
-	TemplateName    aws.StringValue `xml:"TemplateName"`
+	ApplicationName aws.StringValue `query:"ApplicationName" xml:"ApplicationName"`
+	TemplateName    aws.StringValue `query:"TemplateName" xml:"TemplateName"`
 }
 
 // DeleteEnvironmentConfigurationMessage is undocumented.
 type DeleteEnvironmentConfigurationMessage struct {
-	ApplicationName aws.StringValue `xml:"ApplicationName"`
-	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
+	ApplicationName aws.StringValue `query:"ApplicationName" xml:"ApplicationName"`
+	EnvironmentName aws.StringValue `query:"EnvironmentName" xml:"EnvironmentName"`
 }
 
 // DescribeApplicationVersionsMessage is undocumented.
 type DescribeApplicationVersionsMessage struct {
-	ApplicationName aws.StringValue `xml:"ApplicationName"`
-	VersionLabels   []string        `xml:"VersionLabels>member"`
+	ApplicationName aws.StringValue `query:"ApplicationName" xml:"ApplicationName"`
+	VersionLabels   []string        `query:"VersionLabels.member" xml:"VersionLabels>member"`
 }
 
 // DescribeApplicationsMessage is undocumented.
 type DescribeApplicationsMessage struct {
-	ApplicationNames []string `xml:"ApplicationNames>member"`
+	ApplicationNames []string `query:"ApplicationNames.member" xml:"ApplicationNames>member"`
 }
 
 // DescribeConfigurationOptionsMessage is undocumented.
 type DescribeConfigurationOptionsMessage struct {
-	ApplicationName   aws.StringValue       `xml:"ApplicationName"`
-	EnvironmentName   aws.StringValue       `xml:"EnvironmentName"`
-	Options           []OptionSpecification `xml:"Options>member"`
-	SolutionStackName aws.StringValue       `xml:"SolutionStackName"`
-	TemplateName      aws.StringValue       `xml:"TemplateName"`
+	ApplicationName   aws.StringValue       `query:"ApplicationName" xml:"ApplicationName"`
+	EnvironmentName   aws.StringValue       `query:"EnvironmentName" xml:"EnvironmentName"`
+	Options           []OptionSpecification `query:"Options.member" xml:"Options>member"`
+	SolutionStackName aws.StringValue       `query:"SolutionStackName" xml:"SolutionStackName"`
+	TemplateName      aws.StringValue       `query:"TemplateName" xml:"TemplateName"`
 }
 
 // DescribeConfigurationSettingsMessage is undocumented.
 type DescribeConfigurationSettingsMessage struct {
-	ApplicationName aws.StringValue `xml:"ApplicationName"`
-	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
-	TemplateName    aws.StringValue `xml:"TemplateName"`
+	ApplicationName aws.StringValue `query:"ApplicationName" xml:"ApplicationName"`
+	EnvironmentName aws.StringValue `query:"EnvironmentName" xml:"EnvironmentName"`
+	TemplateName    aws.StringValue `query:"TemplateName" xml:"TemplateName"`
 }
 
 // DescribeEnvironmentResourcesMessage is undocumented.
 type DescribeEnvironmentResourcesMessage struct {
-	EnvironmentID   aws.StringValue `xml:"EnvironmentId"`
-	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
+	EnvironmentID   aws.StringValue `query:"EnvironmentId" xml:"EnvironmentId"`
+	EnvironmentName aws.StringValue `query:"EnvironmentName" xml:"EnvironmentName"`
 }
 
 // DescribeEnvironmentsMessage is undocumented.
 type DescribeEnvironmentsMessage struct {
-	ApplicationName       aws.StringValue  `xml:"ApplicationName"`
-	EnvironmentIDs        []string         `xml:"EnvironmentIds>member"`
-	EnvironmentNames      []string         `xml:"EnvironmentNames>member"`
-	IncludeDeleted        aws.BooleanValue `xml:"IncludeDeleted"`
-	IncludedDeletedBackTo time.Time        `xml:"IncludedDeletedBackTo"`
-	VersionLabel          aws.StringValue  `xml:"VersionLabel"`
+	ApplicationName       aws.StringValue  `query:"ApplicationName" xml:"ApplicationName"`
+	EnvironmentIDs        []string         `query:"EnvironmentIds.member" xml:"EnvironmentIds>member"`
+	EnvironmentNames      []string         `query:"EnvironmentNames.member" xml:"EnvironmentNames>member"`
+	IncludeDeleted        aws.BooleanValue `query:"IncludeDeleted" xml:"IncludeDeleted"`
+	IncludedDeletedBackTo time.Time        `query:"IncludedDeletedBackTo" xml:"IncludedDeletedBackTo"`
+	VersionLabel          aws.StringValue  `query:"VersionLabel" xml:"VersionLabel"`
 }
 
 // DescribeEventsMessage is undocumented.
 type DescribeEventsMessage struct {
-	ApplicationName aws.StringValue  `xml:"ApplicationName"`
-	EndTime         time.Time        `xml:"EndTime"`
-	EnvironmentID   aws.StringValue  `xml:"EnvironmentId"`
-	EnvironmentName aws.StringValue  `xml:"EnvironmentName"`
-	MaxRecords      aws.IntegerValue `xml:"MaxRecords"`
-	NextToken       aws.StringValue  `xml:"NextToken"`
-	RequestID       aws.StringValue  `xml:"RequestId"`
-	Severity        aws.StringValue  `xml:"Severity"`
-	StartTime       time.Time        `xml:"StartTime"`
-	TemplateName    aws.StringValue  `xml:"TemplateName"`
-	VersionLabel    aws.StringValue  `xml:"VersionLabel"`
+	ApplicationName aws.StringValue  `query:"ApplicationName" xml:"ApplicationName"`
+	EndTime         time.Time        `query:"EndTime" xml:"EndTime"`
+	EnvironmentID   aws.StringValue  `query:"EnvironmentId" xml:"EnvironmentId"`
+	EnvironmentName aws.StringValue  `query:"EnvironmentName" xml:"EnvironmentName"`
+	MaxRecords      aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NextToken       aws.StringValue  `query:"NextToken" xml:"NextToken"`
+	RequestID       aws.StringValue  `query:"RequestId" xml:"RequestId"`
+	Severity        aws.StringValue  `query:"Severity" xml:"Severity"`
+	StartTime       time.Time        `query:"StartTime" xml:"StartTime"`
+	TemplateName    aws.StringValue  `query:"TemplateName" xml:"TemplateName"`
+	VersionLabel    aws.StringValue  `query:"VersionLabel" xml:"VersionLabel"`
 }
 
 // EnvironmentDescription is undocumented.
 type EnvironmentDescription struct {
-	ApplicationName   aws.StringValue                  `xml:"ApplicationName"`
-	CNAME             aws.StringValue                  `xml:"CNAME"`
-	DateCreated       time.Time                        `xml:"DateCreated"`
-	DateUpdated       time.Time                        `xml:"DateUpdated"`
-	Description       aws.StringValue                  `xml:"Description"`
-	EndpointURL       aws.StringValue                  `xml:"EndpointURL"`
-	EnvironmentID     aws.StringValue                  `xml:"EnvironmentId"`
-	EnvironmentName   aws.StringValue                  `xml:"EnvironmentName"`
-	Health            aws.StringValue                  `xml:"Health"`
-	Resources         *EnvironmentResourcesDescription `xml:"Resources"`
-	SolutionStackName aws.StringValue                  `xml:"SolutionStackName"`
-	Status            aws.StringValue                  `xml:"Status"`
-	TemplateName      aws.StringValue                  `xml:"TemplateName"`
-	Tier              *EnvironmentTier                 `xml:"Tier"`
-	VersionLabel      aws.StringValue                  `xml:"VersionLabel"`
+	ApplicationName   aws.StringValue                  `query:"ApplicationName" xml:"ApplicationName"`
+	CNAME             aws.StringValue                  `query:"CNAME" xml:"CNAME"`
+	DateCreated       time.Time                        `query:"DateCreated" xml:"DateCreated"`
+	DateUpdated       time.Time                        `query:"DateUpdated" xml:"DateUpdated"`
+	Description       aws.StringValue                  `query:"Description" xml:"Description"`
+	EndpointURL       aws.StringValue                  `query:"EndpointURL" xml:"EndpointURL"`
+	EnvironmentID     aws.StringValue                  `query:"EnvironmentId" xml:"EnvironmentId"`
+	EnvironmentName   aws.StringValue                  `query:"EnvironmentName" xml:"EnvironmentName"`
+	Health            aws.StringValue                  `query:"Health" xml:"Health"`
+	Resources         *EnvironmentResourcesDescription `query:"Resources" xml:"Resources"`
+	SolutionStackName aws.StringValue                  `query:"SolutionStackName" xml:"SolutionStackName"`
+	Status            aws.StringValue                  `query:"Status" xml:"Status"`
+	TemplateName      aws.StringValue                  `query:"TemplateName" xml:"TemplateName"`
+	Tier              *EnvironmentTier                 `query:"Tier" xml:"Tier"`
+	VersionLabel      aws.StringValue                  `query:"VersionLabel" xml:"VersionLabel"`
 }
 
 // EnvironmentDescriptionsMessage is undocumented.
 type EnvironmentDescriptionsMessage struct {
-	Environments []EnvironmentDescription `xml:"DescribeEnvironmentsResult>Environments>member"`
+	Environments []EnvironmentDescription `query:"Environments.member" xml:"DescribeEnvironmentsResult>Environments>member"`
 }
 
 // Possible values for ElasticBeanstalk.
@@ -579,10 +579,10 @@ const (
 
 // EnvironmentInfoDescription is undocumented.
 type EnvironmentInfoDescription struct {
-	EC2InstanceID   aws.StringValue `xml:"Ec2InstanceId"`
-	InfoType        aws.StringValue `xml:"InfoType"`
-	Message         aws.StringValue `xml:"Message"`
-	SampleTimestamp time.Time       `xml:"SampleTimestamp"`
+	EC2InstanceID   aws.StringValue `query:"Ec2InstanceId" xml:"Ec2InstanceId"`
+	InfoType        aws.StringValue `query:"InfoType" xml:"InfoType"`
+	Message         aws.StringValue `query:"Message" xml:"Message"`
+	SampleTimestamp time.Time       `query:"SampleTimestamp" xml:"SampleTimestamp"`
 }
 
 // Possible values for ElasticBeanstalk.
@@ -592,23 +592,23 @@ const (
 
 // EnvironmentResourceDescription is undocumented.
 type EnvironmentResourceDescription struct {
-	AutoScalingGroups    []AutoScalingGroup    `xml:"AutoScalingGroups>member"`
-	EnvironmentName      aws.StringValue       `xml:"EnvironmentName"`
-	Instances            []Instance            `xml:"Instances>member"`
-	LaunchConfigurations []LaunchConfiguration `xml:"LaunchConfigurations>member"`
-	LoadBalancers        []LoadBalancer        `xml:"LoadBalancers>member"`
-	Queues               []Queue               `xml:"Queues>member"`
-	Triggers             []Trigger             `xml:"Triggers>member"`
+	AutoScalingGroups    []AutoScalingGroup    `query:"AutoScalingGroups.member" xml:"AutoScalingGroups>member"`
+	EnvironmentName      aws.StringValue       `query:"EnvironmentName" xml:"EnvironmentName"`
+	Instances            []Instance            `query:"Instances.member" xml:"Instances>member"`
+	LaunchConfigurations []LaunchConfiguration `query:"LaunchConfigurations.member" xml:"LaunchConfigurations>member"`
+	LoadBalancers        []LoadBalancer        `query:"LoadBalancers.member" xml:"LoadBalancers>member"`
+	Queues               []Queue               `query:"Queues.member" xml:"Queues>member"`
+	Triggers             []Trigger             `query:"Triggers.member" xml:"Triggers>member"`
 }
 
 // EnvironmentResourceDescriptionsMessage is undocumented.
 type EnvironmentResourceDescriptionsMessage struct {
-	EnvironmentResources *EnvironmentResourceDescription `xml:"DescribeEnvironmentResourcesResult>EnvironmentResources"`
+	EnvironmentResources *EnvironmentResourceDescription `query:"EnvironmentResources" xml:"DescribeEnvironmentResourcesResult>EnvironmentResources"`
 }
 
 // EnvironmentResourcesDescription is undocumented.
 type EnvironmentResourcesDescription struct {
-	LoadBalancer *LoadBalancerDescription `xml:"LoadBalancer"`
+	LoadBalancer *LoadBalancerDescription `query:"LoadBalancer" xml:"LoadBalancer"`
 }
 
 // Possible values for ElasticBeanstalk.
@@ -622,27 +622,27 @@ const (
 
 // EnvironmentTier is undocumented.
 type EnvironmentTier struct {
-	Name    aws.StringValue `xml:"Name"`
-	Type    aws.StringValue `xml:"Type"`
-	Version aws.StringValue `xml:"Version"`
+	Name    aws.StringValue `query:"Name" xml:"Name"`
+	Type    aws.StringValue `query:"Type" xml:"Type"`
+	Version aws.StringValue `query:"Version" xml:"Version"`
 }
 
 // EventDescription is undocumented.
 type EventDescription struct {
-	ApplicationName aws.StringValue `xml:"ApplicationName"`
-	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
-	EventDate       time.Time       `xml:"EventDate"`
-	Message         aws.StringValue `xml:"Message"`
-	RequestID       aws.StringValue `xml:"RequestId"`
-	Severity        aws.StringValue `xml:"Severity"`
-	TemplateName    aws.StringValue `xml:"TemplateName"`
-	VersionLabel    aws.StringValue `xml:"VersionLabel"`
+	ApplicationName aws.StringValue `query:"ApplicationName" xml:"ApplicationName"`
+	EnvironmentName aws.StringValue `query:"EnvironmentName" xml:"EnvironmentName"`
+	EventDate       time.Time       `query:"EventDate" xml:"EventDate"`
+	Message         aws.StringValue `query:"Message" xml:"Message"`
+	RequestID       aws.StringValue `query:"RequestId" xml:"RequestId"`
+	Severity        aws.StringValue `query:"Severity" xml:"Severity"`
+	TemplateName    aws.StringValue `query:"TemplateName" xml:"TemplateName"`
+	VersionLabel    aws.StringValue `query:"VersionLabel" xml:"VersionLabel"`
 }
 
 // EventDescriptionsMessage is undocumented.
 type EventDescriptionsMessage struct {
-	Events    []EventDescription `xml:"DescribeEventsResult>Events>member"`
-	NextToken aws.StringValue    `xml:"DescribeEventsResult>NextToken"`
+	Events    []EventDescription `query:"Events.member" xml:"DescribeEventsResult>Events>member"`
+	NextToken aws.StringValue    `query:"NextToken" xml:"DescribeEventsResult>NextToken"`
 }
 
 // Possible values for ElasticBeanstalk.
@@ -657,179 +657,179 @@ const (
 
 // Instance is undocumented.
 type Instance struct {
-	ID aws.StringValue `xml:"Id"`
+	ID aws.StringValue `query:"Id" xml:"Id"`
 }
 
 // LaunchConfiguration is undocumented.
 type LaunchConfiguration struct {
-	Name aws.StringValue `xml:"Name"`
+	Name aws.StringValue `query:"Name" xml:"Name"`
 }
 
 // ListAvailableSolutionStacksResultMessage is undocumented.
 type ListAvailableSolutionStacksResultMessage struct {
-	SolutionStackDetails []SolutionStackDescription `xml:"ListAvailableSolutionStacksResult>SolutionStackDetails>member"`
-	SolutionStacks       []string                   `xml:"ListAvailableSolutionStacksResult>SolutionStacks>member"`
+	SolutionStackDetails []SolutionStackDescription `query:"SolutionStackDetails.member" xml:"ListAvailableSolutionStacksResult>SolutionStackDetails>member"`
+	SolutionStacks       []string                   `query:"SolutionStacks.member" xml:"ListAvailableSolutionStacksResult>SolutionStacks>member"`
 }
 
 // Listener is undocumented.
 type Listener struct {
-	Port     aws.IntegerValue `xml:"Port"`
-	Protocol aws.StringValue  `xml:"Protocol"`
+	Port     aws.IntegerValue `query:"Port" xml:"Port"`
+	Protocol aws.StringValue  `query:"Protocol" xml:"Protocol"`
 }
 
 // LoadBalancer is undocumented.
 type LoadBalancer struct {
-	Name aws.StringValue `xml:"Name"`
+	Name aws.StringValue `query:"Name" xml:"Name"`
 }
 
 // LoadBalancerDescription is undocumented.
 type LoadBalancerDescription struct {
-	Domain           aws.StringValue `xml:"Domain"`
-	Listeners        []Listener      `xml:"Listeners>member"`
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
+	Domain           aws.StringValue `query:"Domain" xml:"Domain"`
+	Listeners        []Listener      `query:"Listeners.member" xml:"Listeners>member"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
 }
 
 // OptionRestrictionRegex is undocumented.
 type OptionRestrictionRegex struct {
-	Label   aws.StringValue `xml:"Label"`
-	Pattern aws.StringValue `xml:"Pattern"`
+	Label   aws.StringValue `query:"Label" xml:"Label"`
+	Pattern aws.StringValue `query:"Pattern" xml:"Pattern"`
 }
 
 // OptionSpecification is undocumented.
 type OptionSpecification struct {
-	Namespace  aws.StringValue `xml:"Namespace"`
-	OptionName aws.StringValue `xml:"OptionName"`
+	Namespace  aws.StringValue `query:"Namespace" xml:"Namespace"`
+	OptionName aws.StringValue `query:"OptionName" xml:"OptionName"`
 }
 
 // Queue is undocumented.
 type Queue struct {
-	Name aws.StringValue `xml:"Name"`
-	URL  aws.StringValue `xml:"URL"`
+	Name aws.StringValue `query:"Name" xml:"Name"`
+	URL  aws.StringValue `query:"URL" xml:"URL"`
 }
 
 // RebuildEnvironmentMessage is undocumented.
 type RebuildEnvironmentMessage struct {
-	EnvironmentID   aws.StringValue `xml:"EnvironmentId"`
-	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
+	EnvironmentID   aws.StringValue `query:"EnvironmentId" xml:"EnvironmentId"`
+	EnvironmentName aws.StringValue `query:"EnvironmentName" xml:"EnvironmentName"`
 }
 
 // RequestEnvironmentInfoMessage is undocumented.
 type RequestEnvironmentInfoMessage struct {
-	EnvironmentID   aws.StringValue `xml:"EnvironmentId"`
-	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
-	InfoType        aws.StringValue `xml:"InfoType"`
+	EnvironmentID   aws.StringValue `query:"EnvironmentId" xml:"EnvironmentId"`
+	EnvironmentName aws.StringValue `query:"EnvironmentName" xml:"EnvironmentName"`
+	InfoType        aws.StringValue `query:"InfoType" xml:"InfoType"`
 }
 
 // RestartAppServerMessage is undocumented.
 type RestartAppServerMessage struct {
-	EnvironmentID   aws.StringValue `xml:"EnvironmentId"`
-	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
+	EnvironmentID   aws.StringValue `query:"EnvironmentId" xml:"EnvironmentId"`
+	EnvironmentName aws.StringValue `query:"EnvironmentName" xml:"EnvironmentName"`
 }
 
 // RetrieveEnvironmentInfoMessage is undocumented.
 type RetrieveEnvironmentInfoMessage struct {
-	EnvironmentID   aws.StringValue `xml:"EnvironmentId"`
-	EnvironmentName aws.StringValue `xml:"EnvironmentName"`
-	InfoType        aws.StringValue `xml:"InfoType"`
+	EnvironmentID   aws.StringValue `query:"EnvironmentId" xml:"EnvironmentId"`
+	EnvironmentName aws.StringValue `query:"EnvironmentName" xml:"EnvironmentName"`
+	InfoType        aws.StringValue `query:"InfoType" xml:"InfoType"`
 }
 
 // RetrieveEnvironmentInfoResultMessage is undocumented.
 type RetrieveEnvironmentInfoResultMessage struct {
-	EnvironmentInfo []EnvironmentInfoDescription `xml:"RetrieveEnvironmentInfoResult>EnvironmentInfo>member"`
+	EnvironmentInfo []EnvironmentInfoDescription `query:"EnvironmentInfo.member" xml:"RetrieveEnvironmentInfoResult>EnvironmentInfo>member"`
 }
 
 // S3Location is undocumented.
 type S3Location struct {
-	S3Bucket aws.StringValue `xml:"S3Bucket"`
-	S3Key    aws.StringValue `xml:"S3Key"`
+	S3Bucket aws.StringValue `query:"S3Bucket" xml:"S3Bucket"`
+	S3Key    aws.StringValue `query:"S3Key" xml:"S3Key"`
 }
 
 // SolutionStackDescription is undocumented.
 type SolutionStackDescription struct {
-	PermittedFileTypes []string        `xml:"PermittedFileTypes>member"`
-	SolutionStackName  aws.StringValue `xml:"SolutionStackName"`
+	PermittedFileTypes []string        `query:"PermittedFileTypes.member" xml:"PermittedFileTypes>member"`
+	SolutionStackName  aws.StringValue `query:"SolutionStackName" xml:"SolutionStackName"`
 }
 
 // SourceConfiguration is undocumented.
 type SourceConfiguration struct {
-	ApplicationName aws.StringValue `xml:"ApplicationName"`
-	TemplateName    aws.StringValue `xml:"TemplateName"`
+	ApplicationName aws.StringValue `query:"ApplicationName" xml:"ApplicationName"`
+	TemplateName    aws.StringValue `query:"TemplateName" xml:"TemplateName"`
 }
 
 // SwapEnvironmentCNAMEsMessage is undocumented.
 type SwapEnvironmentCNAMEsMessage struct {
-	DestinationEnvironmentID   aws.StringValue `xml:"DestinationEnvironmentId"`
-	DestinationEnvironmentName aws.StringValue `xml:"DestinationEnvironmentName"`
-	SourceEnvironmentID        aws.StringValue `xml:"SourceEnvironmentId"`
-	SourceEnvironmentName      aws.StringValue `xml:"SourceEnvironmentName"`
+	DestinationEnvironmentID   aws.StringValue `query:"DestinationEnvironmentId" xml:"DestinationEnvironmentId"`
+	DestinationEnvironmentName aws.StringValue `query:"DestinationEnvironmentName" xml:"DestinationEnvironmentName"`
+	SourceEnvironmentID        aws.StringValue `query:"SourceEnvironmentId" xml:"SourceEnvironmentId"`
+	SourceEnvironmentName      aws.StringValue `query:"SourceEnvironmentName" xml:"SourceEnvironmentName"`
 }
 
 // Tag is undocumented.
 type Tag struct {
-	Key   aws.StringValue `xml:"Key"`
-	Value aws.StringValue `xml:"Value"`
+	Key   aws.StringValue `query:"Key" xml:"Key"`
+	Value aws.StringValue `query:"Value" xml:"Value"`
 }
 
 // TerminateEnvironmentMessage is undocumented.
 type TerminateEnvironmentMessage struct {
-	EnvironmentID      aws.StringValue  `xml:"EnvironmentId"`
-	EnvironmentName    aws.StringValue  `xml:"EnvironmentName"`
-	TerminateResources aws.BooleanValue `xml:"TerminateResources"`
+	EnvironmentID      aws.StringValue  `query:"EnvironmentId" xml:"EnvironmentId"`
+	EnvironmentName    aws.StringValue  `query:"EnvironmentName" xml:"EnvironmentName"`
+	TerminateResources aws.BooleanValue `query:"TerminateResources" xml:"TerminateResources"`
 }
 
 // Trigger is undocumented.
 type Trigger struct {
-	Name aws.StringValue `xml:"Name"`
+	Name aws.StringValue `query:"Name" xml:"Name"`
 }
 
 // UpdateApplicationMessage is undocumented.
 type UpdateApplicationMessage struct {
-	ApplicationName aws.StringValue `xml:"ApplicationName"`
-	Description     aws.StringValue `xml:"Description"`
+	ApplicationName aws.StringValue `query:"ApplicationName" xml:"ApplicationName"`
+	Description     aws.StringValue `query:"Description" xml:"Description"`
 }
 
 // UpdateApplicationVersionMessage is undocumented.
 type UpdateApplicationVersionMessage struct {
-	ApplicationName aws.StringValue `xml:"ApplicationName"`
-	Description     aws.StringValue `xml:"Description"`
-	VersionLabel    aws.StringValue `xml:"VersionLabel"`
+	ApplicationName aws.StringValue `query:"ApplicationName" xml:"ApplicationName"`
+	Description     aws.StringValue `query:"Description" xml:"Description"`
+	VersionLabel    aws.StringValue `query:"VersionLabel" xml:"VersionLabel"`
 }
 
 // UpdateConfigurationTemplateMessage is undocumented.
 type UpdateConfigurationTemplateMessage struct {
-	ApplicationName aws.StringValue              `xml:"ApplicationName"`
-	Description     aws.StringValue              `xml:"Description"`
-	OptionSettings  []ConfigurationOptionSetting `xml:"OptionSettings>member"`
-	OptionsToRemove []OptionSpecification        `xml:"OptionsToRemove>member"`
-	TemplateName    aws.StringValue              `xml:"TemplateName"`
+	ApplicationName aws.StringValue              `query:"ApplicationName" xml:"ApplicationName"`
+	Description     aws.StringValue              `query:"Description" xml:"Description"`
+	OptionSettings  []ConfigurationOptionSetting `query:"OptionSettings.member" xml:"OptionSettings>member"`
+	OptionsToRemove []OptionSpecification        `query:"OptionsToRemove.member" xml:"OptionsToRemove>member"`
+	TemplateName    aws.StringValue              `query:"TemplateName" xml:"TemplateName"`
 }
 
 // UpdateEnvironmentMessage is undocumented.
 type UpdateEnvironmentMessage struct {
-	Description     aws.StringValue              `xml:"Description"`
-	EnvironmentID   aws.StringValue              `xml:"EnvironmentId"`
-	EnvironmentName aws.StringValue              `xml:"EnvironmentName"`
-	OptionSettings  []ConfigurationOptionSetting `xml:"OptionSettings>member"`
-	OptionsToRemove []OptionSpecification        `xml:"OptionsToRemove>member"`
-	TemplateName    aws.StringValue              `xml:"TemplateName"`
-	Tier            *EnvironmentTier             `xml:"Tier"`
-	VersionLabel    aws.StringValue              `xml:"VersionLabel"`
+	Description     aws.StringValue              `query:"Description" xml:"Description"`
+	EnvironmentID   aws.StringValue              `query:"EnvironmentId" xml:"EnvironmentId"`
+	EnvironmentName aws.StringValue              `query:"EnvironmentName" xml:"EnvironmentName"`
+	OptionSettings  []ConfigurationOptionSetting `query:"OptionSettings.member" xml:"OptionSettings>member"`
+	OptionsToRemove []OptionSpecification        `query:"OptionsToRemove.member" xml:"OptionsToRemove>member"`
+	TemplateName    aws.StringValue              `query:"TemplateName" xml:"TemplateName"`
+	Tier            *EnvironmentTier             `query:"Tier" xml:"Tier"`
+	VersionLabel    aws.StringValue              `query:"VersionLabel" xml:"VersionLabel"`
 }
 
 // ValidateConfigurationSettingsMessage is undocumented.
 type ValidateConfigurationSettingsMessage struct {
-	ApplicationName aws.StringValue              `xml:"ApplicationName"`
-	EnvironmentName aws.StringValue              `xml:"EnvironmentName"`
-	OptionSettings  []ConfigurationOptionSetting `xml:"OptionSettings>member"`
-	TemplateName    aws.StringValue              `xml:"TemplateName"`
+	ApplicationName aws.StringValue              `query:"ApplicationName" xml:"ApplicationName"`
+	EnvironmentName aws.StringValue              `query:"EnvironmentName" xml:"EnvironmentName"`
+	OptionSettings  []ConfigurationOptionSetting `query:"OptionSettings.member" xml:"OptionSettings>member"`
+	TemplateName    aws.StringValue              `query:"TemplateName" xml:"TemplateName"`
 }
 
 // ValidationMessage is undocumented.
 type ValidationMessage struct {
-	Message    aws.StringValue `xml:"Message"`
-	Namespace  aws.StringValue `xml:"Namespace"`
-	OptionName aws.StringValue `xml:"OptionName"`
-	Severity   aws.StringValue `xml:"Severity"`
+	Message    aws.StringValue `query:"Message" xml:"Message"`
+	Namespace  aws.StringValue `query:"Namespace" xml:"Namespace"`
+	OptionName aws.StringValue `query:"OptionName" xml:"OptionName"`
+	Severity   aws.StringValue `query:"Severity" xml:"Severity"`
 }
 
 // Possible values for ElasticBeanstalk.
@@ -840,169 +840,169 @@ const (
 
 // CheckDNSAvailabilityResult is a wrapper for CheckDNSAvailabilityResultMessage.
 type CheckDNSAvailabilityResult struct {
-	Available           aws.BooleanValue `xml:"CheckDNSAvailabilityResult>Available"`
-	FullyQualifiedCNAME aws.StringValue  `xml:"CheckDNSAvailabilityResult>FullyQualifiedCNAME"`
+	Available           aws.BooleanValue `query:"Available" xml:"CheckDNSAvailabilityResult>Available"`
+	FullyQualifiedCNAME aws.StringValue  `query:"FullyQualifiedCNAME" xml:"CheckDNSAvailabilityResult>FullyQualifiedCNAME"`
 }
 
 // CreateApplicationResult is a wrapper for ApplicationDescriptionMessage.
 type CreateApplicationResult struct {
-	Application *ApplicationDescription `xml:"CreateApplicationResult>Application"`
+	Application *ApplicationDescription `query:"Application" xml:"CreateApplicationResult>Application"`
 }
 
 // CreateApplicationVersionResult is a wrapper for ApplicationVersionDescriptionMessage.
 type CreateApplicationVersionResult struct {
-	ApplicationVersion *ApplicationVersionDescription `xml:"CreateApplicationVersionResult>ApplicationVersion"`
+	ApplicationVersion *ApplicationVersionDescription `query:"ApplicationVersion" xml:"CreateApplicationVersionResult>ApplicationVersion"`
 }
 
 // CreateConfigurationTemplateResult is a wrapper for ConfigurationSettingsDescription.
 type CreateConfigurationTemplateResult struct {
-	ApplicationName   aws.StringValue              `xml:"CreateConfigurationTemplateResult>ApplicationName"`
-	DateCreated       time.Time                    `xml:"CreateConfigurationTemplateResult>DateCreated"`
-	DateUpdated       time.Time                    `xml:"CreateConfigurationTemplateResult>DateUpdated"`
-	DeploymentStatus  aws.StringValue              `xml:"CreateConfigurationTemplateResult>DeploymentStatus"`
-	Description       aws.StringValue              `xml:"CreateConfigurationTemplateResult>Description"`
-	EnvironmentName   aws.StringValue              `xml:"CreateConfigurationTemplateResult>EnvironmentName"`
-	OptionSettings    []ConfigurationOptionSetting `xml:"CreateConfigurationTemplateResult>OptionSettings>member"`
-	SolutionStackName aws.StringValue              `xml:"CreateConfigurationTemplateResult>SolutionStackName"`
-	TemplateName      aws.StringValue              `xml:"CreateConfigurationTemplateResult>TemplateName"`
+	ApplicationName   aws.StringValue              `query:"ApplicationName" xml:"CreateConfigurationTemplateResult>ApplicationName"`
+	DateCreated       time.Time                    `query:"DateCreated" xml:"CreateConfigurationTemplateResult>DateCreated"`
+	DateUpdated       time.Time                    `query:"DateUpdated" xml:"CreateConfigurationTemplateResult>DateUpdated"`
+	DeploymentStatus  aws.StringValue              `query:"DeploymentStatus" xml:"CreateConfigurationTemplateResult>DeploymentStatus"`
+	Description       aws.StringValue              `query:"Description" xml:"CreateConfigurationTemplateResult>Description"`
+	EnvironmentName   aws.StringValue              `query:"EnvironmentName" xml:"CreateConfigurationTemplateResult>EnvironmentName"`
+	OptionSettings    []ConfigurationOptionSetting `query:"OptionSettings.member" xml:"CreateConfigurationTemplateResult>OptionSettings>member"`
+	SolutionStackName aws.StringValue              `query:"SolutionStackName" xml:"CreateConfigurationTemplateResult>SolutionStackName"`
+	TemplateName      aws.StringValue              `query:"TemplateName" xml:"CreateConfigurationTemplateResult>TemplateName"`
 }
 
 // CreateEnvironmentResult is a wrapper for EnvironmentDescription.
 type CreateEnvironmentResult struct {
-	ApplicationName   aws.StringValue                  `xml:"CreateEnvironmentResult>ApplicationName"`
-	CNAME             aws.StringValue                  `xml:"CreateEnvironmentResult>CNAME"`
-	DateCreated       time.Time                        `xml:"CreateEnvironmentResult>DateCreated"`
-	DateUpdated       time.Time                        `xml:"CreateEnvironmentResult>DateUpdated"`
-	Description       aws.StringValue                  `xml:"CreateEnvironmentResult>Description"`
-	EndpointURL       aws.StringValue                  `xml:"CreateEnvironmentResult>EndpointURL"`
-	EnvironmentID     aws.StringValue                  `xml:"CreateEnvironmentResult>EnvironmentId"`
-	EnvironmentName   aws.StringValue                  `xml:"CreateEnvironmentResult>EnvironmentName"`
-	Health            aws.StringValue                  `xml:"CreateEnvironmentResult>Health"`
-	Resources         *EnvironmentResourcesDescription `xml:"CreateEnvironmentResult>Resources"`
-	SolutionStackName aws.StringValue                  `xml:"CreateEnvironmentResult>SolutionStackName"`
-	Status            aws.StringValue                  `xml:"CreateEnvironmentResult>Status"`
-	TemplateName      aws.StringValue                  `xml:"CreateEnvironmentResult>TemplateName"`
-	Tier              *EnvironmentTier                 `xml:"CreateEnvironmentResult>Tier"`
-	VersionLabel      aws.StringValue                  `xml:"CreateEnvironmentResult>VersionLabel"`
+	ApplicationName   aws.StringValue                  `query:"ApplicationName" xml:"CreateEnvironmentResult>ApplicationName"`
+	CNAME             aws.StringValue                  `query:"CNAME" xml:"CreateEnvironmentResult>CNAME"`
+	DateCreated       time.Time                        `query:"DateCreated" xml:"CreateEnvironmentResult>DateCreated"`
+	DateUpdated       time.Time                        `query:"DateUpdated" xml:"CreateEnvironmentResult>DateUpdated"`
+	Description       aws.StringValue                  `query:"Description" xml:"CreateEnvironmentResult>Description"`
+	EndpointURL       aws.StringValue                  `query:"EndpointURL" xml:"CreateEnvironmentResult>EndpointURL"`
+	EnvironmentID     aws.StringValue                  `query:"EnvironmentId" xml:"CreateEnvironmentResult>EnvironmentId"`
+	EnvironmentName   aws.StringValue                  `query:"EnvironmentName" xml:"CreateEnvironmentResult>EnvironmentName"`
+	Health            aws.StringValue                  `query:"Health" xml:"CreateEnvironmentResult>Health"`
+	Resources         *EnvironmentResourcesDescription `query:"Resources" xml:"CreateEnvironmentResult>Resources"`
+	SolutionStackName aws.StringValue                  `query:"SolutionStackName" xml:"CreateEnvironmentResult>SolutionStackName"`
+	Status            aws.StringValue                  `query:"Status" xml:"CreateEnvironmentResult>Status"`
+	TemplateName      aws.StringValue                  `query:"TemplateName" xml:"CreateEnvironmentResult>TemplateName"`
+	Tier              *EnvironmentTier                 `query:"Tier" xml:"CreateEnvironmentResult>Tier"`
+	VersionLabel      aws.StringValue                  `query:"VersionLabel" xml:"CreateEnvironmentResult>VersionLabel"`
 }
 
 // CreateStorageLocationResult is a wrapper for CreateStorageLocationResultMessage.
 type CreateStorageLocationResult struct {
-	S3Bucket aws.StringValue `xml:"CreateStorageLocationResult>S3Bucket"`
+	S3Bucket aws.StringValue `query:"S3Bucket" xml:"CreateStorageLocationResult>S3Bucket"`
 }
 
 // DescribeApplicationVersionsResult is a wrapper for ApplicationVersionDescriptionsMessage.
 type DescribeApplicationVersionsResult struct {
-	ApplicationVersions []ApplicationVersionDescription `xml:"DescribeApplicationVersionsResult>ApplicationVersions>member"`
+	ApplicationVersions []ApplicationVersionDescription `query:"ApplicationVersions.member" xml:"DescribeApplicationVersionsResult>ApplicationVersions>member"`
 }
 
 // DescribeApplicationsResult is a wrapper for ApplicationDescriptionsMessage.
 type DescribeApplicationsResult struct {
-	Applications []ApplicationDescription `xml:"DescribeApplicationsResult>Applications>member"`
+	Applications []ApplicationDescription `query:"Applications.member" xml:"DescribeApplicationsResult>Applications>member"`
 }
 
 // DescribeConfigurationOptionsResult is a wrapper for ConfigurationOptionsDescription.
 type DescribeConfigurationOptionsResult struct {
-	Options           []ConfigurationOptionDescription `xml:"DescribeConfigurationOptionsResult>Options>member"`
-	SolutionStackName aws.StringValue                  `xml:"DescribeConfigurationOptionsResult>SolutionStackName"`
+	Options           []ConfigurationOptionDescription `query:"Options.member" xml:"DescribeConfigurationOptionsResult>Options>member"`
+	SolutionStackName aws.StringValue                  `query:"SolutionStackName" xml:"DescribeConfigurationOptionsResult>SolutionStackName"`
 }
 
 // DescribeConfigurationSettingsResult is a wrapper for ConfigurationSettingsDescriptions.
 type DescribeConfigurationSettingsResult struct {
-	ConfigurationSettings []ConfigurationSettingsDescription `xml:"DescribeConfigurationSettingsResult>ConfigurationSettings>member"`
+	ConfigurationSettings []ConfigurationSettingsDescription `query:"ConfigurationSettings.member" xml:"DescribeConfigurationSettingsResult>ConfigurationSettings>member"`
 }
 
 // DescribeEnvironmentResourcesResult is a wrapper for EnvironmentResourceDescriptionsMessage.
 type DescribeEnvironmentResourcesResult struct {
-	EnvironmentResources *EnvironmentResourceDescription `xml:"DescribeEnvironmentResourcesResult>EnvironmentResources"`
+	EnvironmentResources *EnvironmentResourceDescription `query:"EnvironmentResources" xml:"DescribeEnvironmentResourcesResult>EnvironmentResources"`
 }
 
 // DescribeEnvironmentsResult is a wrapper for EnvironmentDescriptionsMessage.
 type DescribeEnvironmentsResult struct {
-	Environments []EnvironmentDescription `xml:"DescribeEnvironmentsResult>Environments>member"`
+	Environments []EnvironmentDescription `query:"Environments.member" xml:"DescribeEnvironmentsResult>Environments>member"`
 }
 
 // DescribeEventsResult is a wrapper for EventDescriptionsMessage.
 type DescribeEventsResult struct {
-	Events    []EventDescription `xml:"DescribeEventsResult>Events>member"`
-	NextToken aws.StringValue    `xml:"DescribeEventsResult>NextToken"`
+	Events    []EventDescription `query:"Events.member" xml:"DescribeEventsResult>Events>member"`
+	NextToken aws.StringValue    `query:"NextToken" xml:"DescribeEventsResult>NextToken"`
 }
 
 // ListAvailableSolutionStacksResult is a wrapper for ListAvailableSolutionStacksResultMessage.
 type ListAvailableSolutionStacksResult struct {
-	SolutionStackDetails []SolutionStackDescription `xml:"ListAvailableSolutionStacksResult>SolutionStackDetails>member"`
-	SolutionStacks       []string                   `xml:"ListAvailableSolutionStacksResult>SolutionStacks>member"`
+	SolutionStackDetails []SolutionStackDescription `query:"SolutionStackDetails.member" xml:"ListAvailableSolutionStacksResult>SolutionStackDetails>member"`
+	SolutionStacks       []string                   `query:"SolutionStacks.member" xml:"ListAvailableSolutionStacksResult>SolutionStacks>member"`
 }
 
 // RetrieveEnvironmentInfoResult is a wrapper for RetrieveEnvironmentInfoResultMessage.
 type RetrieveEnvironmentInfoResult struct {
-	EnvironmentInfo []EnvironmentInfoDescription `xml:"RetrieveEnvironmentInfoResult>EnvironmentInfo>member"`
+	EnvironmentInfo []EnvironmentInfoDescription `query:"EnvironmentInfo.member" xml:"RetrieveEnvironmentInfoResult>EnvironmentInfo>member"`
 }
 
 // TerminateEnvironmentResult is a wrapper for EnvironmentDescription.
 type TerminateEnvironmentResult struct {
-	ApplicationName   aws.StringValue                  `xml:"TerminateEnvironmentResult>ApplicationName"`
-	CNAME             aws.StringValue                  `xml:"TerminateEnvironmentResult>CNAME"`
-	DateCreated       time.Time                        `xml:"TerminateEnvironmentResult>DateCreated"`
-	DateUpdated       time.Time                        `xml:"TerminateEnvironmentResult>DateUpdated"`
-	Description       aws.StringValue                  `xml:"TerminateEnvironmentResult>Description"`
-	EndpointURL       aws.StringValue                  `xml:"TerminateEnvironmentResult>EndpointURL"`
-	EnvironmentID     aws.StringValue                  `xml:"TerminateEnvironmentResult>EnvironmentId"`
-	EnvironmentName   aws.StringValue                  `xml:"TerminateEnvironmentResult>EnvironmentName"`
-	Health            aws.StringValue                  `xml:"TerminateEnvironmentResult>Health"`
-	Resources         *EnvironmentResourcesDescription `xml:"TerminateEnvironmentResult>Resources"`
-	SolutionStackName aws.StringValue                  `xml:"TerminateEnvironmentResult>SolutionStackName"`
-	Status            aws.StringValue                  `xml:"TerminateEnvironmentResult>Status"`
-	TemplateName      aws.StringValue                  `xml:"TerminateEnvironmentResult>TemplateName"`
-	Tier              *EnvironmentTier                 `xml:"TerminateEnvironmentResult>Tier"`
-	VersionLabel      aws.StringValue                  `xml:"TerminateEnvironmentResult>VersionLabel"`
+	ApplicationName   aws.StringValue                  `query:"ApplicationName" xml:"TerminateEnvironmentResult>ApplicationName"`
+	CNAME             aws.StringValue                  `query:"CNAME" xml:"TerminateEnvironmentResult>CNAME"`
+	DateCreated       time.Time                        `query:"DateCreated" xml:"TerminateEnvironmentResult>DateCreated"`
+	DateUpdated       time.Time                        `query:"DateUpdated" xml:"TerminateEnvironmentResult>DateUpdated"`
+	Description       aws.StringValue                  `query:"Description" xml:"TerminateEnvironmentResult>Description"`
+	EndpointURL       aws.StringValue                  `query:"EndpointURL" xml:"TerminateEnvironmentResult>EndpointURL"`
+	EnvironmentID     aws.StringValue                  `query:"EnvironmentId" xml:"TerminateEnvironmentResult>EnvironmentId"`
+	EnvironmentName   aws.StringValue                  `query:"EnvironmentName" xml:"TerminateEnvironmentResult>EnvironmentName"`
+	Health            aws.StringValue                  `query:"Health" xml:"TerminateEnvironmentResult>Health"`
+	Resources         *EnvironmentResourcesDescription `query:"Resources" xml:"TerminateEnvironmentResult>Resources"`
+	SolutionStackName aws.StringValue                  `query:"SolutionStackName" xml:"TerminateEnvironmentResult>SolutionStackName"`
+	Status            aws.StringValue                  `query:"Status" xml:"TerminateEnvironmentResult>Status"`
+	TemplateName      aws.StringValue                  `query:"TemplateName" xml:"TerminateEnvironmentResult>TemplateName"`
+	Tier              *EnvironmentTier                 `query:"Tier" xml:"TerminateEnvironmentResult>Tier"`
+	VersionLabel      aws.StringValue                  `query:"VersionLabel" xml:"TerminateEnvironmentResult>VersionLabel"`
 }
 
 // UpdateApplicationResult is a wrapper for ApplicationDescriptionMessage.
 type UpdateApplicationResult struct {
-	Application *ApplicationDescription `xml:"UpdateApplicationResult>Application"`
+	Application *ApplicationDescription `query:"Application" xml:"UpdateApplicationResult>Application"`
 }
 
 // UpdateApplicationVersionResult is a wrapper for ApplicationVersionDescriptionMessage.
 type UpdateApplicationVersionResult struct {
-	ApplicationVersion *ApplicationVersionDescription `xml:"UpdateApplicationVersionResult>ApplicationVersion"`
+	ApplicationVersion *ApplicationVersionDescription `query:"ApplicationVersion" xml:"UpdateApplicationVersionResult>ApplicationVersion"`
 }
 
 // UpdateConfigurationTemplateResult is a wrapper for ConfigurationSettingsDescription.
 type UpdateConfigurationTemplateResult struct {
-	ApplicationName   aws.StringValue              `xml:"UpdateConfigurationTemplateResult>ApplicationName"`
-	DateCreated       time.Time                    `xml:"UpdateConfigurationTemplateResult>DateCreated"`
-	DateUpdated       time.Time                    `xml:"UpdateConfigurationTemplateResult>DateUpdated"`
-	DeploymentStatus  aws.StringValue              `xml:"UpdateConfigurationTemplateResult>DeploymentStatus"`
-	Description       aws.StringValue              `xml:"UpdateConfigurationTemplateResult>Description"`
-	EnvironmentName   aws.StringValue              `xml:"UpdateConfigurationTemplateResult>EnvironmentName"`
-	OptionSettings    []ConfigurationOptionSetting `xml:"UpdateConfigurationTemplateResult>OptionSettings>member"`
-	SolutionStackName aws.StringValue              `xml:"UpdateConfigurationTemplateResult>SolutionStackName"`
-	TemplateName      aws.StringValue              `xml:"UpdateConfigurationTemplateResult>TemplateName"`
+	ApplicationName   aws.StringValue              `query:"ApplicationName" xml:"UpdateConfigurationTemplateResult>ApplicationName"`
+	DateCreated       time.Time                    `query:"DateCreated" xml:"UpdateConfigurationTemplateResult>DateCreated"`
+	DateUpdated       time.Time                    `query:"DateUpdated" xml:"UpdateConfigurationTemplateResult>DateUpdated"`
+	DeploymentStatus  aws.StringValue              `query:"DeploymentStatus" xml:"UpdateConfigurationTemplateResult>DeploymentStatus"`
+	Description       aws.StringValue              `query:"Description" xml:"UpdateConfigurationTemplateResult>Description"`
+	EnvironmentName   aws.StringValue              `query:"EnvironmentName" xml:"UpdateConfigurationTemplateResult>EnvironmentName"`
+	OptionSettings    []ConfigurationOptionSetting `query:"OptionSettings.member" xml:"UpdateConfigurationTemplateResult>OptionSettings>member"`
+	SolutionStackName aws.StringValue              `query:"SolutionStackName" xml:"UpdateConfigurationTemplateResult>SolutionStackName"`
+	TemplateName      aws.StringValue              `query:"TemplateName" xml:"UpdateConfigurationTemplateResult>TemplateName"`
 }
 
 // UpdateEnvironmentResult is a wrapper for EnvironmentDescription.
 type UpdateEnvironmentResult struct {
-	ApplicationName   aws.StringValue                  `xml:"UpdateEnvironmentResult>ApplicationName"`
-	CNAME             aws.StringValue                  `xml:"UpdateEnvironmentResult>CNAME"`
-	DateCreated       time.Time                        `xml:"UpdateEnvironmentResult>DateCreated"`
-	DateUpdated       time.Time                        `xml:"UpdateEnvironmentResult>DateUpdated"`
-	Description       aws.StringValue                  `xml:"UpdateEnvironmentResult>Description"`
-	EndpointURL       aws.StringValue                  `xml:"UpdateEnvironmentResult>EndpointURL"`
-	EnvironmentID     aws.StringValue                  `xml:"UpdateEnvironmentResult>EnvironmentId"`
-	EnvironmentName   aws.StringValue                  `xml:"UpdateEnvironmentResult>EnvironmentName"`
-	Health            aws.StringValue                  `xml:"UpdateEnvironmentResult>Health"`
-	Resources         *EnvironmentResourcesDescription `xml:"UpdateEnvironmentResult>Resources"`
-	SolutionStackName aws.StringValue                  `xml:"UpdateEnvironmentResult>SolutionStackName"`
-	Status            aws.StringValue                  `xml:"UpdateEnvironmentResult>Status"`
-	TemplateName      aws.StringValue                  `xml:"UpdateEnvironmentResult>TemplateName"`
-	Tier              *EnvironmentTier                 `xml:"UpdateEnvironmentResult>Tier"`
-	VersionLabel      aws.StringValue                  `xml:"UpdateEnvironmentResult>VersionLabel"`
+	ApplicationName   aws.StringValue                  `query:"ApplicationName" xml:"UpdateEnvironmentResult>ApplicationName"`
+	CNAME             aws.StringValue                  `query:"CNAME" xml:"UpdateEnvironmentResult>CNAME"`
+	DateCreated       time.Time                        `query:"DateCreated" xml:"UpdateEnvironmentResult>DateCreated"`
+	DateUpdated       time.Time                        `query:"DateUpdated" xml:"UpdateEnvironmentResult>DateUpdated"`
+	Description       aws.StringValue                  `query:"Description" xml:"UpdateEnvironmentResult>Description"`
+	EndpointURL       aws.StringValue                  `query:"EndpointURL" xml:"UpdateEnvironmentResult>EndpointURL"`
+	EnvironmentID     aws.StringValue                  `query:"EnvironmentId" xml:"UpdateEnvironmentResult>EnvironmentId"`
+	EnvironmentName   aws.StringValue                  `query:"EnvironmentName" xml:"UpdateEnvironmentResult>EnvironmentName"`
+	Health            aws.StringValue                  `query:"Health" xml:"UpdateEnvironmentResult>Health"`
+	Resources         *EnvironmentResourcesDescription `query:"Resources" xml:"UpdateEnvironmentResult>Resources"`
+	SolutionStackName aws.StringValue                  `query:"SolutionStackName" xml:"UpdateEnvironmentResult>SolutionStackName"`
+	Status            aws.StringValue                  `query:"Status" xml:"UpdateEnvironmentResult>Status"`
+	TemplateName      aws.StringValue                  `query:"TemplateName" xml:"UpdateEnvironmentResult>TemplateName"`
+	Tier              *EnvironmentTier                 `query:"Tier" xml:"UpdateEnvironmentResult>Tier"`
+	VersionLabel      aws.StringValue                  `query:"VersionLabel" xml:"UpdateEnvironmentResult>VersionLabel"`
 }
 
 // ValidateConfigurationSettingsResult is a wrapper for ConfigurationSettingsValidationMessages.
 type ValidateConfigurationSettingsResult struct {
-	Messages []ValidationMessage `xml:"ValidateConfigurationSettingsResult>Messages>member"`
+	Messages []ValidationMessage `query:"Messages.member" xml:"ValidateConfigurationSettingsResult>Messages>member"`
 }
 
 // avoid errors if the packages aren't referenced

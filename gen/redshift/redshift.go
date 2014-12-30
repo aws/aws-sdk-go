@@ -751,1013 +751,1013 @@ func (c *RedShift) RotateEncryptionKey(req *RotateEncryptionKeyMessage) (resp *R
 
 // AccountWithRestoreAccess is undocumented.
 type AccountWithRestoreAccess struct {
-	AccountID aws.StringValue `xml:"AccountId"`
+	AccountID aws.StringValue `query:"AccountId" xml:"AccountId"`
 }
 
 // AuthorizeClusterSecurityGroupIngressMessage is undocumented.
 type AuthorizeClusterSecurityGroupIngressMessage struct {
-	CIDRIP                   aws.StringValue `xml:"CIDRIP"`
-	ClusterSecurityGroupName aws.StringValue `xml:"ClusterSecurityGroupName"`
-	EC2SecurityGroupName     aws.StringValue `xml:"EC2SecurityGroupName"`
-	EC2SecurityGroupOwnerID  aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
+	CIDRIP                   aws.StringValue `query:"CIDRIP" xml:"CIDRIP"`
+	ClusterSecurityGroupName aws.StringValue `query:"ClusterSecurityGroupName" xml:"ClusterSecurityGroupName"`
+	EC2SecurityGroupName     aws.StringValue `query:"EC2SecurityGroupName" xml:"EC2SecurityGroupName"`
+	EC2SecurityGroupOwnerID  aws.StringValue `query:"EC2SecurityGroupOwnerId" xml:"EC2SecurityGroupOwnerId"`
 }
 
 // AuthorizeClusterSecurityGroupIngressResult is undocumented.
 type AuthorizeClusterSecurityGroupIngressResult struct {
-	ClusterSecurityGroup *ClusterSecurityGroup `xml:"AuthorizeClusterSecurityGroupIngressResult>ClusterSecurityGroup"`
+	ClusterSecurityGroup *ClusterSecurityGroup `query:"ClusterSecurityGroup" xml:"AuthorizeClusterSecurityGroupIngressResult>ClusterSecurityGroup"`
 }
 
 // AuthorizeSnapshotAccessMessage is undocumented.
 type AuthorizeSnapshotAccessMessage struct {
-	AccountWithRestoreAccess  aws.StringValue `xml:"AccountWithRestoreAccess"`
-	SnapshotClusterIdentifier aws.StringValue `xml:"SnapshotClusterIdentifier"`
-	SnapshotIdentifier        aws.StringValue `xml:"SnapshotIdentifier"`
+	AccountWithRestoreAccess  aws.StringValue `query:"AccountWithRestoreAccess" xml:"AccountWithRestoreAccess"`
+	SnapshotClusterIdentifier aws.StringValue `query:"SnapshotClusterIdentifier" xml:"SnapshotClusterIdentifier"`
+	SnapshotIdentifier        aws.StringValue `query:"SnapshotIdentifier" xml:"SnapshotIdentifier"`
 }
 
 // AuthorizeSnapshotAccessResult is undocumented.
 type AuthorizeSnapshotAccessResult struct {
-	Snapshot *Snapshot `xml:"AuthorizeSnapshotAccessResult>Snapshot"`
+	Snapshot *Snapshot `query:"Snapshot" xml:"AuthorizeSnapshotAccessResult>Snapshot"`
 }
 
 // AvailabilityZone is undocumented.
 type AvailabilityZone struct {
-	Name aws.StringValue `xml:"Name"`
+	Name aws.StringValue `query:"Name" xml:"Name"`
 }
 
 // Cluster is undocumented.
 type Cluster struct {
-	AllowVersionUpgrade              aws.BooleanValue                 `xml:"AllowVersionUpgrade"`
-	AutomatedSnapshotRetentionPeriod aws.IntegerValue                 `xml:"AutomatedSnapshotRetentionPeriod"`
-	AvailabilityZone                 aws.StringValue                  `xml:"AvailabilityZone"`
-	ClusterCreateTime                time.Time                        `xml:"ClusterCreateTime"`
-	ClusterIdentifier                aws.StringValue                  `xml:"ClusterIdentifier"`
-	ClusterNodes                     []ClusterNode                    `xml:"ClusterNodes>member"`
-	ClusterParameterGroups           []ClusterParameterGroupStatus    `xml:"ClusterParameterGroups>ClusterParameterGroup"`
-	ClusterPublicKey                 aws.StringValue                  `xml:"ClusterPublicKey"`
-	ClusterRevisionNumber            aws.StringValue                  `xml:"ClusterRevisionNumber"`
-	ClusterSecurityGroups            []ClusterSecurityGroupMembership `xml:"ClusterSecurityGroups>ClusterSecurityGroup"`
-	ClusterSnapshotCopyStatus        *ClusterSnapshotCopyStatus       `xml:"ClusterSnapshotCopyStatus"`
-	ClusterStatus                    aws.StringValue                  `xml:"ClusterStatus"`
-	ClusterSubnetGroupName           aws.StringValue                  `xml:"ClusterSubnetGroupName"`
-	ClusterVersion                   aws.StringValue                  `xml:"ClusterVersion"`
-	DBName                           aws.StringValue                  `xml:"DBName"`
-	ElasticIPStatus                  *ElasticIPStatus                 `xml:"ElasticIpStatus"`
-	Encrypted                        aws.BooleanValue                 `xml:"Encrypted"`
-	Endpoint                         *Endpoint                        `xml:"Endpoint"`
-	HSMStatus                        *HSMStatus                       `xml:"HsmStatus"`
-	KMSKeyID                         aws.StringValue                  `xml:"KmsKeyId"`
-	MasterUsername                   aws.StringValue                  `xml:"MasterUsername"`
-	ModifyStatus                     aws.StringValue                  `xml:"ModifyStatus"`
-	NodeType                         aws.StringValue                  `xml:"NodeType"`
-	NumberOfNodes                    aws.IntegerValue                 `xml:"NumberOfNodes"`
-	PendingModifiedValues            *PendingModifiedValues           `xml:"PendingModifiedValues"`
-	PreferredMaintenanceWindow       aws.StringValue                  `xml:"PreferredMaintenanceWindow"`
-	PubliclyAccessible               aws.BooleanValue                 `xml:"PubliclyAccessible"`
-	RestoreStatus                    *RestoreStatus                   `xml:"RestoreStatus"`
-	Tags                             []Tag                            `xml:"Tags>Tag"`
-	VPCID                            aws.StringValue                  `xml:"VpcId"`
-	VPCSecurityGroups                []VPCSecurityGroupMembership     `xml:"VpcSecurityGroups>VpcSecurityGroup"`
+	AllowVersionUpgrade              aws.BooleanValue                 `query:"AllowVersionUpgrade" xml:"AllowVersionUpgrade"`
+	AutomatedSnapshotRetentionPeriod aws.IntegerValue                 `query:"AutomatedSnapshotRetentionPeriod" xml:"AutomatedSnapshotRetentionPeriod"`
+	AvailabilityZone                 aws.StringValue                  `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	ClusterCreateTime                time.Time                        `query:"ClusterCreateTime" xml:"ClusterCreateTime"`
+	ClusterIdentifier                aws.StringValue                  `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	ClusterNodes                     []ClusterNode                    `query:"ClusterNodes.member" xml:"ClusterNodes>member"`
+	ClusterParameterGroups           []ClusterParameterGroupStatus    `query:"ClusterParameterGroups.member" xml:"ClusterParameterGroups>ClusterParameterGroup"`
+	ClusterPublicKey                 aws.StringValue                  `query:"ClusterPublicKey" xml:"ClusterPublicKey"`
+	ClusterRevisionNumber            aws.StringValue                  `query:"ClusterRevisionNumber" xml:"ClusterRevisionNumber"`
+	ClusterSecurityGroups            []ClusterSecurityGroupMembership `query:"ClusterSecurityGroups.member" xml:"ClusterSecurityGroups>ClusterSecurityGroup"`
+	ClusterSnapshotCopyStatus        *ClusterSnapshotCopyStatus       `query:"ClusterSnapshotCopyStatus" xml:"ClusterSnapshotCopyStatus"`
+	ClusterStatus                    aws.StringValue                  `query:"ClusterStatus" xml:"ClusterStatus"`
+	ClusterSubnetGroupName           aws.StringValue                  `query:"ClusterSubnetGroupName" xml:"ClusterSubnetGroupName"`
+	ClusterVersion                   aws.StringValue                  `query:"ClusterVersion" xml:"ClusterVersion"`
+	DBName                           aws.StringValue                  `query:"DBName" xml:"DBName"`
+	ElasticIPStatus                  *ElasticIPStatus                 `query:"ElasticIpStatus" xml:"ElasticIpStatus"`
+	Encrypted                        aws.BooleanValue                 `query:"Encrypted" xml:"Encrypted"`
+	Endpoint                         *Endpoint                        `query:"Endpoint" xml:"Endpoint"`
+	HSMStatus                        *HSMStatus                       `query:"HsmStatus" xml:"HsmStatus"`
+	KMSKeyID                         aws.StringValue                  `query:"KmsKeyId" xml:"KmsKeyId"`
+	MasterUsername                   aws.StringValue                  `query:"MasterUsername" xml:"MasterUsername"`
+	ModifyStatus                     aws.StringValue                  `query:"ModifyStatus" xml:"ModifyStatus"`
+	NodeType                         aws.StringValue                  `query:"NodeType" xml:"NodeType"`
+	NumberOfNodes                    aws.IntegerValue                 `query:"NumberOfNodes" xml:"NumberOfNodes"`
+	PendingModifiedValues            *PendingModifiedValues           `query:"PendingModifiedValues" xml:"PendingModifiedValues"`
+	PreferredMaintenanceWindow       aws.StringValue                  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	PubliclyAccessible               aws.BooleanValue                 `query:"PubliclyAccessible" xml:"PubliclyAccessible"`
+	RestoreStatus                    *RestoreStatus                   `query:"RestoreStatus" xml:"RestoreStatus"`
+	Tags                             []Tag                            `query:"Tags.member" xml:"Tags>Tag"`
+	VPCID                            aws.StringValue                  `query:"VpcId" xml:"VpcId"`
+	VPCSecurityGroups                []VPCSecurityGroupMembership     `query:"VpcSecurityGroups.member" xml:"VpcSecurityGroups>VpcSecurityGroup"`
 }
 
 // ClusterNode is undocumented.
 type ClusterNode struct {
-	NodeRole         aws.StringValue `xml:"NodeRole"`
-	PrivateIPAddress aws.StringValue `xml:"PrivateIPAddress"`
-	PublicIPAddress  aws.StringValue `xml:"PublicIPAddress"`
+	NodeRole         aws.StringValue `query:"NodeRole" xml:"NodeRole"`
+	PrivateIPAddress aws.StringValue `query:"PrivateIPAddress" xml:"PrivateIPAddress"`
+	PublicIPAddress  aws.StringValue `query:"PublicIPAddress" xml:"PublicIPAddress"`
 }
 
 // ClusterParameterGroup is undocumented.
 type ClusterParameterGroup struct {
-	Description          aws.StringValue `xml:"Description"`
-	ParameterGroupFamily aws.StringValue `xml:"ParameterGroupFamily"`
-	ParameterGroupName   aws.StringValue `xml:"ParameterGroupName"`
-	Tags                 []Tag           `xml:"Tags>Tag"`
+	Description          aws.StringValue `query:"Description" xml:"Description"`
+	ParameterGroupFamily aws.StringValue `query:"ParameterGroupFamily" xml:"ParameterGroupFamily"`
+	ParameterGroupName   aws.StringValue `query:"ParameterGroupName" xml:"ParameterGroupName"`
+	Tags                 []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // ClusterParameterGroupDetails is undocumented.
 type ClusterParameterGroupDetails struct {
-	Marker     aws.StringValue `xml:"DescribeClusterParametersResult>Marker"`
-	Parameters []Parameter     `xml:"DescribeClusterParametersResult>Parameters>Parameter"`
+	Marker     aws.StringValue `query:"Marker" xml:"DescribeClusterParametersResult>Marker"`
+	Parameters []Parameter     `query:"Parameters.member" xml:"DescribeClusterParametersResult>Parameters>Parameter"`
 }
 
 // ClusterParameterGroupNameMessage is undocumented.
 type ClusterParameterGroupNameMessage struct {
-	ParameterGroupName   aws.StringValue `xml:"ParameterGroupName"`
-	ParameterGroupStatus aws.StringValue `xml:"ParameterGroupStatus"`
+	ParameterGroupName   aws.StringValue `query:"ParameterGroupName" xml:"ParameterGroupName"`
+	ParameterGroupStatus aws.StringValue `query:"ParameterGroupStatus" xml:"ParameterGroupStatus"`
 }
 
 // ClusterParameterGroupStatus is undocumented.
 type ClusterParameterGroupStatus struct {
-	ParameterApplyStatus aws.StringValue `xml:"ParameterApplyStatus"`
-	ParameterGroupName   aws.StringValue `xml:"ParameterGroupName"`
+	ParameterApplyStatus aws.StringValue `query:"ParameterApplyStatus" xml:"ParameterApplyStatus"`
+	ParameterGroupName   aws.StringValue `query:"ParameterGroupName" xml:"ParameterGroupName"`
 }
 
 // ClusterParameterGroupsMessage is undocumented.
 type ClusterParameterGroupsMessage struct {
-	Marker          aws.StringValue         `xml:"DescribeClusterParameterGroupsResult>Marker"`
-	ParameterGroups []ClusterParameterGroup `xml:"DescribeClusterParameterGroupsResult>ParameterGroups>ClusterParameterGroup"`
+	Marker          aws.StringValue         `query:"Marker" xml:"DescribeClusterParameterGroupsResult>Marker"`
+	ParameterGroups []ClusterParameterGroup `query:"ParameterGroups.member" xml:"DescribeClusterParameterGroupsResult>ParameterGroups>ClusterParameterGroup"`
 }
 
 // ClusterSecurityGroup is undocumented.
 type ClusterSecurityGroup struct {
-	ClusterSecurityGroupName aws.StringValue    `xml:"ClusterSecurityGroupName"`
-	Description              aws.StringValue    `xml:"Description"`
-	EC2SecurityGroups        []EC2SecurityGroup `xml:"EC2SecurityGroups>EC2SecurityGroup"`
-	IPRanges                 []IPRange          `xml:"IPRanges>IPRange"`
-	Tags                     []Tag              `xml:"Tags>Tag"`
+	ClusterSecurityGroupName aws.StringValue    `query:"ClusterSecurityGroupName" xml:"ClusterSecurityGroupName"`
+	Description              aws.StringValue    `query:"Description" xml:"Description"`
+	EC2SecurityGroups        []EC2SecurityGroup `query:"EC2SecurityGroups.member" xml:"EC2SecurityGroups>EC2SecurityGroup"`
+	IPRanges                 []IPRange          `query:"IPRanges.member" xml:"IPRanges>IPRange"`
+	Tags                     []Tag              `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // ClusterSecurityGroupMembership is undocumented.
 type ClusterSecurityGroupMembership struct {
-	ClusterSecurityGroupName aws.StringValue `xml:"ClusterSecurityGroupName"`
-	Status                   aws.StringValue `xml:"Status"`
+	ClusterSecurityGroupName aws.StringValue `query:"ClusterSecurityGroupName" xml:"ClusterSecurityGroupName"`
+	Status                   aws.StringValue `query:"Status" xml:"Status"`
 }
 
 // ClusterSecurityGroupMessage is undocumented.
 type ClusterSecurityGroupMessage struct {
-	ClusterSecurityGroups []ClusterSecurityGroup `xml:"DescribeClusterSecurityGroupsResult>ClusterSecurityGroups>ClusterSecurityGroup"`
-	Marker                aws.StringValue        `xml:"DescribeClusterSecurityGroupsResult>Marker"`
+	ClusterSecurityGroups []ClusterSecurityGroup `query:"ClusterSecurityGroups.member" xml:"DescribeClusterSecurityGroupsResult>ClusterSecurityGroups>ClusterSecurityGroup"`
+	Marker                aws.StringValue        `query:"Marker" xml:"DescribeClusterSecurityGroupsResult>Marker"`
 }
 
 // ClusterSnapshotCopyStatus is undocumented.
 type ClusterSnapshotCopyStatus struct {
-	DestinationRegion aws.StringValue `xml:"DestinationRegion"`
-	RetentionPeriod   aws.LongValue   `xml:"RetentionPeriod"`
+	DestinationRegion aws.StringValue `query:"DestinationRegion" xml:"DestinationRegion"`
+	RetentionPeriod   aws.LongValue   `query:"RetentionPeriod" xml:"RetentionPeriod"`
 }
 
 // ClusterSubnetGroup is undocumented.
 type ClusterSubnetGroup struct {
-	ClusterSubnetGroupName aws.StringValue `xml:"ClusterSubnetGroupName"`
-	Description            aws.StringValue `xml:"Description"`
-	SubnetGroupStatus      aws.StringValue `xml:"SubnetGroupStatus"`
-	Subnets                []Subnet        `xml:"Subnets>Subnet"`
-	Tags                   []Tag           `xml:"Tags>Tag"`
-	VPCID                  aws.StringValue `xml:"VpcId"`
+	ClusterSubnetGroupName aws.StringValue `query:"ClusterSubnetGroupName" xml:"ClusterSubnetGroupName"`
+	Description            aws.StringValue `query:"Description" xml:"Description"`
+	SubnetGroupStatus      aws.StringValue `query:"SubnetGroupStatus" xml:"SubnetGroupStatus"`
+	Subnets                []Subnet        `query:"Subnets.member" xml:"Subnets>Subnet"`
+	Tags                   []Tag           `query:"Tags.member" xml:"Tags>Tag"`
+	VPCID                  aws.StringValue `query:"VpcId" xml:"VpcId"`
 }
 
 // ClusterSubnetGroupMessage is undocumented.
 type ClusterSubnetGroupMessage struct {
-	ClusterSubnetGroups []ClusterSubnetGroup `xml:"DescribeClusterSubnetGroupsResult>ClusterSubnetGroups>ClusterSubnetGroup"`
-	Marker              aws.StringValue      `xml:"DescribeClusterSubnetGroupsResult>Marker"`
+	ClusterSubnetGroups []ClusterSubnetGroup `query:"ClusterSubnetGroups.member" xml:"DescribeClusterSubnetGroupsResult>ClusterSubnetGroups>ClusterSubnetGroup"`
+	Marker              aws.StringValue      `query:"Marker" xml:"DescribeClusterSubnetGroupsResult>Marker"`
 }
 
 // ClusterVersion is undocumented.
 type ClusterVersion struct {
-	ClusterParameterGroupFamily aws.StringValue `xml:"ClusterParameterGroupFamily"`
-	ClusterVersion              aws.StringValue `xml:"ClusterVersion"`
-	Description                 aws.StringValue `xml:"Description"`
+	ClusterParameterGroupFamily aws.StringValue `query:"ClusterParameterGroupFamily" xml:"ClusterParameterGroupFamily"`
+	ClusterVersion              aws.StringValue `query:"ClusterVersion" xml:"ClusterVersion"`
+	Description                 aws.StringValue `query:"Description" xml:"Description"`
 }
 
 // ClusterVersionsMessage is undocumented.
 type ClusterVersionsMessage struct {
-	ClusterVersions []ClusterVersion `xml:"DescribeClusterVersionsResult>ClusterVersions>ClusterVersion"`
-	Marker          aws.StringValue  `xml:"DescribeClusterVersionsResult>Marker"`
+	ClusterVersions []ClusterVersion `query:"ClusterVersions.member" xml:"DescribeClusterVersionsResult>ClusterVersions>ClusterVersion"`
+	Marker          aws.StringValue  `query:"Marker" xml:"DescribeClusterVersionsResult>Marker"`
 }
 
 // ClustersMessage is undocumented.
 type ClustersMessage struct {
-	Clusters []Cluster       `xml:"DescribeClustersResult>Clusters>Cluster"`
-	Marker   aws.StringValue `xml:"DescribeClustersResult>Marker"`
+	Clusters []Cluster       `query:"Clusters.member" xml:"DescribeClustersResult>Clusters>Cluster"`
+	Marker   aws.StringValue `query:"Marker" xml:"DescribeClustersResult>Marker"`
 }
 
 // CopyClusterSnapshotMessage is undocumented.
 type CopyClusterSnapshotMessage struct {
-	SourceSnapshotClusterIdentifier aws.StringValue `xml:"SourceSnapshotClusterIdentifier"`
-	SourceSnapshotIdentifier        aws.StringValue `xml:"SourceSnapshotIdentifier"`
-	TargetSnapshotIdentifier        aws.StringValue `xml:"TargetSnapshotIdentifier"`
+	SourceSnapshotClusterIdentifier aws.StringValue `query:"SourceSnapshotClusterIdentifier" xml:"SourceSnapshotClusterIdentifier"`
+	SourceSnapshotIdentifier        aws.StringValue `query:"SourceSnapshotIdentifier" xml:"SourceSnapshotIdentifier"`
+	TargetSnapshotIdentifier        aws.StringValue `query:"TargetSnapshotIdentifier" xml:"TargetSnapshotIdentifier"`
 }
 
 // CopyClusterSnapshotResult is undocumented.
 type CopyClusterSnapshotResult struct {
-	Snapshot *Snapshot `xml:"CopyClusterSnapshotResult>Snapshot"`
+	Snapshot *Snapshot `query:"Snapshot" xml:"CopyClusterSnapshotResult>Snapshot"`
 }
 
 // CreateClusterMessage is undocumented.
 type CreateClusterMessage struct {
-	AllowVersionUpgrade              aws.BooleanValue `xml:"AllowVersionUpgrade"`
-	AutomatedSnapshotRetentionPeriod aws.IntegerValue `xml:"AutomatedSnapshotRetentionPeriod"`
-	AvailabilityZone                 aws.StringValue  `xml:"AvailabilityZone"`
-	ClusterIdentifier                aws.StringValue  `xml:"ClusterIdentifier"`
-	ClusterParameterGroupName        aws.StringValue  `xml:"ClusterParameterGroupName"`
-	ClusterSecurityGroups            []string         `xml:"ClusterSecurityGroups>ClusterSecurityGroupName"`
-	ClusterSubnetGroupName           aws.StringValue  `xml:"ClusterSubnetGroupName"`
-	ClusterType                      aws.StringValue  `xml:"ClusterType"`
-	ClusterVersion                   aws.StringValue  `xml:"ClusterVersion"`
-	DBName                           aws.StringValue  `xml:"DBName"`
-	ElasticIP                        aws.StringValue  `xml:"ElasticIp"`
-	Encrypted                        aws.BooleanValue `xml:"Encrypted"`
-	HSMClientCertificateIdentifier   aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
-	HSMConfigurationIdentifier       aws.StringValue  `xml:"HsmConfigurationIdentifier"`
-	KMSKeyID                         aws.StringValue  `xml:"KmsKeyId"`
-	MasterUserPassword               aws.StringValue  `xml:"MasterUserPassword"`
-	MasterUsername                   aws.StringValue  `xml:"MasterUsername"`
-	NodeType                         aws.StringValue  `xml:"NodeType"`
-	NumberOfNodes                    aws.IntegerValue `xml:"NumberOfNodes"`
-	Port                             aws.IntegerValue `xml:"Port"`
-	PreferredMaintenanceWindow       aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	PubliclyAccessible               aws.BooleanValue `xml:"PubliclyAccessible"`
-	Tags                             []Tag            `xml:"Tags>Tag"`
-	VPCSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	AllowVersionUpgrade              aws.BooleanValue `query:"AllowVersionUpgrade" xml:"AllowVersionUpgrade"`
+	AutomatedSnapshotRetentionPeriod aws.IntegerValue `query:"AutomatedSnapshotRetentionPeriod" xml:"AutomatedSnapshotRetentionPeriod"`
+	AvailabilityZone                 aws.StringValue  `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	ClusterIdentifier                aws.StringValue  `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	ClusterParameterGroupName        aws.StringValue  `query:"ClusterParameterGroupName" xml:"ClusterParameterGroupName"`
+	ClusterSecurityGroups            []string         `query:"ClusterSecurityGroups.member" xml:"ClusterSecurityGroups>ClusterSecurityGroupName"`
+	ClusterSubnetGroupName           aws.StringValue  `query:"ClusterSubnetGroupName" xml:"ClusterSubnetGroupName"`
+	ClusterType                      aws.StringValue  `query:"ClusterType" xml:"ClusterType"`
+	ClusterVersion                   aws.StringValue  `query:"ClusterVersion" xml:"ClusterVersion"`
+	DBName                           aws.StringValue  `query:"DBName" xml:"DBName"`
+	ElasticIP                        aws.StringValue  `query:"ElasticIp" xml:"ElasticIp"`
+	Encrypted                        aws.BooleanValue `query:"Encrypted" xml:"Encrypted"`
+	HSMClientCertificateIdentifier   aws.StringValue  `query:"HsmClientCertificateIdentifier" xml:"HsmClientCertificateIdentifier"`
+	HSMConfigurationIdentifier       aws.StringValue  `query:"HsmConfigurationIdentifier" xml:"HsmConfigurationIdentifier"`
+	KMSKeyID                         aws.StringValue  `query:"KmsKeyId" xml:"KmsKeyId"`
+	MasterUserPassword               aws.StringValue  `query:"MasterUserPassword" xml:"MasterUserPassword"`
+	MasterUsername                   aws.StringValue  `query:"MasterUsername" xml:"MasterUsername"`
+	NodeType                         aws.StringValue  `query:"NodeType" xml:"NodeType"`
+	NumberOfNodes                    aws.IntegerValue `query:"NumberOfNodes" xml:"NumberOfNodes"`
+	Port                             aws.IntegerValue `query:"Port" xml:"Port"`
+	PreferredMaintenanceWindow       aws.StringValue  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	PubliclyAccessible               aws.BooleanValue `query:"PubliclyAccessible" xml:"PubliclyAccessible"`
+	Tags                             []Tag            `query:"Tags.member" xml:"Tags>Tag"`
+	VPCSecurityGroupIDs              []string         `query:"VpcSecurityGroupIds.member" xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // CreateClusterParameterGroupMessage is undocumented.
 type CreateClusterParameterGroupMessage struct {
-	Description          aws.StringValue `xml:"Description"`
-	ParameterGroupFamily aws.StringValue `xml:"ParameterGroupFamily"`
-	ParameterGroupName   aws.StringValue `xml:"ParameterGroupName"`
-	Tags                 []Tag           `xml:"Tags>Tag"`
+	Description          aws.StringValue `query:"Description" xml:"Description"`
+	ParameterGroupFamily aws.StringValue `query:"ParameterGroupFamily" xml:"ParameterGroupFamily"`
+	ParameterGroupName   aws.StringValue `query:"ParameterGroupName" xml:"ParameterGroupName"`
+	Tags                 []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateClusterParameterGroupResult is undocumented.
 type CreateClusterParameterGroupResult struct {
-	ClusterParameterGroup *ClusterParameterGroup `xml:"CreateClusterParameterGroupResult>ClusterParameterGroup"`
+	ClusterParameterGroup *ClusterParameterGroup `query:"ClusterParameterGroup" xml:"CreateClusterParameterGroupResult>ClusterParameterGroup"`
 }
 
 // CreateClusterResult is undocumented.
 type CreateClusterResult struct {
-	Cluster *Cluster `xml:"CreateClusterResult>Cluster"`
+	Cluster *Cluster `query:"Cluster" xml:"CreateClusterResult>Cluster"`
 }
 
 // CreateClusterSecurityGroupMessage is undocumented.
 type CreateClusterSecurityGroupMessage struct {
-	ClusterSecurityGroupName aws.StringValue `xml:"ClusterSecurityGroupName"`
-	Description              aws.StringValue `xml:"Description"`
-	Tags                     []Tag           `xml:"Tags>Tag"`
+	ClusterSecurityGroupName aws.StringValue `query:"ClusterSecurityGroupName" xml:"ClusterSecurityGroupName"`
+	Description              aws.StringValue `query:"Description" xml:"Description"`
+	Tags                     []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateClusterSecurityGroupResult is undocumented.
 type CreateClusterSecurityGroupResult struct {
-	ClusterSecurityGroup *ClusterSecurityGroup `xml:"CreateClusterSecurityGroupResult>ClusterSecurityGroup"`
+	ClusterSecurityGroup *ClusterSecurityGroup `query:"ClusterSecurityGroup" xml:"CreateClusterSecurityGroupResult>ClusterSecurityGroup"`
 }
 
 // CreateClusterSnapshotMessage is undocumented.
 type CreateClusterSnapshotMessage struct {
-	ClusterIdentifier  aws.StringValue `xml:"ClusterIdentifier"`
-	SnapshotIdentifier aws.StringValue `xml:"SnapshotIdentifier"`
-	Tags               []Tag           `xml:"Tags>Tag"`
+	ClusterIdentifier  aws.StringValue `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	SnapshotIdentifier aws.StringValue `query:"SnapshotIdentifier" xml:"SnapshotIdentifier"`
+	Tags               []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateClusterSnapshotResult is undocumented.
 type CreateClusterSnapshotResult struct {
-	Snapshot *Snapshot `xml:"CreateClusterSnapshotResult>Snapshot"`
+	Snapshot *Snapshot `query:"Snapshot" xml:"CreateClusterSnapshotResult>Snapshot"`
 }
 
 // CreateClusterSubnetGroupMessage is undocumented.
 type CreateClusterSubnetGroupMessage struct {
-	ClusterSubnetGroupName aws.StringValue `xml:"ClusterSubnetGroupName"`
-	Description            aws.StringValue `xml:"Description"`
-	SubnetIDs              []string        `xml:"SubnetIds>SubnetIdentifier"`
-	Tags                   []Tag           `xml:"Tags>Tag"`
+	ClusterSubnetGroupName aws.StringValue `query:"ClusterSubnetGroupName" xml:"ClusterSubnetGroupName"`
+	Description            aws.StringValue `query:"Description" xml:"Description"`
+	SubnetIDs              []string        `query:"SubnetIds.member" xml:"SubnetIds>SubnetIdentifier"`
+	Tags                   []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateClusterSubnetGroupResult is undocumented.
 type CreateClusterSubnetGroupResult struct {
-	ClusterSubnetGroup *ClusterSubnetGroup `xml:"CreateClusterSubnetGroupResult>ClusterSubnetGroup"`
+	ClusterSubnetGroup *ClusterSubnetGroup `query:"ClusterSubnetGroup" xml:"CreateClusterSubnetGroupResult>ClusterSubnetGroup"`
 }
 
 // CreateEventSubscriptionMessage is undocumented.
 type CreateEventSubscriptionMessage struct {
-	Enabled          aws.BooleanValue `xml:"Enabled"`
-	EventCategories  []string         `xml:"EventCategories>EventCategory"`
-	Severity         aws.StringValue  `xml:"Severity"`
-	SNSTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
-	SourceIDs        []string         `xml:"SourceIds>SourceId"`
-	SourceType       aws.StringValue  `xml:"SourceType"`
-	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
-	Tags             []Tag            `xml:"Tags>Tag"`
+	Enabled          aws.BooleanValue `query:"Enabled" xml:"Enabled"`
+	EventCategories  []string         `query:"EventCategories.member" xml:"EventCategories>EventCategory"`
+	Severity         aws.StringValue  `query:"Severity" xml:"Severity"`
+	SNSTopicARN      aws.StringValue  `query:"SnsTopicArn" xml:"SnsTopicArn"`
+	SourceIDs        []string         `query:"SourceIds.member" xml:"SourceIds>SourceId"`
+	SourceType       aws.StringValue  `query:"SourceType" xml:"SourceType"`
+	SubscriptionName aws.StringValue  `query:"SubscriptionName" xml:"SubscriptionName"`
+	Tags             []Tag            `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateEventSubscriptionResult is undocumented.
 type CreateEventSubscriptionResult struct {
-	EventSubscription *EventSubscription `xml:"CreateEventSubscriptionResult>EventSubscription"`
+	EventSubscription *EventSubscription `query:"EventSubscription" xml:"CreateEventSubscriptionResult>EventSubscription"`
 }
 
 // CreateHSMClientCertificateMessage is undocumented.
 type CreateHSMClientCertificateMessage struct {
-	HSMClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
-	Tags                           []Tag           `xml:"Tags>Tag"`
+	HSMClientCertificateIdentifier aws.StringValue `query:"HsmClientCertificateIdentifier" xml:"HsmClientCertificateIdentifier"`
+	Tags                           []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateHSMClientCertificateResult is undocumented.
 type CreateHSMClientCertificateResult struct {
-	HSMClientCertificate *HSMClientCertificate `xml:"CreateHsmClientCertificateResult>HsmClientCertificate"`
+	HSMClientCertificate *HSMClientCertificate `query:"HsmClientCertificate" xml:"CreateHsmClientCertificateResult>HsmClientCertificate"`
 }
 
 // CreateHSMConfigurationMessage is undocumented.
 type CreateHSMConfigurationMessage struct {
-	Description                aws.StringValue `xml:"Description"`
-	HSMConfigurationIdentifier aws.StringValue `xml:"HsmConfigurationIdentifier"`
-	HSMIPAddress               aws.StringValue `xml:"HsmIpAddress"`
-	HSMPartitionName           aws.StringValue `xml:"HsmPartitionName"`
-	HSMPartitionPassword       aws.StringValue `xml:"HsmPartitionPassword"`
-	HSMServerPublicCertificate aws.StringValue `xml:"HsmServerPublicCertificate"`
-	Tags                       []Tag           `xml:"Tags>Tag"`
+	Description                aws.StringValue `query:"Description" xml:"Description"`
+	HSMConfigurationIdentifier aws.StringValue `query:"HsmConfigurationIdentifier" xml:"HsmConfigurationIdentifier"`
+	HSMIPAddress               aws.StringValue `query:"HsmIpAddress" xml:"HsmIpAddress"`
+	HSMPartitionName           aws.StringValue `query:"HsmPartitionName" xml:"HsmPartitionName"`
+	HSMPartitionPassword       aws.StringValue `query:"HsmPartitionPassword" xml:"HsmPartitionPassword"`
+	HSMServerPublicCertificate aws.StringValue `query:"HsmServerPublicCertificate" xml:"HsmServerPublicCertificate"`
+	Tags                       []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateHSMConfigurationResult is undocumented.
 type CreateHSMConfigurationResult struct {
-	HSMConfiguration *HSMConfiguration `xml:"CreateHsmConfigurationResult>HsmConfiguration"`
+	HSMConfiguration *HSMConfiguration `query:"HsmConfiguration" xml:"CreateHsmConfigurationResult>HsmConfiguration"`
 }
 
 // CreateTagsMessage is undocumented.
 type CreateTagsMessage struct {
-	ResourceName aws.StringValue `xml:"ResourceName"`
-	Tags         []Tag           `xml:"Tags>Tag"`
+	ResourceName aws.StringValue `query:"ResourceName" xml:"ResourceName"`
+	Tags         []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // DefaultClusterParameters is undocumented.
 type DefaultClusterParameters struct {
-	Marker               aws.StringValue `xml:"Marker"`
-	ParameterGroupFamily aws.StringValue `xml:"ParameterGroupFamily"`
-	Parameters           []Parameter     `xml:"Parameters>Parameter"`
+	Marker               aws.StringValue `query:"Marker" xml:"Marker"`
+	ParameterGroupFamily aws.StringValue `query:"ParameterGroupFamily" xml:"ParameterGroupFamily"`
+	Parameters           []Parameter     `query:"Parameters.member" xml:"Parameters>Parameter"`
 }
 
 // DeleteClusterMessage is undocumented.
 type DeleteClusterMessage struct {
-	ClusterIdentifier              aws.StringValue  `xml:"ClusterIdentifier"`
-	FinalClusterSnapshotIdentifier aws.StringValue  `xml:"FinalClusterSnapshotIdentifier"`
-	SkipFinalClusterSnapshot       aws.BooleanValue `xml:"SkipFinalClusterSnapshot"`
+	ClusterIdentifier              aws.StringValue  `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	FinalClusterSnapshotIdentifier aws.StringValue  `query:"FinalClusterSnapshotIdentifier" xml:"FinalClusterSnapshotIdentifier"`
+	SkipFinalClusterSnapshot       aws.BooleanValue `query:"SkipFinalClusterSnapshot" xml:"SkipFinalClusterSnapshot"`
 }
 
 // DeleteClusterParameterGroupMessage is undocumented.
 type DeleteClusterParameterGroupMessage struct {
-	ParameterGroupName aws.StringValue `xml:"ParameterGroupName"`
+	ParameterGroupName aws.StringValue `query:"ParameterGroupName" xml:"ParameterGroupName"`
 }
 
 // DeleteClusterResult is undocumented.
 type DeleteClusterResult struct {
-	Cluster *Cluster `xml:"DeleteClusterResult>Cluster"`
+	Cluster *Cluster `query:"Cluster" xml:"DeleteClusterResult>Cluster"`
 }
 
 // DeleteClusterSecurityGroupMessage is undocumented.
 type DeleteClusterSecurityGroupMessage struct {
-	ClusterSecurityGroupName aws.StringValue `xml:"ClusterSecurityGroupName"`
+	ClusterSecurityGroupName aws.StringValue `query:"ClusterSecurityGroupName" xml:"ClusterSecurityGroupName"`
 }
 
 // DeleteClusterSnapshotMessage is undocumented.
 type DeleteClusterSnapshotMessage struct {
-	SnapshotClusterIdentifier aws.StringValue `xml:"SnapshotClusterIdentifier"`
-	SnapshotIdentifier        aws.StringValue `xml:"SnapshotIdentifier"`
+	SnapshotClusterIdentifier aws.StringValue `query:"SnapshotClusterIdentifier" xml:"SnapshotClusterIdentifier"`
+	SnapshotIdentifier        aws.StringValue `query:"SnapshotIdentifier" xml:"SnapshotIdentifier"`
 }
 
 // DeleteClusterSnapshotResult is undocumented.
 type DeleteClusterSnapshotResult struct {
-	Snapshot *Snapshot `xml:"DeleteClusterSnapshotResult>Snapshot"`
+	Snapshot *Snapshot `query:"Snapshot" xml:"DeleteClusterSnapshotResult>Snapshot"`
 }
 
 // DeleteClusterSubnetGroupMessage is undocumented.
 type DeleteClusterSubnetGroupMessage struct {
-	ClusterSubnetGroupName aws.StringValue `xml:"ClusterSubnetGroupName"`
+	ClusterSubnetGroupName aws.StringValue `query:"ClusterSubnetGroupName" xml:"ClusterSubnetGroupName"`
 }
 
 // DeleteEventSubscriptionMessage is undocumented.
 type DeleteEventSubscriptionMessage struct {
-	SubscriptionName aws.StringValue `xml:"SubscriptionName"`
+	SubscriptionName aws.StringValue `query:"SubscriptionName" xml:"SubscriptionName"`
 }
 
 // DeleteHSMClientCertificateMessage is undocumented.
 type DeleteHSMClientCertificateMessage struct {
-	HSMClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
+	HSMClientCertificateIdentifier aws.StringValue `query:"HsmClientCertificateIdentifier" xml:"HsmClientCertificateIdentifier"`
 }
 
 // DeleteHSMConfigurationMessage is undocumented.
 type DeleteHSMConfigurationMessage struct {
-	HSMConfigurationIdentifier aws.StringValue `xml:"HsmConfigurationIdentifier"`
+	HSMConfigurationIdentifier aws.StringValue `query:"HsmConfigurationIdentifier" xml:"HsmConfigurationIdentifier"`
 }
 
 // DeleteTagsMessage is undocumented.
 type DeleteTagsMessage struct {
-	ResourceName aws.StringValue `xml:"ResourceName"`
-	TagKeys      []string        `xml:"TagKeys>TagKey"`
+	ResourceName aws.StringValue `query:"ResourceName" xml:"ResourceName"`
+	TagKeys      []string        `query:"TagKeys.member" xml:"TagKeys>TagKey"`
 }
 
 // DescribeClusterParameterGroupsMessage is undocumented.
 type DescribeClusterParameterGroupsMessage struct {
-	Marker             aws.StringValue  `xml:"Marker"`
-	MaxRecords         aws.IntegerValue `xml:"MaxRecords"`
-	ParameterGroupName aws.StringValue  `xml:"ParameterGroupName"`
-	TagKeys            []string         `xml:"TagKeys>TagKey"`
-	TagValues          []string         `xml:"TagValues>TagValue"`
+	Marker             aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords         aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	ParameterGroupName aws.StringValue  `query:"ParameterGroupName" xml:"ParameterGroupName"`
+	TagKeys            []string         `query:"TagKeys.member" xml:"TagKeys>TagKey"`
+	TagValues          []string         `query:"TagValues.member" xml:"TagValues>TagValue"`
 }
 
 // DescribeClusterParametersMessage is undocumented.
 type DescribeClusterParametersMessage struct {
-	Marker             aws.StringValue  `xml:"Marker"`
-	MaxRecords         aws.IntegerValue `xml:"MaxRecords"`
-	ParameterGroupName aws.StringValue  `xml:"ParameterGroupName"`
-	Source             aws.StringValue  `xml:"Source"`
+	Marker             aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords         aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	ParameterGroupName aws.StringValue  `query:"ParameterGroupName" xml:"ParameterGroupName"`
+	Source             aws.StringValue  `query:"Source" xml:"Source"`
 }
 
 // DescribeClusterSecurityGroupsMessage is undocumented.
 type DescribeClusterSecurityGroupsMessage struct {
-	ClusterSecurityGroupName aws.StringValue  `xml:"ClusterSecurityGroupName"`
-	Marker                   aws.StringValue  `xml:"Marker"`
-	MaxRecords               aws.IntegerValue `xml:"MaxRecords"`
-	TagKeys                  []string         `xml:"TagKeys>TagKey"`
-	TagValues                []string         `xml:"TagValues>TagValue"`
+	ClusterSecurityGroupName aws.StringValue  `query:"ClusterSecurityGroupName" xml:"ClusterSecurityGroupName"`
+	Marker                   aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords               aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	TagKeys                  []string         `query:"TagKeys.member" xml:"TagKeys>TagKey"`
+	TagValues                []string         `query:"TagValues.member" xml:"TagValues>TagValue"`
 }
 
 // DescribeClusterSnapshotsMessage is undocumented.
 type DescribeClusterSnapshotsMessage struct {
-	ClusterIdentifier  aws.StringValue  `xml:"ClusterIdentifier"`
-	EndTime            time.Time        `xml:"EndTime"`
-	Marker             aws.StringValue  `xml:"Marker"`
-	MaxRecords         aws.IntegerValue `xml:"MaxRecords"`
-	OwnerAccount       aws.StringValue  `xml:"OwnerAccount"`
-	SnapshotIdentifier aws.StringValue  `xml:"SnapshotIdentifier"`
-	SnapshotType       aws.StringValue  `xml:"SnapshotType"`
-	StartTime          time.Time        `xml:"StartTime"`
-	TagKeys            []string         `xml:"TagKeys>TagKey"`
-	TagValues          []string         `xml:"TagValues>TagValue"`
+	ClusterIdentifier  aws.StringValue  `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	EndTime            time.Time        `query:"EndTime" xml:"EndTime"`
+	Marker             aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords         aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	OwnerAccount       aws.StringValue  `query:"OwnerAccount" xml:"OwnerAccount"`
+	SnapshotIdentifier aws.StringValue  `query:"SnapshotIdentifier" xml:"SnapshotIdentifier"`
+	SnapshotType       aws.StringValue  `query:"SnapshotType" xml:"SnapshotType"`
+	StartTime          time.Time        `query:"StartTime" xml:"StartTime"`
+	TagKeys            []string         `query:"TagKeys.member" xml:"TagKeys>TagKey"`
+	TagValues          []string         `query:"TagValues.member" xml:"TagValues>TagValue"`
 }
 
 // DescribeClusterSubnetGroupsMessage is undocumented.
 type DescribeClusterSubnetGroupsMessage struct {
-	ClusterSubnetGroupName aws.StringValue  `xml:"ClusterSubnetGroupName"`
-	Marker                 aws.StringValue  `xml:"Marker"`
-	MaxRecords             aws.IntegerValue `xml:"MaxRecords"`
-	TagKeys                []string         `xml:"TagKeys>TagKey"`
-	TagValues              []string         `xml:"TagValues>TagValue"`
+	ClusterSubnetGroupName aws.StringValue  `query:"ClusterSubnetGroupName" xml:"ClusterSubnetGroupName"`
+	Marker                 aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords             aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	TagKeys                []string         `query:"TagKeys.member" xml:"TagKeys>TagKey"`
+	TagValues              []string         `query:"TagValues.member" xml:"TagValues>TagValue"`
 }
 
 // DescribeClusterVersionsMessage is undocumented.
 type DescribeClusterVersionsMessage struct {
-	ClusterParameterGroupFamily aws.StringValue  `xml:"ClusterParameterGroupFamily"`
-	ClusterVersion              aws.StringValue  `xml:"ClusterVersion"`
-	Marker                      aws.StringValue  `xml:"Marker"`
-	MaxRecords                  aws.IntegerValue `xml:"MaxRecords"`
+	ClusterParameterGroupFamily aws.StringValue  `query:"ClusterParameterGroupFamily" xml:"ClusterParameterGroupFamily"`
+	ClusterVersion              aws.StringValue  `query:"ClusterVersion" xml:"ClusterVersion"`
+	Marker                      aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords                  aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeClustersMessage is undocumented.
 type DescribeClustersMessage struct {
-	ClusterIdentifier aws.StringValue  `xml:"ClusterIdentifier"`
-	Marker            aws.StringValue  `xml:"Marker"`
-	MaxRecords        aws.IntegerValue `xml:"MaxRecords"`
-	TagKeys           []string         `xml:"TagKeys>TagKey"`
-	TagValues         []string         `xml:"TagValues>TagValue"`
+	ClusterIdentifier aws.StringValue  `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	Marker            aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords        aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	TagKeys           []string         `query:"TagKeys.member" xml:"TagKeys>TagKey"`
+	TagValues         []string         `query:"TagValues.member" xml:"TagValues>TagValue"`
 }
 
 // DescribeDefaultClusterParametersMessage is undocumented.
 type DescribeDefaultClusterParametersMessage struct {
-	Marker               aws.StringValue  `xml:"Marker"`
-	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
-	ParameterGroupFamily aws.StringValue  `xml:"ParameterGroupFamily"`
+	Marker               aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords           aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	ParameterGroupFamily aws.StringValue  `query:"ParameterGroupFamily" xml:"ParameterGroupFamily"`
 }
 
 // DescribeDefaultClusterParametersResult is undocumented.
 type DescribeDefaultClusterParametersResult struct {
-	DefaultClusterParameters *DefaultClusterParameters `xml:"DescribeDefaultClusterParametersResult>DefaultClusterParameters"`
+	DefaultClusterParameters *DefaultClusterParameters `query:"DefaultClusterParameters" xml:"DescribeDefaultClusterParametersResult>DefaultClusterParameters"`
 }
 
 // DescribeEventCategoriesMessage is undocumented.
 type DescribeEventCategoriesMessage struct {
-	SourceType aws.StringValue `xml:"SourceType"`
+	SourceType aws.StringValue `query:"SourceType" xml:"SourceType"`
 }
 
 // DescribeEventSubscriptionsMessage is undocumented.
 type DescribeEventSubscriptionsMessage struct {
-	Marker           aws.StringValue  `xml:"Marker"`
-	MaxRecords       aws.IntegerValue `xml:"MaxRecords"`
-	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
+	Marker           aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords       aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	SubscriptionName aws.StringValue  `query:"SubscriptionName" xml:"SubscriptionName"`
 }
 
 // DescribeEventsMessage is undocumented.
 type DescribeEventsMessage struct {
-	Duration         aws.IntegerValue `xml:"Duration"`
-	EndTime          time.Time        `xml:"EndTime"`
-	Marker           aws.StringValue  `xml:"Marker"`
-	MaxRecords       aws.IntegerValue `xml:"MaxRecords"`
-	SourceIdentifier aws.StringValue  `xml:"SourceIdentifier"`
-	SourceType       aws.StringValue  `xml:"SourceType"`
-	StartTime        time.Time        `xml:"StartTime"`
+	Duration         aws.IntegerValue `query:"Duration" xml:"Duration"`
+	EndTime          time.Time        `query:"EndTime" xml:"EndTime"`
+	Marker           aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords       aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	SourceIdentifier aws.StringValue  `query:"SourceIdentifier" xml:"SourceIdentifier"`
+	SourceType       aws.StringValue  `query:"SourceType" xml:"SourceType"`
+	StartTime        time.Time        `query:"StartTime" xml:"StartTime"`
 }
 
 // DescribeHSMClientCertificatesMessage is undocumented.
 type DescribeHSMClientCertificatesMessage struct {
-	HSMClientCertificateIdentifier aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
-	Marker                         aws.StringValue  `xml:"Marker"`
-	MaxRecords                     aws.IntegerValue `xml:"MaxRecords"`
-	TagKeys                        []string         `xml:"TagKeys>TagKey"`
-	TagValues                      []string         `xml:"TagValues>TagValue"`
+	HSMClientCertificateIdentifier aws.StringValue  `query:"HsmClientCertificateIdentifier" xml:"HsmClientCertificateIdentifier"`
+	Marker                         aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords                     aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	TagKeys                        []string         `query:"TagKeys.member" xml:"TagKeys>TagKey"`
+	TagValues                      []string         `query:"TagValues.member" xml:"TagValues>TagValue"`
 }
 
 // DescribeHSMConfigurationsMessage is undocumented.
 type DescribeHSMConfigurationsMessage struct {
-	HSMConfigurationIdentifier aws.StringValue  `xml:"HsmConfigurationIdentifier"`
-	Marker                     aws.StringValue  `xml:"Marker"`
-	MaxRecords                 aws.IntegerValue `xml:"MaxRecords"`
-	TagKeys                    []string         `xml:"TagKeys>TagKey"`
-	TagValues                  []string         `xml:"TagValues>TagValue"`
+	HSMConfigurationIdentifier aws.StringValue  `query:"HsmConfigurationIdentifier" xml:"HsmConfigurationIdentifier"`
+	Marker                     aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords                 aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	TagKeys                    []string         `query:"TagKeys.member" xml:"TagKeys>TagKey"`
+	TagValues                  []string         `query:"TagValues.member" xml:"TagValues>TagValue"`
 }
 
 // DescribeLoggingStatusMessage is undocumented.
 type DescribeLoggingStatusMessage struct {
-	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
+	ClusterIdentifier aws.StringValue `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
 }
 
 // DescribeOrderableClusterOptionsMessage is undocumented.
 type DescribeOrderableClusterOptionsMessage struct {
-	ClusterVersion aws.StringValue  `xml:"ClusterVersion"`
-	Marker         aws.StringValue  `xml:"Marker"`
-	MaxRecords     aws.IntegerValue `xml:"MaxRecords"`
-	NodeType       aws.StringValue  `xml:"NodeType"`
+	ClusterVersion aws.StringValue  `query:"ClusterVersion" xml:"ClusterVersion"`
+	Marker         aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords     aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NodeType       aws.StringValue  `query:"NodeType" xml:"NodeType"`
 }
 
 // DescribeReservedNodeOfferingsMessage is undocumented.
 type DescribeReservedNodeOfferingsMessage struct {
-	Marker                 aws.StringValue  `xml:"Marker"`
-	MaxRecords             aws.IntegerValue `xml:"MaxRecords"`
-	ReservedNodeOfferingID aws.StringValue  `xml:"ReservedNodeOfferingId"`
+	Marker                 aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords             aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	ReservedNodeOfferingID aws.StringValue  `query:"ReservedNodeOfferingId" xml:"ReservedNodeOfferingId"`
 }
 
 // DescribeReservedNodesMessage is undocumented.
 type DescribeReservedNodesMessage struct {
-	Marker         aws.StringValue  `xml:"Marker"`
-	MaxRecords     aws.IntegerValue `xml:"MaxRecords"`
-	ReservedNodeID aws.StringValue  `xml:"ReservedNodeId"`
+	Marker         aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords     aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	ReservedNodeID aws.StringValue  `query:"ReservedNodeId" xml:"ReservedNodeId"`
 }
 
 // DescribeResizeMessage is undocumented.
 type DescribeResizeMessage struct {
-	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
+	ClusterIdentifier aws.StringValue `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
 }
 
 // DescribeTagsMessage is undocumented.
 type DescribeTagsMessage struct {
-	Marker       aws.StringValue  `xml:"Marker"`
-	MaxRecords   aws.IntegerValue `xml:"MaxRecords"`
-	ResourceName aws.StringValue  `xml:"ResourceName"`
-	ResourceType aws.StringValue  `xml:"ResourceType"`
-	TagKeys      []string         `xml:"TagKeys>TagKey"`
-	TagValues    []string         `xml:"TagValues>TagValue"`
+	Marker       aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords   aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	ResourceName aws.StringValue  `query:"ResourceName" xml:"ResourceName"`
+	ResourceType aws.StringValue  `query:"ResourceType" xml:"ResourceType"`
+	TagKeys      []string         `query:"TagKeys.member" xml:"TagKeys>TagKey"`
+	TagValues    []string         `query:"TagValues.member" xml:"TagValues>TagValue"`
 }
 
 // DisableLoggingMessage is undocumented.
 type DisableLoggingMessage struct {
-	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
+	ClusterIdentifier aws.StringValue `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
 }
 
 // DisableSnapshotCopyMessage is undocumented.
 type DisableSnapshotCopyMessage struct {
-	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
+	ClusterIdentifier aws.StringValue `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
 }
 
 // DisableSnapshotCopyResult is undocumented.
 type DisableSnapshotCopyResult struct {
-	Cluster *Cluster `xml:"DisableSnapshotCopyResult>Cluster"`
+	Cluster *Cluster `query:"Cluster" xml:"DisableSnapshotCopyResult>Cluster"`
 }
 
 // EC2SecurityGroup is undocumented.
 type EC2SecurityGroup struct {
-	EC2SecurityGroupName    aws.StringValue `xml:"EC2SecurityGroupName"`
-	EC2SecurityGroupOwnerID aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
-	Status                  aws.StringValue `xml:"Status"`
-	Tags                    []Tag           `xml:"Tags>Tag"`
+	EC2SecurityGroupName    aws.StringValue `query:"EC2SecurityGroupName" xml:"EC2SecurityGroupName"`
+	EC2SecurityGroupOwnerID aws.StringValue `query:"EC2SecurityGroupOwnerId" xml:"EC2SecurityGroupOwnerId"`
+	Status                  aws.StringValue `query:"Status" xml:"Status"`
+	Tags                    []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // ElasticIPStatus is undocumented.
 type ElasticIPStatus struct {
-	ElasticIP aws.StringValue `xml:"ElasticIp"`
-	Status    aws.StringValue `xml:"Status"`
+	ElasticIP aws.StringValue `query:"ElasticIp" xml:"ElasticIp"`
+	Status    aws.StringValue `query:"Status" xml:"Status"`
 }
 
 // EnableLoggingMessage is undocumented.
 type EnableLoggingMessage struct {
-	BucketName        aws.StringValue `xml:"BucketName"`
-	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
-	S3KeyPrefix       aws.StringValue `xml:"S3KeyPrefix"`
+	BucketName        aws.StringValue `query:"BucketName" xml:"BucketName"`
+	ClusterIdentifier aws.StringValue `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	S3KeyPrefix       aws.StringValue `query:"S3KeyPrefix" xml:"S3KeyPrefix"`
 }
 
 // EnableSnapshotCopyMessage is undocumented.
 type EnableSnapshotCopyMessage struct {
-	ClusterIdentifier aws.StringValue  `xml:"ClusterIdentifier"`
-	DestinationRegion aws.StringValue  `xml:"DestinationRegion"`
-	RetentionPeriod   aws.IntegerValue `xml:"RetentionPeriod"`
+	ClusterIdentifier aws.StringValue  `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	DestinationRegion aws.StringValue  `query:"DestinationRegion" xml:"DestinationRegion"`
+	RetentionPeriod   aws.IntegerValue `query:"RetentionPeriod" xml:"RetentionPeriod"`
 }
 
 // EnableSnapshotCopyResult is undocumented.
 type EnableSnapshotCopyResult struct {
-	Cluster *Cluster `xml:"EnableSnapshotCopyResult>Cluster"`
+	Cluster *Cluster `query:"Cluster" xml:"EnableSnapshotCopyResult>Cluster"`
 }
 
 // Endpoint is undocumented.
 type Endpoint struct {
-	Address aws.StringValue  `xml:"Address"`
-	Port    aws.IntegerValue `xml:"Port"`
+	Address aws.StringValue  `query:"Address" xml:"Address"`
+	Port    aws.IntegerValue `query:"Port" xml:"Port"`
 }
 
 // Event is undocumented.
 type Event struct {
-	Date             time.Time       `xml:"Date"`
-	EventCategories  []string        `xml:"EventCategories>EventCategory"`
-	EventID          aws.StringValue `xml:"EventId"`
-	Message          aws.StringValue `xml:"Message"`
-	Severity         aws.StringValue `xml:"Severity"`
-	SourceIdentifier aws.StringValue `xml:"SourceIdentifier"`
-	SourceType       aws.StringValue `xml:"SourceType"`
+	Date             time.Time       `query:"Date" xml:"Date"`
+	EventCategories  []string        `query:"EventCategories.member" xml:"EventCategories>EventCategory"`
+	EventID          aws.StringValue `query:"EventId" xml:"EventId"`
+	Message          aws.StringValue `query:"Message" xml:"Message"`
+	Severity         aws.StringValue `query:"Severity" xml:"Severity"`
+	SourceIdentifier aws.StringValue `query:"SourceIdentifier" xml:"SourceIdentifier"`
+	SourceType       aws.StringValue `query:"SourceType" xml:"SourceType"`
 }
 
 // EventCategoriesMap is undocumented.
 type EventCategoriesMap struct {
-	Events     []EventInfoMap  `xml:"Events>EventInfoMap"`
-	SourceType aws.StringValue `xml:"SourceType"`
+	Events     []EventInfoMap  `query:"Events.member" xml:"Events>EventInfoMap"`
+	SourceType aws.StringValue `query:"SourceType" xml:"SourceType"`
 }
 
 // EventCategoriesMessage is undocumented.
 type EventCategoriesMessage struct {
-	EventCategoriesMapList []EventCategoriesMap `xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
+	EventCategoriesMapList []EventCategoriesMap `query:"EventCategoriesMapList.member" xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
 }
 
 // EventInfoMap is undocumented.
 type EventInfoMap struct {
-	EventCategories  []string        `xml:"EventCategories>EventCategory"`
-	EventDescription aws.StringValue `xml:"EventDescription"`
-	EventID          aws.StringValue `xml:"EventId"`
-	Severity         aws.StringValue `xml:"Severity"`
+	EventCategories  []string        `query:"EventCategories.member" xml:"EventCategories>EventCategory"`
+	EventDescription aws.StringValue `query:"EventDescription" xml:"EventDescription"`
+	EventID          aws.StringValue `query:"EventId" xml:"EventId"`
+	Severity         aws.StringValue `query:"Severity" xml:"Severity"`
 }
 
 // EventSubscription is undocumented.
 type EventSubscription struct {
-	CustSubscriptionID       aws.StringValue  `xml:"CustSubscriptionId"`
-	CustomerAWSID            aws.StringValue  `xml:"CustomerAwsId"`
-	Enabled                  aws.BooleanValue `xml:"Enabled"`
-	EventCategoriesList      []string         `xml:"EventCategoriesList>EventCategory"`
-	Severity                 aws.StringValue  `xml:"Severity"`
-	SNSTopicARN              aws.StringValue  `xml:"SnsTopicArn"`
-	SourceIDsList            []string         `xml:"SourceIdsList>SourceId"`
-	SourceType               aws.StringValue  `xml:"SourceType"`
-	Status                   aws.StringValue  `xml:"Status"`
-	SubscriptionCreationTime time.Time        `xml:"SubscriptionCreationTime"`
-	Tags                     []Tag            `xml:"Tags>Tag"`
+	CustSubscriptionID       aws.StringValue  `query:"CustSubscriptionId" xml:"CustSubscriptionId"`
+	CustomerAWSID            aws.StringValue  `query:"CustomerAwsId" xml:"CustomerAwsId"`
+	Enabled                  aws.BooleanValue `query:"Enabled" xml:"Enabled"`
+	EventCategoriesList      []string         `query:"EventCategoriesList.member" xml:"EventCategoriesList>EventCategory"`
+	Severity                 aws.StringValue  `query:"Severity" xml:"Severity"`
+	SNSTopicARN              aws.StringValue  `query:"SnsTopicArn" xml:"SnsTopicArn"`
+	SourceIDsList            []string         `query:"SourceIdsList.member" xml:"SourceIdsList>SourceId"`
+	SourceType               aws.StringValue  `query:"SourceType" xml:"SourceType"`
+	Status                   aws.StringValue  `query:"Status" xml:"Status"`
+	SubscriptionCreationTime time.Time        `query:"SubscriptionCreationTime" xml:"SubscriptionCreationTime"`
+	Tags                     []Tag            `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // EventSubscriptionsMessage is undocumented.
 type EventSubscriptionsMessage struct {
-	EventSubscriptionsList []EventSubscription `xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
-	Marker                 aws.StringValue     `xml:"DescribeEventSubscriptionsResult>Marker"`
+	EventSubscriptionsList []EventSubscription `query:"EventSubscriptionsList.member" xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
+	Marker                 aws.StringValue     `query:"Marker" xml:"DescribeEventSubscriptionsResult>Marker"`
 }
 
 // EventsMessage is undocumented.
 type EventsMessage struct {
-	Events []Event         `xml:"DescribeEventsResult>Events>Event"`
-	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
+	Events []Event         `query:"Events.member" xml:"DescribeEventsResult>Events>Event"`
+	Marker aws.StringValue `query:"Marker" xml:"DescribeEventsResult>Marker"`
 }
 
 // HSMClientCertificate is undocumented.
 type HSMClientCertificate struct {
-	HSMClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
-	HSMClientCertificatePublicKey  aws.StringValue `xml:"HsmClientCertificatePublicKey"`
-	Tags                           []Tag           `xml:"Tags>Tag"`
+	HSMClientCertificateIdentifier aws.StringValue `query:"HsmClientCertificateIdentifier" xml:"HsmClientCertificateIdentifier"`
+	HSMClientCertificatePublicKey  aws.StringValue `query:"HsmClientCertificatePublicKey" xml:"HsmClientCertificatePublicKey"`
+	Tags                           []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // HSMClientCertificateMessage is undocumented.
 type HSMClientCertificateMessage struct {
-	HSMClientCertificates []HSMClientCertificate `xml:"DescribeHsmClientCertificatesResult>HsmClientCertificates>HsmClientCertificate"`
-	Marker                aws.StringValue        `xml:"DescribeHsmClientCertificatesResult>Marker"`
+	HSMClientCertificates []HSMClientCertificate `query:"HsmClientCertificates.member" xml:"DescribeHsmClientCertificatesResult>HsmClientCertificates>HsmClientCertificate"`
+	Marker                aws.StringValue        `query:"Marker" xml:"DescribeHsmClientCertificatesResult>Marker"`
 }
 
 // HSMConfiguration is undocumented.
 type HSMConfiguration struct {
-	Description                aws.StringValue `xml:"Description"`
-	HSMConfigurationIdentifier aws.StringValue `xml:"HsmConfigurationIdentifier"`
-	HSMIPAddress               aws.StringValue `xml:"HsmIpAddress"`
-	HSMPartitionName           aws.StringValue `xml:"HsmPartitionName"`
-	Tags                       []Tag           `xml:"Tags>Tag"`
+	Description                aws.StringValue `query:"Description" xml:"Description"`
+	HSMConfigurationIdentifier aws.StringValue `query:"HsmConfigurationIdentifier" xml:"HsmConfigurationIdentifier"`
+	HSMIPAddress               aws.StringValue `query:"HsmIpAddress" xml:"HsmIpAddress"`
+	HSMPartitionName           aws.StringValue `query:"HsmPartitionName" xml:"HsmPartitionName"`
+	Tags                       []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // HSMConfigurationMessage is undocumented.
 type HSMConfigurationMessage struct {
-	HSMConfigurations []HSMConfiguration `xml:"DescribeHsmConfigurationsResult>HsmConfigurations>HsmConfiguration"`
-	Marker            aws.StringValue    `xml:"DescribeHsmConfigurationsResult>Marker"`
+	HSMConfigurations []HSMConfiguration `query:"HsmConfigurations.member" xml:"DescribeHsmConfigurationsResult>HsmConfigurations>HsmConfiguration"`
+	Marker            aws.StringValue    `query:"Marker" xml:"DescribeHsmConfigurationsResult>Marker"`
 }
 
 // HSMStatus is undocumented.
 type HSMStatus struct {
-	HSMClientCertificateIdentifier aws.StringValue `xml:"HsmClientCertificateIdentifier"`
-	HSMConfigurationIdentifier     aws.StringValue `xml:"HsmConfigurationIdentifier"`
-	Status                         aws.StringValue `xml:"Status"`
+	HSMClientCertificateIdentifier aws.StringValue `query:"HsmClientCertificateIdentifier" xml:"HsmClientCertificateIdentifier"`
+	HSMConfigurationIdentifier     aws.StringValue `query:"HsmConfigurationIdentifier" xml:"HsmConfigurationIdentifier"`
+	Status                         aws.StringValue `query:"Status" xml:"Status"`
 }
 
 // IPRange is undocumented.
 type IPRange struct {
-	CIDRIP aws.StringValue `xml:"CIDRIP"`
-	Status aws.StringValue `xml:"Status"`
-	Tags   []Tag           `xml:"Tags>Tag"`
+	CIDRIP aws.StringValue `query:"CIDRIP" xml:"CIDRIP"`
+	Status aws.StringValue `query:"Status" xml:"Status"`
+	Tags   []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // LoggingStatus is undocumented.
 type LoggingStatus struct {
-	BucketName                 aws.StringValue  `xml:"BucketName"`
-	LastFailureMessage         aws.StringValue  `xml:"LastFailureMessage"`
-	LastFailureTime            time.Time        `xml:"LastFailureTime"`
-	LastSuccessfulDeliveryTime time.Time        `xml:"LastSuccessfulDeliveryTime"`
-	LoggingEnabled             aws.BooleanValue `xml:"LoggingEnabled"`
-	S3KeyPrefix                aws.StringValue  `xml:"S3KeyPrefix"`
+	BucketName                 aws.StringValue  `query:"BucketName" xml:"BucketName"`
+	LastFailureMessage         aws.StringValue  `query:"LastFailureMessage" xml:"LastFailureMessage"`
+	LastFailureTime            time.Time        `query:"LastFailureTime" xml:"LastFailureTime"`
+	LastSuccessfulDeliveryTime time.Time        `query:"LastSuccessfulDeliveryTime" xml:"LastSuccessfulDeliveryTime"`
+	LoggingEnabled             aws.BooleanValue `query:"LoggingEnabled" xml:"LoggingEnabled"`
+	S3KeyPrefix                aws.StringValue  `query:"S3KeyPrefix" xml:"S3KeyPrefix"`
 }
 
 // ModifyClusterMessage is undocumented.
 type ModifyClusterMessage struct {
-	AllowVersionUpgrade              aws.BooleanValue `xml:"AllowVersionUpgrade"`
-	AutomatedSnapshotRetentionPeriod aws.IntegerValue `xml:"AutomatedSnapshotRetentionPeriod"`
-	ClusterIdentifier                aws.StringValue  `xml:"ClusterIdentifier"`
-	ClusterParameterGroupName        aws.StringValue  `xml:"ClusterParameterGroupName"`
-	ClusterSecurityGroups            []string         `xml:"ClusterSecurityGroups>ClusterSecurityGroupName"`
-	ClusterType                      aws.StringValue  `xml:"ClusterType"`
-	ClusterVersion                   aws.StringValue  `xml:"ClusterVersion"`
-	HSMClientCertificateIdentifier   aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
-	HSMConfigurationIdentifier       aws.StringValue  `xml:"HsmConfigurationIdentifier"`
-	MasterUserPassword               aws.StringValue  `xml:"MasterUserPassword"`
-	NewClusterIdentifier             aws.StringValue  `xml:"NewClusterIdentifier"`
-	NodeType                         aws.StringValue  `xml:"NodeType"`
-	NumberOfNodes                    aws.IntegerValue `xml:"NumberOfNodes"`
-	PreferredMaintenanceWindow       aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	VPCSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	AllowVersionUpgrade              aws.BooleanValue `query:"AllowVersionUpgrade" xml:"AllowVersionUpgrade"`
+	AutomatedSnapshotRetentionPeriod aws.IntegerValue `query:"AutomatedSnapshotRetentionPeriod" xml:"AutomatedSnapshotRetentionPeriod"`
+	ClusterIdentifier                aws.StringValue  `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	ClusterParameterGroupName        aws.StringValue  `query:"ClusterParameterGroupName" xml:"ClusterParameterGroupName"`
+	ClusterSecurityGroups            []string         `query:"ClusterSecurityGroups.member" xml:"ClusterSecurityGroups>ClusterSecurityGroupName"`
+	ClusterType                      aws.StringValue  `query:"ClusterType" xml:"ClusterType"`
+	ClusterVersion                   aws.StringValue  `query:"ClusterVersion" xml:"ClusterVersion"`
+	HSMClientCertificateIdentifier   aws.StringValue  `query:"HsmClientCertificateIdentifier" xml:"HsmClientCertificateIdentifier"`
+	HSMConfigurationIdentifier       aws.StringValue  `query:"HsmConfigurationIdentifier" xml:"HsmConfigurationIdentifier"`
+	MasterUserPassword               aws.StringValue  `query:"MasterUserPassword" xml:"MasterUserPassword"`
+	NewClusterIdentifier             aws.StringValue  `query:"NewClusterIdentifier" xml:"NewClusterIdentifier"`
+	NodeType                         aws.StringValue  `query:"NodeType" xml:"NodeType"`
+	NumberOfNodes                    aws.IntegerValue `query:"NumberOfNodes" xml:"NumberOfNodes"`
+	PreferredMaintenanceWindow       aws.StringValue  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	VPCSecurityGroupIDs              []string         `query:"VpcSecurityGroupIds.member" xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // ModifyClusterParameterGroupMessage is undocumented.
 type ModifyClusterParameterGroupMessage struct {
-	ParameterGroupName aws.StringValue `xml:"ParameterGroupName"`
-	Parameters         []Parameter     `xml:"Parameters>Parameter"`
+	ParameterGroupName aws.StringValue `query:"ParameterGroupName" xml:"ParameterGroupName"`
+	Parameters         []Parameter     `query:"Parameters.member" xml:"Parameters>Parameter"`
 }
 
 // ModifyClusterResult is undocumented.
 type ModifyClusterResult struct {
-	Cluster *Cluster `xml:"ModifyClusterResult>Cluster"`
+	Cluster *Cluster `query:"Cluster" xml:"ModifyClusterResult>Cluster"`
 }
 
 // ModifyClusterSubnetGroupMessage is undocumented.
 type ModifyClusterSubnetGroupMessage struct {
-	ClusterSubnetGroupName aws.StringValue `xml:"ClusterSubnetGroupName"`
-	Description            aws.StringValue `xml:"Description"`
-	SubnetIDs              []string        `xml:"SubnetIds>SubnetIdentifier"`
+	ClusterSubnetGroupName aws.StringValue `query:"ClusterSubnetGroupName" xml:"ClusterSubnetGroupName"`
+	Description            aws.StringValue `query:"Description" xml:"Description"`
+	SubnetIDs              []string        `query:"SubnetIds.member" xml:"SubnetIds>SubnetIdentifier"`
 }
 
 // ModifyClusterSubnetGroupResult is undocumented.
 type ModifyClusterSubnetGroupResult struct {
-	ClusterSubnetGroup *ClusterSubnetGroup `xml:"ModifyClusterSubnetGroupResult>ClusterSubnetGroup"`
+	ClusterSubnetGroup *ClusterSubnetGroup `query:"ClusterSubnetGroup" xml:"ModifyClusterSubnetGroupResult>ClusterSubnetGroup"`
 }
 
 // ModifyEventSubscriptionMessage is undocumented.
 type ModifyEventSubscriptionMessage struct {
-	Enabled          aws.BooleanValue `xml:"Enabled"`
-	EventCategories  []string         `xml:"EventCategories>EventCategory"`
-	Severity         aws.StringValue  `xml:"Severity"`
-	SNSTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
-	SourceIDs        []string         `xml:"SourceIds>SourceId"`
-	SourceType       aws.StringValue  `xml:"SourceType"`
-	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
+	Enabled          aws.BooleanValue `query:"Enabled" xml:"Enabled"`
+	EventCategories  []string         `query:"EventCategories.member" xml:"EventCategories>EventCategory"`
+	Severity         aws.StringValue  `query:"Severity" xml:"Severity"`
+	SNSTopicARN      aws.StringValue  `query:"SnsTopicArn" xml:"SnsTopicArn"`
+	SourceIDs        []string         `query:"SourceIds.member" xml:"SourceIds>SourceId"`
+	SourceType       aws.StringValue  `query:"SourceType" xml:"SourceType"`
+	SubscriptionName aws.StringValue  `query:"SubscriptionName" xml:"SubscriptionName"`
 }
 
 // ModifyEventSubscriptionResult is undocumented.
 type ModifyEventSubscriptionResult struct {
-	EventSubscription *EventSubscription `xml:"ModifyEventSubscriptionResult>EventSubscription"`
+	EventSubscription *EventSubscription `query:"EventSubscription" xml:"ModifyEventSubscriptionResult>EventSubscription"`
 }
 
 // ModifySnapshotCopyRetentionPeriodMessage is undocumented.
 type ModifySnapshotCopyRetentionPeriodMessage struct {
-	ClusterIdentifier aws.StringValue  `xml:"ClusterIdentifier"`
-	RetentionPeriod   aws.IntegerValue `xml:"RetentionPeriod"`
+	ClusterIdentifier aws.StringValue  `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	RetentionPeriod   aws.IntegerValue `query:"RetentionPeriod" xml:"RetentionPeriod"`
 }
 
 // ModifySnapshotCopyRetentionPeriodResult is undocumented.
 type ModifySnapshotCopyRetentionPeriodResult struct {
-	Cluster *Cluster `xml:"ModifySnapshotCopyRetentionPeriodResult>Cluster"`
+	Cluster *Cluster `query:"Cluster" xml:"ModifySnapshotCopyRetentionPeriodResult>Cluster"`
 }
 
 // OrderableClusterOption is undocumented.
 type OrderableClusterOption struct {
-	AvailabilityZones []AvailabilityZone `xml:"AvailabilityZones>AvailabilityZone"`
-	ClusterType       aws.StringValue    `xml:"ClusterType"`
-	ClusterVersion    aws.StringValue    `xml:"ClusterVersion"`
-	NodeType          aws.StringValue    `xml:"NodeType"`
+	AvailabilityZones []AvailabilityZone `query:"AvailabilityZones.member" xml:"AvailabilityZones>AvailabilityZone"`
+	ClusterType       aws.StringValue    `query:"ClusterType" xml:"ClusterType"`
+	ClusterVersion    aws.StringValue    `query:"ClusterVersion" xml:"ClusterVersion"`
+	NodeType          aws.StringValue    `query:"NodeType" xml:"NodeType"`
 }
 
 // OrderableClusterOptionsMessage is undocumented.
 type OrderableClusterOptionsMessage struct {
-	Marker                  aws.StringValue          `xml:"DescribeOrderableClusterOptionsResult>Marker"`
-	OrderableClusterOptions []OrderableClusterOption `xml:"DescribeOrderableClusterOptionsResult>OrderableClusterOptions>OrderableClusterOption"`
+	Marker                  aws.StringValue          `query:"Marker" xml:"DescribeOrderableClusterOptionsResult>Marker"`
+	OrderableClusterOptions []OrderableClusterOption `query:"OrderableClusterOptions.member" xml:"DescribeOrderableClusterOptionsResult>OrderableClusterOptions>OrderableClusterOption"`
 }
 
 // Parameter is undocumented.
 type Parameter struct {
-	AllowedValues        aws.StringValue  `xml:"AllowedValues"`
-	DataType             aws.StringValue  `xml:"DataType"`
-	Description          aws.StringValue  `xml:"Description"`
-	IsModifiable         aws.BooleanValue `xml:"IsModifiable"`
-	MinimumEngineVersion aws.StringValue  `xml:"MinimumEngineVersion"`
-	ParameterName        aws.StringValue  `xml:"ParameterName"`
-	ParameterValue       aws.StringValue  `xml:"ParameterValue"`
-	Source               aws.StringValue  `xml:"Source"`
+	AllowedValues        aws.StringValue  `query:"AllowedValues" xml:"AllowedValues"`
+	DataType             aws.StringValue  `query:"DataType" xml:"DataType"`
+	Description          aws.StringValue  `query:"Description" xml:"Description"`
+	IsModifiable         aws.BooleanValue `query:"IsModifiable" xml:"IsModifiable"`
+	MinimumEngineVersion aws.StringValue  `query:"MinimumEngineVersion" xml:"MinimumEngineVersion"`
+	ParameterName        aws.StringValue  `query:"ParameterName" xml:"ParameterName"`
+	ParameterValue       aws.StringValue  `query:"ParameterValue" xml:"ParameterValue"`
+	Source               aws.StringValue  `query:"Source" xml:"Source"`
 }
 
 // PendingModifiedValues is undocumented.
 type PendingModifiedValues struct {
-	AutomatedSnapshotRetentionPeriod aws.IntegerValue `xml:"AutomatedSnapshotRetentionPeriod"`
-	ClusterIdentifier                aws.StringValue  `xml:"ClusterIdentifier"`
-	ClusterType                      aws.StringValue  `xml:"ClusterType"`
-	ClusterVersion                   aws.StringValue  `xml:"ClusterVersion"`
-	MasterUserPassword               aws.StringValue  `xml:"MasterUserPassword"`
-	NodeType                         aws.StringValue  `xml:"NodeType"`
-	NumberOfNodes                    aws.IntegerValue `xml:"NumberOfNodes"`
+	AutomatedSnapshotRetentionPeriod aws.IntegerValue `query:"AutomatedSnapshotRetentionPeriod" xml:"AutomatedSnapshotRetentionPeriod"`
+	ClusterIdentifier                aws.StringValue  `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	ClusterType                      aws.StringValue  `query:"ClusterType" xml:"ClusterType"`
+	ClusterVersion                   aws.StringValue  `query:"ClusterVersion" xml:"ClusterVersion"`
+	MasterUserPassword               aws.StringValue  `query:"MasterUserPassword" xml:"MasterUserPassword"`
+	NodeType                         aws.StringValue  `query:"NodeType" xml:"NodeType"`
+	NumberOfNodes                    aws.IntegerValue `query:"NumberOfNodes" xml:"NumberOfNodes"`
 }
 
 // PurchaseReservedNodeOfferingMessage is undocumented.
 type PurchaseReservedNodeOfferingMessage struct {
-	NodeCount              aws.IntegerValue `xml:"NodeCount"`
-	ReservedNodeOfferingID aws.StringValue  `xml:"ReservedNodeOfferingId"`
+	NodeCount              aws.IntegerValue `query:"NodeCount" xml:"NodeCount"`
+	ReservedNodeOfferingID aws.StringValue  `query:"ReservedNodeOfferingId" xml:"ReservedNodeOfferingId"`
 }
 
 // PurchaseReservedNodeOfferingResult is undocumented.
 type PurchaseReservedNodeOfferingResult struct {
-	ReservedNode *ReservedNode `xml:"PurchaseReservedNodeOfferingResult>ReservedNode"`
+	ReservedNode *ReservedNode `query:"ReservedNode" xml:"PurchaseReservedNodeOfferingResult>ReservedNode"`
 }
 
 // RebootClusterMessage is undocumented.
 type RebootClusterMessage struct {
-	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
+	ClusterIdentifier aws.StringValue `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
 }
 
 // RebootClusterResult is undocumented.
 type RebootClusterResult struct {
-	Cluster *Cluster `xml:"RebootClusterResult>Cluster"`
+	Cluster *Cluster `query:"Cluster" xml:"RebootClusterResult>Cluster"`
 }
 
 // RecurringCharge is undocumented.
 type RecurringCharge struct {
-	RecurringChargeAmount    aws.DoubleValue `xml:"RecurringChargeAmount"`
-	RecurringChargeFrequency aws.StringValue `xml:"RecurringChargeFrequency"`
+	RecurringChargeAmount    aws.DoubleValue `query:"RecurringChargeAmount" xml:"RecurringChargeAmount"`
+	RecurringChargeFrequency aws.StringValue `query:"RecurringChargeFrequency" xml:"RecurringChargeFrequency"`
 }
 
 // ReservedNode is undocumented.
 type ReservedNode struct {
-	CurrencyCode           aws.StringValue   `xml:"CurrencyCode"`
-	Duration               aws.IntegerValue  `xml:"Duration"`
-	FixedPrice             aws.DoubleValue   `xml:"FixedPrice"`
-	NodeCount              aws.IntegerValue  `xml:"NodeCount"`
-	NodeType               aws.StringValue   `xml:"NodeType"`
-	OfferingType           aws.StringValue   `xml:"OfferingType"`
-	RecurringCharges       []RecurringCharge `xml:"RecurringCharges>RecurringCharge"`
-	ReservedNodeID         aws.StringValue   `xml:"ReservedNodeId"`
-	ReservedNodeOfferingID aws.StringValue   `xml:"ReservedNodeOfferingId"`
-	StartTime              time.Time         `xml:"StartTime"`
-	State                  aws.StringValue   `xml:"State"`
-	UsagePrice             aws.DoubleValue   `xml:"UsagePrice"`
+	CurrencyCode           aws.StringValue   `query:"CurrencyCode" xml:"CurrencyCode"`
+	Duration               aws.IntegerValue  `query:"Duration" xml:"Duration"`
+	FixedPrice             aws.DoubleValue   `query:"FixedPrice" xml:"FixedPrice"`
+	NodeCount              aws.IntegerValue  `query:"NodeCount" xml:"NodeCount"`
+	NodeType               aws.StringValue   `query:"NodeType" xml:"NodeType"`
+	OfferingType           aws.StringValue   `query:"OfferingType" xml:"OfferingType"`
+	RecurringCharges       []RecurringCharge `query:"RecurringCharges.member" xml:"RecurringCharges>RecurringCharge"`
+	ReservedNodeID         aws.StringValue   `query:"ReservedNodeId" xml:"ReservedNodeId"`
+	ReservedNodeOfferingID aws.StringValue   `query:"ReservedNodeOfferingId" xml:"ReservedNodeOfferingId"`
+	StartTime              time.Time         `query:"StartTime" xml:"StartTime"`
+	State                  aws.StringValue   `query:"State" xml:"State"`
+	UsagePrice             aws.DoubleValue   `query:"UsagePrice" xml:"UsagePrice"`
 }
 
 // ReservedNodeOffering is undocumented.
 type ReservedNodeOffering struct {
-	CurrencyCode           aws.StringValue   `xml:"CurrencyCode"`
-	Duration               aws.IntegerValue  `xml:"Duration"`
-	FixedPrice             aws.DoubleValue   `xml:"FixedPrice"`
-	NodeType               aws.StringValue   `xml:"NodeType"`
-	OfferingType           aws.StringValue   `xml:"OfferingType"`
-	RecurringCharges       []RecurringCharge `xml:"RecurringCharges>RecurringCharge"`
-	ReservedNodeOfferingID aws.StringValue   `xml:"ReservedNodeOfferingId"`
-	UsagePrice             aws.DoubleValue   `xml:"UsagePrice"`
+	CurrencyCode           aws.StringValue   `query:"CurrencyCode" xml:"CurrencyCode"`
+	Duration               aws.IntegerValue  `query:"Duration" xml:"Duration"`
+	FixedPrice             aws.DoubleValue   `query:"FixedPrice" xml:"FixedPrice"`
+	NodeType               aws.StringValue   `query:"NodeType" xml:"NodeType"`
+	OfferingType           aws.StringValue   `query:"OfferingType" xml:"OfferingType"`
+	RecurringCharges       []RecurringCharge `query:"RecurringCharges.member" xml:"RecurringCharges>RecurringCharge"`
+	ReservedNodeOfferingID aws.StringValue   `query:"ReservedNodeOfferingId" xml:"ReservedNodeOfferingId"`
+	UsagePrice             aws.DoubleValue   `query:"UsagePrice" xml:"UsagePrice"`
 }
 
 // ReservedNodeOfferingsMessage is undocumented.
 type ReservedNodeOfferingsMessage struct {
-	Marker                aws.StringValue        `xml:"DescribeReservedNodeOfferingsResult>Marker"`
-	ReservedNodeOfferings []ReservedNodeOffering `xml:"DescribeReservedNodeOfferingsResult>ReservedNodeOfferings>ReservedNodeOffering"`
+	Marker                aws.StringValue        `query:"Marker" xml:"DescribeReservedNodeOfferingsResult>Marker"`
+	ReservedNodeOfferings []ReservedNodeOffering `query:"ReservedNodeOfferings.member" xml:"DescribeReservedNodeOfferingsResult>ReservedNodeOfferings>ReservedNodeOffering"`
 }
 
 // ReservedNodesMessage is undocumented.
 type ReservedNodesMessage struct {
-	Marker        aws.StringValue `xml:"DescribeReservedNodesResult>Marker"`
-	ReservedNodes []ReservedNode  `xml:"DescribeReservedNodesResult>ReservedNodes>ReservedNode"`
+	Marker        aws.StringValue `query:"Marker" xml:"DescribeReservedNodesResult>Marker"`
+	ReservedNodes []ReservedNode  `query:"ReservedNodes.member" xml:"DescribeReservedNodesResult>ReservedNodes>ReservedNode"`
 }
 
 // ResetClusterParameterGroupMessage is undocumented.
 type ResetClusterParameterGroupMessage struct {
-	ParameterGroupName aws.StringValue  `xml:"ParameterGroupName"`
-	Parameters         []Parameter      `xml:"Parameters>Parameter"`
-	ResetAllParameters aws.BooleanValue `xml:"ResetAllParameters"`
+	ParameterGroupName aws.StringValue  `query:"ParameterGroupName" xml:"ParameterGroupName"`
+	Parameters         []Parameter      `query:"Parameters.member" xml:"Parameters>Parameter"`
+	ResetAllParameters aws.BooleanValue `query:"ResetAllParameters" xml:"ResetAllParameters"`
 }
 
 // ResizeProgressMessage is undocumented.
 type ResizeProgressMessage struct {
-	AvgResizeRateInMegaBytesPerSecond  aws.DoubleValue  `xml:"DescribeResizeResult>AvgResizeRateInMegaBytesPerSecond"`
-	ElapsedTimeInSeconds               aws.LongValue    `xml:"DescribeResizeResult>ElapsedTimeInSeconds"`
-	EstimatedTimeToCompletionInSeconds aws.LongValue    `xml:"DescribeResizeResult>EstimatedTimeToCompletionInSeconds"`
-	ImportTablesCompleted              []string         `xml:"DescribeResizeResult>ImportTablesCompleted>member"`
-	ImportTablesInProgress             []string         `xml:"DescribeResizeResult>ImportTablesInProgress>member"`
-	ImportTablesNotStarted             []string         `xml:"DescribeResizeResult>ImportTablesNotStarted>member"`
-	ProgressInMegaBytes                aws.LongValue    `xml:"DescribeResizeResult>ProgressInMegaBytes"`
-	Status                             aws.StringValue  `xml:"DescribeResizeResult>Status"`
-	TargetClusterType                  aws.StringValue  `xml:"DescribeResizeResult>TargetClusterType"`
-	TargetNodeType                     aws.StringValue  `xml:"DescribeResizeResult>TargetNodeType"`
-	TargetNumberOfNodes                aws.IntegerValue `xml:"DescribeResizeResult>TargetNumberOfNodes"`
-	TotalResizeDataInMegaBytes         aws.LongValue    `xml:"DescribeResizeResult>TotalResizeDataInMegaBytes"`
+	AvgResizeRateInMegaBytesPerSecond  aws.DoubleValue  `query:"AvgResizeRateInMegaBytesPerSecond" xml:"DescribeResizeResult>AvgResizeRateInMegaBytesPerSecond"`
+	ElapsedTimeInSeconds               aws.LongValue    `query:"ElapsedTimeInSeconds" xml:"DescribeResizeResult>ElapsedTimeInSeconds"`
+	EstimatedTimeToCompletionInSeconds aws.LongValue    `query:"EstimatedTimeToCompletionInSeconds" xml:"DescribeResizeResult>EstimatedTimeToCompletionInSeconds"`
+	ImportTablesCompleted              []string         `query:"ImportTablesCompleted.member" xml:"DescribeResizeResult>ImportTablesCompleted>member"`
+	ImportTablesInProgress             []string         `query:"ImportTablesInProgress.member" xml:"DescribeResizeResult>ImportTablesInProgress>member"`
+	ImportTablesNotStarted             []string         `query:"ImportTablesNotStarted.member" xml:"DescribeResizeResult>ImportTablesNotStarted>member"`
+	ProgressInMegaBytes                aws.LongValue    `query:"ProgressInMegaBytes" xml:"DescribeResizeResult>ProgressInMegaBytes"`
+	Status                             aws.StringValue  `query:"Status" xml:"DescribeResizeResult>Status"`
+	TargetClusterType                  aws.StringValue  `query:"TargetClusterType" xml:"DescribeResizeResult>TargetClusterType"`
+	TargetNodeType                     aws.StringValue  `query:"TargetNodeType" xml:"DescribeResizeResult>TargetNodeType"`
+	TargetNumberOfNodes                aws.IntegerValue `query:"TargetNumberOfNodes" xml:"DescribeResizeResult>TargetNumberOfNodes"`
+	TotalResizeDataInMegaBytes         aws.LongValue    `query:"TotalResizeDataInMegaBytes" xml:"DescribeResizeResult>TotalResizeDataInMegaBytes"`
 }
 
 // RestoreFromClusterSnapshotMessage is undocumented.
 type RestoreFromClusterSnapshotMessage struct {
-	AllowVersionUpgrade              aws.BooleanValue `xml:"AllowVersionUpgrade"`
-	AutomatedSnapshotRetentionPeriod aws.IntegerValue `xml:"AutomatedSnapshotRetentionPeriod"`
-	AvailabilityZone                 aws.StringValue  `xml:"AvailabilityZone"`
-	ClusterIdentifier                aws.StringValue  `xml:"ClusterIdentifier"`
-	ClusterParameterGroupName        aws.StringValue  `xml:"ClusterParameterGroupName"`
-	ClusterSecurityGroups            []string         `xml:"ClusterSecurityGroups>ClusterSecurityGroupName"`
-	ClusterSubnetGroupName           aws.StringValue  `xml:"ClusterSubnetGroupName"`
-	ElasticIP                        aws.StringValue  `xml:"ElasticIp"`
-	HSMClientCertificateIdentifier   aws.StringValue  `xml:"HsmClientCertificateIdentifier"`
-	HSMConfigurationIdentifier       aws.StringValue  `xml:"HsmConfigurationIdentifier"`
-	KMSKeyID                         aws.StringValue  `xml:"KmsKeyId"`
-	OwnerAccount                     aws.StringValue  `xml:"OwnerAccount"`
-	Port                             aws.IntegerValue `xml:"Port"`
-	PreferredMaintenanceWindow       aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	PubliclyAccessible               aws.BooleanValue `xml:"PubliclyAccessible"`
-	SnapshotClusterIdentifier        aws.StringValue  `xml:"SnapshotClusterIdentifier"`
-	SnapshotIdentifier               aws.StringValue  `xml:"SnapshotIdentifier"`
-	VPCSecurityGroupIDs              []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	AllowVersionUpgrade              aws.BooleanValue `query:"AllowVersionUpgrade" xml:"AllowVersionUpgrade"`
+	AutomatedSnapshotRetentionPeriod aws.IntegerValue `query:"AutomatedSnapshotRetentionPeriod" xml:"AutomatedSnapshotRetentionPeriod"`
+	AvailabilityZone                 aws.StringValue  `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	ClusterIdentifier                aws.StringValue  `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	ClusterParameterGroupName        aws.StringValue  `query:"ClusterParameterGroupName" xml:"ClusterParameterGroupName"`
+	ClusterSecurityGroups            []string         `query:"ClusterSecurityGroups.member" xml:"ClusterSecurityGroups>ClusterSecurityGroupName"`
+	ClusterSubnetGroupName           aws.StringValue  `query:"ClusterSubnetGroupName" xml:"ClusterSubnetGroupName"`
+	ElasticIP                        aws.StringValue  `query:"ElasticIp" xml:"ElasticIp"`
+	HSMClientCertificateIdentifier   aws.StringValue  `query:"HsmClientCertificateIdentifier" xml:"HsmClientCertificateIdentifier"`
+	HSMConfigurationIdentifier       aws.StringValue  `query:"HsmConfigurationIdentifier" xml:"HsmConfigurationIdentifier"`
+	KMSKeyID                         aws.StringValue  `query:"KmsKeyId" xml:"KmsKeyId"`
+	OwnerAccount                     aws.StringValue  `query:"OwnerAccount" xml:"OwnerAccount"`
+	Port                             aws.IntegerValue `query:"Port" xml:"Port"`
+	PreferredMaintenanceWindow       aws.StringValue  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	PubliclyAccessible               aws.BooleanValue `query:"PubliclyAccessible" xml:"PubliclyAccessible"`
+	SnapshotClusterIdentifier        aws.StringValue  `query:"SnapshotClusterIdentifier" xml:"SnapshotClusterIdentifier"`
+	SnapshotIdentifier               aws.StringValue  `query:"SnapshotIdentifier" xml:"SnapshotIdentifier"`
+	VPCSecurityGroupIDs              []string         `query:"VpcSecurityGroupIds.member" xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // RestoreFromClusterSnapshotResult is undocumented.
 type RestoreFromClusterSnapshotResult struct {
-	Cluster *Cluster `xml:"RestoreFromClusterSnapshotResult>Cluster"`
+	Cluster *Cluster `query:"Cluster" xml:"RestoreFromClusterSnapshotResult>Cluster"`
 }
 
 // RestoreStatus is undocumented.
 type RestoreStatus struct {
-	CurrentRestoreRateInMegaBytesPerSecond aws.DoubleValue `xml:"CurrentRestoreRateInMegaBytesPerSecond"`
-	ElapsedTimeInSeconds                   aws.LongValue   `xml:"ElapsedTimeInSeconds"`
-	EstimatedTimeToCompletionInSeconds     aws.LongValue   `xml:"EstimatedTimeToCompletionInSeconds"`
-	ProgressInMegaBytes                    aws.LongValue   `xml:"ProgressInMegaBytes"`
-	SnapshotSizeInMegaBytes                aws.LongValue   `xml:"SnapshotSizeInMegaBytes"`
-	Status                                 aws.StringValue `xml:"Status"`
+	CurrentRestoreRateInMegaBytesPerSecond aws.DoubleValue `query:"CurrentRestoreRateInMegaBytesPerSecond" xml:"CurrentRestoreRateInMegaBytesPerSecond"`
+	ElapsedTimeInSeconds                   aws.LongValue   `query:"ElapsedTimeInSeconds" xml:"ElapsedTimeInSeconds"`
+	EstimatedTimeToCompletionInSeconds     aws.LongValue   `query:"EstimatedTimeToCompletionInSeconds" xml:"EstimatedTimeToCompletionInSeconds"`
+	ProgressInMegaBytes                    aws.LongValue   `query:"ProgressInMegaBytes" xml:"ProgressInMegaBytes"`
+	SnapshotSizeInMegaBytes                aws.LongValue   `query:"SnapshotSizeInMegaBytes" xml:"SnapshotSizeInMegaBytes"`
+	Status                                 aws.StringValue `query:"Status" xml:"Status"`
 }
 
 // RevokeClusterSecurityGroupIngressMessage is undocumented.
 type RevokeClusterSecurityGroupIngressMessage struct {
-	CIDRIP                   aws.StringValue `xml:"CIDRIP"`
-	ClusterSecurityGroupName aws.StringValue `xml:"ClusterSecurityGroupName"`
-	EC2SecurityGroupName     aws.StringValue `xml:"EC2SecurityGroupName"`
-	EC2SecurityGroupOwnerID  aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
+	CIDRIP                   aws.StringValue `query:"CIDRIP" xml:"CIDRIP"`
+	ClusterSecurityGroupName aws.StringValue `query:"ClusterSecurityGroupName" xml:"ClusterSecurityGroupName"`
+	EC2SecurityGroupName     aws.StringValue `query:"EC2SecurityGroupName" xml:"EC2SecurityGroupName"`
+	EC2SecurityGroupOwnerID  aws.StringValue `query:"EC2SecurityGroupOwnerId" xml:"EC2SecurityGroupOwnerId"`
 }
 
 // RevokeClusterSecurityGroupIngressResult is undocumented.
 type RevokeClusterSecurityGroupIngressResult struct {
-	ClusterSecurityGroup *ClusterSecurityGroup `xml:"RevokeClusterSecurityGroupIngressResult>ClusterSecurityGroup"`
+	ClusterSecurityGroup *ClusterSecurityGroup `query:"ClusterSecurityGroup" xml:"RevokeClusterSecurityGroupIngressResult>ClusterSecurityGroup"`
 }
 
 // RevokeSnapshotAccessMessage is undocumented.
 type RevokeSnapshotAccessMessage struct {
-	AccountWithRestoreAccess  aws.StringValue `xml:"AccountWithRestoreAccess"`
-	SnapshotClusterIdentifier aws.StringValue `xml:"SnapshotClusterIdentifier"`
-	SnapshotIdentifier        aws.StringValue `xml:"SnapshotIdentifier"`
+	AccountWithRestoreAccess  aws.StringValue `query:"AccountWithRestoreAccess" xml:"AccountWithRestoreAccess"`
+	SnapshotClusterIdentifier aws.StringValue `query:"SnapshotClusterIdentifier" xml:"SnapshotClusterIdentifier"`
+	SnapshotIdentifier        aws.StringValue `query:"SnapshotIdentifier" xml:"SnapshotIdentifier"`
 }
 
 // RevokeSnapshotAccessResult is undocumented.
 type RevokeSnapshotAccessResult struct {
-	Snapshot *Snapshot `xml:"RevokeSnapshotAccessResult>Snapshot"`
+	Snapshot *Snapshot `query:"Snapshot" xml:"RevokeSnapshotAccessResult>Snapshot"`
 }
 
 // RotateEncryptionKeyMessage is undocumented.
 type RotateEncryptionKeyMessage struct {
-	ClusterIdentifier aws.StringValue `xml:"ClusterIdentifier"`
+	ClusterIdentifier aws.StringValue `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
 }
 
 // RotateEncryptionKeyResult is undocumented.
 type RotateEncryptionKeyResult struct {
-	Cluster *Cluster `xml:"RotateEncryptionKeyResult>Cluster"`
+	Cluster *Cluster `query:"Cluster" xml:"RotateEncryptionKeyResult>Cluster"`
 }
 
 // Snapshot is undocumented.
 type Snapshot struct {
-	AccountsWithRestoreAccess              []AccountWithRestoreAccess `xml:"AccountsWithRestoreAccess>AccountWithRestoreAccess"`
-	ActualIncrementalBackupSizeInMegaBytes aws.DoubleValue            `xml:"ActualIncrementalBackupSizeInMegaBytes"`
-	AvailabilityZone                       aws.StringValue            `xml:"AvailabilityZone"`
-	BackupProgressInMegaBytes              aws.DoubleValue            `xml:"BackupProgressInMegaBytes"`
-	ClusterCreateTime                      time.Time                  `xml:"ClusterCreateTime"`
-	ClusterIdentifier                      aws.StringValue            `xml:"ClusterIdentifier"`
-	ClusterVersion                         aws.StringValue            `xml:"ClusterVersion"`
-	CurrentBackupRateInMegaBytesPerSecond  aws.DoubleValue            `xml:"CurrentBackupRateInMegaBytesPerSecond"`
-	DBName                                 aws.StringValue            `xml:"DBName"`
-	ElapsedTimeInSeconds                   aws.LongValue              `xml:"ElapsedTimeInSeconds"`
-	Encrypted                              aws.BooleanValue           `xml:"Encrypted"`
-	EncryptedWithHSM                       aws.BooleanValue           `xml:"EncryptedWithHSM"`
-	EstimatedSecondsToCompletion           aws.LongValue              `xml:"EstimatedSecondsToCompletion"`
-	KMSKeyID                               aws.StringValue            `xml:"KmsKeyId"`
-	MasterUsername                         aws.StringValue            `xml:"MasterUsername"`
-	NodeType                               aws.StringValue            `xml:"NodeType"`
-	NumberOfNodes                          aws.IntegerValue           `xml:"NumberOfNodes"`
-	OwnerAccount                           aws.StringValue            `xml:"OwnerAccount"`
-	Port                                   aws.IntegerValue           `xml:"Port"`
-	SnapshotCreateTime                     time.Time                  `xml:"SnapshotCreateTime"`
-	SnapshotIdentifier                     aws.StringValue            `xml:"SnapshotIdentifier"`
-	SnapshotType                           aws.StringValue            `xml:"SnapshotType"`
-	SourceRegion                           aws.StringValue            `xml:"SourceRegion"`
-	Status                                 aws.StringValue            `xml:"Status"`
-	Tags                                   []Tag                      `xml:"Tags>Tag"`
-	TotalBackupSizeInMegaBytes             aws.DoubleValue            `xml:"TotalBackupSizeInMegaBytes"`
-	VPCID                                  aws.StringValue            `xml:"VpcId"`
+	AccountsWithRestoreAccess              []AccountWithRestoreAccess `query:"AccountsWithRestoreAccess.member" xml:"AccountsWithRestoreAccess>AccountWithRestoreAccess"`
+	ActualIncrementalBackupSizeInMegaBytes aws.DoubleValue            `query:"ActualIncrementalBackupSizeInMegaBytes" xml:"ActualIncrementalBackupSizeInMegaBytes"`
+	AvailabilityZone                       aws.StringValue            `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	BackupProgressInMegaBytes              aws.DoubleValue            `query:"BackupProgressInMegaBytes" xml:"BackupProgressInMegaBytes"`
+	ClusterCreateTime                      time.Time                  `query:"ClusterCreateTime" xml:"ClusterCreateTime"`
+	ClusterIdentifier                      aws.StringValue            `query:"ClusterIdentifier" xml:"ClusterIdentifier"`
+	ClusterVersion                         aws.StringValue            `query:"ClusterVersion" xml:"ClusterVersion"`
+	CurrentBackupRateInMegaBytesPerSecond  aws.DoubleValue            `query:"CurrentBackupRateInMegaBytesPerSecond" xml:"CurrentBackupRateInMegaBytesPerSecond"`
+	DBName                                 aws.StringValue            `query:"DBName" xml:"DBName"`
+	ElapsedTimeInSeconds                   aws.LongValue              `query:"ElapsedTimeInSeconds" xml:"ElapsedTimeInSeconds"`
+	Encrypted                              aws.BooleanValue           `query:"Encrypted" xml:"Encrypted"`
+	EncryptedWithHSM                       aws.BooleanValue           `query:"EncryptedWithHSM" xml:"EncryptedWithHSM"`
+	EstimatedSecondsToCompletion           aws.LongValue              `query:"EstimatedSecondsToCompletion" xml:"EstimatedSecondsToCompletion"`
+	KMSKeyID                               aws.StringValue            `query:"KmsKeyId" xml:"KmsKeyId"`
+	MasterUsername                         aws.StringValue            `query:"MasterUsername" xml:"MasterUsername"`
+	NodeType                               aws.StringValue            `query:"NodeType" xml:"NodeType"`
+	NumberOfNodes                          aws.IntegerValue           `query:"NumberOfNodes" xml:"NumberOfNodes"`
+	OwnerAccount                           aws.StringValue            `query:"OwnerAccount" xml:"OwnerAccount"`
+	Port                                   aws.IntegerValue           `query:"Port" xml:"Port"`
+	SnapshotCreateTime                     time.Time                  `query:"SnapshotCreateTime" xml:"SnapshotCreateTime"`
+	SnapshotIdentifier                     aws.StringValue            `query:"SnapshotIdentifier" xml:"SnapshotIdentifier"`
+	SnapshotType                           aws.StringValue            `query:"SnapshotType" xml:"SnapshotType"`
+	SourceRegion                           aws.StringValue            `query:"SourceRegion" xml:"SourceRegion"`
+	Status                                 aws.StringValue            `query:"Status" xml:"Status"`
+	Tags                                   []Tag                      `query:"Tags.member" xml:"Tags>Tag"`
+	TotalBackupSizeInMegaBytes             aws.DoubleValue            `query:"TotalBackupSizeInMegaBytes" xml:"TotalBackupSizeInMegaBytes"`
+	VPCID                                  aws.StringValue            `query:"VpcId" xml:"VpcId"`
 }
 
 // SnapshotMessage is undocumented.
 type SnapshotMessage struct {
-	Marker    aws.StringValue `xml:"DescribeClusterSnapshotsResult>Marker"`
-	Snapshots []Snapshot      `xml:"DescribeClusterSnapshotsResult>Snapshots>Snapshot"`
+	Marker    aws.StringValue `query:"Marker" xml:"DescribeClusterSnapshotsResult>Marker"`
+	Snapshots []Snapshot      `query:"Snapshots.member" xml:"DescribeClusterSnapshotsResult>Snapshots>Snapshot"`
 }
 
 // Possible values for RedShift.
@@ -1770,187 +1770,187 @@ const (
 
 // Subnet is undocumented.
 type Subnet struct {
-	SubnetAvailabilityZone *AvailabilityZone `xml:"SubnetAvailabilityZone"`
-	SubnetIdentifier       aws.StringValue   `xml:"SubnetIdentifier"`
-	SubnetStatus           aws.StringValue   `xml:"SubnetStatus"`
+	SubnetAvailabilityZone *AvailabilityZone `query:"SubnetAvailabilityZone" xml:"SubnetAvailabilityZone"`
+	SubnetIdentifier       aws.StringValue   `query:"SubnetIdentifier" xml:"SubnetIdentifier"`
+	SubnetStatus           aws.StringValue   `query:"SubnetStatus" xml:"SubnetStatus"`
 }
 
 // Tag is undocumented.
 type Tag struct {
-	Key   aws.StringValue `xml:"Key"`
-	Value aws.StringValue `xml:"Value"`
+	Key   aws.StringValue `query:"Key" xml:"Key"`
+	Value aws.StringValue `query:"Value" xml:"Value"`
 }
 
 // TaggedResource is undocumented.
 type TaggedResource struct {
-	ResourceName aws.StringValue `xml:"ResourceName"`
-	ResourceType aws.StringValue `xml:"ResourceType"`
-	Tag          *Tag            `xml:"Tag"`
+	ResourceName aws.StringValue `query:"ResourceName" xml:"ResourceName"`
+	ResourceType aws.StringValue `query:"ResourceType" xml:"ResourceType"`
+	Tag          *Tag            `query:"Tag" xml:"Tag"`
 }
 
 // TaggedResourceListMessage is undocumented.
 type TaggedResourceListMessage struct {
-	Marker          aws.StringValue  `xml:"DescribeTagsResult>Marker"`
-	TaggedResources []TaggedResource `xml:"DescribeTagsResult>TaggedResources>TaggedResource"`
+	Marker          aws.StringValue  `query:"Marker" xml:"DescribeTagsResult>Marker"`
+	TaggedResources []TaggedResource `query:"TaggedResources.member" xml:"DescribeTagsResult>TaggedResources>TaggedResource"`
 }
 
 // VPCSecurityGroupMembership is undocumented.
 type VPCSecurityGroupMembership struct {
-	Status             aws.StringValue `xml:"Status"`
-	VPCSecurityGroupID aws.StringValue `xml:"VpcSecurityGroupId"`
+	Status             aws.StringValue `query:"Status" xml:"Status"`
+	VPCSecurityGroupID aws.StringValue `query:"VpcSecurityGroupId" xml:"VpcSecurityGroupId"`
 }
 
 // DescribeClusterParameterGroupsResult is a wrapper for ClusterParameterGroupsMessage.
 type DescribeClusterParameterGroupsResult struct {
-	Marker          aws.StringValue         `xml:"DescribeClusterParameterGroupsResult>Marker"`
-	ParameterGroups []ClusterParameterGroup `xml:"DescribeClusterParameterGroupsResult>ParameterGroups>ClusterParameterGroup"`
+	Marker          aws.StringValue         `query:"Marker" xml:"DescribeClusterParameterGroupsResult>Marker"`
+	ParameterGroups []ClusterParameterGroup `query:"ParameterGroups.member" xml:"DescribeClusterParameterGroupsResult>ParameterGroups>ClusterParameterGroup"`
 }
 
 // DescribeClusterParametersResult is a wrapper for ClusterParameterGroupDetails.
 type DescribeClusterParametersResult struct {
-	Marker     aws.StringValue `xml:"DescribeClusterParametersResult>Marker"`
-	Parameters []Parameter     `xml:"DescribeClusterParametersResult>Parameters>Parameter"`
+	Marker     aws.StringValue `query:"Marker" xml:"DescribeClusterParametersResult>Marker"`
+	Parameters []Parameter     `query:"Parameters.member" xml:"DescribeClusterParametersResult>Parameters>Parameter"`
 }
 
 // DescribeClusterSecurityGroupsResult is a wrapper for ClusterSecurityGroupMessage.
 type DescribeClusterSecurityGroupsResult struct {
-	ClusterSecurityGroups []ClusterSecurityGroup `xml:"DescribeClusterSecurityGroupsResult>ClusterSecurityGroups>ClusterSecurityGroup"`
-	Marker                aws.StringValue        `xml:"DescribeClusterSecurityGroupsResult>Marker"`
+	ClusterSecurityGroups []ClusterSecurityGroup `query:"ClusterSecurityGroups.member" xml:"DescribeClusterSecurityGroupsResult>ClusterSecurityGroups>ClusterSecurityGroup"`
+	Marker                aws.StringValue        `query:"Marker" xml:"DescribeClusterSecurityGroupsResult>Marker"`
 }
 
 // DescribeClusterSnapshotsResult is a wrapper for SnapshotMessage.
 type DescribeClusterSnapshotsResult struct {
-	Marker    aws.StringValue `xml:"DescribeClusterSnapshotsResult>Marker"`
-	Snapshots []Snapshot      `xml:"DescribeClusterSnapshotsResult>Snapshots>Snapshot"`
+	Marker    aws.StringValue `query:"Marker" xml:"DescribeClusterSnapshotsResult>Marker"`
+	Snapshots []Snapshot      `query:"Snapshots.member" xml:"DescribeClusterSnapshotsResult>Snapshots>Snapshot"`
 }
 
 // DescribeClusterSubnetGroupsResult is a wrapper for ClusterSubnetGroupMessage.
 type DescribeClusterSubnetGroupsResult struct {
-	ClusterSubnetGroups []ClusterSubnetGroup `xml:"DescribeClusterSubnetGroupsResult>ClusterSubnetGroups>ClusterSubnetGroup"`
-	Marker              aws.StringValue      `xml:"DescribeClusterSubnetGroupsResult>Marker"`
+	ClusterSubnetGroups []ClusterSubnetGroup `query:"ClusterSubnetGroups.member" xml:"DescribeClusterSubnetGroupsResult>ClusterSubnetGroups>ClusterSubnetGroup"`
+	Marker              aws.StringValue      `query:"Marker" xml:"DescribeClusterSubnetGroupsResult>Marker"`
 }
 
 // DescribeClusterVersionsResult is a wrapper for ClusterVersionsMessage.
 type DescribeClusterVersionsResult struct {
-	ClusterVersions []ClusterVersion `xml:"DescribeClusterVersionsResult>ClusterVersions>ClusterVersion"`
-	Marker          aws.StringValue  `xml:"DescribeClusterVersionsResult>Marker"`
+	ClusterVersions []ClusterVersion `query:"ClusterVersions.member" xml:"DescribeClusterVersionsResult>ClusterVersions>ClusterVersion"`
+	Marker          aws.StringValue  `query:"Marker" xml:"DescribeClusterVersionsResult>Marker"`
 }
 
 // DescribeClustersResult is a wrapper for ClustersMessage.
 type DescribeClustersResult struct {
-	Clusters []Cluster       `xml:"DescribeClustersResult>Clusters>Cluster"`
-	Marker   aws.StringValue `xml:"DescribeClustersResult>Marker"`
+	Clusters []Cluster       `query:"Clusters.member" xml:"DescribeClustersResult>Clusters>Cluster"`
+	Marker   aws.StringValue `query:"Marker" xml:"DescribeClustersResult>Marker"`
 }
 
 // DescribeEventCategoriesResult is a wrapper for EventCategoriesMessage.
 type DescribeEventCategoriesResult struct {
-	EventCategoriesMapList []EventCategoriesMap `xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
+	EventCategoriesMapList []EventCategoriesMap `query:"EventCategoriesMapList.member" xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
 }
 
 // DescribeEventSubscriptionsResult is a wrapper for EventSubscriptionsMessage.
 type DescribeEventSubscriptionsResult struct {
-	EventSubscriptionsList []EventSubscription `xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
-	Marker                 aws.StringValue     `xml:"DescribeEventSubscriptionsResult>Marker"`
+	EventSubscriptionsList []EventSubscription `query:"EventSubscriptionsList.member" xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
+	Marker                 aws.StringValue     `query:"Marker" xml:"DescribeEventSubscriptionsResult>Marker"`
 }
 
 // DescribeEventsResult is a wrapper for EventsMessage.
 type DescribeEventsResult struct {
-	Events []Event         `xml:"DescribeEventsResult>Events>Event"`
-	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
+	Events []Event         `query:"Events.member" xml:"DescribeEventsResult>Events>Event"`
+	Marker aws.StringValue `query:"Marker" xml:"DescribeEventsResult>Marker"`
 }
 
 // DescribeHSMClientCertificatesResult is a wrapper for HsmClientCertificateMessage.
 type DescribeHSMClientCertificatesResult struct {
-	HSMClientCertificates []HSMClientCertificate `xml:"DescribeHsmClientCertificatesResult>HsmClientCertificates>HsmClientCertificate"`
-	Marker                aws.StringValue        `xml:"DescribeHsmClientCertificatesResult>Marker"`
+	HSMClientCertificates []HSMClientCertificate `query:"HsmClientCertificates.member" xml:"DescribeHsmClientCertificatesResult>HsmClientCertificates>HsmClientCertificate"`
+	Marker                aws.StringValue        `query:"Marker" xml:"DescribeHsmClientCertificatesResult>Marker"`
 }
 
 // DescribeHSMConfigurationsResult is a wrapper for HsmConfigurationMessage.
 type DescribeHSMConfigurationsResult struct {
-	HSMConfigurations []HSMConfiguration `xml:"DescribeHsmConfigurationsResult>HsmConfigurations>HsmConfiguration"`
-	Marker            aws.StringValue    `xml:"DescribeHsmConfigurationsResult>Marker"`
+	HSMConfigurations []HSMConfiguration `query:"HsmConfigurations.member" xml:"DescribeHsmConfigurationsResult>HsmConfigurations>HsmConfiguration"`
+	Marker            aws.StringValue    `query:"Marker" xml:"DescribeHsmConfigurationsResult>Marker"`
 }
 
 // DescribeLoggingStatusResult is a wrapper for LoggingStatus.
 type DescribeLoggingStatusResult struct {
-	BucketName                 aws.StringValue  `xml:"DescribeLoggingStatusResult>BucketName"`
-	LastFailureMessage         aws.StringValue  `xml:"DescribeLoggingStatusResult>LastFailureMessage"`
-	LastFailureTime            time.Time        `xml:"DescribeLoggingStatusResult>LastFailureTime"`
-	LastSuccessfulDeliveryTime time.Time        `xml:"DescribeLoggingStatusResult>LastSuccessfulDeliveryTime"`
-	LoggingEnabled             aws.BooleanValue `xml:"DescribeLoggingStatusResult>LoggingEnabled"`
-	S3KeyPrefix                aws.StringValue  `xml:"DescribeLoggingStatusResult>S3KeyPrefix"`
+	BucketName                 aws.StringValue  `query:"BucketName" xml:"DescribeLoggingStatusResult>BucketName"`
+	LastFailureMessage         aws.StringValue  `query:"LastFailureMessage" xml:"DescribeLoggingStatusResult>LastFailureMessage"`
+	LastFailureTime            time.Time        `query:"LastFailureTime" xml:"DescribeLoggingStatusResult>LastFailureTime"`
+	LastSuccessfulDeliveryTime time.Time        `query:"LastSuccessfulDeliveryTime" xml:"DescribeLoggingStatusResult>LastSuccessfulDeliveryTime"`
+	LoggingEnabled             aws.BooleanValue `query:"LoggingEnabled" xml:"DescribeLoggingStatusResult>LoggingEnabled"`
+	S3KeyPrefix                aws.StringValue  `query:"S3KeyPrefix" xml:"DescribeLoggingStatusResult>S3KeyPrefix"`
 }
 
 // DescribeOrderableClusterOptionsResult is a wrapper for OrderableClusterOptionsMessage.
 type DescribeOrderableClusterOptionsResult struct {
-	Marker                  aws.StringValue          `xml:"DescribeOrderableClusterOptionsResult>Marker"`
-	OrderableClusterOptions []OrderableClusterOption `xml:"DescribeOrderableClusterOptionsResult>OrderableClusterOptions>OrderableClusterOption"`
+	Marker                  aws.StringValue          `query:"Marker" xml:"DescribeOrderableClusterOptionsResult>Marker"`
+	OrderableClusterOptions []OrderableClusterOption `query:"OrderableClusterOptions.member" xml:"DescribeOrderableClusterOptionsResult>OrderableClusterOptions>OrderableClusterOption"`
 }
 
 // DescribeReservedNodeOfferingsResult is a wrapper for ReservedNodeOfferingsMessage.
 type DescribeReservedNodeOfferingsResult struct {
-	Marker                aws.StringValue        `xml:"DescribeReservedNodeOfferingsResult>Marker"`
-	ReservedNodeOfferings []ReservedNodeOffering `xml:"DescribeReservedNodeOfferingsResult>ReservedNodeOfferings>ReservedNodeOffering"`
+	Marker                aws.StringValue        `query:"Marker" xml:"DescribeReservedNodeOfferingsResult>Marker"`
+	ReservedNodeOfferings []ReservedNodeOffering `query:"ReservedNodeOfferings.member" xml:"DescribeReservedNodeOfferingsResult>ReservedNodeOfferings>ReservedNodeOffering"`
 }
 
 // DescribeReservedNodesResult is a wrapper for ReservedNodesMessage.
 type DescribeReservedNodesResult struct {
-	Marker        aws.StringValue `xml:"DescribeReservedNodesResult>Marker"`
-	ReservedNodes []ReservedNode  `xml:"DescribeReservedNodesResult>ReservedNodes>ReservedNode"`
+	Marker        aws.StringValue `query:"Marker" xml:"DescribeReservedNodesResult>Marker"`
+	ReservedNodes []ReservedNode  `query:"ReservedNodes.member" xml:"DescribeReservedNodesResult>ReservedNodes>ReservedNode"`
 }
 
 // DescribeResizeResult is a wrapper for ResizeProgressMessage.
 type DescribeResizeResult struct {
-	AvgResizeRateInMegaBytesPerSecond  aws.DoubleValue  `xml:"DescribeResizeResult>AvgResizeRateInMegaBytesPerSecond"`
-	ElapsedTimeInSeconds               aws.LongValue    `xml:"DescribeResizeResult>ElapsedTimeInSeconds"`
-	EstimatedTimeToCompletionInSeconds aws.LongValue    `xml:"DescribeResizeResult>EstimatedTimeToCompletionInSeconds"`
-	ImportTablesCompleted              []string         `xml:"DescribeResizeResult>ImportTablesCompleted>member"`
-	ImportTablesInProgress             []string         `xml:"DescribeResizeResult>ImportTablesInProgress>member"`
-	ImportTablesNotStarted             []string         `xml:"DescribeResizeResult>ImportTablesNotStarted>member"`
-	ProgressInMegaBytes                aws.LongValue    `xml:"DescribeResizeResult>ProgressInMegaBytes"`
-	Status                             aws.StringValue  `xml:"DescribeResizeResult>Status"`
-	TargetClusterType                  aws.StringValue  `xml:"DescribeResizeResult>TargetClusterType"`
-	TargetNodeType                     aws.StringValue  `xml:"DescribeResizeResult>TargetNodeType"`
-	TargetNumberOfNodes                aws.IntegerValue `xml:"DescribeResizeResult>TargetNumberOfNodes"`
-	TotalResizeDataInMegaBytes         aws.LongValue    `xml:"DescribeResizeResult>TotalResizeDataInMegaBytes"`
+	AvgResizeRateInMegaBytesPerSecond  aws.DoubleValue  `query:"AvgResizeRateInMegaBytesPerSecond" xml:"DescribeResizeResult>AvgResizeRateInMegaBytesPerSecond"`
+	ElapsedTimeInSeconds               aws.LongValue    `query:"ElapsedTimeInSeconds" xml:"DescribeResizeResult>ElapsedTimeInSeconds"`
+	EstimatedTimeToCompletionInSeconds aws.LongValue    `query:"EstimatedTimeToCompletionInSeconds" xml:"DescribeResizeResult>EstimatedTimeToCompletionInSeconds"`
+	ImportTablesCompleted              []string         `query:"ImportTablesCompleted.member" xml:"DescribeResizeResult>ImportTablesCompleted>member"`
+	ImportTablesInProgress             []string         `query:"ImportTablesInProgress.member" xml:"DescribeResizeResult>ImportTablesInProgress>member"`
+	ImportTablesNotStarted             []string         `query:"ImportTablesNotStarted.member" xml:"DescribeResizeResult>ImportTablesNotStarted>member"`
+	ProgressInMegaBytes                aws.LongValue    `query:"ProgressInMegaBytes" xml:"DescribeResizeResult>ProgressInMegaBytes"`
+	Status                             aws.StringValue  `query:"Status" xml:"DescribeResizeResult>Status"`
+	TargetClusterType                  aws.StringValue  `query:"TargetClusterType" xml:"DescribeResizeResult>TargetClusterType"`
+	TargetNodeType                     aws.StringValue  `query:"TargetNodeType" xml:"DescribeResizeResult>TargetNodeType"`
+	TargetNumberOfNodes                aws.IntegerValue `query:"TargetNumberOfNodes" xml:"DescribeResizeResult>TargetNumberOfNodes"`
+	TotalResizeDataInMegaBytes         aws.LongValue    `query:"TotalResizeDataInMegaBytes" xml:"DescribeResizeResult>TotalResizeDataInMegaBytes"`
 }
 
 // DescribeTagsResult is a wrapper for TaggedResourceListMessage.
 type DescribeTagsResult struct {
-	Marker          aws.StringValue  `xml:"DescribeTagsResult>Marker"`
-	TaggedResources []TaggedResource `xml:"DescribeTagsResult>TaggedResources>TaggedResource"`
+	Marker          aws.StringValue  `query:"Marker" xml:"DescribeTagsResult>Marker"`
+	TaggedResources []TaggedResource `query:"TaggedResources.member" xml:"DescribeTagsResult>TaggedResources>TaggedResource"`
 }
 
 // DisableLoggingResult is a wrapper for LoggingStatus.
 type DisableLoggingResult struct {
-	BucketName                 aws.StringValue  `xml:"DisableLoggingResult>BucketName"`
-	LastFailureMessage         aws.StringValue  `xml:"DisableLoggingResult>LastFailureMessage"`
-	LastFailureTime            time.Time        `xml:"DisableLoggingResult>LastFailureTime"`
-	LastSuccessfulDeliveryTime time.Time        `xml:"DisableLoggingResult>LastSuccessfulDeliveryTime"`
-	LoggingEnabled             aws.BooleanValue `xml:"DisableLoggingResult>LoggingEnabled"`
-	S3KeyPrefix                aws.StringValue  `xml:"DisableLoggingResult>S3KeyPrefix"`
+	BucketName                 aws.StringValue  `query:"BucketName" xml:"DisableLoggingResult>BucketName"`
+	LastFailureMessage         aws.StringValue  `query:"LastFailureMessage" xml:"DisableLoggingResult>LastFailureMessage"`
+	LastFailureTime            time.Time        `query:"LastFailureTime" xml:"DisableLoggingResult>LastFailureTime"`
+	LastSuccessfulDeliveryTime time.Time        `query:"LastSuccessfulDeliveryTime" xml:"DisableLoggingResult>LastSuccessfulDeliveryTime"`
+	LoggingEnabled             aws.BooleanValue `query:"LoggingEnabled" xml:"DisableLoggingResult>LoggingEnabled"`
+	S3KeyPrefix                aws.StringValue  `query:"S3KeyPrefix" xml:"DisableLoggingResult>S3KeyPrefix"`
 }
 
 // EnableLoggingResult is a wrapper for LoggingStatus.
 type EnableLoggingResult struct {
-	BucketName                 aws.StringValue  `xml:"EnableLoggingResult>BucketName"`
-	LastFailureMessage         aws.StringValue  `xml:"EnableLoggingResult>LastFailureMessage"`
-	LastFailureTime            time.Time        `xml:"EnableLoggingResult>LastFailureTime"`
-	LastSuccessfulDeliveryTime time.Time        `xml:"EnableLoggingResult>LastSuccessfulDeliveryTime"`
-	LoggingEnabled             aws.BooleanValue `xml:"EnableLoggingResult>LoggingEnabled"`
-	S3KeyPrefix                aws.StringValue  `xml:"EnableLoggingResult>S3KeyPrefix"`
+	BucketName                 aws.StringValue  `query:"BucketName" xml:"EnableLoggingResult>BucketName"`
+	LastFailureMessage         aws.StringValue  `query:"LastFailureMessage" xml:"EnableLoggingResult>LastFailureMessage"`
+	LastFailureTime            time.Time        `query:"LastFailureTime" xml:"EnableLoggingResult>LastFailureTime"`
+	LastSuccessfulDeliveryTime time.Time        `query:"LastSuccessfulDeliveryTime" xml:"EnableLoggingResult>LastSuccessfulDeliveryTime"`
+	LoggingEnabled             aws.BooleanValue `query:"LoggingEnabled" xml:"EnableLoggingResult>LoggingEnabled"`
+	S3KeyPrefix                aws.StringValue  `query:"S3KeyPrefix" xml:"EnableLoggingResult>S3KeyPrefix"`
 }
 
 // ModifyClusterParameterGroupResult is a wrapper for ClusterParameterGroupNameMessage.
 type ModifyClusterParameterGroupResult struct {
-	ParameterGroupName   aws.StringValue `xml:"ModifyClusterParameterGroupResult>ParameterGroupName"`
-	ParameterGroupStatus aws.StringValue `xml:"ModifyClusterParameterGroupResult>ParameterGroupStatus"`
+	ParameterGroupName   aws.StringValue `query:"ParameterGroupName" xml:"ModifyClusterParameterGroupResult>ParameterGroupName"`
+	ParameterGroupStatus aws.StringValue `query:"ParameterGroupStatus" xml:"ModifyClusterParameterGroupResult>ParameterGroupStatus"`
 }
 
 // ResetClusterParameterGroupResult is a wrapper for ClusterParameterGroupNameMessage.
 type ResetClusterParameterGroupResult struct {
-	ParameterGroupName   aws.StringValue `xml:"ResetClusterParameterGroupResult>ParameterGroupName"`
-	ParameterGroupStatus aws.StringValue `xml:"ResetClusterParameterGroupResult>ParameterGroupStatus"`
+	ParameterGroupName   aws.StringValue `query:"ParameterGroupName" xml:"ResetClusterParameterGroupResult>ParameterGroupName"`
+	ParameterGroupStatus aws.StringValue `query:"ParameterGroupStatus" xml:"ResetClusterParameterGroupResult>ParameterGroupStatus"`
 }
 
 // avoid errors if the packages aren't referenced

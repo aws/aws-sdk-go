@@ -94,63 +94,63 @@ func (c *ImportExport) UpdateJob(req *UpdateJobInput) (resp *UpdateJobResult, er
 
 // CancelJobInput is undocumented.
 type CancelJobInput struct {
-	JobID aws.StringValue `xml:"JobId"`
+	JobID aws.StringValue `query:"JobId" xml:"JobId"`
 }
 
 // CancelJobOutput is undocumented.
 type CancelJobOutput struct {
-	Success aws.BooleanValue `xml:"CancelJobResult>Success"`
+	Success aws.BooleanValue `query:"Success" xml:"CancelJobResult>Success"`
 }
 
 // CreateJobInput is undocumented.
 type CreateJobInput struct {
-	JobType          aws.StringValue  `xml:"JobType"`
-	Manifest         aws.StringValue  `xml:"Manifest"`
-	ManifestAddendum aws.StringValue  `xml:"ManifestAddendum"`
-	ValidateOnly     aws.BooleanValue `xml:"ValidateOnly"`
+	JobType          aws.StringValue  `query:"JobType" xml:"JobType"`
+	Manifest         aws.StringValue  `query:"Manifest" xml:"Manifest"`
+	ManifestAddendum aws.StringValue  `query:"ManifestAddendum" xml:"ManifestAddendum"`
+	ValidateOnly     aws.BooleanValue `query:"ValidateOnly" xml:"ValidateOnly"`
 }
 
 // CreateJobOutput is undocumented.
 type CreateJobOutput struct {
-	AWSShippingAddress    aws.StringValue `xml:"CreateJobResult>AwsShippingAddress"`
-	JobID                 aws.StringValue `xml:"CreateJobResult>JobId"`
-	JobType               aws.StringValue `xml:"CreateJobResult>JobType"`
-	Signature             aws.StringValue `xml:"CreateJobResult>Signature"`
-	SignatureFileContents aws.StringValue `xml:"CreateJobResult>SignatureFileContents"`
-	WarningMessage        aws.StringValue `xml:"CreateJobResult>WarningMessage"`
+	AWSShippingAddress    aws.StringValue `query:"AwsShippingAddress" xml:"CreateJobResult>AwsShippingAddress"`
+	JobID                 aws.StringValue `query:"JobId" xml:"CreateJobResult>JobId"`
+	JobType               aws.StringValue `query:"JobType" xml:"CreateJobResult>JobType"`
+	Signature             aws.StringValue `query:"Signature" xml:"CreateJobResult>Signature"`
+	SignatureFileContents aws.StringValue `query:"SignatureFileContents" xml:"CreateJobResult>SignatureFileContents"`
+	WarningMessage        aws.StringValue `query:"WarningMessage" xml:"CreateJobResult>WarningMessage"`
 }
 
 // GetStatusInput is undocumented.
 type GetStatusInput struct {
-	JobID aws.StringValue `xml:"JobId"`
+	JobID aws.StringValue `query:"JobId" xml:"JobId"`
 }
 
 // GetStatusOutput is undocumented.
 type GetStatusOutput struct {
-	AWSShippingAddress    aws.StringValue  `xml:"GetStatusResult>AwsShippingAddress"`
-	Carrier               aws.StringValue  `xml:"GetStatusResult>Carrier"`
-	CreationDate          time.Time        `xml:"GetStatusResult>CreationDate"`
-	CurrentManifest       aws.StringValue  `xml:"GetStatusResult>CurrentManifest"`
-	ErrorCount            aws.IntegerValue `xml:"GetStatusResult>ErrorCount"`
-	JobID                 aws.StringValue  `xml:"GetStatusResult>JobId"`
-	JobType               aws.StringValue  `xml:"GetStatusResult>JobType"`
-	LocationCode          aws.StringValue  `xml:"GetStatusResult>LocationCode"`
-	LocationMessage       aws.StringValue  `xml:"GetStatusResult>LocationMessage"`
-	LogBucket             aws.StringValue  `xml:"GetStatusResult>LogBucket"`
-	LogKey                aws.StringValue  `xml:"GetStatusResult>LogKey"`
-	ProgressCode          aws.StringValue  `xml:"GetStatusResult>ProgressCode"`
-	ProgressMessage       aws.StringValue  `xml:"GetStatusResult>ProgressMessage"`
-	Signature             aws.StringValue  `xml:"GetStatusResult>Signature"`
-	SignatureFileContents aws.StringValue  `xml:"GetStatusResult>SignatureFileContents"`
-	TrackingNumber        aws.StringValue  `xml:"GetStatusResult>TrackingNumber"`
+	AWSShippingAddress    aws.StringValue  `query:"AwsShippingAddress" xml:"GetStatusResult>AwsShippingAddress"`
+	Carrier               aws.StringValue  `query:"Carrier" xml:"GetStatusResult>Carrier"`
+	CreationDate          time.Time        `query:"CreationDate" xml:"GetStatusResult>CreationDate"`
+	CurrentManifest       aws.StringValue  `query:"CurrentManifest" xml:"GetStatusResult>CurrentManifest"`
+	ErrorCount            aws.IntegerValue `query:"ErrorCount" xml:"GetStatusResult>ErrorCount"`
+	JobID                 aws.StringValue  `query:"JobId" xml:"GetStatusResult>JobId"`
+	JobType               aws.StringValue  `query:"JobType" xml:"GetStatusResult>JobType"`
+	LocationCode          aws.StringValue  `query:"LocationCode" xml:"GetStatusResult>LocationCode"`
+	LocationMessage       aws.StringValue  `query:"LocationMessage" xml:"GetStatusResult>LocationMessage"`
+	LogBucket             aws.StringValue  `query:"LogBucket" xml:"GetStatusResult>LogBucket"`
+	LogKey                aws.StringValue  `query:"LogKey" xml:"GetStatusResult>LogKey"`
+	ProgressCode          aws.StringValue  `query:"ProgressCode" xml:"GetStatusResult>ProgressCode"`
+	ProgressMessage       aws.StringValue  `query:"ProgressMessage" xml:"GetStatusResult>ProgressMessage"`
+	Signature             aws.StringValue  `query:"Signature" xml:"GetStatusResult>Signature"`
+	SignatureFileContents aws.StringValue  `query:"SignatureFileContents" xml:"GetStatusResult>SignatureFileContents"`
+	TrackingNumber        aws.StringValue  `query:"TrackingNumber" xml:"GetStatusResult>TrackingNumber"`
 }
 
 // Job is undocumented.
 type Job struct {
-	CreationDate time.Time        `xml:"CreationDate"`
-	IsCanceled   aws.BooleanValue `xml:"IsCanceled"`
-	JobID        aws.StringValue  `xml:"JobId"`
-	JobType      aws.StringValue  `xml:"JobType"`
+	CreationDate time.Time        `query:"CreationDate" xml:"CreationDate"`
+	IsCanceled   aws.BooleanValue `query:"IsCanceled" xml:"IsCanceled"`
+	JobID        aws.StringValue  `query:"JobId" xml:"JobId"`
+	JobType      aws.StringValue  `query:"JobType" xml:"JobType"`
 }
 
 // Possible values for ImportExport.
@@ -161,75 +161,75 @@ const (
 
 // ListJobsInput is undocumented.
 type ListJobsInput struct {
-	Marker  aws.StringValue  `xml:"Marker"`
-	MaxJobs aws.IntegerValue `xml:"MaxJobs"`
+	Marker  aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxJobs aws.IntegerValue `query:"MaxJobs" xml:"MaxJobs"`
 }
 
 // ListJobsOutput is undocumented.
 type ListJobsOutput struct {
-	IsTruncated aws.BooleanValue `xml:"ListJobsResult>IsTruncated"`
-	Jobs        []Job            `xml:"ListJobsResult>Jobs>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListJobsResult>IsTruncated"`
+	Jobs        []Job            `query:"Jobs.member" xml:"ListJobsResult>Jobs>member"`
 }
 
 // UpdateJobInput is undocumented.
 type UpdateJobInput struct {
-	JobID        aws.StringValue  `xml:"JobId"`
-	JobType      aws.StringValue  `xml:"JobType"`
-	Manifest     aws.StringValue  `xml:"Manifest"`
-	ValidateOnly aws.BooleanValue `xml:"ValidateOnly"`
+	JobID        aws.StringValue  `query:"JobId" xml:"JobId"`
+	JobType      aws.StringValue  `query:"JobType" xml:"JobType"`
+	Manifest     aws.StringValue  `query:"Manifest" xml:"Manifest"`
+	ValidateOnly aws.BooleanValue `query:"ValidateOnly" xml:"ValidateOnly"`
 }
 
 // UpdateJobOutput is undocumented.
 type UpdateJobOutput struct {
-	Success        aws.BooleanValue `xml:"UpdateJobResult>Success"`
-	WarningMessage aws.StringValue  `xml:"UpdateJobResult>WarningMessage"`
+	Success        aws.BooleanValue `query:"Success" xml:"UpdateJobResult>Success"`
+	WarningMessage aws.StringValue  `query:"WarningMessage" xml:"UpdateJobResult>WarningMessage"`
 }
 
 // CancelJobResult is a wrapper for CancelJobOutput.
 type CancelJobResult struct {
-	Success aws.BooleanValue `xml:"CancelJobResult>Success"`
+	Success aws.BooleanValue `query:"Success" xml:"CancelJobResult>Success"`
 }
 
 // CreateJobResult is a wrapper for CreateJobOutput.
 type CreateJobResult struct {
-	AWSShippingAddress    aws.StringValue `xml:"CreateJobResult>AwsShippingAddress"`
-	JobID                 aws.StringValue `xml:"CreateJobResult>JobId"`
-	JobType               aws.StringValue `xml:"CreateJobResult>JobType"`
-	Signature             aws.StringValue `xml:"CreateJobResult>Signature"`
-	SignatureFileContents aws.StringValue `xml:"CreateJobResult>SignatureFileContents"`
-	WarningMessage        aws.StringValue `xml:"CreateJobResult>WarningMessage"`
+	AWSShippingAddress    aws.StringValue `query:"AwsShippingAddress" xml:"CreateJobResult>AwsShippingAddress"`
+	JobID                 aws.StringValue `query:"JobId" xml:"CreateJobResult>JobId"`
+	JobType               aws.StringValue `query:"JobType" xml:"CreateJobResult>JobType"`
+	Signature             aws.StringValue `query:"Signature" xml:"CreateJobResult>Signature"`
+	SignatureFileContents aws.StringValue `query:"SignatureFileContents" xml:"CreateJobResult>SignatureFileContents"`
+	WarningMessage        aws.StringValue `query:"WarningMessage" xml:"CreateJobResult>WarningMessage"`
 }
 
 // GetStatusResult is a wrapper for GetStatusOutput.
 type GetStatusResult struct {
-	AWSShippingAddress    aws.StringValue  `xml:"GetStatusResult>AwsShippingAddress"`
-	Carrier               aws.StringValue  `xml:"GetStatusResult>Carrier"`
-	CreationDate          time.Time        `xml:"GetStatusResult>CreationDate"`
-	CurrentManifest       aws.StringValue  `xml:"GetStatusResult>CurrentManifest"`
-	ErrorCount            aws.IntegerValue `xml:"GetStatusResult>ErrorCount"`
-	JobID                 aws.StringValue  `xml:"GetStatusResult>JobId"`
-	JobType               aws.StringValue  `xml:"GetStatusResult>JobType"`
-	LocationCode          aws.StringValue  `xml:"GetStatusResult>LocationCode"`
-	LocationMessage       aws.StringValue  `xml:"GetStatusResult>LocationMessage"`
-	LogBucket             aws.StringValue  `xml:"GetStatusResult>LogBucket"`
-	LogKey                aws.StringValue  `xml:"GetStatusResult>LogKey"`
-	ProgressCode          aws.StringValue  `xml:"GetStatusResult>ProgressCode"`
-	ProgressMessage       aws.StringValue  `xml:"GetStatusResult>ProgressMessage"`
-	Signature             aws.StringValue  `xml:"GetStatusResult>Signature"`
-	SignatureFileContents aws.StringValue  `xml:"GetStatusResult>SignatureFileContents"`
-	TrackingNumber        aws.StringValue  `xml:"GetStatusResult>TrackingNumber"`
+	AWSShippingAddress    aws.StringValue  `query:"AwsShippingAddress" xml:"GetStatusResult>AwsShippingAddress"`
+	Carrier               aws.StringValue  `query:"Carrier" xml:"GetStatusResult>Carrier"`
+	CreationDate          time.Time        `query:"CreationDate" xml:"GetStatusResult>CreationDate"`
+	CurrentManifest       aws.StringValue  `query:"CurrentManifest" xml:"GetStatusResult>CurrentManifest"`
+	ErrorCount            aws.IntegerValue `query:"ErrorCount" xml:"GetStatusResult>ErrorCount"`
+	JobID                 aws.StringValue  `query:"JobId" xml:"GetStatusResult>JobId"`
+	JobType               aws.StringValue  `query:"JobType" xml:"GetStatusResult>JobType"`
+	LocationCode          aws.StringValue  `query:"LocationCode" xml:"GetStatusResult>LocationCode"`
+	LocationMessage       aws.StringValue  `query:"LocationMessage" xml:"GetStatusResult>LocationMessage"`
+	LogBucket             aws.StringValue  `query:"LogBucket" xml:"GetStatusResult>LogBucket"`
+	LogKey                aws.StringValue  `query:"LogKey" xml:"GetStatusResult>LogKey"`
+	ProgressCode          aws.StringValue  `query:"ProgressCode" xml:"GetStatusResult>ProgressCode"`
+	ProgressMessage       aws.StringValue  `query:"ProgressMessage" xml:"GetStatusResult>ProgressMessage"`
+	Signature             aws.StringValue  `query:"Signature" xml:"GetStatusResult>Signature"`
+	SignatureFileContents aws.StringValue  `query:"SignatureFileContents" xml:"GetStatusResult>SignatureFileContents"`
+	TrackingNumber        aws.StringValue  `query:"TrackingNumber" xml:"GetStatusResult>TrackingNumber"`
 }
 
 // ListJobsResult is a wrapper for ListJobsOutput.
 type ListJobsResult struct {
-	IsTruncated aws.BooleanValue `xml:"ListJobsResult>IsTruncated"`
-	Jobs        []Job            `xml:"ListJobsResult>Jobs>member"`
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListJobsResult>IsTruncated"`
+	Jobs        []Job            `query:"Jobs.member" xml:"ListJobsResult>Jobs>member"`
 }
 
 // UpdateJobResult is a wrapper for UpdateJobOutput.
 type UpdateJobResult struct {
-	Success        aws.BooleanValue `xml:"UpdateJobResult>Success"`
-	WarningMessage aws.StringValue  `xml:"UpdateJobResult>WarningMessage"`
+	Success        aws.BooleanValue `query:"Success" xml:"UpdateJobResult>Success"`
+	WarningMessage aws.StringValue  `query:"WarningMessage" xml:"UpdateJobResult>WarningMessage"`
 }
 
 // avoid errors if the packages aren't referenced

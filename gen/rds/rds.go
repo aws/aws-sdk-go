@@ -577,19 +577,19 @@ func (c *RDS) RevokeDBSecurityGroupIngress(req *RevokeDBSecurityGroupIngressMess
 
 // AddSourceIdentifierToSubscriptionMessage is undocumented.
 type AddSourceIdentifierToSubscriptionMessage struct {
-	SourceIdentifier aws.StringValue `xml:"SourceIdentifier"`
-	SubscriptionName aws.StringValue `xml:"SubscriptionName"`
+	SourceIdentifier aws.StringValue `query:"SourceIdentifier" xml:"SourceIdentifier"`
+	SubscriptionName aws.StringValue `query:"SubscriptionName" xml:"SubscriptionName"`
 }
 
 // AddSourceIdentifierToSubscriptionResult is undocumented.
 type AddSourceIdentifierToSubscriptionResult struct {
-	EventSubscription *EventSubscription `xml:"AddSourceIdentifierToSubscriptionResult>EventSubscription"`
+	EventSubscription *EventSubscription `query:"EventSubscription" xml:"AddSourceIdentifierToSubscriptionResult>EventSubscription"`
 }
 
 // AddTagsToResourceMessage is undocumented.
 type AddTagsToResourceMessage struct {
-	ResourceName aws.StringValue `xml:"ResourceName"`
-	Tags         []Tag           `xml:"Tags>Tag"`
+	ResourceName aws.StringValue `query:"ResourceName" xml:"ResourceName"`
+	Tags         []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // Possible values for RDS.
@@ -600,1095 +600,1095 @@ const (
 
 // AuthorizeDBSecurityGroupIngressMessage is undocumented.
 type AuthorizeDBSecurityGroupIngressMessage struct {
-	CIDRIP                  aws.StringValue `xml:"CIDRIP"`
-	DBSecurityGroupName     aws.StringValue `xml:"DBSecurityGroupName"`
-	EC2SecurityGroupID      aws.StringValue `xml:"EC2SecurityGroupId"`
-	EC2SecurityGroupName    aws.StringValue `xml:"EC2SecurityGroupName"`
-	EC2SecurityGroupOwnerID aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
+	CIDRIP                  aws.StringValue `query:"CIDRIP" xml:"CIDRIP"`
+	DBSecurityGroupName     aws.StringValue `query:"DBSecurityGroupName" xml:"DBSecurityGroupName"`
+	EC2SecurityGroupID      aws.StringValue `query:"EC2SecurityGroupId" xml:"EC2SecurityGroupId"`
+	EC2SecurityGroupName    aws.StringValue `query:"EC2SecurityGroupName" xml:"EC2SecurityGroupName"`
+	EC2SecurityGroupOwnerID aws.StringValue `query:"EC2SecurityGroupOwnerId" xml:"EC2SecurityGroupOwnerId"`
 }
 
 // AuthorizeDBSecurityGroupIngressResult is undocumented.
 type AuthorizeDBSecurityGroupIngressResult struct {
-	DBSecurityGroup *DBSecurityGroup `xml:"AuthorizeDBSecurityGroupIngressResult>DBSecurityGroup"`
+	DBSecurityGroup *DBSecurityGroup `query:"DBSecurityGroup" xml:"AuthorizeDBSecurityGroupIngressResult>DBSecurityGroup"`
 }
 
 // AvailabilityZone is undocumented.
 type AvailabilityZone struct {
-	Name aws.StringValue `xml:"Name"`
+	Name aws.StringValue `query:"Name" xml:"Name"`
 }
 
 // CharacterSet is undocumented.
 type CharacterSet struct {
-	CharacterSetDescription aws.StringValue `xml:"CharacterSetDescription"`
-	CharacterSetName        aws.StringValue `xml:"CharacterSetName"`
+	CharacterSetDescription aws.StringValue `query:"CharacterSetDescription" xml:"CharacterSetDescription"`
+	CharacterSetName        aws.StringValue `query:"CharacterSetName" xml:"CharacterSetName"`
 }
 
 // CopyDBParameterGroupMessage is undocumented.
 type CopyDBParameterGroupMessage struct {
-	SourceDBParameterGroupIdentifier  aws.StringValue `xml:"SourceDBParameterGroupIdentifier"`
-	Tags                              []Tag           `xml:"Tags>Tag"`
-	TargetDBParameterGroupDescription aws.StringValue `xml:"TargetDBParameterGroupDescription"`
-	TargetDBParameterGroupIdentifier  aws.StringValue `xml:"TargetDBParameterGroupIdentifier"`
+	SourceDBParameterGroupIdentifier  aws.StringValue `query:"SourceDBParameterGroupIdentifier" xml:"SourceDBParameterGroupIdentifier"`
+	Tags                              []Tag           `query:"Tags.member" xml:"Tags>Tag"`
+	TargetDBParameterGroupDescription aws.StringValue `query:"TargetDBParameterGroupDescription" xml:"TargetDBParameterGroupDescription"`
+	TargetDBParameterGroupIdentifier  aws.StringValue `query:"TargetDBParameterGroupIdentifier" xml:"TargetDBParameterGroupIdentifier"`
 }
 
 // CopyDBParameterGroupResult is undocumented.
 type CopyDBParameterGroupResult struct {
-	DBParameterGroup *DBParameterGroup `xml:"CopyDBParameterGroupResult>DBParameterGroup"`
+	DBParameterGroup *DBParameterGroup `query:"DBParameterGroup" xml:"CopyDBParameterGroupResult>DBParameterGroup"`
 }
 
 // CopyDBSnapshotMessage is undocumented.
 type CopyDBSnapshotMessage struct {
-	SourceDBSnapshotIdentifier aws.StringValue `xml:"SourceDBSnapshotIdentifier"`
-	Tags                       []Tag           `xml:"Tags>Tag"`
-	TargetDBSnapshotIdentifier aws.StringValue `xml:"TargetDBSnapshotIdentifier"`
+	SourceDBSnapshotIdentifier aws.StringValue `query:"SourceDBSnapshotIdentifier" xml:"SourceDBSnapshotIdentifier"`
+	Tags                       []Tag           `query:"Tags.member" xml:"Tags>Tag"`
+	TargetDBSnapshotIdentifier aws.StringValue `query:"TargetDBSnapshotIdentifier" xml:"TargetDBSnapshotIdentifier"`
 }
 
 // CopyDBSnapshotResult is undocumented.
 type CopyDBSnapshotResult struct {
-	DBSnapshot *DBSnapshot `xml:"CopyDBSnapshotResult>DBSnapshot"`
+	DBSnapshot *DBSnapshot `query:"DBSnapshot" xml:"CopyDBSnapshotResult>DBSnapshot"`
 }
 
 // CopyOptionGroupMessage is undocumented.
 type CopyOptionGroupMessage struct {
-	SourceOptionGroupIdentifier  aws.StringValue `xml:"SourceOptionGroupIdentifier"`
-	Tags                         []Tag           `xml:"Tags>Tag"`
-	TargetOptionGroupDescription aws.StringValue `xml:"TargetOptionGroupDescription"`
-	TargetOptionGroupIdentifier  aws.StringValue `xml:"TargetOptionGroupIdentifier"`
+	SourceOptionGroupIdentifier  aws.StringValue `query:"SourceOptionGroupIdentifier" xml:"SourceOptionGroupIdentifier"`
+	Tags                         []Tag           `query:"Tags.member" xml:"Tags>Tag"`
+	TargetOptionGroupDescription aws.StringValue `query:"TargetOptionGroupDescription" xml:"TargetOptionGroupDescription"`
+	TargetOptionGroupIdentifier  aws.StringValue `query:"TargetOptionGroupIdentifier" xml:"TargetOptionGroupIdentifier"`
 }
 
 // CopyOptionGroupResult is undocumented.
 type CopyOptionGroupResult struct {
-	OptionGroup *OptionGroup `xml:"CopyOptionGroupResult>OptionGroup"`
+	OptionGroup *OptionGroup `query:"OptionGroup" xml:"CopyOptionGroupResult>OptionGroup"`
 }
 
 // CreateDBInstanceMessage is undocumented.
 type CreateDBInstanceMessage struct {
-	AllocatedStorage           aws.IntegerValue `xml:"AllocatedStorage"`
-	AutoMinorVersionUpgrade    aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
-	AvailabilityZone           aws.StringValue  `xml:"AvailabilityZone"`
-	BackupRetentionPeriod      aws.IntegerValue `xml:"BackupRetentionPeriod"`
-	CharacterSetName           aws.StringValue  `xml:"CharacterSetName"`
-	DBInstanceClass            aws.StringValue  `xml:"DBInstanceClass"`
-	DBInstanceIdentifier       aws.StringValue  `xml:"DBInstanceIdentifier"`
-	DBName                     aws.StringValue  `xml:"DBName"`
-	DBParameterGroupName       aws.StringValue  `xml:"DBParameterGroupName"`
-	DBSecurityGroups           []string         `xml:"DBSecurityGroups>DBSecurityGroupName"`
-	DBSubnetGroupName          aws.StringValue  `xml:"DBSubnetGroupName"`
-	Engine                     aws.StringValue  `xml:"Engine"`
-	EngineVersion              aws.StringValue  `xml:"EngineVersion"`
-	IOPS                       aws.IntegerValue `xml:"Iops"`
-	LicenseModel               aws.StringValue  `xml:"LicenseModel"`
-	MasterUserPassword         aws.StringValue  `xml:"MasterUserPassword"`
-	MasterUsername             aws.StringValue  `xml:"MasterUsername"`
-	MultiAZ                    aws.BooleanValue `xml:"MultiAZ"`
-	OptionGroupName            aws.StringValue  `xml:"OptionGroupName"`
-	Port                       aws.IntegerValue `xml:"Port"`
-	PreferredBackupWindow      aws.StringValue  `xml:"PreferredBackupWindow"`
-	PreferredMaintenanceWindow aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	PubliclyAccessible         aws.BooleanValue `xml:"PubliclyAccessible"`
-	StorageType                aws.StringValue  `xml:"StorageType"`
-	Tags                       []Tag            `xml:"Tags>Tag"`
-	TDECredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
-	TDECredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
-	VPCSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	AllocatedStorage           aws.IntegerValue `query:"AllocatedStorage" xml:"AllocatedStorage"`
+	AutoMinorVersionUpgrade    aws.BooleanValue `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	AvailabilityZone           aws.StringValue  `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	BackupRetentionPeriod      aws.IntegerValue `query:"BackupRetentionPeriod" xml:"BackupRetentionPeriod"`
+	CharacterSetName           aws.StringValue  `query:"CharacterSetName" xml:"CharacterSetName"`
+	DBInstanceClass            aws.StringValue  `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	DBInstanceIdentifier       aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	DBName                     aws.StringValue  `query:"DBName" xml:"DBName"`
+	DBParameterGroupName       aws.StringValue  `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
+	DBSecurityGroups           []string         `query:"DBSecurityGroups.member" xml:"DBSecurityGroups>DBSecurityGroupName"`
+	DBSubnetGroupName          aws.StringValue  `query:"DBSubnetGroupName" xml:"DBSubnetGroupName"`
+	Engine                     aws.StringValue  `query:"Engine" xml:"Engine"`
+	EngineVersion              aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	IOPS                       aws.IntegerValue `query:"Iops" xml:"Iops"`
+	LicenseModel               aws.StringValue  `query:"LicenseModel" xml:"LicenseModel"`
+	MasterUserPassword         aws.StringValue  `query:"MasterUserPassword" xml:"MasterUserPassword"`
+	MasterUsername             aws.StringValue  `query:"MasterUsername" xml:"MasterUsername"`
+	MultiAZ                    aws.BooleanValue `query:"MultiAZ" xml:"MultiAZ"`
+	OptionGroupName            aws.StringValue  `query:"OptionGroupName" xml:"OptionGroupName"`
+	Port                       aws.IntegerValue `query:"Port" xml:"Port"`
+	PreferredBackupWindow      aws.StringValue  `query:"PreferredBackupWindow" xml:"PreferredBackupWindow"`
+	PreferredMaintenanceWindow aws.StringValue  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	PubliclyAccessible         aws.BooleanValue `query:"PubliclyAccessible" xml:"PubliclyAccessible"`
+	StorageType                aws.StringValue  `query:"StorageType" xml:"StorageType"`
+	Tags                       []Tag            `query:"Tags.member" xml:"Tags>Tag"`
+	TDECredentialARN           aws.StringValue  `query:"TdeCredentialArn" xml:"TdeCredentialArn"`
+	TDECredentialPassword      aws.StringValue  `query:"TdeCredentialPassword" xml:"TdeCredentialPassword"`
+	VPCSecurityGroupIDs        []string         `query:"VpcSecurityGroupIds.member" xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // CreateDBInstanceReadReplicaMessage is undocumented.
 type CreateDBInstanceReadReplicaMessage struct {
-	AutoMinorVersionUpgrade    aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
-	AvailabilityZone           aws.StringValue  `xml:"AvailabilityZone"`
-	DBInstanceClass            aws.StringValue  `xml:"DBInstanceClass"`
-	DBInstanceIdentifier       aws.StringValue  `xml:"DBInstanceIdentifier"`
-	DBSubnetGroupName          aws.StringValue  `xml:"DBSubnetGroupName"`
-	IOPS                       aws.IntegerValue `xml:"Iops"`
-	OptionGroupName            aws.StringValue  `xml:"OptionGroupName"`
-	Port                       aws.IntegerValue `xml:"Port"`
-	PubliclyAccessible         aws.BooleanValue `xml:"PubliclyAccessible"`
-	SourceDBInstanceIdentifier aws.StringValue  `xml:"SourceDBInstanceIdentifier"`
-	StorageType                aws.StringValue  `xml:"StorageType"`
-	Tags                       []Tag            `xml:"Tags>Tag"`
+	AutoMinorVersionUpgrade    aws.BooleanValue `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	AvailabilityZone           aws.StringValue  `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	DBInstanceClass            aws.StringValue  `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	DBInstanceIdentifier       aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	DBSubnetGroupName          aws.StringValue  `query:"DBSubnetGroupName" xml:"DBSubnetGroupName"`
+	IOPS                       aws.IntegerValue `query:"Iops" xml:"Iops"`
+	OptionGroupName            aws.StringValue  `query:"OptionGroupName" xml:"OptionGroupName"`
+	Port                       aws.IntegerValue `query:"Port" xml:"Port"`
+	PubliclyAccessible         aws.BooleanValue `query:"PubliclyAccessible" xml:"PubliclyAccessible"`
+	SourceDBInstanceIdentifier aws.StringValue  `query:"SourceDBInstanceIdentifier" xml:"SourceDBInstanceIdentifier"`
+	StorageType                aws.StringValue  `query:"StorageType" xml:"StorageType"`
+	Tags                       []Tag            `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateDBInstanceReadReplicaResult is undocumented.
 type CreateDBInstanceReadReplicaResult struct {
-	DBInstance *DBInstance `xml:"CreateDBInstanceReadReplicaResult>DBInstance"`
+	DBInstance *DBInstance `query:"DBInstance" xml:"CreateDBInstanceReadReplicaResult>DBInstance"`
 }
 
 // CreateDBInstanceResult is undocumented.
 type CreateDBInstanceResult struct {
-	DBInstance *DBInstance `xml:"CreateDBInstanceResult>DBInstance"`
+	DBInstance *DBInstance `query:"DBInstance" xml:"CreateDBInstanceResult>DBInstance"`
 }
 
 // CreateDBParameterGroupMessage is undocumented.
 type CreateDBParameterGroupMessage struct {
-	DBParameterGroupFamily aws.StringValue `xml:"DBParameterGroupFamily"`
-	DBParameterGroupName   aws.StringValue `xml:"DBParameterGroupName"`
-	Description            aws.StringValue `xml:"Description"`
-	Tags                   []Tag           `xml:"Tags>Tag"`
+	DBParameterGroupFamily aws.StringValue `query:"DBParameterGroupFamily" xml:"DBParameterGroupFamily"`
+	DBParameterGroupName   aws.StringValue `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
+	Description            aws.StringValue `query:"Description" xml:"Description"`
+	Tags                   []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateDBParameterGroupResult is undocumented.
 type CreateDBParameterGroupResult struct {
-	DBParameterGroup *DBParameterGroup `xml:"CreateDBParameterGroupResult>DBParameterGroup"`
+	DBParameterGroup *DBParameterGroup `query:"DBParameterGroup" xml:"CreateDBParameterGroupResult>DBParameterGroup"`
 }
 
 // CreateDBSecurityGroupMessage is undocumented.
 type CreateDBSecurityGroupMessage struct {
-	DBSecurityGroupDescription aws.StringValue `xml:"DBSecurityGroupDescription"`
-	DBSecurityGroupName        aws.StringValue `xml:"DBSecurityGroupName"`
-	Tags                       []Tag           `xml:"Tags>Tag"`
+	DBSecurityGroupDescription aws.StringValue `query:"DBSecurityGroupDescription" xml:"DBSecurityGroupDescription"`
+	DBSecurityGroupName        aws.StringValue `query:"DBSecurityGroupName" xml:"DBSecurityGroupName"`
+	Tags                       []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateDBSecurityGroupResult is undocumented.
 type CreateDBSecurityGroupResult struct {
-	DBSecurityGroup *DBSecurityGroup `xml:"CreateDBSecurityGroupResult>DBSecurityGroup"`
+	DBSecurityGroup *DBSecurityGroup `query:"DBSecurityGroup" xml:"CreateDBSecurityGroupResult>DBSecurityGroup"`
 }
 
 // CreateDBSnapshotMessage is undocumented.
 type CreateDBSnapshotMessage struct {
-	DBInstanceIdentifier aws.StringValue `xml:"DBInstanceIdentifier"`
-	DBSnapshotIdentifier aws.StringValue `xml:"DBSnapshotIdentifier"`
-	Tags                 []Tag           `xml:"Tags>Tag"`
+	DBInstanceIdentifier aws.StringValue `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	DBSnapshotIdentifier aws.StringValue `query:"DBSnapshotIdentifier" xml:"DBSnapshotIdentifier"`
+	Tags                 []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateDBSnapshotResult is undocumented.
 type CreateDBSnapshotResult struct {
-	DBSnapshot *DBSnapshot `xml:"CreateDBSnapshotResult>DBSnapshot"`
+	DBSnapshot *DBSnapshot `query:"DBSnapshot" xml:"CreateDBSnapshotResult>DBSnapshot"`
 }
 
 // CreateDBSubnetGroupMessage is undocumented.
 type CreateDBSubnetGroupMessage struct {
-	DBSubnetGroupDescription aws.StringValue `xml:"DBSubnetGroupDescription"`
-	DBSubnetGroupName        aws.StringValue `xml:"DBSubnetGroupName"`
-	SubnetIDs                []string        `xml:"SubnetIds>SubnetIdentifier"`
-	Tags                     []Tag           `xml:"Tags>Tag"`
+	DBSubnetGroupDescription aws.StringValue `query:"DBSubnetGroupDescription" xml:"DBSubnetGroupDescription"`
+	DBSubnetGroupName        aws.StringValue `query:"DBSubnetGroupName" xml:"DBSubnetGroupName"`
+	SubnetIDs                []string        `query:"SubnetIds.member" xml:"SubnetIds>SubnetIdentifier"`
+	Tags                     []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateDBSubnetGroupResult is undocumented.
 type CreateDBSubnetGroupResult struct {
-	DBSubnetGroup *DBSubnetGroup `xml:"CreateDBSubnetGroupResult>DBSubnetGroup"`
+	DBSubnetGroup *DBSubnetGroup `query:"DBSubnetGroup" xml:"CreateDBSubnetGroupResult>DBSubnetGroup"`
 }
 
 // CreateEventSubscriptionMessage is undocumented.
 type CreateEventSubscriptionMessage struct {
-	Enabled          aws.BooleanValue `xml:"Enabled"`
-	EventCategories  []string         `xml:"EventCategories>EventCategory"`
-	SNSTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
-	SourceIDs        []string         `xml:"SourceIds>SourceId"`
-	SourceType       aws.StringValue  `xml:"SourceType"`
-	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
-	Tags             []Tag            `xml:"Tags>Tag"`
+	Enabled          aws.BooleanValue `query:"Enabled" xml:"Enabled"`
+	EventCategories  []string         `query:"EventCategories.member" xml:"EventCategories>EventCategory"`
+	SNSTopicARN      aws.StringValue  `query:"SnsTopicArn" xml:"SnsTopicArn"`
+	SourceIDs        []string         `query:"SourceIds.member" xml:"SourceIds>SourceId"`
+	SourceType       aws.StringValue  `query:"SourceType" xml:"SourceType"`
+	SubscriptionName aws.StringValue  `query:"SubscriptionName" xml:"SubscriptionName"`
+	Tags             []Tag            `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateEventSubscriptionResult is undocumented.
 type CreateEventSubscriptionResult struct {
-	EventSubscription *EventSubscription `xml:"CreateEventSubscriptionResult>EventSubscription"`
+	EventSubscription *EventSubscription `query:"EventSubscription" xml:"CreateEventSubscriptionResult>EventSubscription"`
 }
 
 // CreateOptionGroupMessage is undocumented.
 type CreateOptionGroupMessage struct {
-	EngineName             aws.StringValue `xml:"EngineName"`
-	MajorEngineVersion     aws.StringValue `xml:"MajorEngineVersion"`
-	OptionGroupDescription aws.StringValue `xml:"OptionGroupDescription"`
-	OptionGroupName        aws.StringValue `xml:"OptionGroupName"`
-	Tags                   []Tag           `xml:"Tags>Tag"`
+	EngineName             aws.StringValue `query:"EngineName" xml:"EngineName"`
+	MajorEngineVersion     aws.StringValue `query:"MajorEngineVersion" xml:"MajorEngineVersion"`
+	OptionGroupDescription aws.StringValue `query:"OptionGroupDescription" xml:"OptionGroupDescription"`
+	OptionGroupName        aws.StringValue `query:"OptionGroupName" xml:"OptionGroupName"`
+	Tags                   []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // CreateOptionGroupResult is undocumented.
 type CreateOptionGroupResult struct {
-	OptionGroup *OptionGroup `xml:"CreateOptionGroupResult>OptionGroup"`
+	OptionGroup *OptionGroup `query:"OptionGroup" xml:"CreateOptionGroupResult>OptionGroup"`
 }
 
 // DBEngineVersion is undocumented.
 type DBEngineVersion struct {
-	DBEngineDescription        aws.StringValue `xml:"DBEngineDescription"`
-	DBEngineVersionDescription aws.StringValue `xml:"DBEngineVersionDescription"`
-	DBParameterGroupFamily     aws.StringValue `xml:"DBParameterGroupFamily"`
-	DefaultCharacterSet        *CharacterSet   `xml:"DefaultCharacterSet"`
-	Engine                     aws.StringValue `xml:"Engine"`
-	EngineVersion              aws.StringValue `xml:"EngineVersion"`
-	SupportedCharacterSets     []CharacterSet  `xml:"SupportedCharacterSets>CharacterSet"`
+	DBEngineDescription        aws.StringValue `query:"DBEngineDescription" xml:"DBEngineDescription"`
+	DBEngineVersionDescription aws.StringValue `query:"DBEngineVersionDescription" xml:"DBEngineVersionDescription"`
+	DBParameterGroupFamily     aws.StringValue `query:"DBParameterGroupFamily" xml:"DBParameterGroupFamily"`
+	DefaultCharacterSet        *CharacterSet   `query:"DefaultCharacterSet" xml:"DefaultCharacterSet"`
+	Engine                     aws.StringValue `query:"Engine" xml:"Engine"`
+	EngineVersion              aws.StringValue `query:"EngineVersion" xml:"EngineVersion"`
+	SupportedCharacterSets     []CharacterSet  `query:"SupportedCharacterSets.member" xml:"SupportedCharacterSets>CharacterSet"`
 }
 
 // DBEngineVersionMessage is undocumented.
 type DBEngineVersionMessage struct {
-	DBEngineVersions []DBEngineVersion `xml:"DescribeDBEngineVersionsResult>DBEngineVersions>DBEngineVersion"`
-	Marker           aws.StringValue   `xml:"DescribeDBEngineVersionsResult>Marker"`
+	DBEngineVersions []DBEngineVersion `query:"DBEngineVersions.member" xml:"DescribeDBEngineVersionsResult>DBEngineVersions>DBEngineVersion"`
+	Marker           aws.StringValue   `query:"Marker" xml:"DescribeDBEngineVersionsResult>Marker"`
 }
 
 // DBInstance is undocumented.
 type DBInstance struct {
-	AllocatedStorage                      aws.IntegerValue             `xml:"AllocatedStorage"`
-	AutoMinorVersionUpgrade               aws.BooleanValue             `xml:"AutoMinorVersionUpgrade"`
-	AvailabilityZone                      aws.StringValue              `xml:"AvailabilityZone"`
-	BackupRetentionPeriod                 aws.IntegerValue             `xml:"BackupRetentionPeriod"`
-	CharacterSetName                      aws.StringValue              `xml:"CharacterSetName"`
-	DBInstanceClass                       aws.StringValue              `xml:"DBInstanceClass"`
-	DBInstanceIdentifier                  aws.StringValue              `xml:"DBInstanceIdentifier"`
-	DBInstanceStatus                      aws.StringValue              `xml:"DBInstanceStatus"`
-	DBName                                aws.StringValue              `xml:"DBName"`
-	DBParameterGroups                     []DBParameterGroupStatus     `xml:"DBParameterGroups>DBParameterGroup"`
-	DBSecurityGroups                      []DBSecurityGroupMembership  `xml:"DBSecurityGroups>DBSecurityGroup"`
-	DBSubnetGroup                         *DBSubnetGroup               `xml:"DBSubnetGroup"`
-	Endpoint                              *Endpoint                    `xml:"Endpoint"`
-	Engine                                aws.StringValue              `xml:"Engine"`
-	EngineVersion                         aws.StringValue              `xml:"EngineVersion"`
-	InstanceCreateTime                    time.Time                    `xml:"InstanceCreateTime"`
-	IOPS                                  aws.IntegerValue             `xml:"Iops"`
-	LatestRestorableTime                  time.Time                    `xml:"LatestRestorableTime"`
-	LicenseModel                          aws.StringValue              `xml:"LicenseModel"`
-	MasterUsername                        aws.StringValue              `xml:"MasterUsername"`
-	MultiAZ                               aws.BooleanValue             `xml:"MultiAZ"`
-	OptionGroupMemberships                []OptionGroupMembership      `xml:"OptionGroupMemberships>OptionGroupMembership"`
-	PendingModifiedValues                 *PendingModifiedValues       `xml:"PendingModifiedValues"`
-	PreferredBackupWindow                 aws.StringValue              `xml:"PreferredBackupWindow"`
-	PreferredMaintenanceWindow            aws.StringValue              `xml:"PreferredMaintenanceWindow"`
-	PubliclyAccessible                    aws.BooleanValue             `xml:"PubliclyAccessible"`
-	ReadReplicaDBInstanceIdentifiers      []string                     `xml:"ReadReplicaDBInstanceIdentifiers>ReadReplicaDBInstanceIdentifier"`
-	ReadReplicaSourceDBInstanceIdentifier aws.StringValue              `xml:"ReadReplicaSourceDBInstanceIdentifier"`
-	SecondaryAvailabilityZone             aws.StringValue              `xml:"SecondaryAvailabilityZone"`
-	StatusInfos                           []DBInstanceStatusInfo       `xml:"StatusInfos>DBInstanceStatusInfo"`
-	StorageType                           aws.StringValue              `xml:"StorageType"`
-	TDECredentialARN                      aws.StringValue              `xml:"TdeCredentialArn"`
-	VPCSecurityGroups                     []VPCSecurityGroupMembership `xml:"VpcSecurityGroups>VpcSecurityGroupMembership"`
+	AllocatedStorage                      aws.IntegerValue             `query:"AllocatedStorage" xml:"AllocatedStorage"`
+	AutoMinorVersionUpgrade               aws.BooleanValue             `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	AvailabilityZone                      aws.StringValue              `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	BackupRetentionPeriod                 aws.IntegerValue             `query:"BackupRetentionPeriod" xml:"BackupRetentionPeriod"`
+	CharacterSetName                      aws.StringValue              `query:"CharacterSetName" xml:"CharacterSetName"`
+	DBInstanceClass                       aws.StringValue              `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	DBInstanceIdentifier                  aws.StringValue              `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	DBInstanceStatus                      aws.StringValue              `query:"DBInstanceStatus" xml:"DBInstanceStatus"`
+	DBName                                aws.StringValue              `query:"DBName" xml:"DBName"`
+	DBParameterGroups                     []DBParameterGroupStatus     `query:"DBParameterGroups.member" xml:"DBParameterGroups>DBParameterGroup"`
+	DBSecurityGroups                      []DBSecurityGroupMembership  `query:"DBSecurityGroups.member" xml:"DBSecurityGroups>DBSecurityGroup"`
+	DBSubnetGroup                         *DBSubnetGroup               `query:"DBSubnetGroup" xml:"DBSubnetGroup"`
+	Endpoint                              *Endpoint                    `query:"Endpoint" xml:"Endpoint"`
+	Engine                                aws.StringValue              `query:"Engine" xml:"Engine"`
+	EngineVersion                         aws.StringValue              `query:"EngineVersion" xml:"EngineVersion"`
+	InstanceCreateTime                    time.Time                    `query:"InstanceCreateTime" xml:"InstanceCreateTime"`
+	IOPS                                  aws.IntegerValue             `query:"Iops" xml:"Iops"`
+	LatestRestorableTime                  time.Time                    `query:"LatestRestorableTime" xml:"LatestRestorableTime"`
+	LicenseModel                          aws.StringValue              `query:"LicenseModel" xml:"LicenseModel"`
+	MasterUsername                        aws.StringValue              `query:"MasterUsername" xml:"MasterUsername"`
+	MultiAZ                               aws.BooleanValue             `query:"MultiAZ" xml:"MultiAZ"`
+	OptionGroupMemberships                []OptionGroupMembership      `query:"OptionGroupMemberships.member" xml:"OptionGroupMemberships>OptionGroupMembership"`
+	PendingModifiedValues                 *PendingModifiedValues       `query:"PendingModifiedValues" xml:"PendingModifiedValues"`
+	PreferredBackupWindow                 aws.StringValue              `query:"PreferredBackupWindow" xml:"PreferredBackupWindow"`
+	PreferredMaintenanceWindow            aws.StringValue              `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	PubliclyAccessible                    aws.BooleanValue             `query:"PubliclyAccessible" xml:"PubliclyAccessible"`
+	ReadReplicaDBInstanceIdentifiers      []string                     `query:"ReadReplicaDBInstanceIdentifiers.member" xml:"ReadReplicaDBInstanceIdentifiers>ReadReplicaDBInstanceIdentifier"`
+	ReadReplicaSourceDBInstanceIdentifier aws.StringValue              `query:"ReadReplicaSourceDBInstanceIdentifier" xml:"ReadReplicaSourceDBInstanceIdentifier"`
+	SecondaryAvailabilityZone             aws.StringValue              `query:"SecondaryAvailabilityZone" xml:"SecondaryAvailabilityZone"`
+	StatusInfos                           []DBInstanceStatusInfo       `query:"StatusInfos.member" xml:"StatusInfos>DBInstanceStatusInfo"`
+	StorageType                           aws.StringValue              `query:"StorageType" xml:"StorageType"`
+	TDECredentialARN                      aws.StringValue              `query:"TdeCredentialArn" xml:"TdeCredentialArn"`
+	VPCSecurityGroups                     []VPCSecurityGroupMembership `query:"VpcSecurityGroups.member" xml:"VpcSecurityGroups>VpcSecurityGroupMembership"`
 }
 
 // DBInstanceMessage is undocumented.
 type DBInstanceMessage struct {
-	DBInstances []DBInstance    `xml:"DescribeDBInstancesResult>DBInstances>DBInstance"`
-	Marker      aws.StringValue `xml:"DescribeDBInstancesResult>Marker"`
+	DBInstances []DBInstance    `query:"DBInstances.member" xml:"DescribeDBInstancesResult>DBInstances>DBInstance"`
+	Marker      aws.StringValue `query:"Marker" xml:"DescribeDBInstancesResult>Marker"`
 }
 
 // DBInstanceStatusInfo is undocumented.
 type DBInstanceStatusInfo struct {
-	Message    aws.StringValue  `xml:"Message"`
-	Normal     aws.BooleanValue `xml:"Normal"`
-	Status     aws.StringValue  `xml:"Status"`
-	StatusType aws.StringValue  `xml:"StatusType"`
+	Message    aws.StringValue  `query:"Message" xml:"Message"`
+	Normal     aws.BooleanValue `query:"Normal" xml:"Normal"`
+	Status     aws.StringValue  `query:"Status" xml:"Status"`
+	StatusType aws.StringValue  `query:"StatusType" xml:"StatusType"`
 }
 
 // DBParameterGroup is undocumented.
 type DBParameterGroup struct {
-	DBParameterGroupFamily aws.StringValue `xml:"DBParameterGroupFamily"`
-	DBParameterGroupName   aws.StringValue `xml:"DBParameterGroupName"`
-	Description            aws.StringValue `xml:"Description"`
+	DBParameterGroupFamily aws.StringValue `query:"DBParameterGroupFamily" xml:"DBParameterGroupFamily"`
+	DBParameterGroupName   aws.StringValue `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
+	Description            aws.StringValue `query:"Description" xml:"Description"`
 }
 
 // DBParameterGroupDetails is undocumented.
 type DBParameterGroupDetails struct {
-	Marker     aws.StringValue `xml:"DescribeDBParametersResult>Marker"`
-	Parameters []Parameter     `xml:"DescribeDBParametersResult>Parameters>Parameter"`
+	Marker     aws.StringValue `query:"Marker" xml:"DescribeDBParametersResult>Marker"`
+	Parameters []Parameter     `query:"Parameters.member" xml:"DescribeDBParametersResult>Parameters>Parameter"`
 }
 
 // DBParameterGroupNameMessage is undocumented.
 type DBParameterGroupNameMessage struct {
-	DBParameterGroupName aws.StringValue `xml:"DBParameterGroupName"`
+	DBParameterGroupName aws.StringValue `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
 }
 
 // DBParameterGroupStatus is undocumented.
 type DBParameterGroupStatus struct {
-	DBParameterGroupName aws.StringValue `xml:"DBParameterGroupName"`
-	ParameterApplyStatus aws.StringValue `xml:"ParameterApplyStatus"`
+	DBParameterGroupName aws.StringValue `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
+	ParameterApplyStatus aws.StringValue `query:"ParameterApplyStatus" xml:"ParameterApplyStatus"`
 }
 
 // DBParameterGroupsMessage is undocumented.
 type DBParameterGroupsMessage struct {
-	DBParameterGroups []DBParameterGroup `xml:"DescribeDBParameterGroupsResult>DBParameterGroups>DBParameterGroup"`
-	Marker            aws.StringValue    `xml:"DescribeDBParameterGroupsResult>Marker"`
+	DBParameterGroups []DBParameterGroup `query:"DBParameterGroups.member" xml:"DescribeDBParameterGroupsResult>DBParameterGroups>DBParameterGroup"`
+	Marker            aws.StringValue    `query:"Marker" xml:"DescribeDBParameterGroupsResult>Marker"`
 }
 
 // DBSecurityGroup is undocumented.
 type DBSecurityGroup struct {
-	DBSecurityGroupDescription aws.StringValue    `xml:"DBSecurityGroupDescription"`
-	DBSecurityGroupName        aws.StringValue    `xml:"DBSecurityGroupName"`
-	EC2SecurityGroups          []EC2SecurityGroup `xml:"EC2SecurityGroups>EC2SecurityGroup"`
-	IPRanges                   []IPRange          `xml:"IPRanges>IPRange"`
-	OwnerID                    aws.StringValue    `xml:"OwnerId"`
-	VPCID                      aws.StringValue    `xml:"VpcId"`
+	DBSecurityGroupDescription aws.StringValue    `query:"DBSecurityGroupDescription" xml:"DBSecurityGroupDescription"`
+	DBSecurityGroupName        aws.StringValue    `query:"DBSecurityGroupName" xml:"DBSecurityGroupName"`
+	EC2SecurityGroups          []EC2SecurityGroup `query:"EC2SecurityGroups.member" xml:"EC2SecurityGroups>EC2SecurityGroup"`
+	IPRanges                   []IPRange          `query:"IPRanges.member" xml:"IPRanges>IPRange"`
+	OwnerID                    aws.StringValue    `query:"OwnerId" xml:"OwnerId"`
+	VPCID                      aws.StringValue    `query:"VpcId" xml:"VpcId"`
 }
 
 // DBSecurityGroupMembership is undocumented.
 type DBSecurityGroupMembership struct {
-	DBSecurityGroupName aws.StringValue `xml:"DBSecurityGroupName"`
-	Status              aws.StringValue `xml:"Status"`
+	DBSecurityGroupName aws.StringValue `query:"DBSecurityGroupName" xml:"DBSecurityGroupName"`
+	Status              aws.StringValue `query:"Status" xml:"Status"`
 }
 
 // DBSecurityGroupMessage is undocumented.
 type DBSecurityGroupMessage struct {
-	DBSecurityGroups []DBSecurityGroup `xml:"DescribeDBSecurityGroupsResult>DBSecurityGroups>DBSecurityGroup"`
-	Marker           aws.StringValue   `xml:"DescribeDBSecurityGroupsResult>Marker"`
+	DBSecurityGroups []DBSecurityGroup `query:"DBSecurityGroups.member" xml:"DescribeDBSecurityGroupsResult>DBSecurityGroups>DBSecurityGroup"`
+	Marker           aws.StringValue   `query:"Marker" xml:"DescribeDBSecurityGroupsResult>Marker"`
 }
 
 // DBSnapshot is undocumented.
 type DBSnapshot struct {
-	AllocatedStorage     aws.IntegerValue `xml:"AllocatedStorage"`
-	AvailabilityZone     aws.StringValue  `xml:"AvailabilityZone"`
-	DBInstanceIdentifier aws.StringValue  `xml:"DBInstanceIdentifier"`
-	DBSnapshotIdentifier aws.StringValue  `xml:"DBSnapshotIdentifier"`
-	Engine               aws.StringValue  `xml:"Engine"`
-	EngineVersion        aws.StringValue  `xml:"EngineVersion"`
-	InstanceCreateTime   time.Time        `xml:"InstanceCreateTime"`
-	IOPS                 aws.IntegerValue `xml:"Iops"`
-	LicenseModel         aws.StringValue  `xml:"LicenseModel"`
-	MasterUsername       aws.StringValue  `xml:"MasterUsername"`
-	OptionGroupName      aws.StringValue  `xml:"OptionGroupName"`
-	PercentProgress      aws.IntegerValue `xml:"PercentProgress"`
-	Port                 aws.IntegerValue `xml:"Port"`
-	SnapshotCreateTime   time.Time        `xml:"SnapshotCreateTime"`
-	SnapshotType         aws.StringValue  `xml:"SnapshotType"`
-	SourceRegion         aws.StringValue  `xml:"SourceRegion"`
-	Status               aws.StringValue  `xml:"Status"`
-	StorageType          aws.StringValue  `xml:"StorageType"`
-	TDECredentialARN     aws.StringValue  `xml:"TdeCredentialArn"`
-	VPCID                aws.StringValue  `xml:"VpcId"`
+	AllocatedStorage     aws.IntegerValue `query:"AllocatedStorage" xml:"AllocatedStorage"`
+	AvailabilityZone     aws.StringValue  `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	DBInstanceIdentifier aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	DBSnapshotIdentifier aws.StringValue  `query:"DBSnapshotIdentifier" xml:"DBSnapshotIdentifier"`
+	Engine               aws.StringValue  `query:"Engine" xml:"Engine"`
+	EngineVersion        aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	InstanceCreateTime   time.Time        `query:"InstanceCreateTime" xml:"InstanceCreateTime"`
+	IOPS                 aws.IntegerValue `query:"Iops" xml:"Iops"`
+	LicenseModel         aws.StringValue  `query:"LicenseModel" xml:"LicenseModel"`
+	MasterUsername       aws.StringValue  `query:"MasterUsername" xml:"MasterUsername"`
+	OptionGroupName      aws.StringValue  `query:"OptionGroupName" xml:"OptionGroupName"`
+	PercentProgress      aws.IntegerValue `query:"PercentProgress" xml:"PercentProgress"`
+	Port                 aws.IntegerValue `query:"Port" xml:"Port"`
+	SnapshotCreateTime   time.Time        `query:"SnapshotCreateTime" xml:"SnapshotCreateTime"`
+	SnapshotType         aws.StringValue  `query:"SnapshotType" xml:"SnapshotType"`
+	SourceRegion         aws.StringValue  `query:"SourceRegion" xml:"SourceRegion"`
+	Status               aws.StringValue  `query:"Status" xml:"Status"`
+	StorageType          aws.StringValue  `query:"StorageType" xml:"StorageType"`
+	TDECredentialARN     aws.StringValue  `query:"TdeCredentialArn" xml:"TdeCredentialArn"`
+	VPCID                aws.StringValue  `query:"VpcId" xml:"VpcId"`
 }
 
 // DBSnapshotMessage is undocumented.
 type DBSnapshotMessage struct {
-	DBSnapshots []DBSnapshot    `xml:"DescribeDBSnapshotsResult>DBSnapshots>DBSnapshot"`
-	Marker      aws.StringValue `xml:"DescribeDBSnapshotsResult>Marker"`
+	DBSnapshots []DBSnapshot    `query:"DBSnapshots.member" xml:"DescribeDBSnapshotsResult>DBSnapshots>DBSnapshot"`
+	Marker      aws.StringValue `query:"Marker" xml:"DescribeDBSnapshotsResult>Marker"`
 }
 
 // DBSubnetGroup is undocumented.
 type DBSubnetGroup struct {
-	DBSubnetGroupDescription aws.StringValue `xml:"DBSubnetGroupDescription"`
-	DBSubnetGroupName        aws.StringValue `xml:"DBSubnetGroupName"`
-	SubnetGroupStatus        aws.StringValue `xml:"SubnetGroupStatus"`
-	Subnets                  []Subnet        `xml:"Subnets>Subnet"`
-	VPCID                    aws.StringValue `xml:"VpcId"`
+	DBSubnetGroupDescription aws.StringValue `query:"DBSubnetGroupDescription" xml:"DBSubnetGroupDescription"`
+	DBSubnetGroupName        aws.StringValue `query:"DBSubnetGroupName" xml:"DBSubnetGroupName"`
+	SubnetGroupStatus        aws.StringValue `query:"SubnetGroupStatus" xml:"SubnetGroupStatus"`
+	Subnets                  []Subnet        `query:"Subnets.member" xml:"Subnets>Subnet"`
+	VPCID                    aws.StringValue `query:"VpcId" xml:"VpcId"`
 }
 
 // DBSubnetGroupMessage is undocumented.
 type DBSubnetGroupMessage struct {
-	DBSubnetGroups []DBSubnetGroup `xml:"DescribeDBSubnetGroupsResult>DBSubnetGroups>DBSubnetGroup"`
-	Marker         aws.StringValue `xml:"DescribeDBSubnetGroupsResult>Marker"`
+	DBSubnetGroups []DBSubnetGroup `query:"DBSubnetGroups.member" xml:"DescribeDBSubnetGroupsResult>DBSubnetGroups>DBSubnetGroup"`
+	Marker         aws.StringValue `query:"Marker" xml:"DescribeDBSubnetGroupsResult>Marker"`
 }
 
 // DeleteDBInstanceMessage is undocumented.
 type DeleteDBInstanceMessage struct {
-	DBInstanceIdentifier      aws.StringValue  `xml:"DBInstanceIdentifier"`
-	FinalDBSnapshotIdentifier aws.StringValue  `xml:"FinalDBSnapshotIdentifier"`
-	SkipFinalSnapshot         aws.BooleanValue `xml:"SkipFinalSnapshot"`
+	DBInstanceIdentifier      aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	FinalDBSnapshotIdentifier aws.StringValue  `query:"FinalDBSnapshotIdentifier" xml:"FinalDBSnapshotIdentifier"`
+	SkipFinalSnapshot         aws.BooleanValue `query:"SkipFinalSnapshot" xml:"SkipFinalSnapshot"`
 }
 
 // DeleteDBInstanceResult is undocumented.
 type DeleteDBInstanceResult struct {
-	DBInstance *DBInstance `xml:"DeleteDBInstanceResult>DBInstance"`
+	DBInstance *DBInstance `query:"DBInstance" xml:"DeleteDBInstanceResult>DBInstance"`
 }
 
 // DeleteDBParameterGroupMessage is undocumented.
 type DeleteDBParameterGroupMessage struct {
-	DBParameterGroupName aws.StringValue `xml:"DBParameterGroupName"`
+	DBParameterGroupName aws.StringValue `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
 }
 
 // DeleteDBSecurityGroupMessage is undocumented.
 type DeleteDBSecurityGroupMessage struct {
-	DBSecurityGroupName aws.StringValue `xml:"DBSecurityGroupName"`
+	DBSecurityGroupName aws.StringValue `query:"DBSecurityGroupName" xml:"DBSecurityGroupName"`
 }
 
 // DeleteDBSnapshotMessage is undocumented.
 type DeleteDBSnapshotMessage struct {
-	DBSnapshotIdentifier aws.StringValue `xml:"DBSnapshotIdentifier"`
+	DBSnapshotIdentifier aws.StringValue `query:"DBSnapshotIdentifier" xml:"DBSnapshotIdentifier"`
 }
 
 // DeleteDBSnapshotResult is undocumented.
 type DeleteDBSnapshotResult struct {
-	DBSnapshot *DBSnapshot `xml:"DeleteDBSnapshotResult>DBSnapshot"`
+	DBSnapshot *DBSnapshot `query:"DBSnapshot" xml:"DeleteDBSnapshotResult>DBSnapshot"`
 }
 
 // DeleteDBSubnetGroupMessage is undocumented.
 type DeleteDBSubnetGroupMessage struct {
-	DBSubnetGroupName aws.StringValue `xml:"DBSubnetGroupName"`
+	DBSubnetGroupName aws.StringValue `query:"DBSubnetGroupName" xml:"DBSubnetGroupName"`
 }
 
 // DeleteEventSubscriptionMessage is undocumented.
 type DeleteEventSubscriptionMessage struct {
-	SubscriptionName aws.StringValue `xml:"SubscriptionName"`
+	SubscriptionName aws.StringValue `query:"SubscriptionName" xml:"SubscriptionName"`
 }
 
 // DeleteEventSubscriptionResult is undocumented.
 type DeleteEventSubscriptionResult struct {
-	EventSubscription *EventSubscription `xml:"DeleteEventSubscriptionResult>EventSubscription"`
+	EventSubscription *EventSubscription `query:"EventSubscription" xml:"DeleteEventSubscriptionResult>EventSubscription"`
 }
 
 // DeleteOptionGroupMessage is undocumented.
 type DeleteOptionGroupMessage struct {
-	OptionGroupName aws.StringValue `xml:"OptionGroupName"`
+	OptionGroupName aws.StringValue `query:"OptionGroupName" xml:"OptionGroupName"`
 }
 
 // DescribeDBEngineVersionsMessage is undocumented.
 type DescribeDBEngineVersionsMessage struct {
-	DBParameterGroupFamily     aws.StringValue  `xml:"DBParameterGroupFamily"`
-	DefaultOnly                aws.BooleanValue `xml:"DefaultOnly"`
-	Engine                     aws.StringValue  `xml:"Engine"`
-	EngineVersion              aws.StringValue  `xml:"EngineVersion"`
-	Filters                    []Filter         `xml:"Filters>Filter"`
-	ListSupportedCharacterSets aws.BooleanValue `xml:"ListSupportedCharacterSets"`
-	Marker                     aws.StringValue  `xml:"Marker"`
-	MaxRecords                 aws.IntegerValue `xml:"MaxRecords"`
+	DBParameterGroupFamily     aws.StringValue  `query:"DBParameterGroupFamily" xml:"DBParameterGroupFamily"`
+	DefaultOnly                aws.BooleanValue `query:"DefaultOnly" xml:"DefaultOnly"`
+	Engine                     aws.StringValue  `query:"Engine" xml:"Engine"`
+	EngineVersion              aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	Filters                    []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	ListSupportedCharacterSets aws.BooleanValue `query:"ListSupportedCharacterSets" xml:"ListSupportedCharacterSets"`
+	Marker                     aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords                 aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeDBInstancesMessage is undocumented.
 type DescribeDBInstancesMessage struct {
-	DBInstanceIdentifier aws.StringValue  `xml:"DBInstanceIdentifier"`
-	Filters              []Filter         `xml:"Filters>Filter"`
-	Marker               aws.StringValue  `xml:"Marker"`
-	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
+	DBInstanceIdentifier aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	Filters              []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker               aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords           aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeDBLogFilesDetails is undocumented.
 type DescribeDBLogFilesDetails struct {
-	LastWritten aws.LongValue   `xml:"LastWritten"`
-	LogFileName aws.StringValue `xml:"LogFileName"`
-	Size        aws.LongValue   `xml:"Size"`
+	LastWritten aws.LongValue   `query:"LastWritten" xml:"LastWritten"`
+	LogFileName aws.StringValue `query:"LogFileName" xml:"LogFileName"`
+	Size        aws.LongValue   `query:"Size" xml:"Size"`
 }
 
 // DescribeDBLogFilesMessage is undocumented.
 type DescribeDBLogFilesMessage struct {
-	DBInstanceIdentifier aws.StringValue  `xml:"DBInstanceIdentifier"`
-	FileLastWritten      aws.LongValue    `xml:"FileLastWritten"`
-	FileSize             aws.LongValue    `xml:"FileSize"`
-	FilenameContains     aws.StringValue  `xml:"FilenameContains"`
-	Filters              []Filter         `xml:"Filters>Filter"`
-	Marker               aws.StringValue  `xml:"Marker"`
-	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
+	DBInstanceIdentifier aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	FileLastWritten      aws.LongValue    `query:"FileLastWritten" xml:"FileLastWritten"`
+	FileSize             aws.LongValue    `query:"FileSize" xml:"FileSize"`
+	FilenameContains     aws.StringValue  `query:"FilenameContains" xml:"FilenameContains"`
+	Filters              []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker               aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords           aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeDBLogFilesResponse is undocumented.
 type DescribeDBLogFilesResponse struct {
-	DescribeDBLogFiles []DescribeDBLogFilesDetails `xml:"DescribeDBLogFilesResult>DescribeDBLogFiles>DescribeDBLogFilesDetails"`
-	Marker             aws.StringValue             `xml:"DescribeDBLogFilesResult>Marker"`
+	DescribeDBLogFiles []DescribeDBLogFilesDetails `query:"DescribeDBLogFiles.member" xml:"DescribeDBLogFilesResult>DescribeDBLogFiles>DescribeDBLogFilesDetails"`
+	Marker             aws.StringValue             `query:"Marker" xml:"DescribeDBLogFilesResult>Marker"`
 }
 
 // DescribeDBParameterGroupsMessage is undocumented.
 type DescribeDBParameterGroupsMessage struct {
-	DBParameterGroupName aws.StringValue  `xml:"DBParameterGroupName"`
-	Filters              []Filter         `xml:"Filters>Filter"`
-	Marker               aws.StringValue  `xml:"Marker"`
-	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
+	DBParameterGroupName aws.StringValue  `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
+	Filters              []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker               aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords           aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeDBParametersMessage is undocumented.
 type DescribeDBParametersMessage struct {
-	DBParameterGroupName aws.StringValue  `xml:"DBParameterGroupName"`
-	Filters              []Filter         `xml:"Filters>Filter"`
-	Marker               aws.StringValue  `xml:"Marker"`
-	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
-	Source               aws.StringValue  `xml:"Source"`
+	DBParameterGroupName aws.StringValue  `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
+	Filters              []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker               aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords           aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	Source               aws.StringValue  `query:"Source" xml:"Source"`
 }
 
 // DescribeDBSecurityGroupsMessage is undocumented.
 type DescribeDBSecurityGroupsMessage struct {
-	DBSecurityGroupName aws.StringValue  `xml:"DBSecurityGroupName"`
-	Filters             []Filter         `xml:"Filters>Filter"`
-	Marker              aws.StringValue  `xml:"Marker"`
-	MaxRecords          aws.IntegerValue `xml:"MaxRecords"`
+	DBSecurityGroupName aws.StringValue  `query:"DBSecurityGroupName" xml:"DBSecurityGroupName"`
+	Filters             []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker              aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords          aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeDBSnapshotsMessage is undocumented.
 type DescribeDBSnapshotsMessage struct {
-	DBInstanceIdentifier aws.StringValue  `xml:"DBInstanceIdentifier"`
-	DBSnapshotIdentifier aws.StringValue  `xml:"DBSnapshotIdentifier"`
-	Filters              []Filter         `xml:"Filters>Filter"`
-	Marker               aws.StringValue  `xml:"Marker"`
-	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
-	SnapshotType         aws.StringValue  `xml:"SnapshotType"`
+	DBInstanceIdentifier aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	DBSnapshotIdentifier aws.StringValue  `query:"DBSnapshotIdentifier" xml:"DBSnapshotIdentifier"`
+	Filters              []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker               aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords           aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	SnapshotType         aws.StringValue  `query:"SnapshotType" xml:"SnapshotType"`
 }
 
 // DescribeDBSubnetGroupsMessage is undocumented.
 type DescribeDBSubnetGroupsMessage struct {
-	DBSubnetGroupName aws.StringValue  `xml:"DBSubnetGroupName"`
-	Filters           []Filter         `xml:"Filters>Filter"`
-	Marker            aws.StringValue  `xml:"Marker"`
-	MaxRecords        aws.IntegerValue `xml:"MaxRecords"`
+	DBSubnetGroupName aws.StringValue  `query:"DBSubnetGroupName" xml:"DBSubnetGroupName"`
+	Filters           []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker            aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords        aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeEngineDefaultParametersMessage is undocumented.
 type DescribeEngineDefaultParametersMessage struct {
-	DBParameterGroupFamily aws.StringValue  `xml:"DBParameterGroupFamily"`
-	Filters                []Filter         `xml:"Filters>Filter"`
-	Marker                 aws.StringValue  `xml:"Marker"`
-	MaxRecords             aws.IntegerValue `xml:"MaxRecords"`
+	DBParameterGroupFamily aws.StringValue  `query:"DBParameterGroupFamily" xml:"DBParameterGroupFamily"`
+	Filters                []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker                 aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords             aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeEngineDefaultParametersResult is undocumented.
 type DescribeEngineDefaultParametersResult struct {
-	EngineDefaults *EngineDefaults `xml:"DescribeEngineDefaultParametersResult>EngineDefaults"`
+	EngineDefaults *EngineDefaults `query:"EngineDefaults" xml:"DescribeEngineDefaultParametersResult>EngineDefaults"`
 }
 
 // DescribeEventCategoriesMessage is undocumented.
 type DescribeEventCategoriesMessage struct {
-	Filters    []Filter        `xml:"Filters>Filter"`
-	SourceType aws.StringValue `xml:"SourceType"`
+	Filters    []Filter        `query:"Filters.member" xml:"Filters>Filter"`
+	SourceType aws.StringValue `query:"SourceType" xml:"SourceType"`
 }
 
 // DescribeEventSubscriptionsMessage is undocumented.
 type DescribeEventSubscriptionsMessage struct {
-	Filters          []Filter         `xml:"Filters>Filter"`
-	Marker           aws.StringValue  `xml:"Marker"`
-	MaxRecords       aws.IntegerValue `xml:"MaxRecords"`
-	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
+	Filters          []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker           aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords       aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	SubscriptionName aws.StringValue  `query:"SubscriptionName" xml:"SubscriptionName"`
 }
 
 // DescribeEventsMessage is undocumented.
 type DescribeEventsMessage struct {
-	Duration         aws.IntegerValue `xml:"Duration"`
-	EndTime          time.Time        `xml:"EndTime"`
-	EventCategories  []string         `xml:"EventCategories>EventCategory"`
-	Filters          []Filter         `xml:"Filters>Filter"`
-	Marker           aws.StringValue  `xml:"Marker"`
-	MaxRecords       aws.IntegerValue `xml:"MaxRecords"`
-	SourceIdentifier aws.StringValue  `xml:"SourceIdentifier"`
-	SourceType       aws.StringValue  `xml:"SourceType"`
-	StartTime        time.Time        `xml:"StartTime"`
+	Duration         aws.IntegerValue `query:"Duration" xml:"Duration"`
+	EndTime          time.Time        `query:"EndTime" xml:"EndTime"`
+	EventCategories  []string         `query:"EventCategories.member" xml:"EventCategories>EventCategory"`
+	Filters          []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker           aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords       aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	SourceIdentifier aws.StringValue  `query:"SourceIdentifier" xml:"SourceIdentifier"`
+	SourceType       aws.StringValue  `query:"SourceType" xml:"SourceType"`
+	StartTime        time.Time        `query:"StartTime" xml:"StartTime"`
 }
 
 // DescribeOptionGroupOptionsMessage is undocumented.
 type DescribeOptionGroupOptionsMessage struct {
-	EngineName         aws.StringValue  `xml:"EngineName"`
-	Filters            []Filter         `xml:"Filters>Filter"`
-	MajorEngineVersion aws.StringValue  `xml:"MajorEngineVersion"`
-	Marker             aws.StringValue  `xml:"Marker"`
-	MaxRecords         aws.IntegerValue `xml:"MaxRecords"`
+	EngineName         aws.StringValue  `query:"EngineName" xml:"EngineName"`
+	Filters            []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	MajorEngineVersion aws.StringValue  `query:"MajorEngineVersion" xml:"MajorEngineVersion"`
+	Marker             aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords         aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeOptionGroupsMessage is undocumented.
 type DescribeOptionGroupsMessage struct {
-	EngineName         aws.StringValue  `xml:"EngineName"`
-	Filters            []Filter         `xml:"Filters>Filter"`
-	MajorEngineVersion aws.StringValue  `xml:"MajorEngineVersion"`
-	Marker             aws.StringValue  `xml:"Marker"`
-	MaxRecords         aws.IntegerValue `xml:"MaxRecords"`
-	OptionGroupName    aws.StringValue  `xml:"OptionGroupName"`
+	EngineName         aws.StringValue  `query:"EngineName" xml:"EngineName"`
+	Filters            []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	MajorEngineVersion aws.StringValue  `query:"MajorEngineVersion" xml:"MajorEngineVersion"`
+	Marker             aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords         aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	OptionGroupName    aws.StringValue  `query:"OptionGroupName" xml:"OptionGroupName"`
 }
 
 // DescribeOrderableDBInstanceOptionsMessage is undocumented.
 type DescribeOrderableDBInstanceOptionsMessage struct {
-	DBInstanceClass aws.StringValue  `xml:"DBInstanceClass"`
-	Engine          aws.StringValue  `xml:"Engine"`
-	EngineVersion   aws.StringValue  `xml:"EngineVersion"`
-	Filters         []Filter         `xml:"Filters>Filter"`
-	LicenseModel    aws.StringValue  `xml:"LicenseModel"`
-	Marker          aws.StringValue  `xml:"Marker"`
-	MaxRecords      aws.IntegerValue `xml:"MaxRecords"`
-	VPC             aws.BooleanValue `xml:"Vpc"`
+	DBInstanceClass aws.StringValue  `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	Engine          aws.StringValue  `query:"Engine" xml:"Engine"`
+	EngineVersion   aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	Filters         []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	LicenseModel    aws.StringValue  `query:"LicenseModel" xml:"LicenseModel"`
+	Marker          aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords      aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	VPC             aws.BooleanValue `query:"Vpc" xml:"Vpc"`
 }
 
 // DescribeReservedDBInstancesMessage is undocumented.
 type DescribeReservedDBInstancesMessage struct {
-	DBInstanceClass               aws.StringValue  `xml:"DBInstanceClass"`
-	Duration                      aws.StringValue  `xml:"Duration"`
-	Filters                       []Filter         `xml:"Filters>Filter"`
-	Marker                        aws.StringValue  `xml:"Marker"`
-	MaxRecords                    aws.IntegerValue `xml:"MaxRecords"`
-	MultiAZ                       aws.BooleanValue `xml:"MultiAZ"`
-	OfferingType                  aws.StringValue  `xml:"OfferingType"`
-	ProductDescription            aws.StringValue  `xml:"ProductDescription"`
-	ReservedDBInstanceID          aws.StringValue  `xml:"ReservedDBInstanceId"`
-	ReservedDBInstancesOfferingID aws.StringValue  `xml:"ReservedDBInstancesOfferingId"`
+	DBInstanceClass               aws.StringValue  `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	Duration                      aws.StringValue  `query:"Duration" xml:"Duration"`
+	Filters                       []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker                        aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords                    aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	MultiAZ                       aws.BooleanValue `query:"MultiAZ" xml:"MultiAZ"`
+	OfferingType                  aws.StringValue  `query:"OfferingType" xml:"OfferingType"`
+	ProductDescription            aws.StringValue  `query:"ProductDescription" xml:"ProductDescription"`
+	ReservedDBInstanceID          aws.StringValue  `query:"ReservedDBInstanceId" xml:"ReservedDBInstanceId"`
+	ReservedDBInstancesOfferingID aws.StringValue  `query:"ReservedDBInstancesOfferingId" xml:"ReservedDBInstancesOfferingId"`
 }
 
 // DescribeReservedDBInstancesOfferingsMessage is undocumented.
 type DescribeReservedDBInstancesOfferingsMessage struct {
-	DBInstanceClass               aws.StringValue  `xml:"DBInstanceClass"`
-	Duration                      aws.StringValue  `xml:"Duration"`
-	Filters                       []Filter         `xml:"Filters>Filter"`
-	Marker                        aws.StringValue  `xml:"Marker"`
-	MaxRecords                    aws.IntegerValue `xml:"MaxRecords"`
-	MultiAZ                       aws.BooleanValue `xml:"MultiAZ"`
-	OfferingType                  aws.StringValue  `xml:"OfferingType"`
-	ProductDescription            aws.StringValue  `xml:"ProductDescription"`
-	ReservedDBInstancesOfferingID aws.StringValue  `xml:"ReservedDBInstancesOfferingId"`
+	DBInstanceClass               aws.StringValue  `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	Duration                      aws.StringValue  `query:"Duration" xml:"Duration"`
+	Filters                       []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker                        aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords                    aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	MultiAZ                       aws.BooleanValue `query:"MultiAZ" xml:"MultiAZ"`
+	OfferingType                  aws.StringValue  `query:"OfferingType" xml:"OfferingType"`
+	ProductDescription            aws.StringValue  `query:"ProductDescription" xml:"ProductDescription"`
+	ReservedDBInstancesOfferingID aws.StringValue  `query:"ReservedDBInstancesOfferingId" xml:"ReservedDBInstancesOfferingId"`
 }
 
 // DownloadDBLogFilePortionDetails is undocumented.
 type DownloadDBLogFilePortionDetails struct {
-	AdditionalDataPending aws.BooleanValue `xml:"DownloadDBLogFilePortionResult>AdditionalDataPending"`
-	LogFileData           aws.StringValue  `xml:"DownloadDBLogFilePortionResult>LogFileData"`
-	Marker                aws.StringValue  `xml:"DownloadDBLogFilePortionResult>Marker"`
+	AdditionalDataPending aws.BooleanValue `query:"AdditionalDataPending" xml:"DownloadDBLogFilePortionResult>AdditionalDataPending"`
+	LogFileData           aws.StringValue  `query:"LogFileData" xml:"DownloadDBLogFilePortionResult>LogFileData"`
+	Marker                aws.StringValue  `query:"Marker" xml:"DownloadDBLogFilePortionResult>Marker"`
 }
 
 // DownloadDBLogFilePortionMessage is undocumented.
 type DownloadDBLogFilePortionMessage struct {
-	DBInstanceIdentifier aws.StringValue  `xml:"DBInstanceIdentifier"`
-	LogFileName          aws.StringValue  `xml:"LogFileName"`
-	Marker               aws.StringValue  `xml:"Marker"`
-	NumberOfLines        aws.IntegerValue `xml:"NumberOfLines"`
+	DBInstanceIdentifier aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	LogFileName          aws.StringValue  `query:"LogFileName" xml:"LogFileName"`
+	Marker               aws.StringValue  `query:"Marker" xml:"Marker"`
+	NumberOfLines        aws.IntegerValue `query:"NumberOfLines" xml:"NumberOfLines"`
 }
 
 // EC2SecurityGroup is undocumented.
 type EC2SecurityGroup struct {
-	EC2SecurityGroupID      aws.StringValue `xml:"EC2SecurityGroupId"`
-	EC2SecurityGroupName    aws.StringValue `xml:"EC2SecurityGroupName"`
-	EC2SecurityGroupOwnerID aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
-	Status                  aws.StringValue `xml:"Status"`
+	EC2SecurityGroupID      aws.StringValue `query:"EC2SecurityGroupId" xml:"EC2SecurityGroupId"`
+	EC2SecurityGroupName    aws.StringValue `query:"EC2SecurityGroupName" xml:"EC2SecurityGroupName"`
+	EC2SecurityGroupOwnerID aws.StringValue `query:"EC2SecurityGroupOwnerId" xml:"EC2SecurityGroupOwnerId"`
+	Status                  aws.StringValue `query:"Status" xml:"Status"`
 }
 
 // Endpoint is undocumented.
 type Endpoint struct {
-	Address aws.StringValue  `xml:"Address"`
-	Port    aws.IntegerValue `xml:"Port"`
+	Address aws.StringValue  `query:"Address" xml:"Address"`
+	Port    aws.IntegerValue `query:"Port" xml:"Port"`
 }
 
 // EngineDefaults is undocumented.
 type EngineDefaults struct {
-	DBParameterGroupFamily aws.StringValue `xml:"DBParameterGroupFamily"`
-	Marker                 aws.StringValue `xml:"Marker"`
-	Parameters             []Parameter     `xml:"Parameters>Parameter"`
+	DBParameterGroupFamily aws.StringValue `query:"DBParameterGroupFamily" xml:"DBParameterGroupFamily"`
+	Marker                 aws.StringValue `query:"Marker" xml:"Marker"`
+	Parameters             []Parameter     `query:"Parameters.member" xml:"Parameters>Parameter"`
 }
 
 // Event is undocumented.
 type Event struct {
-	Date             time.Time       `xml:"Date"`
-	EventCategories  []string        `xml:"EventCategories>EventCategory"`
-	Message          aws.StringValue `xml:"Message"`
-	SourceIdentifier aws.StringValue `xml:"SourceIdentifier"`
-	SourceType       aws.StringValue `xml:"SourceType"`
+	Date             time.Time       `query:"Date" xml:"Date"`
+	EventCategories  []string        `query:"EventCategories.member" xml:"EventCategories>EventCategory"`
+	Message          aws.StringValue `query:"Message" xml:"Message"`
+	SourceIdentifier aws.StringValue `query:"SourceIdentifier" xml:"SourceIdentifier"`
+	SourceType       aws.StringValue `query:"SourceType" xml:"SourceType"`
 }
 
 // EventCategoriesMap is undocumented.
 type EventCategoriesMap struct {
-	EventCategories []string        `xml:"EventCategories>EventCategory"`
-	SourceType      aws.StringValue `xml:"SourceType"`
+	EventCategories []string        `query:"EventCategories.member" xml:"EventCategories>EventCategory"`
+	SourceType      aws.StringValue `query:"SourceType" xml:"SourceType"`
 }
 
 // EventCategoriesMessage is undocumented.
 type EventCategoriesMessage struct {
-	EventCategoriesMapList []EventCategoriesMap `xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
+	EventCategoriesMapList []EventCategoriesMap `query:"EventCategoriesMapList.member" xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
 }
 
 // EventSubscription is undocumented.
 type EventSubscription struct {
-	CustSubscriptionID       aws.StringValue  `xml:"CustSubscriptionId"`
-	CustomerAWSID            aws.StringValue  `xml:"CustomerAwsId"`
-	Enabled                  aws.BooleanValue `xml:"Enabled"`
-	EventCategoriesList      []string         `xml:"EventCategoriesList>EventCategory"`
-	SNSTopicARN              aws.StringValue  `xml:"SnsTopicArn"`
-	SourceIDsList            []string         `xml:"SourceIdsList>SourceId"`
-	SourceType               aws.StringValue  `xml:"SourceType"`
-	Status                   aws.StringValue  `xml:"Status"`
-	SubscriptionCreationTime aws.StringValue  `xml:"SubscriptionCreationTime"`
+	CustSubscriptionID       aws.StringValue  `query:"CustSubscriptionId" xml:"CustSubscriptionId"`
+	CustomerAWSID            aws.StringValue  `query:"CustomerAwsId" xml:"CustomerAwsId"`
+	Enabled                  aws.BooleanValue `query:"Enabled" xml:"Enabled"`
+	EventCategoriesList      []string         `query:"EventCategoriesList.member" xml:"EventCategoriesList>EventCategory"`
+	SNSTopicARN              aws.StringValue  `query:"SnsTopicArn" xml:"SnsTopicArn"`
+	SourceIDsList            []string         `query:"SourceIdsList.member" xml:"SourceIdsList>SourceId"`
+	SourceType               aws.StringValue  `query:"SourceType" xml:"SourceType"`
+	Status                   aws.StringValue  `query:"Status" xml:"Status"`
+	SubscriptionCreationTime aws.StringValue  `query:"SubscriptionCreationTime" xml:"SubscriptionCreationTime"`
 }
 
 // EventSubscriptionsMessage is undocumented.
 type EventSubscriptionsMessage struct {
-	EventSubscriptionsList []EventSubscription `xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
-	Marker                 aws.StringValue     `xml:"DescribeEventSubscriptionsResult>Marker"`
+	EventSubscriptionsList []EventSubscription `query:"EventSubscriptionsList.member" xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
+	Marker                 aws.StringValue     `query:"Marker" xml:"DescribeEventSubscriptionsResult>Marker"`
 }
 
 // EventsMessage is undocumented.
 type EventsMessage struct {
-	Events []Event         `xml:"DescribeEventsResult>Events>Event"`
-	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
+	Events []Event         `query:"Events.member" xml:"DescribeEventsResult>Events>Event"`
+	Marker aws.StringValue `query:"Marker" xml:"DescribeEventsResult>Marker"`
 }
 
 // Filter is undocumented.
 type Filter struct {
-	Name   aws.StringValue `xml:"Name"`
-	Values []string        `xml:"Values>Value"`
+	Name   aws.StringValue `query:"Name" xml:"Name"`
+	Values []string        `query:"Values.member" xml:"Values>Value"`
 }
 
 // IPRange is undocumented.
 type IPRange struct {
-	CIDRIP aws.StringValue `xml:"CIDRIP"`
-	Status aws.StringValue `xml:"Status"`
+	CIDRIP aws.StringValue `query:"CIDRIP" xml:"CIDRIP"`
+	Status aws.StringValue `query:"Status" xml:"Status"`
 }
 
 // ListTagsForResourceMessage is undocumented.
 type ListTagsForResourceMessage struct {
-	Filters      []Filter        `xml:"Filters>Filter"`
-	ResourceName aws.StringValue `xml:"ResourceName"`
+	Filters      []Filter        `query:"Filters.member" xml:"Filters>Filter"`
+	ResourceName aws.StringValue `query:"ResourceName" xml:"ResourceName"`
 }
 
 // ModifyDBInstanceMessage is undocumented.
 type ModifyDBInstanceMessage struct {
-	AllocatedStorage           aws.IntegerValue `xml:"AllocatedStorage"`
-	AllowMajorVersionUpgrade   aws.BooleanValue `xml:"AllowMajorVersionUpgrade"`
-	ApplyImmediately           aws.BooleanValue `xml:"ApplyImmediately"`
-	AutoMinorVersionUpgrade    aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
-	BackupRetentionPeriod      aws.IntegerValue `xml:"BackupRetentionPeriod"`
-	DBInstanceClass            aws.StringValue  `xml:"DBInstanceClass"`
-	DBInstanceIdentifier       aws.StringValue  `xml:"DBInstanceIdentifier"`
-	DBParameterGroupName       aws.StringValue  `xml:"DBParameterGroupName"`
-	DBSecurityGroups           []string         `xml:"DBSecurityGroups>DBSecurityGroupName"`
-	EngineVersion              aws.StringValue  `xml:"EngineVersion"`
-	IOPS                       aws.IntegerValue `xml:"Iops"`
-	MasterUserPassword         aws.StringValue  `xml:"MasterUserPassword"`
-	MultiAZ                    aws.BooleanValue `xml:"MultiAZ"`
-	NewDBInstanceIdentifier    aws.StringValue  `xml:"NewDBInstanceIdentifier"`
-	OptionGroupName            aws.StringValue  `xml:"OptionGroupName"`
-	PreferredBackupWindow      aws.StringValue  `xml:"PreferredBackupWindow"`
-	PreferredMaintenanceWindow aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	StorageType                aws.StringValue  `xml:"StorageType"`
-	TDECredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
-	TDECredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
-	VPCSecurityGroupIDs        []string         `xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
+	AllocatedStorage           aws.IntegerValue `query:"AllocatedStorage" xml:"AllocatedStorage"`
+	AllowMajorVersionUpgrade   aws.BooleanValue `query:"AllowMajorVersionUpgrade" xml:"AllowMajorVersionUpgrade"`
+	ApplyImmediately           aws.BooleanValue `query:"ApplyImmediately" xml:"ApplyImmediately"`
+	AutoMinorVersionUpgrade    aws.BooleanValue `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	BackupRetentionPeriod      aws.IntegerValue `query:"BackupRetentionPeriod" xml:"BackupRetentionPeriod"`
+	DBInstanceClass            aws.StringValue  `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	DBInstanceIdentifier       aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	DBParameterGroupName       aws.StringValue  `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
+	DBSecurityGroups           []string         `query:"DBSecurityGroups.member" xml:"DBSecurityGroups>DBSecurityGroupName"`
+	EngineVersion              aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	IOPS                       aws.IntegerValue `query:"Iops" xml:"Iops"`
+	MasterUserPassword         aws.StringValue  `query:"MasterUserPassword" xml:"MasterUserPassword"`
+	MultiAZ                    aws.BooleanValue `query:"MultiAZ" xml:"MultiAZ"`
+	NewDBInstanceIdentifier    aws.StringValue  `query:"NewDBInstanceIdentifier" xml:"NewDBInstanceIdentifier"`
+	OptionGroupName            aws.StringValue  `query:"OptionGroupName" xml:"OptionGroupName"`
+	PreferredBackupWindow      aws.StringValue  `query:"PreferredBackupWindow" xml:"PreferredBackupWindow"`
+	PreferredMaintenanceWindow aws.StringValue  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	StorageType                aws.StringValue  `query:"StorageType" xml:"StorageType"`
+	TDECredentialARN           aws.StringValue  `query:"TdeCredentialArn" xml:"TdeCredentialArn"`
+	TDECredentialPassword      aws.StringValue  `query:"TdeCredentialPassword" xml:"TdeCredentialPassword"`
+	VPCSecurityGroupIDs        []string         `query:"VpcSecurityGroupIds.member" xml:"VpcSecurityGroupIds>VpcSecurityGroupId"`
 }
 
 // ModifyDBInstanceResult is undocumented.
 type ModifyDBInstanceResult struct {
-	DBInstance *DBInstance `xml:"ModifyDBInstanceResult>DBInstance"`
+	DBInstance *DBInstance `query:"DBInstance" xml:"ModifyDBInstanceResult>DBInstance"`
 }
 
 // ModifyDBParameterGroupMessage is undocumented.
 type ModifyDBParameterGroupMessage struct {
-	DBParameterGroupName aws.StringValue `xml:"DBParameterGroupName"`
-	Parameters           []Parameter     `xml:"Parameters>Parameter"`
+	DBParameterGroupName aws.StringValue `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
+	Parameters           []Parameter     `query:"Parameters.member" xml:"Parameters>Parameter"`
 }
 
 // ModifyDBSubnetGroupMessage is undocumented.
 type ModifyDBSubnetGroupMessage struct {
-	DBSubnetGroupDescription aws.StringValue `xml:"DBSubnetGroupDescription"`
-	DBSubnetGroupName        aws.StringValue `xml:"DBSubnetGroupName"`
-	SubnetIDs                []string        `xml:"SubnetIds>SubnetIdentifier"`
+	DBSubnetGroupDescription aws.StringValue `query:"DBSubnetGroupDescription" xml:"DBSubnetGroupDescription"`
+	DBSubnetGroupName        aws.StringValue `query:"DBSubnetGroupName" xml:"DBSubnetGroupName"`
+	SubnetIDs                []string        `query:"SubnetIds.member" xml:"SubnetIds>SubnetIdentifier"`
 }
 
 // ModifyDBSubnetGroupResult is undocumented.
 type ModifyDBSubnetGroupResult struct {
-	DBSubnetGroup *DBSubnetGroup `xml:"ModifyDBSubnetGroupResult>DBSubnetGroup"`
+	DBSubnetGroup *DBSubnetGroup `query:"DBSubnetGroup" xml:"ModifyDBSubnetGroupResult>DBSubnetGroup"`
 }
 
 // ModifyEventSubscriptionMessage is undocumented.
 type ModifyEventSubscriptionMessage struct {
-	Enabled          aws.BooleanValue `xml:"Enabled"`
-	EventCategories  []string         `xml:"EventCategories>EventCategory"`
-	SNSTopicARN      aws.StringValue  `xml:"SnsTopicArn"`
-	SourceType       aws.StringValue  `xml:"SourceType"`
-	SubscriptionName aws.StringValue  `xml:"SubscriptionName"`
+	Enabled          aws.BooleanValue `query:"Enabled" xml:"Enabled"`
+	EventCategories  []string         `query:"EventCategories.member" xml:"EventCategories>EventCategory"`
+	SNSTopicARN      aws.StringValue  `query:"SnsTopicArn" xml:"SnsTopicArn"`
+	SourceType       aws.StringValue  `query:"SourceType" xml:"SourceType"`
+	SubscriptionName aws.StringValue  `query:"SubscriptionName" xml:"SubscriptionName"`
 }
 
 // ModifyEventSubscriptionResult is undocumented.
 type ModifyEventSubscriptionResult struct {
-	EventSubscription *EventSubscription `xml:"ModifyEventSubscriptionResult>EventSubscription"`
+	EventSubscription *EventSubscription `query:"EventSubscription" xml:"ModifyEventSubscriptionResult>EventSubscription"`
 }
 
 // ModifyOptionGroupMessage is undocumented.
 type ModifyOptionGroupMessage struct {
-	ApplyImmediately aws.BooleanValue      `xml:"ApplyImmediately"`
-	OptionGroupName  aws.StringValue       `xml:"OptionGroupName"`
-	OptionsToInclude []OptionConfiguration `xml:"OptionsToInclude>OptionConfiguration"`
-	OptionsToRemove  []string              `xml:"OptionsToRemove>member"`
+	ApplyImmediately aws.BooleanValue      `query:"ApplyImmediately" xml:"ApplyImmediately"`
+	OptionGroupName  aws.StringValue       `query:"OptionGroupName" xml:"OptionGroupName"`
+	OptionsToInclude []OptionConfiguration `query:"OptionsToInclude.member" xml:"OptionsToInclude>OptionConfiguration"`
+	OptionsToRemove  []string              `query:"OptionsToRemove.member" xml:"OptionsToRemove>member"`
 }
 
 // ModifyOptionGroupResult is undocumented.
 type ModifyOptionGroupResult struct {
-	OptionGroup *OptionGroup `xml:"ModifyOptionGroupResult>OptionGroup"`
+	OptionGroup *OptionGroup `query:"OptionGroup" xml:"ModifyOptionGroupResult>OptionGroup"`
 }
 
 // Option is undocumented.
 type Option struct {
-	DBSecurityGroupMemberships  []DBSecurityGroupMembership  `xml:"DBSecurityGroupMemberships>DBSecurityGroup"`
-	OptionDescription           aws.StringValue              `xml:"OptionDescription"`
-	OptionName                  aws.StringValue              `xml:"OptionName"`
-	OptionSettings              []OptionSetting              `xml:"OptionSettings>OptionSetting"`
-	Permanent                   aws.BooleanValue             `xml:"Permanent"`
-	Persistent                  aws.BooleanValue             `xml:"Persistent"`
-	Port                        aws.IntegerValue             `xml:"Port"`
-	VPCSecurityGroupMemberships []VPCSecurityGroupMembership `xml:"VpcSecurityGroupMemberships>VpcSecurityGroupMembership"`
+	DBSecurityGroupMemberships  []DBSecurityGroupMembership  `query:"DBSecurityGroupMemberships.member" xml:"DBSecurityGroupMemberships>DBSecurityGroup"`
+	OptionDescription           aws.StringValue              `query:"OptionDescription" xml:"OptionDescription"`
+	OptionName                  aws.StringValue              `query:"OptionName" xml:"OptionName"`
+	OptionSettings              []OptionSetting              `query:"OptionSettings.member" xml:"OptionSettings>OptionSetting"`
+	Permanent                   aws.BooleanValue             `query:"Permanent" xml:"Permanent"`
+	Persistent                  aws.BooleanValue             `query:"Persistent" xml:"Persistent"`
+	Port                        aws.IntegerValue             `query:"Port" xml:"Port"`
+	VPCSecurityGroupMemberships []VPCSecurityGroupMembership `query:"VpcSecurityGroupMemberships.member" xml:"VpcSecurityGroupMemberships>VpcSecurityGroupMembership"`
 }
 
 // OptionConfiguration is undocumented.
 type OptionConfiguration struct {
-	DBSecurityGroupMemberships  []string         `xml:"DBSecurityGroupMemberships>DBSecurityGroupName"`
-	OptionName                  aws.StringValue  `xml:"OptionName"`
-	OptionSettings              []OptionSetting  `xml:"OptionSettings>OptionSetting"`
-	Port                        aws.IntegerValue `xml:"Port"`
-	VPCSecurityGroupMemberships []string         `xml:"VpcSecurityGroupMemberships>VpcSecurityGroupId"`
+	DBSecurityGroupMemberships  []string         `query:"DBSecurityGroupMemberships.member" xml:"DBSecurityGroupMemberships>DBSecurityGroupName"`
+	OptionName                  aws.StringValue  `query:"OptionName" xml:"OptionName"`
+	OptionSettings              []OptionSetting  `query:"OptionSettings.member" xml:"OptionSettings>OptionSetting"`
+	Port                        aws.IntegerValue `query:"Port" xml:"Port"`
+	VPCSecurityGroupMemberships []string         `query:"VpcSecurityGroupMemberships.member" xml:"VpcSecurityGroupMemberships>VpcSecurityGroupId"`
 }
 
 // OptionGroup is undocumented.
 type OptionGroup struct {
-	AllowsVPCAndNonVPCInstanceMemberships aws.BooleanValue `xml:"AllowsVpcAndNonVpcInstanceMemberships"`
-	EngineName                            aws.StringValue  `xml:"EngineName"`
-	MajorEngineVersion                    aws.StringValue  `xml:"MajorEngineVersion"`
-	OptionGroupDescription                aws.StringValue  `xml:"OptionGroupDescription"`
-	OptionGroupName                       aws.StringValue  `xml:"OptionGroupName"`
-	Options                               []Option         `xml:"Options>Option"`
-	VPCID                                 aws.StringValue  `xml:"VpcId"`
+	AllowsVPCAndNonVPCInstanceMemberships aws.BooleanValue `query:"AllowsVpcAndNonVpcInstanceMemberships" xml:"AllowsVpcAndNonVpcInstanceMemberships"`
+	EngineName                            aws.StringValue  `query:"EngineName" xml:"EngineName"`
+	MajorEngineVersion                    aws.StringValue  `query:"MajorEngineVersion" xml:"MajorEngineVersion"`
+	OptionGroupDescription                aws.StringValue  `query:"OptionGroupDescription" xml:"OptionGroupDescription"`
+	OptionGroupName                       aws.StringValue  `query:"OptionGroupName" xml:"OptionGroupName"`
+	Options                               []Option         `query:"Options.member" xml:"Options>Option"`
+	VPCID                                 aws.StringValue  `query:"VpcId" xml:"VpcId"`
 }
 
 // OptionGroupMembership is undocumented.
 type OptionGroupMembership struct {
-	OptionGroupName aws.StringValue `xml:"OptionGroupName"`
-	Status          aws.StringValue `xml:"Status"`
+	OptionGroupName aws.StringValue `query:"OptionGroupName" xml:"OptionGroupName"`
+	Status          aws.StringValue `query:"Status" xml:"Status"`
 }
 
 // OptionGroupOption is undocumented.
 type OptionGroupOption struct {
-	DefaultPort                       aws.IntegerValue           `xml:"DefaultPort"`
-	Description                       aws.StringValue            `xml:"Description"`
-	EngineName                        aws.StringValue            `xml:"EngineName"`
-	MajorEngineVersion                aws.StringValue            `xml:"MajorEngineVersion"`
-	MinimumRequiredMinorEngineVersion aws.StringValue            `xml:"MinimumRequiredMinorEngineVersion"`
-	Name                              aws.StringValue            `xml:"Name"`
-	OptionGroupOptionSettings         []OptionGroupOptionSetting `xml:"OptionGroupOptionSettings>OptionGroupOptionSetting"`
-	OptionsDependedOn                 []string                   `xml:"OptionsDependedOn>OptionName"`
-	Permanent                         aws.BooleanValue           `xml:"Permanent"`
-	Persistent                        aws.BooleanValue           `xml:"Persistent"`
-	PortRequired                      aws.BooleanValue           `xml:"PortRequired"`
+	DefaultPort                       aws.IntegerValue           `query:"DefaultPort" xml:"DefaultPort"`
+	Description                       aws.StringValue            `query:"Description" xml:"Description"`
+	EngineName                        aws.StringValue            `query:"EngineName" xml:"EngineName"`
+	MajorEngineVersion                aws.StringValue            `query:"MajorEngineVersion" xml:"MajorEngineVersion"`
+	MinimumRequiredMinorEngineVersion aws.StringValue            `query:"MinimumRequiredMinorEngineVersion" xml:"MinimumRequiredMinorEngineVersion"`
+	Name                              aws.StringValue            `query:"Name" xml:"Name"`
+	OptionGroupOptionSettings         []OptionGroupOptionSetting `query:"OptionGroupOptionSettings.member" xml:"OptionGroupOptionSettings>OptionGroupOptionSetting"`
+	OptionsDependedOn                 []string                   `query:"OptionsDependedOn.member" xml:"OptionsDependedOn>OptionName"`
+	Permanent                         aws.BooleanValue           `query:"Permanent" xml:"Permanent"`
+	Persistent                        aws.BooleanValue           `query:"Persistent" xml:"Persistent"`
+	PortRequired                      aws.BooleanValue           `query:"PortRequired" xml:"PortRequired"`
 }
 
 // OptionGroupOptionSetting is undocumented.
 type OptionGroupOptionSetting struct {
-	AllowedValues      aws.StringValue  `xml:"AllowedValues"`
-	ApplyType          aws.StringValue  `xml:"ApplyType"`
-	DefaultValue       aws.StringValue  `xml:"DefaultValue"`
-	IsModifiable       aws.BooleanValue `xml:"IsModifiable"`
-	SettingDescription aws.StringValue  `xml:"SettingDescription"`
-	SettingName        aws.StringValue  `xml:"SettingName"`
+	AllowedValues      aws.StringValue  `query:"AllowedValues" xml:"AllowedValues"`
+	ApplyType          aws.StringValue  `query:"ApplyType" xml:"ApplyType"`
+	DefaultValue       aws.StringValue  `query:"DefaultValue" xml:"DefaultValue"`
+	IsModifiable       aws.BooleanValue `query:"IsModifiable" xml:"IsModifiable"`
+	SettingDescription aws.StringValue  `query:"SettingDescription" xml:"SettingDescription"`
+	SettingName        aws.StringValue  `query:"SettingName" xml:"SettingName"`
 }
 
 // OptionGroupOptionsMessage is undocumented.
 type OptionGroupOptionsMessage struct {
-	Marker             aws.StringValue     `xml:"DescribeOptionGroupOptionsResult>Marker"`
-	OptionGroupOptions []OptionGroupOption `xml:"DescribeOptionGroupOptionsResult>OptionGroupOptions>OptionGroupOption"`
+	Marker             aws.StringValue     `query:"Marker" xml:"DescribeOptionGroupOptionsResult>Marker"`
+	OptionGroupOptions []OptionGroupOption `query:"OptionGroupOptions.member" xml:"DescribeOptionGroupOptionsResult>OptionGroupOptions>OptionGroupOption"`
 }
 
 // OptionGroups is undocumented.
 type OptionGroups struct {
-	Marker           aws.StringValue `xml:"DescribeOptionGroupsResult>Marker"`
-	OptionGroupsList []OptionGroup   `xml:"DescribeOptionGroupsResult>OptionGroupsList>OptionGroup"`
+	Marker           aws.StringValue `query:"Marker" xml:"DescribeOptionGroupsResult>Marker"`
+	OptionGroupsList []OptionGroup   `query:"OptionGroupsList.member" xml:"DescribeOptionGroupsResult>OptionGroupsList>OptionGroup"`
 }
 
 // OptionSetting is undocumented.
 type OptionSetting struct {
-	AllowedValues aws.StringValue  `xml:"AllowedValues"`
-	ApplyType     aws.StringValue  `xml:"ApplyType"`
-	DataType      aws.StringValue  `xml:"DataType"`
-	DefaultValue  aws.StringValue  `xml:"DefaultValue"`
-	Description   aws.StringValue  `xml:"Description"`
-	IsCollection  aws.BooleanValue `xml:"IsCollection"`
-	IsModifiable  aws.BooleanValue `xml:"IsModifiable"`
-	Name          aws.StringValue  `xml:"Name"`
-	Value         aws.StringValue  `xml:"Value"`
+	AllowedValues aws.StringValue  `query:"AllowedValues" xml:"AllowedValues"`
+	ApplyType     aws.StringValue  `query:"ApplyType" xml:"ApplyType"`
+	DataType      aws.StringValue  `query:"DataType" xml:"DataType"`
+	DefaultValue  aws.StringValue  `query:"DefaultValue" xml:"DefaultValue"`
+	Description   aws.StringValue  `query:"Description" xml:"Description"`
+	IsCollection  aws.BooleanValue `query:"IsCollection" xml:"IsCollection"`
+	IsModifiable  aws.BooleanValue `query:"IsModifiable" xml:"IsModifiable"`
+	Name          aws.StringValue  `query:"Name" xml:"Name"`
+	Value         aws.StringValue  `query:"Value" xml:"Value"`
 }
 
 // OrderableDBInstanceOption is undocumented.
 type OrderableDBInstanceOption struct {
-	AvailabilityZones  []AvailabilityZone `xml:"AvailabilityZones>AvailabilityZone"`
-	DBInstanceClass    aws.StringValue    `xml:"DBInstanceClass"`
-	Engine             aws.StringValue    `xml:"Engine"`
-	EngineVersion      aws.StringValue    `xml:"EngineVersion"`
-	LicenseModel       aws.StringValue    `xml:"LicenseModel"`
-	MultiAZCapable     aws.BooleanValue   `xml:"MultiAZCapable"`
-	ReadReplicaCapable aws.BooleanValue   `xml:"ReadReplicaCapable"`
-	StorageType        aws.StringValue    `xml:"StorageType"`
-	SupportsIOPS       aws.BooleanValue   `xml:"SupportsIops"`
-	VPC                aws.BooleanValue   `xml:"Vpc"`
+	AvailabilityZones  []AvailabilityZone `query:"AvailabilityZones.member" xml:"AvailabilityZones>AvailabilityZone"`
+	DBInstanceClass    aws.StringValue    `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	Engine             aws.StringValue    `query:"Engine" xml:"Engine"`
+	EngineVersion      aws.StringValue    `query:"EngineVersion" xml:"EngineVersion"`
+	LicenseModel       aws.StringValue    `query:"LicenseModel" xml:"LicenseModel"`
+	MultiAZCapable     aws.BooleanValue   `query:"MultiAZCapable" xml:"MultiAZCapable"`
+	ReadReplicaCapable aws.BooleanValue   `query:"ReadReplicaCapable" xml:"ReadReplicaCapable"`
+	StorageType        aws.StringValue    `query:"StorageType" xml:"StorageType"`
+	SupportsIOPS       aws.BooleanValue   `query:"SupportsIops" xml:"SupportsIops"`
+	VPC                aws.BooleanValue   `query:"Vpc" xml:"Vpc"`
 }
 
 // OrderableDBInstanceOptionsMessage is undocumented.
 type OrderableDBInstanceOptionsMessage struct {
-	Marker                     aws.StringValue             `xml:"DescribeOrderableDBInstanceOptionsResult>Marker"`
-	OrderableDBInstanceOptions []OrderableDBInstanceOption `xml:"DescribeOrderableDBInstanceOptionsResult>OrderableDBInstanceOptions>OrderableDBInstanceOption"`
+	Marker                     aws.StringValue             `query:"Marker" xml:"DescribeOrderableDBInstanceOptionsResult>Marker"`
+	OrderableDBInstanceOptions []OrderableDBInstanceOption `query:"OrderableDBInstanceOptions.member" xml:"DescribeOrderableDBInstanceOptionsResult>OrderableDBInstanceOptions>OrderableDBInstanceOption"`
 }
 
 // Parameter is undocumented.
 type Parameter struct {
-	AllowedValues        aws.StringValue  `xml:"AllowedValues"`
-	ApplyMethod          aws.StringValue  `xml:"ApplyMethod"`
-	ApplyType            aws.StringValue  `xml:"ApplyType"`
-	DataType             aws.StringValue  `xml:"DataType"`
-	Description          aws.StringValue  `xml:"Description"`
-	IsModifiable         aws.BooleanValue `xml:"IsModifiable"`
-	MinimumEngineVersion aws.StringValue  `xml:"MinimumEngineVersion"`
-	ParameterName        aws.StringValue  `xml:"ParameterName"`
-	ParameterValue       aws.StringValue  `xml:"ParameterValue"`
-	Source               aws.StringValue  `xml:"Source"`
+	AllowedValues        aws.StringValue  `query:"AllowedValues" xml:"AllowedValues"`
+	ApplyMethod          aws.StringValue  `query:"ApplyMethod" xml:"ApplyMethod"`
+	ApplyType            aws.StringValue  `query:"ApplyType" xml:"ApplyType"`
+	DataType             aws.StringValue  `query:"DataType" xml:"DataType"`
+	Description          aws.StringValue  `query:"Description" xml:"Description"`
+	IsModifiable         aws.BooleanValue `query:"IsModifiable" xml:"IsModifiable"`
+	MinimumEngineVersion aws.StringValue  `query:"MinimumEngineVersion" xml:"MinimumEngineVersion"`
+	ParameterName        aws.StringValue  `query:"ParameterName" xml:"ParameterName"`
+	ParameterValue       aws.StringValue  `query:"ParameterValue" xml:"ParameterValue"`
+	Source               aws.StringValue  `query:"Source" xml:"Source"`
 }
 
 // PendingModifiedValues is undocumented.
 type PendingModifiedValues struct {
-	AllocatedStorage      aws.IntegerValue `xml:"AllocatedStorage"`
-	BackupRetentionPeriod aws.IntegerValue `xml:"BackupRetentionPeriod"`
-	DBInstanceClass       aws.StringValue  `xml:"DBInstanceClass"`
-	DBInstanceIdentifier  aws.StringValue  `xml:"DBInstanceIdentifier"`
-	EngineVersion         aws.StringValue  `xml:"EngineVersion"`
-	IOPS                  aws.IntegerValue `xml:"Iops"`
-	MasterUserPassword    aws.StringValue  `xml:"MasterUserPassword"`
-	MultiAZ               aws.BooleanValue `xml:"MultiAZ"`
-	Port                  aws.IntegerValue `xml:"Port"`
-	StorageType           aws.StringValue  `xml:"StorageType"`
+	AllocatedStorage      aws.IntegerValue `query:"AllocatedStorage" xml:"AllocatedStorage"`
+	BackupRetentionPeriod aws.IntegerValue `query:"BackupRetentionPeriod" xml:"BackupRetentionPeriod"`
+	DBInstanceClass       aws.StringValue  `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	DBInstanceIdentifier  aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	EngineVersion         aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	IOPS                  aws.IntegerValue `query:"Iops" xml:"Iops"`
+	MasterUserPassword    aws.StringValue  `query:"MasterUserPassword" xml:"MasterUserPassword"`
+	MultiAZ               aws.BooleanValue `query:"MultiAZ" xml:"MultiAZ"`
+	Port                  aws.IntegerValue `query:"Port" xml:"Port"`
+	StorageType           aws.StringValue  `query:"StorageType" xml:"StorageType"`
 }
 
 // PromoteReadReplicaMessage is undocumented.
 type PromoteReadReplicaMessage struct {
-	BackupRetentionPeriod aws.IntegerValue `xml:"BackupRetentionPeriod"`
-	DBInstanceIdentifier  aws.StringValue  `xml:"DBInstanceIdentifier"`
-	PreferredBackupWindow aws.StringValue  `xml:"PreferredBackupWindow"`
+	BackupRetentionPeriod aws.IntegerValue `query:"BackupRetentionPeriod" xml:"BackupRetentionPeriod"`
+	DBInstanceIdentifier  aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	PreferredBackupWindow aws.StringValue  `query:"PreferredBackupWindow" xml:"PreferredBackupWindow"`
 }
 
 // PromoteReadReplicaResult is undocumented.
 type PromoteReadReplicaResult struct {
-	DBInstance *DBInstance `xml:"PromoteReadReplicaResult>DBInstance"`
+	DBInstance *DBInstance `query:"DBInstance" xml:"PromoteReadReplicaResult>DBInstance"`
 }
 
 // PurchaseReservedDBInstancesOfferingMessage is undocumented.
 type PurchaseReservedDBInstancesOfferingMessage struct {
-	DBInstanceCount               aws.IntegerValue `xml:"DBInstanceCount"`
-	ReservedDBInstanceID          aws.StringValue  `xml:"ReservedDBInstanceId"`
-	ReservedDBInstancesOfferingID aws.StringValue  `xml:"ReservedDBInstancesOfferingId"`
-	Tags                          []Tag            `xml:"Tags>Tag"`
+	DBInstanceCount               aws.IntegerValue `query:"DBInstanceCount" xml:"DBInstanceCount"`
+	ReservedDBInstanceID          aws.StringValue  `query:"ReservedDBInstanceId" xml:"ReservedDBInstanceId"`
+	ReservedDBInstancesOfferingID aws.StringValue  `query:"ReservedDBInstancesOfferingId" xml:"ReservedDBInstancesOfferingId"`
+	Tags                          []Tag            `query:"Tags.member" xml:"Tags>Tag"`
 }
 
 // PurchaseReservedDBInstancesOfferingResult is undocumented.
 type PurchaseReservedDBInstancesOfferingResult struct {
-	ReservedDBInstance *ReservedDBInstance `xml:"PurchaseReservedDBInstancesOfferingResult>ReservedDBInstance"`
+	ReservedDBInstance *ReservedDBInstance `query:"ReservedDBInstance" xml:"PurchaseReservedDBInstancesOfferingResult>ReservedDBInstance"`
 }
 
 // RebootDBInstanceMessage is undocumented.
 type RebootDBInstanceMessage struct {
-	DBInstanceIdentifier aws.StringValue  `xml:"DBInstanceIdentifier"`
-	ForceFailover        aws.BooleanValue `xml:"ForceFailover"`
+	DBInstanceIdentifier aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	ForceFailover        aws.BooleanValue `query:"ForceFailover" xml:"ForceFailover"`
 }
 
 // RebootDBInstanceResult is undocumented.
 type RebootDBInstanceResult struct {
-	DBInstance *DBInstance `xml:"RebootDBInstanceResult>DBInstance"`
+	DBInstance *DBInstance `query:"DBInstance" xml:"RebootDBInstanceResult>DBInstance"`
 }
 
 // RecurringCharge is undocumented.
 type RecurringCharge struct {
-	RecurringChargeAmount    aws.DoubleValue `xml:"RecurringChargeAmount"`
-	RecurringChargeFrequency aws.StringValue `xml:"RecurringChargeFrequency"`
+	RecurringChargeAmount    aws.DoubleValue `query:"RecurringChargeAmount" xml:"RecurringChargeAmount"`
+	RecurringChargeFrequency aws.StringValue `query:"RecurringChargeFrequency" xml:"RecurringChargeFrequency"`
 }
 
 // RemoveSourceIdentifierFromSubscriptionMessage is undocumented.
 type RemoveSourceIdentifierFromSubscriptionMessage struct {
-	SourceIdentifier aws.StringValue `xml:"SourceIdentifier"`
-	SubscriptionName aws.StringValue `xml:"SubscriptionName"`
+	SourceIdentifier aws.StringValue `query:"SourceIdentifier" xml:"SourceIdentifier"`
+	SubscriptionName aws.StringValue `query:"SubscriptionName" xml:"SubscriptionName"`
 }
 
 // RemoveSourceIdentifierFromSubscriptionResult is undocumented.
 type RemoveSourceIdentifierFromSubscriptionResult struct {
-	EventSubscription *EventSubscription `xml:"RemoveSourceIdentifierFromSubscriptionResult>EventSubscription"`
+	EventSubscription *EventSubscription `query:"EventSubscription" xml:"RemoveSourceIdentifierFromSubscriptionResult>EventSubscription"`
 }
 
 // RemoveTagsFromResourceMessage is undocumented.
 type RemoveTagsFromResourceMessage struct {
-	ResourceName aws.StringValue `xml:"ResourceName"`
-	TagKeys      []string        `xml:"TagKeys>member"`
+	ResourceName aws.StringValue `query:"ResourceName" xml:"ResourceName"`
+	TagKeys      []string        `query:"TagKeys.member" xml:"TagKeys>member"`
 }
 
 // ReservedDBInstance is undocumented.
 type ReservedDBInstance struct {
-	CurrencyCode                  aws.StringValue   `xml:"CurrencyCode"`
-	DBInstanceClass               aws.StringValue   `xml:"DBInstanceClass"`
-	DBInstanceCount               aws.IntegerValue  `xml:"DBInstanceCount"`
-	Duration                      aws.IntegerValue  `xml:"Duration"`
-	FixedPrice                    aws.DoubleValue   `xml:"FixedPrice"`
-	MultiAZ                       aws.BooleanValue  `xml:"MultiAZ"`
-	OfferingType                  aws.StringValue   `xml:"OfferingType"`
-	ProductDescription            aws.StringValue   `xml:"ProductDescription"`
-	RecurringCharges              []RecurringCharge `xml:"RecurringCharges>RecurringCharge"`
-	ReservedDBInstanceID          aws.StringValue   `xml:"ReservedDBInstanceId"`
-	ReservedDBInstancesOfferingID aws.StringValue   `xml:"ReservedDBInstancesOfferingId"`
-	StartTime                     time.Time         `xml:"StartTime"`
-	State                         aws.StringValue   `xml:"State"`
-	UsagePrice                    aws.DoubleValue   `xml:"UsagePrice"`
+	CurrencyCode                  aws.StringValue   `query:"CurrencyCode" xml:"CurrencyCode"`
+	DBInstanceClass               aws.StringValue   `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	DBInstanceCount               aws.IntegerValue  `query:"DBInstanceCount" xml:"DBInstanceCount"`
+	Duration                      aws.IntegerValue  `query:"Duration" xml:"Duration"`
+	FixedPrice                    aws.DoubleValue   `query:"FixedPrice" xml:"FixedPrice"`
+	MultiAZ                       aws.BooleanValue  `query:"MultiAZ" xml:"MultiAZ"`
+	OfferingType                  aws.StringValue   `query:"OfferingType" xml:"OfferingType"`
+	ProductDescription            aws.StringValue   `query:"ProductDescription" xml:"ProductDescription"`
+	RecurringCharges              []RecurringCharge `query:"RecurringCharges.member" xml:"RecurringCharges>RecurringCharge"`
+	ReservedDBInstanceID          aws.StringValue   `query:"ReservedDBInstanceId" xml:"ReservedDBInstanceId"`
+	ReservedDBInstancesOfferingID aws.StringValue   `query:"ReservedDBInstancesOfferingId" xml:"ReservedDBInstancesOfferingId"`
+	StartTime                     time.Time         `query:"StartTime" xml:"StartTime"`
+	State                         aws.StringValue   `query:"State" xml:"State"`
+	UsagePrice                    aws.DoubleValue   `query:"UsagePrice" xml:"UsagePrice"`
 }
 
 // ReservedDBInstanceMessage is undocumented.
 type ReservedDBInstanceMessage struct {
-	Marker              aws.StringValue      `xml:"DescribeReservedDBInstancesResult>Marker"`
-	ReservedDBInstances []ReservedDBInstance `xml:"DescribeReservedDBInstancesResult>ReservedDBInstances>ReservedDBInstance"`
+	Marker              aws.StringValue      `query:"Marker" xml:"DescribeReservedDBInstancesResult>Marker"`
+	ReservedDBInstances []ReservedDBInstance `query:"ReservedDBInstances.member" xml:"DescribeReservedDBInstancesResult>ReservedDBInstances>ReservedDBInstance"`
 }
 
 // ReservedDBInstancesOffering is undocumented.
 type ReservedDBInstancesOffering struct {
-	CurrencyCode                  aws.StringValue   `xml:"CurrencyCode"`
-	DBInstanceClass               aws.StringValue   `xml:"DBInstanceClass"`
-	Duration                      aws.IntegerValue  `xml:"Duration"`
-	FixedPrice                    aws.DoubleValue   `xml:"FixedPrice"`
-	MultiAZ                       aws.BooleanValue  `xml:"MultiAZ"`
-	OfferingType                  aws.StringValue   `xml:"OfferingType"`
-	ProductDescription            aws.StringValue   `xml:"ProductDescription"`
-	RecurringCharges              []RecurringCharge `xml:"RecurringCharges>RecurringCharge"`
-	ReservedDBInstancesOfferingID aws.StringValue   `xml:"ReservedDBInstancesOfferingId"`
-	UsagePrice                    aws.DoubleValue   `xml:"UsagePrice"`
+	CurrencyCode                  aws.StringValue   `query:"CurrencyCode" xml:"CurrencyCode"`
+	DBInstanceClass               aws.StringValue   `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	Duration                      aws.IntegerValue  `query:"Duration" xml:"Duration"`
+	FixedPrice                    aws.DoubleValue   `query:"FixedPrice" xml:"FixedPrice"`
+	MultiAZ                       aws.BooleanValue  `query:"MultiAZ" xml:"MultiAZ"`
+	OfferingType                  aws.StringValue   `query:"OfferingType" xml:"OfferingType"`
+	ProductDescription            aws.StringValue   `query:"ProductDescription" xml:"ProductDescription"`
+	RecurringCharges              []RecurringCharge `query:"RecurringCharges.member" xml:"RecurringCharges>RecurringCharge"`
+	ReservedDBInstancesOfferingID aws.StringValue   `query:"ReservedDBInstancesOfferingId" xml:"ReservedDBInstancesOfferingId"`
+	UsagePrice                    aws.DoubleValue   `query:"UsagePrice" xml:"UsagePrice"`
 }
 
 // ReservedDBInstancesOfferingMessage is undocumented.
 type ReservedDBInstancesOfferingMessage struct {
-	Marker                       aws.StringValue               `xml:"DescribeReservedDBInstancesOfferingsResult>Marker"`
-	ReservedDBInstancesOfferings []ReservedDBInstancesOffering `xml:"DescribeReservedDBInstancesOfferingsResult>ReservedDBInstancesOfferings>ReservedDBInstancesOffering"`
+	Marker                       aws.StringValue               `query:"Marker" xml:"DescribeReservedDBInstancesOfferingsResult>Marker"`
+	ReservedDBInstancesOfferings []ReservedDBInstancesOffering `query:"ReservedDBInstancesOfferings.member" xml:"DescribeReservedDBInstancesOfferingsResult>ReservedDBInstancesOfferings>ReservedDBInstancesOffering"`
 }
 
 // ResetDBParameterGroupMessage is undocumented.
 type ResetDBParameterGroupMessage struct {
-	DBParameterGroupName aws.StringValue  `xml:"DBParameterGroupName"`
-	Parameters           []Parameter      `xml:"Parameters>Parameter"`
-	ResetAllParameters   aws.BooleanValue `xml:"ResetAllParameters"`
+	DBParameterGroupName aws.StringValue  `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
+	Parameters           []Parameter      `query:"Parameters.member" xml:"Parameters>Parameter"`
+	ResetAllParameters   aws.BooleanValue `query:"ResetAllParameters" xml:"ResetAllParameters"`
 }
 
 // RestoreDBInstanceFromDBSnapshotMessage is undocumented.
 type RestoreDBInstanceFromDBSnapshotMessage struct {
-	AutoMinorVersionUpgrade aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
-	AvailabilityZone        aws.StringValue  `xml:"AvailabilityZone"`
-	DBInstanceClass         aws.StringValue  `xml:"DBInstanceClass"`
-	DBInstanceIdentifier    aws.StringValue  `xml:"DBInstanceIdentifier"`
-	DBName                  aws.StringValue  `xml:"DBName"`
-	DBSnapshotIdentifier    aws.StringValue  `xml:"DBSnapshotIdentifier"`
-	DBSubnetGroupName       aws.StringValue  `xml:"DBSubnetGroupName"`
-	Engine                  aws.StringValue  `xml:"Engine"`
-	IOPS                    aws.IntegerValue `xml:"Iops"`
-	LicenseModel            aws.StringValue  `xml:"LicenseModel"`
-	MultiAZ                 aws.BooleanValue `xml:"MultiAZ"`
-	OptionGroupName         aws.StringValue  `xml:"OptionGroupName"`
-	Port                    aws.IntegerValue `xml:"Port"`
-	PubliclyAccessible      aws.BooleanValue `xml:"PubliclyAccessible"`
-	StorageType             aws.StringValue  `xml:"StorageType"`
-	Tags                    []Tag            `xml:"Tags>Tag"`
-	TDECredentialARN        aws.StringValue  `xml:"TdeCredentialArn"`
-	TDECredentialPassword   aws.StringValue  `xml:"TdeCredentialPassword"`
+	AutoMinorVersionUpgrade aws.BooleanValue `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	AvailabilityZone        aws.StringValue  `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	DBInstanceClass         aws.StringValue  `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	DBInstanceIdentifier    aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
+	DBName                  aws.StringValue  `query:"DBName" xml:"DBName"`
+	DBSnapshotIdentifier    aws.StringValue  `query:"DBSnapshotIdentifier" xml:"DBSnapshotIdentifier"`
+	DBSubnetGroupName       aws.StringValue  `query:"DBSubnetGroupName" xml:"DBSubnetGroupName"`
+	Engine                  aws.StringValue  `query:"Engine" xml:"Engine"`
+	IOPS                    aws.IntegerValue `query:"Iops" xml:"Iops"`
+	LicenseModel            aws.StringValue  `query:"LicenseModel" xml:"LicenseModel"`
+	MultiAZ                 aws.BooleanValue `query:"MultiAZ" xml:"MultiAZ"`
+	OptionGroupName         aws.StringValue  `query:"OptionGroupName" xml:"OptionGroupName"`
+	Port                    aws.IntegerValue `query:"Port" xml:"Port"`
+	PubliclyAccessible      aws.BooleanValue `query:"PubliclyAccessible" xml:"PubliclyAccessible"`
+	StorageType             aws.StringValue  `query:"StorageType" xml:"StorageType"`
+	Tags                    []Tag            `query:"Tags.member" xml:"Tags>Tag"`
+	TDECredentialARN        aws.StringValue  `query:"TdeCredentialArn" xml:"TdeCredentialArn"`
+	TDECredentialPassword   aws.StringValue  `query:"TdeCredentialPassword" xml:"TdeCredentialPassword"`
 }
 
 // RestoreDBInstanceFromDBSnapshotResult is undocumented.
 type RestoreDBInstanceFromDBSnapshotResult struct {
-	DBInstance *DBInstance `xml:"RestoreDBInstanceFromDBSnapshotResult>DBInstance"`
+	DBInstance *DBInstance `query:"DBInstance" xml:"RestoreDBInstanceFromDBSnapshotResult>DBInstance"`
 }
 
 // RestoreDBInstanceToPointInTimeMessage is undocumented.
 type RestoreDBInstanceToPointInTimeMessage struct {
-	AutoMinorVersionUpgrade    aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
-	AvailabilityZone           aws.StringValue  `xml:"AvailabilityZone"`
-	DBInstanceClass            aws.StringValue  `xml:"DBInstanceClass"`
-	DBName                     aws.StringValue  `xml:"DBName"`
-	DBSubnetGroupName          aws.StringValue  `xml:"DBSubnetGroupName"`
-	Engine                     aws.StringValue  `xml:"Engine"`
-	IOPS                       aws.IntegerValue `xml:"Iops"`
-	LicenseModel               aws.StringValue  `xml:"LicenseModel"`
-	MultiAZ                    aws.BooleanValue `xml:"MultiAZ"`
-	OptionGroupName            aws.StringValue  `xml:"OptionGroupName"`
-	Port                       aws.IntegerValue `xml:"Port"`
-	PubliclyAccessible         aws.BooleanValue `xml:"PubliclyAccessible"`
-	RestoreTime                time.Time        `xml:"RestoreTime"`
-	SourceDBInstanceIdentifier aws.StringValue  `xml:"SourceDBInstanceIdentifier"`
-	StorageType                aws.StringValue  `xml:"StorageType"`
-	Tags                       []Tag            `xml:"Tags>Tag"`
-	TargetDBInstanceIdentifier aws.StringValue  `xml:"TargetDBInstanceIdentifier"`
-	TDECredentialARN           aws.StringValue  `xml:"TdeCredentialArn"`
-	TDECredentialPassword      aws.StringValue  `xml:"TdeCredentialPassword"`
-	UseLatestRestorableTime    aws.BooleanValue `xml:"UseLatestRestorableTime"`
+	AutoMinorVersionUpgrade    aws.BooleanValue `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	AvailabilityZone           aws.StringValue  `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	DBInstanceClass            aws.StringValue  `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	DBName                     aws.StringValue  `query:"DBName" xml:"DBName"`
+	DBSubnetGroupName          aws.StringValue  `query:"DBSubnetGroupName" xml:"DBSubnetGroupName"`
+	Engine                     aws.StringValue  `query:"Engine" xml:"Engine"`
+	IOPS                       aws.IntegerValue `query:"Iops" xml:"Iops"`
+	LicenseModel               aws.StringValue  `query:"LicenseModel" xml:"LicenseModel"`
+	MultiAZ                    aws.BooleanValue `query:"MultiAZ" xml:"MultiAZ"`
+	OptionGroupName            aws.StringValue  `query:"OptionGroupName" xml:"OptionGroupName"`
+	Port                       aws.IntegerValue `query:"Port" xml:"Port"`
+	PubliclyAccessible         aws.BooleanValue `query:"PubliclyAccessible" xml:"PubliclyAccessible"`
+	RestoreTime                time.Time        `query:"RestoreTime" xml:"RestoreTime"`
+	SourceDBInstanceIdentifier aws.StringValue  `query:"SourceDBInstanceIdentifier" xml:"SourceDBInstanceIdentifier"`
+	StorageType                aws.StringValue  `query:"StorageType" xml:"StorageType"`
+	Tags                       []Tag            `query:"Tags.member" xml:"Tags>Tag"`
+	TargetDBInstanceIdentifier aws.StringValue  `query:"TargetDBInstanceIdentifier" xml:"TargetDBInstanceIdentifier"`
+	TDECredentialARN           aws.StringValue  `query:"TdeCredentialArn" xml:"TdeCredentialArn"`
+	TDECredentialPassword      aws.StringValue  `query:"TdeCredentialPassword" xml:"TdeCredentialPassword"`
+	UseLatestRestorableTime    aws.BooleanValue `query:"UseLatestRestorableTime" xml:"UseLatestRestorableTime"`
 }
 
 // RestoreDBInstanceToPointInTimeResult is undocumented.
 type RestoreDBInstanceToPointInTimeResult struct {
-	DBInstance *DBInstance `xml:"RestoreDBInstanceToPointInTimeResult>DBInstance"`
+	DBInstance *DBInstance `query:"DBInstance" xml:"RestoreDBInstanceToPointInTimeResult>DBInstance"`
 }
 
 // RevokeDBSecurityGroupIngressMessage is undocumented.
 type RevokeDBSecurityGroupIngressMessage struct {
-	CIDRIP                  aws.StringValue `xml:"CIDRIP"`
-	DBSecurityGroupName     aws.StringValue `xml:"DBSecurityGroupName"`
-	EC2SecurityGroupID      aws.StringValue `xml:"EC2SecurityGroupId"`
-	EC2SecurityGroupName    aws.StringValue `xml:"EC2SecurityGroupName"`
-	EC2SecurityGroupOwnerID aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
+	CIDRIP                  aws.StringValue `query:"CIDRIP" xml:"CIDRIP"`
+	DBSecurityGroupName     aws.StringValue `query:"DBSecurityGroupName" xml:"DBSecurityGroupName"`
+	EC2SecurityGroupID      aws.StringValue `query:"EC2SecurityGroupId" xml:"EC2SecurityGroupId"`
+	EC2SecurityGroupName    aws.StringValue `query:"EC2SecurityGroupName" xml:"EC2SecurityGroupName"`
+	EC2SecurityGroupOwnerID aws.StringValue `query:"EC2SecurityGroupOwnerId" xml:"EC2SecurityGroupOwnerId"`
 }
 
 // RevokeDBSecurityGroupIngressResult is undocumented.
 type RevokeDBSecurityGroupIngressResult struct {
-	DBSecurityGroup *DBSecurityGroup `xml:"RevokeDBSecurityGroupIngressResult>DBSecurityGroup"`
+	DBSecurityGroup *DBSecurityGroup `query:"DBSecurityGroup" xml:"RevokeDBSecurityGroupIngressResult>DBSecurityGroup"`
 }
 
 // Possible values for RDS.
@@ -1701,143 +1701,143 @@ const (
 
 // Subnet is undocumented.
 type Subnet struct {
-	SubnetAvailabilityZone *AvailabilityZone `xml:"SubnetAvailabilityZone"`
-	SubnetIdentifier       aws.StringValue   `xml:"SubnetIdentifier"`
-	SubnetStatus           aws.StringValue   `xml:"SubnetStatus"`
+	SubnetAvailabilityZone *AvailabilityZone `query:"SubnetAvailabilityZone" xml:"SubnetAvailabilityZone"`
+	SubnetIdentifier       aws.StringValue   `query:"SubnetIdentifier" xml:"SubnetIdentifier"`
+	SubnetStatus           aws.StringValue   `query:"SubnetStatus" xml:"SubnetStatus"`
 }
 
 // Tag is undocumented.
 type Tag struct {
-	Key   aws.StringValue `xml:"Key"`
-	Value aws.StringValue `xml:"Value"`
+	Key   aws.StringValue `query:"Key" xml:"Key"`
+	Value aws.StringValue `query:"Value" xml:"Value"`
 }
 
 // TagListMessage is undocumented.
 type TagListMessage struct {
-	TagList []Tag `xml:"ListTagsForResourceResult>TagList>Tag"`
+	TagList []Tag `query:"TagList.member" xml:"ListTagsForResourceResult>TagList>Tag"`
 }
 
 // VPCSecurityGroupMembership is undocumented.
 type VPCSecurityGroupMembership struct {
-	Status             aws.StringValue `xml:"Status"`
-	VPCSecurityGroupID aws.StringValue `xml:"VpcSecurityGroupId"`
+	Status             aws.StringValue `query:"Status" xml:"Status"`
+	VPCSecurityGroupID aws.StringValue `query:"VpcSecurityGroupId" xml:"VpcSecurityGroupId"`
 }
 
 // DescribeDBEngineVersionsResult is a wrapper for DBEngineVersionMessage.
 type DescribeDBEngineVersionsResult struct {
-	DBEngineVersions []DBEngineVersion `xml:"DescribeDBEngineVersionsResult>DBEngineVersions>DBEngineVersion"`
-	Marker           aws.StringValue   `xml:"DescribeDBEngineVersionsResult>Marker"`
+	DBEngineVersions []DBEngineVersion `query:"DBEngineVersions.member" xml:"DescribeDBEngineVersionsResult>DBEngineVersions>DBEngineVersion"`
+	Marker           aws.StringValue   `query:"Marker" xml:"DescribeDBEngineVersionsResult>Marker"`
 }
 
 // DescribeDBInstancesResult is a wrapper for DBInstanceMessage.
 type DescribeDBInstancesResult struct {
-	DBInstances []DBInstance    `xml:"DescribeDBInstancesResult>DBInstances>DBInstance"`
-	Marker      aws.StringValue `xml:"DescribeDBInstancesResult>Marker"`
+	DBInstances []DBInstance    `query:"DBInstances.member" xml:"DescribeDBInstancesResult>DBInstances>DBInstance"`
+	Marker      aws.StringValue `query:"Marker" xml:"DescribeDBInstancesResult>Marker"`
 }
 
 // DescribeDBLogFilesResult is a wrapper for DescribeDBLogFilesResponse.
 type DescribeDBLogFilesResult struct {
-	DescribeDBLogFiles []DescribeDBLogFilesDetails `xml:"DescribeDBLogFilesResult>DescribeDBLogFiles>DescribeDBLogFilesDetails"`
-	Marker             aws.StringValue             `xml:"DescribeDBLogFilesResult>Marker"`
+	DescribeDBLogFiles []DescribeDBLogFilesDetails `query:"DescribeDBLogFiles.member" xml:"DescribeDBLogFilesResult>DescribeDBLogFiles>DescribeDBLogFilesDetails"`
+	Marker             aws.StringValue             `query:"Marker" xml:"DescribeDBLogFilesResult>Marker"`
 }
 
 // DescribeDBParameterGroupsResult is a wrapper for DBParameterGroupsMessage.
 type DescribeDBParameterGroupsResult struct {
-	DBParameterGroups []DBParameterGroup `xml:"DescribeDBParameterGroupsResult>DBParameterGroups>DBParameterGroup"`
-	Marker            aws.StringValue    `xml:"DescribeDBParameterGroupsResult>Marker"`
+	DBParameterGroups []DBParameterGroup `query:"DBParameterGroups.member" xml:"DescribeDBParameterGroupsResult>DBParameterGroups>DBParameterGroup"`
+	Marker            aws.StringValue    `query:"Marker" xml:"DescribeDBParameterGroupsResult>Marker"`
 }
 
 // DescribeDBParametersResult is a wrapper for DBParameterGroupDetails.
 type DescribeDBParametersResult struct {
-	Marker     aws.StringValue `xml:"DescribeDBParametersResult>Marker"`
-	Parameters []Parameter     `xml:"DescribeDBParametersResult>Parameters>Parameter"`
+	Marker     aws.StringValue `query:"Marker" xml:"DescribeDBParametersResult>Marker"`
+	Parameters []Parameter     `query:"Parameters.member" xml:"DescribeDBParametersResult>Parameters>Parameter"`
 }
 
 // DescribeDBSecurityGroupsResult is a wrapper for DBSecurityGroupMessage.
 type DescribeDBSecurityGroupsResult struct {
-	DBSecurityGroups []DBSecurityGroup `xml:"DescribeDBSecurityGroupsResult>DBSecurityGroups>DBSecurityGroup"`
-	Marker           aws.StringValue   `xml:"DescribeDBSecurityGroupsResult>Marker"`
+	DBSecurityGroups []DBSecurityGroup `query:"DBSecurityGroups.member" xml:"DescribeDBSecurityGroupsResult>DBSecurityGroups>DBSecurityGroup"`
+	Marker           aws.StringValue   `query:"Marker" xml:"DescribeDBSecurityGroupsResult>Marker"`
 }
 
 // DescribeDBSnapshotsResult is a wrapper for DBSnapshotMessage.
 type DescribeDBSnapshotsResult struct {
-	DBSnapshots []DBSnapshot    `xml:"DescribeDBSnapshotsResult>DBSnapshots>DBSnapshot"`
-	Marker      aws.StringValue `xml:"DescribeDBSnapshotsResult>Marker"`
+	DBSnapshots []DBSnapshot    `query:"DBSnapshots.member" xml:"DescribeDBSnapshotsResult>DBSnapshots>DBSnapshot"`
+	Marker      aws.StringValue `query:"Marker" xml:"DescribeDBSnapshotsResult>Marker"`
 }
 
 // DescribeDBSubnetGroupsResult is a wrapper for DBSubnetGroupMessage.
 type DescribeDBSubnetGroupsResult struct {
-	DBSubnetGroups []DBSubnetGroup `xml:"DescribeDBSubnetGroupsResult>DBSubnetGroups>DBSubnetGroup"`
-	Marker         aws.StringValue `xml:"DescribeDBSubnetGroupsResult>Marker"`
+	DBSubnetGroups []DBSubnetGroup `query:"DBSubnetGroups.member" xml:"DescribeDBSubnetGroupsResult>DBSubnetGroups>DBSubnetGroup"`
+	Marker         aws.StringValue `query:"Marker" xml:"DescribeDBSubnetGroupsResult>Marker"`
 }
 
 // DescribeEventCategoriesResult is a wrapper for EventCategoriesMessage.
 type DescribeEventCategoriesResult struct {
-	EventCategoriesMapList []EventCategoriesMap `xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
+	EventCategoriesMapList []EventCategoriesMap `query:"EventCategoriesMapList.member" xml:"DescribeEventCategoriesResult>EventCategoriesMapList>EventCategoriesMap"`
 }
 
 // DescribeEventSubscriptionsResult is a wrapper for EventSubscriptionsMessage.
 type DescribeEventSubscriptionsResult struct {
-	EventSubscriptionsList []EventSubscription `xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
-	Marker                 aws.StringValue     `xml:"DescribeEventSubscriptionsResult>Marker"`
+	EventSubscriptionsList []EventSubscription `query:"EventSubscriptionsList.member" xml:"DescribeEventSubscriptionsResult>EventSubscriptionsList>EventSubscription"`
+	Marker                 aws.StringValue     `query:"Marker" xml:"DescribeEventSubscriptionsResult>Marker"`
 }
 
 // DescribeEventsResult is a wrapper for EventsMessage.
 type DescribeEventsResult struct {
-	Events []Event         `xml:"DescribeEventsResult>Events>Event"`
-	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
+	Events []Event         `query:"Events.member" xml:"DescribeEventsResult>Events>Event"`
+	Marker aws.StringValue `query:"Marker" xml:"DescribeEventsResult>Marker"`
 }
 
 // DescribeOptionGroupOptionsResult is a wrapper for OptionGroupOptionsMessage.
 type DescribeOptionGroupOptionsResult struct {
-	Marker             aws.StringValue     `xml:"DescribeOptionGroupOptionsResult>Marker"`
-	OptionGroupOptions []OptionGroupOption `xml:"DescribeOptionGroupOptionsResult>OptionGroupOptions>OptionGroupOption"`
+	Marker             aws.StringValue     `query:"Marker" xml:"DescribeOptionGroupOptionsResult>Marker"`
+	OptionGroupOptions []OptionGroupOption `query:"OptionGroupOptions.member" xml:"DescribeOptionGroupOptionsResult>OptionGroupOptions>OptionGroupOption"`
 }
 
 // DescribeOptionGroupsResult is a wrapper for OptionGroups.
 type DescribeOptionGroupsResult struct {
-	Marker           aws.StringValue `xml:"DescribeOptionGroupsResult>Marker"`
-	OptionGroupsList []OptionGroup   `xml:"DescribeOptionGroupsResult>OptionGroupsList>OptionGroup"`
+	Marker           aws.StringValue `query:"Marker" xml:"DescribeOptionGroupsResult>Marker"`
+	OptionGroupsList []OptionGroup   `query:"OptionGroupsList.member" xml:"DescribeOptionGroupsResult>OptionGroupsList>OptionGroup"`
 }
 
 // DescribeOrderableDBInstanceOptionsResult is a wrapper for OrderableDBInstanceOptionsMessage.
 type DescribeOrderableDBInstanceOptionsResult struct {
-	Marker                     aws.StringValue             `xml:"DescribeOrderableDBInstanceOptionsResult>Marker"`
-	OrderableDBInstanceOptions []OrderableDBInstanceOption `xml:"DescribeOrderableDBInstanceOptionsResult>OrderableDBInstanceOptions>OrderableDBInstanceOption"`
+	Marker                     aws.StringValue             `query:"Marker" xml:"DescribeOrderableDBInstanceOptionsResult>Marker"`
+	OrderableDBInstanceOptions []OrderableDBInstanceOption `query:"OrderableDBInstanceOptions.member" xml:"DescribeOrderableDBInstanceOptionsResult>OrderableDBInstanceOptions>OrderableDBInstanceOption"`
 }
 
 // DescribeReservedDBInstancesOfferingsResult is a wrapper for ReservedDBInstancesOfferingMessage.
 type DescribeReservedDBInstancesOfferingsResult struct {
-	Marker                       aws.StringValue               `xml:"DescribeReservedDBInstancesOfferingsResult>Marker"`
-	ReservedDBInstancesOfferings []ReservedDBInstancesOffering `xml:"DescribeReservedDBInstancesOfferingsResult>ReservedDBInstancesOfferings>ReservedDBInstancesOffering"`
+	Marker                       aws.StringValue               `query:"Marker" xml:"DescribeReservedDBInstancesOfferingsResult>Marker"`
+	ReservedDBInstancesOfferings []ReservedDBInstancesOffering `query:"ReservedDBInstancesOfferings.member" xml:"DescribeReservedDBInstancesOfferingsResult>ReservedDBInstancesOfferings>ReservedDBInstancesOffering"`
 }
 
 // DescribeReservedDBInstancesResult is a wrapper for ReservedDBInstanceMessage.
 type DescribeReservedDBInstancesResult struct {
-	Marker              aws.StringValue      `xml:"DescribeReservedDBInstancesResult>Marker"`
-	ReservedDBInstances []ReservedDBInstance `xml:"DescribeReservedDBInstancesResult>ReservedDBInstances>ReservedDBInstance"`
+	Marker              aws.StringValue      `query:"Marker" xml:"DescribeReservedDBInstancesResult>Marker"`
+	ReservedDBInstances []ReservedDBInstance `query:"ReservedDBInstances.member" xml:"DescribeReservedDBInstancesResult>ReservedDBInstances>ReservedDBInstance"`
 }
 
 // DownloadDBLogFilePortionResult is a wrapper for DownloadDBLogFilePortionDetails.
 type DownloadDBLogFilePortionResult struct {
-	AdditionalDataPending aws.BooleanValue `xml:"DownloadDBLogFilePortionResult>AdditionalDataPending"`
-	LogFileData           aws.StringValue  `xml:"DownloadDBLogFilePortionResult>LogFileData"`
-	Marker                aws.StringValue  `xml:"DownloadDBLogFilePortionResult>Marker"`
+	AdditionalDataPending aws.BooleanValue `query:"AdditionalDataPending" xml:"DownloadDBLogFilePortionResult>AdditionalDataPending"`
+	LogFileData           aws.StringValue  `query:"LogFileData" xml:"DownloadDBLogFilePortionResult>LogFileData"`
+	Marker                aws.StringValue  `query:"Marker" xml:"DownloadDBLogFilePortionResult>Marker"`
 }
 
 // ListTagsForResourceResult is a wrapper for TagListMessage.
 type ListTagsForResourceResult struct {
-	TagList []Tag `xml:"ListTagsForResourceResult>TagList>Tag"`
+	TagList []Tag `query:"TagList.member" xml:"ListTagsForResourceResult>TagList>Tag"`
 }
 
 // ModifyDBParameterGroupResult is a wrapper for DBParameterGroupNameMessage.
 type ModifyDBParameterGroupResult struct {
-	DBParameterGroupName aws.StringValue `xml:"ModifyDBParameterGroupResult>DBParameterGroupName"`
+	DBParameterGroupName aws.StringValue `query:"DBParameterGroupName" xml:"ModifyDBParameterGroupResult>DBParameterGroupName"`
 }
 
 // ResetDBParameterGroupResult is a wrapper for DBParameterGroupNameMessage.
 type ResetDBParameterGroupResult struct {
-	DBParameterGroupName aws.StringValue `xml:"ResetDBParameterGroupResult>DBParameterGroupName"`
+	DBParameterGroupName aws.StringValue `query:"DBParameterGroupName" xml:"ResetDBParameterGroupResult>DBParameterGroupName"`
 }
 
 // avoid errors if the packages aren't referenced

@@ -412,27 +412,27 @@ func (c *ELB) SetLoadBalancerPoliciesOfListener(req *SetLoadBalancerPoliciesOfLi
 
 // AccessLog is undocumented.
 type AccessLog struct {
-	EmitInterval   aws.IntegerValue `xml:"EmitInterval"`
-	Enabled        aws.BooleanValue `xml:"Enabled"`
-	S3BucketName   aws.StringValue  `xml:"S3BucketName"`
-	S3BucketPrefix aws.StringValue  `xml:"S3BucketPrefix"`
+	EmitInterval   aws.IntegerValue `query:"EmitInterval" xml:"EmitInterval"`
+	Enabled        aws.BooleanValue `query:"Enabled" xml:"Enabled"`
+	S3BucketName   aws.StringValue  `query:"S3BucketName" xml:"S3BucketName"`
+	S3BucketPrefix aws.StringValue  `query:"S3BucketPrefix" xml:"S3BucketPrefix"`
 }
 
 // AddAvailabilityZonesInput is undocumented.
 type AddAvailabilityZonesInput struct {
-	AvailabilityZones []string        `xml:"AvailabilityZones>member"`
-	LoadBalancerName  aws.StringValue `xml:"LoadBalancerName"`
+	AvailabilityZones []string        `query:"AvailabilityZones.member" xml:"AvailabilityZones>member"`
+	LoadBalancerName  aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
 }
 
 // AddAvailabilityZonesOutput is undocumented.
 type AddAvailabilityZonesOutput struct {
-	AvailabilityZones []string `xml:"EnableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
+	AvailabilityZones []string `query:"AvailabilityZones.member" xml:"EnableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
 }
 
 // AddTagsInput is undocumented.
 type AddTagsInput struct {
-	LoadBalancerNames []string `xml:"LoadBalancerNames>member"`
-	Tags              []Tag    `xml:"Tags>member"`
+	LoadBalancerNames []string `query:"LoadBalancerNames.member" xml:"LoadBalancerNames>member"`
+	Tags              []Tag    `query:"Tags.member" xml:"Tags>member"`
 }
 
 // AddTagsOutput is undocumented.
@@ -441,87 +441,87 @@ type AddTagsOutput struct {
 
 // AdditionalAttribute is undocumented.
 type AdditionalAttribute struct {
-	Key   aws.StringValue `xml:"Key"`
-	Value aws.StringValue `xml:"Value"`
+	Key   aws.StringValue `query:"Key" xml:"Key"`
+	Value aws.StringValue `query:"Value" xml:"Value"`
 }
 
 // AppCookieStickinessPolicy is undocumented.
 type AppCookieStickinessPolicy struct {
-	CookieName aws.StringValue `xml:"CookieName"`
-	PolicyName aws.StringValue `xml:"PolicyName"`
+	CookieName aws.StringValue `query:"CookieName" xml:"CookieName"`
+	PolicyName aws.StringValue `query:"PolicyName" xml:"PolicyName"`
 }
 
 // ApplySecurityGroupsToLoadBalancerInput is undocumented.
 type ApplySecurityGroupsToLoadBalancerInput struct {
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
-	SecurityGroups   []string        `xml:"SecurityGroups>member"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	SecurityGroups   []string        `query:"SecurityGroups.member" xml:"SecurityGroups>member"`
 }
 
 // ApplySecurityGroupsToLoadBalancerOutput is undocumented.
 type ApplySecurityGroupsToLoadBalancerOutput struct {
-	SecurityGroups []string `xml:"ApplySecurityGroupsToLoadBalancerResult>SecurityGroups>member"`
+	SecurityGroups []string `query:"SecurityGroups.member" xml:"ApplySecurityGroupsToLoadBalancerResult>SecurityGroups>member"`
 }
 
 // AttachLoadBalancerToSubnetsInput is undocumented.
 type AttachLoadBalancerToSubnetsInput struct {
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
-	Subnets          []string        `xml:"Subnets>member"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	Subnets          []string        `query:"Subnets.member" xml:"Subnets>member"`
 }
 
 // AttachLoadBalancerToSubnetsOutput is undocumented.
 type AttachLoadBalancerToSubnetsOutput struct {
-	Subnets []string `xml:"AttachLoadBalancerToSubnetsResult>Subnets>member"`
+	Subnets []string `query:"Subnets.member" xml:"AttachLoadBalancerToSubnetsResult>Subnets>member"`
 }
 
 // BackendServerDescription is undocumented.
 type BackendServerDescription struct {
-	InstancePort aws.IntegerValue `xml:"InstancePort"`
-	PolicyNames  []string         `xml:"PolicyNames>member"`
+	InstancePort aws.IntegerValue `query:"InstancePort" xml:"InstancePort"`
+	PolicyNames  []string         `query:"PolicyNames.member" xml:"PolicyNames>member"`
 }
 
 // ConfigureHealthCheckInput is undocumented.
 type ConfigureHealthCheckInput struct {
-	HealthCheck      *HealthCheck    `xml:"HealthCheck"`
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
+	HealthCheck      *HealthCheck    `query:"HealthCheck" xml:"HealthCheck"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
 }
 
 // ConfigureHealthCheckOutput is undocumented.
 type ConfigureHealthCheckOutput struct {
-	HealthCheck *HealthCheck `xml:"ConfigureHealthCheckResult>HealthCheck"`
+	HealthCheck *HealthCheck `query:"HealthCheck" xml:"ConfigureHealthCheckResult>HealthCheck"`
 }
 
 // ConnectionDraining is undocumented.
 type ConnectionDraining struct {
-	Enabled aws.BooleanValue `xml:"Enabled"`
-	Timeout aws.IntegerValue `xml:"Timeout"`
+	Enabled aws.BooleanValue `query:"Enabled" xml:"Enabled"`
+	Timeout aws.IntegerValue `query:"Timeout" xml:"Timeout"`
 }
 
 // ConnectionSettings is undocumented.
 type ConnectionSettings struct {
-	IdleTimeout aws.IntegerValue `xml:"IdleTimeout"`
+	IdleTimeout aws.IntegerValue `query:"IdleTimeout" xml:"IdleTimeout"`
 }
 
 // CreateAccessPointInput is undocumented.
 type CreateAccessPointInput struct {
-	AvailabilityZones []string        `xml:"AvailabilityZones>member"`
-	Listeners         []Listener      `xml:"Listeners>member"`
-	LoadBalancerName  aws.StringValue `xml:"LoadBalancerName"`
-	Scheme            aws.StringValue `xml:"Scheme"`
-	SecurityGroups    []string        `xml:"SecurityGroups>member"`
-	Subnets           []string        `xml:"Subnets>member"`
-	Tags              []Tag           `xml:"Tags>member"`
+	AvailabilityZones []string        `query:"AvailabilityZones.member" xml:"AvailabilityZones>member"`
+	Listeners         []Listener      `query:"Listeners.member" xml:"Listeners>member"`
+	LoadBalancerName  aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	Scheme            aws.StringValue `query:"Scheme" xml:"Scheme"`
+	SecurityGroups    []string        `query:"SecurityGroups.member" xml:"SecurityGroups>member"`
+	Subnets           []string        `query:"Subnets.member" xml:"Subnets>member"`
+	Tags              []Tag           `query:"Tags.member" xml:"Tags>member"`
 }
 
 // CreateAccessPointOutput is undocumented.
 type CreateAccessPointOutput struct {
-	DNSName aws.StringValue `xml:"CreateLoadBalancerResult>DNSName"`
+	DNSName aws.StringValue `query:"DNSName" xml:"CreateLoadBalancerResult>DNSName"`
 }
 
 // CreateAppCookieStickinessPolicyInput is undocumented.
 type CreateAppCookieStickinessPolicyInput struct {
-	CookieName       aws.StringValue `xml:"CookieName"`
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
-	PolicyName       aws.StringValue `xml:"PolicyName"`
+	CookieName       aws.StringValue `query:"CookieName" xml:"CookieName"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	PolicyName       aws.StringValue `query:"PolicyName" xml:"PolicyName"`
 }
 
 // CreateAppCookieStickinessPolicyOutput is undocumented.
@@ -530,9 +530,9 @@ type CreateAppCookieStickinessPolicyOutput struct {
 
 // CreateLBCookieStickinessPolicyInput is undocumented.
 type CreateLBCookieStickinessPolicyInput struct {
-	CookieExpirationPeriod aws.LongValue   `xml:"CookieExpirationPeriod"`
-	LoadBalancerName       aws.StringValue `xml:"LoadBalancerName"`
-	PolicyName             aws.StringValue `xml:"PolicyName"`
+	CookieExpirationPeriod aws.LongValue   `query:"CookieExpirationPeriod" xml:"CookieExpirationPeriod"`
+	LoadBalancerName       aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	PolicyName             aws.StringValue `query:"PolicyName" xml:"PolicyName"`
 }
 
 // CreateLBCookieStickinessPolicyOutput is undocumented.
@@ -541,8 +541,8 @@ type CreateLBCookieStickinessPolicyOutput struct {
 
 // CreateLoadBalancerListenerInput is undocumented.
 type CreateLoadBalancerListenerInput struct {
-	Listeners        []Listener      `xml:"Listeners>member"`
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
+	Listeners        []Listener      `query:"Listeners.member" xml:"Listeners>member"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
 }
 
 // CreateLoadBalancerListenerOutput is undocumented.
@@ -551,10 +551,10 @@ type CreateLoadBalancerListenerOutput struct {
 
 // CreateLoadBalancerPolicyInput is undocumented.
 type CreateLoadBalancerPolicyInput struct {
-	LoadBalancerName aws.StringValue   `xml:"LoadBalancerName"`
-	PolicyAttributes []PolicyAttribute `xml:"PolicyAttributes>member"`
-	PolicyName       aws.StringValue   `xml:"PolicyName"`
-	PolicyTypeName   aws.StringValue   `xml:"PolicyTypeName"`
+	LoadBalancerName aws.StringValue   `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	PolicyAttributes []PolicyAttribute `query:"PolicyAttributes.member" xml:"PolicyAttributes>member"`
+	PolicyName       aws.StringValue   `query:"PolicyName" xml:"PolicyName"`
+	PolicyTypeName   aws.StringValue   `query:"PolicyTypeName" xml:"PolicyTypeName"`
 }
 
 // CreateLoadBalancerPolicyOutput is undocumented.
@@ -563,12 +563,12 @@ type CreateLoadBalancerPolicyOutput struct {
 
 // CrossZoneLoadBalancing is undocumented.
 type CrossZoneLoadBalancing struct {
-	Enabled aws.BooleanValue `xml:"Enabled"`
+	Enabled aws.BooleanValue `query:"Enabled" xml:"Enabled"`
 }
 
 // DeleteAccessPointInput is undocumented.
 type DeleteAccessPointInput struct {
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
 }
 
 // DeleteAccessPointOutput is undocumented.
@@ -577,8 +577,8 @@ type DeleteAccessPointOutput struct {
 
 // DeleteLoadBalancerListenerInput is undocumented.
 type DeleteLoadBalancerListenerInput struct {
-	LoadBalancerName  aws.StringValue `xml:"LoadBalancerName"`
-	LoadBalancerPorts []int           `xml:"LoadBalancerPorts>member"`
+	LoadBalancerName  aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	LoadBalancerPorts []int           `query:"LoadBalancerPorts.member" xml:"LoadBalancerPorts>member"`
 }
 
 // DeleteLoadBalancerListenerOutput is undocumented.
@@ -587,8 +587,8 @@ type DeleteLoadBalancerListenerOutput struct {
 
 // DeleteLoadBalancerPolicyInput is undocumented.
 type DeleteLoadBalancerPolicyInput struct {
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
-	PolicyName       aws.StringValue `xml:"PolicyName"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	PolicyName       aws.StringValue `query:"PolicyName" xml:"PolicyName"`
 }
 
 // DeleteLoadBalancerPolicyOutput is undocumented.
@@ -597,243 +597,243 @@ type DeleteLoadBalancerPolicyOutput struct {
 
 // DeregisterEndPointsInput is undocumented.
 type DeregisterEndPointsInput struct {
-	Instances        []Instance      `xml:"Instances>member"`
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
+	Instances        []Instance      `query:"Instances.member" xml:"Instances>member"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
 }
 
 // DeregisterEndPointsOutput is undocumented.
 type DeregisterEndPointsOutput struct {
-	Instances []Instance `xml:"DeregisterInstancesFromLoadBalancerResult>Instances>member"`
+	Instances []Instance `query:"Instances.member" xml:"DeregisterInstancesFromLoadBalancerResult>Instances>member"`
 }
 
 // DescribeAccessPointsInput is undocumented.
 type DescribeAccessPointsInput struct {
-	LoadBalancerNames []string         `xml:"LoadBalancerNames>member"`
-	Marker            aws.StringValue  `xml:"Marker"`
-	PageSize          aws.IntegerValue `xml:"PageSize"`
+	LoadBalancerNames []string         `query:"LoadBalancerNames.member" xml:"LoadBalancerNames>member"`
+	Marker            aws.StringValue  `query:"Marker" xml:"Marker"`
+	PageSize          aws.IntegerValue `query:"PageSize" xml:"PageSize"`
 }
 
 // DescribeAccessPointsOutput is undocumented.
 type DescribeAccessPointsOutput struct {
-	LoadBalancerDescriptions []LoadBalancerDescription `xml:"DescribeLoadBalancersResult>LoadBalancerDescriptions>member"`
-	NextMarker               aws.StringValue           `xml:"DescribeLoadBalancersResult>NextMarker"`
+	LoadBalancerDescriptions []LoadBalancerDescription `query:"LoadBalancerDescriptions.member" xml:"DescribeLoadBalancersResult>LoadBalancerDescriptions>member"`
+	NextMarker               aws.StringValue           `query:"NextMarker" xml:"DescribeLoadBalancersResult>NextMarker"`
 }
 
 // DescribeEndPointStateInput is undocumented.
 type DescribeEndPointStateInput struct {
-	Instances        []Instance      `xml:"Instances>member"`
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
+	Instances        []Instance      `query:"Instances.member" xml:"Instances>member"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
 }
 
 // DescribeEndPointStateOutput is undocumented.
 type DescribeEndPointStateOutput struct {
-	InstanceStates []InstanceState `xml:"DescribeInstanceHealthResult>InstanceStates>member"`
+	InstanceStates []InstanceState `query:"InstanceStates.member" xml:"DescribeInstanceHealthResult>InstanceStates>member"`
 }
 
 // DescribeLoadBalancerAttributesInput is undocumented.
 type DescribeLoadBalancerAttributesInput struct {
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
 }
 
 // DescribeLoadBalancerAttributesOutput is undocumented.
 type DescribeLoadBalancerAttributesOutput struct {
-	LoadBalancerAttributes *LoadBalancerAttributes `xml:"DescribeLoadBalancerAttributesResult>LoadBalancerAttributes"`
+	LoadBalancerAttributes *LoadBalancerAttributes `query:"LoadBalancerAttributes" xml:"DescribeLoadBalancerAttributesResult>LoadBalancerAttributes"`
 }
 
 // DescribeLoadBalancerPoliciesInput is undocumented.
 type DescribeLoadBalancerPoliciesInput struct {
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
-	PolicyNames      []string        `xml:"PolicyNames>member"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	PolicyNames      []string        `query:"PolicyNames.member" xml:"PolicyNames>member"`
 }
 
 // DescribeLoadBalancerPoliciesOutput is undocumented.
 type DescribeLoadBalancerPoliciesOutput struct {
-	PolicyDescriptions []PolicyDescription `xml:"DescribeLoadBalancerPoliciesResult>PolicyDescriptions>member"`
+	PolicyDescriptions []PolicyDescription `query:"PolicyDescriptions.member" xml:"DescribeLoadBalancerPoliciesResult>PolicyDescriptions>member"`
 }
 
 // DescribeLoadBalancerPolicyTypesInput is undocumented.
 type DescribeLoadBalancerPolicyTypesInput struct {
-	PolicyTypeNames []string `xml:"PolicyTypeNames>member"`
+	PolicyTypeNames []string `query:"PolicyTypeNames.member" xml:"PolicyTypeNames>member"`
 }
 
 // DescribeLoadBalancerPolicyTypesOutput is undocumented.
 type DescribeLoadBalancerPolicyTypesOutput struct {
-	PolicyTypeDescriptions []PolicyTypeDescription `xml:"DescribeLoadBalancerPolicyTypesResult>PolicyTypeDescriptions>member"`
+	PolicyTypeDescriptions []PolicyTypeDescription `query:"PolicyTypeDescriptions.member" xml:"DescribeLoadBalancerPolicyTypesResult>PolicyTypeDescriptions>member"`
 }
 
 // DescribeTagsInput is undocumented.
 type DescribeTagsInput struct {
-	LoadBalancerNames []string `xml:"LoadBalancerNames>member"`
+	LoadBalancerNames []string `query:"LoadBalancerNames.member" xml:"LoadBalancerNames>member"`
 }
 
 // DescribeTagsOutput is undocumented.
 type DescribeTagsOutput struct {
-	TagDescriptions []TagDescription `xml:"DescribeTagsResult>TagDescriptions>member"`
+	TagDescriptions []TagDescription `query:"TagDescriptions.member" xml:"DescribeTagsResult>TagDescriptions>member"`
 }
 
 // DetachLoadBalancerFromSubnetsInput is undocumented.
 type DetachLoadBalancerFromSubnetsInput struct {
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
-	Subnets          []string        `xml:"Subnets>member"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	Subnets          []string        `query:"Subnets.member" xml:"Subnets>member"`
 }
 
 // DetachLoadBalancerFromSubnetsOutput is undocumented.
 type DetachLoadBalancerFromSubnetsOutput struct {
-	Subnets []string `xml:"DetachLoadBalancerFromSubnetsResult>Subnets>member"`
+	Subnets []string `query:"Subnets.member" xml:"DetachLoadBalancerFromSubnetsResult>Subnets>member"`
 }
 
 // HealthCheck is undocumented.
 type HealthCheck struct {
-	HealthyThreshold   aws.IntegerValue `xml:"HealthyThreshold"`
-	Interval           aws.IntegerValue `xml:"Interval"`
-	Target             aws.StringValue  `xml:"Target"`
-	Timeout            aws.IntegerValue `xml:"Timeout"`
-	UnhealthyThreshold aws.IntegerValue `xml:"UnhealthyThreshold"`
+	HealthyThreshold   aws.IntegerValue `query:"HealthyThreshold" xml:"HealthyThreshold"`
+	Interval           aws.IntegerValue `query:"Interval" xml:"Interval"`
+	Target             aws.StringValue  `query:"Target" xml:"Target"`
+	Timeout            aws.IntegerValue `query:"Timeout" xml:"Timeout"`
+	UnhealthyThreshold aws.IntegerValue `query:"UnhealthyThreshold" xml:"UnhealthyThreshold"`
 }
 
 // Instance is undocumented.
 type Instance struct {
-	InstanceID aws.StringValue `xml:"InstanceId"`
+	InstanceID aws.StringValue `query:"InstanceId" xml:"InstanceId"`
 }
 
 // InstanceState is undocumented.
 type InstanceState struct {
-	Description aws.StringValue `xml:"Description"`
-	InstanceID  aws.StringValue `xml:"InstanceId"`
-	ReasonCode  aws.StringValue `xml:"ReasonCode"`
-	State       aws.StringValue `xml:"State"`
+	Description aws.StringValue `query:"Description" xml:"Description"`
+	InstanceID  aws.StringValue `query:"InstanceId" xml:"InstanceId"`
+	ReasonCode  aws.StringValue `query:"ReasonCode" xml:"ReasonCode"`
+	State       aws.StringValue `query:"State" xml:"State"`
 }
 
 // LBCookieStickinessPolicy is undocumented.
 type LBCookieStickinessPolicy struct {
-	CookieExpirationPeriod aws.LongValue   `xml:"CookieExpirationPeriod"`
-	PolicyName             aws.StringValue `xml:"PolicyName"`
+	CookieExpirationPeriod aws.LongValue   `query:"CookieExpirationPeriod" xml:"CookieExpirationPeriod"`
+	PolicyName             aws.StringValue `query:"PolicyName" xml:"PolicyName"`
 }
 
 // Listener is undocumented.
 type Listener struct {
-	InstancePort     aws.IntegerValue `xml:"InstancePort"`
-	InstanceProtocol aws.StringValue  `xml:"InstanceProtocol"`
-	LoadBalancerPort aws.IntegerValue `xml:"LoadBalancerPort"`
-	Protocol         aws.StringValue  `xml:"Protocol"`
-	SSLCertificateID aws.StringValue  `xml:"SSLCertificateId"`
+	InstancePort     aws.IntegerValue `query:"InstancePort" xml:"InstancePort"`
+	InstanceProtocol aws.StringValue  `query:"InstanceProtocol" xml:"InstanceProtocol"`
+	LoadBalancerPort aws.IntegerValue `query:"LoadBalancerPort" xml:"LoadBalancerPort"`
+	Protocol         aws.StringValue  `query:"Protocol" xml:"Protocol"`
+	SSLCertificateID aws.StringValue  `query:"SSLCertificateId" xml:"SSLCertificateId"`
 }
 
 // ListenerDescription is undocumented.
 type ListenerDescription struct {
-	Listener    *Listener `xml:"Listener"`
-	PolicyNames []string  `xml:"PolicyNames>member"`
+	Listener    *Listener `query:"Listener" xml:"Listener"`
+	PolicyNames []string  `query:"PolicyNames.member" xml:"PolicyNames>member"`
 }
 
 // LoadBalancerAttributes is undocumented.
 type LoadBalancerAttributes struct {
-	AccessLog              *AccessLog              `xml:"AccessLog"`
-	AdditionalAttributes   []AdditionalAttribute   `xml:"AdditionalAttributes>member"`
-	ConnectionDraining     *ConnectionDraining     `xml:"ConnectionDraining"`
-	ConnectionSettings     *ConnectionSettings     `xml:"ConnectionSettings"`
-	CrossZoneLoadBalancing *CrossZoneLoadBalancing `xml:"CrossZoneLoadBalancing"`
+	AccessLog              *AccessLog              `query:"AccessLog" xml:"AccessLog"`
+	AdditionalAttributes   []AdditionalAttribute   `query:"AdditionalAttributes.member" xml:"AdditionalAttributes>member"`
+	ConnectionDraining     *ConnectionDraining     `query:"ConnectionDraining" xml:"ConnectionDraining"`
+	ConnectionSettings     *ConnectionSettings     `query:"ConnectionSettings" xml:"ConnectionSettings"`
+	CrossZoneLoadBalancing *CrossZoneLoadBalancing `query:"CrossZoneLoadBalancing" xml:"CrossZoneLoadBalancing"`
 }
 
 // LoadBalancerDescription is undocumented.
 type LoadBalancerDescription struct {
-	AvailabilityZones         []string                   `xml:"AvailabilityZones>member"`
-	BackendServerDescriptions []BackendServerDescription `xml:"BackendServerDescriptions>member"`
-	CanonicalHostedZoneName   aws.StringValue            `xml:"CanonicalHostedZoneName"`
-	CanonicalHostedZoneNameID aws.StringValue            `xml:"CanonicalHostedZoneNameID"`
-	CreatedTime               time.Time                  `xml:"CreatedTime"`
-	DNSName                   aws.StringValue            `xml:"DNSName"`
-	HealthCheck               *HealthCheck               `xml:"HealthCheck"`
-	Instances                 []Instance                 `xml:"Instances>member"`
-	ListenerDescriptions      []ListenerDescription      `xml:"ListenerDescriptions>member"`
-	LoadBalancerName          aws.StringValue            `xml:"LoadBalancerName"`
-	Policies                  *Policies                  `xml:"Policies"`
-	Scheme                    aws.StringValue            `xml:"Scheme"`
-	SecurityGroups            []string                   `xml:"SecurityGroups>member"`
-	SourceSecurityGroup       *SourceSecurityGroup       `xml:"SourceSecurityGroup"`
-	Subnets                   []string                   `xml:"Subnets>member"`
-	VPCID                     aws.StringValue            `xml:"VPCId"`
+	AvailabilityZones         []string                   `query:"AvailabilityZones.member" xml:"AvailabilityZones>member"`
+	BackendServerDescriptions []BackendServerDescription `query:"BackendServerDescriptions.member" xml:"BackendServerDescriptions>member"`
+	CanonicalHostedZoneName   aws.StringValue            `query:"CanonicalHostedZoneName" xml:"CanonicalHostedZoneName"`
+	CanonicalHostedZoneNameID aws.StringValue            `query:"CanonicalHostedZoneNameID" xml:"CanonicalHostedZoneNameID"`
+	CreatedTime               time.Time                  `query:"CreatedTime" xml:"CreatedTime"`
+	DNSName                   aws.StringValue            `query:"DNSName" xml:"DNSName"`
+	HealthCheck               *HealthCheck               `query:"HealthCheck" xml:"HealthCheck"`
+	Instances                 []Instance                 `query:"Instances.member" xml:"Instances>member"`
+	ListenerDescriptions      []ListenerDescription      `query:"ListenerDescriptions.member" xml:"ListenerDescriptions>member"`
+	LoadBalancerName          aws.StringValue            `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	Policies                  *Policies                  `query:"Policies" xml:"Policies"`
+	Scheme                    aws.StringValue            `query:"Scheme" xml:"Scheme"`
+	SecurityGroups            []string                   `query:"SecurityGroups.member" xml:"SecurityGroups>member"`
+	SourceSecurityGroup       *SourceSecurityGroup       `query:"SourceSecurityGroup" xml:"SourceSecurityGroup"`
+	Subnets                   []string                   `query:"Subnets.member" xml:"Subnets>member"`
+	VPCID                     aws.StringValue            `query:"VPCId" xml:"VPCId"`
 }
 
 // ModifyLoadBalancerAttributesInput is undocumented.
 type ModifyLoadBalancerAttributesInput struct {
-	LoadBalancerAttributes *LoadBalancerAttributes `xml:"LoadBalancerAttributes"`
-	LoadBalancerName       aws.StringValue         `xml:"LoadBalancerName"`
+	LoadBalancerAttributes *LoadBalancerAttributes `query:"LoadBalancerAttributes" xml:"LoadBalancerAttributes"`
+	LoadBalancerName       aws.StringValue         `query:"LoadBalancerName" xml:"LoadBalancerName"`
 }
 
 // ModifyLoadBalancerAttributesOutput is undocumented.
 type ModifyLoadBalancerAttributesOutput struct {
-	LoadBalancerAttributes *LoadBalancerAttributes `xml:"ModifyLoadBalancerAttributesResult>LoadBalancerAttributes"`
-	LoadBalancerName       aws.StringValue         `xml:"ModifyLoadBalancerAttributesResult>LoadBalancerName"`
+	LoadBalancerAttributes *LoadBalancerAttributes `query:"LoadBalancerAttributes" xml:"ModifyLoadBalancerAttributesResult>LoadBalancerAttributes"`
+	LoadBalancerName       aws.StringValue         `query:"LoadBalancerName" xml:"ModifyLoadBalancerAttributesResult>LoadBalancerName"`
 }
 
 // Policies is undocumented.
 type Policies struct {
-	AppCookieStickinessPolicies []AppCookieStickinessPolicy `xml:"AppCookieStickinessPolicies>member"`
-	LBCookieStickinessPolicies  []LBCookieStickinessPolicy  `xml:"LBCookieStickinessPolicies>member"`
-	OtherPolicies               []string                    `xml:"OtherPolicies>member"`
+	AppCookieStickinessPolicies []AppCookieStickinessPolicy `query:"AppCookieStickinessPolicies.member" xml:"AppCookieStickinessPolicies>member"`
+	LBCookieStickinessPolicies  []LBCookieStickinessPolicy  `query:"LBCookieStickinessPolicies.member" xml:"LBCookieStickinessPolicies>member"`
+	OtherPolicies               []string                    `query:"OtherPolicies.member" xml:"OtherPolicies>member"`
 }
 
 // PolicyAttribute is undocumented.
 type PolicyAttribute struct {
-	AttributeName  aws.StringValue `xml:"AttributeName"`
-	AttributeValue aws.StringValue `xml:"AttributeValue"`
+	AttributeName  aws.StringValue `query:"AttributeName" xml:"AttributeName"`
+	AttributeValue aws.StringValue `query:"AttributeValue" xml:"AttributeValue"`
 }
 
 // PolicyAttributeDescription is undocumented.
 type PolicyAttributeDescription struct {
-	AttributeName  aws.StringValue `xml:"AttributeName"`
-	AttributeValue aws.StringValue `xml:"AttributeValue"`
+	AttributeName  aws.StringValue `query:"AttributeName" xml:"AttributeName"`
+	AttributeValue aws.StringValue `query:"AttributeValue" xml:"AttributeValue"`
 }
 
 // PolicyAttributeTypeDescription is undocumented.
 type PolicyAttributeTypeDescription struct {
-	AttributeName aws.StringValue `xml:"AttributeName"`
-	AttributeType aws.StringValue `xml:"AttributeType"`
-	Cardinality   aws.StringValue `xml:"Cardinality"`
-	DefaultValue  aws.StringValue `xml:"DefaultValue"`
-	Description   aws.StringValue `xml:"Description"`
+	AttributeName aws.StringValue `query:"AttributeName" xml:"AttributeName"`
+	AttributeType aws.StringValue `query:"AttributeType" xml:"AttributeType"`
+	Cardinality   aws.StringValue `query:"Cardinality" xml:"Cardinality"`
+	DefaultValue  aws.StringValue `query:"DefaultValue" xml:"DefaultValue"`
+	Description   aws.StringValue `query:"Description" xml:"Description"`
 }
 
 // PolicyDescription is undocumented.
 type PolicyDescription struct {
-	PolicyAttributeDescriptions []PolicyAttributeDescription `xml:"PolicyAttributeDescriptions>member"`
-	PolicyName                  aws.StringValue              `xml:"PolicyName"`
-	PolicyTypeName              aws.StringValue              `xml:"PolicyTypeName"`
+	PolicyAttributeDescriptions []PolicyAttributeDescription `query:"PolicyAttributeDescriptions.member" xml:"PolicyAttributeDescriptions>member"`
+	PolicyName                  aws.StringValue              `query:"PolicyName" xml:"PolicyName"`
+	PolicyTypeName              aws.StringValue              `query:"PolicyTypeName" xml:"PolicyTypeName"`
 }
 
 // PolicyTypeDescription is undocumented.
 type PolicyTypeDescription struct {
-	Description                     aws.StringValue                  `xml:"Description"`
-	PolicyAttributeTypeDescriptions []PolicyAttributeTypeDescription `xml:"PolicyAttributeTypeDescriptions>member"`
-	PolicyTypeName                  aws.StringValue                  `xml:"PolicyTypeName"`
+	Description                     aws.StringValue                  `query:"Description" xml:"Description"`
+	PolicyAttributeTypeDescriptions []PolicyAttributeTypeDescription `query:"PolicyAttributeTypeDescriptions.member" xml:"PolicyAttributeTypeDescriptions>member"`
+	PolicyTypeName                  aws.StringValue                  `query:"PolicyTypeName" xml:"PolicyTypeName"`
 }
 
 // RegisterEndPointsInput is undocumented.
 type RegisterEndPointsInput struct {
-	Instances        []Instance      `xml:"Instances>member"`
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
+	Instances        []Instance      `query:"Instances.member" xml:"Instances>member"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
 }
 
 // RegisterEndPointsOutput is undocumented.
 type RegisterEndPointsOutput struct {
-	Instances []Instance `xml:"RegisterInstancesWithLoadBalancerResult>Instances>member"`
+	Instances []Instance `query:"Instances.member" xml:"RegisterInstancesWithLoadBalancerResult>Instances>member"`
 }
 
 // RemoveAvailabilityZonesInput is undocumented.
 type RemoveAvailabilityZonesInput struct {
-	AvailabilityZones []string        `xml:"AvailabilityZones>member"`
-	LoadBalancerName  aws.StringValue `xml:"LoadBalancerName"`
+	AvailabilityZones []string        `query:"AvailabilityZones.member" xml:"AvailabilityZones>member"`
+	LoadBalancerName  aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
 }
 
 // RemoveAvailabilityZonesOutput is undocumented.
 type RemoveAvailabilityZonesOutput struct {
-	AvailabilityZones []string `xml:"DisableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
+	AvailabilityZones []string `query:"AvailabilityZones.member" xml:"DisableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
 }
 
 // RemoveTagsInput is undocumented.
 type RemoveTagsInput struct {
-	LoadBalancerNames []string     `xml:"LoadBalancerNames>member"`
-	Tags              []TagKeyOnly `xml:"Tags>member"`
+	LoadBalancerNames []string     `query:"LoadBalancerNames.member" xml:"LoadBalancerNames>member"`
+	Tags              []TagKeyOnly `query:"Tags.member" xml:"Tags>member"`
 }
 
 // RemoveTagsOutput is undocumented.
@@ -842,9 +842,9 @@ type RemoveTagsOutput struct {
 
 // SetLoadBalancerListenerSSLCertificateInput is undocumented.
 type SetLoadBalancerListenerSSLCertificateInput struct {
-	LoadBalancerName aws.StringValue  `xml:"LoadBalancerName"`
-	LoadBalancerPort aws.IntegerValue `xml:"LoadBalancerPort"`
-	SSLCertificateID aws.StringValue  `xml:"SSLCertificateId"`
+	LoadBalancerName aws.StringValue  `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	LoadBalancerPort aws.IntegerValue `query:"LoadBalancerPort" xml:"LoadBalancerPort"`
+	SSLCertificateID aws.StringValue  `query:"SSLCertificateId" xml:"SSLCertificateId"`
 }
 
 // SetLoadBalancerListenerSSLCertificateOutput is undocumented.
@@ -853,9 +853,9 @@ type SetLoadBalancerListenerSSLCertificateOutput struct {
 
 // SetLoadBalancerPoliciesForBackendServerInput is undocumented.
 type SetLoadBalancerPoliciesForBackendServerInput struct {
-	InstancePort     aws.IntegerValue `xml:"InstancePort"`
-	LoadBalancerName aws.StringValue  `xml:"LoadBalancerName"`
-	PolicyNames      []string         `xml:"PolicyNames>member"`
+	InstancePort     aws.IntegerValue `query:"InstancePort" xml:"InstancePort"`
+	LoadBalancerName aws.StringValue  `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	PolicyNames      []string         `query:"PolicyNames.member" xml:"PolicyNames>member"`
 }
 
 // SetLoadBalancerPoliciesForBackendServerOutput is undocumented.
@@ -864,9 +864,9 @@ type SetLoadBalancerPoliciesForBackendServerOutput struct {
 
 // SetLoadBalancerPoliciesOfListenerInput is undocumented.
 type SetLoadBalancerPoliciesOfListenerInput struct {
-	LoadBalancerName aws.StringValue  `xml:"LoadBalancerName"`
-	LoadBalancerPort aws.IntegerValue `xml:"LoadBalancerPort"`
-	PolicyNames      []string         `xml:"PolicyNames>member"`
+	LoadBalancerName aws.StringValue  `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	LoadBalancerPort aws.IntegerValue `query:"LoadBalancerPort" xml:"LoadBalancerPort"`
+	PolicyNames      []string         `query:"PolicyNames.member" xml:"PolicyNames>member"`
 }
 
 // SetLoadBalancerPoliciesOfListenerOutput is undocumented.
@@ -875,25 +875,25 @@ type SetLoadBalancerPoliciesOfListenerOutput struct {
 
 // SourceSecurityGroup is undocumented.
 type SourceSecurityGroup struct {
-	GroupName  aws.StringValue `xml:"GroupName"`
-	OwnerAlias aws.StringValue `xml:"OwnerAlias"`
+	GroupName  aws.StringValue `query:"GroupName" xml:"GroupName"`
+	OwnerAlias aws.StringValue `query:"OwnerAlias" xml:"OwnerAlias"`
 }
 
 // Tag is undocumented.
 type Tag struct {
-	Key   aws.StringValue `xml:"Key"`
-	Value aws.StringValue `xml:"Value"`
+	Key   aws.StringValue `query:"Key" xml:"Key"`
+	Value aws.StringValue `query:"Value" xml:"Value"`
 }
 
 // TagDescription is undocumented.
 type TagDescription struct {
-	LoadBalancerName aws.StringValue `xml:"LoadBalancerName"`
-	Tags             []Tag           `xml:"Tags>member"`
+	LoadBalancerName aws.StringValue `query:"LoadBalancerName" xml:"LoadBalancerName"`
+	Tags             []Tag           `query:"Tags.member" xml:"Tags>member"`
 }
 
 // TagKeyOnly is undocumented.
 type TagKeyOnly struct {
-	Key aws.StringValue `xml:"Key"`
+	Key aws.StringValue `query:"Key" xml:"Key"`
 }
 
 // AddTagsResult is a wrapper for AddTagsOutput.
@@ -902,17 +902,17 @@ type AddTagsResult struct {
 
 // ApplySecurityGroupsToLoadBalancerResult is a wrapper for ApplySecurityGroupsToLoadBalancerOutput.
 type ApplySecurityGroupsToLoadBalancerResult struct {
-	SecurityGroups []string `xml:"ApplySecurityGroupsToLoadBalancerResult>SecurityGroups>member"`
+	SecurityGroups []string `query:"SecurityGroups.member" xml:"ApplySecurityGroupsToLoadBalancerResult>SecurityGroups>member"`
 }
 
 // AttachLoadBalancerToSubnetsResult is a wrapper for AttachLoadBalancerToSubnetsOutput.
 type AttachLoadBalancerToSubnetsResult struct {
-	Subnets []string `xml:"AttachLoadBalancerToSubnetsResult>Subnets>member"`
+	Subnets []string `query:"Subnets.member" xml:"AttachLoadBalancerToSubnetsResult>Subnets>member"`
 }
 
 // ConfigureHealthCheckResult is a wrapper for ConfigureHealthCheckOutput.
 type ConfigureHealthCheckResult struct {
-	HealthCheck *HealthCheck `xml:"ConfigureHealthCheckResult>HealthCheck"`
+	HealthCheck *HealthCheck `query:"HealthCheck" xml:"ConfigureHealthCheckResult>HealthCheck"`
 }
 
 // CreateAppCookieStickinessPolicyResult is a wrapper for CreateAppCookieStickinessPolicyOutput.
@@ -933,7 +933,7 @@ type CreateLoadBalancerPolicyResult struct {
 
 // CreateLoadBalancerResult is a wrapper for CreateAccessPointOutput.
 type CreateLoadBalancerResult struct {
-	DNSName aws.StringValue `xml:"CreateLoadBalancerResult>DNSName"`
+	DNSName aws.StringValue `query:"DNSName" xml:"CreateLoadBalancerResult>DNSName"`
 }
 
 // DeleteLoadBalancerListenersResult is a wrapper for DeleteLoadBalancerListenerOutput.
@@ -950,64 +950,64 @@ type DeleteLoadBalancerResult struct {
 
 // DeregisterInstancesFromLoadBalancerResult is a wrapper for DeregisterEndPointsOutput.
 type DeregisterInstancesFromLoadBalancerResult struct {
-	Instances []Instance `xml:"DeregisterInstancesFromLoadBalancerResult>Instances>member"`
+	Instances []Instance `query:"Instances.member" xml:"DeregisterInstancesFromLoadBalancerResult>Instances>member"`
 }
 
 // DescribeInstanceHealthResult is a wrapper for DescribeEndPointStateOutput.
 type DescribeInstanceHealthResult struct {
-	InstanceStates []InstanceState `xml:"DescribeInstanceHealthResult>InstanceStates>member"`
+	InstanceStates []InstanceState `query:"InstanceStates.member" xml:"DescribeInstanceHealthResult>InstanceStates>member"`
 }
 
 // DescribeLoadBalancerAttributesResult is a wrapper for DescribeLoadBalancerAttributesOutput.
 type DescribeLoadBalancerAttributesResult struct {
-	LoadBalancerAttributes *LoadBalancerAttributes `xml:"DescribeLoadBalancerAttributesResult>LoadBalancerAttributes"`
+	LoadBalancerAttributes *LoadBalancerAttributes `query:"LoadBalancerAttributes" xml:"DescribeLoadBalancerAttributesResult>LoadBalancerAttributes"`
 }
 
 // DescribeLoadBalancerPoliciesResult is a wrapper for DescribeLoadBalancerPoliciesOutput.
 type DescribeLoadBalancerPoliciesResult struct {
-	PolicyDescriptions []PolicyDescription `xml:"DescribeLoadBalancerPoliciesResult>PolicyDescriptions>member"`
+	PolicyDescriptions []PolicyDescription `query:"PolicyDescriptions.member" xml:"DescribeLoadBalancerPoliciesResult>PolicyDescriptions>member"`
 }
 
 // DescribeLoadBalancerPolicyTypesResult is a wrapper for DescribeLoadBalancerPolicyTypesOutput.
 type DescribeLoadBalancerPolicyTypesResult struct {
-	PolicyTypeDescriptions []PolicyTypeDescription `xml:"DescribeLoadBalancerPolicyTypesResult>PolicyTypeDescriptions>member"`
+	PolicyTypeDescriptions []PolicyTypeDescription `query:"PolicyTypeDescriptions.member" xml:"DescribeLoadBalancerPolicyTypesResult>PolicyTypeDescriptions>member"`
 }
 
 // DescribeLoadBalancersResult is a wrapper for DescribeAccessPointsOutput.
 type DescribeLoadBalancersResult struct {
-	LoadBalancerDescriptions []LoadBalancerDescription `xml:"DescribeLoadBalancersResult>LoadBalancerDescriptions>member"`
-	NextMarker               aws.StringValue           `xml:"DescribeLoadBalancersResult>NextMarker"`
+	LoadBalancerDescriptions []LoadBalancerDescription `query:"LoadBalancerDescriptions.member" xml:"DescribeLoadBalancersResult>LoadBalancerDescriptions>member"`
+	NextMarker               aws.StringValue           `query:"NextMarker" xml:"DescribeLoadBalancersResult>NextMarker"`
 }
 
 // DescribeTagsResult is a wrapper for DescribeTagsOutput.
 type DescribeTagsResult struct {
-	TagDescriptions []TagDescription `xml:"DescribeTagsResult>TagDescriptions>member"`
+	TagDescriptions []TagDescription `query:"TagDescriptions.member" xml:"DescribeTagsResult>TagDescriptions>member"`
 }
 
 // DetachLoadBalancerFromSubnetsResult is a wrapper for DetachLoadBalancerFromSubnetsOutput.
 type DetachLoadBalancerFromSubnetsResult struct {
-	Subnets []string `xml:"DetachLoadBalancerFromSubnetsResult>Subnets>member"`
+	Subnets []string `query:"Subnets.member" xml:"DetachLoadBalancerFromSubnetsResult>Subnets>member"`
 }
 
 // DisableAvailabilityZonesForLoadBalancerResult is a wrapper for RemoveAvailabilityZonesOutput.
 type DisableAvailabilityZonesForLoadBalancerResult struct {
-	AvailabilityZones []string `xml:"DisableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
+	AvailabilityZones []string `query:"AvailabilityZones.member" xml:"DisableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
 }
 
 // EnableAvailabilityZonesForLoadBalancerResult is a wrapper for AddAvailabilityZonesOutput.
 type EnableAvailabilityZonesForLoadBalancerResult struct {
-	AvailabilityZones []string `xml:"EnableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
+	AvailabilityZones []string `query:"AvailabilityZones.member" xml:"EnableAvailabilityZonesForLoadBalancerResult>AvailabilityZones>member"`
 }
 
 // ModifyLoadBalancerAttributesResult is a wrapper for ModifyLoadBalancerAttributesOutput.
 type ModifyLoadBalancerAttributesResult struct {
-	LoadBalancerAttributes *LoadBalancerAttributes `xml:"ModifyLoadBalancerAttributesResult>LoadBalancerAttributes"`
-	LoadBalancerName       aws.StringValue         `xml:"ModifyLoadBalancerAttributesResult>LoadBalancerName"`
+	LoadBalancerAttributes *LoadBalancerAttributes `query:"LoadBalancerAttributes" xml:"ModifyLoadBalancerAttributesResult>LoadBalancerAttributes"`
+	LoadBalancerName       aws.StringValue         `query:"LoadBalancerName" xml:"ModifyLoadBalancerAttributesResult>LoadBalancerName"`
 }
 
 // RegisterInstancesWithLoadBalancerResult is a wrapper for RegisterEndPointsOutput.
 type RegisterInstancesWithLoadBalancerResult struct {
-	Instances []Instance `xml:"RegisterInstancesWithLoadBalancerResult>Instances>member"`
+	Instances []Instance `query:"Instances.member" xml:"RegisterInstancesWithLoadBalancerResult>Instances>member"`
 }
 
 // RemoveTagsResult is a wrapper for RemoveTagsOutput.

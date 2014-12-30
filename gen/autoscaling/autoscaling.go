@@ -518,105 +518,105 @@ func (c *AutoScaling) UpdateAutoScalingGroup(req *UpdateAutoScalingGroupType) (e
 
 // ActivitiesType is undocumented.
 type ActivitiesType struct {
-	Activities []Activity      `xml:"DescribeScalingActivitiesResult>Activities>member"`
-	NextToken  aws.StringValue `xml:"DescribeScalingActivitiesResult>NextToken"`
+	Activities []Activity      `query:"Activities.member" xml:"DescribeScalingActivitiesResult>Activities>member"`
+	NextToken  aws.StringValue `query:"NextToken" xml:"DescribeScalingActivitiesResult>NextToken"`
 }
 
 // Activity is undocumented.
 type Activity struct {
-	ActivityID           aws.StringValue  `xml:"ActivityId"`
-	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
-	Cause                aws.StringValue  `xml:"Cause"`
-	Description          aws.StringValue  `xml:"Description"`
-	Details              aws.StringValue  `xml:"Details"`
-	EndTime              time.Time        `xml:"EndTime"`
-	Progress             aws.IntegerValue `xml:"Progress"`
-	StartTime            time.Time        `xml:"StartTime"`
-	StatusCode           aws.StringValue  `xml:"StatusCode"`
-	StatusMessage        aws.StringValue  `xml:"StatusMessage"`
+	ActivityID           aws.StringValue  `query:"ActivityId" xml:"ActivityId"`
+	AutoScalingGroupName aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	Cause                aws.StringValue  `query:"Cause" xml:"Cause"`
+	Description          aws.StringValue  `query:"Description" xml:"Description"`
+	Details              aws.StringValue  `query:"Details" xml:"Details"`
+	EndTime              time.Time        `query:"EndTime" xml:"EndTime"`
+	Progress             aws.IntegerValue `query:"Progress" xml:"Progress"`
+	StartTime            time.Time        `query:"StartTime" xml:"StartTime"`
+	StatusCode           aws.StringValue  `query:"StatusCode" xml:"StatusCode"`
+	StatusMessage        aws.StringValue  `query:"StatusMessage" xml:"StatusMessage"`
 }
 
 // ActivityType is undocumented.
 type ActivityType struct {
-	Activity *Activity `xml:"TerminateInstanceInAutoScalingGroupResult>Activity"`
+	Activity *Activity `query:"Activity" xml:"TerminateInstanceInAutoScalingGroupResult>Activity"`
 }
 
 // AdjustmentType is undocumented.
 type AdjustmentType struct {
-	AdjustmentType aws.StringValue `xml:"AdjustmentType"`
+	AdjustmentType aws.StringValue `query:"AdjustmentType" xml:"AdjustmentType"`
 }
 
 // Alarm is undocumented.
 type Alarm struct {
-	AlarmARN  aws.StringValue `xml:"AlarmARN"`
-	AlarmName aws.StringValue `xml:"AlarmName"`
+	AlarmARN  aws.StringValue `query:"AlarmARN" xml:"AlarmARN"`
+	AlarmName aws.StringValue `query:"AlarmName" xml:"AlarmName"`
 }
 
 // AttachInstancesQuery is undocumented.
 type AttachInstancesQuery struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	InstanceIDs          []string        `xml:"InstanceIds>member"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	InstanceIDs          []string        `query:"InstanceIds.member" xml:"InstanceIds>member"`
 }
 
 // AutoScalingGroup is undocumented.
 type AutoScalingGroup struct {
-	AutoScalingGroupARN     aws.StringValue    `xml:"AutoScalingGroupARN"`
-	AutoScalingGroupName    aws.StringValue    `xml:"AutoScalingGroupName"`
-	AvailabilityZones       []string           `xml:"AvailabilityZones>member"`
-	CreatedTime             time.Time          `xml:"CreatedTime"`
-	DefaultCooldown         aws.IntegerValue   `xml:"DefaultCooldown"`
-	DesiredCapacity         aws.IntegerValue   `xml:"DesiredCapacity"`
-	EnabledMetrics          []EnabledMetric    `xml:"EnabledMetrics>member"`
-	HealthCheckGracePeriod  aws.IntegerValue   `xml:"HealthCheckGracePeriod"`
-	HealthCheckType         aws.StringValue    `xml:"HealthCheckType"`
-	Instances               []Instance         `xml:"Instances>member"`
-	LaunchConfigurationName aws.StringValue    `xml:"LaunchConfigurationName"`
-	LoadBalancerNames       []string           `xml:"LoadBalancerNames>member"`
-	MaxSize                 aws.IntegerValue   `xml:"MaxSize"`
-	MinSize                 aws.IntegerValue   `xml:"MinSize"`
-	PlacementGroup          aws.StringValue    `xml:"PlacementGroup"`
-	Status                  aws.StringValue    `xml:"Status"`
-	SuspendedProcesses      []SuspendedProcess `xml:"SuspendedProcesses>member"`
-	Tags                    []TagDescription   `xml:"Tags>member"`
-	TerminationPolicies     []string           `xml:"TerminationPolicies>member"`
-	VPCZoneIdentifier       aws.StringValue    `xml:"VPCZoneIdentifier"`
+	AutoScalingGroupARN     aws.StringValue    `query:"AutoScalingGroupARN" xml:"AutoScalingGroupARN"`
+	AutoScalingGroupName    aws.StringValue    `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	AvailabilityZones       []string           `query:"AvailabilityZones.member" xml:"AvailabilityZones>member"`
+	CreatedTime             time.Time          `query:"CreatedTime" xml:"CreatedTime"`
+	DefaultCooldown         aws.IntegerValue   `query:"DefaultCooldown" xml:"DefaultCooldown"`
+	DesiredCapacity         aws.IntegerValue   `query:"DesiredCapacity" xml:"DesiredCapacity"`
+	EnabledMetrics          []EnabledMetric    `query:"EnabledMetrics.member" xml:"EnabledMetrics>member"`
+	HealthCheckGracePeriod  aws.IntegerValue   `query:"HealthCheckGracePeriod" xml:"HealthCheckGracePeriod"`
+	HealthCheckType         aws.StringValue    `query:"HealthCheckType" xml:"HealthCheckType"`
+	Instances               []Instance         `query:"Instances.member" xml:"Instances>member"`
+	LaunchConfigurationName aws.StringValue    `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
+	LoadBalancerNames       []string           `query:"LoadBalancerNames.member" xml:"LoadBalancerNames>member"`
+	MaxSize                 aws.IntegerValue   `query:"MaxSize" xml:"MaxSize"`
+	MinSize                 aws.IntegerValue   `query:"MinSize" xml:"MinSize"`
+	PlacementGroup          aws.StringValue    `query:"PlacementGroup" xml:"PlacementGroup"`
+	Status                  aws.StringValue    `query:"Status" xml:"Status"`
+	SuspendedProcesses      []SuspendedProcess `query:"SuspendedProcesses.member" xml:"SuspendedProcesses>member"`
+	Tags                    []TagDescription   `query:"Tags.member" xml:"Tags>member"`
+	TerminationPolicies     []string           `query:"TerminationPolicies.member" xml:"TerminationPolicies>member"`
+	VPCZoneIdentifier       aws.StringValue    `query:"VPCZoneIdentifier" xml:"VPCZoneIdentifier"`
 }
 
 // AutoScalingGroupNamesType is undocumented.
 type AutoScalingGroupNamesType struct {
-	AutoScalingGroupNames []string         `xml:"AutoScalingGroupNames>member"`
-	MaxRecords            aws.IntegerValue `xml:"MaxRecords"`
-	NextToken             aws.StringValue  `xml:"NextToken"`
+	AutoScalingGroupNames []string         `query:"AutoScalingGroupNames.member" xml:"AutoScalingGroupNames>member"`
+	MaxRecords            aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NextToken             aws.StringValue  `query:"NextToken" xml:"NextToken"`
 }
 
 // AutoScalingGroupsType is undocumented.
 type AutoScalingGroupsType struct {
-	AutoScalingGroups []AutoScalingGroup `xml:"DescribeAutoScalingGroupsResult>AutoScalingGroups>member"`
-	NextToken         aws.StringValue    `xml:"DescribeAutoScalingGroupsResult>NextToken"`
+	AutoScalingGroups []AutoScalingGroup `query:"AutoScalingGroups.member" xml:"DescribeAutoScalingGroupsResult>AutoScalingGroups>member"`
+	NextToken         aws.StringValue    `query:"NextToken" xml:"DescribeAutoScalingGroupsResult>NextToken"`
 }
 
 // AutoScalingInstanceDetails is undocumented.
 type AutoScalingInstanceDetails struct {
-	AutoScalingGroupName    aws.StringValue `xml:"AutoScalingGroupName"`
-	AvailabilityZone        aws.StringValue `xml:"AvailabilityZone"`
-	HealthStatus            aws.StringValue `xml:"HealthStatus"`
-	InstanceID              aws.StringValue `xml:"InstanceId"`
-	LaunchConfigurationName aws.StringValue `xml:"LaunchConfigurationName"`
-	LifecycleState          aws.StringValue `xml:"LifecycleState"`
+	AutoScalingGroupName    aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	AvailabilityZone        aws.StringValue `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	HealthStatus            aws.StringValue `query:"HealthStatus" xml:"HealthStatus"`
+	InstanceID              aws.StringValue `query:"InstanceId" xml:"InstanceId"`
+	LaunchConfigurationName aws.StringValue `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
+	LifecycleState          aws.StringValue `query:"LifecycleState" xml:"LifecycleState"`
 }
 
 // AutoScalingInstancesType is undocumented.
 type AutoScalingInstancesType struct {
-	AutoScalingInstances []AutoScalingInstanceDetails `xml:"DescribeAutoScalingInstancesResult>AutoScalingInstances>member"`
-	NextToken            aws.StringValue              `xml:"DescribeAutoScalingInstancesResult>NextToken"`
+	AutoScalingInstances []AutoScalingInstanceDetails `query:"AutoScalingInstances.member" xml:"DescribeAutoScalingInstancesResult>AutoScalingInstances>member"`
+	NextToken            aws.StringValue              `query:"NextToken" xml:"DescribeAutoScalingInstancesResult>NextToken"`
 }
 
 // BlockDeviceMapping is undocumented.
 type BlockDeviceMapping struct {
-	DeviceName  aws.StringValue  `xml:"DeviceName"`
-	EBS         *EBS             `xml:"Ebs"`
-	NoDevice    aws.BooleanValue `xml:"NoDevice"`
-	VirtualName aws.StringValue  `xml:"VirtualName"`
+	DeviceName  aws.StringValue  `query:"DeviceName" xml:"DeviceName"`
+	EBS         *EBS             `query:"Ebs" xml:"Ebs"`
+	NoDevice    aws.BooleanValue `query:"NoDevice" xml:"NoDevice"`
+	VirtualName aws.StringValue  `query:"VirtualName" xml:"VirtualName"`
 }
 
 // CompleteLifecycleActionAnswer is undocumented.
@@ -625,60 +625,60 @@ type CompleteLifecycleActionAnswer struct {
 
 // CompleteLifecycleActionType is undocumented.
 type CompleteLifecycleActionType struct {
-	AutoScalingGroupName  aws.StringValue `xml:"AutoScalingGroupName"`
-	LifecycleActionResult aws.StringValue `xml:"LifecycleActionResult"`
-	LifecycleActionToken  aws.StringValue `xml:"LifecycleActionToken"`
-	LifecycleHookName     aws.StringValue `xml:"LifecycleHookName"`
+	AutoScalingGroupName  aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	LifecycleActionResult aws.StringValue `query:"LifecycleActionResult" xml:"LifecycleActionResult"`
+	LifecycleActionToken  aws.StringValue `query:"LifecycleActionToken" xml:"LifecycleActionToken"`
+	LifecycleHookName     aws.StringValue `query:"LifecycleHookName" xml:"LifecycleHookName"`
 }
 
 // CreateAutoScalingGroupType is undocumented.
 type CreateAutoScalingGroupType struct {
-	AutoScalingGroupName    aws.StringValue  `xml:"AutoScalingGroupName"`
-	AvailabilityZones       []string         `xml:"AvailabilityZones>member"`
-	DefaultCooldown         aws.IntegerValue `xml:"DefaultCooldown"`
-	DesiredCapacity         aws.IntegerValue `xml:"DesiredCapacity"`
-	HealthCheckGracePeriod  aws.IntegerValue `xml:"HealthCheckGracePeriod"`
-	HealthCheckType         aws.StringValue  `xml:"HealthCheckType"`
-	InstanceID              aws.StringValue  `xml:"InstanceId"`
-	LaunchConfigurationName aws.StringValue  `xml:"LaunchConfigurationName"`
-	LoadBalancerNames       []string         `xml:"LoadBalancerNames>member"`
-	MaxSize                 aws.IntegerValue `xml:"MaxSize"`
-	MinSize                 aws.IntegerValue `xml:"MinSize"`
-	PlacementGroup          aws.StringValue  `xml:"PlacementGroup"`
-	Tags                    []Tag            `xml:"Tags>member"`
-	TerminationPolicies     []string         `xml:"TerminationPolicies>member"`
-	VPCZoneIdentifier       aws.StringValue  `xml:"VPCZoneIdentifier"`
+	AutoScalingGroupName    aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	AvailabilityZones       []string         `query:"AvailabilityZones.member" xml:"AvailabilityZones>member"`
+	DefaultCooldown         aws.IntegerValue `query:"DefaultCooldown" xml:"DefaultCooldown"`
+	DesiredCapacity         aws.IntegerValue `query:"DesiredCapacity" xml:"DesiredCapacity"`
+	HealthCheckGracePeriod  aws.IntegerValue `query:"HealthCheckGracePeriod" xml:"HealthCheckGracePeriod"`
+	HealthCheckType         aws.StringValue  `query:"HealthCheckType" xml:"HealthCheckType"`
+	InstanceID              aws.StringValue  `query:"InstanceId" xml:"InstanceId"`
+	LaunchConfigurationName aws.StringValue  `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
+	LoadBalancerNames       []string         `query:"LoadBalancerNames.member" xml:"LoadBalancerNames>member"`
+	MaxSize                 aws.IntegerValue `query:"MaxSize" xml:"MaxSize"`
+	MinSize                 aws.IntegerValue `query:"MinSize" xml:"MinSize"`
+	PlacementGroup          aws.StringValue  `query:"PlacementGroup" xml:"PlacementGroup"`
+	Tags                    []Tag            `query:"Tags.member" xml:"Tags>member"`
+	TerminationPolicies     []string         `query:"TerminationPolicies.member" xml:"TerminationPolicies>member"`
+	VPCZoneIdentifier       aws.StringValue  `query:"VPCZoneIdentifier" xml:"VPCZoneIdentifier"`
 }
 
 // CreateLaunchConfigurationType is undocumented.
 type CreateLaunchConfigurationType struct {
-	AssociatePublicIPAddress aws.BooleanValue     `xml:"AssociatePublicIpAddress"`
-	BlockDeviceMappings      []BlockDeviceMapping `xml:"BlockDeviceMappings>member"`
-	EBSOptimized             aws.BooleanValue     `xml:"EbsOptimized"`
-	IAMInstanceProfile       aws.StringValue      `xml:"IamInstanceProfile"`
-	ImageID                  aws.StringValue      `xml:"ImageId"`
-	InstanceID               aws.StringValue      `xml:"InstanceId"`
-	InstanceMonitoring       *InstanceMonitoring  `xml:"InstanceMonitoring"`
-	InstanceType             aws.StringValue      `xml:"InstanceType"`
-	KernelID                 aws.StringValue      `xml:"KernelId"`
-	KeyName                  aws.StringValue      `xml:"KeyName"`
-	LaunchConfigurationName  aws.StringValue      `xml:"LaunchConfigurationName"`
-	PlacementTenancy         aws.StringValue      `xml:"PlacementTenancy"`
-	RAMDiskID                aws.StringValue      `xml:"RamdiskId"`
-	SecurityGroups           []string             `xml:"SecurityGroups>member"`
-	SpotPrice                aws.StringValue      `xml:"SpotPrice"`
-	UserData                 aws.StringValue      `xml:"UserData"`
+	AssociatePublicIPAddress aws.BooleanValue     `query:"AssociatePublicIpAddress" xml:"AssociatePublicIpAddress"`
+	BlockDeviceMappings      []BlockDeviceMapping `query:"BlockDeviceMappings.member" xml:"BlockDeviceMappings>member"`
+	EBSOptimized             aws.BooleanValue     `query:"EbsOptimized" xml:"EbsOptimized"`
+	IAMInstanceProfile       aws.StringValue      `query:"IamInstanceProfile" xml:"IamInstanceProfile"`
+	ImageID                  aws.StringValue      `query:"ImageId" xml:"ImageId"`
+	InstanceID               aws.StringValue      `query:"InstanceId" xml:"InstanceId"`
+	InstanceMonitoring       *InstanceMonitoring  `query:"InstanceMonitoring" xml:"InstanceMonitoring"`
+	InstanceType             aws.StringValue      `query:"InstanceType" xml:"InstanceType"`
+	KernelID                 aws.StringValue      `query:"KernelId" xml:"KernelId"`
+	KeyName                  aws.StringValue      `query:"KeyName" xml:"KeyName"`
+	LaunchConfigurationName  aws.StringValue      `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
+	PlacementTenancy         aws.StringValue      `query:"PlacementTenancy" xml:"PlacementTenancy"`
+	RAMDiskID                aws.StringValue      `query:"RamdiskId" xml:"RamdiskId"`
+	SecurityGroups           []string             `query:"SecurityGroups.member" xml:"SecurityGroups>member"`
+	SpotPrice                aws.StringValue      `query:"SpotPrice" xml:"SpotPrice"`
+	UserData                 aws.StringValue      `query:"UserData" xml:"UserData"`
 }
 
 // CreateOrUpdateTagsType is undocumented.
 type CreateOrUpdateTagsType struct {
-	Tags []Tag `xml:"Tags>member"`
+	Tags []Tag `query:"Tags.member" xml:"Tags>member"`
 }
 
 // DeleteAutoScalingGroupType is undocumented.
 type DeleteAutoScalingGroupType struct {
-	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
-	ForceDelete          aws.BooleanValue `xml:"ForceDelete"`
+	AutoScalingGroupName aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	ForceDelete          aws.BooleanValue `query:"ForceDelete" xml:"ForceDelete"`
 }
 
 // DeleteLifecycleHookAnswer is undocumented.
@@ -687,269 +687,269 @@ type DeleteLifecycleHookAnswer struct {
 
 // DeleteLifecycleHookType is undocumented.
 type DeleteLifecycleHookType struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	LifecycleHookName    aws.StringValue `xml:"LifecycleHookName"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	LifecycleHookName    aws.StringValue `query:"LifecycleHookName" xml:"LifecycleHookName"`
 }
 
 // DeleteNotificationConfigurationType is undocumented.
 type DeleteNotificationConfigurationType struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	TopicARN             aws.StringValue `xml:"TopicARN"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	TopicARN             aws.StringValue `query:"TopicARN" xml:"TopicARN"`
 }
 
 // DeletePolicyType is undocumented.
 type DeletePolicyType struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	PolicyName           aws.StringValue `xml:"PolicyName"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	PolicyName           aws.StringValue `query:"PolicyName" xml:"PolicyName"`
 }
 
 // DeleteScheduledActionType is undocumented.
 type DeleteScheduledActionType struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	ScheduledActionName  aws.StringValue `xml:"ScheduledActionName"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	ScheduledActionName  aws.StringValue `query:"ScheduledActionName" xml:"ScheduledActionName"`
 }
 
 // DeleteTagsType is undocumented.
 type DeleteTagsType struct {
-	Tags []Tag `xml:"Tags>member"`
+	Tags []Tag `query:"Tags.member" xml:"Tags>member"`
 }
 
 // DescribeAccountLimitsAnswer is undocumented.
 type DescribeAccountLimitsAnswer struct {
-	MaxNumberOfAutoScalingGroups    aws.IntegerValue `xml:"DescribeAccountLimitsResult>MaxNumberOfAutoScalingGroups"`
-	MaxNumberOfLaunchConfigurations aws.IntegerValue `xml:"DescribeAccountLimitsResult>MaxNumberOfLaunchConfigurations"`
+	MaxNumberOfAutoScalingGroups    aws.IntegerValue `query:"MaxNumberOfAutoScalingGroups" xml:"DescribeAccountLimitsResult>MaxNumberOfAutoScalingGroups"`
+	MaxNumberOfLaunchConfigurations aws.IntegerValue `query:"MaxNumberOfLaunchConfigurations" xml:"DescribeAccountLimitsResult>MaxNumberOfLaunchConfigurations"`
 }
 
 // DescribeAdjustmentTypesAnswer is undocumented.
 type DescribeAdjustmentTypesAnswer struct {
-	AdjustmentTypes []AdjustmentType `xml:"DescribeAdjustmentTypesResult>AdjustmentTypes>member"`
+	AdjustmentTypes []AdjustmentType `query:"AdjustmentTypes.member" xml:"DescribeAdjustmentTypesResult>AdjustmentTypes>member"`
 }
 
 // DescribeAutoScalingInstancesType is undocumented.
 type DescribeAutoScalingInstancesType struct {
-	InstanceIDs []string         `xml:"InstanceIds>member"`
-	MaxRecords  aws.IntegerValue `xml:"MaxRecords"`
-	NextToken   aws.StringValue  `xml:"NextToken"`
+	InstanceIDs []string         `query:"InstanceIds.member" xml:"InstanceIds>member"`
+	MaxRecords  aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NextToken   aws.StringValue  `query:"NextToken" xml:"NextToken"`
 }
 
 // DescribeAutoScalingNotificationTypesAnswer is undocumented.
 type DescribeAutoScalingNotificationTypesAnswer struct {
-	AutoScalingNotificationTypes []string `xml:"DescribeAutoScalingNotificationTypesResult>AutoScalingNotificationTypes>member"`
+	AutoScalingNotificationTypes []string `query:"AutoScalingNotificationTypes.member" xml:"DescribeAutoScalingNotificationTypesResult>AutoScalingNotificationTypes>member"`
 }
 
 // DescribeLifecycleHookTypesAnswer is undocumented.
 type DescribeLifecycleHookTypesAnswer struct {
-	LifecycleHookTypes []string `xml:"DescribeLifecycleHookTypesResult>LifecycleHookTypes>member"`
+	LifecycleHookTypes []string `query:"LifecycleHookTypes.member" xml:"DescribeLifecycleHookTypesResult>LifecycleHookTypes>member"`
 }
 
 // DescribeLifecycleHooksAnswer is undocumented.
 type DescribeLifecycleHooksAnswer struct {
-	LifecycleHooks []LifecycleHook `xml:"DescribeLifecycleHooksResult>LifecycleHooks>member"`
+	LifecycleHooks []LifecycleHook `query:"LifecycleHooks.member" xml:"DescribeLifecycleHooksResult>LifecycleHooks>member"`
 }
 
 // DescribeLifecycleHooksType is undocumented.
 type DescribeLifecycleHooksType struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	LifecycleHookNames   []string        `xml:"LifecycleHookNames>member"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	LifecycleHookNames   []string        `query:"LifecycleHookNames.member" xml:"LifecycleHookNames>member"`
 }
 
 // DescribeMetricCollectionTypesAnswer is undocumented.
 type DescribeMetricCollectionTypesAnswer struct {
-	Granularities []MetricGranularityType `xml:"DescribeMetricCollectionTypesResult>Granularities>member"`
-	Metrics       []MetricCollectionType  `xml:"DescribeMetricCollectionTypesResult>Metrics>member"`
+	Granularities []MetricGranularityType `query:"Granularities.member" xml:"DescribeMetricCollectionTypesResult>Granularities>member"`
+	Metrics       []MetricCollectionType  `query:"Metrics.member" xml:"DescribeMetricCollectionTypesResult>Metrics>member"`
 }
 
 // DescribeNotificationConfigurationsAnswer is undocumented.
 type DescribeNotificationConfigurationsAnswer struct {
-	NextToken                  aws.StringValue             `xml:"DescribeNotificationConfigurationsResult>NextToken"`
-	NotificationConfigurations []NotificationConfiguration `xml:"DescribeNotificationConfigurationsResult>NotificationConfigurations>member"`
+	NextToken                  aws.StringValue             `query:"NextToken" xml:"DescribeNotificationConfigurationsResult>NextToken"`
+	NotificationConfigurations []NotificationConfiguration `query:"NotificationConfigurations.member" xml:"DescribeNotificationConfigurationsResult>NotificationConfigurations>member"`
 }
 
 // DescribeNotificationConfigurationsType is undocumented.
 type DescribeNotificationConfigurationsType struct {
-	AutoScalingGroupNames []string         `xml:"AutoScalingGroupNames>member"`
-	MaxRecords            aws.IntegerValue `xml:"MaxRecords"`
-	NextToken             aws.StringValue  `xml:"NextToken"`
+	AutoScalingGroupNames []string         `query:"AutoScalingGroupNames.member" xml:"AutoScalingGroupNames>member"`
+	MaxRecords            aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NextToken             aws.StringValue  `query:"NextToken" xml:"NextToken"`
 }
 
 // DescribePoliciesType is undocumented.
 type DescribePoliciesType struct {
-	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
-	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
-	NextToken            aws.StringValue  `xml:"NextToken"`
-	PolicyNames          []string         `xml:"PolicyNames>member"`
+	AutoScalingGroupName aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	MaxRecords           aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NextToken            aws.StringValue  `query:"NextToken" xml:"NextToken"`
+	PolicyNames          []string         `query:"PolicyNames.member" xml:"PolicyNames>member"`
 }
 
 // DescribeScalingActivitiesType is undocumented.
 type DescribeScalingActivitiesType struct {
-	ActivityIDs          []string         `xml:"ActivityIds>member"`
-	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
-	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
-	NextToken            aws.StringValue  `xml:"NextToken"`
+	ActivityIDs          []string         `query:"ActivityIds.member" xml:"ActivityIds>member"`
+	AutoScalingGroupName aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	MaxRecords           aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NextToken            aws.StringValue  `query:"NextToken" xml:"NextToken"`
 }
 
 // DescribeScheduledActionsType is undocumented.
 type DescribeScheduledActionsType struct {
-	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
-	EndTime              time.Time        `xml:"EndTime"`
-	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
-	NextToken            aws.StringValue  `xml:"NextToken"`
-	ScheduledActionNames []string         `xml:"ScheduledActionNames>member"`
-	StartTime            time.Time        `xml:"StartTime"`
+	AutoScalingGroupName aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	EndTime              time.Time        `query:"EndTime" xml:"EndTime"`
+	MaxRecords           aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NextToken            aws.StringValue  `query:"NextToken" xml:"NextToken"`
+	ScheduledActionNames []string         `query:"ScheduledActionNames.member" xml:"ScheduledActionNames>member"`
+	StartTime            time.Time        `query:"StartTime" xml:"StartTime"`
 }
 
 // DescribeTagsType is undocumented.
 type DescribeTagsType struct {
-	Filters    []Filter         `xml:"Filters>member"`
-	MaxRecords aws.IntegerValue `xml:"MaxRecords"`
-	NextToken  aws.StringValue  `xml:"NextToken"`
+	Filters    []Filter         `query:"Filters.member" xml:"Filters>member"`
+	MaxRecords aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NextToken  aws.StringValue  `query:"NextToken" xml:"NextToken"`
 }
 
 // DescribeTerminationPolicyTypesAnswer is undocumented.
 type DescribeTerminationPolicyTypesAnswer struct {
-	TerminationPolicyTypes []string `xml:"DescribeTerminationPolicyTypesResult>TerminationPolicyTypes>member"`
+	TerminationPolicyTypes []string `query:"TerminationPolicyTypes.member" xml:"DescribeTerminationPolicyTypesResult>TerminationPolicyTypes>member"`
 }
 
 // DetachInstancesAnswer is undocumented.
 type DetachInstancesAnswer struct {
-	Activities []Activity `xml:"DetachInstancesResult>Activities>member"`
+	Activities []Activity `query:"Activities.member" xml:"DetachInstancesResult>Activities>member"`
 }
 
 // DetachInstancesQuery is undocumented.
 type DetachInstancesQuery struct {
-	AutoScalingGroupName           aws.StringValue  `xml:"AutoScalingGroupName"`
-	InstanceIDs                    []string         `xml:"InstanceIds>member"`
-	ShouldDecrementDesiredCapacity aws.BooleanValue `xml:"ShouldDecrementDesiredCapacity"`
+	AutoScalingGroupName           aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	InstanceIDs                    []string         `query:"InstanceIds.member" xml:"InstanceIds>member"`
+	ShouldDecrementDesiredCapacity aws.BooleanValue `query:"ShouldDecrementDesiredCapacity" xml:"ShouldDecrementDesiredCapacity"`
 }
 
 // DisableMetricsCollectionQuery is undocumented.
 type DisableMetricsCollectionQuery struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	Metrics              []string        `xml:"Metrics>member"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	Metrics              []string        `query:"Metrics.member" xml:"Metrics>member"`
 }
 
 // EBS is undocumented.
 type EBS struct {
-	DeleteOnTermination aws.BooleanValue `xml:"DeleteOnTermination"`
-	IOPS                aws.IntegerValue `xml:"Iops"`
-	SnapshotID          aws.StringValue  `xml:"SnapshotId"`
-	VolumeSize          aws.IntegerValue `xml:"VolumeSize"`
-	VolumeType          aws.StringValue  `xml:"VolumeType"`
+	DeleteOnTermination aws.BooleanValue `query:"DeleteOnTermination" xml:"DeleteOnTermination"`
+	IOPS                aws.IntegerValue `query:"Iops" xml:"Iops"`
+	SnapshotID          aws.StringValue  `query:"SnapshotId" xml:"SnapshotId"`
+	VolumeSize          aws.IntegerValue `query:"VolumeSize" xml:"VolumeSize"`
+	VolumeType          aws.StringValue  `query:"VolumeType" xml:"VolumeType"`
 }
 
 // EnableMetricsCollectionQuery is undocumented.
 type EnableMetricsCollectionQuery struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	Granularity          aws.StringValue `xml:"Granularity"`
-	Metrics              []string        `xml:"Metrics>member"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	Granularity          aws.StringValue `query:"Granularity" xml:"Granularity"`
+	Metrics              []string        `query:"Metrics.member" xml:"Metrics>member"`
 }
 
 // EnabledMetric is undocumented.
 type EnabledMetric struct {
-	Granularity aws.StringValue `xml:"Granularity"`
-	Metric      aws.StringValue `xml:"Metric"`
+	Granularity aws.StringValue `query:"Granularity" xml:"Granularity"`
+	Metric      aws.StringValue `query:"Metric" xml:"Metric"`
 }
 
 // EnterStandbyAnswer is undocumented.
 type EnterStandbyAnswer struct {
-	Activities []Activity `xml:"EnterStandbyResult>Activities>member"`
+	Activities []Activity `query:"Activities.member" xml:"EnterStandbyResult>Activities>member"`
 }
 
 // EnterStandbyQuery is undocumented.
 type EnterStandbyQuery struct {
-	AutoScalingGroupName           aws.StringValue  `xml:"AutoScalingGroupName"`
-	InstanceIDs                    []string         `xml:"InstanceIds>member"`
-	ShouldDecrementDesiredCapacity aws.BooleanValue `xml:"ShouldDecrementDesiredCapacity"`
+	AutoScalingGroupName           aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	InstanceIDs                    []string         `query:"InstanceIds.member" xml:"InstanceIds>member"`
+	ShouldDecrementDesiredCapacity aws.BooleanValue `query:"ShouldDecrementDesiredCapacity" xml:"ShouldDecrementDesiredCapacity"`
 }
 
 // ExecutePolicyType is undocumented.
 type ExecutePolicyType struct {
-	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
-	HonorCooldown        aws.BooleanValue `xml:"HonorCooldown"`
-	PolicyName           aws.StringValue  `xml:"PolicyName"`
+	AutoScalingGroupName aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	HonorCooldown        aws.BooleanValue `query:"HonorCooldown" xml:"HonorCooldown"`
+	PolicyName           aws.StringValue  `query:"PolicyName" xml:"PolicyName"`
 }
 
 // ExitStandbyAnswer is undocumented.
 type ExitStandbyAnswer struct {
-	Activities []Activity `xml:"ExitStandbyResult>Activities>member"`
+	Activities []Activity `query:"Activities.member" xml:"ExitStandbyResult>Activities>member"`
 }
 
 // ExitStandbyQuery is undocumented.
 type ExitStandbyQuery struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	InstanceIDs          []string        `xml:"InstanceIds>member"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	InstanceIDs          []string        `query:"InstanceIds.member" xml:"InstanceIds>member"`
 }
 
 // Filter is undocumented.
 type Filter struct {
-	Name   aws.StringValue `xml:"Name"`
-	Values []string        `xml:"Values>member"`
+	Name   aws.StringValue `query:"Name" xml:"Name"`
+	Values []string        `query:"Values.member" xml:"Values>member"`
 }
 
 // Instance is undocumented.
 type Instance struct {
-	AvailabilityZone        aws.StringValue `xml:"AvailabilityZone"`
-	HealthStatus            aws.StringValue `xml:"HealthStatus"`
-	InstanceID              aws.StringValue `xml:"InstanceId"`
-	LaunchConfigurationName aws.StringValue `xml:"LaunchConfigurationName"`
-	LifecycleState          aws.StringValue `xml:"LifecycleState"`
+	AvailabilityZone        aws.StringValue `query:"AvailabilityZone" xml:"AvailabilityZone"`
+	HealthStatus            aws.StringValue `query:"HealthStatus" xml:"HealthStatus"`
+	InstanceID              aws.StringValue `query:"InstanceId" xml:"InstanceId"`
+	LaunchConfigurationName aws.StringValue `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
+	LifecycleState          aws.StringValue `query:"LifecycleState" xml:"LifecycleState"`
 }
 
 // InstanceMonitoring is undocumented.
 type InstanceMonitoring struct {
-	Enabled aws.BooleanValue `xml:"Enabled"`
+	Enabled aws.BooleanValue `query:"Enabled" xml:"Enabled"`
 }
 
 // LaunchConfiguration is undocumented.
 type LaunchConfiguration struct {
-	AssociatePublicIPAddress aws.BooleanValue     `xml:"AssociatePublicIpAddress"`
-	BlockDeviceMappings      []BlockDeviceMapping `xml:"BlockDeviceMappings>member"`
-	CreatedTime              time.Time            `xml:"CreatedTime"`
-	EBSOptimized             aws.BooleanValue     `xml:"EbsOptimized"`
-	IAMInstanceProfile       aws.StringValue      `xml:"IamInstanceProfile"`
-	ImageID                  aws.StringValue      `xml:"ImageId"`
-	InstanceMonitoring       *InstanceMonitoring  `xml:"InstanceMonitoring"`
-	InstanceType             aws.StringValue      `xml:"InstanceType"`
-	KernelID                 aws.StringValue      `xml:"KernelId"`
-	KeyName                  aws.StringValue      `xml:"KeyName"`
-	LaunchConfigurationARN   aws.StringValue      `xml:"LaunchConfigurationARN"`
-	LaunchConfigurationName  aws.StringValue      `xml:"LaunchConfigurationName"`
-	PlacementTenancy         aws.StringValue      `xml:"PlacementTenancy"`
-	RAMDiskID                aws.StringValue      `xml:"RamdiskId"`
-	SecurityGroups           []string             `xml:"SecurityGroups>member"`
-	SpotPrice                aws.StringValue      `xml:"SpotPrice"`
-	UserData                 aws.StringValue      `xml:"UserData"`
+	AssociatePublicIPAddress aws.BooleanValue     `query:"AssociatePublicIpAddress" xml:"AssociatePublicIpAddress"`
+	BlockDeviceMappings      []BlockDeviceMapping `query:"BlockDeviceMappings.member" xml:"BlockDeviceMappings>member"`
+	CreatedTime              time.Time            `query:"CreatedTime" xml:"CreatedTime"`
+	EBSOptimized             aws.BooleanValue     `query:"EbsOptimized" xml:"EbsOptimized"`
+	IAMInstanceProfile       aws.StringValue      `query:"IamInstanceProfile" xml:"IamInstanceProfile"`
+	ImageID                  aws.StringValue      `query:"ImageId" xml:"ImageId"`
+	InstanceMonitoring       *InstanceMonitoring  `query:"InstanceMonitoring" xml:"InstanceMonitoring"`
+	InstanceType             aws.StringValue      `query:"InstanceType" xml:"InstanceType"`
+	KernelID                 aws.StringValue      `query:"KernelId" xml:"KernelId"`
+	KeyName                  aws.StringValue      `query:"KeyName" xml:"KeyName"`
+	LaunchConfigurationARN   aws.StringValue      `query:"LaunchConfigurationARN" xml:"LaunchConfigurationARN"`
+	LaunchConfigurationName  aws.StringValue      `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
+	PlacementTenancy         aws.StringValue      `query:"PlacementTenancy" xml:"PlacementTenancy"`
+	RAMDiskID                aws.StringValue      `query:"RamdiskId" xml:"RamdiskId"`
+	SecurityGroups           []string             `query:"SecurityGroups.member" xml:"SecurityGroups>member"`
+	SpotPrice                aws.StringValue      `query:"SpotPrice" xml:"SpotPrice"`
+	UserData                 aws.StringValue      `query:"UserData" xml:"UserData"`
 }
 
 // LaunchConfigurationNameType is undocumented.
 type LaunchConfigurationNameType struct {
-	LaunchConfigurationName aws.StringValue `xml:"LaunchConfigurationName"`
+	LaunchConfigurationName aws.StringValue `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
 }
 
 // LaunchConfigurationNamesType is undocumented.
 type LaunchConfigurationNamesType struct {
-	LaunchConfigurationNames []string         `xml:"LaunchConfigurationNames>member"`
-	MaxRecords               aws.IntegerValue `xml:"MaxRecords"`
-	NextToken                aws.StringValue  `xml:"NextToken"`
+	LaunchConfigurationNames []string         `query:"LaunchConfigurationNames.member" xml:"LaunchConfigurationNames>member"`
+	MaxRecords               aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	NextToken                aws.StringValue  `query:"NextToken" xml:"NextToken"`
 }
 
 // LaunchConfigurationsType is undocumented.
 type LaunchConfigurationsType struct {
-	LaunchConfigurations []LaunchConfiguration `xml:"DescribeLaunchConfigurationsResult>LaunchConfigurations>member"`
-	NextToken            aws.StringValue       `xml:"DescribeLaunchConfigurationsResult>NextToken"`
+	LaunchConfigurations []LaunchConfiguration `query:"LaunchConfigurations.member" xml:"DescribeLaunchConfigurationsResult>LaunchConfigurations>member"`
+	NextToken            aws.StringValue       `query:"NextToken" xml:"DescribeLaunchConfigurationsResult>NextToken"`
 }
 
 // LifecycleHook is undocumented.
 type LifecycleHook struct {
-	AutoScalingGroupName  aws.StringValue  `xml:"AutoScalingGroupName"`
-	DefaultResult         aws.StringValue  `xml:"DefaultResult"`
-	GlobalTimeout         aws.IntegerValue `xml:"GlobalTimeout"`
-	HeartbeatTimeout      aws.IntegerValue `xml:"HeartbeatTimeout"`
-	LifecycleHookName     aws.StringValue  `xml:"LifecycleHookName"`
-	LifecycleTransition   aws.StringValue  `xml:"LifecycleTransition"`
-	NotificationMetadata  aws.StringValue  `xml:"NotificationMetadata"`
-	NotificationTargetARN aws.StringValue  `xml:"NotificationTargetARN"`
-	RoleARN               aws.StringValue  `xml:"RoleARN"`
+	AutoScalingGroupName  aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	DefaultResult         aws.StringValue  `query:"DefaultResult" xml:"DefaultResult"`
+	GlobalTimeout         aws.IntegerValue `query:"GlobalTimeout" xml:"GlobalTimeout"`
+	HeartbeatTimeout      aws.IntegerValue `query:"HeartbeatTimeout" xml:"HeartbeatTimeout"`
+	LifecycleHookName     aws.StringValue  `query:"LifecycleHookName" xml:"LifecycleHookName"`
+	LifecycleTransition   aws.StringValue  `query:"LifecycleTransition" xml:"LifecycleTransition"`
+	NotificationMetadata  aws.StringValue  `query:"NotificationMetadata" xml:"NotificationMetadata"`
+	NotificationTargetARN aws.StringValue  `query:"NotificationTargetARN" xml:"NotificationTargetARN"`
+	RoleARN               aws.StringValue  `query:"RoleARN" xml:"RoleARN"`
 }
 
 // Possible values for AutoScaling.
@@ -971,40 +971,40 @@ const (
 
 // MetricCollectionType is undocumented.
 type MetricCollectionType struct {
-	Metric aws.StringValue `xml:"Metric"`
+	Metric aws.StringValue `query:"Metric" xml:"Metric"`
 }
 
 // MetricGranularityType is undocumented.
 type MetricGranularityType struct {
-	Granularity aws.StringValue `xml:"Granularity"`
+	Granularity aws.StringValue `query:"Granularity" xml:"Granularity"`
 }
 
 // NotificationConfiguration is undocumented.
 type NotificationConfiguration struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	NotificationType     aws.StringValue `xml:"NotificationType"`
-	TopicARN             aws.StringValue `xml:"TopicARN"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	NotificationType     aws.StringValue `query:"NotificationType" xml:"NotificationType"`
+	TopicARN             aws.StringValue `query:"TopicARN" xml:"TopicARN"`
 }
 
 // PoliciesType is undocumented.
 type PoliciesType struct {
-	NextToken       aws.StringValue `xml:"DescribePoliciesResult>NextToken"`
-	ScalingPolicies []ScalingPolicy `xml:"DescribePoliciesResult>ScalingPolicies>member"`
+	NextToken       aws.StringValue `query:"NextToken" xml:"DescribePoliciesResult>NextToken"`
+	ScalingPolicies []ScalingPolicy `query:"ScalingPolicies.member" xml:"DescribePoliciesResult>ScalingPolicies>member"`
 }
 
 // PolicyARNType is undocumented.
 type PolicyARNType struct {
-	PolicyARN aws.StringValue `xml:"PutScalingPolicyResult>PolicyARN"`
+	PolicyARN aws.StringValue `query:"PolicyARN" xml:"PutScalingPolicyResult>PolicyARN"`
 }
 
 // ProcessType is undocumented.
 type ProcessType struct {
-	ProcessName aws.StringValue `xml:"ProcessName"`
+	ProcessName aws.StringValue `query:"ProcessName" xml:"ProcessName"`
 }
 
 // ProcessesType is undocumented.
 type ProcessesType struct {
-	Processes []ProcessType `xml:"DescribeScalingProcessTypesResult>Processes>member"`
+	Processes []ProcessType `query:"Processes.member" xml:"DescribeScalingProcessTypesResult>Processes>member"`
 }
 
 // PutLifecycleHookAnswer is undocumented.
@@ -1013,44 +1013,44 @@ type PutLifecycleHookAnswer struct {
 
 // PutLifecycleHookType is undocumented.
 type PutLifecycleHookType struct {
-	AutoScalingGroupName  aws.StringValue  `xml:"AutoScalingGroupName"`
-	DefaultResult         aws.StringValue  `xml:"DefaultResult"`
-	HeartbeatTimeout      aws.IntegerValue `xml:"HeartbeatTimeout"`
-	LifecycleHookName     aws.StringValue  `xml:"LifecycleHookName"`
-	LifecycleTransition   aws.StringValue  `xml:"LifecycleTransition"`
-	NotificationMetadata  aws.StringValue  `xml:"NotificationMetadata"`
-	NotificationTargetARN aws.StringValue  `xml:"NotificationTargetARN"`
-	RoleARN               aws.StringValue  `xml:"RoleARN"`
+	AutoScalingGroupName  aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	DefaultResult         aws.StringValue  `query:"DefaultResult" xml:"DefaultResult"`
+	HeartbeatTimeout      aws.IntegerValue `query:"HeartbeatTimeout" xml:"HeartbeatTimeout"`
+	LifecycleHookName     aws.StringValue  `query:"LifecycleHookName" xml:"LifecycleHookName"`
+	LifecycleTransition   aws.StringValue  `query:"LifecycleTransition" xml:"LifecycleTransition"`
+	NotificationMetadata  aws.StringValue  `query:"NotificationMetadata" xml:"NotificationMetadata"`
+	NotificationTargetARN aws.StringValue  `query:"NotificationTargetARN" xml:"NotificationTargetARN"`
+	RoleARN               aws.StringValue  `query:"RoleARN" xml:"RoleARN"`
 }
 
 // PutNotificationConfigurationType is undocumented.
 type PutNotificationConfigurationType struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	NotificationTypes    []string        `xml:"NotificationTypes>member"`
-	TopicARN             aws.StringValue `xml:"TopicARN"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	NotificationTypes    []string        `query:"NotificationTypes.member" xml:"NotificationTypes>member"`
+	TopicARN             aws.StringValue `query:"TopicARN" xml:"TopicARN"`
 }
 
 // PutScalingPolicyType is undocumented.
 type PutScalingPolicyType struct {
-	AdjustmentType       aws.StringValue  `xml:"AdjustmentType"`
-	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
-	Cooldown             aws.IntegerValue `xml:"Cooldown"`
-	MinAdjustmentStep    aws.IntegerValue `xml:"MinAdjustmentStep"`
-	PolicyName           aws.StringValue  `xml:"PolicyName"`
-	ScalingAdjustment    aws.IntegerValue `xml:"ScalingAdjustment"`
+	AdjustmentType       aws.StringValue  `query:"AdjustmentType" xml:"AdjustmentType"`
+	AutoScalingGroupName aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	Cooldown             aws.IntegerValue `query:"Cooldown" xml:"Cooldown"`
+	MinAdjustmentStep    aws.IntegerValue `query:"MinAdjustmentStep" xml:"MinAdjustmentStep"`
+	PolicyName           aws.StringValue  `query:"PolicyName" xml:"PolicyName"`
+	ScalingAdjustment    aws.IntegerValue `query:"ScalingAdjustment" xml:"ScalingAdjustment"`
 }
 
 // PutScheduledUpdateGroupActionType is undocumented.
 type PutScheduledUpdateGroupActionType struct {
-	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
-	DesiredCapacity      aws.IntegerValue `xml:"DesiredCapacity"`
-	EndTime              time.Time        `xml:"EndTime"`
-	MaxSize              aws.IntegerValue `xml:"MaxSize"`
-	MinSize              aws.IntegerValue `xml:"MinSize"`
-	Recurrence           aws.StringValue  `xml:"Recurrence"`
-	ScheduledActionName  aws.StringValue  `xml:"ScheduledActionName"`
-	StartTime            time.Time        `xml:"StartTime"`
-	Time                 time.Time        `xml:"Time"`
+	AutoScalingGroupName aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	DesiredCapacity      aws.IntegerValue `query:"DesiredCapacity" xml:"DesiredCapacity"`
+	EndTime              time.Time        `query:"EndTime" xml:"EndTime"`
+	MaxSize              aws.IntegerValue `query:"MaxSize" xml:"MaxSize"`
+	MinSize              aws.IntegerValue `query:"MinSize" xml:"MinSize"`
+	Recurrence           aws.StringValue  `query:"Recurrence" xml:"Recurrence"`
+	ScheduledActionName  aws.StringValue  `query:"ScheduledActionName" xml:"ScheduledActionName"`
+	StartTime            time.Time        `query:"StartTime" xml:"StartTime"`
+	Time                 time.Time        `query:"Time" xml:"Time"`
 }
 
 // RecordLifecycleActionHeartbeatAnswer is undocumented.
@@ -1059,9 +1059,9 @@ type RecordLifecycleActionHeartbeatAnswer struct {
 
 // RecordLifecycleActionHeartbeatType is undocumented.
 type RecordLifecycleActionHeartbeatType struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	LifecycleActionToken aws.StringValue `xml:"LifecycleActionToken"`
-	LifecycleHookName    aws.StringValue `xml:"LifecycleHookName"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	LifecycleActionToken aws.StringValue `query:"LifecycleActionToken" xml:"LifecycleActionToken"`
+	LifecycleHookName    aws.StringValue `query:"LifecycleHookName" xml:"LifecycleHookName"`
 }
 
 // Possible values for AutoScaling.
@@ -1080,106 +1080,106 @@ const (
 
 // ScalingPolicy is undocumented.
 type ScalingPolicy struct {
-	AdjustmentType       aws.StringValue  `xml:"AdjustmentType"`
-	Alarms               []Alarm          `xml:"Alarms>member"`
-	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
-	Cooldown             aws.IntegerValue `xml:"Cooldown"`
-	MinAdjustmentStep    aws.IntegerValue `xml:"MinAdjustmentStep"`
-	PolicyARN            aws.StringValue  `xml:"PolicyARN"`
-	PolicyName           aws.StringValue  `xml:"PolicyName"`
-	ScalingAdjustment    aws.IntegerValue `xml:"ScalingAdjustment"`
+	AdjustmentType       aws.StringValue  `query:"AdjustmentType" xml:"AdjustmentType"`
+	Alarms               []Alarm          `query:"Alarms.member" xml:"Alarms>member"`
+	AutoScalingGroupName aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	Cooldown             aws.IntegerValue `query:"Cooldown" xml:"Cooldown"`
+	MinAdjustmentStep    aws.IntegerValue `query:"MinAdjustmentStep" xml:"MinAdjustmentStep"`
+	PolicyARN            aws.StringValue  `query:"PolicyARN" xml:"PolicyARN"`
+	PolicyName           aws.StringValue  `query:"PolicyName" xml:"PolicyName"`
+	ScalingAdjustment    aws.IntegerValue `query:"ScalingAdjustment" xml:"ScalingAdjustment"`
 }
 
 // ScalingProcessQuery is undocumented.
 type ScalingProcessQuery struct {
-	AutoScalingGroupName aws.StringValue `xml:"AutoScalingGroupName"`
-	ScalingProcesses     []string        `xml:"ScalingProcesses>member"`
+	AutoScalingGroupName aws.StringValue `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	ScalingProcesses     []string        `query:"ScalingProcesses.member" xml:"ScalingProcesses>member"`
 }
 
 // ScheduledActionsType is undocumented.
 type ScheduledActionsType struct {
-	NextToken                   aws.StringValue              `xml:"DescribeScheduledActionsResult>NextToken"`
-	ScheduledUpdateGroupActions []ScheduledUpdateGroupAction `xml:"DescribeScheduledActionsResult>ScheduledUpdateGroupActions>member"`
+	NextToken                   aws.StringValue              `query:"NextToken" xml:"DescribeScheduledActionsResult>NextToken"`
+	ScheduledUpdateGroupActions []ScheduledUpdateGroupAction `query:"ScheduledUpdateGroupActions.member" xml:"DescribeScheduledActionsResult>ScheduledUpdateGroupActions>member"`
 }
 
 // ScheduledUpdateGroupAction is undocumented.
 type ScheduledUpdateGroupAction struct {
-	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
-	DesiredCapacity      aws.IntegerValue `xml:"DesiredCapacity"`
-	EndTime              time.Time        `xml:"EndTime"`
-	MaxSize              aws.IntegerValue `xml:"MaxSize"`
-	MinSize              aws.IntegerValue `xml:"MinSize"`
-	Recurrence           aws.StringValue  `xml:"Recurrence"`
-	ScheduledActionARN   aws.StringValue  `xml:"ScheduledActionARN"`
-	ScheduledActionName  aws.StringValue  `xml:"ScheduledActionName"`
-	StartTime            time.Time        `xml:"StartTime"`
-	Time                 time.Time        `xml:"Time"`
+	AutoScalingGroupName aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	DesiredCapacity      aws.IntegerValue `query:"DesiredCapacity" xml:"DesiredCapacity"`
+	EndTime              time.Time        `query:"EndTime" xml:"EndTime"`
+	MaxSize              aws.IntegerValue `query:"MaxSize" xml:"MaxSize"`
+	MinSize              aws.IntegerValue `query:"MinSize" xml:"MinSize"`
+	Recurrence           aws.StringValue  `query:"Recurrence" xml:"Recurrence"`
+	ScheduledActionARN   aws.StringValue  `query:"ScheduledActionARN" xml:"ScheduledActionARN"`
+	ScheduledActionName  aws.StringValue  `query:"ScheduledActionName" xml:"ScheduledActionName"`
+	StartTime            time.Time        `query:"StartTime" xml:"StartTime"`
+	Time                 time.Time        `query:"Time" xml:"Time"`
 }
 
 // SetDesiredCapacityType is undocumented.
 type SetDesiredCapacityType struct {
-	AutoScalingGroupName aws.StringValue  `xml:"AutoScalingGroupName"`
-	DesiredCapacity      aws.IntegerValue `xml:"DesiredCapacity"`
-	HonorCooldown        aws.BooleanValue `xml:"HonorCooldown"`
+	AutoScalingGroupName aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	DesiredCapacity      aws.IntegerValue `query:"DesiredCapacity" xml:"DesiredCapacity"`
+	HonorCooldown        aws.BooleanValue `query:"HonorCooldown" xml:"HonorCooldown"`
 }
 
 // SetInstanceHealthQuery is undocumented.
 type SetInstanceHealthQuery struct {
-	HealthStatus             aws.StringValue  `xml:"HealthStatus"`
-	InstanceID               aws.StringValue  `xml:"InstanceId"`
-	ShouldRespectGracePeriod aws.BooleanValue `xml:"ShouldRespectGracePeriod"`
+	HealthStatus             aws.StringValue  `query:"HealthStatus" xml:"HealthStatus"`
+	InstanceID               aws.StringValue  `query:"InstanceId" xml:"InstanceId"`
+	ShouldRespectGracePeriod aws.BooleanValue `query:"ShouldRespectGracePeriod" xml:"ShouldRespectGracePeriod"`
 }
 
 // SuspendedProcess is undocumented.
 type SuspendedProcess struct {
-	ProcessName      aws.StringValue `xml:"ProcessName"`
-	SuspensionReason aws.StringValue `xml:"SuspensionReason"`
+	ProcessName      aws.StringValue `query:"ProcessName" xml:"ProcessName"`
+	SuspensionReason aws.StringValue `query:"SuspensionReason" xml:"SuspensionReason"`
 }
 
 // Tag is undocumented.
 type Tag struct {
-	Key               aws.StringValue  `xml:"Key"`
-	PropagateAtLaunch aws.BooleanValue `xml:"PropagateAtLaunch"`
-	ResourceID        aws.StringValue  `xml:"ResourceId"`
-	ResourceType      aws.StringValue  `xml:"ResourceType"`
-	Value             aws.StringValue  `xml:"Value"`
+	Key               aws.StringValue  `query:"Key" xml:"Key"`
+	PropagateAtLaunch aws.BooleanValue `query:"PropagateAtLaunch" xml:"PropagateAtLaunch"`
+	ResourceID        aws.StringValue  `query:"ResourceId" xml:"ResourceId"`
+	ResourceType      aws.StringValue  `query:"ResourceType" xml:"ResourceType"`
+	Value             aws.StringValue  `query:"Value" xml:"Value"`
 }
 
 // TagDescription is undocumented.
 type TagDescription struct {
-	Key               aws.StringValue  `xml:"Key"`
-	PropagateAtLaunch aws.BooleanValue `xml:"PropagateAtLaunch"`
-	ResourceID        aws.StringValue  `xml:"ResourceId"`
-	ResourceType      aws.StringValue  `xml:"ResourceType"`
-	Value             aws.StringValue  `xml:"Value"`
+	Key               aws.StringValue  `query:"Key" xml:"Key"`
+	PropagateAtLaunch aws.BooleanValue `query:"PropagateAtLaunch" xml:"PropagateAtLaunch"`
+	ResourceID        aws.StringValue  `query:"ResourceId" xml:"ResourceId"`
+	ResourceType      aws.StringValue  `query:"ResourceType" xml:"ResourceType"`
+	Value             aws.StringValue  `query:"Value" xml:"Value"`
 }
 
 // TagsType is undocumented.
 type TagsType struct {
-	NextToken aws.StringValue  `xml:"DescribeTagsResult>NextToken"`
-	Tags      []TagDescription `xml:"DescribeTagsResult>Tags>member"`
+	NextToken aws.StringValue  `query:"NextToken" xml:"DescribeTagsResult>NextToken"`
+	Tags      []TagDescription `query:"Tags.member" xml:"DescribeTagsResult>Tags>member"`
 }
 
 // TerminateInstanceInAutoScalingGroupType is undocumented.
 type TerminateInstanceInAutoScalingGroupType struct {
-	InstanceID                     aws.StringValue  `xml:"InstanceId"`
-	ShouldDecrementDesiredCapacity aws.BooleanValue `xml:"ShouldDecrementDesiredCapacity"`
+	InstanceID                     aws.StringValue  `query:"InstanceId" xml:"InstanceId"`
+	ShouldDecrementDesiredCapacity aws.BooleanValue `query:"ShouldDecrementDesiredCapacity" xml:"ShouldDecrementDesiredCapacity"`
 }
 
 // UpdateAutoScalingGroupType is undocumented.
 type UpdateAutoScalingGroupType struct {
-	AutoScalingGroupName    aws.StringValue  `xml:"AutoScalingGroupName"`
-	AvailabilityZones       []string         `xml:"AvailabilityZones>member"`
-	DefaultCooldown         aws.IntegerValue `xml:"DefaultCooldown"`
-	DesiredCapacity         aws.IntegerValue `xml:"DesiredCapacity"`
-	HealthCheckGracePeriod  aws.IntegerValue `xml:"HealthCheckGracePeriod"`
-	HealthCheckType         aws.StringValue  `xml:"HealthCheckType"`
-	LaunchConfigurationName aws.StringValue  `xml:"LaunchConfigurationName"`
-	MaxSize                 aws.IntegerValue `xml:"MaxSize"`
-	MinSize                 aws.IntegerValue `xml:"MinSize"`
-	PlacementGroup          aws.StringValue  `xml:"PlacementGroup"`
-	TerminationPolicies     []string         `xml:"TerminationPolicies>member"`
-	VPCZoneIdentifier       aws.StringValue  `xml:"VPCZoneIdentifier"`
+	AutoScalingGroupName    aws.StringValue  `query:"AutoScalingGroupName" xml:"AutoScalingGroupName"`
+	AvailabilityZones       []string         `query:"AvailabilityZones.member" xml:"AvailabilityZones>member"`
+	DefaultCooldown         aws.IntegerValue `query:"DefaultCooldown" xml:"DefaultCooldown"`
+	DesiredCapacity         aws.IntegerValue `query:"DesiredCapacity" xml:"DesiredCapacity"`
+	HealthCheckGracePeriod  aws.IntegerValue `query:"HealthCheckGracePeriod" xml:"HealthCheckGracePeriod"`
+	HealthCheckType         aws.StringValue  `query:"HealthCheckType" xml:"HealthCheckType"`
+	LaunchConfigurationName aws.StringValue  `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
+	MaxSize                 aws.IntegerValue `query:"MaxSize" xml:"MaxSize"`
+	MinSize                 aws.IntegerValue `query:"MinSize" xml:"MinSize"`
+	PlacementGroup          aws.StringValue  `query:"PlacementGroup" xml:"PlacementGroup"`
+	TerminationPolicies     []string         `query:"TerminationPolicies.member" xml:"TerminationPolicies>member"`
+	VPCZoneIdentifier       aws.StringValue  `query:"VPCZoneIdentifier" xml:"VPCZoneIdentifier"`
 }
 
 // CompleteLifecycleActionResult is a wrapper for CompleteLifecycleActionAnswer.
@@ -1192,107 +1192,107 @@ type DeleteLifecycleHookResult struct {
 
 // DescribeAccountLimitsResult is a wrapper for DescribeAccountLimitsAnswer.
 type DescribeAccountLimitsResult struct {
-	MaxNumberOfAutoScalingGroups    aws.IntegerValue `xml:"DescribeAccountLimitsResult>MaxNumberOfAutoScalingGroups"`
-	MaxNumberOfLaunchConfigurations aws.IntegerValue `xml:"DescribeAccountLimitsResult>MaxNumberOfLaunchConfigurations"`
+	MaxNumberOfAutoScalingGroups    aws.IntegerValue `query:"MaxNumberOfAutoScalingGroups" xml:"DescribeAccountLimitsResult>MaxNumberOfAutoScalingGroups"`
+	MaxNumberOfLaunchConfigurations aws.IntegerValue `query:"MaxNumberOfLaunchConfigurations" xml:"DescribeAccountLimitsResult>MaxNumberOfLaunchConfigurations"`
 }
 
 // DescribeAdjustmentTypesResult is a wrapper for DescribeAdjustmentTypesAnswer.
 type DescribeAdjustmentTypesResult struct {
-	AdjustmentTypes []AdjustmentType `xml:"DescribeAdjustmentTypesResult>AdjustmentTypes>member"`
+	AdjustmentTypes []AdjustmentType `query:"AdjustmentTypes.member" xml:"DescribeAdjustmentTypesResult>AdjustmentTypes>member"`
 }
 
 // DescribeAutoScalingGroupsResult is a wrapper for AutoScalingGroupsType.
 type DescribeAutoScalingGroupsResult struct {
-	AutoScalingGroups []AutoScalingGroup `xml:"DescribeAutoScalingGroupsResult>AutoScalingGroups>member"`
-	NextToken         aws.StringValue    `xml:"DescribeAutoScalingGroupsResult>NextToken"`
+	AutoScalingGroups []AutoScalingGroup `query:"AutoScalingGroups.member" xml:"DescribeAutoScalingGroupsResult>AutoScalingGroups>member"`
+	NextToken         aws.StringValue    `query:"NextToken" xml:"DescribeAutoScalingGroupsResult>NextToken"`
 }
 
 // DescribeAutoScalingInstancesResult is a wrapper for AutoScalingInstancesType.
 type DescribeAutoScalingInstancesResult struct {
-	AutoScalingInstances []AutoScalingInstanceDetails `xml:"DescribeAutoScalingInstancesResult>AutoScalingInstances>member"`
-	NextToken            aws.StringValue              `xml:"DescribeAutoScalingInstancesResult>NextToken"`
+	AutoScalingInstances []AutoScalingInstanceDetails `query:"AutoScalingInstances.member" xml:"DescribeAutoScalingInstancesResult>AutoScalingInstances>member"`
+	NextToken            aws.StringValue              `query:"NextToken" xml:"DescribeAutoScalingInstancesResult>NextToken"`
 }
 
 // DescribeAutoScalingNotificationTypesResult is a wrapper for DescribeAutoScalingNotificationTypesAnswer.
 type DescribeAutoScalingNotificationTypesResult struct {
-	AutoScalingNotificationTypes []string `xml:"DescribeAutoScalingNotificationTypesResult>AutoScalingNotificationTypes>member"`
+	AutoScalingNotificationTypes []string `query:"AutoScalingNotificationTypes.member" xml:"DescribeAutoScalingNotificationTypesResult>AutoScalingNotificationTypes>member"`
 }
 
 // DescribeLaunchConfigurationsResult is a wrapper for LaunchConfigurationsType.
 type DescribeLaunchConfigurationsResult struct {
-	LaunchConfigurations []LaunchConfiguration `xml:"DescribeLaunchConfigurationsResult>LaunchConfigurations>member"`
-	NextToken            aws.StringValue       `xml:"DescribeLaunchConfigurationsResult>NextToken"`
+	LaunchConfigurations []LaunchConfiguration `query:"LaunchConfigurations.member" xml:"DescribeLaunchConfigurationsResult>LaunchConfigurations>member"`
+	NextToken            aws.StringValue       `query:"NextToken" xml:"DescribeLaunchConfigurationsResult>NextToken"`
 }
 
 // DescribeLifecycleHookTypesResult is a wrapper for DescribeLifecycleHookTypesAnswer.
 type DescribeLifecycleHookTypesResult struct {
-	LifecycleHookTypes []string `xml:"DescribeLifecycleHookTypesResult>LifecycleHookTypes>member"`
+	LifecycleHookTypes []string `query:"LifecycleHookTypes.member" xml:"DescribeLifecycleHookTypesResult>LifecycleHookTypes>member"`
 }
 
 // DescribeLifecycleHooksResult is a wrapper for DescribeLifecycleHooksAnswer.
 type DescribeLifecycleHooksResult struct {
-	LifecycleHooks []LifecycleHook `xml:"DescribeLifecycleHooksResult>LifecycleHooks>member"`
+	LifecycleHooks []LifecycleHook `query:"LifecycleHooks.member" xml:"DescribeLifecycleHooksResult>LifecycleHooks>member"`
 }
 
 // DescribeMetricCollectionTypesResult is a wrapper for DescribeMetricCollectionTypesAnswer.
 type DescribeMetricCollectionTypesResult struct {
-	Granularities []MetricGranularityType `xml:"DescribeMetricCollectionTypesResult>Granularities>member"`
-	Metrics       []MetricCollectionType  `xml:"DescribeMetricCollectionTypesResult>Metrics>member"`
+	Granularities []MetricGranularityType `query:"Granularities.member" xml:"DescribeMetricCollectionTypesResult>Granularities>member"`
+	Metrics       []MetricCollectionType  `query:"Metrics.member" xml:"DescribeMetricCollectionTypesResult>Metrics>member"`
 }
 
 // DescribeNotificationConfigurationsResult is a wrapper for DescribeNotificationConfigurationsAnswer.
 type DescribeNotificationConfigurationsResult struct {
-	NextToken                  aws.StringValue             `xml:"DescribeNotificationConfigurationsResult>NextToken"`
-	NotificationConfigurations []NotificationConfiguration `xml:"DescribeNotificationConfigurationsResult>NotificationConfigurations>member"`
+	NextToken                  aws.StringValue             `query:"NextToken" xml:"DescribeNotificationConfigurationsResult>NextToken"`
+	NotificationConfigurations []NotificationConfiguration `query:"NotificationConfigurations.member" xml:"DescribeNotificationConfigurationsResult>NotificationConfigurations>member"`
 }
 
 // DescribePoliciesResult is a wrapper for PoliciesType.
 type DescribePoliciesResult struct {
-	NextToken       aws.StringValue `xml:"DescribePoliciesResult>NextToken"`
-	ScalingPolicies []ScalingPolicy `xml:"DescribePoliciesResult>ScalingPolicies>member"`
+	NextToken       aws.StringValue `query:"NextToken" xml:"DescribePoliciesResult>NextToken"`
+	ScalingPolicies []ScalingPolicy `query:"ScalingPolicies.member" xml:"DescribePoliciesResult>ScalingPolicies>member"`
 }
 
 // DescribeScalingActivitiesResult is a wrapper for ActivitiesType.
 type DescribeScalingActivitiesResult struct {
-	Activities []Activity      `xml:"DescribeScalingActivitiesResult>Activities>member"`
-	NextToken  aws.StringValue `xml:"DescribeScalingActivitiesResult>NextToken"`
+	Activities []Activity      `query:"Activities.member" xml:"DescribeScalingActivitiesResult>Activities>member"`
+	NextToken  aws.StringValue `query:"NextToken" xml:"DescribeScalingActivitiesResult>NextToken"`
 }
 
 // DescribeScalingProcessTypesResult is a wrapper for ProcessesType.
 type DescribeScalingProcessTypesResult struct {
-	Processes []ProcessType `xml:"DescribeScalingProcessTypesResult>Processes>member"`
+	Processes []ProcessType `query:"Processes.member" xml:"DescribeScalingProcessTypesResult>Processes>member"`
 }
 
 // DescribeScheduledActionsResult is a wrapper for ScheduledActionsType.
 type DescribeScheduledActionsResult struct {
-	NextToken                   aws.StringValue              `xml:"DescribeScheduledActionsResult>NextToken"`
-	ScheduledUpdateGroupActions []ScheduledUpdateGroupAction `xml:"DescribeScheduledActionsResult>ScheduledUpdateGroupActions>member"`
+	NextToken                   aws.StringValue              `query:"NextToken" xml:"DescribeScheduledActionsResult>NextToken"`
+	ScheduledUpdateGroupActions []ScheduledUpdateGroupAction `query:"ScheduledUpdateGroupActions.member" xml:"DescribeScheduledActionsResult>ScheduledUpdateGroupActions>member"`
 }
 
 // DescribeTagsResult is a wrapper for TagsType.
 type DescribeTagsResult struct {
-	NextToken aws.StringValue  `xml:"DescribeTagsResult>NextToken"`
-	Tags      []TagDescription `xml:"DescribeTagsResult>Tags>member"`
+	NextToken aws.StringValue  `query:"NextToken" xml:"DescribeTagsResult>NextToken"`
+	Tags      []TagDescription `query:"Tags.member" xml:"DescribeTagsResult>Tags>member"`
 }
 
 // DescribeTerminationPolicyTypesResult is a wrapper for DescribeTerminationPolicyTypesAnswer.
 type DescribeTerminationPolicyTypesResult struct {
-	TerminationPolicyTypes []string `xml:"DescribeTerminationPolicyTypesResult>TerminationPolicyTypes>member"`
+	TerminationPolicyTypes []string `query:"TerminationPolicyTypes.member" xml:"DescribeTerminationPolicyTypesResult>TerminationPolicyTypes>member"`
 }
 
 // DetachInstancesResult is a wrapper for DetachInstancesAnswer.
 type DetachInstancesResult struct {
-	Activities []Activity `xml:"DetachInstancesResult>Activities>member"`
+	Activities []Activity `query:"Activities.member" xml:"DetachInstancesResult>Activities>member"`
 }
 
 // EnterStandbyResult is a wrapper for EnterStandbyAnswer.
 type EnterStandbyResult struct {
-	Activities []Activity `xml:"EnterStandbyResult>Activities>member"`
+	Activities []Activity `query:"Activities.member" xml:"EnterStandbyResult>Activities>member"`
 }
 
 // ExitStandbyResult is a wrapper for ExitStandbyAnswer.
 type ExitStandbyResult struct {
-	Activities []Activity `xml:"ExitStandbyResult>Activities>member"`
+	Activities []Activity `query:"Activities.member" xml:"ExitStandbyResult>Activities>member"`
 }
 
 // PutLifecycleHookResult is a wrapper for PutLifecycleHookAnswer.
@@ -1301,7 +1301,7 @@ type PutLifecycleHookResult struct {
 
 // PutScalingPolicyResult is a wrapper for PolicyARNType.
 type PutScalingPolicyResult struct {
-	PolicyARN aws.StringValue `xml:"PutScalingPolicyResult>PolicyARN"`
+	PolicyARN aws.StringValue `query:"PolicyARN" xml:"PutScalingPolicyResult>PolicyARN"`
 }
 
 // RecordLifecycleActionHeartbeatResult is a wrapper for RecordLifecycleActionHeartbeatAnswer.
@@ -1310,7 +1310,7 @@ type RecordLifecycleActionHeartbeatResult struct {
 
 // TerminateInstanceInAutoScalingGroupResult is a wrapper for ActivityType.
 type TerminateInstanceInAutoScalingGroupResult struct {
-	Activity *Activity `xml:"TerminateInstanceInAutoScalingGroupResult>Activity"`
+	Activity *Activity `query:"Activity" xml:"TerminateInstanceInAutoScalingGroupResult>Activity"`
 }
 
 // avoid errors if the packages aren't referenced

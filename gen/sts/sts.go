@@ -310,163 +310,163 @@ func (c *STS) GetSessionToken(req *GetSessionTokenRequest) (resp *GetSessionToke
 
 // AssumeRoleRequest is undocumented.
 type AssumeRoleRequest struct {
-	DurationSeconds aws.IntegerValue `xml:"DurationSeconds"`
-	ExternalID      aws.StringValue  `xml:"ExternalId"`
-	Policy          aws.StringValue  `xml:"Policy"`
-	RoleARN         aws.StringValue  `xml:"RoleArn"`
-	RoleSessionName aws.StringValue  `xml:"RoleSessionName"`
-	SerialNumber    aws.StringValue  `xml:"SerialNumber"`
-	TokenCode       aws.StringValue  `xml:"TokenCode"`
+	DurationSeconds aws.IntegerValue `query:"DurationSeconds" xml:"DurationSeconds"`
+	ExternalID      aws.StringValue  `query:"ExternalId" xml:"ExternalId"`
+	Policy          aws.StringValue  `query:"Policy" xml:"Policy"`
+	RoleARN         aws.StringValue  `query:"RoleArn" xml:"RoleArn"`
+	RoleSessionName aws.StringValue  `query:"RoleSessionName" xml:"RoleSessionName"`
+	SerialNumber    aws.StringValue  `query:"SerialNumber" xml:"SerialNumber"`
+	TokenCode       aws.StringValue  `query:"TokenCode" xml:"TokenCode"`
 }
 
 // AssumeRoleResponse is undocumented.
 type AssumeRoleResponse struct {
-	AssumedRoleUser  *AssumedRoleUser `xml:"AssumeRoleResult>AssumedRoleUser"`
-	Credentials      *Credentials     `xml:"AssumeRoleResult>Credentials"`
-	PackedPolicySize aws.IntegerValue `xml:"AssumeRoleResult>PackedPolicySize"`
+	AssumedRoleUser  *AssumedRoleUser `query:"AssumedRoleUser" xml:"AssumeRoleResult>AssumedRoleUser"`
+	Credentials      *Credentials     `query:"Credentials" xml:"AssumeRoleResult>Credentials"`
+	PackedPolicySize aws.IntegerValue `query:"PackedPolicySize" xml:"AssumeRoleResult>PackedPolicySize"`
 }
 
 // AssumeRoleWithSAMLRequest is undocumented.
 type AssumeRoleWithSAMLRequest struct {
-	DurationSeconds aws.IntegerValue `xml:"DurationSeconds"`
-	Policy          aws.StringValue  `xml:"Policy"`
-	PrincipalARN    aws.StringValue  `xml:"PrincipalArn"`
-	RoleARN         aws.StringValue  `xml:"RoleArn"`
-	SAMLAssertion   aws.StringValue  `xml:"SAMLAssertion"`
+	DurationSeconds aws.IntegerValue `query:"DurationSeconds" xml:"DurationSeconds"`
+	Policy          aws.StringValue  `query:"Policy" xml:"Policy"`
+	PrincipalARN    aws.StringValue  `query:"PrincipalArn" xml:"PrincipalArn"`
+	RoleARN         aws.StringValue  `query:"RoleArn" xml:"RoleArn"`
+	SAMLAssertion   aws.StringValue  `query:"SAMLAssertion" xml:"SAMLAssertion"`
 }
 
 // AssumeRoleWithSAMLResponse is undocumented.
 type AssumeRoleWithSAMLResponse struct {
-	AssumedRoleUser  *AssumedRoleUser `xml:"AssumeRoleWithSAMLResult>AssumedRoleUser"`
-	Audience         aws.StringValue  `xml:"AssumeRoleWithSAMLResult>Audience"`
-	Credentials      *Credentials     `xml:"AssumeRoleWithSAMLResult>Credentials"`
-	Issuer           aws.StringValue  `xml:"AssumeRoleWithSAMLResult>Issuer"`
-	NameQualifier    aws.StringValue  `xml:"AssumeRoleWithSAMLResult>NameQualifier"`
-	PackedPolicySize aws.IntegerValue `xml:"AssumeRoleWithSAMLResult>PackedPolicySize"`
-	Subject          aws.StringValue  `xml:"AssumeRoleWithSAMLResult>Subject"`
-	SubjectType      aws.StringValue  `xml:"AssumeRoleWithSAMLResult>SubjectType"`
+	AssumedRoleUser  *AssumedRoleUser `query:"AssumedRoleUser" xml:"AssumeRoleWithSAMLResult>AssumedRoleUser"`
+	Audience         aws.StringValue  `query:"Audience" xml:"AssumeRoleWithSAMLResult>Audience"`
+	Credentials      *Credentials     `query:"Credentials" xml:"AssumeRoleWithSAMLResult>Credentials"`
+	Issuer           aws.StringValue  `query:"Issuer" xml:"AssumeRoleWithSAMLResult>Issuer"`
+	NameQualifier    aws.StringValue  `query:"NameQualifier" xml:"AssumeRoleWithSAMLResult>NameQualifier"`
+	PackedPolicySize aws.IntegerValue `query:"PackedPolicySize" xml:"AssumeRoleWithSAMLResult>PackedPolicySize"`
+	Subject          aws.StringValue  `query:"Subject" xml:"AssumeRoleWithSAMLResult>Subject"`
+	SubjectType      aws.StringValue  `query:"SubjectType" xml:"AssumeRoleWithSAMLResult>SubjectType"`
 }
 
 // AssumeRoleWithWebIdentityRequest is undocumented.
 type AssumeRoleWithWebIdentityRequest struct {
-	DurationSeconds  aws.IntegerValue `xml:"DurationSeconds"`
-	Policy           aws.StringValue  `xml:"Policy"`
-	ProviderID       aws.StringValue  `xml:"ProviderId"`
-	RoleARN          aws.StringValue  `xml:"RoleArn"`
-	RoleSessionName  aws.StringValue  `xml:"RoleSessionName"`
-	WebIdentityToken aws.StringValue  `xml:"WebIdentityToken"`
+	DurationSeconds  aws.IntegerValue `query:"DurationSeconds" xml:"DurationSeconds"`
+	Policy           aws.StringValue  `query:"Policy" xml:"Policy"`
+	ProviderID       aws.StringValue  `query:"ProviderId" xml:"ProviderId"`
+	RoleARN          aws.StringValue  `query:"RoleArn" xml:"RoleArn"`
+	RoleSessionName  aws.StringValue  `query:"RoleSessionName" xml:"RoleSessionName"`
+	WebIdentityToken aws.StringValue  `query:"WebIdentityToken" xml:"WebIdentityToken"`
 }
 
 // AssumeRoleWithWebIdentityResponse is undocumented.
 type AssumeRoleWithWebIdentityResponse struct {
-	AssumedRoleUser             *AssumedRoleUser `xml:"AssumeRoleWithWebIdentityResult>AssumedRoleUser"`
-	Audience                    aws.StringValue  `xml:"AssumeRoleWithWebIdentityResult>Audience"`
-	Credentials                 *Credentials     `xml:"AssumeRoleWithWebIdentityResult>Credentials"`
-	PackedPolicySize            aws.IntegerValue `xml:"AssumeRoleWithWebIdentityResult>PackedPolicySize"`
-	Provider                    aws.StringValue  `xml:"AssumeRoleWithWebIdentityResult>Provider"`
-	SubjectFromWebIdentityToken aws.StringValue  `xml:"AssumeRoleWithWebIdentityResult>SubjectFromWebIdentityToken"`
+	AssumedRoleUser             *AssumedRoleUser `query:"AssumedRoleUser" xml:"AssumeRoleWithWebIdentityResult>AssumedRoleUser"`
+	Audience                    aws.StringValue  `query:"Audience" xml:"AssumeRoleWithWebIdentityResult>Audience"`
+	Credentials                 *Credentials     `query:"Credentials" xml:"AssumeRoleWithWebIdentityResult>Credentials"`
+	PackedPolicySize            aws.IntegerValue `query:"PackedPolicySize" xml:"AssumeRoleWithWebIdentityResult>PackedPolicySize"`
+	Provider                    aws.StringValue  `query:"Provider" xml:"AssumeRoleWithWebIdentityResult>Provider"`
+	SubjectFromWebIdentityToken aws.StringValue  `query:"SubjectFromWebIdentityToken" xml:"AssumeRoleWithWebIdentityResult>SubjectFromWebIdentityToken"`
 }
 
 // AssumedRoleUser is undocumented.
 type AssumedRoleUser struct {
-	ARN           aws.StringValue `xml:"Arn"`
-	AssumedRoleID aws.StringValue `xml:"AssumedRoleId"`
+	ARN           aws.StringValue `query:"Arn" xml:"Arn"`
+	AssumedRoleID aws.StringValue `query:"AssumedRoleId" xml:"AssumedRoleId"`
 }
 
 // Credentials is undocumented.
 type Credentials struct {
-	AccessKeyID     aws.StringValue `xml:"AccessKeyId"`
-	Expiration      time.Time       `xml:"Expiration"`
-	SecretAccessKey aws.StringValue `xml:"SecretAccessKey"`
-	SessionToken    aws.StringValue `xml:"SessionToken"`
+	AccessKeyID     aws.StringValue `query:"AccessKeyId" xml:"AccessKeyId"`
+	Expiration      time.Time       `query:"Expiration" xml:"Expiration"`
+	SecretAccessKey aws.StringValue `query:"SecretAccessKey" xml:"SecretAccessKey"`
+	SessionToken    aws.StringValue `query:"SessionToken" xml:"SessionToken"`
 }
 
 // DecodeAuthorizationMessageRequest is undocumented.
 type DecodeAuthorizationMessageRequest struct {
-	EncodedMessage aws.StringValue `xml:"EncodedMessage"`
+	EncodedMessage aws.StringValue `query:"EncodedMessage" xml:"EncodedMessage"`
 }
 
 // DecodeAuthorizationMessageResponse is undocumented.
 type DecodeAuthorizationMessageResponse struct {
-	DecodedMessage aws.StringValue `xml:"DecodeAuthorizationMessageResult>DecodedMessage"`
+	DecodedMessage aws.StringValue `query:"DecodedMessage" xml:"DecodeAuthorizationMessageResult>DecodedMessage"`
 }
 
 // FederatedUser is undocumented.
 type FederatedUser struct {
-	ARN             aws.StringValue `xml:"Arn"`
-	FederatedUserID aws.StringValue `xml:"FederatedUserId"`
+	ARN             aws.StringValue `query:"Arn" xml:"Arn"`
+	FederatedUserID aws.StringValue `query:"FederatedUserId" xml:"FederatedUserId"`
 }
 
 // GetFederationTokenRequest is undocumented.
 type GetFederationTokenRequest struct {
-	DurationSeconds aws.IntegerValue `xml:"DurationSeconds"`
-	Name            aws.StringValue  `xml:"Name"`
-	Policy          aws.StringValue  `xml:"Policy"`
+	DurationSeconds aws.IntegerValue `query:"DurationSeconds" xml:"DurationSeconds"`
+	Name            aws.StringValue  `query:"Name" xml:"Name"`
+	Policy          aws.StringValue  `query:"Policy" xml:"Policy"`
 }
 
 // GetFederationTokenResponse is undocumented.
 type GetFederationTokenResponse struct {
-	Credentials      *Credentials     `xml:"GetFederationTokenResult>Credentials"`
-	FederatedUser    *FederatedUser   `xml:"GetFederationTokenResult>FederatedUser"`
-	PackedPolicySize aws.IntegerValue `xml:"GetFederationTokenResult>PackedPolicySize"`
+	Credentials      *Credentials     `query:"Credentials" xml:"GetFederationTokenResult>Credentials"`
+	FederatedUser    *FederatedUser   `query:"FederatedUser" xml:"GetFederationTokenResult>FederatedUser"`
+	PackedPolicySize aws.IntegerValue `query:"PackedPolicySize" xml:"GetFederationTokenResult>PackedPolicySize"`
 }
 
 // GetSessionTokenRequest is undocumented.
 type GetSessionTokenRequest struct {
-	DurationSeconds aws.IntegerValue `xml:"DurationSeconds"`
-	SerialNumber    aws.StringValue  `xml:"SerialNumber"`
-	TokenCode       aws.StringValue  `xml:"TokenCode"`
+	DurationSeconds aws.IntegerValue `query:"DurationSeconds" xml:"DurationSeconds"`
+	SerialNumber    aws.StringValue  `query:"SerialNumber" xml:"SerialNumber"`
+	TokenCode       aws.StringValue  `query:"TokenCode" xml:"TokenCode"`
 }
 
 // GetSessionTokenResponse is undocumented.
 type GetSessionTokenResponse struct {
-	Credentials *Credentials `xml:"GetSessionTokenResult>Credentials"`
+	Credentials *Credentials `query:"Credentials" xml:"GetSessionTokenResult>Credentials"`
 }
 
 // AssumeRoleResult is a wrapper for AssumeRoleResponse.
 type AssumeRoleResult struct {
-	AssumedRoleUser  *AssumedRoleUser `xml:"AssumeRoleResult>AssumedRoleUser"`
-	Credentials      *Credentials     `xml:"AssumeRoleResult>Credentials"`
-	PackedPolicySize aws.IntegerValue `xml:"AssumeRoleResult>PackedPolicySize"`
+	AssumedRoleUser  *AssumedRoleUser `query:"AssumedRoleUser" xml:"AssumeRoleResult>AssumedRoleUser"`
+	Credentials      *Credentials     `query:"Credentials" xml:"AssumeRoleResult>Credentials"`
+	PackedPolicySize aws.IntegerValue `query:"PackedPolicySize" xml:"AssumeRoleResult>PackedPolicySize"`
 }
 
 // AssumeRoleWithSAMLResult is a wrapper for AssumeRoleWithSAMLResponse.
 type AssumeRoleWithSAMLResult struct {
-	AssumedRoleUser  *AssumedRoleUser `xml:"AssumeRoleWithSAMLResult>AssumedRoleUser"`
-	Audience         aws.StringValue  `xml:"AssumeRoleWithSAMLResult>Audience"`
-	Credentials      *Credentials     `xml:"AssumeRoleWithSAMLResult>Credentials"`
-	Issuer           aws.StringValue  `xml:"AssumeRoleWithSAMLResult>Issuer"`
-	NameQualifier    aws.StringValue  `xml:"AssumeRoleWithSAMLResult>NameQualifier"`
-	PackedPolicySize aws.IntegerValue `xml:"AssumeRoleWithSAMLResult>PackedPolicySize"`
-	Subject          aws.StringValue  `xml:"AssumeRoleWithSAMLResult>Subject"`
-	SubjectType      aws.StringValue  `xml:"AssumeRoleWithSAMLResult>SubjectType"`
+	AssumedRoleUser  *AssumedRoleUser `query:"AssumedRoleUser" xml:"AssumeRoleWithSAMLResult>AssumedRoleUser"`
+	Audience         aws.StringValue  `query:"Audience" xml:"AssumeRoleWithSAMLResult>Audience"`
+	Credentials      *Credentials     `query:"Credentials" xml:"AssumeRoleWithSAMLResult>Credentials"`
+	Issuer           aws.StringValue  `query:"Issuer" xml:"AssumeRoleWithSAMLResult>Issuer"`
+	NameQualifier    aws.StringValue  `query:"NameQualifier" xml:"AssumeRoleWithSAMLResult>NameQualifier"`
+	PackedPolicySize aws.IntegerValue `query:"PackedPolicySize" xml:"AssumeRoleWithSAMLResult>PackedPolicySize"`
+	Subject          aws.StringValue  `query:"Subject" xml:"AssumeRoleWithSAMLResult>Subject"`
+	SubjectType      aws.StringValue  `query:"SubjectType" xml:"AssumeRoleWithSAMLResult>SubjectType"`
 }
 
 // AssumeRoleWithWebIdentityResult is a wrapper for AssumeRoleWithWebIdentityResponse.
 type AssumeRoleWithWebIdentityResult struct {
-	AssumedRoleUser             *AssumedRoleUser `xml:"AssumeRoleWithWebIdentityResult>AssumedRoleUser"`
-	Audience                    aws.StringValue  `xml:"AssumeRoleWithWebIdentityResult>Audience"`
-	Credentials                 *Credentials     `xml:"AssumeRoleWithWebIdentityResult>Credentials"`
-	PackedPolicySize            aws.IntegerValue `xml:"AssumeRoleWithWebIdentityResult>PackedPolicySize"`
-	Provider                    aws.StringValue  `xml:"AssumeRoleWithWebIdentityResult>Provider"`
-	SubjectFromWebIdentityToken aws.StringValue  `xml:"AssumeRoleWithWebIdentityResult>SubjectFromWebIdentityToken"`
+	AssumedRoleUser             *AssumedRoleUser `query:"AssumedRoleUser" xml:"AssumeRoleWithWebIdentityResult>AssumedRoleUser"`
+	Audience                    aws.StringValue  `query:"Audience" xml:"AssumeRoleWithWebIdentityResult>Audience"`
+	Credentials                 *Credentials     `query:"Credentials" xml:"AssumeRoleWithWebIdentityResult>Credentials"`
+	PackedPolicySize            aws.IntegerValue `query:"PackedPolicySize" xml:"AssumeRoleWithWebIdentityResult>PackedPolicySize"`
+	Provider                    aws.StringValue  `query:"Provider" xml:"AssumeRoleWithWebIdentityResult>Provider"`
+	SubjectFromWebIdentityToken aws.StringValue  `query:"SubjectFromWebIdentityToken" xml:"AssumeRoleWithWebIdentityResult>SubjectFromWebIdentityToken"`
 }
 
 // DecodeAuthorizationMessageResult is a wrapper for DecodeAuthorizationMessageResponse.
 type DecodeAuthorizationMessageResult struct {
-	DecodedMessage aws.StringValue `xml:"DecodeAuthorizationMessageResult>DecodedMessage"`
+	DecodedMessage aws.StringValue `query:"DecodedMessage" xml:"DecodeAuthorizationMessageResult>DecodedMessage"`
 }
 
 // GetFederationTokenResult is a wrapper for GetFederationTokenResponse.
 type GetFederationTokenResult struct {
-	Credentials      *Credentials     `xml:"GetFederationTokenResult>Credentials"`
-	FederatedUser    *FederatedUser   `xml:"GetFederationTokenResult>FederatedUser"`
-	PackedPolicySize aws.IntegerValue `xml:"GetFederationTokenResult>PackedPolicySize"`
+	Credentials      *Credentials     `query:"Credentials" xml:"GetFederationTokenResult>Credentials"`
+	FederatedUser    *FederatedUser   `query:"FederatedUser" xml:"GetFederationTokenResult>FederatedUser"`
+	PackedPolicySize aws.IntegerValue `query:"PackedPolicySize" xml:"GetFederationTokenResult>PackedPolicySize"`
 }
 
 // GetSessionTokenResult is a wrapper for GetSessionTokenResponse.
 type GetSessionTokenResult struct {
-	Credentials *Credentials `xml:"GetSessionTokenResult>Credentials"`
+	Credentials *Credentials `query:"Credentials" xml:"GetSessionTokenResult>Credentials"`
 }
 
 // avoid errors if the packages aren't referenced

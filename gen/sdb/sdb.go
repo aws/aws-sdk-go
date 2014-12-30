@@ -205,135 +205,135 @@ func (c *SDB) Select(req *SelectRequest) (resp *SelectResult, err error) {
 
 // Attribute is undocumented.
 type Attribute struct {
-	AlternateNameEncoding  aws.StringValue `xml:"AlternateNameEncoding"`
-	AlternateValueEncoding aws.StringValue `xml:"AlternateValueEncoding"`
-	Name                   aws.StringValue `xml:"Name"`
-	Value                  aws.StringValue `xml:"Value"`
+	AlternateNameEncoding  aws.StringValue `query:"AlternateNameEncoding" xml:"AlternateNameEncoding"`
+	AlternateValueEncoding aws.StringValue `query:"AlternateValueEncoding" xml:"AlternateValueEncoding"`
+	Name                   aws.StringValue `query:"Name" xml:"Name"`
+	Value                  aws.StringValue `query:"Value" xml:"Value"`
 }
 
 // BatchDeleteAttributesRequest is undocumented.
 type BatchDeleteAttributesRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
-	Items      []DeletableItem `xml:"Item"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
+	Items      []DeletableItem `query:"Items" xml:"Item"`
 }
 
 // BatchPutAttributesRequest is undocumented.
 type BatchPutAttributesRequest struct {
-	DomainName aws.StringValue   `xml:"DomainName"`
-	Items      []ReplaceableItem `xml:"Item"`
+	DomainName aws.StringValue   `query:"DomainName" xml:"DomainName"`
+	Items      []ReplaceableItem `query:"Items" xml:"Item"`
 }
 
 // CreateDomainRequest is undocumented.
 type CreateDomainRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
 }
 
 // DeletableItem is undocumented.
 type DeletableItem struct {
-	Attributes []Attribute     `xml:"Attribute"`
-	Name       aws.StringValue `xml:"ItemName"`
+	Attributes []Attribute     `query:"Attributes" xml:"Attribute"`
+	Name       aws.StringValue `query:"ItemName" xml:"ItemName"`
 }
 
 // DeleteAttributesRequest is undocumented.
 type DeleteAttributesRequest struct {
-	Attributes []Attribute      `xml:"Attribute"`
-	DomainName aws.StringValue  `xml:"DomainName"`
-	Expected   *UpdateCondition `xml:"Expected"`
-	ItemName   aws.StringValue  `xml:"ItemName"`
+	Attributes []Attribute      `query:"Attributes" xml:"Attribute"`
+	DomainName aws.StringValue  `query:"DomainName" xml:"DomainName"`
+	Expected   *UpdateCondition `query:"Expected" xml:"Expected"`
+	ItemName   aws.StringValue  `query:"ItemName" xml:"ItemName"`
 }
 
 // DeleteDomainRequest is undocumented.
 type DeleteDomainRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
 }
 
 // DomainMetadataRequest is undocumented.
 type DomainMetadataRequest struct {
-	DomainName aws.StringValue `xml:"DomainName"`
+	DomainName aws.StringValue `query:"DomainName" xml:"DomainName"`
 }
 
 // DomainMetadataResult is undocumented.
 type DomainMetadataResult struct {
-	AttributeNameCount       aws.IntegerValue `xml:"DomainMetadataResult>AttributeNameCount"`
-	AttributeNamesSizeBytes  aws.LongValue    `xml:"DomainMetadataResult>AttributeNamesSizeBytes"`
-	AttributeValueCount      aws.IntegerValue `xml:"DomainMetadataResult>AttributeValueCount"`
-	AttributeValuesSizeBytes aws.LongValue    `xml:"DomainMetadataResult>AttributeValuesSizeBytes"`
-	ItemCount                aws.IntegerValue `xml:"DomainMetadataResult>ItemCount"`
-	ItemNamesSizeBytes       aws.LongValue    `xml:"DomainMetadataResult>ItemNamesSizeBytes"`
-	Timestamp                aws.IntegerValue `xml:"DomainMetadataResult>Timestamp"`
+	AttributeNameCount       aws.IntegerValue `query:"AttributeNameCount" xml:"DomainMetadataResult>AttributeNameCount"`
+	AttributeNamesSizeBytes  aws.LongValue    `query:"AttributeNamesSizeBytes" xml:"DomainMetadataResult>AttributeNamesSizeBytes"`
+	AttributeValueCount      aws.IntegerValue `query:"AttributeValueCount" xml:"DomainMetadataResult>AttributeValueCount"`
+	AttributeValuesSizeBytes aws.LongValue    `query:"AttributeValuesSizeBytes" xml:"DomainMetadataResult>AttributeValuesSizeBytes"`
+	ItemCount                aws.IntegerValue `query:"ItemCount" xml:"DomainMetadataResult>ItemCount"`
+	ItemNamesSizeBytes       aws.LongValue    `query:"ItemNamesSizeBytes" xml:"DomainMetadataResult>ItemNamesSizeBytes"`
+	Timestamp                aws.IntegerValue `query:"Timestamp" xml:"DomainMetadataResult>Timestamp"`
 }
 
 // GetAttributesRequest is undocumented.
 type GetAttributesRequest struct {
-	AttributeNames []string         `xml:"AttributeName"`
-	ConsistentRead aws.BooleanValue `xml:"ConsistentRead"`
-	DomainName     aws.StringValue  `xml:"DomainName"`
-	ItemName       aws.StringValue  `xml:"ItemName"`
+	AttributeNames []string         `query:"AttributeNames" xml:"AttributeName"`
+	ConsistentRead aws.BooleanValue `query:"ConsistentRead" xml:"ConsistentRead"`
+	DomainName     aws.StringValue  `query:"DomainName" xml:"DomainName"`
+	ItemName       aws.StringValue  `query:"ItemName" xml:"ItemName"`
 }
 
 // GetAttributesResult is undocumented.
 type GetAttributesResult struct {
-	Attributes []Attribute `xml:"GetAttributesResult>Attribute"`
+	Attributes []Attribute `query:"Attributes" xml:"GetAttributesResult>Attribute"`
 }
 
 // Item is undocumented.
 type Item struct {
-	AlternateNameEncoding aws.StringValue `xml:"AlternateNameEncoding"`
-	Attributes            []Attribute     `xml:"Attribute"`
-	Name                  aws.StringValue `xml:"Name"`
+	AlternateNameEncoding aws.StringValue `query:"AlternateNameEncoding" xml:"AlternateNameEncoding"`
+	Attributes            []Attribute     `query:"Attributes" xml:"Attribute"`
+	Name                  aws.StringValue `query:"Name" xml:"Name"`
 }
 
 // ListDomainsRequest is undocumented.
 type ListDomainsRequest struct {
-	MaxNumberOfDomains aws.IntegerValue `xml:"MaxNumberOfDomains"`
-	NextToken          aws.StringValue  `xml:"NextToken"`
+	MaxNumberOfDomains aws.IntegerValue `query:"MaxNumberOfDomains" xml:"MaxNumberOfDomains"`
+	NextToken          aws.StringValue  `query:"NextToken" xml:"NextToken"`
 }
 
 // ListDomainsResult is undocumented.
 type ListDomainsResult struct {
-	DomainNames []string        `xml:"ListDomainsResult>DomainName"`
-	NextToken   aws.StringValue `xml:"ListDomainsResult>NextToken"`
+	DomainNames []string        `query:"DomainNames" xml:"ListDomainsResult>DomainName"`
+	NextToken   aws.StringValue `query:"NextToken" xml:"ListDomainsResult>NextToken"`
 }
 
 // PutAttributesRequest is undocumented.
 type PutAttributesRequest struct {
-	Attributes []ReplaceableAttribute `xml:"Attribute"`
-	DomainName aws.StringValue        `xml:"DomainName"`
-	Expected   *UpdateCondition       `xml:"Expected"`
-	ItemName   aws.StringValue        `xml:"ItemName"`
+	Attributes []ReplaceableAttribute `query:"Attributes" xml:"Attribute"`
+	DomainName aws.StringValue        `query:"DomainName" xml:"DomainName"`
+	Expected   *UpdateCondition       `query:"Expected" xml:"Expected"`
+	ItemName   aws.StringValue        `query:"ItemName" xml:"ItemName"`
 }
 
 // ReplaceableAttribute is undocumented.
 type ReplaceableAttribute struct {
-	Name    aws.StringValue  `xml:"Name"`
-	Replace aws.BooleanValue `xml:"Replace"`
-	Value   aws.StringValue  `xml:"Value"`
+	Name    aws.StringValue  `query:"Name" xml:"Name"`
+	Replace aws.BooleanValue `query:"Replace" xml:"Replace"`
+	Value   aws.StringValue  `query:"Value" xml:"Value"`
 }
 
 // ReplaceableItem is undocumented.
 type ReplaceableItem struct {
-	Attributes []ReplaceableAttribute `xml:"Attribute"`
-	Name       aws.StringValue        `xml:"ItemName"`
+	Attributes []ReplaceableAttribute `query:"Attributes" xml:"Attribute"`
+	Name       aws.StringValue        `query:"ItemName" xml:"ItemName"`
 }
 
 // SelectRequest is undocumented.
 type SelectRequest struct {
-	ConsistentRead   aws.BooleanValue `xml:"ConsistentRead"`
-	NextToken        aws.StringValue  `xml:"NextToken"`
-	SelectExpression aws.StringValue  `xml:"SelectExpression"`
+	ConsistentRead   aws.BooleanValue `query:"ConsistentRead" xml:"ConsistentRead"`
+	NextToken        aws.StringValue  `query:"NextToken" xml:"NextToken"`
+	SelectExpression aws.StringValue  `query:"SelectExpression" xml:"SelectExpression"`
 }
 
 // SelectResult is undocumented.
 type SelectResult struct {
-	Items     []Item          `xml:"SelectResult>Item"`
-	NextToken aws.StringValue `xml:"SelectResult>NextToken"`
+	Items     []Item          `query:"Items" xml:"SelectResult>Item"`
+	NextToken aws.StringValue `query:"NextToken" xml:"SelectResult>NextToken"`
 }
 
 // UpdateCondition is undocumented.
 type UpdateCondition struct {
-	Exists aws.BooleanValue `xml:"Exists"`
-	Name   aws.StringValue  `xml:"Name"`
-	Value  aws.StringValue  `xml:"Value"`
+	Exists aws.BooleanValue `query:"Exists" xml:"Exists"`
+	Name   aws.StringValue  `query:"Name" xml:"Name"`
+	Value  aws.StringValue  `query:"Value" xml:"Value"`
 }
 
 // avoid errors if the packages aren't referenced

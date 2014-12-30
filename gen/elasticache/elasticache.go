@@ -399,14 +399,14 @@ const (
 
 // AuthorizeCacheSecurityGroupIngressMessage is undocumented.
 type AuthorizeCacheSecurityGroupIngressMessage struct {
-	CacheSecurityGroupName  aws.StringValue `xml:"CacheSecurityGroupName"`
-	EC2SecurityGroupName    aws.StringValue `xml:"EC2SecurityGroupName"`
-	EC2SecurityGroupOwnerID aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
+	CacheSecurityGroupName  aws.StringValue `query:"CacheSecurityGroupName" xml:"CacheSecurityGroupName"`
+	EC2SecurityGroupName    aws.StringValue `query:"EC2SecurityGroupName" xml:"EC2SecurityGroupName"`
+	EC2SecurityGroupOwnerID aws.StringValue `query:"EC2SecurityGroupOwnerId" xml:"EC2SecurityGroupOwnerId"`
 }
 
 // AuthorizeCacheSecurityGroupIngressResult is undocumented.
 type AuthorizeCacheSecurityGroupIngressResult struct {
-	CacheSecurityGroup *CacheSecurityGroup `xml:"AuthorizeCacheSecurityGroupIngressResult>CacheSecurityGroup"`
+	CacheSecurityGroup *CacheSecurityGroup `query:"CacheSecurityGroup" xml:"AuthorizeCacheSecurityGroupIngressResult>CacheSecurityGroup"`
 }
 
 // Possible values for ElasticCache.
@@ -419,581 +419,581 @@ const (
 
 // AvailabilityZone is undocumented.
 type AvailabilityZone struct {
-	Name aws.StringValue `xml:"Name"`
+	Name aws.StringValue `query:"Name" xml:"Name"`
 }
 
 // CacheCluster is undocumented.
 type CacheCluster struct {
-	AutoMinorVersionUpgrade    aws.BooleanValue               `xml:"AutoMinorVersionUpgrade"`
-	CacheClusterCreateTime     time.Time                      `xml:"CacheClusterCreateTime"`
-	CacheClusterID             aws.StringValue                `xml:"CacheClusterId"`
-	CacheClusterStatus         aws.StringValue                `xml:"CacheClusterStatus"`
-	CacheNodeType              aws.StringValue                `xml:"CacheNodeType"`
-	CacheNodes                 []CacheNode                    `xml:"CacheNodes>CacheNode"`
-	CacheParameterGroup        *CacheParameterGroupStatus     `xml:"CacheParameterGroup"`
-	CacheSecurityGroups        []CacheSecurityGroupMembership `xml:"CacheSecurityGroups>CacheSecurityGroup"`
-	CacheSubnetGroupName       aws.StringValue                `xml:"CacheSubnetGroupName"`
-	ClientDownloadLandingPage  aws.StringValue                `xml:"ClientDownloadLandingPage"`
-	ConfigurationEndpoint      *Endpoint                      `xml:"ConfigurationEndpoint"`
-	Engine                     aws.StringValue                `xml:"Engine"`
-	EngineVersion              aws.StringValue                `xml:"EngineVersion"`
-	NotificationConfiguration  *NotificationConfiguration     `xml:"NotificationConfiguration"`
-	NumCacheNodes              aws.IntegerValue               `xml:"NumCacheNodes"`
-	PendingModifiedValues      *PendingModifiedValues         `xml:"PendingModifiedValues"`
-	PreferredAvailabilityZone  aws.StringValue                `xml:"PreferredAvailabilityZone"`
-	PreferredMaintenanceWindow aws.StringValue                `xml:"PreferredMaintenanceWindow"`
-	ReplicationGroupID         aws.StringValue                `xml:"ReplicationGroupId"`
-	SecurityGroups             []SecurityGroupMembership      `xml:"SecurityGroups>member"`
-	SnapshotRetentionLimit     aws.IntegerValue               `xml:"SnapshotRetentionLimit"`
-	SnapshotWindow             aws.StringValue                `xml:"SnapshotWindow"`
+	AutoMinorVersionUpgrade    aws.BooleanValue               `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	CacheClusterCreateTime     time.Time                      `query:"CacheClusterCreateTime" xml:"CacheClusterCreateTime"`
+	CacheClusterID             aws.StringValue                `query:"CacheClusterId" xml:"CacheClusterId"`
+	CacheClusterStatus         aws.StringValue                `query:"CacheClusterStatus" xml:"CacheClusterStatus"`
+	CacheNodeType              aws.StringValue                `query:"CacheNodeType" xml:"CacheNodeType"`
+	CacheNodes                 []CacheNode                    `query:"CacheNodes.member" xml:"CacheNodes>CacheNode"`
+	CacheParameterGroup        *CacheParameterGroupStatus     `query:"CacheParameterGroup" xml:"CacheParameterGroup"`
+	CacheSecurityGroups        []CacheSecurityGroupMembership `query:"CacheSecurityGroups.member" xml:"CacheSecurityGroups>CacheSecurityGroup"`
+	CacheSubnetGroupName       aws.StringValue                `query:"CacheSubnetGroupName" xml:"CacheSubnetGroupName"`
+	ClientDownloadLandingPage  aws.StringValue                `query:"ClientDownloadLandingPage" xml:"ClientDownloadLandingPage"`
+	ConfigurationEndpoint      *Endpoint                      `query:"ConfigurationEndpoint" xml:"ConfigurationEndpoint"`
+	Engine                     aws.StringValue                `query:"Engine" xml:"Engine"`
+	EngineVersion              aws.StringValue                `query:"EngineVersion" xml:"EngineVersion"`
+	NotificationConfiguration  *NotificationConfiguration     `query:"NotificationConfiguration" xml:"NotificationConfiguration"`
+	NumCacheNodes              aws.IntegerValue               `query:"NumCacheNodes" xml:"NumCacheNodes"`
+	PendingModifiedValues      *PendingModifiedValues         `query:"PendingModifiedValues" xml:"PendingModifiedValues"`
+	PreferredAvailabilityZone  aws.StringValue                `query:"PreferredAvailabilityZone" xml:"PreferredAvailabilityZone"`
+	PreferredMaintenanceWindow aws.StringValue                `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	ReplicationGroupID         aws.StringValue                `query:"ReplicationGroupId" xml:"ReplicationGroupId"`
+	SecurityGroups             []SecurityGroupMembership      `query:"SecurityGroups.member" xml:"SecurityGroups>member"`
+	SnapshotRetentionLimit     aws.IntegerValue               `query:"SnapshotRetentionLimit" xml:"SnapshotRetentionLimit"`
+	SnapshotWindow             aws.StringValue                `query:"SnapshotWindow" xml:"SnapshotWindow"`
 }
 
 // CacheClusterMessage is undocumented.
 type CacheClusterMessage struct {
-	CacheClusters []CacheCluster  `xml:"DescribeCacheClustersResult>CacheClusters>CacheCluster"`
-	Marker        aws.StringValue `xml:"DescribeCacheClustersResult>Marker"`
+	CacheClusters []CacheCluster  `query:"CacheClusters.member" xml:"DescribeCacheClustersResult>CacheClusters>CacheCluster"`
+	Marker        aws.StringValue `query:"Marker" xml:"DescribeCacheClustersResult>Marker"`
 }
 
 // CacheEngineVersion is undocumented.
 type CacheEngineVersion struct {
-	CacheEngineDescription        aws.StringValue `xml:"CacheEngineDescription"`
-	CacheEngineVersionDescription aws.StringValue `xml:"CacheEngineVersionDescription"`
-	CacheParameterGroupFamily     aws.StringValue `xml:"CacheParameterGroupFamily"`
-	Engine                        aws.StringValue `xml:"Engine"`
-	EngineVersion                 aws.StringValue `xml:"EngineVersion"`
+	CacheEngineDescription        aws.StringValue `query:"CacheEngineDescription" xml:"CacheEngineDescription"`
+	CacheEngineVersionDescription aws.StringValue `query:"CacheEngineVersionDescription" xml:"CacheEngineVersionDescription"`
+	CacheParameterGroupFamily     aws.StringValue `query:"CacheParameterGroupFamily" xml:"CacheParameterGroupFamily"`
+	Engine                        aws.StringValue `query:"Engine" xml:"Engine"`
+	EngineVersion                 aws.StringValue `query:"EngineVersion" xml:"EngineVersion"`
 }
 
 // CacheEngineVersionMessage is undocumented.
 type CacheEngineVersionMessage struct {
-	CacheEngineVersions []CacheEngineVersion `xml:"DescribeCacheEngineVersionsResult>CacheEngineVersions>CacheEngineVersion"`
-	Marker              aws.StringValue      `xml:"DescribeCacheEngineVersionsResult>Marker"`
+	CacheEngineVersions []CacheEngineVersion `query:"CacheEngineVersions.member" xml:"DescribeCacheEngineVersionsResult>CacheEngineVersions>CacheEngineVersion"`
+	Marker              aws.StringValue      `query:"Marker" xml:"DescribeCacheEngineVersionsResult>Marker"`
 }
 
 // CacheNode is undocumented.
 type CacheNode struct {
-	CacheNodeCreateTime      time.Time       `xml:"CacheNodeCreateTime"`
-	CacheNodeID              aws.StringValue `xml:"CacheNodeId"`
-	CacheNodeStatus          aws.StringValue `xml:"CacheNodeStatus"`
-	CustomerAvailabilityZone aws.StringValue `xml:"CustomerAvailabilityZone"`
-	Endpoint                 *Endpoint       `xml:"Endpoint"`
-	ParameterGroupStatus     aws.StringValue `xml:"ParameterGroupStatus"`
-	SourceCacheNodeID        aws.StringValue `xml:"SourceCacheNodeId"`
+	CacheNodeCreateTime      time.Time       `query:"CacheNodeCreateTime" xml:"CacheNodeCreateTime"`
+	CacheNodeID              aws.StringValue `query:"CacheNodeId" xml:"CacheNodeId"`
+	CacheNodeStatus          aws.StringValue `query:"CacheNodeStatus" xml:"CacheNodeStatus"`
+	CustomerAvailabilityZone aws.StringValue `query:"CustomerAvailabilityZone" xml:"CustomerAvailabilityZone"`
+	Endpoint                 *Endpoint       `query:"Endpoint" xml:"Endpoint"`
+	ParameterGroupStatus     aws.StringValue `query:"ParameterGroupStatus" xml:"ParameterGroupStatus"`
+	SourceCacheNodeID        aws.StringValue `query:"SourceCacheNodeId" xml:"SourceCacheNodeId"`
 }
 
 // CacheNodeTypeSpecificParameter is undocumented.
 type CacheNodeTypeSpecificParameter struct {
-	AllowedValues               aws.StringValue              `xml:"AllowedValues"`
-	CacheNodeTypeSpecificValues []CacheNodeTypeSpecificValue `xml:"CacheNodeTypeSpecificValues>CacheNodeTypeSpecificValue"`
-	DataType                    aws.StringValue              `xml:"DataType"`
-	Description                 aws.StringValue              `xml:"Description"`
-	IsModifiable                aws.BooleanValue             `xml:"IsModifiable"`
-	MinimumEngineVersion        aws.StringValue              `xml:"MinimumEngineVersion"`
-	ParameterName               aws.StringValue              `xml:"ParameterName"`
-	Source                      aws.StringValue              `xml:"Source"`
+	AllowedValues               aws.StringValue              `query:"AllowedValues" xml:"AllowedValues"`
+	CacheNodeTypeSpecificValues []CacheNodeTypeSpecificValue `query:"CacheNodeTypeSpecificValues.member" xml:"CacheNodeTypeSpecificValues>CacheNodeTypeSpecificValue"`
+	DataType                    aws.StringValue              `query:"DataType" xml:"DataType"`
+	Description                 aws.StringValue              `query:"Description" xml:"Description"`
+	IsModifiable                aws.BooleanValue             `query:"IsModifiable" xml:"IsModifiable"`
+	MinimumEngineVersion        aws.StringValue              `query:"MinimumEngineVersion" xml:"MinimumEngineVersion"`
+	ParameterName               aws.StringValue              `query:"ParameterName" xml:"ParameterName"`
+	Source                      aws.StringValue              `query:"Source" xml:"Source"`
 }
 
 // CacheNodeTypeSpecificValue is undocumented.
 type CacheNodeTypeSpecificValue struct {
-	CacheNodeType aws.StringValue `xml:"CacheNodeType"`
-	Value         aws.StringValue `xml:"Value"`
+	CacheNodeType aws.StringValue `query:"CacheNodeType" xml:"CacheNodeType"`
+	Value         aws.StringValue `query:"Value" xml:"Value"`
 }
 
 // CacheParameterGroup is undocumented.
 type CacheParameterGroup struct {
-	CacheParameterGroupFamily aws.StringValue `xml:"CacheParameterGroupFamily"`
-	CacheParameterGroupName   aws.StringValue `xml:"CacheParameterGroupName"`
-	Description               aws.StringValue `xml:"Description"`
+	CacheParameterGroupFamily aws.StringValue `query:"CacheParameterGroupFamily" xml:"CacheParameterGroupFamily"`
+	CacheParameterGroupName   aws.StringValue `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	Description               aws.StringValue `query:"Description" xml:"Description"`
 }
 
 // CacheParameterGroupDetails is undocumented.
 type CacheParameterGroupDetails struct {
-	CacheNodeTypeSpecificParameters []CacheNodeTypeSpecificParameter `xml:"DescribeCacheParametersResult>CacheNodeTypeSpecificParameters>CacheNodeTypeSpecificParameter"`
-	Marker                          aws.StringValue                  `xml:"DescribeCacheParametersResult>Marker"`
-	Parameters                      []Parameter                      `xml:"DescribeCacheParametersResult>Parameters>Parameter"`
+	CacheNodeTypeSpecificParameters []CacheNodeTypeSpecificParameter `query:"CacheNodeTypeSpecificParameters.member" xml:"DescribeCacheParametersResult>CacheNodeTypeSpecificParameters>CacheNodeTypeSpecificParameter"`
+	Marker                          aws.StringValue                  `query:"Marker" xml:"DescribeCacheParametersResult>Marker"`
+	Parameters                      []Parameter                      `query:"Parameters.member" xml:"DescribeCacheParametersResult>Parameters>Parameter"`
 }
 
 // CacheParameterGroupNameMessage is undocumented.
 type CacheParameterGroupNameMessage struct {
-	CacheParameterGroupName aws.StringValue `xml:"CacheParameterGroupName"`
+	CacheParameterGroupName aws.StringValue `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
 }
 
 // CacheParameterGroupStatus is undocumented.
 type CacheParameterGroupStatus struct {
-	CacheNodeIDsToReboot    []string        `xml:"CacheNodeIdsToReboot>CacheNodeId"`
-	CacheParameterGroupName aws.StringValue `xml:"CacheParameterGroupName"`
-	ParameterApplyStatus    aws.StringValue `xml:"ParameterApplyStatus"`
+	CacheNodeIDsToReboot    []string        `query:"CacheNodeIdsToReboot.member" xml:"CacheNodeIdsToReboot>CacheNodeId"`
+	CacheParameterGroupName aws.StringValue `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	ParameterApplyStatus    aws.StringValue `query:"ParameterApplyStatus" xml:"ParameterApplyStatus"`
 }
 
 // CacheParameterGroupsMessage is undocumented.
 type CacheParameterGroupsMessage struct {
-	CacheParameterGroups []CacheParameterGroup `xml:"DescribeCacheParameterGroupsResult>CacheParameterGroups>CacheParameterGroup"`
-	Marker               aws.StringValue       `xml:"DescribeCacheParameterGroupsResult>Marker"`
+	CacheParameterGroups []CacheParameterGroup `query:"CacheParameterGroups.member" xml:"DescribeCacheParameterGroupsResult>CacheParameterGroups>CacheParameterGroup"`
+	Marker               aws.StringValue       `query:"Marker" xml:"DescribeCacheParameterGroupsResult>Marker"`
 }
 
 // CacheSecurityGroup is undocumented.
 type CacheSecurityGroup struct {
-	CacheSecurityGroupName aws.StringValue    `xml:"CacheSecurityGroupName"`
-	Description            aws.StringValue    `xml:"Description"`
-	EC2SecurityGroups      []EC2SecurityGroup `xml:"EC2SecurityGroups>EC2SecurityGroup"`
-	OwnerID                aws.StringValue    `xml:"OwnerId"`
+	CacheSecurityGroupName aws.StringValue    `query:"CacheSecurityGroupName" xml:"CacheSecurityGroupName"`
+	Description            aws.StringValue    `query:"Description" xml:"Description"`
+	EC2SecurityGroups      []EC2SecurityGroup `query:"EC2SecurityGroups.member" xml:"EC2SecurityGroups>EC2SecurityGroup"`
+	OwnerID                aws.StringValue    `query:"OwnerId" xml:"OwnerId"`
 }
 
 // CacheSecurityGroupMembership is undocumented.
 type CacheSecurityGroupMembership struct {
-	CacheSecurityGroupName aws.StringValue `xml:"CacheSecurityGroupName"`
-	Status                 aws.StringValue `xml:"Status"`
+	CacheSecurityGroupName aws.StringValue `query:"CacheSecurityGroupName" xml:"CacheSecurityGroupName"`
+	Status                 aws.StringValue `query:"Status" xml:"Status"`
 }
 
 // CacheSecurityGroupMessage is undocumented.
 type CacheSecurityGroupMessage struct {
-	CacheSecurityGroups []CacheSecurityGroup `xml:"DescribeCacheSecurityGroupsResult>CacheSecurityGroups>CacheSecurityGroup"`
-	Marker              aws.StringValue      `xml:"DescribeCacheSecurityGroupsResult>Marker"`
+	CacheSecurityGroups []CacheSecurityGroup `query:"CacheSecurityGroups.member" xml:"DescribeCacheSecurityGroupsResult>CacheSecurityGroups>CacheSecurityGroup"`
+	Marker              aws.StringValue      `query:"Marker" xml:"DescribeCacheSecurityGroupsResult>Marker"`
 }
 
 // CacheSubnetGroup is undocumented.
 type CacheSubnetGroup struct {
-	CacheSubnetGroupDescription aws.StringValue `xml:"CacheSubnetGroupDescription"`
-	CacheSubnetGroupName        aws.StringValue `xml:"CacheSubnetGroupName"`
-	Subnets                     []Subnet        `xml:"Subnets>Subnet"`
-	VPCID                       aws.StringValue `xml:"VpcId"`
+	CacheSubnetGroupDescription aws.StringValue `query:"CacheSubnetGroupDescription" xml:"CacheSubnetGroupDescription"`
+	CacheSubnetGroupName        aws.StringValue `query:"CacheSubnetGroupName" xml:"CacheSubnetGroupName"`
+	Subnets                     []Subnet        `query:"Subnets.member" xml:"Subnets>Subnet"`
+	VPCID                       aws.StringValue `query:"VpcId" xml:"VpcId"`
 }
 
 // CacheSubnetGroupMessage is undocumented.
 type CacheSubnetGroupMessage struct {
-	CacheSubnetGroups []CacheSubnetGroup `xml:"DescribeCacheSubnetGroupsResult>CacheSubnetGroups>CacheSubnetGroup"`
-	Marker            aws.StringValue    `xml:"DescribeCacheSubnetGroupsResult>Marker"`
+	CacheSubnetGroups []CacheSubnetGroup `query:"CacheSubnetGroups.member" xml:"DescribeCacheSubnetGroupsResult>CacheSubnetGroups>CacheSubnetGroup"`
+	Marker            aws.StringValue    `query:"Marker" xml:"DescribeCacheSubnetGroupsResult>Marker"`
 }
 
 // CopySnapshotMessage is undocumented.
 type CopySnapshotMessage struct {
-	SourceSnapshotName aws.StringValue `xml:"SourceSnapshotName"`
-	TargetSnapshotName aws.StringValue `xml:"TargetSnapshotName"`
+	SourceSnapshotName aws.StringValue `query:"SourceSnapshotName" xml:"SourceSnapshotName"`
+	TargetSnapshotName aws.StringValue `query:"TargetSnapshotName" xml:"TargetSnapshotName"`
 }
 
 // CopySnapshotResult is undocumented.
 type CopySnapshotResult struct {
-	Snapshot *Snapshot `xml:"CopySnapshotResult>Snapshot"`
+	Snapshot *Snapshot `query:"Snapshot" xml:"CopySnapshotResult>Snapshot"`
 }
 
 // CreateCacheClusterMessage is undocumented.
 type CreateCacheClusterMessage struct {
-	AZMode                     aws.StringValue  `xml:"AZMode"`
-	AutoMinorVersionUpgrade    aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
-	CacheClusterID             aws.StringValue  `xml:"CacheClusterId"`
-	CacheNodeType              aws.StringValue  `xml:"CacheNodeType"`
-	CacheParameterGroupName    aws.StringValue  `xml:"CacheParameterGroupName"`
-	CacheSecurityGroupNames    []string         `xml:"CacheSecurityGroupNames>CacheSecurityGroupName"`
-	CacheSubnetGroupName       aws.StringValue  `xml:"CacheSubnetGroupName"`
-	Engine                     aws.StringValue  `xml:"Engine"`
-	EngineVersion              aws.StringValue  `xml:"EngineVersion"`
-	NotificationTopicARN       aws.StringValue  `xml:"NotificationTopicArn"`
-	NumCacheNodes              aws.IntegerValue `xml:"NumCacheNodes"`
-	Port                       aws.IntegerValue `xml:"Port"`
-	PreferredAvailabilityZone  aws.StringValue  `xml:"PreferredAvailabilityZone"`
-	PreferredAvailabilityZones []string         `xml:"PreferredAvailabilityZones>PreferredAvailabilityZone"`
-	PreferredMaintenanceWindow aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	ReplicationGroupID         aws.StringValue  `xml:"ReplicationGroupId"`
-	SecurityGroupIDs           []string         `xml:"SecurityGroupIds>SecurityGroupId"`
-	SnapshotARNs               []string         `xml:"SnapshotArns>SnapshotArn"`
-	SnapshotName               aws.StringValue  `xml:"SnapshotName"`
-	SnapshotRetentionLimit     aws.IntegerValue `xml:"SnapshotRetentionLimit"`
-	SnapshotWindow             aws.StringValue  `xml:"SnapshotWindow"`
+	AZMode                     aws.StringValue  `query:"AZMode" xml:"AZMode"`
+	AutoMinorVersionUpgrade    aws.BooleanValue `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	CacheClusterID             aws.StringValue  `query:"CacheClusterId" xml:"CacheClusterId"`
+	CacheNodeType              aws.StringValue  `query:"CacheNodeType" xml:"CacheNodeType"`
+	CacheParameterGroupName    aws.StringValue  `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	CacheSecurityGroupNames    []string         `query:"CacheSecurityGroupNames.member" xml:"CacheSecurityGroupNames>CacheSecurityGroupName"`
+	CacheSubnetGroupName       aws.StringValue  `query:"CacheSubnetGroupName" xml:"CacheSubnetGroupName"`
+	Engine                     aws.StringValue  `query:"Engine" xml:"Engine"`
+	EngineVersion              aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	NotificationTopicARN       aws.StringValue  `query:"NotificationTopicArn" xml:"NotificationTopicArn"`
+	NumCacheNodes              aws.IntegerValue `query:"NumCacheNodes" xml:"NumCacheNodes"`
+	Port                       aws.IntegerValue `query:"Port" xml:"Port"`
+	PreferredAvailabilityZone  aws.StringValue  `query:"PreferredAvailabilityZone" xml:"PreferredAvailabilityZone"`
+	PreferredAvailabilityZones []string         `query:"PreferredAvailabilityZones.member" xml:"PreferredAvailabilityZones>PreferredAvailabilityZone"`
+	PreferredMaintenanceWindow aws.StringValue  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	ReplicationGroupID         aws.StringValue  `query:"ReplicationGroupId" xml:"ReplicationGroupId"`
+	SecurityGroupIDs           []string         `query:"SecurityGroupIds.member" xml:"SecurityGroupIds>SecurityGroupId"`
+	SnapshotARNs               []string         `query:"SnapshotArns.member" xml:"SnapshotArns>SnapshotArn"`
+	SnapshotName               aws.StringValue  `query:"SnapshotName" xml:"SnapshotName"`
+	SnapshotRetentionLimit     aws.IntegerValue `query:"SnapshotRetentionLimit" xml:"SnapshotRetentionLimit"`
+	SnapshotWindow             aws.StringValue  `query:"SnapshotWindow" xml:"SnapshotWindow"`
 }
 
 // CreateCacheClusterResult is undocumented.
 type CreateCacheClusterResult struct {
-	CacheCluster *CacheCluster `xml:"CreateCacheClusterResult>CacheCluster"`
+	CacheCluster *CacheCluster `query:"CacheCluster" xml:"CreateCacheClusterResult>CacheCluster"`
 }
 
 // CreateCacheParameterGroupMessage is undocumented.
 type CreateCacheParameterGroupMessage struct {
-	CacheParameterGroupFamily aws.StringValue `xml:"CacheParameterGroupFamily"`
-	CacheParameterGroupName   aws.StringValue `xml:"CacheParameterGroupName"`
-	Description               aws.StringValue `xml:"Description"`
+	CacheParameterGroupFamily aws.StringValue `query:"CacheParameterGroupFamily" xml:"CacheParameterGroupFamily"`
+	CacheParameterGroupName   aws.StringValue `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	Description               aws.StringValue `query:"Description" xml:"Description"`
 }
 
 // CreateCacheParameterGroupResult is undocumented.
 type CreateCacheParameterGroupResult struct {
-	CacheParameterGroup *CacheParameterGroup `xml:"CreateCacheParameterGroupResult>CacheParameterGroup"`
+	CacheParameterGroup *CacheParameterGroup `query:"CacheParameterGroup" xml:"CreateCacheParameterGroupResult>CacheParameterGroup"`
 }
 
 // CreateCacheSecurityGroupMessage is undocumented.
 type CreateCacheSecurityGroupMessage struct {
-	CacheSecurityGroupName aws.StringValue `xml:"CacheSecurityGroupName"`
-	Description            aws.StringValue `xml:"Description"`
+	CacheSecurityGroupName aws.StringValue `query:"CacheSecurityGroupName" xml:"CacheSecurityGroupName"`
+	Description            aws.StringValue `query:"Description" xml:"Description"`
 }
 
 // CreateCacheSecurityGroupResult is undocumented.
 type CreateCacheSecurityGroupResult struct {
-	CacheSecurityGroup *CacheSecurityGroup `xml:"CreateCacheSecurityGroupResult>CacheSecurityGroup"`
+	CacheSecurityGroup *CacheSecurityGroup `query:"CacheSecurityGroup" xml:"CreateCacheSecurityGroupResult>CacheSecurityGroup"`
 }
 
 // CreateCacheSubnetGroupMessage is undocumented.
 type CreateCacheSubnetGroupMessage struct {
-	CacheSubnetGroupDescription aws.StringValue `xml:"CacheSubnetGroupDescription"`
-	CacheSubnetGroupName        aws.StringValue `xml:"CacheSubnetGroupName"`
-	SubnetIDs                   []string        `xml:"SubnetIds>SubnetIdentifier"`
+	CacheSubnetGroupDescription aws.StringValue `query:"CacheSubnetGroupDescription" xml:"CacheSubnetGroupDescription"`
+	CacheSubnetGroupName        aws.StringValue `query:"CacheSubnetGroupName" xml:"CacheSubnetGroupName"`
+	SubnetIDs                   []string        `query:"SubnetIds.member" xml:"SubnetIds>SubnetIdentifier"`
 }
 
 // CreateCacheSubnetGroupResult is undocumented.
 type CreateCacheSubnetGroupResult struct {
-	CacheSubnetGroup *CacheSubnetGroup `xml:"CreateCacheSubnetGroupResult>CacheSubnetGroup"`
+	CacheSubnetGroup *CacheSubnetGroup `query:"CacheSubnetGroup" xml:"CreateCacheSubnetGroupResult>CacheSubnetGroup"`
 }
 
 // CreateReplicationGroupMessage is undocumented.
 type CreateReplicationGroupMessage struct {
-	AutoMinorVersionUpgrade     aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
-	AutomaticFailoverEnabled    aws.BooleanValue `xml:"AutomaticFailoverEnabled"`
-	CacheNodeType               aws.StringValue  `xml:"CacheNodeType"`
-	CacheParameterGroupName     aws.StringValue  `xml:"CacheParameterGroupName"`
-	CacheSecurityGroupNames     []string         `xml:"CacheSecurityGroupNames>CacheSecurityGroupName"`
-	CacheSubnetGroupName        aws.StringValue  `xml:"CacheSubnetGroupName"`
-	Engine                      aws.StringValue  `xml:"Engine"`
-	EngineVersion               aws.StringValue  `xml:"EngineVersion"`
-	NotificationTopicARN        aws.StringValue  `xml:"NotificationTopicArn"`
-	NumCacheClusters            aws.IntegerValue `xml:"NumCacheClusters"`
-	Port                        aws.IntegerValue `xml:"Port"`
-	PreferredCacheClusterAZs    []string         `xml:"PreferredCacheClusterAZs>AvailabilityZone"`
-	PreferredMaintenanceWindow  aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	PrimaryClusterID            aws.StringValue  `xml:"PrimaryClusterId"`
-	ReplicationGroupDescription aws.StringValue  `xml:"ReplicationGroupDescription"`
-	ReplicationGroupID          aws.StringValue  `xml:"ReplicationGroupId"`
-	SecurityGroupIDs            []string         `xml:"SecurityGroupIds>SecurityGroupId"`
-	SnapshotARNs                []string         `xml:"SnapshotArns>SnapshotArn"`
-	SnapshotName                aws.StringValue  `xml:"SnapshotName"`
-	SnapshotRetentionLimit      aws.IntegerValue `xml:"SnapshotRetentionLimit"`
-	SnapshotWindow              aws.StringValue  `xml:"SnapshotWindow"`
+	AutoMinorVersionUpgrade     aws.BooleanValue `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	AutomaticFailoverEnabled    aws.BooleanValue `query:"AutomaticFailoverEnabled" xml:"AutomaticFailoverEnabled"`
+	CacheNodeType               aws.StringValue  `query:"CacheNodeType" xml:"CacheNodeType"`
+	CacheParameterGroupName     aws.StringValue  `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	CacheSecurityGroupNames     []string         `query:"CacheSecurityGroupNames.member" xml:"CacheSecurityGroupNames>CacheSecurityGroupName"`
+	CacheSubnetGroupName        aws.StringValue  `query:"CacheSubnetGroupName" xml:"CacheSubnetGroupName"`
+	Engine                      aws.StringValue  `query:"Engine" xml:"Engine"`
+	EngineVersion               aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	NotificationTopicARN        aws.StringValue  `query:"NotificationTopicArn" xml:"NotificationTopicArn"`
+	NumCacheClusters            aws.IntegerValue `query:"NumCacheClusters" xml:"NumCacheClusters"`
+	Port                        aws.IntegerValue `query:"Port" xml:"Port"`
+	PreferredCacheClusterAZs    []string         `query:"PreferredCacheClusterAZs.member" xml:"PreferredCacheClusterAZs>AvailabilityZone"`
+	PreferredMaintenanceWindow  aws.StringValue  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	PrimaryClusterID            aws.StringValue  `query:"PrimaryClusterId" xml:"PrimaryClusterId"`
+	ReplicationGroupDescription aws.StringValue  `query:"ReplicationGroupDescription" xml:"ReplicationGroupDescription"`
+	ReplicationGroupID          aws.StringValue  `query:"ReplicationGroupId" xml:"ReplicationGroupId"`
+	SecurityGroupIDs            []string         `query:"SecurityGroupIds.member" xml:"SecurityGroupIds>SecurityGroupId"`
+	SnapshotARNs                []string         `query:"SnapshotArns.member" xml:"SnapshotArns>SnapshotArn"`
+	SnapshotName                aws.StringValue  `query:"SnapshotName" xml:"SnapshotName"`
+	SnapshotRetentionLimit      aws.IntegerValue `query:"SnapshotRetentionLimit" xml:"SnapshotRetentionLimit"`
+	SnapshotWindow              aws.StringValue  `query:"SnapshotWindow" xml:"SnapshotWindow"`
 }
 
 // CreateReplicationGroupResult is undocumented.
 type CreateReplicationGroupResult struct {
-	ReplicationGroup *ReplicationGroup `xml:"CreateReplicationGroupResult>ReplicationGroup"`
+	ReplicationGroup *ReplicationGroup `query:"ReplicationGroup" xml:"CreateReplicationGroupResult>ReplicationGroup"`
 }
 
 // CreateSnapshotMessage is undocumented.
 type CreateSnapshotMessage struct {
-	CacheClusterID aws.StringValue `xml:"CacheClusterId"`
-	SnapshotName   aws.StringValue `xml:"SnapshotName"`
+	CacheClusterID aws.StringValue `query:"CacheClusterId" xml:"CacheClusterId"`
+	SnapshotName   aws.StringValue `query:"SnapshotName" xml:"SnapshotName"`
 }
 
 // CreateSnapshotResult is undocumented.
 type CreateSnapshotResult struct {
-	Snapshot *Snapshot `xml:"CreateSnapshotResult>Snapshot"`
+	Snapshot *Snapshot `query:"Snapshot" xml:"CreateSnapshotResult>Snapshot"`
 }
 
 // DeleteCacheClusterMessage is undocumented.
 type DeleteCacheClusterMessage struct {
-	CacheClusterID          aws.StringValue `xml:"CacheClusterId"`
-	FinalSnapshotIdentifier aws.StringValue `xml:"FinalSnapshotIdentifier"`
+	CacheClusterID          aws.StringValue `query:"CacheClusterId" xml:"CacheClusterId"`
+	FinalSnapshotIdentifier aws.StringValue `query:"FinalSnapshotIdentifier" xml:"FinalSnapshotIdentifier"`
 }
 
 // DeleteCacheClusterResult is undocumented.
 type DeleteCacheClusterResult struct {
-	CacheCluster *CacheCluster `xml:"DeleteCacheClusterResult>CacheCluster"`
+	CacheCluster *CacheCluster `query:"CacheCluster" xml:"DeleteCacheClusterResult>CacheCluster"`
 }
 
 // DeleteCacheParameterGroupMessage is undocumented.
 type DeleteCacheParameterGroupMessage struct {
-	CacheParameterGroupName aws.StringValue `xml:"CacheParameterGroupName"`
+	CacheParameterGroupName aws.StringValue `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
 }
 
 // DeleteCacheSecurityGroupMessage is undocumented.
 type DeleteCacheSecurityGroupMessage struct {
-	CacheSecurityGroupName aws.StringValue `xml:"CacheSecurityGroupName"`
+	CacheSecurityGroupName aws.StringValue `query:"CacheSecurityGroupName" xml:"CacheSecurityGroupName"`
 }
 
 // DeleteCacheSubnetGroupMessage is undocumented.
 type DeleteCacheSubnetGroupMessage struct {
-	CacheSubnetGroupName aws.StringValue `xml:"CacheSubnetGroupName"`
+	CacheSubnetGroupName aws.StringValue `query:"CacheSubnetGroupName" xml:"CacheSubnetGroupName"`
 }
 
 // DeleteReplicationGroupMessage is undocumented.
 type DeleteReplicationGroupMessage struct {
-	FinalSnapshotIdentifier aws.StringValue  `xml:"FinalSnapshotIdentifier"`
-	ReplicationGroupID      aws.StringValue  `xml:"ReplicationGroupId"`
-	RetainPrimaryCluster    aws.BooleanValue `xml:"RetainPrimaryCluster"`
+	FinalSnapshotIdentifier aws.StringValue  `query:"FinalSnapshotIdentifier" xml:"FinalSnapshotIdentifier"`
+	ReplicationGroupID      aws.StringValue  `query:"ReplicationGroupId" xml:"ReplicationGroupId"`
+	RetainPrimaryCluster    aws.BooleanValue `query:"RetainPrimaryCluster" xml:"RetainPrimaryCluster"`
 }
 
 // DeleteReplicationGroupResult is undocumented.
 type DeleteReplicationGroupResult struct {
-	ReplicationGroup *ReplicationGroup `xml:"DeleteReplicationGroupResult>ReplicationGroup"`
+	ReplicationGroup *ReplicationGroup `query:"ReplicationGroup" xml:"DeleteReplicationGroupResult>ReplicationGroup"`
 }
 
 // DeleteSnapshotMessage is undocumented.
 type DeleteSnapshotMessage struct {
-	SnapshotName aws.StringValue `xml:"SnapshotName"`
+	SnapshotName aws.StringValue `query:"SnapshotName" xml:"SnapshotName"`
 }
 
 // DeleteSnapshotResult is undocumented.
 type DeleteSnapshotResult struct {
-	Snapshot *Snapshot `xml:"DeleteSnapshotResult>Snapshot"`
+	Snapshot *Snapshot `query:"Snapshot" xml:"DeleteSnapshotResult>Snapshot"`
 }
 
 // DescribeCacheClustersMessage is undocumented.
 type DescribeCacheClustersMessage struct {
-	CacheClusterID    aws.StringValue  `xml:"CacheClusterId"`
-	Marker            aws.StringValue  `xml:"Marker"`
-	MaxRecords        aws.IntegerValue `xml:"MaxRecords"`
-	ShowCacheNodeInfo aws.BooleanValue `xml:"ShowCacheNodeInfo"`
+	CacheClusterID    aws.StringValue  `query:"CacheClusterId" xml:"CacheClusterId"`
+	Marker            aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords        aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	ShowCacheNodeInfo aws.BooleanValue `query:"ShowCacheNodeInfo" xml:"ShowCacheNodeInfo"`
 }
 
 // DescribeCacheEngineVersionsMessage is undocumented.
 type DescribeCacheEngineVersionsMessage struct {
-	CacheParameterGroupFamily aws.StringValue  `xml:"CacheParameterGroupFamily"`
-	DefaultOnly               aws.BooleanValue `xml:"DefaultOnly"`
-	Engine                    aws.StringValue  `xml:"Engine"`
-	EngineVersion             aws.StringValue  `xml:"EngineVersion"`
-	Marker                    aws.StringValue  `xml:"Marker"`
-	MaxRecords                aws.IntegerValue `xml:"MaxRecords"`
+	CacheParameterGroupFamily aws.StringValue  `query:"CacheParameterGroupFamily" xml:"CacheParameterGroupFamily"`
+	DefaultOnly               aws.BooleanValue `query:"DefaultOnly" xml:"DefaultOnly"`
+	Engine                    aws.StringValue  `query:"Engine" xml:"Engine"`
+	EngineVersion             aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	Marker                    aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords                aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeCacheParameterGroupsMessage is undocumented.
 type DescribeCacheParameterGroupsMessage struct {
-	CacheParameterGroupName aws.StringValue  `xml:"CacheParameterGroupName"`
-	Marker                  aws.StringValue  `xml:"Marker"`
-	MaxRecords              aws.IntegerValue `xml:"MaxRecords"`
+	CacheParameterGroupName aws.StringValue  `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	Marker                  aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords              aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeCacheParametersMessage is undocumented.
 type DescribeCacheParametersMessage struct {
-	CacheParameterGroupName aws.StringValue  `xml:"CacheParameterGroupName"`
-	Marker                  aws.StringValue  `xml:"Marker"`
-	MaxRecords              aws.IntegerValue `xml:"MaxRecords"`
-	Source                  aws.StringValue  `xml:"Source"`
+	CacheParameterGroupName aws.StringValue  `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	Marker                  aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords              aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	Source                  aws.StringValue  `query:"Source" xml:"Source"`
 }
 
 // DescribeCacheSecurityGroupsMessage is undocumented.
 type DescribeCacheSecurityGroupsMessage struct {
-	CacheSecurityGroupName aws.StringValue  `xml:"CacheSecurityGroupName"`
-	Marker                 aws.StringValue  `xml:"Marker"`
-	MaxRecords             aws.IntegerValue `xml:"MaxRecords"`
+	CacheSecurityGroupName aws.StringValue  `query:"CacheSecurityGroupName" xml:"CacheSecurityGroupName"`
+	Marker                 aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords             aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeCacheSubnetGroupsMessage is undocumented.
 type DescribeCacheSubnetGroupsMessage struct {
-	CacheSubnetGroupName aws.StringValue  `xml:"CacheSubnetGroupName"`
-	Marker               aws.StringValue  `xml:"Marker"`
-	MaxRecords           aws.IntegerValue `xml:"MaxRecords"`
+	CacheSubnetGroupName aws.StringValue  `query:"CacheSubnetGroupName" xml:"CacheSubnetGroupName"`
+	Marker               aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords           aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeEngineDefaultParametersMessage is undocumented.
 type DescribeEngineDefaultParametersMessage struct {
-	CacheParameterGroupFamily aws.StringValue  `xml:"CacheParameterGroupFamily"`
-	Marker                    aws.StringValue  `xml:"Marker"`
-	MaxRecords                aws.IntegerValue `xml:"MaxRecords"`
+	CacheParameterGroupFamily aws.StringValue  `query:"CacheParameterGroupFamily" xml:"CacheParameterGroupFamily"`
+	Marker                    aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords                aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 }
 
 // DescribeEngineDefaultParametersResult is undocumented.
 type DescribeEngineDefaultParametersResult struct {
-	EngineDefaults *EngineDefaults `xml:"DescribeEngineDefaultParametersResult>EngineDefaults"`
+	EngineDefaults *EngineDefaults `query:"EngineDefaults" xml:"DescribeEngineDefaultParametersResult>EngineDefaults"`
 }
 
 // DescribeEventsMessage is undocumented.
 type DescribeEventsMessage struct {
-	Duration         aws.IntegerValue `xml:"Duration"`
-	EndTime          time.Time        `xml:"EndTime"`
-	Marker           aws.StringValue  `xml:"Marker"`
-	MaxRecords       aws.IntegerValue `xml:"MaxRecords"`
-	SourceIdentifier aws.StringValue  `xml:"SourceIdentifier"`
-	SourceType       aws.StringValue  `xml:"SourceType"`
-	StartTime        time.Time        `xml:"StartTime"`
+	Duration         aws.IntegerValue `query:"Duration" xml:"Duration"`
+	EndTime          time.Time        `query:"EndTime" xml:"EndTime"`
+	Marker           aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords       aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	SourceIdentifier aws.StringValue  `query:"SourceIdentifier" xml:"SourceIdentifier"`
+	SourceType       aws.StringValue  `query:"SourceType" xml:"SourceType"`
+	StartTime        time.Time        `query:"StartTime" xml:"StartTime"`
 }
 
 // DescribeReplicationGroupsMessage is undocumented.
 type DescribeReplicationGroupsMessage struct {
-	Marker             aws.StringValue  `xml:"Marker"`
-	MaxRecords         aws.IntegerValue `xml:"MaxRecords"`
-	ReplicationGroupID aws.StringValue  `xml:"ReplicationGroupId"`
+	Marker             aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords         aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	ReplicationGroupID aws.StringValue  `query:"ReplicationGroupId" xml:"ReplicationGroupId"`
 }
 
 // DescribeReservedCacheNodesMessage is undocumented.
 type DescribeReservedCacheNodesMessage struct {
-	CacheNodeType                aws.StringValue  `xml:"CacheNodeType"`
-	Duration                     aws.StringValue  `xml:"Duration"`
-	Marker                       aws.StringValue  `xml:"Marker"`
-	MaxRecords                   aws.IntegerValue `xml:"MaxRecords"`
-	OfferingType                 aws.StringValue  `xml:"OfferingType"`
-	ProductDescription           aws.StringValue  `xml:"ProductDescription"`
-	ReservedCacheNodeID          aws.StringValue  `xml:"ReservedCacheNodeId"`
-	ReservedCacheNodesOfferingID aws.StringValue  `xml:"ReservedCacheNodesOfferingId"`
+	CacheNodeType                aws.StringValue  `query:"CacheNodeType" xml:"CacheNodeType"`
+	Duration                     aws.StringValue  `query:"Duration" xml:"Duration"`
+	Marker                       aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords                   aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	OfferingType                 aws.StringValue  `query:"OfferingType" xml:"OfferingType"`
+	ProductDescription           aws.StringValue  `query:"ProductDescription" xml:"ProductDescription"`
+	ReservedCacheNodeID          aws.StringValue  `query:"ReservedCacheNodeId" xml:"ReservedCacheNodeId"`
+	ReservedCacheNodesOfferingID aws.StringValue  `query:"ReservedCacheNodesOfferingId" xml:"ReservedCacheNodesOfferingId"`
 }
 
 // DescribeReservedCacheNodesOfferingsMessage is undocumented.
 type DescribeReservedCacheNodesOfferingsMessage struct {
-	CacheNodeType                aws.StringValue  `xml:"CacheNodeType"`
-	Duration                     aws.StringValue  `xml:"Duration"`
-	Marker                       aws.StringValue  `xml:"Marker"`
-	MaxRecords                   aws.IntegerValue `xml:"MaxRecords"`
-	OfferingType                 aws.StringValue  `xml:"OfferingType"`
-	ProductDescription           aws.StringValue  `xml:"ProductDescription"`
-	ReservedCacheNodesOfferingID aws.StringValue  `xml:"ReservedCacheNodesOfferingId"`
+	CacheNodeType                aws.StringValue  `query:"CacheNodeType" xml:"CacheNodeType"`
+	Duration                     aws.StringValue  `query:"Duration" xml:"Duration"`
+	Marker                       aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords                   aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	OfferingType                 aws.StringValue  `query:"OfferingType" xml:"OfferingType"`
+	ProductDescription           aws.StringValue  `query:"ProductDescription" xml:"ProductDescription"`
+	ReservedCacheNodesOfferingID aws.StringValue  `query:"ReservedCacheNodesOfferingId" xml:"ReservedCacheNodesOfferingId"`
 }
 
 // DescribeSnapshotsListMessage is undocumented.
 type DescribeSnapshotsListMessage struct {
-	Marker    aws.StringValue `xml:"DescribeSnapshotsResult>Marker"`
-	Snapshots []Snapshot      `xml:"DescribeSnapshotsResult>Snapshots>Snapshot"`
+	Marker    aws.StringValue `query:"Marker" xml:"DescribeSnapshotsResult>Marker"`
+	Snapshots []Snapshot      `query:"Snapshots.member" xml:"DescribeSnapshotsResult>Snapshots>Snapshot"`
 }
 
 // DescribeSnapshotsMessage is undocumented.
 type DescribeSnapshotsMessage struct {
-	CacheClusterID aws.StringValue  `xml:"CacheClusterId"`
-	Marker         aws.StringValue  `xml:"Marker"`
-	MaxRecords     aws.IntegerValue `xml:"MaxRecords"`
-	SnapshotName   aws.StringValue  `xml:"SnapshotName"`
-	SnapshotSource aws.StringValue  `xml:"SnapshotSource"`
+	CacheClusterID aws.StringValue  `query:"CacheClusterId" xml:"CacheClusterId"`
+	Marker         aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords     aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	SnapshotName   aws.StringValue  `query:"SnapshotName" xml:"SnapshotName"`
+	SnapshotSource aws.StringValue  `query:"SnapshotSource" xml:"SnapshotSource"`
 }
 
 // EC2SecurityGroup is undocumented.
 type EC2SecurityGroup struct {
-	EC2SecurityGroupName    aws.StringValue `xml:"EC2SecurityGroupName"`
-	EC2SecurityGroupOwnerID aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
-	Status                  aws.StringValue `xml:"Status"`
+	EC2SecurityGroupName    aws.StringValue `query:"EC2SecurityGroupName" xml:"EC2SecurityGroupName"`
+	EC2SecurityGroupOwnerID aws.StringValue `query:"EC2SecurityGroupOwnerId" xml:"EC2SecurityGroupOwnerId"`
+	Status                  aws.StringValue `query:"Status" xml:"Status"`
 }
 
 // Endpoint is undocumented.
 type Endpoint struct {
-	Address aws.StringValue  `xml:"Address"`
-	Port    aws.IntegerValue `xml:"Port"`
+	Address aws.StringValue  `query:"Address" xml:"Address"`
+	Port    aws.IntegerValue `query:"Port" xml:"Port"`
 }
 
 // EngineDefaults is undocumented.
 type EngineDefaults struct {
-	CacheNodeTypeSpecificParameters []CacheNodeTypeSpecificParameter `xml:"CacheNodeTypeSpecificParameters>CacheNodeTypeSpecificParameter"`
-	CacheParameterGroupFamily       aws.StringValue                  `xml:"CacheParameterGroupFamily"`
-	Marker                          aws.StringValue                  `xml:"Marker"`
-	Parameters                      []Parameter                      `xml:"Parameters>Parameter"`
+	CacheNodeTypeSpecificParameters []CacheNodeTypeSpecificParameter `query:"CacheNodeTypeSpecificParameters.member" xml:"CacheNodeTypeSpecificParameters>CacheNodeTypeSpecificParameter"`
+	CacheParameterGroupFamily       aws.StringValue                  `query:"CacheParameterGroupFamily" xml:"CacheParameterGroupFamily"`
+	Marker                          aws.StringValue                  `query:"Marker" xml:"Marker"`
+	Parameters                      []Parameter                      `query:"Parameters.member" xml:"Parameters>Parameter"`
 }
 
 // Event is undocumented.
 type Event struct {
-	Date             time.Time       `xml:"Date"`
-	Message          aws.StringValue `xml:"Message"`
-	SourceIdentifier aws.StringValue `xml:"SourceIdentifier"`
-	SourceType       aws.StringValue `xml:"SourceType"`
+	Date             time.Time       `query:"Date" xml:"Date"`
+	Message          aws.StringValue `query:"Message" xml:"Message"`
+	SourceIdentifier aws.StringValue `query:"SourceIdentifier" xml:"SourceIdentifier"`
+	SourceType       aws.StringValue `query:"SourceType" xml:"SourceType"`
 }
 
 // EventsMessage is undocumented.
 type EventsMessage struct {
-	Events []Event         `xml:"DescribeEventsResult>Events>Event"`
-	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
+	Events []Event         `query:"Events.member" xml:"DescribeEventsResult>Events>Event"`
+	Marker aws.StringValue `query:"Marker" xml:"DescribeEventsResult>Marker"`
 }
 
 // ModifyCacheClusterMessage is undocumented.
 type ModifyCacheClusterMessage struct {
-	AZMode                     aws.StringValue  `xml:"AZMode"`
-	ApplyImmediately           aws.BooleanValue `xml:"ApplyImmediately"`
-	AutoMinorVersionUpgrade    aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
-	CacheClusterID             aws.StringValue  `xml:"CacheClusterId"`
-	CacheNodeIDsToRemove       []string         `xml:"CacheNodeIdsToRemove>CacheNodeId"`
-	CacheParameterGroupName    aws.StringValue  `xml:"CacheParameterGroupName"`
-	CacheSecurityGroupNames    []string         `xml:"CacheSecurityGroupNames>CacheSecurityGroupName"`
-	EngineVersion              aws.StringValue  `xml:"EngineVersion"`
-	NewAvailabilityZones       []string         `xml:"NewAvailabilityZones>PreferredAvailabilityZone"`
-	NotificationTopicARN       aws.StringValue  `xml:"NotificationTopicArn"`
-	NotificationTopicStatus    aws.StringValue  `xml:"NotificationTopicStatus"`
-	NumCacheNodes              aws.IntegerValue `xml:"NumCacheNodes"`
-	PreferredMaintenanceWindow aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	SecurityGroupIDs           []string         `xml:"SecurityGroupIds>SecurityGroupId"`
-	SnapshotRetentionLimit     aws.IntegerValue `xml:"SnapshotRetentionLimit"`
-	SnapshotWindow             aws.StringValue  `xml:"SnapshotWindow"`
+	AZMode                     aws.StringValue  `query:"AZMode" xml:"AZMode"`
+	ApplyImmediately           aws.BooleanValue `query:"ApplyImmediately" xml:"ApplyImmediately"`
+	AutoMinorVersionUpgrade    aws.BooleanValue `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	CacheClusterID             aws.StringValue  `query:"CacheClusterId" xml:"CacheClusterId"`
+	CacheNodeIDsToRemove       []string         `query:"CacheNodeIdsToRemove.member" xml:"CacheNodeIdsToRemove>CacheNodeId"`
+	CacheParameterGroupName    aws.StringValue  `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	CacheSecurityGroupNames    []string         `query:"CacheSecurityGroupNames.member" xml:"CacheSecurityGroupNames>CacheSecurityGroupName"`
+	EngineVersion              aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	NewAvailabilityZones       []string         `query:"NewAvailabilityZones.member" xml:"NewAvailabilityZones>PreferredAvailabilityZone"`
+	NotificationTopicARN       aws.StringValue  `query:"NotificationTopicArn" xml:"NotificationTopicArn"`
+	NotificationTopicStatus    aws.StringValue  `query:"NotificationTopicStatus" xml:"NotificationTopicStatus"`
+	NumCacheNodes              aws.IntegerValue `query:"NumCacheNodes" xml:"NumCacheNodes"`
+	PreferredMaintenanceWindow aws.StringValue  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	SecurityGroupIDs           []string         `query:"SecurityGroupIds.member" xml:"SecurityGroupIds>SecurityGroupId"`
+	SnapshotRetentionLimit     aws.IntegerValue `query:"SnapshotRetentionLimit" xml:"SnapshotRetentionLimit"`
+	SnapshotWindow             aws.StringValue  `query:"SnapshotWindow" xml:"SnapshotWindow"`
 }
 
 // ModifyCacheClusterResult is undocumented.
 type ModifyCacheClusterResult struct {
-	CacheCluster *CacheCluster `xml:"ModifyCacheClusterResult>CacheCluster"`
+	CacheCluster *CacheCluster `query:"CacheCluster" xml:"ModifyCacheClusterResult>CacheCluster"`
 }
 
 // ModifyCacheParameterGroupMessage is undocumented.
 type ModifyCacheParameterGroupMessage struct {
-	CacheParameterGroupName aws.StringValue      `xml:"CacheParameterGroupName"`
-	ParameterNameValues     []ParameterNameValue `xml:"ParameterNameValues>ParameterNameValue"`
+	CacheParameterGroupName aws.StringValue      `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	ParameterNameValues     []ParameterNameValue `query:"ParameterNameValues.member" xml:"ParameterNameValues>ParameterNameValue"`
 }
 
 // ModifyCacheSubnetGroupMessage is undocumented.
 type ModifyCacheSubnetGroupMessage struct {
-	CacheSubnetGroupDescription aws.StringValue `xml:"CacheSubnetGroupDescription"`
-	CacheSubnetGroupName        aws.StringValue `xml:"CacheSubnetGroupName"`
-	SubnetIDs                   []string        `xml:"SubnetIds>SubnetIdentifier"`
+	CacheSubnetGroupDescription aws.StringValue `query:"CacheSubnetGroupDescription" xml:"CacheSubnetGroupDescription"`
+	CacheSubnetGroupName        aws.StringValue `query:"CacheSubnetGroupName" xml:"CacheSubnetGroupName"`
+	SubnetIDs                   []string        `query:"SubnetIds.member" xml:"SubnetIds>SubnetIdentifier"`
 }
 
 // ModifyCacheSubnetGroupResult is undocumented.
 type ModifyCacheSubnetGroupResult struct {
-	CacheSubnetGroup *CacheSubnetGroup `xml:"ModifyCacheSubnetGroupResult>CacheSubnetGroup"`
+	CacheSubnetGroup *CacheSubnetGroup `query:"CacheSubnetGroup" xml:"ModifyCacheSubnetGroupResult>CacheSubnetGroup"`
 }
 
 // ModifyReplicationGroupMessage is undocumented.
 type ModifyReplicationGroupMessage struct {
-	ApplyImmediately            aws.BooleanValue `xml:"ApplyImmediately"`
-	AutoMinorVersionUpgrade     aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
-	AutomaticFailoverEnabled    aws.BooleanValue `xml:"AutomaticFailoverEnabled"`
-	CacheParameterGroupName     aws.StringValue  `xml:"CacheParameterGroupName"`
-	CacheSecurityGroupNames     []string         `xml:"CacheSecurityGroupNames>CacheSecurityGroupName"`
-	EngineVersion               aws.StringValue  `xml:"EngineVersion"`
-	NotificationTopicARN        aws.StringValue  `xml:"NotificationTopicArn"`
-	NotificationTopicStatus     aws.StringValue  `xml:"NotificationTopicStatus"`
-	PreferredMaintenanceWindow  aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	PrimaryClusterID            aws.StringValue  `xml:"PrimaryClusterId"`
-	ReplicationGroupDescription aws.StringValue  `xml:"ReplicationGroupDescription"`
-	ReplicationGroupID          aws.StringValue  `xml:"ReplicationGroupId"`
-	SecurityGroupIDs            []string         `xml:"SecurityGroupIds>SecurityGroupId"`
-	SnapshotRetentionLimit      aws.IntegerValue `xml:"SnapshotRetentionLimit"`
-	SnapshotWindow              aws.StringValue  `xml:"SnapshotWindow"`
-	SnapshottingClusterID       aws.StringValue  `xml:"SnapshottingClusterId"`
+	ApplyImmediately            aws.BooleanValue `query:"ApplyImmediately" xml:"ApplyImmediately"`
+	AutoMinorVersionUpgrade     aws.BooleanValue `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	AutomaticFailoverEnabled    aws.BooleanValue `query:"AutomaticFailoverEnabled" xml:"AutomaticFailoverEnabled"`
+	CacheParameterGroupName     aws.StringValue  `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	CacheSecurityGroupNames     []string         `query:"CacheSecurityGroupNames.member" xml:"CacheSecurityGroupNames>CacheSecurityGroupName"`
+	EngineVersion               aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	NotificationTopicARN        aws.StringValue  `query:"NotificationTopicArn" xml:"NotificationTopicArn"`
+	NotificationTopicStatus     aws.StringValue  `query:"NotificationTopicStatus" xml:"NotificationTopicStatus"`
+	PreferredMaintenanceWindow  aws.StringValue  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	PrimaryClusterID            aws.StringValue  `query:"PrimaryClusterId" xml:"PrimaryClusterId"`
+	ReplicationGroupDescription aws.StringValue  `query:"ReplicationGroupDescription" xml:"ReplicationGroupDescription"`
+	ReplicationGroupID          aws.StringValue  `query:"ReplicationGroupId" xml:"ReplicationGroupId"`
+	SecurityGroupIDs            []string         `query:"SecurityGroupIds.member" xml:"SecurityGroupIds>SecurityGroupId"`
+	SnapshotRetentionLimit      aws.IntegerValue `query:"SnapshotRetentionLimit" xml:"SnapshotRetentionLimit"`
+	SnapshotWindow              aws.StringValue  `query:"SnapshotWindow" xml:"SnapshotWindow"`
+	SnapshottingClusterID       aws.StringValue  `query:"SnapshottingClusterId" xml:"SnapshottingClusterId"`
 }
 
 // ModifyReplicationGroupResult is undocumented.
 type ModifyReplicationGroupResult struct {
-	ReplicationGroup *ReplicationGroup `xml:"ModifyReplicationGroupResult>ReplicationGroup"`
+	ReplicationGroup *ReplicationGroup `query:"ReplicationGroup" xml:"ModifyReplicationGroupResult>ReplicationGroup"`
 }
 
 // NodeGroup is undocumented.
 type NodeGroup struct {
-	NodeGroupID      aws.StringValue   `xml:"NodeGroupId"`
-	NodeGroupMembers []NodeGroupMember `xml:"NodeGroupMembers>NodeGroupMember"`
-	PrimaryEndpoint  *Endpoint         `xml:"PrimaryEndpoint"`
-	Status           aws.StringValue   `xml:"Status"`
+	NodeGroupID      aws.StringValue   `query:"NodeGroupId" xml:"NodeGroupId"`
+	NodeGroupMembers []NodeGroupMember `query:"NodeGroupMembers.member" xml:"NodeGroupMembers>NodeGroupMember"`
+	PrimaryEndpoint  *Endpoint         `query:"PrimaryEndpoint" xml:"PrimaryEndpoint"`
+	Status           aws.StringValue   `query:"Status" xml:"Status"`
 }
 
 // NodeGroupMember is undocumented.
 type NodeGroupMember struct {
-	CacheClusterID            aws.StringValue `xml:"CacheClusterId"`
-	CacheNodeID               aws.StringValue `xml:"CacheNodeId"`
-	CurrentRole               aws.StringValue `xml:"CurrentRole"`
-	PreferredAvailabilityZone aws.StringValue `xml:"PreferredAvailabilityZone"`
-	ReadEndpoint              *Endpoint       `xml:"ReadEndpoint"`
+	CacheClusterID            aws.StringValue `query:"CacheClusterId" xml:"CacheClusterId"`
+	CacheNodeID               aws.StringValue `query:"CacheNodeId" xml:"CacheNodeId"`
+	CurrentRole               aws.StringValue `query:"CurrentRole" xml:"CurrentRole"`
+	PreferredAvailabilityZone aws.StringValue `query:"PreferredAvailabilityZone" xml:"PreferredAvailabilityZone"`
+	ReadEndpoint              *Endpoint       `query:"ReadEndpoint" xml:"ReadEndpoint"`
 }
 
 // NodeSnapshot is undocumented.
 type NodeSnapshot struct {
-	CacheNodeCreateTime time.Time       `xml:"CacheNodeCreateTime"`
-	CacheNodeID         aws.StringValue `xml:"CacheNodeId"`
-	CacheSize           aws.StringValue `xml:"CacheSize"`
-	SnapshotCreateTime  time.Time       `xml:"SnapshotCreateTime"`
+	CacheNodeCreateTime time.Time       `query:"CacheNodeCreateTime" xml:"CacheNodeCreateTime"`
+	CacheNodeID         aws.StringValue `query:"CacheNodeId" xml:"CacheNodeId"`
+	CacheSize           aws.StringValue `query:"CacheSize" xml:"CacheSize"`
+	SnapshotCreateTime  time.Time       `query:"SnapshotCreateTime" xml:"SnapshotCreateTime"`
 }
 
 // NotificationConfiguration is undocumented.
 type NotificationConfiguration struct {
-	TopicARN    aws.StringValue `xml:"TopicArn"`
-	TopicStatus aws.StringValue `xml:"TopicStatus"`
+	TopicARN    aws.StringValue `query:"TopicArn" xml:"TopicArn"`
+	TopicStatus aws.StringValue `query:"TopicStatus" xml:"TopicStatus"`
 }
 
 // Parameter is undocumented.
 type Parameter struct {
-	AllowedValues        aws.StringValue  `xml:"AllowedValues"`
-	DataType             aws.StringValue  `xml:"DataType"`
-	Description          aws.StringValue  `xml:"Description"`
-	IsModifiable         aws.BooleanValue `xml:"IsModifiable"`
-	MinimumEngineVersion aws.StringValue  `xml:"MinimumEngineVersion"`
-	ParameterName        aws.StringValue  `xml:"ParameterName"`
-	ParameterValue       aws.StringValue  `xml:"ParameterValue"`
-	Source               aws.StringValue  `xml:"Source"`
+	AllowedValues        aws.StringValue  `query:"AllowedValues" xml:"AllowedValues"`
+	DataType             aws.StringValue  `query:"DataType" xml:"DataType"`
+	Description          aws.StringValue  `query:"Description" xml:"Description"`
+	IsModifiable         aws.BooleanValue `query:"IsModifiable" xml:"IsModifiable"`
+	MinimumEngineVersion aws.StringValue  `query:"MinimumEngineVersion" xml:"MinimumEngineVersion"`
+	ParameterName        aws.StringValue  `query:"ParameterName" xml:"ParameterName"`
+	ParameterValue       aws.StringValue  `query:"ParameterValue" xml:"ParameterValue"`
+	Source               aws.StringValue  `query:"Source" xml:"Source"`
 }
 
 // ParameterNameValue is undocumented.
 type ParameterNameValue struct {
-	ParameterName  aws.StringValue `xml:"ParameterName"`
-	ParameterValue aws.StringValue `xml:"ParameterValue"`
+	ParameterName  aws.StringValue `query:"ParameterName" xml:"ParameterName"`
+	ParameterValue aws.StringValue `query:"ParameterValue" xml:"ParameterValue"`
 }
 
 // Possible values for ElasticCache.
@@ -1004,151 +1004,151 @@ const (
 
 // PendingModifiedValues is undocumented.
 type PendingModifiedValues struct {
-	CacheNodeIDsToRemove []string         `xml:"CacheNodeIdsToRemove>CacheNodeId"`
-	EngineVersion        aws.StringValue  `xml:"EngineVersion"`
-	NumCacheNodes        aws.IntegerValue `xml:"NumCacheNodes"`
+	CacheNodeIDsToRemove []string         `query:"CacheNodeIdsToRemove.member" xml:"CacheNodeIdsToRemove>CacheNodeId"`
+	EngineVersion        aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	NumCacheNodes        aws.IntegerValue `query:"NumCacheNodes" xml:"NumCacheNodes"`
 }
 
 // PurchaseReservedCacheNodesOfferingMessage is undocumented.
 type PurchaseReservedCacheNodesOfferingMessage struct {
-	CacheNodeCount               aws.IntegerValue `xml:"CacheNodeCount"`
-	ReservedCacheNodeID          aws.StringValue  `xml:"ReservedCacheNodeId"`
-	ReservedCacheNodesOfferingID aws.StringValue  `xml:"ReservedCacheNodesOfferingId"`
+	CacheNodeCount               aws.IntegerValue `query:"CacheNodeCount" xml:"CacheNodeCount"`
+	ReservedCacheNodeID          aws.StringValue  `query:"ReservedCacheNodeId" xml:"ReservedCacheNodeId"`
+	ReservedCacheNodesOfferingID aws.StringValue  `query:"ReservedCacheNodesOfferingId" xml:"ReservedCacheNodesOfferingId"`
 }
 
 // PurchaseReservedCacheNodesOfferingResult is undocumented.
 type PurchaseReservedCacheNodesOfferingResult struct {
-	ReservedCacheNode *ReservedCacheNode `xml:"PurchaseReservedCacheNodesOfferingResult>ReservedCacheNode"`
+	ReservedCacheNode *ReservedCacheNode `query:"ReservedCacheNode" xml:"PurchaseReservedCacheNodesOfferingResult>ReservedCacheNode"`
 }
 
 // RebootCacheClusterMessage is undocumented.
 type RebootCacheClusterMessage struct {
-	CacheClusterID       aws.StringValue `xml:"CacheClusterId"`
-	CacheNodeIDsToReboot []string        `xml:"CacheNodeIdsToReboot>CacheNodeId"`
+	CacheClusterID       aws.StringValue `query:"CacheClusterId" xml:"CacheClusterId"`
+	CacheNodeIDsToReboot []string        `query:"CacheNodeIdsToReboot.member" xml:"CacheNodeIdsToReboot>CacheNodeId"`
 }
 
 // RebootCacheClusterResult is undocumented.
 type RebootCacheClusterResult struct {
-	CacheCluster *CacheCluster `xml:"RebootCacheClusterResult>CacheCluster"`
+	CacheCluster *CacheCluster `query:"CacheCluster" xml:"RebootCacheClusterResult>CacheCluster"`
 }
 
 // RecurringCharge is undocumented.
 type RecurringCharge struct {
-	RecurringChargeAmount    aws.DoubleValue `xml:"RecurringChargeAmount"`
-	RecurringChargeFrequency aws.StringValue `xml:"RecurringChargeFrequency"`
+	RecurringChargeAmount    aws.DoubleValue `query:"RecurringChargeAmount" xml:"RecurringChargeAmount"`
+	RecurringChargeFrequency aws.StringValue `query:"RecurringChargeFrequency" xml:"RecurringChargeFrequency"`
 }
 
 // ReplicationGroup is undocumented.
 type ReplicationGroup struct {
-	AutomaticFailover     aws.StringValue                        `xml:"AutomaticFailover"`
-	Description           aws.StringValue                        `xml:"Description"`
-	MemberClusters        []string                               `xml:"MemberClusters>ClusterId"`
-	NodeGroups            []NodeGroup                            `xml:"NodeGroups>NodeGroup"`
-	PendingModifiedValues *ReplicationGroupPendingModifiedValues `xml:"PendingModifiedValues"`
-	ReplicationGroupID    aws.StringValue                        `xml:"ReplicationGroupId"`
-	SnapshottingClusterID aws.StringValue                        `xml:"SnapshottingClusterId"`
-	Status                aws.StringValue                        `xml:"Status"`
+	AutomaticFailover     aws.StringValue                        `query:"AutomaticFailover" xml:"AutomaticFailover"`
+	Description           aws.StringValue                        `query:"Description" xml:"Description"`
+	MemberClusters        []string                               `query:"MemberClusters.member" xml:"MemberClusters>ClusterId"`
+	NodeGroups            []NodeGroup                            `query:"NodeGroups.member" xml:"NodeGroups>NodeGroup"`
+	PendingModifiedValues *ReplicationGroupPendingModifiedValues `query:"PendingModifiedValues" xml:"PendingModifiedValues"`
+	ReplicationGroupID    aws.StringValue                        `query:"ReplicationGroupId" xml:"ReplicationGroupId"`
+	SnapshottingClusterID aws.StringValue                        `query:"SnapshottingClusterId" xml:"SnapshottingClusterId"`
+	Status                aws.StringValue                        `query:"Status" xml:"Status"`
 }
 
 // ReplicationGroupMessage is undocumented.
 type ReplicationGroupMessage struct {
-	Marker            aws.StringValue    `xml:"DescribeReplicationGroupsResult>Marker"`
-	ReplicationGroups []ReplicationGroup `xml:"DescribeReplicationGroupsResult>ReplicationGroups>ReplicationGroup"`
+	Marker            aws.StringValue    `query:"Marker" xml:"DescribeReplicationGroupsResult>Marker"`
+	ReplicationGroups []ReplicationGroup `query:"ReplicationGroups.member" xml:"DescribeReplicationGroupsResult>ReplicationGroups>ReplicationGroup"`
 }
 
 // ReplicationGroupPendingModifiedValues is undocumented.
 type ReplicationGroupPendingModifiedValues struct {
-	AutomaticFailoverStatus aws.StringValue `xml:"AutomaticFailoverStatus"`
-	PrimaryClusterID        aws.StringValue `xml:"PrimaryClusterId"`
+	AutomaticFailoverStatus aws.StringValue `query:"AutomaticFailoverStatus" xml:"AutomaticFailoverStatus"`
+	PrimaryClusterID        aws.StringValue `query:"PrimaryClusterId" xml:"PrimaryClusterId"`
 }
 
 // ReservedCacheNode is undocumented.
 type ReservedCacheNode struct {
-	CacheNodeCount               aws.IntegerValue  `xml:"CacheNodeCount"`
-	CacheNodeType                aws.StringValue   `xml:"CacheNodeType"`
-	Duration                     aws.IntegerValue  `xml:"Duration"`
-	FixedPrice                   aws.DoubleValue   `xml:"FixedPrice"`
-	OfferingType                 aws.StringValue   `xml:"OfferingType"`
-	ProductDescription           aws.StringValue   `xml:"ProductDescription"`
-	RecurringCharges             []RecurringCharge `xml:"RecurringCharges>RecurringCharge"`
-	ReservedCacheNodeID          aws.StringValue   `xml:"ReservedCacheNodeId"`
-	ReservedCacheNodesOfferingID aws.StringValue   `xml:"ReservedCacheNodesOfferingId"`
-	StartTime                    time.Time         `xml:"StartTime"`
-	State                        aws.StringValue   `xml:"State"`
-	UsagePrice                   aws.DoubleValue   `xml:"UsagePrice"`
+	CacheNodeCount               aws.IntegerValue  `query:"CacheNodeCount" xml:"CacheNodeCount"`
+	CacheNodeType                aws.StringValue   `query:"CacheNodeType" xml:"CacheNodeType"`
+	Duration                     aws.IntegerValue  `query:"Duration" xml:"Duration"`
+	FixedPrice                   aws.DoubleValue   `query:"FixedPrice" xml:"FixedPrice"`
+	OfferingType                 aws.StringValue   `query:"OfferingType" xml:"OfferingType"`
+	ProductDescription           aws.StringValue   `query:"ProductDescription" xml:"ProductDescription"`
+	RecurringCharges             []RecurringCharge `query:"RecurringCharges.member" xml:"RecurringCharges>RecurringCharge"`
+	ReservedCacheNodeID          aws.StringValue   `query:"ReservedCacheNodeId" xml:"ReservedCacheNodeId"`
+	ReservedCacheNodesOfferingID aws.StringValue   `query:"ReservedCacheNodesOfferingId" xml:"ReservedCacheNodesOfferingId"`
+	StartTime                    time.Time         `query:"StartTime" xml:"StartTime"`
+	State                        aws.StringValue   `query:"State" xml:"State"`
+	UsagePrice                   aws.DoubleValue   `query:"UsagePrice" xml:"UsagePrice"`
 }
 
 // ReservedCacheNodeMessage is undocumented.
 type ReservedCacheNodeMessage struct {
-	Marker             aws.StringValue     `xml:"DescribeReservedCacheNodesResult>Marker"`
-	ReservedCacheNodes []ReservedCacheNode `xml:"DescribeReservedCacheNodesResult>ReservedCacheNodes>ReservedCacheNode"`
+	Marker             aws.StringValue     `query:"Marker" xml:"DescribeReservedCacheNodesResult>Marker"`
+	ReservedCacheNodes []ReservedCacheNode `query:"ReservedCacheNodes.member" xml:"DescribeReservedCacheNodesResult>ReservedCacheNodes>ReservedCacheNode"`
 }
 
 // ReservedCacheNodesOffering is undocumented.
 type ReservedCacheNodesOffering struct {
-	CacheNodeType                aws.StringValue   `xml:"CacheNodeType"`
-	Duration                     aws.IntegerValue  `xml:"Duration"`
-	FixedPrice                   aws.DoubleValue   `xml:"FixedPrice"`
-	OfferingType                 aws.StringValue   `xml:"OfferingType"`
-	ProductDescription           aws.StringValue   `xml:"ProductDescription"`
-	RecurringCharges             []RecurringCharge `xml:"RecurringCharges>RecurringCharge"`
-	ReservedCacheNodesOfferingID aws.StringValue   `xml:"ReservedCacheNodesOfferingId"`
-	UsagePrice                   aws.DoubleValue   `xml:"UsagePrice"`
+	CacheNodeType                aws.StringValue   `query:"CacheNodeType" xml:"CacheNodeType"`
+	Duration                     aws.IntegerValue  `query:"Duration" xml:"Duration"`
+	FixedPrice                   aws.DoubleValue   `query:"FixedPrice" xml:"FixedPrice"`
+	OfferingType                 aws.StringValue   `query:"OfferingType" xml:"OfferingType"`
+	ProductDescription           aws.StringValue   `query:"ProductDescription" xml:"ProductDescription"`
+	RecurringCharges             []RecurringCharge `query:"RecurringCharges.member" xml:"RecurringCharges>RecurringCharge"`
+	ReservedCacheNodesOfferingID aws.StringValue   `query:"ReservedCacheNodesOfferingId" xml:"ReservedCacheNodesOfferingId"`
+	UsagePrice                   aws.DoubleValue   `query:"UsagePrice" xml:"UsagePrice"`
 }
 
 // ReservedCacheNodesOfferingMessage is undocumented.
 type ReservedCacheNodesOfferingMessage struct {
-	Marker                      aws.StringValue              `xml:"DescribeReservedCacheNodesOfferingsResult>Marker"`
-	ReservedCacheNodesOfferings []ReservedCacheNodesOffering `xml:"DescribeReservedCacheNodesOfferingsResult>ReservedCacheNodesOfferings>ReservedCacheNodesOffering"`
+	Marker                      aws.StringValue              `query:"Marker" xml:"DescribeReservedCacheNodesOfferingsResult>Marker"`
+	ReservedCacheNodesOfferings []ReservedCacheNodesOffering `query:"ReservedCacheNodesOfferings.member" xml:"DescribeReservedCacheNodesOfferingsResult>ReservedCacheNodesOfferings>ReservedCacheNodesOffering"`
 }
 
 // ResetCacheParameterGroupMessage is undocumented.
 type ResetCacheParameterGroupMessage struct {
-	CacheParameterGroupName aws.StringValue      `xml:"CacheParameterGroupName"`
-	ParameterNameValues     []ParameterNameValue `xml:"ParameterNameValues>ParameterNameValue"`
-	ResetAllParameters      aws.BooleanValue     `xml:"ResetAllParameters"`
+	CacheParameterGroupName aws.StringValue      `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	ParameterNameValues     []ParameterNameValue `query:"ParameterNameValues.member" xml:"ParameterNameValues>ParameterNameValue"`
+	ResetAllParameters      aws.BooleanValue     `query:"ResetAllParameters" xml:"ResetAllParameters"`
 }
 
 // RevokeCacheSecurityGroupIngressMessage is undocumented.
 type RevokeCacheSecurityGroupIngressMessage struct {
-	CacheSecurityGroupName  aws.StringValue `xml:"CacheSecurityGroupName"`
-	EC2SecurityGroupName    aws.StringValue `xml:"EC2SecurityGroupName"`
-	EC2SecurityGroupOwnerID aws.StringValue `xml:"EC2SecurityGroupOwnerId"`
+	CacheSecurityGroupName  aws.StringValue `query:"CacheSecurityGroupName" xml:"CacheSecurityGroupName"`
+	EC2SecurityGroupName    aws.StringValue `query:"EC2SecurityGroupName" xml:"EC2SecurityGroupName"`
+	EC2SecurityGroupOwnerID aws.StringValue `query:"EC2SecurityGroupOwnerId" xml:"EC2SecurityGroupOwnerId"`
 }
 
 // RevokeCacheSecurityGroupIngressResult is undocumented.
 type RevokeCacheSecurityGroupIngressResult struct {
-	CacheSecurityGroup *CacheSecurityGroup `xml:"RevokeCacheSecurityGroupIngressResult>CacheSecurityGroup"`
+	CacheSecurityGroup *CacheSecurityGroup `query:"CacheSecurityGroup" xml:"RevokeCacheSecurityGroupIngressResult>CacheSecurityGroup"`
 }
 
 // SecurityGroupMembership is undocumented.
 type SecurityGroupMembership struct {
-	SecurityGroupID aws.StringValue `xml:"SecurityGroupId"`
-	Status          aws.StringValue `xml:"Status"`
+	SecurityGroupID aws.StringValue `query:"SecurityGroupId" xml:"SecurityGroupId"`
+	Status          aws.StringValue `query:"Status" xml:"Status"`
 }
 
 // Snapshot is undocumented.
 type Snapshot struct {
-	AutoMinorVersionUpgrade    aws.BooleanValue `xml:"AutoMinorVersionUpgrade"`
-	CacheClusterCreateTime     time.Time        `xml:"CacheClusterCreateTime"`
-	CacheClusterID             aws.StringValue  `xml:"CacheClusterId"`
-	CacheNodeType              aws.StringValue  `xml:"CacheNodeType"`
-	CacheParameterGroupName    aws.StringValue  `xml:"CacheParameterGroupName"`
-	CacheSubnetGroupName       aws.StringValue  `xml:"CacheSubnetGroupName"`
-	Engine                     aws.StringValue  `xml:"Engine"`
-	EngineVersion              aws.StringValue  `xml:"EngineVersion"`
-	NodeSnapshots              []NodeSnapshot   `xml:"NodeSnapshots>NodeSnapshot"`
-	NumCacheNodes              aws.IntegerValue `xml:"NumCacheNodes"`
-	Port                       aws.IntegerValue `xml:"Port"`
-	PreferredAvailabilityZone  aws.StringValue  `xml:"PreferredAvailabilityZone"`
-	PreferredMaintenanceWindow aws.StringValue  `xml:"PreferredMaintenanceWindow"`
-	SnapshotName               aws.StringValue  `xml:"SnapshotName"`
-	SnapshotRetentionLimit     aws.IntegerValue `xml:"SnapshotRetentionLimit"`
-	SnapshotSource             aws.StringValue  `xml:"SnapshotSource"`
-	SnapshotStatus             aws.StringValue  `xml:"SnapshotStatus"`
-	SnapshotWindow             aws.StringValue  `xml:"SnapshotWindow"`
-	TopicARN                   aws.StringValue  `xml:"TopicArn"`
-	VPCID                      aws.StringValue  `xml:"VpcId"`
+	AutoMinorVersionUpgrade    aws.BooleanValue `query:"AutoMinorVersionUpgrade" xml:"AutoMinorVersionUpgrade"`
+	CacheClusterCreateTime     time.Time        `query:"CacheClusterCreateTime" xml:"CacheClusterCreateTime"`
+	CacheClusterID             aws.StringValue  `query:"CacheClusterId" xml:"CacheClusterId"`
+	CacheNodeType              aws.StringValue  `query:"CacheNodeType" xml:"CacheNodeType"`
+	CacheParameterGroupName    aws.StringValue  `query:"CacheParameterGroupName" xml:"CacheParameterGroupName"`
+	CacheSubnetGroupName       aws.StringValue  `query:"CacheSubnetGroupName" xml:"CacheSubnetGroupName"`
+	Engine                     aws.StringValue  `query:"Engine" xml:"Engine"`
+	EngineVersion              aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
+	NodeSnapshots              []NodeSnapshot   `query:"NodeSnapshots.member" xml:"NodeSnapshots>NodeSnapshot"`
+	NumCacheNodes              aws.IntegerValue `query:"NumCacheNodes" xml:"NumCacheNodes"`
+	Port                       aws.IntegerValue `query:"Port" xml:"Port"`
+	PreferredAvailabilityZone  aws.StringValue  `query:"PreferredAvailabilityZone" xml:"PreferredAvailabilityZone"`
+	PreferredMaintenanceWindow aws.StringValue  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
+	SnapshotName               aws.StringValue  `query:"SnapshotName" xml:"SnapshotName"`
+	SnapshotRetentionLimit     aws.IntegerValue `query:"SnapshotRetentionLimit" xml:"SnapshotRetentionLimit"`
+	SnapshotSource             aws.StringValue  `query:"SnapshotSource" xml:"SnapshotSource"`
+	SnapshotStatus             aws.StringValue  `query:"SnapshotStatus" xml:"SnapshotStatus"`
+	SnapshotWindow             aws.StringValue  `query:"SnapshotWindow" xml:"SnapshotWindow"`
+	TopicARN                   aws.StringValue  `query:"TopicArn" xml:"TopicArn"`
+	VPCID                      aws.StringValue  `query:"VpcId" xml:"VpcId"`
 }
 
 // Possible values for ElasticCache.
@@ -1161,85 +1161,85 @@ const (
 
 // Subnet is undocumented.
 type Subnet struct {
-	SubnetAvailabilityZone *AvailabilityZone `xml:"SubnetAvailabilityZone"`
-	SubnetIdentifier       aws.StringValue   `xml:"SubnetIdentifier"`
+	SubnetAvailabilityZone *AvailabilityZone `query:"SubnetAvailabilityZone" xml:"SubnetAvailabilityZone"`
+	SubnetIdentifier       aws.StringValue   `query:"SubnetIdentifier" xml:"SubnetIdentifier"`
 }
 
 // DescribeCacheClustersResult is a wrapper for CacheClusterMessage.
 type DescribeCacheClustersResult struct {
-	CacheClusters []CacheCluster  `xml:"DescribeCacheClustersResult>CacheClusters>CacheCluster"`
-	Marker        aws.StringValue `xml:"DescribeCacheClustersResult>Marker"`
+	CacheClusters []CacheCluster  `query:"CacheClusters.member" xml:"DescribeCacheClustersResult>CacheClusters>CacheCluster"`
+	Marker        aws.StringValue `query:"Marker" xml:"DescribeCacheClustersResult>Marker"`
 }
 
 // DescribeCacheEngineVersionsResult is a wrapper for CacheEngineVersionMessage.
 type DescribeCacheEngineVersionsResult struct {
-	CacheEngineVersions []CacheEngineVersion `xml:"DescribeCacheEngineVersionsResult>CacheEngineVersions>CacheEngineVersion"`
-	Marker              aws.StringValue      `xml:"DescribeCacheEngineVersionsResult>Marker"`
+	CacheEngineVersions []CacheEngineVersion `query:"CacheEngineVersions.member" xml:"DescribeCacheEngineVersionsResult>CacheEngineVersions>CacheEngineVersion"`
+	Marker              aws.StringValue      `query:"Marker" xml:"DescribeCacheEngineVersionsResult>Marker"`
 }
 
 // DescribeCacheParameterGroupsResult is a wrapper for CacheParameterGroupsMessage.
 type DescribeCacheParameterGroupsResult struct {
-	CacheParameterGroups []CacheParameterGroup `xml:"DescribeCacheParameterGroupsResult>CacheParameterGroups>CacheParameterGroup"`
-	Marker               aws.StringValue       `xml:"DescribeCacheParameterGroupsResult>Marker"`
+	CacheParameterGroups []CacheParameterGroup `query:"CacheParameterGroups.member" xml:"DescribeCacheParameterGroupsResult>CacheParameterGroups>CacheParameterGroup"`
+	Marker               aws.StringValue       `query:"Marker" xml:"DescribeCacheParameterGroupsResult>Marker"`
 }
 
 // DescribeCacheParametersResult is a wrapper for CacheParameterGroupDetails.
 type DescribeCacheParametersResult struct {
-	CacheNodeTypeSpecificParameters []CacheNodeTypeSpecificParameter `xml:"DescribeCacheParametersResult>CacheNodeTypeSpecificParameters>CacheNodeTypeSpecificParameter"`
-	Marker                          aws.StringValue                  `xml:"DescribeCacheParametersResult>Marker"`
-	Parameters                      []Parameter                      `xml:"DescribeCacheParametersResult>Parameters>Parameter"`
+	CacheNodeTypeSpecificParameters []CacheNodeTypeSpecificParameter `query:"CacheNodeTypeSpecificParameters.member" xml:"DescribeCacheParametersResult>CacheNodeTypeSpecificParameters>CacheNodeTypeSpecificParameter"`
+	Marker                          aws.StringValue                  `query:"Marker" xml:"DescribeCacheParametersResult>Marker"`
+	Parameters                      []Parameter                      `query:"Parameters.member" xml:"DescribeCacheParametersResult>Parameters>Parameter"`
 }
 
 // DescribeCacheSecurityGroupsResult is a wrapper for CacheSecurityGroupMessage.
 type DescribeCacheSecurityGroupsResult struct {
-	CacheSecurityGroups []CacheSecurityGroup `xml:"DescribeCacheSecurityGroupsResult>CacheSecurityGroups>CacheSecurityGroup"`
-	Marker              aws.StringValue      `xml:"DescribeCacheSecurityGroupsResult>Marker"`
+	CacheSecurityGroups []CacheSecurityGroup `query:"CacheSecurityGroups.member" xml:"DescribeCacheSecurityGroupsResult>CacheSecurityGroups>CacheSecurityGroup"`
+	Marker              aws.StringValue      `query:"Marker" xml:"DescribeCacheSecurityGroupsResult>Marker"`
 }
 
 // DescribeCacheSubnetGroupsResult is a wrapper for CacheSubnetGroupMessage.
 type DescribeCacheSubnetGroupsResult struct {
-	CacheSubnetGroups []CacheSubnetGroup `xml:"DescribeCacheSubnetGroupsResult>CacheSubnetGroups>CacheSubnetGroup"`
-	Marker            aws.StringValue    `xml:"DescribeCacheSubnetGroupsResult>Marker"`
+	CacheSubnetGroups []CacheSubnetGroup `query:"CacheSubnetGroups.member" xml:"DescribeCacheSubnetGroupsResult>CacheSubnetGroups>CacheSubnetGroup"`
+	Marker            aws.StringValue    `query:"Marker" xml:"DescribeCacheSubnetGroupsResult>Marker"`
 }
 
 // DescribeEventsResult is a wrapper for EventsMessage.
 type DescribeEventsResult struct {
-	Events []Event         `xml:"DescribeEventsResult>Events>Event"`
-	Marker aws.StringValue `xml:"DescribeEventsResult>Marker"`
+	Events []Event         `query:"Events.member" xml:"DescribeEventsResult>Events>Event"`
+	Marker aws.StringValue `query:"Marker" xml:"DescribeEventsResult>Marker"`
 }
 
 // DescribeReplicationGroupsResult is a wrapper for ReplicationGroupMessage.
 type DescribeReplicationGroupsResult struct {
-	Marker            aws.StringValue    `xml:"DescribeReplicationGroupsResult>Marker"`
-	ReplicationGroups []ReplicationGroup `xml:"DescribeReplicationGroupsResult>ReplicationGroups>ReplicationGroup"`
+	Marker            aws.StringValue    `query:"Marker" xml:"DescribeReplicationGroupsResult>Marker"`
+	ReplicationGroups []ReplicationGroup `query:"ReplicationGroups.member" xml:"DescribeReplicationGroupsResult>ReplicationGroups>ReplicationGroup"`
 }
 
 // DescribeReservedCacheNodesOfferingsResult is a wrapper for ReservedCacheNodesOfferingMessage.
 type DescribeReservedCacheNodesOfferingsResult struct {
-	Marker                      aws.StringValue              `xml:"DescribeReservedCacheNodesOfferingsResult>Marker"`
-	ReservedCacheNodesOfferings []ReservedCacheNodesOffering `xml:"DescribeReservedCacheNodesOfferingsResult>ReservedCacheNodesOfferings>ReservedCacheNodesOffering"`
+	Marker                      aws.StringValue              `query:"Marker" xml:"DescribeReservedCacheNodesOfferingsResult>Marker"`
+	ReservedCacheNodesOfferings []ReservedCacheNodesOffering `query:"ReservedCacheNodesOfferings.member" xml:"DescribeReservedCacheNodesOfferingsResult>ReservedCacheNodesOfferings>ReservedCacheNodesOffering"`
 }
 
 // DescribeReservedCacheNodesResult is a wrapper for ReservedCacheNodeMessage.
 type DescribeReservedCacheNodesResult struct {
-	Marker             aws.StringValue     `xml:"DescribeReservedCacheNodesResult>Marker"`
-	ReservedCacheNodes []ReservedCacheNode `xml:"DescribeReservedCacheNodesResult>ReservedCacheNodes>ReservedCacheNode"`
+	Marker             aws.StringValue     `query:"Marker" xml:"DescribeReservedCacheNodesResult>Marker"`
+	ReservedCacheNodes []ReservedCacheNode `query:"ReservedCacheNodes.member" xml:"DescribeReservedCacheNodesResult>ReservedCacheNodes>ReservedCacheNode"`
 }
 
 // DescribeSnapshotsResult is a wrapper for DescribeSnapshotsListMessage.
 type DescribeSnapshotsResult struct {
-	Marker    aws.StringValue `xml:"DescribeSnapshotsResult>Marker"`
-	Snapshots []Snapshot      `xml:"DescribeSnapshotsResult>Snapshots>Snapshot"`
+	Marker    aws.StringValue `query:"Marker" xml:"DescribeSnapshotsResult>Marker"`
+	Snapshots []Snapshot      `query:"Snapshots.member" xml:"DescribeSnapshotsResult>Snapshots>Snapshot"`
 }
 
 // ModifyCacheParameterGroupResult is a wrapper for CacheParameterGroupNameMessage.
 type ModifyCacheParameterGroupResult struct {
-	CacheParameterGroupName aws.StringValue `xml:"ModifyCacheParameterGroupResult>CacheParameterGroupName"`
+	CacheParameterGroupName aws.StringValue `query:"CacheParameterGroupName" xml:"ModifyCacheParameterGroupResult>CacheParameterGroupName"`
 }
 
 // ResetCacheParameterGroupResult is a wrapper for CacheParameterGroupNameMessage.
 type ResetCacheParameterGroupResult struct {
-	CacheParameterGroupName aws.StringValue `xml:"ResetCacheParameterGroupResult>CacheParameterGroupName"`
+	CacheParameterGroupName aws.StringValue `query:"CacheParameterGroupName" xml:"ResetCacheParameterGroupResult>CacheParameterGroupName"`
 }
 
 // avoid errors if the packages aren't referenced

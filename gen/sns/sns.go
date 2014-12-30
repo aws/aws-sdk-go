@@ -318,346 +318,346 @@ func (c *SNS) Unsubscribe(req *UnsubscribeInput) (err error) {
 
 // AddPermissionInput is undocumented.
 type AddPermissionInput struct {
-	AWSAccountID []string        `xml:"AWSAccountId>member"`
-	ActionName   []string        `xml:"ActionName>member"`
-	Label        aws.StringValue `xml:"Label"`
-	TopicARN     aws.StringValue `xml:"TopicArn"`
+	AWSAccountID []string        `query:"AWSAccountId.member" xml:"AWSAccountId>member"`
+	ActionName   []string        `query:"ActionName.member" xml:"ActionName>member"`
+	Label        aws.StringValue `query:"Label" xml:"Label"`
+	TopicARN     aws.StringValue `query:"TopicArn" xml:"TopicArn"`
 }
 
 // ConfirmSubscriptionInput is undocumented.
 type ConfirmSubscriptionInput struct {
-	AuthenticateOnUnsubscribe aws.StringValue `xml:"AuthenticateOnUnsubscribe"`
-	Token                     aws.StringValue `xml:"Token"`
-	TopicARN                  aws.StringValue `xml:"TopicArn"`
+	AuthenticateOnUnsubscribe aws.StringValue `query:"AuthenticateOnUnsubscribe" xml:"AuthenticateOnUnsubscribe"`
+	Token                     aws.StringValue `query:"Token" xml:"Token"`
+	TopicARN                  aws.StringValue `query:"TopicArn" xml:"TopicArn"`
 }
 
 // ConfirmSubscriptionResponse is undocumented.
 type ConfirmSubscriptionResponse struct {
-	SubscriptionARN aws.StringValue `xml:"ConfirmSubscriptionResult>SubscriptionArn"`
+	SubscriptionARN aws.StringValue `query:"SubscriptionArn" xml:"ConfirmSubscriptionResult>SubscriptionArn"`
 }
 
 // CreateEndpointResponse is undocumented.
 type CreateEndpointResponse struct {
-	EndpointARN aws.StringValue `xml:"CreatePlatformEndpointResult>EndpointArn"`
+	EndpointARN aws.StringValue `query:"EndpointArn" xml:"CreatePlatformEndpointResult>EndpointArn"`
 }
 
 // CreatePlatformApplicationInput is undocumented.
 type CreatePlatformApplicationInput struct {
-	Attributes map[string]string `xml:"Attributes"`
-	Name       aws.StringValue   `xml:"Name"`
-	Platform   aws.StringValue   `xml:"Platform"`
+	Attributes map[string]string `query:"Attributes" xml:"Attributes"`
+	Name       aws.StringValue   `query:"Name" xml:"Name"`
+	Platform   aws.StringValue   `query:"Platform" xml:"Platform"`
 }
 
 // CreatePlatformApplicationResponse is undocumented.
 type CreatePlatformApplicationResponse struct {
-	PlatformApplicationARN aws.StringValue `xml:"CreatePlatformApplicationResult>PlatformApplicationArn"`
+	PlatformApplicationARN aws.StringValue `query:"PlatformApplicationArn" xml:"CreatePlatformApplicationResult>PlatformApplicationArn"`
 }
 
 // CreatePlatformEndpointInput is undocumented.
 type CreatePlatformEndpointInput struct {
-	Attributes             map[string]string `xml:"Attributes"`
-	CustomUserData         aws.StringValue   `xml:"CustomUserData"`
-	PlatformApplicationARN aws.StringValue   `xml:"PlatformApplicationArn"`
-	Token                  aws.StringValue   `xml:"Token"`
+	Attributes             map[string]string `query:"Attributes" xml:"Attributes"`
+	CustomUserData         aws.StringValue   `query:"CustomUserData" xml:"CustomUserData"`
+	PlatformApplicationARN aws.StringValue   `query:"PlatformApplicationArn" xml:"PlatformApplicationArn"`
+	Token                  aws.StringValue   `query:"Token" xml:"Token"`
 }
 
 // CreateTopicInput is undocumented.
 type CreateTopicInput struct {
-	Name aws.StringValue `xml:"Name"`
+	Name aws.StringValue `query:"Name" xml:"Name"`
 }
 
 // CreateTopicResponse is undocumented.
 type CreateTopicResponse struct {
-	TopicARN aws.StringValue `xml:"CreateTopicResult>TopicArn"`
+	TopicARN aws.StringValue `query:"TopicArn" xml:"CreateTopicResult>TopicArn"`
 }
 
 // DeleteEndpointInput is undocumented.
 type DeleteEndpointInput struct {
-	EndpointARN aws.StringValue `xml:"EndpointArn"`
+	EndpointARN aws.StringValue `query:"EndpointArn" xml:"EndpointArn"`
 }
 
 // DeletePlatformApplicationInput is undocumented.
 type DeletePlatformApplicationInput struct {
-	PlatformApplicationARN aws.StringValue `xml:"PlatformApplicationArn"`
+	PlatformApplicationARN aws.StringValue `query:"PlatformApplicationArn" xml:"PlatformApplicationArn"`
 }
 
 // DeleteTopicInput is undocumented.
 type DeleteTopicInput struct {
-	TopicARN aws.StringValue `xml:"TopicArn"`
+	TopicARN aws.StringValue `query:"TopicArn" xml:"TopicArn"`
 }
 
 // Endpoint is undocumented.
 type Endpoint struct {
-	Attributes  map[string]string `xml:"Attributes"`
-	EndpointARN aws.StringValue   `xml:"EndpointArn"`
+	Attributes  map[string]string `query:"Attributes" xml:"Attributes"`
+	EndpointARN aws.StringValue   `query:"EndpointArn" xml:"EndpointArn"`
 }
 
 // GetEndpointAttributesInput is undocumented.
 type GetEndpointAttributesInput struct {
-	EndpointARN aws.StringValue `xml:"EndpointArn"`
+	EndpointARN aws.StringValue `query:"EndpointArn" xml:"EndpointArn"`
 }
 
 // GetEndpointAttributesResponse is undocumented.
 type GetEndpointAttributesResponse struct {
-	Attributes map[string]string `xml:"GetEndpointAttributesResult>Attributes"`
+	Attributes map[string]string `query:"Attributes" xml:"GetEndpointAttributesResult>Attributes"`
 }
 
 // GetPlatformApplicationAttributesInput is undocumented.
 type GetPlatformApplicationAttributesInput struct {
-	PlatformApplicationARN aws.StringValue `xml:"PlatformApplicationArn"`
+	PlatformApplicationARN aws.StringValue `query:"PlatformApplicationArn" xml:"PlatformApplicationArn"`
 }
 
 // GetPlatformApplicationAttributesResponse is undocumented.
 type GetPlatformApplicationAttributesResponse struct {
-	Attributes map[string]string `xml:"GetPlatformApplicationAttributesResult>Attributes"`
+	Attributes map[string]string `query:"Attributes" xml:"GetPlatformApplicationAttributesResult>Attributes"`
 }
 
 // GetSubscriptionAttributesInput is undocumented.
 type GetSubscriptionAttributesInput struct {
-	SubscriptionARN aws.StringValue `xml:"SubscriptionArn"`
+	SubscriptionARN aws.StringValue `query:"SubscriptionArn" xml:"SubscriptionArn"`
 }
 
 // GetSubscriptionAttributesResponse is undocumented.
 type GetSubscriptionAttributesResponse struct {
-	Attributes map[string]string `xml:"GetSubscriptionAttributesResult>Attributes"`
+	Attributes map[string]string `query:"Attributes" xml:"GetSubscriptionAttributesResult>Attributes"`
 }
 
 // GetTopicAttributesInput is undocumented.
 type GetTopicAttributesInput struct {
-	TopicARN aws.StringValue `xml:"TopicArn"`
+	TopicARN aws.StringValue `query:"TopicArn" xml:"TopicArn"`
 }
 
 // GetTopicAttributesResponse is undocumented.
 type GetTopicAttributesResponse struct {
-	Attributes map[string]string `xml:"GetTopicAttributesResult>Attributes"`
+	Attributes map[string]string `query:"Attributes" xml:"GetTopicAttributesResult>Attributes"`
 }
 
 // ListEndpointsByPlatformApplicationInput is undocumented.
 type ListEndpointsByPlatformApplicationInput struct {
-	NextToken              aws.StringValue `xml:"NextToken"`
-	PlatformApplicationARN aws.StringValue `xml:"PlatformApplicationArn"`
+	NextToken              aws.StringValue `query:"NextToken" xml:"NextToken"`
+	PlatformApplicationARN aws.StringValue `query:"PlatformApplicationArn" xml:"PlatformApplicationArn"`
 }
 
 // ListEndpointsByPlatformApplicationResponse is undocumented.
 type ListEndpointsByPlatformApplicationResponse struct {
-	Endpoints []Endpoint      `xml:"ListEndpointsByPlatformApplicationResult>Endpoints>member"`
-	NextToken aws.StringValue `xml:"ListEndpointsByPlatformApplicationResult>NextToken"`
+	Endpoints []Endpoint      `query:"Endpoints.member" xml:"ListEndpointsByPlatformApplicationResult>Endpoints>member"`
+	NextToken aws.StringValue `query:"NextToken" xml:"ListEndpointsByPlatformApplicationResult>NextToken"`
 }
 
 // ListPlatformApplicationsInput is undocumented.
 type ListPlatformApplicationsInput struct {
-	NextToken aws.StringValue `xml:"NextToken"`
+	NextToken aws.StringValue `query:"NextToken" xml:"NextToken"`
 }
 
 // ListPlatformApplicationsResponse is undocumented.
 type ListPlatformApplicationsResponse struct {
-	NextToken            aws.StringValue       `xml:"ListPlatformApplicationsResult>NextToken"`
-	PlatformApplications []PlatformApplication `xml:"ListPlatformApplicationsResult>PlatformApplications>member"`
+	NextToken            aws.StringValue       `query:"NextToken" xml:"ListPlatformApplicationsResult>NextToken"`
+	PlatformApplications []PlatformApplication `query:"PlatformApplications.member" xml:"ListPlatformApplicationsResult>PlatformApplications>member"`
 }
 
 // ListSubscriptionsByTopicInput is undocumented.
 type ListSubscriptionsByTopicInput struct {
-	NextToken aws.StringValue `xml:"NextToken"`
-	TopicARN  aws.StringValue `xml:"TopicArn"`
+	NextToken aws.StringValue `query:"NextToken" xml:"NextToken"`
+	TopicARN  aws.StringValue `query:"TopicArn" xml:"TopicArn"`
 }
 
 // ListSubscriptionsByTopicResponse is undocumented.
 type ListSubscriptionsByTopicResponse struct {
-	NextToken     aws.StringValue `xml:"ListSubscriptionsByTopicResult>NextToken"`
-	Subscriptions []Subscription  `xml:"ListSubscriptionsByTopicResult>Subscriptions>member"`
+	NextToken     aws.StringValue `query:"NextToken" xml:"ListSubscriptionsByTopicResult>NextToken"`
+	Subscriptions []Subscription  `query:"Subscriptions.member" xml:"ListSubscriptionsByTopicResult>Subscriptions>member"`
 }
 
 // ListSubscriptionsInput is undocumented.
 type ListSubscriptionsInput struct {
-	NextToken aws.StringValue `xml:"NextToken"`
+	NextToken aws.StringValue `query:"NextToken" xml:"NextToken"`
 }
 
 // ListSubscriptionsResponse is undocumented.
 type ListSubscriptionsResponse struct {
-	NextToken     aws.StringValue `xml:"ListSubscriptionsResult>NextToken"`
-	Subscriptions []Subscription  `xml:"ListSubscriptionsResult>Subscriptions>member"`
+	NextToken     aws.StringValue `query:"NextToken" xml:"ListSubscriptionsResult>NextToken"`
+	Subscriptions []Subscription  `query:"Subscriptions.member" xml:"ListSubscriptionsResult>Subscriptions>member"`
 }
 
 // ListTopicsInput is undocumented.
 type ListTopicsInput struct {
-	NextToken aws.StringValue `xml:"NextToken"`
+	NextToken aws.StringValue `query:"NextToken" xml:"NextToken"`
 }
 
 // ListTopicsResponse is undocumented.
 type ListTopicsResponse struct {
-	NextToken aws.StringValue `xml:"ListTopicsResult>NextToken"`
-	Topics    []Topic         `xml:"ListTopicsResult>Topics>member"`
+	NextToken aws.StringValue `query:"NextToken" xml:"ListTopicsResult>NextToken"`
+	Topics    []Topic         `query:"Topics.member" xml:"ListTopicsResult>Topics>member"`
 }
 
 // MessageAttributeValue is undocumented.
 type MessageAttributeValue struct {
-	BinaryValue []byte          `xml:"BinaryValue"`
-	DataType    aws.StringValue `xml:"DataType"`
-	StringValue aws.StringValue `xml:"StringValue"`
+	BinaryValue []byte          `query:"BinaryValue" xml:"BinaryValue"`
+	DataType    aws.StringValue `query:"DataType" xml:"DataType"`
+	StringValue aws.StringValue `query:"StringValue" xml:"StringValue"`
 }
 
 // PlatformApplication is undocumented.
 type PlatformApplication struct {
-	Attributes             map[string]string `xml:"Attributes"`
-	PlatformApplicationARN aws.StringValue   `xml:"PlatformApplicationArn"`
+	Attributes             map[string]string `query:"Attributes" xml:"Attributes"`
+	PlatformApplicationARN aws.StringValue   `query:"PlatformApplicationArn" xml:"PlatformApplicationArn"`
 }
 
 // PublishInput is undocumented.
 type PublishInput struct {
-	Message           aws.StringValue                  `xml:"Message"`
-	MessageAttributes map[string]MessageAttributeValue `xml:"MessageAttributes"`
-	MessageStructure  aws.StringValue                  `xml:"MessageStructure"`
-	Subject           aws.StringValue                  `xml:"Subject"`
-	TargetARN         aws.StringValue                  `xml:"TargetArn"`
-	TopicARN          aws.StringValue                  `xml:"TopicArn"`
+	Message           aws.StringValue                  `query:"Message" xml:"Message"`
+	MessageAttributes map[string]MessageAttributeValue `query:"MessageAttributes" xml:"MessageAttributes"`
+	MessageStructure  aws.StringValue                  `query:"MessageStructure" xml:"MessageStructure"`
+	Subject           aws.StringValue                  `query:"Subject" xml:"Subject"`
+	TargetARN         aws.StringValue                  `query:"TargetArn" xml:"TargetArn"`
+	TopicARN          aws.StringValue                  `query:"TopicArn" xml:"TopicArn"`
 }
 
 // PublishResponse is undocumented.
 type PublishResponse struct {
-	MessageID aws.StringValue `xml:"PublishResult>MessageId"`
+	MessageID aws.StringValue `query:"MessageId" xml:"PublishResult>MessageId"`
 }
 
 // RemovePermissionInput is undocumented.
 type RemovePermissionInput struct {
-	Label    aws.StringValue `xml:"Label"`
-	TopicARN aws.StringValue `xml:"TopicArn"`
+	Label    aws.StringValue `query:"Label" xml:"Label"`
+	TopicARN aws.StringValue `query:"TopicArn" xml:"TopicArn"`
 }
 
 // SetEndpointAttributesInput is undocumented.
 type SetEndpointAttributesInput struct {
-	Attributes  map[string]string `xml:"Attributes"`
-	EndpointARN aws.StringValue   `xml:"EndpointArn"`
+	Attributes  map[string]string `query:"Attributes" xml:"Attributes"`
+	EndpointARN aws.StringValue   `query:"EndpointArn" xml:"EndpointArn"`
 }
 
 // SetPlatformApplicationAttributesInput is undocumented.
 type SetPlatformApplicationAttributesInput struct {
-	Attributes             map[string]string `xml:"Attributes"`
-	PlatformApplicationARN aws.StringValue   `xml:"PlatformApplicationArn"`
+	Attributes             map[string]string `query:"Attributes" xml:"Attributes"`
+	PlatformApplicationARN aws.StringValue   `query:"PlatformApplicationArn" xml:"PlatformApplicationArn"`
 }
 
 // SetSubscriptionAttributesInput is undocumented.
 type SetSubscriptionAttributesInput struct {
-	AttributeName   aws.StringValue `xml:"AttributeName"`
-	AttributeValue  aws.StringValue `xml:"AttributeValue"`
-	SubscriptionARN aws.StringValue `xml:"SubscriptionArn"`
+	AttributeName   aws.StringValue `query:"AttributeName" xml:"AttributeName"`
+	AttributeValue  aws.StringValue `query:"AttributeValue" xml:"AttributeValue"`
+	SubscriptionARN aws.StringValue `query:"SubscriptionArn" xml:"SubscriptionArn"`
 }
 
 // SetTopicAttributesInput is undocumented.
 type SetTopicAttributesInput struct {
-	AttributeName  aws.StringValue `xml:"AttributeName"`
-	AttributeValue aws.StringValue `xml:"AttributeValue"`
-	TopicARN       aws.StringValue `xml:"TopicArn"`
+	AttributeName  aws.StringValue `query:"AttributeName" xml:"AttributeName"`
+	AttributeValue aws.StringValue `query:"AttributeValue" xml:"AttributeValue"`
+	TopicARN       aws.StringValue `query:"TopicArn" xml:"TopicArn"`
 }
 
 // SubscribeInput is undocumented.
 type SubscribeInput struct {
-	Endpoint aws.StringValue `xml:"Endpoint"`
-	Protocol aws.StringValue `xml:"Protocol"`
-	TopicARN aws.StringValue `xml:"TopicArn"`
+	Endpoint aws.StringValue `query:"Endpoint" xml:"Endpoint"`
+	Protocol aws.StringValue `query:"Protocol" xml:"Protocol"`
+	TopicARN aws.StringValue `query:"TopicArn" xml:"TopicArn"`
 }
 
 // SubscribeResponse is undocumented.
 type SubscribeResponse struct {
-	SubscriptionARN aws.StringValue `xml:"SubscribeResult>SubscriptionArn"`
+	SubscriptionARN aws.StringValue `query:"SubscriptionArn" xml:"SubscribeResult>SubscriptionArn"`
 }
 
 // Subscription is undocumented.
 type Subscription struct {
-	Endpoint        aws.StringValue `xml:"Endpoint"`
-	Owner           aws.StringValue `xml:"Owner"`
-	Protocol        aws.StringValue `xml:"Protocol"`
-	SubscriptionARN aws.StringValue `xml:"SubscriptionArn"`
-	TopicARN        aws.StringValue `xml:"TopicArn"`
+	Endpoint        aws.StringValue `query:"Endpoint" xml:"Endpoint"`
+	Owner           aws.StringValue `query:"Owner" xml:"Owner"`
+	Protocol        aws.StringValue `query:"Protocol" xml:"Protocol"`
+	SubscriptionARN aws.StringValue `query:"SubscriptionArn" xml:"SubscriptionArn"`
+	TopicARN        aws.StringValue `query:"TopicArn" xml:"TopicArn"`
 }
 
 // Topic is undocumented.
 type Topic struct {
-	TopicARN aws.StringValue `xml:"TopicArn"`
+	TopicARN aws.StringValue `query:"TopicArn" xml:"TopicArn"`
 }
 
 // UnsubscribeInput is undocumented.
 type UnsubscribeInput struct {
-	SubscriptionARN aws.StringValue `xml:"SubscriptionArn"`
+	SubscriptionARN aws.StringValue `query:"SubscriptionArn" xml:"SubscriptionArn"`
 }
 
 // ConfirmSubscriptionResult is a wrapper for ConfirmSubscriptionResponse.
 type ConfirmSubscriptionResult struct {
-	SubscriptionARN aws.StringValue `xml:"ConfirmSubscriptionResult>SubscriptionArn"`
+	SubscriptionARN aws.StringValue `query:"SubscriptionArn" xml:"ConfirmSubscriptionResult>SubscriptionArn"`
 }
 
 // CreatePlatformApplicationResult is a wrapper for CreatePlatformApplicationResponse.
 type CreatePlatformApplicationResult struct {
-	PlatformApplicationARN aws.StringValue `xml:"CreatePlatformApplicationResult>PlatformApplicationArn"`
+	PlatformApplicationARN aws.StringValue `query:"PlatformApplicationArn" xml:"CreatePlatformApplicationResult>PlatformApplicationArn"`
 }
 
 // CreatePlatformEndpointResult is a wrapper for CreateEndpointResponse.
 type CreatePlatformEndpointResult struct {
-	EndpointARN aws.StringValue `xml:"CreatePlatformEndpointResult>EndpointArn"`
+	EndpointARN aws.StringValue `query:"EndpointArn" xml:"CreatePlatformEndpointResult>EndpointArn"`
 }
 
 // CreateTopicResult is a wrapper for CreateTopicResponse.
 type CreateTopicResult struct {
-	TopicARN aws.StringValue `xml:"CreateTopicResult>TopicArn"`
+	TopicARN aws.StringValue `query:"TopicArn" xml:"CreateTopicResult>TopicArn"`
 }
 
 // GetEndpointAttributesResult is a wrapper for GetEndpointAttributesResponse.
 type GetEndpointAttributesResult struct {
-	Attributes map[string]string `xml:"GetEndpointAttributesResult>Attributes"`
+	Attributes map[string]string `query:"Attributes" xml:"GetEndpointAttributesResult>Attributes"`
 }
 
 // GetPlatformApplicationAttributesResult is a wrapper for GetPlatformApplicationAttributesResponse.
 type GetPlatformApplicationAttributesResult struct {
-	Attributes map[string]string `xml:"GetPlatformApplicationAttributesResult>Attributes"`
+	Attributes map[string]string `query:"Attributes" xml:"GetPlatformApplicationAttributesResult>Attributes"`
 }
 
 // GetSubscriptionAttributesResult is a wrapper for GetSubscriptionAttributesResponse.
 type GetSubscriptionAttributesResult struct {
-	Attributes map[string]string `xml:"GetSubscriptionAttributesResult>Attributes"`
+	Attributes map[string]string `query:"Attributes" xml:"GetSubscriptionAttributesResult>Attributes"`
 }
 
 // GetTopicAttributesResult is a wrapper for GetTopicAttributesResponse.
 type GetTopicAttributesResult struct {
-	Attributes map[string]string `xml:"GetTopicAttributesResult>Attributes"`
+	Attributes map[string]string `query:"Attributes" xml:"GetTopicAttributesResult>Attributes"`
 }
 
 // ListEndpointsByPlatformApplicationResult is a wrapper for ListEndpointsByPlatformApplicationResponse.
 type ListEndpointsByPlatformApplicationResult struct {
-	Endpoints []Endpoint      `xml:"ListEndpointsByPlatformApplicationResult>Endpoints>member"`
-	NextToken aws.StringValue `xml:"ListEndpointsByPlatformApplicationResult>NextToken"`
+	Endpoints []Endpoint      `query:"Endpoints.member" xml:"ListEndpointsByPlatformApplicationResult>Endpoints>member"`
+	NextToken aws.StringValue `query:"NextToken" xml:"ListEndpointsByPlatformApplicationResult>NextToken"`
 }
 
 // ListPlatformApplicationsResult is a wrapper for ListPlatformApplicationsResponse.
 type ListPlatformApplicationsResult struct {
-	NextToken            aws.StringValue       `xml:"ListPlatformApplicationsResult>NextToken"`
-	PlatformApplications []PlatformApplication `xml:"ListPlatformApplicationsResult>PlatformApplications>member"`
+	NextToken            aws.StringValue       `query:"NextToken" xml:"ListPlatformApplicationsResult>NextToken"`
+	PlatformApplications []PlatformApplication `query:"PlatformApplications.member" xml:"ListPlatformApplicationsResult>PlatformApplications>member"`
 }
 
 // ListSubscriptionsByTopicResult is a wrapper for ListSubscriptionsByTopicResponse.
 type ListSubscriptionsByTopicResult struct {
-	NextToken     aws.StringValue `xml:"ListSubscriptionsByTopicResult>NextToken"`
-	Subscriptions []Subscription  `xml:"ListSubscriptionsByTopicResult>Subscriptions>member"`
+	NextToken     aws.StringValue `query:"NextToken" xml:"ListSubscriptionsByTopicResult>NextToken"`
+	Subscriptions []Subscription  `query:"Subscriptions.member" xml:"ListSubscriptionsByTopicResult>Subscriptions>member"`
 }
 
 // ListSubscriptionsResult is a wrapper for ListSubscriptionsResponse.
 type ListSubscriptionsResult struct {
-	NextToken     aws.StringValue `xml:"ListSubscriptionsResult>NextToken"`
-	Subscriptions []Subscription  `xml:"ListSubscriptionsResult>Subscriptions>member"`
+	NextToken     aws.StringValue `query:"NextToken" xml:"ListSubscriptionsResult>NextToken"`
+	Subscriptions []Subscription  `query:"Subscriptions.member" xml:"ListSubscriptionsResult>Subscriptions>member"`
 }
 
 // ListTopicsResult is a wrapper for ListTopicsResponse.
 type ListTopicsResult struct {
-	NextToken aws.StringValue `xml:"ListTopicsResult>NextToken"`
-	Topics    []Topic         `xml:"ListTopicsResult>Topics>member"`
+	NextToken aws.StringValue `query:"NextToken" xml:"ListTopicsResult>NextToken"`
+	Topics    []Topic         `query:"Topics.member" xml:"ListTopicsResult>Topics>member"`
 }
 
 // PublishResult is a wrapper for PublishResponse.
 type PublishResult struct {
-	MessageID aws.StringValue `xml:"PublishResult>MessageId"`
+	MessageID aws.StringValue `query:"MessageId" xml:"PublishResult>MessageId"`
 }
 
 // SubscribeResult is a wrapper for SubscribeResponse.
 type SubscribeResult struct {
-	SubscriptionARN aws.StringValue `xml:"SubscribeResult>SubscriptionArn"`
+	SubscriptionARN aws.StringValue `query:"SubscriptionArn" xml:"SubscribeResult>SubscriptionArn"`
 }
 
 // avoid errors if the packages aren't referenced
