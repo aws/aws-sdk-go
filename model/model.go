@@ -148,9 +148,19 @@ func (m Member) XMLTag(wrapper string) string {
 
 // QueryTag returns the field tag for Query protocol members.
 func (m Member) QueryTag(wrapper string) string {
-	var path []string
+	var path, prefix []string
 	if wrapper != "" {
 		path = append(path, wrapper)
+	}
+
+	if m.LocationName != "" {
+		prefix = append(prefix, m.LocationName)
+	} else {
+		prefix = append(prefix, m.Name)
+	}
+
+	if m.Shape().ShapeType == "list" && !m.Shape().Flattened {
+		prefix = append(prefix, "member")
 	}
 
 	if !m.Shape().Flattened {
@@ -169,7 +179,11 @@ func (m Member) QueryTag(wrapper string) string {
 		path = append(path, loc)
 	}
 
-	return fmt.Sprintf("`xml:\"%s\"`", strings.Join(path, ">"))
+	return fmt.Sprintf(
+		"`query:%q xml:%q`",
+		strings.Join(prefix, "."),
+		strings.Join(path, ">"),
+	)
 }
 
 // EC2Tag returns the field tag for EC2 protocol members.
