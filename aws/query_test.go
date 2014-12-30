@@ -60,7 +60,10 @@ func TestQueryRequest(t *testing.T) {
 		PresentTime:        time.Date(2001, 1, 1, 2, 1, 1, 0, time.FixedZone("UTC+1", 3600)),
 		PresentSlice:       []string{"one", "two"},
 		PresentStruct:      &EmbeddedStruct{Value: aws.String("v")},
-		PresentStructSlice: []EmbeddedStruct{{Value: aws.String("p")}},
+		PresentStructSlice: []EmbeddedStruct{
+			{Value: aws.String("p")},
+			{Value: aws.String("q")},
+		},
 		PresentMap: map[string]EmbeddedStruct{
 			"aa": EmbeddedStruct{Value: aws.String("AA")},
 			"bb": EmbeddedStruct{Value: aws.String("BB")},
@@ -108,6 +111,7 @@ func TestQueryRequest(t *testing.T) {
 		"PresentSlice.member.2":             []string{"two"},
 		"PresentStruct.Value":               []string{"v"},
 		"PresentStructSlice.member.1.Value": []string{"p"},
+		"PresentStructSlice.member.2.Value": []string{"q"},
 		"PresentMap.1.Name":                 []string{"aa"},
 		"PresentMap.1.Value.Value":          []string{"AA"},
 		"PresentMap.2.Name":                 []string{"bb"},

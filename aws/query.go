@@ -95,12 +95,13 @@ func (c *QueryClient) loadValues(v url.Values, i interface{}, prefix string) err
 		return c.loadStruct(v, value, prefix)
 	case reflect.Slice:
 		for i := 0; i < value.Len(); i++ {
-			if prefix == "" {
-				prefix = strconv.Itoa(i + 1)
+			slicePrefix := prefix
+			if slicePrefix == "" {
+				slicePrefix = strconv.Itoa(i + 1)
 			} else {
-				prefix = prefix + ".member." + strconv.Itoa(i+1)
+				slicePrefix = prefix + ".member." + strconv.Itoa(i+1)
 			}
-			if err := c.loadValues(v, value.Index(i).Interface(), prefix); err != nil {
+			if err := c.loadValues(v, value.Index(i).Interface(), slicePrefix); err != nil {
 				return err
 			}
 		}
