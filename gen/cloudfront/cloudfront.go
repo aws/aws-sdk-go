@@ -58,6 +58,12 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(req *CreateCloudFrontO
 	var contentType string
 
 	contentType = "application/xml"
+
+	req.CloudFrontOriginAccessIdentityConfig.XMLName = xml.Name{
+		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+		Local: "CloudFrontOriginAccessIdentityConfig",
+	}
+
 	b, err := xml.Marshal(req.CloudFrontOriginAccessIdentityConfig)
 	if err != nil {
 		return
@@ -115,6 +121,12 @@ func (c *CloudFront) CreateDistribution(req *CreateDistributionRequest) (resp *C
 	var contentType string
 
 	contentType = "application/xml"
+
+	req.DistributionConfig.XMLName = xml.Name{
+		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+		Local: "DistributionConfig",
+	}
+
 	b, err := xml.Marshal(req.DistributionConfig)
 	if err != nil {
 		return
@@ -172,6 +184,12 @@ func (c *CloudFront) CreateInvalidation(req *CreateInvalidationRequest) (resp *C
 	var contentType string
 
 	contentType = "application/xml"
+
+	req.InvalidationBatch.XMLName = xml.Name{
+		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+		Local: "InvalidationBatch",
+	}
+
 	b, err := xml.Marshal(req.InvalidationBatch)
 	if err != nil {
 		return
@@ -228,6 +246,12 @@ func (c *CloudFront) CreateStreamingDistribution(req *CreateStreamingDistributio
 	var contentType string
 
 	contentType = "application/xml"
+
+	req.StreamingDistributionConfig.XMLName = xml.Name{
+		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+		Local: "StreamingDistributionConfig",
+	}
+
 	b, err := xml.Marshal(req.StreamingDistributionConfig)
 	if err != nil {
 		return
@@ -950,6 +974,12 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(req *UpdateCloudFrontO
 	var contentType string
 
 	contentType = "application/xml"
+
+	req.CloudFrontOriginAccessIdentityConfig.XMLName = xml.Name{
+		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+		Local: "CloudFrontOriginAccessIdentityConfig",
+	}
+
 	b, err := xml.Marshal(req.CloudFrontOriginAccessIdentityConfig)
 	if err != nil {
 		return
@@ -1010,6 +1040,12 @@ func (c *CloudFront) UpdateDistribution(req *UpdateDistributionRequest) (resp *U
 	var contentType string
 
 	contentType = "application/xml"
+
+	req.DistributionConfig.XMLName = xml.Name{
+		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+		Local: "DistributionConfig",
+	}
+
 	b, err := xml.Marshal(req.DistributionConfig)
 	if err != nil {
 		return
@@ -1070,6 +1106,12 @@ func (c *CloudFront) UpdateStreamingDistribution(req *UpdateStreamingDistributio
 	var contentType string
 
 	contentType = "application/xml"
+
+	req.StreamingDistributionConfig.XMLName = xml.Name{
+		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+		Local: "StreamingDistributionConfig",
+	}
+
 	b, err := xml.Marshal(req.StreamingDistributionConfig)
 	if err != nil {
 		return
@@ -1124,7 +1166,7 @@ func (c *CloudFront) UpdateStreamingDistribution(req *UpdateStreamingDistributio
 
 // ActiveTrustedSigners is undocumented.
 type ActiveTrustedSigners struct {
-	XMLName xml.Name `xml:"ActiveTrustedSigners"`
+	XMLName xml.Name
 
 	Enabled  aws.BooleanValue `xml:"Enabled"`
 	Items    []Signer         `xml:"Items>Signer,omitempty"`
@@ -1137,7 +1179,7 @@ func (v *ActiveTrustedSigners) MarshalXML(e *xml.Encoder, start xml.StartElement
 
 // Aliases is undocumented.
 type Aliases struct {
-	XMLName xml.Name `xml:"Aliases"`
+	XMLName xml.Name
 
 	Items    []string         `xml:"Items>CNAME,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
@@ -1149,7 +1191,7 @@ func (v *Aliases) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // AllowedMethods is undocumented.
 type AllowedMethods struct {
-	XMLName xml.Name `xml:"AllowedMethods"`
+	XMLName xml.Name
 
 	CachedMethods *CachedMethods   `xml:"CachedMethods,omitempty"`
 	Items         []string         `xml:"Items>Method,omitempty"`
@@ -1162,7 +1204,7 @@ func (v *AllowedMethods) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 
 // CacheBehavior is undocumented.
 type CacheBehavior struct {
-	XMLName xml.Name `xml:"CacheBehavior"`
+	XMLName xml.Name
 
 	AllowedMethods       *AllowedMethods  `xml:"AllowedMethods,omitempty"`
 	ForwardedValues      *ForwardedValues `xml:"ForwardedValues,omitempty"`
@@ -1180,7 +1222,7 @@ func (v *CacheBehavior) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 
 // CacheBehaviors is undocumented.
 type CacheBehaviors struct {
-	XMLName xml.Name `xml:"CacheBehaviors"`
+	XMLName xml.Name
 
 	Items    []CacheBehavior  `xml:"Items>CacheBehavior,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
@@ -1192,7 +1234,7 @@ func (v *CacheBehaviors) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 
 // CachedMethods is undocumented.
 type CachedMethods struct {
-	XMLName xml.Name `xml:"CachedMethods"`
+	XMLName xml.Name
 
 	Items    []string         `xml:"Items>Method,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
@@ -1204,7 +1246,7 @@ func (v *CachedMethods) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 
 // CloudFrontOriginAccessIdentity is undocumented.
 type CloudFrontOriginAccessIdentity struct {
-	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentity"`
+	XMLName xml.Name
 
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `xml:"CloudFrontOriginAccessIdentityConfig,omitempty"`
 	ID                                   aws.StringValue                       `xml:"Id"`
@@ -1217,7 +1259,7 @@ func (v *CloudFrontOriginAccessIdentity) MarshalXML(e *xml.Encoder, start xml.St
 
 // CloudFrontOriginAccessIdentityConfig is undocumented.
 type CloudFrontOriginAccessIdentityConfig struct {
-	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentityConfig"`
+	XMLName xml.Name
 
 	CallerReference aws.StringValue `xml:"CallerReference"`
 	Comment         aws.StringValue `xml:"Comment"`
@@ -1229,7 +1271,7 @@ func (v *CloudFrontOriginAccessIdentityConfig) MarshalXML(e *xml.Encoder, start 
 
 // CloudFrontOriginAccessIdentityList is undocumented.
 type CloudFrontOriginAccessIdentityList struct {
-	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentityList"`
+	XMLName xml.Name
 
 	IsTruncated aws.BooleanValue                        `xml:"IsTruncated"`
 	Items       []CloudFrontOriginAccessIdentitySummary `xml:"Items>CloudFrontOriginAccessIdentitySummary,omitempty"`
@@ -1245,7 +1287,7 @@ func (v *CloudFrontOriginAccessIdentityList) MarshalXML(e *xml.Encoder, start xm
 
 // CloudFrontOriginAccessIdentitySummary is undocumented.
 type CloudFrontOriginAccessIdentitySummary struct {
-	XMLName xml.Name `xml:"CloudFrontOriginAccessIdentitySummary"`
+	XMLName xml.Name
 
 	Comment           aws.StringValue `xml:"Comment"`
 	ID                aws.StringValue `xml:"Id"`
@@ -1258,7 +1300,7 @@ func (v *CloudFrontOriginAccessIdentitySummary) MarshalXML(e *xml.Encoder, start
 
 // CookieNames is undocumented.
 type CookieNames struct {
-	XMLName xml.Name `xml:"CookieNames"`
+	XMLName xml.Name
 
 	Items    []string         `xml:"Items>Name,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
@@ -1270,7 +1312,7 @@ func (v *CookieNames) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // CookiePreference is undocumented.
 type CookiePreference struct {
-	XMLName xml.Name `xml:"CookiePreference"`
+	XMLName xml.Name
 
 	Forward          aws.StringValue `xml:"Forward"`
 	WhitelistedNames *CookieNames    `xml:"WhitelistedNames,omitempty"`
@@ -1282,7 +1324,7 @@ func (v *CookiePreference) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 
 // CreateCloudFrontOriginAccessIdentityRequest is undocumented.
 type CreateCloudFrontOriginAccessIdentityRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `xml:"CloudFrontOriginAccessIdentityConfig,omitempty"`
 }
@@ -1293,7 +1335,7 @@ func (v *CreateCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder,
 
 // CreateCloudFrontOriginAccessIdentityResult is undocumented.
 type CreateCloudFrontOriginAccessIdentityResult struct {
-	XMLName xml.Name `xml:"CreateCloudFrontOriginAccessIdentityResult"`
+	XMLName xml.Name
 
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `xml:"CloudFrontOriginAccessIdentity,omitempty"`
 	ETag                           aws.StringValue                 `xml:"-"`
@@ -1306,7 +1348,7 @@ func (v *CreateCloudFrontOriginAccessIdentityResult) MarshalXML(e *xml.Encoder, 
 
 // CreateDistributionRequest is undocumented.
 type CreateDistributionRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	DistributionConfig *DistributionConfig `xml:"DistributionConfig,omitempty"`
 }
@@ -1317,7 +1359,7 @@ func (v *CreateDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartEl
 
 // CreateDistributionResult is undocumented.
 type CreateDistributionResult struct {
-	XMLName xml.Name `xml:"CreateDistributionResult"`
+	XMLName xml.Name
 
 	Distribution *Distribution   `xml:"Distribution,omitempty"`
 	ETag         aws.StringValue `xml:"-"`
@@ -1330,7 +1372,7 @@ func (v *CreateDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // CreateInvalidationRequest is undocumented.
 type CreateInvalidationRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	DistributionID    aws.StringValue    `xml:"-"`
 	InvalidationBatch *InvalidationBatch `xml:"InvalidationBatch,omitempty"`
@@ -1342,7 +1384,7 @@ func (v *CreateInvalidationRequest) MarshalXML(e *xml.Encoder, start xml.StartEl
 
 // CreateInvalidationResult is undocumented.
 type CreateInvalidationResult struct {
-	XMLName xml.Name `xml:"CreateInvalidationResult"`
+	XMLName xml.Name
 
 	Invalidation *Invalidation   `xml:"Invalidation,omitempty"`
 	Location     aws.StringValue `xml:"-"`
@@ -1354,7 +1396,7 @@ func (v *CreateInvalidationResult) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // CreateStreamingDistributionRequest is undocumented.
 type CreateStreamingDistributionRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	StreamingDistributionConfig *StreamingDistributionConfig `xml:"StreamingDistributionConfig,omitempty"`
 }
@@ -1365,7 +1407,7 @@ func (v *CreateStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xm
 
 // CreateStreamingDistributionResult is undocumented.
 type CreateStreamingDistributionResult struct {
-	XMLName xml.Name `xml:"CreateStreamingDistributionResult"`
+	XMLName xml.Name
 
 	ETag                  aws.StringValue        `xml:"-"`
 	Location              aws.StringValue        `xml:"-"`
@@ -1378,7 +1420,7 @@ func (v *CreateStreamingDistributionResult) MarshalXML(e *xml.Encoder, start xml
 
 // CustomErrorResponse is undocumented.
 type CustomErrorResponse struct {
-	XMLName xml.Name `xml:"CustomErrorResponse"`
+	XMLName xml.Name
 
 	ErrorCachingMinTTL aws.LongValue    `xml:"ErrorCachingMinTTL"`
 	ErrorCode          aws.IntegerValue `xml:"ErrorCode"`
@@ -1392,7 +1434,7 @@ func (v *CustomErrorResponse) MarshalXML(e *xml.Encoder, start xml.StartElement)
 
 // CustomErrorResponses is undocumented.
 type CustomErrorResponses struct {
-	XMLName xml.Name `xml:"CustomErrorResponses"`
+	XMLName xml.Name
 
 	Items    []CustomErrorResponse `xml:"Items>CustomErrorResponse,omitempty"`
 	Quantity aws.IntegerValue      `xml:"Quantity"`
@@ -1404,7 +1446,7 @@ func (v *CustomErrorResponses) MarshalXML(e *xml.Encoder, start xml.StartElement
 
 // CustomOriginConfig is undocumented.
 type CustomOriginConfig struct {
-	XMLName xml.Name `xml:"CustomOriginConfig"`
+	XMLName xml.Name
 
 	HTTPPort             aws.IntegerValue `xml:"HTTPPort"`
 	HTTPSPort            aws.IntegerValue `xml:"HTTPSPort"`
@@ -1417,7 +1459,7 @@ func (v *CustomOriginConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 
 // DefaultCacheBehavior is undocumented.
 type DefaultCacheBehavior struct {
-	XMLName xml.Name `xml:"DefaultCacheBehavior"`
+	XMLName xml.Name
 
 	AllowedMethods       *AllowedMethods  `xml:"AllowedMethods,omitempty"`
 	ForwardedValues      *ForwardedValues `xml:"ForwardedValues,omitempty"`
@@ -1434,7 +1476,7 @@ func (v *DefaultCacheBehavior) MarshalXML(e *xml.Encoder, start xml.StartElement
 
 // DeleteCloudFrontOriginAccessIdentityRequest is undocumented.
 type DeleteCloudFrontOriginAccessIdentityRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID      aws.StringValue `xml:"-"`
 	IfMatch aws.StringValue `xml:"-"`
@@ -1446,7 +1488,7 @@ func (v *DeleteCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder,
 
 // DeleteDistributionRequest is undocumented.
 type DeleteDistributionRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID      aws.StringValue `xml:"-"`
 	IfMatch aws.StringValue `xml:"-"`
@@ -1458,7 +1500,7 @@ func (v *DeleteDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartEl
 
 // DeleteStreamingDistributionRequest is undocumented.
 type DeleteStreamingDistributionRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID      aws.StringValue `xml:"-"`
 	IfMatch aws.StringValue `xml:"-"`
@@ -1470,7 +1512,7 @@ func (v *DeleteStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xm
 
 // Distribution is undocumented.
 type Distribution struct {
-	XMLName xml.Name `xml:"Distribution"`
+	XMLName xml.Name
 
 	ActiveTrustedSigners          *ActiveTrustedSigners `xml:"ActiveTrustedSigners,omitempty"`
 	DistributionConfig            *DistributionConfig   `xml:"DistributionConfig,omitempty"`
@@ -1487,7 +1529,7 @@ func (v *Distribution) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 
 // DistributionConfig is undocumented.
 type DistributionConfig struct {
-	XMLName xml.Name `xml:"DistributionConfig"`
+	XMLName xml.Name
 
 	Aliases              *Aliases              `xml:"Aliases,omitempty"`
 	CacheBehaviors       *CacheBehaviors       `xml:"CacheBehaviors,omitempty"`
@@ -1510,7 +1552,7 @@ func (v *DistributionConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 
 // DistributionList is undocumented.
 type DistributionList struct {
-	XMLName xml.Name `xml:"DistributionList"`
+	XMLName xml.Name
 
 	IsTruncated aws.BooleanValue      `xml:"IsTruncated"`
 	Items       []DistributionSummary `xml:"Items>DistributionSummary,omitempty"`
@@ -1526,7 +1568,7 @@ func (v *DistributionList) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 
 // DistributionSummary is undocumented.
 type DistributionSummary struct {
-	XMLName xml.Name `xml:"DistributionSummary"`
+	XMLName xml.Name
 
 	Aliases              *Aliases              `xml:"Aliases,omitempty"`
 	CacheBehaviors       *CacheBehaviors       `xml:"CacheBehaviors,omitempty"`
@@ -1550,7 +1592,7 @@ func (v *DistributionSummary) MarshalXML(e *xml.Encoder, start xml.StartElement)
 
 // ForwardedValues is undocumented.
 type ForwardedValues struct {
-	XMLName xml.Name `xml:"ForwardedValues"`
+	XMLName xml.Name
 
 	Cookies     *CookiePreference `xml:"Cookies,omitempty"`
 	Headers     *Headers          `xml:"Headers,omitempty"`
@@ -1563,7 +1605,7 @@ func (v *ForwardedValues) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 
 // GeoRestriction is undocumented.
 type GeoRestriction struct {
-	XMLName xml.Name `xml:"GeoRestriction"`
+	XMLName xml.Name
 
 	Items           []string         `xml:"Items>Location,omitempty"`
 	Quantity        aws.IntegerValue `xml:"Quantity"`
@@ -1583,7 +1625,7 @@ const (
 
 // GetCloudFrontOriginAccessIdentityConfigRequest is undocumented.
 type GetCloudFrontOriginAccessIdentityConfigRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID aws.StringValue `xml:"-"`
 }
@@ -1594,7 +1636,7 @@ func (v *GetCloudFrontOriginAccessIdentityConfigRequest) MarshalXML(e *xml.Encod
 
 // GetCloudFrontOriginAccessIdentityConfigResult is undocumented.
 type GetCloudFrontOriginAccessIdentityConfigResult struct {
-	XMLName xml.Name `xml:"GetCloudFrontOriginAccessIdentityConfigResult"`
+	XMLName xml.Name
 
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `xml:"CloudFrontOriginAccessIdentityConfig,omitempty"`
 	ETag                                 aws.StringValue                       `xml:"-"`
@@ -1606,7 +1648,7 @@ func (v *GetCloudFrontOriginAccessIdentityConfigResult) MarshalXML(e *xml.Encode
 
 // GetCloudFrontOriginAccessIdentityRequest is undocumented.
 type GetCloudFrontOriginAccessIdentityRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID aws.StringValue `xml:"-"`
 }
@@ -1617,7 +1659,7 @@ func (v *GetCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder, st
 
 // GetCloudFrontOriginAccessIdentityResult is undocumented.
 type GetCloudFrontOriginAccessIdentityResult struct {
-	XMLName xml.Name `xml:"GetCloudFrontOriginAccessIdentityResult"`
+	XMLName xml.Name
 
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `xml:"CloudFrontOriginAccessIdentity,omitempty"`
 	ETag                           aws.StringValue                 `xml:"-"`
@@ -1629,7 +1671,7 @@ func (v *GetCloudFrontOriginAccessIdentityResult) MarshalXML(e *xml.Encoder, sta
 
 // GetDistributionConfigRequest is undocumented.
 type GetDistributionConfigRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID aws.StringValue `xml:"-"`
 }
@@ -1640,7 +1682,7 @@ func (v *GetDistributionConfigRequest) MarshalXML(e *xml.Encoder, start xml.Star
 
 // GetDistributionConfigResult is undocumented.
 type GetDistributionConfigResult struct {
-	XMLName xml.Name `xml:"GetDistributionConfigResult"`
+	XMLName xml.Name
 
 	DistributionConfig *DistributionConfig `xml:"DistributionConfig,omitempty"`
 	ETag               aws.StringValue     `xml:"-"`
@@ -1652,7 +1694,7 @@ func (v *GetDistributionConfigResult) MarshalXML(e *xml.Encoder, start xml.Start
 
 // GetDistributionRequest is undocumented.
 type GetDistributionRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID aws.StringValue `xml:"-"`
 }
@@ -1663,7 +1705,7 @@ func (v *GetDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartEleme
 
 // GetDistributionResult is undocumented.
 type GetDistributionResult struct {
-	XMLName xml.Name `xml:"GetDistributionResult"`
+	XMLName xml.Name
 
 	Distribution *Distribution   `xml:"Distribution,omitempty"`
 	ETag         aws.StringValue `xml:"-"`
@@ -1675,7 +1717,7 @@ func (v *GetDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartElemen
 
 // GetInvalidationRequest is undocumented.
 type GetInvalidationRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	DistributionID aws.StringValue `xml:"-"`
 	ID             aws.StringValue `xml:"-"`
@@ -1687,7 +1729,7 @@ func (v *GetInvalidationRequest) MarshalXML(e *xml.Encoder, start xml.StartEleme
 
 // GetInvalidationResult is undocumented.
 type GetInvalidationResult struct {
-	XMLName xml.Name `xml:"GetInvalidationResult"`
+	XMLName xml.Name
 
 	Invalidation *Invalidation `xml:"Invalidation,omitempty"`
 }
@@ -1698,7 +1740,7 @@ func (v *GetInvalidationResult) MarshalXML(e *xml.Encoder, start xml.StartElemen
 
 // GetStreamingDistributionConfigRequest is undocumented.
 type GetStreamingDistributionConfigRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID aws.StringValue `xml:"-"`
 }
@@ -1709,7 +1751,7 @@ func (v *GetStreamingDistributionConfigRequest) MarshalXML(e *xml.Encoder, start
 
 // GetStreamingDistributionConfigResult is undocumented.
 type GetStreamingDistributionConfigResult struct {
-	XMLName xml.Name `xml:"GetStreamingDistributionConfigResult"`
+	XMLName xml.Name
 
 	ETag                        aws.StringValue              `xml:"-"`
 	StreamingDistributionConfig *StreamingDistributionConfig `xml:"StreamingDistributionConfig,omitempty"`
@@ -1721,7 +1763,7 @@ func (v *GetStreamingDistributionConfigResult) MarshalXML(e *xml.Encoder, start 
 
 // GetStreamingDistributionRequest is undocumented.
 type GetStreamingDistributionRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID aws.StringValue `xml:"-"`
 }
@@ -1732,7 +1774,7 @@ func (v *GetStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xml.S
 
 // GetStreamingDistributionResult is undocumented.
 type GetStreamingDistributionResult struct {
-	XMLName xml.Name `xml:"GetStreamingDistributionResult"`
+	XMLName xml.Name
 
 	ETag                  aws.StringValue        `xml:"-"`
 	StreamingDistribution *StreamingDistribution `xml:"StreamingDistribution,omitempty"`
@@ -1744,7 +1786,7 @@ func (v *GetStreamingDistributionResult) MarshalXML(e *xml.Encoder, start xml.St
 
 // Headers is undocumented.
 type Headers struct {
-	XMLName xml.Name `xml:"Headers"`
+	XMLName xml.Name
 
 	Items    []string         `xml:"Items>Name,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
@@ -1756,7 +1798,7 @@ func (v *Headers) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // Invalidation is undocumented.
 type Invalidation struct {
-	XMLName xml.Name `xml:"Invalidation"`
+	XMLName xml.Name
 
 	CreateTime        time.Time          `xml:"CreateTime"`
 	ID                aws.StringValue    `xml:"Id"`
@@ -1770,7 +1812,7 @@ func (v *Invalidation) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 
 // InvalidationBatch is undocumented.
 type InvalidationBatch struct {
-	XMLName xml.Name `xml:"InvalidationBatch"`
+	XMLName xml.Name
 
 	CallerReference aws.StringValue `xml:"CallerReference"`
 	Paths           *Paths          `xml:"Paths,omitempty"`
@@ -1782,7 +1824,7 @@ func (v *InvalidationBatch) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 
 // InvalidationList is undocumented.
 type InvalidationList struct {
-	XMLName xml.Name `xml:"InvalidationList"`
+	XMLName xml.Name
 
 	IsTruncated aws.BooleanValue      `xml:"IsTruncated"`
 	Items       []InvalidationSummary `xml:"Items>InvalidationSummary,omitempty"`
@@ -1798,7 +1840,7 @@ func (v *InvalidationList) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 
 // InvalidationSummary is undocumented.
 type InvalidationSummary struct {
-	XMLName xml.Name `xml:"InvalidationSummary"`
+	XMLName xml.Name
 
 	CreateTime time.Time       `xml:"CreateTime"`
 	ID         aws.StringValue `xml:"Id"`
@@ -1818,7 +1860,7 @@ const (
 
 // KeyPairIDs is undocumented.
 type KeyPairIDs struct {
-	XMLName xml.Name `xml:"KeyPairIds"`
+	XMLName xml.Name
 
 	Items    []string         `xml:"Items>KeyPairId,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
@@ -1830,7 +1872,7 @@ func (v *KeyPairIDs) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // ListCloudFrontOriginAccessIdentitiesRequest is undocumented.
 type ListCloudFrontOriginAccessIdentitiesRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	Marker   aws.StringValue `xml:"-"`
 	MaxItems aws.StringValue `xml:"-"`
@@ -1842,7 +1884,7 @@ func (v *ListCloudFrontOriginAccessIdentitiesRequest) MarshalXML(e *xml.Encoder,
 
 // ListCloudFrontOriginAccessIdentitiesResult is undocumented.
 type ListCloudFrontOriginAccessIdentitiesResult struct {
-	XMLName xml.Name `xml:"ListCloudFrontOriginAccessIdentitiesResult"`
+	XMLName xml.Name
 
 	CloudFrontOriginAccessIdentityList *CloudFrontOriginAccessIdentityList `xml:"CloudFrontOriginAccessIdentityList,omitempty"`
 }
@@ -1853,7 +1895,7 @@ func (v *ListCloudFrontOriginAccessIdentitiesResult) MarshalXML(e *xml.Encoder, 
 
 // ListDistributionsRequest is undocumented.
 type ListDistributionsRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	Marker   aws.StringValue `xml:"-"`
 	MaxItems aws.StringValue `xml:"-"`
@@ -1865,7 +1907,7 @@ func (v *ListDistributionsRequest) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // ListDistributionsResult is undocumented.
 type ListDistributionsResult struct {
-	XMLName xml.Name `xml:"ListDistributionsResult"`
+	XMLName xml.Name
 
 	DistributionList *DistributionList `xml:"DistributionList,omitempty"`
 }
@@ -1876,7 +1918,7 @@ func (v *ListDistributionsResult) MarshalXML(e *xml.Encoder, start xml.StartElem
 
 // ListInvalidationsRequest is undocumented.
 type ListInvalidationsRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	DistributionID aws.StringValue `xml:"-"`
 	Marker         aws.StringValue `xml:"-"`
@@ -1889,7 +1931,7 @@ func (v *ListInvalidationsRequest) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // ListInvalidationsResult is undocumented.
 type ListInvalidationsResult struct {
-	XMLName xml.Name `xml:"ListInvalidationsResult"`
+	XMLName xml.Name
 
 	InvalidationList *InvalidationList `xml:"InvalidationList,omitempty"`
 }
@@ -1900,7 +1942,7 @@ func (v *ListInvalidationsResult) MarshalXML(e *xml.Encoder, start xml.StartElem
 
 // ListStreamingDistributionsRequest is undocumented.
 type ListStreamingDistributionsRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	Marker   aws.StringValue `xml:"-"`
 	MaxItems aws.StringValue `xml:"-"`
@@ -1912,7 +1954,7 @@ func (v *ListStreamingDistributionsRequest) MarshalXML(e *xml.Encoder, start xml
 
 // ListStreamingDistributionsResult is undocumented.
 type ListStreamingDistributionsResult struct {
-	XMLName xml.Name `xml:"ListStreamingDistributionsResult"`
+	XMLName xml.Name
 
 	StreamingDistributionList *StreamingDistributionList `xml:"StreamingDistributionList,omitempty"`
 }
@@ -1923,7 +1965,7 @@ func (v *ListStreamingDistributionsResult) MarshalXML(e *xml.Encoder, start xml.
 
 // LoggingConfig is undocumented.
 type LoggingConfig struct {
-	XMLName xml.Name `xml:"LoggingConfig"`
+	XMLName xml.Name
 
 	Bucket         aws.StringValue  `xml:"Bucket"`
 	Enabled        aws.BooleanValue `xml:"Enabled"`
@@ -1954,7 +1996,7 @@ const (
 
 // Origin is undocumented.
 type Origin struct {
-	XMLName xml.Name `xml:"Origin"`
+	XMLName xml.Name
 
 	CustomOriginConfig *CustomOriginConfig `xml:"CustomOriginConfig,omitempty"`
 	DomainName         aws.StringValue     `xml:"DomainName"`
@@ -1974,7 +2016,7 @@ const (
 
 // Origins is undocumented.
 type Origins struct {
-	XMLName xml.Name `xml:"Origins"`
+	XMLName xml.Name
 
 	Items    []Origin         `xml:"Items>Origin,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
@@ -1986,7 +2028,7 @@ func (v *Origins) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // Paths is undocumented.
 type Paths struct {
-	XMLName xml.Name `xml:"Paths"`
+	XMLName xml.Name
 
 	Items    []string         `xml:"Items>Path,omitempty"`
 	Quantity aws.IntegerValue `xml:"Quantity"`
@@ -2005,7 +2047,7 @@ const (
 
 // Restrictions is undocumented.
 type Restrictions struct {
-	XMLName xml.Name `xml:"Restrictions"`
+	XMLName xml.Name
 
 	GeoRestriction *GeoRestriction `xml:"GeoRestriction,omitempty"`
 }
@@ -2016,7 +2058,7 @@ func (v *Restrictions) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 
 // S3Origin is undocumented.
 type S3Origin struct {
-	XMLName xml.Name `xml:"S3Origin"`
+	XMLName xml.Name
 
 	DomainName           aws.StringValue `xml:"DomainName"`
 	OriginAccessIdentity aws.StringValue `xml:"OriginAccessIdentity"`
@@ -2028,7 +2070,7 @@ func (v *S3Origin) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // S3OriginConfig is undocumented.
 type S3OriginConfig struct {
-	XMLName xml.Name `xml:"S3OriginConfig"`
+	XMLName xml.Name
 
 	OriginAccessIdentity aws.StringValue `xml:"OriginAccessIdentity"`
 }
@@ -2045,7 +2087,7 @@ const (
 
 // Signer is undocumented.
 type Signer struct {
-	XMLName xml.Name `xml:"Signer"`
+	XMLName xml.Name
 
 	AWSAccountNumber aws.StringValue `xml:"AwsAccountNumber"`
 	KeyPairIDs       *KeyPairIDs     `xml:"KeyPairIds,omitempty"`
@@ -2057,7 +2099,7 @@ func (v *Signer) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 
 // StreamingDistribution is undocumented.
 type StreamingDistribution struct {
-	XMLName xml.Name `xml:"StreamingDistribution"`
+	XMLName xml.Name
 
 	ActiveTrustedSigners        *ActiveTrustedSigners        `xml:"ActiveTrustedSigners,omitempty"`
 	DomainName                  aws.StringValue              `xml:"DomainName"`
@@ -2073,7 +2115,7 @@ func (v *StreamingDistribution) MarshalXML(e *xml.Encoder, start xml.StartElemen
 
 // StreamingDistributionConfig is undocumented.
 type StreamingDistributionConfig struct {
-	XMLName xml.Name `xml:"StreamingDistributionConfig"`
+	XMLName xml.Name
 
 	Aliases         *Aliases                `xml:"Aliases,omitempty"`
 	CallerReference aws.StringValue         `xml:"CallerReference"`
@@ -2091,7 +2133,7 @@ func (v *StreamingDistributionConfig) MarshalXML(e *xml.Encoder, start xml.Start
 
 // StreamingDistributionList is undocumented.
 type StreamingDistributionList struct {
-	XMLName xml.Name `xml:"StreamingDistributionList"`
+	XMLName xml.Name
 
 	IsTruncated aws.BooleanValue               `xml:"IsTruncated"`
 	Items       []StreamingDistributionSummary `xml:"Items>StreamingDistributionSummary,omitempty"`
@@ -2107,7 +2149,7 @@ func (v *StreamingDistributionList) MarshalXML(e *xml.Encoder, start xml.StartEl
 
 // StreamingDistributionSummary is undocumented.
 type StreamingDistributionSummary struct {
-	XMLName xml.Name `xml:"StreamingDistributionSummary"`
+	XMLName xml.Name
 
 	Aliases          *Aliases         `xml:"Aliases,omitempty"`
 	Comment          aws.StringValue  `xml:"Comment"`
@@ -2127,7 +2169,7 @@ func (v *StreamingDistributionSummary) MarshalXML(e *xml.Encoder, start xml.Star
 
 // StreamingLoggingConfig is undocumented.
 type StreamingLoggingConfig struct {
-	XMLName xml.Name `xml:"StreamingLoggingConfig"`
+	XMLName xml.Name
 
 	Bucket  aws.StringValue  `xml:"Bucket"`
 	Enabled aws.BooleanValue `xml:"Enabled"`
@@ -2140,7 +2182,7 @@ func (v *StreamingLoggingConfig) MarshalXML(e *xml.Encoder, start xml.StartEleme
 
 // TrustedSigners is undocumented.
 type TrustedSigners struct {
-	XMLName xml.Name `xml:"TrustedSigners"`
+	XMLName xml.Name
 
 	Enabled  aws.BooleanValue `xml:"Enabled"`
 	Items    []string         `xml:"Items>AwsAccountNumber,omitempty"`
@@ -2153,7 +2195,7 @@ func (v *TrustedSigners) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 
 // UpdateCloudFrontOriginAccessIdentityRequest is undocumented.
 type UpdateCloudFrontOriginAccessIdentityRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `xml:"CloudFrontOriginAccessIdentityConfig,omitempty"`
 	ID                                   aws.StringValue                       `xml:"-"`
@@ -2166,7 +2208,7 @@ func (v *UpdateCloudFrontOriginAccessIdentityRequest) MarshalXML(e *xml.Encoder,
 
 // UpdateCloudFrontOriginAccessIdentityResult is undocumented.
 type UpdateCloudFrontOriginAccessIdentityResult struct {
-	XMLName xml.Name `xml:"UpdateCloudFrontOriginAccessIdentityResult"`
+	XMLName xml.Name
 
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `xml:"CloudFrontOriginAccessIdentity,omitempty"`
 	ETag                           aws.StringValue                 `xml:"-"`
@@ -2178,7 +2220,7 @@ func (v *UpdateCloudFrontOriginAccessIdentityResult) MarshalXML(e *xml.Encoder, 
 
 // UpdateDistributionRequest is undocumented.
 type UpdateDistributionRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	DistributionConfig *DistributionConfig `xml:"DistributionConfig,omitempty"`
 	ID                 aws.StringValue     `xml:"-"`
@@ -2191,7 +2233,7 @@ func (v *UpdateDistributionRequest) MarshalXML(e *xml.Encoder, start xml.StartEl
 
 // UpdateDistributionResult is undocumented.
 type UpdateDistributionResult struct {
-	XMLName xml.Name `xml:"UpdateDistributionResult"`
+	XMLName xml.Name
 
 	Distribution *Distribution   `xml:"Distribution,omitempty"`
 	ETag         aws.StringValue `xml:"-"`
@@ -2203,7 +2245,7 @@ func (v *UpdateDistributionResult) MarshalXML(e *xml.Encoder, start xml.StartEle
 
 // UpdateStreamingDistributionRequest is undocumented.
 type UpdateStreamingDistributionRequest struct {
-	XMLName xml.Name `xml:""`
+	XMLName xml.Name
 
 	ID                          aws.StringValue              `xml:"-"`
 	IfMatch                     aws.StringValue              `xml:"-"`
@@ -2216,7 +2258,7 @@ func (v *UpdateStreamingDistributionRequest) MarshalXML(e *xml.Encoder, start xm
 
 // UpdateStreamingDistributionResult is undocumented.
 type UpdateStreamingDistributionResult struct {
-	XMLName xml.Name `xml:"UpdateStreamingDistributionResult"`
+	XMLName xml.Name
 
 	ETag                  aws.StringValue        `xml:"-"`
 	StreamingDistribution *StreamingDistribution `xml:"StreamingDistribution,omitempty"`
@@ -2228,7 +2270,7 @@ func (v *UpdateStreamingDistributionResult) MarshalXML(e *xml.Encoder, start xml
 
 // ViewerCertificate is undocumented.
 type ViewerCertificate struct {
-	XMLName xml.Name `xml:"ViewerCertificate"`
+	XMLName xml.Name
 
 	CloudFrontDefaultCertificate aws.BooleanValue `xml:"CloudFrontDefaultCertificate"`
 	IAMCertificateID             aws.StringValue  `xml:"IAMCertificateId"`

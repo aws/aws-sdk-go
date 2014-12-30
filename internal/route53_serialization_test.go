@@ -31,7 +31,36 @@ func TestRoute53RequestSerialization(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	expected := `<ChangeResourceRecordSetsRequest xmlns="https://route53.amazonaws.com/doc/2013-04-01/">
+	expected := `<ChangeResourceRecordSetsRequest>
+  <ChangeBatch>
+    <Changes>
+      <Change>
+        <Action>dance</Action>
+        <ResourceRecordSet>
+          <AliasTarget>
+            <EvaluateTargetHealth>false</EvaluateTargetHealth>
+          </AliasTarget>
+        </ResourceRecordSet>
+      </Change>
+    </Changes>
+    <Comment>hello</Comment>
+  </ChangeBatch>
+</ChangeResourceRecordSetsRequest>`
+
+	if v, want := string(out), expected; v != want {
+		t.Errorf("Was \n%s\n but expected \n%s", v, want)
+	}
+
+	// Supply a value to XMLName to override the default marshaler tag behavior
+	r.XMLName = xml.Name{
+		Local: "ChangeResourceRecordSetsRequest",
+		Space: "https://route53.amazonaws.com/doc/2013-04-01/",
+	}
+	out, err = xml.MarshalIndent(r, "", "  ")
+	if err != nil {
+		t.Fatal(err)
+	}
+	expected = `<ChangeResourceRecordSetsRequest xmlns="https://route53.amazonaws.com/doc/2013-04-01/">
   <ChangeBatch>
     <Changes>
       <Change>
