@@ -1,10 +1,8 @@
 package aws
 
 import (
-	"bytes"
 	"encoding/json"
 	"encoding/xml"
-	"errors"
 	"io/ioutil"
 	"net/http"
 )
@@ -31,35 +29,40 @@ func (c *RestClient) Do(req *http.Request) (*http.Response, error) {
 	}
 
 	if resp.StatusCode >= 400 {
-		var err restError
+		bodyBytes, err := ioutil.ReadAll(resp.Body)
+		defer resp.Body.Close()
+		if err != nil {
+			return nil, err
+		}
+		if len(bodyBytes) == 0 {
+			return nil, APIError{
+				StatusCode: resp.StatusCode,
+				Message:    resp.Status,
+			}
+		}
+		var restErr restError
 		switch resp.Header.Get("Content-Type") {
 		case "application/json":
-			if err := json.NewDecoder(resp.Body).Decode(&err); err != nil {
+			if err := json.Unmarshal(bodyBytes, &restErr); err != nil {
 				return nil, err
 			}
-			return nil, err.Err()
+			return nil, restErr.Err(resp.StatusCode)
 		case "application/xml", "text/xml":
-			bodyBytes, _ := ioutil.ReadAll(resp.Body)
-			resp.Body.Close()
-			body := bytes.NewReader(bodyBytes)
-
 			// AWS XML error documents can have a couple of different formats.
 			// Try each before returning a decode error.
 			var wrappedErr restErrorResponse
-			if err := xml.NewDecoder(body).Decode(&wrappedErr); err == nil {
-				return nil, wrappedErr.Error.Err()
+			if err := xml.Unmarshal(bodyBytes, &wrappedErr); err == nil {
+				return nil, wrappedErr.Error.Err(resp.StatusCode)
 			}
-			body.Seek(0, 0)
-			if err := xml.NewDecoder(body).Decode(&err); err != nil {
+			if err := xml.Unmarshal(bodyBytes, &restErr); err != nil {
 				return nil, err
 			}
-			return nil, err.Err()
+			return nil, restErr.Err(resp.StatusCode)
 		default:
-			b, err := ioutil.ReadAll(resp.Body)
-			if err != nil {
-				return nil, err
+			return nil, APIError{
+				StatusCode: resp.StatusCode,
+				Message:    string(bodyBytes),
 			}
-			return nil, errors.New(string(b))
 		}
 	}
 
@@ -80,12 +83,13 @@ type restError struct {
 	HostID     string
 }
 
-func (e restError) Err() error {
+func (e restError) Err(StatusCode int) error {
 	return APIError{
-		Code:      e.Code,
-		Message:   e.Message,
-		RequestID: e.RequestID,
-		HostID:    e.HostID,
+		StatusCode: StatusCode,
+		Code:       e.Code,
+		Message:    e.Message,
+		RequestID:  e.RequestID,
+		HostID:     e.HostID,
 		Specifics: map[string]string{
 			"BucketName": e.BucketName,
 		},
