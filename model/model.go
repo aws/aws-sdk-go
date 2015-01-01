@@ -153,14 +153,21 @@ func (m Member) QueryTag(wrapper string) string {
 		path = append(path, wrapper)
 	}
 
-	if m.LocationName != "" {
-		prefix = append(prefix, m.LocationName)
-	} else {
-		prefix = append(prefix, m.Name)
+	if !m.Shape().Flattened {
+		if m.LocationName != "" {
+			prefix = append(prefix, m.LocationName)
+		} else {
+			prefix = append(prefix, m.Name)
+		}
 	}
 
-	if m.Shape().ShapeType == "list" && !m.Shape().Flattened {
-		prefix = append(prefix, "member")
+	if m.Shape().ShapeType == "list" {
+		if !m.Shape().Flattened {
+			prefix = append(prefix, "member")
+		} else {
+			loc := m.Shape().MemberRef.LocationName
+			prefix = append(prefix, loc)
+		}
 	}
 
 	if !m.Shape().Flattened {
