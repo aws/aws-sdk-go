@@ -301,6 +301,10 @@ func (c *S3) CopyObject(req *CopyObjectRequest) (resp *CopyObjectOutput, err err
 		httpReq.Header.Set("x-amz-grant-write-acp", *req.GrantWriteACP)
 	}
 
+	for name, value := range req.Metadata {
+		httpReq.Header.Set(name, value)
+	}
+
 	if req.MetadataDirective != nil {
 		httpReq.Header.Set("x-amz-metadata-directive", *req.MetadataDirective)
 	}
@@ -550,6 +554,10 @@ func (c *S3) CreateMultipartUpload(req *CreateMultipartUploadRequest) (resp *Cre
 
 	if req.GrantWriteACP != nil {
 		httpReq.Header.Set("x-amz-grant-write-acp", *req.GrantWriteACP)
+	}
+
+	for name, value := range req.Metadata {
+		httpReq.Header.Set(name, value)
 	}
 
 	if req.SSECustomerAlgorithm != nil {
@@ -1666,7 +1674,7 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 
 	resp.Metadata = map[string]string{}
 	for name := range httpResp.Header {
-		if strings.HasPrefix(name, "headers") {
+		if strings.HasPrefix(name, "X-Amz-Meta-") {
 			resp.Metadata[name] = httpResp.Header.Get(name)
 		}
 	}
@@ -2043,7 +2051,7 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 
 	resp.Metadata = map[string]string{}
 	for name := range httpResp.Header {
-		if strings.HasPrefix(name, "headers") {
+		if strings.HasPrefix(name, "X-Amz-Meta-") {
 			resp.Metadata[name] = httpResp.Header.Get(name)
 		}
 	}
@@ -3084,6 +3092,10 @@ func (c *S3) PutObject(req *PutObjectRequest) (resp *PutObjectOutput, err error)
 
 	if req.GrantWriteACP != nil {
 		httpReq.Header.Set("x-amz-grant-write-acp", *req.GrantWriteACP)
+	}
+
+	for name, value := range req.Metadata {
+		httpReq.Header.Set(name, value)
 	}
 
 	if req.SSECustomerAlgorithm != nil {
