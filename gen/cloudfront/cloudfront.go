@@ -59,9 +59,11 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(req *CreateCloudFrontO
 
 	contentType = "application/xml"
 
-	req.CloudFrontOriginAccessIdentityConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "CloudFrontOriginAccessIdentityConfig",
+	if req.CloudFrontOriginAccessIdentityConfig != nil {
+		req.CloudFrontOriginAccessIdentityConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "CloudFrontOriginAccessIdentityConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.CloudFrontOriginAccessIdentityConfig)
@@ -122,9 +124,11 @@ func (c *CloudFront) CreateDistribution(req *CreateDistributionRequest) (resp *C
 
 	contentType = "application/xml"
 
-	req.DistributionConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "DistributionConfig",
+	if req.DistributionConfig != nil {
+		req.DistributionConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "DistributionConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.DistributionConfig)
@@ -185,9 +189,11 @@ func (c *CloudFront) CreateInvalidation(req *CreateInvalidationRequest) (resp *C
 
 	contentType = "application/xml"
 
-	req.InvalidationBatch.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "InvalidationBatch",
+	if req.InvalidationBatch != nil {
+		req.InvalidationBatch.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "InvalidationBatch",
+		}
 	}
 
 	b, err := xml.Marshal(req.InvalidationBatch)
@@ -247,9 +253,11 @@ func (c *CloudFront) CreateStreamingDistribution(req *CreateStreamingDistributio
 
 	contentType = "application/xml"
 
-	req.StreamingDistributionConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "StreamingDistributionConfig",
+	if req.StreamingDistributionConfig != nil {
+		req.StreamingDistributionConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "StreamingDistributionConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.StreamingDistributionConfig)
@@ -975,9 +983,11 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(req *UpdateCloudFrontO
 
 	contentType = "application/xml"
 
-	req.CloudFrontOriginAccessIdentityConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "CloudFrontOriginAccessIdentityConfig",
+	if req.CloudFrontOriginAccessIdentityConfig != nil {
+		req.CloudFrontOriginAccessIdentityConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "CloudFrontOriginAccessIdentityConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.CloudFrontOriginAccessIdentityConfig)
@@ -1041,9 +1051,11 @@ func (c *CloudFront) UpdateDistribution(req *UpdateDistributionRequest) (resp *U
 
 	contentType = "application/xml"
 
-	req.DistributionConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "DistributionConfig",
+	if req.DistributionConfig != nil {
+		req.DistributionConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "DistributionConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.DistributionConfig)
@@ -1107,9 +1119,11 @@ func (c *CloudFront) UpdateStreamingDistribution(req *UpdateStreamingDistributio
 
 	contentType = "application/xml"
 
-	req.StreamingDistributionConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "StreamingDistributionConfig",
+	if req.StreamingDistributionConfig != nil {
+		req.StreamingDistributionConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "StreamingDistributionConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.StreamingDistributionConfig)

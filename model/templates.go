@@ -513,10 +513,12 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
   {{ else }}
   contentType = "application/xml"
 	{{ if ne $m.LocationName ""}}
-  req.{{ exportable $m.Name }}.XMLName = xml.Name{
+  if req.{{ exportable $m.Name }} != nil {
+	req.{{ exportable $m.Name }}.XMLName = xml.Name{
 		Space: "{{ $m.XMLNamespace.URI }}",
 		Local: "{{ $m.LocationName }}",
 	}
+  }
   {{ end }}
   b, err := xml.Marshal(req.{{ exportable $m.Name }})
   if err != nil {
