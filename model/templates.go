@@ -392,6 +392,12 @@ func restCommon(t *template.Template) (*template.Template, error) {
 
   {{ end }}
 
+  {{ else if eq $m.Location "headers" }}
+
+  for name, value := range req.{{ exportable $name }} {
+	httpReq.Header.Set(name, value)
+  }
+
   {{ end }}
   {{ end }}
   {{ end }}
@@ -437,7 +443,7 @@ func restCommon(t *template.Template) (*template.Template, error) {
       {{ else if eq $m.Location "headers" }}
       resp.{{ exportable $name }} = {{ $m.Shape.Type }}{}
       for name := range httpResp.Header {
-        if strings.HasPrefix(name, "{{ $m.Location  }}") {
+        if strings.HasPrefix(name, "X-Amz-Meta-") {
           resp.{{ exportable $name }}[name] = httpResp.Header.Get(name)
         }
       }
