@@ -111,8 +111,8 @@ func (c *Lambda) DeleteFunction(req *DeleteFunctionRequest) (err error) {
 	uri := c.client.Endpoint + "/2014-11-13/functions/{FunctionName}"
 
 	if req.FunctionName != nil {
-		uri = strings.Replace(uri, "{"+"FunctionName"+"}", *req.FunctionName, -1)
-		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", *req.FunctionName, -1)
+		uri = strings.Replace(uri, "{"+"FunctionName"+"}", aws.EscapePath(*req.FunctionName), -1)
+		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", aws.EscapePath(*req.FunctionName), -1)
 	}
 
 	q := url.Values{}
@@ -152,8 +152,8 @@ func (c *Lambda) GetEventSource(req *GetEventSourceRequest) (resp *EventSourceCo
 	uri := c.client.Endpoint + "/2014-11-13/event-source-mappings/{UUID}"
 
 	if req.UUID != nil {
-		uri = strings.Replace(uri, "{"+"UUID"+"}", *req.UUID, -1)
-		uri = strings.Replace(uri, "{"+"UUID+"+"}", *req.UUID, -1)
+		uri = strings.Replace(uri, "{"+"UUID"+"}", aws.EscapePath(*req.UUID), -1)
+		uri = strings.Replace(uri, "{"+"UUID+"+"}", aws.EscapePath(*req.UUID), -1)
 	}
 
 	q := url.Values{}
@@ -201,8 +201,8 @@ func (c *Lambda) GetFunction(req *GetFunctionRequest) (resp *GetFunctionResponse
 	uri := c.client.Endpoint + "/2014-11-13/functions/{FunctionName}"
 
 	if req.FunctionName != nil {
-		uri = strings.Replace(uri, "{"+"FunctionName"+"}", *req.FunctionName, -1)
-		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", *req.FunctionName, -1)
+		uri = strings.Replace(uri, "{"+"FunctionName"+"}", aws.EscapePath(*req.FunctionName), -1)
+		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", aws.EscapePath(*req.FunctionName), -1)
 	}
 
 	q := url.Values{}
@@ -248,8 +248,8 @@ func (c *Lambda) GetFunctionConfiguration(req *GetFunctionConfigurationRequest) 
 	uri := c.client.Endpoint + "/2014-11-13/functions/{FunctionName}/configuration"
 
 	if req.FunctionName != nil {
-		uri = strings.Replace(uri, "{"+"FunctionName"+"}", *req.FunctionName, -1)
-		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", *req.FunctionName, -1)
+		uri = strings.Replace(uri, "{"+"FunctionName"+"}", aws.EscapePath(*req.FunctionName), -1)
+		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", aws.EscapePath(*req.FunctionName), -1)
 	}
 
 	q := url.Values{}
@@ -303,8 +303,8 @@ func (c *Lambda) InvokeAsync(req *InvokeAsyncRequest) (resp *InvokeAsyncResponse
 	uri := c.client.Endpoint + "/2014-11-13/functions/{FunctionName}/invoke-async/"
 
 	if req.FunctionName != nil {
-		uri = strings.Replace(uri, "{"+"FunctionName"+"}", *req.FunctionName, -1)
-		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", *req.FunctionName, -1)
+		uri = strings.Replace(uri, "{"+"FunctionName"+"}", aws.EscapePath(*req.FunctionName), -1)
+		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", aws.EscapePath(*req.FunctionName), -1)
 	}
 
 	q := url.Values{}
@@ -461,8 +461,8 @@ func (c *Lambda) RemoveEventSource(req *RemoveEventSourceRequest) (err error) {
 	uri := c.client.Endpoint + "/2014-11-13/event-source-mappings/{UUID}"
 
 	if req.UUID != nil {
-		uri = strings.Replace(uri, "{"+"UUID"+"}", *req.UUID, -1)
-		uri = strings.Replace(uri, "{"+"UUID+"+"}", *req.UUID, -1)
+		uri = strings.Replace(uri, "{"+"UUID"+"}", aws.EscapePath(*req.UUID), -1)
+		uri = strings.Replace(uri, "{"+"UUID+"+"}", aws.EscapePath(*req.UUID), -1)
 	}
 
 	q := url.Values{}
@@ -505,8 +505,8 @@ func (c *Lambda) UpdateFunctionConfiguration(req *UpdateFunctionConfigurationReq
 	uri := c.client.Endpoint + "/2014-11-13/functions/{FunctionName}/configuration"
 
 	if req.FunctionName != nil {
-		uri = strings.Replace(uri, "{"+"FunctionName"+"}", *req.FunctionName, -1)
-		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", *req.FunctionName, -1)
+		uri = strings.Replace(uri, "{"+"FunctionName"+"}", aws.EscapePath(*req.FunctionName), -1)
+		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", aws.EscapePath(*req.FunctionName), -1)
 	}
 
 	q := url.Values{}
@@ -581,8 +581,8 @@ func (c *Lambda) UploadFunction(req *UploadFunctionRequest) (resp *FunctionConfi
 	uri := c.client.Endpoint + "/2014-11-13/functions/{FunctionName}"
 
 	if req.FunctionName != nil {
-		uri = strings.Replace(uri, "{"+"FunctionName"+"}", *req.FunctionName, -1)
-		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", *req.FunctionName, -1)
+		uri = strings.Replace(uri, "{"+"FunctionName"+"}", aws.EscapePath(*req.FunctionName), -1)
+		uri = strings.Replace(uri, "{"+"FunctionName+"+"}", aws.EscapePath(*req.FunctionName), -1)
 	}
 
 	q := url.Values{}

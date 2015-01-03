@@ -1,10 +1,13 @@
 package aws
 
 import (
+	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"io/ioutil"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
 // RestClient is the underlying client for REST-JSON and REST-XML APIs.
@@ -15,9 +18,45 @@ type RestClient struct {
 	APIVersion string
 }
 
+// Whether the byte value can be sent without escaping in AWS URLs
+var noEscape [256]bool
+
+// Initialise noEscape
+func init() {
+	for i := range noEscape {
+		// Amazon expects every character except these escaped
+		noEscape[i] = (i >= 'A' && i <= 'Z') ||
+			(i >= 'a' && i <= 'z') ||
+			(i >= '0' && i <= '9') ||
+			i == '-' ||
+			i == '.' ||
+			i == '/' ||
+			i == ':' ||
+			i == '_' ||
+			i == '~'
+	}
+}
+
+// EscapePath escapes part of a URL path in Amazon style
+func EscapePath(path string) string {
+	var buf bytes.Buffer
+	for i := 0; i < len(path); i++ {
+		c := path[i]
+		if noEscape[c] {
+			buf.WriteByte(c)
+		} else {
+			buf.WriteByte('%')
+			buf.WriteString(strings.ToUpper(strconv.FormatUint(uint64(c), 16)))
+		}
+	}
+	return buf.String()
+}
+
 // Do sends an HTTP request and returns an HTTP response, following policy
 // (e.g. redirects, cookies, auth) as configured on the client.
 func (c *RestClient) Do(req *http.Request) (*http.Response, error) {
+	// Set the form for the URL
+	req.URL.Opaque = EscapePath(req.URL.Path)
 	req.Header.Set("User-Agent", "aws-go")
 	if err := c.Context.sign(req); err != nil {
 		return nil, err

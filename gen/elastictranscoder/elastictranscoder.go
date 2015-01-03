@@ -63,8 +63,8 @@ func (c *ElasticTranscoder) CancelJob(req *CancelJobRequest) (resp *CancelJobRes
 	uri := c.client.Endpoint + "/2012-09-25/jobs/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -247,8 +247,8 @@ func (c *ElasticTranscoder) DeletePipeline(req *DeletePipelineRequest) (resp *De
 	uri := c.client.Endpoint + "/2012-09-25/pipelines/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -293,8 +293,8 @@ func (c *ElasticTranscoder) DeletePreset(req *DeletePresetRequest) (resp *Delete
 	uri := c.client.Endpoint + "/2012-09-25/presets/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -340,8 +340,8 @@ func (c *ElasticTranscoder) ListJobsByPipeline(req *ListJobsByPipelineRequest) (
 	uri := c.client.Endpoint + "/2012-09-25/jobsByPipeline/{PipelineId}"
 
 	if req.PipelineID != nil {
-		uri = strings.Replace(uri, "{"+"PipelineId"+"}", *req.PipelineID, -1)
-		uri = strings.Replace(uri, "{"+"PipelineId+"+"}", *req.PipelineID, -1)
+		uri = strings.Replace(uri, "{"+"PipelineId"+"}", aws.EscapePath(*req.PipelineID), -1)
+		uri = strings.Replace(uri, "{"+"PipelineId+"+"}", aws.EscapePath(*req.PipelineID), -1)
 	}
 
 	q := url.Values{}
@@ -394,8 +394,8 @@ func (c *ElasticTranscoder) ListJobsByStatus(req *ListJobsByStatusRequest) (resp
 	uri := c.client.Endpoint + "/2012-09-25/jobsByStatus/{Status}"
 
 	if req.Status != nil {
-		uri = strings.Replace(uri, "{"+"Status"+"}", *req.Status, -1)
-		uri = strings.Replace(uri, "{"+"Status+"+"}", *req.Status, -1)
+		uri = strings.Replace(uri, "{"+"Status"+"}", aws.EscapePath(*req.Status), -1)
+		uri = strings.Replace(uri, "{"+"Status+"+"}", aws.EscapePath(*req.Status), -1)
 	}
 
 	q := url.Values{}
@@ -543,8 +543,8 @@ func (c *ElasticTranscoder) ReadJob(req *ReadJobRequest) (resp *ReadJobResponse,
 	uri := c.client.Endpoint + "/2012-09-25/jobs/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -588,8 +588,8 @@ func (c *ElasticTranscoder) ReadPipeline(req *ReadPipelineRequest) (resp *ReadPi
 	uri := c.client.Endpoint + "/2012-09-25/pipelines/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -633,8 +633,8 @@ func (c *ElasticTranscoder) ReadPreset(req *ReadPresetRequest) (resp *ReadPreset
 	uri := c.client.Endpoint + "/2012-09-25/presets/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -726,8 +726,8 @@ func (c *ElasticTranscoder) UpdatePipeline(req *UpdatePipelineRequest) (resp *Up
 	uri := c.client.Endpoint + "/2012-09-25/pipelines/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -774,8 +774,8 @@ func (c *ElasticTranscoder) UpdatePipelineNotifications(req *UpdatePipelineNotif
 	uri := c.client.Endpoint + "/2012-09-25/pipelines/{Id}/notifications"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -824,8 +824,8 @@ func (c *ElasticTranscoder) UpdatePipelineStatus(req *UpdatePipelineStatusReques
 	uri := c.client.Endpoint + "/2012-09-25/pipelines/{Id}/status"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}

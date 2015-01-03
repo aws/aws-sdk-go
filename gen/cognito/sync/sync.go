@@ -63,18 +63,18 @@ func (c *CognitoSync) DeleteDataset(req *DeleteDatasetRequest) (resp *DeleteData
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}"
 
 	if req.DatasetName != nil {
-		uri = strings.Replace(uri, "{"+"DatasetName"+"}", *req.DatasetName, -1)
-		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", *req.DatasetName, -1)
+		uri = strings.Replace(uri, "{"+"DatasetName"+"}", aws.EscapePath(*req.DatasetName), -1)
+		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", aws.EscapePath(*req.DatasetName), -1)
 	}
 
 	if req.IdentityID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityId"+"}", *req.IdentityID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", *req.IdentityID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityId"+"}", aws.EscapePath(*req.IdentityID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", aws.EscapePath(*req.IdentityID), -1)
 	}
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
@@ -121,18 +121,18 @@ func (c *CognitoSync) DescribeDataset(req *DescribeDatasetRequest) (resp *Descri
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}"
 
 	if req.DatasetName != nil {
-		uri = strings.Replace(uri, "{"+"DatasetName"+"}", *req.DatasetName, -1)
-		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", *req.DatasetName, -1)
+		uri = strings.Replace(uri, "{"+"DatasetName"+"}", aws.EscapePath(*req.DatasetName), -1)
+		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", aws.EscapePath(*req.DatasetName), -1)
 	}
 
 	if req.IdentityID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityId"+"}", *req.IdentityID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", *req.IdentityID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityId"+"}", aws.EscapePath(*req.IdentityID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", aws.EscapePath(*req.IdentityID), -1)
 	}
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
@@ -176,8 +176,8 @@ func (c *CognitoSync) DescribeIdentityPoolUsage(req *DescribeIdentityPoolUsageRe
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}"
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
@@ -221,13 +221,13 @@ func (c *CognitoSync) DescribeIdentityUsage(req *DescribeIdentityUsageRequest) (
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}/identities/{IdentityId}"
 
 	if req.IdentityID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityId"+"}", *req.IdentityID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", *req.IdentityID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityId"+"}", aws.EscapePath(*req.IdentityID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", aws.EscapePath(*req.IdentityID), -1)
 	}
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
@@ -271,8 +271,8 @@ func (c *CognitoSync) GetIdentityPoolConfiguration(req *GetIdentityPoolConfigura
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}/configuration"
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
@@ -319,13 +319,13 @@ func (c *CognitoSync) ListDatasets(req *ListDatasetsRequest) (resp *ListDatasets
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets"
 
 	if req.IdentityID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityId"+"}", *req.IdentityID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", *req.IdentityID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityId"+"}", aws.EscapePath(*req.IdentityID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", aws.EscapePath(*req.IdentityID), -1)
 	}
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
@@ -429,18 +429,18 @@ func (c *CognitoSync) ListRecords(req *ListRecordsRequest) (resp *ListRecordsRes
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/records"
 
 	if req.DatasetName != nil {
-		uri = strings.Replace(uri, "{"+"DatasetName"+"}", *req.DatasetName, -1)
-		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", *req.DatasetName, -1)
+		uri = strings.Replace(uri, "{"+"DatasetName"+"}", aws.EscapePath(*req.DatasetName), -1)
+		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", aws.EscapePath(*req.DatasetName), -1)
 	}
 
 	if req.IdentityID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityId"+"}", *req.IdentityID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", *req.IdentityID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityId"+"}", aws.EscapePath(*req.IdentityID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", aws.EscapePath(*req.IdentityID), -1)
 	}
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
@@ -499,13 +499,13 @@ func (c *CognitoSync) RegisterDevice(req *RegisterDeviceRequest) (resp *Register
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}/identity/{IdentityId}/device"
 
 	if req.IdentityID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityId"+"}", *req.IdentityID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", *req.IdentityID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityId"+"}", aws.EscapePath(*req.IdentityID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", aws.EscapePath(*req.IdentityID), -1)
 	}
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
@@ -548,8 +548,8 @@ func (c *CognitoSync) SetIdentityPoolConfiguration(req *SetIdentityPoolConfigura
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}/configuration"
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
@@ -593,23 +593,23 @@ func (c *CognitoSync) SubscribeToDataset(req *SubscribeToDatasetRequest) (resp *
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}"
 
 	if req.DatasetName != nil {
-		uri = strings.Replace(uri, "{"+"DatasetName"+"}", *req.DatasetName, -1)
-		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", *req.DatasetName, -1)
+		uri = strings.Replace(uri, "{"+"DatasetName"+"}", aws.EscapePath(*req.DatasetName), -1)
+		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", aws.EscapePath(*req.DatasetName), -1)
 	}
 
 	if req.DeviceID != nil {
-		uri = strings.Replace(uri, "{"+"DeviceId"+"}", *req.DeviceID, -1)
-		uri = strings.Replace(uri, "{"+"DeviceId+"+"}", *req.DeviceID, -1)
+		uri = strings.Replace(uri, "{"+"DeviceId"+"}", aws.EscapePath(*req.DeviceID), -1)
+		uri = strings.Replace(uri, "{"+"DeviceId+"+"}", aws.EscapePath(*req.DeviceID), -1)
 	}
 
 	if req.IdentityID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityId"+"}", *req.IdentityID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", *req.IdentityID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityId"+"}", aws.EscapePath(*req.IdentityID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", aws.EscapePath(*req.IdentityID), -1)
 	}
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
@@ -653,23 +653,23 @@ func (c *CognitoSync) UnsubscribeFromDataset(req *UnsubscribeFromDatasetRequest)
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}"
 
 	if req.DatasetName != nil {
-		uri = strings.Replace(uri, "{"+"DatasetName"+"}", *req.DatasetName, -1)
-		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", *req.DatasetName, -1)
+		uri = strings.Replace(uri, "{"+"DatasetName"+"}", aws.EscapePath(*req.DatasetName), -1)
+		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", aws.EscapePath(*req.DatasetName), -1)
 	}
 
 	if req.DeviceID != nil {
-		uri = strings.Replace(uri, "{"+"DeviceId"+"}", *req.DeviceID, -1)
-		uri = strings.Replace(uri, "{"+"DeviceId+"+"}", *req.DeviceID, -1)
+		uri = strings.Replace(uri, "{"+"DeviceId"+"}", aws.EscapePath(*req.DeviceID), -1)
+		uri = strings.Replace(uri, "{"+"DeviceId+"+"}", aws.EscapePath(*req.DeviceID), -1)
 	}
 
 	if req.IdentityID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityId"+"}", *req.IdentityID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", *req.IdentityID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityId"+"}", aws.EscapePath(*req.IdentityID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", aws.EscapePath(*req.IdentityID), -1)
 	}
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
@@ -717,18 +717,18 @@ func (c *CognitoSync) UpdateRecords(req *UpdateRecordsRequest) (resp *UpdateReco
 	uri := c.client.Endpoint + "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}"
 
 	if req.DatasetName != nil {
-		uri = strings.Replace(uri, "{"+"DatasetName"+"}", *req.DatasetName, -1)
-		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", *req.DatasetName, -1)
+		uri = strings.Replace(uri, "{"+"DatasetName"+"}", aws.EscapePath(*req.DatasetName), -1)
+		uri = strings.Replace(uri, "{"+"DatasetName+"+"}", aws.EscapePath(*req.DatasetName), -1)
 	}
 
 	if req.IdentityID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityId"+"}", *req.IdentityID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", *req.IdentityID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityId"+"}", aws.EscapePath(*req.IdentityID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityId+"+"}", aws.EscapePath(*req.IdentityID), -1)
 	}
 
 	if req.IdentityPoolID != nil {
-		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", *req.IdentityPoolID, -1)
-		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", *req.IdentityPoolID, -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
+		uri = strings.Replace(uri, "{"+"IdentityPoolId+"+"}", aws.EscapePath(*req.IdentityPoolID), -1)
 	}
 
 	q := url.Values{}
