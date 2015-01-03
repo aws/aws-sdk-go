@@ -4881,12 +4881,12 @@ func (v *NotificationConfiguration) MarshalXML(e *xml.Encoder, start xml.StartEl
 type Object struct {
 	XMLName xml.Name
 
-	ETag         aws.StringValue  `xml:"ETag"`
-	Key          aws.StringValue  `xml:"Key"`
-	LastModified time.Time        `xml:"LastModified"`
-	Owner        *Owner           `xml:"Owner,omitempty"`
-	Size         aws.IntegerValue `xml:"Size"`
-	StorageClass aws.StringValue  `xml:"StorageClass"`
+	ETag         aws.StringValue `xml:"ETag"`
+	Key          aws.StringValue `xml:"Key"`
+	LastModified time.Time       `xml:"LastModified"`
+	Owner        *Owner          `xml:"Owner,omitempty"`
+	Size         aws.LongValue   `xml:"Size"`
+	StorageClass aws.StringValue `xml:"StorageClass"`
 }
 
 func (v *Object) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
@@ -4931,7 +4931,7 @@ type ObjectVersion struct {
 	Key          aws.StringValue  `xml:"Key"`
 	LastModified time.Time        `xml:"LastModified"`
 	Owner        *Owner           `xml:"Owner,omitempty"`
-	Size         aws.IntegerValue `xml:"Size"`
+	Size         aws.LongValue    `xml:"Size"`
 	StorageClass aws.StringValue  `xml:"StorageClass"`
 	VersionID    aws.StringValue  `xml:"VersionId"`
 }
@@ -4964,7 +4964,7 @@ type Part struct {
 	ETag         aws.StringValue  `xml:"ETag"`
 	LastModified time.Time        `xml:"LastModified"`
 	PartNumber   aws.IntegerValue `xml:"PartNumber"`
-	Size         aws.IntegerValue `xml:"Size"`
+	Size         aws.LongValue    `xml:"Size"`
 }
 
 func (v *Part) MarshalXML(e *xml.Encoder, start xml.StartElement) error {

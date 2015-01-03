@@ -397,7 +397,7 @@ func (s *Shape) Type() string {
 	case "structure":
 		return "*" + exportable(s.Name)
 	case "integer":
-		if s.Name == "ContentLength" {
+		if s.Name == "ContentLength" || s.Name == "Size" {
 			return "aws.LongValue"
 		}
 		return "aws.IntegerValue"
