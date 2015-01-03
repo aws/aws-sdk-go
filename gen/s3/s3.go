@@ -110,9 +110,11 @@ func (c *S3) CompleteMultipartUpload(req *CompleteMultipartUploadRequest) (resp 
 
 	contentType = "application/xml"
 
-	req.MultipartUpload.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "CompleteMultipartUpload",
+	if req.MultipartUpload != nil {
+		req.MultipartUpload.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "CompleteMultipartUpload",
+		}
 	}
 
 	b, err := xml.Marshal(req.MultipartUpload)
@@ -392,9 +394,11 @@ func (c *S3) CreateBucket(req *CreateBucketRequest) (resp *CreateBucketOutput, e
 
 	contentType = "application/xml"
 
-	req.CreateBucketConfiguration.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "CreateBucketConfiguration",
+	if req.CreateBucketConfiguration != nil {
+		req.CreateBucketConfiguration.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "CreateBucketConfiguration",
+		}
 	}
 
 	b, err := xml.Marshal(req.CreateBucketConfiguration)
@@ -942,9 +946,11 @@ func (c *S3) DeleteObjects(req *DeleteObjectsRequest) (resp *DeleteObjectsOutput
 
 	contentType = "application/xml"
 
-	req.Delete.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "Delete",
+	if req.Delete != nil {
+		req.Delete.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "Delete",
+		}
 	}
 
 	b, err := xml.Marshal(req.Delete)
@@ -2414,9 +2420,11 @@ func (c *S3) PutBucketACL(req *PutBucketACLRequest) (err error) {
 
 	contentType = "application/xml"
 
-	req.AccessControlPolicy.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "AccessControlPolicy",
+	if req.AccessControlPolicy != nil {
+		req.AccessControlPolicy.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "AccessControlPolicy",
+		}
 	}
 
 	b, err := xml.Marshal(req.AccessControlPolicy)
@@ -2494,9 +2502,11 @@ func (c *S3) PutBucketCORS(req *PutBucketCORSRequest) (err error) {
 
 	contentType = "application/xml"
 
-	req.CORSConfiguration.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "CORSConfiguration",
+	if req.CORSConfiguration != nil {
+		req.CORSConfiguration.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "CORSConfiguration",
+		}
 	}
 
 	b, err := xml.Marshal(req.CORSConfiguration)
@@ -2551,9 +2561,11 @@ func (c *S3) PutBucketLifecycle(req *PutBucketLifecycleRequest) (err error) {
 
 	contentType = "application/xml"
 
-	req.LifecycleConfiguration.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "LifecycleConfiguration",
+	if req.LifecycleConfiguration != nil {
+		req.LifecycleConfiguration.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "LifecycleConfiguration",
+		}
 	}
 
 	b, err := xml.Marshal(req.LifecycleConfiguration)
@@ -2609,9 +2621,11 @@ func (c *S3) PutBucketLogging(req *PutBucketLoggingRequest) (err error) {
 
 	contentType = "application/xml"
 
-	req.BucketLoggingStatus.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "BucketLoggingStatus",
+	if req.BucketLoggingStatus != nil {
+		req.BucketLoggingStatus.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "BucketLoggingStatus",
+		}
 	}
 
 	b, err := xml.Marshal(req.BucketLoggingStatus)
@@ -2666,9 +2680,11 @@ func (c *S3) PutBucketNotification(req *PutBucketNotificationRequest) (err error
 
 	contentType = "application/xml"
 
-	req.NotificationConfiguration.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "NotificationConfiguration",
+	if req.NotificationConfiguration != nil {
+		req.NotificationConfiguration.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "NotificationConfiguration",
+		}
 	}
 
 	b, err := xml.Marshal(req.NotificationConfiguration)
@@ -2778,9 +2794,11 @@ func (c *S3) PutBucketRequestPayment(req *PutBucketRequestPaymentRequest) (err e
 
 	contentType = "application/xml"
 
-	req.RequestPaymentConfiguration.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "RequestPaymentConfiguration",
+	if req.RequestPaymentConfiguration != nil {
+		req.RequestPaymentConfiguration.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "RequestPaymentConfiguration",
+		}
 	}
 
 	b, err := xml.Marshal(req.RequestPaymentConfiguration)
@@ -2834,9 +2852,11 @@ func (c *S3) PutBucketTagging(req *PutBucketTaggingRequest) (err error) {
 
 	contentType = "application/xml"
 
-	req.Tagging.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "Tagging",
+	if req.Tagging != nil {
+		req.Tagging.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "Tagging",
+		}
 	}
 
 	b, err := xml.Marshal(req.Tagging)
@@ -2891,9 +2911,11 @@ func (c *S3) PutBucketVersioning(req *PutBucketVersioningRequest) (err error) {
 
 	contentType = "application/xml"
 
-	req.VersioningConfiguration.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "VersioningConfiguration",
+	if req.VersioningConfiguration != nil {
+		req.VersioningConfiguration.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "VersioningConfiguration",
+		}
 	}
 
 	b, err := xml.Marshal(req.VersioningConfiguration)
@@ -2951,9 +2973,11 @@ func (c *S3) PutBucketWebsite(req *PutBucketWebsiteRequest) (err error) {
 
 	contentType = "application/xml"
 
-	req.WebsiteConfiguration.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "WebsiteConfiguration",
+	if req.WebsiteConfiguration != nil {
+		req.WebsiteConfiguration.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "WebsiteConfiguration",
+		}
 	}
 
 	b, err := xml.Marshal(req.WebsiteConfiguration)
@@ -3180,9 +3204,11 @@ func (c *S3) PutObjectACL(req *PutObjectACLRequest) (err error) {
 
 	contentType = "application/xml"
 
-	req.AccessControlPolicy.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "AccessControlPolicy",
+	if req.AccessControlPolicy != nil {
+		req.AccessControlPolicy.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "AccessControlPolicy",
+		}
 	}
 
 	b, err := xml.Marshal(req.AccessControlPolicy)
@@ -3265,9 +3291,11 @@ func (c *S3) RestoreObject(req *RestoreObjectRequest) (err error) {
 
 	contentType = "application/xml"
 
-	req.RestoreRequest.XMLName = xml.Name{
-		Space: "http://s3.amazonaws.com/doc/2006-03-01/",
-		Local: "RestoreRequest",
+	if req.RestoreRequest != nil {
+		req.RestoreRequest.XMLName = xml.Name{
+			Space: "http://s3.amazonaws.com/doc/2006-03-01/",
+			Local: "RestoreRequest",
+		}
 	}
 
 	b, err := xml.Marshal(req.RestoreRequest)
