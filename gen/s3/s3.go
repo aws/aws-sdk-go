@@ -62,13 +62,13 @@ func (c *S3) AbortMultipartUpload(req *AbortMultipartUploadRequest) (err error) 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -124,13 +124,13 @@ func (c *S3) CompleteMultipartUpload(req *CompleteMultipartUploadRequest) (resp 
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -201,13 +201,13 @@ func (c *S3) CopyObject(req *CopyObjectRequest) (resp *CopyObjectOutput, err err
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -406,8 +406,8 @@ func (c *S3) CreateBucket(req *CreateBucketRequest) (resp *CreateBucketOutput, e
 	uri := c.client.Endpoint + "/{Bucket}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -484,13 +484,13 @@ func (c *S3) CreateMultipartUpload(req *CreateMultipartUploadRequest) (resp *Cre
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}?uploads"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -630,8 +630,8 @@ func (c *S3) DeleteBucket(req *DeleteBucketRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -670,8 +670,8 @@ func (c *S3) DeleteBucketCORS(req *DeleteBucketCORSRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?cors"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -710,8 +710,8 @@ func (c *S3) DeleteBucketLifecycle(req *DeleteBucketLifecycleRequest) (err error
 	uri := c.client.Endpoint + "/{Bucket}?lifecycle"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -749,8 +749,8 @@ func (c *S3) DeleteBucketPolicy(req *DeleteBucketPolicyRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?policy"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -788,8 +788,8 @@ func (c *S3) DeleteBucketTagging(req *DeleteBucketTaggingRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?tagging"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -828,8 +828,8 @@ func (c *S3) DeleteBucketWebsite(req *DeleteBucketWebsiteRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?website"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -869,13 +869,13 @@ func (c *S3) DeleteObject(req *DeleteObjectRequest) (resp *DeleteObjectOutput, e
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -956,8 +956,8 @@ func (c *S3) DeleteObjects(req *DeleteObjectsRequest) (resp *DeleteObjectsOutput
 	uri := c.client.Endpoint + "/{Bucket}?delete"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1003,8 +1003,8 @@ func (c *S3) GetBucketACL(req *GetBucketACLRequest) (resp *GetBucketACLOutput, e
 	uri := c.client.Endpoint + "/{Bucket}?acl"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1046,8 +1046,8 @@ func (c *S3) GetBucketCORS(req *GetBucketCORSRequest) (resp *GetBucketCORSOutput
 	uri := c.client.Endpoint + "/{Bucket}?cors"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1090,8 +1090,8 @@ func (c *S3) GetBucketLifecycle(req *GetBucketLifecycleRequest) (resp *GetBucket
 	uri := c.client.Endpoint + "/{Bucket}?lifecycle"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1133,8 +1133,8 @@ func (c *S3) GetBucketLocation(req *GetBucketLocationRequest) (resp *GetBucketLo
 	uri := c.client.Endpoint + "/{Bucket}?location"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1178,8 +1178,8 @@ func (c *S3) GetBucketLogging(req *GetBucketLoggingRequest) (resp *GetBucketLogg
 	uri := c.client.Endpoint + "/{Bucket}?logging"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1221,8 +1221,8 @@ func (c *S3) GetBucketNotification(req *GetBucketNotificationRequest) (resp *Get
 	uri := c.client.Endpoint + "/{Bucket}?notification"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1264,8 +1264,8 @@ func (c *S3) GetBucketPolicy(req *GetBucketPolicyRequest) (resp *GetBucketPolicy
 	uri := c.client.Endpoint + "/{Bucket}?policy"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1308,8 +1308,8 @@ func (c *S3) GetBucketRequestPayment(req *GetBucketRequestPaymentRequest) (resp 
 	uri := c.client.Endpoint + "/{Bucket}?requestPayment"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1351,8 +1351,8 @@ func (c *S3) GetBucketTagging(req *GetBucketTaggingRequest) (resp *GetBucketTagg
 	uri := c.client.Endpoint + "/{Bucket}?tagging"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1394,8 +1394,8 @@ func (c *S3) GetBucketVersioning(req *GetBucketVersioningRequest) (resp *GetBuck
 	uri := c.client.Endpoint + "/{Bucket}?versioning"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1437,8 +1437,8 @@ func (c *S3) GetBucketWebsite(req *GetBucketWebsiteRequest) (resp *GetBucketWebs
 	uri := c.client.Endpoint + "/{Bucket}?website"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1480,13 +1480,13 @@ func (c *S3) GetObject(req *GetObjectRequest) (resp *GetObjectOutput, err error)
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -1738,13 +1738,13 @@ func (c *S3) GetObjectACL(req *GetObjectACLRequest) (resp *GetObjectACLOutput, e
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}?acl"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -1790,13 +1790,13 @@ func (c *S3) GetObjectTorrent(req *GetObjectTorrentRequest) (resp *GetObjectTorr
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}?torrent"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -1835,8 +1835,8 @@ func (c *S3) HeadBucket(req *HeadBucketRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -1877,13 +1877,13 @@ func (c *S3) HeadObject(req *HeadObjectRequest) (resp *HeadObjectOutput, err err
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -2154,8 +2154,8 @@ func (c *S3) ListMultipartUploads(req *ListMultipartUploadsRequest) (resp *ListM
 	uri := c.client.Endpoint + "/{Bucket}?uploads"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2222,8 +2222,8 @@ func (c *S3) ListObjectVersions(req *ListObjectVersionsRequest) (resp *ListObjec
 	uri := c.client.Endpoint + "/{Bucket}?versions"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2291,8 +2291,8 @@ func (c *S3) ListObjects(req *ListObjectsRequest) (resp *ListObjectsOutput, err 
 	uri := c.client.Endpoint + "/{Bucket}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2355,13 +2355,13 @@ func (c *S3) ListParts(req *ListPartsRequest) (resp *ListPartsOutput, err error)
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -2428,8 +2428,8 @@ func (c *S3) PutBucketACL(req *PutBucketACLRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?acl"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2508,8 +2508,8 @@ func (c *S3) PutBucketCORS(req *PutBucketCORSRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?cors"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2565,8 +2565,8 @@ func (c *S3) PutBucketLifecycle(req *PutBucketLifecycleRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?lifecycle"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2623,8 +2623,8 @@ func (c *S3) PutBucketLogging(req *PutBucketLoggingRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?logging"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2680,8 +2680,8 @@ func (c *S3) PutBucketNotification(req *PutBucketNotificationRequest) (err error
 	uri := c.client.Endpoint + "/{Bucket}?notification"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2732,8 +2732,8 @@ func (c *S3) PutBucketPolicy(req *PutBucketPolicyRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?policy"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2792,8 +2792,8 @@ func (c *S3) PutBucketRequestPayment(req *PutBucketRequestPaymentRequest) (err e
 	uri := c.client.Endpoint + "/{Bucket}?requestPayment"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2848,8 +2848,8 @@ func (c *S3) PutBucketTagging(req *PutBucketTaggingRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?tagging"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2905,8 +2905,8 @@ func (c *S3) PutBucketVersioning(req *PutBucketVersioningRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?versioning"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -2965,8 +2965,8 @@ func (c *S3) PutBucketWebsite(req *PutBucketWebsiteRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}?website"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	q := url.Values{}
@@ -3010,13 +3010,13 @@ func (c *S3) PutObject(req *PutObjectRequest) (resp *PutObjectOutput, err error)
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -3194,13 +3194,13 @@ func (c *S3) PutObjectACL(req *PutObjectACLRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}?acl"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -3279,13 +3279,13 @@ func (c *S3) RestoreObject(req *RestoreObjectRequest) (err error) {
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}?restore"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -3334,13 +3334,13 @@ func (c *S3) UploadPart(req *UploadPartRequest) (resp *UploadPartOutput, err err
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}
@@ -3441,13 +3441,13 @@ func (c *S3) UploadPartCopy(req *UploadPartCopyRequest) (resp *UploadPartCopyOut
 	uri := c.client.Endpoint + "/{Bucket}/{Key+}"
 
 	if req.Bucket != nil {
-		uri = strings.Replace(uri, "{"+"Bucket"+"}", *req.Bucket, -1)
-		uri = strings.Replace(uri, "{"+"Bucket+"+"}", *req.Bucket, -1)
+		uri = strings.Replace(uri, "{"+"Bucket"+"}", aws.EscapePath(*req.Bucket), -1)
+		uri = strings.Replace(uri, "{"+"Bucket+"+"}", aws.EscapePath(*req.Bucket), -1)
 	}
 
 	if req.Key != nil {
-		uri = strings.Replace(uri, "{"+"Key"+"}", *req.Key, -1)
-		uri = strings.Replace(uri, "{"+"Key+"+"}", *req.Key, -1)
+		uri = strings.Replace(uri, "{"+"Key"+"}", aws.EscapePath(*req.Key), -1)
+		uri = strings.Replace(uri, "{"+"Key+"+"}", aws.EscapePath(*req.Key), -1)
 	}
 
 	q := url.Values{}

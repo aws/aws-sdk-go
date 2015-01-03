@@ -297,8 +297,8 @@ func restCommon(t *template.Template) (*template.Template, error) {
   {{ if eq $m.Location "uri" }}
 
   if req.{{ exportable $name }} != nil {
-    uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}"+"}", *req.{{ exportable $name }}, -1)
-    uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}+"+"}", *req.{{ exportable $name }}, -1)
+    uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}"+"}", aws.EscapePath(*req.{{ exportable $name }}), -1)
+    uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}+"+"}", aws.EscapePath(*req.{{ exportable $name }}), -1)
   }
 
   {{ end }}
