@@ -59,9 +59,11 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(req *CreateCloudFrontO
 
 	contentType = "application/xml"
 
-	req.CloudFrontOriginAccessIdentityConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "CloudFrontOriginAccessIdentityConfig",
+	if req.CloudFrontOriginAccessIdentityConfig != nil {
+		req.CloudFrontOriginAccessIdentityConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "CloudFrontOriginAccessIdentityConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.CloudFrontOriginAccessIdentityConfig)
@@ -122,9 +124,11 @@ func (c *CloudFront) CreateDistribution(req *CreateDistributionRequest) (resp *C
 
 	contentType = "application/xml"
 
-	req.DistributionConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "DistributionConfig",
+	if req.DistributionConfig != nil {
+		req.DistributionConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "DistributionConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.DistributionConfig)
@@ -185,9 +189,11 @@ func (c *CloudFront) CreateInvalidation(req *CreateInvalidationRequest) (resp *C
 
 	contentType = "application/xml"
 
-	req.InvalidationBatch.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "InvalidationBatch",
+	if req.InvalidationBatch != nil {
+		req.InvalidationBatch.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "InvalidationBatch",
+		}
 	}
 
 	b, err := xml.Marshal(req.InvalidationBatch)
@@ -199,8 +205,8 @@ func (c *CloudFront) CreateInvalidation(req *CreateInvalidationRequest) (resp *C
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{DistributionId}/invalidation"
 
 	if req.DistributionID != nil {
-		uri = strings.Replace(uri, "{"+"DistributionId"+"}", *req.DistributionID, -1)
-		uri = strings.Replace(uri, "{"+"DistributionId+"+"}", *req.DistributionID, -1)
+		uri = strings.Replace(uri, "{"+"DistributionId"+"}", aws.EscapePath(*req.DistributionID), -1)
+		uri = strings.Replace(uri, "{"+"DistributionId+"+"}", aws.EscapePath(*req.DistributionID), -1)
 	}
 
 	q := url.Values{}
@@ -247,9 +253,11 @@ func (c *CloudFront) CreateStreamingDistribution(req *CreateStreamingDistributio
 
 	contentType = "application/xml"
 
-	req.StreamingDistributionConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "StreamingDistributionConfig",
+	if req.StreamingDistributionConfig != nil {
+		req.StreamingDistributionConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "StreamingDistributionConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.StreamingDistributionConfig)
@@ -311,8 +319,8 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(req *DeleteCloudFrontO
 	uri := c.client.Endpoint + "/2014-10-21/origin-access-identity/cloudfront/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -354,8 +362,8 @@ func (c *CloudFront) DeleteDistribution(req *DeleteDistributionRequest) (err err
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -397,8 +405,8 @@ func (c *CloudFront) DeleteStreamingDistribution(req *DeleteStreamingDistributio
 	uri := c.client.Endpoint + "/2014-10-21/streaming-distribution/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -441,8 +449,8 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentity(req *GetCloudFrontOriginA
 	uri := c.client.Endpoint + "/2014-10-21/origin-access-identity/cloudfront/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -491,8 +499,8 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(req *GetCloudFrontO
 	uri := c.client.Endpoint + "/2014-10-21/origin-access-identity/cloudfront/{Id}/config"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -540,8 +548,8 @@ func (c *CloudFront) GetDistribution(req *GetDistributionRequest) (resp *GetDist
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -590,8 +598,8 @@ func (c *CloudFront) GetDistributionConfig(req *GetDistributionConfigRequest) (r
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{Id}/config"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -639,13 +647,13 @@ func (c *CloudFront) GetInvalidation(req *GetInvalidationRequest) (resp *GetInva
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{DistributionId}/invalidation/{Id}"
 
 	if req.DistributionID != nil {
-		uri = strings.Replace(uri, "{"+"DistributionId"+"}", *req.DistributionID, -1)
-		uri = strings.Replace(uri, "{"+"DistributionId+"+"}", *req.DistributionID, -1)
+		uri = strings.Replace(uri, "{"+"DistributionId"+"}", aws.EscapePath(*req.DistributionID), -1)
+		uri = strings.Replace(uri, "{"+"DistributionId+"+"}", aws.EscapePath(*req.DistributionID), -1)
 	}
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -688,8 +696,8 @@ func (c *CloudFront) GetStreamingDistribution(req *GetStreamingDistributionReque
 	uri := c.client.Endpoint + "/2014-10-21/streaming-distribution/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -738,8 +746,8 @@ func (c *CloudFront) GetStreamingDistributionConfig(req *GetStreamingDistributio
 	uri := c.client.Endpoint + "/2014-10-21/streaming-distribution/{Id}/config"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -879,8 +887,8 @@ func (c *CloudFront) ListInvalidations(req *ListInvalidationsRequest) (resp *Lis
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{DistributionId}/invalidation"
 
 	if req.DistributionID != nil {
-		uri = strings.Replace(uri, "{"+"DistributionId"+"}", *req.DistributionID, -1)
-		uri = strings.Replace(uri, "{"+"DistributionId+"+"}", *req.DistributionID, -1)
+		uri = strings.Replace(uri, "{"+"DistributionId"+"}", aws.EscapePath(*req.DistributionID), -1)
+		uri = strings.Replace(uri, "{"+"DistributionId+"+"}", aws.EscapePath(*req.DistributionID), -1)
 	}
 
 	q := url.Values{}
@@ -975,9 +983,11 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(req *UpdateCloudFrontO
 
 	contentType = "application/xml"
 
-	req.CloudFrontOriginAccessIdentityConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "CloudFrontOriginAccessIdentityConfig",
+	if req.CloudFrontOriginAccessIdentityConfig != nil {
+		req.CloudFrontOriginAccessIdentityConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "CloudFrontOriginAccessIdentityConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.CloudFrontOriginAccessIdentityConfig)
@@ -989,8 +999,8 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(req *UpdateCloudFrontO
 	uri := c.client.Endpoint + "/2014-10-21/origin-access-identity/cloudfront/{Id}/config"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -1041,9 +1051,11 @@ func (c *CloudFront) UpdateDistribution(req *UpdateDistributionRequest) (resp *U
 
 	contentType = "application/xml"
 
-	req.DistributionConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "DistributionConfig",
+	if req.DistributionConfig != nil {
+		req.DistributionConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "DistributionConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.DistributionConfig)
@@ -1055,8 +1067,8 @@ func (c *CloudFront) UpdateDistribution(req *UpdateDistributionRequest) (resp *U
 	uri := c.client.Endpoint + "/2014-10-21/distribution/{Id}/config"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -1107,9 +1119,11 @@ func (c *CloudFront) UpdateStreamingDistribution(req *UpdateStreamingDistributio
 
 	contentType = "application/xml"
 
-	req.StreamingDistributionConfig.XMLName = xml.Name{
-		Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
-		Local: "StreamingDistributionConfig",
+	if req.StreamingDistributionConfig != nil {
+		req.StreamingDistributionConfig.XMLName = xml.Name{
+			Space: "http://cloudfront.amazonaws.com/doc/2014-10-21/",
+			Local: "StreamingDistributionConfig",
+		}
 	}
 
 	b, err := xml.Marshal(req.StreamingDistributionConfig)
@@ -1121,8 +1135,8 @@ func (c *CloudFront) UpdateStreamingDistribution(req *UpdateStreamingDistributio
 	uri := c.client.Endpoint + "/2014-10-21/streaming-distribution/{Id}/config"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}

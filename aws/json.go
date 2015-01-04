@@ -3,6 +3,7 @@ package aws
 import (
 	"bytes"
 	"encoding/json"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -43,11 +44,21 @@ func (c *JSONClient) Do(op, method, uri string, req, resp interface{}) error {
 	}()
 
 	if httpResp.StatusCode != http.StatusOK {
-		var err jsonErrorResponse
-		if err := json.NewDecoder(httpResp.Body).Decode(&err); err != nil {
+		bodyBytes, err := ioutil.ReadAll(httpResp.Body)
+		if err != nil {
 			return err
 		}
-		return err.Err()
+		if len(bodyBytes) == 0 {
+			return APIError{
+				StatusCode: httpResp.StatusCode,
+				Message:    httpResp.Status,
+			}
+		}
+		var jsonErr jsonErrorResponse
+		if err := json.Unmarshal(bodyBytes, &jsonErr); err != nil {
+			return err
+		}
+		return jsonErr.Err(httpResp.StatusCode)
 	}
 
 	if resp != nil {
@@ -61,9 +72,10 @@ type jsonErrorResponse struct {
 	Message string `json:"message"`
 }
 
-func (e jsonErrorResponse) Err() error {
+func (e jsonErrorResponse) Err(StatusCode int) error {
 	return APIError{
-		Type:    e.Type,
-		Message: e.Message,
+		StatusCode: StatusCode,
+		Type:       e.Type,
+		Message:    e.Message,
 	}
 }

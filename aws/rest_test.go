@@ -193,3 +193,23 @@ func TestRestRequestJSONError(t *testing.T) {
 		t.Errorf("Unknown error returned: %#v", err)
 	}
 }
+
+func TestEscapePath(t *testing.T) {
+	for _, x := range []struct {
+		in   string
+		want string
+	}{
+		{"", ""},
+		{"ABCDEFGHIJKLMNOPQRTSUVWXYZ", "ABCDEFGHIJKLMNOPQRTSUVWXYZ"},
+		{"abcdefghijklmnopqrtsuvwxyz", "abcdefghijklmnopqrtsuvwxyz"},
+		{"0123456789", "0123456789"},
+		{"_-~./:", "_-~./:"},
+		{"test? file", "test%3F%20file"},
+		{`hello? sausage/êé/Hello, 世界/ " ' @ < > & ?/z.txt`, "hello%3F%20sausage/%C3%AA%C3%A9/Hello%2C%20%E4%B8%96%E7%95%8C/%20%22%20%27%20%40%20%3C%20%3E%20%26%20%3F/z.txt"},
+	} {
+		got := aws.EscapePath(x.in)
+		if got != x.want {
+			t.Errorf("EscapePath(%q) got %q, want %v", x.in, got, x.want)
+		}
+	}
+}

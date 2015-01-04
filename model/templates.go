@@ -297,8 +297,8 @@ func restCommon(t *template.Template) (*template.Template, error) {
   {{ if eq $m.Location "uri" }}
 
   if req.{{ exportable $name }} != nil {
-    uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}"+"}", *req.{{ exportable $name }}, -1)
-    uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}+"+"}", *req.{{ exportable $name }}, -1)
+    uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}"+"}", aws.EscapePath(*req.{{ exportable $name }}), -1)
+    uri = strings.Replace(uri, "{"+"{{ $m.LocationName }}+"+"}", aws.EscapePath(*req.{{ exportable $name }}), -1)
   }
 
   {{ end }}
@@ -392,6 +392,12 @@ func restCommon(t *template.Template) (*template.Template, error) {
 
   {{ end }}
 
+  {{ else if eq $m.Location "headers" }}
+
+  for name, value := range req.{{ exportable $name }} {
+	httpReq.Header.Set(name, value)
+  }
+
   {{ end }}
   {{ end }}
   {{ end }}
@@ -437,7 +443,7 @@ func restCommon(t *template.Template) (*template.Template, error) {
       {{ else if eq $m.Location "headers" }}
       resp.{{ exportable $name }} = {{ $m.Shape.Type }}{}
       for name := range httpResp.Header {
-        if strings.HasPrefix(name, "{{ $m.Location  }}") {
+        if strings.HasPrefix(name, "X-Amz-Meta-") {
           resp.{{ exportable $name }}[name] = httpResp.Header.Get(name)
         }
       }
@@ -513,10 +519,12 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
   {{ else }}
   contentType = "application/xml"
 	{{ if ne $m.LocationName ""}}
-  req.{{ exportable $m.Name }}.XMLName = xml.Name{
+  if req.{{ exportable $m.Name }} != nil {
+	req.{{ exportable $m.Name }}.XMLName = xml.Name{
 		Space: "{{ $m.XMLNamespace.URI }}",
 		Local: "{{ $m.LocationName }}",
 	}
+  }
   {{ end }}
   b, err := xml.Marshal(req.{{ exportable $m.Name }})
   if err != nil {

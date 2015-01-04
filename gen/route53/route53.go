@@ -79,8 +79,8 @@ func (c *Route53) AssociateVPCWithHostedZone(req *AssociateVPCWithHostedZoneRequ
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}/associatevpc"
 
 	if req.HostedZoneID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.HostedZoneID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.HostedZoneID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.HostedZoneID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.HostedZoneID), -1)
 	}
 
 	q := url.Values{}
@@ -153,8 +153,8 @@ func (c *Route53) ChangeResourceRecordSets(req *ChangeResourceRecordSetsRequest)
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}/rrset/"
 
 	if req.HostedZoneID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.HostedZoneID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.HostedZoneID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.HostedZoneID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.HostedZoneID), -1)
 	}
 
 	q := url.Values{}
@@ -207,13 +207,13 @@ func (c *Route53) ChangeTagsForResource(req *ChangeTagsForResourceRequest) (resp
 	uri := c.client.Endpoint + "/2013-04-01/tags/{ResourceType}/{ResourceId}"
 
 	if req.ResourceID != nil {
-		uri = strings.Replace(uri, "{"+"ResourceId"+"}", *req.ResourceID, -1)
-		uri = strings.Replace(uri, "{"+"ResourceId+"+"}", *req.ResourceID, -1)
+		uri = strings.Replace(uri, "{"+"ResourceId"+"}", aws.EscapePath(*req.ResourceID), -1)
+		uri = strings.Replace(uri, "{"+"ResourceId+"+"}", aws.EscapePath(*req.ResourceID), -1)
 	}
 
 	if req.ResourceType != nil {
-		uri = strings.Replace(uri, "{"+"ResourceType"+"}", *req.ResourceType, -1)
-		uri = strings.Replace(uri, "{"+"ResourceType+"+"}", *req.ResourceType, -1)
+		uri = strings.Replace(uri, "{"+"ResourceType"+"}", aws.EscapePath(*req.ResourceType), -1)
+		uri = strings.Replace(uri, "{"+"ResourceType+"+"}", aws.EscapePath(*req.ResourceType), -1)
 	}
 
 	q := url.Values{}
@@ -456,8 +456,8 @@ func (c *Route53) DeleteHealthCheck(req *DeleteHealthCheckRequest) (resp *Delete
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck/{HealthCheckId}"
 
 	if req.HealthCheckID != nil {
-		uri = strings.Replace(uri, "{"+"HealthCheckId"+"}", *req.HealthCheckID, -1)
-		uri = strings.Replace(uri, "{"+"HealthCheckId+"+"}", *req.HealthCheckID, -1)
+		uri = strings.Replace(uri, "{"+"HealthCheckId"+"}", aws.EscapePath(*req.HealthCheckID), -1)
+		uri = strings.Replace(uri, "{"+"HealthCheckId+"+"}", aws.EscapePath(*req.HealthCheckID), -1)
 	}
 
 	q := url.Values{}
@@ -509,8 +509,8 @@ func (c *Route53) DeleteHostedZone(req *DeleteHostedZoneRequest) (resp *DeleteHo
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -559,8 +559,8 @@ func (c *Route53) DeleteReusableDelegationSet(req *DeleteReusableDelegationSetRe
 	uri := c.client.Endpoint + "/2013-04-01/delegationset/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -621,8 +621,8 @@ func (c *Route53) DisassociateVPCFromHostedZone(req *DisassociateVPCFromHostedZo
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}/disassociatevpc"
 
 	if req.HostedZoneID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.HostedZoneID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.HostedZoneID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.HostedZoneID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.HostedZoneID), -1)
 	}
 
 	q := url.Values{}
@@ -668,8 +668,8 @@ func (c *Route53) GetChange(req *GetChangeRequest) (resp *GetChangeResponse, err
 	uri := c.client.Endpoint + "/2013-04-01/change/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -806,8 +806,8 @@ func (c *Route53) GetHealthCheck(req *GetHealthCheckRequest) (resp *GetHealthChe
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck/{HealthCheckId}"
 
 	if req.HealthCheckID != nil {
-		uri = strings.Replace(uri, "{"+"HealthCheckId"+"}", *req.HealthCheckID, -1)
-		uri = strings.Replace(uri, "{"+"HealthCheckId+"+"}", *req.HealthCheckID, -1)
+		uri = strings.Replace(uri, "{"+"HealthCheckId"+"}", aws.EscapePath(*req.HealthCheckID), -1)
+		uri = strings.Replace(uri, "{"+"HealthCheckId+"+"}", aws.EscapePath(*req.HealthCheckID), -1)
 	}
 
 	q := url.Values{}
@@ -891,8 +891,8 @@ func (c *Route53) GetHealthCheckLastFailureReason(req *GetHealthCheckLastFailure
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck/{HealthCheckId}/lastfailurereason"
 
 	if req.HealthCheckID != nil {
-		uri = strings.Replace(uri, "{"+"HealthCheckId"+"}", *req.HealthCheckID, -1)
-		uri = strings.Replace(uri, "{"+"HealthCheckId+"+"}", *req.HealthCheckID, -1)
+		uri = strings.Replace(uri, "{"+"HealthCheckId"+"}", aws.EscapePath(*req.HealthCheckID), -1)
+		uri = strings.Replace(uri, "{"+"HealthCheckId+"+"}", aws.EscapePath(*req.HealthCheckID), -1)
 	}
 
 	q := url.Values{}
@@ -936,8 +936,8 @@ func (c *Route53) GetHealthCheckStatus(req *GetHealthCheckStatusRequest) (resp *
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck/{HealthCheckId}/status"
 
 	if req.HealthCheckID != nil {
-		uri = strings.Replace(uri, "{"+"HealthCheckId"+"}", *req.HealthCheckID, -1)
-		uri = strings.Replace(uri, "{"+"HealthCheckId+"+"}", *req.HealthCheckID, -1)
+		uri = strings.Replace(uri, "{"+"HealthCheckId"+"}", aws.EscapePath(*req.HealthCheckID), -1)
+		uri = strings.Replace(uri, "{"+"HealthCheckId+"+"}", aws.EscapePath(*req.HealthCheckID), -1)
 	}
 
 	q := url.Values{}
@@ -982,8 +982,8 @@ func (c *Route53) GetHostedZone(req *GetHostedZoneRequest) (resp *GetHostedZoneR
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -1026,8 +1026,8 @@ func (c *Route53) GetReusableDelegationSet(req *GetReusableDelegationSetRequest)
 	uri := c.client.Endpoint + "/2013-04-01/delegationset/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}
@@ -1279,8 +1279,8 @@ func (c *Route53) ListResourceRecordSets(req *ListResourceRecordSetsRequest) (re
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}/rrset"
 
 	if req.HostedZoneID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.HostedZoneID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.HostedZoneID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.HostedZoneID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.HostedZoneID), -1)
 	}
 
 	q := url.Values{}
@@ -1393,13 +1393,13 @@ func (c *Route53) ListTagsForResource(req *ListTagsForResourceRequest) (resp *Li
 	uri := c.client.Endpoint + "/2013-04-01/tags/{ResourceType}/{ResourceId}"
 
 	if req.ResourceID != nil {
-		uri = strings.Replace(uri, "{"+"ResourceId"+"}", *req.ResourceID, -1)
-		uri = strings.Replace(uri, "{"+"ResourceId+"+"}", *req.ResourceID, -1)
+		uri = strings.Replace(uri, "{"+"ResourceId"+"}", aws.EscapePath(*req.ResourceID), -1)
+		uri = strings.Replace(uri, "{"+"ResourceId+"+"}", aws.EscapePath(*req.ResourceID), -1)
 	}
 
 	if req.ResourceType != nil {
-		uri = strings.Replace(uri, "{"+"ResourceType"+"}", *req.ResourceType, -1)
-		uri = strings.Replace(uri, "{"+"ResourceType+"+"}", *req.ResourceType, -1)
+		uri = strings.Replace(uri, "{"+"ResourceType"+"}", aws.EscapePath(*req.ResourceType), -1)
+		uri = strings.Replace(uri, "{"+"ResourceType+"+"}", aws.EscapePath(*req.ResourceType), -1)
 	}
 
 	q := url.Values{}
@@ -1452,8 +1452,8 @@ func (c *Route53) ListTagsForResources(req *ListTagsForResourcesRequest) (resp *
 	uri := c.client.Endpoint + "/2013-04-01/tags/{ResourceType}"
 
 	if req.ResourceType != nil {
-		uri = strings.Replace(uri, "{"+"ResourceType"+"}", *req.ResourceType, -1)
-		uri = strings.Replace(uri, "{"+"ResourceType+"+"}", *req.ResourceType, -1)
+		uri = strings.Replace(uri, "{"+"ResourceType"+"}", aws.EscapePath(*req.ResourceType), -1)
+		uri = strings.Replace(uri, "{"+"ResourceType+"+"}", aws.EscapePath(*req.ResourceType), -1)
 	}
 
 	q := url.Values{}
@@ -1511,8 +1511,8 @@ func (c *Route53) UpdateHealthCheck(req *UpdateHealthCheckRequest) (resp *Update
 	uri := c.client.Endpoint + "/2013-04-01/healthcheck/{HealthCheckId}"
 
 	if req.HealthCheckID != nil {
-		uri = strings.Replace(uri, "{"+"HealthCheckId"+"}", *req.HealthCheckID, -1)
-		uri = strings.Replace(uri, "{"+"HealthCheckId+"+"}", *req.HealthCheckID, -1)
+		uri = strings.Replace(uri, "{"+"HealthCheckId"+"}", aws.EscapePath(*req.HealthCheckID), -1)
+		uri = strings.Replace(uri, "{"+"HealthCheckId+"+"}", aws.EscapePath(*req.HealthCheckID), -1)
 	}
 
 	q := url.Values{}
@@ -1569,8 +1569,8 @@ func (c *Route53) UpdateHostedZoneComment(req *UpdateHostedZoneCommentRequest) (
 	uri := c.client.Endpoint + "/2013-04-01/hostedzone/{Id}"
 
 	if req.ID != nil {
-		uri = strings.Replace(uri, "{"+"Id"+"}", *req.ID, -1)
-		uri = strings.Replace(uri, "{"+"Id+"+"}", *req.ID, -1)
+		uri = strings.Replace(uri, "{"+"Id"+"}", aws.EscapePath(*req.ID), -1)
+		uri = strings.Replace(uri, "{"+"Id+"+"}", aws.EscapePath(*req.ID), -1)
 	}
 
 	q := url.Values{}

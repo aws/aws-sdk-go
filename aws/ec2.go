@@ -3,6 +3,7 @@ package aws
 import (
 	"encoding/xml"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -45,11 +46,21 @@ func (c *EC2Client) Do(op, method, uri string, req, resp interface{}) error {
 	}()
 
 	if httpResp.StatusCode != http.StatusOK {
-		var err ec2ErrorResponse
-		if err := xml.NewDecoder(httpResp.Body).Decode(&err); err != nil {
+		bodyBytes, err := ioutil.ReadAll(httpResp.Body)
+		if err != nil {
 			return err
 		}
-		return err.Err()
+		if len(bodyBytes) == 0 {
+			return APIError{
+				StatusCode: httpResp.StatusCode,
+				Message:    httpResp.Status,
+			}
+		}
+		var ec2Err ec2ErrorResponse
+		if err := xml.Unmarshal(bodyBytes, &ec2Err); err != nil {
+			return err
+		}
+		return ec2Err.Err(httpResp.StatusCode)
 	}
 
 	if resp != nil {
@@ -66,12 +77,13 @@ type ec2ErrorResponse struct {
 	RequestID string   `xml:"RequestID"`
 }
 
-func (e ec2ErrorResponse) Err() error {
+func (e ec2ErrorResponse) Err(StatusCode int) error {
 	return APIError{
-		Type:      e.Type,
-		Code:      e.Code,
-		Message:   e.Message,
-		RequestID: e.RequestID,
+		StatusCode: StatusCode,
+		Type:       e.Type,
+		Code:       e.Code,
+		Message:    e.Message,
+		RequestID:  e.RequestID,
 	}
 }
 

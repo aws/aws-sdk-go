@@ -3,6 +3,7 @@ package aws
 import (
 	"encoding/xml"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -47,11 +48,21 @@ func (c *QueryClient) Do(op, method, uri string, req, resp interface{}) error {
 	}()
 
 	if httpResp.StatusCode != http.StatusOK {
-		var err queryErrorResponse
-		if err := xml.NewDecoder(httpResp.Body).Decode(&err); err != nil {
+		bodyBytes, err := ioutil.ReadAll(httpResp.Body)
+		if err != nil {
 			return err
 		}
-		return err.Err()
+		if len(bodyBytes) == 0 {
+			return APIError{
+				StatusCode: httpResp.StatusCode,
+				Message:    httpResp.Status,
+			}
+		}
+		var queryErr queryErrorResponse
+		if err := xml.Unmarshal(bodyBytes, &queryErr); err != nil {
+			return err
+		}
+		return queryErr.Err(httpResp.StatusCode)
 	}
 
 	if resp != nil {
@@ -68,12 +79,13 @@ type queryErrorResponse struct {
 	RequestID string   `xml:"RequestId"`
 }
 
-func (e queryErrorResponse) Err() error {
+func (e queryErrorResponse) Err(StatusCode int) error {
 	return APIError{
-		Type:      e.Type,
-		Code:      e.Code,
-		Message:   e.Message,
-		RequestID: e.RequestID,
+		StatusCode: StatusCode,
+		Type:       e.Type,
+		Code:       e.Code,
+		Message:    e.Message,
+		RequestID:  e.RequestID,
 	}
 }
 
