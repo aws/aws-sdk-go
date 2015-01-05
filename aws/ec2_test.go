@@ -50,15 +50,18 @@ func TestEC2Request(t *testing.T) {
 	}
 
 	req := fakeEC2Request{
-		PresentString:      aws.String("string"),
-		PresentBoolean:     aws.True(),
-		PresentInteger:     aws.Integer(1),
-		PresentLong:        aws.Long(2),
-		PresentDouble:      aws.Double(1.2),
-		PresentFloat:       aws.Float(2.3),
-		PresentSlice:       []string{"one", "two"},
-		PresentStruct:      &EmbeddedStruct{Value: aws.String("v")},
-		PresentStructSlice: []EmbeddedStruct{{Value: aws.String("p")}},
+		PresentString:  aws.String("string"),
+		PresentBoolean: aws.True(),
+		PresentInteger: aws.Integer(1),
+		PresentLong:    aws.Long(2),
+		PresentDouble:  aws.Double(1.2),
+		PresentFloat:   aws.Float(2.3),
+		PresentSlice:   []string{"one", "two"},
+		PresentStruct:  &EmbeddedStruct{Value: aws.String("v")},
+		PresentStructSlice: []EmbeddedStruct{
+			{Value: aws.String("p")},
+			{Value: aws.String("q")},
+		},
 	}
 	var resp fakeEC2Response
 	if err := client.Do("GetIP", "POST", "/", &req, &resp); err != nil {
@@ -101,6 +104,7 @@ func TestEC2Request(t *testing.T) {
 		"PresentSlice.2":             []string{"two"},
 		"PresentStruct.Value":        []string{"v"},
 		"PresentStructSlice.1.Value": []string{"p"},
+		"PresentStructSlice.2.Value": []string{"q"},
 	}
 
 	if !reflect.DeepEqual(form, expectedForm) {

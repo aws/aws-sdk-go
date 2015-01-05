@@ -97,12 +97,13 @@ func (c *EC2Client) loadValues(v url.Values, i interface{}, prefix string) error
 
 	if value.Kind() == reflect.Slice {
 		for i := 0; i < value.Len(); i++ {
-			if prefix == "" {
-				prefix = strconv.Itoa(i + 1)
+			vPrefix := prefix
+			if vPrefix == "" {
+				vPrefix = strconv.Itoa(i + 1)
 			} else {
-				prefix = prefix + "." + strconv.Itoa(i+1)
+				vPrefix = vPrefix + "." + strconv.Itoa(i+1)
 			}
-			if err := c.loadValues(v, value.Index(i).Interface(), prefix); err != nil {
+			if err := c.loadValues(v, value.Index(i).Interface(), vPrefix); err != nil {
 				return err
 			}
 		}
