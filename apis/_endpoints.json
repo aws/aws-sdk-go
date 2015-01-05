@@ -126,9 +126,15 @@
   ],
   "elasticmapreduce":[
     {
-      "uri":"https://cn-north-1.elasticmapreduce.amazonaws.com.cn",
+      "uri":"https://elasticmapreduce.cn-north-1.amazonaws.com.cn",
       "constraints":[
         ["region", "startsWith", "cn-"]
+      ]
+    },
+    {
+      "uri":"https://elasticmapreduce.eu-central-1.amazonaws.com",
+      "constraints":[
+        ["region", "equals", "eu-central-1"]
       ]
     },
     {

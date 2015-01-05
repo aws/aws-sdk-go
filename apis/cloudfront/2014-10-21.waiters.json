@@ -11,21 +11,21 @@
           "expected": "Deployed",
           "matcher": "path",
           "state": "success",
-          "argument": "Status"
+          "argument": "Distribution.Status"
         }
       ]
     },
     "InvalidationCompleted": {
       "delay": 20,
       "operation": "GetInvalidation",
-      "maxAttempts": 30,
+      "maxAttempts": 60,
       "description": "Wait until an invalidation has completed.",
       "acceptors": [
         {
           "expected": "Completed",
           "matcher": "path",
           "state": "success",
-          "argument": "Status"
+          "argument": "Invalidation.Status"
         }
       ]
     },
@@ -39,7 +39,7 @@
           "expected": "Deployed",
           "matcher": "path",
           "state": "success",
-          "argument": "Status"
+          "argument": "StreamingDistribution.Status"
         }
       ]
     }

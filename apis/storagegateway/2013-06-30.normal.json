@@ -38,7 +38,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation activates the gateway you previously deployed on your host. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/GettingStartedActivateGateway-common.html\"> Activate the AWS Storage Gateway</a>. In the activation process, you specify information such as the region you want to use for storing snapshots, the time zone for scheduled snapshots the gateway snapshot schedule window, an activation key, and a name for your gateway. The activation process also associates your gateway with your account; for more information, see <a>UpdateGatewayInformation</a>.</p>"
+      "documentation":"<p>This operation activates the gateway you previously deployed on your host. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/GettingStartedActivateGateway-common.html\"> Activate the AWS Storage Gateway</a>. In the activation process, you specify information such as the region you want to use for storing snapshots, the time zone for scheduled snapshots the gateway snapshot schedule window, an activation key, and a name for your gateway. The activation process also associates your gateway with your account; for more information, see <a>UpdateGatewayInformation</a>.</p> <note>You must turn on the gateway VM before you can activate your gateway.</note>"
     },
     "AddCache":{
       "name":"AddCache",
@@ -116,7 +116,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation configures one or more gateway local disks as working storage for a gateway. This operation is supported only for the gateway-stored volume architecture. This operation is deprecated method in cached-volumes API version (20120630). Use AddUploadBuffer instead.</p> <p>In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add working storage, and one or more disk IDs that you want to configure as working storage.</p>"
+      "documentation":"<p>This operation configures one or more gateway local disks as working storage for a gateway. This operation is supported only for the gateway-stored volume architecture. This operation is deprecated method in cached-volumes API version (20120630). Use AddUploadBuffer instead.</p> <note><p>Working storage is also referred to as upload buffer. You can also use the <a>AddUploadBuffer</a> operation to add upload buffer to a stored-volume gateway.</p></note> <p>In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add working storage, and one or more disk IDs that you want to configure as working storage.</p>"
     },
     "CancelArchival":{
       "name":"CancelArchival",
@@ -200,7 +200,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation creates a cached volume on a specified cached gateway. This operation is supported only for the gateway-cached volume architecture.</p> <p>In the request, you must specify the gateway, size of the volume in bytes, the iSCSI target name, an IP address on which to expose the target, and a unique client token. In response, AWS Storage Gateway creates the volume and returns information about it such as the volume Amazon Resource Name (ARN), its size, and the iSCSI target ARN that initiators can use to connect to the volume target.</p>"
+      "documentation":"<p>This operation creates a cached volume on a specified cached gateway. This operation is supported only for the gateway-cached volume architecture.</p> <note>Cache storage must be allocated to the gateway before you can create a cached volume. Use the <a>AddCache</a> operation to add cache storage to a gateway. </note> <p>In the request, you must specify the gateway, size of the volume in bytes, the iSCSI target name, an IP address on which to expose the target, and a unique client token. In response, AWS Storage Gateway creates the volume and returns information about it such as the volume Amazon Resource Name (ARN), its size, and the iSCSI target ARN that initiators can use to connect to the volume target.</p>"
     },
     "CreateSnapshot":{
       "name":"CreateSnapshot",
@@ -230,7 +230,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation initiates a snapshot of a volume.</p> <p>AWS Storage Gateway provides the ability to back up point-in-time snapshots of your data to Amazon Simple Storage (S3) for durable off-site recovery, as well as import the data to an Amazon Elastic Block Store (EBS) volume in Amazon Elastic Compute Cloud (EC2). You can take snapshots of your gateway volume on a scheduled or ad-hoc basis. This API enables you to take ad-hoc snapshot. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/WorkingWithSnapshots.html\">Working With Snapshots in the AWS Storage Gateway Console</a>.</p> <p>In the CreateSnapshot request you identify the volume by providing its Amazon Resource Name (ARN). You must also provide description for the snapshot. When AWS Storage Gateway takes the snapshot of specified volume, the snapshot and description appears in the AWS Storage Gateway Console. In response, AWS Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot.</p>"
+      "documentation":"<p>This operation initiates a snapshot of a volume.</p> <p>AWS Storage Gateway provides the ability to back up point-in-time snapshots of your data to Amazon Simple Storage (S3) for durable off-site recovery, as well as import the data to an Amazon Elastic Block Store (EBS) volume in Amazon Elastic Compute Cloud (EC2). You can take snapshots of your gateway volume on a scheduled or ad-hoc basis. This API enables you to take ad-hoc snapshot. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/WorkingWithSnapshots.html\">Working With Snapshots in the AWS Storage Gateway Console</a>.</p> <p>In the CreateSnapshot request you identify the volume by providing its Amazon Resource Name (ARN). You must also provide description for the snapshot. When AWS Storage Gateway takes the snapshot of specified volume, the snapshot and description appears in the AWS Storage Gateway Console. In response, AWS Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot.</p> <note>To list or delete a snapshot, you must use the Amazon EC2 API. For more information, .</note>"
     },
     "CreateSnapshotFromVolumeRecoveryPoint":{
       "name":"CreateSnapshotFromVolumeRecoveryPoint",
@@ -254,7 +254,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation initiates a snapshot of a gateway from a volume recovery point. This operation is supported only for the gateway-cached volume architecture (see ).</p> <p>A volume recovery point is a point in time at which all data of the volume is consistent and from which you can create a snapshot. To get a list of volume recovery point for gateway-cached volumes, use <a>ListVolumeRecoveryPoints</a>.</p> <p>In the <code>CreateSnapshotFromVolumeRecoveryPoint</code> request, you identify the volume by providing its Amazon Resource Name (ARN). You must also provide a description for the snapshot. When AWS Storage Gateway takes a snapshot of the specified volume, the snapshot and its description appear in the AWS Storage Gateway console. In response, AWS Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot.</p>"
+      "documentation":"<p>This operation initiates a snapshot of a gateway from a volume recovery point. This operation is supported only for the gateway-cached volume architecture (see ).</p> <p>A volume recovery point is a point in time at which all data of the volume is consistent and from which you can create a snapshot. To get a list of volume recovery point for gateway-cached volumes, use <a>ListVolumeRecoveryPoints</a>.</p> <p>In the <code>CreateSnapshotFromVolumeRecoveryPoint</code> request, you identify the volume by providing its Amazon Resource Name (ARN). You must also provide a description for the snapshot. When AWS Storage Gateway takes a snapshot of the specified volume, the snapshot and its description appear in the AWS Storage Gateway console. In response, AWS Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot.</p> <note> <p>To list or delete a snapshot, you must use the Amazon EC2 API. For more information, in <i>Amazon Elastic Compute Cloud API Reference</i>.</p> </note>"
     },
     "CreateStorediSCSIVolume":{
       "name":"CreateStorediSCSIVolume",
@@ -314,7 +314,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>Creates one or more virtual tapes. You write data to the virtual tapes and then archive the tapes.</p>"
+      "documentation":"<p>Creates one or more virtual tapes. You write data to the virtual tapes and then archive the tapes.</p> <note>Cache storage must be allocated to the gateway before you can create virtual tapes. Use the <a>AddCache</a> operation to add cache storage to a gateway. </note>"
     },
     "DeleteBandwidthRateLimit":{
       "name":"DeleteBandwidthRateLimit",
@@ -425,7 +425,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p> This operation deletes a snapshot of a volume. </p> <p> You can take snapshots of your gateway volumes on a scheduled or ad-hoc basis. This API enables you to delete a snapshot schedule for a volume. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/WorkingWithSnapshots.html\">Working with Snapshots</a>. In the <code>DeleteSnapshotSchedule</code> request, you identify the volume by providing its Amazon Resource Name (ARN). </p>"
+      "documentation":"<p> This operation deletes a snapshot of a volume. </p> <p> You can take snapshots of your gateway volumes on a scheduled or ad-hoc basis. This API enables you to delete a snapshot schedule for a volume. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/WorkingWithSnapshots.html\">Working with Snapshots</a>. In the <code>DeleteSnapshotSchedule</code> request, you identify the volume by providing its Amazon Resource Name (ARN). </p> <note> <p>To list or delete a snapshot, you must use the Amazon EC2 API. in <i>Amazon Elastic Compute Cloud API Reference</i>.</p> </note>"
     },
     "DeleteTape":{
       "name":"DeleteTape",
@@ -911,7 +911,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation returns information about the working storage of a gateway. This operation is supported only for the gateway-stored volume architecture. This operation is deprecated in cached-volumes API version (20120630). Use DescribeUploadBuffer instead.</p> <p>The response includes disk IDs that are configured as working storage, and it includes the amount of working storage allocated and used.</p>"
+      "documentation":"<p>This operation returns information about the working storage of a gateway. This operation is supported only for the gateway-stored volume architecture. This operation is deprecated in cached-volumes API version (20120630). Use DescribeUploadBuffer instead.</p> <note><p>Working storage is also referred to as upload buffer. You can also use the DescribeUploadBuffer operation to add upload buffer to a stored-volume gateway.</p></note> <p>The response includes disk IDs that are configured as working storage, and it includes the amount of working storage allocated and used.</p>"
     },
     "DisableGateway":{
       "name":"DisableGateway",
@@ -995,7 +995,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation returns a list of the local disks of a gateway. To specify which gateway to describe you use the Amazon Resource Name (ARN) of the gateway in the body of the request.</p> <p>The request returns all disks, specifying which are configured as working storage, stored volume or not configured at all.</p>"
+      "documentation":"<p>This operation returns a list of the gateway's local disks. To specify which gateway to describe, you use the Amazon Resource Name (ARN) of the gateway in the body of the request.</p> <p>The request returns a list of all disks, specifying which are configured as working storage, cache storage, or stored volume or not configured at all. The response includes a <code>DiskStatus</code> field. This field can have a value of present (the disk is availble to use), missing (the disk is no longer connected to the gateway), or mismatch (the disk node is occupied by a disk that has incorrect metadata or the disk content is corrupted). </p>"
     },
     "ListVolumeRecoveryPoints":{
       "name":"ListVolumeRecoveryPoints",
@@ -1047,6 +1047,30 @@
         }
       ],
       "documentation":"<p>This operation lists the iSCSI stored volumes of a gateway. Results are sorted by volume ARN. The response includes only the volume ARNs. If you want additional volume information, use the <a>DescribeStorediSCSIVolumes</a> API.</p> <p>The operation supports pagination. By default, the operation returns a maximum of up to 100 volumes. You can optionally specify the <code>Limit</code> field in the body to limit the number of volumes in the response. If the number of volumes returned in the response is truncated, the response includes a Marker field. You can use this Marker value in your subsequent request to retrieve the next set of volumes.</p>"
+    },
+    "ResetCache":{
+      "name":"ResetCache",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ResetCacheInput"},
+      "output":{"shape":"ResetCacheOutput"},
+      "errors":[
+        {
+          "shape":"InvalidGatewayRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>An exception occurred because an invalid gateway request was issued to the service. See the error and message fields for more information.</p>"
+        },
+        {
+          "shape":"InternalServerError",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
+        }
+      ],
+      "documentation":"<p>This operation resets all cache disks and makes the disks available for reconfiguration as cache storage. When a cache is reset, the gateway loses its cache storage. At this point you can reconfigure the disks as cache disks. </p>"
     },
     "RetrieveTapeArchive":{
       "name":"RetrieveTapeArchive",
@@ -1106,7 +1130,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>Retrieves the recovery point for the specified virtual tape.</p> <p>A recovery point is a point in time view of a virtual tape at which all the data on the tape is consistent. If your gateway crashes, virtual tapes that have recovery points can be recovered to a new gateway.</p>"
+      "documentation":"<p>Retrieves the recovery point for the specified virtual tape.</p> <p>A recovery point is a point in time view of a virtual tape at which all the data on the tape is consistent. If your gateway crashes, virtual tapes that have recovery points can be recovered to a new gateway.</p> <note>The virtual tape can be retrieved to only one gateway. The retrieved tape is read-only. The virtual tape can be retrieved to only a gateway-VTL. There is no charge for retrieving recovery points.</note>"
     },
     "ShutdownGateway":{
       "name":"ShutdownGateway",
@@ -1136,7 +1160,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation shuts down a gateway. To specify which gateway to shut down, use the Amazon Resource Name (ARN) of the gateway in the body of your request.</p> <p>The operation shuts down the gateway service component running in the storage gateway's virtual machine (VM) and not the VM.</p> <p>After the gateway is shutdown, you cannot call any other API except <a>StartGateway</a>, <a>DescribeGatewayInformation</a>, and <a>ListGateways</a>. For more information, see <a>ActivateGateway</a>. Your applications cannot read from or write to the gateway's storage volumes, and there are no snapshots taken.</p> <p>If do not intend to use the gateway again, you must delete the gateway (using <a>DeleteGateway</a>) to no longer pay software charges associated with the gateway.</p>"
+      "documentation":"<p>This operation shuts down a gateway. To specify which gateway to shut down, use the Amazon Resource Name (ARN) of the gateway in the body of your request.</p> <p>The operation shuts down the gateway service component running in the storage gateway's virtual machine (VM) and not the VM.</p> <note>If you want to shut down the VM, it is recommended that you first shut down the gateway component in the VM to avoid unpredictable conditions.</note> <p>After the gateway is shutdown, you cannot call any other API except <a>StartGateway</a>, <a>DescribeGatewayInformation</a>, and <a>ListGateways</a>. For more information, see <a>ActivateGateway</a>. Your applications cannot read from or write to the gateway's storage volumes, and there are no snapshots taken.</p> <note>When you make a shutdown request, you will get a <code>200 OK</code> success response immediately. However, it might take some time for the gateway to shut down. You can call the <a>DescribeGatewayInformation</a> API to check the status. For more information, see <a>ActivateGateway</a>.</note> <p>If do not intend to use the gateway again, you must delete the gateway (using <a>DeleteGateway</a>) to no longer pay software charges associated with the gateway.</p>"
     },
     "StartGateway":{
       "name":"StartGateway",
@@ -1166,7 +1190,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation starts a gateway that you previously shut down (see <a>ShutdownGateway</a>). After the gateway starts, you can then make other API calls, your applications can read from or write to the gateway's storage volumes and you will be able to take snapshot backups.</p> <p>To specify which gateway to start, use the Amazon Resource Name (ARN) of the gateway in your request.</p>"
+      "documentation":"<p>This operation starts a gateway that you previously shut down (see <a>ShutdownGateway</a>). After the gateway starts, you can then make other API calls, your applications can read from or write to the gateway's storage volumes and you will be able to take snapshot backups.</p> <note>When you make a request, you will get a 200 OK success response immediately. However, it might take some time for the gateway to be ready. You should call <a>DescribeGatewayInformation</a> and check the status before making any additional API calls. For more information, see <a>ActivateGateway</a>.</note> <p>To specify which gateway to start, use the Amazon Resource Name (ARN) of the gateway in your request.</p>"
     },
     "UpdateBandwidthRateLimit":{
       "name":"UpdateBandwidthRateLimit",
@@ -1283,7 +1307,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation updates the gateway virtual machine (VM) software. The request immediately triggers the software update. </p> <important>A software update forces a system restart of your gateway. You can minimize the chance of any disruption to your applications by increasing your iSCSI Initiators' timeouts. For more information about increasing iSCSI Initiator timeouts for Windows and Linux, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorWindowsClient.html#CustomizeWindowsiSCSISettings\">Customizing Your Windows iSCSI Settings</a> and <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorRedHatClient.html#CustomizeLinuxiSCSISettings\">Customizing Your Linux iSCSI Settings</a>, respectively.</important>"
+      "documentation":"<p>This operation updates the gateway virtual machine (VM) software. The request immediately triggers the software update. </p> <note>When you make this request, you get a <code>200 OK</code> success response immediately. However, it might take some time for the update to complete. You can call <a>DescribeGatewayInformation</a> to verify the gateway is in the <code>STATE_RUNNING</code> state.</note> <important>A software update forces a system restart of your gateway. You can minimize the chance of any disruption to your applications by increasing your iSCSI Initiators' timeouts. For more information about increasing iSCSI Initiator timeouts for Windows and Linux, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorWindowsClient.html#CustomizeWindowsiSCSISettings\">Customizing Your Windows iSCSI Settings</a> and <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorRedHatClient.html#CustomizeLinuxiSCSISettings\">Customizing Your Linux iSCSI Settings</a>, respectively.</important>"
     },
     "UpdateMaintenanceStartTime":{
       "name":"UpdateMaintenanceStartTime",
@@ -1344,6 +1368,36 @@
         }
       ],
       "documentation":"<p>This operation updates a snapshot schedule configured for a gateway volume.</p> <p>The default snapshot schedule for volume is once every 24 hours, starting at the creation time of the volume. You can use this API to change the snapshot schedule configured for the volume.</p> <p>In the request you must identify the gateway volume whose snapshot schedule you want to update, and the schedule information, including when you want the snapshot to begin on a day and the frequency (in hours) of snapshots.</p>"
+    },
+    "UpdateVTLDeviceType":{
+      "name":"UpdateVTLDeviceType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"UpdateVTLDeviceTypeInput",
+        "documentation":"<p>UpdateVTLDeviceTypeInput</p>"
+      },
+      "output":{
+        "shape":"UpdateVTLDeviceTypeOutput",
+        "documentation":"<p>UpdateVTLDeviceTypeOutput</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidGatewayRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>An exception occurred because an invalid gateway request was issued to the service. See the error and message fields for more information.</p>"
+        },
+        {
+          "shape":"InternalServerError",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
+        }
+      ],
+      "documentation":"<p>This operation updates the type of medium changer in a gateway-VTL. When you activate a gateway-VTL, you select a medium changer type for the gateway-VTL. This operation enables you to select a different type of medium changer after a gateway-VTL is activated.</p>"
     }
   },
   "shapes":{
@@ -1379,7 +1433,7 @@
         },
         "MediumChangerType":{
           "shape":"MediumChangerType",
-          "documentation":"<p>The value that indicates the type of medium changer to use for gateway-VTL. This field is optional.</p> <p><i>Valid Values</i>: \"STK-L700\" </p>"
+          "documentation":"<p>The value that indicates the type of medium changer to use for gateway-VTL. This field is optional.</p> <p><i>Valid Values</i>: \"STK-L700\", \"AWS-Gateway-VTL\"</p>"
         }
       },
       "documentation":"<p>A JSON object containing one or more of the following fields:</p> <ul> <li> <a>ActivateGatewayInput$ActivationKey</a> </li> <li> <a>GatewayName</a> </li> <li> <a>ActivateGatewayInput$GatewayRegion</a> </li> <li> <a>ActivateGatewayInput$GatewayTimezone</a> </li> <li> <a>ActivateGatewayInput$GatewayType</a> </li> <li> <a>ActivateGatewayInput$TapeDriveType</a> </li> <li> <a>ActivateGatewayInput$MediumChangerType</a> </li> </ul>"
@@ -1712,11 +1766,11 @@
         },
         "TapeSizeInBytes":{
           "shape":"TapeSize",
-          "documentation":"<p>The size, in bytes, of the virtual tapes you want to create.</p>"
+          "documentation":"<p>The size, in bytes, of the virtual tapes you want to create.</p> <note>The size must be gigabyte (1024*1024*1024 byte) aligned.</note>"
         },
         "ClientToken":{
           "shape":"ClientToken",
-          "documentation":"<p>A unique identifier that you use to retry a request. If you retry a request, use the same <code>ClientToken</code> you specified in the initial request.</p>"
+          "documentation":"<p>A unique identifier that you use to retry a request. If you retry a request, use the same <code>ClientToken</code> you specified in the initial request.</p> <note>Using the same <code>ClientToken</code> prevents creating the tape multiple times.</note>"
         },
         "NumTapesToCreate":{
           "shape":"NumTapesToCreate",
@@ -1724,7 +1778,7 @@
         },
         "TapeBarcodePrefix":{
           "shape":"TapeBarcodePrefix",
-          "documentation":"<p>A prefix you append to the barcode of the virtual tape you are creating. This makes a barcode unique.</p>"
+          "documentation":"<p>A prefix you append to the barcode of the virtual tape you are creating. This makes a barcode unique.</p> <note>The prefix must be 1 to 4 characters in length and must be upper-case letters A-Z.</note>"
         }
       },
       "documentation":"<p>CreateTapesInput</p>"
@@ -2145,7 +2199,7 @@
         },
         "Limit":{
           "shape":"PositiveIntObject",
-          "documentation":"<p>Specifies that the number of virtual tapes described be limited to the specified number.</p>"
+          "documentation":"<p>Specifies that the number of virtual tapes described be limited to the specified number.</p> <note>Amazon Web Services may impose its own limit, if this field is not set.</note>"
         }
       },
       "documentation":"<p>DescribeTapesInput</p>"
@@ -2187,7 +2241,7 @@
         "GatewayARN":{"shape":"GatewayARN"},
         "VTLDeviceARNs":{
           "shape":"VTLDeviceARNs",
-          "documentation":"<p>An array of strings, where each string represents the Amazon Resource Name (ARN) of a VTL device.</p>"
+          "documentation":"<p>An array of strings, where each string represents the Amazon Resource Name (ARN) of a VTL device.</p> <note>All of the specified VTL devices must be from the same gateway. If no VTL devices are specified, the result will contain all devices on the specified gateway.</note>"
         },
         "Marker":{
           "shape":"Marker",
@@ -2247,6 +2301,11 @@
       "min":1,
       "max":255
     },
+    "DeviceType":{
+      "type":"string",
+      "min":2,
+      "max":50
+    },
     "DeviceiSCSIAttributes":{
       "type":"structure",
       "members":{
@@ -2293,6 +2352,7 @@
         "DiskId":{"shape":"DiskId"},
         "DiskPath":{"shape":"string"},
         "DiskNode":{"shape":"string"},
+        "DiskStatus":{"shape":"string"},
         "DiskSizeInBytes":{"shape":"long"},
         "DiskAllocationType":{"shape":"DiskAllocationType"},
         "DiskAllocationResource":{"shape":"string"}
@@ -2578,7 +2638,7 @@
         },
         "MacAddress":{
           "shape":"string",
-          "documentation":"<p>The Media Access Control (MAC) address of the interface.</p>"
+          "documentation":"<p>The Media Access Control (MAC) address of the interface.</p> <note>This is currently unsupported and will not be returned in output.</note>"
         },
         "Ipv6Address":{
           "shape":"string",
@@ -2614,6 +2674,19 @@
       "type":"string",
       "min":1,
       "max":25
+    },
+    "ResetCacheInput":{
+      "type":"structure",
+      "required":["GatewayARN"],
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "ResetCacheOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
     },
     "RetrieveTapeArchiveInput":{
       "type":"structure",
@@ -2855,11 +2928,7 @@
       "member":{"shape":"TapeRecoveryPointInfo"}
     },
     "TapeRecoveryPointStatus":{"type":"string"},
-    "TapeSize":{
-      "type":"long",
-      "min":107374182400,
-      "max":2748779069440
-    },
+    "TapeSize":{"type":"long"},
     "TapeStatus":{"type":"string"},
     "Tapes":{
       "type":"list",
@@ -3037,6 +3106,34 @@
         "VolumeARN":{"shape":"VolumeARN"}
       },
       "documentation":"<p>A JSON object containing the of the updated storage volume.</p>"
+    },
+    "UpdateVTLDeviceTypeInput":{
+      "type":"structure",
+      "required":[
+        "VTLDeviceARN",
+        "DeviceType"
+      ],
+      "members":{
+        "VTLDeviceARN":{
+          "shape":"VTLDeviceARN",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the medium changer you want to select.</p>"
+        },
+        "DeviceType":{
+          "shape":"DeviceType",
+          "documentation":"<p>The type of medium changer you want to select.</p> <p><i>Valid Values</i>: \"STK-L700\", \"AWS-Gateway-VTL\"</p>"
+        }
+      },
+      "documentation":"<p>UpdateVTLDeviceTypeInput</p>"
+    },
+    "UpdateVTLDeviceTypeOutput":{
+      "type":"structure",
+      "members":{
+        "VTLDeviceARN":{
+          "shape":"VTLDeviceARN",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the medium changer you have selected.</p>"
+        }
+      },
+      "documentation":"<p>UpdateVTLDeviceTypeOutput</p>"
     },
     "VTLDevice":{
       "type":"structure",
