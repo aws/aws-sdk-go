@@ -41,19 +41,21 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *SWF
 
 // CountClosedWorkflowExecutions returns the number of closed workflow
 // executions within the given domain that meet the specified filtering
-// criteria. You can use IAM policies to control this action's access to
-// Amazon SWF resources as follows: Use a Resource element with the domain
-// name to limit the action to only specified domains. Use an Action
-// element to allow or deny permission to call this action. Constrain the
-// following parameters by using a Condition element with the appropriate
-// keys. tagFilter.tag : String constraint. The key is swf:tagFilter.tag
-// typeFilter.name : String constraint. The key is swf:typeFilter.name
-// typeFilter.version : String constraint. The key is
-// swf:typeFilter.version If the caller does not have sufficient
-// permissions to invoke the action, or the parameter values fall outside
-// the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// criteria. This operation is eventually consistent. The results are best
+// effort and may not exactly reflect recent updates and changes. You can
+// use IAM policies to control this action's access to Amazon SWF resources
+// as follows: Use a Resource element with the domain name to limit the
+// action to only specified domains. Use an Action element to allow or deny
+// permission to call this action. Constrain the following parameters by
+// using a Condition element with the appropriate keys. tagFilter.tag :
+// String constraint. The key is swf:tagFilter.tag typeFilter.name : String
+// constraint. The key is swf:typeFilter.name typeFilter.version : String
+// constraint. The key is swf:typeFilter.version If the caller does not
+// have sufficient permissions to invoke the action, or the parameter
+// values fall outside the specified constraints, the action fails. The
+// associated event attribute's cause parameter will be set to For details
+// and example IAM policies, see Using IAM to Manage Access to Amazon SWF
+// Workflows
 func (c *SWF) CountClosedWorkflowExecutions(req *CountClosedWorkflowExecutionsInput) (resp *WorkflowExecutionCount, err error) {
 	resp = &WorkflowExecutionCount{}
 	err = c.client.Do("CountClosedWorkflowExecutions", "POST", "/", req, resp)
@@ -62,19 +64,21 @@ func (c *SWF) CountClosedWorkflowExecutions(req *CountClosedWorkflowExecutionsIn
 
 // CountOpenWorkflowExecutions returns the number of open workflow
 // executions within the given domain that meet the specified filtering
-// criteria. You can use IAM policies to control this action's access to
-// Amazon SWF resources as follows: Use a Resource element with the domain
-// name to limit the action to only specified domains. Use an Action
-// element to allow or deny permission to call this action. Constrain the
-// following parameters by using a Condition element with the appropriate
-// keys. tagFilter.tag : String constraint. The key is swf:tagFilter.tag
-// typeFilter.name : String constraint. The key is swf:typeFilter.name
-// typeFilter.version : String constraint. The key is
-// swf:typeFilter.version If the caller does not have sufficient
-// permissions to invoke the action, or the parameter values fall outside
-// the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// criteria. This operation is eventually consistent. The results are best
+// effort and may not exactly reflect recent updates and changes. You can
+// use IAM policies to control this action's access to Amazon SWF resources
+// as follows: Use a Resource element with the domain name to limit the
+// action to only specified domains. Use an Action element to allow or deny
+// permission to call this action. Constrain the following parameters by
+// using a Condition element with the appropriate keys. tagFilter.tag :
+// String constraint. The key is swf:tagFilter.tag typeFilter.name : String
+// constraint. The key is swf:typeFilter.name typeFilter.version : String
+// constraint. The key is swf:typeFilter.version If the caller does not
+// have sufficient permissions to invoke the action, or the parameter
+// values fall outside the specified constraints, the action fails. The
+// associated event attribute's cause parameter will be set to For details
+// and example IAM policies, see Using IAM to Manage Access to Amazon SWF
+// Workflows
 func (c *SWF) CountOpenWorkflowExecutions(req *CountOpenWorkflowExecutionsInput) (resp *WorkflowExecutionCount, err error) {
 	resp = &WorkflowExecutionCount{}
 	err = c.client.Do("CountOpenWorkflowExecutions", "POST", "/", req, resp)
@@ -92,9 +96,9 @@ func (c *SWF) CountOpenWorkflowExecutions(req *CountOpenWorkflowExecutionsInput)
 // using a Condition element with the swf:taskList.name key to allow the
 // action to access only certain task lists. If the caller does not have
 // sufficient permissions to invoke the action, or the parameter values
-// fall outside the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// fall outside the specified constraints, the action fails. The associated
+// event attribute's cause parameter will be set to For details and example
+// IAM policies, see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) CountPendingActivityTasks(req *CountPendingActivityTasksInput) (resp *PendingTaskCount, err error) {
 	resp = &PendingTaskCount{}
 	err = c.client.Do("CountPendingActivityTasks", "POST", "/", req, resp)
@@ -112,9 +116,9 @@ func (c *SWF) CountPendingActivityTasks(req *CountPendingActivityTasksInput) (re
 // using a Condition element with the swf:taskList.name key to allow the
 // action to access only certain task lists. If the caller does not have
 // sufficient permissions to invoke the action, or the parameter values
-// fall outside the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// fall outside the specified constraints, the action fails. The associated
+// event attribute's cause parameter will be set to For details and example
+// IAM policies, see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) CountPendingDecisionTasks(req *CountPendingDecisionTasksInput) (resp *PendingTaskCount, err error) {
 	resp = &PendingTaskCount{}
 	err = c.client.Do("CountPendingDecisionTasks", "POST", "/", req, resp)
@@ -124,8 +128,10 @@ func (c *SWF) CountPendingDecisionTasks(req *CountPendingDecisionTasksInput) (re
 // DeprecateActivityType deprecates the specified activity type . After an
 // activity type has been deprecated, you cannot create new tasks of that
 // activity type. Tasks of this type that were scheduled before the type
-// was deprecated will continue to run. You can use IAM policies to control
-// this action's access to Amazon SWF resources as follows: Use a Resource
+// was deprecated will continue to run. This operation is eventually
+// consistent. The results are best effort and may not exactly reflect
+// recent updates and changes. You can use IAM policies to control this
+// action's access to Amazon SWF resources as follows: Use a Resource
 // element with the domain name to limit the action to only specified
 // domains. Use an Action element to allow or deny permission to call this
 // action. Constrain the following parameters by using a Condition element
@@ -133,9 +139,9 @@ func (c *SWF) CountPendingDecisionTasks(req *CountPendingDecisionTasksInput) (re
 // key is swf:activityType.name activityType.version : String constraint.
 // The key is swf:activityType.version If the caller does not have
 // sufficient permissions to invoke the action, or the parameter values
-// fall outside the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// fall outside the specified constraints, the action fails. The associated
+// event attribute's cause parameter will be set to For details and example
+// IAM policies, see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DeprecateActivityType(req *DeprecateActivityTypeInput) (err error) {
 	// NRE
 	err = c.client.Do("DeprecateActivityType", "POST", "/", req, nil)
@@ -147,15 +153,17 @@ func (c *SWF) DeprecateActivityType(req *DeprecateActivityTypeInput) (err error)
 // register new types. However, you can still use visibility actions on
 // this domain. Deprecating a domain also deprecates all activity and
 // workflow types registered in the domain. Executions that were started
-// before the domain was deprecated will continue to run. You can use IAM
-// policies to control this action's access to Amazon SWF resources as
-// follows: Use a Resource element with the domain name to limit the action
-// to only specified domains. Use an Action element to allow or deny
-// permission to call this action. You cannot use an IAM policy to
-// constrain this action's parameters. If the caller does not have
-// sufficient permissions to invoke the action, or the parameter values
-// fall outside the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
+// before the domain was deprecated will continue to run. This operation is
+// eventually consistent. The results are best effort and may not exactly
+// reflect recent updates and changes. You can use IAM policies to control
+// this action's access to Amazon SWF resources as follows: Use a Resource
+// element with the domain name to limit the action to only specified
+// domains. Use an Action element to allow or deny permission to call this
+// action. You cannot use an IAM policy to constrain this action's
+// parameters. If the caller does not have sufficient permissions to invoke
+// the action, or the parameter values fall outside the specified
+// constraints, the action fails. The associated event attribute's cause
+// parameter will be set to For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DeprecateDomain(req *DeprecateDomainInput) (err error) {
 	// NRE
@@ -167,18 +175,20 @@ func (c *SWF) DeprecateDomain(req *DeprecateDomainInput) (err error) {
 // workflow type has been deprecated, you cannot create new executions of
 // that type. Executions that were started before the type was deprecated
 // will continue to run. A deprecated workflow type may still be used when
-// calling visibility actions. You can use IAM policies to control this
-// action's access to Amazon SWF resources as follows: Use a Resource
-// element with the domain name to limit the action to only specified
-// domains. Use an Action element to allow or deny permission to call this
-// action. Constrain the following parameters by using a Condition element
-// with the appropriate keys. workflowType.name : String constraint. The
-// key is swf:workflowType.name workflowType.version : String constraint.
-// The key is swf:workflowType.version If the caller does not have
-// sufficient permissions to invoke the action, or the parameter values
-// fall outside the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// calling visibility actions. This operation is eventually consistent. The
+// results are best effort and may not exactly reflect recent updates and
+// changes. You can use IAM policies to control this action's access to
+// Amazon SWF resources as follows: Use a Resource element with the domain
+// name to limit the action to only specified domains. Use an Action
+// element to allow or deny permission to call this action. Constrain the
+// following parameters by using a Condition element with the appropriate
+// keys. workflowType.name : String constraint. The key is
+// swf:workflowType.name workflowType.version : String constraint. The key
+// is swf:workflowType.version If the caller does not have sufficient
+// permissions to invoke the action, or the parameter values fall outside
+// the specified constraints, the action fails. The associated event
+// attribute's cause parameter will be set to For details and example IAM
+// policies, see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DeprecateWorkflowType(req *DeprecateWorkflowTypeInput) (err error) {
 	// NRE
 	err = c.client.Do("DeprecateWorkflowType", "POST", "/", req, nil)
@@ -186,8 +196,8 @@ func (c *SWF) DeprecateWorkflowType(req *DeprecateWorkflowTypeInput) (err error)
 }
 
 // DescribeActivityType returns information about the specified activity
-// type. This includes configuration settings provided at registration time
-// as well as other general information about the type. You can use IAM
+// type. This includes configuration settings provided when the type was
+// registered and other general information about the type. You can use IAM
 // policies to control this action's access to Amazon SWF resources as
 // follows: Use a Resource element with the domain name to limit the action
 // to only specified domains. Use an Action element to allow or deny
@@ -197,15 +207,16 @@ func (c *SWF) DeprecateWorkflowType(req *DeprecateWorkflowTypeInput) (err error)
 // : String constraint. The key is swf:activityType.version If the caller
 // does not have sufficient permissions to invoke the action, or the
 // parameter values fall outside the specified constraints, the action
-// fails by throwing OperationNotPermitted . For details and example IAM
-// policies, see Using IAM to Manage Access to Amazon SWF Workflows
+// fails. The associated event attribute's cause parameter will be set to
+// For details and example IAM policies, see Using IAM to Manage Access to
+// Amazon SWF Workflows
 func (c *SWF) DescribeActivityType(req *DescribeActivityTypeInput) (resp *ActivityTypeDetail, err error) {
 	resp = &ActivityTypeDetail{}
 	err = c.client.Do("DescribeActivityType", "POST", "/", req, resp)
 	return
 }
 
-// DescribeDomain returns information about the specified domain including
+// DescribeDomain returns information about the specified domain, including
 // description and status. You can use IAM policies to control this
 // action's access to Amazon SWF resources as follows: Use a Resource
 // element with the domain name to limit the action to only specified
@@ -213,9 +224,9 @@ func (c *SWF) DescribeActivityType(req *DescribeActivityTypeInput) (resp *Activi
 // action. You cannot use an IAM policy to constrain this action's
 // parameters. If the caller does not have sufficient permissions to invoke
 // the action, or the parameter values fall outside the specified
-// constraints, the action fails by throwing OperationNotPermitted . For
-// details and example IAM policies, see Using IAM to Manage Access to
-// Amazon SWF Workflows
+// constraints, the action fails. The associated event attribute's cause
+// parameter will be set to For details and example IAM policies, see Using
+// IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DescribeDomain(req *DescribeDomainInput) (resp *DomainDetail, err error) {
 	resp = &DomainDetail{}
 	err = c.client.Do("DescribeDomain", "POST", "/", req, resp)
@@ -223,15 +234,17 @@ func (c *SWF) DescribeDomain(req *DescribeDomainInput) (resp *DomainDetail, err 
 }
 
 // DescribeWorkflowExecution returns information about the specified
-// workflow execution including its type and some statistics. You can use
-// IAM policies to control this action's access to Amazon SWF resources as
-// follows: Use a Resource element with the domain name to limit the action
-// to only specified domains. Use an Action element to allow or deny
-// permission to call this action. You cannot use an IAM policy to
-// constrain this action's parameters. If the caller does not have
-// sufficient permissions to invoke the action, or the parameter values
-// fall outside the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
+// workflow execution including its type and some statistics. This
+// operation is eventually consistent. The results are best effort and may
+// not exactly reflect recent updates and changes. You can use IAM policies
+// to control this action's access to Amazon SWF resources as follows: Use
+// a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to
+// call this action. You cannot use an IAM policy to constrain this
+// action's parameters. If the caller does not have sufficient permissions
+// to invoke the action, or the parameter values fall outside the specified
+// constraints, the action fails. The associated event attribute's cause
+// parameter will be set to For details and example IAM policies, see Using
 // IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DescribeWorkflowExecution(req *DescribeWorkflowExecutionInput) (resp *WorkflowExecutionDetail, err error) {
 	resp = &WorkflowExecutionDetail{}
@@ -251,9 +264,9 @@ func (c *SWF) DescribeWorkflowExecution(req *DescribeWorkflowExecutionInput) (re
 // workflowType.version : String constraint. The key is
 // swf:workflowType.version If the caller does not have sufficient
 // permissions to invoke the action, or the parameter values fall outside
-// the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// the specified constraints, the action fails. The associated event
+// attribute's cause parameter will be set to For details and example IAM
+// policies, see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) DescribeWorkflowType(req *DescribeWorkflowTypeInput) (resp *WorkflowTypeDetail, err error) {
 	resp = &WorkflowTypeDetail{}
 	err = c.client.Do("DescribeWorkflowType", "POST", "/", req, resp)
@@ -263,16 +276,18 @@ func (c *SWF) DescribeWorkflowType(req *DescribeWorkflowTypeInput) (resp *Workfl
 // GetWorkflowExecutionHistory returns the history of the specified
 // workflow execution. The results may be split into multiple pages. To
 // retrieve subsequent pages, make the call again using the nextPageToken
-// returned by the initial call. You can use IAM policies to control this
-// action's access to Amazon SWF resources as follows: Use a Resource
-// element with the domain name to limit the action to only specified
-// domains. Use an Action element to allow or deny permission to call this
-// action. You cannot use an IAM policy to constrain this action's
-// parameters. If the caller does not have sufficient permissions to invoke
-// the action, or the parameter values fall outside the specified
-// constraints, the action fails by throwing OperationNotPermitted . For
-// details and example IAM policies, see Using IAM to Manage Access to
-// Amazon SWF Workflows
+// returned by the initial call. This operation is eventually consistent.
+// The results are best effort and may not exactly reflect recent updates
+// and changes. You can use IAM policies to control this action's access to
+// Amazon SWF resources as follows: Use a Resource element with the domain
+// name to limit the action to only specified domains. Use an Action
+// element to allow or deny permission to call this action. You cannot use
+// an IAM policy to constrain this action's parameters. If the caller does
+// not have sufficient permissions to invoke the action, or the parameter
+// values fall outside the specified constraints, the action fails. The
+// associated event attribute's cause parameter will be set to For details
+// and example IAM policies, see Using IAM to Manage Access to Amazon SWF
+// Workflows
 func (c *SWF) GetWorkflowExecutionHistory(req *GetWorkflowExecutionHistoryInput) (resp *History, err error) {
 	resp = &History{}
 	err = c.client.Do("GetWorkflowExecutionHistory", "POST", "/", req, resp)
@@ -291,9 +306,9 @@ func (c *SWF) GetWorkflowExecutionHistory(req *GetWorkflowExecutionHistoryInput)
 // call this action. You cannot use an IAM policy to constrain this
 // action's parameters. If the caller does not have sufficient permissions
 // to invoke the action, or the parameter values fall outside the specified
-// constraints, the action fails by throwing OperationNotPermitted . For
-// details and example IAM policies, see Using IAM to Manage Access to
-// Amazon SWF Workflows
+// constraints, the action fails. The associated event attribute's cause
+// parameter will be set to For details and example IAM policies, see Using
+// IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) ListActivityTypes(req *ListActivityTypesInput) (resp *ActivityTypeInfos, err error) {
 	resp = &ActivityTypeInfos{}
 	err = c.client.Do("ListActivityTypes", "POST", "/", req, resp)
@@ -304,49 +319,8 @@ func (c *SWF) ListActivityTypes(req *ListActivityTypesInput) (resp *ActivityType
 // executions in the specified domain that meet the filtering criteria. The
 // results may be split into multiple pages. To retrieve subsequent pages,
 // make the call again using the nextPageToken returned by the initial
-// call. You can use IAM policies to control this action's access to Amazon
-// SWF resources as follows: Use a Resource element with the domain name to
-// limit the action to only specified domains. Use an Action element to
-// allow or deny permission to call this action. Constrain the following
-// parameters by using a Condition element with the appropriate keys.
-// tagFilter.tag : String constraint. The key is swf:tagFilter.tag
-// typeFilter.name : String constraint. The key is swf:typeFilter.name
-// typeFilter.version : String constraint. The key is
-// swf:typeFilter.version If the caller does not have sufficient
-// permissions to invoke the action, or the parameter values fall outside
-// the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
-func (c *SWF) ListClosedWorkflowExecutions(req *ListClosedWorkflowExecutionsInput) (resp *WorkflowExecutionInfos, err error) {
-	resp = &WorkflowExecutionInfos{}
-	err = c.client.Do("ListClosedWorkflowExecutions", "POST", "/", req, resp)
-	return
-}
-
-// ListDomains returns the list of domains registered in the account. The
-// results may be split into multiple pages. To retrieve subsequent pages,
-// make the call again using the nextPageToken returned by the initial
-// call. You can use IAM policies to control this action's access to Amazon
-// SWF resources as follows: Use a Resource element with the domain name to
-// limit the action to only specified domains. The element must be set to
-// arn:aws:swf::AccountID:domain/*" , where "AccountID" is the account ID,
-// with no dashes. Use an Action element to allow or deny permission to
-// call this action. You cannot use an IAM policy to constrain this
-// action's parameters. If the caller does not have sufficient permissions
-// to invoke the action, or the parameter values fall outside the specified
-// constraints, the action fails by throwing OperationNotPermitted . For
-// details and example IAM policies, see Using IAM to Manage Access to
-// Amazon SWF Workflows
-func (c *SWF) ListDomains(req *ListDomainsInput) (resp *DomainInfos, err error) {
-	resp = &DomainInfos{}
-	err = c.client.Do("ListDomains", "POST", "/", req, resp)
-	return
-}
-
-// ListOpenWorkflowExecutions returns a list of open workflow executions in
-// the specified domain that meet the filtering criteria. The results may
-// be split into multiple pages. To retrieve subsequent pages, make the
-// call again using the nextPageToken returned by the initial call. You can
+// call. This operation is eventually consistent. The results are best
+// effort and may not exactly reflect recent updates and changes. You can
 // use IAM policies to control this action's access to Amazon SWF resources
 // as follows: Use a Resource element with the domain name to limit the
 // action to only specified domains. Use an Action element to allow or deny
@@ -356,9 +330,57 @@ func (c *SWF) ListDomains(req *ListDomainsInput) (resp *DomainInfos, err error) 
 // constraint. The key is swf:typeFilter.name typeFilter.version : String
 // constraint. The key is swf:typeFilter.version If the caller does not
 // have sufficient permissions to invoke the action, or the parameter
-// values fall outside the specified constraints, the action fails by
-// throwing OperationNotPermitted . For details and example IAM policies,
-// see Using IAM to Manage Access to Amazon SWF Workflows
+// values fall outside the specified constraints, the action fails. The
+// associated event attribute's cause parameter will be set to For details
+// and example IAM policies, see Using IAM to Manage Access to Amazon SWF
+// Workflows
+func (c *SWF) ListClosedWorkflowExecutions(req *ListClosedWorkflowExecutionsInput) (resp *WorkflowExecutionInfos, err error) {
+	resp = &WorkflowExecutionInfos{}
+	err = c.client.Do("ListClosedWorkflowExecutions", "POST", "/", req, resp)
+	return
+}
+
+// ListDomains returns the list of domains registered in the account. The
+// results may be split into multiple pages. To retrieve subsequent pages,
+// make the call again using the nextPageToken returned by the initial
+// call. This operation is eventually consistent. The results are best
+// effort and may not exactly reflect recent updates and changes. You can
+// use IAM policies to control this action's access to Amazon SWF resources
+// as follows: Use a Resource element with the domain name to limit the
+// action to only specified domains. The element must be set to
+// arn:aws:swf::AccountID:domain/* , where AccountID is the account ID,
+// with no dashes. Use an Action element to allow or deny permission to
+// call this action. You cannot use an IAM policy to constrain this
+// action's parameters. If the caller does not have sufficient permissions
+// to invoke the action, or the parameter values fall outside the specified
+// constraints, the action fails. The associated event attribute's cause
+// parameter will be set to For details and example IAM policies, see Using
+// IAM to Manage Access to Amazon SWF Workflows
+func (c *SWF) ListDomains(req *ListDomainsInput) (resp *DomainInfos, err error) {
+	resp = &DomainInfos{}
+	err = c.client.Do("ListDomains", "POST", "/", req, resp)
+	return
+}
+
+// ListOpenWorkflowExecutions returns a list of open workflow executions in
+// the specified domain that meet the filtering criteria. The results may
+// be split into multiple pages. To retrieve subsequent pages, make the
+// call again using the nextPageToken returned by the initial call. This
+// operation is eventually consistent. The results are best effort and may
+// not exactly reflect recent updates and changes. You can use IAM policies
+// to control this action's access to Amazon SWF resources as follows: Use
+// a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to
+// call this action. Constrain the following parameters by using a
+// Condition element with the appropriate keys. tagFilter.tag : String
+// constraint. The key is swf:tagFilter.tag typeFilter.name : String
+// constraint. The key is swf:typeFilter.name typeFilter.version : String
+// constraint. The key is swf:typeFilter.version If the caller does not
+// have sufficient permissions to invoke the action, or the parameter
+// values fall outside the specified constraints, the action fails. The
+// associated event attribute's cause parameter will be set to For details
+// and example IAM policies, see Using IAM to Manage Access to Amazon SWF
+// Workflows
 func (c *SWF) ListOpenWorkflowExecutions(req *ListOpenWorkflowExecutionsInput) (resp *WorkflowExecutionInfos, err error) {
 	resp = &WorkflowExecutionInfos{}
 	err = c.client.Do("ListOpenWorkflowExecutions", "POST", "/", req, resp)
@@ -374,9 +396,9 @@ func (c *SWF) ListOpenWorkflowExecutions(req *ListOpenWorkflowExecutionsInput) (
 // call this action. You cannot use an IAM policy to constrain this
 // action's parameters. If the caller does not have sufficient permissions
 // to invoke the action, or the parameter values fall outside the specified
-// constraints, the action fails by throwing OperationNotPermitted . For
-// details and example IAM policies, see Using IAM to Manage Access to
-// Amazon SWF Workflows
+// constraints, the action fails. The associated event attribute's cause
+// parameter will be set to For details and example IAM policies, see Using
+// IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) ListWorkflowTypes(req *ListWorkflowTypesInput) (resp *WorkflowTypeInfos, err error) {
 	resp = &WorkflowTypeInfos{}
 	err = c.client.Do("ListWorkflowTypes", "POST", "/", req, resp)
@@ -401,9 +423,9 @@ func (c *SWF) ListWorkflowTypes(req *ListWorkflowTypesInput) (resp *WorkflowType
 // using a Condition element with the swf:taskList.name key to allow the
 // action to access only certain task lists. If the caller does not have
 // sufficient permissions to invoke the action, or the parameter values
-// fall outside the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// fall outside the specified constraints, the action fails. The associated
+// event attribute's cause parameter will be set to For details and example
+// IAM policies, see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) PollForActivityTask(req *PollForActivityTaskInput) (resp *ActivityTask, err error) {
 	resp = &ActivityTask{}
 	err = c.client.Do("PollForActivityTask", "POST", "/", req, resp)
@@ -436,9 +458,9 @@ func (c *SWF) PollForActivityTask(req *PollForActivityTaskInput) (resp *Activity
 // element with the swf:taskList.name key to allow the action to access
 // only certain task lists. If the caller does not have sufficient
 // permissions to invoke the action, or the parameter values fall outside
-// the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// the specified constraints, the action fails. The associated event
+// attribute's cause parameter will be set to For details and example IAM
+// policies, see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) PollForDecisionTask(req *PollForDecisionTaskInput) (resp *DecisionTask, err error) {
 	resp = &DecisionTask{}
 	err = c.client.Do("PollForDecisionTask", "POST", "/", req, resp)
@@ -452,25 +474,31 @@ func (c *SWF) PollForDecisionTask(req *PollForDecisionTaskInput) (resp *Decision
 // parameter. This action can also be used by the worker as a mechanism to
 // check if cancellation is being requested for the activity task. If a
 // cancellation is being attempted for the specified task, then the boolean
-// cancelRequested flag returned by the service is set to true . This
-// action resets the taskHeartbeatTimeout clock. The taskHeartbeatTimeout
-// is specified in RegisterActivityType . This action does not in itself
-// create an event in the workflow execution history. However, if the task
-// times out, the workflow execution history will contain a
-// ActivityTaskTimedOut event that contains the information from the last
-// heartbeat generated by the activity worker. If the cancelRequested flag
-// returns true , a cancellation is being attempted. If the worker can
-// cancel the activity, it should respond with RespondActivityTaskCanceled
-// . Otherwise, it should ignore the cancellation request. You can use IAM
-// policies to control this action's access to Amazon SWF resources as
-// follows: Use a Resource element with the domain name to limit the action
-// to only specified domains. Use an Action element to allow or deny
-// permission to call this action. You cannot use an IAM policy to
-// constrain this action's parameters. If the caller does not have
-// sufficient permissions to invoke the action, or the parameter values
-// fall outside the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// cancelRequested flag returned by the service is set to true This action
+// resets the taskHeartbeatTimeout clock. The taskHeartbeatTimeout is
+// specified in RegisterActivityType This action does not in itself create
+// an event in the workflow execution history. However, if the task times
+// out, the workflow execution history will contain a ActivityTaskTimedOut
+// event that contains the information from the last heartbeat generated by
+// the activity worker. The taskStartToCloseTimeout of an activity type is
+// the maximum duration of an activity task, regardless of the number of
+// RecordActivityTaskHeartbeat requests received. The
+// taskStartToCloseTimeout is also specified in RegisterActivityType This
+// operation is only useful for long-lived activities to report liveliness
+// of the task and to determine if a cancellation is being attempted. If
+// the cancelRequested flag returns true , a cancellation is being
+// attempted. If the worker can cancel the activity, it should respond with
+// RespondActivityTaskCanceled . Otherwise, it should ignore the
+// cancellation request. You can use IAM policies to control this action's
+// access to Amazon SWF resources as follows: Use a Resource element with
+// the domain name to limit the action to only specified domains. Use an
+// Action element to allow or deny permission to call this action. You
+// cannot use an IAM policy to constrain this action's parameters. If the
+// caller does not have sufficient permissions to invoke the action, or the
+// parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to
+// For details and example IAM policies, see Using IAM to Manage Access to
+// Amazon SWF Workflows
 func (c *SWF) RecordActivityTaskHeartbeat(req *RecordActivityTaskHeartbeatInput) (resp *ActivityTaskStatus, err error) {
 	resp = &ActivityTaskStatus{}
 	err = c.client.Do("RecordActivityTaskHeartbeat", "POST", "/", req, resp)
@@ -491,9 +519,9 @@ func (c *SWF) RecordActivityTaskHeartbeat(req *RecordActivityTaskHeartbeatInput)
 // constraint. The key is swf:name version : String constraint. The key is
 // swf:version If the caller does not have sufficient permissions to invoke
 // the action, or the parameter values fall outside the specified
-// constraints, the action fails by throwing OperationNotPermitted . For
-// details and example IAM policies, see Using IAM to Manage Access to
-// Amazon SWF Workflows
+// constraints, the action fails. The associated event attribute's cause
+// parameter will be set to For details and example IAM policies, see Using
+// IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) RegisterActivityType(req *RegisterActivityTypeInput) (err error) {
 	// NRE
 	err = c.client.Do("RegisterActivityType", "POST", "/", req, nil)
@@ -507,9 +535,10 @@ func (c *SWF) RegisterActivityType(req *RegisterActivityTypeInput) (err error) {
 // element to allow or deny permission to call this action. You cannot use
 // an IAM policy to constrain this action's parameters. If the caller does
 // not have sufficient permissions to invoke the action, or the parameter
-// values fall outside the specified constraints, the action fails by
-// throwing OperationNotPermitted . For details and example IAM policies,
-// see Using IAM to Manage Access to Amazon SWF Workflows
+// values fall outside the specified constraints, the action fails. The
+// associated event attribute's cause parameter will be set to For details
+// and example IAM policies, see Using IAM to Manage Access to Amazon SWF
+// Workflows
 func (c *SWF) RegisterDomain(req *RegisterDomainInput) (err error) {
 	// NRE
 	err = c.client.Do("RegisterDomain", "POST", "/", req, nil)
@@ -531,8 +560,9 @@ func (c *SWF) RegisterDomain(req *RegisterDomainInput) (err error) {
 // swf:name version : String constraint. The key is swf:version If the
 // caller does not have sufficient permissions to invoke the action, or the
 // parameter values fall outside the specified constraints, the action
-// fails by throwing OperationNotPermitted . For details and example IAM
-// policies, see Using IAM to Manage Access to Amazon SWF Workflows
+// fails. The associated event attribute's cause parameter will be set to
+// For details and example IAM policies, see Using IAM to Manage Access to
+// Amazon SWF Workflows
 func (c *SWF) RegisterWorkflowType(req *RegisterWorkflowTypeInput) (err error) {
 	// NRE
 	err = c.client.Do("RegisterWorkflowType", "POST", "/", req, nil)
@@ -544,16 +574,21 @@ func (c *SWF) RegisterWorkflowType(req *RegisterWorkflowTypeInput) (err error) {
 // execution identified by the given domain, workflowId, and runId. This
 // logically requests the cancellation of the workflow execution as a
 // whole. It is up to the decider to take appropriate actions when it
-// receives an execution history with this event. You can use IAM policies
-// to control this action's access to Amazon SWF resources as follows: Use
-// a Resource element with the domain name to limit the action to only
+// receives an execution history with this event. If the runId is not
+// specified, the WorkflowExecutionCancelRequested event is recorded in the
+// history of the current open workflow execution with the specified
+// workflowId in the domain. Because this action allows the workflow to
+// properly clean up and gracefully close, it should be used instead of
+// TerminateWorkflowExecution when possible. You can use IAM policies to
+// control this action's access to Amazon SWF resources as follows: Use a
+// Resource element with the domain name to limit the action to only
 // specified domains. Use an Action element to allow or deny permission to
 // call this action. You cannot use an IAM policy to constrain this
 // action's parameters. If the caller does not have sufficient permissions
 // to invoke the action, or the parameter values fall outside the specified
-// constraints, the action fails by throwing OperationNotPermitted . For
-// details and example IAM policies, see Using IAM to Manage Access to
-// Amazon SWF Workflows
+// constraints, the action fails. The associated event attribute's cause
+// parameter will be set to For details and example IAM policies, see Using
+// IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) RequestCancelWorkflowExecution(req *RequestCancelWorkflowExecutionInput) (err error) {
 	// NRE
 	err = c.client.Do("RequestCancelWorkflowExecution", "POST", "/", req, nil)
@@ -571,16 +606,16 @@ func (c *SWF) RequestCancelWorkflowExecution(req *RequestCancelWorkflowExecution
 // task is reported as open while a worker is processing it. A task is
 // closed after it has been specified in a call to
 // RespondActivityTaskCompleted , RespondActivityTaskCanceled,
-// RespondActivityTaskFailed , or the task has timed out . You can use IAM
+// RespondActivityTaskFailed , or the task has timed out You can use IAM
 // policies to control this action's access to Amazon SWF resources as
 // follows: Use a Resource element with the domain name to limit the action
 // to only specified domains. Use an Action element to allow or deny
 // permission to call this action. You cannot use an IAM policy to
 // constrain this action's parameters. If the caller does not have
 // sufficient permissions to invoke the action, or the parameter values
-// fall outside the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// fall outside the specified constraints, the action fails. The associated
+// event attribute's cause parameter will be set to For details and example
+// IAM policies, see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) RespondActivityTaskCanceled(req *RespondActivityTaskCanceledInput) (err error) {
 	// NRE
 	err = c.client.Do("RespondActivityTaskCanceled", "POST", "/", req, nil)
@@ -594,20 +629,21 @@ func (c *SWF) RespondActivityTaskCanceled(req *RespondActivityTaskCanceledInput)
 // successfully, use RespondActivityTaskFailed instead. If the worker finds
 // that the task is canceled through the canceled flag returned by
 // RecordActivityTaskHeartbeat , it should cancel the task, clean up and
-// then call RespondActivityTaskCanceled . A task is considered open from
-// the time that it is scheduled until it is closed. Therefore a task is
+// then call RespondActivityTaskCanceled A task is considered open from the
+// time that it is scheduled until it is closed. Therefore a task is
 // reported as open while a worker is processing it. A task is closed after
 // it has been specified in a call to RespondActivityTaskCompleted,
 // RespondActivityTaskCanceled , RespondActivityTaskFailed , or the task
-// has timed out . You can use IAM policies to control this action's access
+// has timed out You can use IAM policies to control this action's access
 // to Amazon SWF resources as follows: Use a Resource element with the
 // domain name to limit the action to only specified domains. Use an Action
 // element to allow or deny permission to call this action. You cannot use
 // an IAM policy to constrain this action's parameters. If the caller does
 // not have sufficient permissions to invoke the action, or the parameter
-// values fall outside the specified constraints, the action fails by
-// throwing OperationNotPermitted . For details and example IAM policies,
-// see Using IAM to Manage Access to Amazon SWF Workflows
+// values fall outside the specified constraints, the action fails. The
+// associated event attribute's cause parameter will be set to For details
+// and example IAM policies, see Using IAM to Manage Access to Amazon SWF
+// Workflows
 func (c *SWF) RespondActivityTaskCompleted(req *RespondActivityTaskCompletedInput) (err error) {
 	// NRE
 	err = c.client.Do("RespondActivityTaskCompleted", "POST", "/", req, nil)
@@ -622,15 +658,16 @@ func (c *SWF) RespondActivityTaskCompleted(req *RespondActivityTaskCompletedInpu
 // reported as open while a worker is processing it. A task is closed after
 // it has been specified in a call to RespondActivityTaskCompleted ,
 // RespondActivityTaskCanceled , RespondActivityTaskFailed, or the task has
-// timed out . You can use IAM policies to control this action's access to
+// timed out You can use IAM policies to control this action's access to
 // Amazon SWF resources as follows: Use a Resource element with the domain
 // name to limit the action to only specified domains. Use an Action
 // element to allow or deny permission to call this action. You cannot use
 // an IAM policy to constrain this action's parameters. If the caller does
 // not have sufficient permissions to invoke the action, or the parameter
-// values fall outside the specified constraints, the action fails by
-// throwing OperationNotPermitted . For details and example IAM policies,
-// see Using IAM to Manage Access to Amazon SWF Workflows
+// values fall outside the specified constraints, the action fails. The
+// associated event attribute's cause parameter will be set to For details
+// and example IAM policies, see Using IAM to Manage Access to Amazon SWF
+// Workflows
 func (c *SWF) RespondActivityTaskFailed(req *RespondActivityTaskFailedInput) (err error) {
 	// NRE
 	err = c.client.Do("RespondActivityTaskFailed", "POST", "/", req, nil)
@@ -660,15 +697,20 @@ func (c *SWF) RespondDecisionTaskCompleted(req *RespondDecisionTaskCompletedInpu
 // workflow execution history and creates a decision task for the workflow
 // execution identified by the given domain, workflowId and runId. The
 // event is recorded with the specified user defined signalName and input
-// (if provided). You can use IAM policies to control this action's access
+// (if provided). If a runId is not specified, then the
+// WorkflowExecutionSignaled event is recorded in the history of the
+// current open workflow with the matching workflowId in the domain. If the
+// specified workflow execution is not open, this method fails with
+// UnknownResource You can use IAM policies to control this action's access
 // to Amazon SWF resources as follows: Use a Resource element with the
 // domain name to limit the action to only specified domains. Use an Action
 // element to allow or deny permission to call this action. You cannot use
 // an IAM policy to constrain this action's parameters. If the caller does
 // not have sufficient permissions to invoke the action, or the parameter
-// values fall outside the specified constraints, the action fails by
-// throwing OperationNotPermitted . For details and example IAM policies,
-// see Using IAM to Manage Access to Amazon SWF Workflows
+// values fall outside the specified constraints, the action fails. The
+// associated event attribute's cause parameter will be set to For details
+// and example IAM policies, see Using IAM to Manage Access to Amazon SWF
+// Workflows
 func (c *SWF) SignalWorkflowExecution(req *SignalWorkflowExecutionInput) (err error) {
 	// NRE
 	err = c.client.Do("SignalWorkflowExecution", "POST", "/", req, nil)
@@ -687,13 +729,13 @@ func (c *SWF) SignalWorkflowExecution(req *SignalWorkflowExecutionInput) (err er
 // swf:tagList.member.1 tagList.member.2 : The key is swf:tagList.member.2
 // tagList.member.3 : The key is swf:tagList.member.3 tagList.member.4 :
 // The key is swf:tagList.member.4 taskList : String constraint. The key is
-// swf:taskList.name name : String constraint. The key is
-// swf:workflowType.name version : String constraint. The key is
-// swf:workflowType.version If the caller does not have sufficient
+// swf:taskList.name workflowType.name : String constraint. The key is
+// swf:workflowType.name workflowType.version : String constraint. The key
+// is swf:workflowType.version If the caller does not have sufficient
 // permissions to invoke the action, or the parameter values fall outside
-// the specified constraints, the action fails by throwing
-// OperationNotPermitted . For details and example IAM policies, see Using
-// IAM to Manage Access to Amazon SWF Workflows
+// the specified constraints, the action fails. The associated event
+// attribute's cause parameter will be set to For details and example IAM
+// policies, see Using IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) StartWorkflowExecution(req *StartWorkflowExecutionInput) (resp *Run, err error) {
 	resp = &Run{}
 	err = c.client.Do("StartWorkflowExecution", "POST", "/", req, resp)
@@ -706,15 +748,21 @@ func (c *SWF) StartWorkflowExecution(req *StartWorkflowExecutionInput) (resp *Ru
 // workflow type or specified when starting this execution, is applied to
 // any open child workflow executions of this workflow execution. If the
 // identified workflow execution was in progress, it is terminated
-// immediately. You can use IAM policies to control this action's access to
-// Amazon SWF resources as follows: Use a Resource element with the domain
-// name to limit the action to only specified domains. Use an Action
-// element to allow or deny permission to call this action. You cannot use
-// an IAM policy to constrain this action's parameters. If the caller does
-// not have sufficient permissions to invoke the action, or the parameter
-// values fall outside the specified constraints, the action fails by
-// throwing OperationNotPermitted . For details and example IAM policies,
-// see Using IAM to Manage Access to Amazon SWF Workflows
+// immediately. If a runId is not specified, then the
+// WorkflowExecutionTerminated event is recorded in the history of the
+// current open workflow with the matching workflowId in the domain. You
+// should consider using RequestCancelWorkflowExecution action instead
+// because it allows the workflow to gracefully close while
+// TerminateWorkflowExecution does not. You can use IAM policies to control
+// this action's access to Amazon SWF resources as follows: Use a Resource
+// element with the domain name to limit the action to only specified
+// domains. Use an Action element to allow or deny permission to call this
+// action. You cannot use an IAM policy to constrain this action's
+// parameters. If the caller does not have sufficient permissions to invoke
+// the action, or the parameter values fall outside the specified
+// constraints, the action fails. The associated event attribute's cause
+// parameter will be set to For details and example IAM policies, see Using
+// IAM to Manage Access to Amazon SWF Workflows
 func (c *SWF) TerminateWorkflowExecution(req *TerminateWorkflowExecutionInput) (err error) {
 	// NRE
 	err = c.client.Do("TerminateWorkflowExecution", "POST", "/", req, nil)
@@ -772,6 +820,7 @@ type ActivityTaskScheduledEventAttributes struct {
 	ScheduleToStartTimeout       aws.StringValue `json:"scheduleToStartTimeout,omitempty"`
 	StartToCloseTimeout          aws.StringValue `json:"startToCloseTimeout,omitempty"`
 	TaskList                     *TaskList       `json:"taskList"`
+	TaskPriority                 aws.StringValue `json:"taskPriority,omitempty"`
 }
 
 // ActivityTaskStartedEventAttributes is undocumented.
@@ -811,6 +860,7 @@ type ActivityType struct {
 type ActivityTypeConfiguration struct {
 	DefaultTaskHeartbeatTimeout       aws.StringValue `json:"defaultTaskHeartbeatTimeout,omitempty"`
 	DefaultTaskList                   *TaskList       `json:"defaultTaskList,omitempty"`
+	DefaultTaskPriority               aws.StringValue `json:"defaultTaskPriority,omitempty"`
 	DefaultTaskScheduleToCloseTimeout aws.StringValue `json:"defaultTaskScheduleToCloseTimeout,omitempty"`
 	DefaultTaskScheduleToStartTimeout aws.StringValue `json:"defaultTaskScheduleToStartTimeout,omitempty"`
 	DefaultTaskStartToCloseTimeout    aws.StringValue `json:"defaultTaskStartToCloseTimeout,omitempty"`
@@ -970,12 +1020,14 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	Input                        aws.StringValue `json:"input,omitempty"`
 	TagList                      []string        `json:"tagList,omitempty"`
 	TaskList                     *TaskList       `json:"taskList,omitempty"`
+	TaskPriority                 aws.StringValue `json:"taskPriority,omitempty"`
 	TaskStartToCloseTimeout      aws.StringValue `json:"taskStartToCloseTimeout,omitempty"`
 	WorkflowTypeVersion          aws.StringValue `json:"workflowTypeVersion,omitempty"`
 }
 
 // Possible values for SWF.
 const (
+	ContinueAsNewWorkflowExecutionFailedCauseContinueAsNewWorkflowExecutionRateExceeded   = "CONTINUE_AS_NEW_WORKFLOW_EXECUTION_RATE_EXCEEDED"
 	ContinueAsNewWorkflowExecutionFailedCauseDefaultChildPolicyUndefined                  = "DEFAULT_CHILD_POLICY_UNDEFINED"
 	ContinueAsNewWorkflowExecutionFailedCauseDefaultExecutionStartToCloseTimeoutUndefined = "DEFAULT_EXECUTION_START_TO_CLOSE_TIMEOUT_UNDEFINED"
 	ContinueAsNewWorkflowExecutionFailedCauseDefaultTaskListUndefined                     = "DEFAULT_TASK_LIST_UNDEFINED"
@@ -1063,6 +1115,7 @@ type DecisionTaskCompletedEventAttributes struct {
 type DecisionTaskScheduledEventAttributes struct {
 	StartToCloseTimeout aws.StringValue `json:"startToCloseTimeout,omitempty"`
 	TaskList            *TaskList       `json:"taskList"`
+	TaskPriority        aws.StringValue `json:"taskPriority,omitempty"`
 }
 
 // DecisionTaskStartedEventAttributes is undocumented.
@@ -1437,6 +1490,7 @@ type RecordMarkerFailedEventAttributes struct {
 type RegisterActivityTypeInput struct {
 	DefaultTaskHeartbeatTimeout       aws.StringValue `json:"defaultTaskHeartbeatTimeout,omitempty"`
 	DefaultTaskList                   *TaskList       `json:"defaultTaskList,omitempty"`
+	DefaultTaskPriority               aws.StringValue `json:"defaultTaskPriority,omitempty"`
 	DefaultTaskScheduleToCloseTimeout aws.StringValue `json:"defaultTaskScheduleToCloseTimeout,omitempty"`
 	DefaultTaskScheduleToStartTimeout aws.StringValue `json:"defaultTaskScheduleToStartTimeout,omitempty"`
 	DefaultTaskStartToCloseTimeout    aws.StringValue `json:"defaultTaskStartToCloseTimeout,omitempty"`
@@ -1458,6 +1512,7 @@ type RegisterWorkflowTypeInput struct {
 	DefaultChildPolicy                  aws.StringValue `json:"defaultChildPolicy,omitempty"`
 	DefaultExecutionStartToCloseTimeout aws.StringValue `json:"defaultExecutionStartToCloseTimeout,omitempty"`
 	DefaultTaskList                     *TaskList       `json:"defaultTaskList,omitempty"`
+	DefaultTaskPriority                 aws.StringValue `json:"defaultTaskPriority,omitempty"`
 	DefaultTaskStartToCloseTimeout      aws.StringValue `json:"defaultTaskStartToCloseTimeout,omitempty"`
 	Description                         aws.StringValue `json:"description,omitempty"`
 	Domain                              aws.StringValue `json:"domain"`
@@ -1570,6 +1625,7 @@ type ScheduleActivityTaskDecisionAttributes struct {
 	ScheduleToStartTimeout aws.StringValue `json:"scheduleToStartTimeout,omitempty"`
 	StartToCloseTimeout    aws.StringValue `json:"startToCloseTimeout,omitempty"`
 	TaskList               *TaskList       `json:"taskList,omitempty"`
+	TaskPriority           aws.StringValue `json:"taskPriority,omitempty"`
 }
 
 // Possible values for SWF.
@@ -1648,6 +1704,7 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	Input                        aws.StringValue `json:"input,omitempty"`
 	TagList                      []string        `json:"tagList,omitempty"`
 	TaskList                     *TaskList       `json:"taskList,omitempty"`
+	TaskPriority                 aws.StringValue `json:"taskPriority,omitempty"`
 	TaskStartToCloseTimeout      aws.StringValue `json:"taskStartToCloseTimeout,omitempty"`
 	WorkflowID                   aws.StringValue `json:"workflowId"`
 	WorkflowType                 *WorkflowType   `json:"workflowType"`
@@ -1687,6 +1744,7 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	Input                        aws.StringValue `json:"input,omitempty"`
 	TagList                      []string        `json:"tagList,omitempty"`
 	TaskList                     *TaskList       `json:"taskList"`
+	TaskPriority                 aws.StringValue `json:"taskPriority,omitempty"`
 	TaskStartToCloseTimeout      aws.StringValue `json:"taskStartToCloseTimeout,omitempty"`
 	WorkflowID                   aws.StringValue `json:"workflowId"`
 	WorkflowType                 *WorkflowType   `json:"workflowType"`
@@ -1722,6 +1780,7 @@ type StartWorkflowExecutionInput struct {
 	Input                        aws.StringValue `json:"input,omitempty"`
 	TagList                      []string        `json:"tagList,omitempty"`
 	TaskList                     *TaskList       `json:"taskList,omitempty"`
+	TaskPriority                 aws.StringValue `json:"taskPriority,omitempty"`
 	TaskStartToCloseTimeout      aws.StringValue `json:"taskStartToCloseTimeout,omitempty"`
 	WorkflowID                   aws.StringValue `json:"workflowId"`
 	WorkflowType                 *WorkflowType   `json:"workflowType"`
@@ -1803,6 +1862,7 @@ type WorkflowExecutionConfiguration struct {
 	ChildPolicy                  aws.StringValue `json:"childPolicy"`
 	ExecutionStartToCloseTimeout aws.StringValue `json:"executionStartToCloseTimeout"`
 	TaskList                     *TaskList       `json:"taskList"`
+	TaskPriority                 aws.StringValue `json:"taskPriority,omitempty"`
 	TaskStartToCloseTimeout      aws.StringValue `json:"taskStartToCloseTimeout"`
 }
 
@@ -1815,6 +1875,7 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	NewExecutionRunID            aws.StringValue `json:"newExecutionRunId"`
 	TagList                      []string        `json:"tagList,omitempty"`
 	TaskList                     *TaskList       `json:"taskList"`
+	TaskPriority                 aws.StringValue `json:"taskPriority,omitempty"`
 	TaskStartToCloseTimeout      aws.StringValue `json:"taskStartToCloseTimeout,omitempty"`
 	WorkflowType                 *WorkflowType   `json:"workflowType"`
 }
@@ -1891,6 +1952,7 @@ type WorkflowExecutionStartedEventAttributes struct {
 	ParentWorkflowExecution      *WorkflowExecution `json:"parentWorkflowExecution,omitempty"`
 	TagList                      []string           `json:"tagList,omitempty"`
 	TaskList                     *TaskList          `json:"taskList"`
+	TaskPriority                 aws.StringValue    `json:"taskPriority,omitempty"`
 	TaskStartToCloseTimeout      aws.StringValue    `json:"taskStartToCloseTimeout,omitempty"`
 	WorkflowType                 *WorkflowType      `json:"workflowType"`
 }
@@ -1932,6 +1994,7 @@ type WorkflowTypeConfiguration struct {
 	DefaultChildPolicy                  aws.StringValue `json:"defaultChildPolicy,omitempty"`
 	DefaultExecutionStartToCloseTimeout aws.StringValue `json:"defaultExecutionStartToCloseTimeout,omitempty"`
 	DefaultTaskList                     *TaskList       `json:"defaultTaskList,omitempty"`
+	DefaultTaskPriority                 aws.StringValue `json:"defaultTaskPriority,omitempty"`
 	DefaultTaskStartToCloseTimeout      aws.StringValue `json:"defaultTaskStartToCloseTimeout,omitempty"`
 }
 

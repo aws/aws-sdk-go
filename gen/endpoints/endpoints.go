@@ -25,7 +25,11 @@ func Lookup(service, region string) (uri, newService, newRegion string) {
 	case "elasticmapreduce":
 
 		if strings.HasPrefix(region, "cn-") {
-			return format("https://cn-north-1.elasticmapreduce.amazonaws.com.cn", service, region), service, region
+			return format("https://elasticmapreduce.cn-north-1.amazonaws.com.cn", service, region), service, region
+		}
+
+		if region == "eu-central-1" {
+			return format("https://elasticmapreduce.eu-central-1.amazonaws.com", service, region), service, region
 		}
 
 		if region == "us-east-1" {

@@ -244,10 +244,11 @@ func (c *EMR) SetVisibleToAllUsers(req *SetVisibleToAllUsersInput) (err error) {
 // a job flow is shut down, any step not yet completed is canceled and the
 // EC2 instances on which the job flow is running are stopped. Any log
 // files not already saved are uploaded to Amazon S3 if a LogUri was
-// specified when the job flow was created. The call to TerminateJobFlows
-// is asynchronous. Depending on the configuration of the job flow, it may
-// take up to 5-20 minutes for the job flow to completely terminate and
-// release allocated resources, such as Amazon EC2 instances.
+// specified when the job flow was created. The maximum number of JobFlows
+// allowed is 10. The call to TerminateJobFlows is asynchronous. Depending
+// on the configuration of the job flow, it may take up to 5-20 minutes for
+// the job flow to completely terminate and release allocated resources,
+// such as Amazon EC2 instances.
 func (c *EMR) TerminateJobFlows(req *TerminateJobFlowsInput) (err error) {
 	// NRE
 	err = c.client.Do("TerminateJobFlows", "POST", "/", req, nil)
@@ -316,19 +317,21 @@ type BootstrapActionDetail struct {
 
 // Cluster is undocumented.
 type Cluster struct {
-	Applications          []Application          `json:"Applications,omitempty"`
-	AutoTerminate         aws.BooleanValue       `json:"AutoTerminate,omitempty"`
-	EC2InstanceAttributes *EC2InstanceAttributes `json:"Ec2InstanceAttributes,omitempty"`
-	ID                    aws.StringValue        `json:"Id,omitempty"`
-	LogURI                aws.StringValue        `json:"LogUri,omitempty"`
-	Name                  aws.StringValue        `json:"Name,omitempty"`
-	RequestedAMIVersion   aws.StringValue        `json:"RequestedAmiVersion,omitempty"`
-	RunningAMIVersion     aws.StringValue        `json:"RunningAmiVersion,omitempty"`
-	ServiceRole           aws.StringValue        `json:"ServiceRole,omitempty"`
-	Status                *ClusterStatus         `json:"Status,omitempty"`
-	Tags                  []Tag                  `json:"Tags,omitempty"`
-	TerminationProtected  aws.BooleanValue       `json:"TerminationProtected,omitempty"`
-	VisibleToAllUsers     aws.BooleanValue       `json:"VisibleToAllUsers,omitempty"`
+	Applications            []Application          `json:"Applications,omitempty"`
+	AutoTerminate           aws.BooleanValue       `json:"AutoTerminate,omitempty"`
+	EC2InstanceAttributes   *EC2InstanceAttributes `json:"Ec2InstanceAttributes,omitempty"`
+	ID                      aws.StringValue        `json:"Id,omitempty"`
+	LogURI                  aws.StringValue        `json:"LogUri,omitempty"`
+	MasterPublicDNSName     aws.StringValue        `json:"MasterPublicDnsName,omitempty"`
+	Name                    aws.StringValue        `json:"Name,omitempty"`
+	NormalizedInstanceHours aws.IntegerValue       `json:"NormalizedInstanceHours,omitempty"`
+	RequestedAMIVersion     aws.StringValue        `json:"RequestedAmiVersion,omitempty"`
+	RunningAMIVersion       aws.StringValue        `json:"RunningAmiVersion,omitempty"`
+	ServiceRole             aws.StringValue        `json:"ServiceRole,omitempty"`
+	Status                  *ClusterStatus         `json:"Status,omitempty"`
+	Tags                    []Tag                  `json:"Tags,omitempty"`
+	TerminationProtected    aws.BooleanValue       `json:"TerminationProtected,omitempty"`
+	VisibleToAllUsers       aws.BooleanValue       `json:"VisibleToAllUsers,omitempty"`
 }
 
 // Possible values for EMR.
@@ -368,9 +371,10 @@ type ClusterStatus struct {
 
 // ClusterSummary is undocumented.
 type ClusterSummary struct {
-	ID     aws.StringValue `json:"Id,omitempty"`
-	Name   aws.StringValue `json:"Name,omitempty"`
-	Status *ClusterStatus  `json:"Status,omitempty"`
+	ID                      aws.StringValue  `json:"Id,omitempty"`
+	Name                    aws.StringValue  `json:"Name,omitempty"`
+	NormalizedInstanceHours aws.IntegerValue `json:"NormalizedInstanceHours,omitempty"`
+	Status                  *ClusterStatus   `json:"Status,omitempty"`
 }
 
 // ClusterTimeline is undocumented.
@@ -729,6 +733,7 @@ type ListInstancesOutput struct {
 type ListStepsInput struct {
 	ClusterID  aws.StringValue `json:"ClusterId"`
 	Marker     aws.StringValue `json:"Marker,omitempty"`
+	StepIDs    []string        `json:"StepIds,omitempty"`
 	StepStates []string        `json:"StepStates,omitempty"`
 }
 
@@ -876,9 +881,11 @@ type StepStatus struct {
 
 // StepSummary is undocumented.
 type StepSummary struct {
-	ID     aws.StringValue `json:"Id,omitempty"`
-	Name   aws.StringValue `json:"Name,omitempty"`
-	Status *StepStatus     `json:"Status,omitempty"`
+	ActionOnFailure aws.StringValue   `json:"ActionOnFailure,omitempty"`
+	Config          *HadoopStepConfig `json:"Config,omitempty"`
+	ID              aws.StringValue   `json:"Id,omitempty"`
+	Name            aws.StringValue   `json:"Name,omitempty"`
+	Status          *StepStatus       `json:"Status,omitempty"`
 }
 
 // StepTimeline is undocumented.

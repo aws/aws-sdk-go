@@ -46,7 +46,8 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Sto
 // for scheduled snapshots the gateway snapshot schedule window, an
 // activation key, and a name for your gateway. The activation process also
 // associates your gateway with your account; for more information, see
-// UpdateGatewayInformation
+// UpdateGatewayInformation You must turn on the gateway VM before you can
+// activate your gateway.
 func (c *StorageGateway) ActivateGateway(req *ActivateGatewayInput) (resp *ActivateGatewayOutput, err error) {
 	resp = &ActivateGatewayOutput{}
 	err = c.client.Do("ActivateGateway", "POST", "/", req, resp)
@@ -81,9 +82,11 @@ func (c *StorageGateway) AddUploadBuffer(req *AddUploadBufferInput) (resp *AddUp
 // disks as working storage for a gateway. This operation is supported only
 // for the gateway-stored volume architecture. This operation is deprecated
 // method in cached-volumes API version (20120630). Use AddUploadBuffer
-// instead. In the request, you specify the gateway Amazon Resource Name to
-// which you want to add working storage, and one or more disk IDs that you
-// want to configure as working storage.
+// instead. Working storage is also referred to as upload buffer. You can
+// also use the AddUploadBuffer operation to add upload buffer to a
+// stored-volume gateway. In the request, you specify the gateway Amazon
+// Resource Name to which you want to add working storage, and one or more
+// disk IDs that you want to configure as working storage.
 func (c *StorageGateway) AddWorkingStorage(req *AddWorkingStorageInput) (resp *AddWorkingStorageOutput, err error) {
 	resp = &AddWorkingStorageOutput{}
 	err = c.client.Do("AddWorkingStorage", "POST", "/", req, resp)
@@ -109,12 +112,15 @@ func (c *StorageGateway) CancelRetrieval(req *CancelRetrievalInput) (resp *Cance
 
 // CreateCachediSCSIVolume this operation creates a cached volume on a
 // specified cached gateway. This operation is supported only for the
-// gateway-cached volume architecture. In the request, you must specify the
-// gateway, size of the volume in bytes, the iSCSI target name, an IP
-// address on which to expose the target, and a unique client token. In
-// response, AWS Storage Gateway creates the volume and returns information
-// about it such as the volume Amazon Resource Name its size, and the iSCSI
-// target ARN that initiators can use to connect to the volume target.
+// gateway-cached volume architecture. Cache storage must be allocated to
+// the gateway before you can create a cached volume. Use the AddCache
+// operation to add cache storage to a gateway. In the request, you must
+// specify the gateway, size of the volume in bytes, the iSCSI target name,
+// an IP address on which to expose the target, and a unique client token.
+// In response, AWS Storage Gateway creates the volume and returns
+// information about it such as the volume Amazon Resource Name its size,
+// and the iSCSI target ARN that initiators can use to connect to the
+// volume target.
 func (c *StorageGateway) CreateCachediSCSIVolume(req *CreateCachediSCSIVolumeInput) (resp *CreateCachediSCSIVolumeOutput, err error) {
 	resp = &CreateCachediSCSIVolumeOutput{}
 	err = c.client.Do("CreateCachediSCSIVolume", "POST", "/", req, resp)
@@ -135,7 +141,8 @@ func (c *StorageGateway) CreateCachediSCSIVolume(req *CreateCachediSCSIVolumeInp
 // description appears in the AWS Storage Gateway Console. In response, AWS
 // Storage Gateway returns you a snapshot ID. You can use this snapshot ID
 // to check the snapshot progress or later use it when you want to create a
-// volume from a snapshot.
+// volume from a snapshot. To list or delete a snapshot, you must use the
+// Amazon EC2 For more information,
 func (c *StorageGateway) CreateSnapshot(req *CreateSnapshotInput) (resp *CreateSnapshotOutput, err error) {
 	resp = &CreateSnapshotOutput{}
 	err = c.client.Do("CreateSnapshot", "POST", "/", req, resp)
@@ -155,7 +162,9 @@ func (c *StorageGateway) CreateSnapshot(req *CreateSnapshotInput) (resp *CreateS
 // description appear in the AWS Storage Gateway console. In response, AWS
 // Storage Gateway returns you a snapshot ID. You can use this snapshot ID
 // to check the snapshot progress or later use it when you want to create a
-// volume from a snapshot.
+// volume from a snapshot. To list or delete a snapshot, you must use the
+// Amazon EC2 For more information, in Amazon Elastic Compute Cloud API
+// Reference
 func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPoint(req *CreateSnapshotFromVolumeRecoveryPointInput) (resp *CreateSnapshotFromVolumeRecoveryPointOutput, err error) {
 	resp = &CreateSnapshotFromVolumeRecoveryPointOutput{}
 	err = c.client.Do("CreateSnapshotFromVolumeRecoveryPoint", "POST", "/", req, resp)
@@ -180,7 +189,9 @@ func (c *StorageGateway) CreateStorediSCSIVolume(req *CreateStorediSCSIVolumeInp
 }
 
 // CreateTapes creates one or more virtual tapes. You write data to the
-// virtual tapes and then archive the tapes.
+// virtual tapes and then archive the tapes. Cache storage must be
+// allocated to the gateway before you can create virtual tapes. Use the
+// AddCache operation to add cache storage to a gateway.
 func (c *StorageGateway) CreateTapes(req *CreateTapesInput) (resp *CreateTapesOutput, err error) {
 	resp = &CreateTapesOutput{}
 	err = c.client.Do("CreateTapes", "POST", "/", req, resp)
@@ -234,7 +245,8 @@ func (c *StorageGateway) DeleteGateway(req *DeleteGatewayInput) (resp *DeleteGat
 // basis. This API enables you to delete a snapshot schedule for a volume.
 // For more information, see Working with Snapshots . In the
 // DeleteSnapshotSchedule request, you identify the volume by providing its
-// Amazon Resource Name
+// Amazon Resource Name To list or delete a snapshot, you must use the
+// Amazon EC2 in Amazon Elastic Compute Cloud API Reference
 func (c *StorageGateway) DeleteSnapshotSchedule(req *DeleteSnapshotScheduleInput) (resp *DeleteSnapshotScheduleOutput, err error) {
 	resp = &DeleteSnapshotScheduleOutput{}
 	err = c.client.Do("DeleteSnapshotSchedule", "POST", "/", req, resp)
@@ -413,8 +425,11 @@ func (c *StorageGateway) DescribeVTLDevices(req *DescribeVTLDevicesInput) (resp 
 // working storage of a gateway. This operation is supported only for the
 // gateway-stored volume architecture. This operation is deprecated in
 // cached-volumes API version (20120630). Use DescribeUploadBuffer instead.
-// The response includes disk IDs that are configured as working storage,
-// and it includes the amount of working storage allocated and used.
+// Working storage is also referred to as upload buffer. You can also use
+// the DescribeUploadBuffer operation to add upload buffer to a
+// stored-volume gateway. The response includes disk IDs that are
+// configured as working storage, and it includes the amount of working
+// storage allocated and used.
 func (c *StorageGateway) DescribeWorkingStorage(req *DescribeWorkingStorageInput) (resp *DescribeWorkingStorageOutput, err error) {
 	resp = &DescribeWorkingStorageOutput{}
 	err = c.client.Do("DescribeWorkingStorage", "POST", "/", req, resp)
@@ -447,11 +462,15 @@ func (c *StorageGateway) ListGateways(req *ListGatewaysInput) (resp *ListGateway
 	return
 }
 
-// ListLocalDisks this operation returns a list of the local disks of a
-// gateway. To specify which gateway to describe you use the Amazon
-// Resource Name of the gateway in the body of the request. The request
-// returns all disks, specifying which are configured as working storage,
-// stored volume or not configured at all.
+// ListLocalDisks this operation returns a list of the gateway's local
+// disks. To specify which gateway to describe, you use the Amazon Resource
+// Name of the gateway in the body of the request. The request returns a
+// list of all disks, specifying which are configured as working storage,
+// cache storage, or stored volume or not configured at all. The response
+// includes a DiskStatus field. This field can have a value of present (the
+// disk is availble to use), missing (the disk is no longer connected to
+// the gateway), or mismatch (the disk node is occupied by a disk that has
+// incorrect metadata or the disk content is corrupted).
 func (c *StorageGateway) ListLocalDisks(req *ListLocalDisksInput) (resp *ListLocalDisksOutput, err error) {
 	resp = &ListLocalDisksOutput{}
 	err = c.client.Do("ListLocalDisks", "POST", "/", req, resp)
@@ -487,6 +506,16 @@ func (c *StorageGateway) ListVolumes(req *ListVolumesInput) (resp *ListVolumesOu
 	return
 }
 
+// ResetCache this operation resets all cache disks and makes the disks
+// available for reconfiguration as cache storage. When a cache is reset,
+// the gateway loses its cache storage. At this point you can reconfigure
+// the disks as cache disks.
+func (c *StorageGateway) ResetCache(req *ResetCacheInput) (resp *ResetCacheOutput, err error) {
+	resp = &ResetCacheOutput{}
+	err = c.client.Do("ResetCache", "POST", "/", req, resp)
+	return
+}
+
 // RetrieveTapeArchive retrieves an archived virtual tape from the virtual
 // tape shelf to a gateway-VTL. Virtual tapes archived in the VTS are not
 // associated with any gateway. However after a tape is retrieved, it is
@@ -504,7 +533,9 @@ func (c *StorageGateway) RetrieveTapeArchive(req *RetrieveTapeArchiveInput) (res
 // virtual tape. A recovery point is a point in time view of a virtual tape
 // at which all the data on the tape is consistent. If your gateway
 // crashes, virtual tapes that have recovery points can be recovered to a
-// new gateway.
+// new gateway. The virtual tape can be retrieved to only one gateway. The
+// retrieved tape is read-only. The virtual tape can be retrieved to only a
+// gateway-VTL. There is no charge for retrieving recovery points.
 func (c *StorageGateway) RetrieveTapeRecoveryPoint(req *RetrieveTapeRecoveryPointInput) (resp *RetrieveTapeRecoveryPointOutput, err error) {
 	resp = &RetrieveTapeRecoveryPointOutput{}
 	err = c.client.Do("RetrieveTapeRecoveryPoint", "POST", "/", req, resp)
@@ -515,13 +546,19 @@ func (c *StorageGateway) RetrieveTapeRecoveryPoint(req *RetrieveTapeRecoveryPoin
 // gateway to shut down, use the Amazon Resource Name of the gateway in the
 // body of your request. The operation shuts down the gateway service
 // component running in the storage gateway's virtual machine and not the
+// If you want to shut down the VM, it is recommended that you first shut
+// down the gateway component in the VM to avoid unpredictable conditions.
 // After the gateway is shutdown, you cannot call any other API except
 // StartGateway , DescribeGatewayInformation , and ListGateways . For more
 // information, see ActivateGateway . Your applications cannot read from or
 // write to the gateway's storage volumes, and there are no snapshots
-// taken. If do not intend to use the gateway again, you must delete the
-// gateway (using DeleteGateway ) to no longer pay software charges
-// associated with the gateway.
+// taken. When you make a shutdown request, you will get a 200 success
+// response immediately. However, it might take some time for the gateway
+// to shut down. You can call the DescribeGatewayInformation API to check
+// the status. For more information, see ActivateGateway If do not intend
+// to use the gateway again, you must delete the gateway (using
+// DeleteGateway ) to no longer pay software charges associated with the
+// gateway.
 func (c *StorageGateway) ShutdownGateway(req *ShutdownGatewayInput) (resp *ShutdownGatewayOutput, err error) {
 	resp = &ShutdownGatewayOutput{}
 	err = c.client.Do("ShutdownGateway", "POST", "/", req, resp)
@@ -532,8 +569,12 @@ func (c *StorageGateway) ShutdownGateway(req *ShutdownGatewayInput) (resp *Shutd
 // down (see ShutdownGateway ). After the gateway starts, you can then make
 // other API calls, your applications can read from or write to the
 // gateway's storage volumes and you will be able to take snapshot backups.
-// To specify which gateway to start, use the Amazon Resource Name of the
-// gateway in your request.
+// When you make a request, you will get a 200 OK success response
+// immediately. However, it might take some time for the gateway to be
+// ready. You should call DescribeGatewayInformation and check the status
+// before making any additional API calls. For more information, see
+// ActivateGateway To specify which gateway to start, use the Amazon
+// Resource Name of the gateway in your request.
 func (c *StorageGateway) StartGateway(req *StartGatewayInput) (resp *StartGatewayOutput, err error) {
 	resp = &StartGatewayOutput{}
 	err = c.client.Do("StartGateway", "POST", "/", req, resp)
@@ -579,7 +620,10 @@ func (c *StorageGateway) UpdateGatewayInformation(req *UpdateGatewayInformationI
 
 // UpdateGatewaySoftwareNow this operation updates the gateway virtual
 // machine software. The request immediately triggers the software update.
-// A software update forces a system restart of your gateway. You can
+// When you make this request, you get a 200 success response immediately.
+// However, it might take some time for the update to complete. You can
+// call DescribeGatewayInformation to verify the gateway is in the state. A
+// software update forces a system restart of your gateway. You can
 // minimize the chance of any disruption to your applications by increasing
 // your iSCSI Initiators' timeouts. For more information about increasing
 // iSCSI Initiator timeouts for Windows and Linux, see Customizing Your
@@ -611,6 +655,16 @@ func (c *StorageGateway) UpdateMaintenanceStartTime(req *UpdateMaintenanceStartT
 func (c *StorageGateway) UpdateSnapshotSchedule(req *UpdateSnapshotScheduleInput) (resp *UpdateSnapshotScheduleOutput, err error) {
 	resp = &UpdateSnapshotScheduleOutput{}
 	err = c.client.Do("UpdateSnapshotSchedule", "POST", "/", req, resp)
+	return
+}
+
+// UpdateVTLDeviceType this operation updates the type of medium changer in
+// a gateway-VTL. When you activate a gateway-VTL, you select a medium
+// changer type for the gateway-VTL. This operation enables you to select a
+// different type of medium changer after a gateway-VTL is activated.
+func (c *StorageGateway) UpdateVTLDeviceType(req *UpdateVTLDeviceTypeInput) (resp *UpdateVTLDeviceTypeOutput, err error) {
+	resp = &UpdateVTLDeviceTypeOutput{}
+	err = c.client.Do("UpdateVTLDeviceType", "POST", "/", req, resp)
 	return
 }
 
@@ -1061,6 +1115,7 @@ type Disk struct {
 	DiskNode               aws.StringValue `json:"DiskNode,omitempty"`
 	DiskPath               aws.StringValue `json:"DiskPath,omitempty"`
 	DiskSizeInBytes        aws.LongValue   `json:"DiskSizeInBytes,omitempty"`
+	DiskStatus             aws.StringValue `json:"DiskStatus,omitempty"`
 }
 
 // Possible values for StorageGateway.
@@ -1188,6 +1243,16 @@ type NetworkInterface struct {
 	IPv4Address aws.StringValue `json:"Ipv4Address,omitempty"`
 	IPv6Address aws.StringValue `json:"Ipv6Address,omitempty"`
 	MACAddress  aws.StringValue `json:"MacAddress,omitempty"`
+}
+
+// ResetCacheInput is undocumented.
+type ResetCacheInput struct {
+	GatewayARN aws.StringValue `json:"GatewayARN"`
+}
+
+// ResetCacheOutput is undocumented.
+type ResetCacheOutput struct {
+	GatewayARN aws.StringValue `json:"GatewayARN,omitempty"`
 }
 
 // RetrieveTapeArchiveInput is undocumented.
@@ -1352,6 +1417,17 @@ type UpdateSnapshotScheduleInput struct {
 // UpdateSnapshotScheduleOutput is undocumented.
 type UpdateSnapshotScheduleOutput struct {
 	VolumeARN aws.StringValue `json:"VolumeARN,omitempty"`
+}
+
+// UpdateVTLDeviceTypeInput is undocumented.
+type UpdateVTLDeviceTypeInput struct {
+	DeviceType   aws.StringValue `json:"DeviceType"`
+	VTLDeviceARN aws.StringValue `json:"VTLDeviceARN"`
+}
+
+// UpdateVTLDeviceTypeOutput is undocumented.
+type UpdateVTLDeviceTypeOutput struct {
+	VTLDeviceARN aws.StringValue `json:"VTLDeviceARN,omitempty"`
 }
 
 // VTLDevice is undocumented.
