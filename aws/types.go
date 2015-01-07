@@ -66,20 +66,21 @@ func Double(v float64) DoubleValue {
 	return &v
 }
 
-// A FloatTimestamp is a Unix timestamp represented as a floating point number.
-type FloatTimestamp struct {
+// A UnixTimestamp is a Unix timestamp represented as fractional seconds since
+// the Unix epoch.
+type UnixTimestamp struct {
 	Time time.Time
 }
 
 // MarshalJSON marshals the timestamp as a float.
-func (t FloatTimestamp) MarshalJSON() (text []byte, err error) {
+func (t UnixTimestamp) MarshalJSON() (text []byte, err error) {
 	n := float64(t.Time.UnixNano()) / 1e9
 	s := strconv.FormatFloat(n, 'f', -1, 64)
 	return []byte(s), nil
 }
 
 // UnmarshalJSON unmarshals the timestamp from a float.
-func (t *FloatTimestamp) UnmarshalJSON(text []byte) error {
+func (t *UnixTimestamp) UnmarshalJSON(text []byte) error {
 	f, err := strconv.ParseFloat(string(text), 64)
 	if err != nil {
 		return err
@@ -89,27 +90,5 @@ func (t *FloatTimestamp) UnmarshalJSON(text []byte) error {
 	nsec := (f - sec) * 1e9
 
 	t.Time = time.Unix(int64(sec), int64(nsec)).UTC()
-	return nil
-}
-
-// A LongTimestamp is a Unix timestamp represented as a 64-bit integer.
-type LongTimestamp struct {
-	Time time.Time
-}
-
-// MarshalJSON marshals the timestamp as an int.
-func (t LongTimestamp) MarshalJSON() (text []byte, err error) {
-	s := strconv.FormatInt(t.Time.Unix(), 10)
-	return []byte(s), nil
-}
-
-// UnmarshalJSON unmarshals the timestamp from an int.
-func (t *LongTimestamp) UnmarshalJSON(text []byte) error {
-	n, err := strconv.ParseInt(string(text), 10, 64)
-	if err != nil {
-		return err
-	}
-
-	t.Time = time.Unix(n, 0).UTC()
 	return nil
 }

@@ -379,9 +379,9 @@ type ClusterSummary struct {
 
 // ClusterTimeline is undocumented.
 type ClusterTimeline struct {
-	CreationDateTime *aws.LongTimestamp `json:"CreationDateTime,omitempty"`
-	EndDateTime      *aws.LongTimestamp `json:"EndDateTime,omitempty"`
-	ReadyDateTime    *aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
+	CreationDateTime *aws.UnixTimestamp `json:"CreationDateTime,omitempty"`
+	EndDateTime      *aws.UnixTimestamp `json:"EndDateTime,omitempty"`
+	ReadyDateTime    *aws.UnixTimestamp `json:"ReadyDateTime,omitempty"`
 }
 
 // Command is undocumented.
@@ -403,8 +403,8 @@ type DescribeClusterOutput struct {
 
 // DescribeJobFlowsInput is undocumented.
 type DescribeJobFlowsInput struct {
-	CreatedAfter  *aws.LongTimestamp `json:"CreatedAfter,omitempty"`
-	CreatedBefore *aws.LongTimestamp `json:"CreatedBefore,omitempty"`
+	CreatedAfter  *aws.UnixTimestamp `json:"CreatedAfter,omitempty"`
+	CreatedBefore *aws.UnixTimestamp `json:"CreatedBefore,omitempty"`
 	JobFlowIDs    []string           `json:"JobFlowIds,omitempty"`
 	JobFlowStates []string           `json:"JobFlowStates,omitempty"`
 }
@@ -486,8 +486,8 @@ type InstanceGroupConfig struct {
 // InstanceGroupDetail is undocumented.
 type InstanceGroupDetail struct {
 	BidPrice              aws.StringValue    `json:"BidPrice,omitempty"`
-	CreationDateTime      *aws.LongTimestamp `json:"CreationDateTime"`
-	EndDateTime           *aws.LongTimestamp `json:"EndDateTime,omitempty"`
+	CreationDateTime      *aws.UnixTimestamp `json:"CreationDateTime"`
+	EndDateTime           *aws.UnixTimestamp `json:"EndDateTime,omitempty"`
 	InstanceGroupID       aws.StringValue    `json:"InstanceGroupId,omitempty"`
 	InstanceRequestCount  aws.IntegerValue   `json:"InstanceRequestCount"`
 	InstanceRole          aws.StringValue    `json:"InstanceRole"`
@@ -496,8 +496,8 @@ type InstanceGroupDetail struct {
 	LastStateChangeReason aws.StringValue    `json:"LastStateChangeReason,omitempty"`
 	Market                aws.StringValue    `json:"Market"`
 	Name                  aws.StringValue    `json:"Name,omitempty"`
-	ReadyDateTime         *aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
-	StartDateTime         *aws.LongTimestamp `json:"StartDateTime,omitempty"`
+	ReadyDateTime         *aws.UnixTimestamp `json:"ReadyDateTime,omitempty"`
+	StartDateTime         *aws.UnixTimestamp `json:"StartDateTime,omitempty"`
 	State                 aws.StringValue    `json:"State"`
 }
 
@@ -545,9 +545,9 @@ type InstanceGroupStatus struct {
 
 // InstanceGroupTimeline is undocumented.
 type InstanceGroupTimeline struct {
-	CreationDateTime *aws.LongTimestamp `json:"CreationDateTime,omitempty"`
-	EndDateTime      *aws.LongTimestamp `json:"EndDateTime,omitempty"`
-	ReadyDateTime    *aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
+	CreationDateTime *aws.UnixTimestamp `json:"CreationDateTime,omitempty"`
+	EndDateTime      *aws.UnixTimestamp `json:"EndDateTime,omitempty"`
+	ReadyDateTime    *aws.UnixTimestamp `json:"ReadyDateTime,omitempty"`
 }
 
 // Possible values for EMR.
@@ -597,9 +597,9 @@ type InstanceStatus struct {
 
 // InstanceTimeline is undocumented.
 type InstanceTimeline struct {
-	CreationDateTime *aws.LongTimestamp `json:"CreationDateTime,omitempty"`
-	EndDateTime      *aws.LongTimestamp `json:"EndDateTime,omitempty"`
-	ReadyDateTime    *aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
+	CreationDateTime *aws.UnixTimestamp `json:"CreationDateTime,omitempty"`
+	EndDateTime      *aws.UnixTimestamp `json:"EndDateTime,omitempty"`
+	ReadyDateTime    *aws.UnixTimestamp `json:"ReadyDateTime,omitempty"`
 }
 
 // JobFlowDetail is undocumented.
@@ -632,11 +632,11 @@ const (
 
 // JobFlowExecutionStatusDetail is undocumented.
 type JobFlowExecutionStatusDetail struct {
-	CreationDateTime      *aws.LongTimestamp `json:"CreationDateTime"`
-	EndDateTime           *aws.LongTimestamp `json:"EndDateTime,omitempty"`
+	CreationDateTime      *aws.UnixTimestamp `json:"CreationDateTime"`
+	EndDateTime           *aws.UnixTimestamp `json:"EndDateTime,omitempty"`
 	LastStateChangeReason aws.StringValue    `json:"LastStateChangeReason,omitempty"`
-	ReadyDateTime         *aws.LongTimestamp `json:"ReadyDateTime,omitempty"`
-	StartDateTime         *aws.LongTimestamp `json:"StartDateTime,omitempty"`
+	ReadyDateTime         *aws.UnixTimestamp `json:"ReadyDateTime,omitempty"`
+	StartDateTime         *aws.UnixTimestamp `json:"StartDateTime,omitempty"`
 	State                 aws.StringValue    `json:"State"`
 }
 
@@ -692,8 +692,8 @@ type ListBootstrapActionsOutput struct {
 // ListClustersInput is undocumented.
 type ListClustersInput struct {
 	ClusterStates []string           `json:"ClusterStates,omitempty"`
-	CreatedAfter  *aws.LongTimestamp `json:"CreatedAfter,omitempty"`
-	CreatedBefore *aws.LongTimestamp `json:"CreatedBefore,omitempty"`
+	CreatedAfter  *aws.UnixTimestamp `json:"CreatedAfter,omitempty"`
+	CreatedBefore *aws.UnixTimestamp `json:"CreatedBefore,omitempty"`
 	Marker        aws.StringValue    `json:"Marker,omitempty"`
 }
 
@@ -844,10 +844,10 @@ const (
 
 // StepExecutionStatusDetail is undocumented.
 type StepExecutionStatusDetail struct {
-	CreationDateTime      *aws.LongTimestamp `json:"CreationDateTime"`
-	EndDateTime           *aws.LongTimestamp `json:"EndDateTime,omitempty"`
+	CreationDateTime      *aws.UnixTimestamp `json:"CreationDateTime"`
+	EndDateTime           *aws.UnixTimestamp `json:"EndDateTime,omitempty"`
 	LastStateChangeReason aws.StringValue    `json:"LastStateChangeReason,omitempty"`
-	StartDateTime         *aws.LongTimestamp `json:"StartDateTime,omitempty"`
+	StartDateTime         *aws.UnixTimestamp `json:"StartDateTime,omitempty"`
 	State                 aws.StringValue    `json:"State"`
 }
 
@@ -890,9 +890,9 @@ type StepSummary struct {
 
 // StepTimeline is undocumented.
 type StepTimeline struct {
-	CreationDateTime *aws.LongTimestamp `json:"CreationDateTime,omitempty"`
-	EndDateTime      *aws.LongTimestamp `json:"EndDateTime,omitempty"`
-	StartDateTime    *aws.LongTimestamp `json:"StartDateTime,omitempty"`
+	CreationDateTime *aws.UnixTimestamp `json:"CreationDateTime,omitempty"`
+	EndDateTime      *aws.UnixTimestamp `json:"EndDateTime,omitempty"`
+	StartDateTime    *aws.UnixTimestamp `json:"StartDateTime,omitempty"`
 }
 
 // SupportedProductConfig is undocumented.

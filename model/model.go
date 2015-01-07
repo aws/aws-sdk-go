@@ -425,17 +425,11 @@ func (s *Shape) Type() string {
 	case "blob":
 		return "[]byte"
 	case "timestamp":
-		// DynamoDB has a magical date format of floating point epoch
-		// seconds. It's only used for a few calls, so we special-case it here
-		// rather than allow that to screw up all the other packages.
-		if service.PackageName == "dynamodb" || service.PackageName == "swf" {
-			return "*aws.FloatTimestamp"
+		// DynamoDB, unlike other JSON protocol APIs, uses Unix timestamps.
+		if service.PackageName == "dynamodb" ||
+			service.Metadata.TimestampFormat == "unixTimestamp" {
+			return "*aws.UnixTimestamp"
 		}
-
-		if service.Metadata.TimestampFormat == "unixTimestamp" {
-			return "*aws.LongTimestamp"
-		}
-
 		return "time.Time"
 	}
 

@@ -231,7 +231,7 @@ func (c *CodeDeploy) UpdateDeploymentGroup(req *UpdateDeploymentGroupInput) (res
 type ApplicationInfo struct {
 	ApplicationID   aws.StringValue    `json:"applicationId,omitempty"`
 	ApplicationName aws.StringValue    `json:"applicationName,omitempty"`
-	CreateTime      *aws.LongTimestamp `json:"createTime,omitempty"`
+	CreateTime      *aws.UnixTimestamp `json:"createTime,omitempty"`
 	LinkedToGitHub  aws.BooleanValue   `json:"linkedToGitHub,omitempty"`
 }
 
@@ -349,7 +349,7 @@ type DeleteDeploymentGroupOutput struct {
 
 // DeploymentConfigInfo is undocumented.
 type DeploymentConfigInfo struct {
-	CreateTime           *aws.LongTimestamp   `json:"createTime,omitempty"`
+	CreateTime           *aws.UnixTimestamp   `json:"createTime,omitempty"`
 	DeploymentConfigID   aws.StringValue      `json:"deploymentConfigId,omitempty"`
 	DeploymentConfigName aws.StringValue      `json:"deploymentConfigName,omitempty"`
 	MinimumHealthyHosts  *MinimumHealthyHosts `json:"minimumHealthyHosts,omitempty"`
@@ -376,8 +376,8 @@ type DeploymentGroupInfo struct {
 // DeploymentInfo is undocumented.
 type DeploymentInfo struct {
 	ApplicationName               aws.StringValue     `json:"applicationName,omitempty"`
-	CompleteTime                  *aws.LongTimestamp  `json:"completeTime,omitempty"`
-	CreateTime                    *aws.LongTimestamp  `json:"createTime,omitempty"`
+	CompleteTime                  *aws.UnixTimestamp  `json:"completeTime,omitempty"`
+	CreateTime                    *aws.UnixTimestamp  `json:"createTime,omitempty"`
 	Creator                       aws.StringValue     `json:"creator,omitempty"`
 	DeploymentConfigName          aws.StringValue     `json:"deploymentConfigName,omitempty"`
 	DeploymentGroupName           aws.StringValue     `json:"deploymentGroupName,omitempty"`
@@ -387,7 +387,7 @@ type DeploymentInfo struct {
 	ErrorInformation              *ErrorInformation   `json:"errorInformation,omitempty"`
 	IgnoreApplicationStopFailures aws.BooleanValue    `json:"ignoreApplicationStopFailures,omitempty"`
 	Revision                      *RevisionLocation   `json:"revision,omitempty"`
-	StartTime                     *aws.LongTimestamp  `json:"startTime,omitempty"`
+	StartTime                     *aws.UnixTimestamp  `json:"startTime,omitempty"`
 	Status                        aws.StringValue     `json:"status,omitempty"`
 }
 
@@ -457,9 +457,9 @@ type ErrorInformation struct {
 type GenericRevisionInfo struct {
 	DeploymentGroups []string           `json:"deploymentGroups,omitempty"`
 	Description      aws.StringValue    `json:"description,omitempty"`
-	FirstUsedTime    *aws.LongTimestamp `json:"firstUsedTime,omitempty"`
-	LastUsedTime     *aws.LongTimestamp `json:"lastUsedTime,omitempty"`
-	RegisterTime     *aws.LongTimestamp `json:"registerTime,omitempty"`
+	FirstUsedTime    *aws.UnixTimestamp `json:"firstUsedTime,omitempty"`
+	LastUsedTime     *aws.UnixTimestamp `json:"lastUsedTime,omitempty"`
+	RegisterTime     *aws.UnixTimestamp `json:"registerTime,omitempty"`
 }
 
 // GetApplicationInput is undocumented.
@@ -547,7 +547,7 @@ const (
 type InstanceSummary struct {
 	DeploymentID    aws.StringValue    `json:"deploymentId,omitempty"`
 	InstanceID      aws.StringValue    `json:"instanceId,omitempty"`
-	LastUpdatedAt   *aws.LongTimestamp `json:"lastUpdatedAt,omitempty"`
+	LastUpdatedAt   *aws.UnixTimestamp `json:"lastUpdatedAt,omitempty"`
 	LifecycleEvents []LifecycleEvent   `json:"lifecycleEvents,omitempty"`
 	Status          aws.StringValue    `json:"status,omitempty"`
 }
@@ -565,9 +565,9 @@ const (
 // LifecycleEvent is undocumented.
 type LifecycleEvent struct {
 	Diagnostics        *Diagnostics       `json:"diagnostics,omitempty"`
-	EndTime            *aws.LongTimestamp `json:"endTime,omitempty"`
+	EndTime            *aws.UnixTimestamp `json:"endTime,omitempty"`
 	LifecycleEventName aws.StringValue    `json:"lifecycleEventName,omitempty"`
-	StartTime          *aws.LongTimestamp `json:"startTime,omitempty"`
+	StartTime          *aws.UnixTimestamp `json:"startTime,omitempty"`
 	Status             aws.StringValue    `json:"status,omitempty"`
 }
 
@@ -734,8 +734,8 @@ const (
 
 // TimeRange is undocumented.
 type TimeRange struct {
-	End   *aws.LongTimestamp `json:"end,omitempty"`
-	Start *aws.LongTimestamp `json:"start,omitempty"`
+	End   *aws.UnixTimestamp `json:"end,omitempty"`
+	Start *aws.UnixTimestamp `json:"start,omitempty"`
 }
 
 // UpdateApplicationInput is undocumented.
