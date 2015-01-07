@@ -428,7 +428,7 @@ func (s *Shape) Type() string {
 		// DynamoDB has a magical date format of floating point epoch
 		// seconds. It's only used for a few calls, so we special-case it here
 		// rather than allow that to screw up all the other packages.
-		if service.PackageName == "dynamodb" {
+		if service.PackageName == "dynamodb" || service.PackageName == "swf" {
 			return "*aws.FloatTimestamp"
 		}
 

@@ -874,11 +874,11 @@ type ActivityTypeDetail struct {
 
 // ActivityTypeInfo is undocumented.
 type ActivityTypeInfo struct {
-	ActivityType    *ActivityType      `json:"activityType"`
-	CreationDate    *aws.LongTimestamp `json:"creationDate"`
-	DeprecationDate *aws.LongTimestamp `json:"deprecationDate,omitempty"`
-	Description     aws.StringValue    `json:"description,omitempty"`
-	Status          aws.StringValue    `json:"status"`
+	ActivityType    *ActivityType       `json:"activityType"`
+	CreationDate    *aws.FloatTimestamp `json:"creationDate"`
+	DeprecationDate *aws.FloatTimestamp `json:"deprecationDate,omitempty"`
+	Description     aws.StringValue     `json:"description,omitempty"`
+	Status          aws.StringValue     `json:"status"`
 }
 
 // ActivityTypeInfos is undocumented.
@@ -1275,8 +1275,8 @@ const (
 
 // ExecutionTimeFilter is undocumented.
 type ExecutionTimeFilter struct {
-	LatestDate *aws.LongTimestamp `json:"latestDate,omitempty"`
-	OldestDate *aws.LongTimestamp `json:"oldestDate"`
+	LatestDate *aws.FloatTimestamp `json:"latestDate,omitempty"`
+	OldestDate *aws.FloatTimestamp `json:"oldestDate"`
 }
 
 // ExternalWorkflowExecutionCancelRequestedEventAttributes is undocumented.
@@ -1348,7 +1348,7 @@ type HistoryEvent struct {
 	DecisionTaskStartedEventAttributes                             *DecisionTaskStartedEventAttributes                             `json:"decisionTaskStartedEventAttributes,omitempty"`
 	DecisionTaskTimedOutEventAttributes                            *DecisionTaskTimedOutEventAttributes                            `json:"decisionTaskTimedOutEventAttributes,omitempty"`
 	EventID                                                        aws.LongValue                                                   `json:"eventId"`
-	EventTimestamp                                                 *aws.LongTimestamp                                              `json:"eventTimestamp"`
+	EventTimestamp                                                 *aws.FloatTimestamp                                             `json:"eventTimestamp"`
 	EventType                                                      aws.StringValue                                                 `json:"eventType"`
 	ExternalWorkflowExecutionCancelRequestedEventAttributes        *ExternalWorkflowExecutionCancelRequestedEventAttributes        `json:"externalWorkflowExecutionCancelRequestedEventAttributes,omitempty"`
 	ExternalWorkflowExecutionSignaledEventAttributes               *ExternalWorkflowExecutionSignaledEventAttributes               `json:"externalWorkflowExecutionSignaledEventAttributes,omitempty"`
@@ -1890,7 +1890,7 @@ type WorkflowExecutionCount struct {
 type WorkflowExecutionDetail struct {
 	ExecutionConfiguration      *WorkflowExecutionConfiguration `json:"executionConfiguration"`
 	ExecutionInfo               *WorkflowExecutionInfo          `json:"executionInfo"`
-	LatestActivityTaskTimestamp *aws.LongTimestamp              `json:"latestActivityTaskTimestamp,omitempty"`
+	LatestActivityTaskTimestamp *aws.FloatTimestamp             `json:"latestActivityTaskTimestamp,omitempty"`
 	LatestExecutionContext      aws.StringValue                 `json:"latestExecutionContext,omitempty"`
 	OpenCounts                  *WorkflowExecutionOpenCounts    `json:"openCounts"`
 }
@@ -1909,15 +1909,15 @@ type WorkflowExecutionFilter struct {
 
 // WorkflowExecutionInfo is undocumented.
 type WorkflowExecutionInfo struct {
-	CancelRequested aws.BooleanValue   `json:"cancelRequested,omitempty"`
-	CloseStatus     aws.StringValue    `json:"closeStatus,omitempty"`
-	CloseTimestamp  *aws.LongTimestamp `json:"closeTimestamp,omitempty"`
-	Execution       *WorkflowExecution `json:"execution"`
-	ExecutionStatus aws.StringValue    `json:"executionStatus"`
-	Parent          *WorkflowExecution `json:"parent,omitempty"`
-	StartTimestamp  *aws.LongTimestamp `json:"startTimestamp"`
-	TagList         []string           `json:"tagList,omitempty"`
-	WorkflowType    *WorkflowType      `json:"workflowType"`
+	CancelRequested aws.BooleanValue    `json:"cancelRequested,omitempty"`
+	CloseStatus     aws.StringValue     `json:"closeStatus,omitempty"`
+	CloseTimestamp  *aws.FloatTimestamp `json:"closeTimestamp,omitempty"`
+	Execution       *WorkflowExecution  `json:"execution"`
+	ExecutionStatus aws.StringValue     `json:"executionStatus"`
+	Parent          *WorkflowExecution  `json:"parent,omitempty"`
+	StartTimestamp  *aws.FloatTimestamp `json:"startTimestamp"`
+	TagList         []string            `json:"tagList,omitempty"`
+	WorkflowType    *WorkflowType       `json:"workflowType"`
 }
 
 // WorkflowExecutionInfos is undocumented.
@@ -2012,11 +2012,11 @@ type WorkflowTypeFilter struct {
 
 // WorkflowTypeInfo is undocumented.
 type WorkflowTypeInfo struct {
-	CreationDate    *aws.LongTimestamp `json:"creationDate"`
-	DeprecationDate *aws.LongTimestamp `json:"deprecationDate,omitempty"`
-	Description     aws.StringValue    `json:"description,omitempty"`
-	Status          aws.StringValue    `json:"status"`
-	WorkflowType    *WorkflowType      `json:"workflowType"`
+	CreationDate    *aws.FloatTimestamp `json:"creationDate"`
+	DeprecationDate *aws.FloatTimestamp `json:"deprecationDate,omitempty"`
+	Description     aws.StringValue     `json:"description,omitempty"`
+	Status          aws.StringValue     `json:"status"`
+	WorkflowType    *WorkflowType       `json:"workflowType"`
 }
 
 // WorkflowTypeInfos is undocumented.
