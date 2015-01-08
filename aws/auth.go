@@ -191,6 +191,10 @@ type iamProvider struct {
 
 var metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam/security-credentials/"
 
+var client = http.Client{
+	Timeout: 1 * time.Second,
+}
+
 func (p *iamProvider) Credentials() (*Credentials, error) {
 	p.m.Lock()
 	defer p.m.Unlock()
@@ -206,7 +210,7 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 		Token           string
 	}
 
-	resp, err := http.Get(metadataCredentialsEndpoint)
+	resp, err := client.Get(metadataCredentialsEndpoint)
 	if err != nil {
 		return nil, errors.Annotate(err, "listing IAM credentials")
 	}
@@ -222,7 +226,7 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 		return nil, errors.Annotate(s.Err(), "listing IAM credentials")
 	}
 
-	resp, err = http.Get(metadataCredentialsEndpoint + s.Text())
+	resp, err = client.Get(metadataCredentialsEndpoint + s.Text())
 	if err != nil {
 		return nil, errors.Annotatef(err, "getting %s IAM credentials", s.Text())
 	}
