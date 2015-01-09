@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Kin
 		client = http.DefaultClient
 	}
 
-	service := "kinesis"
 	endpoint, service, region := endpoints.Lookup("kinesis", region)
 
 	return &Kinesis{

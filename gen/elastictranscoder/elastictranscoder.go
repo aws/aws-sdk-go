@@ -33,7 +33,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Ela
 		client = http.DefaultClient
 	}
 
-	service := "elastictranscoder"
 	endpoint, service, region := endpoints.Lookup("elastictranscoder", region)
 
 	return &ElasticTranscoder{

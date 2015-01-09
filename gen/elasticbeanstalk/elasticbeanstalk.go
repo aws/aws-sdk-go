@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Ela
 		client = http.DefaultClient
 	}
 
-	service := "elasticbeanstalk"
 	endpoint, service, region := endpoints.Lookup("elasticbeanstalk", region)
 
 	return &ElasticBeanstalk{

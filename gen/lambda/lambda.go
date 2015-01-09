@@ -33,7 +33,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Lam
 		client = http.DefaultClient
 	}
 
-	service := "lambda"
 	endpoint, service, region := endpoints.Lookup("lambda", region)
 
 	return &Lambda{

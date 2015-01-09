@@ -33,7 +33,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Clo
 		client = http.DefaultClient
 	}
 
-	service := "cloudsearchdomain"
 	endpoint, service, region := endpoints.Lookup("cloudsearchdomain", region)
 
 	return &CloudSearchDomain{

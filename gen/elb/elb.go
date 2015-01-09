@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *ELB
 		client = http.DefaultClient
 	}
 
-	service := "elasticloadbalancing"
 	endpoint, service, region := endpoints.Lookup("elasticloadbalancing", region)
 
 	return &ELB{

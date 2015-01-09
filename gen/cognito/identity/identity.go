@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Cog
 		client = http.DefaultClient
 	}
 
-	service := "cognito-identity"
 	endpoint, service, region := endpoints.Lookup("cognito-identity", region)
 
 	return &CognitoIdentity{

@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *EMR
 		client = http.DefaultClient
 	}
 
-	service := "elasticmapreduce"
 	endpoint, service, region := endpoints.Lookup("elasticmapreduce", region)
 
 	return &EMR{

@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *IAM
 		client = http.DefaultClient
 	}
 
-	service := "iam"
 	endpoint, service, region := endpoints.Lookup("iam", region)
 
 	return &IAM{

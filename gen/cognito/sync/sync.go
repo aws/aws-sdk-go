@@ -33,7 +33,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Cog
 		client = http.DefaultClient
 	}
 
-	service := "cognito-sync"
 	endpoint, service, region := endpoints.Lookup("cognito-sync", region)
 
 	return &CognitoSync{

@@ -33,7 +33,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Rou
 		client = http.DefaultClient
 	}
 
-	service := "route53"
 	endpoint, service, region := endpoints.Lookup("route53", region)
 
 	return &Route53{

@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Cod
 		client = http.DefaultClient
 	}
 
-	service := "codedeploy"
 	endpoint, service, region := endpoints.Lookup("codedeploy", region)
 
 	return &CodeDeploy{

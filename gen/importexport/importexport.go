@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Imp
 		client = http.DefaultClient
 	}
 
-	service := "importexport"
 	endpoint, service, region := endpoints.Lookup("importexport", region)
 
 	return &ImportExport{

@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Ela
 		client = http.DefaultClient
 	}
 
-	service := "elasticache"
 	endpoint, service, region := endpoints.Lookup("elasticache", region)
 
 	return &ElasticCache{

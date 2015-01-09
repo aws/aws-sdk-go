@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *SWF
 		client = http.DefaultClient
 	}
 
-	service := "swf"
 	endpoint, service, region := endpoints.Lookup("swf", region)
 
 	return &SWF{

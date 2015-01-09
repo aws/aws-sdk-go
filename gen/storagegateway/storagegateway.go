@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Sto
 		client = http.DefaultClient
 	}
 
-	service := "storagegateway"
 	endpoint, service, region := endpoints.Lookup("storagegateway", region)
 
 	return &StorageGateway{

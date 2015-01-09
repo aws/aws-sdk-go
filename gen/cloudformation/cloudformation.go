@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Clo
 		client = http.DefaultClient
 	}
 
-	service := "cloudformation"
 	endpoint, service, region := endpoints.Lookup("cloudformation", region)
 
 	return &CloudFormation{

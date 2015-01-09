@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Red
 		client = http.DefaultClient
 	}
 
-	service := "redshift"
 	endpoint, service, region := endpoints.Lookup("redshift", region)
 
 	return &RedShift{

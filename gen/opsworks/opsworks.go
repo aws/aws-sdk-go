@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Ops
 		client = http.DefaultClient
 	}
 
-	service := "opsworks"
 	endpoint, service, region := endpoints.Lookup("opsworks", region)
 
 	return &OpsWorks{

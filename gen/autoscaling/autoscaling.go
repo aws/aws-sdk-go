@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Aut
 		client = http.DefaultClient
 	}
 
-	service := "autoscaling"
 	endpoint, service, region := endpoints.Lookup("autoscaling", region)
 
 	return &AutoScaling{

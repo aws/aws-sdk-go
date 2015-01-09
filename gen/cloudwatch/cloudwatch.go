@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Clo
 		client = http.DefaultClient
 	}
 
-	service := "monitoring"
 	endpoint, service, region := endpoints.Lookup("monitoring", region)
 
 	return &CloudWatch{

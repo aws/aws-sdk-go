@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Dyn
 		client = http.DefaultClient
 	}
 
-	service := "dynamodb"
 	endpoint, service, region := endpoints.Lookup("dynamodb", region)
 
 	return &DynamoDB{

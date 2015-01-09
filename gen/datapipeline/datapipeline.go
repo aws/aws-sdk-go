@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Dat
 		client = http.DefaultClient
 	}
 
-	service := "datapipeline"
 	endpoint, service, region := endpoints.Lookup("datapipeline", region)
 
 	return &DataPipeline{

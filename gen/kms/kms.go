@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *KMS
 		client = http.DefaultClient
 	}
 
-	service := "kms"
 	endpoint, service, region := endpoints.Lookup("kms", region)
 
 	return &KMS{

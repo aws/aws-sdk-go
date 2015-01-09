@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *Dir
 		client = http.DefaultClient
 	}
 
-	service := "directconnect"
 	endpoint, service, region := endpoints.Lookup("directconnect", region)
 
 	return &DirectConnect{

@@ -33,7 +33,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *S3 
 		client = http.DefaultClient
 	}
 
-	service := "s3"
 	endpoint, service, region := endpoints.Lookup("s3", region)
 
 	return &S3{

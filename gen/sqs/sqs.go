@@ -22,7 +22,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *SQS
 		client = http.DefaultClient
 	}
 
-	service := "sqs"
 	endpoint, service, region := endpoints.Lookup("sqs", region)
 
 	return &SQS{
