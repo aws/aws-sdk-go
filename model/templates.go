@@ -78,7 +78,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
      client = http.DefaultClient
   }
 
-  service := "{{ .Metadata.EndpointPrefix }}"
   endpoint, service, region := endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region)
 
   return &{{ .Name }}{
@@ -147,7 +146,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
      client = http.DefaultClient
   }
 
-  service := "{{ .Metadata.EndpointPrefix }}"
   endpoint, service, region := endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region)
 
   return &{{ .Name }}{
@@ -226,7 +224,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
      client = http.DefaultClient
   }
 
-  service := "{{ .Metadata.EndpointPrefix }}"
   endpoint, service, region := endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region)
 
   return &{{ .Name }}{
@@ -486,7 +483,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
      client = http.DefaultClient
   }
 
-  service := "{{ .Metadata.EndpointPrefix }}"
   endpoint, service, region := endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region)
 
   return &{{ .Name }}{
@@ -667,7 +663,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
      client = http.DefaultClient
   }
 
-  service := "{{ .Metadata.EndpointPrefix }}"
   endpoint, service, region := endpoints.Lookup("{{ .Metadata.EndpointPrefix }}", region)
 
   return &{{ .Name }}{
