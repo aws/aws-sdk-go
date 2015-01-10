@@ -135,6 +135,11 @@ func queryClient(t *template.Template) (*template.Template, error) {
 {{ define "query" }}
 {{ template "header" $ }}
 
+import (
+	"io"
+	"encoding/xml"
+)
+
 // {{ .Name }} is a client for {{ .FullName }}.
 type {{ .Name }} struct {
   client *aws.QueryClient
@@ -173,6 +178,33 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 {{ end }}
 
 {{ range $name, $s := .Shapes }}
+{{ if eq $s.ShapeType "map" }}
+
+type {{ exportable $name }} map[{{ $s.Key.ElementType }}]{{ $s.Value.ElementType }}
+
+// UnmarshalXML implements xml.UnmarshalXML interface for map
+func (m *{{ exportable $name }}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	if *m == nil {
+		(*m) = make({{ exportable $name }})
+	}
+	for {
+		var e struct {
+			{{ or $s.KeyRef.LocationName "Key" }} {{ $s.Key.ElementType }} {{ $s.KeyXMLTag }}
+			{{ or $s.ValueRef.LocationName "Value" }} {{ $s.Value.ElementType }} {{ $s.ValueXMLTag }}
+		}
+		err := d.DecodeElement(&e, &start)
+		if err != nil && err != io.EOF {
+			return err
+		}
+		if err == io.EOF {
+			break
+		}
+		(*m)[e.{{ or $s.KeyRef.LocationName "Key" }}] = e.{{ or $s.ValueRef.LocationName "Value" }}
+	}
+	return nil
+}
+{{ end }}
+
 {{ if eq $s.ShapeType "structure" }}
 {{ if not $s.Exception }}
 
@@ -203,6 +235,8 @@ type {{ exportable $wname }} struct {
 {{ end }}
 
 {{ template "footer" }}
+var _ xml.Decoder
+var _ = io.EOF
 {{ end }}
 
 `)
