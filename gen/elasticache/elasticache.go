@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // ElasticCache is a client for Amazon ElastiCache.
 type ElasticCache struct {
 	client *aws.QueryClient
@@ -1243,3 +1248,6 @@ type ResetCacheParameterGroupResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

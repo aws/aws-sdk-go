@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // CloudWatch is a client for Amazon CloudWatch.
 type CloudWatch struct {
 	client *aws.QueryClient
@@ -471,3 +476,6 @@ type ListMetricsResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

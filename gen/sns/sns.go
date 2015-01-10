@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // SNS is a client for Amazon Simple Notification Service.
 type SNS struct {
 	client *aws.QueryClient
@@ -342,7 +347,7 @@ type CreateEndpointResponse struct {
 
 // CreatePlatformApplicationInput is undocumented.
 type CreatePlatformApplicationInput struct {
-	Attributes map[string]string `query:"Attributes" xml:"Attributes"`
+	Attributes MapStringToString `query:"Attributes.entry" xml:"Attributes>entry"`
 	Name       aws.StringValue   `query:"Name" xml:"Name"`
 	Platform   aws.StringValue   `query:"Platform" xml:"Platform"`
 }
@@ -354,7 +359,7 @@ type CreatePlatformApplicationResponse struct {
 
 // CreatePlatformEndpointInput is undocumented.
 type CreatePlatformEndpointInput struct {
-	Attributes             map[string]string `query:"Attributes" xml:"Attributes"`
+	Attributes             MapStringToString `query:"Attributes.entry" xml:"Attributes>entry"`
 	CustomUserData         aws.StringValue   `query:"CustomUserData" xml:"CustomUserData"`
 	PlatformApplicationARN aws.StringValue   `query:"PlatformApplicationArn" xml:"PlatformApplicationArn"`
 	Token                  aws.StringValue   `query:"Token" xml:"Token"`
@@ -387,7 +392,7 @@ type DeleteTopicInput struct {
 
 // Endpoint is undocumented.
 type Endpoint struct {
-	Attributes  map[string]string `query:"Attributes" xml:"Attributes"`
+	Attributes  MapStringToString `query:"Attributes.entry" xml:"Attributes>entry"`
 	EndpointARN aws.StringValue   `query:"EndpointArn" xml:"EndpointArn"`
 }
 
@@ -398,7 +403,7 @@ type GetEndpointAttributesInput struct {
 
 // GetEndpointAttributesResponse is undocumented.
 type GetEndpointAttributesResponse struct {
-	Attributes map[string]string `query:"Attributes" xml:"GetEndpointAttributesResult>Attributes"`
+	Attributes MapStringToString `query:"Attributes.entry" xml:"GetEndpointAttributesResult>Attributes>entry"`
 }
 
 // GetPlatformApplicationAttributesInput is undocumented.
@@ -408,7 +413,7 @@ type GetPlatformApplicationAttributesInput struct {
 
 // GetPlatformApplicationAttributesResponse is undocumented.
 type GetPlatformApplicationAttributesResponse struct {
-	Attributes map[string]string `query:"Attributes" xml:"GetPlatformApplicationAttributesResult>Attributes"`
+	Attributes MapStringToString `query:"Attributes.entry" xml:"GetPlatformApplicationAttributesResult>Attributes>entry"`
 }
 
 // GetSubscriptionAttributesInput is undocumented.
@@ -418,7 +423,7 @@ type GetSubscriptionAttributesInput struct {
 
 // GetSubscriptionAttributesResponse is undocumented.
 type GetSubscriptionAttributesResponse struct {
-	Attributes map[string]string `query:"Attributes" xml:"GetSubscriptionAttributesResult>Attributes"`
+	Attributes SubscriptionAttributesMap `query:"Attributes.entry" xml:"GetSubscriptionAttributesResult>Attributes>entry"`
 }
 
 // GetTopicAttributesInput is undocumented.
@@ -428,7 +433,7 @@ type GetTopicAttributesInput struct {
 
 // GetTopicAttributesResponse is undocumented.
 type GetTopicAttributesResponse struct {
-	Attributes map[string]string `query:"Attributes" xml:"GetTopicAttributesResult>Attributes"`
+	Attributes TopicAttributesMap `query:"Attributes.entry" xml:"GetTopicAttributesResult>Attributes>entry"`
 }
 
 // ListEndpointsByPlatformApplicationInput is undocumented.
@@ -488,6 +493,54 @@ type ListTopicsResponse struct {
 	Topics    []Topic         `query:"Topics.member" xml:"ListTopicsResult>Topics>member"`
 }
 
+type MapStringToString map[string]string
+
+// UnmarshalXML implements xml.UnmarshalXML interface for map
+func (m *MapStringToString) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	if *m == nil {
+		(*m) = make(MapStringToString)
+	}
+	for {
+		var e struct {
+			Key   string `xml:"key"`
+			Value string `xml:"value"`
+		}
+		err := d.DecodeElement(&e, &start)
+		if err != nil && err != io.EOF {
+			return err
+		}
+		if err == io.EOF {
+			break
+		}
+		(*m)[e.Key] = e.Value
+	}
+	return nil
+}
+
+type MessageAttributeMap map[string]MessageAttributeValue
+
+// UnmarshalXML implements xml.UnmarshalXML interface for map
+func (m *MessageAttributeMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	if *m == nil {
+		(*m) = make(MessageAttributeMap)
+	}
+	for {
+		var e struct {
+			Name  string                `xml:"Name"`
+			Value MessageAttributeValue `xml:"Value"`
+		}
+		err := d.DecodeElement(&e, &start)
+		if err != nil && err != io.EOF {
+			return err
+		}
+		if err == io.EOF {
+			break
+		}
+		(*m)[e.Name] = e.Value
+	}
+	return nil
+}
+
 // MessageAttributeValue is undocumented.
 type MessageAttributeValue struct {
 	BinaryValue []byte          `query:"BinaryValue" xml:"BinaryValue"`
@@ -497,18 +550,18 @@ type MessageAttributeValue struct {
 
 // PlatformApplication is undocumented.
 type PlatformApplication struct {
-	Attributes             map[string]string `query:"Attributes" xml:"Attributes"`
+	Attributes             MapStringToString `query:"Attributes.entry" xml:"Attributes>entry"`
 	PlatformApplicationARN aws.StringValue   `query:"PlatformApplicationArn" xml:"PlatformApplicationArn"`
 }
 
 // PublishInput is undocumented.
 type PublishInput struct {
-	Message           aws.StringValue                  `query:"Message" xml:"Message"`
-	MessageAttributes map[string]MessageAttributeValue `query:"MessageAttributes" xml:"MessageAttributes"`
-	MessageStructure  aws.StringValue                  `query:"MessageStructure" xml:"MessageStructure"`
-	Subject           aws.StringValue                  `query:"Subject" xml:"Subject"`
-	TargetARN         aws.StringValue                  `query:"TargetArn" xml:"TargetArn"`
-	TopicARN          aws.StringValue                  `query:"TopicArn" xml:"TopicArn"`
+	Message           aws.StringValue     `query:"Message" xml:"Message"`
+	MessageAttributes MessageAttributeMap `query:"MessageAttributes.entry" xml:"MessageAttributes>entry"`
+	MessageStructure  aws.StringValue     `query:"MessageStructure" xml:"MessageStructure"`
+	Subject           aws.StringValue     `query:"Subject" xml:"Subject"`
+	TargetARN         aws.StringValue     `query:"TargetArn" xml:"TargetArn"`
+	TopicARN          aws.StringValue     `query:"TopicArn" xml:"TopicArn"`
 }
 
 // PublishResponse is undocumented.
@@ -524,13 +577,13 @@ type RemovePermissionInput struct {
 
 // SetEndpointAttributesInput is undocumented.
 type SetEndpointAttributesInput struct {
-	Attributes  map[string]string `query:"Attributes" xml:"Attributes"`
+	Attributes  MapStringToString `query:"Attributes.entry" xml:"Attributes>entry"`
 	EndpointARN aws.StringValue   `query:"EndpointArn" xml:"EndpointArn"`
 }
 
 // SetPlatformApplicationAttributesInput is undocumented.
 type SetPlatformApplicationAttributesInput struct {
-	Attributes             map[string]string `query:"Attributes" xml:"Attributes"`
+	Attributes             MapStringToString `query:"Attributes.entry" xml:"Attributes>entry"`
 	PlatformApplicationARN aws.StringValue   `query:"PlatformApplicationArn" xml:"PlatformApplicationArn"`
 }
 
@@ -569,9 +622,57 @@ type Subscription struct {
 	TopicARN        aws.StringValue `query:"TopicArn" xml:"TopicArn"`
 }
 
+type SubscriptionAttributesMap map[string]string
+
+// UnmarshalXML implements xml.UnmarshalXML interface for map
+func (m *SubscriptionAttributesMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	if *m == nil {
+		(*m) = make(SubscriptionAttributesMap)
+	}
+	for {
+		var e struct {
+			Key   string `xml:"key"`
+			Value string `xml:"value"`
+		}
+		err := d.DecodeElement(&e, &start)
+		if err != nil && err != io.EOF {
+			return err
+		}
+		if err == io.EOF {
+			break
+		}
+		(*m)[e.Key] = e.Value
+	}
+	return nil
+}
+
 // Topic is undocumented.
 type Topic struct {
 	TopicARN aws.StringValue `query:"TopicArn" xml:"TopicArn"`
+}
+
+type TopicAttributesMap map[string]string
+
+// UnmarshalXML implements xml.UnmarshalXML interface for map
+func (m *TopicAttributesMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	if *m == nil {
+		(*m) = make(TopicAttributesMap)
+	}
+	for {
+		var e struct {
+			Key   string `xml:"key"`
+			Value string `xml:"value"`
+		}
+		err := d.DecodeElement(&e, &start)
+		if err != nil && err != io.EOF {
+			return err
+		}
+		if err == io.EOF {
+			break
+		}
+		(*m)[e.Key] = e.Value
+	}
+	return nil
 }
 
 // UnsubscribeInput is undocumented.
@@ -601,22 +702,22 @@ type CreateTopicResult struct {
 
 // GetEndpointAttributesResult is a wrapper for GetEndpointAttributesResponse.
 type GetEndpointAttributesResult struct {
-	Attributes map[string]string `query:"Attributes" xml:"GetEndpointAttributesResult>Attributes"`
+	Attributes MapStringToString `query:"Attributes.entry" xml:"GetEndpointAttributesResult>Attributes>entry"`
 }
 
 // GetPlatformApplicationAttributesResult is a wrapper for GetPlatformApplicationAttributesResponse.
 type GetPlatformApplicationAttributesResult struct {
-	Attributes map[string]string `query:"Attributes" xml:"GetPlatformApplicationAttributesResult>Attributes"`
+	Attributes MapStringToString `query:"Attributes.entry" xml:"GetPlatformApplicationAttributesResult>Attributes>entry"`
 }
 
 // GetSubscriptionAttributesResult is a wrapper for GetSubscriptionAttributesResponse.
 type GetSubscriptionAttributesResult struct {
-	Attributes map[string]string `query:"Attributes" xml:"GetSubscriptionAttributesResult>Attributes"`
+	Attributes SubscriptionAttributesMap `query:"Attributes.entry" xml:"GetSubscriptionAttributesResult>Attributes>entry"`
 }
 
 // GetTopicAttributesResult is a wrapper for GetTopicAttributesResponse.
 type GetTopicAttributesResult struct {
-	Attributes map[string]string `query:"Attributes" xml:"GetTopicAttributesResult>Attributes"`
+	Attributes TopicAttributesMap `query:"Attributes.entry" xml:"GetTopicAttributesResult>Attributes>entry"`
 }
 
 // ListEndpointsByPlatformApplicationResult is a wrapper for ListEndpointsByPlatformApplicationResponse.
@@ -661,3 +762,6 @@ type SubscribeResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

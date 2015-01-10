@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // CloudSearch is a client for Amazon CloudSearch.
 type CloudSearch struct {
 	client *aws.QueryClient
@@ -610,6 +615,30 @@ type DocumentSuggesterOptions struct {
 	SourceField    aws.StringValue `query:"SourceField" xml:"SourceField"`
 }
 
+type DomainNameMap map[string]string
+
+// UnmarshalXML implements xml.UnmarshalXML interface for map
+func (m *DomainNameMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	if *m == nil {
+		(*m) = make(DomainNameMap)
+	}
+	for {
+		var e struct {
+			Key   string `xml:"key"`
+			Value string `xml:"value"`
+		}
+		err := d.DecodeElement(&e, &start)
+		if err != nil && err != io.EOF {
+			return err
+		}
+		if err == io.EOF {
+			break
+		}
+		(*m)[e.Key] = e.Value
+	}
+	return nil
+}
+
 // DomainStatus is undocumented.
 type DomainStatus struct {
 	ARN                    aws.StringValue  `query:"ARN" xml:"ARN"`
@@ -743,7 +772,7 @@ type Limits struct {
 
 // ListDomainNamesResponse is undocumented.
 type ListDomainNamesResponse struct {
-	DomainNames map[string]string `query:"DomainNames" xml:"ListDomainNamesResult>DomainNames"`
+	DomainNames DomainNameMap `query:"DomainNames.entry" xml:"ListDomainNamesResult>DomainNames>entry"`
 }
 
 // LiteralArrayOptions is undocumented.
@@ -981,7 +1010,7 @@ type IndexDocumentsResult struct {
 
 // ListDomainNamesResult is a wrapper for ListDomainNamesResponse.
 type ListDomainNamesResult struct {
-	DomainNames map[string]string `query:"DomainNames" xml:"ListDomainNamesResult>DomainNames"`
+	DomainNames DomainNameMap `query:"DomainNames.entry" xml:"ListDomainNamesResult>DomainNames>entry"`
 }
 
 // UpdateAvailabilityOptionsResult is a wrapper for UpdateAvailabilityOptionsResponse.
@@ -1001,3 +1030,6 @@ type UpdateServiceAccessPoliciesResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // RedShift is a client for Amazon Redshift.
 type RedShift struct {
 	client *aws.QueryClient
@@ -1954,3 +1959,6 @@ type ResetClusterParameterGroupResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

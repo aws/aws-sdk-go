@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // AutoScaling is a client for Auto Scaling.
 type AutoScaling struct {
 	client *aws.QueryClient
@@ -1314,3 +1319,6 @@ type TerminateInstanceInAutoScalingGroupResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF
