@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // ELB is a client for Elastic Load Balancing.
 type ELB struct {
 	client *aws.QueryClient
@@ -1027,3 +1032,6 @@ type SetLoadBalancerPoliciesOfListenerResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

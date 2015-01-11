@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // RDS is a client for Amazon Relational Database Service.
 type RDS struct {
 	client *aws.QueryClient
@@ -1841,3 +1846,6 @@ type ResetDBParameterGroupResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // STS is a client for AWS Security Token Service.
 type STS struct {
 	client *aws.QueryClient
@@ -470,3 +475,6 @@ type GetSessionTokenResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

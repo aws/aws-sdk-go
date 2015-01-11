@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // IAM is a client for AWS Identity and Access Management.
 type IAM struct {
 	client *aws.QueryClient
@@ -1260,7 +1265,7 @@ type GetAccountPasswordPolicyResponse struct {
 
 // GetAccountSummaryResponse is undocumented.
 type GetAccountSummaryResponse struct {
-	SummaryMap map[string]int `query:"SummaryMap" xml:"GetAccountSummaryResult>SummaryMap"`
+	SummaryMap SummaryMapType `query:"SummaryMap.entry" xml:"GetAccountSummaryResult>SummaryMap>entry"`
 }
 
 // GetCredentialReportResponse is undocumented.
@@ -1972,6 +1977,30 @@ const (
 	SummaryKeyTypeUsersQuota                      = "UsersQuota"
 )
 
+type SummaryMapType map[string]int
+
+// UnmarshalXML implements xml.UnmarshalXML interface for map
+func (m *SummaryMapType) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	if *m == nil {
+		(*m) = make(SummaryMapType)
+	}
+	for {
+		var e struct {
+			Key   string `xml:"key"`
+			Value int    `xml:"value"`
+		}
+		err := d.DecodeElement(&e, &start)
+		if err != nil && err != io.EOF {
+			return err
+		}
+		if err == io.EOF {
+			break
+		}
+		(*m)[e.Key] = e.Value
+	}
+	return nil
+}
+
 // CreateAccessKeyResult is a wrapper for CreateAccessKeyResponse.
 type CreateAccessKeyResult struct {
 	AccessKey *AccessKey `query:"AccessKey" xml:"CreateAccessKeyResult>AccessKey"`
@@ -2039,7 +2068,7 @@ type GetAccountPasswordPolicyResult struct {
 
 // GetAccountSummaryResult is a wrapper for GetAccountSummaryResponse.
 type GetAccountSummaryResult struct {
-	SummaryMap map[string]int `query:"SummaryMap" xml:"GetAccountSummaryResult>SummaryMap"`
+	SummaryMap SummaryMapType `query:"SummaryMap.entry" xml:"GetAccountSummaryResult>SummaryMap>entry"`
 }
 
 // GetCredentialReportResult is a wrapper for GetCredentialReportResponse.
@@ -2250,3 +2279,6 @@ type UploadSigningCertificateResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

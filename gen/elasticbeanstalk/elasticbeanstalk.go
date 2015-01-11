@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // ElasticBeanstalk is a client for AWS Elastic Beanstalk.
 type ElasticBeanstalk struct {
 	client *aws.QueryClient
@@ -1006,3 +1011,6 @@ type ValidateConfigurationSettingsResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

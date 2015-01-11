@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // SES is a client for Amazon Simple Email Service.
 type SES struct {
 	client *aws.QueryClient
@@ -304,6 +309,30 @@ type Destination struct {
 	ToAddresses  []string `query:"ToAddresses.member" xml:"ToAddresses>member"`
 }
 
+type DkimAttributes map[string]IdentityDkimAttributes
+
+// UnmarshalXML implements xml.UnmarshalXML interface for map
+func (m *DkimAttributes) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	if *m == nil {
+		(*m) = make(DkimAttributes)
+	}
+	for {
+		var e struct {
+			Key   string                 `xml:"key"`
+			Value IdentityDkimAttributes `xml:"value"`
+		}
+		err := d.DecodeElement(&e, &start)
+		if err != nil && err != io.EOF {
+			return err
+		}
+		if err == io.EOF {
+			break
+		}
+		(*m)[e.Key] = e.Value
+	}
+	return nil
+}
+
 // GetIdentityDkimAttributesRequest is undocumented.
 type GetIdentityDkimAttributesRequest struct {
 	Identities []string `query:"Identities.member" xml:"Identities>member"`
@@ -311,7 +340,7 @@ type GetIdentityDkimAttributesRequest struct {
 
 // GetIdentityDkimAttributesResponse is undocumented.
 type GetIdentityDkimAttributesResponse struct {
-	DkimAttributes map[string]IdentityDkimAttributes `query:"DkimAttributes" xml:"GetIdentityDkimAttributesResult>DkimAttributes"`
+	DkimAttributes DkimAttributes `query:"DkimAttributes.entry" xml:"GetIdentityDkimAttributesResult>DkimAttributes>entry"`
 }
 
 // GetIdentityNotificationAttributesRequest is undocumented.
@@ -321,7 +350,7 @@ type GetIdentityNotificationAttributesRequest struct {
 
 // GetIdentityNotificationAttributesResponse is undocumented.
 type GetIdentityNotificationAttributesResponse struct {
-	NotificationAttributes map[string]IdentityNotificationAttributes `query:"NotificationAttributes" xml:"GetIdentityNotificationAttributesResult>NotificationAttributes"`
+	NotificationAttributes NotificationAttributes `query:"NotificationAttributes.entry" xml:"GetIdentityNotificationAttributesResult>NotificationAttributes>entry"`
 }
 
 // GetIdentityVerificationAttributesRequest is undocumented.
@@ -331,7 +360,7 @@ type GetIdentityVerificationAttributesRequest struct {
 
 // GetIdentityVerificationAttributesResponse is undocumented.
 type GetIdentityVerificationAttributesResponse struct {
-	VerificationAttributes map[string]IdentityVerificationAttributes `query:"VerificationAttributes" xml:"GetIdentityVerificationAttributesResult>VerificationAttributes"`
+	VerificationAttributes VerificationAttributes `query:"VerificationAttributes.entry" xml:"GetIdentityVerificationAttributesResult>VerificationAttributes>entry"`
 }
 
 // GetSendQuotaResponse is undocumented.
@@ -395,6 +424,30 @@ type ListVerifiedEmailAddressesResponse struct {
 type Message struct {
 	Body    *Body    `query:"Body" xml:"Body"`
 	Subject *Content `query:"Subject" xml:"Subject"`
+}
+
+type NotificationAttributes map[string]IdentityNotificationAttributes
+
+// UnmarshalXML implements xml.UnmarshalXML interface for map
+func (m *NotificationAttributes) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	if *m == nil {
+		(*m) = make(NotificationAttributes)
+	}
+	for {
+		var e struct {
+			Key   string                         `xml:"key"`
+			Value IdentityNotificationAttributes `xml:"value"`
+		}
+		err := d.DecodeElement(&e, &start)
+		if err != nil && err != io.EOF {
+			return err
+		}
+		if err == io.EOF {
+			break
+		}
+		(*m)[e.Key] = e.Value
+	}
+	return nil
 }
 
 // Possible values for SES.
@@ -475,6 +528,30 @@ type SetIdentityNotificationTopicRequest struct {
 type SetIdentityNotificationTopicResponse struct {
 }
 
+type VerificationAttributes map[string]IdentityVerificationAttributes
+
+// UnmarshalXML implements xml.UnmarshalXML interface for map
+func (m *VerificationAttributes) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	if *m == nil {
+		(*m) = make(VerificationAttributes)
+	}
+	for {
+		var e struct {
+			Key   string                         `xml:"key"`
+			Value IdentityVerificationAttributes `xml:"value"`
+		}
+		err := d.DecodeElement(&e, &start)
+		if err != nil && err != io.EOF {
+			return err
+		}
+		if err == io.EOF {
+			break
+		}
+		(*m)[e.Key] = e.Value
+	}
+	return nil
+}
+
 // Possible values for SES.
 const (
 	VerificationStatusFailed           = "Failed"
@@ -524,17 +601,17 @@ type DeleteIdentityResult struct {
 
 // GetIdentityDkimAttributesResult is a wrapper for GetIdentityDkimAttributesResponse.
 type GetIdentityDkimAttributesResult struct {
-	DkimAttributes map[string]IdentityDkimAttributes `query:"DkimAttributes" xml:"GetIdentityDkimAttributesResult>DkimAttributes"`
+	DkimAttributes DkimAttributes `query:"DkimAttributes.entry" xml:"GetIdentityDkimAttributesResult>DkimAttributes>entry"`
 }
 
 // GetIdentityNotificationAttributesResult is a wrapper for GetIdentityNotificationAttributesResponse.
 type GetIdentityNotificationAttributesResult struct {
-	NotificationAttributes map[string]IdentityNotificationAttributes `query:"NotificationAttributes" xml:"GetIdentityNotificationAttributesResult>NotificationAttributes"`
+	NotificationAttributes NotificationAttributes `query:"NotificationAttributes.entry" xml:"GetIdentityNotificationAttributesResult>NotificationAttributes>entry"`
 }
 
 // GetIdentityVerificationAttributesResult is a wrapper for GetIdentityVerificationAttributesResponse.
 type GetIdentityVerificationAttributesResult struct {
-	VerificationAttributes map[string]IdentityVerificationAttributes `query:"VerificationAttributes" xml:"GetIdentityVerificationAttributesResult>VerificationAttributes"`
+	VerificationAttributes VerificationAttributes `query:"VerificationAttributes.entry" xml:"GetIdentityVerificationAttributesResult>VerificationAttributes>entry"`
 }
 
 // GetSendQuotaResult is a wrapper for GetSendQuotaResponse.
@@ -598,3 +675,6 @@ type VerifyEmailIdentityResult struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

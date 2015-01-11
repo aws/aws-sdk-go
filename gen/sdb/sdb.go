@@ -11,6 +11,11 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
+import (
+	"encoding/xml"
+	"io"
+)
+
 // SDB is a client for Amazon SimpleDB.
 type SDB struct {
 	client *aws.QueryClient
@@ -337,3 +342,6 @@ type UpdateCondition struct {
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
+
+var _ xml.Decoder
+var _ = io.EOF

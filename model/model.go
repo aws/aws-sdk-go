@@ -156,32 +156,37 @@ func (m Member) QueryTag(wrapper string) string {
 	if !m.Shape().Flattened {
 		if m.LocationName != "" {
 			prefix = append(prefix, m.LocationName)
-		} else {
-			prefix = append(prefix, m.Name)
-		}
-	}
-
-	if m.Shape().ShapeType == "list" {
-		if !m.Shape().Flattened {
-			prefix = append(prefix, "member")
-		} else {
-			loc := m.Shape().MemberRef.LocationName
-			prefix = append(prefix, loc)
-		}
-	}
-
-	if !m.Shape().Flattened {
-		if m.LocationName != "" {
 			path = append(path, m.LocationName)
 		} else {
+			prefix = append(prefix, m.Name)
 			path = append(path, m.Name)
 		}
 	}
 
-	if m.Shape().ShapeType == "list" {
-		loc := m.Shape().MemberRef.LocationName
+	if m.Shape().ShapeType == "list" || m.Shape().ShapeType == "map" {
+		locPrefix := "member"
+		if m.Shape().ShapeType == "map" {
+			locPrefix = "entry"
+		}
+
+		if !m.Shape().Flattened {
+			prefix = append(prefix, locPrefix)
+		} else {
+			if ref := m.Shape().MemberRef; ref != nil {
+				prefix = append(prefix, ref.LocationName)
+			} else {
+				prefix = append(prefix, m.LocationName)
+			}
+		}
+
+		var loc string
+		if ref := m.Shape().MemberRef; ref != nil {
+			loc = ref.LocationName
+		} else {
+			loc = m.LocationName
+		}
 		if loc == "" {
-			loc = "member"
+			loc = locPrefix
 		}
 		path = append(path, loc)
 	}
@@ -309,6 +314,30 @@ func (s *Shape) Key() *Shape {
 	return s.KeyRef.Shape()
 }
 
+// KeyXMLTag returns the field tag for key.
+func (s *Shape) KeyXMLTag() string {
+	if s.ShapeType != "map" || s.KeyRef == nil {
+		return ""
+	}
+
+	if s.KeyRef.LocationName == "" {
+		return "`xml:\"key\"`"
+	}
+	return fmt.Sprintf("`xml:\"%s\"`", s.KeyRef.LocationName)
+}
+
+// ValueXMLTag returns the field tag for value.
+func (s *Shape) ValueXMLTag() string {
+	if s.ShapeType != "map" || s.ValueRef == nil {
+		return ""
+	}
+
+	if s.ValueRef.LocationName == "" {
+		return "`xml:\"value\"`"
+	}
+	return fmt.Sprintf("`xml:\"%s\"`", s.ValueRef.LocationName)
+}
+
 // Value returns the shape's value shape, if any.
 func (s *Shape) Value() *Shape {
 	return s.ValueRef.Shape()
@@ -384,6 +413,9 @@ func (s *Shape) ElementType() string {
 	case "string":
 		return "string"
 	case "map":
+		if service.Metadata.Protocol == "query" {
+			return exportable(s.Name)
+		}
 		return "map[" + s.Key().ElementType() + "]" + s.Value().ElementType()
 	case "list":
 		return "[]" + s.Member().ElementType()
@@ -417,6 +449,9 @@ func (s *Shape) Type() string {
 	case "string":
 		return "aws.StringValue"
 	case "map":
+		if service.Metadata.Protocol == "query" {
+			return exportable(s.Name)
+		}
 		return "map[" + s.Key().ElementType() + "]" + s.Value().ElementType()
 	case "list":
 		return "[]" + s.Member().ElementType()
