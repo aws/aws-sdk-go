@@ -191,7 +191,9 @@ type iamProvider struct {
 
 var metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam/security-credentials/"
 
-var client = http.Client{
+// IAMClient is the HTTP client used to query the metadata endpoint for IAM
+// credentials.
+var IAMClient = http.Client{
 	Timeout: 1 * time.Second,
 }
 
@@ -210,7 +212,7 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 		Token           string
 	}
 
-	resp, err := client.Get(metadataCredentialsEndpoint)
+	resp, err := IAMClient.Get(metadataCredentialsEndpoint)
 	if err != nil {
 		return nil, errors.Annotate(err, "listing IAM credentials")
 	}
@@ -226,7 +228,7 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 		return nil, errors.Annotate(s.Err(), "listing IAM credentials")
 	}
 
-	resp, err = client.Get(metadataCredentialsEndpoint + s.Text())
+	resp, err = IAMClient.Get(metadataCredentialsEndpoint + s.Text())
 	if err != nil {
 		return nil, errors.Annotatef(err, "getting %s IAM credentials", s.Text())
 	}
