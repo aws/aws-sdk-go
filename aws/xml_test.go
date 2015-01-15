@@ -1,26 +1,24 @@
-package aws_test
+package aws
 
 import (
 	"encoding/xml"
 	"testing"
-
-	"github.com/stripe/aws-go/aws"
 )
 
 type XMLRequest struct {
 	XMLName xml.Name `xml:"http://whatever Request"`
 
-	Integer    aws.IntegerValue `xml:",omitempty"`
-	DangerZone string           `xml:"-"`
+	Integer    IntegerValue `xml:",omitempty"`
+	DangerZone string       `xml:"-"`
 }
 
 func (r *XMLRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(r, e, start)
+	return MarshalXML(r, e, start)
 }
 
 func TestMarshalingXML(t *testing.T) {
 	r := &XMLRequest{
-		Integer:    aws.Integer(0),
+		Integer:    Integer(0),
 		DangerZone: "a zone of danger",
 	}
 

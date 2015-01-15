@@ -1,16 +1,14 @@
-package aws_test
+package aws
 
 import (
 	"encoding/json"
 	"testing"
 	"time"
-
-	"github.com/stripe/aws-go/aws"
 )
 
 func TestUnixTimestampSerialization(t *testing.T) {
 	d := time.Date(2014, 12, 20, 14, 55, 30, 500000000, time.UTC)
-	ts := aws.UnixTimestamp{Time: d}
+	ts := UnixTimestamp{Time: d}
 	out, err := json.Marshal(ts)
 	if err != nil {
 		t.Fatal(err)
@@ -22,7 +20,7 @@ func TestUnixTimestampSerialization(t *testing.T) {
 }
 
 func TestUnixTimestampDeserialization(t *testing.T) {
-	var ts aws.UnixTimestamp
+	var ts UnixTimestamp
 	if err := json.Unmarshal([]byte(`1419087330.5`), &ts); err != nil {
 		t.Fatal(err)
 	}

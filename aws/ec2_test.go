@@ -1,4 +1,4 @@
-package aws_test
+package aws
 
 import (
 	"fmt"
@@ -8,8 +8,6 @@ import (
 	"reflect"
 	"sync"
 	"testing"
-
-	"github.com/stripe/aws-go/aws"
 )
 
 func TestEC2Request(t *testing.T) {
@@ -34,11 +32,11 @@ func TestEC2Request(t *testing.T) {
 	))
 	defer server.Close()
 
-	client := aws.EC2Client{
-		Context: aws.Context{
+	client := EC2Client{
+		Context: Context{
 			Service: "animals",
 			Region:  "us-west-2",
-			Credentials: aws.Creds(
+			Credentials: Creds(
 				"accessKeyID",
 				"secretAccessKey",
 				"securityToken",
@@ -50,17 +48,17 @@ func TestEC2Request(t *testing.T) {
 	}
 
 	req := fakeEC2Request{
-		PresentString:  aws.String("string"),
-		PresentBoolean: aws.True(),
-		PresentInteger: aws.Integer(1),
-		PresentLong:    aws.Long(2),
-		PresentDouble:  aws.Double(1.2),
-		PresentFloat:   aws.Float(2.3),
+		PresentString:  String("string"),
+		PresentBoolean: True(),
+		PresentInteger: Integer(1),
+		PresentLong:    Long(2),
+		PresentDouble:  Double(1.2),
+		PresentFloat:   Float(2.3),
 		PresentSlice:   []string{"one", "two"},
-		PresentStruct:  &EmbeddedStruct{Value: aws.String("v")},
+		PresentStruct:  &EmbeddedStruct{Value: String("v")},
 		PresentStructSlice: []EmbeddedStruct{
-			{Value: aws.String("p")},
-			{Value: aws.String("q")},
+			{Value: String("p")},
+			{Value: String("q")},
 		},
 	}
 	var resp fakeEC2Response
@@ -148,11 +146,11 @@ func TestEC2RequestError(t *testing.T) {
 	))
 	defer server.Close()
 
-	client := aws.EC2Client{
-		Context: aws.Context{
+	client := EC2Client{
+		Context: Context{
 			Service: "animals",
 			Region:  "us-west-2",
-			Credentials: aws.Creds(
+			Credentials: Creds(
 				"accessKeyID",
 				"secretAccessKey",
 				"securityToken",
@@ -170,7 +168,7 @@ func TestEC2RequestError(t *testing.T) {
 		t.Fatal("Expected an error but none was returned")
 	}
 
-	if err, ok := err.(aws.APIError); ok {
+	if err, ok := err.(APIError); ok {
 		if v, want := err.Type, "Problem"; v != want {
 			t.Errorf("Error type was %v, but expected %v", v, want)
 		}
@@ -188,23 +186,23 @@ func TestEC2RequestError(t *testing.T) {
 }
 
 type fakeEC2Request struct {
-	PresentString aws.StringValue `ec2:"PresentString"`
-	MissingString aws.StringValue `ec2:"MissingString"`
+	PresentString StringValue `ec2:"PresentString"`
+	MissingString StringValue `ec2:"MissingString"`
 
-	PresentInteger aws.IntegerValue `ec2:"PresentInteger"`
-	MissingInteger aws.IntegerValue `ec2:"MissingInteger"`
+	PresentInteger IntegerValue `ec2:"PresentInteger"`
+	MissingInteger IntegerValue `ec2:"MissingInteger"`
 
-	PresentLong aws.LongValue `ec2:"PresentLong"`
-	MissingLong aws.LongValue `ec2:"MissingLong"`
+	PresentLong LongValue `ec2:"PresentLong"`
+	MissingLong LongValue `ec2:"MissingLong"`
 
-	PresentDouble aws.DoubleValue `ec2:"PresentDouble"`
-	MissingDouble aws.DoubleValue `ec2:"MissingDouble"`
+	PresentDouble DoubleValue `ec2:"PresentDouble"`
+	MissingDouble DoubleValue `ec2:"MissingDouble"`
 
-	PresentFloat aws.FloatValue `ec2:"PresentFloat"`
-	MissingFloat aws.FloatValue `ec2:"MissingFloat"`
+	PresentFloat FloatValue `ec2:"PresentFloat"`
+	MissingFloat FloatValue `ec2:"MissingFloat"`
 
-	PresentBoolean aws.BooleanValue `ec2:"PresentBoolean"`
-	MissingBoolean aws.BooleanValue `ec2:"MissingBoolean"`
+	PresentBoolean BooleanValue `ec2:"PresentBoolean"`
+	MissingBoolean BooleanValue `ec2:"MissingBoolean"`
 
 	PresentSlice []string `ec2:"PresentSlice"`
 	MissingSlice []string `ec2:"MissingSlice"`

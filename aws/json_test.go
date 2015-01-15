@@ -1,4 +1,4 @@
-package aws_test
+package aws
 
 import (
 	"fmt"
@@ -7,8 +7,6 @@ import (
 	"net/http/httptest"
 	"sync"
 	"testing"
-
-	"github.com/stripe/aws-go/aws"
 )
 
 func TestJSONRequest(t *testing.T) {
@@ -35,11 +33,11 @@ func TestJSONRequest(t *testing.T) {
 	))
 	defer server.Close()
 
-	client := aws.JSONClient{
-		Context: aws.Context{
+	client := JSONClient{
+		Context: Context{
 			Service: "animals",
 			Region:  "us-west-2",
-			Credentials: aws.Creds(
+			Credentials: Creds(
 				"accessKeyID",
 				"secretAccessKey",
 				"securityToken",
@@ -98,11 +96,11 @@ func TestJSONRequestError(t *testing.T) {
 	))
 	defer server.Close()
 
-	client := aws.JSONClient{
-		Context: aws.Context{
+	client := JSONClient{
+		Context: Context{
 			Service: "animals",
 			Region:  "us-west-2",
-			Credentials: aws.Creds(
+			Credentials: Creds(
 				"accessKeyID",
 				"secretAccessKey",
 				"securityToken",
@@ -121,7 +119,7 @@ func TestJSONRequestError(t *testing.T) {
 		t.Fatal("Expected an error but none was returned")
 	}
 
-	if err, ok := err.(aws.APIError); ok {
+	if err, ok := err.(APIError); ok {
 		if v, want := err.Type, "Problem"; v != want {
 			t.Errorf("Error type was %v, but expected %v", v, want)
 		}

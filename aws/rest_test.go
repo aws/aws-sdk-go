@@ -1,4 +1,4 @@
-package aws_test
+package aws
 
 import (
 	"fmt"
@@ -7,8 +7,6 @@ import (
 	"net/http/httptest"
 	"sync"
 	"testing"
-
-	"github.com/stripe/aws-go/aws"
 )
 
 func TestRestRequest(t *testing.T) {
@@ -27,11 +25,11 @@ func TestRestRequest(t *testing.T) {
 	))
 	defer server.Close()
 
-	client := aws.RestClient{
-		Context: aws.Context{
+	client := RestClient{
+		Context: Context{
 			Service: "animals",
 			Region:  "us-west-2",
-			Credentials: aws.Creds(
+			Credentials: Creds(
 				"accessKeyID",
 				"secretAccessKey",
 				"securityToken",
@@ -104,11 +102,11 @@ func TestRestRequestXMLError(t *testing.T) {
 	))
 	defer server.Close()
 
-	client := aws.RestClient{
-		Context: aws.Context{
+	client := RestClient{
+		Context: Context{
 			Service: "animals",
 			Region:  "us-west-2",
-			Credentials: aws.Creds(
+			Credentials: Creds(
 				"accessKeyID",
 				"secretAccessKey",
 				"securityToken",
@@ -127,7 +125,7 @@ func TestRestRequestXMLError(t *testing.T) {
 		t.Fatal("Expected an error but none was returned")
 	}
 
-	if err, ok := err.(aws.APIError); ok {
+	if err, ok := err.(APIError); ok {
 		if v, want := err.Code, "bonus"; v != want {
 			t.Errorf("Error code was %v, but expected %v", v, want)
 		}
@@ -158,11 +156,11 @@ func TestRestRequestJSONError(t *testing.T) {
 	))
 	defer server.Close()
 
-	client := aws.RestClient{
-		Context: aws.Context{
+	client := RestClient{
+		Context: Context{
 			Service: "animals",
 			Region:  "us-west-2",
-			Credentials: aws.Creds(
+			Credentials: Creds(
 				"accessKeyID",
 				"secretAccessKey",
 				"securityToken",
@@ -181,7 +179,7 @@ func TestRestRequestJSONError(t *testing.T) {
 		t.Fatal("Expected an error but none was returned")
 	}
 
-	if err, ok := err.(aws.APIError); ok {
+	if err, ok := err.(APIError); ok {
 		if v, want := err.Code, "bonus"; v != want {
 			t.Errorf("Error code was %v, but expected %v", v, want)
 		}
@@ -207,7 +205,7 @@ func TestEscapePath(t *testing.T) {
 		{"test? file", "test%3F%20file"},
 		{`hello? sausage/êé/Hello, 世界/ " ' @ < > & ?/z.txt`, "hello%3F%20sausage/%C3%AA%C3%A9/Hello%2C%20%E4%B8%96%E7%95%8C/%20%22%20%27%20%40%20%3C%20%3E%20%26%20%3F/z.txt"},
 	} {
-		got := aws.EscapePath(x.in)
+		got := EscapePath(x.in)
 		if got != x.want {
 			t.Errorf("EscapePath(%q) got %q, want %v", x.in, got, x.want)
 		}

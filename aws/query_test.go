@@ -1,4 +1,4 @@
-package aws_test
+package aws
 
 import (
 	"fmt"
@@ -9,8 +9,6 @@ import (
 	"sync"
 	"testing"
 	"time"
-
-	"github.com/stripe/aws-go/aws"
 )
 
 func TestQueryRequest(t *testing.T) {
@@ -35,11 +33,11 @@ func TestQueryRequest(t *testing.T) {
 	))
 	defer server.Close()
 
-	client := aws.QueryClient{
-		Context: aws.Context{
+	client := QueryClient{
+		Context: Context{
 			Service: "animals",
 			Region:  "us-west-2",
-			Credentials: aws.Creds(
+			Credentials: Creds(
 				"accessKeyID",
 				"secretAccessKey",
 				"securityToken",
@@ -51,22 +49,22 @@ func TestQueryRequest(t *testing.T) {
 	}
 
 	req := fakeQueryRequest{
-		PresentString:  aws.String("string"),
-		PresentBoolean: aws.True(),
-		PresentInteger: aws.Integer(1),
-		PresentLong:    aws.Long(2),
-		PresentDouble:  aws.Double(1.2),
-		PresentFloat:   aws.Float(2.3),
+		PresentString:  String("string"),
+		PresentBoolean: True(),
+		PresentInteger: Integer(1),
+		PresentLong:    Long(2),
+		PresentDouble:  Double(1.2),
+		PresentFloat:   Float(2.3),
 		PresentTime:    time.Date(2001, 1, 1, 2, 1, 1, 0, time.FixedZone("UTC+1", 3600)),
 		PresentSlice:   []string{"one", "two"},
-		PresentStruct:  &EmbeddedStruct{Value: aws.String("v")},
+		PresentStruct:  &EmbeddedStruct{Value: String("v")},
 		PresentStructSlice: []EmbeddedStruct{
-			{Value: aws.String("p")},
-			{Value: aws.String("q")},
+			{Value: String("p")},
+			{Value: String("q")},
 		},
 		PresentMap: map[string]EmbeddedStruct{
-			"aa": EmbeddedStruct{Value: aws.String("AA")},
-			"bb": EmbeddedStruct{Value: aws.String("BB")},
+			"aa": EmbeddedStruct{Value: String("AA")},
+			"bb": EmbeddedStruct{Value: String("BB")},
 		},
 	}
 	var resp fakeQueryResponse
@@ -157,11 +155,11 @@ func TestQueryRequestError(t *testing.T) {
 	))
 	defer server.Close()
 
-	client := aws.QueryClient{
-		Context: aws.Context{
+	client := QueryClient{
+		Context: Context{
 			Service: "animals",
 			Region:  "us-west-2",
-			Credentials: aws.Creds(
+			Credentials: Creds(
 				"accessKeyID",
 				"secretAccessKey",
 				"securityToken",
@@ -179,7 +177,7 @@ func TestQueryRequestError(t *testing.T) {
 		t.Fatal("Expected an error but none was returned")
 	}
 
-	if err, ok := err.(aws.APIError); ok {
+	if err, ok := err.(APIError); ok {
 		if v, want := err.Type, "Problem"; v != want {
 			t.Errorf("Error type was %v, but expected %v", v, want)
 		}
@@ -197,23 +195,23 @@ func TestQueryRequestError(t *testing.T) {
 }
 
 type fakeQueryRequest struct {
-	PresentString aws.StringValue `query:"PresentString"`
-	MissingString aws.StringValue `query:"MissingString"`
+	PresentString StringValue `query:"PresentString"`
+	MissingString StringValue `query:"MissingString"`
 
-	PresentInteger aws.IntegerValue `query:"PresentInteger"`
-	MissingInteger aws.IntegerValue `query:"MissingInteger"`
+	PresentInteger IntegerValue `query:"PresentInteger"`
+	MissingInteger IntegerValue `query:"MissingInteger"`
 
-	PresentLong aws.LongValue `query:"PresentLong"`
-	MissingLong aws.LongValue `query:"MissingLong"`
+	PresentLong LongValue `query:"PresentLong"`
+	MissingLong LongValue `query:"MissingLong"`
 
-	PresentDouble aws.DoubleValue `query:"PresentDouble"`
-	MissingDouble aws.DoubleValue `query:"MissingDouble"`
+	PresentDouble DoubleValue `query:"PresentDouble"`
+	MissingDouble DoubleValue `query:"MissingDouble"`
 
-	PresentFloat aws.FloatValue `query:"PresentFloat"`
-	MissingFloat aws.FloatValue `query:"MissingFloat"`
+	PresentFloat FloatValue `query:"PresentFloat"`
+	MissingFloat FloatValue `query:"MissingFloat"`
 
-	PresentBoolean aws.BooleanValue `query:"PresentBoolean"`
-	MissingBoolean aws.BooleanValue `query:"MissingBoolean"`
+	PresentBoolean BooleanValue `query:"PresentBoolean"`
+	MissingBoolean BooleanValue `query:"MissingBoolean"`
 
 	PresentTime time.Time `query:"PresentTime"`
 	MissingTime time.Time `query:"MissingTime"`
@@ -232,7 +230,7 @@ type fakeQueryRequest struct {
 }
 
 type EmbeddedStruct struct {
-	Value aws.StringValue
+	Value StringValue
 }
 
 type fakeQueryResponse struct {
