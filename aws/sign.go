@@ -45,7 +45,7 @@ func (c *Context) sign(r *http.Request) error {
 		return err
 	}
 
-	if s := creds.SecurityToken; s != "" {
+	if s := creds.SessionToken; s != "" {
 		r.Header.Set("X-Amz-Security-Token", s)
 	}
 

@@ -18,17 +18,11 @@ func main() {
 	}
 	defer in.Close()
 
-	out, err := os.Create(os.Args[3])
-	if err != nil {
-		panic(err)
-	}
-	defer out.Close()
-
 	if err := model.Load(os.Args[1], in); err != nil {
 		panic(err)
 	}
 
-	if err := model.Generate(out); err != nil {
+	if err := model.Generate(os.Args[3]); err != nil {
 		fmt.Fprintf(os.Stderr, "error generating %s\n", os.Args[3])
 		panic(err)
 	}
