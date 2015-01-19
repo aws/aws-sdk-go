@@ -116,7 +116,7 @@ import (
 // minimum read capacity units according to the type of read. For more
 // information, see Capacity Units Calculations in the Amazon DynamoDB
 // Developer Guide
-func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (req *aws.Request, output *BatchGetItemOutput, err error) {
+func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (output *BatchGetItemOutput, req *aws.Request, err error) {
 	output = &BatchGetItemOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "BatchGetItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -175,7 +175,7 @@ func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (req *aws.Request, out
 // same BatchWriteItem request. For example, you cannot put and delete the
 // same item in the same BatchWriteItem request. There are more than 25
 // requests in the batch.
-func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (req *aws.Request, output *BatchWriteItemOutput, err error) {
+func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (output *BatchWriteItemOutput, req *aws.Request, err error) {
 	output = &BatchWriteItemOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "BatchWriteItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -195,7 +195,7 @@ func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (req *aws.Request,
 // them, you must create them sequentially. Only one table with secondary
 // indexes can be in the state at any given time. You can use the
 // DescribeTable API to check the table status.
-func (c *DynamoDB) CreateTable(input *CreateTableInput) (req *aws.Request, output *CreateTableOutput, err error) {
+func (c *DynamoDB) CreateTable(input *CreateTableInput) (output *CreateTableOutput, req *aws.Request, err error) {
 	output = &CreateTableOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "CreateTable", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -214,7 +214,7 @@ func (c *DynamoDB) CreateTable(input *CreateTableInput) (req *aws.Request, outpu
 // response. Conditional deletes are useful for deleting items only if
 // specific conditions are met. If those conditions are met, DynamoDB
 // performs the delete. Otherwise, the item is not deleted.
-func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (req *aws.Request, output *DeleteItemOutput, err error) {
+func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (output *DeleteItemOutput, req *aws.Request, err error) {
 	output = &DeleteItemOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "DeleteItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -232,7 +232,7 @@ func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (req *aws.Request, output 
 // no error is returned. When you delete a table, any indexes on that table
 // are also deleted. Use the DescribeTable API to check the status of the
 // table.
-func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (req *aws.Request, output *DeleteTableOutput, err error) {
+func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (output *DeleteTableOutput, req *aws.Request, err error) {
 	output = &DeleteTableOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "DeleteTable", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -244,7 +244,7 @@ func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (req *aws.Request, outpu
 // DescribeTable returns information about the table, including the current
 // status of the table, when it was created, the primary key schema, and
 // any indexes on the table.
-func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (req *aws.Request, output *DescribeTableOutput, err error) {
+func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (output *DescribeTableOutput, req *aws.Request, err error) {
 	output = &DescribeTableOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "DescribeTable", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -260,7 +260,7 @@ func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (req *aws.Request, o
 // ConsistentRead to true . Although a strongly consistent read might take
 // more time than an eventually consistent read, it always returns the last
 // updated value.
-func (c *DynamoDB) GetItem(input *GetItemInput) (req *aws.Request, output *GetItemOutput, err error) {
+func (c *DynamoDB) GetItem(input *GetItemInput) (output *GetItemOutput, req *aws.Request, err error) {
 	output = &GetItemOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "GetItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -272,7 +272,7 @@ func (c *DynamoDB) GetItem(input *GetItemInput) (req *aws.Request, output *GetIt
 // ListTables returns an array of table names associated with the current
 // account and endpoint. The output from ListTables is paginated, with each
 // page returning a maximum of 100 table names.
-func (c *DynamoDB) ListTables(input *ListTablesInput) (req *aws.Request, output *ListTablesOutput, err error) {
+func (c *DynamoDB) ListTables(input *ListTablesInput) (output *ListTablesOutput, req *aws.Request, err error) {
 	output = &ListTablesOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "ListTables", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -298,7 +298,7 @@ func (c *DynamoDB) ListTables(input *ListTablesInput) (req *aws.Request, output 
 // information, see the ReturnValues description below. For more
 // information about using this see Working with Items in the Amazon
 // DynamoDB Developer Guide
-func (c *DynamoDB) PutItem(input *PutItemInput) (req *aws.Request, output *PutItemOutput, err error) {
+func (c *DynamoDB) PutItem(input *PutItemInput) (output *PutItemOutput, req *aws.Request, err error) {
 	output = &PutItemOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "PutItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -326,7 +326,7 @@ func (c *DynamoDB) PutItem(input *PutItemInput) (req *aws.Request, output *PutIt
 // obtain a strongly consistent result. Global secondary indexes support
 // eventually consistent reads only, so do not specify ConsistentRead when
 // querying a global secondary index.
-func (c *DynamoDB) Query(input *QueryInput) (req *aws.Request, output *QueryOutput, err error) {
+func (c *DynamoDB) Query(input *QueryInput) (output *QueryOutput, req *aws.Request, err error) {
 	output = &QueryOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "Query", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -348,7 +348,7 @@ func (c *DynamoDB) Query(input *QueryInput) (req *aws.Request, output *QueryOutp
 // parallel Scan operation by specifying the Segment and TotalSegments
 // parameters. For more information, see Parallel Scan in the Amazon
 // DynamoDB Developer Guide
-func (c *DynamoDB) Scan(input *ScanInput) (req *aws.Request, output *ScanOutput, err error) {
+func (c *DynamoDB) Scan(input *ScanInput) (output *ScanOutput, req *aws.Request, err error) {
 	output = &ScanOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "Scan", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -364,7 +364,7 @@ func (c *DynamoDB) Scan(input *ScanInput) (req *aws.Request, output *ScanOutput,
 // existing name-value pair if it has certain expected attribute values).
 // You can also return the item's attribute values in the same UpdateItem
 // operation using the ReturnValues parameter.
-func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (req *aws.Request, output *UpdateItemOutput, err error) {
+func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (output *UpdateItemOutput, req *aws.Request, err error) {
 	output = &UpdateItemOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "UpdateItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {
@@ -386,7 +386,7 @@ func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (req *aws.Request, output 
 // returns to the state after the UpdateTable operation. You cannot add,
 // modify or delete indexes using UpdateTable . Indexes can only be defined
 // at table creation time.
-func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (req *aws.Request, output *UpdateTableOutput, err error) {
+func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (output *UpdateTableOutput, req *aws.Request, err error) {
 	output = &UpdateTableOutput{}
 	req = aws.NewRequest(c.Service, &aws.Operation{Name: "UpdateTable", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
 	if !c.Service.ManualSend {

@@ -153,7 +153,7 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client, manu
 
 {{ range $name, $op := .Operations }}
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}input {{ $op.Input.Type }}{{ end }}) (req *aws.Request, {{ if $op.Output }}output {{ $op.Output.Type }},{{ end }} err error) {
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}input {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}output {{ $op.Output.Type }},{{ end }} req *aws.Request, err error) {
 	{{ if $op.Output }}output = {{ $op.Output.Literal }}{{ else }}// NRE{{ end }}
   req = aws.NewRequest(c.Service, &aws.Operation{Name: "{{ $name }}", HTTPMethod: "{{ $op.HTTP.Method }}", HTTPPath: "{{ $op.HTTP.RequestURI }}",}, input, output)
 	if !c.Service.ManualSend {
