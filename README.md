@@ -59,6 +59,7 @@ fmt.Println(resp.Reservations)
  * Direct Connect
  * DynamoDB
  * EC2
+ * EC2 Container Service
  * Elasticache
  * Elastic Beanstalk
  * Elastic Transcoder

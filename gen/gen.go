@@ -18,6 +18,7 @@ package gen
 //go:generate aws-gen-gocli DirectConnect ../apis/directconnect/2012-10-25.normal.json directconnect/directconnect.go
 //go:generate aws-gen-gocli DynamoDB ../apis/dynamodb/2012-08-10.normal.json dynamodb/dynamodb.go
 //go:generate aws-gen-gocli EC2 ../apis/ec2/2014-10-01.normal.json ec2/ec2.go
+//go:generate aws-gen-gocli ECS ../apis/ecs/2014-11-13.normal.json ecs/ecs.go
 //go:generate aws-gen-gocli ElasticCache ../apis/elasticache/2014-09-30.normal.json elasticache/elasticache.go
 //go:generate aws-gen-gocli ElasticBeanstalk ../apis/elasticbeanstalk/2010-12-01.normal.json elasticbeanstalk/elasticbeanstalk.go
 //go:generate aws-gen-gocli ElasticTranscoder ../apis/elastictranscoder/2012-09-25.normal.json elastictranscoder/elastictranscoder.go
