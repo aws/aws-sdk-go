@@ -1282,7 +1282,7 @@
         "AnalysisSchemeLanguage"
       ],
       "members":{
-        "AnalysisSchemeName":{"shape":"FieldName"},
+        "AnalysisSchemeName":{"shape":"StandardName"},
         "AnalysisSchemeLanguage":{"shape":"AnalysisSchemeLanguage"},
         "AnalysisOptions":{"shape":"AnalysisOptions"}
       },
@@ -1549,7 +1549,7 @@
       "members":{
         "DomainName":{"shape":"DomainName"},
         "AnalysisSchemeName":{
-          "shape":"FieldName",
+          "shape":"StandardName",
           "documentation":"<p>The name of the analysis scheme you want to delete.</p>"
         }
       },
@@ -1593,7 +1593,7 @@
       "members":{
         "DomainName":{"shape":"DomainName"},
         "ExpressionName":{
-          "shape":"FieldName",
+          "shape":"StandardName",
           "documentation":"<p>The name of the <code><a>Expression</a></code> to delete.</p>"
         }
       },
@@ -1619,7 +1619,7 @@
       "members":{
         "DomainName":{"shape":"DomainName"},
         "IndexFieldName":{
-          "shape":"FieldName",
+          "shape":"DynamicFieldName",
           "documentation":"<p>The name of the index field your want to remove from the domain's indexing options.</p>"
         }
       },
@@ -1645,7 +1645,7 @@
       "members":{
         "DomainName":{"shape":"DomainName"},
         "SuggesterName":{
-          "shape":"FieldName",
+          "shape":"StandardName",
           "documentation":"<p>Specifies the name of the suggester you want to delete.</p>"
         }
       },
@@ -1671,7 +1671,7 @@
           "documentation":"<p>The name of the domain you want to describe.</p>"
         },
         "AnalysisSchemeNames":{
-          "shape":"FieldNameList",
+          "shape":"StandardNameList",
           "documentation":"<p>The analysis schemes you want to describe.</p>"
         },
         "Deployed":{
@@ -1744,7 +1744,7 @@
           "documentation":"<p>The name of the domain you want to describe.</p>"
         },
         "ExpressionNames":{
-          "shape":"FieldNameList",
+          "shape":"StandardNameList",
           "documentation":"<p>Limits the <code><a>DescribeExpressions</a></code> response to the specified expressions. If not specified, all expressions are shown.</p>"
         },
         "Deployed":{
@@ -1774,7 +1774,7 @@
           "documentation":"<p>The name of the domain you want to describe.</p>"
         },
         "FieldNames":{
-          "shape":"FieldNameList",
+          "shape":"DynamicFieldNameList",
           "documentation":"<p>A list of the index fields you want to describe. If not specified, information is returned for all configured index fields.</p>"
         },
         "Deployed":{
@@ -1846,7 +1846,7 @@
           "documentation":"<p>The name of the domain you want to describe.</p>"
         },
         "SuggesterNames":{
-          "shape":"FieldNameList",
+          "shape":"StandardNameList",
           "documentation":"<p>The suggesters you want to describe.</p>"
         },
         "Deployed":{
@@ -2035,6 +2035,17 @@
       },
       "documentation":"<p>Options for a double-precision 64-bit floating point field. Present if <code>IndexFieldType</code> specifies the field is of type <code>double</code>. All options are enabled by default.</p>"
     },
+    "DynamicFieldName":{
+      "type":"string",
+      "min":1,
+      "max":64,
+      "pattern":"([a-z][a-z0-9_]*\\*?|\\*[a-z0-9_]*)",
+      "documentation":"<p>A string that represents the name of an index field. CloudSearch supports regular index fields as well as dynamic fields. A dynamic field's name defines a pattern that begins or ends with a wildcard. Any document fields that don't map to a regular index field but do match a dynamic field's pattern are configured with the dynamic field's indexing options. </p> <p>Field names begin with a letter and can contain the following characters: a-z (lowercase), 0-9, and _ (underscore). Dynamic field names must begin or end with a wildcard (*). The wildcard can also be the only character in a dynamic field name. Multiple wildcards, and wildcards embedded within a string are not supported. </p> <p>The name <code>score</code> is reserved and cannot be used as a field name. To reference a document's ID, you can use the name <code>_id</code>. </p>"
+    },
+    "DynamicFieldNameList":{
+      "type":"list",
+      "member":{"shape":"DynamicFieldName"}
+    },
     "ErrorCode":{
       "type":"string",
       "documentation":"<p>A machine-parsable string error or warning code.</p>"
@@ -2050,7 +2061,7 @@
         "ExpressionValue"
       ],
       "members":{
-        "ExpressionName":{"shape":"FieldName"},
+        "ExpressionName":{"shape":"StandardName"},
         "ExpressionValue":{"shape":"ExpressionValue"}
       },
       "documentation":"<p>A named expression that can be evaluated at search time. Can be used to sort the search results, define other expressions, or return computed information in the search results. </p>"
@@ -2090,7 +2101,7 @@
     },
     "FieldNameCommaList":{
       "type":"string",
-      "pattern":"\\s*[a-z][a-z0-9_]*\\s*(,\\s*[a-z][a-z0-9_]*\\s*)*"
+      "pattern":"\\s*[a-z*][a-z0-9_]*\\*?\\s*(,\\s*[a-z*][a-z0-9_]*\\*?\\s*)*"
     },
     "FieldNameList":{
       "type":"list",
@@ -2129,7 +2140,7 @@
       ],
       "members":{
         "IndexFieldName":{
-          "shape":"FieldName",
+          "shape":"DynamicFieldName",
           "documentation":"<p>The name of a field in the search index. Field names must begin with a letter and can contain the following characters: a-z (lowercase), 0-9, and _ (underscore). Uppercase letters and hyphens are not allowed. The name \"score\" is reserved and cannot be specified as field or expression name.</p>"
         },
         "IndexFieldType":{"shape":"IndexFieldType"},
@@ -2504,6 +2515,17 @@
       "type":"string",
       "documentation":"<p>The endpoint to which service requests can be submitted. For example, <code>search-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com</code> or <code>doc-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com</code>.</p>"
     },
+    "StandardName":{
+      "type":"string",
+      "min":1,
+      "max":64,
+      "pattern":"[a-z][a-z0-9_]*",
+      "documentation":"<p>Names must begin with a letter and can contain the following characters: a-z (lowercase), 0-9, and _ (underscore).</p>"
+    },
+    "StandardNameList":{
+      "type":"list",
+      "member":{"shape":"StandardName"}
+    },
     "String":{"type":"string"},
     "Suggester":{
       "type":"structure",
@@ -2512,7 +2534,7 @@
         "DocumentSuggesterOptions"
       ],
       "members":{
-        "SuggesterName":{"shape":"FieldName"},
+        "SuggesterName":{"shape":"StandardName"},
         "DocumentSuggesterOptions":{"shape":"DocumentSuggesterOptions"}
       },
       "documentation":"<p>Configuration information for a search suggester. Each suggester has a unique name and specifies the text field you want to use for suggestions. The following options can be configured for a suggester: <code>FuzzyMatching</code>, <code>SortExpression</code>. </p>"
