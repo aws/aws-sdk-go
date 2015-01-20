@@ -38,7 +38,7 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *RDS
 			},
 			Client:     client,
 			Endpoint:   endpoint,
-			APIVersion: "2014-09-01",
+			APIVersion: "2014-10-31",
 		},
 	}
 }
@@ -62,6 +62,14 @@ func (c *RDS) AddTagsToResource(req *AddTagsToResourceMessage) (err error) {
 	return
 }
 
+// ApplyPendingMaintenanceAction applies a pending maintenance action to a
+// resource.
+func (c *RDS) ApplyPendingMaintenanceAction(req *ApplyPendingMaintenanceActionMessage) (resp *ApplyPendingMaintenanceActionResult, err error) {
+	resp = &ApplyPendingMaintenanceActionResult{}
+	err = c.client.Do("ApplyPendingMaintenanceAction", "POST", "/", req, resp)
+	return
+}
+
 // AuthorizeDBSecurityGroupIngress enables ingress to a DBSecurityGroup
 // using one of two forms of authorization. First, EC2 or VPC security
 // groups can be added to the DBSecurityGroup if the application using the
@@ -69,8 +77,11 @@ func (c *RDS) AddTagsToResource(req *AddTagsToResourceMessage) (err error) {
 // available if the application accessing your database is running on the
 // Internet. Required parameters for this API are one of range,
 // EC2SecurityGroupId for or (EC2SecurityGroupOwnerId and either
-// EC2SecurityGroupName or EC2SecurityGroupId for non-VPC). For an overview
-// of ranges, go to the Wikipedia Tutorial .
+// EC2SecurityGroupName or EC2SecurityGroupId for non-VPC). You cannot
+// authorize ingress from an EC2 security group in one Region to an Amazon
+// RDS DB instance in another. You cannot authorize ingress from a VPC
+// security group in one VPC to an Amazon RDS DB instance in another. For
+// an overview of ranges, go to the Wikipedia Tutorial .
 func (c *RDS) AuthorizeDBSecurityGroupIngress(req *AuthorizeDBSecurityGroupIngressMessage) (resp *AuthorizeDBSecurityGroupIngressResult, err error) {
 	resp = &AuthorizeDBSecurityGroupIngressResult{}
 	err = c.client.Do("AuthorizeDBSecurityGroupIngress", "POST", "/", req, resp)
@@ -106,8 +117,8 @@ func (c *RDS) CreateDBInstance(req *CreateDBInstanceMessage) (resp *CreateDBInst
 	return
 }
 
-// CreateDBInstanceReadReplica creates a DB instance that acts as a read
-// replica of a source DB instance. All read replica DB instances are
+// CreateDBInstanceReadReplica creates a DB instance that acts as a Read
+// Replica of a source DB instance. All Read Replica DB instances are
 // created as Single-AZ deployments with backups disabled. All other DB
 // instance attributes (including DB security groups and DB parameter
 // groups) are inherited from the source DB instance, except as specified
@@ -216,14 +227,16 @@ func (c *RDS) DeleteDBInstance(req *DeleteDBInstanceMessage) (resp *DeleteDBInst
 
 // DeleteDBParameterGroup deletes a specified DBParameterGroup. The
 // DBParameterGroup to be deleted cannot be associated with any DB
-// instances.
+// instances. The specified DB parameter group cannot be associated with
+// any DB instances.
 func (c *RDS) DeleteDBParameterGroup(req *DeleteDBParameterGroupMessage) (err error) {
 	// NRE
 	err = c.client.Do("DeleteDBParameterGroup", "POST", "/", req, nil)
 	return
 }
 
-// DeleteDBSecurityGroup is undocumented.
+// DeleteDBSecurityGroup deletes a DB security group. The specified DB
+// security group must not be associated with any DB instances.
 func (c *RDS) DeleteDBSecurityGroup(req *DeleteDBSecurityGroupMessage) (err error) {
 	// NRE
 	err = c.client.Do("DeleteDBSecurityGroup", "POST", "/", req, nil)
@@ -231,14 +244,16 @@ func (c *RDS) DeleteDBSecurityGroup(req *DeleteDBSecurityGroupMessage) (err erro
 }
 
 // DeleteDBSnapshot deletes a DBSnapshot. If the snapshot is being copied,
-// the copy operation is terminated.
+// the copy operation is terminated. The DBSnapshot must be in the
+// available state to be deleted.
 func (c *RDS) DeleteDBSnapshot(req *DeleteDBSnapshotMessage) (resp *DeleteDBSnapshotResult, err error) {
 	resp = &DeleteDBSnapshotResult{}
 	err = c.client.Do("DeleteDBSnapshot", "POST", "/", req, resp)
 	return
 }
 
-// DeleteDBSubnetGroup is undocumented.
+// DeleteDBSubnetGroup deletes a DB subnet group. The specified database
+// subnet group must not be associated with any DB instances.
 func (c *RDS) DeleteDBSubnetGroup(req *DeleteDBSubnetGroupMessage) (err error) {
 	// NRE
 	err = c.client.Do("DeleteDBSubnetGroup", "POST", "/", req, nil)
@@ -387,6 +402,15 @@ func (c *RDS) DescribeOrderableDBInstanceOptions(req *DescribeOrderableDBInstanc
 	return
 }
 
+// DescribePendingMaintenanceActions returns a list of resources (for
+// example, DB Instances) that have at least one pending maintenance
+// action.
+func (c *RDS) DescribePendingMaintenanceActions(req *DescribePendingMaintenanceActionsMessage) (resp *DescribePendingMaintenanceActionsResult, err error) {
+	resp = &DescribePendingMaintenanceActionsResult{}
+	err = c.client.Do("DescribePendingMaintenanceActions", "POST", "/", req, resp)
+	return
+}
+
 // DescribeReservedDBInstances returns information about reserved DB
 // instances for this account, or about a specified reserved DB instance.
 func (c *RDS) DescribeReservedDBInstances(req *DescribeReservedDBInstancesMessage) (resp *DescribeReservedDBInstancesResult, err error) {
@@ -431,7 +455,10 @@ func (c *RDS) ModifyDBInstance(req *ModifyDBInstanceMessage) (resp *ModifyDBInst
 // ModifyDBParameterGroup modifies the parameters of a DB parameter group.
 // To modify more than one parameter, submit a list of the following:
 // ParameterName , ParameterValue , and ApplyMethod . A maximum of 20
-// parameters can be modified in a single request. After you modify a DB
+// parameters can be modified in a single request. Changes to dynamic
+// parameters are applied immediately. Changes to static parameters require
+// a reboot without failover to the DB instance associated with the
+// parameter group before the change can take effect. After you modify a DB
 // parameter group, you should wait at least 5 minutes before creating your
 // first DB instance that uses that DB parameter group as the default
 // parameter group. This allows Amazon RDS to fully complete the modify
@@ -477,8 +504,11 @@ func (c *RDS) ModifyOptionGroup(req *ModifyOptionGroupMessage) (resp *ModifyOpti
 	return
 }
 
-// PromoteReadReplica promotes a read replica DB instance to a standalone
-// DB instance.
+// PromoteReadReplica promotes a Read Replica DB instance to a standalone
+// DB instance. We recommend that you enable automated backups on your Read
+// Replica before promoting the Read Replica. This ensures that no backup
+// is taken during the promotion process. Once the instance is promoted to
+// a primary instance, backups are taken based on your backup settings.
 func (c *RDS) PromoteReadReplica(req *PromoteReadReplicaMessage) (resp *PromoteReadReplicaResult, err error) {
 	resp = &PromoteReadReplicaResult{}
 	err = c.client.Do("PromoteReadReplica", "POST", "/", req, resp)
@@ -549,7 +579,15 @@ func (c *RDS) ResetDBParameterGroup(req *ResetDBParameterGroupMessage) (resp *Re
 // snapshot. The target database is created from the source database
 // restore point with the same configuration as the original source
 // database, except that the new RDS instance is created with the default
-// security group.
+// security group. If your intent is to replace your original DB instance
+// with the new, restored DB instance, then rename your original DB
+// instance before you call the RestoreDBInstanceFromDBSnapshot action. RDS
+// does not allow two DB instances with the same name. Once you have
+// renamed your original DB instance with a different identifier, then you
+// can pass the original name of the DB instance as the
+// DBInstanceIdentifier in the call to the RestoreDBInstanceFromDBSnapshot
+// action. The result is that you will replace the original DB instance
+// with the DB instance created from the snapshot.
 func (c *RDS) RestoreDBInstanceFromDBSnapshot(req *RestoreDBInstanceFromDBSnapshotMessage) (resp *RestoreDBInstanceFromDBSnapshotResult, err error) {
 	resp = &RestoreDBInstanceFromDBSnapshotResult{}
 	err = c.client.Do("RestoreDBInstanceFromDBSnapshot", "POST", "/", req, resp)
@@ -558,7 +596,7 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshot(req *RestoreDBInstanceFromDBSnapsh
 
 // RestoreDBInstanceToPointInTime restores a DB instance to an arbitrary
 // point-in-time. Users can restore to any point in time before the
-// latestRestorableTime for up to backupRetentionPeriod days. The target
+// LatestRestorableTime for up to BackupRetentionPeriod days. The target
 // database is created from the source database with the same configuration
 // as the original database except that the DB instance is created with the
 // default DB security group.
@@ -601,6 +639,18 @@ const (
 	ApplyMethodImmediate     = "immediate"
 	ApplyMethodPendingReboot = "pending-reboot"
 )
+
+// ApplyPendingMaintenanceActionMessage is undocumented.
+type ApplyPendingMaintenanceActionMessage struct {
+	ApplyAction        aws.StringValue `query:"ApplyAction" xml:"ApplyAction"`
+	OptInType          aws.StringValue `query:"OptInType" xml:"OptInType"`
+	ResourceIdentifier aws.StringValue `query:"ResourceIdentifier" xml:"ResourceIdentifier"`
+}
+
+// ApplyPendingMaintenanceActionResult is undocumented.
+type ApplyPendingMaintenanceActionResult struct {
+	ResourcePendingMaintenanceActions *ResourcePendingMaintenanceActions `query:"ResourcePendingMaintenanceActions" xml:"ApplyPendingMaintenanceActionResult>ResourcePendingMaintenanceActions"`
+}
 
 // AuthorizeDBSecurityGroupIngressMessage is undocumented.
 type AuthorizeDBSecurityGroupIngressMessage struct {
@@ -681,6 +731,7 @@ type CreateDBInstanceMessage struct {
 	Engine                     aws.StringValue  `query:"Engine" xml:"Engine"`
 	EngineVersion              aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
 	IOPS                       aws.IntegerValue `query:"Iops" xml:"Iops"`
+	KMSKeyID                   aws.StringValue  `query:"KmsKeyId" xml:"KmsKeyId"`
 	LicenseModel               aws.StringValue  `query:"LicenseModel" xml:"LicenseModel"`
 	MasterUserPassword         aws.StringValue  `query:"MasterUserPassword" xml:"MasterUserPassword"`
 	MasterUsername             aws.StringValue  `query:"MasterUsername" xml:"MasterUsername"`
@@ -690,6 +741,7 @@ type CreateDBInstanceMessage struct {
 	PreferredBackupWindow      aws.StringValue  `query:"PreferredBackupWindow" xml:"PreferredBackupWindow"`
 	PreferredMaintenanceWindow aws.StringValue  `query:"PreferredMaintenanceWindow" xml:"PreferredMaintenanceWindow"`
 	PubliclyAccessible         aws.BooleanValue `query:"PubliclyAccessible" xml:"PubliclyAccessible"`
+	StorageEncrypted           aws.BooleanValue `query:"StorageEncrypted" xml:"StorageEncrypted"`
 	StorageType                aws.StringValue  `query:"StorageType" xml:"StorageType"`
 	Tags                       []Tag            `query:"Tags.member" xml:"Tags>Tag"`
 	TDECredentialARN           aws.StringValue  `query:"TdeCredentialArn" xml:"TdeCredentialArn"`
@@ -834,11 +886,13 @@ type DBInstance struct {
 	DBParameterGroups                     []DBParameterGroupStatus     `query:"DBParameterGroups.member" xml:"DBParameterGroups>DBParameterGroup"`
 	DBSecurityGroups                      []DBSecurityGroupMembership  `query:"DBSecurityGroups.member" xml:"DBSecurityGroups>DBSecurityGroup"`
 	DBSubnetGroup                         *DBSubnetGroup               `query:"DBSubnetGroup" xml:"DBSubnetGroup"`
+	DBiResourceID                         aws.StringValue              `query:"DbiResourceId" xml:"DbiResourceId"`
 	Endpoint                              *Endpoint                    `query:"Endpoint" xml:"Endpoint"`
 	Engine                                aws.StringValue              `query:"Engine" xml:"Engine"`
 	EngineVersion                         aws.StringValue              `query:"EngineVersion" xml:"EngineVersion"`
 	InstanceCreateTime                    time.Time                    `query:"InstanceCreateTime" xml:"InstanceCreateTime"`
 	IOPS                                  aws.IntegerValue             `query:"Iops" xml:"Iops"`
+	KMSKeyID                              aws.StringValue              `query:"KmsKeyId" xml:"KmsKeyId"`
 	LatestRestorableTime                  time.Time                    `query:"LatestRestorableTime" xml:"LatestRestorableTime"`
 	LicenseModel                          aws.StringValue              `query:"LicenseModel" xml:"LicenseModel"`
 	MasterUsername                        aws.StringValue              `query:"MasterUsername" xml:"MasterUsername"`
@@ -852,6 +906,7 @@ type DBInstance struct {
 	ReadReplicaSourceDBInstanceIdentifier aws.StringValue              `query:"ReadReplicaSourceDBInstanceIdentifier" xml:"ReadReplicaSourceDBInstanceIdentifier"`
 	SecondaryAvailabilityZone             aws.StringValue              `query:"SecondaryAvailabilityZone" xml:"SecondaryAvailabilityZone"`
 	StatusInfos                           []DBInstanceStatusInfo       `query:"StatusInfos.member" xml:"StatusInfos>DBInstanceStatusInfo"`
+	StorageEncrypted                      aws.BooleanValue             `query:"StorageEncrypted" xml:"StorageEncrypted"`
 	StorageType                           aws.StringValue              `query:"StorageType" xml:"StorageType"`
 	TDECredentialARN                      aws.StringValue              `query:"TdeCredentialArn" xml:"TdeCredentialArn"`
 	VPCSecurityGroups                     []VPCSecurityGroupMembership `query:"VpcSecurityGroups.member" xml:"VpcSecurityGroups>VpcSecurityGroupMembership"`
@@ -929,10 +984,12 @@ type DBSnapshot struct {
 	AvailabilityZone     aws.StringValue  `query:"AvailabilityZone" xml:"AvailabilityZone"`
 	DBInstanceIdentifier aws.StringValue  `query:"DBInstanceIdentifier" xml:"DBInstanceIdentifier"`
 	DBSnapshotIdentifier aws.StringValue  `query:"DBSnapshotIdentifier" xml:"DBSnapshotIdentifier"`
+	Encrypted            aws.BooleanValue `query:"Encrypted" xml:"Encrypted"`
 	Engine               aws.StringValue  `query:"Engine" xml:"Engine"`
 	EngineVersion        aws.StringValue  `query:"EngineVersion" xml:"EngineVersion"`
 	InstanceCreateTime   time.Time        `query:"InstanceCreateTime" xml:"InstanceCreateTime"`
 	IOPS                 aws.IntegerValue `query:"Iops" xml:"Iops"`
+	KMSKeyID             aws.StringValue  `query:"KmsKeyId" xml:"KmsKeyId"`
 	LicenseModel         aws.StringValue  `query:"LicenseModel" xml:"LicenseModel"`
 	MasterUsername       aws.StringValue  `query:"MasterUsername" xml:"MasterUsername"`
 	OptionGroupName      aws.StringValue  `query:"OptionGroupName" xml:"OptionGroupName"`
@@ -1176,6 +1233,14 @@ type DescribeOrderableDBInstanceOptionsMessage struct {
 	Marker          aws.StringValue  `query:"Marker" xml:"Marker"`
 	MaxRecords      aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
 	VPC             aws.BooleanValue `query:"Vpc" xml:"Vpc"`
+}
+
+// DescribePendingMaintenanceActionsMessage is undocumented.
+type DescribePendingMaintenanceActionsMessage struct {
+	Filters            []Filter         `query:"Filters.member" xml:"Filters>Filter"`
+	Marker             aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxRecords         aws.IntegerValue `query:"MaxRecords" xml:"MaxRecords"`
+	ResourceIdentifier aws.StringValue  `query:"ResourceIdentifier" xml:"ResourceIdentifier"`
 }
 
 // DescribeReservedDBInstancesMessage is undocumented.
@@ -1469,16 +1534,17 @@ type OptionSetting struct {
 
 // OrderableDBInstanceOption is undocumented.
 type OrderableDBInstanceOption struct {
-	AvailabilityZones  []AvailabilityZone `query:"AvailabilityZones.member" xml:"AvailabilityZones>AvailabilityZone"`
-	DBInstanceClass    aws.StringValue    `query:"DBInstanceClass" xml:"DBInstanceClass"`
-	Engine             aws.StringValue    `query:"Engine" xml:"Engine"`
-	EngineVersion      aws.StringValue    `query:"EngineVersion" xml:"EngineVersion"`
-	LicenseModel       aws.StringValue    `query:"LicenseModel" xml:"LicenseModel"`
-	MultiAZCapable     aws.BooleanValue   `query:"MultiAZCapable" xml:"MultiAZCapable"`
-	ReadReplicaCapable aws.BooleanValue   `query:"ReadReplicaCapable" xml:"ReadReplicaCapable"`
-	StorageType        aws.StringValue    `query:"StorageType" xml:"StorageType"`
-	SupportsIOPS       aws.BooleanValue   `query:"SupportsIops" xml:"SupportsIops"`
-	VPC                aws.BooleanValue   `query:"Vpc" xml:"Vpc"`
+	AvailabilityZones         []AvailabilityZone `query:"AvailabilityZones.member" xml:"AvailabilityZones>AvailabilityZone"`
+	DBInstanceClass           aws.StringValue    `query:"DBInstanceClass" xml:"DBInstanceClass"`
+	Engine                    aws.StringValue    `query:"Engine" xml:"Engine"`
+	EngineVersion             aws.StringValue    `query:"EngineVersion" xml:"EngineVersion"`
+	LicenseModel              aws.StringValue    `query:"LicenseModel" xml:"LicenseModel"`
+	MultiAZCapable            aws.BooleanValue   `query:"MultiAZCapable" xml:"MultiAZCapable"`
+	ReadReplicaCapable        aws.BooleanValue   `query:"ReadReplicaCapable" xml:"ReadReplicaCapable"`
+	StorageType               aws.StringValue    `query:"StorageType" xml:"StorageType"`
+	SupportsIOPS              aws.BooleanValue   `query:"SupportsIops" xml:"SupportsIops"`
+	SupportsStorageEncryption aws.BooleanValue   `query:"SupportsStorageEncryption" xml:"SupportsStorageEncryption"`
+	VPC                       aws.BooleanValue   `query:"Vpc" xml:"Vpc"`
 }
 
 // OrderableDBInstanceOptionsMessage is undocumented.
@@ -1499,6 +1565,21 @@ type Parameter struct {
 	ParameterName        aws.StringValue  `query:"ParameterName" xml:"ParameterName"`
 	ParameterValue       aws.StringValue  `query:"ParameterValue" xml:"ParameterValue"`
 	Source               aws.StringValue  `query:"Source" xml:"Source"`
+}
+
+// PendingMaintenanceAction is undocumented.
+type PendingMaintenanceAction struct {
+	Action               aws.StringValue `query:"Action" xml:"Action"`
+	AutoAppliedAfterDate time.Time       `query:"AutoAppliedAfterDate" xml:"AutoAppliedAfterDate"`
+	CurrentApplyDate     time.Time       `query:"CurrentApplyDate" xml:"CurrentApplyDate"`
+	ForcedApplyDate      time.Time       `query:"ForcedApplyDate" xml:"ForcedApplyDate"`
+	OptInStatus          aws.StringValue `query:"OptInStatus" xml:"OptInStatus"`
+}
+
+// PendingMaintenanceActionsMessage is undocumented.
+type PendingMaintenanceActionsMessage struct {
+	Marker                    aws.StringValue                     `query:"Marker" xml:"DescribePendingMaintenanceActionsResult>Marker"`
+	PendingMaintenanceActions []ResourcePendingMaintenanceActions `query:"PendingMaintenanceActions.member" xml:"DescribePendingMaintenanceActionsResult>PendingMaintenanceActions>ResourcePendingMaintenanceActions"`
 }
 
 // PendingModifiedValues is undocumented.
@@ -1623,6 +1704,12 @@ type ResetDBParameterGroupMessage struct {
 	DBParameterGroupName aws.StringValue  `query:"DBParameterGroupName" xml:"DBParameterGroupName"`
 	Parameters           []Parameter      `query:"Parameters.member" xml:"Parameters>Parameter"`
 	ResetAllParameters   aws.BooleanValue `query:"ResetAllParameters" xml:"ResetAllParameters"`
+}
+
+// ResourcePendingMaintenanceActions is undocumented.
+type ResourcePendingMaintenanceActions struct {
+	PendingMaintenanceActionDetails []PendingMaintenanceAction `query:"PendingMaintenanceActionDetails.member" xml:"PendingMaintenanceActionDetails>PendingMaintenanceAction"`
+	ResourceIdentifier              aws.StringValue            `query:"ResourceIdentifier" xml:"ResourceIdentifier"`
 }
 
 // RestoreDBInstanceFromDBSnapshotMessage is undocumented.
@@ -1808,6 +1895,12 @@ type DescribeOptionGroupsResult struct {
 type DescribeOrderableDBInstanceOptionsResult struct {
 	Marker                     aws.StringValue             `query:"Marker" xml:"DescribeOrderableDBInstanceOptionsResult>Marker"`
 	OrderableDBInstanceOptions []OrderableDBInstanceOption `query:"OrderableDBInstanceOptions.member" xml:"DescribeOrderableDBInstanceOptionsResult>OrderableDBInstanceOptions>OrderableDBInstanceOption"`
+}
+
+// DescribePendingMaintenanceActionsResult is a wrapper for PendingMaintenanceActionsMessage.
+type DescribePendingMaintenanceActionsResult struct {
+	Marker                    aws.StringValue                     `query:"Marker" xml:"DescribePendingMaintenanceActionsResult>Marker"`
+	PendingMaintenanceActions []ResourcePendingMaintenanceActions `query:"PendingMaintenanceActions.member" xml:"DescribePendingMaintenanceActionsResult>PendingMaintenanceActions>ResourcePendingMaintenanceActions"`
 }
 
 // DescribeReservedDBInstancesOfferingsResult is a wrapper for ReservedDBInstancesOfferingMessage.

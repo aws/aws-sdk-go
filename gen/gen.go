@@ -29,7 +29,7 @@ package gen
 //go:generate aws-gen-gocli Lambda ../apis/lambda/2014-11-11.normal.json lambda/lambda.go
 //go:generate aws-gen-gocli Logs ../apis/logs/2014-03-28.normal.json logs/logs.go
 //go:generate aws-gen-gocli OpsWorks ../apis/opsworks/2013-02-18.normal.json opsworks/opsworks.go
-//go:generate aws-gen-gocli RDS ../apis/rds/2014-09-01.normal.json rds/rds.go
+//go:generate aws-gen-gocli RDS ../apis/rds/2014-10-31.normal.json rds/rds.go
 //go:generate aws-gen-gocli RedShift ../apis/redshift/2012-12-01.normal.json redshift/redshift.go
 //go:generate aws-gen-gocli Route53 ../apis/route53/2013-04-01.normal.json route53/route53.go
 //go:generate aws-gen-gocli Route53Domains ../apis/route53domains/2014-05-15.normal.json route53domains/route53domains.go
