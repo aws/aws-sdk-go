@@ -3,27 +3,13 @@ package endpoints
 
 import "strings"
 
-/*
-Overrides the endpoint for a specific service, using either an
-existing region name or a fake one (e.g. "test-1").
-This allows developers to use local mock AWS services when they're
-writing tests for their Go code that uses aws-go.
-
-		endpoints.Overrides = []endpoints.Override{
-			endpoints.Override{"EC2", "test-1", "http://localhost:3000"},
-		}
-
-		// This EC2 client uses the override as service endpoint.
-		cli := ec2.New(credentials, "test-1", nil)
-
-*/
-type Override struct {
+type override struct {
 	Service string
 	Region  string
 	URI     string
 }
 
-var Overrides []Override
+var overrides []override
 
 // Lookup returns the endpoint for the given service in the given region plus
 // any overrides for the service name and region.
@@ -157,6 +143,22 @@ func Lookup(service, region string) (uri, newService, newRegion string) {
 	panic("unknown endpoint for " + service + " in " + region)
 }
 
+/*
+AddOverride overrides the endpoint for a specific service, using either an
+existing region name or a fake one (e.g. "test-1").
+This allows developers to use local mock AWS services when they're
+writing tests for their Go code that uses aws-go.
+
+		endpoints.AddOverride("EC2", "test-1", "http://localhost:3000")
+
+		// This EC2 client uses the override as service endpoint.
+		cli := ec2.New(credentials, "test-1", nil)
+
+*/
+func AddOverride(service, region, uri string) {
+	overrides = append(overrides, override{service, region, uri})
+}
+
 func format(uri, service, region string) string {
 	uri = strings.Replace(uri, "{scheme}", "https", -1)
 	uri = strings.Replace(uri, "{service}", service, -1)
@@ -164,8 +166,8 @@ func format(uri, service, region string) string {
 	return uri
 }
 
-func findOverride(service, region string) *Override {
-	for _, override := range Overrides {
+func findOverride(service, region string) *override {
+	for _, override := range overrides {
 		if strings.ToUpper(override.Service) == strings.ToUpper(service) && override.Region == region {
 			return &override
 		}
