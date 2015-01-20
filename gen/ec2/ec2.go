@@ -52,6 +52,7 @@ func (c *EC2) AcceptVPCPeeringConnection(req *AcceptVPCPeeringConnectionRequest)
 // AllocateAddress acquires an Elastic IP address. An Elastic IP address is
 // for use either in the EC2-Classic platform or in a For more information,
 // see Elastic IP Addresses in the Amazon Elastic Compute Cloud User Guide
+// for Linux
 func (c *EC2) AllocateAddress(req *AllocateAddressRequest) (resp *AllocateAddressResult, err error) {
 	resp = &AllocateAddressResult{}
 	err = c.client.Do("AllocateAddress", "POST", "/", req, resp)
@@ -65,8 +66,8 @@ func (c *EC2) AllocateAddress(req *AllocateAddressRequest) (resp *AllocateAddres
 // block range. The number of secondary IP addresses that you can assign to
 // an instance varies by instance type. For information about instance
 // types, see Instance Types in the Amazon Elastic Compute Cloud User Guide
-// . For more information about Elastic IP addresses, see Elastic IP
-// Addresses in the Amazon Elastic Compute Cloud User Guide
+// for Linux . For more information about Elastic IP addresses, see Elastic
+// IP Addresses in the Amazon Elastic Compute Cloud User Guide for Linux
 // AssignPrivateIpAddresses is available only in EC2-VPC.
 func (c *EC2) AssignPrivateIPAddresses(req *AssignPrivateIPAddressesRequest) (err error) {
 	// NRE
@@ -77,15 +78,15 @@ func (c *EC2) AssignPrivateIPAddresses(req *AssignPrivateIPAddressesRequest) (er
 // AssociateAddress associates an Elastic IP address with an instance or a
 // network interface. An Elastic IP address is for use in either the
 // EC2-Classic platform or in a For more information, see Elastic IP
-// Addresses in the Amazon Elastic Compute Cloud User Guide [EC2-Classic,
-// VPC in an EC2-VPC-only account] If the Elastic IP address is already
-// associated with a different instance, it is disassociated from that
-// instance and associated with the specified instance. in an EC2-Classic
-// account] If you don't specify a private IP address, the Elastic IP
-// address is associated with the primary IP address. If the Elastic IP
-// address is already associated with a different instance or a network
-// interface, you get an error unless you allow reassociation. This is an
-// idempotent operation. If you perform the operation more than once,
+// Addresses in the Amazon Elastic Compute Cloud User Guide for Linux
+// [EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP address
+// is already associated with a different instance, it is disassociated
+// from that instance and associated with the specified instance. in an
+// EC2-Classic account] If you don't specify a private IP address, the
+// Elastic IP address is associated with the primary IP address. If the
+// Elastic IP address is already associated with a different instance or a
+// network interface, you get an error unless you allow reassociation. This
+// is an idempotent operation. If you perform the operation more than once,
 // Amazon EC2 doesn't return an error.
 func (c *EC2) AssociateAddress(req *AssociateAddressRequest) (resp *AssociateAddressResult, err error) {
 	resp = &AssociateAddressResult{}
@@ -122,6 +123,22 @@ func (c *EC2) AssociateRouteTable(req *AssociateRouteTableRequest) (resp *Associ
 	return
 }
 
+// AttachClassicLinkVPC links an EC2-Classic instance to a
+// ClassicLink-enabled VPC through one or more of the VPC's security
+// groups. You cannot link an EC2-Classic instance to more than one VPC at
+// a time. You can only link an instance that's in the running state. An
+// instance is automatically unlinked from a VPC when it's stopped - you
+// can link it to the VPC again when you restart it. After you've linked an
+// instance, you cannot change the VPC security groups that are associated
+// with it. To change the security groups, you must first unlink the
+// instance, and then link it again. Linking your instance to a VPC is
+// sometimes referred to as attaching your instance.
+func (c *EC2) AttachClassicLinkVPC(req *AttachClassicLinkVPCRequest) (resp *AttachClassicLinkVPCResult, err error) {
+	resp = &AttachClassicLinkVPCResult{}
+	err = c.client.Do("AttachClassicLinkVpc", "POST", "/", req, resp)
+	return
+}
+
 // AttachInternetGateway attaches an Internet gateway to a enabling
 // connectivity between the Internet and the For more information about
 // your VPC and Internet gateway, see the Amazon Virtual Private Cloud User
@@ -143,23 +160,20 @@ func (c *EC2) AttachNetworkInterface(req *AttachNetworkInterfaceRequest) (resp *
 // instance and exposes it to the instance with the specified device name.
 // Encrypted Amazon EBS volumes may only be attached to instances that
 // support Amazon EBS encryption. For more information, see Amazon EBS
-// Encryption in the Amazon Elastic Compute Cloud User Guide For a list of
-// supported device names, see Attaching an Amazon EBS Volume to an
-// Instance . Any device names that aren't reserved for instance store
+// Encryption in the Amazon Elastic Compute Cloud User Guide for Linux For
+// a list of supported device names, see Attaching an Amazon EBS Volume to
+// an Instance . Any device names that aren't reserved for instance store
 // volumes can be used for Amazon EBS volumes. For more information, see
 // Amazon EC2 Instance Store in the Amazon Elastic Compute Cloud User Guide
-// If a volume has an AWS Marketplace product code: The volume can only be
-// attached as the root device of a stopped instance. You must be
-// subscribed to the AWS Marketplace code that is on the volume. The
-// configuration (instance type, operating system) of the instance must
-// support that specific AWS Marketplace code. For example, you cannot take
-// a volume from a Windows instance and attach it to a Linux instance. AWS
-// Marketplace product codes are copied from the volume to the instance.
-// For an overview of the AWS Marketplace, see
-// https://aws.amazon.com/marketplace/help/200900000 . For more information
-// about how to use the AWS Marketplace, see AWS Marketplace For more
+// for Linux If a volume has an AWS Marketplace product code: The volume
+// can be attached only to a stopped instance. AWS Marketplace product
+// codes are copied from the volume to the instance. You must be subscribed
+// to the product. The instance type and operating system of the instance
+// must support the product. For example, you can't detach a volume from a
+// Windows instance and attach it to a Linux instance. For an overview of
+// the AWS Marketplace, see Introducing AWS Marketplace For more
 // information about Amazon EBS volumes, see Attaching Amazon EBS Volumes
-// in the Amazon Elastic Compute Cloud User Guide
+// in the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) AttachVolume(req *AttachVolumeRequest) (resp *VolumeAttachment, err error) {
 	resp = &VolumeAttachment{}
 	err = c.client.Do("AttachVolume", "POST", "/", req, resp)
@@ -218,10 +232,9 @@ func (c *EC2) AuthorizeSecurityGroupIngress(req *AuthorizeSecurityGroupIngressRe
 
 // BundleInstance bundles an Amazon instance store-backed Windows instance.
 // During bundling, only the root device volume is bundled. Data on other
-// instance store volumes is not preserved. This procedure is not
-// applicable for Linux/Unix instances or Windows instances that are backed
-// by Amazon For more information, see Creating an Instance Store-Backed
-// Windows
+// instance store volumes is not preserved. This action is not applicable
+// for Linux/Unix instances or Windows instances that are backed by Amazon
+// For more information, see Creating an Instance Store-Backed Windows
 func (c *EC2) BundleInstance(req *BundleInstanceRequest) (resp *BundleInstanceResult, err error) {
 	resp = &BundleInstanceResult{}
 	err = c.client.Do("BundleInstance", "POST", "/", req, resp)
@@ -242,7 +255,8 @@ func (c *EC2) CancelBundleTask(req *CancelBundleTaskRequest) (resp *CancelBundle
 // the conversion is complete or is in the process of transferring the
 // final disk image, the command fails and returns an exception. For more
 // information, see Using the Command Line Tools to Import Your Virtual
-// Machine to Amazon EC2 in the Amazon Elastic Compute Cloud User Guide
+// Machine to Amazon EC2 in the Amazon Elastic Compute Cloud User Guide for
+// Linux
 func (c *EC2) CancelConversionTask(req *CancelConversionRequest) (err error) {
 	// NRE
 	err = c.client.Do("CancelConversionTask", "POST", "/", req, nil)
@@ -263,7 +277,7 @@ func (c *EC2) CancelExportTask(req *CancelExportTaskRequest) (err error) {
 // CancelReservedInstancesListing cancels the specified Reserved Instance
 // listing in the Reserved Instance Marketplace. For more information, see
 // Reserved Instance Marketplace in the Amazon Elastic Compute Cloud User
-// Guide
+// Guide for Linux
 func (c *EC2) CancelReservedInstancesListing(req *CancelReservedInstancesListingRequest) (resp *CancelReservedInstancesListingResult, err error) {
 	resp = &CancelReservedInstancesListingResult{}
 	err = c.client.Do("CancelReservedInstancesListing", "POST", "/", req, resp)
@@ -272,12 +286,12 @@ func (c *EC2) CancelReservedInstancesListing(req *CancelReservedInstancesListing
 
 // CancelSpotInstanceRequests cancels one or more Spot Instance requests.
 // Spot Instances are instances that Amazon EC2 starts on your behalf when
-// the maximum price that you specify exceeds the current Spot Price.
-// Amazon EC2 periodically sets the Spot Price based on available Spot
-// Instance capacity and current Spot Instance requests. For more
-// information about Spot Instances, see Spot Instances in the Amazon
-// Elastic Compute Cloud User Guide Canceling a Spot Instance request does
-// not terminate running Spot Instances associated with the request.
+// the bid price that you specify exceeds the current Spot Price. Amazon
+// EC2 periodically sets the Spot Price based on available Spot Instance
+// capacity and current Spot Instance requests. For more information, see
+// Spot Instance Requests in the Amazon Elastic Compute Cloud User Guide
+// for Linux Canceling a Spot Instance request does not terminate running
+// Spot Instances associated with the request.
 func (c *EC2) CancelSpotInstanceRequests(req *CancelSpotInstanceRequestsRequest) (resp *CancelSpotInstanceRequestsResult, err error) {
 	resp = &CancelSpotInstanceRequestsResult{}
 	err = c.client.Do("CancelSpotInstanceRequests", "POST", "/", req, resp)
@@ -295,11 +309,10 @@ func (c *EC2) ConfirmProductInstance(req *ConfirmProductInstanceRequest) (resp *
 }
 
 // CopyImage initiates the copy of an AMI from the specified source region
-// to the region in which the request was made. You specify the destination
-// region by using its endpoint when making the request. AMIs that use
-// encrypted Amazon EBS snapshots cannot be copied with this method. For
-// more information, see Copying AMIs in the Amazon Elastic Compute Cloud
-// User Guide
+// to the current region. You specify the destination region by using its
+// endpoint when making the request. AMIs that use encrypted Amazon EBS
+// snapshots cannot be copied with this method. For more information, see
+// Copying AMIs in the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) CopyImage(req *CopyImageRequest) (resp *CopyImageResult, err error) {
 	resp = &CopyImageResult{}
 	err = c.client.Do("CopyImage", "POST", "/", req, resp)
@@ -312,8 +325,10 @@ func (c *EC2) CopyImage(req *CopyImageRequest) (resp *CopyImageResult, err error
 // EBS volumes or Amazon Machine Images (AMIs). The snapshot is copied to
 // the regional endpoint that you send the request to. Copies of encrypted
 // Amazon EBS snapshots remain encrypted. Copies of unencrypted snapshots
-// remain unencrypted. For more information, see Copying an Amazon EBS
-// Snapshot in the Amazon Elastic Compute Cloud User Guide
+// remain unencrypted. Copying snapshots that were encrypted with
+// non-default AWS Key Management Service master keys is not supported at
+// this time. For more information, see Copying an Amazon EBS Snapshot in
+// the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) CopySnapshot(req *CopySnapshotRequest) (resp *CopySnapshotResult, err error) {
 	resp = &CopySnapshotResult{}
 	err = c.client.Do("CopySnapshot", "POST", "/", req, resp)
@@ -354,19 +369,23 @@ func (c *EC2) CreateCustomerGateway(req *CreateCustomerGatewayRequest) (resp *Cr
 // us-east-1 , specify ec2.internal . If you're using AmazonProvidedDNS in
 // another region, specify region.compute.internal (for example,
 // ap-northeast-1.compute.internal ). Otherwise, specify a domain name (for
-// example, MyCompany.com ). If specifying more than one domain name,
-// separate them with spaces. ntp-servers - The IP addresses of up to four
-// Network Time Protocol servers. netbios-name-servers - The IP addresses
-// of up to four NetBIOS name servers. netbios-node-type - The NetBIOS node
-// type (1, 2, 4, or 8). We recommend that you specify 2 (broadcast and
-// multicast are not currently supported). For more information about these
-// node types, see RFC 2132 . Your VPC automatically starts out with a set
-// of options that includes only a DNS server that we provide
-// (AmazonProvidedDNS). If you create a set of options, and if your VPC has
-// an Internet gateway, make sure to set the domain-name-servers option
-// either to AmazonProvidedDNS or to a domain name server of your choice.
-// For more information about options, see Options Sets in the Amazon
-// Virtual Private Cloud User Guide
+// example, MyCompany.com ). Important : Some Linux operating systems
+// accept multiple domain names separated by spaces. However, Windows and
+// other Linux operating systems treat the value as a single domain, which
+// results in unexpected behavior. If your options set is associated with a
+// VPC that has instances with multiple operating systems, specify only one
+// domain name. ntp-servers - The IP addresses of up to four Network Time
+// Protocol servers. netbios-name-servers - The IP addresses of up to four
+// NetBIOS name servers. netbios-node-type - The NetBIOS node type (1, 2,
+// 4, or 8). We recommend that you specify 2 (broadcast and multicast are
+// not currently supported). For more information about these node types,
+// see RFC 2132 . Your VPC automatically starts out with a set of options
+// that includes only a DNS server that we provide (AmazonProvidedDNS). If
+// you create a set of options, and if your VPC has an Internet gateway,
+// make sure to set the domain-name-servers option either to
+// AmazonProvidedDNS or to a domain name server of your choice. For more
+// information about options, see Options Sets in the Amazon Virtual
+// Private Cloud User Guide
 func (c *EC2) CreateDHCPOptions(req *CreateDHCPOptionsRequest) (resp *CreateDHCPOptionsResult, err error) {
 	resp = &CreateDHCPOptionsResult{}
 	err = c.client.Do("CreateDhcpOptions", "POST", "/", req, resp)
@@ -380,7 +399,7 @@ func (c *EC2) CreateDHCPOptions(req *CreateDHCPOptionsRequest) (resp *CreateDHCP
 // information for those volumes. When you launch an instance from this new
 // the instance automatically launches with those additional volumes. For
 // more information, see Creating Amazon EBS-Backed Linux AMIs in the
-// Amazon Elastic Compute Cloud User Guide
+// Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) CreateImage(req *CreateImageRequest) (resp *CreateImageResult, err error) {
 	resp = &CreateImageResult{}
 	err = c.client.Do("CreateImage", "POST", "/", req, resp)
@@ -391,7 +410,7 @@ func (c *EC2) CreateImage(req *CreateImageRequest) (resp *CreateImageResult, err
 // Amazon S3 bucket. For information about the supported operating systems,
 // image formats, and known limitations for the types of instances you can
 // export, see Exporting EC2 Instances in the Amazon Elastic Compute Cloud
-// User Guide
+// User Guide for Linux
 func (c *EC2) CreateInstanceExportTask(req *CreateInstanceExportTaskRequest) (resp *CreateInstanceExportTaskResult, err error) {
 	resp = &CreateInstanceExportTaskResult{}
 	err = c.client.Do("CreateInstanceExportTask", "POST", "/", req, resp)
@@ -417,6 +436,7 @@ func (c *EC2) CreateInternetGateway(req *CreateInternetGatewayRequest) (resp *Cr
 // the region in which you create it. To create a key pair that is
 // available in all regions, use ImportKeyPair For more information about
 // key pairs, see Key Pairs in the Amazon Elastic Compute Cloud User Guide
+// for Linux
 func (c *EC2) CreateKeyPair(req *CreateKeyPairRequest) (resp *KeyPair, err error) {
 	resp = &KeyPair{}
 	err = c.client.Do("CreateKeyPair", "POST", "/", req, resp)
@@ -455,7 +475,8 @@ func (c *EC2) CreateNetworkACLEntry(req *CreateNetworkACLEntryRequest) (err erro
 
 // CreateNetworkInterface creates a network interface in the specified
 // subnet. For more information about network interfaces, see Elastic
-// Network Interfaces in the Amazon Elastic Compute Cloud User Guide
+// Network Interfaces in the Amazon Elastic Compute Cloud User Guide for
+// Linux
 func (c *EC2) CreateNetworkInterface(req *CreateNetworkInterfaceRequest) (resp *CreateNetworkInterfaceResult, err error) {
 	resp = &CreateNetworkInterfaceResult{}
 	err = c.client.Do("CreateNetworkInterface", "POST", "/", req, resp)
@@ -466,7 +487,7 @@ func (c *EC2) CreateNetworkInterface(req *CreateNetworkInterfaceRequest) (resp *
 // instances into. You must give the group a name that's unique within the
 // scope of your account. For more information about placement groups and
 // cluster instances, see Cluster Instances in the Amazon Elastic Compute
-// Cloud User Guide
+// Cloud User Guide for Linux
 func (c *EC2) CreatePlacementGroup(req *CreatePlacementGroupRequest) (err error) {
 	// NRE
 	err = c.client.Do("CreatePlacementGroup", "POST", "/", req, nil)
@@ -489,7 +510,7 @@ func (c *EC2) CreatePlacementGroup(req *CreatePlacementGroupRequest) (err error)
 // become available for purchase. To view the details of your Reserved
 // Instance listing, you can use the DescribeReservedInstancesListings
 // operation. For more information, see Reserved Instance Marketplace in
-// the Amazon Elastic Compute Cloud User Guide
+// the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) CreateReservedInstancesListing(req *CreateReservedInstancesListingRequest) (resp *CreateReservedInstancesListingResult, err error) {
 	resp = &CreateReservedInstancesListingResult{}
 	err = c.client.Do("CreateReservedInstancesListing", "POST", "/", req, resp)
@@ -527,20 +548,20 @@ func (c *EC2) CreateRouteTable(req *CreateRouteTableRequest) (resp *CreateRouteT
 // CreateSecurityGroup creates a security group. A security group is for
 // use with instances either in the EC2-Classic platform or in a specific
 // For more information, see Amazon EC2 Security Groups in the Amazon
-// Elastic Compute Cloud User Guide and Security Groups for Your in the
-// Amazon Virtual Private Cloud User Guide EC2-Classic: You can have up to
-// 500 security groups. EC2-VPC: You can create up to 100 security groups
-// per When you create a security group, you specify a friendly name of
-// your choice. You can have a security group for use in EC2-Classic with
-// the same name as a security group for use in a However, you can't have
-// two security groups for use in EC2-Classic with the same name or two
-// security groups for use in a VPC with the same name. You have a default
-// security group for use in EC2-Classic and a default security group for
-// use in your If you don't specify a security group when you launch an
-// instance, the instance is launched into the appropriate default security
-// group. A default security group includes a default rule that grants
-// instances unrestricted network access to each other. You can add or
-// remove rules from your security groups using
+// Elastic Compute Cloud User Guide for Linux and Security Groups for Your
+// in the Amazon Virtual Private Cloud User Guide EC2-Classic: You can have
+// up to 500 security groups. EC2-VPC: You can create up to 100 security
+// groups per When you create a security group, you specify a friendly name
+// of your choice. You can have a security group for use in EC2-Classic
+// with the same name as a security group for use in a However, you can't
+// have two security groups for use in EC2-Classic with the same name or
+// two security groups for use in a VPC with the same name. You have a
+// default security group for use in EC2-Classic and a default security
+// group for use in your If you don't specify a security group when you
+// launch an instance, the instance is launched into the appropriate
+// default security group. A default security group includes a default rule
+// that grants instances unrestricted network access to each other. You can
+// add or remove rules from your security groups using
 // AuthorizeSecurityGroupIngress , AuthorizeSecurityGroupEgress ,
 // RevokeSecurityGroupIngress , and RevokeSecurityGroupEgress
 func (c *EC2) CreateSecurityGroup(req *CreateSecurityGroupRequest) (resp *CreateSecurityGroupResult, err error) {
@@ -570,17 +591,17 @@ func (c *EC2) CreateSecurityGroup(req *CreateSecurityGroupRequest) (resp *Create
 // from encrypted snapshots are also automatically encrypted. Your
 // encrypted volumes and any associated snapshots always remain protected.
 // For more information, see Amazon Elastic Block Store and Amazon EBS
-// Encryption in the Amazon Elastic Compute Cloud User Guide
+// Encryption in the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) CreateSnapshot(req *CreateSnapshotRequest) (resp *Snapshot, err error) {
 	resp = &Snapshot{}
 	err = c.client.Do("CreateSnapshot", "POST", "/", req, resp)
 	return
 }
 
-// CreateSpotDatafeedSubscription creates a datafeed for Spot Instances,
+// CreateSpotDatafeedSubscription creates a data feed for Spot Instances,
 // enabling you to view Spot Instance usage logs. You can create one data
-// feed per AWS account. For more information, see Spot Instances in the
-// Amazon Elastic Compute Cloud User Guide
+// feed per AWS account. For more information, see Spot Instance Data Feed
+// in the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) CreateSpotDatafeedSubscription(req *CreateSpotDatafeedSubscriptionRequest) (resp *CreateSpotDatafeedSubscriptionResult, err error) {
 	resp = &CreateSpotDatafeedSubscriptionResult{}
 	err = c.client.Do("CreateSpotDatafeedSubscription", "POST", "/", req, resp)
@@ -611,11 +632,11 @@ func (c *EC2) CreateSubnet(req *CreateSubnetRequest) (resp *CreateSubnetResult, 
 	return
 }
 
-// CreateTags adds or overwrites one or more tags for the specified EC2
-// resource or resources. Each resource can have a maximum of 10 tags. Each
-// tag consists of a key and optional value. Tag keys must be unique per
-// resource. For more information about tags, see Tagging Your Resources in
-// the Amazon Elastic Compute Cloud User Guide
+// CreateTags adds or overwrites one or more tags for the specified Amazon
+// EC2 resource or resources. Each resource can have a maximum of 10 tags.
+// Each tag consists of a key and optional value. Tag keys must be unique
+// per resource. For more information about tags, see Tagging Your
+// Resources in the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) CreateTags(req *CreateTagsRequest) (err error) {
 	// NRE
 	err = c.client.Do("CreateTags", "POST", "/", req, nil)
@@ -624,15 +645,17 @@ func (c *EC2) CreateTags(req *CreateTagsRequest) (err error) {
 
 // CreateVolume creates an Amazon EBS volume that can be attached to an
 // instance in the same Availability Zone. The volume is created in the
-// specified region. You can create a new empty volume or restore a volume
-// from an Amazon EBS snapshot. Any AWS Marketplace product codes from the
-// snapshot are propagated to the volume. You can create encrypted volumes
-// with the Encrypted parameter. Encrypted volumes may only be attached to
-// instances that support Amazon EBS encryption. Volumes that are created
-// from encrypted snapshots are also automatically encrypted. For more
-// information, see Amazon EBS Encryption in the Amazon Elastic Compute
-// Cloud User Guide For more information, see Creating or Restoring an
-// Amazon EBS Volume in the Amazon Elastic Compute Cloud User Guide
+// regional endpoint that you send the request to. For more information see
+// Regions and Endpoints You can create a new empty volume or restore a
+// volume from an Amazon EBS snapshot. Any AWS Marketplace product codes
+// from the snapshot are propagated to the volume. You can create encrypted
+// volumes with the Encrypted parameter. Encrypted volumes may only be
+// attached to instances that support Amazon EBS encryption. Volumes that
+// are created from encrypted snapshots are also automatically encrypted.
+// For more information, see Amazon EBS Encryption in the Amazon Elastic
+// Compute Cloud User Guide for Linux For more information, see Creating or
+// Restoring an Amazon EBS Volume in the Amazon Elastic Compute Cloud User
+// Guide for Linux
 func (c *EC2) CreateVolume(req *CreateVolumeRequest) (resp *Volume, err error) {
 	resp = &Volume{}
 	err = c.client.Do("CreateVolume", "POST", "/", req, resp)
@@ -773,7 +796,7 @@ func (c *EC2) DeleteNetworkInterface(req *DeleteNetworkInterfaceRequest) (err er
 // terminate all instances in the placement group before you can delete the
 // placement group. For more information about placement groups and cluster
 // instances, see Cluster Instances in the Amazon Elastic Compute Cloud
-// User Guide
+// User Guide for Linux
 func (c *EC2) DeletePlacementGroup(req *DeletePlacementGroupRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeletePlacementGroup", "POST", "/", req, nil)
@@ -816,16 +839,16 @@ func (c *EC2) DeleteSecurityGroup(req *DeleteSecurityGroupRequest) (err error) {
 // snapshot of the root device of an Amazon EBS volume used by a registered
 // You must first de-register the AMI before you can delete the snapshot.
 // For more information, see Deleting an Amazon EBS Snapshot in the Amazon
-// Elastic Compute Cloud User Guide
+// Elastic Compute Cloud User Guide for Linux
 func (c *EC2) DeleteSnapshot(req *DeleteSnapshotRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteSnapshot", "POST", "/", req, nil)
 	return
 }
 
-// DeleteSpotDatafeedSubscription deletes the datafeed for Spot Instances.
-// For more information, see Spot Instances in the Amazon Elastic Compute
-// Cloud User Guide
+// DeleteSpotDatafeedSubscription deletes the data feed for Spot Instances.
+// For more information, see Spot Instance Data Feed in the Amazon Elastic
+// Compute Cloud User Guide for Linux
 func (c *EC2) DeleteSpotDatafeedSubscription(req *DeleteSpotDatafeedSubscriptionRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteSpotDatafeedSubscription", "POST", "/", req, nil)
@@ -843,7 +866,7 @@ func (c *EC2) DeleteSubnet(req *DeleteSubnetRequest) (err error) {
 // DeleteTags deletes the specified set of tags from the specified set of
 // resources. This call is designed to follow a DescribeTags request. For
 // more information about tags, see Tagging Your Resources in the Amazon
-// Elastic Compute Cloud User Guide
+// Elastic Compute Cloud User Guide for Linux
 func (c *EC2) DeleteTags(req *DeleteTagsRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteTags", "POST", "/", req, nil)
@@ -854,7 +877,7 @@ func (c *EC2) DeleteTags(req *DeleteTagsRequest) (err error) {
 // in the available state (not attached to an instance). The volume may
 // remain in the deleting state for several minutes. For more information,
 // see Deleting an Amazon EBS Volume in the Amazon Elastic Compute Cloud
-// User Guide
+// User Guide for Linux
 func (c *EC2) DeleteVolume(req *DeleteVolumeRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteVolume", "POST", "/", req, nil)
@@ -929,8 +952,17 @@ func (c *EC2) DeregisterImage(req *DeregisterImageRequest) (err error) {
 	return
 }
 
-// DescribeAccountAttributes describes the specified attribute of your AWS
-// account.
+// DescribeAccountAttributes describes attributes of your AWS account. The
+// following are the supported account attributes: supported-platforms :
+// Indicates whether your account can launch instances into EC2-Classic and
+// EC2-VPC, or only into EC2-VPC. default-vpc : The ID of the default VPC
+// for your account, or none max-instances : The maximum number of
+// On-Demand instances that you can run.
+// vpc-max-security-groups-per-interface : The maximum number of security
+// groups that you can assign to a network interface. max-elastic-ips : The
+// maximum number of Elastic IP addresses that you can allocate for use
+// with EC2-Classic. vpc-max-elastic-ips : The maximum number of Elastic IP
+// addresses that you can allocate for use with EC2-VPC.
 func (c *EC2) DescribeAccountAttributes(req *DescribeAccountAttributesRequest) (resp *DescribeAccountAttributesResult, err error) {
 	resp = &DescribeAccountAttributesResult{}
 	err = c.client.Do("DescribeAccountAttributes", "POST", "/", req, resp)
@@ -940,7 +972,7 @@ func (c *EC2) DescribeAccountAttributes(req *DescribeAccountAttributesRequest) (
 // DescribeAddresses describes one or more of your Elastic IP addresses. An
 // Elastic IP address is for use in either the EC2-Classic platform or in a
 // For more information, see Elastic IP Addresses in the Amazon Elastic
-// Compute Cloud User Guide
+// Compute Cloud User Guide for Linux
 func (c *EC2) DescribeAddresses(req *DescribeAddressesRequest) (resp *DescribeAddressesResult, err error) {
 	resp = &DescribeAddressesResult{}
 	err = c.client.Do("DescribeAddresses", "POST", "/", req, resp)
@@ -953,7 +985,7 @@ func (c *EC2) DescribeAddresses(req *DescribeAddressesRequest) (resp *DescribeAd
 // Availability Zone, you can use this request to view the state and any
 // provided message for that Availability Zone. For more information, see
 // Regions and Availability Zones in the Amazon Elastic Compute Cloud User
-// Guide
+// Guide for Linux
 func (c *EC2) DescribeAvailabilityZones(req *DescribeAvailabilityZonesRequest) (resp *DescribeAvailabilityZonesResult, err error) {
 	resp = &DescribeAvailabilityZonesResult{}
 	err = c.client.Do("DescribeAvailabilityZones", "POST", "/", req, resp)
@@ -971,10 +1003,20 @@ func (c *EC2) DescribeBundleTasks(req *DescribeBundleTasksRequest) (resp *Descri
 	return
 }
 
+// DescribeClassicLinkInstances describes one or more of your linked
+// EC2-Classic instances. This request only returns information about
+// EC2-Classic instances linked to a VPC through ClassicLink; you cannot
+// use this request to return information about other instances.
+func (c *EC2) DescribeClassicLinkInstances(req *DescribeClassicLinkInstancesRequest) (resp *DescribeClassicLinkInstancesResult, err error) {
+	resp = &DescribeClassicLinkInstancesResult{}
+	err = c.client.Do("DescribeClassicLinkInstances", "POST", "/", req, resp)
+	return
+}
+
 // DescribeConversionTasks describes one or more of your conversion tasks.
 // For more information, see Using the Command Line Tools to Import Your
 // Virtual Machine to Amazon EC2 in the Amazon Elastic Compute Cloud User
-// Guide
+// Guide for Linux
 func (c *EC2) DescribeConversionTasks(req *DescribeConversionTasksRequest) (resp *DescribeConversionTasksResult, err error) {
 	resp = &DescribeConversionTasksResult{}
 	err = c.client.Do("DescribeConversionTasks", "POST", "/", req, resp)
@@ -1084,9 +1126,10 @@ func (c *EC2) DescribeInstanceAttribute(req *DescribeInstanceAttributeRequest) (
 // code is instance-retirement . This ensures that your instance is started
 // on a different underlying host. For more information about failed status
 // checks, see Troubleshooting Instances with Failed Status Checks in the
-// Amazon Elastic Compute Cloud User Guide . For more information about
-// working with scheduled events, see Working with an Instance That Has a
-// Scheduled Event in the Amazon Elastic Compute Cloud User Guide
+// Amazon Elastic Compute Cloud User Guide for Linux . For more information
+// about working with scheduled events, see Working with an Instance That
+// Has a Scheduled Event in the Amazon Elastic Compute Cloud User Guide for
+// Linux
 func (c *EC2) DescribeInstanceStatus(req *DescribeInstanceStatusRequest) (resp *DescribeInstanceStatusResult, err error) {
 	resp = &DescribeInstanceStatusResult{}
 	err = c.client.Do("DescribeInstanceStatus", "POST", "/", req, resp)
@@ -1116,7 +1159,7 @@ func (c *EC2) DescribeInternetGateways(req *DescribeInternetGatewaysRequest) (re
 
 // DescribeKeyPairs describes one or more of your key pairs. For more
 // information about key pairs, see Key Pairs in the Amazon Elastic Compute
-// Cloud User Guide
+// Cloud User Guide for Linux
 func (c *EC2) DescribeKeyPairs(req *DescribeKeyPairsRequest) (resp *DescribeKeyPairsResult, err error) {
 	resp = &DescribeKeyPairsResult{}
 	err = c.client.Do("DescribeKeyPairs", "POST", "/", req, resp)
@@ -1149,7 +1192,8 @@ func (c *EC2) DescribeNetworkInterfaces(req *DescribeNetworkInterfacesRequest) (
 
 // DescribePlacementGroups describes one or more of your placement groups.
 // For more information about placement groups and cluster instances, see
-// Cluster Instances in the Amazon Elastic Compute Cloud User Guide
+// Cluster Instances in the Amazon Elastic Compute Cloud User Guide for
+// Linux
 func (c *EC2) DescribePlacementGroups(req *DescribePlacementGroupsRequest) (resp *DescribePlacementGroupsResult, err error) {
 	resp = &DescribePlacementGroupsResult{}
 	err = c.client.Do("DescribePlacementGroups", "POST", "/", req, resp)
@@ -1168,7 +1212,7 @@ func (c *EC2) DescribeRegions(req *DescribeRegionsRequest) (resp *DescribeRegion
 // DescribeReservedInstances describes one or more of the Reserved
 // Instances that you purchased. For more information about Reserved
 // Instances, see Reserved Instances in the Amazon Elastic Compute Cloud
-// User Guide
+// User Guide for Linux
 func (c *EC2) DescribeReservedInstances(req *DescribeReservedInstancesRequest) (resp *DescribeReservedInstancesResult, err error) {
 	resp = &DescribeReservedInstancesResult{}
 	err = c.client.Do("DescribeReservedInstances", "POST", "/", req, resp)
@@ -1191,7 +1235,7 @@ func (c *EC2) DescribeReservedInstances(req *DescribeReservedInstancesRequest) (
 // to sell available Reserved Instance listings to you until your demand is
 // met. You are charged based on the total price of all of the listings
 // that you purchase. For more information, see Reserved Instance
-// Marketplace in the Amazon Elastic Compute Cloud User Guide
+// Marketplace in the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) DescribeReservedInstancesListings(req *DescribeReservedInstancesListingsRequest) (resp *DescribeReservedInstancesListingsResult, err error) {
 	resp = &DescribeReservedInstancesListingsResult{}
 	err = c.client.Do("DescribeReservedInstancesListings", "POST", "/", req, resp)
@@ -1203,7 +1247,7 @@ func (c *EC2) DescribeReservedInstancesListings(req *DescribeReservedInstancesLi
 // about all your Reserved Instances modification requests is returned. If
 // a modification ID is specified, only information about the specific
 // modification is returned. For more information, see Modifying Reserved
-// Instances in the Amazon Elastic Compute Cloud User Guide.
+// Instances in the Amazon Elastic Compute Cloud User Guide for Linux.
 func (c *EC2) DescribeReservedInstancesModifications(req *DescribeReservedInstancesModificationsRequest) (resp *DescribeReservedInstancesModificationsResult, err error) {
 	resp = &DescribeReservedInstancesModificationsResult{}
 	err = c.client.Do("DescribeReservedInstancesModifications", "POST", "/", req, resp)
@@ -1216,7 +1260,7 @@ func (c *EC2) DescribeReservedInstancesModifications(req *DescribeReservedInstan
 // period, you do not receive insufficient capacity errors, and you pay a
 // lower usage rate than the rate charged for On-Demand instances for the
 // actual time used. For more information, see Reserved Instance
-// Marketplace in the Amazon Elastic Compute Cloud User Guide
+// Marketplace in the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) DescribeReservedInstancesOfferings(req *DescribeReservedInstancesOfferingsRequest) (resp *DescribeReservedInstancesOfferingsResult, err error) {
 	resp = &DescribeReservedInstancesOfferingsResult{}
 	err = c.client.Do("DescribeReservedInstancesOfferings", "POST", "/", req, resp)
@@ -1235,8 +1279,8 @@ func (c *EC2) DescribeRouteTables(req *DescribeRouteTablesRequest) (resp *Descri
 // DescribeSecurityGroups describes one or more of your security groups. A
 // security group is for use with instances either in the EC2-Classic
 // platform or in a specific For more information, see Amazon EC2 Security
-// Groups in the Amazon Elastic Compute Cloud User Guide and Security
-// Groups for Your in the Amazon Virtual Private Cloud User Guide
+// Groups in the Amazon Elastic Compute Cloud User Guide for Linux and
+// Security Groups for Your in the Amazon Virtual Private Cloud User Guide
 func (c *EC2) DescribeSecurityGroups(req *DescribeSecurityGroupsRequest) (resp *DescribeSecurityGroupsResult, err error) {
 	resp = &DescribeSecurityGroupsResult{}
 	err = c.client.Do("DescribeSecurityGroups", "POST", "/", req, resp)
@@ -1246,7 +1290,7 @@ func (c *EC2) DescribeSecurityGroups(req *DescribeSecurityGroupsRequest) (resp *
 // DescribeSnapshotAttribute describes the specified attribute of the
 // specified snapshot. You can specify only one attribute at a time. For
 // more information about Amazon EBS snapshots, see Amazon EBS Snapshots in
-// the Amazon Elastic Compute Cloud User Guide
+// the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) DescribeSnapshotAttribute(req *DescribeSnapshotAttributeRequest) (resp *DescribeSnapshotAttributeResult, err error) {
 	resp = &DescribeSnapshotAttributeResult{}
 	err = c.client.Do("DescribeSnapshotAttribute", "POST", "/", req, resp)
@@ -1280,16 +1324,16 @@ func (c *EC2) DescribeSnapshotAttribute(req *DescribeSnapshotAttributeRequest) (
 // account IDs (if you own the snapshots), self for snapshots for which you
 // own or have explicit permissions, or all for public snapshots. For more
 // information about Amazon EBS snapshots, see Amazon EBS Snapshots in the
-// Amazon Elastic Compute Cloud User Guide
+// Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) DescribeSnapshots(req *DescribeSnapshotsRequest) (resp *DescribeSnapshotsResult, err error) {
 	resp = &DescribeSnapshotsResult{}
 	err = c.client.Do("DescribeSnapshots", "POST", "/", req, resp)
 	return
 }
 
-// DescribeSpotDatafeedSubscription describes the datafeed for Spot
-// Instances. For more information, see Spot Instances in the Amazon
-// Elastic Compute Cloud User Guide
+// DescribeSpotDatafeedSubscription describes the data feed for Spot
+// Instances. For more information, see Spot Instance Data Feed in the
+// Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) DescribeSpotDatafeedSubscription(req *DescribeSpotDatafeedSubscriptionRequest) (resp *DescribeSpotDatafeedSubscriptionResult, err error) {
 	resp = &DescribeSpotDatafeedSubscriptionResult{}
 	err = c.client.Do("DescribeSpotDatafeedSubscription", "POST", "/", req, resp)
@@ -1298,16 +1342,16 @@ func (c *EC2) DescribeSpotDatafeedSubscription(req *DescribeSpotDatafeedSubscrip
 
 // DescribeSpotInstanceRequests describes the Spot Instance requests that
 // belong to your account. Spot Instances are instances that Amazon EC2
-// starts on your behalf when the maximum price that you specify exceeds
-// the current Spot Price. Amazon EC2 periodically sets the Spot Price
-// based on available Spot Instance capacity and current Spot Instance
-// requests. For more information about Spot Instances, see Spot Instances
-// in the Amazon Elastic Compute Cloud User Guide You can use
-// DescribeSpotInstanceRequests to find a running Spot Instance by
-// examining the response. If the status of the Spot Instance is fulfilled
-// , the instance ID appears in the response and contains the identifier of
-// the instance. Alternatively, you can use DescribeInstances with a filter
-// to look for instances where the instance lifecycle is spot
+// launches when the bid price that you specify exceeds the current Spot
+// Price. Amazon EC2 periodically sets the Spot Price based on available
+// Spot Instance capacity and current Spot Instance requests. For more
+// information, see Spot Instance Requests in the Amazon Elastic Compute
+// Cloud User Guide for Linux You can use DescribeSpotInstanceRequests to
+// find a running Spot Instance by examining the response. If the status of
+// the Spot Instance is fulfilled , the instance ID appears in the response
+// and contains the identifier of the instance. Alternatively, you can use
+// DescribeInstances with a filter to look for instances where the instance
+// lifecycle is spot
 func (c *EC2) DescribeSpotInstanceRequests(req *DescribeSpotInstanceRequestsRequest) (resp *DescribeSpotInstanceRequestsResult, err error) {
 	resp = &DescribeSpotInstanceRequestsResult{}
 	err = c.client.Do("DescribeSpotInstanceRequests", "POST", "/", req, resp)
@@ -1318,9 +1362,9 @@ func (c *EC2) DescribeSpotInstanceRequests(req *DescribeSpotInstanceRequestsRequ
 // Instances are instances that Amazon EC2 starts on your behalf when the
 // maximum price that you specify exceeds the current Spot Price. Amazon
 // EC2 periodically sets the Spot Price based on available Spot Instance
-// capacity and current Spot Instance requests. For more information about
-// Spot Instances, see Spot Instances in the Amazon Elastic Compute Cloud
-// User Guide When you specify an Availability Zone, this operation
+// capacity and current Spot Instance requests. For more information, see
+// Spot Instance Pricing History in the Amazon Elastic Compute Cloud User
+// Guide for Linux When you specify an Availability Zone, this operation
 // describes the price history for the specified Availability Zone with the
 // most recent set of prices listed first. If you don't specify an
 // Availability Zone, you get the prices across all Availability Zones,
@@ -1350,7 +1394,7 @@ func (c *EC2) DescribeSubnets(req *DescribeSubnetsRequest) (resp *DescribeSubnet
 
 // DescribeTags describes one or more of the tags for your EC2 resources.
 // For more information about tags, see Tagging Your Resources in the
-// Amazon Elastic Compute Cloud User Guide
+// Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) DescribeTags(req *DescribeTagsRequest) (resp *DescribeTagsResult, err error) {
 	resp = &DescribeTagsResult{}
 	err = c.client.Do("DescribeTags", "POST", "/", req, resp)
@@ -1360,7 +1404,7 @@ func (c *EC2) DescribeTags(req *DescribeTagsRequest) (resp *DescribeTagsResult, 
 // DescribeVolumeAttribute describes the specified attribute of the
 // specified volume. You can specify only one attribute at a time. For more
 // information about Amazon EBS volumes, see Amazon EBS Volumes in the
-// Amazon Elastic Compute Cloud User Guide
+// Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) DescribeVolumeAttribute(req *DescribeVolumeAttributeRequest) (resp *DescribeVolumeAttributeResult, err error) {
 	resp = &DescribeVolumeAttributeResult{}
 	err = c.client.Do("DescribeVolumeAttribute", "POST", "/", req, resp)
@@ -1412,7 +1456,7 @@ func (c *EC2) DescribeVolumeStatus(req *DescribeVolumeStatusRequest) (resp *Desc
 // along with a NextToken value that can be passed to a subsequent
 // DescribeVolumes request to retrieve the remaining results. For more
 // information about Amazon EBS volumes, see Amazon EBS Volumes in the
-// Amazon Elastic Compute Cloud User Guide
+// Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) DescribeVolumes(req *DescribeVolumesRequest) (resp *DescribeVolumesResult, err error) {
 	resp = &DescribeVolumesResult{}
 	err = c.client.Do("DescribeVolumes", "POST", "/", req, resp)
@@ -1424,6 +1468,14 @@ func (c *EC2) DescribeVolumes(req *DescribeVolumesRequest) (resp *DescribeVolume
 func (c *EC2) DescribeVPCAttribute(req *DescribeVPCAttributeRequest) (resp *DescribeVPCAttributeResult, err error) {
 	resp = &DescribeVPCAttributeResult{}
 	err = c.client.Do("DescribeVpcAttribute", "POST", "/", req, resp)
+	return
+}
+
+// DescribeVPCClassicLink describes the ClassicLink status of one or more
+// VPCs.
+func (c *EC2) DescribeVPCClassicLink(req *DescribeVPCClassicLinkRequest) (resp *DescribeVPCClassicLinkResult, err error) {
+	resp = &DescribeVPCClassicLinkResult{}
+	err = c.client.Do("DescribeVpcClassicLink", "POST", "/", req, resp)
 	return
 }
 
@@ -1462,6 +1514,16 @@ func (c *EC2) DescribeVPNGateways(req *DescribeVPNGatewaysRequest) (resp *Descri
 	return
 }
 
+// DetachClassicLinkVPC unlinks (detaches) a linked EC2-Classic instance
+// from a After the instance has been unlinked, the VPC security groups are
+// no longer associated with it. An instance is automatically unlinked from
+// a VPC when it's stopped.
+func (c *EC2) DetachClassicLinkVPC(req *DetachClassicLinkVPCRequest) (resp *DetachClassicLinkVPCResult, err error) {
+	resp = &DetachClassicLinkVPCResult{}
+	err = c.client.Do("DetachClassicLinkVpc", "POST", "/", req, resp)
+	return
+}
+
 // DetachInternetGateway detaches an Internet gateway from a disabling
 // connectivity between the Internet and the The VPC must not contain any
 // running instances with Elastic IP addresses.
@@ -1483,11 +1545,11 @@ func (c *EC2) DetachNetworkInterface(req *DetachNetworkInterfaceRequest) (err er
 // before detaching the volume. Failure to do so results in the volume
 // being stuck in a busy state while detaching. If an Amazon EBS volume is
 // the root device of an instance, it can't be detached while the instance
-// is running. To detach the root volume, stop the instance first. If the
-// root volume is detached from an instance with an AWS Marketplace product
-// code, then the AWS Marketplace product codes from that volume are no
-// longer associated with the instance. For more information, see Detaching
-// an Amazon EBS Volume in the Amazon Elastic Compute Cloud User Guide
+// is running. To detach the root volume, stop the instance first. When a
+// volume with an AWS Marketplace product code is detached from an
+// instance, the product code is no longer associated with the instance.
+// For more information, see Detaching an Amazon EBS Volume in the Amazon
+// Elastic Compute Cloud User Guide for Linux
 func (c *EC2) DetachVolume(req *DetachVolumeRequest) (resp *VolumeAttachment, err error) {
 	resp = &VolumeAttachment{}
 	err = c.client.Do("DetachVolume", "POST", "/", req, resp)
@@ -1515,12 +1577,21 @@ func (c *EC2) DisableVGWRoutePropagation(req *DisableVGWRoutePropagationRequest)
 	return
 }
 
+// DisableVPCClassicLink disables ClassicLink for a You cannot disable
+// ClassicLink for a VPC that has EC2-Classic instances linked to it.
+func (c *EC2) DisableVPCClassicLink(req *DisableVPCClassicLinkRequest) (resp *DisableVPCClassicLinkResult, err error) {
+	resp = &DisableVPCClassicLinkResult{}
+	err = c.client.Do("DisableVpcClassicLink", "POST", "/", req, resp)
+	return
+}
+
 // DisassociateAddress disassociates an Elastic IP address from the
 // instance or network interface it's associated with. An Elastic IP
 // address is for use in either the EC2-Classic platform or in a For more
 // information, see Elastic IP Addresses in the Amazon Elastic Compute
-// Cloud User Guide This is an idempotent operation. If you perform the
-// operation more than once, Amazon EC2 doesn't return an error.
+// Cloud User Guide for Linux This is an idempotent operation. If you
+// perform the operation more than once, Amazon EC2 doesn't return an
+// error.
 func (c *EC2) DisassociateAddress(req *DisassociateAddressRequest) (err error) {
 	// NRE
 	err = c.client.Do("DisassociateAddress", "POST", "/", req, nil)
@@ -1552,6 +1623,20 @@ func (c *EC2) EnableVGWRoutePropagation(req *EnableVGWRoutePropagationRequest) (
 func (c *EC2) EnableVolumeIO(req *EnableVolumeIORequest) (err error) {
 	// NRE
 	err = c.client.Do("EnableVolumeIO", "POST", "/", req, nil)
+	return
+}
+
+// EnableVPCClassicLink enables a VPC for ClassicLink. You can then link
+// EC2-Classic instances to your ClassicLink-enabled VPC to allow
+// communication over private IP addresses. You cannot enable your VPC for
+// ClassicLink if any of your VPC's route tables have existing routes for
+// address ranges within the 10.0.0.0/8 IP address range, excluding local
+// routes for VPCs in the 10.0.0.0/16 and 10.1.0.0/16 IP address ranges.
+// For more information, see ClassicLink in the Amazon Elastic Compute
+// Cloud User Guide for Linux.
+func (c *EC2) EnableVPCClassicLink(req *EnableVPCClassicLinkRequest) (resp *EnableVPCClassicLinkResult, err error) {
+	resp = &EnableVPCClassicLinkResult{}
+	err = c.client.Do("EnableVpcClassicLink", "POST", "/", req, resp)
 	return
 }
 
@@ -1609,7 +1694,7 @@ func (c *EC2) ImportInstance(req *ImportInstanceRequest) (resp *ImportInstanceRe
 // the public key). With ImportKeyPair, you create the key pair and give
 // AWS just the public key. The private key is never transferred between
 // you and For more information about key pairs, see Key Pairs in the
-// Amazon Elastic Compute Cloud User Guide
+// Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) ImportKeyPair(req *ImportKeyPairRequest) (resp *ImportKeyPairResult, err error) {
 	resp = &ImportKeyPairResult{}
 	err = c.client.Do("ImportKeyPair", "POST", "/", req, resp)
@@ -1621,7 +1706,7 @@ func (c *EC2) ImportKeyPair(req *ImportKeyPairRequest) (resp *ImportKeyPairResul
 // using the command in the Amazon EC2 command-line interface tools. For
 // more information, see Using the Command Line Tools to Import Your
 // Virtual Machine to Amazon EC2 in the Amazon Elastic Compute Cloud User
-// Guide
+// Guide for Linux
 func (c *EC2) ImportVolume(req *ImportVolumeRequest) (resp *ImportVolumeResult, err error) {
 	resp = &ImportVolumeResult{}
 	err = c.client.Do("ImportVolume", "POST", "/", req, resp)
@@ -1642,7 +1727,7 @@ func (c *EC2) ModifyImageAttribute(req *ModifyImageAttributeRequest) (err error)
 // specified instance. You can specify only one attribute at a time. To
 // modify some attributes, the instance must be stopped. For more
 // information, see Modifying Attributes of a Stopped Instance in the
-// Amazon Elastic Compute Cloud User Guide
+// Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) ModifyInstanceAttribute(req *ModifyInstanceAttributeRequest) (err error) {
 	// NRE
 	err = c.client.Do("ModifyInstanceAttribute", "POST", "/", req, nil)
@@ -1662,7 +1747,7 @@ func (c *EC2) ModifyNetworkInterfaceAttribute(req *ModifyNetworkInterfaceAttribu
 // Reserved Instances. The Reserved Instances to be modified must be
 // identical, except for Availability Zone, network platform, and instance
 // type. For more information, see Modifying Reserved Instances in the
-// Amazon Elastic Compute Cloud User Guide.
+// Amazon Elastic Compute Cloud User Guide for Linux.
 func (c *EC2) ModifyReservedInstances(req *ModifyReservedInstancesRequest) (resp *ModifyReservedInstancesResult, err error) {
 	resp = &ModifyReservedInstancesResult{}
 	err = c.client.Do("ModifyReservedInstances", "POST", "/", req, resp)
@@ -1675,8 +1760,8 @@ func (c *EC2) ModifyReservedInstances(req *ModifyReservedInstancesRequest) (resp
 // in a single API call. If you need to both add and remove account IDs for
 // a snapshot, you must use multiple API calls. For more information on
 // modifying snapshot permissions, see Sharing Snapshots in the Amazon
-// Elastic Compute Cloud User Guide Snapshots with AWS Marketplace product
-// codes cannot be made public.
+// Elastic Compute Cloud User Guide for Linux Snapshots with AWS
+// Marketplace product codes cannot be made public.
 func (c *EC2) ModifySnapshotAttribute(req *ModifySnapshotAttributeRequest) (err error) {
 	// NRE
 	err = c.client.Do("ModifySnapshotAttribute", "POST", "/", req, nil)
@@ -1713,7 +1798,7 @@ func (c *EC2) ModifyVPCAttribute(req *ModifyVPCAttributeRequest) (err error) {
 
 // MonitorInstances enables monitoring for a running instance. For more
 // information about monitoring instances, see Monitoring Your Instances
-// and Volumes in the Amazon Elastic Compute Cloud User Guide
+// and Volumes in the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) MonitorInstances(req *MonitorInstancesRequest) (resp *MonitorInstancesResult, err error) {
 	resp = &MonitorInstancesResult{}
 	err = c.client.Do("MonitorInstances", "POST", "/", req, resp)
@@ -1730,7 +1815,7 @@ func (c *EC2) MonitorInstances(req *MonitorInstancesRequest) (resp *MonitorInsta
 // purchased a Reserved Instance, you can check for your new Reserved
 // Instance with DescribeReservedInstances For more information, see
 // Reserved Instances and Reserved Instance Marketplace in the Amazon
-// Elastic Compute Cloud User Guide
+// Elastic Compute Cloud User Guide for Linux
 func (c *EC2) PurchaseReservedInstancesOffering(req *PurchaseReservedInstancesOfferingRequest) (resp *PurchaseReservedInstancesOfferingResult, err error) {
 	resp = &PurchaseReservedInstancesOfferingResult{}
 	err = c.client.Do("PurchaseReservedInstancesOffering", "POST", "/", req, resp)
@@ -1744,7 +1829,7 @@ func (c *EC2) PurchaseReservedInstancesOffering(req *PurchaseReservedInstancesOf
 // If a Linux/Unix instance does not cleanly shut down within four minutes,
 // Amazon EC2 performs a hard reboot. For more information about
 // troubleshooting, see Getting Console Output and Rebooting Instances in
-// the Amazon Elastic Compute Cloud User Guide
+// the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) RebootInstances(req *RebootInstancesRequest) (err error) {
 	// NRE
 	err = c.client.Do("RebootInstances", "POST", "/", req, nil)
@@ -1754,17 +1839,17 @@ func (c *EC2) RebootInstances(req *RebootInstancesRequest) (err error) {
 // RegisterImage registers an When you're creating an this is the final
 // step you must complete before you can launch an instance from the For
 // more information about creating AMIs, see Creating Your Own AMIs in the
-// Amazon Elastic Compute Cloud User Guide For Amazon EBS-backed instances,
-// CreateImage creates and registers the AMI in a single request, so you
-// don't have to register the AMI yourself. You can also use RegisterImage
-// to create an Amazon EBS-backed AMI from a snapshot of a root device
-// volume. For more information, see Launching an Instance from a Snapshot
-// in the Amazon Elastic Compute Cloud User Guide If needed, you can
-// deregister an AMI at any time. Any modifications you make to an AMI
-// backed by an instance store volume invalidates its registration. If you
-// make changes to an image, deregister the previous image and register the
-// new image. You can't register an image where a secondary (non-root)
-// snapshot has AWS Marketplace product codes.
+// Amazon Elastic Compute Cloud User Guide for Linux For Amazon EBS-backed
+// instances, CreateImage creates and registers the AMI in a single
+// request, so you don't have to register the AMI yourself. You can also
+// use RegisterImage to create an Amazon EBS-backed AMI from a snapshot of
+// a root device volume. For more information, see Launching an Instance
+// from a Snapshot in the Amazon Elastic Compute Cloud User Guide for Linux
+// If needed, you can deregister an AMI at any time. Any modifications you
+// make to an AMI backed by an instance store volume invalidates its
+// registration. If you make changes to an image, deregister the previous
+// image and register the new image. You can't register an image where a
+// secondary (non-root) snapshot has AWS Marketplace product codes.
 func (c *EC2) RegisterImage(req *RegisterImageRequest) (resp *RegisterImageResult, err error) {
 	resp = &RegisterImageResult{}
 	err = c.client.Do("RegisterImage", "POST", "/", req, resp)
@@ -1862,10 +1947,10 @@ func (c *EC2) ReportInstanceStatus(req *ReportInstanceStatusRequest) (err error)
 // instances that Amazon EC2 starts on your behalf when the maximum price
 // that you specify exceeds the current Spot Price. Amazon EC2 periodically
 // sets the Spot Price based on available Spot Instance capacity and
-// current Spot Instance requests. For more information about Spot
-// Instances, see Spot Instances in the Amazon Elastic Compute Cloud User
-// Guide Users must be subscribed to the required product to run an
-// instance with AWS Marketplace product codes.
+// current Spot Instance requests. For more information, see Spot Instance
+// Requests in the Amazon Elastic Compute Cloud User Guide for Linux Users
+// must be subscribed to the required product to run an instance with AWS
+// Marketplace product codes.
 func (c *EC2) RequestSpotInstances(req *RequestSpotInstancesRequest) (resp *RequestSpotInstancesResult, err error) {
 	resp = &RequestSpotInstancesResult{}
 	err = c.client.Do("RequestSpotInstances", "POST", "/", req, resp)
@@ -1873,6 +1958,7 @@ func (c *EC2) RequestSpotInstances(req *RequestSpotInstancesRequest) (resp *Requ
 }
 
 // ResetImageAttribute resets an attribute of an AMI to its default value.
+// The productCodes attribute can't be reset.
 func (c *EC2) ResetImageAttribute(req *ResetImageAttributeRequest) (err error) {
 	// NRE
 	err = c.client.Do("ResetImageAttribute", "POST", "/", req, nil)
@@ -1903,7 +1989,8 @@ func (c *EC2) ResetNetworkInterfaceAttribute(req *ResetNetworkInterfaceAttribute
 
 // ResetSnapshotAttribute resets permission settings for the specified
 // snapshot. For more information on modifying snapshot permissions, see
-// Sharing Snapshots in the Amazon Elastic Compute Cloud User Guide
+// Sharing Snapshots in the Amazon Elastic Compute Cloud User Guide for
+// Linux
 func (c *EC2) ResetSnapshotAttribute(req *ResetSnapshotAttributeRequest) (err error) {
 	// NRE
 	err = c.client.Do("ResetSnapshotAttribute", "POST", "/", req, nil)
@@ -1947,20 +2034,20 @@ func (c *EC2) RevokeSecurityGroupIngress(req *RevokeSecurityGroupIngressRequest)
 // DescribeInstances If you don't specify a security group when launching
 // an instance, Amazon EC2 uses the default security group. For more
 // information, see Security Groups in the Amazon Elastic Compute Cloud
-// User Guide Linux instances have access to the public key of the key pair
-// at boot. You can use this key to provide secure access to the instance.
-// Amazon EC2 public images use this feature to provide secure access
-// without passwords. For more information, see Key Pairs in the Amazon
-// Elastic Compute Cloud User Guide You can provide optional user data when
-// launching an instance. For more information, see Instance Metadata in
-// the Amazon Elastic Compute Cloud User Guide If any of the AMIs have a
-// product code attached for which the user has not subscribed,
-// RunInstances fails. T2 instance types can only be launched into a If you
-// do not have a default or if you do not specify a subnet ID in the
-// request, RunInstances fails. For more information about troubleshooting,
-// see What To Do If An Instance Immediately Terminates , and
-// Troubleshooting Connecting to Your Instance in the Amazon Elastic
-// Compute Cloud User Guide
+// User Guide for Linux Linux instances have access to the public key of
+// the key pair at boot. You can use this key to provide secure access to
+// the instance. Amazon EC2 public images use this feature to provide
+// secure access without passwords. For more information, see Key Pairs in
+// the Amazon Elastic Compute Cloud User Guide for Linux You can provide
+// optional user data when launching an instance. For more information, see
+// Instance Metadata in the Amazon Elastic Compute Cloud User Guide for
+// Linux If any of the AMIs have a product code attached for which the user
+// has not subscribed, RunInstances fails. T2 instance types can only be
+// launched into a If you do not have a default or if you do not specify a
+// subnet ID in the request, RunInstances fails. For more information about
+// troubleshooting, see What To Do If An Instance Immediately Terminates ,
+// and Troubleshooting Connecting to Your Instance in the Amazon Elastic
+// Compute Cloud User Guide for Linux
 func (c *EC2) RunInstances(req *RunInstancesRequest) (resp *Reservation, err error) {
 	resp = &Reservation{}
 	err = c.client.Do("RunInstances", "POST", "/", req, resp)
@@ -1980,7 +2067,7 @@ func (c *EC2) RunInstances(req *RunInstancesRequest) (resp *Reservation, err err
 // can be restarted. Stopping an instance does not preserve data stored in
 // Performing this operation on an instance that uses an instance store as
 // its root device returns an error. For more information, see Stopping
-// Instances in the Amazon Elastic Compute Cloud User Guide
+// Instances in the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) StartInstances(req *StartInstancesRequest) (resp *StartInstancesResult, err error) {
 	resp = &StartInstancesResult{}
 	err = c.client.Do("StartInstances", "POST", "/", req, resp)
@@ -2008,9 +2095,9 @@ func (c *EC2) StartInstances(req *StartInstancesRequest) (resp *StartInstancesRe
 // attached during the instance launch are automatically deleted. For more
 // information about the differences between stopping and terminating
 // instances, see Instance Lifecycle in the Amazon Elastic Compute Cloud
-// User Guide For more information about troubleshooting, see
+// User Guide for Linux For more information about troubleshooting, see
 // Troubleshooting Stopping Your Instance in the Amazon Elastic Compute
-// Cloud User Guide
+// Cloud User Guide for Linux
 func (c *EC2) StopInstances(req *StopInstancesRequest) (resp *StopInstancesResult, err error) {
 	resp = &StopInstancesResult{}
 	err = c.client.Do("StopInstances", "POST", "/", req, resp)
@@ -2031,9 +2118,9 @@ func (c *EC2) StopInstances(req *StopInstancesRequest) (resp *StopInstancesResul
 // during the instance launch are automatically deleted. For more
 // information about the differences between stopping and terminating
 // instances, see Instance Lifecycle in the Amazon Elastic Compute Cloud
-// User Guide For more information about troubleshooting, see
+// User Guide for Linux For more information about troubleshooting, see
 // Troubleshooting Terminating Your Instance in the Amazon Elastic Compute
-// Cloud User Guide
+// Cloud User Guide for Linux
 func (c *EC2) TerminateInstances(req *TerminateInstancesRequest) (resp *TerminateInstancesResult, err error) {
 	resp = &TerminateInstancesResult{}
 	err = c.client.Do("TerminateInstances", "POST", "/", req, resp)
@@ -2050,7 +2137,7 @@ func (c *EC2) UnassignPrivateIPAddresses(req *UnassignPrivateIPAddressesRequest)
 
 // UnmonitorInstances disables monitoring for a running instance. For more
 // information about monitoring instances, see Monitoring Your Instances
-// and Volumes in the Amazon Elastic Compute Cloud User Guide
+// and Volumes in the Amazon Elastic Compute Cloud User Guide for Linux
 func (c *EC2) UnmonitorInstances(req *UnmonitorInstancesRequest) (resp *UnmonitorInstancesResult, err error) {
 	resp = &UnmonitorInstancesResult{}
 	err = c.client.Do("UnmonitorInstances", "POST", "/", req, resp)
@@ -2157,6 +2244,19 @@ type AssociateRouteTableRequest struct {
 // AssociateRouteTableResult is undocumented.
 type AssociateRouteTableResult struct {
 	AssociationID aws.StringValue `ec2:"AssociationId" xml:"associationId"`
+}
+
+// AttachClassicLinkVPCRequest is undocumented.
+type AttachClassicLinkVPCRequest struct {
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Groups     []string         `ec2:"SecurityGroupId" xml:"SecurityGroupId>groupId"`
+	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
+	VPCID      aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+}
+
+// AttachClassicLinkVPCResult is undocumented.
+type AttachClassicLinkVPCResult struct {
+	Return aws.BooleanValue `ec2:"Return" xml:"return"`
 }
 
 // AttachInternetGatewayRequest is undocumented.
@@ -2373,6 +2473,14 @@ type CancelSpotInstanceRequestsResult struct {
 type CancelledSpotInstanceRequest struct {
 	SpotInstanceRequestID aws.StringValue `ec2:"SpotInstanceRequestId" xml:"spotInstanceRequestId"`
 	State                 aws.StringValue `ec2:"State" xml:"state"`
+}
+
+// ClassicLinkInstance is undocumented.
+type ClassicLinkInstance struct {
+	Groups     []GroupIdentifier `ec2:"Groups" xml:"groupSet>item"`
+	InstanceID aws.StringValue   `ec2:"InstanceId" xml:"instanceId"`
+	Tags       []Tag             `ec2:"Tags" xml:"tagSet>item"`
+	VPCID      aws.StringValue   `ec2:"VpcId" xml:"vpcId"`
 }
 
 // ConfirmProductInstanceRequest is undocumented.
@@ -2934,6 +3042,21 @@ type DescribeBundleTasksResult struct {
 	BundleTasks []BundleTask `ec2:"BundleTasks" xml:"bundleInstanceTasksSet>item"`
 }
 
+// DescribeClassicLinkInstancesRequest is undocumented.
+type DescribeClassicLinkInstancesRequest struct {
+	DryRun      aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters     []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	InstanceIDs []string         `ec2:"InstanceId" xml:"InstanceId>InstanceId"`
+	MaxResults  aws.IntegerValue `ec2:"MaxResults" xml:"maxResults"`
+	NextToken   aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
+}
+
+// DescribeClassicLinkInstancesResult is undocumented.
+type DescribeClassicLinkInstancesResult struct {
+	Instances []ClassicLinkInstance `ec2:"Instances" xml:"instancesSet>item"`
+	NextToken aws.StringValue       `ec2:"NextToken" xml:"nextToken"`
+}
+
 // DescribeConversionTasksRequest is undocumented.
 type DescribeConversionTasksRequest struct {
 	ConversionTaskIDs []string         `ec2:"ConversionTaskIds" xml:"conversionTaskId>item"`
@@ -3367,6 +3490,18 @@ type DescribeVPCAttributeResult struct {
 	VPCID              aws.StringValue        `ec2:"VpcId" xml:"vpcId"`
 }
 
+// DescribeVPCClassicLinkRequest is undocumented.
+type DescribeVPCClassicLinkRequest struct {
+	DryRun  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	Filters []Filter         `ec2:"Filter" xml:"Filter>Filter"`
+	VPCIDs  []string         `ec2:"VpcId" xml:"VpcId>VpcId"`
+}
+
+// DescribeVPCClassicLinkResult is undocumented.
+type DescribeVPCClassicLinkResult struct {
+	VPCs []VPCClassicLink `ec2:"Vpcs" xml:"vpcSet>item"`
+}
+
 // DescribeVPCPeeringConnectionsRequest is undocumented.
 type DescribeVPCPeeringConnectionsRequest struct {
 	DryRun                  aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
@@ -3413,6 +3548,18 @@ type DescribeVPNGatewaysRequest struct {
 // DescribeVPNGatewaysResult is undocumented.
 type DescribeVPNGatewaysResult struct {
 	VPNGateways []VPNGateway `ec2:"VpnGateways" xml:"vpnGatewaySet>item"`
+}
+
+// DetachClassicLinkVPCRequest is undocumented.
+type DetachClassicLinkVPCRequest struct {
+	DryRun     aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	InstanceID aws.StringValue  `ec2:"InstanceId" xml:"instanceId"`
+	VPCID      aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+}
+
+// DetachClassicLinkVPCResult is undocumented.
+type DetachClassicLinkVPCResult struct {
+	Return aws.BooleanValue `ec2:"Return" xml:"return"`
 }
 
 // DetachInternetGatewayRequest is undocumented.
@@ -3468,6 +3615,17 @@ type DHCPOptions struct {
 type DisableVGWRoutePropagationRequest struct {
 	GatewayID    aws.StringValue `ec2:"GatewayId" xml:"GatewayId"`
 	RouteTableID aws.StringValue `ec2:"RouteTableId" xml:"RouteTableId"`
+}
+
+// DisableVPCClassicLinkRequest is undocumented.
+type DisableVPCClassicLinkRequest struct {
+	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	VPCID  aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+}
+
+// DisableVPCClassicLinkResult is undocumented.
+type DisableVPCClassicLinkResult struct {
+	Return aws.BooleanValue `ec2:"Return" xml:"return"`
 }
 
 // DisassociateAddressRequest is undocumented.
@@ -3558,6 +3716,17 @@ type EnableVGWRoutePropagationRequest struct {
 type EnableVolumeIORequest struct {
 	DryRun   aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
 	VolumeID aws.StringValue  `ec2:"VolumeId" xml:"volumeId"`
+}
+
+// EnableVPCClassicLinkRequest is undocumented.
+type EnableVPCClassicLinkRequest struct {
+	DryRun aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
+	VPCID  aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+}
+
+// EnableVPCClassicLinkResult is undocumented.
+type EnableVPCClassicLinkResult struct {
+	Return aws.BooleanValue `ec2:"Return" xml:"return"`
 }
 
 // Possible values for EC2.
@@ -3681,6 +3850,7 @@ type ICMPTypeCode struct {
 type Image struct {
 	Architecture        aws.StringValue      `ec2:"Architecture" xml:"architecture"`
 	BlockDeviceMappings []BlockDeviceMapping `ec2:"BlockDeviceMappings" xml:"blockDeviceMapping>item"`
+	CreationDate        aws.StringValue      `ec2:"CreationDate" xml:"creationDate"`
 	Description         aws.StringValue      `ec2:"Description" xml:"description"`
 	Hypervisor          aws.StringValue      `ec2:"Hypervisor" xml:"hypervisor"`
 	ImageID             aws.StringValue      `ec2:"ImageId" xml:"imageId"`
@@ -3750,7 +3920,7 @@ type ImportInstanceLaunchSpecification struct {
 	Placement                         *Placement       `ec2:"Placement" xml:"placement"`
 	PrivateIPAddress                  aws.StringValue  `ec2:"PrivateIpAddress" xml:"privateIpAddress"`
 	SubnetID                          aws.StringValue  `ec2:"SubnetId" xml:"subnetId"`
-	UserData                          aws.StringValue  `ec2:"UserData" xml:"userData"`
+	UserData                          *UserData        `ec2:"UserData" xml:"userData"`
 }
 
 // ImportInstanceRequest is undocumented.
@@ -4054,6 +4224,11 @@ const (
 	InstanceTypeC38xlarge  = "c3.8xlarge"
 	InstanceTypeC3Large    = "c3.large"
 	InstanceTypeC3Xlarge   = "c3.xlarge"
+	InstanceTypeC42xlarge  = "c4.2xlarge"
+	InstanceTypeC44xlarge  = "c4.4xlarge"
+	InstanceTypeC48xlarge  = "c4.8xlarge"
+	InstanceTypeC4Large    = "c4.large"
+	InstanceTypeC4Xlarge   = "c4.xlarge"
 	InstanceTypeCc14xlarge = "cc1.4xlarge"
 	InstanceTypeCc28xlarge = "cc2.8xlarge"
 	InstanceTypeCg14xlarge = "cg1.4xlarge"
@@ -5205,6 +5380,11 @@ type UnmonitorInstancesResult struct {
 	InstanceMonitorings []InstanceMonitoring `ec2:"InstanceMonitorings" xml:"instancesSet>item"`
 }
 
+// UserData is undocumented.
+type UserData struct {
+	Data aws.StringValue `ec2:"Data" xml:"data"`
+}
+
 // UserIDGroupPair is undocumented.
 type UserIDGroupPair struct {
 	GroupID   aws.StringValue `ec2:"GroupId" xml:"groupId"`
@@ -5362,6 +5542,13 @@ const (
 	VPCAttributeNameEnableDNSHostnames = "enableDnsHostnames"
 	VPCAttributeNameEnableDNSSupport   = "enableDnsSupport"
 )
+
+// VPCClassicLink is undocumented.
+type VPCClassicLink struct {
+	ClassicLinkEnabled aws.BooleanValue `ec2:"ClassicLinkEnabled" xml:"classicLinkEnabled"`
+	Tags               []Tag            `ec2:"Tags" xml:"tagSet>item"`
+	VPCID              aws.StringValue  `ec2:"VpcId" xml:"vpcId"`
+}
 
 // VPCPeeringConnection is undocumented.
 type VPCPeeringConnection struct {
