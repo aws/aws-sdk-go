@@ -656,22 +656,24 @@ type CreateAutoScalingGroupType struct {
 
 // CreateLaunchConfigurationType is undocumented.
 type CreateLaunchConfigurationType struct {
-	AssociatePublicIPAddress aws.BooleanValue     `query:"AssociatePublicIpAddress" xml:"AssociatePublicIpAddress"`
-	BlockDeviceMappings      []BlockDeviceMapping `query:"BlockDeviceMappings.member" xml:"BlockDeviceMappings>member"`
-	EBSOptimized             aws.BooleanValue     `query:"EbsOptimized" xml:"EbsOptimized"`
-	IAMInstanceProfile       aws.StringValue      `query:"IamInstanceProfile" xml:"IamInstanceProfile"`
-	ImageID                  aws.StringValue      `query:"ImageId" xml:"ImageId"`
-	InstanceID               aws.StringValue      `query:"InstanceId" xml:"InstanceId"`
-	InstanceMonitoring       *InstanceMonitoring  `query:"InstanceMonitoring" xml:"InstanceMonitoring"`
-	InstanceType             aws.StringValue      `query:"InstanceType" xml:"InstanceType"`
-	KernelID                 aws.StringValue      `query:"KernelId" xml:"KernelId"`
-	KeyName                  aws.StringValue      `query:"KeyName" xml:"KeyName"`
-	LaunchConfigurationName  aws.StringValue      `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
-	PlacementTenancy         aws.StringValue      `query:"PlacementTenancy" xml:"PlacementTenancy"`
-	RAMDiskID                aws.StringValue      `query:"RamdiskId" xml:"RamdiskId"`
-	SecurityGroups           []string             `query:"SecurityGroups.member" xml:"SecurityGroups>member"`
-	SpotPrice                aws.StringValue      `query:"SpotPrice" xml:"SpotPrice"`
-	UserData                 aws.StringValue      `query:"UserData" xml:"UserData"`
+	AssociatePublicIPAddress     aws.BooleanValue     `query:"AssociatePublicIpAddress" xml:"AssociatePublicIpAddress"`
+	BlockDeviceMappings          []BlockDeviceMapping `query:"BlockDeviceMappings.member" xml:"BlockDeviceMappings>member"`
+	ClassicLinkVPCID             aws.StringValue      `query:"ClassicLinkVPCId" xml:"ClassicLinkVPCId"`
+	ClassicLinkVPCSecurityGroups []string             `query:"ClassicLinkVPCSecurityGroups.member" xml:"ClassicLinkVPCSecurityGroups>member"`
+	EBSOptimized                 aws.BooleanValue     `query:"EbsOptimized" xml:"EbsOptimized"`
+	IAMInstanceProfile           aws.StringValue      `query:"IamInstanceProfile" xml:"IamInstanceProfile"`
+	ImageID                      aws.StringValue      `query:"ImageId" xml:"ImageId"`
+	InstanceID                   aws.StringValue      `query:"InstanceId" xml:"InstanceId"`
+	InstanceMonitoring           *InstanceMonitoring  `query:"InstanceMonitoring" xml:"InstanceMonitoring"`
+	InstanceType                 aws.StringValue      `query:"InstanceType" xml:"InstanceType"`
+	KernelID                     aws.StringValue      `query:"KernelId" xml:"KernelId"`
+	KeyName                      aws.StringValue      `query:"KeyName" xml:"KeyName"`
+	LaunchConfigurationName      aws.StringValue      `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
+	PlacementTenancy             aws.StringValue      `query:"PlacementTenancy" xml:"PlacementTenancy"`
+	RAMDiskID                    aws.StringValue      `query:"RamdiskId" xml:"RamdiskId"`
+	SecurityGroups               []string             `query:"SecurityGroups.member" xml:"SecurityGroups>member"`
+	SpotPrice                    aws.StringValue      `query:"SpotPrice" xml:"SpotPrice"`
+	UserData                     aws.StringValue      `query:"UserData" xml:"UserData"`
 }
 
 // CreateOrUpdateTagsType is undocumented.
@@ -906,23 +908,25 @@ type InstanceMonitoring struct {
 
 // LaunchConfiguration is undocumented.
 type LaunchConfiguration struct {
-	AssociatePublicIPAddress aws.BooleanValue     `query:"AssociatePublicIpAddress" xml:"AssociatePublicIpAddress"`
-	BlockDeviceMappings      []BlockDeviceMapping `query:"BlockDeviceMappings.member" xml:"BlockDeviceMappings>member"`
-	CreatedTime              time.Time            `query:"CreatedTime" xml:"CreatedTime"`
-	EBSOptimized             aws.BooleanValue     `query:"EbsOptimized" xml:"EbsOptimized"`
-	IAMInstanceProfile       aws.StringValue      `query:"IamInstanceProfile" xml:"IamInstanceProfile"`
-	ImageID                  aws.StringValue      `query:"ImageId" xml:"ImageId"`
-	InstanceMonitoring       *InstanceMonitoring  `query:"InstanceMonitoring" xml:"InstanceMonitoring"`
-	InstanceType             aws.StringValue      `query:"InstanceType" xml:"InstanceType"`
-	KernelID                 aws.StringValue      `query:"KernelId" xml:"KernelId"`
-	KeyName                  aws.StringValue      `query:"KeyName" xml:"KeyName"`
-	LaunchConfigurationARN   aws.StringValue      `query:"LaunchConfigurationARN" xml:"LaunchConfigurationARN"`
-	LaunchConfigurationName  aws.StringValue      `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
-	PlacementTenancy         aws.StringValue      `query:"PlacementTenancy" xml:"PlacementTenancy"`
-	RAMDiskID                aws.StringValue      `query:"RamdiskId" xml:"RamdiskId"`
-	SecurityGroups           []string             `query:"SecurityGroups.member" xml:"SecurityGroups>member"`
-	SpotPrice                aws.StringValue      `query:"SpotPrice" xml:"SpotPrice"`
-	UserData                 aws.StringValue      `query:"UserData" xml:"UserData"`
+	AssociatePublicIPAddress     aws.BooleanValue     `query:"AssociatePublicIpAddress" xml:"AssociatePublicIpAddress"`
+	BlockDeviceMappings          []BlockDeviceMapping `query:"BlockDeviceMappings.member" xml:"BlockDeviceMappings>member"`
+	ClassicLinkVPCID             aws.StringValue      `query:"ClassicLinkVPCId" xml:"ClassicLinkVPCId"`
+	ClassicLinkVPCSecurityGroups []string             `query:"ClassicLinkVPCSecurityGroups.member" xml:"ClassicLinkVPCSecurityGroups>member"`
+	CreatedTime                  time.Time            `query:"CreatedTime" xml:"CreatedTime"`
+	EBSOptimized                 aws.BooleanValue     `query:"EbsOptimized" xml:"EbsOptimized"`
+	IAMInstanceProfile           aws.StringValue      `query:"IamInstanceProfile" xml:"IamInstanceProfile"`
+	ImageID                      aws.StringValue      `query:"ImageId" xml:"ImageId"`
+	InstanceMonitoring           *InstanceMonitoring  `query:"InstanceMonitoring" xml:"InstanceMonitoring"`
+	InstanceType                 aws.StringValue      `query:"InstanceType" xml:"InstanceType"`
+	KernelID                     aws.StringValue      `query:"KernelId" xml:"KernelId"`
+	KeyName                      aws.StringValue      `query:"KeyName" xml:"KeyName"`
+	LaunchConfigurationARN       aws.StringValue      `query:"LaunchConfigurationARN" xml:"LaunchConfigurationARN"`
+	LaunchConfigurationName      aws.StringValue      `query:"LaunchConfigurationName" xml:"LaunchConfigurationName"`
+	PlacementTenancy             aws.StringValue      `query:"PlacementTenancy" xml:"PlacementTenancy"`
+	RAMDiskID                    aws.StringValue      `query:"RamdiskId" xml:"RamdiskId"`
+	SecurityGroups               []string             `query:"SecurityGroups.member" xml:"SecurityGroups>member"`
+	SpotPrice                    aws.StringValue      `query:"SpotPrice" xml:"SpotPrice"`
+	UserData                     aws.StringValue      `query:"UserData" xml:"UserData"`
 }
 
 // LaunchConfigurationNameType is undocumented.
