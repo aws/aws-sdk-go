@@ -936,9 +936,10 @@ type CreateJobOutput struct {
 
 // CreateJobPlaylist is undocumented.
 type CreateJobPlaylist struct {
-	Format     aws.StringValue `json:"Format,omitempty"`
-	Name       aws.StringValue `json:"Name,omitempty"`
-	OutputKeys []string        `json:"OutputKeys,omitempty"`
+	Format               aws.StringValue       `json:"Format,omitempty"`
+	HlsContentProtection *HlsContentProtection `json:"HlsContentProtection,omitempty"`
+	Name                 aws.StringValue       `json:"Name,omitempty"`
+	OutputKeys           []string              `json:"OutputKeys,omitempty"`
 }
 
 // CreateJobRequest is undocumented.
@@ -1014,6 +1015,16 @@ type Encryption struct {
 	Key                  aws.StringValue `json:"Key,omitempty"`
 	KeyMD5               aws.StringValue `json:"KeyMd5,omitempty"`
 	Mode                 aws.StringValue `json:"Mode,omitempty"`
+}
+
+// HlsContentProtection is undocumented.
+type HlsContentProtection struct {
+	InitializationVector  aws.StringValue `json:"InitializationVector,omitempty"`
+	Key                   aws.StringValue `json:"Key,omitempty"`
+	KeyMD5                aws.StringValue `json:"KeyMd5,omitempty"`
+	KeyStoragePolicy      aws.StringValue `json:"KeyStoragePolicy,omitempty"`
+	LicenseAcquisitionURL aws.StringValue `json:"LicenseAcquisitionUrl,omitempty"`
+	Method                aws.StringValue `json:"Method,omitempty"`
 }
 
 // Job is undocumented.
@@ -1164,11 +1175,12 @@ type PipelineOutputConfig struct {
 
 // Playlist is undocumented.
 type Playlist struct {
-	Format       aws.StringValue `json:"Format,omitempty"`
-	Name         aws.StringValue `json:"Name,omitempty"`
-	OutputKeys   []string        `json:"OutputKeys,omitempty"`
-	Status       aws.StringValue `json:"Status,omitempty"`
-	StatusDetail aws.StringValue `json:"StatusDetail,omitempty"`
+	Format               aws.StringValue       `json:"Format,omitempty"`
+	HlsContentProtection *HlsContentProtection `json:"HlsContentProtection,omitempty"`
+	Name                 aws.StringValue       `json:"Name,omitempty"`
+	OutputKeys           []string              `json:"OutputKeys,omitempty"`
+	Status               aws.StringValue       `json:"Status,omitempty"`
+	StatusDetail         aws.StringValue       `json:"StatusDetail,omitempty"`
 }
 
 // Preset is undocumented.

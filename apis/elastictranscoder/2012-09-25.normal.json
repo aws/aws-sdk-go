@@ -968,7 +968,7 @@
     },
     "Base64EncodedString":{
       "type":"string",
-      "pattern":"^(?:[A-Za-z0-9\\+/]{4})*(?:[A-Za-z0-9\\+/]{2}==|[A-Za-z0-9\\+/]{3}=)?$"
+      "pattern":"^$|(^(?:[A-Za-z0-9\\+/]{4})*(?:[A-Za-z0-9\\+/]{2}==|[A-Za-z0-9\\+/]{3}=)?$)"
     },
     "BucketName":{
       "type":"string",
@@ -1171,6 +1171,10 @@
         "OutputKeys":{
           "shape":"OutputKeys",
           "documentation":"<p>For each output in this job that you want to include in a master playlist, the value of the <code>Outputs:Key</code> object. </p> <ul> <li> <p>If your output is not <code>HLS</code> or does not have a segment duration set, the name of the output file is a concatenation of <code>OutputKeyPrefix</code> and <code>Outputs:Key</code>:</p> <p>OutputKeyPrefix<code>Outputs:Key</code></p> </li> <li> <p>If your output is <code>HLSv3</code> and has a segment duration set, or is not included in a playlist, Elastic Transcoder creates an output playlist file with a file extension of <code>.m3u8</code>, and a series of <code>.ts</code> files that include a five-digit sequential counter beginning with 00000:</p> <p>OutputKeyPrefix<code>Outputs:Key</code>.m3u8</p> <p>OutputKeyPrefix<code>Outputs:Key</code>00000.ts</p> </li> <li> <p>If your output is <code>HLSv4</code>, has a segment duration set, and is included in an <code>HLSv4</code> playlist, Elastic Transcoder creates an output playlist file with a file extension of <code>_v4.m3u8</code>. If the output is video, Elastic Transcoder also creates an output file with an extension of <code>_iframe.m3u8</code>:</p> <p>OutputKeyPrefix<code>Outputs:Key</code>_v4.m3u8</p> <p>OutputKeyPrefix<code>Outputs:Key</code>_iframe.m3u8</p> <p>OutputKeyPrefix<code>Outputs:Key</code>.ts</p> </li> </ul> <p>Elastic Transcoder automatically appends the relevant file extension to the file name. If you include a file extension in Output Key, the file name will have two extensions.</p> <p>If you include more than one output in a playlist, any segment duration settings, clip settings, or caption settings must be the same for all outputs in the playlist. For <code>Smooth</code> playlists, the <code>Audio:Profile</code>, <code>Video:Profile</code>, and <code>Video:FrameRate</code> to <code>Video:KeyframesMaxDist</code> ratio must be the same for all outputs.</p>"
+        },
+        "HlsContentProtection":{
+          "shape":"HlsContentProtection",
+          "documentation":"<p>The HLS content protection settings, if any, that you want Elastic Transcoder to apply to the output files associated with this playlist.</p>"
         }
       },
       "documentation":"<p>Information about the master playlist.</p>"
@@ -1393,7 +1397,7 @@
           "documentation":"<p>The MD5 digest of the key that you used to encrypt your input file, or that you want Elastic Transcoder to use to encrypt your output file. Elastic Transcoder uses the key digest as a checksum to make sure your key was not corrupted in transit. The key MD5 must be base64-encoded, and it must be exactly 16 bytes long before being base64-encoded.</p>"
         },
         "InitializationVector":{
-          "shape":"Key",
+          "shape":"ZeroTo255String",
           "documentation":"<p>The series of random bits created by a random bit generator, unique for every encryption operation, that you used to encrypt your input files or that you want Elastic Transcoder to use to encrypt your output files. The initialization vector must be base64-encoded, and it must be exactly 16 bytes long before being base64-encoded.</p>"
         }
       },
@@ -1432,6 +1436,40 @@
     "GranteeType":{
       "type":"string",
       "pattern":"(^Canonical$)|(^Email$)|(^Group$)"
+    },
+    "HlsContentProtection":{
+      "type":"structure",
+      "members":{
+        "Method":{
+          "shape":"HlsContentProtectionMethod",
+          "documentation":"<p>The content protection method for your output. The only valid value is: <code>aes-128</code>.</p> <p>This value will be written into the method attribute of the <code>EXT-X-KEY</code> metadata tag in the output playlist.</p>"
+        },
+        "Key":{
+          "shape":"Base64EncodedString",
+          "documentation":"<p>If you want Elastic Transcoder to generate a key for you, leave this field blank.</p> <p>If you choose to supply your own key, you must encrypt the key by using AWS KMS. The key must be base64-encoded, and it must be one of the following bit lengths before being base64-encoded:</p> <p><code>128</code>, <code>192</code>, or <code>256</code>. </p>"
+        },
+        "KeyMd5":{
+          "shape":"Base64EncodedString",
+          "documentation":"<p>If Elastic Transcoder is generating your key for you, you must leave this field blank.</p> <p>The MD5 digest of the key that you want Elastic Transcoder to use to encrypt your output file, and that you want Elastic Transcoder to use as a checksum to make sure your key was not corrupted in transit. The key MD5 must be base64-encoded, and it must be exactly 16 bytes before being base64- encoded.</p>"
+        },
+        "InitializationVector":{
+          "shape":"ZeroTo255String",
+          "documentation":"<p>If Elastic Transcoder is generating your key for you, you must leave this field blank.</p> <p>The series of random bits created by a random bit generator, unique for every encryption operation, that you want Elastic Transcoder to use to encrypt your output files. The initialization vector must be base64-encoded, and it must be exactly 16 bytes before being base64-encoded.</p>"
+        },
+        "LicenseAcquisitionUrl":{
+          "shape":"ZeroTo512String",
+          "documentation":"<p>The location of the license key required to decrypt your HLS playlist. The URL must be an absolute path, and is referenced in the URI attribute of the EXT-X-KEY metadata tag in the playlist file.</p>"
+        },
+        "KeyStoragePolicy":{
+          "shape":"KeyStoragePolicy",
+          "documentation":"<p>Specify whether you want Elastic Transcoder to write your HLS license key to an Amazon S3 bucket. If you choose <code>WithVariantPlaylists</code>, <code>LicenseAcquisitionUrl</code> must be left blank and Elastic Transcoder writes your data key into the same bucket as the associated playlist.</p>"
+        }
+      },
+      "documentation":"<p>The HLS content protection settings, if any, that you want Elastic Transcoder to apply to your output files.</p>"
+    },
+    "HlsContentProtectionMethod":{
+      "type":"string",
+      "pattern":"(^aes-128$)"
     },
     "HorizontalAlign":{
       "type":"string",
@@ -1679,6 +1717,10 @@
       "type":"string",
       "min":0,
       "max":255
+    },
+    "KeyStoragePolicy":{
+      "type":"string",
+      "pattern":"(^NoStore$)|(^WithVariantPlaylists$)"
     },
     "KeyframesMaxDist":{
       "type":"string",
@@ -2001,6 +2043,10 @@
         "OutputKeys":{
           "shape":"OutputKeys",
           "documentation":"<p>For each output in this job that you want to include in a master playlist, the value of the Outputs:Key object.</p> <ul> <li> <p>If your output is not <code>HLS</code> or does not have a segment duration set, the name of the output file is a concatenation of <code>OutputKeyPrefix</code> and <code>Outputs:Key</code>:</p> <p>OutputKeyPrefix<code>Outputs:Key</code></p> </li> <li> <p>If your output is <code>HLSv3</code> and has a segment duration set, or is not included in a playlist, Elastic Transcoder creates an output playlist file with a file extension of <code>.m3u8</code>, and a series of <code>.ts</code> files that include a five-digit sequential counter beginning with 00000:</p> <p>OutputKeyPrefix<code>Outputs:Key</code>.m3u8</p> <p>OutputKeyPrefix<code>Outputs:Key</code>00000.ts</p> </li> <li> <p>If your output is <code>HLSv4</code>, has a segment duration set, and is included in an <code>HLSv4</code> playlist, Elastic Transcoder creates an output playlist file with a file extension of <code>_v4.m3u8</code>. If the output is video, Elastic Transcoder also creates an output file with an extension of <code>_iframe.m3u8</code>:</p> <p>OutputKeyPrefix<code>Outputs:Key</code>_v4.m3u8</p> <p>OutputKeyPrefix<code>Outputs:Key</code>_iframe.m3u8</p> <p>OutputKeyPrefix<code>Outputs:Key</code>.ts</p> </li> </ul> <p>Elastic Transcoder automatically appends the relevant file extension to the file name. If you include a file extension in Output Key, the file name will have two extensions.</p> <p>If you include more than one output in a playlist, any segment duration settings, clip settings, or caption settings must be the same for all outputs in the playlist. For <code>Smooth</code> playlists, the <code>Audio:Profile</code>, <code>Video:Profile</code>, and <code>Video:FrameRate</code> to <code>Video:KeyframesMaxDist</code> ratio must be the same for all outputs.</p>"
+        },
+        "HlsContentProtection":{
+          "shape":"HlsContentProtection",
+          "documentation":"<p>The HLS content protection settings, if any, that you want Elastic Transcoder to apply to the output files associated with this playlist.</p>"
         },
         "Status":{
           "shape":"JobStatus",
@@ -2568,6 +2614,16 @@
     "WatermarkSizingPolicy":{
       "type":"string",
       "pattern":"(^Fit$)|(^Stretch$)|(^ShrinkToFit$)"
+    },
+    "ZeroTo255String":{
+      "type":"string",
+      "min":0,
+      "max":255
+    },
+    "ZeroTo512String":{
+      "type":"string",
+      "min":0,
+      "max":512
     }
   }
 }
