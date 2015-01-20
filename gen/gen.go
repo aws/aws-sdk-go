@@ -5,6 +5,7 @@ package gen
 //go:generate aws-gen-gocli AutoScaling ../apis/autoscaling/2011-01-01.normal.json autoscaling/autoscaling.go
 //go:generate aws-gen-gocli CloudFormation ../apis/cloudformation/2010-05-15.normal.json cloudformation/cloudformation.go
 //go:generate aws-gen-gocli CloudFront ../apis/cloudfront/2014-10-21.normal.json cloudfront/cloudfront.go
+//go:generate aws-gen-gocli CloudHSM ../apis/cloudhsm/2014-05-30.normal.json cloudhsm/cloudhsm.go
 //go:generate aws-gen-gocli CloudTrail ../apis/cloudtrail/2013-11-01.normal.json cloudtrail/cloudtrail.go
 //go:generate aws-gen-gocli CloudSearch ../apis/cloudsearch/2013-01-01.normal.json cloudsearch/cloudsearch.go
 //go:generate aws-gen-gocli CloudSearchDomain ../apis/cloudsearchdomain/2013-01-01.normal.json cloudsearchdomain/cloudsearchdomain.go

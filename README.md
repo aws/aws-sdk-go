@@ -45,6 +45,7 @@ fmt.Println(resp.Reservations)
  * AutoScaling
  * CloudFormation
  * CloudFront
+ * CloudHSM
  * CloudSearch
  * CloudSearchdomain
  * CloudTrail
