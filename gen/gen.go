@@ -24,6 +24,7 @@ package gen
 //go:generate aws-gen-gocli ElasticTranscoder ../apis/elastictranscoder/2012-09-25.normal.json elastictranscoder/elastictranscoder.go
 //go:generate aws-gen-gocli ELB ../apis/elb/2012-06-01.normal.json elb/elb.go
 //go:generate aws-gen-gocli EMR ../apis/emr/2009-03-31.normal.json emr/emr.go
+//go:generate aws-gen-gocli Glacier ../apis/glacier/2012-06-01.normal.json glacier/glacier.go
 //go:generate aws-gen-gocli IAM ../apis/iam/2010-05-08.normal.json iam/iam.go
 //go:generate aws-gen-gocli ImportExport ../apis/importexport/2010-06-01.normal.json importexport/importexport.go
 //go:generate aws-gen-gocli Kinesis ../apis/kinesis/2013-12-02.normal.json kinesis/kinesis.go

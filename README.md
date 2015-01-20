@@ -65,6 +65,7 @@ fmt.Println(resp.Reservations)
  * Elastic Transcoder
  * ELB
  * EMR
+ * Glacier
  * IAM
  * Import/Export
  * Kinesis
