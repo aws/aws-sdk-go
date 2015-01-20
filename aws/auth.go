@@ -19,7 +19,7 @@ import (
 type Credentials struct {
 	AccessKeyID     string
 	SecretAccessKey string
-	SessionToken   string
+	SessionToken    string
 }
 
 // A CredentialsProvider is a provider of credentials.
@@ -37,6 +37,30 @@ var (
 	// can't be found in the process's environment.
 	ErrSecretAccessKeyNotFound = errors.NotFoundf("AWS_SECRET_ACCESS_KEY or AWS_SECRET_KEY not found in environment")
 )
+
+type DefaultCredentialsProvider struct {
+}
+
+func (p *DefaultCredentialsProvider) Credentials() (*Credentials, error) {
+	env, err := EnvCreds()
+	if err == nil {
+		return env.Credentials()
+	}
+
+	profile, err := ProfileCreds("", "", 10*time.Minute)
+	if err == nil {
+		profileCreds, err := profile.Credentials()
+		if err == nil {
+			return profileCreds, nil
+		}
+	}
+
+	return IAMCreds().Credentials()
+}
+
+func DefaultCreds() CredentialsProvider {
+	return &DefaultCredentialsProvider{}
+}
 
 // DetectCreds returns a CredentialsProvider based on the available information.
 //
@@ -103,7 +127,7 @@ func Creds(accessKeyID, secretAccessKey, sessionToken string) CredentialsProvide
 		creds: Credentials{
 			AccessKeyID:     accessKeyID,
 			SecretAccessKey: secretAccessKey,
-			SessionToken:   sessionToken,
+			SessionToken:    sessionToken,
 		},
 	}
 }
@@ -176,7 +200,7 @@ func (p *profileProvider) Credentials() (*Credentials, error) {
 	p.creds = Credentials{
 		AccessKeyID:     accessKeyID,
 		SecretAccessKey: secretAccessKey,
-		SessionToken:   sessionToken,
+		SessionToken:    sessionToken,
 	}
 	p.expiration = currentTime().Add(p.expiry)
 
@@ -243,7 +267,7 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 	p.creds = Credentials{
 		AccessKeyID:     body.AccessKeyID,
 		SecretAccessKey: body.SecretAccessKey,
-		SessionToken:   body.Token,
+		SessionToken:    body.Token,
 	}
 	p.expiration = body.Expiration
 

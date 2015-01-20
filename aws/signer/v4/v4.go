@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/hmac"
 	"crypto/sha256"
+	"fmt"
 	"io"
 	"net/http"
 	"strconv"
@@ -24,7 +25,7 @@ type signer struct {
 	Time            time.Time
 	ServiceName     string
 	Region          string
-	AccessKeyId     string
+	AcessKeyID      string
 	SecretAccessKey string
 	SessionToken    string
 	Body            io.ReadSeeker
@@ -42,16 +43,17 @@ type signer struct {
 	authorization    string
 }
 
+// Sign requests with signature version 4.
 func Sign(req *aws.Request) {
-	creds, _ := req.Credentials.Credentials()
+	creds, _ := req.Service.Config.Credentials.Credentials()
 
 	s := signer{
 		Request:         req.HTTPRequest,
 		Time:            req.Time,
 		Body:            req.Body,
-		ServiceName:     req.Context.Service,
-		Region:          req.Context.Region,
-		AccessKeyId:     creds.AccessKeyID,
+		ServiceName:     req.Service.ServiceName,
+		Region:          req.Service.Config.Region,
+		AcessKeyID:      creds.AccessKeyID,
 		SecretAccessKey: creds.SecretAccessKey,
 		SessionToken:    creds.SessionToken,
 		Debug:           req.Debug,
@@ -70,12 +72,12 @@ func (v4 *signer) sign() {
 
 	//v4.Debug = true
 	if v4.Debug > 0 {
-		println("---[ CANONICAL STRING  ]-----------------------------")
-		println(v4.canonicalString)
-		println("-----------------------------------------------------\n")
-		println("---[ STRING TO SIGN ]--------------------------------")
-		println(v4.stringToSign)
-		println("-----------------------------------------------------\n")
+		fmt.Printf("---[ CANONICAL STRING  ]-----------------------------\n")
+		fmt.Printf("%s\n", v4.canonicalString)
+		fmt.Printf("-----------------------------------------------------\n\n")
+		fmt.Printf("---[ STRING TO SIGN ]--------------------------------\n")
+		fmt.Printf("%s\n", v4.stringToSign)
+		fmt.Printf("-----------------------------------------------------\n")
 	}
 
 	// add the new ones
@@ -104,7 +106,7 @@ func (v4 *signer) buildTime() {
 
 func (v4 *signer) buildAuthorization() {
 	v4.authorization = strings.Join([]string{
-		authHeaderPrefix + " Credential=" + v4.AccessKeyId + "/" + v4.credentialString,
+		authHeaderPrefix + " Credential=" + v4.AcessKeyID + "/" + v4.credentialString,
 		"SignedHeaders=" + v4.signedHeaders,
 		"Signature=" + v4.signature,
 	}, ",")
@@ -145,13 +147,13 @@ func (v4 *signer) buildStringToSign() {
 }
 
 func (v4 *signer) buildSignature() {
-	kSecret := v4.SecretAccessKey
-	kDate := makeHmac([]byte("AWS4"+kSecret), []byte(v4.formattedShortTime))
-	kRegion := makeHmac(kDate, []byte(v4.Region))
-	kService := makeHmac(kRegion, []byte(v4.ServiceName))
-	kCredentials := makeHmac(kService, []byte("aws4_request"))
-	kSignature := makeHmac(kCredentials, []byte(v4.stringToSign))
-	v4.signature = hexDigest(kSignature)
+	secret := v4.SecretAccessKey
+	date := makeHmac([]byte("AWS4"+secret), []byte(v4.formattedShortTime))
+	region := makeHmac(date, []byte(v4.Region))
+	service := makeHmac(region, []byte(v4.ServiceName))
+	credentials := makeHmac(service, []byte("aws4_request"))
+	signature := makeHmac(credentials, []byte(v4.stringToSign))
+	v4.signature = hexDigest(signature)
 }
 
 func (v4 *signer) bodyDigest() string {

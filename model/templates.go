@@ -18,7 +18,7 @@ func Generate(prefix string) error {
 	}
 	defer apiWriter.Close()
 
-	var svcWriter io.WriteCloser = nil
+	var svcWriter io.WriteCloser
 	svcFile := path.Join(prefix, service.PackageName, "service.go")
 	if _, err := os.Stat(svcFile); err != nil && os.IsNotExist(err) {
 		svcWriter, err = os.Create(svcFile)
@@ -28,15 +28,15 @@ func Generate(prefix string) error {
 		defer svcWriter.Close()
 	}
 
-	return GenerateSource(apiWriter, svcWriter)
+	return generateSource(apiWriter, svcWriter)
 }
 
-func GenerateSource(api io.Writer, svc io.Writer) error {
+func generateSource(api io.Writer, svc io.Writer) error {
 	t := template.New("root").Funcs(template.FuncMap{
 		"godoc":      godoc,
 		"exportable": exportable,
 	})
-	template.Must(commonApi(t))
+	template.Must(commonAPI(t))
 	template.Must(jsonClient(t))
 	template.Must(queryClient(t))
 	template.Must(ec2Client(t))
@@ -81,7 +81,7 @@ func GenerateSource(api io.Writer, svc io.Writer) error {
 	return nil
 }
 
-func commonApi(t *template.Template) (*template.Template, error) {
+func commonAPI(t *template.Template) (*template.Template, error) {
 	return t.Parse(`
 {{ define "header" }}
 ////////////////////////////////////////////////////////
@@ -124,27 +124,30 @@ type {{ .Name }} struct {
 	*aws.Service
 }
 
+type {{ .Name }}Config struct {
+  *aws.Config
+}
+
 // New returns a new {{ .Name }} client.
-func New(creds aws.CredentialsProvider, region string, client *http.Client, manualSend bool) *{{ .Name }} {
-	service := &aws.Service{
-		Context: aws.Context{
-			Credentials: creds,
-			Service:     "{{ .Metadata.EndpointPrefix }}",
-			Region:      region,
-		},
-		HTTPClient:   client,
-		ManualSend:   manualSend,
-		JSONVersion:  "{{ .Metadata.JSONVersion }}",
-		TargetPrefix: "{{ .Metadata.TargetPrefix }}",
-	}
-	service.Initialize()
+func New(config *{{ .Name }}Config) *{{ .Name }} {
+  if config == nil {
+    config = &{{ .Name }}Config{}
+  }
 
-	// Handlers
-	service.Handlers.Build.PushBack(jsonrpc.Build)
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+  service := &aws.Service{
+    Config:       aws.MergeConfig(config.Config),
+    ServiceName:  "{{ .Metadata.EndpointPrefix }}",
+    JSONVersion:  "{{ .Metadata.JSONVersion }}",
+    TargetPrefix: "{{ .Metadata.TargetPrefix }}",
+  }
+  service.Initialize()
 
-	return &{{ .Name }}{service}
+  // Handlers
+  service.Handlers.Build.PushBack(jsonrpc.Build)
+  service.Handlers.Sign.PushBack(v4.Sign)
+  service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+
+  return &{{ .Name }}{service}
 }
 {{ end }}
 
@@ -156,7 +159,7 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client, manu
 {{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}input {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}output {{ $op.Output.Type }},{{ end }} req *aws.Request, err error) {
 	{{ if $op.Output }}output = {{ $op.Output.Literal }}{{ else }}// NRE{{ end }}
   req = aws.NewRequest(c.Service, &aws.Operation{Name: "{{ $name }}", HTTPMethod: "{{ $op.HTTP.Method }}", HTTPPath: "{{ $op.HTTP.RequestURI }}",}, input, output)
-	if !c.Service.ManualSend {
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return

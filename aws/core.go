@@ -13,12 +13,8 @@ import (
 	"github.com/stripe/aws-go/gen/endpoints"
 )
 
-func SendHandler(req *Request) {
-	req.HTTPResponse, req.Error = req.Service.HTTPClient.Do(req.HTTPRequest)
-}
-
-func V4Signer(req *Request) {
-	req.Error = req.Service.Context.sign(req.HTTPRequest)
+func SendHandler(r *Request) {
+	r.HTTPResponse, r.Error = r.Service.Config.HTTPClient.Do(r.HTTPRequest)
 }
 
 type Operation struct {
@@ -29,31 +25,34 @@ type Operation struct {
 	OutPayload  string
 	Required    []string
 	QueryParams []string
-	UriParams   []string
+	URIParams   []string
 	InHeaders   []string
 	OutHeaders  []string
 }
 
 type Service struct {
-	Context
+	Config       *Config
 	Handlers     Handlers
-	HTTPClient   *http.Client
 	ManualSend   bool
-	Debug        uint
+	ServiceName  string
 	Endpoint     string
 	JSONVersion  string
 	TargetPrefix string
 }
 
 func (s *Service) Initialize() {
-	if s.HTTPClient == nil {
-		s.HTTPClient = http.DefaultClient
+	if s.Config.HTTPClient == nil {
+		s.Config.HTTPClient = http.DefaultClient
 	}
 
 	s.Handlers.Send.PushBack(SendHandler)
 
-	endpoint, _, _ := endpoints.Lookup(s.Context.Service, s.Context.Region)
-	s.Endpoint = endpoint
+	if s.Config.Endpoint != "" {
+		s.Endpoint = s.Config.Endpoint
+	} else {
+		endpoint, _, _ := endpoints.Lookup(s.ServiceName, s.Config.Region)
+		s.Endpoint = endpoint
+	}
 }
 
 type Request struct {
@@ -91,7 +90,7 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 		Params:      params,
 		Error:       nil,
 		Data:        data,
-		Debug:       service.Debug,
+		Debug:       service.Config.LogLevel,
 	}
 
 	r.AddDebugHandlers()
@@ -99,25 +98,27 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 	return r
 }
 
-func (req *Request) AddDebugHandlers() {
-	if req.Debug == 0 {
+func (r *Request) AddDebugHandlers() {
+	if r.Debug == 0 {
 		return
 	}
 
-	req.Handlers.Sign.PushBack(func(r *Request) {
-		fmt.Printf("=> [%s] %s.%s(%+v)\n", r.Time,
-			r.Service.Context.Service, r.Operation.Name, r.Params)
-		println("---[ REQUEST  ]--------------------------------------")
+	r.Handlers.Sign.PushBack(func(r *Request) {
 		dumpedBody, _ := httputil.DumpRequest(r.HTTPRequest, true)
-		println(string(dumpedBody))
-		println("-----------------------------------------------------\n")
+
+		fmt.Printf("=> [%s] %s.%s(%+v)\n", r.Time,
+			r.Service.ServiceName, r.Operation.Name, r.Params)
+		fmt.Printf("---[ REQUEST  ]--------------------------------------\n")
+		fmt.Printf("%s\n", string(dumpedBody))
+		fmt.Printf("-----------------------------------------------------\n\n")
 	})
-	req.Handlers.Send.PushBack(func(r *Request) {
-		println("---[ RESPONSE ]--------------------------------------")
+	r.Handlers.Send.PushBack(func(r *Request) {
 		defer r.HTTPResponse.Body.Close()
 		dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, true)
-		println(string(dumpedBody) + "\n")
-		println("-----------------------------------------------------\n")
+
+		fmt.Printf("---[ RESPONSE ]--------------------------------------\n")
+		fmt.Printf("%s\n", string(dumpedBody))
+		fmt.Printf("-----------------------------------------------------\n\n")
 	})
 }
 
