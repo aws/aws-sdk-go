@@ -35,6 +35,7 @@ type Service struct {
 	Handlers     Handlers
 	ManualSend   bool
 	ServiceName  string
+	APIVersion   string
 	Endpoint     string
 	JSONVersion  string
 	TargetPrefix string

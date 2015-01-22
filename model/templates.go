@@ -135,6 +135,7 @@ func New(config *{{ .Name }}Config) *{{ .Name }} {
   service := &aws.Service{
     Config:       aws.MergeConfig(config.Config),
     ServiceName:  "{{ .Metadata.EndpointPrefix }}",
+	APIVersion:   "{{ .Metadata.APIVersion }}",
     JSONVersion:  "{{ .Metadata.JSONVersion }}",
     TargetPrefix: "{{ .Metadata.TargetPrefix }}",
   }
