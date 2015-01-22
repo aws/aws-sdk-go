@@ -3,6 +3,7 @@ package aws
 import (
 	"bufio"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"os"
 	"os/user"
@@ -10,7 +11,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/juju/errors"
 	"github.com/vaughan0/go-ini"
 )
 
@@ -32,10 +32,10 @@ type CredentialsProvider interface {
 var (
 	// ErrAccessKeyIDNotFound is returned when the AWS Access Key ID can't be
 	// found in the process's environment.
-	ErrAccessKeyIDNotFound = errors.NotFoundf("AWS_ACCESS_KEY_ID or AWS_ACCESS_KEY not found in environment")
+	ErrAccessKeyIDNotFound = fmt.Errorf("AWS_ACCESS_KEY_ID or AWS_ACCESS_KEY not found in environment")
 	// ErrSecretAccessKeyNotFound is returned when the AWS Secret Access Key
 	// can't be found in the process's environment.
-	ErrSecretAccessKeyNotFound = errors.NotFoundf("AWS_SECRET_ACCESS_KEY or AWS_SECRET_KEY not found in environment")
+	ErrSecretAccessKeyNotFound = fmt.Errorf("AWS_SECRET_ACCESS_KEY or AWS_SECRET_KEY not found in environment")
 )
 
 type DefaultCredentialsProvider struct {
@@ -187,12 +187,12 @@ func (p *profileProvider) Credentials() (*Credentials, error) {
 
 	accessKeyID, ok := profile["aws_access_key_id"]
 	if !ok {
-		return nil, errors.NotFoundf("profile %s in %s did not contain aws_access_key_id", p.profile, p.filename)
+		return nil, fmt.Errorf("profile %s in %s did not contain aws_access_key_id", p.profile, p.filename)
 	}
 
 	secretAccessKey, ok := profile["aws_secret_access_key"]
 	if !ok {
-		return nil, errors.NotFoundf("profile %s in %s did not contain aws_secret_access_key", p.profile, p.filename)
+		return nil, fmt.Errorf("profile %s in %s did not contain aws_secret_access_key", p.profile, p.filename)
 	}
 
 	sessionToken := profile["aws_session_token"]
@@ -238,7 +238,7 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 
 	resp, err := IAMClient.Get(metadataCredentialsEndpoint)
 	if err != nil {
-		return nil, errors.Annotate(err, "listing IAM credentials")
+		return nil, fmt.Errorf("listing IAM credentials")
 	}
 	defer func() {
 		_ = resp.Body.Close()
@@ -247,21 +247,21 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 	// Take the first line of the body of the metadata endpoint
 	s := bufio.NewScanner(resp.Body)
 	if !s.Scan() {
-		return nil, errors.NotFoundf("unable to find default IAM credentials")
+		return nil, fmt.Errorf("unable to find default IAM credentials")
 	} else if s.Err() != nil {
-		return nil, errors.Annotate(s.Err(), "listing IAM credentials")
+		return nil, fmt.Errorf("%s listing IAM credentials", s.Err())
 	}
 
 	resp, err = IAMClient.Get(metadataCredentialsEndpoint + s.Text())
 	if err != nil {
-		return nil, errors.Annotatef(err, "getting %s IAM credentials", s.Text())
+		return nil, fmt.Errorf("getting %s IAM credentials", s.Text())
 	}
 	defer func() {
 		_ = resp.Body.Close()
 	}()
 
 	if err := json.NewDecoder(resp.Body).Decode(&body); err != nil {
-		return nil, errors.Annotatef(err, "decoding %s IAM credentials", s.Text())
+		return nil, fmt.Errorf("decoding %s IAM credentials", s.Text())
 	}
 
 	p.creds = Credentials{
