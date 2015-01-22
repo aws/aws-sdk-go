@@ -33,7 +33,7 @@ func TestEnvCreds(t *testing.T) {
 		t.Errorf("Secret access key was %v, expected %v", v, want)
 	}
 
-	if v, want := creds.SecurityToken, "token"; v != want {
+	if v, want := creds.SessionToken, "token"; v != want {
 		t.Errorf("Security token was %v, expected %v", v, want)
 	}
 }
@@ -123,8 +123,8 @@ func TestIAMCreds(t *testing.T) {
 		t.Errorf("SecretAccessKey was %v, but expected %v", v, want)
 	}
 
-	if v, want := creds.SecurityToken, "token"; v != want {
-		t.Errorf("SecurityToken was %v, but expected %v", v, want)
+	if v, want := creds.SessionToken, "token"; v != want {
+		t.Errorf("SessionToken was %v, but expected %v", v, want)
 	}
 }
 
@@ -147,8 +147,8 @@ func TestProfileCreds(t *testing.T) {
 		t.Errorf("SecretAccessKey was %v, but expected %v", v, want)
 	}
 
-	if v, want := creds.SecurityToken, "token"; v != want {
-		t.Errorf("SecurityToken was %v, but expected %v", v, want)
+	if v, want := creds.SessionToken, "token"; v != want {
+		t.Errorf("SessionToken was %v, but expected %v", v, want)
 	}
 }
 
@@ -171,8 +171,8 @@ func TestProfileCredsWithoutToken(t *testing.T) {
 		t.Errorf("SecretAccessKey was %v, but expected %v", v, want)
 	}
 
-	if v, want := creds.SecurityToken, ""; v != want {
-		t.Errorf("SecurityToken was %v, but expected %v", v, want)
+	if v, want := creds.SessionToken, ""; v != want {
+		t.Errorf("SessionToken was %v, but expected %v", v, want)
 	}
 }
 

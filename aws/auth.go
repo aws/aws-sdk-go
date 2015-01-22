@@ -19,7 +19,7 @@ import (
 type Credentials struct {
 	AccessKeyID     string
 	SecretAccessKey string
-	SecurityToken   string
+	SessionToken    string
 }
 
 // A CredentialsProvider is a provider of credentials.
@@ -38,6 +38,30 @@ var (
 	ErrSecretAccessKeyNotFound = errors.NotFoundf("AWS_SECRET_ACCESS_KEY or AWS_SECRET_KEY not found in environment")
 )
 
+type DefaultCredentialsProvider struct {
+}
+
+func (p *DefaultCredentialsProvider) Credentials() (*Credentials, error) {
+	env, err := EnvCreds()
+	if err == nil {
+		return env.Credentials()
+	}
+
+	profile, err := ProfileCreds("", "", 10*time.Minute)
+	if err == nil {
+		profileCreds, err := profile.Credentials()
+		if err == nil {
+			return profileCreds, nil
+		}
+	}
+
+	return IAMCreds().Credentials()
+}
+
+func DefaultCreds() CredentialsProvider {
+	return &DefaultCredentialsProvider{}
+}
+
 // DetectCreds returns a CredentialsProvider based on the available information.
 //
 // If the access key ID and secret access key are provided, it returns a basic
@@ -50,9 +74,9 @@ var (
 // a default profile configured, it returns a profile provider.
 //
 // Otherwise, it returns an IAM instance provider.
-func DetectCreds(accessKeyID, secretAccessKey, securityToken string) CredentialsProvider {
+func DetectCreds(accessKeyID, secretAccessKey, sessionToken string) CredentialsProvider {
 	if accessKeyID != "" && secretAccessKey != "" {
-		return Creds(accessKeyID, secretAccessKey, securityToken)
+		return Creds(accessKeyID, secretAccessKey, sessionToken)
 	}
 
 	env, err := EnvCreds()
@@ -98,12 +122,12 @@ func EnvCreds() (CredentialsProvider, error) {
 }
 
 // Creds returns a static provider of credentials.
-func Creds(accessKeyID, secretAccessKey, securityToken string) CredentialsProvider {
+func Creds(accessKeyID, secretAccessKey, sessionToken string) CredentialsProvider {
 	return staticCredentialsProvider{
 		creds: Credentials{
 			AccessKeyID:     accessKeyID,
 			SecretAccessKey: secretAccessKey,
-			SecurityToken:   securityToken,
+			SessionToken:    sessionToken,
 		},
 	}
 }
@@ -171,12 +195,12 @@ func (p *profileProvider) Credentials() (*Credentials, error) {
 		return nil, errors.NotFoundf("profile %s in %s did not contain aws_secret_access_key", p.profile, p.filename)
 	}
 
-	securityToken := profile["aws_session_token"]
+	sessionToken := profile["aws_session_token"]
 
 	p.creds = Credentials{
 		AccessKeyID:     accessKeyID,
 		SecretAccessKey: secretAccessKey,
-		SecurityToken:   securityToken,
+		SessionToken:    sessionToken,
 	}
 	p.expiration = currentTime().Add(p.expiry)
 
@@ -191,7 +215,9 @@ type iamProvider struct {
 
 var metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam/security-credentials/"
 
-var client = http.Client{
+// IAMClient is the HTTP client used to query the metadata endpoint for IAM
+// credentials.
+var IAMClient = http.Client{
 	Timeout: 1 * time.Second,
 }
 
@@ -210,7 +236,7 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 		Token           string
 	}
 
-	resp, err := client.Get(metadataCredentialsEndpoint)
+	resp, err := IAMClient.Get(metadataCredentialsEndpoint)
 	if err != nil {
 		return nil, errors.Annotate(err, "listing IAM credentials")
 	}
@@ -226,7 +252,7 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 		return nil, errors.Annotate(s.Err(), "listing IAM credentials")
 	}
 
-	resp, err = client.Get(metadataCredentialsEndpoint + s.Text())
+	resp, err = IAMClient.Get(metadataCredentialsEndpoint + s.Text())
 	if err != nil {
 		return nil, errors.Annotatef(err, "getting %s IAM credentials", s.Text())
 	}
@@ -241,7 +267,7 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 	p.creds = Credentials{
 		AccessKeyID:     body.AccessKeyID,
 		SecretAccessKey: body.SecretAccessKey,
-		SecurityToken:   body.Token,
+		SessionToken:    body.Token,
 	}
 	p.expiration = body.Expiration
 
