@@ -175,8 +175,7 @@ func New(config *{{ .Name }}Config) *{{ .Name }} {
 {{ end }}
 
 var (
-{{ range $name, $op := .Operations }}
-	op{{ $name }} *aws.Operation
+{{ range $name, $op := .Operations }}op{{ $name }} *aws.Operation
 {{ end }}
 )
 

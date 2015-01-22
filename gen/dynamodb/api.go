@@ -500,31 +500,19 @@ func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (output *UpdateTableOutp
 }
 
 var (
-	opBatchGetItem *aws.Operation
-
+	opBatchGetItem   *aws.Operation
 	opBatchWriteItem *aws.Operation
-
-	opCreateTable *aws.Operation
-
-	opDeleteItem *aws.Operation
-
-	opDeleteTable *aws.Operation
-
-	opDescribeTable *aws.Operation
-
-	opGetItem *aws.Operation
-
-	opListTables *aws.Operation
-
-	opPutItem *aws.Operation
-
-	opQuery *aws.Operation
-
-	opScan *aws.Operation
-
-	opUpdateItem *aws.Operation
-
-	opUpdateTable *aws.Operation
+	opCreateTable    *aws.Operation
+	opDeleteItem     *aws.Operation
+	opDeleteTable    *aws.Operation
+	opDescribeTable  *aws.Operation
+	opGetItem        *aws.Operation
+	opListTables     *aws.Operation
+	opPutItem        *aws.Operation
+	opQuery          *aws.Operation
+	opScan           *aws.Operation
+	opUpdateItem     *aws.Operation
+	opUpdateTable    *aws.Operation
 )
 
 // Possible values for DynamoDB.
