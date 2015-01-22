@@ -117,9 +117,17 @@ import (
 // information, see Capacity Units Calculations in the Amazon DynamoDB
 // Developer Guide
 func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (output *BatchGetItemOutput, req *aws.Request, err error) {
+	if opBatchGetItem == nil {
+		opBatchGetItem = &aws.Operation{
+			Name:       "BatchGetItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &BatchGetItemOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "BatchGetItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opBatchGetItem, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -176,9 +184,17 @@ func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (output *BatchGetItemO
 // same item in the same BatchWriteItem request. There are more than 25
 // requests in the batch.
 func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (output *BatchWriteItemOutput, req *aws.Request, err error) {
+	if opBatchWriteItem == nil {
+		opBatchWriteItem = &aws.Operation{
+			Name:       "BatchWriteItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &BatchWriteItemOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "BatchWriteItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opBatchWriteItem, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -196,9 +212,17 @@ func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (output *BatchWrit
 // indexes can be in the state at any given time. You can use the
 // DescribeTable API to check the table status.
 func (c *DynamoDB) CreateTable(input *CreateTableInput) (output *CreateTableOutput, req *aws.Request, err error) {
+	if opCreateTable == nil {
+		opCreateTable = &aws.Operation{
+			Name:       "CreateTable",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &CreateTableOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "CreateTable", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opCreateTable, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -215,9 +239,17 @@ func (c *DynamoDB) CreateTable(input *CreateTableInput) (output *CreateTableOutp
 // specific conditions are met. If those conditions are met, DynamoDB
 // performs the delete. Otherwise, the item is not deleted.
 func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (output *DeleteItemOutput, req *aws.Request, err error) {
+	if opDeleteItem == nil {
+		opDeleteItem = &aws.Operation{
+			Name:       "DeleteItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &DeleteItemOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "DeleteItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opDeleteItem, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -233,9 +265,17 @@ func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (output *DeleteItemOutput,
 // are also deleted. Use the DescribeTable API to check the status of the
 // table.
 func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (output *DeleteTableOutput, req *aws.Request, err error) {
+	if opDeleteTable == nil {
+		opDeleteTable = &aws.Operation{
+			Name:       "DeleteTable",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &DeleteTableOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "DeleteTable", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opDeleteTable, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -245,9 +285,17 @@ func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (output *DeleteTableOutp
 // status of the table, when it was created, the primary key schema, and
 // any indexes on the table.
 func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (output *DescribeTableOutput, req *aws.Request, err error) {
+	if opDescribeTable == nil {
+		opDescribeTable = &aws.Operation{
+			Name:       "DescribeTable",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &DescribeTableOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "DescribeTable", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opDescribeTable, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -261,9 +309,17 @@ func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (output *DescribeTab
 // more time than an eventually consistent read, it always returns the last
 // updated value.
 func (c *DynamoDB) GetItem(input *GetItemInput) (output *GetItemOutput, req *aws.Request, err error) {
+	if opGetItem == nil {
+		opGetItem = &aws.Operation{
+			Name:       "GetItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &GetItemOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "GetItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opGetItem, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -273,9 +329,17 @@ func (c *DynamoDB) GetItem(input *GetItemInput) (output *GetItemOutput, req *aws
 // account and endpoint. The output from ListTables is paginated, with each
 // page returning a maximum of 100 table names.
 func (c *DynamoDB) ListTables(input *ListTablesInput) (output *ListTablesOutput, req *aws.Request, err error) {
+	if opListTables == nil {
+		opListTables = &aws.Operation{
+			Name:       "ListTables",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &ListTablesOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "ListTables", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opListTables, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -299,9 +363,17 @@ func (c *DynamoDB) ListTables(input *ListTablesInput) (output *ListTablesOutput,
 // information about using this see Working with Items in the Amazon
 // DynamoDB Developer Guide
 func (c *DynamoDB) PutItem(input *PutItemInput) (output *PutItemOutput, req *aws.Request, err error) {
+	if opPutItem == nil {
+		opPutItem = &aws.Operation{
+			Name:       "PutItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &PutItemOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "PutItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opPutItem, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -327,9 +399,17 @@ func (c *DynamoDB) PutItem(input *PutItemInput) (output *PutItemOutput, req *aws
 // eventually consistent reads only, so do not specify ConsistentRead when
 // querying a global secondary index.
 func (c *DynamoDB) Query(input *QueryInput) (output *QueryOutput, req *aws.Request, err error) {
+	if opQuery == nil {
+		opQuery = &aws.Operation{
+			Name:       "Query",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &QueryOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "Query", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opQuery, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -349,9 +429,17 @@ func (c *DynamoDB) Query(input *QueryInput) (output *QueryOutput, req *aws.Reque
 // parameters. For more information, see Parallel Scan in the Amazon
 // DynamoDB Developer Guide
 func (c *DynamoDB) Scan(input *ScanInput) (output *ScanOutput, req *aws.Request, err error) {
+	if opScan == nil {
+		opScan = &aws.Operation{
+			Name:       "Scan",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &ScanOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "Scan", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opScan, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -365,9 +453,17 @@ func (c *DynamoDB) Scan(input *ScanInput) (output *ScanOutput, req *aws.Request,
 // You can also return the item's attribute values in the same UpdateItem
 // operation using the ReturnValues parameter.
 func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (output *UpdateItemOutput, req *aws.Request, err error) {
+	if opUpdateItem == nil {
+		opUpdateItem = &aws.Operation{
+			Name:       "UpdateItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &UpdateItemOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "UpdateItem", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opUpdateItem, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
@@ -387,13 +483,49 @@ func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (output *UpdateItemOutput,
 // modify or delete indexes using UpdateTable . Indexes can only be defined
 // at table creation time.
 func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (output *UpdateTableOutput, req *aws.Request, err error) {
+	if opUpdateTable == nil {
+		opUpdateTable = &aws.Operation{
+			Name:       "UpdateTable",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
 	output = &UpdateTableOutput{}
-	req = aws.NewRequest(c.Service, &aws.Operation{Name: "UpdateTable", HTTPMethod: "POST", HTTPPath: "/"}, input, output)
-	if !c.Service.ManualSend {
+	req = aws.NewRequest(c.Service, opUpdateTable, input, output)
+	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
 	return
 }
+
+var (
+	opBatchGetItem *aws.Operation
+
+	opBatchWriteItem *aws.Operation
+
+	opCreateTable *aws.Operation
+
+	opDeleteItem *aws.Operation
+
+	opDeleteTable *aws.Operation
+
+	opDescribeTable *aws.Operation
+
+	opGetItem *aws.Operation
+
+	opListTables *aws.Operation
+
+	opPutItem *aws.Operation
+
+	opQuery *aws.Operation
+
+	opScan *aws.Operation
+
+	opUpdateItem *aws.Operation
+
+	opUpdateTable *aws.Operation
+)
 
 // Possible values for DynamoDB.
 const (

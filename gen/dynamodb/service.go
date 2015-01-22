@@ -1,8 +1,6 @@
 package dynamodb
 
 import (
-	"net/http"
-
 	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/aws/protocol/jsonrpc"
 	"github.com/stripe/aws-go/aws/signer/v4"
@@ -13,16 +11,19 @@ type DynamoDB struct {
 	*aws.Service
 }
 
+type DynamoDBConfig struct {
+	*aws.Config
+}
+
 // New returns a new DynamoDB client.
-func New(creds aws.CredentialsProvider, region string, client *http.Client, manualSend bool) *DynamoDB {
+func New(config *DynamoDBConfig) *DynamoDB {
+	if config == nil {
+		config = &DynamoDBConfig{}
+	}
+
 	service := &aws.Service{
-		Context: aws.Context{
-			Credentials: creds,
-			Service:     "dynamodb",
-			Region:      region,
-		},
-		HTTPClient:   client,
-		ManualSend:   manualSend,
+		Config:       aws.MergeConfig(config.Config),
+		ServiceName:  "dynamodb",
 		JSONVersion:  "1.0",
 		TargetPrefix: "DynamoDB_20120810",
 	}

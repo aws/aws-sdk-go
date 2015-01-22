@@ -112,9 +112,7 @@ func jsonClient(t *template.Template) (*template.Template, error) {
 package {{ .PackageName }}
 
 import (
-  "net/http"
-
-  "github.com/stripe/aws-go/aws"
+	"github.com/stripe/aws-go/aws"
 	"github.com/stripe/aws-go/aws/signer/v4"
 	"github.com/stripe/aws-go/aws/protocol/jsonrpc"
 )
@@ -125,7 +123,7 @@ type {{ .Name }} struct {
 }
 
 type {{ .Name }}Config struct {
-  *aws.Config
+	*aws.Config
 }
 
 // New returns a new {{ .Name }} client.
@@ -157,8 +155,16 @@ func New(config *{{ .Name }}Config) *{{ .Name }} {
 {{ range $name, $op := .Operations }}
 
 {{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}input {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}output {{ $op.Output.Type }},{{ end }} req *aws.Request, err error) {
+	if op{{ $name }} == nil {
+		op{{ $name }} = &aws.Operation{
+			Name: "{{ $name }}",
+			HTTPMethod: "{{ $op.HTTP.Method }}",
+			HTTPPath: "{{ $op.HTTP.RequestURI }}",
+		}
+	}
+
 	{{ if $op.Output }}output = {{ $op.Output.Literal }}{{ else }}// NRE{{ end }}
-  req = aws.NewRequest(c.Service, &aws.Operation{Name: "{{ $name }}", HTTPMethod: "{{ $op.HTTP.Method }}", HTTPPath: "{{ $op.HTTP.RequestURI }}",}, input, output)
+	req = aws.NewRequest(c.Service, op{{ $name }}, input, output)
 	if !c.Service.Config.ManualSend {
 		err = req.Send()
 	}
@@ -166,6 +172,12 @@ func New(config *{{ .Name }}Config) *{{ .Name }} {
 }
 
 {{ end }}
+
+var (
+{{ range $name, $op := .Operations }}
+	op{{ $name }} *aws.Operation
+{{ end }}
+)
 
 {{ range $name, $s := .Shapes }}
 {{ if eq $s.ShapeType "structure" }}
