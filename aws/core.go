@@ -8,9 +8,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
+	"regexp"
 	"time"
-
-	"github.com/stripe/aws-go/gen/endpoints"
 )
 
 func SendHandler(r *Request) {
@@ -41,19 +40,15 @@ type Service struct {
 	TargetPrefix string
 }
 
+var schemeRE = regexp.MustCompile("^([^:]+)://")
+
 func (s *Service) Initialize() {
 	if s.Config.HTTPClient == nil {
 		s.Config.HTTPClient = http.DefaultClient
 	}
 
 	s.Handlers.Send.PushBack(SendHandler)
-
-	if s.Config.Endpoint != "" {
-		s.Endpoint = s.Config.Endpoint
-	} else {
-		endpoint, _, _ := endpoints.Lookup(s.ServiceName, s.Config.Region)
-		s.Endpoint = endpoint
-	}
+	s.buildEndpoint()
 }
 
 type Request struct {
@@ -97,6 +92,22 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 	r.AddDebugHandlers()
 
 	return r
+}
+
+func (s *Service) buildEndpoint() {
+	if s.Config.Endpoint != "" {
+		s.Endpoint = s.Config.Endpoint
+	} else {
+		s.Endpoint = s.endpointForRegion()
+	}
+
+	if !schemeRE.MatchString(s.Endpoint) {
+		scheme := "https"
+		if s.Config.DisableSSL {
+			scheme = "http"
+		}
+		s.Endpoint = scheme + "://" + s.Endpoint
+	}
 }
 
 func (r *Request) AddDebugHandlers() {

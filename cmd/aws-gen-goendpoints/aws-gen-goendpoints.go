@@ -5,6 +5,7 @@
 package main
 
 import (
+	"encoding/json"
 	"os"
 
 	"github.com/stripe/aws-go/model"
@@ -17,8 +18,13 @@ func main() {
 	}
 	defer in.Close()
 
-	var endpoints model.Endpoints
-	if err := endpoints.Parse(in); err != nil {
+	var endpoints struct {
+		Version   int
+		Endpoints map[string]struct {
+			Endpoint string
+		}
+	}
+	if err := json.NewDecoder(in).Decode(&endpoints); err != nil {
 		panic(err)
 	}
 
@@ -28,7 +34,7 @@ func main() {
 	}
 	defer out.Close()
 
-	if err := endpoints.Generate(out); err != nil {
+	if err := model.GenerateEndpoints(endpoints, out); err != nil {
 		panic(err)
 	}
 }
