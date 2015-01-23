@@ -426,10 +426,14 @@ type DescribeStepOutput struct {
 
 // EC2InstanceAttributes is undocumented.
 type EC2InstanceAttributes struct {
-	EC2AvailabilityZone aws.StringValue `json:"Ec2AvailabilityZone,omitempty"`
-	EC2KeyName          aws.StringValue `json:"Ec2KeyName,omitempty"`
-	EC2SubnetID         aws.StringValue `json:"Ec2SubnetId,omitempty"`
-	IAMInstanceProfile  aws.StringValue `json:"IamInstanceProfile,omitempty"`
+	AdditionalMasterSecurityGroups []string        `json:"AdditionalMasterSecurityGroups,omitempty"`
+	AdditionalSlaveSecurityGroups  []string        `json:"AdditionalSlaveSecurityGroups,omitempty"`
+	EC2AvailabilityZone            aws.StringValue `json:"Ec2AvailabilityZone,omitempty"`
+	EC2KeyName                     aws.StringValue `json:"Ec2KeyName,omitempty"`
+	EC2SubnetID                    aws.StringValue `json:"Ec2SubnetId,omitempty"`
+	EmrManagedMasterSecurityGroup  aws.StringValue `json:"EmrManagedMasterSecurityGroup,omitempty"`
+	EmrManagedSlaveSecurityGroup   aws.StringValue `json:"EmrManagedSlaveSecurityGroup,omitempty"`
+	IAMInstanceProfile             aws.StringValue `json:"IamInstanceProfile,omitempty"`
 }
 
 // HadoopJARStepConfig is undocumented.
@@ -641,16 +645,20 @@ type JobFlowExecutionStatusDetail struct {
 
 // JobFlowInstancesConfig is undocumented.
 type JobFlowInstancesConfig struct {
-	EC2KeyName                  aws.StringValue       `json:"Ec2KeyName,omitempty"`
-	EC2SubnetID                 aws.StringValue       `json:"Ec2SubnetId,omitempty"`
-	HadoopVersion               aws.StringValue       `json:"HadoopVersion,omitempty"`
-	InstanceCount               aws.IntegerValue      `json:"InstanceCount,omitempty"`
-	InstanceGroups              []InstanceGroupConfig `json:"InstanceGroups,omitempty"`
-	KeepJobFlowAliveWhenNoSteps aws.BooleanValue      `json:"KeepJobFlowAliveWhenNoSteps,omitempty"`
-	MasterInstanceType          aws.StringValue       `json:"MasterInstanceType,omitempty"`
-	Placement                   *PlacementType        `json:"Placement,omitempty"`
-	SlaveInstanceType           aws.StringValue       `json:"SlaveInstanceType,omitempty"`
-	TerminationProtected        aws.BooleanValue      `json:"TerminationProtected,omitempty"`
+	AdditionalMasterSecurityGroups []string              `json:"AdditionalMasterSecurityGroups,omitempty"`
+	AdditionalSlaveSecurityGroups  []string              `json:"AdditionalSlaveSecurityGroups,omitempty"`
+	EC2KeyName                     aws.StringValue       `json:"Ec2KeyName,omitempty"`
+	EC2SubnetID                    aws.StringValue       `json:"Ec2SubnetId,omitempty"`
+	EmrManagedMasterSecurityGroup  aws.StringValue       `json:"EmrManagedMasterSecurityGroup,omitempty"`
+	EmrManagedSlaveSecurityGroup   aws.StringValue       `json:"EmrManagedSlaveSecurityGroup,omitempty"`
+	HadoopVersion                  aws.StringValue       `json:"HadoopVersion,omitempty"`
+	InstanceCount                  aws.IntegerValue      `json:"InstanceCount,omitempty"`
+	InstanceGroups                 []InstanceGroupConfig `json:"InstanceGroups,omitempty"`
+	KeepJobFlowAliveWhenNoSteps    aws.BooleanValue      `json:"KeepJobFlowAliveWhenNoSteps,omitempty"`
+	MasterInstanceType             aws.StringValue       `json:"MasterInstanceType,omitempty"`
+	Placement                      *PlacementType        `json:"Placement,omitempty"`
+	SlaveInstanceType              aws.StringValue       `json:"SlaveInstanceType,omitempty"`
+	TerminationProtected           aws.BooleanValue      `json:"TerminationProtected,omitempty"`
 }
 
 // JobFlowInstancesDetail is undocumented.

@@ -8,7 +8,7 @@
     "targetPrefix":"AWSCognitoIdentityService",
     "protocol":"json"
   },
-  "documentation":"<fullname>Amazon Cognito</fullname> <p>Amazon Cognito is a web service that delivers scoped temporary credentials to mobile devices and other untrusted environments. Amazon Cognito uniquely identifies a device and supplies the user with a consistent identity over the lifetime of an application.</p> <p>Using Amazon Cognito, you can enable authentication with one or more third-party identity providers (Facebook, Google, or Login with Amazon), and you can also choose to support unauthenticated access from your app. Cognito delivers a unique identifier for each user and acts as an OpenID token provider trusted by AWS Security Token Service (STS) to access temporary, limited-privilege AWS credentials.</p> <p>To provide end-user credentials, first make an unsigned call to <a>GetId</a>. If the end user is authenticated with one of the supported identity providers, set the <code>Logins</code> map with the identity provider token. <code>GetId</code> returns a unique identifier for the user.</p> <p>Next, make an unsigned call to <a>GetOpenIdToken</a>, which returns the OpenID token necessary to call STS and retrieve AWS credentials. This call expects the same <code>Logins</code> map as the <code>GetId</code> call, as well as the <code>IdentityID</code> originally returned by <code>GetId</code>. The token returned by <code>GetOpenIdToken</code> can be passed to the STS operation <a href=\"http://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html\">AssumeRoleWithWebIdentity</a> to retrieve AWS credentials.</p>",
+  "documentation":"<fullname>Amazon Cognito</fullname> <p>Amazon Cognito is a web service that delivers scoped temporary credentials to mobile devices and other untrusted environments. Amazon Cognito uniquely identifies a device and supplies the user with a consistent identity over the lifetime of an application.</p> <p>Using Amazon Cognito, you can enable authentication with one or more third-party identity providers (Facebook, Google, or Login with Amazon), and you can also choose to support unauthenticated access from your app. Cognito delivers a unique identifier for each user and acts as an OpenID token provider trusted by AWS Security Token Service (STS) to access temporary, limited-privilege AWS credentials.</p> <p>To provide end-user credentials, first make an unsigned call to <a>GetId</a>. If the end user is authenticated with one of the supported identity providers, set the <code>Logins</code> map with the identity provider token. <code>GetId</code> returns a unique identifier for the user.</p> <p>Next, make an unsigned call to <a>GetCredentialsForIdentity</a>. This call expects the same <code>Logins</code> map as the <code>GetId</code> call, as well as the <code>IdentityID</code> originally returned by <code>GetId</code>. Assuming your identity pool has been configured via the <a>SetIdentityPoolRoles</a> operation, <code>GetCredentialsForIdentity</code> will return AWS credentials for your use. If your pool has not been configured with <code>SetIdentityPoolRoles</code>, or if you want to follow legacy flow, make an unsigned call to <a>GetOpenIdToken</a>, which returns the OpenID token necessary to call STS and retrieve AWS credentials. This call expects the same <code>Logins</code> map as the <code>GetId</code> call, as well as the <code>IdentityID</code> originally returned by <code>GetId</code>. The token returned by <code>GetOpenIdToken</code> can be passed to the STS operation <a href=\"http://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html\">AssumeRoleWithWebIdentity</a> to retrieve AWS credentials.</p> <p>If you want to use Amazon Cognito in an Android, iOS, or Unity application, you will probably want to make API calls via the AWS Mobile SDK. To learn more, see the <a href=\"http://docs.aws.amazon.com/mobile/index.html\">AWS Mobile SDK Developer Guide</a>.</p>",
   "operations":{
     "CreateIdentityPool":{
       "name":"CreateIdentityPool",
@@ -108,6 +108,54 @@
       ],
       "documentation":"<p>Deletes a user pool. Once a pool is deleted, users will not be able to authenticate with the pool.</p>"
     },
+    "DescribeIdentity":{
+      "name":"DescribeIdentity",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"DescribeIdentityInput",
+        "documentation":"<p>Input to the <code>DescribeIdentity</code> action.</p>"
+      },
+      "output":{
+        "shape":"IdentityDescription",
+        "documentation":"A description of the identity."
+      },
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"Thrown for missing or bad input parameter(s)."
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true,
+          "documentation":"Thrown when the requested resource (for example, a dataset or record) does not exist."
+        },
+        {
+          "shape":"NotAuthorizedException",
+          "error":{"httpStatusCode":403},
+          "exception":true,
+          "documentation":"Thrown when a user is not authorized to access the requested resource."
+        },
+        {
+          "shape":"TooManyRequestsException",
+          "error":{"httpStatusCode":429},
+          "exception":true,
+          "documentation":"Thrown when a request is throttled."
+        },
+        {
+          "shape":"InternalErrorException",
+          "exception":true,
+          "fault":true,
+          "documentation":"Thrown when the service encounters an error during processing the request."
+        }
+      ],
+      "documentation":"<p>Returns metadata related to the given identity, including when the identity was created and any associated linked logins.</p>"
+    },
     "DescribeIdentityPool":{
       "name":"DescribeIdentityPool",
       "http":{
@@ -155,6 +203,66 @@
         }
       ],
       "documentation":"<p>Gets details about a particular identity pool, including the pool name, ID description, creation date, and current number of users.</p>"
+    },
+    "GetCredentialsForIdentity":{
+      "name":"GetCredentialsForIdentity",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"GetCredentialsForIdentityInput",
+        "documentation":"<p>Input to the <code>GetCredentialsForIdentity</code> action.</p>"
+      },
+      "output":{
+        "shape":"GetCredentialsForIdentityResponse",
+        "documentation":"<p>Returned in response to a successful <code>GetCredentialsForIdentity</code> operation.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"Thrown for missing or bad input parameter(s)."
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true,
+          "documentation":"Thrown when the requested resource (for example, a dataset or record) does not exist."
+        },
+        {
+          "shape":"NotAuthorizedException",
+          "error":{"httpStatusCode":403},
+          "exception":true,
+          "documentation":"Thrown when a user is not authorized to access the requested resource."
+        },
+        {
+          "shape":"ResourceConflictException",
+          "error":{"httpStatusCode":409},
+          "exception":true,
+          "documentation":"Thrown when a user tries to use a login which is already linked to another account."
+        },
+        {
+          "shape":"TooManyRequestsException",
+          "error":{"httpStatusCode":429},
+          "exception":true,
+          "documentation":"Thrown when a request is throttled."
+        },
+        {
+          "shape":"InvalidIdentityPoolConfigurationException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Thrown if the identity pool has no role associated for the given auth type (auth/unauth) or if the AssumeRole fails.</p>"
+        },
+        {
+          "shape":"InternalErrorException",
+          "exception":true,
+          "fault":true,
+          "documentation":"Thrown when the service encounters an error during processing the request."
+        }
+      ],
+      "documentation":"<p>Returns credentials for the the provided identity ID. Any provided logins will be validated against supported login providers. If the token is for cognito-identity.amazonaws.com, it will be passed through to AWS Security Token Service with the appropriate role for the token.</p>"
     },
     "GetId":{
       "name":"GetId",
@@ -215,6 +323,60 @@
         }
       ],
       "documentation":"<p>Generates (or retrieves) a Cognito ID. Supplying multiple logins will create an implicit linked account.</p>"
+    },
+    "GetIdentityPoolRoles":{
+      "name":"GetIdentityPoolRoles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"GetIdentityPoolRolesInput",
+        "documentation":"<p>Input to the <code>GetIdentityPoolRoles</code> action.</p>"
+      },
+      "output":{
+        "shape":"GetIdentityPoolRolesResponse",
+        "documentation":"<p>Returned in response to a successful <code>GetIdentityPoolRoles</code> operation.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"Thrown for missing or bad input parameter(s)."
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true,
+          "documentation":"Thrown when the requested resource (for example, a dataset or record) does not exist."
+        },
+        {
+          "shape":"NotAuthorizedException",
+          "error":{"httpStatusCode":403},
+          "exception":true,
+          "documentation":"Thrown when a user is not authorized to access the requested resource."
+        },
+        {
+          "shape":"ResourceConflictException",
+          "error":{"httpStatusCode":409},
+          "exception":true,
+          "documentation":"Thrown when a user tries to use a login which is already linked to another account."
+        },
+        {
+          "shape":"TooManyRequestsException",
+          "error":{"httpStatusCode":429},
+          "exception":true,
+          "documentation":"Thrown when a request is throttled."
+        },
+        {
+          "shape":"InternalErrorException",
+          "exception":true,
+          "fault":true,
+          "documentation":"Thrown when the service encounters an error during processing the request."
+        }
+      ],
+      "documentation":"<p>Gets the roles for an identity pool.</p>"
     },
     "GetOpenIdToken":{
       "name":"GetOpenIdToken",
@@ -528,6 +690,56 @@
       ],
       "documentation":"<p>Merges two users having different <code>IdentityId</code>s, existing in the same identity pool, and identified by the same developer provider. You can use this action to request that discrete users be merged and identified as a single user in the Cognito environment. Cognito associates the given source user (<code>SourceUserIdentifier</code>) with the <code>IdentityId</code> of the <code>DestinationUserIdentifier</code>. Only developer-authenticated users can be merged. If the users to be merged are associated with the same public provider, but as two different users, an exception will be thrown.</p>"
     },
+    "SetIdentityPoolRoles":{
+      "name":"SetIdentityPoolRoles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"SetIdentityPoolRolesInput",
+        "documentation":"<p>Input to the <code>SetIdentityPoolRoles</code> action.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"Thrown for missing or bad input parameter(s)."
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true,
+          "documentation":"Thrown when the requested resource (for example, a dataset or record) does not exist."
+        },
+        {
+          "shape":"NotAuthorizedException",
+          "error":{"httpStatusCode":403},
+          "exception":true,
+          "documentation":"Thrown when a user is not authorized to access the requested resource."
+        },
+        {
+          "shape":"ResourceConflictException",
+          "error":{"httpStatusCode":409},
+          "exception":true,
+          "documentation":"Thrown when a user tries to use a login which is already linked to another account."
+        },
+        {
+          "shape":"TooManyRequestsException",
+          "error":{"httpStatusCode":429},
+          "exception":true,
+          "documentation":"Thrown when a request is throttled."
+        },
+        {
+          "shape":"InternalErrorException",
+          "exception":true,
+          "fault":true,
+          "documentation":"Thrown when the service encounters an error during processing the request."
+        }
+      ],
+      "documentation":"<p>Sets the roles for an identity pool. These roles are used when making calls to <code>GetCredentialsForIdentity</code> action.</p>"
+    },
     "UnlinkDeveloperIdentity":{
       "name":"UnlinkDeveloperIdentity",
       "http":{
@@ -684,6 +896,12 @@
     }
   },
   "shapes":{
+    "ARNString":{
+      "type":"string",
+      "min":20,
+      "max":2048
+    },
+    "AccessKeyString":{"type":"string"},
     "AccountId":{
       "type":"string",
       "min":1,
@@ -713,10 +931,36 @@
           "shape":"DeveloperProviderName",
           "documentation":"<p>The \"domain\" by which Cognito will refer to your users. This name acts as a placeholder that allows your backend and the Cognito service to communicate about the developer provider. For the <code>DeveloperProviderName</code>, you can use letters as well as period (<code>.</code>), underscore (<code>_</code>), and dash (<code>-</code>).</p> <p>Once you have set a developer provider name, you cannot change it. Please take care in setting this parameter.</p>"
         },
-        "OpenIdConnectProviderARNs":{"shape":"OIDCProviderList"}
+        "OpenIdConnectProviderARNs":{
+          "shape":"OIDCProviderList",
+          "documentation":"<p>A list of OpendID Connect provider ARNs.</p>"
+        }
       },
       "documentation":"<p>Input to the CreateIdentityPool action.</p>"
     },
+    "Credentials":{
+      "type":"structure",
+      "members":{
+        "AccessKeyId":{
+          "shape":"AccessKeyString",
+          "documentation":"<p>The Access Key portion of the credentials.</p>"
+        },
+        "SecretKey":{
+          "shape":"SecretKeyString",
+          "documentation":"<p>The Secret Access Key portion of the credentials</p>"
+        },
+        "SessionToken":{
+          "shape":"SessionTokenString",
+          "documentation":"<p>The Session Token portion of the credentials</p>"
+        },
+        "Expiration":{
+          "shape":"DateType",
+          "documentation":"<p>The date at which these credentials will expire.</p>"
+        }
+      },
+      "documentation":"<p>Credentials for the the provided identity ID.</p>"
+    },
+    "DateType":{"type":"timestamp"},
     "DeleteIdentityPoolInput":{
       "type":"structure",
       "required":["IdentityPoolId"],
@@ -727,6 +971,17 @@
         }
       },
       "documentation":"<p>Input to the DeleteIdentityPool action.</p>"
+    },
+    "DescribeIdentityInput":{
+      "type":"structure",
+      "required":["IdentityId"],
+      "members":{
+        "IdentityId":{
+          "shape":"IdentityId",
+          "documentation":"<p>A unique identifier in the format REGION:GUID.</p>"
+        }
+      },
+      "documentation":"<p>Input to the <code>DescribeIdentity</code> action.</p>"
     },
     "DescribeIdentityPoolInput":{
       "type":"structure",
@@ -757,17 +1012,48 @@
       "exception":true,
       "documentation":"<p>The provided developer user identifier is already registered with Cognito under a different identity ID.</p>"
     },
-    "DeveloperUserIdentifier":{"type":"string"},
+    "DeveloperUserIdentifier":{
+      "type":"string",
+      "min":1,
+      "max":1024,
+      "pattern":"[\\w.@_-]+"
+    },
     "DeveloperUserIdentifierList":{
       "type":"list",
       "member":{"shape":"DeveloperUserIdentifier"}
     },
+    "GetCredentialsForIdentityInput":{
+      "type":"structure",
+      "required":["IdentityId"],
+      "members":{
+        "IdentityId":{
+          "shape":"IdentityId",
+          "documentation":"<p>A unique identifier in the format REGION:GUID.</p>"
+        },
+        "Logins":{
+          "shape":"LoginsMap",
+          "documentation":"<p>A set of optional name-value pairs that map provider names to provider tokens.</p>"
+        }
+      },
+      "documentation":"<p>Input to the <code>GetCredentialsForIdentity</code> action.</p>"
+    },
+    "GetCredentialsForIdentityResponse":{
+      "type":"structure",
+      "members":{
+        "IdentityId":{
+          "shape":"IdentityId",
+          "documentation":"<p>A unique identifier in the format REGION:GUID.</p>"
+        },
+        "Credentials":{
+          "shape":"Credentials",
+          "documentation":"<p>Credentials for the the provided identity ID.</p>"
+        }
+      },
+      "documentation":"<p>Returned in response to a successful <code>GetCredentialsForIdentity</code> operation.</p>"
+    },
     "GetIdInput":{
       "type":"structure",
-      "required":[
-        "AccountId",
-        "IdentityPoolId"
-      ],
+      "required":["IdentityPoolId"],
       "members":{
         "AccountId":{
           "shape":"AccountId",
@@ -793,6 +1079,30 @@
         }
       },
       "documentation":"Returned in response to a GetId request."
+    },
+    "GetIdentityPoolRolesInput":{
+      "type":"structure",
+      "members":{
+        "IdentityPoolId":{
+          "shape":"IdentityPoolId",
+          "documentation":"<p>An identity pool ID in the format REGION:GUID.</p>"
+        }
+      },
+      "documentation":"<p>Input to the <code>GetIdentityPoolRoles</code> action.</p>"
+    },
+    "GetIdentityPoolRolesResponse":{
+      "type":"structure",
+      "members":{
+        "IdentityPoolId":{
+          "shape":"IdentityPoolId",
+          "documentation":"<p>An identity pool ID in the format REGION:GUID.</p>"
+        },
+        "Roles":{
+          "shape":"RolesMap",
+          "documentation":"<p>The map of roles associated with this pool. Currently only authenticated and unauthenticated roles are supported.</p>"
+        }
+      },
+      "documentation":"<p>Returned in response to a successful <code>GetIdentityPoolRoles</code> operation.</p>"
     },
     "GetOpenIdTokenForDeveloperIdentityInput":{
       "type":"structure",
@@ -877,6 +1187,14 @@
         "Logins":{
           "shape":"LoginsList",
           "documentation":"A set of optional name-value pairs that map provider names to provider tokens."
+        },
+        "CreationDate":{
+          "shape":"DateType",
+          "documentation":"<p>Date on which the identity was created.</p>"
+        },
+        "LastModifiedDate":{
+          "shape":"DateType",
+          "documentation":"<p>Date on which the identity was last modified.</p>"
         }
       },
       "documentation":"A description of the identity."
@@ -915,7 +1233,10 @@
           "shape":"DeveloperProviderName",
           "documentation":"<p>The \"domain\" by which Cognito will refer to your users.</p>"
         },
-        "OpenIdConnectProviderARNs":{"shape":"OIDCProviderList"}
+        "OpenIdConnectProviderARNs":{
+          "shape":"OIDCProviderList",
+          "documentation":"<p>A list of OpendID Connect provider ARNs.</p>"
+        }
       },
       "documentation":"An object representing a Cognito identity pool."
     },
@@ -985,6 +1306,18 @@
       "exception":true,
       "fault":true,
       "documentation":"Thrown when the service encounters an error during processing the request."
+    },
+    "InvalidIdentityPoolConfigurationException":{
+      "type":"structure",
+      "members":{
+        "message":{
+          "shape":"String",
+          "documentation":"<p>The message returned for an <code>InvalidIdentityPoolConfigurationException</code></p>"
+        }
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true,
+      "documentation":"<p>Thrown if the identity pool has no role associated for the given auth type (auth/unauth) or if the AssumeRole fails.</p>"
     },
     "InvalidParameterException":{
       "type":"structure",
@@ -1184,14 +1517,9 @@
       "exception":true,
       "documentation":"Thrown when a user is not authorized to access the requested resource."
     },
-    "OIDCProviderARN":{
-      "type":"string",
-      "min":20,
-      "max":2048
-    },
     "OIDCProviderList":{
       "type":"list",
-      "member":{"shape":"OIDCProviderARN"}
+      "member":{"shape":"ARNString"}
     },
     "OIDCToken":{"type":"string"},
     "PaginationKey":{
@@ -1227,6 +1555,36 @@
       "error":{"httpStatusCode":404},
       "exception":true,
       "documentation":"Thrown when the requested resource (for example, a dataset or record) does not exist."
+    },
+    "RoleType":{
+      "type":"string",
+      "pattern":"(un)?authenticated"
+    },
+    "RolesMap":{
+      "type":"map",
+      "key":{"shape":"RoleType"},
+      "value":{"shape":"ARNString"},
+      "max":2
+    },
+    "SecretKeyString":{"type":"string"},
+    "SessionTokenString":{"type":"string"},
+    "SetIdentityPoolRolesInput":{
+      "type":"structure",
+      "required":[
+        "IdentityPoolId",
+        "Roles"
+      ],
+      "members":{
+        "IdentityPoolId":{
+          "shape":"IdentityPoolId",
+          "documentation":"<p>An identity pool ID in the format REGION:GUID.</p>"
+        },
+        "Roles":{
+          "shape":"RolesMap",
+          "documentation":"<p>The map of roles associated with this pool. Currently only authenticated and unauthenticated roles are supported.</p>"
+        }
+      },
+      "documentation":"<p>Input to the <code>SetIdentityPoolRoles</code> action.</p>"
     },
     "String":{"type":"string"},
     "TokenDuration":{

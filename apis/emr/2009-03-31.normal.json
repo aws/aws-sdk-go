@@ -926,6 +926,22 @@
         "IamInstanceProfile":{
           "shape":"String",
           "documentation":"<p>The IAM role that was specified when the job flow was launched. The EC2 instances of the job flow assume this role.</p>"
+        },
+        "EmrManagedMasterSecurityGroup":{
+          "shape":"String",
+          "documentation":"<p>The identifier of the Amazon EC2 security group (managed by Amazon Elastic MapReduce) for the master node.</p>"
+        },
+        "EmrManagedSlaveSecurityGroup":{
+          "shape":"String",
+          "documentation":"<p>The identifier of the Amazon EC2 security group (managed by Amazon Elastic MapReduce) for the slave nodes.</p>"
+        },
+        "AdditionalMasterSecurityGroups":{
+          "shape":"StringList",
+          "documentation":"<p>A list of additional Amazon EC2 security group IDs for the master node.</p>"
+        },
+        "AdditionalSlaveSecurityGroups":{
+          "shape":"StringList",
+          "documentation":"<p>A list of additional Amazon EC2 security group IDs for the slave nodes.</p>"
         }
       },
       "documentation":"<p>Provides information about the EC2 instances in a cluster grouped by category. For example, key name, subnet ID, IAM instance profile, and so on.</p>"
@@ -1575,6 +1591,22 @@
         "Ec2SubnetId":{
           "shape":"XmlStringMaxLen256",
           "documentation":"<p> To launch the job flow in Amazon Virtual Private Cloud (Amazon VPC), set this parameter to the identifier of the Amazon VPC subnet where you want the job flow to launch. If you do not specify this value, the job flow is launched in the normal Amazon Web Services cloud, outside of an Amazon VPC. </p> <p> Amazon VPC currently does not support cluster compute quadruple extra large (cc1.4xlarge) instances. Thus you cannot specify the cc1.4xlarge instance type for nodes of a job flow launched in a Amazon VPC. </p>"
+        },
+        "EmrManagedMasterSecurityGroup":{
+          "shape":"XmlStringMaxLen256",
+          "documentation":"<p>The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce) for the master node.</p>"
+        },
+        "EmrManagedSlaveSecurityGroup":{
+          "shape":"XmlStringMaxLen256",
+          "documentation":"<p>The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce) for the slave nodes.</p>"
+        },
+        "AdditionalMasterSecurityGroups":{
+          "shape":"SecurityGroupsList",
+          "documentation":"<p>A list of additional Amazon EC2 security group IDs for the master node.</p>"
+        },
+        "AdditionalSlaveSecurityGroups":{
+          "shape":"SecurityGroupsList",
+          "documentation":"<p>A list of additional Amazon EC2 security group IDs for the slave nodes.</p>"
         }
       },
       "documentation":"<p>A description of the Amazon EC2 instance running the job flow. A valid JobFlowInstancesConfig must contain at least InstanceGroups, which is the recommended configuration. However, a valid alternative is to have MasterInstanceType, SlaveInstanceType, and InstanceCount (all three must be present).</p>"
@@ -1972,6 +2004,10 @@
         }
       },
       "documentation":"<p>Configuration of the script to run during a bootstrap action.</p>"
+    },
+    "SecurityGroupsList":{
+      "type":"list",
+      "member":{"shape":"XmlStringMaxLen256"}
     },
     "SetTerminationProtectionInput":{
       "type":"structure",

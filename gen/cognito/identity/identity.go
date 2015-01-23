@@ -55,6 +55,15 @@ func (c *CognitoIdentity) DeleteIdentityPool(req *DeleteIdentityPoolInput) (err 
 	return
 }
 
+// DescribeIdentity returns metadata related to the given identity,
+// including when the identity was created and any associated linked
+// logins.
+func (c *CognitoIdentity) DescribeIdentity(req *DescribeIdentityInput) (resp *IdentityDescription, err error) {
+	resp = &IdentityDescription{}
+	err = c.client.Do("DescribeIdentity", "POST", "/", req, resp)
+	return
+}
+
 // DescribeIdentityPool gets details about a particular identity pool,
 // including the pool name, ID description, creation date, and current
 // number of users.
@@ -64,11 +73,29 @@ func (c *CognitoIdentity) DescribeIdentityPool(req *DescribeIdentityPoolInput) (
 	return
 }
 
+// GetCredentialsForIdentity returns credentials for the the provided
+// identity ID. Any provided logins will be validated against supported
+// login providers. If the token is for cognito-identity.amazonaws.com, it
+// will be passed through to AWS Security Token Service with the
+// appropriate role for the token.
+func (c *CognitoIdentity) GetCredentialsForIdentity(req *GetCredentialsForIdentityInput) (resp *GetCredentialsForIdentityResponse, err error) {
+	resp = &GetCredentialsForIdentityResponse{}
+	err = c.client.Do("GetCredentialsForIdentity", "POST", "/", req, resp)
+	return
+}
+
 // GetID generates (or retrieves) a Cognito ID. Supplying multiple logins
 // will create an implicit linked account.
 func (c *CognitoIdentity) GetID(req *GetIDInput) (resp *GetIDResponse, err error) {
 	resp = &GetIDResponse{}
 	err = c.client.Do("GetId", "POST", "/", req, resp)
+	return
+}
+
+// GetIdentityPoolRoles is undocumented.
+func (c *CognitoIdentity) GetIdentityPoolRoles(req *GetIdentityPoolRolesInput) (resp *GetIdentityPoolRolesResponse, err error) {
+	resp = &GetIdentityPoolRolesResponse{}
+	err = c.client.Do("GetIdentityPoolRoles", "POST", "/", req, resp)
 	return
 }
 
@@ -148,6 +175,14 @@ func (c *CognitoIdentity) MergeDeveloperIdentities(req *MergeDeveloperIdentities
 	return
 }
 
+// SetIdentityPoolRoles sets the roles for an identity pool. These roles
+// are used when making calls to GetCredentialsForIdentity action.
+func (c *CognitoIdentity) SetIdentityPoolRoles(req *SetIdentityPoolRolesInput) (err error) {
+	// NRE
+	err = c.client.Do("SetIdentityPoolRoles", "POST", "/", req, nil)
+	return
+}
+
 // UnlinkDeveloperIdentity unlinks a DeveloperUserIdentifier from an
 // existing identity. Unlinked developer users will be considered new
 // identities next time they are seen. If, for a given Cognito identity,
@@ -185,9 +220,22 @@ type CreateIdentityPoolInput struct {
 	SupportedLoginProviders        map[string]string `json:"SupportedLoginProviders,omitempty"`
 }
 
+// Credentials is undocumented.
+type Credentials struct {
+	AccessKeyID  aws.StringValue `json:"AccessKeyId,omitempty"`
+	Expiration   time.Time       `json:"Expiration,omitempty"`
+	SecretKey    aws.StringValue `json:"SecretKey,omitempty"`
+	SessionToken aws.StringValue `json:"SessionToken,omitempty"`
+}
+
 // DeleteIdentityPoolInput is undocumented.
 type DeleteIdentityPoolInput struct {
 	IdentityPoolID aws.StringValue `json:"IdentityPoolId"`
+}
+
+// DescribeIdentityInput is undocumented.
+type DescribeIdentityInput struct {
+	IdentityID aws.StringValue `json:"IdentityId"`
 }
 
 // DescribeIdentityPoolInput is undocumented.
@@ -195,9 +243,21 @@ type DescribeIdentityPoolInput struct {
 	IdentityPoolID aws.StringValue `json:"IdentityPoolId"`
 }
 
+// GetCredentialsForIdentityInput is undocumented.
+type GetCredentialsForIdentityInput struct {
+	IdentityID aws.StringValue   `json:"IdentityId"`
+	Logins     map[string]string `json:"Logins,omitempty"`
+}
+
+// GetCredentialsForIdentityResponse is undocumented.
+type GetCredentialsForIdentityResponse struct {
+	Credentials *Credentials    `json:"Credentials,omitempty"`
+	IdentityID  aws.StringValue `json:"IdentityId,omitempty"`
+}
+
 // GetIDInput is undocumented.
 type GetIDInput struct {
-	AccountID      aws.StringValue   `json:"AccountId"`
+	AccountID      aws.StringValue   `json:"AccountId,omitempty"`
 	IdentityPoolID aws.StringValue   `json:"IdentityPoolId"`
 	Logins         map[string]string `json:"Logins,omitempty"`
 }
@@ -205,6 +265,17 @@ type GetIDInput struct {
 // GetIDResponse is undocumented.
 type GetIDResponse struct {
 	IdentityID aws.StringValue `json:"IdentityId,omitempty"`
+}
+
+// GetIdentityPoolRolesInput is undocumented.
+type GetIdentityPoolRolesInput struct {
+	IdentityPoolID aws.StringValue `json:"IdentityPoolId,omitempty"`
+}
+
+// GetIdentityPoolRolesResponse is undocumented.
+type GetIdentityPoolRolesResponse struct {
+	IdentityPoolID aws.StringValue   `json:"IdentityPoolId,omitempty"`
+	Roles          map[string]string `json:"Roles,omitempty"`
 }
 
 // GetOpenIDTokenForDeveloperIdentityInput is undocumented.
@@ -235,8 +306,10 @@ type GetOpenIDTokenResponse struct {
 
 // IdentityDescription is undocumented.
 type IdentityDescription struct {
-	IdentityID aws.StringValue `json:"IdentityId,omitempty"`
-	Logins     []string        `json:"Logins,omitempty"`
+	CreationDate     time.Time       `json:"CreationDate,omitempty"`
+	IdentityID       aws.StringValue `json:"IdentityId,omitempty"`
+	LastModifiedDate time.Time       `json:"LastModifiedDate,omitempty"`
+	Logins           []string        `json:"Logins,omitempty"`
 }
 
 // IdentityPool is undocumented.
@@ -308,6 +381,12 @@ type MergeDeveloperIdentitiesInput struct {
 // MergeDeveloperIdentitiesResponse is undocumented.
 type MergeDeveloperIdentitiesResponse struct {
 	IdentityID aws.StringValue `json:"IdentityId,omitempty"`
+}
+
+// SetIdentityPoolRolesInput is undocumented.
+type SetIdentityPoolRolesInput struct {
+	IdentityPoolID aws.StringValue   `json:"IdentityPoolId"`
+	Roles          map[string]string `json:"Roles"`
 }
 
 // UnlinkDeveloperIdentityInput is undocumented.
