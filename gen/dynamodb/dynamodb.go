@@ -435,6 +435,11 @@ type CreateTableOutput struct {
 	TableDescription *TableDescription `json:"TableDescription,omitempty"`
 }
 
+// DeleteGlobalSecondaryIndexAction is undocumented.
+type DeleteGlobalSecondaryIndexAction struct {
+	IndexName aws.StringValue `json:"IndexName"`
+}
+
 // DeleteItemInput is undocumented.
 type DeleteItemInput struct {
 	ConditionExpression         aws.StringValue                   `json:"ConditionExpression,omitempty"`
@@ -527,6 +532,8 @@ type GlobalSecondaryIndexDescription struct {
 
 // GlobalSecondaryIndexUpdate is undocumented.
 type GlobalSecondaryIndexUpdate struct {
+	Create *GlobalSecondaryIndex             `json:"Create,omitempty"`
+	Delete *DeleteGlobalSecondaryIndexAction `json:"Delete,omitempty"`
 	Update *UpdateGlobalSecondaryIndexAction `json:"Update,omitempty"`
 }
 
@@ -793,6 +800,7 @@ type UpdateItemOutput struct {
 
 // UpdateTableInput is undocumented.
 type UpdateTableInput struct {
+	AttributeDefinitions        []AttributeDefinition        `json:"AttributeDefinitions,omitempty"`
 	GlobalSecondaryIndexUpdates []GlobalSecondaryIndexUpdate `json:"GlobalSecondaryIndexUpdates,omitempty"`
 	ProvisionedThroughput       *ProvisionedThroughput       `json:"ProvisionedThroughput,omitempty"`
 	TableName                   aws.StringValue              `json:"TableName"`
