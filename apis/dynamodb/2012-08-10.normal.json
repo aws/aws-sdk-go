@@ -911,6 +911,19 @@
       },
       "documentation":"<p>Represents the output of a <i>DeleteTable</i> operation.</p>"
     },
+    "DeleteGlobalSecondaryIndexAction":{
+      "type":"structure",
+      "required":[
+        "IndexName"
+      ],
+      "members":{
+        "IndexName":{
+          "shape":"IndexName",
+          "documentation":"<p>The name of the global secondary index to be updated.</p>"
+        }
+      },
+      "documentation":"<p>Represents the new provisioned delete to a global secondary index.</p>"
+    },
     "DescribeTableInput":{
       "type":"structure",
       "required":["TableName"],
@@ -1078,8 +1091,16 @@
     "GlobalSecondaryIndexUpdate":{
       "type":"structure",
       "members":{
+        "Create":{
+          "shape":"GlobalSecondaryIndex",
+          "documentation":"<p>The name of a global secondary index, along with the updated provisioned throughput settings that are to be applied to that index.</p>"
+        },
         "Update":{
           "shape":"UpdateGlobalSecondaryIndexAction",
+          "documentation":"<p>The name of a global secondary index, along with the updated provisioned throughput settings that are to be applied to that index.</p>"
+        },
+        "Delete":{
+          "shape":"DeleteGlobalSecondaryIndexAction",
           "documentation":"<p>The name of a global secondary index, along with the updated provisioned throughput settings that are to be applied to that index.</p>"
         }
       },
@@ -1947,6 +1968,10 @@
         "TableName":{
           "shape":"TableName",
           "documentation":"<p>The name of the table to be updated.</p>"
+        },
+        "AttributeDefinitions":{
+          "shape":"AttributeDefinitions",
+          "documentation":"<p>An array of <i>AttributeDefinition</i> objects. Each of these objects describes one attribute in the table and index key schema.</p> <p>Each <i>AttributeDefinition</i> object in this array is composed of:</p> <ul> <li> <p><i>AttributeName</i> - The name of the attribute.</p> </li> <li> <p><i>AttributeType</i> - The data type for the attribute.</p> </li> </ul>"
         },
         "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
         "GlobalSecondaryIndexUpdates":{
