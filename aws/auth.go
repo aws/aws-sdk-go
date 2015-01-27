@@ -38,6 +38,17 @@ var (
 	ErrSecretAccessKeyNotFound = fmt.Errorf("AWS_SECRET_ACCESS_KEY or AWS_SECRET_KEY not found in environment")
 )
 
+// Context encapsulates the context of a client's connection to an AWS service.
+type Context struct {
+	Service     string
+	Region      string
+	Credentials CredentialsProvider
+}
+
+var currentTime = func() time.Time {
+	return time.Now()
+}
+
 // DetectCreds returns a CredentialsProvider based on the available information.
 //
 // If the access key ID and secret access key are provided, it returns a basic
