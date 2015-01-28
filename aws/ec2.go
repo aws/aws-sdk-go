@@ -9,6 +9,7 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // EC2Client is the underlying client for EC2 APIs.
@@ -159,6 +160,11 @@ func (c *EC2Client) loadStruct(v url.Values, value reflect.Value, prefix string)
 				for i, val := range casted {
 					v.Set(fmt.Sprintf("%s.%d", name, i+1), val)
 				}
+			}
+		case time.Time:
+			if !casted.IsZero() {
+				const ISO8601UTC = "2006-01-02T15:04:05Z"
+				v.Set(name, casted.UTC().Format(ISO8601UTC))
 			}
 		default:
 			if err := c.loadValues(v, value.Interface(), name); err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 	"sync"
 	"testing"
+	"time"
 
 	"github.com/stripe/aws-go/aws"
 )
@@ -56,6 +57,7 @@ func TestEC2Request(t *testing.T) {
 		PresentLong:    aws.Long(2),
 		PresentDouble:  aws.Double(1.2),
 		PresentFloat:   aws.Float(2.3),
+		PresentTime:    time.Date(2001, 1, 1, 2, 1, 1, 0, time.FixedZone("UTC+1", 3600)),
 		PresentSlice:   []string{"one", "two"},
 		PresentStruct:  &EmbeddedStruct{Value: aws.String("v")},
 		PresentStructSlice: []EmbeddedStruct{
@@ -100,6 +102,7 @@ func TestEC2Request(t *testing.T) {
 		"PresentLong":                []string{"2"},
 		"PresentDouble":              []string{"1.2"},
 		"PresentFloat":               []string{"2.3"},
+		"PresentTime":                []string{"2001-01-01T01:01:01Z"},
 		"PresentSlice.1":             []string{"one"},
 		"PresentSlice.2":             []string{"two"},
 		"PresentStruct.Value":        []string{"v"},
@@ -202,6 +205,9 @@ type fakeEC2Request struct {
 
 	PresentFloat aws.FloatValue `ec2:"PresentFloat"`
 	MissingFloat aws.FloatValue `ec2:"MissingFloat"`
+
+	PresentTime time.Time `ec2:"PresentTime"`
+	MissingTime time.Time `ec2:"MissingTime"`
 
 	PresentBoolean aws.BooleanValue `ec2:"PresentBoolean"`
 	MissingBoolean aws.BooleanValue `ec2:"MissingBoolean"`
