@@ -2,7 +2,7 @@
 
 [![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/awslabs/aws-sdk-go)
 [![Build Status](https://img.shields.io/travis/awslabs/aws-sdk-go.svg)](https://travis-ci.org/awslabs/aws-sdk-go)
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/awslabs/aws-sdk-go/blob/master/LICENSE)
+[![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/awslabs/aws-sdk-go/blob/master/LICENSE)
 
 aws-sdk-go is a set of clients for all Amazon Web Services APIs,
 automatically generated from the JSON schemas shipped with
