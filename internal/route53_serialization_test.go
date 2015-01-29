@@ -4,8 +4,8 @@ import (
 	"encoding/xml"
 	"testing"
 
-	"github.com/stripe/aws-go/aws"
-	"github.com/stripe/aws-go/gen/route53"
+	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/gen/route53"
 )
 
 func TestRoute53RequestSerialization(t *testing.T) {

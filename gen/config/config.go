@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/stripe/aws-go/aws"
-	"github.com/stripe/aws-go/gen/endpoints"
+	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/gen/endpoints"
 )
 
 // Config is a client for AWS Config.

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stripe/aws-go/model"
+	"github.com/awslabs/aws-sdk-go/model"
 )
 
 func main() {
