@@ -12,7 +12,7 @@ service coverage and other standard AWS SDK features.
 
 **Note**: Active development is currently happening in the
 [develop](https://github.com/awslabs/aws-sdk-go/tree/develop) branch.
-See this branch to follow along with API changes and interfaces.
+See this branch to follow along with API changes and ongoing refactors.
 The `master` branch will continue to maintain the current API of
 Stripe's aws-go library until the develop branch is more stable.
 
