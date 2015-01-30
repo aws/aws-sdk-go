@@ -69,6 +69,10 @@ func (v4 *signer) sign() {
 	v4.Request.Header.Del("Date")
 	v4.Request.Header.Del("Authorization")
 
+	if v4.SessionToken != "" {
+		v4.Request.Header.Set("X-Amz-Security-Token", v4.SessionToken)
+	}
+
 	v4.build()
 
 	//v4.Debug = true
@@ -84,10 +88,6 @@ func (v4 *signer) sign() {
 	// add the new ones
 	v4.Request.Header.Add("Date", formatted)
 	v4.Request.Header.Add("Authorization", v4.authorization)
-
-	if v4.SessionToken != "" {
-		v4.Request.Header.Add("X-Amz-Security-Token", v4.SessionToken)
-	}
 }
 
 func (v4 *signer) build() {
