@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/gen/route53"
+	"github.com/awslabs/aws-sdk-go/service/route53"
 )
 
 func TestRoute53RequestSerialization(t *testing.T) {

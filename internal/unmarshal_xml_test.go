@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/gen/iam"
-	"github.com/awslabs/aws-sdk-go/gen/sqs"
+	"github.com/awslabs/aws-sdk-go/service/iam"
+	"github.com/awslabs/aws-sdk-go/service/sqs"
 )
 
 func Test_SQSUnmarshalXML(t *testing.T) {

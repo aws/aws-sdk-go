@@ -23,13 +23,13 @@ Please do not confuse this for a stable, feature-complete library.
 
 Let's say you want to use EC2:
 
-    $ go get github.com/awslabs/aws-sdk-go/gen/ec2
+    $ go get github.com/awslabs/aws-sdk-go/service/ec2
 
 ## Using
 
 ```go
 import "github.com/awslabs/aws-sdk-go/aws"
-import "github.com/awslabs/aws-sdk-go/gen/ec2"
+import "github.com/awslabs/aws-sdk-go/service/ec2"
 
 creds := aws.Creds(accessKey, secretKey, "")
 cli := ec2.New(creds, "us-west-2", nil)
