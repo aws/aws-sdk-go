@@ -22,7 +22,7 @@ func New(config *LambdaConfig) *Lambda {
 	}
 
 	service := &aws.Service{
-		Config:      &aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config.Config),
 		ServiceName: "lambda",
 		APIVersion:  "2014-11-11",
 	}

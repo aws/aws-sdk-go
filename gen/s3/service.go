@@ -22,7 +22,7 @@ func New(config *S3Config) *S3 {
 	}
 
 	service := &aws.Service{
-		Config:      &aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config.Config),
 		ServiceName: "s3",
 		APIVersion:  "2006-03-01",
 	}

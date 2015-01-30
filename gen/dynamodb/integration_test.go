@@ -16,13 +16,14 @@ var dynamoDBClient *dynamodb.DynamoDB
 var idAndNameTable string
 
 func TestMain(m *testing.M) {
+	if os.Getenv("INTEGRATION") != "" {
+		var exitCode int
+		createTables()
+		defer os.Exit(exitCode)
+		defer cleanup()
 
-	var exitCode int
-	createTables()
-	defer os.Exit(exitCode)
-	defer cleanup()
-
-	exitCode = m.Run()
+		exitCode = m.Run()
+	}
 }
 
 func TestGetAndPutItem(t *testing.T) {
@@ -64,7 +65,7 @@ func TestGetAndPutItem(t *testing.T) {
 		ReturnConsumedCapacity: aws.String("TOTAL"),
 	}
 
-	putItemOutput, _, err := dynamoDBClient.PutItem(&putItemInput)
+	putItemOutput, err := dynamoDBClient.PutItem(&putItemInput)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -85,7 +86,7 @@ func TestGetAndPutItem(t *testing.T) {
 		Key:       key,
 	}
 
-	getItemOutput, _, err := dynamoDBClient.GetItem(&getItemInput)
+	getItemOutput, err := dynamoDBClient.GetItem(&getItemInput)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -166,7 +167,7 @@ func createTables() {
 		KeySchema:             keySchema,
 	}
 
-	data, _, err := dynamoDBClient.CreateTable(&input)
+	data, err := dynamoDBClient.CreateTable(&input)
 	if err != nil {
 		fmt.Errorf("Failed to create DynamoDB tables for integration tests: ", err)
 		panic(err)
@@ -185,7 +186,7 @@ func waitTillTableActive(tableName *string) {
 
 	for describeOutput == nil || *(describeOutput.Table.TableStatus) != "ACTIVE" {
 		time.Sleep(time.Second * 5)
-		describeOutput, _, _ = dynamoDBClient.DescribeTable(&describeInput)
+		describeOutput, _ = dynamoDBClient.DescribeTable(&describeInput)
 	}
 
 	fmt.Println("Table ", *tableName, " is active.")

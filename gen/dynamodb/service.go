@@ -22,7 +22,7 @@ func New(config *DynamoDBConfig) *DynamoDB {
 	}
 
 	service := &aws.Service{
-		Config:       aws.MergeConfig(config.Config),
+		Config:       aws.DefaultConfig.Merge(config.Config),
 		ServiceName:  "dynamodb",
 		APIVersion:   "2012-08-10",
 		JSONVersion:  "1.0",

@@ -25,44 +25,44 @@ type Config struct {
 	LogLevel    uint
 }
 
-func MergeConfig(newcfg *Config) *Config {
-	cfg := &Config{}
+func (c Config) Merge(newcfg *Config) *Config {
+	cfg := Config{}
 
 	if newcfg != nil && newcfg.Credentials != nil {
 		cfg.Credentials = newcfg.Credentials
 	} else {
-		cfg.Credentials = DefaultConfig.Credentials
+		cfg.Credentials = c.Credentials
 	}
 
 	if newcfg != nil && newcfg.Region != "" {
 		cfg.Region = newcfg.Region
 	} else {
-		cfg.Region = DefaultConfig.Region
+		cfg.Region = c.Region
 	}
 
 	if newcfg != nil && newcfg.DisableSSL {
 		cfg.DisableSSL = newcfg.DisableSSL
 	} else {
-		cfg.DisableSSL = DefaultConfig.DisableSSL
+		cfg.DisableSSL = c.DisableSSL
 	}
 
 	if newcfg != nil && newcfg.ManualSend {
 		cfg.ManualSend = newcfg.ManualSend
 	} else {
-		cfg.ManualSend = DefaultConfig.ManualSend
+		cfg.ManualSend = c.ManualSend
 	}
 
 	if newcfg != nil && newcfg.HTTPClient != nil {
 		cfg.HTTPClient = newcfg.HTTPClient
 	} else {
-		cfg.HTTPClient = DefaultConfig.HTTPClient
+		cfg.HTTPClient = c.HTTPClient
 	}
 
 	if newcfg != nil && newcfg.LogLevel != 0 {
 		cfg.LogLevel = newcfg.LogLevel
 	} else {
-		cfg.LogLevel = DefaultConfig.LogLevel
+		cfg.LogLevel = c.LogLevel
 	}
 
-	return cfg
+	return &cfg
 }

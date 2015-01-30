@@ -77,6 +77,28 @@ import (
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+// BatchGetItemRequest generates a request for the BatchGetItem operation.
+func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) *aws.Request {
+	if opBatchGetItem == nil {
+		opBatchGetItem = &aws.Operation{
+			Name:       "BatchGetItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"RequestItems"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opBatchGetItem, input, nil)
+}
+
 // BatchGetItem the BatchGetItem operation returns the attributes of one or
 // more items from one or more tables. You identify requested items by
 // primary key. A single operation can retrieve up to 16 MB of data, which
@@ -116,21 +138,34 @@ import (
 // minimum read capacity units according to the type of read. For more
 // information, see Capacity Units Calculations in the Amazon DynamoDB
 // Developer Guide
-func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (output *BatchGetItemOutput, req *aws.Request, err error) {
-	if opBatchGetItem == nil {
-		opBatchGetItem = &aws.Operation{
-			Name:       "BatchGetItem",
+func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (output *BatchGetItemOutput, err error) {
+	output = &BatchGetItemOutput{}
+	req := c.BatchGetItemRequest(input)
+	req.Data = output
+	err = req.Send()
+	return
+}
+
+// BatchWriteItemRequest generates a request for the BatchWriteItem operation.
+func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) *aws.Request {
+	if opBatchWriteItem == nil {
+		opBatchWriteItem = &aws.Operation{
+			Name:       "BatchWriteItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"RequestItems"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
 		}
 	}
 
-	output = &BatchGetItemOutput{}
-	req = aws.NewRequest(c.Service, opBatchGetItem, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
+	return aws.NewRequest(c.Service, opBatchWriteItem, input, nil)
 }
 
 // BatchWriteItem the BatchWriteItem operation puts or deletes multiple
@@ -183,21 +218,34 @@ func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (output *BatchGetItemO
 // same BatchWriteItem request. For example, you cannot put and delete the
 // same item in the same BatchWriteItem request. There are more than 25
 // requests in the batch.
-func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (output *BatchWriteItemOutput, req *aws.Request, err error) {
-	if opBatchWriteItem == nil {
-		opBatchWriteItem = &aws.Operation{
-			Name:       "BatchWriteItem",
+func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (output *BatchWriteItemOutput, err error) {
+	output = &BatchWriteItemOutput{}
+	req := c.BatchWriteItemRequest(input)
+	req.Data = output
+	err = req.Send()
+	return
+}
+
+// CreateTableRequest generates a request for the CreateTable operation.
+func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) *aws.Request {
+	if opCreateTable == nil {
+		opCreateTable = &aws.Operation{
+			Name:       "CreateTable",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"AttributeDefinitions", "TableName", "KeySchema", "ProvisionedThroughput"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
 		}
 	}
 
-	output = &BatchWriteItemOutput{}
-	req = aws.NewRequest(c.Service, opBatchWriteItem, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
+	return aws.NewRequest(c.Service, opCreateTable, input, nil)
 }
 
 // CreateTable the CreateTable operation adds a new table to your account.
@@ -211,21 +259,34 @@ func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (output *BatchWrit
 // them, you must create them sequentially. Only one table with secondary
 // indexes can be in the state at any given time. You can use the
 // DescribeTable API to check the table status.
-func (c *DynamoDB) CreateTable(input *CreateTableInput) (output *CreateTableOutput, req *aws.Request, err error) {
-	if opCreateTable == nil {
-		opCreateTable = &aws.Operation{
-			Name:       "CreateTable",
+func (c *DynamoDB) CreateTable(input *CreateTableInput) (output *CreateTableOutput, err error) {
+	output = &CreateTableOutput{}
+	req := c.CreateTableRequest(input)
+	req.Data = output
+	err = req.Send()
+	return
+}
+
+// DeleteItemRequest generates a request for the DeleteItem operation.
+func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) *aws.Request {
+	if opDeleteItem == nil {
+		opDeleteItem = &aws.Operation{
+			Name:       "DeleteItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"Key", "TableName"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
 		}
 	}
 
-	output = &CreateTableOutput{}
-	req = aws.NewRequest(c.Service, opCreateTable, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
+	return aws.NewRequest(c.Service, opDeleteItem, input, nil)
 }
 
 // DeleteItem deletes a single item in a table by primary key. You can
@@ -238,21 +299,34 @@ func (c *DynamoDB) CreateTable(input *CreateTableInput) (output *CreateTableOutp
 // response. Conditional deletes are useful for deleting items only if
 // specific conditions are met. If those conditions are met, DynamoDB
 // performs the delete. Otherwise, the item is not deleted.
-func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (output *DeleteItemOutput, req *aws.Request, err error) {
-	if opDeleteItem == nil {
-		opDeleteItem = &aws.Operation{
-			Name:       "DeleteItem",
+func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (output *DeleteItemOutput, err error) {
+	output = &DeleteItemOutput{}
+	req := c.DeleteItemRequest(input)
+	req.Data = output
+	err = req.Send()
+	return
+}
+
+// DeleteTableRequest generates a request for the DeleteTable operation.
+func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) *aws.Request {
+	if opDeleteTable == nil {
+		opDeleteTable = &aws.Operation{
+			Name:       "DeleteTable",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"TableName"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
 		}
 	}
 
-	output = &DeleteItemOutput{}
-	req = aws.NewRequest(c.Service, opDeleteItem, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
+	return aws.NewRequest(c.Service, opDeleteTable, input, nil)
 }
 
 // DeleteTable the DeleteTable operation deletes a table and all of its
@@ -264,41 +338,67 @@ func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (output *DeleteItemOutput,
 // no error is returned. When you delete a table, any indexes on that table
 // are also deleted. Use the DescribeTable API to check the status of the
 // table.
-func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (output *DeleteTableOutput, req *aws.Request, err error) {
-	if opDeleteTable == nil {
-		opDeleteTable = &aws.Operation{
-			Name:       "DeleteTable",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
-	}
-
+func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (output *DeleteTableOutput, err error) {
 	output = &DeleteTableOutput{}
-	req = aws.NewRequest(c.Service, opDeleteTable, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.DeleteTableRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// DescribeTable returns information about the table, including the current
-// status of the table, when it was created, the primary key schema, and
-// any indexes on the table.
-func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (output *DescribeTableOutput, req *aws.Request, err error) {
+// DescribeTableRequest generates a request for the DescribeTable operation.
+func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) *aws.Request {
 	if opDescribeTable == nil {
 		opDescribeTable = &aws.Operation{
 			Name:       "DescribeTable",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"TableName"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opDescribeTable, input, nil)
+}
+
+// DescribeTable returns information about the table, including the current
+// status of the table, when it was created, the primary key schema, and
+// any indexes on the table.
+func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (output *DescribeTableOutput, err error) {
 	output = &DescribeTableOutput{}
-	req = aws.NewRequest(c.Service, opDescribeTable, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.DescribeTableRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
+}
+
+// GetItemRequest generates a request for the GetItem operation.
+func (c *DynamoDB) GetItemRequest(input *GetItemInput) *aws.Request {
+	if opGetItem == nil {
+		opGetItem = &aws.Operation{
+			Name:       "GetItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"TableName", "Key"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opGetItem, input, nil)
 }
 
 // GetItem the GetItem operation returns a set of attributes for the item
@@ -308,41 +408,67 @@ func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (output *DescribeTab
 // ConsistentRead to true . Although a strongly consistent read might take
 // more time than an eventually consistent read, it always returns the last
 // updated value.
-func (c *DynamoDB) GetItem(input *GetItemInput) (output *GetItemOutput, req *aws.Request, err error) {
-	if opGetItem == nil {
-		opGetItem = &aws.Operation{
-			Name:       "GetItem",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
-	}
-
+func (c *DynamoDB) GetItem(input *GetItemInput) (output *GetItemOutput, err error) {
 	output = &GetItemOutput{}
-	req = aws.NewRequest(c.Service, opGetItem, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetItemRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// ListTables returns an array of table names associated with the current
-// account and endpoint. The output from ListTables is paginated, with each
-// page returning a maximum of 100 table names.
-func (c *DynamoDB) ListTables(input *ListTablesInput) (output *ListTablesOutput, req *aws.Request, err error) {
+// ListTablesRequest generates a request for the ListTables operation.
+func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) *aws.Request {
 	if opListTables == nil {
 		opListTables = &aws.Operation{
 			Name:       "ListTables",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opListTables, input, nil)
+}
+
+// ListTables returns an array of table names associated with the current
+// account and endpoint. The output from ListTables is paginated, with each
+// page returning a maximum of 100 table names.
+func (c *DynamoDB) ListTables(input *ListTablesInput) (output *ListTablesOutput, err error) {
 	output = &ListTablesOutput{}
-	req = aws.NewRequest(c.Service, opListTables, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.ListTablesRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
+}
+
+// PutItemRequest generates a request for the PutItem operation.
+func (c *DynamoDB) PutItemRequest(input *PutItemInput) *aws.Request {
+	if opPutItem == nil {
+		opPutItem = &aws.Operation{
+			Name:       "PutItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"Item", "TableName"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opPutItem, input, nil)
 }
 
 // PutItem creates a new item, or replaces an old item with a new item. If
@@ -362,21 +488,34 @@ func (c *DynamoDB) ListTables(input *ListTablesInput) (output *ListTablesOutput,
 // information, see the ReturnValues description below. For more
 // information about using this see Working with Items in the Amazon
 // DynamoDB Developer Guide
-func (c *DynamoDB) PutItem(input *PutItemInput) (output *PutItemOutput, req *aws.Request, err error) {
-	if opPutItem == nil {
-		opPutItem = &aws.Operation{
-			Name:       "PutItem",
+func (c *DynamoDB) PutItem(input *PutItemInput) (output *PutItemOutput, err error) {
+	output = &PutItemOutput{}
+	req := c.PutItemRequest(input)
+	req.Data = output
+	err = req.Send()
+	return
+}
+
+// QueryRequest generates a request for the Query operation.
+func (c *DynamoDB) QueryRequest(input *QueryInput) *aws.Request {
+	if opQuery == nil {
+		opQuery = &aws.Operation{
+			Name:       "Query",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"TableName", "KeyConditions"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
 		}
 	}
 
-	output = &PutItemOutput{}
-	req = aws.NewRequest(c.Service, opPutItem, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
+	return aws.NewRequest(c.Service, opQuery, input, nil)
 }
 
 // Query a Query operation directly accesses items from a table using the
@@ -398,21 +537,34 @@ func (c *DynamoDB) PutItem(input *PutItemInput) (output *PutItemOutput, req *aws
 // obtain a strongly consistent result. Global secondary indexes support
 // eventually consistent reads only, so do not specify ConsistentRead when
 // querying a global secondary index.
-func (c *DynamoDB) Query(input *QueryInput) (output *QueryOutput, req *aws.Request, err error) {
-	if opQuery == nil {
-		opQuery = &aws.Operation{
-			Name:       "Query",
+func (c *DynamoDB) Query(input *QueryInput) (output *QueryOutput, err error) {
+	output = &QueryOutput{}
+	req := c.QueryRequest(input)
+	req.Data = output
+	err = req.Send()
+	return
+}
+
+// ScanRequest generates a request for the Scan operation.
+func (c *DynamoDB) ScanRequest(input *ScanInput) *aws.Request {
+	if opScan == nil {
+		opScan = &aws.Operation{
+			Name:       "Scan",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"TableName"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
 		}
 	}
 
-	output = &QueryOutput{}
-	req = aws.NewRequest(c.Service, opQuery, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
+	return aws.NewRequest(c.Service, opScan, input, nil)
 }
 
 // Scan the Scan operation returns one or more items and item attributes by
@@ -428,21 +580,34 @@ func (c *DynamoDB) Query(input *QueryInput) (output *QueryOutput, req *aws.Reque
 // parallel Scan operation by specifying the Segment and TotalSegments
 // parameters. For more information, see Parallel Scan in the Amazon
 // DynamoDB Developer Guide
-func (c *DynamoDB) Scan(input *ScanInput) (output *ScanOutput, req *aws.Request, err error) {
-	if opScan == nil {
-		opScan = &aws.Operation{
-			Name:       "Scan",
+func (c *DynamoDB) Scan(input *ScanInput) (output *ScanOutput, err error) {
+	output = &ScanOutput{}
+	req := c.ScanRequest(input)
+	req.Data = output
+	err = req.Send()
+	return
+}
+
+// UpdateItemRequest generates a request for the UpdateItem operation.
+func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) *aws.Request {
+	if opUpdateItem == nil {
+		opUpdateItem = &aws.Operation{
+			Name:       "UpdateItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"TableName", "Key"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
 		}
 	}
 
-	output = &ScanOutput{}
-	req = aws.NewRequest(c.Service, opScan, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
+	return aws.NewRequest(c.Service, opUpdateItem, input, nil)
 }
 
 // UpdateItem edits an existing item's attributes, or adds a new item to
@@ -452,21 +617,34 @@ func (c *DynamoDB) Scan(input *ScanInput) (output *ScanOutput, req *aws.Request,
 // existing name-value pair if it has certain expected attribute values).
 // You can also return the item's attribute values in the same UpdateItem
 // operation using the ReturnValues parameter.
-func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (output *UpdateItemOutput, req *aws.Request, err error) {
-	if opUpdateItem == nil {
-		opUpdateItem = &aws.Operation{
-			Name:       "UpdateItem",
+func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (output *UpdateItemOutput, err error) {
+	output = &UpdateItemOutput{}
+	req := c.UpdateItemRequest(input)
+	req.Data = output
+	err = req.Send()
+	return
+}
+
+// UpdateTableRequest generates a request for the UpdateTable operation.
+func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) *aws.Request {
+	if opUpdateTable == nil {
+		opUpdateTable = &aws.Operation{
+			Name:       "UpdateTable",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"TableName"},
+				QueryParams: []string{},
+				URIParams:   []string{},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
 		}
 	}
 
-	output = &UpdateItemOutput{}
-	req = aws.NewRequest(c.Service, opUpdateItem, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
+	return aws.NewRequest(c.Service, opUpdateTable, input, nil)
 }
 
 // UpdateTable updates the provisioned throughput for the given table.
@@ -482,20 +660,11 @@ func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (output *UpdateItemOutput,
 // returns to the state after the UpdateTable operation. You cannot add,
 // modify or delete indexes using UpdateTable . Indexes can only be defined
 // at table creation time.
-func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (output *UpdateTableOutput, req *aws.Request, err error) {
-	if opUpdateTable == nil {
-		opUpdateTable = &aws.Operation{
-			Name:       "UpdateTable",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
-	}
-
+func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (output *UpdateTableOutput, err error) {
 	output = &UpdateTableOutput{}
-	req = aws.NewRequest(c.Service, opUpdateTable, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.UpdateTableRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
@@ -524,34 +693,34 @@ const (
 
 // AttributeDefinition is undocumented.
 type AttributeDefinition struct {
-	AttributeName aws.StringValue `json:"AttributeName"`
-	AttributeType aws.StringValue `json:"AttributeType"`
+	AttributeName *string `json:"AttributeName"`
+	AttributeType *string `json:"AttributeType"`
 }
 
 // AttributeValue is undocumented.
 type AttributeValue struct {
 	B    []byte                    `json:"B,omitempty"`
-	BOOL aws.BooleanValue          `json:"BOOL,omitempty"`
+	BOOL *bool                     `json:"BOOL,omitempty"`
 	BS   [][]byte                  `json:"BS,omitempty"`
 	L    []AttributeValue          `json:"L,omitempty"`
 	M    map[string]AttributeValue `json:"M,omitempty"`
-	N    aws.StringValue           `json:"N,omitempty"`
+	N    *string                   `json:"N,omitempty"`
 	NS   []string                  `json:"NS,omitempty"`
-	NULL aws.BooleanValue          `json:"NULL,omitempty"`
-	S    aws.StringValue           `json:"S,omitempty"`
+	NULL *bool                     `json:"NULL,omitempty"`
+	S    *string                   `json:"S,omitempty"`
 	SS   []string                  `json:"SS,omitempty"`
 }
 
 // AttributeValueUpdate is undocumented.
 type AttributeValueUpdate struct {
-	Action aws.StringValue `json:"Action,omitempty"`
+	Action *string         `json:"Action,omitempty"`
 	Value  *AttributeValue `json:"Value,omitempty"`
 }
 
 // BatchGetItemInput is undocumented.
 type BatchGetItemInput struct {
 	RequestItems           map[string]KeysAndAttributes `json:"RequestItems"`
-	ReturnConsumedCapacity aws.StringValue              `json:"ReturnConsumedCapacity,omitempty"`
+	ReturnConsumedCapacity *string                      `json:"ReturnConsumedCapacity,omitempty"`
 }
 
 // BatchGetItemOutput is undocumented.
@@ -563,21 +732,21 @@ type BatchGetItemOutput struct {
 
 // BatchWriteItemInput is undocumented.
 type BatchWriteItemInput struct {
-	RequestItems                map[string][]WriteRequest `json:"RequestItems"`
-	ReturnConsumedCapacity      aws.StringValue           `json:"ReturnConsumedCapacity,omitempty"`
-	ReturnItemCollectionMetrics aws.StringValue           `json:"ReturnItemCollectionMetrics,omitempty"`
+	RequestItems                map[string][]WriteInput `json:"RequestItems"`
+	ReturnConsumedCapacity      *string                 `json:"ReturnConsumedCapacity,omitempty"`
+	ReturnItemCollectionMetrics *string                 `json:"ReturnItemCollectionMetrics,omitempty"`
 }
 
 // BatchWriteItemOutput is undocumented.
 type BatchWriteItemOutput struct {
 	ConsumedCapacity      []ConsumedCapacity                 `json:"ConsumedCapacity,omitempty"`
 	ItemCollectionMetrics map[string][]ItemCollectionMetrics `json:"ItemCollectionMetrics,omitempty"`
-	UnprocessedItems      map[string][]WriteRequest          `json:"UnprocessedItems,omitempty"`
+	UnprocessedItems      map[string][]WriteInput            `json:"UnprocessedItems,omitempty"`
 }
 
 // Capacity is undocumented.
 type Capacity struct {
-	CapacityUnits aws.DoubleValue `json:"CapacityUnits,omitempty"`
+	CapacityUnits *float64 `json:"CapacityUnits,omitempty"`
 }
 
 // Possible values for DynamoDB.
@@ -600,7 +769,7 @@ const (
 // Condition is undocumented.
 type Condition struct {
 	AttributeValueList []AttributeValue `json:"AttributeValueList,omitempty"`
-	ComparisonOperator aws.StringValue  `json:"ComparisonOperator"`
+	ComparisonOperator *string          `json:"ComparisonOperator"`
 }
 
 // Possible values for DynamoDB.
@@ -611,11 +780,11 @@ const (
 
 // ConsumedCapacity is undocumented.
 type ConsumedCapacity struct {
-	CapacityUnits          aws.DoubleValue     `json:"CapacityUnits,omitempty"`
+	CapacityUnits          *float64            `json:"CapacityUnits,omitempty"`
 	GlobalSecondaryIndexes map[string]Capacity `json:"GlobalSecondaryIndexes,omitempty"`
 	LocalSecondaryIndexes  map[string]Capacity `json:"LocalSecondaryIndexes,omitempty"`
 	Table                  *Capacity           `json:"Table,omitempty"`
-	TableName              aws.StringValue     `json:"TableName,omitempty"`
+	TableName              *string             `json:"TableName,omitempty"`
 }
 
 // CreateTableInput is undocumented.
@@ -625,7 +794,7 @@ type CreateTableInput struct {
 	KeySchema              []KeySchemaElement     `json:"KeySchema"`
 	LocalSecondaryIndexes  []LocalSecondaryIndex  `json:"LocalSecondaryIndexes,omitempty"`
 	ProvisionedThroughput  *ProvisionedThroughput `json:"ProvisionedThroughput"`
-	TableName              aws.StringValue        `json:"TableName"`
+	TableName              *string                `json:"TableName"`
 }
 
 // CreateTableOutput is undocumented.
@@ -635,16 +804,16 @@ type CreateTableOutput struct {
 
 // DeleteItemInput is undocumented.
 type DeleteItemInput struct {
-	ConditionExpression         aws.StringValue                   `json:"ConditionExpression,omitempty"`
-	ConditionalOperator         aws.StringValue                   `json:"ConditionalOperator,omitempty"`
+	ConditionExpression         *string                           `json:"ConditionExpression,omitempty"`
+	ConditionalOperator         *string                           `json:"ConditionalOperator,omitempty"`
 	Expected                    map[string]ExpectedAttributeValue `json:"Expected,omitempty"`
 	ExpressionAttributeNames    map[string]string                 `json:"ExpressionAttributeNames,omitempty"`
 	ExpressionAttributeValues   map[string]AttributeValue         `json:"ExpressionAttributeValues,omitempty"`
 	Key                         map[string]AttributeValue         `json:"Key"`
-	ReturnConsumedCapacity      aws.StringValue                   `json:"ReturnConsumedCapacity,omitempty"`
-	ReturnItemCollectionMetrics aws.StringValue                   `json:"ReturnItemCollectionMetrics,omitempty"`
-	ReturnValues                aws.StringValue                   `json:"ReturnValues,omitempty"`
-	TableName                   aws.StringValue                   `json:"TableName"`
+	ReturnConsumedCapacity      *string                           `json:"ReturnConsumedCapacity,omitempty"`
+	ReturnItemCollectionMetrics *string                           `json:"ReturnItemCollectionMetrics,omitempty"`
+	ReturnValues                *string                           `json:"ReturnValues,omitempty"`
+	TableName                   *string                           `json:"TableName"`
 }
 
 // DeleteItemOutput is undocumented.
@@ -654,14 +823,14 @@ type DeleteItemOutput struct {
 	ItemCollectionMetrics *ItemCollectionMetrics    `json:"ItemCollectionMetrics,omitempty"`
 }
 
-// DeleteRequest is undocumented.
-type DeleteRequest struct {
+// DeleteInput is undocumented.
+type DeleteInput struct {
 	Key map[string]AttributeValue `json:"Key"`
 }
 
 // DeleteTableInput is undocumented.
 type DeleteTableInput struct {
-	TableName aws.StringValue `json:"TableName"`
+	TableName *string `json:"TableName"`
 }
 
 // DeleteTableOutput is undocumented.
@@ -671,7 +840,7 @@ type DeleteTableOutput struct {
 
 // DescribeTableInput is undocumented.
 type DescribeTableInput struct {
-	TableName aws.StringValue `json:"TableName"`
+	TableName *string `json:"TableName"`
 }
 
 // DescribeTableOutput is undocumented.
@@ -682,20 +851,20 @@ type DescribeTableOutput struct {
 // ExpectedAttributeValue is undocumented.
 type ExpectedAttributeValue struct {
 	AttributeValueList []AttributeValue `json:"AttributeValueList,omitempty"`
-	ComparisonOperator aws.StringValue  `json:"ComparisonOperator,omitempty"`
-	Exists             aws.BooleanValue `json:"Exists,omitempty"`
+	ComparisonOperator *string          `json:"ComparisonOperator,omitempty"`
+	Exists             *bool            `json:"Exists,omitempty"`
 	Value              *AttributeValue  `json:"Value,omitempty"`
 }
 
 // GetItemInput is undocumented.
 type GetItemInput struct {
 	AttributesToGet          []string                  `json:"AttributesToGet,omitempty"`
-	ConsistentRead           aws.BooleanValue          `json:"ConsistentRead,omitempty"`
+	ConsistentRead           *bool                     `json:"ConsistentRead,omitempty"`
 	ExpressionAttributeNames map[string]string         `json:"ExpressionAttributeNames,omitempty"`
 	Key                      map[string]AttributeValue `json:"Key"`
-	ProjectionExpression     aws.StringValue           `json:"ProjectionExpression,omitempty"`
-	ReturnConsumedCapacity   aws.StringValue           `json:"ReturnConsumedCapacity,omitempty"`
-	TableName                aws.StringValue           `json:"TableName"`
+	ProjectionExpression     *string                   `json:"ProjectionExpression,omitempty"`
+	ReturnConsumedCapacity   *string                   `json:"ReturnConsumedCapacity,omitempty"`
+	TableName                *string                   `json:"TableName"`
 }
 
 // GetItemOutput is undocumented.
@@ -706,7 +875,7 @@ type GetItemOutput struct {
 
 // GlobalSecondaryIndex is undocumented.
 type GlobalSecondaryIndex struct {
-	IndexName             aws.StringValue        `json:"IndexName"`
+	IndexName             *string                `json:"IndexName"`
 	KeySchema             []KeySchemaElement     `json:"KeySchema"`
 	Projection            *Projection            `json:"Projection"`
 	ProvisionedThroughput *ProvisionedThroughput `json:"ProvisionedThroughput"`
@@ -714,10 +883,10 @@ type GlobalSecondaryIndex struct {
 
 // GlobalSecondaryIndexDescription is undocumented.
 type GlobalSecondaryIndexDescription struct {
-	IndexName             aws.StringValue                   `json:"IndexName,omitempty"`
-	IndexSizeBytes        aws.LongValue                     `json:"IndexSizeBytes,omitempty"`
-	IndexStatus           aws.StringValue                   `json:"IndexStatus,omitempty"`
-	ItemCount             aws.LongValue                     `json:"ItemCount,omitempty"`
+	IndexName             *string                           `json:"IndexName,omitempty"`
+	IndexSizeBytes        *int64                            `json:"IndexSizeBytes,omitempty"`
+	IndexStatus           *string                           `json:"IndexStatus,omitempty"`
+	ItemCount             *int64                            `json:"ItemCount,omitempty"`
 	KeySchema             []KeySchemaElement                `json:"KeySchema,omitempty"`
 	Projection            *Projection                       `json:"Projection,omitempty"`
 	ProvisionedThroughput *ProvisionedThroughputDescription `json:"ProvisionedThroughput,omitempty"`
@@ -744,8 +913,8 @@ type ItemCollectionMetrics struct {
 
 // KeySchemaElement is undocumented.
 type KeySchemaElement struct {
-	AttributeName aws.StringValue `json:"AttributeName"`
-	KeyType       aws.StringValue `json:"KeyType"`
+	AttributeName *string `json:"AttributeName"`
+	KeyType       *string `json:"KeyType"`
 }
 
 // Possible values for DynamoDB.
@@ -757,44 +926,44 @@ const (
 // KeysAndAttributes is undocumented.
 type KeysAndAttributes struct {
 	AttributesToGet          []string                    `json:"AttributesToGet,omitempty"`
-	ConsistentRead           aws.BooleanValue            `json:"ConsistentRead,omitempty"`
+	ConsistentRead           *bool                       `json:"ConsistentRead,omitempty"`
 	ExpressionAttributeNames map[string]string           `json:"ExpressionAttributeNames,omitempty"`
 	Keys                     []map[string]AttributeValue `json:"Keys"`
-	ProjectionExpression     aws.StringValue             `json:"ProjectionExpression,omitempty"`
+	ProjectionExpression     *string                     `json:"ProjectionExpression,omitempty"`
 }
 
 // ListTablesInput is undocumented.
 type ListTablesInput struct {
-	ExclusiveStartTableName aws.StringValue  `json:"ExclusiveStartTableName,omitempty"`
-	Limit                   aws.IntegerValue `json:"Limit,omitempty"`
+	ExclusiveStartTableName *string `json:"ExclusiveStartTableName,omitempty"`
+	Limit                   *int    `json:"Limit,omitempty"`
 }
 
 // ListTablesOutput is undocumented.
 type ListTablesOutput struct {
-	LastEvaluatedTableName aws.StringValue `json:"LastEvaluatedTableName,omitempty"`
-	TableNames             []string        `json:"TableNames,omitempty"`
+	LastEvaluatedTableName *string  `json:"LastEvaluatedTableName,omitempty"`
+	TableNames             []string `json:"TableNames,omitempty"`
 }
 
 // LocalSecondaryIndex is undocumented.
 type LocalSecondaryIndex struct {
-	IndexName  aws.StringValue    `json:"IndexName"`
+	IndexName  *string            `json:"IndexName"`
 	KeySchema  []KeySchemaElement `json:"KeySchema"`
 	Projection *Projection        `json:"Projection"`
 }
 
 // LocalSecondaryIndexDescription is undocumented.
 type LocalSecondaryIndexDescription struct {
-	IndexName      aws.StringValue    `json:"IndexName,omitempty"`
-	IndexSizeBytes aws.LongValue      `json:"IndexSizeBytes,omitempty"`
-	ItemCount      aws.LongValue      `json:"ItemCount,omitempty"`
+	IndexName      *string            `json:"IndexName,omitempty"`
+	IndexSizeBytes *int64             `json:"IndexSizeBytes,omitempty"`
+	ItemCount      *int64             `json:"ItemCount,omitempty"`
 	KeySchema      []KeySchemaElement `json:"KeySchema,omitempty"`
 	Projection     *Projection        `json:"Projection,omitempty"`
 }
 
 // Projection is undocumented.
 type Projection struct {
-	NonKeyAttributes []string        `json:"NonKeyAttributes,omitempty"`
-	ProjectionType   aws.StringValue `json:"ProjectionType,omitempty"`
+	NonKeyAttributes []string `json:"NonKeyAttributes,omitempty"`
+	ProjectionType   *string  `json:"ProjectionType,omitempty"`
 }
 
 // Possible values for DynamoDB.
@@ -806,31 +975,31 @@ const (
 
 // ProvisionedThroughput is undocumented.
 type ProvisionedThroughput struct {
-	ReadCapacityUnits  aws.LongValue `json:"ReadCapacityUnits"`
-	WriteCapacityUnits aws.LongValue `json:"WriteCapacityUnits"`
+	ReadCapacityUnits  *int64 `json:"ReadCapacityUnits"`
+	WriteCapacityUnits *int64 `json:"WriteCapacityUnits"`
 }
 
 // ProvisionedThroughputDescription is undocumented.
 type ProvisionedThroughputDescription struct {
 	LastDecreaseDateTime   *aws.UnixTimestamp `json:"LastDecreaseDateTime,omitempty"`
 	LastIncreaseDateTime   *aws.UnixTimestamp `json:"LastIncreaseDateTime,omitempty"`
-	NumberOfDecreasesToday aws.LongValue      `json:"NumberOfDecreasesToday,omitempty"`
-	ReadCapacityUnits      aws.LongValue      `json:"ReadCapacityUnits,omitempty"`
-	WriteCapacityUnits     aws.LongValue      `json:"WriteCapacityUnits,omitempty"`
+	NumberOfDecreasesToday *int64             `json:"NumberOfDecreasesToday,omitempty"`
+	ReadCapacityUnits      *int64             `json:"ReadCapacityUnits,omitempty"`
+	WriteCapacityUnits     *int64             `json:"WriteCapacityUnits,omitempty"`
 }
 
 // PutItemInput is undocumented.
 type PutItemInput struct {
-	ConditionExpression         aws.StringValue                   `json:"ConditionExpression,omitempty"`
-	ConditionalOperator         aws.StringValue                   `json:"ConditionalOperator,omitempty"`
+	ConditionExpression         *string                           `json:"ConditionExpression,omitempty"`
+	ConditionalOperator         *string                           `json:"ConditionalOperator,omitempty"`
 	Expected                    map[string]ExpectedAttributeValue `json:"Expected,omitempty"`
 	ExpressionAttributeNames    map[string]string                 `json:"ExpressionAttributeNames,omitempty"`
 	ExpressionAttributeValues   map[string]AttributeValue         `json:"ExpressionAttributeValues,omitempty"`
 	Item                        map[string]AttributeValue         `json:"Item"`
-	ReturnConsumedCapacity      aws.StringValue                   `json:"ReturnConsumedCapacity,omitempty"`
-	ReturnItemCollectionMetrics aws.StringValue                   `json:"ReturnItemCollectionMetrics,omitempty"`
-	ReturnValues                aws.StringValue                   `json:"ReturnValues,omitempty"`
-	TableName                   aws.StringValue                   `json:"TableName"`
+	ReturnConsumedCapacity      *string                           `json:"ReturnConsumedCapacity,omitempty"`
+	ReturnItemCollectionMetrics *string                           `json:"ReturnItemCollectionMetrics,omitempty"`
+	ReturnValues                *string                           `json:"ReturnValues,omitempty"`
+	TableName                   *string                           `json:"TableName"`
 }
 
 // PutItemOutput is undocumented.
@@ -840,38 +1009,38 @@ type PutItemOutput struct {
 	ItemCollectionMetrics *ItemCollectionMetrics    `json:"ItemCollectionMetrics,omitempty"`
 }
 
-// PutRequest is undocumented.
-type PutRequest struct {
+// PutInput is undocumented.
+type PutInput struct {
 	Item map[string]AttributeValue `json:"Item"`
 }
 
 // QueryInput is undocumented.
 type QueryInput struct {
 	AttributesToGet           []string                  `json:"AttributesToGet,omitempty"`
-	ConditionalOperator       aws.StringValue           `json:"ConditionalOperator,omitempty"`
-	ConsistentRead            aws.BooleanValue          `json:"ConsistentRead,omitempty"`
+	ConditionalOperator       *string                   `json:"ConditionalOperator,omitempty"`
+	ConsistentRead            *bool                     `json:"ConsistentRead,omitempty"`
 	ExclusiveStartKey         map[string]AttributeValue `json:"ExclusiveStartKey,omitempty"`
 	ExpressionAttributeNames  map[string]string         `json:"ExpressionAttributeNames,omitempty"`
 	ExpressionAttributeValues map[string]AttributeValue `json:"ExpressionAttributeValues,omitempty"`
-	FilterExpression          aws.StringValue           `json:"FilterExpression,omitempty"`
-	IndexName                 aws.StringValue           `json:"IndexName,omitempty"`
+	FilterExpression          *string                   `json:"FilterExpression,omitempty"`
+	IndexName                 *string                   `json:"IndexName,omitempty"`
 	KeyConditions             map[string]Condition      `json:"KeyConditions"`
-	Limit                     aws.IntegerValue          `json:"Limit,omitempty"`
-	ProjectionExpression      aws.StringValue           `json:"ProjectionExpression,omitempty"`
+	Limit                     *int                      `json:"Limit,omitempty"`
+	ProjectionExpression      *string                   `json:"ProjectionExpression,omitempty"`
 	QueryFilter               map[string]Condition      `json:"QueryFilter,omitempty"`
-	ReturnConsumedCapacity    aws.StringValue           `json:"ReturnConsumedCapacity,omitempty"`
-	ScanIndexForward          aws.BooleanValue          `json:"ScanIndexForward,omitempty"`
-	Select                    aws.StringValue           `json:"Select,omitempty"`
-	TableName                 aws.StringValue           `json:"TableName"`
+	ReturnConsumedCapacity    *string                   `json:"ReturnConsumedCapacity,omitempty"`
+	ScanIndexForward          *bool                     `json:"ScanIndexForward,omitempty"`
+	Select                    *string                   `json:"Select,omitempty"`
+	TableName                 *string                   `json:"TableName"`
 }
 
 // QueryOutput is undocumented.
 type QueryOutput struct {
 	ConsumedCapacity *ConsumedCapacity           `json:"ConsumedCapacity,omitempty"`
-	Count            aws.IntegerValue            `json:"Count,omitempty"`
+	Count            *int                        `json:"Count,omitempty"`
 	Items            []map[string]AttributeValue `json:"Items,omitempty"`
 	LastEvaluatedKey map[string]AttributeValue   `json:"LastEvaluatedKey,omitempty"`
-	ScannedCount     aws.IntegerValue            `json:"ScannedCount,omitempty"`
+	ScannedCount     *int                        `json:"ScannedCount,omitempty"`
 }
 
 // Possible values for DynamoDB.
@@ -906,28 +1075,28 @@ const (
 // ScanInput is undocumented.
 type ScanInput struct {
 	AttributesToGet           []string                  `json:"AttributesToGet,omitempty"`
-	ConditionalOperator       aws.StringValue           `json:"ConditionalOperator,omitempty"`
+	ConditionalOperator       *string                   `json:"ConditionalOperator,omitempty"`
 	ExclusiveStartKey         map[string]AttributeValue `json:"ExclusiveStartKey,omitempty"`
 	ExpressionAttributeNames  map[string]string         `json:"ExpressionAttributeNames,omitempty"`
 	ExpressionAttributeValues map[string]AttributeValue `json:"ExpressionAttributeValues,omitempty"`
-	FilterExpression          aws.StringValue           `json:"FilterExpression,omitempty"`
-	Limit                     aws.IntegerValue          `json:"Limit,omitempty"`
-	ProjectionExpression      aws.StringValue           `json:"ProjectionExpression,omitempty"`
-	ReturnConsumedCapacity    aws.StringValue           `json:"ReturnConsumedCapacity,omitempty"`
+	FilterExpression          *string                   `json:"FilterExpression,omitempty"`
+	Limit                     *int                      `json:"Limit,omitempty"`
+	ProjectionExpression      *string                   `json:"ProjectionExpression,omitempty"`
+	ReturnConsumedCapacity    *string                   `json:"ReturnConsumedCapacity,omitempty"`
 	ScanFilter                map[string]Condition      `json:"ScanFilter,omitempty"`
-	Segment                   aws.IntegerValue          `json:"Segment,omitempty"`
-	Select                    aws.StringValue           `json:"Select,omitempty"`
-	TableName                 aws.StringValue           `json:"TableName"`
-	TotalSegments             aws.IntegerValue          `json:"TotalSegments,omitempty"`
+	Segment                   *int                      `json:"Segment,omitempty"`
+	Select                    *string                   `json:"Select,omitempty"`
+	TableName                 *string                   `json:"TableName"`
+	TotalSegments             *int                      `json:"TotalSegments,omitempty"`
 }
 
 // ScanOutput is undocumented.
 type ScanOutput struct {
 	ConsumedCapacity *ConsumedCapacity           `json:"ConsumedCapacity,omitempty"`
-	Count            aws.IntegerValue            `json:"Count,omitempty"`
+	Count            *int                        `json:"Count,omitempty"`
 	Items            []map[string]AttributeValue `json:"Items,omitempty"`
 	LastEvaluatedKey map[string]AttributeValue   `json:"LastEvaluatedKey,omitempty"`
-	ScannedCount     aws.IntegerValue            `json:"ScannedCount,omitempty"`
+	ScannedCount     *int                        `json:"ScannedCount,omitempty"`
 }
 
 // Possible values for DynamoDB.
@@ -943,13 +1112,13 @@ type TableDescription struct {
 	AttributeDefinitions   []AttributeDefinition             `json:"AttributeDefinitions,omitempty"`
 	CreationDateTime       *aws.UnixTimestamp                `json:"CreationDateTime,omitempty"`
 	GlobalSecondaryIndexes []GlobalSecondaryIndexDescription `json:"GlobalSecondaryIndexes,omitempty"`
-	ItemCount              aws.LongValue                     `json:"ItemCount,omitempty"`
+	ItemCount              *int64                            `json:"ItemCount,omitempty"`
 	KeySchema              []KeySchemaElement                `json:"KeySchema,omitempty"`
 	LocalSecondaryIndexes  []LocalSecondaryIndexDescription  `json:"LocalSecondaryIndexes,omitempty"`
 	ProvisionedThroughput  *ProvisionedThroughputDescription `json:"ProvisionedThroughput,omitempty"`
-	TableName              aws.StringValue                   `json:"TableName,omitempty"`
-	TableSizeBytes         aws.LongValue                     `json:"TableSizeBytes,omitempty"`
-	TableStatus            aws.StringValue                   `json:"TableStatus,omitempty"`
+	TableName              *string                           `json:"TableName,omitempty"`
+	TableSizeBytes         *int64                            `json:"TableSizeBytes,omitempty"`
+	TableStatus            *string                           `json:"TableStatus,omitempty"`
 }
 
 // Possible values for DynamoDB.
@@ -962,24 +1131,24 @@ const (
 
 // UpdateGlobalSecondaryIndexAction is undocumented.
 type UpdateGlobalSecondaryIndexAction struct {
-	IndexName             aws.StringValue        `json:"IndexName"`
+	IndexName             *string                `json:"IndexName"`
 	ProvisionedThroughput *ProvisionedThroughput `json:"ProvisionedThroughput"`
 }
 
 // UpdateItemInput is undocumented.
 type UpdateItemInput struct {
 	AttributeUpdates            map[string]AttributeValueUpdate   `json:"AttributeUpdates,omitempty"`
-	ConditionExpression         aws.StringValue                   `json:"ConditionExpression,omitempty"`
-	ConditionalOperator         aws.StringValue                   `json:"ConditionalOperator,omitempty"`
+	ConditionExpression         *string                           `json:"ConditionExpression,omitempty"`
+	ConditionalOperator         *string                           `json:"ConditionalOperator,omitempty"`
 	Expected                    map[string]ExpectedAttributeValue `json:"Expected,omitempty"`
 	ExpressionAttributeNames    map[string]string                 `json:"ExpressionAttributeNames,omitempty"`
 	ExpressionAttributeValues   map[string]AttributeValue         `json:"ExpressionAttributeValues,omitempty"`
 	Key                         map[string]AttributeValue         `json:"Key"`
-	ReturnConsumedCapacity      aws.StringValue                   `json:"ReturnConsumedCapacity,omitempty"`
-	ReturnItemCollectionMetrics aws.StringValue                   `json:"ReturnItemCollectionMetrics,omitempty"`
-	ReturnValues                aws.StringValue                   `json:"ReturnValues,omitempty"`
-	TableName                   aws.StringValue                   `json:"TableName"`
-	UpdateExpression            aws.StringValue                   `json:"UpdateExpression,omitempty"`
+	ReturnConsumedCapacity      *string                           `json:"ReturnConsumedCapacity,omitempty"`
+	ReturnItemCollectionMetrics *string                           `json:"ReturnItemCollectionMetrics,omitempty"`
+	ReturnValues                *string                           `json:"ReturnValues,omitempty"`
+	TableName                   *string                           `json:"TableName"`
+	UpdateExpression            *string                           `json:"UpdateExpression,omitempty"`
 }
 
 // UpdateItemOutput is undocumented.
@@ -993,7 +1162,7 @@ type UpdateItemOutput struct {
 type UpdateTableInput struct {
 	GlobalSecondaryIndexUpdates []GlobalSecondaryIndexUpdate `json:"GlobalSecondaryIndexUpdates,omitempty"`
 	ProvisionedThroughput       *ProvisionedThroughput       `json:"ProvisionedThroughput,omitempty"`
-	TableName                   aws.StringValue              `json:"TableName"`
+	TableName                   *string                      `json:"TableName"`
 }
 
 // UpdateTableOutput is undocumented.
@@ -1001,10 +1170,10 @@ type UpdateTableOutput struct {
 	TableDescription *TableDescription `json:"TableDescription,omitempty"`
 }
 
-// WriteRequest is undocumented.
-type WriteRequest struct {
-	DeleteRequest *DeleteRequest `json:"DeleteRequest,omitempty"`
-	PutRequest    *PutRequest    `json:"PutRequest,omitempty"`
+// WriteInput is undocumented.
+type WriteInput struct {
+	DeleteInput *DeleteInput `json:"DeleteInput,omitempty"`
+	PutInput    *PutInput    `json:"PutInput,omitempty"`
 }
 
 // avoid errors if the packages aren't referenced

@@ -10,7 +10,7 @@ import (
 type StringValue *string
 
 // String converts a Go string into a StringValue.
-func String(v string) StringValue {
+func String(v string) *string {
 	return &v
 }
 
@@ -18,7 +18,7 @@ func String(v string) StringValue {
 type BooleanValue *bool
 
 // Boolean converts a Go bool into a BooleanValue.
-func Boolean(v bool) BooleanValue {
+func Boolean(v bool) *bool {
 	return &v
 }
 
@@ -36,7 +36,7 @@ func False() BooleanValue {
 type IntegerValue *int
 
 // Integer converts a Go int into an IntegerValue.
-func Integer(v int) IntegerValue {
+func Integer(v int) *int {
 	return &v
 }
 
@@ -44,7 +44,7 @@ func Integer(v int) IntegerValue {
 type LongValue *int64
 
 // Long converts a Go int64 into a LongValue.
-func Long(v int64) LongValue {
+func Long(v int64) *int64 {
 	return &v
 }
 
@@ -53,7 +53,7 @@ func Long(v int64) LongValue {
 type FloatValue *float32
 
 // Float converts a Go float32 into a FloatValue.
-func Float(v float32) FloatValue {
+func Float(v float32) *float32 {
 	return &v
 }
 
@@ -62,7 +62,7 @@ func Float(v float32) FloatValue {
 type DoubleValue *float64
 
 // Double converts a Go float64 into a DoubleValue.
-func Double(v float64) DoubleValue {
+func Double(v float64) *float64 {
 	return &v
 }
 

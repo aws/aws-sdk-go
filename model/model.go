@@ -114,8 +114,11 @@ func (m Member) JSONTag() string {
 
 // XMLTag returns the field tag for XML protocol members.
 func (m Member) XMLTag(wrapper string) string {
-	if m.ShapeRef.Location != "" || m.Name == "Body" {
+	if m.Name == "Body" {
 		return "`xml:\"-\"`"
+	}
+	if m.ShapeRef.Location != "" {
+		return fmt.Sprintf("`xml:\"-\" name:%q`", m.ShapeRef.LocationName)
 	}
 
 	var path []string
@@ -237,7 +240,7 @@ func (m Member) Shape() *Shape {
 // Type returns the member's Go type.
 func (m Member) Type() string {
 	if m.Streaming {
-		return "io.ReadCloser" // this allows us to pass the S3 body directly
+		return "io.Reader" // this allows us to pass the S3 body directly
 	}
 	return m.Shape().Type()
 }
@@ -391,7 +394,7 @@ func (s *Shape) ResultWrapper() string {
 // Literal returns a Go literal of the given shape.
 func (s *Shape) Literal() string {
 	if s.ShapeType == "structure" {
-		return "&" + s.Type()[1:] + "{}"
+		return "&" + structName(s.Type()[1:]) + "{}"
 	}
 	panic("trying to make a literal non-structure for " + s.Name)
 }
@@ -437,17 +440,17 @@ func (s *Shape) Type() string {
 		return "*" + exportable(s.Name)
 	case "integer":
 		if s.Name == "ContentLength" || s.Name == "Size" {
-			return "aws.LongValue"
+			return "*int64"
 		}
-		return "aws.IntegerValue"
+		return "*int"
 	case "long":
-		return "aws.LongValue"
+		return "*int64"
 	case "float":
-		return "aws.FloatValue"
+		return "*float32"
 	case "double":
-		return "aws.DoubleValue"
+		return "*float64"
 	case "string":
-		return "aws.StringValue"
+		return "*string"
 	case "map":
 		if service.Metadata.Protocol == "query" {
 			return exportable(s.Name)
@@ -456,7 +459,7 @@ func (s *Shape) Type() string {
 	case "list":
 		return "[]" + s.Member().ElementType()
 	case "boolean":
-		return "aws.BooleanValue"
+		return "*bool"
 	case "blob":
 		return "[]byte"
 	case "timestamp":

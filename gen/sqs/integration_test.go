@@ -14,9 +14,10 @@ import (
 var sqsClient *sqs.SQS
 
 func TestMain(m *testing.M) {
-
-	sqsClient = sqs.New(aws.DefaultCreds(), "us-east-1", nil)
-	os.Exit(m.Run())
+	if os.Getenv("INTEGRATION") != "" {
+		sqsClient = sqs.New(aws.DefaultCreds(), "us-east-1", nil)
+		os.Exit(m.Run())
+	}
 }
 
 func TestPublishAndReadMessage(t *testing.T) {

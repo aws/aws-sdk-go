@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -25,7 +26,7 @@ type signer struct {
 	Time            time.Time
 	ServiceName     string
 	Region          string
-	AcessKeyID      string
+	AccessKeyID     string
 	SecretAccessKey string
 	SessionToken    string
 	Body            io.ReadSeeker
@@ -53,10 +54,10 @@ func Sign(req *aws.Request) {
 		Body:            req.Body,
 		ServiceName:     req.Service.ServiceName,
 		Region:          req.Service.Config.Region,
-		AcessKeyID:      creds.AccessKeyID,
+		AccessKeyID:     creds.AccessKeyID,
 		SecretAccessKey: creds.SecretAccessKey,
 		SessionToken:    creds.SessionToken,
-		Debug:           req.Debug,
+		Debug:           req.Service.Config.LogLevel,
 	}
 	s.sign()
 }
@@ -106,7 +107,7 @@ func (v4 *signer) buildTime() {
 
 func (v4 *signer) buildAuthorization() {
 	v4.authorization = strings.Join([]string{
-		authHeaderPrefix + " Credential=" + v4.AcessKeyID + "/" + v4.credentialString,
+		authHeaderPrefix + " Credential=" + v4.AccessKeyID + "/" + v4.credentialString,
 		"SignedHeaders=" + v4.signedHeaders,
 		"Signature=" + v4.signature,
 	}, ",")
@@ -122,15 +123,35 @@ func (v4 *signer) buildCredentialString() {
 }
 
 func (v4 *signer) buildCanonicalHeaders() {
-	v4.signedHeaders = "host"
-	v4.canonicalHeaders = "host:" + v4.Request.URL.Host
+	headers := make([]string, 0)
+	headers = append(headers, "host")
+	for k, _ := range v4.Request.Header {
+		if http.CanonicalHeaderKey(k) == "Content-Length" {
+			continue // never sign content-length
+		}
+		headers = append(headers, strings.ToLower(k))
+	}
+	sort.Strings(headers)
+
+	headerValues := make([]string, len(headers))
+	for i, k := range headers {
+		if k == "host" {
+			headerValues[i] = "host:" + v4.Request.URL.Host
+		} else {
+			headerValues[i] = k + ":" +
+				strings.Join(v4.Request.Header[http.CanonicalHeaderKey(k)], ",")
+		}
+	}
+
+	v4.signedHeaders = strings.Join(headers, ";")
+	v4.canonicalHeaders = strings.Join(headerValues, "\n")
 }
 
 func (v4 *signer) buildCanonicalString() {
 	v4.canonicalString = strings.Join([]string{
 		v4.Request.Method,
 		v4.Request.URL.Path,
-		v4.Request.URL.RawQuery,
+		v4.Request.URL.Query().Encode(),
 		v4.canonicalHeaders + "\n",
 		v4.signedHeaders,
 		v4.bodyDigest(),
@@ -185,14 +206,17 @@ func makeSha256Reader(reader io.ReadSeeker) []byte {
 	packet := make([]byte, 4096)
 	hash := sha256.New()
 
-	defer reader.Seek(0, 0)
+	reader.Seek(0, 0)
 	for {
 		n, err := reader.Read(packet)
-		if err != nil || n == 0 {
+		if n > 0 {
+			hash.Write(packet[0:n])
+		}
+		if err == io.EOF || n == 0 {
 			break
 		}
-		hash.Write(packet[0:n])
 	}
+	reader.Seek(0, 0)
 
 	return hash.Sum(nil)
 }

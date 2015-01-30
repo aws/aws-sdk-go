@@ -10,6 +10,34 @@ import (
 	"github.com/aarzilli/sandblast"
 )
 
+func locationTraits(location string, shape *Shape) string {
+	if shape == nil {
+		return ""
+	}
+
+	var list []string
+	for name, member := range shape.Members() {
+		if member.Location == location {
+			list = append(list, "\""+name+"\"")
+		}
+	}
+	return strings.Join(list, ",")
+}
+
+func requiredTraits(shape *Shape) string {
+	if shape == nil {
+		return ""
+	}
+
+	var list []string
+	for name, member := range shape.Members() {
+		if member.Required {
+			list = append(list, "\""+name+"\"")
+		}
+	}
+	return strings.Join(list, ",")
+}
+
 func godoc(member, content string) string {
 	undocumented := "// " + exportable(member) + " is undocumented.\n"
 
@@ -35,6 +63,22 @@ func godoc(member, content string) string {
 	out := bytes.NewBuffer(nil)
 	doc.ToText(out, v, "// ", "", 72)
 	return out.String()
+}
+
+func protocolPackage(protocol string) string {
+	switch {
+	case protocol == "json":
+		return "jsonrpc"
+	default:
+		return strings.Replace(protocol, "-", "", -1)
+	}
+}
+
+func structName(name string) string {
+	str := exportable(name)
+	str = regexp.MustCompile(`Request$`).ReplaceAllString(str, "Input")
+	str = regexp.MustCompile(`Response$`).ReplaceAllString(str, "Output")
+	return str
 }
 
 func exportable(name string) string {

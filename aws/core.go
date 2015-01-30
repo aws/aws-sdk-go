@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
+	"net/url"
 	"reflect"
 	"regexp"
 	"time"
@@ -18,9 +19,13 @@ func SendHandler(r *Request) {
 }
 
 type Operation struct {
-	Name        string
-	HTTPMethod  string
-	HTTPPath    string
+	*OperationBindings
+	Name       string
+	HTTPMethod string
+	HTTPPath   string
+}
+
+type OperationBindings struct {
 	InPayload   string
 	OutPayload  string
 	Required    []string
@@ -48,12 +53,15 @@ func (s *Service) Initialize() {
 		s.Config.HTTPClient = http.DefaultClient
 	}
 
+	s.Handlers.Sign.PushBack(BuildContentLength)
 	s.Handlers.Send.PushBack(SendHandler)
+	s.AddDebugHandlers()
 	s.buildEndpoint()
 }
 
 type Request struct {
 	*Service
+	Handlers     Handlers
 	Time         time.Time
 	Operation    *Operation
 	HTTPRequest  *http.Request
@@ -63,7 +71,6 @@ type Request struct {
 	Error        error
 	Data         interface{}
 	RequestID    string
-	Debug        uint
 }
 
 func NewRequest(service *Service, operation *Operation, params interface{}, data interface{}) *Request {
@@ -71,15 +78,12 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 	if method == "" {
 		method = "POST"
 	}
-	path := service.Endpoint + operation.HTTPPath
-
-	httpReq, _ := http.NewRequest(method, path, nil)
-	if httpReq.URL.Path == "" {
-		httpReq.URL.Path = "/"
-	}
+	httpReq, _ := http.NewRequest(method, "", nil)
+	httpReq.URL, _ = url.Parse(service.Endpoint + operation.HTTPPath)
 
 	r := &Request{
 		Service:     service,
+		Handlers:    service.Handlers.copy(),
 		Time:        time.Now(),
 		Operation:   operation,
 		HTTPRequest: httpReq,
@@ -87,10 +91,7 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 		Params:      params,
 		Error:       nil,
 		Data:        data,
-		Debug:       service.Config.LogLevel,
 	}
-
-	r.AddDebugHandlers()
 
 	return r
 }
@@ -111,12 +112,12 @@ func (s *Service) buildEndpoint() {
 	}
 }
 
-func (r *Request) AddDebugHandlers() {
-	if r.Debug == 0 {
+func (s *Service) AddDebugHandlers() {
+	if s.Config.LogLevel == 0 {
 		return
 	}
 
-	r.Handlers.Sign.PushBack(func(r *Request) {
+	s.Handlers.Sign.PushBack(func(r *Request) {
 		dumpedBody, _ := httputil.DumpRequest(r.HTTPRequest, true)
 
 		fmt.Printf("=> [%s] %s.%s(%+v)\n", r.Time,
@@ -125,7 +126,7 @@ func (r *Request) AddDebugHandlers() {
 		fmt.Printf("%s\n", string(dumpedBody))
 		fmt.Printf("-----------------------------------------------------\n\n")
 	})
-	r.Handlers.Send.PushBack(func(r *Request) {
+	s.Handlers.Send.PushBack(func(r *Request) {
 		defer r.HTTPResponse.Body.Close()
 		dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, true)
 
@@ -191,8 +192,27 @@ type Handlers struct {
 	Unmarshal        HandlerList
 }
 
+func (h Handlers) copy() Handlers {
+	return Handlers{
+		Build:            h.Build.copy(),
+		Sign:             h.Sign.copy(),
+		Send:             h.Send.copy(),
+		ValidateResponse: h.ValidateResponse.copy(),
+		Unmarshal:        h.Unmarshal.copy(),
+	}
+}
+
 type HandlerList struct {
 	list.List
+}
+
+func (l HandlerList) copy() HandlerList {
+	var n HandlerList
+	for e := l.Front(); e != nil; e = e.Next() {
+		h := e.Value.(func(*Request))
+		n.PushBack(h)
+	}
+	return n
 }
 
 func (l *HandlerList) Run(r *Request) {

@@ -12,25 +12,25 @@ var emptyJSON = []byte("{}")
 func Build(req *aws.Request) {
 	var buf []byte
 	var err error
-	if req.Params != nil {
+	if req.ParamsFilled() {
 		buf, err = json.Marshal(req.Params)
 		if err != nil {
 			req.Error = err
 			return
-		}
-
-		if string(buf) == "null" {
-			buf = emptyJSON
 		}
 	} else {
 		buf = emptyJSON
 	}
 	req.SetBufferBody(buf)
 
-	target := req.Service.TargetPrefix + "." + req.Operation.Name
-	jsonVersion := req.Service.JSONVersion
-	req.HTTPRequest.Header.Add("X-Amz-Target", target)
-	req.HTTPRequest.Header.Add("Content-Type", "application/x-amz-json-"+jsonVersion)
+	if req.Service.TargetPrefix != "" {
+		target := req.Service.TargetPrefix + "." + req.Operation.Name
+		req.HTTPRequest.Header.Add("X-Amz-Target", target)
+	}
+	if req.Service.JSONVersion != "" {
+		jsonVersion := req.Service.JSONVersion
+		req.HTTPRequest.Header.Add("Content-Type", "application/x-amz-json-"+jsonVersion)
+	}
 }
 
 func Unmarshal(req *aws.Request) {

@@ -3129,10 +3129,10 @@ func (v *RequestPaymentConfiguration) MarshalXML(e *xml.Encoder, start xml.Start
 type RestoreObjectInput struct {
 	XMLName xml.Name
 
-	Bucket         *string         `xml:"-" name:"Bucket"`
-	Key            *string         `xml:"-" name:"Key"`
-	RestoreRequest *RestoreRequest `xml:"RestoreRequest,omitempty"`
-	VersionID      *string         `xml:"-" name:"versionId"`
+	Bucket       *string       `xml:"-" name:"Bucket"`
+	Key          *string       `xml:"-" name:"Key"`
+	RestoreInput *RestoreInput `xml:"RestoreInput,omitempty"`
+	VersionID    *string       `xml:"-" name:"versionId"`
 }
 
 func (v *RestoreObjectInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
