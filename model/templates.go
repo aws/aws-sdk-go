@@ -93,7 +93,7 @@ func commonAPI(t *template.Template) (*template.Template, error) {
 import (
   "time"
 
-  "github.com/stripe/aws-go/aws"
+  "github.com/awslabs/aws-sdk-go/aws"
 )
 
 {{ end }}
@@ -112,9 +112,9 @@ func jsonClient(t *template.Template) (*template.Template, error) {
 package {{ .PackageName }}
 
 import (
-	"github.com/stripe/aws-go/aws"
-	"github.com/stripe/aws-go/aws/signer/v4"
-	"github.com/stripe/aws-go/aws/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
+	"github.com/awslabs/aws-sdk-go/aws/protocol/jsonrpc"
 )
 
 // {{ .Name }} is a client for {{ .FullName }}.

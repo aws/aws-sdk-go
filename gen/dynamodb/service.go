@@ -1,9 +1,9 @@
 package dynamodb
 
 import (
-	"github.com/stripe/aws-go/aws"
-	"github.com/stripe/aws-go/aws/protocol/jsonrpc"
-	"github.com/stripe/aws-go/aws/signer/v4"
+	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
 )
 
 // DynamoDB is a client for Amazon DynamoDB.

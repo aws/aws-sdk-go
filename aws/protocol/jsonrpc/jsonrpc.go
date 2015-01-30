@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 
-	"github.com/stripe/aws-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws"
 )
 
 var emptyJSON = []byte("{}")

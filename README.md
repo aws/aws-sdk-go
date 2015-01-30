@@ -1,10 +1,10 @@
-# aws-go
+# AWS SDK for Go
 
-[![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/stripe/aws-go)
-[![Build Status](https://img.shields.io/travis/stripe/aws-go.svg)](https://travis-ci.org/stripe/aws-go)
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/stripe/aws-go/blob/master/LICENSE)
+[![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/awslabs/aws-sdk-go)
+[![Build Status](https://img.shields.io/travis/awslabs/aws-sdk-go.svg)](https://travis-ci.org/awslabs/aws-sdk-go)
+[![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/awslabs/aws-sdk-go/blob/master/LICENSE)
 
-aws-go is a set of clients for all Amazon Web Services APIs,
+aws-sdk-go is a set of clients for all Amazon Web Services APIs,
 automatically generated from the JSON schemas shipped with
 [botocore](http://github.com/boto/botocore).
 
@@ -23,13 +23,13 @@ Please do not confuse this for a stable, feature-complete library.
 
 Let's say you want to use EC2:
 
-    $ go get github.com/stripe/aws-go/gen/ec2
+    $ go get github.com/awslabs/aws-sdk-go/gen/ec2
 
 ## Using
 
 ```go
-import "github.com/stripe/aws-go/aws"
-import "github.com/stripe/aws-go/gen/ec2"
+import "github.com/awslabs/aws-sdk-go/aws"
+import "github.com/awslabs/aws-sdk-go/gen/ec2"
 
 creds := aws.Creds(accessKey, secretKey, "")
 cli := ec2.New(creds, "us-west-2", nil)
@@ -45,6 +45,7 @@ fmt.Println(resp.Reservations)
  * AutoScaling
  * CloudFormation
  * CloudFront
+ * CloudHSM
  * CloudSearch
  * CloudSearchdomain
  * CloudTrail
@@ -58,11 +59,13 @@ fmt.Println(resp.Reservations)
  * Direct Connect
  * DynamoDB
  * EC2
+ * EC2 Container Service
  * Elasticache
  * Elastic Beanstalk
  * Elastic Transcoder
  * ELB
  * EMR
+ * Glacier
  * IAM
  * Import/Export
  * Kinesis

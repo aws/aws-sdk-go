@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stripe/aws-go/aws"
-	"github.com/stripe/aws-go/gen/dynamodb"
+	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/gen/dynamodb"
 )
 
 var dynamoDBClient *dynamodb.DynamoDB

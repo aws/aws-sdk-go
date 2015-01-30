@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stripe/aws-go/aws"
-	"github.com/stripe/aws-go/gen/sqs"
+	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/gen/sqs"
 )
 
 var sqsClient *sqs.SQS
