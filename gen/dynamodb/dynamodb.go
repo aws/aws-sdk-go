@@ -16,6 +16,22 @@ type DynamoDB struct {
 	client *aws.JSONClient
 }
 
+type DynamoDBAPI interface {
+	BatchGetItem(req *BatchGetItemInput) (resp *BatchGetItemOutput, err error)
+	BatchWriteItem(req *BatchWriteItemInput) (resp *BatchWriteItemOutput, err error)
+	CreateTable(req *CreateTableInput) (resp *CreateTableOutput, err error)
+	DeleteItem(req *DeleteItemInput) (resp *DeleteItemOutput, err error)
+	DeleteTable(req *DeleteTableInput) (resp *DeleteTableOutput, err error)
+	DescribeTable(req *DescribeTableInput) (resp *DescribeTableOutput, err error)
+	GetItem(req *GetItemInput) (resp *GetItemOutput, err error)
+	ListTables(req *ListTablesInput) (resp *ListTablesOutput, err error)
+	PutItem(req *PutItemInput) (resp *PutItemOutput, err error)
+	Query(req *QueryInput) (resp *QueryOutput, err error)
+	Scan(req *ScanInput) (resp *ScanOutput, err error)
+	UpdateItem(req *UpdateItemInput) (resp *UpdateItemOutput, err error)
+	UpdateTable(req *UpdateTableInput) (resp *UpdateTableOutput, err error)
+}
+
 // New returns a new DynamoDB client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *DynamoDB {
 	if client == nil {

@@ -21,6 +21,14 @@ type ImportExport struct {
 	client *aws.QueryClient
 }
 
+type ImportExportAPI interface {
+	CancelJob(req *CancelJobInput) (resp *CancelJobOutput, err error)
+	CreateJob(req *CreateJobInput) (resp *CreateJobOutput, err error)
+	GetStatus(req *GetStatusInput) (resp *GetStatusOutput, err error)
+	ListJobs(req *ListJobsInput) (resp *ListJobsOutput, err error)
+	UpdateJob(req *UpdateJobInput) (resp *UpdateJobOutput, err error)
+}
+
 // New returns a new ImportExport client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *ImportExport {
 	if client == nil {

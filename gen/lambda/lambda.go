@@ -27,6 +27,20 @@ type Lambda struct {
 	client *aws.RestClient
 }
 
+type LambdaAPI interface {
+	AddEventSource(req *AddEventSourceRequest) (resp *EventSourceConfiguration, err error)
+	DeleteFunction(req *DeleteFunctionRequest) (err error)
+	GetEventSource(req *GetEventSourceRequest) (resp *EventSourceConfiguration, err error)
+	GetFunction(req *GetFunctionRequest) (resp *GetFunctionResponse, err error)
+	GetFunctionConfiguration(req *GetFunctionConfigurationRequest) (resp *FunctionConfiguration, err error)
+	InvokeAsync(req *InvokeAsyncRequest) (resp *InvokeAsyncResponse, err error)
+	ListEventSources(req *ListEventSourcesRequest) (resp *ListEventSourcesResponse, err error)
+	ListFunctions(req *ListFunctionsRequest) (resp *ListFunctionsResponse, err error)
+	RemoveEventSource(req *RemoveEventSourceRequest) (err error)
+	UpdateFunctionConfiguration(req *UpdateFunctionConfigurationRequest) (resp *FunctionConfiguration, err error)
+	UploadFunction(req *UploadFunctionRequest) (resp *FunctionConfiguration, err error)
+}
+
 // New returns a new Lambda client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *Lambda {
 	if client == nil {

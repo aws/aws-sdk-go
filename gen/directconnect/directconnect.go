@@ -16,6 +16,28 @@ type DirectConnect struct {
 	client *aws.JSONClient
 }
 
+type DirectConnectAPI interface {
+	AllocateConnectionOnInterconnect(req *AllocateConnectionOnInterconnectRequest) (resp *Connection, err error)
+	AllocatePrivateVirtualInterface(req *AllocatePrivateVirtualInterfaceRequest) (resp *VirtualInterface, err error)
+	AllocatePublicVirtualInterface(req *AllocatePublicVirtualInterfaceRequest) (resp *VirtualInterface, err error)
+	ConfirmConnection(req *ConfirmConnectionRequest) (resp *ConfirmConnectionResponse, err error)
+	ConfirmPrivateVirtualInterface(req *ConfirmPrivateVirtualInterfaceRequest) (resp *ConfirmPrivateVirtualInterfaceResponse, err error)
+	ConfirmPublicVirtualInterface(req *ConfirmPublicVirtualInterfaceRequest) (resp *ConfirmPublicVirtualInterfaceResponse, err error)
+	CreateConnection(req *CreateConnectionRequest) (resp *Connection, err error)
+	CreateInterconnect(req *CreateInterconnectRequest) (resp *Interconnect, err error)
+	CreatePrivateVirtualInterface(req *CreatePrivateVirtualInterfaceRequest) (resp *VirtualInterface, err error)
+	CreatePublicVirtualInterface(req *CreatePublicVirtualInterfaceRequest) (resp *VirtualInterface, err error)
+	DeleteConnection(req *DeleteConnectionRequest) (resp *Connection, err error)
+	DeleteInterconnect(req *DeleteInterconnectRequest) (resp *DeleteInterconnectResponse, err error)
+	DeleteVirtualInterface(req *DeleteVirtualInterfaceRequest) (resp *DeleteVirtualInterfaceResponse, err error)
+	DescribeConnections(req *DescribeConnectionsRequest) (resp *Connections, err error)
+	DescribeConnectionsOnInterconnect(req *DescribeConnectionsOnInterconnectRequest) (resp *Connections, err error)
+	DescribeInterconnects(req *DescribeInterconnectsRequest) (resp *Interconnects, err error)
+	DescribeLocations() (resp *Locations, err error)
+	DescribeVirtualGateways() (resp *VirtualGateways, err error)
+	DescribeVirtualInterfaces(req *DescribeVirtualInterfacesRequest) (resp *VirtualInterfaces, err error)
+}
+
 // New returns a new DirectConnect client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *DirectConnect {
 	if client == nil {

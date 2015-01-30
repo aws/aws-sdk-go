@@ -16,6 +16,23 @@ type Support struct {
 	client *aws.JSONClient
 }
 
+type SupportAPI interface {
+	AddAttachmentsToSet(req *AddAttachmentsToSetRequest) (resp *AddAttachmentsToSetResponse, err error)
+	AddCommunicationToCase(req *AddCommunicationToCaseRequest) (resp *AddCommunicationToCaseResponse, err error)
+	CreateCase(req *CreateCaseRequest) (resp *CreateCaseResponse, err error)
+	DescribeAttachment(req *DescribeAttachmentRequest) (resp *DescribeAttachmentResponse, err error)
+	DescribeCases(req *DescribeCasesRequest) (resp *DescribeCasesResponse, err error)
+	DescribeCommunications(req *DescribeCommunicationsRequest) (resp *DescribeCommunicationsResponse, err error)
+	DescribeServices(req *DescribeServicesRequest) (resp *DescribeServicesResponse, err error)
+	DescribeSeverityLevels(req *DescribeSeverityLevelsRequest) (resp *DescribeSeverityLevelsResponse, err error)
+	DescribeTrustedAdvisorCheckRefreshStatuses(req *DescribeTrustedAdvisorCheckRefreshStatusesRequest) (resp *DescribeTrustedAdvisorCheckRefreshStatusesResponse, err error)
+	DescribeTrustedAdvisorCheckResult(req *DescribeTrustedAdvisorCheckResultRequest) (resp *DescribeTrustedAdvisorCheckResultResponse, err error)
+	DescribeTrustedAdvisorCheckSummaries(req *DescribeTrustedAdvisorCheckSummariesRequest) (resp *DescribeTrustedAdvisorCheckSummariesResponse, err error)
+	DescribeTrustedAdvisorChecks(req *DescribeTrustedAdvisorChecksRequest) (resp *DescribeTrustedAdvisorChecksResponse, err error)
+	RefreshTrustedAdvisorCheck(req *RefreshTrustedAdvisorCheckRequest) (resp *RefreshTrustedAdvisorCheckResponse, err error)
+	ResolveCase(req *ResolveCaseRequest) (resp *ResolveCaseResponse, err error)
+}
+
 // New returns a new Support client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *Support {
 	if client == nil {

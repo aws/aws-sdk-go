@@ -27,6 +27,30 @@ type CloudFront struct {
 	client *aws.RestClient
 }
 
+type CloudFrontAPI interface {
+	CreateCloudFrontOriginAccessIdentity(req *CreateCloudFrontOriginAccessIdentityRequest) (resp *CreateCloudFrontOriginAccessIdentityResult, err error)
+	CreateDistribution(req *CreateDistributionRequest) (resp *CreateDistributionResult, err error)
+	CreateInvalidation(req *CreateInvalidationRequest) (resp *CreateInvalidationResult, err error)
+	CreateStreamingDistribution(req *CreateStreamingDistributionRequest) (resp *CreateStreamingDistributionResult, err error)
+	DeleteCloudFrontOriginAccessIdentity(req *DeleteCloudFrontOriginAccessIdentityRequest) (err error)
+	DeleteDistribution(req *DeleteDistributionRequest) (err error)
+	DeleteStreamingDistribution(req *DeleteStreamingDistributionRequest) (err error)
+	GetCloudFrontOriginAccessIdentity(req *GetCloudFrontOriginAccessIdentityRequest) (resp *GetCloudFrontOriginAccessIdentityResult, err error)
+	GetCloudFrontOriginAccessIdentityConfig(req *GetCloudFrontOriginAccessIdentityConfigRequest) (resp *GetCloudFrontOriginAccessIdentityConfigResult, err error)
+	GetDistribution(req *GetDistributionRequest) (resp *GetDistributionResult, err error)
+	GetDistributionConfig(req *GetDistributionConfigRequest) (resp *GetDistributionConfigResult, err error)
+	GetInvalidation(req *GetInvalidationRequest) (resp *GetInvalidationResult, err error)
+	GetStreamingDistribution(req *GetStreamingDistributionRequest) (resp *GetStreamingDistributionResult, err error)
+	GetStreamingDistributionConfig(req *GetStreamingDistributionConfigRequest) (resp *GetStreamingDistributionConfigResult, err error)
+	ListCloudFrontOriginAccessIdentities(req *ListCloudFrontOriginAccessIdentitiesRequest) (resp *ListCloudFrontOriginAccessIdentitiesResult, err error)
+	ListDistributions(req *ListDistributionsRequest) (resp *ListDistributionsResult, err error)
+	ListInvalidations(req *ListInvalidationsRequest) (resp *ListInvalidationsResult, err error)
+	ListStreamingDistributions(req *ListStreamingDistributionsRequest) (resp *ListStreamingDistributionsResult, err error)
+	UpdateCloudFrontOriginAccessIdentity(req *UpdateCloudFrontOriginAccessIdentityRequest) (resp *UpdateCloudFrontOriginAccessIdentityResult, err error)
+	UpdateDistribution(req *UpdateDistributionRequest) (resp *UpdateDistributionResult, err error)
+	UpdateStreamingDistribution(req *UpdateStreamingDistributionRequest) (resp *UpdateStreamingDistributionResult, err error)
+}
+
 // New returns a new CloudFront client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudFront {
 	if client == nil {

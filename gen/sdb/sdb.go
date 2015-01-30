@@ -21,6 +21,19 @@ type SDB struct {
 	client *aws.QueryClient
 }
 
+type SDBAPI interface {
+	BatchDeleteAttributes(req *BatchDeleteAttributesRequest) (err error)
+	BatchPutAttributes(req *BatchPutAttributesRequest) (err error)
+	CreateDomain(req *CreateDomainRequest) (err error)
+	DeleteAttributes(req *DeleteAttributesRequest) (err error)
+	DeleteDomain(req *DeleteDomainRequest) (err error)
+	DomainMetadata(req *DomainMetadataRequest) (resp *DomainMetadataResult, err error)
+	GetAttributes(req *GetAttributesRequest) (resp *GetAttributesResult, err error)
+	ListDomains(req *ListDomainsRequest) (resp *ListDomainsResult, err error)
+	PutAttributes(req *PutAttributesRequest) (err error)
+	Select(req *SelectRequest) (resp *SelectResult, err error)
+}
+
 // New returns a new SDB client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *SDB {
 	if client == nil {

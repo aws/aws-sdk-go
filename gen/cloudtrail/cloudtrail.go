@@ -16,6 +16,16 @@ type CloudTrail struct {
 	client *aws.JSONClient
 }
 
+type CloudTrailAPI interface {
+	CreateTrail(req *CreateTrailRequest) (resp *CreateTrailResponse, err error)
+	DeleteTrail(req *DeleteTrailRequest) (resp *DeleteTrailResponse, err error)
+	DescribeTrails(req *DescribeTrailsRequest) (resp *DescribeTrailsResponse, err error)
+	GetTrailStatus(req *GetTrailStatusRequest) (resp *GetTrailStatusResponse, err error)
+	StartLogging(req *StartLoggingRequest) (resp *StartLoggingResponse, err error)
+	StopLogging(req *StopLoggingRequest) (resp *StopLoggingResponse, err error)
+	UpdateTrail(req *UpdateTrailRequest) (resp *UpdateTrailResponse, err error)
+}
+
 // New returns a new CloudTrail client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudTrail {
 	if client == nil {

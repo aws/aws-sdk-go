@@ -16,6 +16,25 @@ type DataPipeline struct {
 	client *aws.JSONClient
 }
 
+type DataPipelineAPI interface {
+	ActivatePipeline(req *ActivatePipelineInput) (resp *ActivatePipelineOutput, err error)
+	CreatePipeline(req *CreatePipelineInput) (resp *CreatePipelineOutput, err error)
+	DeletePipeline(req *DeletePipelineInput) (err error)
+	DescribeObjects(req *DescribeObjectsInput) (resp *DescribeObjectsOutput, err error)
+	DescribePipelines(req *DescribePipelinesInput) (resp *DescribePipelinesOutput, err error)
+	EvaluateExpression(req *EvaluateExpressionInput) (resp *EvaluateExpressionOutput, err error)
+	GetPipelineDefinition(req *GetPipelineDefinitionInput) (resp *GetPipelineDefinitionOutput, err error)
+	ListPipelines(req *ListPipelinesInput) (resp *ListPipelinesOutput, err error)
+	PollForTask(req *PollForTaskInput) (resp *PollForTaskOutput, err error)
+	PutPipelineDefinition(req *PutPipelineDefinitionInput) (resp *PutPipelineDefinitionOutput, err error)
+	QueryObjects(req *QueryObjectsInput) (resp *QueryObjectsOutput, err error)
+	ReportTaskProgress(req *ReportTaskProgressInput) (resp *ReportTaskProgressOutput, err error)
+	ReportTaskRunnerHeartbeat(req *ReportTaskRunnerHeartbeatInput) (resp *ReportTaskRunnerHeartbeatOutput, err error)
+	SetStatus(req *SetStatusInput) (err error)
+	SetTaskStatus(req *SetTaskStatusInput) (resp *SetTaskStatusOutput, err error)
+	ValidatePipelineDefinition(req *ValidatePipelineDefinitionInput) (resp *ValidatePipelineDefinitionOutput, err error)
+}
+
 // New returns a new DataPipeline client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *DataPipeline {
 	if client == nil {

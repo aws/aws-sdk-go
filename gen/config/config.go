@@ -16,6 +16,20 @@ type Config struct {
 	client *aws.JSONClient
 }
 
+type ConfigAPI interface {
+	DeleteDeliveryChannel(req *DeleteDeliveryChannelRequest) (err error)
+	DeliverConfigSnapshot(req *DeliverConfigSnapshotRequest) (resp *DeliverConfigSnapshotResponse, err error)
+	DescribeConfigurationRecorderStatus(req *DescribeConfigurationRecorderStatusRequest) (resp *DescribeConfigurationRecorderStatusResponse, err error)
+	DescribeConfigurationRecorders(req *DescribeConfigurationRecordersRequest) (resp *DescribeConfigurationRecordersResponse, err error)
+	DescribeDeliveryChannelStatus(req *DescribeDeliveryChannelStatusRequest) (resp *DescribeDeliveryChannelStatusResponse, err error)
+	DescribeDeliveryChannels(req *DescribeDeliveryChannelsRequest) (resp *DescribeDeliveryChannelsResponse, err error)
+	GetResourceConfigHistory(req *GetResourceConfigHistoryRequest) (resp *GetResourceConfigHistoryResponse, err error)
+	PutConfigurationRecorder(req *PutConfigurationRecorderRequest) (err error)
+	PutDeliveryChannel(req *PutDeliveryChannelRequest) (err error)
+	StartConfigurationRecorder(req *StartConfigurationRecorderRequest) (err error)
+	StopConfigurationRecorder(req *StopConfigurationRecorderRequest) (err error)
+}
+
 // New returns a new Config client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *Config {
 	if client == nil {

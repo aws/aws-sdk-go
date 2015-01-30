@@ -21,6 +21,38 @@ type ElasticBeanstalk struct {
 	client *aws.QueryClient
 }
 
+type ElasticBeanstalkAPI interface {
+	CheckDNSAvailability(req *CheckDNSAvailabilityMessage) (resp *CheckDNSAvailabilityResultMessage, err error)
+	CreateApplication(req *CreateApplicationMessage) (resp *ApplicationDescriptionMessage, err error)
+	CreateApplicationVersion(req *CreateApplicationVersionMessage) (resp *ApplicationVersionDescriptionMessage, err error)
+	CreateConfigurationTemplate(req *CreateConfigurationTemplateMessage) (resp *ConfigurationSettingsDescription, err error)
+	CreateEnvironment(req *CreateEnvironmentMessage) (resp *EnvironmentDescription, err error)
+	CreateStorageLocation() (resp *CreateStorageLocationResultMessage, err error)
+	DeleteApplication(req *DeleteApplicationMessage) (err error)
+	DeleteApplicationVersion(req *DeleteApplicationVersionMessage) (err error)
+	DeleteConfigurationTemplate(req *DeleteConfigurationTemplateMessage) (err error)
+	DeleteEnvironmentConfiguration(req *DeleteEnvironmentConfigurationMessage) (err error)
+	DescribeApplicationVersions(req *DescribeApplicationVersionsMessage) (resp *ApplicationVersionDescriptionsMessage, err error)
+	DescribeApplications(req *DescribeApplicationsMessage) (resp *ApplicationDescriptionsMessage, err error)
+	DescribeConfigurationOptions(req *DescribeConfigurationOptionsMessage) (resp *ConfigurationOptionsDescription, err error)
+	DescribeConfigurationSettings(req *DescribeConfigurationSettingsMessage) (resp *ConfigurationSettingsDescriptions, err error)
+	DescribeEnvironmentResources(req *DescribeEnvironmentResourcesMessage) (resp *EnvironmentResourceDescriptionsMessage, err error)
+	DescribeEnvironments(req *DescribeEnvironmentsMessage) (resp *EnvironmentDescriptionsMessage, err error)
+	DescribeEvents(req *DescribeEventsMessage) (resp *EventDescriptionsMessage, err error)
+	ListAvailableSolutionStacks() (resp *ListAvailableSolutionStacksResultMessage, err error)
+	RebuildEnvironment(req *RebuildEnvironmentMessage) (err error)
+	RequestEnvironmentInfo(req *RequestEnvironmentInfoMessage) (err error)
+	RestartAppServer(req *RestartAppServerMessage) (err error)
+	RetrieveEnvironmentInfo(req *RetrieveEnvironmentInfoMessage) (resp *RetrieveEnvironmentInfoResultMessage, err error)
+	SwapEnvironmentCNAMEs(req *SwapEnvironmentCNAMEsMessage) (err error)
+	TerminateEnvironment(req *TerminateEnvironmentMessage) (resp *EnvironmentDescription, err error)
+	UpdateApplication(req *UpdateApplicationMessage) (resp *ApplicationDescriptionMessage, err error)
+	UpdateApplicationVersion(req *UpdateApplicationVersionMessage) (resp *ApplicationVersionDescriptionMessage, err error)
+	UpdateConfigurationTemplate(req *UpdateConfigurationTemplateMessage) (resp *ConfigurationSettingsDescription, err error)
+	UpdateEnvironment(req *UpdateEnvironmentMessage) (resp *EnvironmentDescription, err error)
+	ValidateConfigurationSettings(req *ValidateConfigurationSettingsMessage) (resp *ConfigurationSettingsValidationMessages, err error)
+}
+
 // New returns a new ElasticBeanstalk client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *ElasticBeanstalk {
 	if client == nil {

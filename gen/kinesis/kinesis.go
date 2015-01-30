@@ -16,6 +16,22 @@ type Kinesis struct {
 	client *aws.JSONClient
 }
 
+type KinesisAPI interface {
+	AddTagsToStream(req *AddTagsToStreamInput) (err error)
+	CreateStream(req *CreateStreamInput) (err error)
+	DeleteStream(req *DeleteStreamInput) (err error)
+	DescribeStream(req *DescribeStreamInput) (resp *DescribeStreamOutput, err error)
+	GetRecords(req *GetRecordsInput) (resp *GetRecordsOutput, err error)
+	GetShardIterator(req *GetShardIteratorInput) (resp *GetShardIteratorOutput, err error)
+	ListStreams(req *ListStreamsInput) (resp *ListStreamsOutput, err error)
+	ListTagsForStream(req *ListTagsForStreamInput) (resp *ListTagsForStreamOutput, err error)
+	MergeShards(req *MergeShardsInput) (err error)
+	PutRecord(req *PutRecordInput) (resp *PutRecordOutput, err error)
+	PutRecords(req *PutRecordsInput) (resp *PutRecordsOutput, err error)
+	RemoveTagsFromStream(req *RemoveTagsFromStreamInput) (err error)
+	SplitShard(req *SplitShardInput) (err error)
+}
+
 // New returns a new Kinesis client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *Kinesis {
 	if client == nil {

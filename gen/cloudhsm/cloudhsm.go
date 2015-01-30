@@ -16,6 +16,26 @@ type CloudHSM struct {
 	client *aws.JSONClient
 }
 
+type CloudHSMAPI interface {
+	CreateHapg(req *CreateHapgRequest) (resp *CreateHapgResponse, err error)
+	CreateHSM(req *CreateHSMRequest) (resp *CreateHSMResponse, err error)
+	CreateLunaClient(req *CreateLunaClientRequest) (resp *CreateLunaClientResponse, err error)
+	DeleteHapg(req *DeleteHapgRequest) (resp *DeleteHapgResponse, err error)
+	DeleteHSM(req *DeleteHSMRequest) (resp *DeleteHSMResponse, err error)
+	DeleteLunaClient(req *DeleteLunaClientRequest) (resp *DeleteLunaClientResponse, err error)
+	DescribeHapg(req *DescribeHapgRequest) (resp *DescribeHapgResponse, err error)
+	DescribeHSM(req *DescribeHSMRequest) (resp *DescribeHSMResponse, err error)
+	DescribeLunaClient(req *DescribeLunaClientRequest) (resp *DescribeLunaClientResponse, err error)
+	GetConfig(req *GetConfigRequest) (resp *GetConfigResponse, err error)
+	ListAvailableZones(req *ListAvailableZonesRequest) (resp *ListAvailableZonesResponse, err error)
+	ListHapgs(req *ListHapgsRequest) (resp *ListHapgsResponse, err error)
+	ListHSMs(req *ListHSMsRequest) (resp *ListHSMsResponse, err error)
+	ListLunaClients(req *ListLunaClientsRequest) (resp *ListLunaClientsResponse, err error)
+	ModifyHapg(req *ModifyHapgRequest) (resp *ModifyHapgResponse, err error)
+	ModifyHSM(req *ModifyHSMRequest) (resp *ModifyHSMResponse, err error)
+	ModifyLunaClient(req *ModifyLunaClientRequest) (resp *ModifyLunaClientResponse, err error)
+}
+
 // New returns a new CloudHSM client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudHSM {
 	if client == nil {

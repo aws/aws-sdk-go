@@ -16,6 +16,24 @@ type Route53Domains struct {
 	client *aws.JSONClient
 }
 
+type Route53DomainsAPI interface {
+	CheckDomainAvailability(req *CheckDomainAvailabilityRequest) (resp *CheckDomainAvailabilityResponse, err error)
+	DisableDomainAutoRenew(req *DisableDomainAutoRenewRequest) (resp *DisableDomainAutoRenewResponse, err error)
+	DisableDomainTransferLock(req *DisableDomainTransferLockRequest) (resp *DisableDomainTransferLockResponse, err error)
+	EnableDomainAutoRenew(req *EnableDomainAutoRenewRequest) (resp *EnableDomainAutoRenewResponse, err error)
+	EnableDomainTransferLock(req *EnableDomainTransferLockRequest) (resp *EnableDomainTransferLockResponse, err error)
+	GetDomainDetail(req *GetDomainDetailRequest) (resp *GetDomainDetailResponse, err error)
+	GetOperationDetail(req *GetOperationDetailRequest) (resp *GetOperationDetailResponse, err error)
+	ListDomains(req *ListDomainsRequest) (resp *ListDomainsResponse, err error)
+	ListOperations(req *ListOperationsRequest) (resp *ListOperationsResponse, err error)
+	RegisterDomain(req *RegisterDomainRequest) (resp *RegisterDomainResponse, err error)
+	RetrieveDomainAuthCode(req *RetrieveDomainAuthCodeRequest) (resp *RetrieveDomainAuthCodeResponse, err error)
+	TransferDomain(req *TransferDomainRequest) (resp *TransferDomainResponse, err error)
+	UpdateDomainContact(req *UpdateDomainContactRequest) (resp *UpdateDomainContactResponse, err error)
+	UpdateDomainContactPrivacy(req *UpdateDomainContactPrivacyRequest) (resp *UpdateDomainContactPrivacyResponse, err error)
+	UpdateDomainNameservers(req *UpdateDomainNameserversRequest) (resp *UpdateDomainNameserversResponse, err error)
+}
+
 // New returns a new Route53Domains client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *Route53Domains {
 	if client == nil {

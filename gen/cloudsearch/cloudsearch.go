@@ -21,6 +21,33 @@ type CloudSearch struct {
 	client *aws.QueryClient
 }
 
+type CloudSearchAPI interface {
+	BuildSuggesters(req *BuildSuggestersRequest) (resp *BuildSuggestersResponse, err error)
+	CreateDomain(req *CreateDomainRequest) (resp *CreateDomainResponse, err error)
+	DefineAnalysisScheme(req *DefineAnalysisSchemeRequest) (resp *DefineAnalysisSchemeResponse, err error)
+	DefineExpression(req *DefineExpressionRequest) (resp *DefineExpressionResponse, err error)
+	DefineIndexField(req *DefineIndexFieldRequest) (resp *DefineIndexFieldResponse, err error)
+	DefineSuggester(req *DefineSuggesterRequest) (resp *DefineSuggesterResponse, err error)
+	DeleteAnalysisScheme(req *DeleteAnalysisSchemeRequest) (resp *DeleteAnalysisSchemeResponse, err error)
+	DeleteDomain(req *DeleteDomainRequest) (resp *DeleteDomainResponse, err error)
+	DeleteExpression(req *DeleteExpressionRequest) (resp *DeleteExpressionResponse, err error)
+	DeleteIndexField(req *DeleteIndexFieldRequest) (resp *DeleteIndexFieldResponse, err error)
+	DeleteSuggester(req *DeleteSuggesterRequest) (resp *DeleteSuggesterResponse, err error)
+	DescribeAnalysisSchemes(req *DescribeAnalysisSchemesRequest) (resp *DescribeAnalysisSchemesResponse, err error)
+	DescribeAvailabilityOptions(req *DescribeAvailabilityOptionsRequest) (resp *DescribeAvailabilityOptionsResponse, err error)
+	DescribeDomains(req *DescribeDomainsRequest) (resp *DescribeDomainsResponse, err error)
+	DescribeExpressions(req *DescribeExpressionsRequest) (resp *DescribeExpressionsResponse, err error)
+	DescribeIndexFields(req *DescribeIndexFieldsRequest) (resp *DescribeIndexFieldsResponse, err error)
+	DescribeScalingParameters(req *DescribeScalingParametersRequest) (resp *DescribeScalingParametersResponse, err error)
+	DescribeServiceAccessPolicies(req *DescribeServiceAccessPoliciesRequest) (resp *DescribeServiceAccessPoliciesResponse, err error)
+	DescribeSuggesters(req *DescribeSuggestersRequest) (resp *DescribeSuggestersResponse, err error)
+	IndexDocuments(req *IndexDocumentsRequest) (resp *IndexDocumentsResponse, err error)
+	ListDomainNames() (resp *ListDomainNamesResponse, err error)
+	UpdateAvailabilityOptions(req *UpdateAvailabilityOptionsRequest) (resp *UpdateAvailabilityOptionsResponse, err error)
+	UpdateScalingParameters(req *UpdateScalingParametersRequest) (resp *UpdateScalingParametersResponse, err error)
+	UpdateServiceAccessPolicies(req *UpdateServiceAccessPoliciesRequest) (resp *UpdateServiceAccessPoliciesResponse, err error)
+}
+
 // New returns a new CloudSearch client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudSearch {
 	if client == nil {

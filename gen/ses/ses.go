@@ -21,6 +21,27 @@ type SES struct {
 	client *aws.QueryClient
 }
 
+type SESAPI interface {
+	DeleteIdentity(req *DeleteIdentityRequest) (resp *DeleteIdentityResponse, err error)
+	DeleteVerifiedEmailAddress(req *DeleteVerifiedEmailAddressRequest) (err error)
+	GetIdentityDkimAttributes(req *GetIdentityDkimAttributesRequest) (resp *GetIdentityDkimAttributesResponse, err error)
+	GetIdentityNotificationAttributes(req *GetIdentityNotificationAttributesRequest) (resp *GetIdentityNotificationAttributesResponse, err error)
+	GetIdentityVerificationAttributes(req *GetIdentityVerificationAttributesRequest) (resp *GetIdentityVerificationAttributesResponse, err error)
+	GetSendQuota() (resp *GetSendQuotaResponse, err error)
+	GetSendStatistics() (resp *GetSendStatisticsResponse, err error)
+	ListIdentities(req *ListIdentitiesRequest) (resp *ListIdentitiesResponse, err error)
+	ListVerifiedEmailAddresses() (resp *ListVerifiedEmailAddressesResponse, err error)
+	SendEmail(req *SendEmailRequest) (resp *SendEmailResponse, err error)
+	SendRawEmail(req *SendRawEmailRequest) (resp *SendRawEmailResponse, err error)
+	SetIdentityDkimEnabled(req *SetIdentityDkimEnabledRequest) (resp *SetIdentityDkimEnabledResponse, err error)
+	SetIdentityFeedbackForwardingEnabled(req *SetIdentityFeedbackForwardingEnabledRequest) (resp *SetIdentityFeedbackForwardingEnabledResponse, err error)
+	SetIdentityNotificationTopic(req *SetIdentityNotificationTopicRequest) (resp *SetIdentityNotificationTopicResponse, err error)
+	VerifyDomainDkim(req *VerifyDomainDkimRequest) (resp *VerifyDomainDkimResponse, err error)
+	VerifyDomainIdentity(req *VerifyDomainIdentityRequest) (resp *VerifyDomainIdentityResponse, err error)
+	VerifyEmailAddress(req *VerifyEmailAddressRequest) (err error)
+	VerifyEmailIdentity(req *VerifyEmailIdentityRequest) (resp *VerifyEmailIdentityResponse, err error)
+}
+
 // New returns a new SES client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *SES {
 	if client == nil {

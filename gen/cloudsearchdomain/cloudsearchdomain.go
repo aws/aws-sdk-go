@@ -27,6 +27,12 @@ type CloudSearchDomain struct {
 	client *aws.RestClient
 }
 
+type CloudSearchDomainAPI interface {
+	Search(req *SearchRequest) (resp *SearchResponse, err error)
+	Suggest(req *SuggestRequest) (resp *SuggestResponse, err error)
+	UploadDocuments(req *UploadDocumentsRequest) (resp *UploadDocumentsResponse, err error)
+}
+
 // New returns a new CloudSearchDomain client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudSearchDomain {
 	if client == nil {
