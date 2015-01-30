@@ -98,8 +98,8 @@ func (v4 *signer) sign() {
 	}
 
 	// add the new ones
-	v4.Request.Header.Add("Date", formatted)
-	v4.Request.Header.Add("Authorization", v4.authorization)
+	v4.Request.Header.Set("Date", formatted)
+	v4.Request.Header.Set("Authorization", v4.authorization)
 }
 
 func (v4 *signer) build() {
