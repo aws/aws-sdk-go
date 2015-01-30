@@ -23,6 +23,7 @@ func buildSigner(serviceName string, region string, signTime time.Time, body str
 		Region:          region,
 		AccessKeyID:     "AKID",
 		SecretAccessKey: "SECRET",
+		SessionToken:    "SESSION",
 	}
 }
 
@@ -47,8 +48,8 @@ func TestSignRequest(t *testing.T) {
 	expectedAuth := `
     AWS4-HMAC-SHA256
     Credential=AKID/19700101/us-east-1/dynamodb/aws4_request,
-    SignedHeaders=content-type;host;x-amz-target,
-    Signature=896984d4fdf3b603156e8a3d27a6cae68e3d713ca21f8b7aeb103af4760c72a0
+    SignedHeaders=content-type;host;x-amz-security-token;x-amz-target,
+    Signature=4662104789134800e088b6a2bf3a1153ca7d38ecfc07a69bff2859f04900b67f
   `
 
 	assertEqual(t, expectedAuth, signer.Request.Header.Get("Authorization"))
