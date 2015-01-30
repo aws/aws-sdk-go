@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
+	"reflect"
 	"regexp"
 	"time"
 )
@@ -132,6 +133,14 @@ func (r *Request) AddDebugHandlers() {
 		fmt.Printf("%s\n", string(dumpedBody))
 		fmt.Printf("-----------------------------------------------------\n\n")
 	})
+}
+
+func (r Request) ParamsFilled() bool {
+	return reflect.ValueOf(r.Params).Elem().IsValid()
+}
+
+func (r Request) DataFilled() bool {
+	return reflect.ValueOf(r.Data).Elem().IsValid()
 }
 
 func (r *Request) SetBufferBody(buf []byte) {
