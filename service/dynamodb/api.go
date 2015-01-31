@@ -615,6 +615,381 @@ var (
 	opUpdateTable    *aws.Operation
 )
 
+// Possible values for AttributeAction.
+const (
+	AttributeActionAdd    = "ADD"
+	AttributeActionDelete = "DELETE"
+	AttributeActionPut    = "PUT"
+)
+
+// Possible values for ComparisonOperator.
+const (
+	ComparisonOperatorBeginsWith  = "BEGINS_WITH"
+	ComparisonOperatorBetween     = "BETWEEN"
+	ComparisonOperatorContains    = "CONTAINS"
+	ComparisonOperatorEq          = "EQ"
+	ComparisonOperatorGe          = "GE"
+	ComparisonOperatorGt          = "GT"
+	ComparisonOperatorIn          = "IN"
+	ComparisonOperatorLe          = "LE"
+	ComparisonOperatorLt          = "LT"
+	ComparisonOperatorNe          = "NE"
+	ComparisonOperatorNotContains = "NOT_CONTAINS"
+	ComparisonOperatorNotNull     = "NOT_NULL"
+	ComparisonOperatorNull        = "NULL"
+)
+
+// Possible values for ConditionalOperator.
+const (
+	ConditionalOperatorAnd = "AND"
+	ConditionalOperatorOr  = "OR"
+)
+
+// Possible values for IndexStatus.
+const (
+	IndexStatusActive   = "ACTIVE"
+	IndexStatusCreating = "CREATING"
+	IndexStatusDeleting = "DELETING"
+	IndexStatusUpdating = "UPDATING"
+)
+
+// Possible values for KeyType.
+const (
+	KeyTypeHash  = "HASH"
+	KeyTypeRange = "RANGE"
+)
+
+// Possible values for ProjectionType.
+const (
+	ProjectionTypeAll      = "ALL"
+	ProjectionTypeInclude  = "INCLUDE"
+	ProjectionTypeKeysOnly = "KEYS_ONLY"
+)
+
+// Possible values for ReturnConsumedCapacity.
+const (
+	ReturnConsumedCapacityIndexes = "INDEXES"
+	ReturnConsumedCapacityNone    = "NONE"
+	ReturnConsumedCapacityTotal   = "TOTAL"
+)
+
+// Possible values for ReturnItemCollectionMetrics.
+const (
+	ReturnItemCollectionMetricsNone = "NONE"
+	ReturnItemCollectionMetricsSize = "SIZE"
+)
+
+// Possible values for ReturnValue.
+const (
+	ReturnValueAllNew     = "ALL_NEW"
+	ReturnValueAllOld     = "ALL_OLD"
+	ReturnValueNone       = "NONE"
+	ReturnValueUpdatedNew = "UPDATED_NEW"
+	ReturnValueUpdatedOld = "UPDATED_OLD"
+)
+
+// Possible values for ScalarAttributeType.
+const (
+	ScalarAttributeTypeB = "B"
+	ScalarAttributeTypeN = "N"
+	ScalarAttributeTypeS = "S"
+)
+
+// Possible values for Select.
+const (
+	SelectAllAttributes          = "ALL_ATTRIBUTES"
+	SelectAllProjectedAttributes = "ALL_PROJECTED_ATTRIBUTES"
+	SelectCount                  = "COUNT"
+	SelectSpecificAttributes     = "SPECIFIC_ATTRIBUTES"
+)
+
+// Possible values for TableStatus.
+const (
+	TableStatusActive   = "ACTIVE"
+	TableStatusCreating = "CREATING"
+	TableStatusDeleting = "DELETING"
+	TableStatusUpdating = "UPDATING"
+)
+
+// AttributeDefinition is undocumented.
+type AttributeDefinition struct {
+	AttributeName *string `json:"AttributeName"`
+	AttributeType *string `json:"AttributeType"`
+}
+
+// AttributeValue is undocumented.
+type AttributeValue struct {
+	B    []byte                    `json:"B,omitempty"`
+	BOOL *bool                     `json:"BOOL,omitempty"`
+	BS   [][]byte                  `json:"BS,omitempty"`
+	L    []AttributeValue          `json:"L,omitempty"`
+	M    map[string]AttributeValue `json:"M,omitempty"`
+	N    *string                   `json:"N,omitempty"`
+	NS   []string                  `json:"NS,omitempty"`
+	NULL *bool                     `json:"NULL,omitempty"`
+	S    *string                   `json:"S,omitempty"`
+	SS   []string                  `json:"SS,omitempty"`
+}
+
+// AttributeValueUpdate is undocumented.
+type AttributeValueUpdate struct {
+	Action *string         `json:"Action,omitempty"`
+	Value  *AttributeValue `json:"Value,omitempty"`
+}
+
+// BatchGetItemInput is undocumented.
+type BatchGetItemInput struct {
+	RequestItems           map[string]KeysAndAttributes `json:"RequestItems"`
+	ReturnConsumedCapacity *string                      `json:"ReturnConsumedCapacity,omitempty"`
+}
+
+// BatchGetItemOutput is undocumented.
+type BatchGetItemOutput struct {
+	ConsumedCapacity []ConsumedCapacity                     `json:"ConsumedCapacity,omitempty"`
+	Responses        map[string][]map[string]AttributeValue `json:"Responses,omitempty"`
+	UnprocessedKeys  map[string]KeysAndAttributes           `json:"UnprocessedKeys,omitempty"`
+}
+
+// BatchWriteItemInput is undocumented.
+type BatchWriteItemInput struct {
+	RequestItems                map[string][]WriteRequest `json:"RequestItems"`
+	ReturnConsumedCapacity      *string                   `json:"ReturnConsumedCapacity,omitempty"`
+	ReturnItemCollectionMetrics *string                   `json:"ReturnItemCollectionMetrics,omitempty"`
+}
+
+// BatchWriteItemOutput is undocumented.
+type BatchWriteItemOutput struct {
+	ConsumedCapacity      []ConsumedCapacity                 `json:"ConsumedCapacity,omitempty"`
+	ItemCollectionMetrics map[string][]ItemCollectionMetrics `json:"ItemCollectionMetrics,omitempty"`
+	UnprocessedItems      map[string][]WriteRequest          `json:"UnprocessedItems,omitempty"`
+}
+
+// Capacity is undocumented.
+type Capacity struct {
+	CapacityUnits *float64 `json:"CapacityUnits,omitempty"`
+}
+
+// Condition is undocumented.
+type Condition struct {
+	AttributeValueList []AttributeValue `json:"AttributeValueList,omitempty"`
+	ComparisonOperator *string          `json:"ComparisonOperator"`
+}
+
+// ConsumedCapacity is undocumented.
+type ConsumedCapacity struct {
+	CapacityUnits          *float64            `json:"CapacityUnits,omitempty"`
+	GlobalSecondaryIndexes map[string]Capacity `json:"GlobalSecondaryIndexes,omitempty"`
+	LocalSecondaryIndexes  map[string]Capacity `json:"LocalSecondaryIndexes,omitempty"`
+	Table                  *Capacity           `json:"Table,omitempty"`
+	TableName              *string             `json:"TableName,omitempty"`
+}
+
+// CreateTableInput is undocumented.
+type CreateTableInput struct {
+	AttributeDefinitions   []AttributeDefinition  `json:"AttributeDefinitions"`
+	GlobalSecondaryIndexes []GlobalSecondaryIndex `json:"GlobalSecondaryIndexes,omitempty"`
+	KeySchema              []KeySchemaElement     `json:"KeySchema"`
+	LocalSecondaryIndexes  []LocalSecondaryIndex  `json:"LocalSecondaryIndexes,omitempty"`
+	ProvisionedThroughput  *ProvisionedThroughput `json:"ProvisionedThroughput"`
+	TableName              *string                `json:"TableName"`
+}
+
+// CreateTableOutput is undocumented.
+type CreateTableOutput struct {
+	TableDescription *TableDescription `json:"TableDescription,omitempty"`
+}
+
+// DeleteItemInput is undocumented.
+type DeleteItemInput struct {
+	ConditionExpression         *string                           `json:"ConditionExpression,omitempty"`
+	ConditionalOperator         *string                           `json:"ConditionalOperator,omitempty"`
+	Expected                    map[string]ExpectedAttributeValue `json:"Expected,omitempty"`
+	ExpressionAttributeNames    map[string]string                 `json:"ExpressionAttributeNames,omitempty"`
+	ExpressionAttributeValues   map[string]AttributeValue         `json:"ExpressionAttributeValues,omitempty"`
+	Key                         map[string]AttributeValue         `json:"Key"`
+	ReturnConsumedCapacity      *string                           `json:"ReturnConsumedCapacity,omitempty"`
+	ReturnItemCollectionMetrics *string                           `json:"ReturnItemCollectionMetrics,omitempty"`
+	ReturnValues                *string                           `json:"ReturnValues,omitempty"`
+	TableName                   *string                           `json:"TableName"`
+}
+
+// DeleteItemOutput is undocumented.
+type DeleteItemOutput struct {
+	Attributes            map[string]AttributeValue `json:"Attributes,omitempty"`
+	ConsumedCapacity      *ConsumedCapacity         `json:"ConsumedCapacity,omitempty"`
+	ItemCollectionMetrics *ItemCollectionMetrics    `json:"ItemCollectionMetrics,omitempty"`
+}
+
+// DeleteRequest is undocumented.
+type DeleteRequest struct {
+	Key map[string]AttributeValue `json:"Key"`
+}
+
+// DeleteTableInput is undocumented.
+type DeleteTableInput struct {
+	TableName *string `json:"TableName"`
+}
+
+// DeleteTableOutput is undocumented.
+type DeleteTableOutput struct {
+	TableDescription *TableDescription `json:"TableDescription,omitempty"`
+}
+
+// DescribeTableInput is undocumented.
+type DescribeTableInput struct {
+	TableName *string `json:"TableName"`
+}
+
+// DescribeTableOutput is undocumented.
+type DescribeTableOutput struct {
+	Table *TableDescription `json:"Table,omitempty"`
+}
+
+// ExpectedAttributeValue is undocumented.
+type ExpectedAttributeValue struct {
+	AttributeValueList []AttributeValue `json:"AttributeValueList,omitempty"`
+	ComparisonOperator *string          `json:"ComparisonOperator,omitempty"`
+	Exists             *bool            `json:"Exists,omitempty"`
+	Value              *AttributeValue  `json:"Value,omitempty"`
+}
+
+// GetItemInput is undocumented.
+type GetItemInput struct {
+	AttributesToGet          []string                  `json:"AttributesToGet,omitempty"`
+	ConsistentRead           *bool                     `json:"ConsistentRead,omitempty"`
+	ExpressionAttributeNames map[string]string         `json:"ExpressionAttributeNames,omitempty"`
+	Key                      map[string]AttributeValue `json:"Key"`
+	ProjectionExpression     *string                   `json:"ProjectionExpression,omitempty"`
+	ReturnConsumedCapacity   *string                   `json:"ReturnConsumedCapacity,omitempty"`
+	TableName                *string                   `json:"TableName"`
+}
+
+// GetItemOutput is undocumented.
+type GetItemOutput struct {
+	ConsumedCapacity *ConsumedCapacity         `json:"ConsumedCapacity,omitempty"`
+	Item             map[string]AttributeValue `json:"Item,omitempty"`
+}
+
+// GlobalSecondaryIndex is undocumented.
+type GlobalSecondaryIndex struct {
+	IndexName             *string                `json:"IndexName"`
+	KeySchema             []KeySchemaElement     `json:"KeySchema"`
+	Projection            *Projection            `json:"Projection"`
+	ProvisionedThroughput *ProvisionedThroughput `json:"ProvisionedThroughput"`
+}
+
+// GlobalSecondaryIndexDescription is undocumented.
+type GlobalSecondaryIndexDescription struct {
+	IndexName             *string                           `json:"IndexName,omitempty"`
+	IndexSizeBytes        *int64                            `json:"IndexSizeBytes,omitempty"`
+	IndexStatus           *string                           `json:"IndexStatus,omitempty"`
+	ItemCount             *int64                            `json:"ItemCount,omitempty"`
+	KeySchema             []KeySchemaElement                `json:"KeySchema,omitempty"`
+	Projection            *Projection                       `json:"Projection,omitempty"`
+	ProvisionedThroughput *ProvisionedThroughputDescription `json:"ProvisionedThroughput,omitempty"`
+}
+
+// GlobalSecondaryIndexUpdate is undocumented.
+type GlobalSecondaryIndexUpdate struct {
+	Update *UpdateGlobalSecondaryIndexAction `json:"Update,omitempty"`
+}
+
+// ItemCollectionMetrics is undocumented.
+type ItemCollectionMetrics struct {
+	ItemCollectionKey   map[string]AttributeValue `json:"ItemCollectionKey,omitempty"`
+	SizeEstimateRangeGB []float64                 `json:"SizeEstimateRangeGB,omitempty"`
+}
+
+// KeySchemaElement is undocumented.
+type KeySchemaElement struct {
+	AttributeName *string `json:"AttributeName"`
+	KeyType       *string `json:"KeyType"`
+}
+
+// KeysAndAttributes is undocumented.
+type KeysAndAttributes struct {
+	AttributesToGet          []string                    `json:"AttributesToGet,omitempty"`
+	ConsistentRead           *bool                       `json:"ConsistentRead,omitempty"`
+	ExpressionAttributeNames map[string]string           `json:"ExpressionAttributeNames,omitempty"`
+	Keys                     []map[string]AttributeValue `json:"Keys"`
+	ProjectionExpression     *string                     `json:"ProjectionExpression,omitempty"`
+}
+
+// ListTablesInput is undocumented.
+type ListTablesInput struct {
+	ExclusiveStartTableName *string `json:"ExclusiveStartTableName,omitempty"`
+	Limit                   *int    `json:"Limit,omitempty"`
+}
+
+// ListTablesOutput is undocumented.
+type ListTablesOutput struct {
+	LastEvaluatedTableName *string  `json:"LastEvaluatedTableName,omitempty"`
+	TableNames             []string `json:"TableNames,omitempty"`
+}
+
+// LocalSecondaryIndex is undocumented.
+type LocalSecondaryIndex struct {
+	IndexName  *string            `json:"IndexName"`
+	KeySchema  []KeySchemaElement `json:"KeySchema"`
+	Projection *Projection        `json:"Projection"`
+}
+
+// LocalSecondaryIndexDescription is undocumented.
+type LocalSecondaryIndexDescription struct {
+	IndexName      *string            `json:"IndexName,omitempty"`
+	IndexSizeBytes *int64             `json:"IndexSizeBytes,omitempty"`
+	ItemCount      *int64             `json:"ItemCount,omitempty"`
+	KeySchema      []KeySchemaElement `json:"KeySchema,omitempty"`
+	Projection     *Projection        `json:"Projection,omitempty"`
+}
+
+// Projection is undocumented.
+type Projection struct {
+	NonKeyAttributes []string `json:"NonKeyAttributes,omitempty"`
+	ProjectionType   *string  `json:"ProjectionType,omitempty"`
+}
+
+// ProvisionedThroughput is undocumented.
+type ProvisionedThroughput struct {
+	ReadCapacityUnits  *int64 `json:"ReadCapacityUnits"`
+	WriteCapacityUnits *int64 `json:"WriteCapacityUnits"`
+}
+
+// ProvisionedThroughputDescription is undocumented.
+type ProvisionedThroughputDescription struct {
+	LastDecreaseDateTime   *aws.UnixTimestamp `json:"LastDecreaseDateTime,omitempty"`
+	LastIncreaseDateTime   *aws.UnixTimestamp `json:"LastIncreaseDateTime,omitempty"`
+	NumberOfDecreasesToday *int64             `json:"NumberOfDecreasesToday,omitempty"`
+	ReadCapacityUnits      *int64             `json:"ReadCapacityUnits,omitempty"`
+	WriteCapacityUnits     *int64             `json:"WriteCapacityUnits,omitempty"`
+}
+
+// PutItemInput is undocumented.
+type PutItemInput struct {
+	ConditionExpression         *string                           `json:"ConditionExpression,omitempty"`
+	ConditionalOperator         *string                           `json:"ConditionalOperator,omitempty"`
+	Expected                    map[string]ExpectedAttributeValue `json:"Expected,omitempty"`
+	ExpressionAttributeNames    map[string]string                 `json:"ExpressionAttributeNames,omitempty"`
+	ExpressionAttributeValues   map[string]AttributeValue         `json:"ExpressionAttributeValues,omitempty"`
+	Item                        map[string]AttributeValue         `json:"Item"`
+	ReturnConsumedCapacity      *string                           `json:"ReturnConsumedCapacity,omitempty"`
+	ReturnItemCollectionMetrics *string                           `json:"ReturnItemCollectionMetrics,omitempty"`
+	ReturnValues                *string                           `json:"ReturnValues,omitempty"`
+	TableName                   *string                           `json:"TableName"`
+}
+
+// PutItemOutput is undocumented.
+type PutItemOutput struct {
+	Attributes            map[string]AttributeValue `json:"Attributes,omitempty"`
+	ConsumedCapacity      *ConsumedCapacity         `json:"ConsumedCapacity,omitempty"`
+	ItemCollectionMetrics *ItemCollectionMetrics    `json:"ItemCollectionMetrics,omitempty"`
+}
+
+// PutRequest is undocumented.
+type PutRequest struct {
+	Item map[string]AttributeValue `json:"Item"`
+}
+
 // QueryInput is undocumented.
 type QueryInput struct {
 	AttributesToGet           []string                  `json:"AttributesToGet,omitempty"`
@@ -635,139 +1010,6 @@ type QueryInput struct {
 	TableName                 *string                   `json:"TableName"`
 }
 
-// AttributeValue is undocumented.
-type AttributeValue struct {
-	B    []byte                    `json:"B,omitempty"`
-	BOOL *bool                     `json:"BOOL,omitempty"`
-	BS   [][]byte                  `json:"BS,omitempty"`
-	L    []AttributeValue          `json:"L,omitempty"`
-	M    map[string]AttributeValue `json:"M,omitempty"`
-	N    *string                   `json:"N,omitempty"`
-	NS   []string                  `json:"NS,omitempty"`
-	NULL *bool                     `json:"NULL,omitempty"`
-	S    *string                   `json:"S,omitempty"`
-	SS   []string                  `json:"SS,omitempty"`
-}
-
-// ItemCollectionMetrics is undocumented.
-type ItemCollectionMetrics struct {
-	ItemCollectionKey   map[string]AttributeValue `json:"ItemCollectionKey,omitempty"`
-	SizeEstimateRangeGB []float64                 `json:"SizeEstimateRangeGB,omitempty"`
-}
-
-// AttributeDefinition is undocumented.
-type AttributeDefinition struct {
-	AttributeName *string `json:"AttributeName"`
-	AttributeType *string `json:"AttributeType"`
-}
-
-// Possible values for Select.
-const (
-	SelectAllAttributes          = "ALL_ATTRIBUTES"
-	SelectAllProjectedAttributes = "ALL_PROJECTED_ATTRIBUTES"
-	SelectCount                  = "COUNT"
-	SelectSpecificAttributes     = "SPECIFIC_ATTRIBUTES"
-)
-
-// UpdateGlobalSecondaryIndexAction is undocumented.
-type UpdateGlobalSecondaryIndexAction struct {
-	IndexName             *string                `json:"IndexName"`
-	ProvisionedThroughput *ProvisionedThroughput `json:"ProvisionedThroughput"`
-}
-
-// GlobalSecondaryIndexDescription is undocumented.
-type GlobalSecondaryIndexDescription struct {
-	IndexName             *string                           `json:"IndexName,omitempty"`
-	IndexSizeBytes        *int64                            `json:"IndexSizeBytes,omitempty"`
-	IndexStatus           *string                           `json:"IndexStatus,omitempty"`
-	ItemCount             *int64                            `json:"ItemCount,omitempty"`
-	KeySchema             []KeySchemaElement                `json:"KeySchema,omitempty"`
-	Projection            *Projection                       `json:"Projection,omitempty"`
-	ProvisionedThroughput *ProvisionedThroughputDescription `json:"ProvisionedThroughput,omitempty"`
-}
-
-// WriteRequest is undocumented.
-type WriteRequest struct {
-	DeleteRequest *DeleteRequest `json:"DeleteRequest,omitempty"`
-	PutRequest    *PutRequest    `json:"PutRequest,omitempty"`
-}
-
-// BatchWriteItemOutput is undocumented.
-type BatchWriteItemOutput struct {
-	ConsumedCapacity      []ConsumedCapacity                 `json:"ConsumedCapacity,omitempty"`
-	ItemCollectionMetrics map[string][]ItemCollectionMetrics `json:"ItemCollectionMetrics,omitempty"`
-	UnprocessedItems      map[string][]WriteRequest          `json:"UnprocessedItems,omitempty"`
-}
-
-// Possible values for IndexStatus.
-const (
-	IndexStatusActive   = "ACTIVE"
-	IndexStatusCreating = "CREATING"
-	IndexStatusDeleting = "DELETING"
-	IndexStatusUpdating = "UPDATING"
-)
-
-// ListTablesOutput is undocumented.
-type ListTablesOutput struct {
-	LastEvaluatedTableName *string  `json:"LastEvaluatedTableName,omitempty"`
-	TableNames             []string `json:"TableNames,omitempty"`
-}
-
-// BatchWriteItemInput is undocumented.
-type BatchWriteItemInput struct {
-	RequestItems                map[string][]WriteRequest `json:"RequestItems"`
-	ReturnConsumedCapacity      *string                   `json:"ReturnConsumedCapacity,omitempty"`
-	ReturnItemCollectionMetrics *string                   `json:"ReturnItemCollectionMetrics,omitempty"`
-}
-
-// BatchGetItemInput is undocumented.
-type BatchGetItemInput struct {
-	RequestItems           map[string]KeysAndAttributes `json:"RequestItems"`
-	ReturnConsumedCapacity *string                      `json:"ReturnConsumedCapacity,omitempty"`
-}
-
-// ConsumedCapacity is undocumented.
-type ConsumedCapacity struct {
-	CapacityUnits          *float64            `json:"CapacityUnits,omitempty"`
-	GlobalSecondaryIndexes map[string]Capacity `json:"GlobalSecondaryIndexes,omitempty"`
-	LocalSecondaryIndexes  map[string]Capacity `json:"LocalSecondaryIndexes,omitempty"`
-	Table                  *Capacity           `json:"Table,omitempty"`
-	TableName              *string             `json:"TableName,omitempty"`
-}
-
-// UpdateItemOutput is undocumented.
-type UpdateItemOutput struct {
-	Attributes            map[string]AttributeValue `json:"Attributes,omitempty"`
-	ConsumedCapacity      *ConsumedCapacity         `json:"ConsumedCapacity,omitempty"`
-	ItemCollectionMetrics *ItemCollectionMetrics    `json:"ItemCollectionMetrics,omitempty"`
-}
-
-// UpdateTableInput is undocumented.
-type UpdateTableInput struct {
-	GlobalSecondaryIndexUpdates []GlobalSecondaryIndexUpdate `json:"GlobalSecondaryIndexUpdates,omitempty"`
-	ProvisionedThroughput       *ProvisionedThroughput       `json:"ProvisionedThroughput,omitempty"`
-	TableName                   *string                      `json:"TableName"`
-}
-
-// TableDescription is undocumented.
-type TableDescription struct {
-	AttributeDefinitions   []AttributeDefinition             `json:"AttributeDefinitions,omitempty"`
-	CreationDateTime       *aws.UnixTimestamp                `json:"CreationDateTime,omitempty"`
-	GlobalSecondaryIndexes []GlobalSecondaryIndexDescription `json:"GlobalSecondaryIndexes,omitempty"`
-	ItemCount              *int64                            `json:"ItemCount,omitempty"`
-	KeySchema              []KeySchemaElement                `json:"KeySchema,omitempty"`
-	LocalSecondaryIndexes  []LocalSecondaryIndexDescription  `json:"LocalSecondaryIndexes,omitempty"`
-	ProvisionedThroughput  *ProvisionedThroughputDescription `json:"ProvisionedThroughput,omitempty"`
-	TableName              *string                           `json:"TableName,omitempty"`
-	TableSizeBytes         *int64                            `json:"TableSizeBytes,omitempty"`
-	TableStatus            *string                           `json:"TableStatus,omitempty"`
-}
-
-// DescribeTableOutput is undocumented.
-type DescribeTableOutput struct {
-	Table *TableDescription `json:"Table,omitempty"`
-}
-
 // QueryOutput is undocumented.
 type QueryOutput struct {
 	ConsumedCapacity *ConsumedCapacity           `json:"ConsumedCapacity,omitempty"`
@@ -776,170 +1018,6 @@ type QueryOutput struct {
 	LastEvaluatedKey map[string]AttributeValue   `json:"LastEvaluatedKey,omitempty"`
 	ScannedCount     *int                        `json:"ScannedCount,omitempty"`
 }
-
-// Possible values for ConditionalOperator.
-const (
-	ConditionalOperatorAnd = "AND"
-	ConditionalOperatorOr  = "OR"
-)
-
-// GetItemInput is undocumented.
-type GetItemInput struct {
-	AttributesToGet          []string                  `json:"AttributesToGet,omitempty"`
-	ConsistentRead           *bool                     `json:"ConsistentRead,omitempty"`
-	ExpressionAttributeNames map[string]string         `json:"ExpressionAttributeNames,omitempty"`
-	Key                      map[string]AttributeValue `json:"Key"`
-	ProjectionExpression     *string                   `json:"ProjectionExpression,omitempty"`
-	ReturnConsumedCapacity   *string                   `json:"ReturnConsumedCapacity,omitempty"`
-	TableName                *string                   `json:"TableName"`
-}
-
-// AttributeValueUpdate is undocumented.
-type AttributeValueUpdate struct {
-	Action *string         `json:"Action,omitempty"`
-	Value  *AttributeValue `json:"Value,omitempty"`
-}
-
-// Possible values for ScalarAttributeType.
-const (
-	ScalarAttributeTypeB = "B"
-	ScalarAttributeTypeN = "N"
-	ScalarAttributeTypeS = "S"
-)
-
-// KeysAndAttributes is undocumented.
-type KeysAndAttributes struct {
-	AttributesToGet          []string                    `json:"AttributesToGet,omitempty"`
-	ConsistentRead           *bool                       `json:"ConsistentRead,omitempty"`
-	ExpressionAttributeNames map[string]string           `json:"ExpressionAttributeNames,omitempty"`
-	Keys                     []map[string]AttributeValue `json:"Keys"`
-	ProjectionExpression     *string                     `json:"ProjectionExpression,omitempty"`
-}
-
-// Possible values for ReturnItemCollectionMetrics.
-const (
-	ReturnItemCollectionMetricsNone = "NONE"
-	ReturnItemCollectionMetricsSize = "SIZE"
-)
-
-// Possible values for ReturnValue.
-const (
-	ReturnValueAllNew     = "ALL_NEW"
-	ReturnValueAllOld     = "ALL_OLD"
-	ReturnValueNone       = "NONE"
-	ReturnValueUpdatedNew = "UPDATED_NEW"
-	ReturnValueUpdatedOld = "UPDATED_OLD"
-)
-
-// GlobalSecondaryIndexUpdate is undocumented.
-type GlobalSecondaryIndexUpdate struct {
-	Update *UpdateGlobalSecondaryIndexAction `json:"Update,omitempty"`
-}
-
-// CreateTableInput is undocumented.
-type CreateTableInput struct {
-	AttributeDefinitions   []AttributeDefinition  `json:"AttributeDefinitions"`
-	GlobalSecondaryIndexes []GlobalSecondaryIndex `json:"GlobalSecondaryIndexes,omitempty"`
-	KeySchema              []KeySchemaElement     `json:"KeySchema"`
-	LocalSecondaryIndexes  []LocalSecondaryIndex  `json:"LocalSecondaryIndexes,omitempty"`
-	ProvisionedThroughput  *ProvisionedThroughput `json:"ProvisionedThroughput"`
-	TableName              *string                `json:"TableName"`
-}
-
-// DeleteRequest is undocumented.
-type DeleteRequest struct {
-	Key map[string]AttributeValue `json:"Key"`
-}
-
-// UpdateItemInput is undocumented.
-type UpdateItemInput struct {
-	AttributeUpdates            map[string]AttributeValueUpdate   `json:"AttributeUpdates,omitempty"`
-	ConditionExpression         *string                           `json:"ConditionExpression,omitempty"`
-	ConditionalOperator         *string                           `json:"ConditionalOperator,omitempty"`
-	Expected                    map[string]ExpectedAttributeValue `json:"Expected,omitempty"`
-	ExpressionAttributeNames    map[string]string                 `json:"ExpressionAttributeNames,omitempty"`
-	ExpressionAttributeValues   map[string]AttributeValue         `json:"ExpressionAttributeValues,omitempty"`
-	Key                         map[string]AttributeValue         `json:"Key"`
-	ReturnConsumedCapacity      *string                           `json:"ReturnConsumedCapacity,omitempty"`
-	ReturnItemCollectionMetrics *string                           `json:"ReturnItemCollectionMetrics,omitempty"`
-	ReturnValues                *string                           `json:"ReturnValues,omitempty"`
-	TableName                   *string                           `json:"TableName"`
-	UpdateExpression            *string                           `json:"UpdateExpression,omitempty"`
-}
-
-// CreateTableOutput is undocumented.
-type CreateTableOutput struct {
-	TableDescription *TableDescription `json:"TableDescription,omitempty"`
-}
-
-// PutRequest is undocumented.
-type PutRequest struct {
-	Item map[string]AttributeValue `json:"Item"`
-}
-
-// Capacity is undocumented.
-type Capacity struct {
-	CapacityUnits *float64 `json:"CapacityUnits,omitempty"`
-}
-
-// LocalSecondaryIndex is undocumented.
-type LocalSecondaryIndex struct {
-	IndexName  *string            `json:"IndexName"`
-	KeySchema  []KeySchemaElement `json:"KeySchema"`
-	Projection *Projection        `json:"Projection"`
-}
-
-// ListTablesInput is undocumented.
-type ListTablesInput struct {
-	ExclusiveStartTableName *string `json:"ExclusiveStartTableName,omitempty"`
-	Limit                   *int    `json:"Limit,omitempty"`
-}
-
-// GetItemOutput is undocumented.
-type GetItemOutput struct {
-	ConsumedCapacity *ConsumedCapacity         `json:"ConsumedCapacity,omitempty"`
-	Item             map[string]AttributeValue `json:"Item,omitempty"`
-}
-
-// Possible values for TableStatus.
-const (
-	TableStatusActive   = "ACTIVE"
-	TableStatusCreating = "CREATING"
-	TableStatusDeleting = "DELETING"
-	TableStatusUpdating = "UPDATING"
-)
-
-// LocalSecondaryIndexDescription is undocumented.
-type LocalSecondaryIndexDescription struct {
-	IndexName      *string            `json:"IndexName,omitempty"`
-	IndexSizeBytes *int64             `json:"IndexSizeBytes,omitempty"`
-	ItemCount      *int64             `json:"ItemCount,omitempty"`
-	KeySchema      []KeySchemaElement `json:"KeySchema,omitempty"`
-	Projection     *Projection        `json:"Projection,omitempty"`
-}
-
-// ExpectedAttributeValue is undocumented.
-type ExpectedAttributeValue struct {
-	AttributeValueList []AttributeValue `json:"AttributeValueList,omitempty"`
-	ComparisonOperator *string          `json:"ComparisonOperator,omitempty"`
-	Exists             *bool            `json:"Exists,omitempty"`
-	Value              *AttributeValue  `json:"Value,omitempty"`
-}
-
-// GlobalSecondaryIndex is undocumented.
-type GlobalSecondaryIndex struct {
-	IndexName             *string                `json:"IndexName"`
-	KeySchema             []KeySchemaElement     `json:"KeySchema"`
-	Projection            *Projection            `json:"Projection"`
-	ProvisionedThroughput *ProvisionedThroughput `json:"ProvisionedThroughput"`
-}
-
-// Possible values for AttributeAction.
-const (
-	AttributeActionAdd    = "ADD"
-	AttributeActionDelete = "DELETE"
-	AttributeActionPut    = "PUT"
-)
 
 // ScanInput is undocumented.
 type ScanInput struct {
@@ -959,56 +1037,38 @@ type ScanInput struct {
 	TotalSegments             *int                      `json:"TotalSegments,omitempty"`
 }
 
-// KeySchemaElement is undocumented.
-type KeySchemaElement struct {
-	AttributeName *string `json:"AttributeName"`
-	KeyType       *string `json:"KeyType"`
+// ScanOutput is undocumented.
+type ScanOutput struct {
+	ConsumedCapacity *ConsumedCapacity           `json:"ConsumedCapacity,omitempty"`
+	Count            *int                        `json:"Count,omitempty"`
+	Items            []map[string]AttributeValue `json:"Items,omitempty"`
+	LastEvaluatedKey map[string]AttributeValue   `json:"LastEvaluatedKey,omitempty"`
+	ScannedCount     *int                        `json:"ScannedCount,omitempty"`
 }
 
-// UpdateTableOutput is undocumented.
-type UpdateTableOutput struct {
-	TableDescription *TableDescription `json:"TableDescription,omitempty"`
+// TableDescription is undocumented.
+type TableDescription struct {
+	AttributeDefinitions   []AttributeDefinition             `json:"AttributeDefinitions,omitempty"`
+	CreationDateTime       *aws.UnixTimestamp                `json:"CreationDateTime,omitempty"`
+	GlobalSecondaryIndexes []GlobalSecondaryIndexDescription `json:"GlobalSecondaryIndexes,omitempty"`
+	ItemCount              *int64                            `json:"ItemCount,omitempty"`
+	KeySchema              []KeySchemaElement                `json:"KeySchema,omitempty"`
+	LocalSecondaryIndexes  []LocalSecondaryIndexDescription  `json:"LocalSecondaryIndexes,omitempty"`
+	ProvisionedThroughput  *ProvisionedThroughputDescription `json:"ProvisionedThroughput,omitempty"`
+	TableName              *string                           `json:"TableName,omitempty"`
+	TableSizeBytes         *int64                            `json:"TableSizeBytes,omitempty"`
+	TableStatus            *string                           `json:"TableStatus,omitempty"`
 }
 
-// ProvisionedThroughput is undocumented.
-type ProvisionedThroughput struct {
-	ReadCapacityUnits  *int64 `json:"ReadCapacityUnits"`
-	WriteCapacityUnits *int64 `json:"WriteCapacityUnits"`
+// UpdateGlobalSecondaryIndexAction is undocumented.
+type UpdateGlobalSecondaryIndexAction struct {
+	IndexName             *string                `json:"IndexName"`
+	ProvisionedThroughput *ProvisionedThroughput `json:"ProvisionedThroughput"`
 }
 
-// Possible values for ComparisonOperator.
-const (
-	ComparisonOperatorBeginsWith  = "BEGINS_WITH"
-	ComparisonOperatorBetween     = "BETWEEN"
-	ComparisonOperatorContains    = "CONTAINS"
-	ComparisonOperatorEq          = "EQ"
-	ComparisonOperatorGe          = "GE"
-	ComparisonOperatorGt          = "GT"
-	ComparisonOperatorIn          = "IN"
-	ComparisonOperatorLe          = "LE"
-	ComparisonOperatorLt          = "LT"
-	ComparisonOperatorNe          = "NE"
-	ComparisonOperatorNotContains = "NOT_CONTAINS"
-	ComparisonOperatorNotNull     = "NOT_NULL"
-	ComparisonOperatorNull        = "NULL"
-)
-
-// DeleteItemOutput is undocumented.
-type DeleteItemOutput struct {
-	Attributes            map[string]AttributeValue `json:"Attributes,omitempty"`
-	ConsumedCapacity      *ConsumedCapacity         `json:"ConsumedCapacity,omitempty"`
-	ItemCollectionMetrics *ItemCollectionMetrics    `json:"ItemCollectionMetrics,omitempty"`
-}
-
-// Possible values for ReturnConsumedCapacity.
-const (
-	ReturnConsumedCapacityIndexes = "INDEXES"
-	ReturnConsumedCapacityNone    = "NONE"
-	ReturnConsumedCapacityTotal   = "TOTAL"
-)
-
-// DeleteItemInput is undocumented.
-type DeleteItemInput struct {
+// UpdateItemInput is undocumented.
+type UpdateItemInput struct {
+	AttributeUpdates            map[string]AttributeValueUpdate   `json:"AttributeUpdates,omitempty"`
 	ConditionExpression         *string                           `json:"ConditionExpression,omitempty"`
 	ConditionalOperator         *string                           `json:"ConditionalOperator,omitempty"`
 	Expected                    map[string]ExpectedAttributeValue `json:"Expected,omitempty"`
@@ -1019,93 +1079,33 @@ type DeleteItemInput struct {
 	ReturnItemCollectionMetrics *string                           `json:"ReturnItemCollectionMetrics,omitempty"`
 	ReturnValues                *string                           `json:"ReturnValues,omitempty"`
 	TableName                   *string                           `json:"TableName"`
+	UpdateExpression            *string                           `json:"UpdateExpression,omitempty"`
 }
 
-// Condition is undocumented.
-type Condition struct {
-	AttributeValueList []AttributeValue `json:"AttributeValueList,omitempty"`
-	ComparisonOperator *string          `json:"ComparisonOperator"`
-}
-
-// DeleteTableOutput is undocumented.
-type DeleteTableOutput struct {
-	TableDescription *TableDescription `json:"TableDescription,omitempty"`
-}
-
-// PutItemInput is undocumented.
-type PutItemInput struct {
-	ConditionExpression         *string                           `json:"ConditionExpression,omitempty"`
-	ConditionalOperator         *string                           `json:"ConditionalOperator,omitempty"`
-	Expected                    map[string]ExpectedAttributeValue `json:"Expected,omitempty"`
-	ExpressionAttributeNames    map[string]string                 `json:"ExpressionAttributeNames,omitempty"`
-	ExpressionAttributeValues   map[string]AttributeValue         `json:"ExpressionAttributeValues,omitempty"`
-	Item                        map[string]AttributeValue         `json:"Item"`
-	ReturnConsumedCapacity      *string                           `json:"ReturnConsumedCapacity,omitempty"`
-	ReturnItemCollectionMetrics *string                           `json:"ReturnItemCollectionMetrics,omitempty"`
-	ReturnValues                *string                           `json:"ReturnValues,omitempty"`
-	TableName                   *string                           `json:"TableName"`
-}
-
-// BatchGetItemOutput is undocumented.
-type BatchGetItemOutput struct {
-	ConsumedCapacity []ConsumedCapacity                     `json:"ConsumedCapacity,omitempty"`
-	Responses        map[string][]map[string]AttributeValue `json:"Responses,omitempty"`
-	UnprocessedKeys  map[string]KeysAndAttributes           `json:"UnprocessedKeys,omitempty"`
-}
-
-// Possible values for ProjectionType.
-const (
-	ProjectionTypeAll      = "ALL"
-	ProjectionTypeInclude  = "INCLUDE"
-	ProjectionTypeKeysOnly = "KEYS_ONLY"
-)
-
-// DescribeTableInput is undocumented.
-type DescribeTableInput struct {
-	TableName *string `json:"TableName"`
-}
-
-// ScanOutput is undocumented.
-type ScanOutput struct {
-	ConsumedCapacity *ConsumedCapacity           `json:"ConsumedCapacity,omitempty"`
-	Count            *int                        `json:"Count,omitempty"`
-	Items            []map[string]AttributeValue `json:"Items,omitempty"`
-	LastEvaluatedKey map[string]AttributeValue   `json:"LastEvaluatedKey,omitempty"`
-	ScannedCount     *int                        `json:"ScannedCount,omitempty"`
-}
-
-// Projection is undocumented.
-type Projection struct {
-	NonKeyAttributes []string `json:"NonKeyAttributes,omitempty"`
-	ProjectionType   *string  `json:"ProjectionType,omitempty"`
-}
-
-// DeleteTableInput is undocumented.
-type DeleteTableInput struct {
-	TableName *string `json:"TableName"`
-}
-
-// PutItemOutput is undocumented.
-type PutItemOutput struct {
+// UpdateItemOutput is undocumented.
+type UpdateItemOutput struct {
 	Attributes            map[string]AttributeValue `json:"Attributes,omitempty"`
 	ConsumedCapacity      *ConsumedCapacity         `json:"ConsumedCapacity,omitempty"`
 	ItemCollectionMetrics *ItemCollectionMetrics    `json:"ItemCollectionMetrics,omitempty"`
 }
 
-// ProvisionedThroughputDescription is undocumented.
-type ProvisionedThroughputDescription struct {
-	LastDecreaseDateTime   *aws.UnixTimestamp `json:"LastDecreaseDateTime,omitempty"`
-	LastIncreaseDateTime   *aws.UnixTimestamp `json:"LastIncreaseDateTime,omitempty"`
-	NumberOfDecreasesToday *int64             `json:"NumberOfDecreasesToday,omitempty"`
-	ReadCapacityUnits      *int64             `json:"ReadCapacityUnits,omitempty"`
-	WriteCapacityUnits     *int64             `json:"WriteCapacityUnits,omitempty"`
+// UpdateTableInput is undocumented.
+type UpdateTableInput struct {
+	GlobalSecondaryIndexUpdates []GlobalSecondaryIndexUpdate `json:"GlobalSecondaryIndexUpdates,omitempty"`
+	ProvisionedThroughput       *ProvisionedThroughput       `json:"ProvisionedThroughput,omitempty"`
+	TableName                   *string                      `json:"TableName"`
 }
 
-// Possible values for KeyType.
-const (
-	KeyTypeHash  = "HASH"
-	KeyTypeRange = "RANGE"
-)
+// UpdateTableOutput is undocumented.
+type UpdateTableOutput struct {
+	TableDescription *TableDescription `json:"TableDescription,omitempty"`
+}
+
+// WriteRequest is undocumented.
+type WriteRequest struct {
+	DeleteRequest *DeleteRequest `json:"DeleteRequest,omitempty"`
+	PutRequest    *PutRequest    `json:"PutRequest,omitempty"`
+}
 
 // avoid errors if the packages aren't referenced
 var _ time.Time

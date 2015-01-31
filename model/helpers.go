@@ -130,6 +130,7 @@ func (l shapeMapEntryList) Swap(i, j int) {
 }
 
 var shapeMap = map[string]shapeMapEntry{}
+var enumMap = map[string]shapeMapEntry{}
 
 func buildShapeMap() {
 	if len(shapeMap) == 0 {
@@ -141,9 +142,20 @@ func buildShapeMap() {
 }
 
 func buildShapeMapForShape(shape *Shape, toplevel bool) {
-	if shape == nil {
+	if shape == nil || shape.Exception {
 		return
 	}
+
+	if shape.Enum != nil {
+		if _, exists := enumMap[shape.Name]; !exists {
+			enumMap[shape.Name] = shapeMapEntry{
+				Shape: shape,
+				Alias: exportable(shape.Name),
+			}
+		}
+		return
+	}
+
 	if _, exists := shapeMap[shape.Name]; exists {
 		return
 	}
@@ -179,21 +191,26 @@ func buildShapeMapForShape(shape *Shape, toplevel bool) {
 }
 
 func shapeList() shapeMapEntryList {
-	buildShapeMap()
-
 	list := make(shapeMapEntryList, len(shapeMap))
-	strs := make([]string, len(shapeMap))
 
 	i := 0
-	for k, _ := range shapeMap {
-		strs[i] = k
+	for _, v := range shapeMap {
+		list[i] = v
 		i++
 	}
+	sort.Sort(list)
 
-	for i, k := range strs {
-		list[i] = shapeMap[k]
+	return list
+}
+
+func enumList() shapeMapEntryList {
+	list := make(shapeMapEntryList, len(enumMap))
+
+	i := 0
+	for _, v := range enumMap {
+		list[i] = v
+		i++
 	}
-
 	sort.Sort(list)
 
 	return list

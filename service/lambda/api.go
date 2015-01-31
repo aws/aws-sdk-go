@@ -426,6 +426,30 @@ var (
 	opUploadFunction              *aws.Operation
 )
 
+// Possible values for Mode.
+const (
+	ModeEvent = "event"
+)
+
+// Possible values for Runtime.
+const (
+	RuntimeNodejs = "nodejs"
+)
+
+// AddEventSourceInput is undocumented.
+type AddEventSourceInput struct {
+	BatchSize    *int              `json:"BatchSize,omitempty"`
+	EventSource  *string           `json:"EventSource"`
+	FunctionName *string           `json:"FunctionName"`
+	Parameters   map[string]string `json:"Parameters,omitempty"`
+	Role         *string           `json:"Role"`
+}
+
+// DeleteFunctionInput is undocumented.
+type DeleteFunctionInput struct {
+	FunctionName *string `json:"-"`
+}
+
 // EventSourceConfiguration is undocumented.
 type EventSourceConfiguration struct {
 	BatchSize    *int              `json:"BatchSize,omitempty"`
@@ -439,93 +463,10 @@ type EventSourceConfiguration struct {
 	UUID         *string           `json:"UUID,omitempty"`
 }
 
-// UploadFunctionInput is undocumented.
-type UploadFunctionInput struct {
-	Description  *string `json:"-"`
-	FunctionName *string `json:"-"`
-	FunctionZip  []byte  `json:"FunctionZip"`
-	Handler      *string `json:"-"`
-	MemorySize   *int    `json:"-"`
-	Mode         *string `json:"-"`
-	Role         *string `json:"-"`
-	Runtime      *string `json:"-"`
-	Timeout      *int    `json:"-"`
-}
-
-// UpdateFunctionConfigurationInput is undocumented.
-type UpdateFunctionConfigurationInput struct {
-	Description  *string `json:"-"`
-	FunctionName *string `json:"-"`
-	Handler      *string `json:"-"`
-	MemorySize   *int    `json:"-"`
-	Role         *string `json:"-"`
-	Timeout      *int    `json:"-"`
-}
-
-// GetEventSourceInput is undocumented.
-type GetEventSourceInput struct {
-	UUID *string `json:"-"`
-}
-
-// GetFunctionInput is undocumented.
-type GetFunctionInput struct {
-	FunctionName *string `json:"-"`
-}
-
-// Possible values for Lambda.
-const (
-	RuntimeNodejs = "nodejs"
-)
-
-// ListEventSourcesInput is undocumented.
-type ListEventSourcesInput struct {
-	EventSourceARN *string `json:"-"`
-	FunctionName   *string `json:"-"`
-	Marker         *string `json:"-"`
-	MaxItems       *int    `json:"-"`
-}
-
-// ListFunctionsOutput is undocumented.
-type ListFunctionsOutput struct {
-	Functions  []FunctionConfiguration `json:"Functions,omitempty"`
-	NextMarker *string                 `json:"NextMarker,omitempty"`
-}
-
-// ListFunctionsInput is undocumented.
-type ListFunctionsInput struct {
-	Marker   *string `json:"-"`
-	MaxItems *int    `json:"-"`
-}
-
-// InvokeAsyncOutput is undocumented.
-type InvokeAsyncOutput struct {
-	Status *int `json:"-"`
-}
-
 // FunctionCodeLocation is undocumented.
 type FunctionCodeLocation struct {
 	Location       *string `json:"Location,omitempty"`
 	RepositoryType *string `json:"RepositoryType,omitempty"`
-}
-
-// AddEventSourceInput is undocumented.
-type AddEventSourceInput struct {
-	BatchSize    *int              `json:"BatchSize,omitempty"`
-	EventSource  *string           `json:"EventSource"`
-	FunctionName *string           `json:"FunctionName"`
-	Parameters   map[string]string `json:"Parameters,omitempty"`
-	Role         *string           `json:"Role"`
-}
-
-// GetFunctionOutput is undocumented.
-type GetFunctionOutput struct {
-	Code          *FunctionCodeLocation  `json:"Code,omitempty"`
-	Configuration *FunctionConfiguration `json:"Configuration,omitempty"`
-}
-
-// GetFunctionConfigurationInput is undocumented.
-type GetFunctionConfigurationInput struct {
-	FunctionName *string `json:"-"`
 }
 
 // FunctionConfiguration is undocumented.
@@ -544,10 +485,62 @@ type FunctionConfiguration struct {
 	Timeout         *int      `json:"Timeout,omitempty"`
 }
 
+// GetEventSourceInput is undocumented.
+type GetEventSourceInput struct {
+	UUID *string `json:"-"`
+}
+
+// GetFunctionConfigurationInput is undocumented.
+type GetFunctionConfigurationInput struct {
+	FunctionName *string `json:"-"`
+}
+
+// GetFunctionInput is undocumented.
+type GetFunctionInput struct {
+	FunctionName *string `json:"-"`
+}
+
+// GetFunctionOutput is undocumented.
+type GetFunctionOutput struct {
+	Code          *FunctionCodeLocation  `json:"Code,omitempty"`
+	Configuration *FunctionConfiguration `json:"Configuration,omitempty"`
+}
+
+// InvokeAsyncInput is undocumented.
+type InvokeAsyncInput struct {
+	FunctionName *string `json:"-"`
+	InvokeArgs   []byte  `json:"InvokeArgs"`
+}
+
+// InvokeAsyncOutput is undocumented.
+type InvokeAsyncOutput struct {
+	Status *int `json:"-"`
+}
+
+// ListEventSourcesInput is undocumented.
+type ListEventSourcesInput struct {
+	EventSourceARN *string `json:"-"`
+	FunctionName   *string `json:"-"`
+	Marker         *string `json:"-"`
+	MaxItems       *int    `json:"-"`
+}
+
 // ListEventSourcesOutput is undocumented.
 type ListEventSourcesOutput struct {
 	EventSources []EventSourceConfiguration `json:"EventSources,omitempty"`
 	NextMarker   *string                    `json:"NextMarker,omitempty"`
+}
+
+// ListFunctionsInput is undocumented.
+type ListFunctionsInput struct {
+	Marker   *string `json:"-"`
+	MaxItems *int    `json:"-"`
+}
+
+// ListFunctionsOutput is undocumented.
+type ListFunctionsOutput struct {
+	Functions  []FunctionConfiguration `json:"Functions,omitempty"`
+	NextMarker *string                 `json:"NextMarker,omitempty"`
 }
 
 // RemoveEventSourceInput is undocumented.
@@ -555,20 +548,27 @@ type RemoveEventSourceInput struct {
 	UUID *string `json:"-"`
 }
 
-// DeleteFunctionInput is undocumented.
-type DeleteFunctionInput struct {
+// UpdateFunctionConfigurationInput is undocumented.
+type UpdateFunctionConfigurationInput struct {
+	Description  *string `json:"-"`
 	FunctionName *string `json:"-"`
+	Handler      *string `json:"-"`
+	MemorySize   *int    `json:"-"`
+	Role         *string `json:"-"`
+	Timeout      *int    `json:"-"`
 }
 
-// Possible values for Lambda.
-const (
-	ModeEvent = "event"
-)
-
-// InvokeAsyncInput is undocumented.
-type InvokeAsyncInput struct {
+// UploadFunctionInput is undocumented.
+type UploadFunctionInput struct {
+	Description  *string `json:"-"`
 	FunctionName *string `json:"-"`
-	InvokeArgs   []byte  `json:"InvokeArgs"`
+	FunctionZip  []byte  `json:"FunctionZip"`
+	Handler      *string `json:"-"`
+	MemorySize   *int    `json:"-"`
+	Mode         *string `json:"-"`
+	Role         *string `json:"-"`
+	Runtime      *string `json:"-"`
+	Timeout      *int    `json:"-"`
 }
 
 // avoid errors if the packages aren't referenced

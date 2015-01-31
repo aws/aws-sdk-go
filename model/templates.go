@@ -36,6 +36,7 @@ func generateSource(api io.Writer, svc io.Writer) error {
 		"godoc":            godoc,
 		"exportable":       exportable,
 		"structName":       structName,
+		"enumList":         enumList,
 		"shapeList":        shapeList,
 		"shapeAlias":       shapeAlias,
 		"protocolPackage":  protocolPackage,
@@ -197,8 +198,15 @@ var (
 {{ end }}
 )
 
+{{ range $_, $s := enumList }}
+// Possible values for {{ exportable $s.Alias }}.
+const (
+    {{ range $name, $value := $s.Shape.Enums }}
+    {{ $name }} = {{ $value }}{{ end }}
+)
 {{ end }}
 
+{{ end }}
 `)
 }
 
@@ -210,7 +218,6 @@ func jsonClient(t *template.Template) (*template.Template, error) {
 
 {{ range $_, $s := shapeList }}
 {{ if eq $s.Shape.ShapeType "structure" }}
-{{ if not $s.Shape.Exception }}
 
 // {{ $s.Alias }} is undocumented.
 type {{ $s.Alias }} struct {
@@ -218,13 +225,6 @@ type {{ $s.Alias }} struct {
 {{ exportable $name }} {{ $m.Shape.Type }} {{ $m.JSONTag }}  {{ end }}
 }
 
-{{ end }}
-{{ else if $s.Shape.Enum }}
-// Possible values for {{ $s.Alias }}.
-const (
-{{ range $name, $value := $s.Shape.Enums }}
-{{ $name }} = {{ $value }}{{ end }}
-)
 {{ end }}
 {{ end }}
 
@@ -275,7 +275,6 @@ func (m *{{ exportable $name }}) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 {{ end }}
 
 {{ if eq $s.ShapeType "structure" }}
-{{ if not $s.Exception }}
 
 // {{ exportable $name }} is undocumented.
 type {{ structName $name }} struct {
@@ -283,13 +282,6 @@ type {{ structName $name }} struct {
 {{ exportable $name }} {{ $m.Type }} {{ $m.QueryTag $s.ResultWrapper }}  {{ end }}
 }
 
-{{ end }}
-{{ else if $s.Enum }}
-// Possible values for {{ $.Name }}.
-const (
-{{ range $name, $value := $s.Enums }}
-{{ $name }} = {{ $value }}{{ end }}
-)
 {{ end }}
 {{ end }}
 
@@ -355,7 +347,6 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ 
 
 {{ range $name, $s := .Shapes }}
 {{ if eq $s.ShapeType "structure" }}
-{{ if not $s.Exception }}
 
 // {{ exportable $name }} is undocumented.
 type {{ exportable $name }} struct {
@@ -363,13 +354,6 @@ type {{ exportable $name }} struct {
 {{ exportable $name }} {{ $m.Type }} {{ $m.EC2Tag }}  {{ end }}
 }
 
-{{ end }}
-{{ else if $s.Enum }}
-// Possible values for {{ $.Name }}.
-const (
-{{ range $name, $value := $s.Enums }}
-{{ $name }} = {{ $value }}{{ end }}
-)
 {{ end }}
 {{ end }}
 
@@ -403,7 +387,6 @@ import (
 
 {{ range $_, $s := shapeList }}
 {{ if eq $s.Shape.ShapeType "structure" }}
-{{ if not $s.Shape.Exception }}
 
 // {{ $s.Alias }} is undocumented.
 type {{ $s.Alias }} struct {
@@ -416,13 +399,6 @@ func (v *{{ $s.Alias }}) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	return aws.MarshalXML(v, e, start)
 }
 
-{{ end }}
-{{ else if $s.Shape.Enum }}
-// Possible values for {{ $.Name }}.
-const (
-{{ range $name, $value := $s.Shape.Enums }}
-{{ $name }} = {{ $value }}{{ end }}
-)
 {{ end }}
 {{ end }}
 
@@ -441,7 +417,6 @@ func restJSONClient(t *template.Template) (*template.Template, error) {
 
 {{ range $_, $s := shapeList }}
 {{ if eq $s.Shape.ShapeType "structure" }}
-{{ if not $s.Shape.Exception }}
 
 // {{ $s.Alias }} is undocumented.
 type {{ $s.Alias }} struct {
@@ -449,13 +424,6 @@ type {{ $s.Alias }} struct {
 {{ exportable $name }} {{ $m.Type }} {{ $m.JSONTag }}  {{ end }}
 }
 
-{{ end }}
-{{ else if $s.Shape.Enum }}
-// Possible values for {{ $.Name }}.
-const (
-{{ range $name, $value := $s.Shape.Enums }}
-{{ $name }} = {{ $value }}{{ end }}
-)
 {{ end }}
 {{ end }}
 
