@@ -22,6 +22,7 @@ func locationTraits(location string, shape *Shape) string {
 			list = append(list, "\""+name+"\"")
 		}
 	}
+	sort.Strings(list)
 	return strings.Join(list, ",")
 }
 
@@ -111,6 +112,23 @@ type shapeMapEntry struct {
 	TopLevel bool
 }
 
+type shapeMapEntryList []shapeMapEntry
+
+func (l shapeMapEntryList) Len() int {
+	return len(l)
+}
+
+func (l shapeMapEntryList) Less(i, j int) bool {
+	s := sort.StringSlice{l[i].Name, l[j].Name}
+	return s.Less(0, 1)
+}
+
+func (l shapeMapEntryList) Swap(i, j int) {
+	t := l[i]
+	l[i] = l[j]
+	l[j] = t
+}
+
 var shapeMap = map[string]shapeMapEntry{}
 
 func buildShapeMap() {
@@ -160,10 +178,10 @@ func buildShapeMapForShape(shape *Shape, toplevel bool) {
 	}
 }
 
-func shapeList() []shapeMapEntry {
+func shapeList() shapeMapEntryList {
 	buildShapeMap()
 
-	list := make([]shapeMapEntry, len(shapeMap))
+	list := make(shapeMapEntryList, len(shapeMap))
 	strs := make([]string, len(shapeMap))
 
 	i := 0
@@ -175,6 +193,9 @@ func shapeList() []shapeMapEntry {
 	for i, k := range strs {
 		list[i] = shapeMap[k]
 	}
+
+	sort.Sort(list)
+
 	return list
 }
 
