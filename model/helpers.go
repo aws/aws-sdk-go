@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"go/doc"
 	"regexp"
+	"sort"
 	"strings"
 
 	"code.google.com/p/go.net/html"
@@ -35,7 +36,19 @@ func requiredTraits(shape *Shape) string {
 			list = append(list, "\""+name+"\"")
 		}
 	}
+	sort.Strings(list)
 	return strings.Join(list, ",")
+}
+
+func hasRequiredTrait(shape *Shape) bool {
+	if shape != nil {
+		for _, member := range shape.Members() {
+			if member.Required {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func godoc(member, content string) string {
@@ -90,6 +103,83 @@ func exportable(name string) string {
 		name = regexp.ReplaceAllString(name, repl)
 	}
 	return name
+}
+
+type shapeMapEntry struct {
+	*Shape
+	Alias    string
+	TopLevel bool
+}
+
+var shapeMap = map[string]shapeMapEntry{}
+
+func buildShapeMap() {
+	if len(shapeMap) == 0 {
+		for _, v := range service.Operations {
+			buildShapeMapForShape(v.Input(), true)
+			buildShapeMapForShape(v.Output(), true)
+		}
+	}
+}
+
+func buildShapeMapForShape(shape *Shape, toplevel bool) {
+	if shape == nil {
+		return
+	}
+	if _, exists := shapeMap[shape.Name]; exists {
+		return
+	}
+
+	if toplevel {
+		shapeMap[shape.Name] = shapeMapEntry{
+			Shape:    shape,
+			TopLevel: toplevel,
+			Alias:    structName(shape.Name),
+		}
+	} else {
+		shapeMap[shape.Name] = shapeMapEntry{
+			Shape:    shape,
+			TopLevel: toplevel,
+			Alias:    exportable(shape.Name),
+		}
+	}
+
+	switch shape.ShapeType {
+	case "structure":
+		for _, member := range shape.Members() {
+			buildShapeMapForShape(member.Shape(), false)
+		}
+
+	case "map":
+		buildShapeMapForShape(shape.Key(), false)
+		buildShapeMapForShape(shape.Value(), false)
+
+	case "list":
+		buildShapeMapForShape(shape.Member(), false)
+
+	}
+}
+
+func shapeList() []shapeMapEntry {
+	buildShapeMap()
+
+	list := make([]shapeMapEntry, len(shapeMap))
+	strs := make([]string, len(shapeMap))
+
+	i := 0
+	for k, _ := range shapeMap {
+		strs[i] = k
+		i++
+	}
+
+	for i, k := range strs {
+		list[i] = shapeMap[k]
+	}
+	return list
+}
+
+func shapeAlias(name string) string {
+	return shapeMap[name].Alias
 }
 
 var replacements = map[*regexp.Regexp]string{

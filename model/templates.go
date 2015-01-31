@@ -33,12 +33,15 @@ func Generate(prefix string) error {
 
 func generateSource(api io.Writer, svc io.Writer) error {
 	t := template.New("root").Funcs(template.FuncMap{
-		"godoc":           godoc,
-		"exportable":      exportable,
-		"structName":      structName,
-		"protocolPackage": protocolPackage,
-		"requiredTraits":  requiredTraits,
-		"locationTraits":  locationTraits,
+		"godoc":            godoc,
+		"exportable":       exportable,
+		"structName":       structName,
+		"shapeList":        shapeList,
+		"shapeAlias":       shapeAlias,
+		"protocolPackage":  protocolPackage,
+		"requiredTraits":   requiredTraits,
+		"locationTraits":   locationTraits,
+		"hasRequiredTrait": hasRequiredTrait,
 	})
 	template.Must(commonAPI(t))
 	template.Must(jsonClient(t))
@@ -139,7 +142,7 @@ func New(config *{{ .Name }}Config) *{{ .Name }} {
 import (
   "time"
 
-  "github.com/stripe/aws-go/aws"
+  "github.com/awslabs/aws-sdk-go/aws"
 )
 
 {{ end }}
@@ -154,7 +157,7 @@ var _ time.Time
 {{ range $name, $op := .Operations }}
 
 // {{ exportable $name }}Request generates a request for the {{ exportable $name }} operation.
-func (c *{{ $.Name }}) {{ exportable $name }}Request({{ if $op.Input }}input {{ structName $op.Input.Type }}{{ end }}) *aws.Request {
+func (c *{{ $.Name }}) {{ exportable $name }}Request({{ if $op.Input }}input {{ $op.Input.Type }}{{ end }}) *aws.Request {
     if op{{ exportable $name }} == nil {
       op{{ exportable $name }} = &aws.Operation{
         Name:       "{{ $name }}",
@@ -169,6 +172,9 @@ func (c *{{ $.Name }}) {{ exportable $name }}Request({{ if $op.Input }}input {{ 
           URIParams:   []string{ {{ locationTraits "uri" $op.Input }} },
           InHeaders:   []string{ {{ locationTraits "header" $op.Input }} },
           OutHeaders:  []string{ {{ locationTraits "header" $op.Output }} },
+        }, {{ else if hasRequiredTrait $op.Input }}
+        OperationBindings: &aws.OperationBindings{
+          Required:    []string{ {{ requiredTraits $op.Input }} },
         }, {{ end }}
       }
     }
@@ -176,7 +182,7 @@ func (c *{{ $.Name }}) {{ exportable $name }}Request({{ if $op.Input }}input {{ 
     return aws.NewRequest(c.Service, op{{ exportable $name }}, {{ if $op.Input }}input{{ else }}nil{{ end }}, nil)
 }
 
-{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}input {{ structName $op.Input.Type }}{{ end }}) ({{ if $op.Output }}output {{ structName $op.Output.Type }},{{ end }} err error) {
+{{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}input {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}output {{ structName $op.Output.Type }},{{ end }} err error) {
   {{ if $op.Output }}output = {{ structName $op.Output.Literal }}{{ else }}// NRE{{ end }}
   req := c.{{ exportable $name }}Request({{ if $op.Input }}input{{ else }}nil{{ end }})
   {{ if $op.Output }}req.Data = output{{ end }}
@@ -202,21 +208,21 @@ func jsonClient(t *template.Template) (*template.Template, error) {
 {{ template "header" $ }}
 {{ template "operations" $ }}
 
-{{ range $name, $s := .Shapes }}
-{{ if eq $s.ShapeType "structure" }}
-{{ if not $s.Exception }}
+{{ range $_, $s := shapeList }}
+{{ if eq $s.Shape.ShapeType "structure" }}
+{{ if not $s.Shape.Exception }}
 
-// {{ structName $name }} is undocumented.
-type {{ structName $name }} struct {
-{{ range $name, $m := $s.Members }}
-{{ exportable $name }} {{ $m.Type }} {{ $m.JSONTag }}  {{ end }}
+// {{ $s.Alias }} is undocumented.
+type {{ $s.Alias }} struct {
+{{ range $name, $m := $s.Shape.Members }}
+{{ exportable $name }} {{ $m.Shape.Type }} {{ $m.JSONTag }}  {{ end }}
 }
 
 {{ end }}
-{{ else if $s.Enum }}
-// Possible values for {{ $.Name }}.
+{{ else if $s.Shape.Enum }}
+// Possible values for {{ $s.Alias }}.
 const (
-{{ range $name, $value := $s.Enums }}
+{{ range $name, $value := $s.Shape.Enums }}
 {{ $name }} = {{ $value }}{{ end }}
 )
 {{ end }}
@@ -395,26 +401,26 @@ import (
 
 {{ template "operations" $ }}
 
-{{ range $name, $s := .Shapes }}
-{{ if eq $s.ShapeType "structure" }}
-{{ if not $s.Exception }}
+{{ range $_, $s := shapeList }}
+{{ if eq $s.Shape.ShapeType "structure" }}
+{{ if not $s.Shape.Exception }}
 
-// {{ structName $name }} is undocumented.
-type {{ structName $name }} struct {
+// {{ $s.Alias }} is undocumented.
+type {{ $s.Alias }} struct {
   XMLName xml.Name
-{{ range $name, $m := $s.Members }}
-{{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.ResultWrapper }}  {{ end }}
+{{ range $name, $m := $s.Shape.Members }}
+{{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.Shape.ResultWrapper }}  {{ end }}
 }
 
-func (v *{{ structName $name }}) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *{{ $s.Alias }}) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
 {{ end }}
-{{ else if $s.Enum }}
+{{ else if $s.Shape.Enum }}
 // Possible values for {{ $.Name }}.
 const (
-{{ range $name, $value := $s.Enums }}
+{{ range $name, $value := $s.Shape.Enums }}
 {{ $name }} = {{ $value }}{{ end }}
 )
 {{ end }}
@@ -433,21 +439,21 @@ func restJSONClient(t *template.Template) (*template.Template, error) {
 {{ template "header" $ }}
 {{ template "operations" $ }}
 
-{{ range $name, $s := .Shapes }}
-{{ if eq $s.ShapeType "structure" }}
-{{ if not $s.Exception }}
+{{ range $_, $s := shapeList }}
+{{ if eq $s.Shape.ShapeType "structure" }}
+{{ if not $s.Shape.Exception }}
 
-// {{ structName $name }} is undocumented.
-type {{ structName $name }} struct {
-{{ range $name, $m := $s.Members }}
+// {{ $s.Alias }} is undocumented.
+type {{ $s.Alias }} struct {
+{{ range $name, $m := $s.Shape.Members }}
 {{ exportable $name }} {{ $m.Type }} {{ $m.JSONTag }}  {{ end }}
 }
 
 {{ end }}
-{{ else if $s.Enum }}
+{{ else if $s.Shape.Enum }}
 // Possible values for {{ $.Name }}.
 const (
-{{ range $name, $value := $s.Enums }}
+{{ range $name, $value := $s.Shape.Enums }}
 {{ $name }} = {{ $value }}{{ end }}
 )
 {{ end }}

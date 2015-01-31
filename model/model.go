@@ -394,7 +394,7 @@ func (s *Shape) ResultWrapper() string {
 // Literal returns a Go literal of the given shape.
 func (s *Shape) Literal() string {
 	if s.ShapeType == "structure" {
-		return "&" + structName(s.Type()[1:]) + "{}"
+		return "&" + s.Type()[1:] + "{}"
 	}
 	panic("trying to make a literal non-structure for " + s.Name)
 }
@@ -404,7 +404,7 @@ func (s *Shape) Literal() string {
 func (s *Shape) ElementType() string {
 	switch s.ShapeType {
 	case "structure":
-		return exportable(s.Name)
+		return shapeAlias(s.Name)
 	case "integer":
 		return "int"
 	case "long":
@@ -417,7 +417,7 @@ func (s *Shape) ElementType() string {
 		return "string"
 	case "map":
 		if service.Metadata.Protocol == "query" {
-			return exportable(s.Name)
+			return shapeAlias(s.Name)
 		}
 		return "map[" + s.Key().ElementType() + "]" + s.Value().ElementType()
 	case "list":
@@ -437,7 +437,7 @@ func (s *Shape) ElementType() string {
 func (s *Shape) Type() string {
 	switch s.ShapeType {
 	case "structure":
-		return "*" + exportable(s.Name)
+		return "*" + shapeAlias(s.Name)
 	case "integer":
 		if s.Name == "ContentLength" || s.Name == "Size" {
 			return "*int64"
@@ -453,7 +453,7 @@ func (s *Shape) Type() string {
 		return "*string"
 	case "map":
 		if service.Metadata.Protocol == "query" {
-			return exportable(s.Name)
+			return shapeAlias(s.Name)
 		}
 		return "map[" + s.Key().ElementType() + "]" + s.Value().ElementType()
 	case "list":
@@ -527,6 +527,7 @@ func Load(name string, r io.Reader) error {
 	service.FullName = service.Metadata.ServiceFullName
 	service.PackageName = strings.ToLower(name)
 	service.Name = name
+	buildShapeMap()
 
 	return nil
 }

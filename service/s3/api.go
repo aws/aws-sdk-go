@@ -16,43 +16,48 @@ import (
 	"io"
 )
 
-// AbortMultipartUpload aborts a multipart upload. To verify that all parts
-// have been removed, so you don't get charged for the part storage, you
-// should call the List Parts operation and ensure the parts list is empty.
-func (c *S3) AbortMultipartUpload(input *AbortMultipartUploadInput) (req *aws.Request, err error) {
+// AbortMultipartUploadRequest generates a request for the AbortMultipartUpload operation.
+func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) *aws.Request {
 	if opAbortMultipartUpload == nil {
 		opAbortMultipartUpload = &aws.Operation{
 			Name:       "AbortMultipartUpload",
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/{Bucket}/{Key+}",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "",
 
 				Required:    []string{"Bucket", "Key", "UploadId"},
 				QueryParams: []string{},
-				URIParams:   []string{"Bucket", "Key"},
+				URIParams:   []string{"Key", "Bucket"},
 				InHeaders:   []string{},
 				OutHeaders:  []string{},
 			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opAbortMultipartUpload, input, nil)
+}
+
+// AbortMultipartUpload aborts a multipart upload. To verify that all parts
+// have been removed, so you don't get charged for the part storage, you
+// should call the List Parts operation and ensure the parts list is empty.
+func (c *S3) AbortMultipartUpload(input *AbortMultipartUploadInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opAbortMultipartUpload, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.AbortMultipartUploadRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// CompleteMultipartUpload completes a multipart upload by assembling
-// previously uploaded parts.
-func (c *S3) CompleteMultipartUpload(input *CompleteMultipartUploadInput) (output *CompleteMultipartUploadOutput, req *aws.Request, err error) {
+// CompleteMultipartUploadRequest generates a request for the CompleteMultipartUpload operation.
+func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput) *aws.Request {
 	if opCompleteMultipartUpload == nil {
 		opCompleteMultipartUpload = &aws.Operation{
 			Name:       "CompleteMultipartUpload",
 			HTTPMethod: "POST",
 			HTTPPath:   "/{Bucket}/{Key+}",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "MultipartUpload",
 				OutPayload:  "",
@@ -65,67 +70,105 @@ func (c *S3) CompleteMultipartUpload(input *CompleteMultipartUploadInput) (outpu
 		}
 	}
 
+	return aws.NewRequest(c.Service, opCompleteMultipartUpload, input, nil)
+}
+
+// CompleteMultipartUpload completes a multipart upload by assembling
+// previously uploaded parts.
+func (c *S3) CompleteMultipartUpload(input *CompleteMultipartUploadInput) (output *CompleteMultipartUploadOutput, err error) {
 	output = &CompleteMultipartUploadOutput{}
-	req = aws.NewRequest(c.Service, opCompleteMultipartUpload, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.CompleteMultipartUploadRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// CopyObject creates a copy of an object that is already stored in Amazon
-// S3.
-func (c *S3) CopyObject(input *CopyObjectInput) (output *CopyObjectOutput, req *aws.Request, err error) {
+// CopyObjectRequest generates a request for the CopyObject operation.
+func (c *S3) CopyObjectRequest(input *CopyObjectInput) *aws.Request {
 	if opCopyObject == nil {
 		opCopyObject = &aws.Operation{
 			Name:       "CopyObject",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}/{Key+}",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "CopyObjectResult",
-				Required:    []string{"Bucket", "Key", "CopySource"},
+				Required:    []string{"Bucket", "CopySource", "Key"},
 				QueryParams: []string{},
-				URIParams:   []string{"Key", "Bucket"},
-				InHeaders:   []string{"CopySourceSSECustomerAlgorithm", "CopySourceIfUnmodifiedSince", "ContentEncoding", "CopySourceIfModifiedSince", "CopySourceIfNoneMatch", "SSECustomerAlgorithm", "SSECustomerKeyMD5", "ServerSideEncryption", "ContentDisposition", "Expires", "CacheControl", "CopySourceSSECustomerKey", "ContentType", "CopySourceIfMatch", "MetadataDirective", "SSEKMSKeyId", "GrantWriteACP", "CopySource", "StorageClass", "GrantRead", "WebsiteRedirectLocation", "ACL", "GrantReadACP", "CopySourceSSECustomerKeyMD5", "ContentLanguage", "GrantFullControl", "SSECustomerKey"},
-				OutHeaders:  []string{"Expiration", "CopySourceVersionId", "ServerSideEncryption", "SSECustomerAlgorithm", "SSECustomerKeyMD5", "SSEKMSKeyId"},
+				URIParams:   []string{"Bucket", "Key"},
+				InHeaders:   []string{"CopySourceIfNoneMatch", "SSECustomerAlgorithm", "Expires", "GrantRead", "ContentLanguage", "CopySourceSSECustomerAlgorithm", "ContentType", "StorageClass", "SSEKMSKeyId", "WebsiteRedirectLocation", "SSECustomerKey", "GrantReadACP", "CopySourceIfUnmodifiedSince", "CopySource", "CopySourceSSECustomerKey", "CopySourceSSECustomerKeyMD5", "CopySourceIfMatch", "GrantWriteACP", "ServerSideEncryption", "ContentEncoding", "ACL", "CacheControl", "CopySourceIfModifiedSince", "SSECustomerKeyMD5", "ContentDisposition", "GrantFullControl", "MetadataDirective"},
+				OutHeaders:  []string{"ServerSideEncryption", "SSECustomerAlgorithm", "SSECustomerKeyMD5", "SSEKMSKeyId", "Expiration", "CopySourceVersionId"},
 			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opCopyObject, input, nil)
+}
+
+// CopyObject creates a copy of an object that is already stored in Amazon
+// S3.
+func (c *S3) CopyObject(input *CopyObjectInput) (output *CopyObjectOutput, err error) {
 	output = &CopyObjectOutput{}
-	req = aws.NewRequest(c.Service, opCopyObject, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.CopyObjectRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// CreateBucket is undocumented.
-func (c *S3) CreateBucket(input *CreateBucketInput) (output *CreateBucketOutput, req *aws.Request, err error) {
+// CreateBucketRequest generates a request for the CreateBucket operation.
+func (c *S3) CreateBucketRequest(input *CreateBucketInput) *aws.Request {
 	if opCreateBucket == nil {
 		opCreateBucket = &aws.Operation{
 			Name:       "CreateBucket",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "CreateBucketConfiguration",
 				OutPayload:  "",
 				Required:    []string{"Bucket"},
 				QueryParams: []string{},
 				URIParams:   []string{"Bucket"},
-				InHeaders:   []string{"GrantWrite", "GrantWriteACP", "ACL", "GrantFullControl", "GrantRead", "GrantReadACP"},
+				InHeaders:   []string{"GrantFullControl", "GrantRead", "GrantReadACP", "GrantWrite", "GrantWriteACP", "ACL"},
 				OutHeaders:  []string{"Location"},
 			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opCreateBucket, input, nil)
+}
+
+// CreateBucket is undocumented.
+func (c *S3) CreateBucket(input *CreateBucketInput) (output *CreateBucketOutput, err error) {
 	output = &CreateBucketOutput{}
-	req = aws.NewRequest(c.Service, opCreateBucket, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.CreateBucketRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
+}
+
+// CreateMultipartUploadRequest generates a request for the CreateMultipartUpload operation.
+func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) *aws.Request {
+	if opCreateMultipartUpload == nil {
+		opCreateMultipartUpload = &aws.Operation{
+			Name:       "CreateMultipartUpload",
+			HTTPMethod: "POST",
+			HTTPPath:   "/{Bucket}/{Key+}?uploads",
+
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"Bucket", "Key"},
+				QueryParams: []string{},
+				URIParams:   []string{"Key", "Bucket"},
+				InHeaders:   []string{"Expires", "ContentType", "StorageClass", "ContentEncoding", "SSECustomerKey", "GrantFullControl", "ServerSideEncryption", "SSEKMSKeyId", "WebsiteRedirectLocation", "ACL", "SSECustomerKeyMD5", "GrantRead", "SSECustomerAlgorithm", "GrantWriteACP", "GrantReadACP", "CacheControl", "ContentLanguage", "ContentDisposition"},
+				OutHeaders:  []string{"SSEKMSKeyId", "ServerSideEncryption", "SSECustomerAlgorithm", "SSECustomerKeyMD5"},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opCreateMultipartUpload, input, nil)
 }
 
 // CreateMultipartUpload initiates a multipart upload and returns an upload
@@ -134,236 +177,253 @@ func (c *S3) CreateBucket(input *CreateBucketInput) (output *CreateBucketOutput,
 // getting charged for storage of the uploaded parts. Only after you either
 // complete or abort multipart upload, Amazon S3 frees up the parts storage
 // and stops charging you for the parts storage.
-func (c *S3) CreateMultipartUpload(input *CreateMultipartUploadInput) (output *CreateMultipartUploadOutput, req *aws.Request, err error) {
-	if opCreateMultipartUpload == nil {
-		opCreateMultipartUpload = &aws.Operation{
-			Name:       "CreateMultipartUpload",
-			HTTPMethod: "POST",
-			HTTPPath:   "/{Bucket}/{Key+}?uploads",
+func (c *S3) CreateMultipartUpload(input *CreateMultipartUploadInput) (output *CreateMultipartUploadOutput, err error) {
+	output = &CreateMultipartUploadOutput{}
+	req := c.CreateMultipartUploadRequest(input)
+	req.Data = output
+	err = req.Send()
+	return
+}
+
+// DeleteBucketRequest generates a request for the DeleteBucket operation.
+func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) *aws.Request {
+	if opDeleteBucket == nil {
+		opDeleteBucket = &aws.Operation{
+			Name:       "DeleteBucket",
+			HTTPMethod: "DELETE",
+			HTTPPath:   "/{Bucket}",
+
+			OperationBindings: &aws.OperationBindings{
+				InPayload: "",
+
+				Required:    []string{"Bucket"},
+				QueryParams: []string{},
+				URIParams:   []string{"Bucket"},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opDeleteBucket, input, nil)
+}
+
+// DeleteBucket deletes the bucket. All objects (including all object
+// versions and Delete Markers) in the bucket must be deleted before the
+// bucket itself can be deleted.
+func (c *S3) DeleteBucket(input *DeleteBucketInput) (err error) {
+	// NRE
+	req := c.DeleteBucketRequest(input)
+
+	err = req.Send()
+	return
+}
+
+// DeleteBucketCORSRequest generates a request for the DeleteBucketCORS operation.
+func (c *S3) DeleteBucketCORSRequest(input *DeleteBucketCORSInput) *aws.Request {
+	if opDeleteBucketCORS == nil {
+		opDeleteBucketCORS = &aws.Operation{
+			Name:       "DeleteBucketCors",
+			HTTPMethod: "DELETE",
+			HTTPPath:   "/{Bucket}?cors",
+
+			OperationBindings: &aws.OperationBindings{
+				InPayload: "",
+
+				Required:    []string{"Bucket"},
+				QueryParams: []string{},
+				URIParams:   []string{"Bucket"},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opDeleteBucketCORS, input, nil)
+}
+
+// DeleteBucketCORS deletes the cors configuration information set for the
+// bucket.
+func (c *S3) DeleteBucketCORS(input *DeleteBucketCORSInput) (err error) {
+	// NRE
+	req := c.DeleteBucketCORSRequest(input)
+
+	err = req.Send()
+	return
+}
+
+// DeleteBucketLifecycleRequest generates a request for the DeleteBucketLifecycle operation.
+func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) *aws.Request {
+	if opDeleteBucketLifecycle == nil {
+		opDeleteBucketLifecycle = &aws.Operation{
+			Name:       "DeleteBucketLifecycle",
+			HTTPMethod: "DELETE",
+			HTTPPath:   "/{Bucket}?lifecycle",
+
+			OperationBindings: &aws.OperationBindings{
+				InPayload: "",
+
+				Required:    []string{"Bucket"},
+				QueryParams: []string{},
+				URIParams:   []string{"Bucket"},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opDeleteBucketLifecycle, input, nil)
+}
+
+// DeleteBucketLifecycle deletes the lifecycle configuration from the
+// bucket.
+func (c *S3) DeleteBucketLifecycle(input *DeleteBucketLifecycleInput) (err error) {
+	// NRE
+	req := c.DeleteBucketLifecycleRequest(input)
+
+	err = req.Send()
+	return
+}
+
+// DeleteBucketPolicyRequest generates a request for the DeleteBucketPolicy operation.
+func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) *aws.Request {
+	if opDeleteBucketPolicy == nil {
+		opDeleteBucketPolicy = &aws.Operation{
+			Name:       "DeleteBucketPolicy",
+			HTTPMethod: "DELETE",
+			HTTPPath:   "/{Bucket}?policy",
+
+			OperationBindings: &aws.OperationBindings{
+				InPayload: "",
+
+				Required:    []string{"Bucket"},
+				QueryParams: []string{},
+				URIParams:   []string{"Bucket"},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opDeleteBucketPolicy, input, nil)
+}
+
+// DeleteBucketPolicy is undocumented.
+func (c *S3) DeleteBucketPolicy(input *DeleteBucketPolicyInput) (err error) {
+	// NRE
+	req := c.DeleteBucketPolicyRequest(input)
+
+	err = req.Send()
+	return
+}
+
+// DeleteBucketTaggingRequest generates a request for the DeleteBucketTagging operation.
+func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) *aws.Request {
+	if opDeleteBucketTagging == nil {
+		opDeleteBucketTagging = &aws.Operation{
+			Name:       "DeleteBucketTagging",
+			HTTPMethod: "DELETE",
+			HTTPPath:   "/{Bucket}?tagging",
+
+			OperationBindings: &aws.OperationBindings{
+				InPayload: "",
+
+				Required:    []string{"Bucket"},
+				QueryParams: []string{},
+				URIParams:   []string{"Bucket"},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opDeleteBucketTagging, input, nil)
+}
+
+// DeleteBucketTagging is undocumented.
+func (c *S3) DeleteBucketTagging(input *DeleteBucketTaggingInput) (err error) {
+	// NRE
+	req := c.DeleteBucketTaggingRequest(input)
+
+	err = req.Send()
+	return
+}
+
+// DeleteBucketWebsiteRequest generates a request for the DeleteBucketWebsite operation.
+func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) *aws.Request {
+	if opDeleteBucketWebsite == nil {
+		opDeleteBucketWebsite = &aws.Operation{
+			Name:       "DeleteBucketWebsite",
+			HTTPMethod: "DELETE",
+			HTTPPath:   "/{Bucket}?website",
+
+			OperationBindings: &aws.OperationBindings{
+				InPayload: "",
+
+				Required:    []string{"Bucket"},
+				QueryParams: []string{},
+				URIParams:   []string{"Bucket"},
+				InHeaders:   []string{},
+				OutHeaders:  []string{},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opDeleteBucketWebsite, input, nil)
+}
+
+// DeleteBucketWebsite this operation removes the website configuration
+// from the bucket.
+func (c *S3) DeleteBucketWebsite(input *DeleteBucketWebsiteInput) (err error) {
+	// NRE
+	req := c.DeleteBucketWebsiteRequest(input)
+
+	err = req.Send()
+	return
+}
+
+// DeleteObjectRequest generates a request for the DeleteObject operation.
+func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) *aws.Request {
+	if opDeleteObject == nil {
+		opDeleteObject = &aws.Operation{
+			Name:       "DeleteObject",
+			HTTPMethod: "DELETE",
+			HTTPPath:   "/{Bucket}/{Key+}",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
 				Required:    []string{"Bucket", "Key"},
 				QueryParams: []string{},
 				URIParams:   []string{"Key", "Bucket"},
-				InHeaders:   []string{"ServerSideEncryption", "WebsiteRedirectLocation", "ContentType", "StorageClass", "ACL", "ContentDisposition", "SSECustomerAlgorithm", "GrantWriteACP", "ContentLanguage", "GrantRead", "SSECustomerKeyMD5", "GrantFullControl", "SSEKMSKeyId", "ContentEncoding", "GrantReadACP", "CacheControl", "SSECustomerKey", "Expires"},
-				OutHeaders:  []string{"SSECustomerAlgorithm", "SSECustomerKeyMD5", "SSEKMSKeyId", "ServerSideEncryption"},
+				InHeaders:   []string{"MFA"},
+				OutHeaders:  []string{"DeleteMarker", "VersionId"},
 			},
 		}
 	}
 
-	output = &CreateMultipartUploadOutput{}
-	req = aws.NewRequest(c.Service, opCreateMultipartUpload, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
-}
-
-// DeleteBucket deletes the bucket. All objects (including all object
-// versions and Delete Markers) in the bucket must be deleted before the
-// bucket itself can be deleted.
-func (c *S3) DeleteBucket(input *DeleteBucketInput) (req *aws.Request, err error) {
-	if opDeleteBucket == nil {
-		opDeleteBucket = &aws.Operation{
-			Name:       "DeleteBucket",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/{Bucket}",
-			OperationBindings: &aws.OperationBindings{
-				InPayload: "",
-
-				Required:    []string{"Bucket"},
-				QueryParams: []string{},
-				URIParams:   []string{"Bucket"},
-				InHeaders:   []string{},
-				OutHeaders:  []string{},
-			},
-		}
-	}
-
-	// NRE
-	req = aws.NewRequest(c.Service, opDeleteBucket, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
-}
-
-// DeleteBucketCORS deletes the cors configuration information set for the
-// bucket.
-func (c *S3) DeleteBucketCORS(input *DeleteBucketCORSInput) (req *aws.Request, err error) {
-	if opDeleteBucketCORS == nil {
-		opDeleteBucketCORS = &aws.Operation{
-			Name:       "DeleteBucketCors",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/{Bucket}?cors",
-			OperationBindings: &aws.OperationBindings{
-				InPayload: "",
-
-				Required:    []string{"Bucket"},
-				QueryParams: []string{},
-				URIParams:   []string{"Bucket"},
-				InHeaders:   []string{},
-				OutHeaders:  []string{},
-			},
-		}
-	}
-
-	// NRE
-	req = aws.NewRequest(c.Service, opDeleteBucketCORS, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
-}
-
-// DeleteBucketLifecycle deletes the lifecycle configuration from the
-// bucket.
-func (c *S3) DeleteBucketLifecycle(input *DeleteBucketLifecycleInput) (req *aws.Request, err error) {
-	if opDeleteBucketLifecycle == nil {
-		opDeleteBucketLifecycle = &aws.Operation{
-			Name:       "DeleteBucketLifecycle",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/{Bucket}?lifecycle",
-			OperationBindings: &aws.OperationBindings{
-				InPayload: "",
-
-				Required:    []string{"Bucket"},
-				QueryParams: []string{},
-				URIParams:   []string{"Bucket"},
-				InHeaders:   []string{},
-				OutHeaders:  []string{},
-			},
-		}
-	}
-
-	// NRE
-	req = aws.NewRequest(c.Service, opDeleteBucketLifecycle, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
-}
-
-// DeleteBucketPolicy is undocumented.
-func (c *S3) DeleteBucketPolicy(input *DeleteBucketPolicyInput) (req *aws.Request, err error) {
-	if opDeleteBucketPolicy == nil {
-		opDeleteBucketPolicy = &aws.Operation{
-			Name:       "DeleteBucketPolicy",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/{Bucket}?policy",
-			OperationBindings: &aws.OperationBindings{
-				InPayload: "",
-
-				Required:    []string{"Bucket"},
-				QueryParams: []string{},
-				URIParams:   []string{"Bucket"},
-				InHeaders:   []string{},
-				OutHeaders:  []string{},
-			},
-		}
-	}
-
-	// NRE
-	req = aws.NewRequest(c.Service, opDeleteBucketPolicy, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
-}
-
-// DeleteBucketTagging is undocumented.
-func (c *S3) DeleteBucketTagging(input *DeleteBucketTaggingInput) (req *aws.Request, err error) {
-	if opDeleteBucketTagging == nil {
-		opDeleteBucketTagging = &aws.Operation{
-			Name:       "DeleteBucketTagging",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/{Bucket}?tagging",
-			OperationBindings: &aws.OperationBindings{
-				InPayload: "",
-
-				Required:    []string{"Bucket"},
-				QueryParams: []string{},
-				URIParams:   []string{"Bucket"},
-				InHeaders:   []string{},
-				OutHeaders:  []string{},
-			},
-		}
-	}
-
-	// NRE
-	req = aws.NewRequest(c.Service, opDeleteBucketTagging, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
-}
-
-// DeleteBucketWebsite this operation removes the website configuration
-// from the bucket.
-func (c *S3) DeleteBucketWebsite(input *DeleteBucketWebsiteInput) (req *aws.Request, err error) {
-	if opDeleteBucketWebsite == nil {
-		opDeleteBucketWebsite = &aws.Operation{
-			Name:       "DeleteBucketWebsite",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/{Bucket}?website",
-			OperationBindings: &aws.OperationBindings{
-				InPayload: "",
-
-				Required:    []string{"Bucket"},
-				QueryParams: []string{},
-				URIParams:   []string{"Bucket"},
-				InHeaders:   []string{},
-				OutHeaders:  []string{},
-			},
-		}
-	}
-
-	// NRE
-	req = aws.NewRequest(c.Service, opDeleteBucketWebsite, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
-	return
+	return aws.NewRequest(c.Service, opDeleteObject, input, nil)
 }
 
 // DeleteObject removes the null version (if there is one) of an object and
 // inserts a delete marker, which becomes the latest version of the object.
 // If there isn't a null version, Amazon S3 does not remove any objects.
-func (c *S3) DeleteObject(input *DeleteObjectInput) (output *DeleteObjectOutput, req *aws.Request, err error) {
-	if opDeleteObject == nil {
-		opDeleteObject = &aws.Operation{
-			Name:       "DeleteObject",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/{Bucket}/{Key+}",
-			OperationBindings: &aws.OperationBindings{
-				InPayload:   "",
-				OutPayload:  "",
-				Required:    []string{"Bucket", "Key"},
-				QueryParams: []string{},
-				URIParams:   []string{"Bucket", "Key"},
-				InHeaders:   []string{"MFA"},
-				OutHeaders:  []string{"VersionId", "DeleteMarker"},
-			},
-		}
-	}
-
+func (c *S3) DeleteObject(input *DeleteObjectInput) (output *DeleteObjectOutput, err error) {
 	output = &DeleteObjectOutput{}
-	req = aws.NewRequest(c.Service, opDeleteObject, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.DeleteObjectRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// DeleteObjects this operation enables you to delete multiple objects from
-// a bucket using a single request. You may specify up to 1000 keys.
-func (c *S3) DeleteObjects(input *DeleteObjectsInput) (output *DeleteObjectsOutput, req *aws.Request, err error) {
+// DeleteObjectsRequest generates a request for the DeleteObjects operation.
+func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) *aws.Request {
 	if opDeleteObjects == nil {
 		opDeleteObjects = &aws.Operation{
 			Name:       "DeleteObjects",
 			HTTPMethod: "POST",
 			HTTPPath:   "/{Bucket}?delete",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "Delete",
 				OutPayload:  "",
@@ -376,21 +436,27 @@ func (c *S3) DeleteObjects(input *DeleteObjectsInput) (output *DeleteObjectsOutp
 		}
 	}
 
+	return aws.NewRequest(c.Service, opDeleteObjects, input, nil)
+}
+
+// DeleteObjects this operation enables you to delete multiple objects from
+// a bucket using a single request. You may specify up to 1000 keys.
+func (c *S3) DeleteObjects(input *DeleteObjectsInput) (output *DeleteObjectsOutput, err error) {
 	output = &DeleteObjectsOutput{}
-	req = aws.NewRequest(c.Service, opDeleteObjects, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.DeleteObjectsRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetBucketACL is undocumented.
-func (c *S3) GetBucketACL(input *GetBucketACLInput) (output *GetBucketACLOutput, req *aws.Request, err error) {
+// GetBucketACLRequest generates a request for the GetBucketACL operation.
+func (c *S3) GetBucketACLRequest(input *GetBucketACLInput) *aws.Request {
 	if opGetBucketACL == nil {
 		opGetBucketACL = &aws.Operation{
 			Name:       "GetBucketAcl",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?acl",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -403,21 +469,26 @@ func (c *S3) GetBucketACL(input *GetBucketACLInput) (output *GetBucketACLOutput,
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetBucketACL, input, nil)
+}
+
+// GetBucketACL is undocumented.
+func (c *S3) GetBucketACL(input *GetBucketACLInput) (output *GetBucketACLOutput, err error) {
 	output = &GetBucketACLOutput{}
-	req = aws.NewRequest(c.Service, opGetBucketACL, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetBucketACLRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetBucketCORS is undocumented.
-func (c *S3) GetBucketCORS(input *GetBucketCORSInput) (output *GetBucketCORSOutput, req *aws.Request, err error) {
+// GetBucketCORSRequest generates a request for the GetBucketCORS operation.
+func (c *S3) GetBucketCORSRequest(input *GetBucketCORSInput) *aws.Request {
 	if opGetBucketCORS == nil {
 		opGetBucketCORS = &aws.Operation{
 			Name:       "GetBucketCors",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?cors",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -430,22 +501,26 @@ func (c *S3) GetBucketCORS(input *GetBucketCORSInput) (output *GetBucketCORSOutp
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetBucketCORS, input, nil)
+}
+
+// GetBucketCORS is undocumented.
+func (c *S3) GetBucketCORS(input *GetBucketCORSInput) (output *GetBucketCORSOutput, err error) {
 	output = &GetBucketCORSOutput{}
-	req = aws.NewRequest(c.Service, opGetBucketCORS, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetBucketCORSRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetBucketLifecycle returns the lifecycle configuration information set
-// on the bucket.
-func (c *S3) GetBucketLifecycle(input *GetBucketLifecycleInput) (output *GetBucketLifecycleOutput, req *aws.Request, err error) {
+// GetBucketLifecycleRequest generates a request for the GetBucketLifecycle operation.
+func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) *aws.Request {
 	if opGetBucketLifecycle == nil {
 		opGetBucketLifecycle = &aws.Operation{
 			Name:       "GetBucketLifecycle",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?lifecycle",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -458,21 +533,27 @@ func (c *S3) GetBucketLifecycle(input *GetBucketLifecycleInput) (output *GetBuck
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetBucketLifecycle, input, nil)
+}
+
+// GetBucketLifecycle returns the lifecycle configuration information set
+// on the bucket.
+func (c *S3) GetBucketLifecycle(input *GetBucketLifecycleInput) (output *GetBucketLifecycleOutput, err error) {
 	output = &GetBucketLifecycleOutput{}
-	req = aws.NewRequest(c.Service, opGetBucketLifecycle, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetBucketLifecycleRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetBucketLocation is undocumented.
-func (c *S3) GetBucketLocation(input *GetBucketLocationInput) (output *GetBucketLocationOutput, req *aws.Request, err error) {
+// GetBucketLocationRequest generates a request for the GetBucketLocation operation.
+func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) *aws.Request {
 	if opGetBucketLocation == nil {
 		opGetBucketLocation = &aws.Operation{
 			Name:       "GetBucketLocation",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?location",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -485,23 +566,26 @@ func (c *S3) GetBucketLocation(input *GetBucketLocationInput) (output *GetBucket
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetBucketLocation, input, nil)
+}
+
+// GetBucketLocation is undocumented.
+func (c *S3) GetBucketLocation(input *GetBucketLocationInput) (output *GetBucketLocationOutput, err error) {
 	output = &GetBucketLocationOutput{}
-	req = aws.NewRequest(c.Service, opGetBucketLocation, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetBucketLocationRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetBucketLogging returns the logging status of a bucket and the
-// permissions users have to view and modify that status. To use you must
-// be the bucket owner.
-func (c *S3) GetBucketLogging(input *GetBucketLoggingInput) (output *GetBucketLoggingOutput, req *aws.Request, err error) {
+// GetBucketLoggingRequest generates a request for the GetBucketLogging operation.
+func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) *aws.Request {
 	if opGetBucketLogging == nil {
 		opGetBucketLogging = &aws.Operation{
 			Name:       "GetBucketLogging",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?logging",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -514,21 +598,28 @@ func (c *S3) GetBucketLogging(input *GetBucketLoggingInput) (output *GetBucketLo
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetBucketLogging, input, nil)
+}
+
+// GetBucketLogging returns the logging status of a bucket and the
+// permissions users have to view and modify that status. To use you must
+// be the bucket owner.
+func (c *S3) GetBucketLogging(input *GetBucketLoggingInput) (output *GetBucketLoggingOutput, err error) {
 	output = &GetBucketLoggingOutput{}
-	req = aws.NewRequest(c.Service, opGetBucketLogging, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetBucketLoggingRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetBucketNotification is undocumented.
-func (c *S3) GetBucketNotification(input *GetBucketNotificationInput) (output *GetBucketNotificationOutput, req *aws.Request, err error) {
+// GetBucketNotificationRequest generates a request for the GetBucketNotification operation.
+func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationInput) *aws.Request {
 	if opGetBucketNotification == nil {
 		opGetBucketNotification = &aws.Operation{
 			Name:       "GetBucketNotification",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?notification",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -541,21 +632,26 @@ func (c *S3) GetBucketNotification(input *GetBucketNotificationInput) (output *G
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetBucketNotification, input, nil)
+}
+
+// GetBucketNotification is undocumented.
+func (c *S3) GetBucketNotification(input *GetBucketNotificationInput) (output *GetBucketNotificationOutput, err error) {
 	output = &GetBucketNotificationOutput{}
-	req = aws.NewRequest(c.Service, opGetBucketNotification, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetBucketNotificationRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetBucketPolicy is undocumented.
-func (c *S3) GetBucketPolicy(input *GetBucketPolicyInput) (output *GetBucketPolicyOutput, req *aws.Request, err error) {
+// GetBucketPolicyRequest generates a request for the GetBucketPolicy operation.
+func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) *aws.Request {
 	if opGetBucketPolicy == nil {
 		opGetBucketPolicy = &aws.Operation{
 			Name:       "GetBucketPolicy",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?policy",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "Policy",
@@ -568,22 +664,26 @@ func (c *S3) GetBucketPolicy(input *GetBucketPolicyInput) (output *GetBucketPoli
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetBucketPolicy, input, nil)
+}
+
+// GetBucketPolicy is undocumented.
+func (c *S3) GetBucketPolicy(input *GetBucketPolicyInput) (output *GetBucketPolicyOutput, err error) {
 	output = &GetBucketPolicyOutput{}
-	req = aws.NewRequest(c.Service, opGetBucketPolicy, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetBucketPolicyRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetBucketRequestPayment returns the request payment configuration of a
-// bucket.
-func (c *S3) GetBucketRequestPayment(input *GetBucketRequestPaymentInput) (output *GetBucketRequestPaymentOutput, req *aws.Request, err error) {
+// GetBucketRequestPaymentRequest generates a request for the GetBucketRequestPayment operation.
+func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput) *aws.Request {
 	if opGetBucketRequestPayment == nil {
 		opGetBucketRequestPayment = &aws.Operation{
 			Name:       "GetBucketRequestPayment",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?requestPayment",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -596,21 +696,27 @@ func (c *S3) GetBucketRequestPayment(input *GetBucketRequestPaymentInput) (outpu
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetBucketRequestPayment, input, nil)
+}
+
+// GetBucketRequestPayment returns the request payment configuration of a
+// bucket.
+func (c *S3) GetBucketRequestPayment(input *GetBucketRequestPaymentInput) (output *GetBucketRequestPaymentOutput, err error) {
 	output = &GetBucketRequestPaymentOutput{}
-	req = aws.NewRequest(c.Service, opGetBucketRequestPayment, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetBucketRequestPaymentRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetBucketTagging is undocumented.
-func (c *S3) GetBucketTagging(input *GetBucketTaggingInput) (output *GetBucketTaggingOutput, req *aws.Request, err error) {
+// GetBucketTaggingRequest generates a request for the GetBucketTagging operation.
+func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) *aws.Request {
 	if opGetBucketTagging == nil {
 		opGetBucketTagging = &aws.Operation{
 			Name:       "GetBucketTagging",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?tagging",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -623,21 +729,26 @@ func (c *S3) GetBucketTagging(input *GetBucketTaggingInput) (output *GetBucketTa
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetBucketTagging, input, nil)
+}
+
+// GetBucketTagging is undocumented.
+func (c *S3) GetBucketTagging(input *GetBucketTaggingInput) (output *GetBucketTaggingOutput, err error) {
 	output = &GetBucketTaggingOutput{}
-	req = aws.NewRequest(c.Service, opGetBucketTagging, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetBucketTaggingRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetBucketVersioning is undocumented.
-func (c *S3) GetBucketVersioning(input *GetBucketVersioningInput) (output *GetBucketVersioningOutput, req *aws.Request, err error) {
+// GetBucketVersioningRequest generates a request for the GetBucketVersioning operation.
+func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) *aws.Request {
 	if opGetBucketVersioning == nil {
 		opGetBucketVersioning = &aws.Operation{
 			Name:       "GetBucketVersioning",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?versioning",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -650,21 +761,26 @@ func (c *S3) GetBucketVersioning(input *GetBucketVersioningInput) (output *GetBu
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetBucketVersioning, input, nil)
+}
+
+// GetBucketVersioning is undocumented.
+func (c *S3) GetBucketVersioning(input *GetBucketVersioningInput) (output *GetBucketVersioningOutput, err error) {
 	output = &GetBucketVersioningOutput{}
-	req = aws.NewRequest(c.Service, opGetBucketVersioning, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetBucketVersioningRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetBucketWebsite is undocumented.
-func (c *S3) GetBucketWebsite(input *GetBucketWebsiteInput) (output *GetBucketWebsiteOutput, req *aws.Request, err error) {
+// GetBucketWebsiteRequest generates a request for the GetBucketWebsite operation.
+func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) *aws.Request {
 	if opGetBucketWebsite == nil {
 		opGetBucketWebsite = &aws.Operation{
 			Name:       "GetBucketWebsite",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?website",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -677,103 +793,122 @@ func (c *S3) GetBucketWebsite(input *GetBucketWebsiteInput) (output *GetBucketWe
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetBucketWebsite, input, nil)
+}
+
+// GetBucketWebsite is undocumented.
+func (c *S3) GetBucketWebsite(input *GetBucketWebsiteInput) (output *GetBucketWebsiteOutput, err error) {
 	output = &GetBucketWebsiteOutput{}
-	req = aws.NewRequest(c.Service, opGetBucketWebsite, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetBucketWebsiteRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetObject is undocumented.
-func (c *S3) GetObject(input *GetObjectInput) (output *GetObjectOutput, req *aws.Request, err error) {
+// GetObjectRequest generates a request for the GetObject operation.
+func (c *S3) GetObjectRequest(input *GetObjectInput) *aws.Request {
 	if opGetObject == nil {
 		opGetObject = &aws.Operation{
 			Name:       "GetObject",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}/{Key+}",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "Body",
-				Required:    []string{"Key", "Bucket"},
+				Required:    []string{"Bucket", "Key"},
 				QueryParams: []string{},
 				URIParams:   []string{"Key", "Bucket"},
-				InHeaders:   []string{"IfMatch", "SSECustomerKeyMD5", "SSECustomerAlgorithm", "SSECustomerKey", "IfNoneMatch", "Range", "IfModifiedSince", "IfUnmodifiedSince"},
-				OutHeaders:  []string{"CacheControl", "ContentType", "SSECustomerAlgorithm", "ContentEncoding", "Expiration", "AcceptRanges", "LastModified", "ETag", "SSEKMSKeyId", "Restore", "ServerSideEncryption", "WebsiteRedirectLocation", "SSECustomerKeyMD5", "DeleteMarker", "ContentLength", "MissingMeta", "ContentLanguage", "Expires", "ContentDisposition", "VersionId"},
+				InHeaders:   []string{"SSECustomerAlgorithm", "SSECustomerKeyMD5", "IfMatch", "IfModifiedSince", "Range", "SSECustomerKey", "IfNoneMatch", "IfUnmodifiedSince"},
+				OutHeaders:  []string{"WebsiteRedirectLocation", "ContentLength", "ContentEncoding", "Expiration", "AcceptRanges", "VersionId", "ContentType", "ETag", "ServerSideEncryption", "SSEKMSKeyId", "DeleteMarker", "LastModified", "MissingMeta", "ContentLanguage", "ContentDisposition", "Expires", "CacheControl", "SSECustomerAlgorithm", "Restore", "SSECustomerKeyMD5"},
 			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetObject, input, nil)
+}
+
+// GetObject is undocumented.
+func (c *S3) GetObject(input *GetObjectInput) (output *GetObjectOutput, err error) {
 	output = &GetObjectOutput{}
-	req = aws.NewRequest(c.Service, opGetObject, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetObjectRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetObjectACL is undocumented.
-func (c *S3) GetObjectACL(input *GetObjectACLInput) (output *GetObjectACLOutput, req *aws.Request, err error) {
+// GetObjectACLRequest generates a request for the GetObjectACL operation.
+func (c *S3) GetObjectACLRequest(input *GetObjectACLInput) *aws.Request {
 	if opGetObjectACL == nil {
 		opGetObjectACL = &aws.Operation{
 			Name:       "GetObjectAcl",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}/{Key+}?acl",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
-				Required:    []string{"Key", "Bucket"},
+				Required:    []string{"Bucket", "Key"},
 				QueryParams: []string{},
-				URIParams:   []string{"Bucket", "Key"},
+				URIParams:   []string{"Key", "Bucket"},
 				InHeaders:   []string{},
 				OutHeaders:  []string{},
 			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetObjectACL, input, nil)
+}
+
+// GetObjectACL is undocumented.
+func (c *S3) GetObjectACL(input *GetObjectACLInput) (output *GetObjectACLOutput, err error) {
 	output = &GetObjectACLOutput{}
-	req = aws.NewRequest(c.Service, opGetObjectACL, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetObjectACLRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// GetObjectTorrent is undocumented.
-func (c *S3) GetObjectTorrent(input *GetObjectTorrentInput) (output *GetObjectTorrentOutput, req *aws.Request, err error) {
+// GetObjectTorrentRequest generates a request for the GetObjectTorrent operation.
+func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) *aws.Request {
 	if opGetObjectTorrent == nil {
 		opGetObjectTorrent = &aws.Operation{
 			Name:       "GetObjectTorrent",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}/{Key+}?torrent",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "Body",
-				Required:    []string{"Key", "Bucket"},
+				Required:    []string{"Bucket", "Key"},
 				QueryParams: []string{},
-				URIParams:   []string{"Bucket", "Key"},
+				URIParams:   []string{"Key", "Bucket"},
 				InHeaders:   []string{},
 				OutHeaders:  []string{},
 			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opGetObjectTorrent, input, nil)
+}
+
+// GetObjectTorrent is undocumented.
+func (c *S3) GetObjectTorrent(input *GetObjectTorrentInput) (output *GetObjectTorrentOutput, err error) {
 	output = &GetObjectTorrentOutput{}
-	req = aws.NewRequest(c.Service, opGetObjectTorrent, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.GetObjectTorrentRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// HeadBucket this operation is useful to determine if a bucket exists and
-// you have permission to access it.
-func (c *S3) HeadBucket(input *HeadBucketInput) (req *aws.Request, err error) {
+// HeadBucketRequest generates a request for the HeadBucket operation.
+func (c *S3) HeadBucketRequest(input *HeadBucketInput) *aws.Request {
 	if opHeadBucket == nil {
 		opHeadBucket = &aws.Operation{
 			Name:       "HeadBucket",
 			HTTPMethod: "HEAD",
 			HTTPPath:   "/{Bucket}",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "",
 
@@ -786,52 +921,62 @@ func (c *S3) HeadBucket(input *HeadBucketInput) (req *aws.Request, err error) {
 		}
 	}
 
+	return aws.NewRequest(c.Service, opHeadBucket, input, nil)
+}
+
+// HeadBucket this operation is useful to determine if a bucket exists and
+// you have permission to access it.
+func (c *S3) HeadBucket(input *HeadBucketInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opHeadBucket, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.HeadBucketRequest(input)
+
+	err = req.Send()
 	return
+}
+
+// HeadObjectRequest generates a request for the HeadObject operation.
+func (c *S3) HeadObjectRequest(input *HeadObjectInput) *aws.Request {
+	if opHeadObject == nil {
+		opHeadObject = &aws.Operation{
+			Name:       "HeadObject",
+			HTTPMethod: "HEAD",
+			HTTPPath:   "/{Bucket}/{Key+}",
+
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "",
+				OutPayload:  "",
+				Required:    []string{"Bucket", "Key"},
+				QueryParams: []string{},
+				URIParams:   []string{"Bucket", "Key"},
+				InHeaders:   []string{"IfModifiedSince", "Range", "IfMatch", "SSECustomerAlgorithm", "SSECustomerKey", "SSECustomerKeyMD5", "IfNoneMatch", "IfUnmodifiedSince"},
+				OutHeaders:  []string{"LastModified", "SSECustomerKeyMD5", "VersionId", "CacheControl", "Expires", "ServerSideEncryption", "ContentLength", "MissingMeta", "ContentType", "DeleteMarker", "Expiration", "Restore", "ETag", "SSEKMSKeyId", "ContentDisposition", "AcceptRanges", "WebsiteRedirectLocation", "ContentEncoding", "ContentLanguage", "SSECustomerAlgorithm"},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opHeadObject, input, nil)
 }
 
 // HeadObject the operation retrieves metadata from an object without
 // returning the object itself. This operation is useful if you're only
 // interested in an object's metadata. To use you must have access to the
 // object.
-func (c *S3) HeadObject(input *HeadObjectInput) (output *HeadObjectOutput, req *aws.Request, err error) {
-	if opHeadObject == nil {
-		opHeadObject = &aws.Operation{
-			Name:       "HeadObject",
-			HTTPMethod: "HEAD",
-			HTTPPath:   "/{Bucket}/{Key+}",
-			OperationBindings: &aws.OperationBindings{
-				InPayload:   "",
-				OutPayload:  "",
-				Required:    []string{"Key", "Bucket"},
-				QueryParams: []string{},
-				URIParams:   []string{"Bucket", "Key"},
-				InHeaders:   []string{"SSECustomerAlgorithm", "SSECustomerKey", "SSECustomerKeyMD5", "IfModifiedSince", "Range", "IfNoneMatch", "IfMatch", "IfUnmodifiedSince"},
-				OutHeaders:  []string{"Restore", "ContentEncoding", "Expires", "ServerSideEncryption", "SSECustomerKeyMD5", "ContentType", "WebsiteRedirectLocation", "CacheControl", "ContentDisposition", "SSEKMSKeyId", "Expiration", "ETag", "MissingMeta", "SSECustomerAlgorithm", "LastModified", "ContentLanguage", "DeleteMarker", "AcceptRanges", "ContentLength", "VersionId"},
-			},
-		}
-	}
-
+func (c *S3) HeadObject(input *HeadObjectInput) (output *HeadObjectOutput, err error) {
 	output = &HeadObjectOutput{}
-	req = aws.NewRequest(c.Service, opHeadObject, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.HeadObjectRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// ListBuckets returns a list of all buckets owned by the authenticated
-// sender of the request.
-func (c *S3) ListBuckets() (output *ListBucketsOutput, req *aws.Request, err error) {
+// ListBucketsRequest generates a request for the ListBuckets operation.
+func (c *S3) ListBucketsRequest() *aws.Request {
 	if opListBuckets == nil {
 		opListBuckets = &aws.Operation{
 			Name:       "ListBuckets",
 			HTTPMethod: "GET",
 			HTTPPath:   "/",
+
 			OperationBindings: &aws.OperationBindings{
 
 				OutPayload:  "",
@@ -844,21 +989,27 @@ func (c *S3) ListBuckets() (output *ListBucketsOutput, req *aws.Request, err err
 		}
 	}
 
+	return aws.NewRequest(c.Service, opListBuckets, nil, nil)
+}
+
+// ListBuckets returns a list of all buckets owned by the authenticated
+// sender of the request.
+func (c *S3) ListBuckets() (output *ListBucketsOutput, err error) {
 	output = &ListBucketsOutput{}
-	req = aws.NewRequest(c.Service, opListBuckets, nil, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.ListBucketsRequest(nil)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// ListMultipartUploads this operation lists in-progress multipart uploads.
-func (c *S3) ListMultipartUploads(input *ListMultipartUploadsInput) (output *ListMultipartUploadsOutput, req *aws.Request, err error) {
+// ListMultipartUploadsRequest generates a request for the ListMultipartUploads operation.
+func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) *aws.Request {
 	if opListMultipartUploads == nil {
 		opListMultipartUploads = &aws.Operation{
 			Name:       "ListMultipartUploads",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?uploads",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -871,22 +1022,26 @@ func (c *S3) ListMultipartUploads(input *ListMultipartUploadsInput) (output *Lis
 		}
 	}
 
+	return aws.NewRequest(c.Service, opListMultipartUploads, input, nil)
+}
+
+// ListMultipartUploads this operation lists in-progress multipart uploads.
+func (c *S3) ListMultipartUploads(input *ListMultipartUploadsInput) (output *ListMultipartUploadsOutput, err error) {
 	output = &ListMultipartUploadsOutput{}
-	req = aws.NewRequest(c.Service, opListMultipartUploads, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.ListMultipartUploadsRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// ListObjectVersions returns metadata about all of the versions of objects
-// in a bucket.
-func (c *S3) ListObjectVersions(input *ListObjectVersionsInput) (output *ListObjectVersionsOutput, req *aws.Request, err error) {
+// ListObjectVersionsRequest generates a request for the ListObjectVersions operation.
+func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) *aws.Request {
 	if opListObjectVersions == nil {
 		opListObjectVersions = &aws.Operation{
 			Name:       "ListObjectVersions",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?versions",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -899,23 +1054,27 @@ func (c *S3) ListObjectVersions(input *ListObjectVersionsInput) (output *ListObj
 		}
 	}
 
+	return aws.NewRequest(c.Service, opListObjectVersions, input, nil)
+}
+
+// ListObjectVersions returns metadata about all of the versions of objects
+// in a bucket.
+func (c *S3) ListObjectVersions(input *ListObjectVersionsInput) (output *ListObjectVersionsOutput, err error) {
 	output = &ListObjectVersionsOutput{}
-	req = aws.NewRequest(c.Service, opListObjectVersions, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.ListObjectVersionsRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// ListObjects returns some or all (up to 1000) of the objects in a bucket.
-// You can use the request parameters as selection criteria to return a
-// subset of the objects in a bucket.
-func (c *S3) ListObjects(input *ListObjectsInput) (output *ListObjectsOutput, req *aws.Request, err error) {
+// ListObjectsRequest generates a request for the ListObjects operation.
+func (c *S3) ListObjectsRequest(input *ListObjectsInput) *aws.Request {
 	if opListObjects == nil {
 		opListObjects = &aws.Operation{
 			Name:       "ListObjects",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -928,22 +1087,28 @@ func (c *S3) ListObjects(input *ListObjectsInput) (output *ListObjectsOutput, re
 		}
 	}
 
+	return aws.NewRequest(c.Service, opListObjects, input, nil)
+}
+
+// ListObjects returns some or all (up to 1000) of the objects in a bucket.
+// You can use the request parameters as selection criteria to return a
+// subset of the objects in a bucket.
+func (c *S3) ListObjects(input *ListObjectsInput) (output *ListObjectsOutput, err error) {
 	output = &ListObjectsOutput{}
-	req = aws.NewRequest(c.Service, opListObjects, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.ListObjectsRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// ListParts lists the parts that have been uploaded for a specific
-// multipart upload.
-func (c *S3) ListParts(input *ListPartsInput) (output *ListPartsOutput, req *aws.Request, err error) {
+// ListPartsRequest generates a request for the ListParts operation.
+func (c *S3) ListPartsRequest(input *ListPartsInput) *aws.Request {
 	if opListParts == nil {
 		opListParts = &aws.Operation{
 			Name:       "ListParts",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}/{Key+}",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "",
@@ -956,48 +1121,59 @@ func (c *S3) ListParts(input *ListPartsInput) (output *ListPartsOutput, req *aws
 		}
 	}
 
+	return aws.NewRequest(c.Service, opListParts, input, nil)
+}
+
+// ListParts lists the parts that have been uploaded for a specific
+// multipart upload.
+func (c *S3) ListParts(input *ListPartsInput) (output *ListPartsOutput, err error) {
 	output = &ListPartsOutput{}
-	req = aws.NewRequest(c.Service, opListParts, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.ListPartsRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// PutBucketACL sets the permissions on a bucket using access control lists
-func (c *S3) PutBucketACL(input *PutBucketACLInput) (req *aws.Request, err error) {
+// PutBucketACLRequest generates a request for the PutBucketACL operation.
+func (c *S3) PutBucketACLRequest(input *PutBucketACLInput) *aws.Request {
 	if opPutBucketACL == nil {
 		opPutBucketACL = &aws.Operation{
 			Name:       "PutBucketAcl",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?acl",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "AccessControlPolicy",
 
 				Required:    []string{"Bucket"},
 				QueryParams: []string{},
 				URIParams:   []string{"Bucket"},
-				InHeaders:   []string{"GrantRead", "GrantWrite", "GrantWriteACP", "ACL", "GrantReadACP", "ContentMD5", "GrantFullControl"},
+				InHeaders:   []string{"ACL", "GrantReadACP", "GrantWriteACP", "ContentMD5", "GrantFullControl", "GrantRead", "GrantWrite"},
 				OutHeaders:  []string{},
 			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutBucketACL, input, nil)
+}
+
+// PutBucketACL sets the permissions on a bucket using access control lists
+func (c *S3) PutBucketACL(input *PutBucketACLInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opPutBucketACL, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutBucketACLRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// PutBucketCORS is undocumented.
-func (c *S3) PutBucketCORS(input *PutBucketCORSInput) (req *aws.Request, err error) {
+// PutBucketCORSRequest generates a request for the PutBucketCORS operation.
+func (c *S3) PutBucketCORSRequest(input *PutBucketCORSInput) *aws.Request {
 	if opPutBucketCORS == nil {
 		opPutBucketCORS = &aws.Operation{
 			Name:       "PutBucketCors",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?cors",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "CORSConfiguration",
 
@@ -1010,22 +1186,26 @@ func (c *S3) PutBucketCORS(input *PutBucketCORSInput) (req *aws.Request, err err
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutBucketCORS, input, nil)
+}
+
+// PutBucketCORS is undocumented.
+func (c *S3) PutBucketCORS(input *PutBucketCORSInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opPutBucketCORS, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutBucketCORSRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// PutBucketLifecycle sets lifecycle configuration for your bucket. If a
-// lifecycle configuration exists, it replaces it.
-func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (req *aws.Request, err error) {
+// PutBucketLifecycleRequest generates a request for the PutBucketLifecycle operation.
+func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) *aws.Request {
 	if opPutBucketLifecycle == nil {
 		opPutBucketLifecycle = &aws.Operation{
 			Name:       "PutBucketLifecycle",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?lifecycle",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "LifecycleConfiguration",
 
@@ -1038,27 +1218,31 @@ func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (req *aws.Reques
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutBucketLifecycle, input, nil)
+}
+
+// PutBucketLifecycle sets lifecycle configuration for your bucket. If a
+// lifecycle configuration exists, it replaces it.
+func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opPutBucketLifecycle, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutBucketLifecycleRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// PutBucketLogging set the logging parameters for a bucket and to specify
-// permissions for who can view and modify the logging parameters. To set
-// the logging status of a bucket, you must be the bucket owner.
-func (c *S3) PutBucketLogging(input *PutBucketLoggingInput) (req *aws.Request, err error) {
+// PutBucketLoggingRequest generates a request for the PutBucketLogging operation.
+func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) *aws.Request {
 	if opPutBucketLogging == nil {
 		opPutBucketLogging = &aws.Operation{
 			Name:       "PutBucketLogging",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?logging",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "BucketLoggingStatus",
 
-				Required:    []string{"BucketLoggingStatus", "Bucket"},
+				Required:    []string{"Bucket", "BucketLoggingStatus"},
 				QueryParams: []string{},
 				URIParams:   []string{"Bucket"},
 				InHeaders:   []string{"ContentMD5"},
@@ -1067,26 +1251,32 @@ func (c *S3) PutBucketLogging(input *PutBucketLoggingInput) (req *aws.Request, e
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutBucketLogging, input, nil)
+}
+
+// PutBucketLogging set the logging parameters for a bucket and to specify
+// permissions for who can view and modify the logging parameters. To set
+// the logging status of a bucket, you must be the bucket owner.
+func (c *S3) PutBucketLogging(input *PutBucketLoggingInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opPutBucketLogging, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutBucketLoggingRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// PutBucketNotification enables notifications of specified events for a
-// bucket.
-func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (req *aws.Request, err error) {
+// PutBucketNotificationRequest generates a request for the PutBucketNotification operation.
+func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) *aws.Request {
 	if opPutBucketNotification == nil {
 		opPutBucketNotification = &aws.Operation{
 			Name:       "PutBucketNotification",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?notification",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "NotificationConfiguration",
 
-				Required:    []string{"NotificationConfiguration", "Bucket"},
+				Required:    []string{"Bucket", "NotificationConfiguration"},
 				QueryParams: []string{},
 				URIParams:   []string{"Bucket"},
 				InHeaders:   []string{"ContentMD5"},
@@ -1095,22 +1285,27 @@ func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (req *aws.
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutBucketNotification, input, nil)
+}
+
+// PutBucketNotification enables notifications of specified events for a
+// bucket.
+func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opPutBucketNotification, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutBucketNotificationRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// PutBucketPolicy replaces a policy on a bucket. If the bucket already has
-// a policy, the one in this request completely replaces it.
-func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (req *aws.Request, err error) {
+// PutBucketPolicyRequest generates a request for the PutBucketPolicy operation.
+func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) *aws.Request {
 	if opPutBucketPolicy == nil {
 		opPutBucketPolicy = &aws.Operation{
 			Name:       "PutBucketPolicy",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?policy",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "Policy",
 
@@ -1123,25 +1318,27 @@ func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (req *aws.Request, err
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutBucketPolicy, input, nil)
+}
+
+// PutBucketPolicy replaces a policy on a bucket. If the bucket already has
+// a policy, the one in this request completely replaces it.
+func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opPutBucketPolicy, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutBucketPolicyRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// PutBucketRequestPayment sets the request payment configuration for a
-// bucket. By default, the bucket owner pays for downloads from the bucket.
-// This configuration parameter enables the bucket owner (only) to specify
-// that the person requesting the download will be charged for the
-// download.
-func (c *S3) PutBucketRequestPayment(input *PutBucketRequestPaymentInput) (req *aws.Request, err error) {
+// PutBucketRequestPaymentRequest generates a request for the PutBucketRequestPayment operation.
+func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput) *aws.Request {
 	if opPutBucketRequestPayment == nil {
 		opPutBucketRequestPayment = &aws.Operation{
 			Name:       "PutBucketRequestPayment",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?requestPayment",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "RequestPaymentConfiguration",
 
@@ -1154,21 +1351,30 @@ func (c *S3) PutBucketRequestPayment(input *PutBucketRequestPaymentInput) (req *
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutBucketRequestPayment, input, nil)
+}
+
+// PutBucketRequestPayment sets the request payment configuration for a
+// bucket. By default, the bucket owner pays for downloads from the bucket.
+// This configuration parameter enables the bucket owner (only) to specify
+// that the person requesting the download will be charged for the
+// download.
+func (c *S3) PutBucketRequestPayment(input *PutBucketRequestPaymentInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opPutBucketRequestPayment, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutBucketRequestPaymentRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// PutBucketTagging is undocumented.
-func (c *S3) PutBucketTagging(input *PutBucketTaggingInput) (req *aws.Request, err error) {
+// PutBucketTaggingRequest generates a request for the PutBucketTagging operation.
+func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) *aws.Request {
 	if opPutBucketTagging == nil {
 		opPutBucketTagging = &aws.Operation{
 			Name:       "PutBucketTagging",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?tagging",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "Tagging",
 
@@ -1181,26 +1387,30 @@ func (c *S3) PutBucketTagging(input *PutBucketTaggingInput) (req *aws.Request, e
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutBucketTagging, input, nil)
+}
+
+// PutBucketTagging is undocumented.
+func (c *S3) PutBucketTagging(input *PutBucketTaggingInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opPutBucketTagging, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutBucketTaggingRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// PutBucketVersioning sets the versioning state of an existing bucket. To
-// set the versioning state, you must be the bucket owner.
-func (c *S3) PutBucketVersioning(input *PutBucketVersioningInput) (req *aws.Request, err error) {
+// PutBucketVersioningRequest generates a request for the PutBucketVersioning operation.
+func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) *aws.Request {
 	if opPutBucketVersioning == nil {
 		opPutBucketVersioning = &aws.Operation{
 			Name:       "PutBucketVersioning",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?versioning",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "VersioningConfiguration",
 
-				Required:    []string{"VersioningConfiguration", "Bucket"},
+				Required:    []string{"Bucket", "VersioningConfiguration"},
 				QueryParams: []string{},
 				URIParams:   []string{"Bucket"},
 				InHeaders:   []string{"ContentMD5", "MFA"},
@@ -1209,21 +1419,27 @@ func (c *S3) PutBucketVersioning(input *PutBucketVersioningInput) (req *aws.Requ
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutBucketVersioning, input, nil)
+}
+
+// PutBucketVersioning sets the versioning state of an existing bucket. To
+// set the versioning state, you must be the bucket owner.
+func (c *S3) PutBucketVersioning(input *PutBucketVersioningInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opPutBucketVersioning, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutBucketVersioningRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// PutBucketWebsite is undocumented.
-func (c *S3) PutBucketWebsite(input *PutBucketWebsiteInput) (req *aws.Request, err error) {
+// PutBucketWebsiteRequest generates a request for the PutBucketWebsite operation.
+func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) *aws.Request {
 	if opPutBucketWebsite == nil {
 		opPutBucketWebsite = &aws.Operation{
 			Name:       "PutBucketWebsite",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?website",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "WebsiteConfiguration",
 
@@ -1236,76 +1452,91 @@ func (c *S3) PutBucketWebsite(input *PutBucketWebsiteInput) (req *aws.Request, e
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutBucketWebsite, input, nil)
+}
+
+// PutBucketWebsite is undocumented.
+func (c *S3) PutBucketWebsite(input *PutBucketWebsiteInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opPutBucketWebsite, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutBucketWebsiteRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// PutObject is undocumented.
-func (c *S3) PutObject(input *PutObjectInput) (output *PutObjectOutput, req *aws.Request, err error) {
+// PutObjectRequest generates a request for the PutObject operation.
+func (c *S3) PutObjectRequest(input *PutObjectInput) *aws.Request {
 	if opPutObject == nil {
 		opPutObject = &aws.Operation{
 			Name:       "PutObject",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}/{Key+}",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "Body",
 				OutPayload:  "",
-				Required:    []string{"Key", "Bucket"},
+				Required:    []string{"Bucket", "Key"},
 				QueryParams: []string{},
 				URIParams:   []string{"Key", "Bucket"},
-				InHeaders:   []string{"Expires", "ServerSideEncryption", "GrantRead", "SSECustomerKeyMD5", "StorageClass", "SSECustomerAlgorithm", "ContentLength", "ACL", "ContentEncoding", "ContentMD5", "ContentDisposition", "GrantFullControl", "SSEKMSKeyId", "GrantWriteACP", "ContentLanguage", "GrantReadACP", "ContentType", "WebsiteRedirectLocation", "SSECustomerKey", "CacheControl"},
-				OutHeaders:  []string{"SSECustomerAlgorithm", "SSECustomerKeyMD5", "SSEKMSKeyId", "Expiration", "ETag", "ServerSideEncryption", "VersionId"},
+				InHeaders:   []string{"StorageClass", "ServerSideEncryption", "CacheControl", "GrantFullControl", "GrantReadACP", "ACL", "SSECustomerKey", "WebsiteRedirectLocation", "ContentType", "GrantWriteACP", "Expires", "ContentLanguage", "ContentMD5", "ContentEncoding", "SSECustomerAlgorithm", "ContentDisposition", "SSEKMSKeyId", "ContentLength", "SSECustomerKeyMD5", "GrantRead"},
+				OutHeaders:  []string{"SSEKMSKeyId", "Expiration", "ETag", "ServerSideEncryption", "VersionId", "SSECustomerAlgorithm", "SSECustomerKeyMD5"},
 			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutObject, input, nil)
+}
+
+// PutObject is undocumented.
+func (c *S3) PutObject(input *PutObjectInput) (output *PutObjectOutput, err error) {
 	output = &PutObjectOutput{}
-	req = aws.NewRequest(c.Service, opPutObject, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutObjectRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// PutObjectACL uses the acl subresource to set the access control list
-// permissions for an object that already exists in a bucket
-func (c *S3) PutObjectACL(input *PutObjectACLInput) (req *aws.Request, err error) {
+// PutObjectACLRequest generates a request for the PutObjectACL operation.
+func (c *S3) PutObjectACLRequest(input *PutObjectACLInput) *aws.Request {
 	if opPutObjectACL == nil {
 		opPutObjectACL = &aws.Operation{
 			Name:       "PutObjectAcl",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}/{Key+}?acl",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "AccessControlPolicy",
 
-				Required:    []string{"Key", "Bucket"},
+				Required:    []string{"Bucket", "Key"},
 				QueryParams: []string{},
-				URIParams:   []string{"Bucket", "Key"},
-				InHeaders:   []string{"GrantReadACP", "GrantWriteACP", "GrantWrite", "ContentMD5", "GrantFullControl", "ACL", "GrantRead"},
+				URIParams:   []string{"Key", "Bucket"},
+				InHeaders:   []string{"GrantWrite", "ACL", "GrantFullControl", "GrantRead", "GrantReadACP", "GrantWriteACP", "ContentMD5"},
 				OutHeaders:  []string{},
 			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opPutObjectACL, input, nil)
+}
+
+// PutObjectACL uses the acl subresource to set the access control list
+// permissions for an object that already exists in a bucket
+func (c *S3) PutObjectACL(input *PutObjectACLInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opPutObjectACL, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.PutObjectACLRequest(input)
+
+	err = req.Send()
 	return
 }
 
-// RestoreObject restores an archived copy of an object back into Amazon S3
-func (c *S3) RestoreObject(input *RestoreObjectInput) (req *aws.Request, err error) {
+// RestoreObjectRequest generates a request for the RestoreObject operation.
+func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) *aws.Request {
 	if opRestoreObject == nil {
 		opRestoreObject = &aws.Operation{
 			Name:       "RestoreObject",
 			HTTPMethod: "POST",
 			HTTPPath:   "/{Bucket}/{Key+}?restore",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload: "RestoreRequest",
 
@@ -1318,12 +1549,39 @@ func (c *S3) RestoreObject(input *RestoreObjectInput) (req *aws.Request, err err
 		}
 	}
 
+	return aws.NewRequest(c.Service, opRestoreObject, input, nil)
+}
+
+// RestoreObject restores an archived copy of an object back into Amazon S3
+func (c *S3) RestoreObject(input *RestoreObjectInput) (err error) {
 	// NRE
-	req = aws.NewRequest(c.Service, opRestoreObject, input, nil)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.RestoreObjectRequest(input)
+
+	err = req.Send()
 	return
+}
+
+// UploadPartRequest generates a request for the UploadPart operation.
+func (c *S3) UploadPartRequest(input *UploadPartInput) *aws.Request {
+	if opUploadPart == nil {
+		opUploadPart = &aws.Operation{
+			Name:       "UploadPart",
+			HTTPMethod: "PUT",
+			HTTPPath:   "/{Bucket}/{Key+}",
+
+			OperationBindings: &aws.OperationBindings{
+				InPayload:   "Body",
+				OutPayload:  "",
+				Required:    []string{"Bucket", "Key", "PartNumber", "UploadId"},
+				QueryParams: []string{},
+				URIParams:   []string{"Key", "Bucket"},
+				InHeaders:   []string{"ContentLength", "SSECustomerKeyMD5", "ContentMD5", "SSECustomerKey", "SSECustomerAlgorithm"},
+				OutHeaders:  []string{"ServerSideEncryption", "ETag", "SSECustomerAlgorithm", "SSECustomerKeyMD5", "SSEKMSKeyId"},
+			},
+		}
+	}
+
+	return aws.NewRequest(c.Service, opUploadPart, input, nil)
 }
 
 // UploadPart uploads a part in a multipart upload. Note: After you
@@ -1332,57 +1590,44 @@ func (c *S3) RestoreObject(input *RestoreObjectInput) (req *aws.Request, err err
 // storage of the uploaded parts. Only after you either complete or abort
 // multipart upload, Amazon S3 frees up the parts storage and stops
 // charging you for the parts storage.
-func (c *S3) UploadPart(input *UploadPartInput) (output *UploadPartOutput, req *aws.Request, err error) {
-	if opUploadPart == nil {
-		opUploadPart = &aws.Operation{
-			Name:       "UploadPart",
-			HTTPMethod: "PUT",
-			HTTPPath:   "/{Bucket}/{Key+}",
-			OperationBindings: &aws.OperationBindings{
-				InPayload:   "Body",
-				OutPayload:  "",
-				Required:    []string{"PartNumber", "Key", "UploadId", "Bucket"},
-				QueryParams: []string{},
-				URIParams:   []string{"Key", "Bucket"},
-				InHeaders:   []string{"ContentLength", "ContentMD5", "SSECustomerKey", "SSECustomerKeyMD5", "SSECustomerAlgorithm"},
-				OutHeaders:  []string{"ServerSideEncryption", "ETag", "SSECustomerAlgorithm", "SSECustomerKeyMD5", "SSEKMSKeyId"},
-			},
-		}
-	}
-
+func (c *S3) UploadPart(input *UploadPartInput) (output *UploadPartOutput, err error) {
 	output = &UploadPartOutput{}
-	req = aws.NewRequest(c.Service, opUploadPart, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.UploadPartRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
-// UploadPartCopy uploads a part by copying data from an existing object as
-// data source.
-func (c *S3) UploadPartCopy(input *UploadPartCopyInput) (output *UploadPartCopyOutput, req *aws.Request, err error) {
+// UploadPartCopyRequest generates a request for the UploadPartCopy operation.
+func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) *aws.Request {
 	if opUploadPartCopy == nil {
 		opUploadPartCopy = &aws.Operation{
 			Name:       "UploadPartCopy",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}/{Key+}",
+
 			OperationBindings: &aws.OperationBindings{
 				InPayload:   "",
 				OutPayload:  "CopyPartResult",
-				Required:    []string{"Key", "PartNumber", "UploadId", "Bucket", "CopySource"},
+				Required:    []string{"Bucket", "CopySource", "Key", "PartNumber", "UploadId"},
 				QueryParams: []string{},
 				URIParams:   []string{"Key", "Bucket"},
-				InHeaders:   []string{"CopySourceSSECustomerKey", "CopySourceIfMatch", "CopySourceIfUnmodifiedSince", "CopySourceRange", "CopySourceIfNoneMatch", "SSECustomerAlgorithm", "CopySourceIfModifiedSince", "CopySourceSSECustomerKeyMD5", "CopySource", "SSECustomerKeyMD5", "CopySourceSSECustomerAlgorithm", "SSECustomerKey"},
-				OutHeaders:  []string{"SSECustomerKeyMD5", "SSEKMSKeyId", "CopySourceVersionId", "ServerSideEncryption", "SSECustomerAlgorithm"},
+				InHeaders:   []string{"CopySourceSSECustomerKeyMD5", "CopySourceSSECustomerAlgorithm", "CopySourceIfMatch", "SSECustomerKey", "CopySource", "SSECustomerKeyMD5", "CopySourceIfNoneMatch", "CopySourceSSECustomerKey", "SSECustomerAlgorithm", "CopySourceRange", "CopySourceIfModifiedSince", "CopySourceIfUnmodifiedSince"},
+				OutHeaders:  []string{"SSECustomerAlgorithm", "SSECustomerKeyMD5", "SSEKMSKeyId", "CopySourceVersionId", "ServerSideEncryption"},
 			},
 		}
 	}
 
+	return aws.NewRequest(c.Service, opUploadPartCopy, input, nil)
+}
+
+// UploadPartCopy uploads a part by copying data from an existing object as
+// data source.
+func (c *S3) UploadPartCopy(input *UploadPartCopyInput) (output *UploadPartCopyOutput, err error) {
 	output = &UploadPartCopyOutput{}
-	req = aws.NewRequest(c.Service, opUploadPartCopy, input, output)
-	if !c.Service.Config.ManualSend {
-		err = req.Send()
-	}
+	req := c.UploadPartCopyRequest(input)
+	req.Data = output
+	err = req.Send()
 	return
 }
 
@@ -1438,40 +1683,187 @@ var (
 	opUploadPartCopy          *aws.Operation
 )
 
-// AbortMultipartUploadInput is undocumented.
-type AbortMultipartUploadInput struct {
+// GetBucketTaggingInput is undocumented.
+type GetBucketTaggingInput struct {
 	XMLName xml.Name
 
-	Bucket   *string `xml:"-" name:"Bucket"`
-	Key      *string `xml:"-" name:"Key"`
-	UploadID *string `xml:"-" name:"uploadId"`
+	Bucket *string `xml:"-" name:"Bucket"`
 }
 
-func (v *AbortMultipartUploadInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *GetBucketTaggingInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// AccessControlPolicy is undocumented.
-type AccessControlPolicy struct {
+// QueueConfiguration is undocumented.
+type QueueConfiguration struct {
 	XMLName xml.Name
 
-	Grants []Grant `xml:"AccessControlList>Grant,omitempty"`
-	Owner  *Owner  `xml:"Owner,omitempty"`
+	Event  *string  `xml:"Event"`
+	Events []string `xml:"Event,omitempty"`
+	ID     *string  `xml:"Id"`
+	Queue  *string  `xml:"Queue"`
 }
 
-func (v *AccessControlPolicy) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *QueueConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Bucket is undocumented.
-type Bucket struct {
+// ListObjectVersionsOutput is undocumented.
+type ListObjectVersionsOutput struct {
 	XMLName xml.Name
 
-	CreationDate time.Time `xml:"CreationDate"`
-	Name         *string   `xml:"Name"`
+	CommonPrefixes      []CommonPrefix      `xml:"CommonPrefixes,omitempty"`
+	DeleteMarkers       []DeleteMarkerEntry `xml:"DeleteMarker,omitempty"`
+	Delimiter           *string             `xml:"Delimiter"`
+	EncodingType        *string             `xml:"EncodingType"`
+	IsTruncated         *bool               `xml:"IsTruncated"`
+	KeyMarker           *string             `xml:"KeyMarker"`
+	MaxKeys             *int                `xml:"MaxKeys"`
+	Name                *string             `xml:"Name"`
+	NextKeyMarker       *string             `xml:"NextKeyMarker"`
+	NextVersionIDMarker *string             `xml:"NextVersionIdMarker"`
+	Prefix              *string             `xml:"Prefix"`
+	VersionIDMarker     *string             `xml:"VersionIdMarker"`
+	Versions            []ObjectVersion     `xml:"Version,omitempty"`
 }
 
-func (v *Bucket) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *ListObjectVersionsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// CopyObjectResult is undocumented.
+type CopyObjectResult struct {
+	XMLName xml.Name
+
+	ETag         *string   `xml:"ETag"`
+	LastModified time.Time `xml:"LastModified"`
+}
+
+func (v *CopyObjectResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	MFADeleteStatusDisabled = "Disabled"
+	MFADeleteStatusEnabled  = "Enabled"
+)
+
+// Possible values for S3.
+const (
+	ProtocolHTTP  = "http"
+	ProtocolHTTPS = "https"
+)
+
+// CreateBucketConfiguration is undocumented.
+type CreateBucketConfiguration struct {
+	XMLName xml.Name
+
+	LocationConstraint *string `xml:"LocationConstraint"`
+}
+
+func (v *CreateBucketConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// ListObjectsOutput is undocumented.
+type ListObjectsOutput struct {
+	XMLName xml.Name
+
+	CommonPrefixes []CommonPrefix `xml:"CommonPrefixes,omitempty"`
+	Contents       []Object       `xml:"Contents,omitempty"`
+	Delimiter      *string        `xml:"Delimiter"`
+	EncodingType   *string        `xml:"EncodingType"`
+	IsTruncated    *bool          `xml:"IsTruncated"`
+	Marker         *string        `xml:"Marker"`
+	MaxKeys        *int           `xml:"MaxKeys"`
+	Name           *string        `xml:"Name"`
+	NextMarker     *string        `xml:"NextMarker"`
+	Prefix         *string        `xml:"Prefix"`
+}
+
+func (v *ListObjectsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// PutObjectInput is undocumented.
+type PutObjectInput struct {
+	XMLName xml.Name
+
+	ACL                     *string           `xml:"-" name:"x-amz-acl"`
+	Body                    io.Reader         `xml:"-"`
+	Bucket                  *string           `xml:"-" name:"Bucket"`
+	CacheControl            *string           `xml:"-" name:"Cache-Control"`
+	ContentDisposition      *string           `xml:"-" name:"Content-Disposition"`
+	ContentEncoding         *string           `xml:"-" name:"Content-Encoding"`
+	ContentLanguage         *string           `xml:"-" name:"Content-Language"`
+	ContentLength           *int64            `xml:"-" name:"Content-Length"`
+	ContentMD5              *string           `xml:"-" name:"Content-MD5"`
+	ContentType             *string           `xml:"-" name:"Content-Type"`
+	Expires                 time.Time         `xml:"-" name:"Expires"`
+	GrantFullControl        *string           `xml:"-" name:"x-amz-grant-full-control"`
+	GrantRead               *string           `xml:"-" name:"x-amz-grant-read"`
+	GrantReadACP            *string           `xml:"-" name:"x-amz-grant-read-acp"`
+	GrantWriteACP           *string           `xml:"-" name:"x-amz-grant-write-acp"`
+	Key                     *string           `xml:"-" name:"Key"`
+	Metadata                map[string]string `xml:"-" name:"x-amz-meta-"`
+	SSECustomerAlgorithm    *string           `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
+	SSECustomerKey          *string           `xml:"-" name:"x-amz-server-side-encryption-customer-key"`
+	SSECustomerKeyMD5       *string           `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
+	SSEKMSKeyID             *string           `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
+	ServerSideEncryption    *string           `xml:"-" name:"x-amz-server-side-encryption"`
+	StorageClass            *string           `xml:"-" name:"x-amz-storage-class"`
+	WebsiteRedirectLocation *string           `xml:"-" name:"x-amz-website-redirect-location"`
+}
+
+func (v *PutObjectInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+	StorageClassStandard          = "STANDARD"
+)
+
+// RequestPaymentConfiguration is undocumented.
+type RequestPaymentConfiguration struct {
+	XMLName xml.Name
+
+	Payer *string `xml:"Payer"`
+}
+
+func (v *RequestPaymentConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// PutBucketNotificationInput is undocumented.
+type PutBucketNotificationInput struct {
+	XMLName xml.Name
+
+	Bucket                    *string                    `xml:"-" name:"Bucket"`
+	ContentMD5                *string                    `xml:"-" name:"Content-MD5"`
+	NotificationConfiguration *NotificationConfiguration `xml:"NotificationConfiguration,omitempty"`
+}
+
+func (v *PutBucketNotificationInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// CreateMultipartUploadOutput is undocumented.
+type CreateMultipartUploadOutput struct {
+	XMLName xml.Name
+
+	Bucket               *string `xml:"Bucket"`
+	Key                  *string `xml:"Key"`
+	SSECustomerAlgorithm *string `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
+	SSECustomerKeyMD5    *string `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
+	SSEKMSKeyID          *string `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
+	ServerSideEncryption *string `xml:"-" name:"x-amz-server-side-encryption"`
+	UploadID             *string `xml:"UploadId"`
+}
+
+func (v *CreateMultipartUploadOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -1483,160 +1875,124 @@ const (
 	BucketCannedACLPublicReadWrite   = "public-read-write"
 )
 
+// MultipartUpload is undocumented.
+type MultipartUpload struct {
+	XMLName xml.Name
+
+	Initiated    time.Time  `xml:"Initiated"`
+	Initiator    *Initiator `xml:"Initiator,omitempty"`
+	Key          *string    `xml:"Key"`
+	Owner        *Owner     `xml:"Owner,omitempty"`
+	StorageClass *string    `xml:"StorageClass"`
+	UploadID     *string    `xml:"UploadId"`
+}
+
+func (v *MultipartUpload) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetBucketLocationInput is undocumented.
+type GetBucketLocationInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+}
+
+func (v *GetBucketLocationInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// PutBucketCORSInput is undocumented.
+type PutBucketCORSInput struct {
+	XMLName xml.Name
+
+	Bucket            *string            `xml:"-" name:"Bucket"`
+	CORSConfiguration *CORSConfiguration `xml:"CORSConfiguration,omitempty"`
+	ContentMD5        *string            `xml:"-" name:"Content-MD5"`
+}
+
+func (v *PutBucketCORSInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // Possible values for S3.
 const (
-	BucketLocationConstraintApNortheast1 = "ap-northeast-1"
-	BucketLocationConstraintApSoutheast1 = "ap-southeast-1"
-	BucketLocationConstraintApSoutheast2 = "ap-southeast-2"
-	BucketLocationConstraintCnNorth1     = "cn-north-1"
-	BucketLocationConstraintEu           = "EU"
-	BucketLocationConstraintEuCentral1   = "eu-central-1"
-	BucketLocationConstraintEuWest1      = "eu-west-1"
-	BucketLocationConstraintSaEast1      = "sa-east-1"
-	BucketLocationConstraintUsWest1      = "us-west-1"
-	BucketLocationConstraintUsWest2      = "us-west-2"
+	TypeAmazonCustomerByEmail = "AmazonCustomerByEmail"
+	TypeCanonicalUser         = "CanonicalUser"
+	TypeGroup                 = "Group"
 )
 
-// BucketLoggingStatus is undocumented.
-type BucketLoggingStatus struct {
+// Redirect is undocumented.
+type Redirect struct {
+	XMLName xml.Name
+
+	HostName             *string `xml:"HostName"`
+	HTTPRedirectCode     *string `xml:"HttpRedirectCode"`
+	Protocol             *string `xml:"Protocol"`
+	ReplaceKeyPrefixWith *string `xml:"ReplaceKeyPrefixWith"`
+	ReplaceKeyWith       *string `xml:"ReplaceKeyWith"`
+}
+
+func (v *Redirect) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// RestoreRequest is undocumented.
+type RestoreRequest struct {
+	XMLName xml.Name
+
+	Days *int `xml:"Days"`
+}
+
+func (v *RestoreRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// DeleteBucketTaggingInput is undocumented.
+type DeleteBucketTaggingInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+}
+
+func (v *DeleteBucketTaggingInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetObjectACLOutput is undocumented.
+type GetObjectACLOutput struct {
+	XMLName xml.Name
+
+	Grants []Grant `xml:"AccessControlList>Grant,omitempty"`
+	Owner  *Owner  `xml:"Owner,omitempty"`
+}
+
+func (v *GetObjectACLOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Error is undocumented.
+type Error struct {
+	XMLName xml.Name
+
+	Code      *string `xml:"Code"`
+	Key       *string `xml:"Key"`
+	Message   *string `xml:"Message"`
+	VersionID *string `xml:"VersionId"`
+}
+
+func (v *Error) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetBucketLoggingOutput is undocumented.
+type GetBucketLoggingOutput struct {
 	XMLName xml.Name
 
 	LoggingEnabled *LoggingEnabled `xml:"LoggingEnabled,omitempty"`
 }
 
-func (v *BucketLoggingStatus) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Possible values for S3.
-const (
-	BucketLogsPermissionFullControl = "FULL_CONTROL"
-	BucketLogsPermissionRead        = "READ"
-	BucketLogsPermissionWrite       = "WRITE"
-)
-
-// Possible values for S3.
-const (
-	BucketVersioningStatusEnabled   = "Enabled"
-	BucketVersioningStatusSuspended = "Suspended"
-)
-
-// CORSConfiguration is undocumented.
-type CORSConfiguration struct {
-	XMLName xml.Name
-
-	CORSRules []CORSRule `xml:"CORSRule,omitempty"`
-}
-
-func (v *CORSConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// CORSRule is undocumented.
-type CORSRule struct {
-	XMLName xml.Name
-
-	AllowedHeaders []string `xml:"AllowedHeader,omitempty"`
-	AllowedMethods []string `xml:"AllowedMethod,omitempty"`
-	AllowedOrigins []string `xml:"AllowedOrigin,omitempty"`
-	ExposeHeaders  []string `xml:"ExposeHeader,omitempty"`
-	MaxAgeSeconds  *int     `xml:"MaxAgeSeconds"`
-}
-
-func (v *CORSRule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// CloudFunctionConfiguration is undocumented.
-type CloudFunctionConfiguration struct {
-	XMLName xml.Name
-
-	CloudFunction  *string  `xml:"CloudFunction"`
-	Event          *string  `xml:"Event"`
-	Events         []string `xml:"Event,omitempty"`
-	ID             *string  `xml:"Id"`
-	InvocationRole *string  `xml:"InvocationRole"`
-}
-
-func (v *CloudFunctionConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// CommonPrefix is undocumented.
-type CommonPrefix struct {
-	XMLName xml.Name
-
-	Prefix *string `xml:"Prefix"`
-}
-
-func (v *CommonPrefix) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// CompleteMultipartUploadOutput is undocumented.
-type CompleteMultipartUploadOutput struct {
-	XMLName xml.Name
-
-	Bucket               *string `xml:"Bucket"`
-	ETag                 *string `xml:"ETag"`
-	Expiration           *string `xml:"-" name:"x-amz-expiration"`
-	Key                  *string `xml:"Key"`
-	Location             *string `xml:"Location"`
-	SSEKMSKeyID          *string `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption *string `xml:"-" name:"x-amz-server-side-encryption"`
-	VersionID            *string `xml:"-" name:"x-amz-version-id"`
-}
-
-func (v *CompleteMultipartUploadOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// CompleteMultipartUploadInput is undocumented.
-type CompleteMultipartUploadInput struct {
-	XMLName xml.Name
-
-	Bucket          *string                   `xml:"-" name:"Bucket"`
-	Key             *string                   `xml:"-" name:"Key"`
-	MultipartUpload *CompletedMultipartUpload `xml:"CompleteMultipartUpload,omitempty"`
-	UploadID        *string                   `xml:"-" name:"uploadId"`
-}
-
-func (v *CompleteMultipartUploadInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// CompletedMultipartUpload is undocumented.
-type CompletedMultipartUpload struct {
-	XMLName xml.Name
-
-	Parts []CompletedPart `xml:"Part,omitempty"`
-}
-
-func (v *CompletedMultipartUpload) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// CompletedPart is undocumented.
-type CompletedPart struct {
-	XMLName xml.Name
-
-	ETag       *string `xml:"ETag"`
-	PartNumber *int    `xml:"PartNumber"`
-}
-
-func (v *CompletedPart) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Condition is undocumented.
-type Condition struct {
-	XMLName xml.Name
-
-	HTTPErrorCodeReturnedEquals *string `xml:"HttpErrorCodeReturnedEquals"`
-	KeyPrefixEquals             *string `xml:"KeyPrefixEquals"`
-}
-
-func (v *Condition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *GetBucketLoggingOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -1654,6 +2010,86 @@ type CopyObjectOutput struct {
 }
 
 func (v *CopyObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// TargetGrant is undocumented.
+type TargetGrant struct {
+	XMLName xml.Name
+
+	Grantee    *Grantee `xml:"Grantee,omitempty"`
+	Permission *string  `xml:"Permission"`
+}
+
+func (v *TargetGrant) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// VersioningConfiguration is undocumented.
+type VersioningConfiguration struct {
+	XMLName xml.Name
+
+	MFADelete *string `xml:"MfaDelete"`
+	Status    *string `xml:"Status"`
+}
+
+func (v *VersioningConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// HeadBucketInput is undocumented.
+type HeadBucketInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+}
+
+func (v *HeadBucketInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// ListPartsOutput is undocumented.
+type ListPartsOutput struct {
+	XMLName xml.Name
+
+	Bucket               *string    `xml:"Bucket"`
+	Initiator            *Initiator `xml:"Initiator,omitempty"`
+	IsTruncated          *bool      `xml:"IsTruncated"`
+	Key                  *string    `xml:"Key"`
+	MaxParts             *int       `xml:"MaxParts"`
+	NextPartNumberMarker *int       `xml:"NextPartNumberMarker"`
+	Owner                *Owner     `xml:"Owner,omitempty"`
+	PartNumberMarker     *int       `xml:"PartNumberMarker"`
+	Parts                []Part     `xml:"Part,omitempty"`
+	StorageClass         *string    `xml:"StorageClass"`
+	UploadID             *string    `xml:"UploadId"`
+}
+
+func (v *ListPartsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetObjectACLInput is undocumented.
+type GetObjectACLInput struct {
+	XMLName xml.Name
+
+	Bucket    *string `xml:"-" name:"Bucket"`
+	Key       *string `xml:"-" name:"Key"`
+	VersionID *string `xml:"-" name:"versionId"`
+}
+
+func (v *GetObjectACLInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetBucketVersioningInput is undocumented.
+type GetBucketVersioningInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+}
+
+func (v *GetBucketVersioningInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -1697,49 +2133,389 @@ func (v *CopyObjectInput) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	return aws.MarshalXML(v, e, start)
 }
 
-// CopyObjectResult is undocumented.
-type CopyObjectResult struct {
+// IndexDocument is undocumented.
+type IndexDocument struct {
+	XMLName xml.Name
+
+	Suffix *string `xml:"Suffix"`
+}
+
+func (v *IndexDocument) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// UploadPartOutput is undocumented.
+type UploadPartOutput struct {
+	XMLName xml.Name
+
+	ETag                 *string `xml:"-" name:"ETag"`
+	SSECustomerAlgorithm *string `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
+	SSECustomerKeyMD5    *string `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
+	SSEKMSKeyID          *string `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
+	ServerSideEncryption *string `xml:"-" name:"x-amz-server-side-encryption"`
+}
+
+func (v *UploadPartOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// DeleteBucketInput is undocumented.
+type DeleteBucketInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+}
+
+func (v *DeleteBucketInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Grant is undocumented.
+type Grant struct {
+	XMLName xml.Name
+
+	Grantee    *Grantee `xml:"Grantee,omitempty"`
+	Permission *string  `xml:"Permission"`
+}
+
+func (v *Grant) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// ObjectVersion is undocumented.
+type ObjectVersion struct {
 	XMLName xml.Name
 
 	ETag         *string   `xml:"ETag"`
+	IsLatest     *bool     `xml:"IsLatest"`
+	Key          *string   `xml:"Key"`
 	LastModified time.Time `xml:"LastModified"`
+	Owner        *Owner    `xml:"Owner,omitempty"`
+	Size         *int64    `xml:"Size"`
+	StorageClass *string   `xml:"StorageClass"`
+	VersionID    *string   `xml:"VersionId"`
 }
 
-func (v *CopyObjectResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *ObjectVersion) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// CopyPartResult is undocumented.
-type CopyPartResult struct {
+// GetBucketACLOutput is undocumented.
+type GetBucketACLOutput struct {
 	XMLName xml.Name
 
-	ETag         *string   `xml:"ETag"`
+	Grants []Grant `xml:"AccessControlList>Grant,omitempty"`
+	Owner  *Owner  `xml:"Owner,omitempty"`
+}
+
+func (v *GetBucketACLOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// CompletedPart is undocumented.
+type CompletedPart struct {
+	XMLName xml.Name
+
+	ETag       *string `xml:"ETag"`
+	PartNumber *int    `xml:"PartNumber"`
+}
+
+func (v *CompletedPart) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// HeadObjectInput is undocumented.
+type HeadObjectInput struct {
+	XMLName xml.Name
+
+	Bucket               *string   `xml:"-" name:"Bucket"`
+	IfMatch              *string   `xml:"-" name:"If-Match"`
+	IfModifiedSince      time.Time `xml:"-" name:"If-Modified-Since"`
+	IfNoneMatch          *string   `xml:"-" name:"If-None-Match"`
+	IfUnmodifiedSince    time.Time `xml:"-" name:"If-Unmodified-Since"`
+	Key                  *string   `xml:"-" name:"Key"`
+	Range                *string   `xml:"-" name:"Range"`
+	SSECustomerAlgorithm *string   `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
+	SSECustomerKey       *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key"`
+	SSECustomerKeyMD5    *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
+	VersionID            *string   `xml:"-" name:"versionId"`
+}
+
+func (v *HeadObjectInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// UploadPartCopyInput is undocumented.
+type UploadPartCopyInput struct {
+	XMLName xml.Name
+
+	Bucket                         *string   `xml:"-" name:"Bucket"`
+	CopySource                     *string   `xml:"-" name:"x-amz-copy-source"`
+	CopySourceIfMatch              *string   `xml:"-" name:"x-amz-copy-source-if-match"`
+	CopySourceIfModifiedSince      time.Time `xml:"-" name:"x-amz-copy-source-if-modified-since"`
+	CopySourceIfNoneMatch          *string   `xml:"-" name:"x-amz-copy-source-if-none-match"`
+	CopySourceIfUnmodifiedSince    time.Time `xml:"-" name:"x-amz-copy-source-if-unmodified-since"`
+	CopySourceRange                *string   `xml:"-" name:"x-amz-copy-source-range"`
+	CopySourceSSECustomerAlgorithm *string   `xml:"-" name:"x-amz-copy-source-server-side-encryption-customer-algorithm"`
+	CopySourceSSECustomerKey       *string   `xml:"-" name:"x-amz-copy-source-server-side-encryption-customer-key"`
+	CopySourceSSECustomerKeyMD5    *string   `xml:"-" name:"x-amz-copy-source-server-side-encryption-customer-key-MD5"`
+	Key                            *string   `xml:"-" name:"Key"`
+	PartNumber                     *int      `xml:"-" name:"partNumber"`
+	SSECustomerAlgorithm           *string   `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
+	SSECustomerKey                 *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key"`
+	SSECustomerKeyMD5              *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
+	UploadID                       *string   `xml:"-" name:"uploadId"`
+}
+
+func (v *UploadPartCopyInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// CompleteMultipartUploadInput is undocumented.
+type CompleteMultipartUploadInput struct {
+	XMLName xml.Name
+
+	Bucket          *string                   `xml:"-" name:"Bucket"`
+	Key             *string                   `xml:"-" name:"Key"`
+	MultipartUpload *CompletedMultipartUpload `xml:"CompleteMultipartUpload,omitempty"`
+	UploadID        *string                   `xml:"-" name:"uploadId"`
+}
+
+func (v *CompleteMultipartUploadInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	EncodingTypeURL = "url"
+)
+
+// ObjectIdentifier is undocumented.
+type ObjectIdentifier struct {
+	XMLName xml.Name
+
+	Key       *string `xml:"Key"`
+	VersionID *string `xml:"VersionId"`
+}
+
+func (v *ObjectIdentifier) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Rule is undocumented.
+type Rule struct {
+	XMLName xml.Name
+
+	Expiration                  *LifecycleExpiration         `xml:"Expiration,omitempty"`
+	ID                          *string                      `xml:"ID"`
+	NoncurrentVersionExpiration *NoncurrentVersionExpiration `xml:"NoncurrentVersionExpiration,omitempty"`
+	NoncurrentVersionTransition *NoncurrentVersionTransition `xml:"NoncurrentVersionTransition,omitempty"`
+	Prefix                      *string                      `xml:"Prefix"`
+	Status                      *string                      `xml:"Status"`
+	Transition                  *Transition                  `xml:"Transition,omitempty"`
+}
+
+func (v *Rule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetBucketPolicyInput is undocumented.
+type GetBucketPolicyInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+}
+
+func (v *GetBucketPolicyInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	ExpirationStatusDisabled = "Disabled"
+	ExpirationStatusEnabled  = "Enabled"
+)
+
+// PutBucketWebsiteInput is undocumented.
+type PutBucketWebsiteInput struct {
+	XMLName xml.Name
+
+	Bucket               *string               `xml:"-" name:"Bucket"`
+	ContentMD5           *string               `xml:"-" name:"Content-MD5"`
+	WebsiteConfiguration *WebsiteConfiguration `xml:"WebsiteConfiguration,omitempty"`
+}
+
+func (v *PutBucketWebsiteInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// DeleteBucketPolicyInput is undocumented.
+type DeleteBucketPolicyInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+}
+
+func (v *DeleteBucketPolicyInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	PayerBucketOwner = "BucketOwner"
+	PayerRequester   = "Requester"
+)
+
+// DeleteMarkerEntry is undocumented.
+type DeleteMarkerEntry struct {
+	XMLName xml.Name
+
+	IsLatest     *bool     `xml:"IsLatest"`
+	Key          *string   `xml:"Key"`
 	LastModified time.Time `xml:"LastModified"`
+	Owner        *Owner    `xml:"Owner,omitempty"`
+	VersionID    *string   `xml:"VersionId"`
 }
 
-func (v *CopyPartResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *DeleteMarkerEntry) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// CreateBucketConfiguration is undocumented.
-type CreateBucketConfiguration struct {
+// Bucket is undocumented.
+type Bucket struct {
 	XMLName xml.Name
 
-	LocationConstraint *string `xml:"LocationConstraint"`
+	CreationDate time.Time `xml:"CreationDate"`
+	Name         *string   `xml:"Name"`
 }
 
-func (v *CreateBucketConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *Bucket) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// CreateBucketOutput is undocumented.
-type CreateBucketOutput struct {
+// PutBucketLoggingInput is undocumented.
+type PutBucketLoggingInput struct {
 	XMLName xml.Name
 
-	Location *string `xml:"-" name:"Location"`
+	Bucket              *string              `xml:"-" name:"Bucket"`
+	BucketLoggingStatus *BucketLoggingStatus `xml:"BucketLoggingStatus,omitempty"`
+	ContentMD5          *string              `xml:"-" name:"Content-MD5"`
 }
 
-func (v *CreateBucketOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *PutBucketLoggingInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// LoggingEnabled is undocumented.
+type LoggingEnabled struct {
+	XMLName xml.Name
+
+	TargetBucket *string       `xml:"TargetBucket"`
+	TargetGrants []TargetGrant `xml:"TargetGrants>Grant,omitempty"`
+	TargetPrefix *string       `xml:"TargetPrefix"`
+}
+
+func (v *LoggingEnabled) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// DeleteObjectInput is undocumented.
+type DeleteObjectInput struct {
+	XMLName xml.Name
+
+	Bucket    *string `xml:"-" name:"Bucket"`
+	Key       *string `xml:"-" name:"Key"`
+	MFA       *string `xml:"-" name:"x-amz-mfa"`
+	VersionID *string `xml:"-" name:"versionId"`
+}
+
+func (v *DeleteObjectInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	ObjectStorageClassGlacier           = "GLACIER"
+	ObjectStorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+	ObjectStorageClassStandard          = "STANDARD"
+)
+
+// Possible values for S3.
+const (
+	PermissionFullControl = "FULL_CONTROL"
+	PermissionRead        = "READ"
+	PermissionReadAcp     = "READ_ACP"
+	PermissionWrite       = "WRITE"
+	PermissionWriteAcp    = "WRITE_ACP"
+)
+
+// GetBucketVersioningOutput is undocumented.
+type GetBucketVersioningOutput struct {
+	XMLName xml.Name
+
+	MFADelete *string `xml:"MfaDelete"`
+	Status    *string `xml:"Status"`
+}
+
+func (v *GetBucketVersioningOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetObjectTorrentOutput is undocumented.
+type GetObjectTorrentOutput struct {
+	XMLName xml.Name
+
+	Body io.Reader `xml:"-"`
+}
+
+func (v *GetObjectTorrentOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	ServerSideEncryptionAES256 = "AES256"
+)
+
+// GetBucketNotificationOutput is undocumented.
+type GetBucketNotificationOutput struct {
+	XMLName xml.Name
+
+	CloudFunctionConfiguration *CloudFunctionConfiguration `xml:"CloudFunctionConfiguration,omitempty"`
+	QueueConfiguration         *QueueConfiguration         `xml:"QueueConfiguration,omitempty"`
+	TopicConfiguration         *TopicConfiguration         `xml:"TopicConfiguration,omitempty"`
+}
+
+func (v *GetBucketNotificationOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// NoncurrentVersionTransition is undocumented.
+type NoncurrentVersionTransition struct {
+	XMLName xml.Name
+
+	NoncurrentDays *int    `xml:"NoncurrentDays"`
+	StorageClass   *string `xml:"StorageClass"`
+}
+
+func (v *NoncurrentVersionTransition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// ListMultipartUploadsInput is undocumented.
+type ListMultipartUploadsInput struct {
+	XMLName xml.Name
+
+	Bucket         *string `xml:"-" name:"Bucket"`
+	Delimiter      *string `xml:"-" name:"delimiter"`
+	EncodingType   *string `xml:"-" name:"encoding-type"`
+	KeyMarker      *string `xml:"-" name:"key-marker"`
+	MaxUploads     *int    `xml:"-" name:"max-uploads"`
+	Prefix         *string `xml:"-" name:"prefix"`
+	UploadIDMarker *string `xml:"-" name:"upload-id-marker"`
+}
+
+func (v *ListMultipartUploadsInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -1761,20 +2537,107 @@ func (v *CreateBucketInput) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	return aws.MarshalXML(v, e, start)
 }
 
-// CreateMultipartUploadOutput is undocumented.
-type CreateMultipartUploadOutput struct {
+// AbortMultipartUploadInput is undocumented.
+type AbortMultipartUploadInput struct {
 	XMLName xml.Name
 
-	Bucket               *string `xml:"Bucket"`
-	Key                  *string `xml:"Key"`
-	SSECustomerAlgorithm *string `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKeyMD5    *string `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID          *string `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption *string `xml:"-" name:"x-amz-server-side-encryption"`
-	UploadID             *string `xml:"UploadId"`
+	Bucket   *string `xml:"-" name:"Bucket"`
+	Key      *string `xml:"-" name:"Key"`
+	UploadID *string `xml:"-" name:"uploadId"`
 }
 
-func (v *CreateMultipartUploadOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *AbortMultipartUploadInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetBucketLifecycleInput is undocumented.
+type GetBucketLifecycleInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+}
+
+func (v *GetBucketLifecycleInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// UploadPartInput is undocumented.
+type UploadPartInput struct {
+	XMLName xml.Name
+
+	Body                 io.Reader `xml:"-"`
+	Bucket               *string   `xml:"-" name:"Bucket"`
+	ContentLength        *int64    `xml:"-" name:"Content-Length"`
+	ContentMD5           *string   `xml:"-" name:"Content-MD5"`
+	Key                  *string   `xml:"-" name:"Key"`
+	PartNumber           *int      `xml:"-" name:"partNumber"`
+	SSECustomerAlgorithm *string   `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
+	SSECustomerKey       *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key"`
+	SSECustomerKeyMD5    *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
+	UploadID             *string   `xml:"-" name:"uploadId"`
+}
+
+func (v *UploadPartInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// DeleteBucketCORSInput is undocumented.
+type DeleteBucketCORSInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+}
+
+func (v *DeleteBucketCORSInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// CloudFunctionConfiguration is undocumented.
+type CloudFunctionConfiguration struct {
+	XMLName xml.Name
+
+	CloudFunction  *string  `xml:"CloudFunction"`
+	Event          *string  `xml:"Event"`
+	Events         []string `xml:"Event,omitempty"`
+	ID             *string  `xml:"Id"`
+	InvocationRole *string  `xml:"InvocationRole"`
+}
+
+func (v *CloudFunctionConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// CopyPartResult is undocumented.
+type CopyPartResult struct {
+	XMLName xml.Name
+
+	ETag         *string   `xml:"ETag"`
+	LastModified time.Time `xml:"LastModified"`
+}
+
+func (v *CopyPartResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetBucketWebsiteInput is undocumented.
+type GetBucketWebsiteInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+}
+
+func (v *GetBucketWebsiteInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// LifecycleConfiguration is undocumented.
+type LifecycleConfiguration struct {
+	XMLName xml.Name
+
+	Rules []Rule `xml:"Rule,omitempty"`
+}
+
+func (v *LifecycleConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -1809,96 +2672,68 @@ func (v *CreateMultipartUploadInput) MarshalXML(e *xml.Encoder, start xml.StartE
 	return aws.MarshalXML(v, e, start)
 }
 
-// Delete is undocumented.
-type Delete struct {
+// ListBucketsOutput is undocumented.
+type ListBucketsOutput struct {
 	XMLName xml.Name
 
-	Objects []ObjectIdentifier `xml:"Object,omitempty"`
-	Quiet   *bool              `xml:"Quiet"`
+	Buckets []Bucket `xml:"Buckets>Bucket,omitempty"`
+	Owner   *Owner   `xml:"Owner,omitempty"`
 }
 
-func (v *Delete) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *ListBucketsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// DeleteBucketCORSInput is undocumented.
-type DeleteBucketCORSInput struct {
+// CORSRule is undocumented.
+type CORSRule struct {
 	XMLName xml.Name
 
-	Bucket *string `xml:"-" name:"Bucket"`
+	AllowedHeaders []string `xml:"AllowedHeader,omitempty"`
+	AllowedMethods []string `xml:"AllowedMethod,omitempty"`
+	AllowedOrigins []string `xml:"AllowedOrigin,omitempty"`
+	ExposeHeaders  []string `xml:"ExposeHeader,omitempty"`
+	MaxAgeSeconds  *int     `xml:"MaxAgeSeconds"`
 }
 
-func (v *DeleteBucketCORSInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *CORSRule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// DeleteBucketLifecycleInput is undocumented.
-type DeleteBucketLifecycleInput struct {
+// Grantee is undocumented.
+type Grantee struct {
 	XMLName xml.Name
 
-	Bucket *string `xml:"-" name:"Bucket"`
+	DisplayName  *string `xml:"DisplayName"`
+	EmailAddress *string `xml:"EmailAddress"`
+	ID           *string `xml:"ID"`
+	Type         *string `xml:"Type"`
+	URI          *string `xml:"URI"`
 }
 
-func (v *DeleteBucketLifecycleInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *Grantee) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// DeleteBucketPolicyInput is undocumented.
-type DeleteBucketPolicyInput struct {
+// Condition is undocumented.
+type Condition struct {
 	XMLName xml.Name
 
-	Bucket *string `xml:"-" name:"Bucket"`
+	HTTPErrorCodeReturnedEquals *string `xml:"HttpErrorCodeReturnedEquals"`
+	KeyPrefixEquals             *string `xml:"KeyPrefixEquals"`
 }
 
-func (v *DeleteBucketPolicyInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *Condition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// DeleteBucketInput is undocumented.
-type DeleteBucketInput struct {
+// Tagging is undocumented.
+type Tagging struct {
 	XMLName xml.Name
 
-	Bucket *string `xml:"-" name:"Bucket"`
+	TagSet []Tag `xml:"TagSet>Tag,omitempty"`
 }
 
-func (v *DeleteBucketInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// DeleteBucketTaggingInput is undocumented.
-type DeleteBucketTaggingInput struct {
-	XMLName xml.Name
-
-	Bucket *string `xml:"-" name:"Bucket"`
-}
-
-func (v *DeleteBucketTaggingInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// DeleteBucketWebsiteInput is undocumented.
-type DeleteBucketWebsiteInput struct {
-	XMLName xml.Name
-
-	Bucket *string `xml:"-" name:"Bucket"`
-}
-
-func (v *DeleteBucketWebsiteInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// DeleteMarkerEntry is undocumented.
-type DeleteMarkerEntry struct {
-	XMLName xml.Name
-
-	IsLatest     *bool     `xml:"IsLatest"`
-	Key          *string   `xml:"Key"`
-	LastModified time.Time `xml:"LastModified"`
-	Owner        *Owner    `xml:"Owner,omitempty"`
-	VersionID    *string   `xml:"VersionId"`
-}
-
-func (v *DeleteMarkerEntry) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *Tagging) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -1914,42 +2749,205 @@ func (v *DeleteObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	return aws.MarshalXML(v, e, start)
 }
 
-// DeleteObjectInput is undocumented.
-type DeleteObjectInput struct {
-	XMLName xml.Name
-
-	Bucket    *string `xml:"-" name:"Bucket"`
-	Key       *string `xml:"-" name:"Key"`
-	MFA       *string `xml:"-" name:"x-amz-mfa"`
-	VersionID *string `xml:"-" name:"versionId"`
-}
-
-func (v *DeleteObjectInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// DeleteObjectsOutput is undocumented.
-type DeleteObjectsOutput struct {
-	XMLName xml.Name
-
-	Deleted []DeletedObject `xml:"Deleted,omitempty"`
-	Errors  []Error         `xml:"Error,omitempty"`
-}
-
-func (v *DeleteObjectsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// DeleteObjectsInput is undocumented.
-type DeleteObjectsInput struct {
+// GetBucketLoggingInput is undocumented.
+type GetBucketLoggingInput struct {
 	XMLName xml.Name
 
 	Bucket *string `xml:"-" name:"Bucket"`
-	Delete *Delete `xml:"Delete,omitempty"`
-	MFA    *string `xml:"-" name:"x-amz-mfa"`
 }
 
-func (v *DeleteObjectsInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *GetBucketLoggingInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetBucketNotificationInput is undocumented.
+type GetBucketNotificationInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+}
+
+func (v *GetBucketNotificationInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// PutObjectACLInput is undocumented.
+type PutObjectACLInput struct {
+	XMLName xml.Name
+
+	ACL                 *string              `xml:"-" name:"x-amz-acl"`
+	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy,omitempty"`
+	Bucket              *string              `xml:"-" name:"Bucket"`
+	ContentMD5          *string              `xml:"-" name:"Content-MD5"`
+	GrantFullControl    *string              `xml:"-" name:"x-amz-grant-full-control"`
+	GrantRead           *string              `xml:"-" name:"x-amz-grant-read"`
+	GrantReadACP        *string              `xml:"-" name:"x-amz-grant-read-acp"`
+	GrantWrite          *string              `xml:"-" name:"x-amz-grant-write"`
+	GrantWriteACP       *string              `xml:"-" name:"x-amz-grant-write-acp"`
+	Key                 *string              `xml:"-" name:"Key"`
+}
+
+func (v *PutObjectACLInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// CommonPrefix is undocumented.
+type CommonPrefix struct {
+	XMLName xml.Name
+
+	Prefix *string `xml:"Prefix"`
+}
+
+func (v *CommonPrefix) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// PutBucketRequestPaymentInput is undocumented.
+type PutBucketRequestPaymentInput struct {
+	XMLName xml.Name
+
+	Bucket                      *string                      `xml:"-" name:"Bucket"`
+	ContentMD5                  *string                      `xml:"-" name:"Content-MD5"`
+	RequestPaymentConfiguration *RequestPaymentConfiguration `xml:"RequestPaymentConfiguration,omitempty"`
+}
+
+func (v *PutBucketRequestPaymentInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	EventS3ObjectCreatedCompleteMultipartUpload = "s3:ObjectCreated:CompleteMultipartUpload"
+	EventS3ObjectCreatedCopy                    = "s3:ObjectCreated:Copy"
+	EventS3ObjectCreatedPost                    = "s3:ObjectCreated:Post"
+	EventS3ObjectCreatedPut                     = "s3:ObjectCreated:Put"
+	EventS3ReducedRedundancyLostObject          = "s3:ReducedRedundancyLostObject"
+)
+
+// ListObjectVersionsInput is undocumented.
+type ListObjectVersionsInput struct {
+	XMLName xml.Name
+
+	Bucket          *string `xml:"-" name:"Bucket"`
+	Delimiter       *string `xml:"-" name:"delimiter"`
+	EncodingType    *string `xml:"-" name:"encoding-type"`
+	KeyMarker       *string `xml:"-" name:"key-marker"`
+	MaxKeys         *int    `xml:"-" name:"max-keys"`
+	Prefix          *string `xml:"-" name:"prefix"`
+	VersionIDMarker *string `xml:"-" name:"version-id-marker"`
+}
+
+func (v *ListObjectVersionsInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetBucketCORSOutput is undocumented.
+type GetBucketCORSOutput struct {
+	XMLName xml.Name
+
+	CORSRules []CORSRule `xml:"CORSRule,omitempty"`
+}
+
+func (v *GetBucketCORSOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetBucketTaggingOutput is undocumented.
+type GetBucketTaggingOutput struct {
+	XMLName xml.Name
+
+	TagSet []Tag `xml:"TagSet>Tag,omitempty"`
+}
+
+func (v *GetBucketTaggingOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// ListPartsInput is undocumented.
+type ListPartsInput struct {
+	XMLName xml.Name
+
+	Bucket           *string `xml:"-" name:"Bucket"`
+	Key              *string `xml:"-" name:"Key"`
+	MaxParts         *int    `xml:"-" name:"max-parts"`
+	PartNumberMarker *int    `xml:"-" name:"part-number-marker"`
+	UploadID         *string `xml:"-" name:"uploadId"`
+}
+
+func (v *ListPartsInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// CreateBucketOutput is undocumented.
+type CreateBucketOutput struct {
+	XMLName xml.Name
+
+	Location *string `xml:"-" name:"Location"`
+}
+
+func (v *CreateBucketOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// CORSConfiguration is undocumented.
+type CORSConfiguration struct {
+	XMLName xml.Name
+
+	CORSRules []CORSRule `xml:"CORSRule,omitempty"`
+}
+
+func (v *CORSConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Part is undocumented.
+type Part struct {
+	XMLName xml.Name
+
+	ETag         *string   `xml:"ETag"`
+	LastModified time.Time `xml:"LastModified"`
+	PartNumber   *int      `xml:"PartNumber"`
+	Size         *int64    `xml:"Size"`
+}
+
+func (v *Part) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// PutBucketPolicyInput is undocumented.
+type PutBucketPolicyInput struct {
+	XMLName xml.Name
+
+	Bucket     *string `xml:"-" name:"Bucket"`
+	ContentMD5 *string `xml:"-" name:"Content-MD5"`
+	Policy     *string `xml:"Policy"`
+}
+
+func (v *PutBucketPolicyInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	MetadataDirectiveCopy    = "COPY"
+	MetadataDirectiveReplace = "REPLACE"
+)
+
+// CompleteMultipartUploadOutput is undocumented.
+type CompleteMultipartUploadOutput struct {
+	XMLName xml.Name
+
+	Bucket               *string `xml:"Bucket"`
+	ETag                 *string `xml:"ETag"`
+	Expiration           *string `xml:"-" name:"x-amz-expiration"`
+	Key                  *string `xml:"Key"`
+	Location             *string `xml:"Location"`
+	SSEKMSKeyID          *string `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
+	ServerSideEncryption *string `xml:"-" name:"x-amz-server-side-encryption"`
+	VersionID            *string `xml:"-" name:"x-amz-version-id"`
+}
+
+func (v *CompleteMultipartUploadOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -1967,183 +2965,15 @@ func (v *DeletedObject) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
-const (
-	EncodingTypeURL = "url"
-)
-
-// Error is undocumented.
-type Error struct {
+// RedirectAllRequestsTo is undocumented.
+type RedirectAllRequestsTo struct {
 	XMLName xml.Name
 
-	Code      *string `xml:"Code"`
-	Key       *string `xml:"Key"`
-	Message   *string `xml:"Message"`
-	VersionID *string `xml:"VersionId"`
+	HostName *string `xml:"HostName"`
+	Protocol *string `xml:"Protocol"`
 }
 
-func (v *Error) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// ErrorDocument is undocumented.
-type ErrorDocument struct {
-	XMLName xml.Name
-
-	Key *string `xml:"Key"`
-}
-
-func (v *ErrorDocument) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Possible values for S3.
-const (
-	EventS3ObjectCreatedCompleteMultipartUpload = "s3:ObjectCreated:CompleteMultipartUpload"
-	EventS3ObjectCreatedCopy                    = "s3:ObjectCreated:Copy"
-	EventS3ObjectCreatedPost                    = "s3:ObjectCreated:Post"
-	EventS3ObjectCreatedPut                     = "s3:ObjectCreated:Put"
-	EventS3ReducedRedundancyLostObject          = "s3:ReducedRedundancyLostObject"
-)
-
-// Possible values for S3.
-const (
-	ExpirationStatusDisabled = "Disabled"
-	ExpirationStatusEnabled  = "Enabled"
-)
-
-// GetBucketACLOutput is undocumented.
-type GetBucketACLOutput struct {
-	XMLName xml.Name
-
-	Grants []Grant `xml:"AccessControlList>Grant,omitempty"`
-	Owner  *Owner  `xml:"Owner,omitempty"`
-}
-
-func (v *GetBucketACLOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketACLInput is undocumented.
-type GetBucketACLInput struct {
-	XMLName xml.Name
-
-	Bucket *string `xml:"-" name:"Bucket"`
-}
-
-func (v *GetBucketACLInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketCORSOutput is undocumented.
-type GetBucketCORSOutput struct {
-	XMLName xml.Name
-
-	CORSRules []CORSRule `xml:"CORSRule,omitempty"`
-}
-
-func (v *GetBucketCORSOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketCORSInput is undocumented.
-type GetBucketCORSInput struct {
-	XMLName xml.Name
-
-	Bucket *string `xml:"-" name:"Bucket"`
-}
-
-func (v *GetBucketCORSInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketLifecycleOutput is undocumented.
-type GetBucketLifecycleOutput struct {
-	XMLName xml.Name
-
-	Rules []Rule `xml:"Rule,omitempty"`
-}
-
-func (v *GetBucketLifecycleOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketLifecycleInput is undocumented.
-type GetBucketLifecycleInput struct {
-	XMLName xml.Name
-
-	Bucket *string `xml:"-" name:"Bucket"`
-}
-
-func (v *GetBucketLifecycleInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketLocationOutput is undocumented.
-type GetBucketLocationOutput struct {
-	XMLName xml.Name
-
-	LocationConstraint *string `xml:"LocationConstraint"`
-}
-
-func (v *GetBucketLocationOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketLocationInput is undocumented.
-type GetBucketLocationInput struct {
-	XMLName xml.Name
-
-	Bucket *string `xml:"-" name:"Bucket"`
-}
-
-func (v *GetBucketLocationInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketLoggingOutput is undocumented.
-type GetBucketLoggingOutput struct {
-	XMLName xml.Name
-
-	LoggingEnabled *LoggingEnabled `xml:"LoggingEnabled,omitempty"`
-}
-
-func (v *GetBucketLoggingOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketLoggingInput is undocumented.
-type GetBucketLoggingInput struct {
-	XMLName xml.Name
-
-	Bucket *string `xml:"-" name:"Bucket"`
-}
-
-func (v *GetBucketLoggingInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketNotificationOutput is undocumented.
-type GetBucketNotificationOutput struct {
-	XMLName xml.Name
-
-	CloudFunctionConfiguration *CloudFunctionConfiguration `xml:"CloudFunctionConfiguration,omitempty"`
-	QueueConfiguration         *QueueConfiguration         `xml:"QueueConfiguration,omitempty"`
-	TopicConfiguration         *TopicConfiguration         `xml:"TopicConfiguration,omitempty"`
-}
-
-func (v *GetBucketNotificationOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketNotificationInput is undocumented.
-type GetBucketNotificationInput struct {
-	XMLName xml.Name
-
-	Bucket *string `xml:"-" name:"Bucket"`
-}
-
-func (v *GetBucketNotificationInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *RedirectAllRequestsTo) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -2158,81 +2988,125 @@ func (v *GetBucketPolicyOutput) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	return aws.MarshalXML(v, e, start)
 }
 
-// GetBucketPolicyInput is undocumented.
-type GetBucketPolicyInput struct {
+// GetBucketCORSInput is undocumented.
+type GetBucketCORSInput struct {
 	XMLName xml.Name
 
 	Bucket *string `xml:"-" name:"Bucket"`
 }
 
-func (v *GetBucketPolicyInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *GetBucketCORSInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// GetBucketRequestPaymentOutput is undocumented.
-type GetBucketRequestPaymentOutput struct {
-	XMLName xml.Name
-
-	Payer *string `xml:"Payer"`
-}
-
-func (v *GetBucketRequestPaymentOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetBucketRequestPaymentInput is undocumented.
-type GetBucketRequestPaymentInput struct {
+// DeleteBucketLifecycleInput is undocumented.
+type DeleteBucketLifecycleInput struct {
 	XMLName xml.Name
 
 	Bucket *string `xml:"-" name:"Bucket"`
 }
 
-func (v *GetBucketRequestPaymentInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *DeleteBucketLifecycleInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// GetBucketTaggingOutput is undocumented.
-type GetBucketTaggingOutput struct {
+// Transition is undocumented.
+type Transition struct {
 	XMLName xml.Name
 
-	TagSet []Tag `xml:"TagSet>Tag,omitempty"`
+	Date         time.Time `xml:"Date"`
+	Days         *int      `xml:"Days"`
+	StorageClass *string   `xml:"StorageClass"`
 }
 
-func (v *GetBucketTaggingOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *Transition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// GetBucketTaggingInput is undocumented.
-type GetBucketTaggingInput struct {
+// NotificationConfiguration is undocumented.
+type NotificationConfiguration struct {
+	XMLName xml.Name
+
+	CloudFunctionConfiguration *CloudFunctionConfiguration `xml:"CloudFunctionConfiguration,omitempty"`
+	QueueConfiguration         *QueueConfiguration         `xml:"QueueConfiguration,omitempty"`
+	TopicConfiguration         *TopicConfiguration         `xml:"TopicConfiguration,omitempty"`
+}
+
+func (v *NotificationConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetObjectTorrentInput is undocumented.
+type GetObjectTorrentInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+	Key    *string `xml:"-" name:"Key"`
+}
+
+func (v *GetObjectTorrentInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetBucketACLInput is undocumented.
+type GetBucketACLInput struct {
 	XMLName xml.Name
 
 	Bucket *string `xml:"-" name:"Bucket"`
 }
 
-func (v *GetBucketTaggingInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *GetBucketACLInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// GetBucketVersioningOutput is undocumented.
-type GetBucketVersioningOutput struct {
+// Object is undocumented.
+type Object struct {
 	XMLName xml.Name
 
-	MFADelete *string `xml:"MfaDelete"`
-	Status    *string `xml:"Status"`
+	ETag         *string   `xml:"ETag"`
+	Key          *string   `xml:"Key"`
+	LastModified time.Time `xml:"LastModified"`
+	Owner        *Owner    `xml:"Owner,omitempty"`
+	Size         *int64    `xml:"Size"`
+	StorageClass *string   `xml:"StorageClass"`
 }
 
-func (v *GetBucketVersioningOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *Object) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// GetBucketVersioningInput is undocumented.
-type GetBucketVersioningInput struct {
+// PutBucketACLInput is undocumented.
+type PutBucketACLInput struct {
 	XMLName xml.Name
 
-	Bucket *string `xml:"-" name:"Bucket"`
+	ACL                 *string              `xml:"-" name:"x-amz-acl"`
+	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy,omitempty"`
+	Bucket              *string              `xml:"-" name:"Bucket"`
+	ContentMD5          *string              `xml:"-" name:"Content-MD5"`
+	GrantFullControl    *string              `xml:"-" name:"x-amz-grant-full-control"`
+	GrantRead           *string              `xml:"-" name:"x-amz-grant-read"`
+	GrantReadACP        *string              `xml:"-" name:"x-amz-grant-read-acp"`
+	GrantWrite          *string              `xml:"-" name:"x-amz-grant-write"`
+	GrantWriteACP       *string              `xml:"-" name:"x-amz-grant-write-acp"`
 }
 
-func (v *GetBucketVersioningInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *PutBucketACLInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// UploadPartCopyOutput is undocumented.
+type UploadPartCopyOutput struct {
+	XMLName xml.Name
+
+	CopyPartResult       *CopyPartResult `xml:"CopyPartResult,omitempty"`
+	CopySourceVersionID  *string         `xml:"-" name:"x-amz-copy-source-version-id"`
+	SSECustomerAlgorithm *string         `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
+	SSECustomerKeyMD5    *string         `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
+	SSEKMSKeyID          *string         `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
+	ServerSideEncryption *string         `xml:"-" name:"x-amz-server-side-encryption"`
+}
+
+func (v *UploadPartCopyOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -2250,39 +3124,26 @@ func (v *GetBucketWebsiteOutput) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	return aws.MarshalXML(v, e, start)
 }
 
-// GetBucketWebsiteInput is undocumented.
-type GetBucketWebsiteInput struct {
+// Initiator is undocumented.
+type Initiator struct {
 	XMLName xml.Name
 
-	Bucket *string `xml:"-" name:"Bucket"`
+	DisplayName *string `xml:"DisplayName"`
+	ID          *string `xml:"ID"`
 }
 
-func (v *GetBucketWebsiteInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *Initiator) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// GetObjectACLOutput is undocumented.
-type GetObjectACLOutput struct {
+// GetBucketLifecycleOutput is undocumented.
+type GetBucketLifecycleOutput struct {
 	XMLName xml.Name
 
-	Grants []Grant `xml:"AccessControlList>Grant,omitempty"`
-	Owner  *Owner  `xml:"Owner,omitempty"`
+	Rules []Rule `xml:"Rule,omitempty"`
 }
 
-func (v *GetObjectACLOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// GetObjectACLInput is undocumented.
-type GetObjectACLInput struct {
-	XMLName xml.Name
-
-	Bucket    *string `xml:"-" name:"Bucket"`
-	Key       *string `xml:"-" name:"Key"`
-	VersionID *string `xml:"-" name:"versionId"`
-}
-
-func (v *GetObjectACLInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *GetBucketLifecycleOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -2318,6 +3179,120 @@ func (v *GetObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	return aws.MarshalXML(v, e, start)
 }
 
+// DeleteObjectsOutput is undocumented.
+type DeleteObjectsOutput struct {
+	XMLName xml.Name
+
+	Deleted []DeletedObject `xml:"Deleted,omitempty"`
+	Errors  []Error         `xml:"Error,omitempty"`
+}
+
+func (v *DeleteObjectsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// PutBucketTaggingInput is undocumented.
+type PutBucketTaggingInput struct {
+	XMLName xml.Name
+
+	Bucket     *string  `xml:"-" name:"Bucket"`
+	ContentMD5 *string  `xml:"-" name:"Content-MD5"`
+	Tagging    *Tagging `xml:"Tagging,omitempty"`
+}
+
+func (v *PutBucketTaggingInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	MFADeleteDisabled = "Disabled"
+	MFADeleteEnabled  = "Enabled"
+)
+
+// BucketLoggingStatus is undocumented.
+type BucketLoggingStatus struct {
+	XMLName xml.Name
+
+	LoggingEnabled *LoggingEnabled `xml:"LoggingEnabled,omitempty"`
+}
+
+func (v *BucketLoggingStatus) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	BucketLogsPermissionFullControl = "FULL_CONTROL"
+	BucketLogsPermissionRead        = "READ"
+	BucketLogsPermissionWrite       = "WRITE"
+)
+
+// RoutingRule is undocumented.
+type RoutingRule struct {
+	XMLName xml.Name
+
+	Condition *Condition `xml:"Condition,omitempty"`
+	Redirect  *Redirect  `xml:"Redirect,omitempty"`
+}
+
+func (v *RoutingRule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Owner is undocumented.
+type Owner struct {
+	XMLName xml.Name
+
+	DisplayName *string `xml:"DisplayName"`
+	ID          *string `xml:"ID"`
+}
+
+func (v *Owner) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Delete is undocumented.
+type Delete struct {
+	XMLName xml.Name
+
+	Objects []ObjectIdentifier `xml:"Object,omitempty"`
+	Quiet   *bool              `xml:"Quiet"`
+}
+
+func (v *Delete) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// DeleteObjectsInput is undocumented.
+type DeleteObjectsInput struct {
+	XMLName xml.Name
+
+	Bucket *string `xml:"-" name:"Bucket"`
+	Delete *Delete `xml:"Delete,omitempty"`
+	MFA    *string `xml:"-" name:"x-amz-mfa"`
+}
+
+func (v *DeleteObjectsInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// NoncurrentVersionExpiration is undocumented.
+type NoncurrentVersionExpiration struct {
+	XMLName xml.Name
+
+	NoncurrentDays *int `xml:"NoncurrentDays"`
+}
+
+func (v *NoncurrentVersionExpiration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	ObjectVersionStorageClassStandard = "STANDARD"
+)
+
 // GetObjectInput is undocumented.
 type GetObjectInput struct {
 	XMLName xml.Name
@@ -2345,64 +3320,104 @@ func (v *GetObjectInput) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	return aws.MarshalXML(v, e, start)
 }
 
-// GetObjectTorrentOutput is undocumented.
-type GetObjectTorrentOutput struct {
+// ListObjectsInput is undocumented.
+type ListObjectsInput struct {
 	XMLName xml.Name
 
-	Body io.Reader `xml:"-"`
+	Bucket       *string `xml:"-" name:"Bucket"`
+	Delimiter    *string `xml:"-" name:"delimiter"`
+	EncodingType *string `xml:"-" name:"encoding-type"`
+	Marker       *string `xml:"-" name:"marker"`
+	MaxKeys      *int    `xml:"-" name:"max-keys"`
+	Prefix       *string `xml:"-" name:"prefix"`
 }
 
-func (v *GetObjectTorrentOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *ListObjectsInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// GetObjectTorrentInput is undocumented.
-type GetObjectTorrentInput struct {
+// PutBucketVersioningInput is undocumented.
+type PutBucketVersioningInput struct {
 	XMLName xml.Name
 
-	Bucket *string `xml:"-" name:"Bucket"`
-	Key    *string `xml:"-" name:"Key"`
+	Bucket                  *string                  `xml:"-" name:"Bucket"`
+	ContentMD5              *string                  `xml:"-" name:"Content-MD5"`
+	MFA                     *string                  `xml:"-" name:"x-amz-mfa"`
+	VersioningConfiguration *VersioningConfiguration `xml:"VersioningConfiguration,omitempty"`
 }
 
-func (v *GetObjectTorrentInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *PutBucketVersioningInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Grant is undocumented.
-type Grant struct {
+// PutObjectOutput is undocumented.
+type PutObjectOutput struct {
 	XMLName xml.Name
 
-	Grantee    *Grantee `xml:"Grantee,omitempty"`
-	Permission *string  `xml:"Permission"`
+	ETag                 *string `xml:"-" name:"ETag"`
+	Expiration           *string `xml:"-" name:"x-amz-expiration"`
+	SSECustomerAlgorithm *string `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
+	SSECustomerKeyMD5    *string `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
+	SSEKMSKeyID          *string `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
+	ServerSideEncryption *string `xml:"-" name:"x-amz-server-side-encryption"`
+	VersionID            *string `xml:"-" name:"x-amz-version-id"`
 }
 
-func (v *Grant) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *PutObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Grantee is undocumented.
-type Grantee struct {
+// GetBucketLocationOutput is undocumented.
+type GetBucketLocationOutput struct {
 	XMLName xml.Name
 
-	DisplayName  *string `xml:"DisplayName"`
-	EmailAddress *string `xml:"EmailAddress"`
-	ID           *string `xml:"ID"`
-	Type         *string `xml:"Type"`
-	URI          *string `xml:"URI"`
+	LocationConstraint *string `xml:"LocationConstraint"`
 }
 
-func (v *Grantee) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *GetBucketLocationOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// HeadBucketInput is undocumented.
-type HeadBucketInput struct {
+// Possible values for S3.
+const (
+	ObjectCannedACLAuthenticatedRead      = "authenticated-read"
+	ObjectCannedACLBucketOwnerFullControl = "bucket-owner-full-control"
+	ObjectCannedACLBucketOwnerRead        = "bucket-owner-read"
+	ObjectCannedACLPrivate                = "private"
+	ObjectCannedACLPublicRead             = "public-read"
+	ObjectCannedACLPublicReadWrite        = "public-read-write"
+)
+
+// WebsiteConfiguration is undocumented.
+type WebsiteConfiguration struct {
 	XMLName xml.Name
 
-	Bucket *string `xml:"-" name:"Bucket"`
+	ErrorDocument         *ErrorDocument         `xml:"ErrorDocument,omitempty"`
+	IndexDocument         *IndexDocument         `xml:"IndexDocument,omitempty"`
+	RedirectAllRequestsTo *RedirectAllRequestsTo `xml:"RedirectAllRequestsTo,omitempty"`
+	RoutingRules          []RoutingRule          `xml:"RoutingRules>RoutingRule,omitempty"`
 }
 
-func (v *HeadBucketInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *WebsiteConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	TransitionStorageClassGlacier = "GLACIER"
+)
+
+// RestoreObjectInput is undocumented.
+type RestoreObjectInput struct {
+	XMLName xml.Name
+
+	Bucket         *string         `xml:"-" name:"Bucket"`
+	Key            *string         `xml:"-" name:"Key"`
+	RestoreRequest *RestoreRequest `xml:"RestoreRequest,omitempty"`
+	VersionID      *string         `xml:"-" name:"versionId"`
+}
+
+func (v *RestoreObjectInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -2437,58 +3452,37 @@ func (v *HeadObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	return aws.MarshalXML(v, e, start)
 }
 
-// HeadObjectInput is undocumented.
-type HeadObjectInput struct {
+// Tag is undocumented.
+type Tag struct {
 	XMLName xml.Name
 
-	Bucket               *string   `xml:"-" name:"Bucket"`
-	IfMatch              *string   `xml:"-" name:"If-Match"`
-	IfModifiedSince      time.Time `xml:"-" name:"If-Modified-Since"`
-	IfNoneMatch          *string   `xml:"-" name:"If-None-Match"`
-	IfUnmodifiedSince    time.Time `xml:"-" name:"If-Unmodified-Since"`
-	Key                  *string   `xml:"-" name:"Key"`
-	Range                *string   `xml:"-" name:"Range"`
-	SSECustomerAlgorithm *string   `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey       *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5    *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
-	VersionID            *string   `xml:"-" name:"versionId"`
+	Key   *string `xml:"Key"`
+	Value *string `xml:"Value"`
 }
 
-func (v *HeadObjectInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *Tag) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// IndexDocument is undocumented.
-type IndexDocument struct {
+// CompletedMultipartUpload is undocumented.
+type CompletedMultipartUpload struct {
 	XMLName xml.Name
 
-	Suffix *string `xml:"Suffix"`
+	Parts []CompletedPart `xml:"Part,omitempty"`
 }
 
-func (v *IndexDocument) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *CompletedMultipartUpload) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Initiator is undocumented.
-type Initiator struct {
+// GetBucketRequestPaymentInput is undocumented.
+type GetBucketRequestPaymentInput struct {
 	XMLName xml.Name
 
-	DisplayName *string `xml:"DisplayName"`
-	ID          *string `xml:"ID"`
+	Bucket *string `xml:"-" name:"Bucket"`
 }
 
-func (v *Initiator) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// LifecycleConfiguration is undocumented.
-type LifecycleConfiguration struct {
-	XMLName xml.Name
-
-	Rules []Rule `xml:"Rule,omitempty"`
-}
-
-func (v *LifecycleConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *GetBucketRequestPaymentInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -2504,15 +3498,43 @@ func (v *LifecycleExpiration) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
-// ListBucketsOutput is undocumented.
-type ListBucketsOutput struct {
+// ErrorDocument is undocumented.
+type ErrorDocument struct {
 	XMLName xml.Name
 
-	Buckets []Bucket `xml:"Buckets>Bucket,omitempty"`
-	Owner   *Owner   `xml:"Owner,omitempty"`
+	Key *string `xml:"Key"`
 }
 
-func (v *ListBucketsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *ErrorDocument) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// AccessControlPolicy is undocumented.
+type AccessControlPolicy struct {
+	XMLName xml.Name
+
+	Grants []Grant `xml:"AccessControlList>Grant,omitempty"`
+	Owner  *Owner  `xml:"Owner,omitempty"`
+}
+
+func (v *AccessControlPolicy) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// Possible values for S3.
+const (
+	BucketVersioningStatusEnabled   = "Enabled"
+	BucketVersioningStatusSuspended = "Suspended"
+)
+
+// GetBucketRequestPaymentOutput is undocumented.
+type GetBucketRequestPaymentOutput struct {
+	XMLName xml.Name
+
+	Payer *string `xml:"Payer"`
+}
+
+func (v *GetBucketRequestPaymentOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -2538,365 +3560,6 @@ func (v *ListMultipartUploadsOutput) MarshalXML(e *xml.Encoder, start xml.StartE
 	return aws.MarshalXML(v, e, start)
 }
 
-// ListMultipartUploadsInput is undocumented.
-type ListMultipartUploadsInput struct {
-	XMLName xml.Name
-
-	Bucket         *string `xml:"-" name:"Bucket"`
-	Delimiter      *string `xml:"-" name:"delimiter"`
-	EncodingType   *string `xml:"-" name:"encoding-type"`
-	KeyMarker      *string `xml:"-" name:"key-marker"`
-	MaxUploads     *int    `xml:"-" name:"max-uploads"`
-	Prefix         *string `xml:"-" name:"prefix"`
-	UploadIDMarker *string `xml:"-" name:"upload-id-marker"`
-}
-
-func (v *ListMultipartUploadsInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// ListObjectVersionsOutput is undocumented.
-type ListObjectVersionsOutput struct {
-	XMLName xml.Name
-
-	CommonPrefixes      []CommonPrefix      `xml:"CommonPrefixes,omitempty"`
-	DeleteMarkers       []DeleteMarkerEntry `xml:"DeleteMarker,omitempty"`
-	Delimiter           *string             `xml:"Delimiter"`
-	EncodingType        *string             `xml:"EncodingType"`
-	IsTruncated         *bool               `xml:"IsTruncated"`
-	KeyMarker           *string             `xml:"KeyMarker"`
-	MaxKeys             *int                `xml:"MaxKeys"`
-	Name                *string             `xml:"Name"`
-	NextKeyMarker       *string             `xml:"NextKeyMarker"`
-	NextVersionIDMarker *string             `xml:"NextVersionIdMarker"`
-	Prefix              *string             `xml:"Prefix"`
-	VersionIDMarker     *string             `xml:"VersionIdMarker"`
-	Versions            []ObjectVersion     `xml:"Version,omitempty"`
-}
-
-func (v *ListObjectVersionsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// ListObjectVersionsInput is undocumented.
-type ListObjectVersionsInput struct {
-	XMLName xml.Name
-
-	Bucket          *string `xml:"-" name:"Bucket"`
-	Delimiter       *string `xml:"-" name:"delimiter"`
-	EncodingType    *string `xml:"-" name:"encoding-type"`
-	KeyMarker       *string `xml:"-" name:"key-marker"`
-	MaxKeys         *int    `xml:"-" name:"max-keys"`
-	Prefix          *string `xml:"-" name:"prefix"`
-	VersionIDMarker *string `xml:"-" name:"version-id-marker"`
-}
-
-func (v *ListObjectVersionsInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// ListObjectsOutput is undocumented.
-type ListObjectsOutput struct {
-	XMLName xml.Name
-
-	CommonPrefixes []CommonPrefix `xml:"CommonPrefixes,omitempty"`
-	Contents       []Object       `xml:"Contents,omitempty"`
-	Delimiter      *string        `xml:"Delimiter"`
-	EncodingType   *string        `xml:"EncodingType"`
-	IsTruncated    *bool          `xml:"IsTruncated"`
-	Marker         *string        `xml:"Marker"`
-	MaxKeys        *int           `xml:"MaxKeys"`
-	Name           *string        `xml:"Name"`
-	NextMarker     *string        `xml:"NextMarker"`
-	Prefix         *string        `xml:"Prefix"`
-}
-
-func (v *ListObjectsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// ListObjectsInput is undocumented.
-type ListObjectsInput struct {
-	XMLName xml.Name
-
-	Bucket       *string `xml:"-" name:"Bucket"`
-	Delimiter    *string `xml:"-" name:"delimiter"`
-	EncodingType *string `xml:"-" name:"encoding-type"`
-	Marker       *string `xml:"-" name:"marker"`
-	MaxKeys      *int    `xml:"-" name:"max-keys"`
-	Prefix       *string `xml:"-" name:"prefix"`
-}
-
-func (v *ListObjectsInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// ListPartsOutput is undocumented.
-type ListPartsOutput struct {
-	XMLName xml.Name
-
-	Bucket               *string    `xml:"Bucket"`
-	Initiator            *Initiator `xml:"Initiator,omitempty"`
-	IsTruncated          *bool      `xml:"IsTruncated"`
-	Key                  *string    `xml:"Key"`
-	MaxParts             *int       `xml:"MaxParts"`
-	NextPartNumberMarker *int       `xml:"NextPartNumberMarker"`
-	Owner                *Owner     `xml:"Owner,omitempty"`
-	PartNumberMarker     *int       `xml:"PartNumberMarker"`
-	Parts                []Part     `xml:"Part,omitempty"`
-	StorageClass         *string    `xml:"StorageClass"`
-	UploadID             *string    `xml:"UploadId"`
-}
-
-func (v *ListPartsOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// ListPartsInput is undocumented.
-type ListPartsInput struct {
-	XMLName xml.Name
-
-	Bucket           *string `xml:"-" name:"Bucket"`
-	Key              *string `xml:"-" name:"Key"`
-	MaxParts         *int    `xml:"-" name:"max-parts"`
-	PartNumberMarker *int    `xml:"-" name:"part-number-marker"`
-	UploadID         *string `xml:"-" name:"uploadId"`
-}
-
-func (v *ListPartsInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// LoggingEnabled is undocumented.
-type LoggingEnabled struct {
-	XMLName xml.Name
-
-	TargetBucket *string       `xml:"TargetBucket"`
-	TargetGrants []TargetGrant `xml:"TargetGrants>Grant,omitempty"`
-	TargetPrefix *string       `xml:"TargetPrefix"`
-}
-
-func (v *LoggingEnabled) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Possible values for S3.
-const (
-	MFADeleteDisabled = "Disabled"
-	MFADeleteEnabled  = "Enabled"
-)
-
-// Possible values for S3.
-const (
-	MFADeleteStatusDisabled = "Disabled"
-	MFADeleteStatusEnabled  = "Enabled"
-)
-
-// Possible values for S3.
-const (
-	MetadataDirectiveCopy    = "COPY"
-	MetadataDirectiveReplace = "REPLACE"
-)
-
-// MultipartUpload is undocumented.
-type MultipartUpload struct {
-	XMLName xml.Name
-
-	Initiated    time.Time  `xml:"Initiated"`
-	Initiator    *Initiator `xml:"Initiator,omitempty"`
-	Key          *string    `xml:"Key"`
-	Owner        *Owner     `xml:"Owner,omitempty"`
-	StorageClass *string    `xml:"StorageClass"`
-	UploadID     *string    `xml:"UploadId"`
-}
-
-func (v *MultipartUpload) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// NoncurrentVersionExpiration is undocumented.
-type NoncurrentVersionExpiration struct {
-	XMLName xml.Name
-
-	NoncurrentDays *int `xml:"NoncurrentDays"`
-}
-
-func (v *NoncurrentVersionExpiration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// NoncurrentVersionTransition is undocumented.
-type NoncurrentVersionTransition struct {
-	XMLName xml.Name
-
-	NoncurrentDays *int    `xml:"NoncurrentDays"`
-	StorageClass   *string `xml:"StorageClass"`
-}
-
-func (v *NoncurrentVersionTransition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// NotificationConfiguration is undocumented.
-type NotificationConfiguration struct {
-	XMLName xml.Name
-
-	CloudFunctionConfiguration *CloudFunctionConfiguration `xml:"CloudFunctionConfiguration,omitempty"`
-	QueueConfiguration         *QueueConfiguration         `xml:"QueueConfiguration,omitempty"`
-	TopicConfiguration         *TopicConfiguration         `xml:"TopicConfiguration,omitempty"`
-}
-
-func (v *NotificationConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Object is undocumented.
-type Object struct {
-	XMLName xml.Name
-
-	ETag         *string   `xml:"ETag"`
-	Key          *string   `xml:"Key"`
-	LastModified time.Time `xml:"LastModified"`
-	Owner        *Owner    `xml:"Owner,omitempty"`
-	Size         *int64    `xml:"Size"`
-	StorageClass *string   `xml:"StorageClass"`
-}
-
-func (v *Object) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Possible values for S3.
-const (
-	ObjectCannedACLAuthenticatedRead      = "authenticated-read"
-	ObjectCannedACLBucketOwnerFullControl = "bucket-owner-full-control"
-	ObjectCannedACLBucketOwnerRead        = "bucket-owner-read"
-	ObjectCannedACLPrivate                = "private"
-	ObjectCannedACLPublicRead             = "public-read"
-	ObjectCannedACLPublicReadWrite        = "public-read-write"
-)
-
-// ObjectIdentifier is undocumented.
-type ObjectIdentifier struct {
-	XMLName xml.Name
-
-	Key       *string `xml:"Key"`
-	VersionID *string `xml:"VersionId"`
-}
-
-func (v *ObjectIdentifier) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Possible values for S3.
-const (
-	ObjectStorageClassGlacier           = "GLACIER"
-	ObjectStorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
-	ObjectStorageClassStandard          = "STANDARD"
-)
-
-// ObjectVersion is undocumented.
-type ObjectVersion struct {
-	XMLName xml.Name
-
-	ETag         *string   `xml:"ETag"`
-	IsLatest     *bool     `xml:"IsLatest"`
-	Key          *string   `xml:"Key"`
-	LastModified time.Time `xml:"LastModified"`
-	Owner        *Owner    `xml:"Owner,omitempty"`
-	Size         *int64    `xml:"Size"`
-	StorageClass *string   `xml:"StorageClass"`
-	VersionID    *string   `xml:"VersionId"`
-}
-
-func (v *ObjectVersion) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Possible values for S3.
-const (
-	ObjectVersionStorageClassStandard = "STANDARD"
-)
-
-// Owner is undocumented.
-type Owner struct {
-	XMLName xml.Name
-
-	DisplayName *string `xml:"DisplayName"`
-	ID          *string `xml:"ID"`
-}
-
-func (v *Owner) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Part is undocumented.
-type Part struct {
-	XMLName xml.Name
-
-	ETag         *string   `xml:"ETag"`
-	LastModified time.Time `xml:"LastModified"`
-	PartNumber   *int      `xml:"PartNumber"`
-	Size         *int64    `xml:"Size"`
-}
-
-func (v *Part) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Possible values for S3.
-const (
-	PayerBucketOwner = "BucketOwner"
-	PayerRequester   = "Requester"
-)
-
-// Possible values for S3.
-const (
-	PermissionFullControl = "FULL_CONTROL"
-	PermissionRead        = "READ"
-	PermissionReadAcp     = "READ_ACP"
-	PermissionWrite       = "WRITE"
-	PermissionWriteAcp    = "WRITE_ACP"
-)
-
-// Possible values for S3.
-const (
-	ProtocolHTTP  = "http"
-	ProtocolHTTPS = "https"
-)
-
-// PutBucketACLInput is undocumented.
-type PutBucketACLInput struct {
-	XMLName xml.Name
-
-	ACL                 *string              `xml:"-" name:"x-amz-acl"`
-	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy,omitempty"`
-	Bucket              *string              `xml:"-" name:"Bucket"`
-	ContentMD5          *string              `xml:"-" name:"Content-MD5"`
-	GrantFullControl    *string              `xml:"-" name:"x-amz-grant-full-control"`
-	GrantRead           *string              `xml:"-" name:"x-amz-grant-read"`
-	GrantReadACP        *string              `xml:"-" name:"x-amz-grant-read-acp"`
-	GrantWrite          *string              `xml:"-" name:"x-amz-grant-write"`
-	GrantWriteACP       *string              `xml:"-" name:"x-amz-grant-write-acp"`
-}
-
-func (v *PutBucketACLInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// PutBucketCORSInput is undocumented.
-type PutBucketCORSInput struct {
-	XMLName xml.Name
-
-	Bucket            *string            `xml:"-" name:"Bucket"`
-	CORSConfiguration *CORSConfiguration `xml:"CORSConfiguration,omitempty"`
-	ContentMD5        *string            `xml:"-" name:"Content-MD5"`
-}
-
-func (v *PutBucketCORSInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
 // PutBucketLifecycleInput is undocumented.
 type PutBucketLifecycleInput struct {
 	XMLName xml.Name
@@ -2910,318 +3573,28 @@ func (v *PutBucketLifecycleInput) MarshalXML(e *xml.Encoder, start xml.StartElem
 	return aws.MarshalXML(v, e, start)
 }
 
-// PutBucketLoggingInput is undocumented.
-type PutBucketLoggingInput struct {
-	XMLName xml.Name
-
-	Bucket              *string              `xml:"-" name:"Bucket"`
-	BucketLoggingStatus *BucketLoggingStatus `xml:"BucketLoggingStatus,omitempty"`
-	ContentMD5          *string              `xml:"-" name:"Content-MD5"`
-}
-
-func (v *PutBucketLoggingInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// PutBucketNotificationInput is undocumented.
-type PutBucketNotificationInput struct {
-	XMLName xml.Name
-
-	Bucket                    *string                    `xml:"-" name:"Bucket"`
-	ContentMD5                *string                    `xml:"-" name:"Content-MD5"`
-	NotificationConfiguration *NotificationConfiguration `xml:"NotificationConfiguration,omitempty"`
-}
-
-func (v *PutBucketNotificationInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// PutBucketPolicyInput is undocumented.
-type PutBucketPolicyInput struct {
-	XMLName xml.Name
-
-	Bucket     *string `xml:"-" name:"Bucket"`
-	ContentMD5 *string `xml:"-" name:"Content-MD5"`
-	Policy     *string `xml:"Policy"`
-}
-
-func (v *PutBucketPolicyInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// PutBucketRequestPaymentInput is undocumented.
-type PutBucketRequestPaymentInput struct {
-	XMLName xml.Name
-
-	Bucket                      *string                      `xml:"-" name:"Bucket"`
-	ContentMD5                  *string                      `xml:"-" name:"Content-MD5"`
-	RequestPaymentConfiguration *RequestPaymentConfiguration `xml:"RequestPaymentConfiguration,omitempty"`
-}
-
-func (v *PutBucketRequestPaymentInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// PutBucketTaggingInput is undocumented.
-type PutBucketTaggingInput struct {
-	XMLName xml.Name
-
-	Bucket     *string  `xml:"-" name:"Bucket"`
-	ContentMD5 *string  `xml:"-" name:"Content-MD5"`
-	Tagging    *Tagging `xml:"Tagging,omitempty"`
-}
-
-func (v *PutBucketTaggingInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// PutBucketVersioningInput is undocumented.
-type PutBucketVersioningInput struct {
-	XMLName xml.Name
-
-	Bucket                  *string                  `xml:"-" name:"Bucket"`
-	ContentMD5              *string                  `xml:"-" name:"Content-MD5"`
-	MFA                     *string                  `xml:"-" name:"x-amz-mfa"`
-	VersioningConfiguration *VersioningConfiguration `xml:"VersioningConfiguration,omitempty"`
-}
-
-func (v *PutBucketVersioningInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// PutBucketWebsiteInput is undocumented.
-type PutBucketWebsiteInput struct {
-	XMLName xml.Name
-
-	Bucket               *string               `xml:"-" name:"Bucket"`
-	ContentMD5           *string               `xml:"-" name:"Content-MD5"`
-	WebsiteConfiguration *WebsiteConfiguration `xml:"WebsiteConfiguration,omitempty"`
-}
-
-func (v *PutBucketWebsiteInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// PutObjectACLInput is undocumented.
-type PutObjectACLInput struct {
-	XMLName xml.Name
-
-	ACL                 *string              `xml:"-" name:"x-amz-acl"`
-	AccessControlPolicy *AccessControlPolicy `xml:"AccessControlPolicy,omitempty"`
-	Bucket              *string              `xml:"-" name:"Bucket"`
-	ContentMD5          *string              `xml:"-" name:"Content-MD5"`
-	GrantFullControl    *string              `xml:"-" name:"x-amz-grant-full-control"`
-	GrantRead           *string              `xml:"-" name:"x-amz-grant-read"`
-	GrantReadACP        *string              `xml:"-" name:"x-amz-grant-read-acp"`
-	GrantWrite          *string              `xml:"-" name:"x-amz-grant-write"`
-	GrantWriteACP       *string              `xml:"-" name:"x-amz-grant-write-acp"`
-	Key                 *string              `xml:"-" name:"Key"`
-}
-
-func (v *PutObjectACLInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// PutObjectOutput is undocumented.
-type PutObjectOutput struct {
-	XMLName xml.Name
-
-	ETag                 *string `xml:"-" name:"ETag"`
-	Expiration           *string `xml:"-" name:"x-amz-expiration"`
-	SSECustomerAlgorithm *string `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKeyMD5    *string `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID          *string `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption *string `xml:"-" name:"x-amz-server-side-encryption"`
-	VersionID            *string `xml:"-" name:"x-amz-version-id"`
-}
-
-func (v *PutObjectOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// PutObjectInput is undocumented.
-type PutObjectInput struct {
-	XMLName xml.Name
-
-	ACL                     *string           `xml:"-" name:"x-amz-acl"`
-	Body                    io.Reader         `xml:"-"`
-	Bucket                  *string           `xml:"-" name:"Bucket"`
-	CacheControl            *string           `xml:"-" name:"Cache-Control"`
-	ContentDisposition      *string           `xml:"-" name:"Content-Disposition"`
-	ContentEncoding         *string           `xml:"-" name:"Content-Encoding"`
-	ContentLanguage         *string           `xml:"-" name:"Content-Language"`
-	ContentLength           *int64            `xml:"-" name:"Content-Length"`
-	ContentMD5              *string           `xml:"-" name:"Content-MD5"`
-	ContentType             *string           `xml:"-" name:"Content-Type"`
-	Expires                 time.Time         `xml:"-" name:"Expires"`
-	GrantFullControl        *string           `xml:"-" name:"x-amz-grant-full-control"`
-	GrantRead               *string           `xml:"-" name:"x-amz-grant-read"`
-	GrantReadACP            *string           `xml:"-" name:"x-amz-grant-read-acp"`
-	GrantWriteACP           *string           `xml:"-" name:"x-amz-grant-write-acp"`
-	Key                     *string           `xml:"-" name:"Key"`
-	Metadata                map[string]string `xml:"-" name:"x-amz-meta-"`
-	SSECustomerAlgorithm    *string           `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey          *string           `xml:"-" name:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5       *string           `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID             *string           `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption    *string           `xml:"-" name:"x-amz-server-side-encryption"`
-	StorageClass            *string           `xml:"-" name:"x-amz-storage-class"`
-	WebsiteRedirectLocation *string           `xml:"-" name:"x-amz-website-redirect-location"`
-}
-
-func (v *PutObjectInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// QueueConfiguration is undocumented.
-type QueueConfiguration struct {
-	XMLName xml.Name
-
-	Event  *string  `xml:"Event"`
-	Events []string `xml:"Event,omitempty"`
-	ID     *string  `xml:"Id"`
-	Queue  *string  `xml:"Queue"`
-}
-
-func (v *QueueConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Redirect is undocumented.
-type Redirect struct {
-	XMLName xml.Name
-
-	HostName             *string `xml:"HostName"`
-	HTTPRedirectCode     *string `xml:"HttpRedirectCode"`
-	Protocol             *string `xml:"Protocol"`
-	ReplaceKeyPrefixWith *string `xml:"ReplaceKeyPrefixWith"`
-	ReplaceKeyWith       *string `xml:"ReplaceKeyWith"`
-}
-
-func (v *Redirect) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// RedirectAllRequestsTo is undocumented.
-type RedirectAllRequestsTo struct {
-	XMLName xml.Name
-
-	HostName *string `xml:"HostName"`
-	Protocol *string `xml:"Protocol"`
-}
-
-func (v *RedirectAllRequestsTo) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// RequestPaymentConfiguration is undocumented.
-type RequestPaymentConfiguration struct {
-	XMLName xml.Name
-
-	Payer *string `xml:"Payer"`
-}
-
-func (v *RequestPaymentConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// RestoreObjectInput is undocumented.
-type RestoreObjectInput struct {
-	XMLName xml.Name
-
-	Bucket       *string       `xml:"-" name:"Bucket"`
-	Key          *string       `xml:"-" name:"Key"`
-	RestoreInput *RestoreInput `xml:"RestoreInput,omitempty"`
-	VersionID    *string       `xml:"-" name:"versionId"`
-}
-
-func (v *RestoreObjectInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// RestoreInput is undocumented.
-type RestoreInput struct {
-	XMLName xml.Name
-
-	Days *int `xml:"Days"`
-}
-
-func (v *RestoreInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// RoutingRule is undocumented.
-type RoutingRule struct {
-	XMLName xml.Name
-
-	Condition *Condition `xml:"Condition,omitempty"`
-	Redirect  *Redirect  `xml:"Redirect,omitempty"`
-}
-
-func (v *RoutingRule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Rule is undocumented.
-type Rule struct {
-	XMLName xml.Name
-
-	Expiration                  *LifecycleExpiration         `xml:"Expiration,omitempty"`
-	ID                          *string                      `xml:"ID"`
-	NoncurrentVersionExpiration *NoncurrentVersionExpiration `xml:"NoncurrentVersionExpiration,omitempty"`
-	NoncurrentVersionTransition *NoncurrentVersionTransition `xml:"NoncurrentVersionTransition,omitempty"`
-	Prefix                      *string                      `xml:"Prefix"`
-	Status                      *string                      `xml:"Status"`
-	Transition                  *Transition                  `xml:"Transition,omitempty"`
-}
-
-func (v *Rule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
 // Possible values for S3.
 const (
-	ServerSideEncryptionAES256 = "AES256"
+	BucketLocationConstraintApNortheast1 = "ap-northeast-1"
+	BucketLocationConstraintApSoutheast1 = "ap-southeast-1"
+	BucketLocationConstraintApSoutheast2 = "ap-southeast-2"
+	BucketLocationConstraintCnNorth1     = "cn-north-1"
+	BucketLocationConstraintEu           = "EU"
+	BucketLocationConstraintEuCentral1   = "eu-central-1"
+	BucketLocationConstraintEuWest1      = "eu-west-1"
+	BucketLocationConstraintSaEast1      = "sa-east-1"
+	BucketLocationConstraintUsWest1      = "us-west-1"
+	BucketLocationConstraintUsWest2      = "us-west-2"
 )
 
-// Possible values for S3.
-const (
-	StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
-	StorageClassStandard          = "STANDARD"
-)
-
-// Tag is undocumented.
-type Tag struct {
+// DeleteBucketWebsiteInput is undocumented.
+type DeleteBucketWebsiteInput struct {
 	XMLName xml.Name
 
-	Key   *string `xml:"Key"`
-	Value *string `xml:"Value"`
+	Bucket *string `xml:"-" name:"Bucket"`
 }
 
-func (v *Tag) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Tagging is undocumented.
-type Tagging struct {
-	XMLName xml.Name
-
-	TagSet []Tag `xml:"TagSet>Tag,omitempty"`
-}
-
-func (v *Tagging) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// TargetGrant is undocumented.
-type TargetGrant struct {
-	XMLName xml.Name
-
-	Grantee    *Grantee `xml:"Grantee,omitempty"`
-	Permission *string  `xml:"Permission"`
-}
-
-func (v *TargetGrant) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+func (v *DeleteBucketWebsiteInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
@@ -3236,134 +3609,6 @@ type TopicConfiguration struct {
 }
 
 func (v *TopicConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Transition is undocumented.
-type Transition struct {
-	XMLName xml.Name
-
-	Date         time.Time `xml:"Date"`
-	Days         *int      `xml:"Days"`
-	StorageClass *string   `xml:"StorageClass"`
-}
-
-func (v *Transition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// Possible values for S3.
-const (
-	TransitionStorageClassGlacier = "GLACIER"
-)
-
-// Possible values for S3.
-const (
-	TypeAmazonCustomerByEmail = "AmazonCustomerByEmail"
-	TypeCanonicalUser         = "CanonicalUser"
-	TypeGroup                 = "Group"
-)
-
-// UploadPartCopyOutput is undocumented.
-type UploadPartCopyOutput struct {
-	XMLName xml.Name
-
-	CopyPartResult       *CopyPartResult `xml:"CopyPartResult,omitempty"`
-	CopySourceVersionID  *string         `xml:"-" name:"x-amz-copy-source-version-id"`
-	SSECustomerAlgorithm *string         `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKeyMD5    *string         `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID          *string         `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption *string         `xml:"-" name:"x-amz-server-side-encryption"`
-}
-
-func (v *UploadPartCopyOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// UploadPartCopyInput is undocumented.
-type UploadPartCopyInput struct {
-	XMLName xml.Name
-
-	Bucket                         *string   `xml:"-" name:"Bucket"`
-	CopySource                     *string   `xml:"-" name:"x-amz-copy-source"`
-	CopySourceIfMatch              *string   `xml:"-" name:"x-amz-copy-source-if-match"`
-	CopySourceIfModifiedSince      time.Time `xml:"-" name:"x-amz-copy-source-if-modified-since"`
-	CopySourceIfNoneMatch          *string   `xml:"-" name:"x-amz-copy-source-if-none-match"`
-	CopySourceIfUnmodifiedSince    time.Time `xml:"-" name:"x-amz-copy-source-if-unmodified-since"`
-	CopySourceRange                *string   `xml:"-" name:"x-amz-copy-source-range"`
-	CopySourceSSECustomerAlgorithm *string   `xml:"-" name:"x-amz-copy-source-server-side-encryption-customer-algorithm"`
-	CopySourceSSECustomerKey       *string   `xml:"-" name:"x-amz-copy-source-server-side-encryption-customer-key"`
-	CopySourceSSECustomerKeyMD5    *string   `xml:"-" name:"x-amz-copy-source-server-side-encryption-customer-key-MD5"`
-	Key                            *string   `xml:"-" name:"Key"`
-	PartNumber                     *int      `xml:"-" name:"partNumber"`
-	SSECustomerAlgorithm           *string   `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey                 *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5              *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
-	UploadID                       *string   `xml:"-" name:"uploadId"`
-}
-
-func (v *UploadPartCopyInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// UploadPartOutput is undocumented.
-type UploadPartOutput struct {
-	XMLName xml.Name
-
-	ETag                 *string `xml:"-" name:"ETag"`
-	SSECustomerAlgorithm *string `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKeyMD5    *string `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
-	SSEKMSKeyID          *string `xml:"-" name:"x-amz-server-side-encryption-aws-kms-key-id"`
-	ServerSideEncryption *string `xml:"-" name:"x-amz-server-side-encryption"`
-}
-
-func (v *UploadPartOutput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// UploadPartInput is undocumented.
-type UploadPartInput struct {
-	XMLName xml.Name
-
-	Body                 io.Reader `xml:"-"`
-	Bucket               *string   `xml:"-" name:"Bucket"`
-	ContentLength        *int64    `xml:"-" name:"Content-Length"`
-	ContentMD5           *string   `xml:"-" name:"Content-MD5"`
-	Key                  *string   `xml:"-" name:"Key"`
-	PartNumber           *int      `xml:"-" name:"partNumber"`
-	SSECustomerAlgorithm *string   `xml:"-" name:"x-amz-server-side-encryption-customer-algorithm"`
-	SSECustomerKey       *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key"`
-	SSECustomerKeyMD5    *string   `xml:"-" name:"x-amz-server-side-encryption-customer-key-MD5"`
-	UploadID             *string   `xml:"-" name:"uploadId"`
-}
-
-func (v *UploadPartInput) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// VersioningConfiguration is undocumented.
-type VersioningConfiguration struct {
-	XMLName xml.Name
-
-	MFADelete *string `xml:"MfaDelete"`
-	Status    *string `xml:"Status"`
-}
-
-func (v *VersioningConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// WebsiteConfiguration is undocumented.
-type WebsiteConfiguration struct {
-	XMLName xml.Name
-
-	ErrorDocument         *ErrorDocument         `xml:"ErrorDocument,omitempty"`
-	IndexDocument         *IndexDocument         `xml:"IndexDocument,omitempty"`
-	RedirectAllRequestsTo *RedirectAllRequestsTo `xml:"RedirectAllRequestsTo,omitempty"`
-	RoutingRules          []RoutingRule          `xml:"RoutingRules>RoutingRule,omitempty"`
-}
-
-func (v *WebsiteConfiguration) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
