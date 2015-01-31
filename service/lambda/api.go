@@ -15,7 +15,7 @@ import (
 )
 
 // AddEventSourceRequest generates a request for the AddEventSource operation.
-func (c *Lambda) AddEventSourceRequest(input *AddEventSourceInput) *aws.Request {
+func (c *Lambda) AddEventSourceRequest(input *AddEventSourceInput) (req *aws.Request, output *EventSourceConfiguration) {
 	if opAddEventSource == nil {
 		opAddEventSource = &aws.Operation{
 			Name:       "AddEventSource",
@@ -34,7 +34,10 @@ func (c *Lambda) AddEventSourceRequest(input *AddEventSourceInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opAddEventSource, input, nil)
+	req = aws.NewRequest(c.Service, opAddEventSource, input, output)
+	output = &EventSourceConfiguration{}
+	req.Data = output
+	return
 }
 
 // AddEventSource identifies an Amazon Kinesis stream as the event source
@@ -49,15 +52,14 @@ func (c *Lambda) AddEventSourceRequest(input *AddEventSourceInput) *aws.Request 
 // permission for the iam:PassRole action for the IAM role. It also
 // requires permission for the lambda:AddEventSource action.
 func (c *Lambda) AddEventSource(input *AddEventSourceInput) (output *EventSourceConfiguration, err error) {
-	output = &EventSourceConfiguration{}
-	req := c.AddEventSourceRequest(input)
-	req.Data = output
+	req, out := c.AddEventSourceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // DeleteFunctionRequest generates a request for the DeleteFunction operation.
-func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) *aws.Request {
+func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *aws.Request) {
 	if opDeleteFunction == nil {
 		opDeleteFunction = &aws.Operation{
 			Name:       "DeleteFunction",
@@ -76,22 +78,22 @@ func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDeleteFunction, input, nil)
+	req = aws.NewRequest(c.Service, opDeleteFunction, input, nil)
+
+	return
 }
 
 // DeleteFunction deletes the specified Lambda function code and
 // configuration. This operation requires permission for the
 // lambda:DeleteFunction action.
 func (c *Lambda) DeleteFunction(input *DeleteFunctionInput) (err error) {
-	// NRE
 	req := c.DeleteFunctionRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // GetEventSourceRequest generates a request for the GetEventSource operation.
-func (c *Lambda) GetEventSourceRequest(input *GetEventSourceInput) *aws.Request {
+func (c *Lambda) GetEventSourceRequest(input *GetEventSourceInput) (req *aws.Request, output *EventSourceConfiguration) {
 	if opGetEventSource == nil {
 		opGetEventSource = &aws.Operation{
 			Name:       "GetEventSource",
@@ -110,22 +112,24 @@ func (c *Lambda) GetEventSourceRequest(input *GetEventSourceInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetEventSource, input, nil)
+	req = aws.NewRequest(c.Service, opGetEventSource, input, output)
+	output = &EventSourceConfiguration{}
+	req.Data = output
+	return
 }
 
 // GetEventSource returns configuration information for the specified event
 // source mapping (see AddEventSource This operation requires permission
 // for the lambda:GetEventSource action.
 func (c *Lambda) GetEventSource(input *GetEventSourceInput) (output *EventSourceConfiguration, err error) {
-	output = &EventSourceConfiguration{}
-	req := c.GetEventSourceRequest(input)
-	req.Data = output
+	req, out := c.GetEventSourceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetFunctionRequest generates a request for the GetFunction operation.
-func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) *aws.Request {
+func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) (req *aws.Request, output *GetFunctionOutput) {
 	if opGetFunction == nil {
 		opGetFunction = &aws.Operation{
 			Name:       "GetFunction",
@@ -144,7 +148,10 @@ func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetFunction, input, nil)
+	req = aws.NewRequest(c.Service, opGetFunction, input, output)
+	output = &GetFunctionOutput{}
+	req.Data = output
+	return
 }
 
 // GetFunction returns the configuration information of the Lambda function
@@ -154,15 +161,14 @@ func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) *aws.Request {
 // information you provided as parameters when uploading the function. This
 // operation requires permission for the lambda:GetFunction action.
 func (c *Lambda) GetFunction(input *GetFunctionInput) (output *GetFunctionOutput, err error) {
-	output = &GetFunctionOutput{}
-	req := c.GetFunctionRequest(input)
-	req.Data = output
+	req, out := c.GetFunctionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetFunctionConfigurationRequest generates a request for the GetFunctionConfiguration operation.
-func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfigurationInput) *aws.Request {
+func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfigurationInput) (req *aws.Request, output *FunctionConfiguration) {
 	if opGetFunctionConfiguration == nil {
 		opGetFunctionConfiguration = &aws.Operation{
 			Name:       "GetFunctionConfiguration",
@@ -181,7 +187,10 @@ func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfiguration
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetFunctionConfiguration, input, nil)
+	req = aws.NewRequest(c.Service, opGetFunctionConfiguration, input, output)
+	output = &FunctionConfiguration{}
+	req.Data = output
+	return
 }
 
 // GetFunctionConfiguration returns the configuration information of the
@@ -189,15 +198,14 @@ func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfiguration
 // when uploading the function by using UploadFunction This operation
 // requires permission for the lambda:GetFunctionConfiguration operation.
 func (c *Lambda) GetFunctionConfiguration(input *GetFunctionConfigurationInput) (output *FunctionConfiguration, err error) {
-	output = &FunctionConfiguration{}
-	req := c.GetFunctionConfigurationRequest(input)
-	req.Data = output
+	req, out := c.GetFunctionConfigurationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // InvokeAsyncRequest generates a request for the InvokeAsync operation.
-func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) *aws.Request {
+func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *aws.Request, output *InvokeAsyncOutput) {
 	if opInvokeAsync == nil {
 		opInvokeAsync = &aws.Operation{
 			Name:       "InvokeAsync",
@@ -216,7 +224,10 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opInvokeAsync, input, nil)
+	req = aws.NewRequest(c.Service, opInvokeAsync, input, output)
+	output = &InvokeAsyncOutput{}
+	req.Data = output
+	return
 }
 
 // InvokeAsync submits an invocation request to AWS Lambda. Upon receiving
@@ -225,15 +236,14 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) *aws.Request {
 // CloudWatch logs console. This operation requires permission for the
 // lambda:InvokeAsync action.
 func (c *Lambda) InvokeAsync(input *InvokeAsyncInput) (output *InvokeAsyncOutput, err error) {
-	output = &InvokeAsyncOutput{}
-	req := c.InvokeAsyncRequest(input)
-	req.Data = output
+	req, out := c.InvokeAsyncRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // ListEventSourcesRequest generates a request for the ListEventSources operation.
-func (c *Lambda) ListEventSourcesRequest(input *ListEventSourcesInput) *aws.Request {
+func (c *Lambda) ListEventSourcesRequest(input *ListEventSourcesInput) (req *aws.Request, output *ListEventSourcesOutput) {
 	if opListEventSources == nil {
 		opListEventSources = &aws.Operation{
 			Name:       "ListEventSources",
@@ -252,7 +262,10 @@ func (c *Lambda) ListEventSourcesRequest(input *ListEventSourcesInput) *aws.Requ
 		}
 	}
 
-	return aws.NewRequest(c.Service, opListEventSources, input, nil)
+	req = aws.NewRequest(c.Service, opListEventSources, input, output)
+	output = &ListEventSourcesOutput{}
+	req.Data = output
+	return
 }
 
 // ListEventSources returns a list of event source mappings. For each
@@ -261,15 +274,14 @@ func (c *Lambda) ListEventSourcesRequest(input *ListEventSourcesInput) *aws.Requ
 // mappings. This operation requires permission for the
 // lambda:ListEventSources action.
 func (c *Lambda) ListEventSources(input *ListEventSourcesInput) (output *ListEventSourcesOutput, err error) {
-	output = &ListEventSourcesOutput{}
-	req := c.ListEventSourcesRequest(input)
-	req.Data = output
+	req, out := c.ListEventSourcesRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // ListFunctionsRequest generates a request for the ListFunctions operation.
-func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) *aws.Request {
+func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *aws.Request, output *ListFunctionsOutput) {
 	if opListFunctions == nil {
 		opListFunctions = &aws.Operation{
 			Name:       "ListFunctions",
@@ -288,7 +300,10 @@ func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opListFunctions, input, nil)
+	req = aws.NewRequest(c.Service, opListFunctions, input, output)
+	output = &ListFunctionsOutput{}
+	req.Data = output
+	return
 }
 
 // ListFunctions returns a list of your Lambda functions. For each
@@ -296,15 +311,14 @@ func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) *aws.Request {
 // You must use GetFunction to retrieve the code for your function. This
 // operation requires permission for the lambda:ListFunctions action.
 func (c *Lambda) ListFunctions(input *ListFunctionsInput) (output *ListFunctionsOutput, err error) {
-	output = &ListFunctionsOutput{}
-	req := c.ListFunctionsRequest(input)
-	req.Data = output
+	req, out := c.ListFunctionsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // RemoveEventSourceRequest generates a request for the RemoveEventSource operation.
-func (c *Lambda) RemoveEventSourceRequest(input *RemoveEventSourceInput) *aws.Request {
+func (c *Lambda) RemoveEventSourceRequest(input *RemoveEventSourceInput) (req *aws.Request) {
 	if opRemoveEventSource == nil {
 		opRemoveEventSource = &aws.Operation{
 			Name:       "RemoveEventSource",
@@ -323,7 +337,9 @@ func (c *Lambda) RemoveEventSourceRequest(input *RemoveEventSourceInput) *aws.Re
 		}
 	}
 
-	return aws.NewRequest(c.Service, opRemoveEventSource, input, nil)
+	req = aws.NewRequest(c.Service, opRemoveEventSource, input, nil)
+
+	return
 }
 
 // RemoveEventSource removes an event source mapping. This means AWS Lambda
@@ -331,15 +347,13 @@ func (c *Lambda) RemoveEventSourceRequest(input *RemoveEventSourceInput) *aws.Re
 // This operation requires permission for the lambda:RemoveEventSource
 // action.
 func (c *Lambda) RemoveEventSource(input *RemoveEventSourceInput) (err error) {
-	// NRE
 	req := c.RemoveEventSourceRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // UpdateFunctionConfigurationRequest generates a request for the UpdateFunctionConfiguration operation.
-func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigurationInput) *aws.Request {
+func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigurationInput) (req *aws.Request, output *FunctionConfiguration) {
 	if opUpdateFunctionConfiguration == nil {
 		opUpdateFunctionConfiguration = &aws.Operation{
 			Name:       "UpdateFunctionConfiguration",
@@ -358,7 +372,10 @@ func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigu
 		}
 	}
 
-	return aws.NewRequest(c.Service, opUpdateFunctionConfiguration, input, nil)
+	req = aws.NewRequest(c.Service, opUpdateFunctionConfiguration, input, output)
+	output = &FunctionConfiguration{}
+	req.Data = output
+	return
 }
 
 // UpdateFunctionConfiguration updates the configuration parameters for the
@@ -368,15 +385,14 @@ func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigu
 // the function's code. This operation requires permission for the
 // lambda:UpdateFunctionConfiguration action.
 func (c *Lambda) UpdateFunctionConfiguration(input *UpdateFunctionConfigurationInput) (output *FunctionConfiguration, err error) {
-	output = &FunctionConfiguration{}
-	req := c.UpdateFunctionConfigurationRequest(input)
-	req.Data = output
+	req, out := c.UpdateFunctionConfigurationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // UploadFunctionRequest generates a request for the UploadFunction operation.
-func (c *Lambda) UploadFunctionRequest(input *UploadFunctionInput) *aws.Request {
+func (c *Lambda) UploadFunctionRequest(input *UploadFunctionInput) (req *aws.Request, output *FunctionConfiguration) {
 	if opUploadFunction == nil {
 		opUploadFunction = &aws.Operation{
 			Name:       "UploadFunction",
@@ -395,7 +411,10 @@ func (c *Lambda) UploadFunctionRequest(input *UploadFunctionInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opUploadFunction, input, nil)
+	req = aws.NewRequest(c.Service, opUploadFunction, input, output)
+	output = &FunctionConfiguration{}
+	req.Data = output
+	return
 }
 
 // UploadFunction creates a new Lambda function or updates an existing
@@ -405,9 +424,8 @@ func (c *Lambda) UploadFunctionRequest(input *UploadFunctionInput) *aws.Request 
 // is updated with the new code and metadata. This operation requires
 // permission for the lambda:UploadFunction action.
 func (c *Lambda) UploadFunction(input *UploadFunctionInput) (output *FunctionConfiguration, err error) {
-	output = &FunctionConfiguration{}
-	req := c.UploadFunctionRequest(input)
-	req.Data = output
+	req, out := c.UploadFunctionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }

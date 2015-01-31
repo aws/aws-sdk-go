@@ -78,7 +78,7 @@ import (
 )
 
 // BatchGetItemRequest generates a request for the BatchGetItem operation.
-func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) *aws.Request {
+func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *aws.Request, output *BatchGetItemOutput) {
 	if opBatchGetItem == nil {
 		opBatchGetItem = &aws.Operation{
 			Name:       "BatchGetItem",
@@ -91,7 +91,10 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opBatchGetItem, input, nil)
+	req = aws.NewRequest(c.Service, opBatchGetItem, input, output)
+	output = &BatchGetItemOutput{}
+	req.Data = output
+	return
 }
 
 // BatchGetItem the BatchGetItem operation returns the attributes of one or
@@ -134,15 +137,14 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) *aws.Request {
 // information, see Capacity Units Calculations in the Amazon DynamoDB
 // Developer Guide
 func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (output *BatchGetItemOutput, err error) {
-	output = &BatchGetItemOutput{}
-	req := c.BatchGetItemRequest(input)
-	req.Data = output
+	req, out := c.BatchGetItemRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // BatchWriteItemRequest generates a request for the BatchWriteItem operation.
-func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) *aws.Request {
+func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *aws.Request, output *BatchWriteItemOutput) {
 	if opBatchWriteItem == nil {
 		opBatchWriteItem = &aws.Operation{
 			Name:       "BatchWriteItem",
@@ -155,7 +157,10 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) *aws.Reques
 		}
 	}
 
-	return aws.NewRequest(c.Service, opBatchWriteItem, input, nil)
+	req = aws.NewRequest(c.Service, opBatchWriteItem, input, output)
+	output = &BatchWriteItemOutput{}
+	req.Data = output
+	return
 }
 
 // BatchWriteItem the BatchWriteItem operation puts or deletes multiple
@@ -209,15 +214,14 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) *aws.Reques
 // same item in the same BatchWriteItem request. There are more than 25
 // requests in the batch.
 func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (output *BatchWriteItemOutput, err error) {
-	output = &BatchWriteItemOutput{}
-	req := c.BatchWriteItemRequest(input)
-	req.Data = output
+	req, out := c.BatchWriteItemRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // CreateTableRequest generates a request for the CreateTable operation.
-func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) *aws.Request {
+func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *aws.Request, output *CreateTableOutput) {
 	if opCreateTable == nil {
 		opCreateTable = &aws.Operation{
 			Name:       "CreateTable",
@@ -230,7 +234,10 @@ func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opCreateTable, input, nil)
+	req = aws.NewRequest(c.Service, opCreateTable, input, output)
+	output = &CreateTableOutput{}
+	req.Data = output
+	return
 }
 
 // CreateTable the CreateTable operation adds a new table to your account.
@@ -245,15 +252,14 @@ func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) *aws.Request {
 // indexes can be in the state at any given time. You can use the
 // DescribeTable API to check the table status.
 func (c *DynamoDB) CreateTable(input *CreateTableInput) (output *CreateTableOutput, err error) {
-	output = &CreateTableOutput{}
-	req := c.CreateTableRequest(input)
-	req.Data = output
+	req, out := c.CreateTableRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // DeleteItemRequest generates a request for the DeleteItem operation.
-func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) *aws.Request {
+func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *aws.Request, output *DeleteItemOutput) {
 	if opDeleteItem == nil {
 		opDeleteItem = &aws.Operation{
 			Name:       "DeleteItem",
@@ -266,7 +272,10 @@ func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDeleteItem, input, nil)
+	req = aws.NewRequest(c.Service, opDeleteItem, input, output)
+	output = &DeleteItemOutput{}
+	req.Data = output
+	return
 }
 
 // DeleteItem deletes a single item in a table by primary key. You can
@@ -280,15 +289,14 @@ func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) *aws.Request {
 // specific conditions are met. If those conditions are met, DynamoDB
 // performs the delete. Otherwise, the item is not deleted.
 func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (output *DeleteItemOutput, err error) {
-	output = &DeleteItemOutput{}
-	req := c.DeleteItemRequest(input)
-	req.Data = output
+	req, out := c.DeleteItemRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // DeleteTableRequest generates a request for the DeleteTable operation.
-func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) *aws.Request {
+func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *aws.Request, output *DeleteTableOutput) {
 	if opDeleteTable == nil {
 		opDeleteTable = &aws.Operation{
 			Name:       "DeleteTable",
@@ -301,7 +309,10 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDeleteTable, input, nil)
+	req = aws.NewRequest(c.Service, opDeleteTable, input, output)
+	output = &DeleteTableOutput{}
+	req.Data = output
+	return
 }
 
 // DeleteTable the DeleteTable operation deletes a table and all of its
@@ -314,15 +325,14 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) *aws.Request {
 // are also deleted. Use the DescribeTable API to check the status of the
 // table.
 func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (output *DeleteTableOutput, err error) {
-	output = &DeleteTableOutput{}
-	req := c.DeleteTableRequest(input)
-	req.Data = output
+	req, out := c.DeleteTableRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // DescribeTableRequest generates a request for the DescribeTable operation.
-func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) *aws.Request {
+func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *aws.Request, output *DescribeTableOutput) {
 	if opDescribeTable == nil {
 		opDescribeTable = &aws.Operation{
 			Name:       "DescribeTable",
@@ -335,22 +345,24 @@ func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDescribeTable, input, nil)
+	req = aws.NewRequest(c.Service, opDescribeTable, input, output)
+	output = &DescribeTableOutput{}
+	req.Data = output
+	return
 }
 
 // DescribeTable returns information about the table, including the current
 // status of the table, when it was created, the primary key schema, and
 // any indexes on the table.
 func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (output *DescribeTableOutput, err error) {
-	output = &DescribeTableOutput{}
-	req := c.DescribeTableRequest(input)
-	req.Data = output
+	req, out := c.DescribeTableRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetItemRequest generates a request for the GetItem operation.
-func (c *DynamoDB) GetItemRequest(input *GetItemInput) *aws.Request {
+func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *aws.Request, output *GetItemOutput) {
 	if opGetItem == nil {
 		opGetItem = &aws.Operation{
 			Name:       "GetItem",
@@ -363,7 +375,10 @@ func (c *DynamoDB) GetItemRequest(input *GetItemInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetItem, input, nil)
+	req = aws.NewRequest(c.Service, opGetItem, input, output)
+	output = &GetItemOutput{}
+	req.Data = output
+	return
 }
 
 // GetItem the GetItem operation returns a set of attributes for the item
@@ -374,15 +389,14 @@ func (c *DynamoDB) GetItemRequest(input *GetItemInput) *aws.Request {
 // more time than an eventually consistent read, it always returns the last
 // updated value.
 func (c *DynamoDB) GetItem(input *GetItemInput) (output *GetItemOutput, err error) {
-	output = &GetItemOutput{}
-	req := c.GetItemRequest(input)
-	req.Data = output
+	req, out := c.GetItemRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // ListTablesRequest generates a request for the ListTables operation.
-func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) *aws.Request {
+func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *aws.Request, output *ListTablesOutput) {
 	if opListTables == nil {
 		opListTables = &aws.Operation{
 			Name:       "ListTables",
@@ -391,22 +405,24 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opListTables, input, nil)
+	req = aws.NewRequest(c.Service, opListTables, input, output)
+	output = &ListTablesOutput{}
+	req.Data = output
+	return
 }
 
 // ListTables returns an array of table names associated with the current
 // account and endpoint. The output from ListTables is paginated, with each
 // page returning a maximum of 100 table names.
 func (c *DynamoDB) ListTables(input *ListTablesInput) (output *ListTablesOutput, err error) {
-	output = &ListTablesOutput{}
-	req := c.ListTablesRequest(input)
-	req.Data = output
+	req, out := c.ListTablesRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // PutItemRequest generates a request for the PutItem operation.
-func (c *DynamoDB) PutItemRequest(input *PutItemInput) *aws.Request {
+func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *aws.Request, output *PutItemOutput) {
 	if opPutItem == nil {
 		opPutItem = &aws.Operation{
 			Name:       "PutItem",
@@ -419,7 +435,10 @@ func (c *DynamoDB) PutItemRequest(input *PutItemInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutItem, input, nil)
+	req = aws.NewRequest(c.Service, opPutItem, input, output)
+	output = &PutItemOutput{}
+	req.Data = output
+	return
 }
 
 // PutItem creates a new item, or replaces an old item with a new item. If
@@ -440,15 +459,14 @@ func (c *DynamoDB) PutItemRequest(input *PutItemInput) *aws.Request {
 // information about using this see Working with Items in the Amazon
 // DynamoDB Developer Guide
 func (c *DynamoDB) PutItem(input *PutItemInput) (output *PutItemOutput, err error) {
-	output = &PutItemOutput{}
-	req := c.PutItemRequest(input)
-	req.Data = output
+	req, out := c.PutItemRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // QueryRequest generates a request for the Query operation.
-func (c *DynamoDB) QueryRequest(input *QueryInput) *aws.Request {
+func (c *DynamoDB) QueryRequest(input *QueryInput) (req *aws.Request, output *QueryOutput) {
 	if opQuery == nil {
 		opQuery = &aws.Operation{
 			Name:       "Query",
@@ -461,7 +479,10 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opQuery, input, nil)
+	req = aws.NewRequest(c.Service, opQuery, input, output)
+	output = &QueryOutput{}
+	req.Data = output
+	return
 }
 
 // Query a Query operation directly accesses items from a table using the
@@ -484,15 +505,14 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) *aws.Request {
 // eventually consistent reads only, so do not specify ConsistentRead when
 // querying a global secondary index.
 func (c *DynamoDB) Query(input *QueryInput) (output *QueryOutput, err error) {
-	output = &QueryOutput{}
-	req := c.QueryRequest(input)
-	req.Data = output
+	req, out := c.QueryRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // ScanRequest generates a request for the Scan operation.
-func (c *DynamoDB) ScanRequest(input *ScanInput) *aws.Request {
+func (c *DynamoDB) ScanRequest(input *ScanInput) (req *aws.Request, output *ScanOutput) {
 	if opScan == nil {
 		opScan = &aws.Operation{
 			Name:       "Scan",
@@ -505,7 +525,10 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opScan, input, nil)
+	req = aws.NewRequest(c.Service, opScan, input, output)
+	output = &ScanOutput{}
+	req.Data = output
+	return
 }
 
 // Scan the Scan operation returns one or more items and item attributes by
@@ -522,15 +545,14 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) *aws.Request {
 // parameters. For more information, see Parallel Scan in the Amazon
 // DynamoDB Developer Guide
 func (c *DynamoDB) Scan(input *ScanInput) (output *ScanOutput, err error) {
-	output = &ScanOutput{}
-	req := c.ScanRequest(input)
-	req.Data = output
+	req, out := c.ScanRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // UpdateItemRequest generates a request for the UpdateItem operation.
-func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) *aws.Request {
+func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *aws.Request, output *UpdateItemOutput) {
 	if opUpdateItem == nil {
 		opUpdateItem = &aws.Operation{
 			Name:       "UpdateItem",
@@ -543,7 +565,10 @@ func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opUpdateItem, input, nil)
+	req = aws.NewRequest(c.Service, opUpdateItem, input, output)
+	output = &UpdateItemOutput{}
+	req.Data = output
+	return
 }
 
 // UpdateItem edits an existing item's attributes, or adds a new item to
@@ -554,15 +579,14 @@ func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) *aws.Request {
 // You can also return the item's attribute values in the same UpdateItem
 // operation using the ReturnValues parameter.
 func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (output *UpdateItemOutput, err error) {
-	output = &UpdateItemOutput{}
-	req := c.UpdateItemRequest(input)
-	req.Data = output
+	req, out := c.UpdateItemRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // UpdateTableRequest generates a request for the UpdateTable operation.
-func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) *aws.Request {
+func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *aws.Request, output *UpdateTableOutput) {
 	if opUpdateTable == nil {
 		opUpdateTable = &aws.Operation{
 			Name:       "UpdateTable",
@@ -575,7 +599,10 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opUpdateTable, input, nil)
+	req = aws.NewRequest(c.Service, opUpdateTable, input, output)
+	output = &UpdateTableOutput{}
+	req.Data = output
+	return
 }
 
 // UpdateTable updates the provisioned throughput for the given table.
@@ -592,9 +619,8 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) *aws.Request {
 // modify or delete indexes using UpdateTable . Indexes can only be defined
 // at table creation time.
 func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (output *UpdateTableOutput, err error) {
-	output = &UpdateTableOutput{}
-	req := c.UpdateTableRequest(input)
-	req.Data = output
+	req, out := c.UpdateTableRequest(input)
+	output = out
 	err = req.Send()
 	return
 }

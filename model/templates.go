@@ -158,7 +158,7 @@ var _ time.Time
 {{ range $name, $op := .Operations }}
 
 // {{ exportable $name }}Request generates a request for the {{ exportable $name }} operation.
-func (c *{{ $.Name }}) {{ exportable $name }}Request({{ if $op.Input }}input {{ $op.Input.Type }}{{ end }}) *aws.Request {
+func (c *{{ $.Name }}) {{ exportable $name }}Request({{ if $op.Input }}input {{ $op.Input.Type }}{{ end }}) (req *aws.Request{{ if $op.Output }}, output {{ structName $op.Output.Type }}{{ end }}) {
     if op{{ exportable $name }} == nil {
       op{{ exportable $name }} = &aws.Operation{
         Name:       "{{ $name }}",
@@ -180,14 +180,16 @@ func (c *{{ $.Name }}) {{ exportable $name }}Request({{ if $op.Input }}input {{ 
       }
     }
 
-    return aws.NewRequest(c.Service, op{{ exportable $name }}, {{ if $op.Input }}input{{ else }}nil{{ end }}, nil)
+    req = aws.NewRequest(c.Service, op{{ exportable $name }}, {{ if $op.Input }}input{{ else }}nil{{ end }}, {{ if $op.Output }}output{{ else }}nil{{ end }})
+    {{ if $op.Output }}output = {{ structName $op.Output.Literal }}
+    req.Data = output{{ end }}
+    return
 }
 
 {{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}input {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}output {{ structName $op.Output.Type }},{{ end }} err error) {
-  {{ if $op.Output }}output = {{ structName $op.Output.Literal }}{{ else }}// NRE{{ end }}
-  req := c.{{ exportable $name }}Request({{ if $op.Input }}input{{ end }})
-  {{ if $op.Output }}req.Data = output{{ end }}
-  err = req.Send()
+  req{{ if $op.Output }}, out{{ end }} := c.{{ exportable $name }}Request({{ if $op.Input }}input{{ end }})
+  {{ if $op.Output }}output = out
+  {{ end }}err = req.Send()
   return
 }
 

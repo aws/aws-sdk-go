@@ -17,7 +17,7 @@ import (
 )
 
 // AbortMultipartUploadRequest generates a request for the AbortMultipartUpload operation.
-func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) *aws.Request {
+func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req *aws.Request) {
 	if opAbortMultipartUpload == nil {
 		opAbortMultipartUpload = &aws.Operation{
 			Name:       "AbortMultipartUpload",
@@ -36,22 +36,22 @@ func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) *aws.
 		}
 	}
 
-	return aws.NewRequest(c.Service, opAbortMultipartUpload, input, nil)
+	req = aws.NewRequest(c.Service, opAbortMultipartUpload, input, nil)
+
+	return
 }
 
 // AbortMultipartUpload aborts a multipart upload. To verify that all parts
 // have been removed, so you don't get charged for the part storage, you
 // should call the List Parts operation and ensure the parts list is empty.
 func (c *S3) AbortMultipartUpload(input *AbortMultipartUploadInput) (err error) {
-	// NRE
 	req := c.AbortMultipartUploadRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // CompleteMultipartUploadRequest generates a request for the CompleteMultipartUpload operation.
-func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput) *aws.Request {
+func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput) (req *aws.Request, output *CompleteMultipartUploadOutput) {
 	if opCompleteMultipartUpload == nil {
 		opCompleteMultipartUpload = &aws.Operation{
 			Name:       "CompleteMultipartUpload",
@@ -70,21 +70,23 @@ func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput)
 		}
 	}
 
-	return aws.NewRequest(c.Service, opCompleteMultipartUpload, input, nil)
+	req = aws.NewRequest(c.Service, opCompleteMultipartUpload, input, output)
+	output = &CompleteMultipartUploadOutput{}
+	req.Data = output
+	return
 }
 
 // CompleteMultipartUpload completes a multipart upload by assembling
 // previously uploaded parts.
 func (c *S3) CompleteMultipartUpload(input *CompleteMultipartUploadInput) (output *CompleteMultipartUploadOutput, err error) {
-	output = &CompleteMultipartUploadOutput{}
-	req := c.CompleteMultipartUploadRequest(input)
-	req.Data = output
+	req, out := c.CompleteMultipartUploadRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // CopyObjectRequest generates a request for the CopyObject operation.
-func (c *S3) CopyObjectRequest(input *CopyObjectInput) *aws.Request {
+func (c *S3) CopyObjectRequest(input *CopyObjectInput) (req *aws.Request, output *CopyObjectOutput) {
 	if opCopyObject == nil {
 		opCopyObject = &aws.Operation{
 			Name:       "CopyObject",
@@ -103,21 +105,23 @@ func (c *S3) CopyObjectRequest(input *CopyObjectInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opCopyObject, input, nil)
+	req = aws.NewRequest(c.Service, opCopyObject, input, output)
+	output = &CopyObjectOutput{}
+	req.Data = output
+	return
 }
 
 // CopyObject creates a copy of an object that is already stored in Amazon
 // S3.
 func (c *S3) CopyObject(input *CopyObjectInput) (output *CopyObjectOutput, err error) {
-	output = &CopyObjectOutput{}
-	req := c.CopyObjectRequest(input)
-	req.Data = output
+	req, out := c.CopyObjectRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // CreateBucketRequest generates a request for the CreateBucket operation.
-func (c *S3) CreateBucketRequest(input *CreateBucketInput) *aws.Request {
+func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *aws.Request, output *CreateBucketOutput) {
 	if opCreateBucket == nil {
 		opCreateBucket = &aws.Operation{
 			Name:       "CreateBucket",
@@ -136,20 +140,22 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opCreateBucket, input, nil)
+	req = aws.NewRequest(c.Service, opCreateBucket, input, output)
+	output = &CreateBucketOutput{}
+	req.Data = output
+	return
 }
 
 // CreateBucket is undocumented.
 func (c *S3) CreateBucket(input *CreateBucketInput) (output *CreateBucketOutput, err error) {
-	output = &CreateBucketOutput{}
-	req := c.CreateBucketRequest(input)
-	req.Data = output
+	req, out := c.CreateBucketRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // CreateMultipartUploadRequest generates a request for the CreateMultipartUpload operation.
-func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) *aws.Request {
+func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (req *aws.Request, output *CreateMultipartUploadOutput) {
 	if opCreateMultipartUpload == nil {
 		opCreateMultipartUpload = &aws.Operation{
 			Name:       "CreateMultipartUpload",
@@ -168,7 +174,10 @@ func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) *aw
 		}
 	}
 
-	return aws.NewRequest(c.Service, opCreateMultipartUpload, input, nil)
+	req = aws.NewRequest(c.Service, opCreateMultipartUpload, input, output)
+	output = &CreateMultipartUploadOutput{}
+	req.Data = output
+	return
 }
 
 // CreateMultipartUpload initiates a multipart upload and returns an upload
@@ -178,15 +187,14 @@ func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) *aw
 // complete or abort multipart upload, Amazon S3 frees up the parts storage
 // and stops charging you for the parts storage.
 func (c *S3) CreateMultipartUpload(input *CreateMultipartUploadInput) (output *CreateMultipartUploadOutput, err error) {
-	output = &CreateMultipartUploadOutput{}
-	req := c.CreateMultipartUploadRequest(input)
-	req.Data = output
+	req, out := c.CreateMultipartUploadRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // DeleteBucketRequest generates a request for the DeleteBucket operation.
-func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) *aws.Request {
+func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *aws.Request) {
 	if opDeleteBucket == nil {
 		opDeleteBucket = &aws.Operation{
 			Name:       "DeleteBucket",
@@ -205,22 +213,22 @@ func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDeleteBucket, input, nil)
+	req = aws.NewRequest(c.Service, opDeleteBucket, input, nil)
+
+	return
 }
 
 // DeleteBucket deletes the bucket. All objects (including all object
 // versions and Delete Markers) in the bucket must be deleted before the
 // bucket itself can be deleted.
 func (c *S3) DeleteBucket(input *DeleteBucketInput) (err error) {
-	// NRE
 	req := c.DeleteBucketRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // DeleteBucketCORSRequest generates a request for the DeleteBucketCORS operation.
-func (c *S3) DeleteBucketCORSRequest(input *DeleteBucketCORSInput) *aws.Request {
+func (c *S3) DeleteBucketCORSRequest(input *DeleteBucketCORSInput) (req *aws.Request) {
 	if opDeleteBucketCORS == nil {
 		opDeleteBucketCORS = &aws.Operation{
 			Name:       "DeleteBucketCors",
@@ -239,21 +247,21 @@ func (c *S3) DeleteBucketCORSRequest(input *DeleteBucketCORSInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDeleteBucketCORS, input, nil)
+	req = aws.NewRequest(c.Service, opDeleteBucketCORS, input, nil)
+
+	return
 }
 
 // DeleteBucketCORS deletes the cors configuration information set for the
 // bucket.
 func (c *S3) DeleteBucketCORS(input *DeleteBucketCORSInput) (err error) {
-	// NRE
 	req := c.DeleteBucketCORSRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // DeleteBucketLifecycleRequest generates a request for the DeleteBucketLifecycle operation.
-func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) *aws.Request {
+func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (req *aws.Request) {
 	if opDeleteBucketLifecycle == nil {
 		opDeleteBucketLifecycle = &aws.Operation{
 			Name:       "DeleteBucketLifecycle",
@@ -272,21 +280,21 @@ func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) *aw
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDeleteBucketLifecycle, input, nil)
+	req = aws.NewRequest(c.Service, opDeleteBucketLifecycle, input, nil)
+
+	return
 }
 
 // DeleteBucketLifecycle deletes the lifecycle configuration from the
 // bucket.
 func (c *S3) DeleteBucketLifecycle(input *DeleteBucketLifecycleInput) (err error) {
-	// NRE
 	req := c.DeleteBucketLifecycleRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // DeleteBucketPolicyRequest generates a request for the DeleteBucketPolicy operation.
-func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) *aws.Request {
+func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *aws.Request) {
 	if opDeleteBucketPolicy == nil {
 		opDeleteBucketPolicy = &aws.Operation{
 			Name:       "DeleteBucketPolicy",
@@ -305,20 +313,20 @@ func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) *aws.Requ
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDeleteBucketPolicy, input, nil)
+	req = aws.NewRequest(c.Service, opDeleteBucketPolicy, input, nil)
+
+	return
 }
 
 // DeleteBucketPolicy is undocumented.
 func (c *S3) DeleteBucketPolicy(input *DeleteBucketPolicyInput) (err error) {
-	// NRE
 	req := c.DeleteBucketPolicyRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // DeleteBucketTaggingRequest generates a request for the DeleteBucketTagging operation.
-func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) *aws.Request {
+func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *aws.Request) {
 	if opDeleteBucketTagging == nil {
 		opDeleteBucketTagging = &aws.Operation{
 			Name:       "DeleteBucketTagging",
@@ -337,20 +345,20 @@ func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) *aws.Re
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDeleteBucketTagging, input, nil)
+	req = aws.NewRequest(c.Service, opDeleteBucketTagging, input, nil)
+
+	return
 }
 
 // DeleteBucketTagging is undocumented.
 func (c *S3) DeleteBucketTagging(input *DeleteBucketTaggingInput) (err error) {
-	// NRE
 	req := c.DeleteBucketTaggingRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // DeleteBucketWebsiteRequest generates a request for the DeleteBucketWebsite operation.
-func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) *aws.Request {
+func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *aws.Request) {
 	if opDeleteBucketWebsite == nil {
 		opDeleteBucketWebsite = &aws.Operation{
 			Name:       "DeleteBucketWebsite",
@@ -369,21 +377,21 @@ func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) *aws.Re
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDeleteBucketWebsite, input, nil)
+	req = aws.NewRequest(c.Service, opDeleteBucketWebsite, input, nil)
+
+	return
 }
 
 // DeleteBucketWebsite this operation removes the website configuration
 // from the bucket.
 func (c *S3) DeleteBucketWebsite(input *DeleteBucketWebsiteInput) (err error) {
-	// NRE
 	req := c.DeleteBucketWebsiteRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // DeleteObjectRequest generates a request for the DeleteObject operation.
-func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) *aws.Request {
+func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) (req *aws.Request, output *DeleteObjectOutput) {
 	if opDeleteObject == nil {
 		opDeleteObject = &aws.Operation{
 			Name:       "DeleteObject",
@@ -402,22 +410,24 @@ func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDeleteObject, input, nil)
+	req = aws.NewRequest(c.Service, opDeleteObject, input, output)
+	output = &DeleteObjectOutput{}
+	req.Data = output
+	return
 }
 
 // DeleteObject removes the null version (if there is one) of an object and
 // inserts a delete marker, which becomes the latest version of the object.
 // If there isn't a null version, Amazon S3 does not remove any objects.
 func (c *S3) DeleteObject(input *DeleteObjectInput) (output *DeleteObjectOutput, err error) {
-	output = &DeleteObjectOutput{}
-	req := c.DeleteObjectRequest(input)
-	req.Data = output
+	req, out := c.DeleteObjectRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // DeleteObjectsRequest generates a request for the DeleteObjects operation.
-func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) *aws.Request {
+func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) (req *aws.Request, output *DeleteObjectsOutput) {
 	if opDeleteObjects == nil {
 		opDeleteObjects = &aws.Operation{
 			Name:       "DeleteObjects",
@@ -436,21 +446,23 @@ func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opDeleteObjects, input, nil)
+	req = aws.NewRequest(c.Service, opDeleteObjects, input, output)
+	output = &DeleteObjectsOutput{}
+	req.Data = output
+	return
 }
 
 // DeleteObjects this operation enables you to delete multiple objects from
 // a bucket using a single request. You may specify up to 1000 keys.
 func (c *S3) DeleteObjects(input *DeleteObjectsInput) (output *DeleteObjectsOutput, err error) {
-	output = &DeleteObjectsOutput{}
-	req := c.DeleteObjectsRequest(input)
-	req.Data = output
+	req, out := c.DeleteObjectsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetBucketACLRequest generates a request for the GetBucketACL operation.
-func (c *S3) GetBucketACLRequest(input *GetBucketACLInput) *aws.Request {
+func (c *S3) GetBucketACLRequest(input *GetBucketACLInput) (req *aws.Request, output *GetBucketACLOutput) {
 	if opGetBucketACL == nil {
 		opGetBucketACL = &aws.Operation{
 			Name:       "GetBucketAcl",
@@ -469,20 +481,22 @@ func (c *S3) GetBucketACLRequest(input *GetBucketACLInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetBucketACL, input, nil)
+	req = aws.NewRequest(c.Service, opGetBucketACL, input, output)
+	output = &GetBucketACLOutput{}
+	req.Data = output
+	return
 }
 
 // GetBucketACL is undocumented.
 func (c *S3) GetBucketACL(input *GetBucketACLInput) (output *GetBucketACLOutput, err error) {
-	output = &GetBucketACLOutput{}
-	req := c.GetBucketACLRequest(input)
-	req.Data = output
+	req, out := c.GetBucketACLRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetBucketCORSRequest generates a request for the GetBucketCORS operation.
-func (c *S3) GetBucketCORSRequest(input *GetBucketCORSInput) *aws.Request {
+func (c *S3) GetBucketCORSRequest(input *GetBucketCORSInput) (req *aws.Request, output *GetBucketCORSOutput) {
 	if opGetBucketCORS == nil {
 		opGetBucketCORS = &aws.Operation{
 			Name:       "GetBucketCors",
@@ -501,20 +515,22 @@ func (c *S3) GetBucketCORSRequest(input *GetBucketCORSInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetBucketCORS, input, nil)
+	req = aws.NewRequest(c.Service, opGetBucketCORS, input, output)
+	output = &GetBucketCORSOutput{}
+	req.Data = output
+	return
 }
 
 // GetBucketCORS is undocumented.
 func (c *S3) GetBucketCORS(input *GetBucketCORSInput) (output *GetBucketCORSOutput, err error) {
-	output = &GetBucketCORSOutput{}
-	req := c.GetBucketCORSRequest(input)
-	req.Data = output
+	req, out := c.GetBucketCORSRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetBucketLifecycleRequest generates a request for the GetBucketLifecycle operation.
-func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) *aws.Request {
+func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *aws.Request, output *GetBucketLifecycleOutput) {
 	if opGetBucketLifecycle == nil {
 		opGetBucketLifecycle = &aws.Operation{
 			Name:       "GetBucketLifecycle",
@@ -533,21 +549,23 @@ func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) *aws.Requ
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetBucketLifecycle, input, nil)
+	req = aws.NewRequest(c.Service, opGetBucketLifecycle, input, output)
+	output = &GetBucketLifecycleOutput{}
+	req.Data = output
+	return
 }
 
 // GetBucketLifecycle returns the lifecycle configuration information set
 // on the bucket.
 func (c *S3) GetBucketLifecycle(input *GetBucketLifecycleInput) (output *GetBucketLifecycleOutput, err error) {
-	output = &GetBucketLifecycleOutput{}
-	req := c.GetBucketLifecycleRequest(input)
-	req.Data = output
+	req, out := c.GetBucketLifecycleRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetBucketLocationRequest generates a request for the GetBucketLocation operation.
-func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) *aws.Request {
+func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) (req *aws.Request, output *GetBucketLocationOutput) {
 	if opGetBucketLocation == nil {
 		opGetBucketLocation = &aws.Operation{
 			Name:       "GetBucketLocation",
@@ -566,20 +584,22 @@ func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) *aws.Reques
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetBucketLocation, input, nil)
+	req = aws.NewRequest(c.Service, opGetBucketLocation, input, output)
+	output = &GetBucketLocationOutput{}
+	req.Data = output
+	return
 }
 
 // GetBucketLocation is undocumented.
 func (c *S3) GetBucketLocation(input *GetBucketLocationInput) (output *GetBucketLocationOutput, err error) {
-	output = &GetBucketLocationOutput{}
-	req := c.GetBucketLocationRequest(input)
-	req.Data = output
+	req, out := c.GetBucketLocationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetBucketLoggingRequest generates a request for the GetBucketLogging operation.
-func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) *aws.Request {
+func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) (req *aws.Request, output *GetBucketLoggingOutput) {
 	if opGetBucketLogging == nil {
 		opGetBucketLogging = &aws.Operation{
 			Name:       "GetBucketLogging",
@@ -598,22 +618,24 @@ func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetBucketLogging, input, nil)
+	req = aws.NewRequest(c.Service, opGetBucketLogging, input, output)
+	output = &GetBucketLoggingOutput{}
+	req.Data = output
+	return
 }
 
 // GetBucketLogging returns the logging status of a bucket and the
 // permissions users have to view and modify that status. To use you must
 // be the bucket owner.
 func (c *S3) GetBucketLogging(input *GetBucketLoggingInput) (output *GetBucketLoggingOutput, err error) {
-	output = &GetBucketLoggingOutput{}
-	req := c.GetBucketLoggingRequest(input)
-	req.Data = output
+	req, out := c.GetBucketLoggingRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetBucketNotificationRequest generates a request for the GetBucketNotification operation.
-func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationInput) *aws.Request {
+func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationInput) (req *aws.Request, output *GetBucketNotificationOutput) {
 	if opGetBucketNotification == nil {
 		opGetBucketNotification = &aws.Operation{
 			Name:       "GetBucketNotification",
@@ -632,20 +654,22 @@ func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationInput) *aw
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetBucketNotification, input, nil)
+	req = aws.NewRequest(c.Service, opGetBucketNotification, input, output)
+	output = &GetBucketNotificationOutput{}
+	req.Data = output
+	return
 }
 
 // GetBucketNotification is undocumented.
 func (c *S3) GetBucketNotification(input *GetBucketNotificationInput) (output *GetBucketNotificationOutput, err error) {
-	output = &GetBucketNotificationOutput{}
-	req := c.GetBucketNotificationRequest(input)
-	req.Data = output
+	req, out := c.GetBucketNotificationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetBucketPolicyRequest generates a request for the GetBucketPolicy operation.
-func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) *aws.Request {
+func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *aws.Request, output *GetBucketPolicyOutput) {
 	if opGetBucketPolicy == nil {
 		opGetBucketPolicy = &aws.Operation{
 			Name:       "GetBucketPolicy",
@@ -664,20 +688,22 @@ func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetBucketPolicy, input, nil)
+	req = aws.NewRequest(c.Service, opGetBucketPolicy, input, output)
+	output = &GetBucketPolicyOutput{}
+	req.Data = output
+	return
 }
 
 // GetBucketPolicy is undocumented.
 func (c *S3) GetBucketPolicy(input *GetBucketPolicyInput) (output *GetBucketPolicyOutput, err error) {
-	output = &GetBucketPolicyOutput{}
-	req := c.GetBucketPolicyRequest(input)
-	req.Data = output
+	req, out := c.GetBucketPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetBucketRequestPaymentRequest generates a request for the GetBucketRequestPayment operation.
-func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput) *aws.Request {
+func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput) (req *aws.Request, output *GetBucketRequestPaymentOutput) {
 	if opGetBucketRequestPayment == nil {
 		opGetBucketRequestPayment = &aws.Operation{
 			Name:       "GetBucketRequestPayment",
@@ -696,21 +722,23 @@ func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput)
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetBucketRequestPayment, input, nil)
+	req = aws.NewRequest(c.Service, opGetBucketRequestPayment, input, output)
+	output = &GetBucketRequestPaymentOutput{}
+	req.Data = output
+	return
 }
 
 // GetBucketRequestPayment returns the request payment configuration of a
 // bucket.
 func (c *S3) GetBucketRequestPayment(input *GetBucketRequestPaymentInput) (output *GetBucketRequestPaymentOutput, err error) {
-	output = &GetBucketRequestPaymentOutput{}
-	req := c.GetBucketRequestPaymentRequest(input)
-	req.Data = output
+	req, out := c.GetBucketRequestPaymentRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetBucketTaggingRequest generates a request for the GetBucketTagging operation.
-func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) *aws.Request {
+func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *aws.Request, output *GetBucketTaggingOutput) {
 	if opGetBucketTagging == nil {
 		opGetBucketTagging = &aws.Operation{
 			Name:       "GetBucketTagging",
@@ -729,20 +757,22 @@ func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetBucketTagging, input, nil)
+	req = aws.NewRequest(c.Service, opGetBucketTagging, input, output)
+	output = &GetBucketTaggingOutput{}
+	req.Data = output
+	return
 }
 
 // GetBucketTagging is undocumented.
 func (c *S3) GetBucketTagging(input *GetBucketTaggingInput) (output *GetBucketTaggingOutput, err error) {
-	output = &GetBucketTaggingOutput{}
-	req := c.GetBucketTaggingRequest(input)
-	req.Data = output
+	req, out := c.GetBucketTaggingRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetBucketVersioningRequest generates a request for the GetBucketVersioning operation.
-func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) *aws.Request {
+func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) (req *aws.Request, output *GetBucketVersioningOutput) {
 	if opGetBucketVersioning == nil {
 		opGetBucketVersioning = &aws.Operation{
 			Name:       "GetBucketVersioning",
@@ -761,20 +791,22 @@ func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) *aws.Re
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetBucketVersioning, input, nil)
+	req = aws.NewRequest(c.Service, opGetBucketVersioning, input, output)
+	output = &GetBucketVersioningOutput{}
+	req.Data = output
+	return
 }
 
 // GetBucketVersioning is undocumented.
 func (c *S3) GetBucketVersioning(input *GetBucketVersioningInput) (output *GetBucketVersioningOutput, err error) {
-	output = &GetBucketVersioningOutput{}
-	req := c.GetBucketVersioningRequest(input)
-	req.Data = output
+	req, out := c.GetBucketVersioningRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetBucketWebsiteRequest generates a request for the GetBucketWebsite operation.
-func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) *aws.Request {
+func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) (req *aws.Request, output *GetBucketWebsiteOutput) {
 	if opGetBucketWebsite == nil {
 		opGetBucketWebsite = &aws.Operation{
 			Name:       "GetBucketWebsite",
@@ -793,20 +825,22 @@ func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetBucketWebsite, input, nil)
+	req = aws.NewRequest(c.Service, opGetBucketWebsite, input, output)
+	output = &GetBucketWebsiteOutput{}
+	req.Data = output
+	return
 }
 
 // GetBucketWebsite is undocumented.
 func (c *S3) GetBucketWebsite(input *GetBucketWebsiteInput) (output *GetBucketWebsiteOutput, err error) {
-	output = &GetBucketWebsiteOutput{}
-	req := c.GetBucketWebsiteRequest(input)
-	req.Data = output
+	req, out := c.GetBucketWebsiteRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetObjectRequest generates a request for the GetObject operation.
-func (c *S3) GetObjectRequest(input *GetObjectInput) *aws.Request {
+func (c *S3) GetObjectRequest(input *GetObjectInput) (req *aws.Request, output *GetObjectOutput) {
 	if opGetObject == nil {
 		opGetObject = &aws.Operation{
 			Name:       "GetObject",
@@ -825,20 +859,22 @@ func (c *S3) GetObjectRequest(input *GetObjectInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetObject, input, nil)
+	req = aws.NewRequest(c.Service, opGetObject, input, output)
+	output = &GetObjectOutput{}
+	req.Data = output
+	return
 }
 
 // GetObject is undocumented.
 func (c *S3) GetObject(input *GetObjectInput) (output *GetObjectOutput, err error) {
-	output = &GetObjectOutput{}
-	req := c.GetObjectRequest(input)
-	req.Data = output
+	req, out := c.GetObjectRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetObjectACLRequest generates a request for the GetObjectACL operation.
-func (c *S3) GetObjectACLRequest(input *GetObjectACLInput) *aws.Request {
+func (c *S3) GetObjectACLRequest(input *GetObjectACLInput) (req *aws.Request, output *GetObjectACLOutput) {
 	if opGetObjectACL == nil {
 		opGetObjectACL = &aws.Operation{
 			Name:       "GetObjectAcl",
@@ -857,20 +893,22 @@ func (c *S3) GetObjectACLRequest(input *GetObjectACLInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetObjectACL, input, nil)
+	req = aws.NewRequest(c.Service, opGetObjectACL, input, output)
+	output = &GetObjectACLOutput{}
+	req.Data = output
+	return
 }
 
 // GetObjectACL is undocumented.
 func (c *S3) GetObjectACL(input *GetObjectACLInput) (output *GetObjectACLOutput, err error) {
-	output = &GetObjectACLOutput{}
-	req := c.GetObjectACLRequest(input)
-	req.Data = output
+	req, out := c.GetObjectACLRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // GetObjectTorrentRequest generates a request for the GetObjectTorrent operation.
-func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) *aws.Request {
+func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) (req *aws.Request, output *GetObjectTorrentOutput) {
 	if opGetObjectTorrent == nil {
 		opGetObjectTorrent = &aws.Operation{
 			Name:       "GetObjectTorrent",
@@ -889,20 +927,22 @@ func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opGetObjectTorrent, input, nil)
+	req = aws.NewRequest(c.Service, opGetObjectTorrent, input, output)
+	output = &GetObjectTorrentOutput{}
+	req.Data = output
+	return
 }
 
 // GetObjectTorrent is undocumented.
 func (c *S3) GetObjectTorrent(input *GetObjectTorrentInput) (output *GetObjectTorrentOutput, err error) {
-	output = &GetObjectTorrentOutput{}
-	req := c.GetObjectTorrentRequest(input)
-	req.Data = output
+	req, out := c.GetObjectTorrentRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // HeadBucketRequest generates a request for the HeadBucket operation.
-func (c *S3) HeadBucketRequest(input *HeadBucketInput) *aws.Request {
+func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *aws.Request) {
 	if opHeadBucket == nil {
 		opHeadBucket = &aws.Operation{
 			Name:       "HeadBucket",
@@ -921,21 +961,21 @@ func (c *S3) HeadBucketRequest(input *HeadBucketInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opHeadBucket, input, nil)
+	req = aws.NewRequest(c.Service, opHeadBucket, input, nil)
+
+	return
 }
 
 // HeadBucket this operation is useful to determine if a bucket exists and
 // you have permission to access it.
 func (c *S3) HeadBucket(input *HeadBucketInput) (err error) {
-	// NRE
 	req := c.HeadBucketRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // HeadObjectRequest generates a request for the HeadObject operation.
-func (c *S3) HeadObjectRequest(input *HeadObjectInput) *aws.Request {
+func (c *S3) HeadObjectRequest(input *HeadObjectInput) (req *aws.Request, output *HeadObjectOutput) {
 	if opHeadObject == nil {
 		opHeadObject = &aws.Operation{
 			Name:       "HeadObject",
@@ -954,7 +994,10 @@ func (c *S3) HeadObjectRequest(input *HeadObjectInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opHeadObject, input, nil)
+	req = aws.NewRequest(c.Service, opHeadObject, input, output)
+	output = &HeadObjectOutput{}
+	req.Data = output
+	return
 }
 
 // HeadObject the operation retrieves metadata from an object without
@@ -962,15 +1005,14 @@ func (c *S3) HeadObjectRequest(input *HeadObjectInput) *aws.Request {
 // interested in an object's metadata. To use you must have access to the
 // object.
 func (c *S3) HeadObject(input *HeadObjectInput) (output *HeadObjectOutput, err error) {
-	output = &HeadObjectOutput{}
-	req := c.HeadObjectRequest(input)
-	req.Data = output
+	req, out := c.HeadObjectRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // ListBucketsRequest generates a request for the ListBuckets operation.
-func (c *S3) ListBucketsRequest() *aws.Request {
+func (c *S3) ListBucketsRequest() (req *aws.Request, output *ListBucketsOutput) {
 	if opListBuckets == nil {
 		opListBuckets = &aws.Operation{
 			Name:       "ListBuckets",
@@ -989,21 +1031,23 @@ func (c *S3) ListBucketsRequest() *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opListBuckets, nil, nil)
+	req = aws.NewRequest(c.Service, opListBuckets, nil, output)
+	output = &ListBucketsOutput{}
+	req.Data = output
+	return
 }
 
 // ListBuckets returns a list of all buckets owned by the authenticated
 // sender of the request.
 func (c *S3) ListBuckets() (output *ListBucketsOutput, err error) {
-	output = &ListBucketsOutput{}
-	req := c.ListBucketsRequest()
-	req.Data = output
+	req, out := c.ListBucketsRequest()
+	output = out
 	err = req.Send()
 	return
 }
 
 // ListMultipartUploadsRequest generates a request for the ListMultipartUploads operation.
-func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) *aws.Request {
+func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req *aws.Request, output *ListMultipartUploadsOutput) {
 	if opListMultipartUploads == nil {
 		opListMultipartUploads = &aws.Operation{
 			Name:       "ListMultipartUploads",
@@ -1022,20 +1066,22 @@ func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) *aws.
 		}
 	}
 
-	return aws.NewRequest(c.Service, opListMultipartUploads, input, nil)
+	req = aws.NewRequest(c.Service, opListMultipartUploads, input, output)
+	output = &ListMultipartUploadsOutput{}
+	req.Data = output
+	return
 }
 
 // ListMultipartUploads this operation lists in-progress multipart uploads.
 func (c *S3) ListMultipartUploads(input *ListMultipartUploadsInput) (output *ListMultipartUploadsOutput, err error) {
-	output = &ListMultipartUploadsOutput{}
-	req := c.ListMultipartUploadsRequest(input)
-	req.Data = output
+	req, out := c.ListMultipartUploadsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // ListObjectVersionsRequest generates a request for the ListObjectVersions operation.
-func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) *aws.Request {
+func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *aws.Request, output *ListObjectVersionsOutput) {
 	if opListObjectVersions == nil {
 		opListObjectVersions = &aws.Operation{
 			Name:       "ListObjectVersions",
@@ -1054,21 +1100,23 @@ func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) *aws.Requ
 		}
 	}
 
-	return aws.NewRequest(c.Service, opListObjectVersions, input, nil)
+	req = aws.NewRequest(c.Service, opListObjectVersions, input, output)
+	output = &ListObjectVersionsOutput{}
+	req.Data = output
+	return
 }
 
 // ListObjectVersions returns metadata about all of the versions of objects
 // in a bucket.
 func (c *S3) ListObjectVersions(input *ListObjectVersionsInput) (output *ListObjectVersionsOutput, err error) {
-	output = &ListObjectVersionsOutput{}
-	req := c.ListObjectVersionsRequest(input)
-	req.Data = output
+	req, out := c.ListObjectVersionsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // ListObjectsRequest generates a request for the ListObjects operation.
-func (c *S3) ListObjectsRequest(input *ListObjectsInput) *aws.Request {
+func (c *S3) ListObjectsRequest(input *ListObjectsInput) (req *aws.Request, output *ListObjectsOutput) {
 	if opListObjects == nil {
 		opListObjects = &aws.Operation{
 			Name:       "ListObjects",
@@ -1087,22 +1135,24 @@ func (c *S3) ListObjectsRequest(input *ListObjectsInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opListObjects, input, nil)
+	req = aws.NewRequest(c.Service, opListObjects, input, output)
+	output = &ListObjectsOutput{}
+	req.Data = output
+	return
 }
 
 // ListObjects returns some or all (up to 1000) of the objects in a bucket.
 // You can use the request parameters as selection criteria to return a
 // subset of the objects in a bucket.
 func (c *S3) ListObjects(input *ListObjectsInput) (output *ListObjectsOutput, err error) {
-	output = &ListObjectsOutput{}
-	req := c.ListObjectsRequest(input)
-	req.Data = output
+	req, out := c.ListObjectsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // ListPartsRequest generates a request for the ListParts operation.
-func (c *S3) ListPartsRequest(input *ListPartsInput) *aws.Request {
+func (c *S3) ListPartsRequest(input *ListPartsInput) (req *aws.Request, output *ListPartsOutput) {
 	if opListParts == nil {
 		opListParts = &aws.Operation{
 			Name:       "ListParts",
@@ -1121,21 +1171,23 @@ func (c *S3) ListPartsRequest(input *ListPartsInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opListParts, input, nil)
+	req = aws.NewRequest(c.Service, opListParts, input, output)
+	output = &ListPartsOutput{}
+	req.Data = output
+	return
 }
 
 // ListParts lists the parts that have been uploaded for a specific
 // multipart upload.
 func (c *S3) ListParts(input *ListPartsInput) (output *ListPartsOutput, err error) {
-	output = &ListPartsOutput{}
-	req := c.ListPartsRequest(input)
-	req.Data = output
+	req, out := c.ListPartsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // PutBucketACLRequest generates a request for the PutBucketACL operation.
-func (c *S3) PutBucketACLRequest(input *PutBucketACLInput) *aws.Request {
+func (c *S3) PutBucketACLRequest(input *PutBucketACLInput) (req *aws.Request) {
 	if opPutBucketACL == nil {
 		opPutBucketACL = &aws.Operation{
 			Name:       "PutBucketAcl",
@@ -1154,20 +1206,20 @@ func (c *S3) PutBucketACLRequest(input *PutBucketACLInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutBucketACL, input, nil)
+	req = aws.NewRequest(c.Service, opPutBucketACL, input, nil)
+
+	return
 }
 
 // PutBucketACL sets the permissions on a bucket using access control lists
 func (c *S3) PutBucketACL(input *PutBucketACLInput) (err error) {
-	// NRE
 	req := c.PutBucketACLRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // PutBucketCORSRequest generates a request for the PutBucketCORS operation.
-func (c *S3) PutBucketCORSRequest(input *PutBucketCORSInput) *aws.Request {
+func (c *S3) PutBucketCORSRequest(input *PutBucketCORSInput) (req *aws.Request) {
 	if opPutBucketCORS == nil {
 		opPutBucketCORS = &aws.Operation{
 			Name:       "PutBucketCors",
@@ -1186,20 +1238,20 @@ func (c *S3) PutBucketCORSRequest(input *PutBucketCORSInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutBucketCORS, input, nil)
+	req = aws.NewRequest(c.Service, opPutBucketCORS, input, nil)
+
+	return
 }
 
 // PutBucketCORS is undocumented.
 func (c *S3) PutBucketCORS(input *PutBucketCORSInput) (err error) {
-	// NRE
 	req := c.PutBucketCORSRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // PutBucketLifecycleRequest generates a request for the PutBucketLifecycle operation.
-func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) *aws.Request {
+func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *aws.Request) {
 	if opPutBucketLifecycle == nil {
 		opPutBucketLifecycle = &aws.Operation{
 			Name:       "PutBucketLifecycle",
@@ -1218,21 +1270,21 @@ func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) *aws.Requ
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutBucketLifecycle, input, nil)
+	req = aws.NewRequest(c.Service, opPutBucketLifecycle, input, nil)
+
+	return
 }
 
 // PutBucketLifecycle sets lifecycle configuration for your bucket. If a
 // lifecycle configuration exists, it replaces it.
 func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (err error) {
-	// NRE
 	req := c.PutBucketLifecycleRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // PutBucketLoggingRequest generates a request for the PutBucketLogging operation.
-func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) *aws.Request {
+func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *aws.Request) {
 	if opPutBucketLogging == nil {
 		opPutBucketLogging = &aws.Operation{
 			Name:       "PutBucketLogging",
@@ -1251,22 +1303,22 @@ func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutBucketLogging, input, nil)
+	req = aws.NewRequest(c.Service, opPutBucketLogging, input, nil)
+
+	return
 }
 
 // PutBucketLogging set the logging parameters for a bucket and to specify
 // permissions for who can view and modify the logging parameters. To set
 // the logging status of a bucket, you must be the bucket owner.
 func (c *S3) PutBucketLogging(input *PutBucketLoggingInput) (err error) {
-	// NRE
 	req := c.PutBucketLoggingRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // PutBucketNotificationRequest generates a request for the PutBucketNotification operation.
-func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) *aws.Request {
+func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (req *aws.Request) {
 	if opPutBucketNotification == nil {
 		opPutBucketNotification = &aws.Operation{
 			Name:       "PutBucketNotification",
@@ -1285,21 +1337,21 @@ func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) *aw
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutBucketNotification, input, nil)
+	req = aws.NewRequest(c.Service, opPutBucketNotification, input, nil)
+
+	return
 }
 
 // PutBucketNotification enables notifications of specified events for a
 // bucket.
 func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (err error) {
-	// NRE
 	req := c.PutBucketNotificationRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // PutBucketPolicyRequest generates a request for the PutBucketPolicy operation.
-func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) *aws.Request {
+func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *aws.Request) {
 	if opPutBucketPolicy == nil {
 		opPutBucketPolicy = &aws.Operation{
 			Name:       "PutBucketPolicy",
@@ -1318,21 +1370,21 @@ func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutBucketPolicy, input, nil)
+	req = aws.NewRequest(c.Service, opPutBucketPolicy, input, nil)
+
+	return
 }
 
 // PutBucketPolicy replaces a policy on a bucket. If the bucket already has
 // a policy, the one in this request completely replaces it.
 func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (err error) {
-	// NRE
 	req := c.PutBucketPolicyRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // PutBucketRequestPaymentRequest generates a request for the PutBucketRequestPayment operation.
-func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput) *aws.Request {
+func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput) (req *aws.Request) {
 	if opPutBucketRequestPayment == nil {
 		opPutBucketRequestPayment = &aws.Operation{
 			Name:       "PutBucketRequestPayment",
@@ -1351,7 +1403,9 @@ func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput)
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutBucketRequestPayment, input, nil)
+	req = aws.NewRequest(c.Service, opPutBucketRequestPayment, input, nil)
+
+	return
 }
 
 // PutBucketRequestPayment sets the request payment configuration for a
@@ -1360,15 +1414,13 @@ func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput)
 // that the person requesting the download will be charged for the
 // download.
 func (c *S3) PutBucketRequestPayment(input *PutBucketRequestPaymentInput) (err error) {
-	// NRE
 	req := c.PutBucketRequestPaymentRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // PutBucketTaggingRequest generates a request for the PutBucketTagging operation.
-func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) *aws.Request {
+func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *aws.Request) {
 	if opPutBucketTagging == nil {
 		opPutBucketTagging = &aws.Operation{
 			Name:       "PutBucketTagging",
@@ -1387,20 +1439,20 @@ func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutBucketTagging, input, nil)
+	req = aws.NewRequest(c.Service, opPutBucketTagging, input, nil)
+
+	return
 }
 
 // PutBucketTagging is undocumented.
 func (c *S3) PutBucketTagging(input *PutBucketTaggingInput) (err error) {
-	// NRE
 	req := c.PutBucketTaggingRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // PutBucketVersioningRequest generates a request for the PutBucketVersioning operation.
-func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) *aws.Request {
+func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *aws.Request) {
 	if opPutBucketVersioning == nil {
 		opPutBucketVersioning = &aws.Operation{
 			Name:       "PutBucketVersioning",
@@ -1419,21 +1471,21 @@ func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) *aws.Re
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutBucketVersioning, input, nil)
+	req = aws.NewRequest(c.Service, opPutBucketVersioning, input, nil)
+
+	return
 }
 
 // PutBucketVersioning sets the versioning state of an existing bucket. To
 // set the versioning state, you must be the bucket owner.
 func (c *S3) PutBucketVersioning(input *PutBucketVersioningInput) (err error) {
-	// NRE
 	req := c.PutBucketVersioningRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // PutBucketWebsiteRequest generates a request for the PutBucketWebsite operation.
-func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) *aws.Request {
+func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *aws.Request) {
 	if opPutBucketWebsite == nil {
 		opPutBucketWebsite = &aws.Operation{
 			Name:       "PutBucketWebsite",
@@ -1452,20 +1504,20 @@ func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) *aws.Request 
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutBucketWebsite, input, nil)
+	req = aws.NewRequest(c.Service, opPutBucketWebsite, input, nil)
+
+	return
 }
 
 // PutBucketWebsite is undocumented.
 func (c *S3) PutBucketWebsite(input *PutBucketWebsiteInput) (err error) {
-	// NRE
 	req := c.PutBucketWebsiteRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // PutObjectRequest generates a request for the PutObject operation.
-func (c *S3) PutObjectRequest(input *PutObjectInput) *aws.Request {
+func (c *S3) PutObjectRequest(input *PutObjectInput) (req *aws.Request, output *PutObjectOutput) {
 	if opPutObject == nil {
 		opPutObject = &aws.Operation{
 			Name:       "PutObject",
@@ -1484,20 +1536,22 @@ func (c *S3) PutObjectRequest(input *PutObjectInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutObject, input, nil)
+	req = aws.NewRequest(c.Service, opPutObject, input, output)
+	output = &PutObjectOutput{}
+	req.Data = output
+	return
 }
 
 // PutObject is undocumented.
 func (c *S3) PutObject(input *PutObjectInput) (output *PutObjectOutput, err error) {
-	output = &PutObjectOutput{}
-	req := c.PutObjectRequest(input)
-	req.Data = output
+	req, out := c.PutObjectRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // PutObjectACLRequest generates a request for the PutObjectACL operation.
-func (c *S3) PutObjectACLRequest(input *PutObjectACLInput) *aws.Request {
+func (c *S3) PutObjectACLRequest(input *PutObjectACLInput) (req *aws.Request) {
 	if opPutObjectACL == nil {
 		opPutObjectACL = &aws.Operation{
 			Name:       "PutObjectAcl",
@@ -1516,21 +1570,21 @@ func (c *S3) PutObjectACLRequest(input *PutObjectACLInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opPutObjectACL, input, nil)
+	req = aws.NewRequest(c.Service, opPutObjectACL, input, nil)
+
+	return
 }
 
 // PutObjectACL uses the acl subresource to set the access control list
 // permissions for an object that already exists in a bucket
 func (c *S3) PutObjectACL(input *PutObjectACLInput) (err error) {
-	// NRE
 	req := c.PutObjectACLRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // RestoreObjectRequest generates a request for the RestoreObject operation.
-func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) *aws.Request {
+func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *aws.Request) {
 	if opRestoreObject == nil {
 		opRestoreObject = &aws.Operation{
 			Name:       "RestoreObject",
@@ -1549,20 +1603,20 @@ func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opRestoreObject, input, nil)
+	req = aws.NewRequest(c.Service, opRestoreObject, input, nil)
+
+	return
 }
 
 // RestoreObject restores an archived copy of an object back into Amazon S3
 func (c *S3) RestoreObject(input *RestoreObjectInput) (err error) {
-	// NRE
 	req := c.RestoreObjectRequest(input)
-
 	err = req.Send()
 	return
 }
 
 // UploadPartRequest generates a request for the UploadPart operation.
-func (c *S3) UploadPartRequest(input *UploadPartInput) *aws.Request {
+func (c *S3) UploadPartRequest(input *UploadPartInput) (req *aws.Request, output *UploadPartOutput) {
 	if opUploadPart == nil {
 		opUploadPart = &aws.Operation{
 			Name:       "UploadPart",
@@ -1581,7 +1635,10 @@ func (c *S3) UploadPartRequest(input *UploadPartInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opUploadPart, input, nil)
+	req = aws.NewRequest(c.Service, opUploadPart, input, output)
+	output = &UploadPartOutput{}
+	req.Data = output
+	return
 }
 
 // UploadPart uploads a part in a multipart upload. Note: After you
@@ -1591,15 +1648,14 @@ func (c *S3) UploadPartRequest(input *UploadPartInput) *aws.Request {
 // multipart upload, Amazon S3 frees up the parts storage and stops
 // charging you for the parts storage.
 func (c *S3) UploadPart(input *UploadPartInput) (output *UploadPartOutput, err error) {
-	output = &UploadPartOutput{}
-	req := c.UploadPartRequest(input)
-	req.Data = output
+	req, out := c.UploadPartRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 // UploadPartCopyRequest generates a request for the UploadPartCopy operation.
-func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) *aws.Request {
+func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) (req *aws.Request, output *UploadPartCopyOutput) {
 	if opUploadPartCopy == nil {
 		opUploadPartCopy = &aws.Operation{
 			Name:       "UploadPartCopy",
@@ -1618,15 +1674,17 @@ func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) *aws.Request {
 		}
 	}
 
-	return aws.NewRequest(c.Service, opUploadPartCopy, input, nil)
+	req = aws.NewRequest(c.Service, opUploadPartCopy, input, output)
+	output = &UploadPartCopyOutput{}
+	req.Data = output
+	return
 }
 
 // UploadPartCopy uploads a part by copying data from an existing object as
 // data source.
 func (c *S3) UploadPartCopy(input *UploadPartCopyInput) (output *UploadPartCopyOutput, err error) {
-	output = &UploadPartCopyOutput{}
-	req := c.UploadPartCopyRequest(input)
-	req.Data = output
+	req, out := c.UploadPartCopyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
