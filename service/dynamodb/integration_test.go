@@ -1,4 +1,5 @@
 // +build integration
+
 package dynamodb_test
 
 import (
@@ -16,14 +17,12 @@ var dynamoDBClient *dynamodb.DynamoDB
 var idAndNameTable string
 
 func TestMain(m *testing.M) {
-	if os.Getenv("INTEGRATION") != "" {
-		var exitCode int
-		createTables()
-		defer os.Exit(exitCode)
-		defer cleanup()
+	var exitCode int
+	createTables()
+	defer os.Exit(exitCode)
+	defer cleanup()
 
-		exitCode = m.Run()
-	}
+	exitCode = m.Run()
 }
 
 func TestGetAndPutItem(t *testing.T) {

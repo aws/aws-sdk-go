@@ -1,4 +1,5 @@
 // +build integration
+
 package sqs_test
 
 import (
@@ -14,10 +15,8 @@ import (
 var sqsClient *sqs.SQS
 
 func TestMain(m *testing.M) {
-	if os.Getenv("INTEGRATION") != "" {
-		sqsClient = sqs.New(aws.DefaultCreds(), "us-east-1", nil)
-		os.Exit(m.Run())
-	}
+	sqsClient = sqs.New(aws.DefaultCreds(), "us-east-1", nil)
+	os.Exit(m.Run())
 }
 
 func TestPublishAndReadMessage(t *testing.T) {
