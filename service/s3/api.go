@@ -996,7 +996,7 @@ func (c *S3) ListBucketsRequest() *aws.Request {
 // sender of the request.
 func (c *S3) ListBuckets() (output *ListBucketsOutput, err error) {
 	output = &ListBucketsOutput{}
-	req := c.ListBucketsRequest(nil)
+	req := c.ListBucketsRequest()
 	req.Data = output
 	err = req.Send()
 	return

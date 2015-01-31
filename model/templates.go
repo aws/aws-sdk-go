@@ -185,7 +185,7 @@ func (c *{{ $.Name }}) {{ exportable $name }}Request({{ if $op.Input }}input {{ 
 
 {{ godoc $name $op.Documentation }} func (c *{{ $.Name }}) {{ exportable $name }}({{ if $op.Input }}input {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}output {{ structName $op.Output.Type }},{{ end }} err error) {
   {{ if $op.Output }}output = {{ structName $op.Output.Literal }}{{ else }}// NRE{{ end }}
-  req := c.{{ exportable $name }}Request({{ if $op.Input }}input{{ else }}nil{{ end }})
+  req := c.{{ exportable $name }}Request({{ if $op.Input }}input{{ end }})
   {{ if $op.Output }}req.Data = output{{ end }}
   err = req.Send()
   return
