@@ -1,9 +1,9 @@
 package v4
 
 import (
-	"bytes"
 	"crypto/hmac"
 	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
 	"io"
 	"net/http"
@@ -188,7 +188,7 @@ func (v4 *signer) buildStringToSign() {
 		authHeaderPrefix,
 		v4.formattedTime,
 		v4.credentialString,
-		hexDigest(makeSha256([]byte(v4.canonicalString))),
+		hex.EncodeToString(makeSha256([]byte(v4.canonicalString))),
 	}, "\n")
 }
 
@@ -199,7 +199,7 @@ func (v4 *signer) buildSignature() {
 	service := makeHmac(region, []byte(v4.ServiceName))
 	credentials := makeHmac(service, []byte("aws4_request"))
 	signature := makeHmac(credentials, []byte(v4.stringToSign))
-	v4.signature = hexDigest(signature)
+	v4.signature = hex.EncodeToString(signature)
 	v4.Request.URL.RawQuery += "&X-Amz-Signature=" + v4.signature
 }
 
@@ -210,10 +210,10 @@ func (v4 *signer) bodyDigest() string {
 			if v4.ServiceName == "s3" {
 				hash = "UNSIGNED-PAYLOAD"
 			} else {
-				hash = hexDigest(makeSha256([]byte{}))
+				hash = hex.EncodeToString(makeSha256([]byte{}))
 			}
 		} else {
-			hash = hexDigest(makeSha256Reader(v4.Body))
+			hash = hex.EncodeToString(makeSha256Reader(v4.Body))
 		}
 		v4.Request.Header.Add("X-Amz-Content-Sha256", hash)
 	}
@@ -249,16 +249,4 @@ func makeSha256Reader(reader io.ReadSeeker) []byte {
 	reader.Seek(0, 0)
 
 	return hash.Sum(nil)
-}
-
-func hexDigest(data []byte) string {
-	var buffer bytes.Buffer
-	for i := range data {
-		str := strconv.FormatUint(uint64(data[i]), 16)
-		if len(str) < 2 {
-			buffer.WriteString("0")
-		}
-		buffer.WriteString(str)
-	}
-	return buffer.String()
 }
