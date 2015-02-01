@@ -12,7 +12,6 @@ import (
 func Build(r *aws.Request) {
 	if r.ParamsFilled() {
 		v := reflect.ValueOf(r.Params).Elem()
-		fmt.Println(v)
 		buildURI(r, v)
 		buildHeaders(r, v)
 		buildBody(r, v)
