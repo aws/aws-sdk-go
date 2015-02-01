@@ -45,15 +45,12 @@ func generateSource(api io.Writer, svc io.Writer) error {
 		"hasRequiredTrait": hasRequiredTrait,
 	})
 	template.Must(commonAPI(t))
-	template.Must(jsonClient(t))
 	template.Must(queryClient(t))
 	template.Must(ec2Client(t))
-	template.Must(restXMLClient(t))
-	template.Must(restJSONClient(t))
 
 	if api != nil {
 		apiOut := new(bytes.Buffer)
-		if err := t.ExecuteTemplate(apiOut, service.Metadata.Protocol, service); err != nil {
+		if err := t.ExecuteTemplate(apiOut, "api", service); err != nil {
 			return err
 		}
 		apiFormatted, err := format.Source(apiOut.Bytes())
@@ -209,14 +206,8 @@ const (
 {{ end }}
 
 {{ end }}
-`)
-}
 
-func jsonClient(t *template.Template) (*template.Template, error) {
-	return t.Parse(`
-{{ define "json" }}
-{{ template "header" $ }}
-{{ template "operations" $ }}
+{{ define "shapes" }}
 
 {{ range $_, $s := shapeList }}
 {{ if eq $s.Shape.ShapeType "structure" }}
@@ -224,15 +215,20 @@ func jsonClient(t *template.Template) (*template.Template, error) {
 // {{ $s.Alias }} is undocumented.
 type {{ $s.Alias }} struct {
 {{ range $name, $m := $s.Shape.Members }}
-{{ exportable $name }} {{ $m.Shape.Type }} {{ $m.JSONTag }}  {{ end }}
+{{ exportable $name }} {{ $m.Shape.Type }} {{ $m.Tag $.Metadata.Protocol $name }}  {{ end }}
 }
 
 {{ end }}
 {{ end }}
 
-{{ template "footer" }}
 {{ end }}
 
+{{ define "api" }}
+{{ template "header" $ }}
+{{ template "operations" $ }}
+{{ template "shapes" $ }}
+{{ template "footer" }}
+{{ end }}
 `)
 }
 
@@ -372,64 +368,5 @@ type {{ exportable $wname }} struct {
 {{ template "footer" }}
 {{ end }}
 
-`)
-}
-
-func restXMLClient(t *template.Template) (*template.Template, error) {
-	return t.Parse(`
-{{ define "rest-xml" }}
-{{ template "header" $ }}
-
-import (
-  "encoding/xml"
-  "io"
-)
-
-{{ template "operations" $ }}
-
-{{ range $_, $s := shapeList }}
-{{ if eq $s.Shape.ShapeType "structure" }}
-
-// {{ $s.Alias }} is undocumented.
-type {{ $s.Alias }} struct {
-  XMLName xml.Name
-{{ range $name, $m := $s.Shape.Members }}
-{{ exportable $name }} {{ $m.Type }} {{ $m.XMLTag $s.Shape.ResultWrapper }}  {{ end }}
-}
-
-func (v *{{ $s.Alias }}) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-{{ end }}
-{{ end }}
-
-{{ template "footer" }}
-var _ io.Reader
-{{ end }}
-
-`)
-}
-
-func restJSONClient(t *template.Template) (*template.Template, error) {
-	return t.Parse(`
-{{ define "rest-json" }}
-{{ template "header" $ }}
-{{ template "operations" $ }}
-
-{{ range $_, $s := shapeList }}
-{{ if eq $s.Shape.ShapeType "structure" }}
-
-// {{ $s.Alias }} is undocumented.
-type {{ $s.Alias }} struct {
-{{ range $name, $m := $s.Shape.Members }}
-{{ exportable $name }} {{ $m.Type }} {{ $m.JSONTag }}  {{ end }}
-}
-
-{{ end }}
-{{ end }}
-
-{{ template "footer" }}
-{{ end }}
 `)
 }

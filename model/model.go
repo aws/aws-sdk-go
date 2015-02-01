@@ -101,6 +101,21 @@ type Member struct {
 	Required bool
 }
 
+// Tag returns the correct tag for the given protocol
+func (m Member) Tag(protocol, member string) string {
+	switch protocol {
+	case "json", "rest-json":
+		return m.JSONTag()
+	case "ec2":
+		return m.EC2Tag()
+	case "rest-xml":
+		return m.XMLTag("")
+	case "query":
+		return m.QueryTag(member)
+	}
+	panic("Unsupported protocol " + protocol)
+}
+
 // JSONTag returns the field tag for JSON protocol members.
 func (m Member) JSONTag() string {
 	if m.ShapeRef.Location != "" || m.Name == "Body" {
