@@ -23,7 +23,7 @@ func main() {
 	}
 
 	if err := model.Generate("service"); err != nil {
-		fmt.Fprintf(os.Stderr, "error generating %s\n", os.Args[3])
+		fmt.Fprintf(os.Stderr, "error generating %s\n", os.Args[1])
 		panic(err)
 	}
 }
