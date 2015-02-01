@@ -18,8 +18,7 @@ func main() {
 	flag.StringVar(&svcPath, "path", "service", "generate in a specific directory (default: 'service')")
 	flag.BoolVar(&forceService, "force", false, "force re-generation of PACKAGE/service.go")
 	flag.Parse()
-
-	api := os.Args[len(os.Args)-flag.NArg()]
+	api := flag.Arg(0)
 
 	in, err := os.Open(api)
 	if err != nil {
@@ -32,7 +31,7 @@ func main() {
 	}
 
 	if err := model.Generate(svcPath, forceService); err != nil {
-		fmt.Fprintf(os.Stderr, "error generating %s\n", os.Args[1])
+		fmt.Fprintf(os.Stderr, "error generating %s\n", api)
 		panic(err)
 	}
 }
