@@ -11,7 +11,8 @@ import (
 
 // Generate writes a Go file with a client for using the parsed service.
 func Generate(prefix string) error {
-	apiFile := path.Join(prefix, service.PackageName, "api.go")
+	pkg := service.PackageName()
+	apiFile := path.Join(prefix, pkg, "api.go")
 	apiWriter, err := os.Create(apiFile)
 	if err != nil {
 		panic(err)
@@ -19,7 +20,7 @@ func Generate(prefix string) error {
 	defer apiWriter.Close()
 
 	var svcWriter io.WriteCloser
-	svcFile := path.Join(prefix, service.PackageName, "service.go")
+	svcFile := path.Join(prefix, pkg, "service.go")
 	if _, err := os.Stat(svcFile); err != nil && os.IsNotExist(err) {
 		svcWriter, err = os.Create(svcFile)
 		if err != nil {

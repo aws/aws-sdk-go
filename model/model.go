@@ -479,7 +479,7 @@ func (s *Shape) Type() string {
 		return "[]byte"
 	case "timestamp":
 		// DynamoDB, unlike other JSON protocol APIs, uses Unix timestamps.
-		if service.PackageName == "dynamodb" ||
+		if service.PackageName() == "dynamodb" ||
 			service.Metadata.TimestampFormat == "unixTimestamp" {
 			return "*aws.UnixTimestamp"
 		}
@@ -491,9 +491,7 @@ func (s *Shape) Type() string {
 
 // A Service is an AWS service.
 type Service struct {
-	Name          string
 	FullName      string
-	PackageName   string
 	Metadata      Metadata
 	Documentation string
 	Operations    map[string]Operation
@@ -525,11 +523,36 @@ func (s Service) Wrappers() map[string]*Shape {
 	return wrappers
 }
 
+var nameRegex = regexp.MustCompile(`^Amazon|AWS\s*|\(.*|\s+|\W+`)
+
+// Name returns the service struct name for a given service
+func (s Service) Name() string {
+	name := s.Metadata.ServiceAbbreviation
+	if name == "" {
+		name = s.Metadata.ServiceFullName
+	}
+
+	name = nameRegex.ReplaceAllString(name, "")
+	switch name {
+	case "ElasticLoadBalancing":
+		return "ELB"
+	case "Config":
+		return "ConfigService"
+	default:
+		return name
+	}
+}
+
+// PackageName returns the package name of a given service
+func (s Service) PackageName() string {
+	return strings.ToLower(s.Name())
+}
+
 var service Service
 
 // Load parses the given JSON input and loads it into the singleton instance of
 // the package.
-func Load(name string, r io.Reader) error {
+func Load(r io.Reader) error {
 	service = Service{}
 	if err := json.NewDecoder(r).Decode(&service); err != nil {
 		return err
@@ -540,8 +563,6 @@ func Load(name string, r io.Reader) error {
 	}
 
 	service.FullName = service.Metadata.ServiceFullName
-	service.PackageName = strings.ToLower(name)
-	service.Name = name
 	buildShapeMap()
 
 	return nil
