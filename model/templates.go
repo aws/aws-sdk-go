@@ -10,7 +10,7 @@ import (
 )
 
 // Generate writes a Go file with a client for using the parsed service.
-func Generate(prefix string) error {
+func Generate(prefix string, forceService bool) error {
 	pkg := service.PackageName()
 	pkgDir := path.Join(prefix, pkg)
 	os.MkdirAll(pkgDir, 0775)
@@ -24,7 +24,7 @@ func Generate(prefix string) error {
 
 	var svcWriter io.WriteCloser
 	svcFile := path.Join(pkgDir, "service.go")
-	if _, err := os.Stat(svcFile); err != nil && os.IsNotExist(err) {
+	if _, err := os.Stat(svcFile); forceService || (err != nil && os.IsNotExist(err)) {
 		svcWriter, err = os.Create(svcFile)
 		if err != nil {
 			panic(err)
