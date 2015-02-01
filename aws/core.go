@@ -63,6 +63,7 @@ type Request struct {
 	*Service
 	Handlers     Handlers
 	Time         time.Time
+	ExpireTime   uint64
 	Operation    *Operation
 	HTTPRequest  *http.Request
 	HTTPResponse *http.Response
@@ -71,6 +72,8 @@ type Request struct {
 	Error        error
 	Data         interface{}
 	RequestID    string
+
+	built bool
 }
 
 func NewRequest(service *Service, operation *Operation, params interface{}, data interface{}) *Request {
@@ -85,6 +88,7 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 		Service:     service,
 		Handlers:    service.Handlers.copy(),
 		Time:        time.Now(),
+		ExpireTime:  300,
 		Operation:   operation,
 		HTTPRequest: httpReq,
 		Body:        nil,
@@ -153,15 +157,38 @@ func (r *Request) SetReaderBody(reader io.ReadSeeker) {
 	r.Body = reader
 }
 
-func (r *Request) Send() error {
-	r.Error = nil
+func (r *Request) Presign(expireTime uint64) (string, error) {
+	r.ExpireTime = expireTime
+	r.Sign()
+	if r.Error != nil {
+		return "", r.Error
+	} else {
+		return r.HTTPRequest.URL.String(), nil
+	}
+}
 
-	r.Handlers.Build.Run(r)
+func (r *Request) Build() error {
+	if !r.built {
+		r.Error = nil
+		r.Handlers.Build.Run(r)
+		r.built = true
+	}
+
+	return r.Error
+}
+
+func (r *Request) Sign() error {
+	r.Build()
 	if r.Error != nil {
 		return r.Error
 	}
 
 	r.Handlers.Sign.Run(r)
+	return r.Error
+}
+
+func (r *Request) Send() error {
+	r.Sign()
 	if r.Error != nil {
 		return r.Error
 	}

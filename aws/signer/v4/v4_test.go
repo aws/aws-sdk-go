@@ -14,10 +14,13 @@ func buildSigner(serviceName string, region string, signTime time.Time, body str
 	req.Header.Add("X-Amz-Target", "prefix.Operation")
 	req.Header.Add("Content-Type", "application/x-amz-json-1.0")
 	req.Header.Add("Content-Length", string(len(body)))
+	req.Header.Add("X-Amz-Meta-Other-Header", "some-value")
 
 	return signer{
 		Request:         req,
 		Time:            signTime,
+		ExpireTime:      300,
+		Query:           req.URL.Query(),
 		Body:            reader,
 		ServiceName:     serviceName,
 		Region:          region,
@@ -45,15 +48,15 @@ func TestSignRequest(t *testing.T) {
 	signer.sign()
 
 	expectedDate := "19700101T000000Z"
-	expectedAuth := `
-    AWS4-HMAC-SHA256
-    Credential=AKID/19700101/us-east-1/dynamodb/aws4_request,
-    SignedHeaders=content-type;host;x-amz-security-token;x-amz-target,
-    Signature=4662104789134800e088b6a2bf3a1153ca7d38ecfc07a69bff2859f04900b67f
-  `
+	expectedHeaders := "host;x-amz-meta-other-header;x-amz-target"
+	expectedSig := "af788cd33b3a72bc770b83f5ee0a59adb8fe6971bb690fea2d2009e14e04d01d"
+	expectedCred := "AKID/19700101/us-east-1/dynamodb/aws4_request"
 
-	assertEqual(t, expectedAuth, signer.Request.Header.Get("Authorization"))
-	assertEqual(t, expectedDate, signer.Request.Header.Get("Date"))
+	q := signer.Request.URL.Query()
+	assertEqual(t, expectedSig, q.Get("X-Amz-Signature"))
+	assertEqual(t, expectedCred, q.Get("X-Amz-Credential"))
+	assertEqual(t, expectedHeaders, q.Get("X-Amz-SignedHeaders"))
+	assertEqual(t, expectedDate, q.Get("X-Amz-Date"))
 }
 
 func BenchmarkSignRequest(b *testing.B) {

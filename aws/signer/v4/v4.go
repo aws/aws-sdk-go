@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"sort"
 	"strconv"
 	"strings"
@@ -21,14 +22,23 @@ const (
 	shortTimeFormat  = "20060102"
 )
 
+var ignoredHeaders = map[string]bool{
+	"Authorization":  true,
+	"Content-Type":   true,
+	"Content-Length": true,
+	"User-Agent":     true,
+}
+
 type signer struct {
 	Request         *http.Request
 	Time            time.Time
+	ExpireTime      uint64
 	ServiceName     string
 	Region          string
 	AccessKeyID     string
 	SecretAccessKey string
 	SessionToken    string
+	Query           url.Values
 	Body            io.ReadSeeker
 	Debug           uint
 
@@ -51,6 +61,8 @@ func Sign(req *aws.Request) {
 	s := signer{
 		Request:         req.HTTPRequest,
 		Time:            req.Time,
+		ExpireTime:      300,
+		Query:           req.HTTPRequest.URL.Query(),
 		Body:            req.Body,
 		ServiceName:     req.Service.ServiceName,
 		Region:          req.Service.Config.Region,
@@ -63,14 +75,11 @@ func Sign(req *aws.Request) {
 }
 
 func (v4 *signer) sign() {
-	formatted := v4.Time.UTC().Format(timeFormat)
-
-	// remove the old headers
-	v4.Request.Header.Del("Date")
-	v4.Request.Header.Del("Authorization")
-
+	v4.Query.Set("X-Amz-Algorithm", authHeaderPrefix)
 	if v4.SessionToken != "" {
-		v4.Request.Header.Set("X-Amz-Security-Token", v4.SessionToken)
+		v4.Query.Set("X-Amz-Security-Token", v4.SessionToken)
+	} else {
+		v4.Query.Del("X-Amz-Security-Token")
 	}
 
 	v4.build()
@@ -78,39 +87,30 @@ func (v4 *signer) sign() {
 	//v4.Debug = true
 	if v4.Debug > 0 {
 		fmt.Printf("---[ CANONICAL STRING  ]-----------------------------\n")
-		fmt.Printf("%s\n", v4.canonicalString)
-		fmt.Printf("-----------------------------------------------------\n\n")
+		fmt.Println(v4.canonicalString)
 		fmt.Printf("---[ STRING TO SIGN ]--------------------------------\n")
-		fmt.Printf("%s\n", v4.stringToSign)
+		fmt.Println(v4.stringToSign)
+		fmt.Printf("---[ SIGNED URL ]--------------------------------\n")
+		fmt.Println(v4.Request.URL)
 		fmt.Printf("-----------------------------------------------------\n")
 	}
-
-	// add the new ones
-	v4.Request.Header.Set("Date", formatted)
-	v4.Request.Header.Set("Authorization", v4.authorization)
 }
 
 func (v4 *signer) build() {
-	v4.buildTime()
-	v4.buildCanonicalHeaders()
-	v4.buildCredentialString()
-	v4.buildCanonicalString()
-	v4.buildStringToSign()
-	v4.buildSignature()
-	v4.buildAuthorization()
+	v4.buildTime()             // no depends
+	v4.buildCredentialString() // no depends
+	v4.buildQuery()            // no depends
+	v4.buildCanonicalHeaders() // depends on cred string
+	v4.buildCanonicalString()  // depends on canon headers / signed headers
+	v4.buildStringToSign()     // depends on canon string
+	v4.buildSignature()        // depends on string to sign
 }
 
 func (v4 *signer) buildTime() {
 	v4.formattedTime = v4.Time.UTC().Format(timeFormat)
 	v4.formattedShortTime = v4.Time.UTC().Format(shortTimeFormat)
-}
-
-func (v4 *signer) buildAuthorization() {
-	v4.authorization = strings.Join([]string{
-		authHeaderPrefix + " Credential=" + v4.AccessKeyID + "/" + v4.credentialString,
-		"SignedHeaders=" + v4.signedHeaders,
-		"Signature=" + v4.signature,
-	}, ",")
+	v4.Query.Set("X-Amz-Date", v4.formattedTime)
+	v4.Query.Set("X-Amz-Expires", strconv.FormatUint(v4.ExpireTime, 10))
 }
 
 func (v4 *signer) buildCredentialString() {
@@ -120,18 +120,39 @@ func (v4 *signer) buildCredentialString() {
 		v4.ServiceName,
 		"aws4_request",
 	}, "/")
+	v4.Query.Set("X-Amz-Credential", v4.AccessKeyID+"/"+v4.credentialString)
+}
+
+func (v4 *signer) buildQuery() {
+	for k, h := range v4.Request.Header {
+		if strings.HasPrefix(http.CanonicalHeaderKey(k), "X-Amz-") {
+			continue // never hoist x-amz-* headers, they must be signed
+		}
+		if _, ok := ignoredHeaders[http.CanonicalHeaderKey(k)]; ok {
+			continue // never hoist ignored headers
+		}
+
+		v4.Request.Header.Del(k)
+		v4.Query.Del(k)
+		for _, v := range h {
+			v4.Query.Add(k, v)
+		}
+	}
 }
 
 func (v4 *signer) buildCanonicalHeaders() {
 	headers := make([]string, 0)
 	headers = append(headers, "host")
 	for k, _ := range v4.Request.Header {
-		if http.CanonicalHeaderKey(k) == "Content-Length" {
-			continue // never sign content-length
+		if _, ok := ignoredHeaders[http.CanonicalHeaderKey(k)]; ok {
+			continue // ignored header
 		}
 		headers = append(headers, strings.ToLower(k))
 	}
 	sort.Strings(headers)
+
+	v4.signedHeaders = strings.Join(headers, ";")
+	v4.Query.Set("X-Amz-SignedHeaders", v4.signedHeaders)
 
 	headerValues := make([]string, len(headers))
 	for i, k := range headers {
@@ -143,15 +164,19 @@ func (v4 *signer) buildCanonicalHeaders() {
 		}
 	}
 
-	v4.signedHeaders = strings.Join(headers, ";")
 	v4.canonicalHeaders = strings.Join(headerValues, "\n")
 }
 
 func (v4 *signer) buildCanonicalString() {
+	v4.Request.URL.RawQuery = v4.Query.Encode()
+	if v4.Request.URL.Path == "" {
+		v4.Request.URL.Path = "/"
+	}
+
 	v4.canonicalString = strings.Join([]string{
 		v4.Request.Method,
 		v4.Request.URL.Path,
-		v4.Request.URL.Query().Encode(),
+		v4.Request.URL.RawQuery,
 		v4.canonicalHeaders + "\n",
 		v4.signedHeaders,
 		v4.bodyDigest(),
@@ -175,13 +200,18 @@ func (v4 *signer) buildSignature() {
 	credentials := makeHmac(service, []byte("aws4_request"))
 	signature := makeHmac(credentials, []byte(v4.stringToSign))
 	v4.signature = hexDigest(signature)
+	v4.Request.URL.RawQuery += "&X-Amz-Signature=" + v4.signature
 }
 
 func (v4 *signer) bodyDigest() string {
 	hash := v4.Request.Header.Get("X-Amz-Content-Sha256")
 	if hash == "" {
 		if v4.Body == nil {
-			hash = hexDigest(makeSha256([]byte{}))
+			if v4.ServiceName == "s3" {
+				hash = "UNSIGNED-PAYLOAD"
+			} else {
+				hash = hexDigest(makeSha256([]byte{}))
+			}
 		} else {
 			hash = hexDigest(makeSha256Reader(v4.Body))
 		}
