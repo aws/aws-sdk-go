@@ -92,6 +92,7 @@ func structName(name string) string {
 	str := exportable(name)
 	str = regexp.MustCompile(`Request$`).ReplaceAllString(str, "Input")
 	str = regexp.MustCompile(`Response$`).ReplaceAllString(str, "Output")
+	str = regexp.MustCompile(`Result$`).ReplaceAllString(str, "Output")
 	return str
 }
 
