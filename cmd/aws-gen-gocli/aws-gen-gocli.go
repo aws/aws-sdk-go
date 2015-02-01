@@ -5,6 +5,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 
@@ -12,7 +13,13 @@ import (
 )
 
 func main() {
-	in, err := os.Open(os.Args[1])
+	var svcPath string
+	flag.StringVar(&svcPath, "servicepath", "service", "point to a different service path")
+	flag.Parse()
+
+	api := os.Args[len(os.Args)-flag.NArg()]
+
+	in, err := os.Open(api)
 	if err != nil {
 		panic(err)
 	}
@@ -22,7 +29,7 @@ func main() {
 		panic(err)
 	}
 
-	if err := model.Generate("service"); err != nil {
+	if err := model.Generate(svcPath); err != nil {
 		fmt.Fprintf(os.Stderr, "error generating %s\n", os.Args[1])
 		panic(err)
 	}
