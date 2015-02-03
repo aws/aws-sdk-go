@@ -63,7 +63,7 @@ type Request struct {
 	*Service
 	Handlers     Handlers
 	Time         time.Time
-	ExpireTime   uint64
+	ExpireTime   time.Duration
 	Operation    *Operation
 	HTTPRequest  *http.Request
 	HTTPResponse *http.Response
@@ -157,7 +157,7 @@ func (r *Request) SetReaderBody(reader io.ReadSeeker) {
 	r.Body = reader
 }
 
-func (r *Request) Presign(expireTime uint64) (string, error) {
+func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	r.ExpireTime = expireTime
 	r.Sign()
 	if r.Error != nil {

@@ -19,7 +19,7 @@ func buildSigner(serviceName string, region string, signTime time.Time, body str
 	return signer{
 		Request:         req,
 		Time:            signTime,
-		ExpireTime:      300,
+		ExpireTime:      300 * time.Second,
 		Query:           req.URL.Query(),
 		Body:            reader,
 		ServiceName:     serviceName,

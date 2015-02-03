@@ -32,7 +32,7 @@ var ignoredHeaders = map[string]bool{
 type signer struct {
 	Request         *http.Request
 	Time            time.Time
-	ExpireTime      uint64
+	ExpireTime      time.Duration
 	ServiceName     string
 	Region          string
 	AccessKeyID     string
@@ -61,7 +61,7 @@ func Sign(req *aws.Request) {
 	s := signer{
 		Request:         req.HTTPRequest,
 		Time:            req.Time,
-		ExpireTime:      300,
+		ExpireTime:      300 * time.Second,
 		Query:           req.HTTPRequest.URL.Query(),
 		Body:            req.Body,
 		ServiceName:     req.Service.ServiceName,
@@ -107,10 +107,11 @@ func (v4 *signer) build() {
 }
 
 func (v4 *signer) buildTime() {
+	duration := int64(v4.ExpireTime / time.Second)
 	v4.formattedTime = v4.Time.UTC().Format(timeFormat)
 	v4.formattedShortTime = v4.Time.UTC().Format(shortTimeFormat)
 	v4.Query.Set("X-Amz-Date", v4.formattedTime)
-	v4.Query.Set("X-Amz-Expires", strconv.FormatUint(v4.ExpireTime, 10))
+	v4.Query.Set("X-Amz-Expires", strconv.FormatInt(duration, 10))
 }
 
 func (v4 *signer) buildCredentialString() {
