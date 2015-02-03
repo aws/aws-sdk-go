@@ -222,10 +222,10 @@ type CreateIdentityPoolInput struct {
 
 // Credentials is undocumented.
 type Credentials struct {
-	AccessKeyID  aws.StringValue `json:"AccessKeyId,omitempty"`
-	Expiration   time.Time       `json:"Expiration,omitempty"`
-	SecretKey    aws.StringValue `json:"SecretKey,omitempty"`
-	SessionToken aws.StringValue `json:"SessionToken,omitempty"`
+	AccessKeyID  aws.StringValue    `json:"AccessKeyId,omitempty"`
+	Expiration   *aws.UnixTimestamp `json:"Expiration,omitempty"`
+	SecretKey    aws.StringValue    `json:"SecretKey,omitempty"`
+	SessionToken aws.StringValue    `json:"SessionToken,omitempty"`
 }
 
 // DeleteIdentityPoolInput is undocumented.
@@ -306,10 +306,10 @@ type GetOpenIDTokenResponse struct {
 
 // IdentityDescription is undocumented.
 type IdentityDescription struct {
-	CreationDate     time.Time       `json:"CreationDate,omitempty"`
-	IdentityID       aws.StringValue `json:"IdentityId,omitempty"`
-	LastModifiedDate time.Time       `json:"LastModifiedDate,omitempty"`
-	Logins           []string        `json:"Logins,omitempty"`
+	CreationDate     *aws.UnixTimestamp `json:"CreationDate,omitempty"`
+	IdentityID       aws.StringValue    `json:"IdentityId,omitempty"`
+	LastModifiedDate *aws.UnixTimestamp `json:"LastModifiedDate,omitempty"`
+	Logins           []string           `json:"Logins,omitempty"`
 }
 
 // IdentityPool is undocumented.
