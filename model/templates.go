@@ -146,7 +146,7 @@ func tplAPI(t *template.Template) (*template.Template, error) {
 {{ template "api-header" $ }}
 {{ template "api-operations" $ }}
 {{ template "api-shapes" $ }}
-{{ template "api-footer" }}
+{{ template "api-footer" $ }}
 `)
 }
 
@@ -160,9 +160,13 @@ func tplAPIHeader(t *template.Template) (*template.Template, error) {
 {{ godoc .Name .Documentation }} package {{ .PackageName }}
 
 import (
-  "time"
+{{ if eq $.Metadata.Protocol "rest-xml" "query" }}"encoding/xml"
+{{ end }}
+{{ if eq $.Metadata.Protocol "rest-xml" "rest-json" }}"io"
+{{ end }}
+    "time"
 
-  "github.com/awslabs/aws-sdk-go/aws"
+    "github.com/awslabs/aws-sdk-go/aws"
 )
 
 {{ end }}
@@ -174,8 +178,10 @@ func tplAPIFooter(t *template.Template) (*template.Template, error) {
 {{ define "api-footer" }}
 // avoid errors if the packages aren't referenced
 var _ time.Time
-var _ xml.Decoder
-var _ = io.EOF
+{{ if eq $.Metadata.Protocol "rest-xml" "query" }}var _ xml.Decoder
+{{ end }}
+{{ if eq $.Metadata.Protocol "rest-xml" "rest-json" }}var _ = io.EOF
+{{ end }}
 {{ end }}
 `)
 }
@@ -253,6 +259,12 @@ type {{ $s.Alias }} struct {
 {{ range $name, $m := $s.Shape.Members }}
 {{ exportable $name }} {{ $m.Shape.Type }} {{ $m.Tag $.Metadata.Protocol $name }}  {{ end }}
 }
+
+{{ end }}
+{{ if eq $s.Shape.ShapeType "map" }}
+
+// {{ $s.Alias }} is undocumented.
+type {{ $s.Alias }} map[{{ exportable $s.Shape.Key.Type }}]{{ exportable $s.Shape.Value.Type }}
 
 {{ end }}
 {{ end }}
