@@ -14,6 +14,13 @@ import (
 	"time"
 )
 
+const SDKName = "aws-sdk-go"
+const SDKVersion = "0.5.0"
+
+func UserAgentHandler(r *Request) {
+	r.HTTPRequest.Header.Set("User-Agent", SDKName+"/"+SDKVersion)
+}
+
 func SendHandler(r *Request) {
 	r.HTTPResponse, r.Error = r.Service.Config.HTTPClient.Do(r.HTTPRequest)
 }
@@ -53,6 +60,7 @@ func (s *Service) Initialize() {
 		s.Config.HTTPClient = http.DefaultClient
 	}
 
+	s.Handlers.Build.PushBack(UserAgentHandler)
 	s.Handlers.Sign.PushBack(BuildContentLength)
 	s.Handlers.Send.PushBack(SendHandler)
 	s.AddDebugHandlers()
