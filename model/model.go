@@ -111,7 +111,7 @@ func (m Member) Tag(protocol, member string) string {
 	case "rest-xml":
 		return m.XMLTag("")
 	case "query":
-		return m.QueryTag(member)
+		return m.QueryTag("")
 	}
 	panic("Unsupported protocol " + protocol)
 }
@@ -129,13 +129,6 @@ func (m Member) JSONTag() string {
 
 // XMLTag returns the field tag for XML protocol members.
 func (m Member) XMLTag(wrapper string) string {
-	if m.Name == "Body" {
-		return "`xml:\"-\"`"
-	}
-	if m.ShapeRef.Location != "" {
-		return fmt.Sprintf("`xml:\"-\" name:%q`", m.ShapeRef.LocationName)
-	}
-
 	var path []string
 	if wrapper != "" {
 		path = append(path, wrapper)
@@ -143,8 +136,6 @@ func (m Member) XMLTag(wrapper string) string {
 
 	if m.LocationName != "" {
 		path = append(path, m.LocationName)
-	} else {
-		path = append(path, m.Name)
 	}
 
 	if m.Shape().ShapeType == "list" {
@@ -161,7 +152,10 @@ func (m Member) XMLTag(wrapper string) string {
 		return fmt.Sprintf("`xml:%q`", strings.Join(path, ">")+",omitempty")
 	}
 
-	return fmt.Sprintf("`xml:%q`", strings.Join(path, ">"))
+	if len(path) > 1 {
+		return fmt.Sprintf("`xml:%q`", strings.Join(path, ">"))
+	}
+	return ""
 }
 
 // QueryTag returns the field tag for Query protocol members.
@@ -209,11 +203,15 @@ func (m Member) QueryTag(wrapper string) string {
 		path = append(path, loc)
 	}
 
-	return fmt.Sprintf(
-		"`query:%q xml:%q`",
-		strings.Join(prefix, "."),
-		strings.Join(path, ">"),
-	)
+	if len(prefix) > 1 {
+		return fmt.Sprintf(
+			"`name:%q xml:%q`",
+			strings.Join(prefix, "."),
+			strings.Join(path, ">"),
+		)
+	} else {
+		return fmt.Sprintf("`xml:%q`", strings.Join(path, ">"))
+	}
 }
 
 // EC2Tag returns the field tag for EC2 protocol members.
