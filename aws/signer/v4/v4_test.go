@@ -11,10 +11,11 @@ func buildSigner(serviceName string, region string, signTime time.Time, body str
 	endpoint := "https://" + serviceName + "." + region + ".amazonaws.com"
 	reader := strings.NewReader(body)
 	req, _ := http.NewRequest("POST", endpoint, reader)
+	req.URL.Opaque = "//example.org/bucket/key-._~,!@#$%^&*()"
 	req.Header.Add("X-Amz-Target", "prefix.Operation")
 	req.Header.Add("Content-Type", "application/x-amz-json-1.0")
 	req.Header.Add("Content-Length", string(len(body)))
-	req.Header.Add("X-Amz-Meta-Other-Header", "some-value")
+	req.Header.Add("X-Amz-Meta-Other-Header", "some-value=!@#$%^&* ()")
 
 	return signer{
 		Request:         req,
@@ -49,7 +50,7 @@ func TestSignRequest(t *testing.T) {
 
 	expectedDate := "19700101T000000Z"
 	expectedHeaders := "host;x-amz-meta-other-header;x-amz-target"
-	expectedSig := "af788cd33b3a72bc770b83f5ee0a59adb8fe6971bb690fea2d2009e14e04d01d"
+	expectedSig := "41c18d68f9191079dfeead4e3f034328f89d86c79f8e9d51dd48bb70eaf623fc"
 	expectedCred := "AKID/19700101/us-east-1/dynamodb/aws4_request"
 
 	q := signer.Request.URL.Query()

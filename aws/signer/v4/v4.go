@@ -170,13 +170,19 @@ func (v4 *signer) buildCanonicalHeaders() {
 
 func (v4 *signer) buildCanonicalString() {
 	v4.Request.URL.RawQuery = v4.Query.Encode()
-	if v4.Request.URL.Path == "" {
-		v4.Request.URL.Path = "/"
+	uri := v4.Request.URL.Opaque
+	if uri != "" {
+		uri = "/" + strings.Join(strings.Split(uri, "/")[3:], "/")
+	} else {
+		uri = v4.Request.URL.Path
+	}
+	if uri == "" {
+		uri = "/"
 	}
 
 	v4.canonicalString = strings.Join([]string{
 		v4.Request.Method,
-		v4.Request.URL.Path,
+		uri,
 		v4.Request.URL.RawQuery,
 		v4.canonicalHeaders + "\n",
 		v4.signedHeaders,

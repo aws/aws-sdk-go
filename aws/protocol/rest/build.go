@@ -1,9 +1,13 @@
 package rest
 
 import (
+	"bytes"
 	"fmt"
 	"io"
+	"net/url"
+	"path"
 	"reflect"
+	"strconv"
 	"strings"
 
 	"github.com/awslabs/aws-sdk-go/aws"
@@ -53,20 +57,75 @@ func buildURI(r *aws.Request, v reflect.Value) {
 		if v.IsValid() {
 			uriParamReplace = fmt.Sprintf("%v", v.Interface())
 		}
-		uri = strings.Replace(uri, "{"+uriParam+"}", aws.EscapePath(uriParamReplace), -1)
-		uri = strings.Replace(uri, "{"+uriParam+"+}", uriParamReplace, -1)
+		uri = strings.Replace(uri, "{"+uriParam+"}", escapePath(uriParamReplace, true), -1)
+		uri = strings.Replace(uri, "{"+uriParam+"+}", escapePath(uriParamReplace, false), -1)
 	}
-	r.HTTPRequest.URL.Path = uri
+	updatePath(r.HTTPRequest.URL, uri)
 
 	// build query string
+	query := r.HTTPRequest.URL.Query()
 	for _, qsParam := range r.Operation.QueryParams {
 		f, ok := v.Type().FieldByName(qsParam)
 		value := reflect.Indirect(v.FieldByName(qsParam))
 		if ok && value.IsValid() {
 			param := fmt.Sprintf("%v", value.Interface())
 			if param != "" {
-				r.HTTPRequest.URL.Query().Set(f.Tag.Get("name"), param)
+				query.Set(f.Tag.Get("name"), param)
 			}
 		}
 	}
+	r.HTTPRequest.URL.RawQuery = query.Encode()
+}
+
+func updatePath(url *url.URL, urlPath string) {
+	scheme, query := url.Scheme, url.RawQuery
+
+	// clean up path
+	urlPath = path.Clean(urlPath)
+
+	// get formatted URL minus scheme so we can build this into Opaque
+	url.Scheme, url.RawQuery, url.Path = "", "", ""
+	s := url.String()
+	url.Scheme, url.RawQuery = scheme, query
+
+	// build opaque URI
+	url.Opaque = s + urlPath
+}
+
+// Whether the byte value can be sent without escaping in AWS URLs
+var noEscape [256]bool
+var noEscapeInitialized = false
+
+// initialise noEscape
+func initNoEscape() {
+	for i := range noEscape {
+		// Amazon expects every character except these escaped
+		noEscape[i] = (i >= 'A' && i <= 'Z') ||
+			(i >= 'a' && i <= 'z') ||
+			(i >= '0' && i <= '9') ||
+			i == '-' ||
+			i == '.' ||
+			i == '_' ||
+			i == '~'
+	}
+}
+
+// escapePath escapes part of a URL path in Amazon style
+func escapePath(path string, encodeSep bool) string {
+	if !noEscapeInitialized {
+		initNoEscape()
+		noEscapeInitialized = true
+	}
+
+	var buf bytes.Buffer
+	for i := 0; i < len(path); i++ {
+		c := path[i]
+		if noEscape[c] || (c == '/' && !encodeSep) {
+			buf.WriteByte(c)
+		} else {
+			buf.WriteByte('%')
+			buf.WriteString(strings.ToUpper(strconv.FormatUint(uint64(c), 16)))
+		}
+	}
+	return buf.String()
 }
