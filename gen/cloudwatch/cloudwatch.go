@@ -21,6 +21,20 @@ type CloudWatch struct {
 	client *aws.QueryClient
 }
 
+type CloudWatchAPI interface {
+	DeleteAlarms(req *DeleteAlarmsInput) (err error)
+	DescribeAlarmHistory(req *DescribeAlarmHistoryInput) (resp *DescribeAlarmHistoryOutput, err error)
+	DescribeAlarms(req *DescribeAlarmsInput) (resp *DescribeAlarmsOutput, err error)
+	DescribeAlarmsForMetric(req *DescribeAlarmsForMetricInput) (resp *DescribeAlarmsForMetricOutput, err error)
+	DisableAlarmActions(req *DisableAlarmActionsInput) (err error)
+	EnableAlarmActions(req *EnableAlarmActionsInput) (err error)
+	GetMetricStatistics(req *GetMetricStatisticsInput) (resp *GetMetricStatisticsOutput, err error)
+	ListMetrics(req *ListMetricsInput) (resp *ListMetricsOutput, err error)
+	PutMetricAlarm(req *PutMetricAlarmInput) (err error)
+	PutMetricData(req *PutMetricDataInput) (err error)
+	SetAlarmState(req *SetAlarmStateInput) (err error)
+}
+
 // New returns a new CloudWatch client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudWatch {
 	if client == nil {

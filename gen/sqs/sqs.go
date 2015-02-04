@@ -21,6 +21,26 @@ type SQS struct {
 	client *aws.QueryClient
 }
 
+type SQSAPI interface {
+	AddPermission(req *AddPermissionRequest) (err error)
+	ChangeMessageVisibility(req *ChangeMessageVisibilityRequest) (err error)
+	ChangeMessageVisibilityBatch(req *ChangeMessageVisibilityBatchRequest) (resp *ChangeMessageVisibilityBatchResult, err error)
+	CreateQueue(req *CreateQueueRequest) (resp *CreateQueueResult, err error)
+	DeleteMessage(req *DeleteMessageRequest) (err error)
+	DeleteMessageBatch(req *DeleteMessageBatchRequest) (resp *DeleteMessageBatchResult, err error)
+	DeleteQueue(req *DeleteQueueRequest) (err error)
+	GetQueueAttributes(req *GetQueueAttributesRequest) (resp *GetQueueAttributesResult, err error)
+	GetQueueURL(req *GetQueueURLRequest) (resp *GetQueueURLResult, err error)
+	ListDeadLetterSourceQueues(req *ListDeadLetterSourceQueuesRequest) (resp *ListDeadLetterSourceQueuesResult, err error)
+	ListQueues(req *ListQueuesRequest) (resp *ListQueuesResult, err error)
+	PurgeQueue(req *PurgeQueueRequest) (err error)
+	ReceiveMessage(req *ReceiveMessageRequest) (resp *ReceiveMessageResult, err error)
+	RemovePermission(req *RemovePermissionRequest) (err error)
+	SendMessage(req *SendMessageRequest) (resp *SendMessageResult, err error)
+	SendMessageBatch(req *SendMessageBatchRequest) (resp *SendMessageBatchResult, err error)
+	SetQueueAttributes(req *SetQueueAttributesRequest) (err error)
+}
+
 // New returns a new SQS client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *SQS {
 	if client == nil {

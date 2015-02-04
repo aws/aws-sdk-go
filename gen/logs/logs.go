@@ -16,6 +16,23 @@ type Logs struct {
 	client *aws.JSONClient
 }
 
+type LogsAPI interface {
+	CreateLogGroup(req *CreateLogGroupRequest) (err error)
+	CreateLogStream(req *CreateLogStreamRequest) (err error)
+	DeleteLogGroup(req *DeleteLogGroupRequest) (err error)
+	DeleteLogStream(req *DeleteLogStreamRequest) (err error)
+	DeleteMetricFilter(req *DeleteMetricFilterRequest) (err error)
+	DeleteRetentionPolicy(req *DeleteRetentionPolicyRequest) (err error)
+	DescribeLogGroups(req *DescribeLogGroupsRequest) (resp *DescribeLogGroupsResponse, err error)
+	DescribeLogStreams(req *DescribeLogStreamsRequest) (resp *DescribeLogStreamsResponse, err error)
+	DescribeMetricFilters(req *DescribeMetricFiltersRequest) (resp *DescribeMetricFiltersResponse, err error)
+	GetLogEvents(req *GetLogEventsRequest) (resp *GetLogEventsResponse, err error)
+	PutLogEvents(req *PutLogEventsRequest) (resp *PutLogEventsResponse, err error)
+	PutMetricFilter(req *PutMetricFilterRequest) (err error)
+	PutRetentionPolicy(req *PutRetentionPolicyRequest) (err error)
+	TestMetricFilter(req *TestMetricFilterRequest) (resp *TestMetricFilterResponse, err error)
+}
+
 // New returns a new Logs client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *Logs {
 	if client == nil {

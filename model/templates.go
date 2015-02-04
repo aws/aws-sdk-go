@@ -72,6 +72,12 @@ type {{ .Name }} struct {
   client *aws.JSONClient
 }
 
+type {{ .Name }}API interface {
+{{ range $name, $op := .Operations }}{{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error)
+{{ end }}
+}
+
+
 // New returns a new {{ .Name }} client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
@@ -144,6 +150,12 @@ import (
 type {{ .Name }} struct {
   client *aws.QueryClient
 }
+
+type {{ .Name }}API interface {
+{{ range $name, $op := .Operations }}{{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error)
+{{ end }}
+}
+
 
 // New returns a new {{ .Name }} client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ .Name }} {
@@ -251,6 +263,12 @@ func ec2Client(t *template.Template) (*template.Template, error) {
 type {{ .Name }} struct {
   client *aws.EC2Client
 }
+
+type {{ .Name }}API interface {
+{{ range $name, $op := .Operations }}{{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error)
+{{ end }}
+}
+
 
 // New returns a new {{ .Name }} client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ .Name }} {
@@ -511,6 +529,12 @@ type {{ .Name }} struct {
   client *aws.RestClient
 }
 
+type {{ .Name }}API interface {
+{{ range $name, $op := .Operations }}{{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error)
+{{ end }}
+}
+
+
 // New returns a new {{ .Name }} client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *{{ .Name }} {
   if client == nil {
@@ -689,6 +713,11 @@ import (
 // {{ .Name }} is a client for {{ .FullName }}.
 type {{ .Name }} struct {
   client *aws.RestClient
+}
+
+type {{ .Name }}API interface {
+{{ range $name, $op := .Operations }}{{ exportable $name }}({{ if $op.Input }}req {{ $op.Input.Type }}{{ end }}) ({{ if $op.Output }}resp {{ $op.Output.Type }},{{ end }} err error)
+{{ end }}
 }
 
 // New returns a new {{ .Name }} client.

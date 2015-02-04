@@ -21,6 +21,37 @@ type ELB struct {
 	client *aws.QueryClient
 }
 
+type ELBAPI interface {
+	AddTags(req *AddTagsInput) (resp *AddTagsOutput, err error)
+	ApplySecurityGroupsToLoadBalancer(req *ApplySecurityGroupsToLoadBalancerInput) (resp *ApplySecurityGroupsToLoadBalancerOutput, err error)
+	AttachLoadBalancerToSubnets(req *AttachLoadBalancerToSubnetsInput) (resp *AttachLoadBalancerToSubnetsOutput, err error)
+	ConfigureHealthCheck(req *ConfigureHealthCheckInput) (resp *ConfigureHealthCheckOutput, err error)
+	CreateAppCookieStickinessPolicy(req *CreateAppCookieStickinessPolicyInput) (resp *CreateAppCookieStickinessPolicyOutput, err error)
+	CreateLBCookieStickinessPolicy(req *CreateLBCookieStickinessPolicyInput) (resp *CreateLBCookieStickinessPolicyOutput, err error)
+	CreateLoadBalancer(req *CreateAccessPointInput) (resp *CreateAccessPointOutput, err error)
+	CreateLoadBalancerListeners(req *CreateLoadBalancerListenerInput) (resp *CreateLoadBalancerListenerOutput, err error)
+	CreateLoadBalancerPolicy(req *CreateLoadBalancerPolicyInput) (resp *CreateLoadBalancerPolicyOutput, err error)
+	DeleteLoadBalancer(req *DeleteAccessPointInput) (resp *DeleteAccessPointOutput, err error)
+	DeleteLoadBalancerListeners(req *DeleteLoadBalancerListenerInput) (resp *DeleteLoadBalancerListenerOutput, err error)
+	DeleteLoadBalancerPolicy(req *DeleteLoadBalancerPolicyInput) (resp *DeleteLoadBalancerPolicyOutput, err error)
+	DeregisterInstancesFromLoadBalancer(req *DeregisterEndPointsInput) (resp *DeregisterEndPointsOutput, err error)
+	DescribeInstanceHealth(req *DescribeEndPointStateInput) (resp *DescribeEndPointStateOutput, err error)
+	DescribeLoadBalancerAttributes(req *DescribeLoadBalancerAttributesInput) (resp *DescribeLoadBalancerAttributesOutput, err error)
+	DescribeLoadBalancerPolicies(req *DescribeLoadBalancerPoliciesInput) (resp *DescribeLoadBalancerPoliciesOutput, err error)
+	DescribeLoadBalancerPolicyTypes(req *DescribeLoadBalancerPolicyTypesInput) (resp *DescribeLoadBalancerPolicyTypesOutput, err error)
+	DescribeLoadBalancers(req *DescribeAccessPointsInput) (resp *DescribeAccessPointsOutput, err error)
+	DescribeTags(req *DescribeTagsInput) (resp *DescribeTagsOutput, err error)
+	DetachLoadBalancerFromSubnets(req *DetachLoadBalancerFromSubnetsInput) (resp *DetachLoadBalancerFromSubnetsOutput, err error)
+	DisableAvailabilityZonesForLoadBalancer(req *RemoveAvailabilityZonesInput) (resp *RemoveAvailabilityZonesOutput, err error)
+	EnableAvailabilityZonesForLoadBalancer(req *AddAvailabilityZonesInput) (resp *AddAvailabilityZonesOutput, err error)
+	ModifyLoadBalancerAttributes(req *ModifyLoadBalancerAttributesInput) (resp *ModifyLoadBalancerAttributesOutput, err error)
+	RegisterInstancesWithLoadBalancer(req *RegisterEndPointsInput) (resp *RegisterEndPointsOutput, err error)
+	RemoveTags(req *RemoveTagsInput) (resp *RemoveTagsOutput, err error)
+	SetLoadBalancerListenerSSLCertificate(req *SetLoadBalancerListenerSSLCertificateInput) (resp *SetLoadBalancerListenerSSLCertificateOutput, err error)
+	SetLoadBalancerPoliciesForBackendServer(req *SetLoadBalancerPoliciesForBackendServerInput) (resp *SetLoadBalancerPoliciesForBackendServerOutput, err error)
+	SetLoadBalancerPoliciesOfListener(req *SetLoadBalancerPoliciesOfListenerInput) (resp *SetLoadBalancerPoliciesOfListenerOutput, err error)
+}
+
 // New returns a new ELB client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *ELB {
 	if client == nil {

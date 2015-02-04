@@ -16,6 +16,34 @@ type CodeDeploy struct {
 	client *aws.JSONClient
 }
 
+type CodeDeployAPI interface {
+	BatchGetApplications(req *BatchGetApplicationsInput) (resp *BatchGetApplicationsOutput, err error)
+	BatchGetDeployments(req *BatchGetDeploymentsInput) (resp *BatchGetDeploymentsOutput, err error)
+	CreateApplication(req *CreateApplicationInput) (resp *CreateApplicationOutput, err error)
+	CreateDeployment(req *CreateDeploymentInput) (resp *CreateDeploymentOutput, err error)
+	CreateDeploymentConfig(req *CreateDeploymentConfigInput) (resp *CreateDeploymentConfigOutput, err error)
+	CreateDeploymentGroup(req *CreateDeploymentGroupInput) (resp *CreateDeploymentGroupOutput, err error)
+	DeleteApplication(req *DeleteApplicationInput) (err error)
+	DeleteDeploymentConfig(req *DeleteDeploymentConfigInput) (err error)
+	DeleteDeploymentGroup(req *DeleteDeploymentGroupInput) (resp *DeleteDeploymentGroupOutput, err error)
+	GetApplication(req *GetApplicationInput) (resp *GetApplicationOutput, err error)
+	GetApplicationRevision(req *GetApplicationRevisionInput) (resp *GetApplicationRevisionOutput, err error)
+	GetDeployment(req *GetDeploymentInput) (resp *GetDeploymentOutput, err error)
+	GetDeploymentConfig(req *GetDeploymentConfigInput) (resp *GetDeploymentConfigOutput, err error)
+	GetDeploymentGroup(req *GetDeploymentGroupInput) (resp *GetDeploymentGroupOutput, err error)
+	GetDeploymentInstance(req *GetDeploymentInstanceInput) (resp *GetDeploymentInstanceOutput, err error)
+	ListApplicationRevisions(req *ListApplicationRevisionsInput) (resp *ListApplicationRevisionsOutput, err error)
+	ListApplications(req *ListApplicationsInput) (resp *ListApplicationsOutput, err error)
+	ListDeploymentConfigs(req *ListDeploymentConfigsInput) (resp *ListDeploymentConfigsOutput, err error)
+	ListDeploymentGroups(req *ListDeploymentGroupsInput) (resp *ListDeploymentGroupsOutput, err error)
+	ListDeploymentInstances(req *ListDeploymentInstancesInput) (resp *ListDeploymentInstancesOutput, err error)
+	ListDeployments(req *ListDeploymentsInput) (resp *ListDeploymentsOutput, err error)
+	RegisterApplicationRevision(req *RegisterApplicationRevisionInput) (err error)
+	StopDeployment(req *StopDeploymentInput) (resp *StopDeploymentOutput, err error)
+	UpdateApplication(req *UpdateApplicationInput) (err error)
+	UpdateDeploymentGroup(req *UpdateDeploymentGroupInput) (resp *UpdateDeploymentGroupOutput, err error)
+}
+
 // New returns a new CodeDeploy client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *CodeDeploy {
 	if client == nil {

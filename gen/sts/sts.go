@@ -21,6 +21,15 @@ type STS struct {
 	client *aws.QueryClient
 }
 
+type STSAPI interface {
+	AssumeRole(req *AssumeRoleRequest) (resp *AssumeRoleResponse, err error)
+	AssumeRoleWithSAML(req *AssumeRoleWithSAMLRequest) (resp *AssumeRoleWithSAMLResponse, err error)
+	AssumeRoleWithWebIdentity(req *AssumeRoleWithWebIdentityRequest) (resp *AssumeRoleWithWebIdentityResponse, err error)
+	DecodeAuthorizationMessage(req *DecodeAuthorizationMessageRequest) (resp *DecodeAuthorizationMessageResponse, err error)
+	GetFederationToken(req *GetFederationTokenRequest) (resp *GetFederationTokenResponse, err error)
+	GetSessionToken(req *GetSessionTokenRequest) (resp *GetSessionTokenResponse, err error)
+}
+
 // New returns a new STS client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *STS {
 	if client == nil {

@@ -16,6 +16,26 @@ type EMR struct {
 	client *aws.JSONClient
 }
 
+type EMRAPI interface {
+	AddInstanceGroups(req *AddInstanceGroupsInput) (resp *AddInstanceGroupsOutput, err error)
+	AddJobFlowSteps(req *AddJobFlowStepsInput) (resp *AddJobFlowStepsOutput, err error)
+	AddTags(req *AddTagsInput) (resp *AddTagsOutput, err error)
+	DescribeCluster(req *DescribeClusterInput) (resp *DescribeClusterOutput, err error)
+	DescribeJobFlows(req *DescribeJobFlowsInput) (resp *DescribeJobFlowsOutput, err error)
+	DescribeStep(req *DescribeStepInput) (resp *DescribeStepOutput, err error)
+	ListBootstrapActions(req *ListBootstrapActionsInput) (resp *ListBootstrapActionsOutput, err error)
+	ListClusters(req *ListClustersInput) (resp *ListClustersOutput, err error)
+	ListInstanceGroups(req *ListInstanceGroupsInput) (resp *ListInstanceGroupsOutput, err error)
+	ListInstances(req *ListInstancesInput) (resp *ListInstancesOutput, err error)
+	ListSteps(req *ListStepsInput) (resp *ListStepsOutput, err error)
+	ModifyInstanceGroups(req *ModifyInstanceGroupsInput) (err error)
+	RemoveTags(req *RemoveTagsInput) (resp *RemoveTagsOutput, err error)
+	RunJobFlow(req *RunJobFlowInput) (resp *RunJobFlowOutput, err error)
+	SetTerminationProtection(req *SetTerminationProtectionInput) (err error)
+	SetVisibleToAllUsers(req *SetVisibleToAllUsersInput) (err error)
+	TerminateJobFlows(req *TerminateJobFlowsInput) (err error)
+}
+
 // New returns a new EMR client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *EMR {
 	if client == nil {

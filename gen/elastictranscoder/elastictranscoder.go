@@ -27,6 +27,26 @@ type ElasticTranscoder struct {
 	client *aws.RestClient
 }
 
+type ElasticTranscoderAPI interface {
+	CancelJob(req *CancelJobRequest) (resp *CancelJobResponse, err error)
+	CreateJob(req *CreateJobRequest) (resp *CreateJobResponse, err error)
+	CreatePipeline(req *CreatePipelineRequest) (resp *CreatePipelineResponse, err error)
+	CreatePreset(req *CreatePresetRequest) (resp *CreatePresetResponse, err error)
+	DeletePipeline(req *DeletePipelineRequest) (resp *DeletePipelineResponse, err error)
+	DeletePreset(req *DeletePresetRequest) (resp *DeletePresetResponse, err error)
+	ListJobsByPipeline(req *ListJobsByPipelineRequest) (resp *ListJobsByPipelineResponse, err error)
+	ListJobsByStatus(req *ListJobsByStatusRequest) (resp *ListJobsByStatusResponse, err error)
+	ListPipelines(req *ListPipelinesRequest) (resp *ListPipelinesResponse, err error)
+	ListPresets(req *ListPresetsRequest) (resp *ListPresetsResponse, err error)
+	ReadJob(req *ReadJobRequest) (resp *ReadJobResponse, err error)
+	ReadPipeline(req *ReadPipelineRequest) (resp *ReadPipelineResponse, err error)
+	ReadPreset(req *ReadPresetRequest) (resp *ReadPresetResponse, err error)
+	TestRole(req *TestRoleRequest) (resp *TestRoleResponse, err error)
+	UpdatePipeline(req *UpdatePipelineRequest) (resp *UpdatePipelineResponse, err error)
+	UpdatePipelineNotifications(req *UpdatePipelineNotificationsRequest) (resp *UpdatePipelineNotificationsResponse, err error)
+	UpdatePipelineStatus(req *UpdatePipelineStatusRequest) (resp *UpdatePipelineStatusResponse, err error)
+}
+
 // New returns a new ElasticTranscoder client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *ElasticTranscoder {
 	if client == nil {

@@ -27,6 +27,30 @@ type Glacier struct {
 	client *aws.RestClient
 }
 
+type GlacierAPI interface {
+	AbortMultipartUpload(req *AbortMultipartUploadInput) (err error)
+	CompleteMultipartUpload(req *CompleteMultipartUploadInput) (resp *ArchiveCreationOutput, err error)
+	CreateVault(req *CreateVaultInput) (resp *CreateVaultOutput, err error)
+	DeleteArchive(req *DeleteArchiveInput) (err error)
+	DeleteVault(req *DeleteVaultInput) (err error)
+	DeleteVaultNotifications(req *DeleteVaultNotificationsInput) (err error)
+	DescribeJob(req *DescribeJobInput) (resp *GlacierJobDescription, err error)
+	DescribeVault(req *DescribeVaultInput) (resp *DescribeVaultOutput, err error)
+	GetDataRetrievalPolicy(req *GetDataRetrievalPolicyInput) (resp *GetDataRetrievalPolicyOutput, err error)
+	GetJobOutput(req *GetJobOutputInput) (resp *GetJobOutputOutput, err error)
+	GetVaultNotifications(req *GetVaultNotificationsInput) (resp *GetVaultNotificationsOutput, err error)
+	InitiateJob(req *InitiateJobInput) (resp *InitiateJobOutput, err error)
+	InitiateMultipartUpload(req *InitiateMultipartUploadInput) (resp *InitiateMultipartUploadOutput, err error)
+	ListJobs(req *ListJobsInput) (resp *ListJobsOutput, err error)
+	ListMultipartUploads(req *ListMultipartUploadsInput) (resp *ListMultipartUploadsOutput, err error)
+	ListParts(req *ListPartsInput) (resp *ListPartsOutput, err error)
+	ListVaults(req *ListVaultsInput) (resp *ListVaultsOutput, err error)
+	SetDataRetrievalPolicy(req *SetDataRetrievalPolicyInput) (err error)
+	SetVaultNotifications(req *SetVaultNotificationsInput) (err error)
+	UploadArchive(req *UploadArchiveInput) (resp *ArchiveCreationOutput, err error)
+	UploadMultipartPart(req *UploadMultipartPartInput) (resp *UploadMultipartPartOutput, err error)
+}
+
 // New returns a new Glacier client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *Glacier {
 	if client == nil {

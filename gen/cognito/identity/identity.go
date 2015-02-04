@@ -16,6 +16,26 @@ type CognitoIdentity struct {
 	client *aws.JSONClient
 }
 
+type CognitoIdentityAPI interface {
+	CreateIdentityPool(req *CreateIdentityPoolInput) (resp *IdentityPool, err error)
+	DeleteIdentityPool(req *DeleteIdentityPoolInput) (err error)
+	DescribeIdentity(req *DescribeIdentityInput) (resp *IdentityDescription, err error)
+	DescribeIdentityPool(req *DescribeIdentityPoolInput) (resp *IdentityPool, err error)
+	GetCredentialsForIdentity(req *GetCredentialsForIdentityInput) (resp *GetCredentialsForIdentityResponse, err error)
+	GetID(req *GetIDInput) (resp *GetIDResponse, err error)
+	GetIdentityPoolRoles(req *GetIdentityPoolRolesInput) (resp *GetIdentityPoolRolesResponse, err error)
+	GetOpenIDToken(req *GetOpenIDTokenInput) (resp *GetOpenIDTokenResponse, err error)
+	GetOpenIDTokenForDeveloperIdentity(req *GetOpenIDTokenForDeveloperIdentityInput) (resp *GetOpenIDTokenForDeveloperIdentityResponse, err error)
+	ListIdentities(req *ListIdentitiesInput) (resp *ListIdentitiesResponse, err error)
+	ListIdentityPools(req *ListIdentityPoolsInput) (resp *ListIdentityPoolsResponse, err error)
+	LookupDeveloperIdentity(req *LookupDeveloperIdentityInput) (resp *LookupDeveloperIdentityResponse, err error)
+	MergeDeveloperIdentities(req *MergeDeveloperIdentitiesInput) (resp *MergeDeveloperIdentitiesResponse, err error)
+	SetIdentityPoolRoles(req *SetIdentityPoolRolesInput) (err error)
+	UnlinkDeveloperIdentity(req *UnlinkDeveloperIdentityInput) (err error)
+	UnlinkIdentity(req *UnlinkIdentityInput) (err error)
+	UpdateIdentityPool(req *IdentityPool) (resp *IdentityPool, err error)
+}
+
 // New returns a new CognitoIdentity client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *CognitoIdentity {
 	if client == nil {

@@ -21,6 +21,29 @@ type ECS struct {
 	client *aws.QueryClient
 }
 
+type ECSAPI interface {
+	CreateCluster(req *CreateClusterRequest) (resp *CreateClusterResponse, err error)
+	DeleteCluster(req *DeleteClusterRequest) (resp *DeleteClusterResponse, err error)
+	DeregisterContainerInstance(req *DeregisterContainerInstanceRequest) (resp *DeregisterContainerInstanceResponse, err error)
+	DeregisterTaskDefinition(req *DeregisterTaskDefinitionRequest) (resp *DeregisterTaskDefinitionResponse, err error)
+	DescribeClusters(req *DescribeClustersRequest) (resp *DescribeClustersResponse, err error)
+	DescribeContainerInstances(req *DescribeContainerInstancesRequest) (resp *DescribeContainerInstancesResponse, err error)
+	DescribeTaskDefinition(req *DescribeTaskDefinitionRequest) (resp *DescribeTaskDefinitionResponse, err error)
+	DescribeTasks(req *DescribeTasksRequest) (resp *DescribeTasksResponse, err error)
+	DiscoverPollEndpoint(req *DiscoverPollEndpointRequest) (resp *DiscoverPollEndpointResponse, err error)
+	ListClusters(req *ListClustersRequest) (resp *ListClustersResponse, err error)
+	ListContainerInstances(req *ListContainerInstancesRequest) (resp *ListContainerInstancesResponse, err error)
+	ListTaskDefinitions(req *ListTaskDefinitionsRequest) (resp *ListTaskDefinitionsResponse, err error)
+	ListTasks(req *ListTasksRequest) (resp *ListTasksResponse, err error)
+	RegisterContainerInstance(req *RegisterContainerInstanceRequest) (resp *RegisterContainerInstanceResponse, err error)
+	RegisterTaskDefinition(req *RegisterTaskDefinitionRequest) (resp *RegisterTaskDefinitionResponse, err error)
+	RunTask(req *RunTaskRequest) (resp *RunTaskResponse, err error)
+	StartTask(req *StartTaskRequest) (resp *StartTaskResponse, err error)
+	StopTask(req *StopTaskRequest) (resp *StopTaskResponse, err error)
+	SubmitContainerStateChange(req *SubmitContainerStateChangeRequest) (resp *SubmitContainerStateChangeResponse, err error)
+	SubmitTaskStateChange(req *SubmitTaskStateChangeRequest) (resp *SubmitTaskStateChangeResponse, err error)
+}
+
 // New returns a new ECS client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *ECS {
 	if client == nil {

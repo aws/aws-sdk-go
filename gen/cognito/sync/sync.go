@@ -27,6 +27,22 @@ type CognitoSync struct {
 	client *aws.RestClient
 }
 
+type CognitoSyncAPI interface {
+	DeleteDataset(req *DeleteDatasetRequest) (resp *DeleteDatasetResponse, err error)
+	DescribeDataset(req *DescribeDatasetRequest) (resp *DescribeDatasetResponse, err error)
+	DescribeIdentityPoolUsage(req *DescribeIdentityPoolUsageRequest) (resp *DescribeIdentityPoolUsageResponse, err error)
+	DescribeIdentityUsage(req *DescribeIdentityUsageRequest) (resp *DescribeIdentityUsageResponse, err error)
+	GetIdentityPoolConfiguration(req *GetIdentityPoolConfigurationRequest) (resp *GetIdentityPoolConfigurationResponse, err error)
+	ListDatasets(req *ListDatasetsRequest) (resp *ListDatasetsResponse, err error)
+	ListIdentityPoolUsage(req *ListIdentityPoolUsageRequest) (resp *ListIdentityPoolUsageResponse, err error)
+	ListRecords(req *ListRecordsRequest) (resp *ListRecordsResponse, err error)
+	RegisterDevice(req *RegisterDeviceRequest) (resp *RegisterDeviceResponse, err error)
+	SetIdentityPoolConfiguration(req *SetIdentityPoolConfigurationRequest) (resp *SetIdentityPoolConfigurationResponse, err error)
+	SubscribeToDataset(req *SubscribeToDatasetRequest) (resp *SubscribeToDatasetResponse, err error)
+	UnsubscribeFromDataset(req *UnsubscribeFromDatasetRequest) (resp *UnsubscribeFromDatasetResponse, err error)
+	UpdateRecords(req *UpdateRecordsRequest) (resp *UpdateRecordsResponse, err error)
+}
+
 // New returns a new CognitoSync client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *CognitoSync {
 	if client == nil {

@@ -21,6 +21,43 @@ type ElasticCache struct {
 	client *aws.QueryClient
 }
 
+type ElasticCacheAPI interface {
+	AuthorizeCacheSecurityGroupIngress(req *AuthorizeCacheSecurityGroupIngressMessage) (resp *AuthorizeCacheSecurityGroupIngressResult, err error)
+	CopySnapshot(req *CopySnapshotMessage) (resp *CopySnapshotResult, err error)
+	CreateCacheCluster(req *CreateCacheClusterMessage) (resp *CreateCacheClusterResult, err error)
+	CreateCacheParameterGroup(req *CreateCacheParameterGroupMessage) (resp *CreateCacheParameterGroupResult, err error)
+	CreateCacheSecurityGroup(req *CreateCacheSecurityGroupMessage) (resp *CreateCacheSecurityGroupResult, err error)
+	CreateCacheSubnetGroup(req *CreateCacheSubnetGroupMessage) (resp *CreateCacheSubnetGroupResult, err error)
+	CreateReplicationGroup(req *CreateReplicationGroupMessage) (resp *CreateReplicationGroupResult, err error)
+	CreateSnapshot(req *CreateSnapshotMessage) (resp *CreateSnapshotResult, err error)
+	DeleteCacheCluster(req *DeleteCacheClusterMessage) (resp *DeleteCacheClusterResult, err error)
+	DeleteCacheParameterGroup(req *DeleteCacheParameterGroupMessage) (err error)
+	DeleteCacheSecurityGroup(req *DeleteCacheSecurityGroupMessage) (err error)
+	DeleteCacheSubnetGroup(req *DeleteCacheSubnetGroupMessage) (err error)
+	DeleteReplicationGroup(req *DeleteReplicationGroupMessage) (resp *DeleteReplicationGroupResult, err error)
+	DeleteSnapshot(req *DeleteSnapshotMessage) (resp *DeleteSnapshotResult, err error)
+	DescribeCacheClusters(req *DescribeCacheClustersMessage) (resp *CacheClusterMessage, err error)
+	DescribeCacheEngineVersions(req *DescribeCacheEngineVersionsMessage) (resp *CacheEngineVersionMessage, err error)
+	DescribeCacheParameterGroups(req *DescribeCacheParameterGroupsMessage) (resp *CacheParameterGroupsMessage, err error)
+	DescribeCacheParameters(req *DescribeCacheParametersMessage) (resp *CacheParameterGroupDetails, err error)
+	DescribeCacheSecurityGroups(req *DescribeCacheSecurityGroupsMessage) (resp *CacheSecurityGroupMessage, err error)
+	DescribeCacheSubnetGroups(req *DescribeCacheSubnetGroupsMessage) (resp *CacheSubnetGroupMessage, err error)
+	DescribeEngineDefaultParameters(req *DescribeEngineDefaultParametersMessage) (resp *DescribeEngineDefaultParametersResult, err error)
+	DescribeEvents(req *DescribeEventsMessage) (resp *EventsMessage, err error)
+	DescribeReplicationGroups(req *DescribeReplicationGroupsMessage) (resp *ReplicationGroupMessage, err error)
+	DescribeReservedCacheNodes(req *DescribeReservedCacheNodesMessage) (resp *ReservedCacheNodeMessage, err error)
+	DescribeReservedCacheNodesOfferings(req *DescribeReservedCacheNodesOfferingsMessage) (resp *ReservedCacheNodesOfferingMessage, err error)
+	DescribeSnapshots(req *DescribeSnapshotsMessage) (resp *DescribeSnapshotsListMessage, err error)
+	ModifyCacheCluster(req *ModifyCacheClusterMessage) (resp *ModifyCacheClusterResult, err error)
+	ModifyCacheParameterGroup(req *ModifyCacheParameterGroupMessage) (resp *CacheParameterGroupNameMessage, err error)
+	ModifyCacheSubnetGroup(req *ModifyCacheSubnetGroupMessage) (resp *ModifyCacheSubnetGroupResult, err error)
+	ModifyReplicationGroup(req *ModifyReplicationGroupMessage) (resp *ModifyReplicationGroupResult, err error)
+	PurchaseReservedCacheNodesOffering(req *PurchaseReservedCacheNodesOfferingMessage) (resp *PurchaseReservedCacheNodesOfferingResult, err error)
+	RebootCacheCluster(req *RebootCacheClusterMessage) (resp *RebootCacheClusterResult, err error)
+	ResetCacheParameterGroup(req *ResetCacheParameterGroupMessage) (resp *CacheParameterGroupNameMessage, err error)
+	RevokeCacheSecurityGroupIngress(req *RevokeCacheSecurityGroupIngressMessage) (resp *RevokeCacheSecurityGroupIngressResult, err error)
+}
+
 // New returns a new ElasticCache client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *ElasticCache {
 	if client == nil {

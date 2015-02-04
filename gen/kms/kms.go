@@ -16,6 +16,34 @@ type KMS struct {
 	client *aws.JSONClient
 }
 
+type KMSAPI interface {
+	CreateAlias(req *CreateAliasRequest) (err error)
+	CreateGrant(req *CreateGrantRequest) (resp *CreateGrantResponse, err error)
+	CreateKey(req *CreateKeyRequest) (resp *CreateKeyResponse, err error)
+	Decrypt(req *DecryptRequest) (resp *DecryptResponse, err error)
+	DeleteAlias(req *DeleteAliasRequest) (err error)
+	DescribeKey(req *DescribeKeyRequest) (resp *DescribeKeyResponse, err error)
+	DisableKey(req *DisableKeyRequest) (err error)
+	DisableKeyRotation(req *DisableKeyRotationRequest) (err error)
+	EnableKey(req *EnableKeyRequest) (err error)
+	EnableKeyRotation(req *EnableKeyRotationRequest) (err error)
+	Encrypt(req *EncryptRequest) (resp *EncryptResponse, err error)
+	GenerateDataKey(req *GenerateDataKeyRequest) (resp *GenerateDataKeyResponse, err error)
+	GenerateDataKeyWithoutPlaintext(req *GenerateDataKeyWithoutPlaintextRequest) (resp *GenerateDataKeyWithoutPlaintextResponse, err error)
+	GenerateRandom(req *GenerateRandomRequest) (resp *GenerateRandomResponse, err error)
+	GetKeyPolicy(req *GetKeyPolicyRequest) (resp *GetKeyPolicyResponse, err error)
+	GetKeyRotationStatus(req *GetKeyRotationStatusRequest) (resp *GetKeyRotationStatusResponse, err error)
+	ListAliases(req *ListAliasesRequest) (resp *ListAliasesResponse, err error)
+	ListGrants(req *ListGrantsRequest) (resp *ListGrantsResponse, err error)
+	ListKeyPolicies(req *ListKeyPoliciesRequest) (resp *ListKeyPoliciesResponse, err error)
+	ListKeys(req *ListKeysRequest) (resp *ListKeysResponse, err error)
+	PutKeyPolicy(req *PutKeyPolicyRequest) (err error)
+	ReEncrypt(req *ReEncryptRequest) (resp *ReEncryptResponse, err error)
+	RetireGrant(req *RetireGrantRequest) (err error)
+	RevokeGrant(req *RevokeGrantRequest) (err error)
+	UpdateKeyDescription(req *UpdateKeyDescriptionRequest) (err error)
+}
+
 // New returns a new KMS client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *KMS {
 	if client == nil {

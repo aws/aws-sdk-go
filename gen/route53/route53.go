@@ -27,6 +27,37 @@ type Route53 struct {
 	client *aws.RestClient
 }
 
+type Route53API interface {
+	AssociateVPCWithHostedZone(req *AssociateVPCWithHostedZoneRequest) (resp *AssociateVPCWithHostedZoneResponse, err error)
+	ChangeResourceRecordSets(req *ChangeResourceRecordSetsRequest) (resp *ChangeResourceRecordSetsResponse, err error)
+	ChangeTagsForResource(req *ChangeTagsForResourceRequest) (resp *ChangeTagsForResourceResponse, err error)
+	CreateHealthCheck(req *CreateHealthCheckRequest) (resp *CreateHealthCheckResponse, err error)
+	CreateHostedZone(req *CreateHostedZoneRequest) (resp *CreateHostedZoneResponse, err error)
+	CreateReusableDelegationSet(req *CreateReusableDelegationSetRequest) (resp *CreateReusableDelegationSetResponse, err error)
+	DeleteHealthCheck(req *DeleteHealthCheckRequest) (resp *DeleteHealthCheckResponse, err error)
+	DeleteHostedZone(req *DeleteHostedZoneRequest) (resp *DeleteHostedZoneResponse, err error)
+	DeleteReusableDelegationSet(req *DeleteReusableDelegationSetRequest) (resp *DeleteReusableDelegationSetResponse, err error)
+	DisassociateVPCFromHostedZone(req *DisassociateVPCFromHostedZoneRequest) (resp *DisassociateVPCFromHostedZoneResponse, err error)
+	GetChange(req *GetChangeRequest) (resp *GetChangeResponse, err error)
+	GetCheckerIPRanges(req *GetCheckerIPRangesRequest) (resp *GetCheckerIPRangesResponse, err error)
+	GetGeoLocation(req *GetGeoLocationRequest) (resp *GetGeoLocationResponse, err error)
+	GetHealthCheck(req *GetHealthCheckRequest) (resp *GetHealthCheckResponse, err error)
+	GetHealthCheckCount(req *GetHealthCheckCountRequest) (resp *GetHealthCheckCountResponse, err error)
+	GetHealthCheckLastFailureReason(req *GetHealthCheckLastFailureReasonRequest) (resp *GetHealthCheckLastFailureReasonResponse, err error)
+	GetHealthCheckStatus(req *GetHealthCheckStatusRequest) (resp *GetHealthCheckStatusResponse, err error)
+	GetHostedZone(req *GetHostedZoneRequest) (resp *GetHostedZoneResponse, err error)
+	GetReusableDelegationSet(req *GetReusableDelegationSetRequest) (resp *GetReusableDelegationSetResponse, err error)
+	ListGeoLocations(req *ListGeoLocationsRequest) (resp *ListGeoLocationsResponse, err error)
+	ListHealthChecks(req *ListHealthChecksRequest) (resp *ListHealthChecksResponse, err error)
+	ListHostedZones(req *ListHostedZonesRequest) (resp *ListHostedZonesResponse, err error)
+	ListResourceRecordSets(req *ListResourceRecordSetsRequest) (resp *ListResourceRecordSetsResponse, err error)
+	ListReusableDelegationSets(req *ListReusableDelegationSetsRequest) (resp *ListReusableDelegationSetsResponse, err error)
+	ListTagsForResource(req *ListTagsForResourceRequest) (resp *ListTagsForResourceResponse, err error)
+	ListTagsForResources(req *ListTagsForResourcesRequest) (resp *ListTagsForResourcesResponse, err error)
+	UpdateHealthCheck(req *UpdateHealthCheckRequest) (resp *UpdateHealthCheckResponse, err error)
+	UpdateHostedZoneComment(req *UpdateHostedZoneCommentRequest) (resp *UpdateHostedZoneCommentResponse, err error)
+}
+
 // New returns a new Route53 client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *Route53 {
 	if client == nil {

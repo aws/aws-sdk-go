@@ -21,6 +21,26 @@ type CloudFormation struct {
 	client *aws.QueryClient
 }
 
+type CloudFormationAPI interface {
+	CancelUpdateStack(req *CancelUpdateStackInput) (err error)
+	CreateStack(req *CreateStackInput) (resp *CreateStackOutput, err error)
+	DeleteStack(req *DeleteStackInput) (err error)
+	DescribeStackEvents(req *DescribeStackEventsInput) (resp *DescribeStackEventsOutput, err error)
+	DescribeStackResource(req *DescribeStackResourceInput) (resp *DescribeStackResourceOutput, err error)
+	DescribeStackResources(req *DescribeStackResourcesInput) (resp *DescribeStackResourcesOutput, err error)
+	DescribeStacks(req *DescribeStacksInput) (resp *DescribeStacksOutput, err error)
+	EstimateTemplateCost(req *EstimateTemplateCostInput) (resp *EstimateTemplateCostOutput, err error)
+	GetStackPolicy(req *GetStackPolicyInput) (resp *GetStackPolicyOutput, err error)
+	GetTemplate(req *GetTemplateInput) (resp *GetTemplateOutput, err error)
+	GetTemplateSummary(req *GetTemplateSummaryInput) (resp *GetTemplateSummaryOutput, err error)
+	ListStackResources(req *ListStackResourcesInput) (resp *ListStackResourcesOutput, err error)
+	ListStacks(req *ListStacksInput) (resp *ListStacksOutput, err error)
+	SetStackPolicy(req *SetStackPolicyInput) (err error)
+	SignalResource(req *SignalResourceInput) (err error)
+	UpdateStack(req *UpdateStackInput) (resp *UpdateStackOutput, err error)
+	ValidateTemplate(req *ValidateTemplateInput) (resp *ValidateTemplateOutput, err error)
+}
+
 // New returns a new CloudFormation client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *CloudFormation {
 	if client == nil {

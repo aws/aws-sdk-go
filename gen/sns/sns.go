@@ -21,6 +21,34 @@ type SNS struct {
 	client *aws.QueryClient
 }
 
+type SNSAPI interface {
+	AddPermission(req *AddPermissionInput) (err error)
+	ConfirmSubscription(req *ConfirmSubscriptionInput) (resp *ConfirmSubscriptionResponse, err error)
+	CreatePlatformApplication(req *CreatePlatformApplicationInput) (resp *CreatePlatformApplicationResponse, err error)
+	CreatePlatformEndpoint(req *CreatePlatformEndpointInput) (resp *CreateEndpointResponse, err error)
+	CreateTopic(req *CreateTopicInput) (resp *CreateTopicResponse, err error)
+	DeleteEndpoint(req *DeleteEndpointInput) (err error)
+	DeletePlatformApplication(req *DeletePlatformApplicationInput) (err error)
+	DeleteTopic(req *DeleteTopicInput) (err error)
+	GetEndpointAttributes(req *GetEndpointAttributesInput) (resp *GetEndpointAttributesResponse, err error)
+	GetPlatformApplicationAttributes(req *GetPlatformApplicationAttributesInput) (resp *GetPlatformApplicationAttributesResponse, err error)
+	GetSubscriptionAttributes(req *GetSubscriptionAttributesInput) (resp *GetSubscriptionAttributesResponse, err error)
+	GetTopicAttributes(req *GetTopicAttributesInput) (resp *GetTopicAttributesResponse, err error)
+	ListEndpointsByPlatformApplication(req *ListEndpointsByPlatformApplicationInput) (resp *ListEndpointsByPlatformApplicationResponse, err error)
+	ListPlatformApplications(req *ListPlatformApplicationsInput) (resp *ListPlatformApplicationsResponse, err error)
+	ListSubscriptions(req *ListSubscriptionsInput) (resp *ListSubscriptionsResponse, err error)
+	ListSubscriptionsByTopic(req *ListSubscriptionsByTopicInput) (resp *ListSubscriptionsByTopicResponse, err error)
+	ListTopics(req *ListTopicsInput) (resp *ListTopicsResponse, err error)
+	Publish(req *PublishInput) (resp *PublishResponse, err error)
+	RemovePermission(req *RemovePermissionInput) (err error)
+	SetEndpointAttributes(req *SetEndpointAttributesInput) (err error)
+	SetPlatformApplicationAttributes(req *SetPlatformApplicationAttributesInput) (err error)
+	SetSubscriptionAttributes(req *SetSubscriptionAttributesInput) (err error)
+	SetTopicAttributes(req *SetTopicAttributesInput) (err error)
+	Subscribe(req *SubscribeInput) (resp *SubscribeResponse, err error)
+	Unsubscribe(req *UnsubscribeInput) (err error)
+}
+
 // New returns a new SNS client.
 func New(creds aws.CredentialsProvider, region string, client *http.Client) *SNS {
 	if client == nil {
