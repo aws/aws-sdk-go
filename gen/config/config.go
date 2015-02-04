@@ -162,38 +162,38 @@ const (
 
 // ConfigExportDeliveryInfo is undocumented.
 type ConfigExportDeliveryInfo struct {
-	LastAttemptTime    time.Time       `json:"lastAttemptTime,omitempty"`
-	LastErrorCode      aws.StringValue `json:"lastErrorCode,omitempty"`
-	LastErrorMessage   aws.StringValue `json:"lastErrorMessage,omitempty"`
-	LastStatus         aws.StringValue `json:"lastStatus,omitempty"`
-	LastSuccessfulTime time.Time       `json:"lastSuccessfulTime,omitempty"`
+	LastAttemptTime    *aws.UnixTimestamp `json:"lastAttemptTime,omitempty"`
+	LastErrorCode      aws.StringValue    `json:"lastErrorCode,omitempty"`
+	LastErrorMessage   aws.StringValue    `json:"lastErrorMessage,omitempty"`
+	LastStatus         aws.StringValue    `json:"lastStatus,omitempty"`
+	LastSuccessfulTime *aws.UnixTimestamp `json:"lastSuccessfulTime,omitempty"`
 }
 
 // ConfigStreamDeliveryInfo is undocumented.
 type ConfigStreamDeliveryInfo struct {
-	LastErrorCode        aws.StringValue `json:"lastErrorCode,omitempty"`
-	LastErrorMessage     aws.StringValue `json:"lastErrorMessage,omitempty"`
-	LastStatus           aws.StringValue `json:"lastStatus,omitempty"`
-	LastStatusChangeTime time.Time       `json:"lastStatusChangeTime,omitempty"`
+	LastErrorCode        aws.StringValue    `json:"lastErrorCode,omitempty"`
+	LastErrorMessage     aws.StringValue    `json:"lastErrorMessage,omitempty"`
+	LastStatus           aws.StringValue    `json:"lastStatus,omitempty"`
+	LastStatusChangeTime *aws.UnixTimestamp `json:"lastStatusChangeTime,omitempty"`
 }
 
 // ConfigurationItem is undocumented.
 type ConfigurationItem struct {
-	AccountID                    aws.StringValue   `json:"accountId,omitempty"`
-	ARN                          aws.StringValue   `json:"arn,omitempty"`
-	AvailabilityZone             aws.StringValue   `json:"availabilityZone,omitempty"`
-	Configuration                aws.StringValue   `json:"configuration,omitempty"`
-	ConfigurationItemCaptureTime time.Time         `json:"configurationItemCaptureTime,omitempty"`
-	ConfigurationItemMD5Hash     aws.StringValue   `json:"configurationItemMD5Hash,omitempty"`
-	ConfigurationItemStatus      aws.StringValue   `json:"configurationItemStatus,omitempty"`
-	ConfigurationStateID         aws.StringValue   `json:"configurationStateId,omitempty"`
-	RelatedEvents                []string          `json:"relatedEvents,omitempty"`
-	Relationships                []Relationship    `json:"relationships,omitempty"`
-	ResourceCreationTime         time.Time         `json:"resourceCreationTime,omitempty"`
-	ResourceID                   aws.StringValue   `json:"resourceId,omitempty"`
-	ResourceType                 aws.StringValue   `json:"resourceType,omitempty"`
-	Tags                         map[string]string `json:"tags,omitempty"`
-	Version                      aws.StringValue   `json:"version,omitempty"`
+	AccountID                    aws.StringValue    `json:"accountId,omitempty"`
+	ARN                          aws.StringValue    `json:"arn,omitempty"`
+	AvailabilityZone             aws.StringValue    `json:"availabilityZone,omitempty"`
+	Configuration                aws.StringValue    `json:"configuration,omitempty"`
+	ConfigurationItemCaptureTime *aws.UnixTimestamp `json:"configurationItemCaptureTime,omitempty"`
+	ConfigurationItemMD5Hash     aws.StringValue    `json:"configurationItemMD5Hash,omitempty"`
+	ConfigurationItemStatus      aws.StringValue    `json:"configurationItemStatus,omitempty"`
+	ConfigurationStateID         aws.StringValue    `json:"configurationStateId,omitempty"`
+	RelatedEvents                []string           `json:"relatedEvents,omitempty"`
+	Relationships                []Relationship     `json:"relationships,omitempty"`
+	ResourceCreationTime         *aws.UnixTimestamp `json:"resourceCreationTime,omitempty"`
+	ResourceID                   aws.StringValue    `json:"resourceId,omitempty"`
+	ResourceType                 aws.StringValue    `json:"resourceType,omitempty"`
+	Tags                         map[string]string  `json:"tags,omitempty"`
+	Version                      aws.StringValue    `json:"version,omitempty"`
 }
 
 // Possible values for Config.
@@ -212,14 +212,14 @@ type ConfigurationRecorder struct {
 
 // ConfigurationRecorderStatus is undocumented.
 type ConfigurationRecorderStatus struct {
-	LastErrorCode        aws.StringValue  `json:"lastErrorCode,omitempty"`
-	LastErrorMessage     aws.StringValue  `json:"lastErrorMessage,omitempty"`
-	LastStartTime        time.Time        `json:"lastStartTime,omitempty"`
-	LastStatus           aws.StringValue  `json:"lastStatus,omitempty"`
-	LastStatusChangeTime time.Time        `json:"lastStatusChangeTime,omitempty"`
-	LastStopTime         time.Time        `json:"lastStopTime,omitempty"`
-	Name                 aws.StringValue  `json:"name,omitempty"`
-	Recording            aws.BooleanValue `json:"recording,omitempty"`
+	LastErrorCode        aws.StringValue    `json:"lastErrorCode,omitempty"`
+	LastErrorMessage     aws.StringValue    `json:"lastErrorMessage,omitempty"`
+	LastStartTime        *aws.UnixTimestamp `json:"lastStartTime,omitempty"`
+	LastStatus           aws.StringValue    `json:"lastStatus,omitempty"`
+	LastStatusChangeTime *aws.UnixTimestamp `json:"lastStatusChangeTime,omitempty"`
+	LastStopTime         *aws.UnixTimestamp `json:"lastStopTime,omitempty"`
+	Name                 aws.StringValue    `json:"name,omitempty"`
+	Recording            aws.BooleanValue   `json:"recording,omitempty"`
 }
 
 // DeleteDeliveryChannelRequest is undocumented.
@@ -301,13 +301,13 @@ type DescribeDeliveryChannelsResponse struct {
 
 // GetResourceConfigHistoryRequest is undocumented.
 type GetResourceConfigHistoryRequest struct {
-	ChronologicalOrder aws.StringValue  `json:"chronologicalOrder,omitempty"`
-	EarlierTime        time.Time        `json:"earlierTime,omitempty"`
-	LaterTime          time.Time        `json:"laterTime,omitempty"`
-	Limit              aws.IntegerValue `json:"limit,omitempty"`
-	NextToken          aws.StringValue  `json:"nextToken,omitempty"`
-	ResourceID         aws.StringValue  `json:"resourceId"`
-	ResourceType       aws.StringValue  `json:"resourceType"`
+	ChronologicalOrder aws.StringValue    `json:"chronologicalOrder,omitempty"`
+	EarlierTime        *aws.UnixTimestamp `json:"earlierTime,omitempty"`
+	LaterTime          *aws.UnixTimestamp `json:"laterTime,omitempty"`
+	Limit              aws.IntegerValue   `json:"limit,omitempty"`
+	NextToken          aws.StringValue    `json:"nextToken,omitempty"`
+	ResourceID         aws.StringValue    `json:"resourceId"`
+	ResourceType       aws.StringValue    `json:"resourceType"`
 }
 
 // GetResourceConfigHistoryResponse is undocumented.

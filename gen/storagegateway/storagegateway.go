@@ -1328,20 +1328,20 @@ type Tape struct {
 
 // TapeArchive is undocumented.
 type TapeArchive struct {
-	CompletionTime  time.Time       `json:"CompletionTime,omitempty"`
-	RetrievedTo     aws.StringValue `json:"RetrievedTo,omitempty"`
-	TapeARN         aws.StringValue `json:"TapeARN,omitempty"`
-	TapeBarcode     aws.StringValue `json:"TapeBarcode,omitempty"`
-	TapeSizeInBytes aws.LongValue   `json:"TapeSizeInBytes,omitempty"`
-	TapeStatus      aws.StringValue `json:"TapeStatus,omitempty"`
+	CompletionTime  *aws.UnixTimestamp `json:"CompletionTime,omitempty"`
+	RetrievedTo     aws.StringValue    `json:"RetrievedTo,omitempty"`
+	TapeARN         aws.StringValue    `json:"TapeARN,omitempty"`
+	TapeBarcode     aws.StringValue    `json:"TapeBarcode,omitempty"`
+	TapeSizeInBytes aws.LongValue      `json:"TapeSizeInBytes,omitempty"`
+	TapeStatus      aws.StringValue    `json:"TapeStatus,omitempty"`
 }
 
 // TapeRecoveryPointInfo is undocumented.
 type TapeRecoveryPointInfo struct {
-	TapeARN               aws.StringValue `json:"TapeARN,omitempty"`
-	TapeRecoveryPointTime time.Time       `json:"TapeRecoveryPointTime,omitempty"`
-	TapeSizeInBytes       aws.LongValue   `json:"TapeSizeInBytes,omitempty"`
-	TapeStatus            aws.StringValue `json:"TapeStatus,omitempty"`
+	TapeARN               aws.StringValue    `json:"TapeARN,omitempty"`
+	TapeRecoveryPointTime *aws.UnixTimestamp `json:"TapeRecoveryPointTime,omitempty"`
+	TapeSizeInBytes       aws.LongValue      `json:"TapeSizeInBytes,omitempty"`
+	TapeStatus            aws.StringValue    `json:"TapeStatus,omitempty"`
 }
 
 // UpdateBandwidthRateLimitInput is undocumented.

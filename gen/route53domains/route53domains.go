@@ -529,10 +529,10 @@ const (
 
 // DomainSummary is undocumented.
 type DomainSummary struct {
-	AutoRenew    aws.BooleanValue `json:"AutoRenew,omitempty"`
-	DomainName   aws.StringValue  `json:"DomainName"`
-	Expiry       time.Time        `json:"Expiry,omitempty"`
-	TransferLock aws.BooleanValue `json:"TransferLock,omitempty"`
+	AutoRenew    aws.BooleanValue   `json:"AutoRenew,omitempty"`
+	DomainName   aws.StringValue    `json:"DomainName"`
+	Expiry       *aws.UnixTimestamp `json:"Expiry,omitempty"`
+	TransferLock aws.BooleanValue   `json:"TransferLock,omitempty"`
 }
 
 // EnableDomainAutoRenewRequest is undocumented.
@@ -588,27 +588,27 @@ type GetDomainDetailRequest struct {
 
 // GetDomainDetailResponse is undocumented.
 type GetDomainDetailResponse struct {
-	AbuseContactEmail aws.StringValue  `json:"AbuseContactEmail,omitempty"`
-	AbuseContactPhone aws.StringValue  `json:"AbuseContactPhone,omitempty"`
-	AdminContact      *ContactDetail   `json:"AdminContact"`
-	AdminPrivacy      aws.BooleanValue `json:"AdminPrivacy,omitempty"`
-	AutoRenew         aws.BooleanValue `json:"AutoRenew,omitempty"`
-	CreationDate      time.Time        `json:"CreationDate,omitempty"`
-	DNSSec            aws.StringValue  `json:"DnsSec,omitempty"`
-	DomainName        aws.StringValue  `json:"DomainName"`
-	ExpirationDate    time.Time        `json:"ExpirationDate,omitempty"`
-	Nameservers       []Nameserver     `json:"Nameservers"`
-	RegistrantContact *ContactDetail   `json:"RegistrantContact"`
-	RegistrantPrivacy aws.BooleanValue `json:"RegistrantPrivacy,omitempty"`
-	RegistrarName     aws.StringValue  `json:"RegistrarName,omitempty"`
-	RegistrarURL      aws.StringValue  `json:"RegistrarUrl,omitempty"`
-	RegistryDomainID  aws.StringValue  `json:"RegistryDomainId,omitempty"`
-	Reseller          aws.StringValue  `json:"Reseller,omitempty"`
-	StatusList        []string         `json:"StatusList,omitempty"`
-	TechContact       *ContactDetail   `json:"TechContact"`
-	TechPrivacy       aws.BooleanValue `json:"TechPrivacy,omitempty"`
-	UpdatedDate       time.Time        `json:"UpdatedDate,omitempty"`
-	WhoIsServer       aws.StringValue  `json:"WhoIsServer,omitempty"`
+	AbuseContactEmail aws.StringValue    `json:"AbuseContactEmail,omitempty"`
+	AbuseContactPhone aws.StringValue    `json:"AbuseContactPhone,omitempty"`
+	AdminContact      *ContactDetail     `json:"AdminContact"`
+	AdminPrivacy      aws.BooleanValue   `json:"AdminPrivacy,omitempty"`
+	AutoRenew         aws.BooleanValue   `json:"AutoRenew,omitempty"`
+	CreationDate      *aws.UnixTimestamp `json:"CreationDate,omitempty"`
+	DNSSec            aws.StringValue    `json:"DnsSec,omitempty"`
+	DomainName        aws.StringValue    `json:"DomainName"`
+	ExpirationDate    *aws.UnixTimestamp `json:"ExpirationDate,omitempty"`
+	Nameservers       []Nameserver       `json:"Nameservers"`
+	RegistrantContact *ContactDetail     `json:"RegistrantContact"`
+	RegistrantPrivacy aws.BooleanValue   `json:"RegistrantPrivacy,omitempty"`
+	RegistrarName     aws.StringValue    `json:"RegistrarName,omitempty"`
+	RegistrarURL      aws.StringValue    `json:"RegistrarUrl,omitempty"`
+	RegistryDomainID  aws.StringValue    `json:"RegistryDomainId,omitempty"`
+	Reseller          aws.StringValue    `json:"Reseller,omitempty"`
+	StatusList        []string           `json:"StatusList,omitempty"`
+	TechContact       *ContactDetail     `json:"TechContact"`
+	TechPrivacy       aws.BooleanValue   `json:"TechPrivacy,omitempty"`
+	UpdatedDate       *aws.UnixTimestamp `json:"UpdatedDate,omitempty"`
+	WhoIsServer       aws.StringValue    `json:"WhoIsServer,omitempty"`
 }
 
 // GetOperationDetailRequest is undocumented.
@@ -618,12 +618,12 @@ type GetOperationDetailRequest struct {
 
 // GetOperationDetailResponse is undocumented.
 type GetOperationDetailResponse struct {
-	DomainName    aws.StringValue `json:"DomainName,omitempty"`
-	Message       aws.StringValue `json:"Message,omitempty"`
-	OperationID   aws.StringValue `json:"OperationId,omitempty"`
-	Status        aws.StringValue `json:"Status,omitempty"`
-	SubmittedDate time.Time       `json:"SubmittedDate,omitempty"`
-	Type          aws.StringValue `json:"Type,omitempty"`
+	DomainName    aws.StringValue    `json:"DomainName,omitempty"`
+	Message       aws.StringValue    `json:"Message,omitempty"`
+	OperationID   aws.StringValue    `json:"OperationId,omitempty"`
+	Status        aws.StringValue    `json:"Status,omitempty"`
+	SubmittedDate *aws.UnixTimestamp `json:"SubmittedDate,omitempty"`
+	Type          aws.StringValue    `json:"Type,omitempty"`
 }
 
 // ListDomainsRequest is undocumented.
@@ -667,10 +667,10 @@ const (
 
 // OperationSummary is undocumented.
 type OperationSummary struct {
-	OperationID   aws.StringValue `json:"OperationId"`
-	Status        aws.StringValue `json:"Status"`
-	SubmittedDate time.Time       `json:"SubmittedDate"`
-	Type          aws.StringValue `json:"Type"`
+	OperationID   aws.StringValue    `json:"OperationId"`
+	Status        aws.StringValue    `json:"Status"`
+	SubmittedDate *aws.UnixTimestamp `json:"SubmittedDate"`
+	Type          aws.StringValue    `json:"Type"`
 }
 
 // Possible values for Route53Domains.

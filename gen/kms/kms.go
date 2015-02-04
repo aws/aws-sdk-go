@@ -451,13 +451,13 @@ type KeyListEntry struct {
 
 // KeyMetadata is undocumented.
 type KeyMetadata struct {
-	AWSAccountID aws.StringValue  `json:"AWSAccountId,omitempty"`
-	ARN          aws.StringValue  `json:"Arn,omitempty"`
-	CreationDate time.Time        `json:"CreationDate,omitempty"`
-	Description  aws.StringValue  `json:"Description,omitempty"`
-	Enabled      aws.BooleanValue `json:"Enabled,omitempty"`
-	KeyID        aws.StringValue  `json:"KeyId"`
-	KeyUsage     aws.StringValue  `json:"KeyUsage,omitempty"`
+	AWSAccountID aws.StringValue    `json:"AWSAccountId,omitempty"`
+	ARN          aws.StringValue    `json:"Arn,omitempty"`
+	CreationDate *aws.UnixTimestamp `json:"CreationDate,omitempty"`
+	Description  aws.StringValue    `json:"Description,omitempty"`
+	Enabled      aws.BooleanValue   `json:"Enabled,omitempty"`
+	KeyID        aws.StringValue    `json:"KeyId"`
+	KeyUsage     aws.StringValue    `json:"KeyUsage,omitempty"`
 }
 
 // Possible values for KMS.

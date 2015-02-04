@@ -150,15 +150,15 @@ type GetTrailStatusRequest struct {
 
 // GetTrailStatusResponse is undocumented.
 type GetTrailStatusResponse struct {
-	IsLogging                         aws.BooleanValue `json:"IsLogging,omitempty"`
-	LatestCloudWatchLogsDeliveryError aws.StringValue  `json:"LatestCloudWatchLogsDeliveryError,omitempty"`
-	LatestCloudWatchLogsDeliveryTime  time.Time        `json:"LatestCloudWatchLogsDeliveryTime,omitempty"`
-	LatestDeliveryError               aws.StringValue  `json:"LatestDeliveryError,omitempty"`
-	LatestDeliveryTime                time.Time        `json:"LatestDeliveryTime,omitempty"`
-	LatestNotificationError           aws.StringValue  `json:"LatestNotificationError,omitempty"`
-	LatestNotificationTime            time.Time        `json:"LatestNotificationTime,omitempty"`
-	StartLoggingTime                  time.Time        `json:"StartLoggingTime,omitempty"`
-	StopLoggingTime                   time.Time        `json:"StopLoggingTime,omitempty"`
+	IsLogging                         aws.BooleanValue   `json:"IsLogging,omitempty"`
+	LatestCloudWatchLogsDeliveryError aws.StringValue    `json:"LatestCloudWatchLogsDeliveryError,omitempty"`
+	LatestCloudWatchLogsDeliveryTime  *aws.UnixTimestamp `json:"LatestCloudWatchLogsDeliveryTime,omitempty"`
+	LatestDeliveryError               aws.StringValue    `json:"LatestDeliveryError,omitempty"`
+	LatestDeliveryTime                *aws.UnixTimestamp `json:"LatestDeliveryTime,omitempty"`
+	LatestNotificationError           aws.StringValue    `json:"LatestNotificationError,omitempty"`
+	LatestNotificationTime            *aws.UnixTimestamp `json:"LatestNotificationTime,omitempty"`
+	StartLoggingTime                  *aws.UnixTimestamp `json:"StartLoggingTime,omitempty"`
+	StopLoggingTime                   *aws.UnixTimestamp `json:"StopLoggingTime,omitempty"`
 }
 
 // StartLoggingRequest is undocumented.
