@@ -476,9 +476,8 @@ func (s *Shape) Type() string {
 	case "blob":
 		return "[]byte"
 	case "timestamp":
-		// DynamoDB, unlike other JSON protocol APIs, uses Unix timestamps.
-		if service.PackageName() == "dynamodb" ||
-			service.Metadata.TimestampFormat == "unixTimestamp" {
+		// JSON protocol APIs use Unix timestamps.
+		if service.Metadata.Protocol == "json" {
 			return "*aws.UnixTimestamp"
 		}
 		return "time.Time"
