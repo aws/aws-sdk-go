@@ -31,9 +31,11 @@ func New(config *DynamoDBConfig) *DynamoDB {
 	service.Initialize()
 
 	// Handlers
-	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Sign.PushBack(v4.Sign)
+	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
 	return &DynamoDB{service}
 }

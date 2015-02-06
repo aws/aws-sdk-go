@@ -35,34 +35,35 @@ func Build(req *aws.Request) {
 
 func Unmarshal(req *aws.Request) {
 	defer req.HTTPResponse.Body.Close()
-
-	req.RequestID = req.HTTPResponse.Header.Get("x-amzn-requestid")
-
-	if req.HTTPResponse.StatusCode >= 300 {
-		bodyBytes, err := ioutil.ReadAll(req.HTTPResponse.Body)
-		if err != nil {
-			req.Error = err
-			return
-		}
-		if len(bodyBytes) == 0 {
-			req.Error = aws.APIError{
-				StatusCode: req.HTTPResponse.StatusCode,
-				Message:    req.HTTPResponse.Status,
-			}
-			return
-		}
-		var jsonErr jsonErrorResponse
-		if err := json.Unmarshal(bodyBytes, &jsonErr); err != nil {
-			req.Error = err
-			return
-		}
-		req.Error = jsonErr.Err(req.HTTPResponse.StatusCode)
-	}
-
 	if req.Data != nil {
 		json.NewDecoder(req.HTTPResponse.Body).Decode(req.Data)
 	}
 	return
+}
+
+func UnmarshalMeta(req *aws.Request) {
+	req.RequestID = req.HTTPResponse.Header.Get("x-amzn-requestid")
+}
+
+func UnmarshalError(req *aws.Request) {
+	bodyBytes, err := ioutil.ReadAll(req.HTTPResponse.Body)
+	if err != nil {
+		req.Error = err
+		return
+	}
+	if len(bodyBytes) == 0 {
+		req.Error = aws.APIError{
+			StatusCode: req.HTTPResponse.StatusCode,
+			Message:    req.HTTPResponse.Status,
+		}
+		return
+	}
+	var jsonErr jsonErrorResponse
+	if err := json.Unmarshal(bodyBytes, &jsonErr); err != nil {
+		req.Error = err
+		return
+	}
+	req.Error = jsonErr.Err(req.HTTPResponse.StatusCode)
 }
 
 type jsonErrorResponse struct {

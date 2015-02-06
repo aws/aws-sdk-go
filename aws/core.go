@@ -25,6 +25,12 @@ func SendHandler(r *Request) {
 	r.HTTPResponse, r.Error = r.Service.Config.HTTPClient.Do(r.HTTPRequest)
 }
 
+func ValidateResponseHandler(r *Request) {
+	if r.HTTPResponse.StatusCode >= 400 {
+		r.Error = APIError{StatusCode: r.HTTPResponse.StatusCode}
+	}
+}
+
 type Operation struct {
 	*OperationBindings
 	Name       string
@@ -63,6 +69,7 @@ func (s *Service) Initialize() {
 	s.Handlers.Build.PushBack(UserAgentHandler)
 	s.Handlers.Sign.PushBack(BuildContentLength)
 	s.Handlers.Send.PushBack(SendHandler)
+	s.Handlers.ValidateResponse.PushBack(ValidateResponseHandler)
 	s.AddDebugHandlers()
 	s.buildEndpoint()
 }
@@ -201,22 +208,32 @@ func (r *Request) Send() error {
 		return r.Error
 	}
 
-	r.Handlers.Send.Run(r)
-	if r.Error != nil {
-		return r.Error
-	}
+	for {
+		r.Handlers.Send.Run(r)
+		if r.Error != nil {
+			return r.Error
+		}
 
-	r.Handlers.ValidateResponse.Run(r)
-	if r.Error != nil {
-		return r.Error
-	}
+		r.Handlers.UnmarshalMeta.Run(r)
+		r.Handlers.ValidateResponse.Run(r)
+		if r.Error != nil {
+			r.Handlers.Retry.Run(r)
+			if r.Error != nil {
+				r.Handlers.UnmarshalError.Run(r)
+				return r.Error
+			}
 
-	r.Handlers.Unmarshal.Run(r)
-	if r.Error != nil {
-		return r.Error
-	}
+			r.Handlers.AfterRetry.Run(r)
+			continue
+		}
 
-	return nil
+		r.Handlers.Unmarshal.Run(r)
+		if r.Error != nil {
+			return r.Error
+		}
+
+		return nil
+	}
 }
 
 type Handlers struct {
@@ -225,6 +242,10 @@ type Handlers struct {
 	Send             HandlerList
 	ValidateResponse HandlerList
 	Unmarshal        HandlerList
+	UnmarshalMeta    HandlerList
+	UnmarshalError   HandlerList
+	Retry            HandlerList
+	AfterRetry       HandlerList
 }
 
 func (h *Handlers) copy() Handlers {
@@ -234,6 +255,10 @@ func (h *Handlers) copy() Handlers {
 		Send:             h.Send.copy(),
 		ValidateResponse: h.ValidateResponse.copy(),
 		Unmarshal:        h.Unmarshal.copy(),
+		UnmarshalError:   h.UnmarshalError.copy(),
+		UnmarshalMeta:    h.UnmarshalMeta.copy(),
+		Retry:            h.Retry.copy(),
+		AfterRetry:       h.AfterRetry.copy(),
 	}
 }
 
@@ -243,7 +268,11 @@ func (h *Handlers) Clear() {
 	h.Send.Init()
 	h.Sign.Init()
 	h.Unmarshal.Init()
+	h.UnmarshalMeta.Init()
+	h.UnmarshalError.Init()
 	h.ValidateResponse.Init()
+	h.Retry.Init()
+	h.AfterRetry.Init()
 }
 
 type HandlerList struct {
