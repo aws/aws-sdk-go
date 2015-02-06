@@ -227,7 +227,7 @@ type Handlers struct {
 	Unmarshal        HandlerList
 }
 
-func (h Handlers) copy() Handlers {
+func (h *Handlers) copy() Handlers {
 	return Handlers{
 		Build:            h.Build.copy(),
 		Sign:             h.Sign.copy(),
