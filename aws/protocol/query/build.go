@@ -21,8 +21,8 @@ func Build(r *aws.Request) {
 		return
 	}
 
-	r.HTTPRequest.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	r.SetBufferBody([]byte(body.Encode()))
+	r.HTTPRequest.Method = "GET"
+	r.HTTPRequest.URL.RawQuery = body.Encode()
 }
 
 func loadValues(v url.Values, i interface{}, prefix string) error {
