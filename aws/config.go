@@ -5,6 +5,8 @@ import (
 	"os"
 )
 
+const DEFAULT_RETRIES = -1
+
 var DefaultConfig = &Config{
 	Credentials: DefaultCreds(),
 	Endpoint:    "",
@@ -13,6 +15,7 @@ var DefaultConfig = &Config{
 	ManualSend:  false,
 	HTTPClient:  http.DefaultClient,
 	LogLevel:    0,
+	MaxRetries:  DEFAULT_RETRIES,
 }
 
 type Config struct {
@@ -23,6 +26,7 @@ type Config struct {
 	ManualSend  bool
 	HTTPClient  *http.Client
 	LogLevel    uint
+	MaxRetries  int
 }
 
 func (c Config) Merge(newcfg *Config) *Config {
@@ -62,6 +66,12 @@ func (c Config) Merge(newcfg *Config) *Config {
 		cfg.LogLevel = newcfg.LogLevel
 	} else {
 		cfg.LogLevel = c.LogLevel
+	}
+
+	if newcfg != nil && newcfg.MaxRetries != DEFAULT_RETRIES {
+		cfg.MaxRetries = newcfg.MaxRetries
+	} else {
+		cfg.MaxRetries = c.MaxRetries
 	}
 
 	return &cfg

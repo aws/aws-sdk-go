@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"math"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -26,8 +27,31 @@ func SendHandler(r *Request) {
 }
 
 func ValidateResponseHandler(r *Request) {
-	if r.HTTPResponse.StatusCode >= 400 {
-		r.Error = APIError{StatusCode: r.HTTPResponse.StatusCode}
+	if r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 400 {
+		r.Error = APIError{
+			StatusCode: r.HTTPResponse.StatusCode,
+			Retryable:  r.Service.ShouldRetry(r),
+			RetryDelay: r.Service.RetryRules(r),
+			RetryCount: r.RetryCount,
+		}
+	}
+}
+
+func AfterRetryHandler(r *Request) {
+	delay := 0 * time.Second
+	willRetry := false
+
+	if err := Error(r.Error); err != nil {
+		delay = err.RetryDelay
+		if err.Retryable && r.RetryCount < r.Service.MaxRetries() {
+			r.RetryCount++
+			willRetry = true
+		}
+	}
+
+	if willRetry {
+		r.Error = nil
+		time.Sleep(delay)
 	}
 }
 
@@ -49,26 +73,59 @@ type OperationBindings struct {
 }
 
 type Service struct {
-	Config       *Config
-	Handlers     Handlers
-	ManualSend   bool
-	ServiceName  string
-	APIVersion   string
-	Endpoint     string
-	JSONVersion  string
-	TargetPrefix string
+	Config            *Config
+	Handlers          Handlers
+	ManualSend        bool
+	ServiceName       string
+	APIVersion        string
+	Endpoint          string
+	JSONVersion       string
+	TargetPrefix      string
+	RetryRules        func(*Request) time.Duration
+	ShouldRetry       func(*Request) bool
+	DefaultMaxRetries uint
 }
 
 var schemeRE = regexp.MustCompile("^([^:]+)://")
+
+func retryRules(r *Request) time.Duration {
+	delay := time.Duration(math.Pow(2, float64(r.RetryCount))) * 30
+	return delay * time.Millisecond
+}
+
+func shouldRetry(r *Request) bool {
+	if err := Error(r.Error); err != nil {
+		if err.StatusCode >= 500 {
+			return true
+		}
+
+		switch err.Code {
+		case "ExpiredTokenException":
+		case "ProvisionedThroughputExceededException", "Throttling":
+			return true
+		}
+	}
+	return false
+}
 
 func (s *Service) Initialize() {
 	if s.Config.HTTPClient == nil {
 		s.Config.HTTPClient = http.DefaultClient
 	}
 
+	if s.RetryRules == nil {
+		s.RetryRules = retryRules
+	}
+
+	if s.ShouldRetry == nil {
+		s.ShouldRetry = shouldRetry
+	}
+
+	s.DefaultMaxRetries = 3
 	s.Handlers.Build.PushBack(UserAgentHandler)
 	s.Handlers.Sign.PushBack(BuildContentLength)
 	s.Handlers.Send.PushBack(SendHandler)
+	s.Handlers.AfterRetry.PushBack(AfterRetryHandler)
 	s.Handlers.ValidateResponse.PushBack(ValidateResponseHandler)
 	s.AddDebugHandlers()
 	s.buildEndpoint()
@@ -87,6 +144,7 @@ type Request struct {
 	Error        error
 	Data         interface{}
 	RequestID    string
+	RetryCount   uint
 
 	built bool
 }
@@ -155,11 +213,11 @@ func (s *Service) AddDebugHandlers() {
 	})
 }
 
-func (r Request) ParamsFilled() bool {
+func (r *Request) ParamsFilled() bool {
 	return reflect.ValueOf(r.Params).Elem().IsValid()
 }
 
-func (r Request) DataFilled() bool {
+func (r *Request) DataFilled() bool {
 	return reflect.ValueOf(r.Data).Elem().IsValid()
 }
 
@@ -170,6 +228,14 @@ func (r *Request) SetBufferBody(buf []byte) {
 func (r *Request) SetReaderBody(reader io.ReadSeeker) {
 	r.HTTPRequest.Body = ioutil.NopCloser(reader)
 	r.Body = reader
+}
+
+func (s *Service) MaxRetries() uint {
+	if s.Config.MaxRetries < 0 {
+		return s.DefaultMaxRetries
+	} else {
+		return uint(s.Config.MaxRetries)
+	}
 }
 
 func (r *Request) Presign(expireTime time.Duration) (string, error) {
@@ -218,12 +284,11 @@ func (r *Request) Send() error {
 		r.Handlers.ValidateResponse.Run(r)
 		if r.Error != nil {
 			r.Handlers.Retry.Run(r)
+			r.Handlers.AfterRetry.Run(r)
 			if r.Error != nil {
 				r.Handlers.UnmarshalError.Run(r)
 				return r.Error
 			}
-
-			r.Handlers.AfterRetry.Run(r)
 			continue
 		}
 

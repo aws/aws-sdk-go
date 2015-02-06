@@ -1,6 +1,9 @@
 package dynamodb
 
 import (
+	"math"
+	"time"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/aws/protocol/jsonrpc"
 	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
@@ -29,6 +32,12 @@ func New(config *DynamoDBConfig) *DynamoDB {
 		TargetPrefix: "DynamoDB_20120810",
 	}
 	service.Initialize()
+
+	service.DefaultMaxRetries = 10
+	service.RetryRules = func(r *aws.Request) time.Duration {
+		delay := time.Duration(math.Pow(2, float64(r.RetryCount))) * 50
+		return delay * time.Millisecond
+	}
 
 	// Handlers
 	service.Handlers.Sign.PushBack(v4.Sign)
