@@ -237,6 +237,15 @@ func (h Handlers) copy() Handlers {
 	}
 }
 
+// Clear removes callback functions for all handlers
+func (h *Handlers) Clear() {
+	h.Build.Init()
+	h.Send.Init()
+	h.Sign.Init()
+	h.Unmarshal.Init()
+	h.ValidateResponse.Init()
+}
+
 type HandlerList struct {
 	list.List
 }
