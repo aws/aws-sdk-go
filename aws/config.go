@@ -38,6 +38,12 @@ func (c Config) Merge(newcfg *Config) *Config {
 		cfg.Credentials = c.Credentials
 	}
 
+	if newcfg != nil && newcfg.Endpoint != "" {
+		cfg.Endpoint = newcfg.Endpoint
+	} else {
+		cfg.Endpoint = c.Endpoint
+	}
+
 	if newcfg != nil && newcfg.Region != "" {
 		cfg.Region = newcfg.Region
 	} else {
