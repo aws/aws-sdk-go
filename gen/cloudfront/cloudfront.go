@@ -831,8 +831,8 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentities(req *ListCloudFrontOri
 }
 
 // ListDistributions is undocumented.
-func (c *CloudFront) ListDistributions(req *ListDistributionsRequest) (resp *ListDistributionsResult, err error) {
-	resp = &ListDistributionsResult{}
+func (c *CloudFront) ListDistributions(req *ListDistributionsRequest) (resp *DistributionList, err error) {
+	resp = &DistributionList{}
 
 	var body io.Reader
 	var contentType string
@@ -1915,17 +1915,6 @@ type ListDistributionsRequest struct {
 }
 
 func (v *ListDistributionsRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
-	return aws.MarshalXML(v, e, start)
-}
-
-// ListDistributionsResult is undocumented.
-type ListDistributionsResult struct {
-	XMLName xml.Name
-
-	DistributionList *DistributionList `xml:"DistributionList,omitempty"`
-}
-
-func (v *ListDistributionsResult) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
