@@ -211,20 +211,18 @@ func (s *Service) AddDebugHandlers() {
 		fmt.Printf("-----------------------------------------------------\n")
 	})
 	s.Handlers.Send.PushBack(func(r *Request) {
+		fmt.Printf("---[ RESPONSE ]--------------------------------------\n")
 		if r.HTTPResponse != nil {
 			if r.HTTPResponse.Body != nil {
 				defer r.HTTPResponse.Body.Close()
 			}
 			dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, true)
 
-			fmt.Printf("---[ RESPONSE ]--------------------------------------\n")
 			fmt.Printf("%s\n", string(dumpedBody))
-			fmt.Printf("-----------------------------------------------------\n")
 		} else if r.Error != nil {
-			fmt.Printf("---[ RESPONSE ]--------------------------------------\n")
 			fmt.Printf("%s\n", r.Error)
-			fmt.Printf("-----------------------------------------------------\n")
 		}
+		fmt.Printf("-----------------------------------------------------\n")
 	})
 }
 
