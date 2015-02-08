@@ -199,17 +199,32 @@ func (s *Service) AddDebugHandlers() {
 
 		fmt.Printf("=> [%s] %s.%s(%+v)\n", r.Time,
 			r.Service.ServiceName, r.Operation.Name, r.Params)
-		fmt.Printf("---[ REQUEST  ]--------------------------------------\n")
+		fmt.Printf("---[ REQUEST PRE-SIGN ]------------------------------\n")
 		fmt.Printf("%s\n", string(dumpedBody))
-		fmt.Printf("-----------------------------------------------------\n\n")
+		fmt.Printf("-----------------------------------------------------\n")
+	})
+	s.Handlers.Send.PushFront(func(r *Request) {
+		dumpedBody, _ := httputil.DumpRequest(r.HTTPRequest, true)
+
+		fmt.Printf("---[ REQUEST POST-SIGN ]-----------------------------\n")
+		fmt.Printf("%s\n", string(dumpedBody))
+		fmt.Printf("-----------------------------------------------------\n")
 	})
 	s.Handlers.Send.PushBack(func(r *Request) {
-		defer r.HTTPResponse.Body.Close()
-		dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, true)
+		if r.HTTPResponse != nil {
+			if r.HTTPResponse.Body != nil {
+				defer r.HTTPResponse.Body.Close()
+			}
+			dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, true)
 
-		fmt.Printf("---[ RESPONSE ]--------------------------------------\n")
-		fmt.Printf("%s\n", string(dumpedBody))
-		fmt.Printf("-----------------------------------------------------\n\n")
+			fmt.Printf("---[ RESPONSE ]--------------------------------------\n")
+			fmt.Printf("%s\n", string(dumpedBody))
+			fmt.Printf("-----------------------------------------------------\n")
+		} else if r.Error != nil {
+			fmt.Printf("---[ RESPONSE ]--------------------------------------\n")
+			fmt.Printf("%s\n", r.Error)
+			fmt.Printf("-----------------------------------------------------\n")
+		}
 	})
 }
 
