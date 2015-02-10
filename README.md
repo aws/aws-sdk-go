@@ -24,6 +24,10 @@ Please do not confuse this for a stable, feature-complete library.
 Let's say you want to use EC2:
 
     $ go get github.com/awslabs/aws-sdk-go/service/ec2
+    
+**NOTE**: If you are trying to use the development branch, after performing the command above, you must additionally check out the development branch:
+ 
+    $ cd $GOPATH/src/github.com/awslabs/aws-sdk-go; git checkout develop
 
 ## Using
 
