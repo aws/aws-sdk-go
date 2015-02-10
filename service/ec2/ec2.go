@@ -3268,13 +3268,13 @@ type DescribeSpotInstanceRequestsResult struct {
 type DescribeSpotPriceHistoryRequest struct {
 	AvailabilityZone    aws.StringValue  `ec2:"AvailabilityZone" xml:"availabilityZone"`
 	DryRun              aws.BooleanValue `ec2:"DryRun" xml:"dryRun"`
-	EndTime             time.Time        `ec2:"EndTime" xml:"endTime"`
+	EndTime             aws.TimeValue    `ec2:"EndTime" xml:"endTime"`
 	Filters             []Filter         `ec2:"Filter" xml:"Filter>Filter"`
 	InstanceTypes       []string         `ec2:"InstanceType" xml:"InstanceType>member"`
 	MaxResults          aws.IntegerValue `ec2:"MaxResults" xml:"maxResults"`
 	NextToken           aws.StringValue  `ec2:"NextToken" xml:"nextToken"`
 	ProductDescriptions []string         `ec2:"ProductDescription" xml:"ProductDescription>member"`
-	StartTime           time.Time        `ec2:"StartTime" xml:"startTime"`
+	StartTime           aws.TimeValue    `ec2:"StartTime" xml:"startTime"`
 }
 
 // DescribeSpotPriceHistoryResult is undocumented.

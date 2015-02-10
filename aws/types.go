@@ -66,6 +66,14 @@ func Double(v float64) *float64 {
 	return &v
 }
 
+//A TimeValue is a time.Time object which may or may not be present.
+type TimeValue *time.Time
+
+//Time converts a time.Time into a TimeValue
+func Time(t time.Time) *time.Time {
+	return &t
+}
+
 // A UnixTimestamp is a Unix timestamp represented as fractional seconds since
 // the Unix epoch.
 type UnixTimestamp struct {

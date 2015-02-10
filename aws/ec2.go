@@ -9,6 +9,7 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // EC2Client is the underlying client for EC2 APIs.
@@ -153,6 +154,10 @@ func (c *EC2Client) loadStruct(v url.Values, value reflect.Value, prefix string)
 		case FloatValue:
 			if casted != nil {
 				v.Set(name, strconv.FormatFloat(float64(*casted), 'f', -1, 32))
+			}
+		case TimeValue:
+			if casted != nil {
+				v.Set(name, (*casted).Format(time.RFC3339))
 			}
 		case []string:
 			if len(casted) != 0 {
