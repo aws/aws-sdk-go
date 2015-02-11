@@ -227,11 +227,11 @@ func (s *Service) AddDebugHandlers() {
 }
 
 func (r *Request) ParamsFilled() bool {
-	return reflect.ValueOf(r.Params).Elem().IsValid()
+	return r.Params != nil && reflect.ValueOf(r.Params).Elem().IsValid()
 }
 
 func (r *Request) DataFilled() bool {
-	return reflect.ValueOf(r.Data).Elem().IsValid()
+	return r.Data != nil && reflect.ValueOf(r.Data).Elem().IsValid()
 }
 
 func (r *Request) SetBufferBody(buf []byte) {
