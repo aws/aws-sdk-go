@@ -112,7 +112,7 @@ func (t *Table) GetItem(key *Key, v interface{}) error {
 		return err
 	}
 	input := &GetItemInput{
-		Key:      item,
+		Key:       item,
 		TableName: &t.Name,
 	}
 	output, err := t.db.GetItem(input)
@@ -132,7 +132,7 @@ func (t *Table) DeleteItem(key *Key) error {
 		return err
 	}
 	input := &DeleteItemInput{
-		Key:      item,
+		Key:       item,
 		TableName: &t.Name,
 	}
 	_, err = t.db.DeleteItem(input)
