@@ -27,7 +27,19 @@ var table_suite = &TableSuite{
 	},
 }
 
+var table_suite_with_range_key = &TableSuite{
+	TableName: "TestTable",
+	PrimaryKey: &PrimaryKey{
+		Type:         HashAndRange,
+		HashKeyName:  "Id",
+		HashKeyType:  StringType,
+		RangeKeyName: "Range",
+		RangeKeyType: NumberType,
+	},
+}
+
 var _ = check.Suite(table_suite)
+var _ = check.Suite(table_suite_with_range_key)
 
 func signWithHeader(req *aws.Request) {
 	headers := map[string]string{
