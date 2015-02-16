@@ -125,12 +125,7 @@ func (s *TableSuite) TestPutGetDeleteItem(c *check.C) {
 	if err := s.table.GetItem(key, &out); err != nil {
 		c.Fatal(err)
 	}
-	c.Assert(out.Attr1, check.DeepEquals, in.Attr1)
-	c.Assert(out.Attr2, check.DeepEquals, in.Attr2)
-	for i := range in.Nested.List {
-		c.Assert(out.Nested.List[i], check.DeepEquals, in.Nested.List[i])
-	}
-	c.Assert(out.Nested.List, check.DeepEquals, in.Nested.List)
+	c.Assert(out, check.DeepEquals, in)
 
 	// Delete
 	if err := s.table.DeleteItem(key); err != nil {
