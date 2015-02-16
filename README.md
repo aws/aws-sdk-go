@@ -19,6 +19,10 @@ much warning, so please vendor your dependencies w/ Godep or similar.
 
 Please do not confuse this for a stable, feature-complete library.
 
+Note that many services are currently not fully implemented. Some operations
+might work, but not all, especially for XML-based services. We are currently
+working to build out better service support, please bear with us!
+
 ## Installing
 
 Let's say you want to use EC2:
@@ -43,49 +47,3 @@ if err != nil {
 }
 fmt.Println(resp.Reservations)
 ```
-
-## Supported Services
-
- * AutoScaling
- * CloudFormation
- * CloudFront
- * CloudHSM
- * CloudSearch
- * CloudSearchdomain
- * CloudTrail
- * CloudWatch Metrics
- * CloudWatch Logs
- * CodeDeploy
- * Cognito Identity
- * Cognito Sync
- * Config
- * Data Pipeline
- * Direct Connect
- * DynamoDB
- * EC2
- * EC2 Container Service
- * Elasticache
- * Elastic Beanstalk
- * Elastic Transcoder
- * ELB
- * EMR
- * Glacier
- * IAM
- * Import/Export
- * Kinesis
- * Key Management Service
- * Lambda
- * OpsWorks
- * RDS
- * RedShift
- * Route53
- * Route53 Domains
- * S3
- * SimpleDB
- * Simple Email Service
- * SNS
- * SQS
- * Storage Gateway
- * STS
- * Support
- * SWF
