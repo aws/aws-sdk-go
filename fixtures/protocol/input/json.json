@@ -1,0 +1,47 @@
+[
+  {
+    "description": "Scalar members",
+    "metadata": {
+      "protocol": "json",
+      "jsonVersion": 1.1,
+      "targetPrefix": "com.amazonaws.foo"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "Name": {
+            "shape": "StringType"
+          }
+        }
+      },
+      "StringType": {
+        "type": "string"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName",
+          "http": {
+            "method": "POST"
+          }
+        },
+        "params": {
+          "Name": "myname"
+        },
+        "serialized": {
+          "body": "{\"Name\": \"myname\"}",
+          "headers": {
+            "X-Amz-Target": "com.amazonaws.foo.OperationName",
+            "Content-Type": "application/x-amz-json-1.1"
+          },
+          "uri": "/"
+        }
+      }
+    ]
+  }
+]
