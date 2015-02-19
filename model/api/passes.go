@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"regexp"
 	"strings"
 )
@@ -35,22 +34,22 @@ func (r *referenceResolver) resolveReference(ref *ShapeRef) {
 	}
 
 	if shape, ok := r.API.Shapes[ref.ShapeName]; ok {
-		fmt.Println("Adding ref", ref.ShapeName, "to", shape.ShapeName)
-		ref.API = r.API                      // resolve reference back to API
-		ref.Shape = shape                    // resolve shape reference
-		shape.refs = append(shape.refs, ref) // register the ref
+		ref.API = r.API   // resolve reference back to API
+		ref.Shape = shape // resolve shape reference
 
 		if r.visited[ref] {
 			return
 		}
 		r.visited[ref] = true
 
+		shape.refs = append(shape.refs, ref) // register the ref
+
 		// resolve shape's references, if it has any
 		r.resolveReference(&shape.MemberRef)
 		r.resolveReference(&shape.KeyRef)
 		r.resolveReference(&shape.ValueRef)
 		for _, m := range shape.MemberRefs {
-			r.resolveReference(&m)
+			r.resolveReference(m)
 		}
 	}
 }

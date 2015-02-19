@@ -26,6 +26,14 @@ func (a *API) Attach(filename string) {
 	}
 }
 
+func (a *API) AttachString(str string) {
+	json.Unmarshal([]byte(str), a)
+
+	if !a.initialized {
+		a.Setup()
+	}
+}
+
 func (a *API) Setup() {
 	a.writeShapeNames()
 	a.resolveReferences()

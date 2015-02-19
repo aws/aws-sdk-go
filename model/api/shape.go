@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"sort"
 	"strings"
 )
@@ -25,10 +24,10 @@ type Shape struct {
 	API           *API `json: "-"`
 	ShapeName     string
 	Documentation string
-	MemberRefs    map[string]ShapeRef `json:"members"`
-	MemberRef     ShapeRef            `json:"member"`
-	KeyRef        ShapeRef            `json:"key"`
-	ValueRef      ShapeRef            `json:"value"`
+	MemberRefs    map[string]*ShapeRef `json:"members"`
+	MemberRef     ShapeRef             `json:"member"`
+	KeyRef        ShapeRef             `json:"key"`
+	ValueRef      ShapeRef             `json:"value"`
 	Required      []string
 	Payload       string
 	Type          string
@@ -40,12 +39,9 @@ type Shape struct {
 }
 
 func (s *Shape) Rename(newName string) {
-	fmt.Println("-------- RENAME BATCH START --------")
 	for _, r := range s.refs {
-		fmt.Println("Renaming", r.ShapeName, newName)
 		r.ShapeName = newName
 	}
-	fmt.Println("-------- RENAME BATCH END --------")
 
 	delete(s.API.Shapes, s.ShapeName)
 	s.API.Shapes[newName] = s
@@ -63,12 +59,11 @@ func (s *Shape) MemberNames() []string {
 }
 
 func (ref *ShapeRef) GoTypeElem() string {
-	fmt.Println("REF", ref.ShapeName)
 	switch ref.Shape.Type {
 	case "structure":
 		return ref.Shape.ShapeName
 	case "map":
-		return "map[" + ref.Shape.KeyRef.GoTypeElem() + "]" + ref.Shape.ValueRef.GoTypeElem()
+		return "map[" + ref.Shape.KeyRef.GoTypeElem() + "]" + ref.Shape.ValueRef.GoType()
 	case "list":
 		return "[]" + ref.Shape.MemberRef.GoType()
 	case "boolean":
