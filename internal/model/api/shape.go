@@ -34,8 +34,7 @@ type Shape struct {
 	Exception     bool
 	Enum          []string
 
-	refs    []*ShapeRef
-	visited bool
+	refs []*ShapeRef
 }
 
 func (s *Shape) Rename(newName string) {
@@ -92,7 +91,7 @@ func (ref *ShapeRef) GoType() string {
 	return "*" + ref.GoTypeElem()
 }
 
-func (ref *ShapeRef) GoTags() string {
+func (ref *ShapeRef) GoTags(toplevel bool) string {
 	code := "`"
 	if ref.Location != "" {
 		code += `location:"` + ref.Location + `" `
@@ -118,11 +117,13 @@ func (ref *ShapeRef) GoTags() string {
 		code += `" `
 	}
 
-	if ref.Shape.Payload != "" {
-		code += `payload:"` + ref.Shape.Payload + `" `
-	}
-	if len(ref.Shape.Required) > 0 {
-		code += `required:"` + strings.Join(ref.Shape.Required, ",") + `" `
+	if toplevel {
+		if ref.Shape.Payload != "" {
+			code += `payload:"` + ref.Shape.Payload + `" `
+		}
+		if len(ref.Shape.Required) > 0 {
+			code += `required:"` + strings.Join(ref.Shape.Required, ",") + `" `
+		}
 	}
 	if strings.Contains(ref.API.Metadata.Protocol, "json") {
 		code += `json:",omitempty"`
@@ -138,19 +139,14 @@ func (s *Shape) GoCode() string {
 		code += "struct {\n"
 		for _, n := range s.MemberNames() {
 			m := s.MemberRefs[n]
-
-			// TODO figure out why this is needed
-			m.Shape = s.API.Shapes[m.ShapeName]
-			m.API = s.API
-
-			code += n + " " + m.GoType() + " " + m.GoTags() + "\n"
+			code += n + " " + m.GoType() + " " + m.GoTags(false) + "\n"
 		}
-		metaStruct := strings.ToLower(s.ShapeName[0:1]) + s.ShapeName[1:] + "Metadata"
+		metaStruct := "metadata" + s.ShapeName
 		ref := &ShapeRef{ShapeName: s.ShapeName, API: s.API, Shape: s}
 		code += "\n" + metaStruct + "\n"
 		code += "}\n\n"
 		code += "type " + metaStruct + " struct {\n"
-		code += "SDKShapeTraits bool " + ref.GoTags()
+		code += "SDKShapeTraits bool " + ref.GoTags(true)
 		code += "}"
 	default:
 		panic("Cannot generate toplevel shape for " + s.Type)

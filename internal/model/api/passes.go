@@ -1,7 +1,12 @@
 package api
 
 import (
+	"io/ioutil"
+	"os"
+	"path"
 	"regexp"
+	"runtime"
+	"strconv"
 	"strings"
 )
 
@@ -14,6 +19,10 @@ func (a *API) writeShapeNames() {
 
 func (a *API) resolveReferences() {
 	resolver := referenceResolver{API: a, visited: map[*ShapeRef]bool{}}
+
+	for _, s := range a.Shapes {
+		resolver.resolveShape(s)
+	}
 
 	for _, o := range a.Operations {
 		o.API = a // resolve parent reference
@@ -45,12 +54,16 @@ func (r *referenceResolver) resolveReference(ref *ShapeRef) {
 		shape.refs = append(shape.refs, ref) // register the ref
 
 		// resolve shape's references, if it has any
-		r.resolveReference(&shape.MemberRef)
-		r.resolveReference(&shape.KeyRef)
-		r.resolveReference(&shape.ValueRef)
-		for _, m := range shape.MemberRefs {
-			r.resolveReference(m)
-		}
+		r.resolveShape(shape)
+	}
+}
+
+func (r *referenceResolver) resolveShape(shape *Shape) {
+	r.resolveReference(&shape.MemberRef)
+	r.resolveReference(&shape.KeyRef)
+	r.resolveReference(&shape.ValueRef)
+	for _, m := range shape.MemberRefs {
+		r.resolveReference(m)
 	}
 }
 
@@ -71,7 +84,7 @@ func (a *API) renameToplevelShapes() {
 
 func (a *API) renameExportable() {
 	for name, op := range a.Operations {
-		newName := exportableName(name)
+		newName := a.exportableName(name)
 		if newName != name {
 			delete(a.Operations, name)
 			a.Operations[newName] = op
@@ -81,30 +94,124 @@ func (a *API) renameExportable() {
 
 	for k, s := range a.Shapes {
 		for mName, member := range s.MemberRefs {
-			newName := exportableName(mName)
+			newName := a.exportableName(mName)
 			if newName != mName {
 				delete(s.MemberRefs, mName)
 				s.MemberRefs[newName] = member
+
+				// also apply locationName trait so we keep the old one
+				member.LocationName = mName
+			}
+
+			if newName == "SDKShapeTraits" {
+				panic("Shape " + s.ShapeName + " uses reserved member name SDKShapeTraits")
 			}
 		}
 
-		newName := exportableName(k)
+		newName := a.exportableName(k)
 		if newName != s.ShapeName {
 			s.Rename(newName)
 		}
 	}
 }
 
-func exportableName(name string) string {
+func splitName(name string) []string {
+	out, buf := []string{}, ""
+
+	for i, r := range name {
+		l := string(r)
+
+		// special check for EC2 or MD5
+		if _, err := strconv.Atoi(l); err == nil && (strings.ToLower(buf) == "ec" || strings.ToLower(buf) == "md") {
+			buf += l
+			continue
+		}
+
+		lastUpper := i-1 >= 0 && strings.ToUpper(name[i-1:i]) == name[i-1:i]
+		curUpper := l == strings.ToUpper(l)
+		nextUpper := i+2 > len(name) || strings.ToUpper(name[i+1:i+2]) == name[i+1:i+2]
+
+		if (lastUpper != curUpper) || (nextUpper != curUpper && !nextUpper) {
+			if len(buf) > 1 || curUpper {
+				out = append(out, buf)
+				buf = ""
+			}
+			buf += l
+		} else {
+			buf += l
+		}
+	}
+	if len(buf) > 0 {
+		out = append(out, buf)
+	}
+	return out
+}
+
+func (a *API) exportableName(name string) string {
+	failed := false
+
 	// make sure the symbol is exportable
 	name = strings.ToUpper(name[0:1]) + name[1:]
 
 	// fix common AWS<->Go bugaboos
-	for regexp, repl := range replacements {
-		name = regexp.ReplaceAllString(name, repl)
+	out := ""
+	for _, part := range splitName(name) {
+		if part == "" {
+			continue
+		}
+		if part == strings.ToUpper(part) || part[0:1]+"s" == part {
+			out += part
+			continue
+		}
+		if v, ok := whitelistExportNames[part]; ok {
+			if v != "" {
+				out += v
+			} else {
+				out += part
+			}
+		} else {
+			failed = true
+			inflected := part
+			for regexp, repl := range replacements {
+				inflected = regexp.ReplaceAllString(inflected, repl)
+			}
+			a.unrecognizedNames[part] = inflected
+		}
 	}
-	return name
+
+	if failed {
+		return name
+	} else {
+		return out
+	}
 }
+
+var whitelistExportNames = func() map[string]string {
+	list := map[string]string{}
+	_, filename, _, _ := runtime.Caller(1)
+	f, err := os.Open(path.Join(path.Dir(filename), "inflections.csv"))
+	if err != nil {
+		panic(err)
+	}
+
+	b, err := ioutil.ReadAll(f)
+	if err != nil {
+		panic(err)
+	}
+
+	str := string(b)
+	for _, line := range strings.Split(str, "\n") {
+		if strings.HasPrefix(line, ";") {
+			continue
+		}
+		parts := regexp.MustCompile(`\s*:\s*`).Split(line, -1)
+		if len(parts) > 1 {
+			list[parts[0]] = parts[1]
+		}
+	}
+
+	return list
+}()
 
 var replacements = map[*regexp.Regexp]string{
 	regexp.MustCompile(`Acl`):          "ACL",

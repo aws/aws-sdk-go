@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 )
 
@@ -35,9 +36,23 @@ func (a *API) AttachString(str string) {
 }
 
 func (a *API) Setup() {
+	a.unrecognizedNames = map[string]string{}
 	a.writeShapeNames()
 	a.resolveReferences()
 	a.renameExportable()
 	a.renameToplevelShapes()
+
+	if len(a.unrecognizedNames) > 0 {
+		os.Stderr.WriteString("Unrecognized export names:\n\n")
+		for n, m := range a.unrecognizedNames {
+			if n == m {
+				m = ""
+			}
+			fmt.Fprintf(os.Stderr, "%s:%s\n", n, m)
+		}
+		os.Stderr.WriteString("\n\n")
+		panic("Found unrecognized exported names in API " + a.PackageName())
+	}
+
 	a.initialized = true
 }

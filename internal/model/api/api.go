@@ -9,17 +9,14 @@ import (
 	"text/template"
 )
 
-// func (s *ShapeRef) Shape(api *API) *Shape {
-// 	return api.Shapes[s.ShapeName]
-// }
-
 type API struct {
-	Metadata    Metadata
-	Operations  map[string]*Operation
-	Shapes      map[string]*Shape
-	initialized bool
-	imports     map[string]bool
-	name        string
+	Metadata          Metadata
+	Operations        map[string]*Operation
+	Shapes            map[string]*Shape
+	initialized       bool
+	imports           map[string]bool
+	name              string
+	unrecognizedNames map[string]string
 }
 
 type Metadata struct {
