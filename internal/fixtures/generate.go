@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/awslabs/aws-sdk-go/model/api"
+	"github.com/awslabs/aws-sdk-go/internal/model/api"
 )
 
 type InputTestSuite struct {
@@ -36,14 +36,16 @@ func (i *InputTestSuite) GoCode() (code string) {
 	for _, c := range i.Cases {
 		c.GoCode(prefix)
 	}
-	code = fmt.Sprintf("%#v\n", suite)
+	//code = fmt.Sprintf("%#v\n", suite)
+	return
 }
 
 func (i *InputTestCase) GoCode(name string) (code string) {
-	code = "func Test" + strings.toUpper(name[0:1]) + name[1:] + "(t *testing.T) {\n"
+	code = "func Test" + strings.ToUpper(name[0:1]) + name[1:] + "(t *testing.T) {\n"
 	code += "if req.HttpRequest.Body == " + fmt.Sprintf("%q", i.Serialized.Body) + " {\n"
 	code += "}"
 	code += "}\n"
+	return
 }
 
 var reStripSpace = regexp.MustCompile(`\s(\w)`)
