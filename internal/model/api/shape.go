@@ -3,6 +3,8 @@ package api
 import (
 	"sort"
 	"strings"
+
+	"github.com/awslabs/aws-sdk-go/internal/util"
 )
 
 type ShapeRef struct {
@@ -152,5 +154,5 @@ func (s *Shape) GoCode() string {
 		panic("Cannot generate toplevel shape for " + s.Type)
 	}
 
-	return gofmt(code)
+	return util.GoFmt(code)
 }

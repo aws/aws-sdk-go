@@ -7,6 +7,8 @@ import (
 	"sort"
 	"strings"
 	"text/template"
+
+	"github.com/awslabs/aws-sdk-go/internal/util"
 )
 
 type API struct {
@@ -148,7 +150,7 @@ func (a *API) APIGoCode() string {
 	}
 
 	code := a.importsGoCode() + strings.TrimSpace(buf.String())
-	return gofmt(code)
+	return util.GoFmt(code)
 }
 
 var tplService = template.Must(template.New("service").Parse(`
@@ -198,5 +200,5 @@ func (a *API) ServiceGoCode() string {
 	}
 
 	code := a.importsGoCode() + strings.TrimSpace(buf.String())
-	return gofmt(code)
+	return util.GoFmt(code)
 }

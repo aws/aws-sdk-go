@@ -1,8 +1,8 @@
-package api
+package util
 
 import "go/format"
 
-func gofmt(buf string) string {
+func GoFmt(buf string) string {
 	formatted, err := format.Source([]byte(buf))
 	if err != nil {
 		panic(err)

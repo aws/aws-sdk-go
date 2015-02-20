@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"strings"
 	"text/template"
+
+	"github.com/awslabs/aws-sdk-go/internal/util"
 )
 
 type Operation struct {
@@ -69,5 +71,5 @@ func (o *Operation) GoCode() string {
 		panic(err)
 	}
 
-	return strings.TrimSpace(gofmt(buf.String()))
+	return strings.TrimSpace(util.GoFmt(buf.String()))
 }
