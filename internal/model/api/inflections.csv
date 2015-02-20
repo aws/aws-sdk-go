@@ -366,7 +366,7 @@ Reserved:
 State:
 Endpoint:
 Reservations:
-Az:
+Az:AZ
 Detail:
 Hostnames:
 Net:
@@ -622,8 +622,8 @@ Doc:
 Score:
 Hit:
 Hits:
-Rid:
-Timems:
+Rid:RID
+Timems:TimeMS
 Model:
 Suggestion:
 Deletes:
@@ -778,7 +778,7 @@ Definition:
 Errors:
 Worker:
 Sphere:
-Taskrunner:
+Taskrunner:TaskRunner
 Locations:
 Interconnects:
 Prefixes:
@@ -873,7 +873,7 @@ Rebuild:
 Solution:
 Swap:
 Trigger:
-Cname:
+Cname:CNAME
 Qualified:
 Setting:
 Environments:
@@ -1107,11 +1107,11 @@ Elastic:
 Layers:
 Switch:
 Hour:
-Dsa:
+Dsa:DSA
 Based:
 Lost:
 Clone:
-Opsworks:
+Opsworks:OpsWorks
 Tuesday:
 Delay:
 Reported:
@@ -1121,7 +1121,7 @@ Manager:
 Commands:
 Cookbooks:
 Agent:
-Rsa:
+Rsa:RSA
 Rebooting:
 Online:
 Healing:
@@ -1163,7 +1163,7 @@ Provisioning:
 Sudo:
 Boot:
 Thursday:
-Elb:
+Elb:ELB
 Installer:
 Booting:
 Arrays:
@@ -1326,7 +1326,7 @@ Complaints:
 Rejects:
 Rejected:
 Verify:
-Dkim:
+Dkim:DKIM
 Charset:
 Reply:
 Feedback:
