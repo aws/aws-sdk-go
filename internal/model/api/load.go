@@ -43,7 +43,11 @@ func (a *API) Setup() {
 	a.renameToplevelShapes()
 
 	if len(a.unrecognizedNames) > 0 {
-		os.Stderr.WriteString("Unrecognized export names:\n\n")
+		msg := []string{
+			"Unrecognized inflections for the following export names:",
+			"(Add these to inflections.csv with any inflections added after the ':')",
+		}
+		fmt.Fprintf(os.Stderr, "%s\n%s\n\n", msg[0], msg[1])
 		for n, m := range a.unrecognizedNames {
 			if n == m {
 				m = ""

@@ -40,7 +40,7 @@ type endpointEntry struct {
 	Endpoint string
 }
 
-var endpointMap = endpointStruct{
+var endpointsMap = endpointStruct{
 	Version: {{ .Version }},
 	Endpoints: map[string]endpointEntry{
 		{{ range $key, $entry := .Endpoints }}"{{ $key }}": endpointEntry{

@@ -1,0 +1,1297 @@
+{
+  "version":"2.0",
+  "metadata":{
+    "apiVersion":"2014-11-06",
+    "endpointPrefix":"ssm",
+    "jsonVersion":"1.1",
+    "serviceAbbreviation":"Amazon SSM",
+    "serviceFullName":"Amazon Simple Systems Management Service",
+    "signatureVersion":"v4",
+    "targetPrefix":"AmazonSSM",
+    "protocol":"json"
+  },
+  "documentation":"<p>AWS Simple Systems Management enables you to configure and manage your EC2 instances. You can create a configuration document and then associate it with one or more running instances.</p> <p>You can use a configuration document to automate the following tasks for your Windows instances:</p> <ul> <li><p>Install, repair, or uninstall software using an MSI package</p></li> <li><p>Run PowerShell scripts</p></li> <li><p>Join an AWS Directory</p></li> <li><p>Configure CloudWatch Logs to monitor applications and systems</p></li> </ul> <p>Note that configuration documents are not supported on Linux instances.</p>",
+  "operations":{
+    "CreateAssociation":{
+      "name":"CreateAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateAssociationRequest"},
+      "output":{"shape":"CreateAssociationResult"},
+      "errors":[
+        {
+          "shape":"AssociationAlreadyExists",
+          "error":{
+            "code":"AssociationAlreadyExists",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified association already exists.</p>"
+        },
+        {
+          "shape":"AssociationLimitExceeded",
+          "error":{
+            "code":"AssociationLimitExceeded",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>You can have at most 2,000 active associations.</p>"
+        },
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true,
+          "documentation":"<p>An error occurred on the server side.</p>"
+        },
+        {
+          "shape":"InvalidDocument",
+          "error":{
+            "code":"InvalidDocument",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The configuration document is not valid.</p>"
+        },
+        {
+          "shape":"InvalidInstanceId",
+          "error":{
+            "code":"InvalidInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>You must specify the ID of a running instance.</p>"
+        }
+      ],
+      "documentation":"<p>Associates the specified configuration document with the specified instance.</p> <p>When you associate a configuration document with an instance, the configuration agent on the instance processes the configuration document and configures the instance as specified.</p> <p>If you associate a configuration document with an instance that already has an associated configuration document, we replace the current configuration document with the new configuration document.</p>"
+    },
+    "CreateAssociationBatch":{
+      "name":"CreateAssociationBatch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateAssociationBatchRequest"},
+      "output":{"shape":"CreateAssociationBatchResult"},
+      "errors":[
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true,
+          "documentation":"<p>An error occurred on the server side.</p>"
+        },
+        {
+          "shape":"InvalidDocument",
+          "error":{
+            "code":"InvalidDocument",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The configuration document is not valid.</p>"
+        },
+        {
+          "shape":"InvalidInstanceId",
+          "error":{
+            "code":"InvalidInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>You must specify the ID of a running instance.</p>"
+        },
+        {
+          "shape":"DuplicateInstanceId",
+          "error":{
+            "code":"DuplicateInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>You cannot specify an instance ID in more than one association.</p>"
+        },
+        {
+          "shape":"AssociationLimitExceeded",
+          "error":{
+            "code":"AssociationLimitExceeded",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>You can have at most 2,000 active associations.</p>"
+        }
+      ],
+      "documentation":"<p>Associates the specified configuration documents with the specified instances.</p> <p>When you associate a configuration document with an instance, the configuration agent on the instance processes the configuration document and configures the instance as specified.</p> <p>If you associate a configuration document with an instance that already has an associated configuration document, we replace the current configuration document with the new configuration document.</p>"
+    },
+    "CreateDocument":{
+      "name":"CreateDocument",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDocumentRequest"},
+      "output":{"shape":"CreateDocumentResult"},
+      "errors":[
+        {
+          "shape":"DocumentAlreadyExists",
+          "error":{
+            "code":"DocumentAlreadyExists",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified configuration document already exists.</p>"
+        },
+        {
+          "shape":"MaxDocumentSizeExceeded",
+          "error":{
+            "code":"MaxDocumentSizeExceeded",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The size limit of a configuration document is 64 KB.</p>"
+        },
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true,
+          "documentation":"<p>An error occurred on the server side.</p>"
+        },
+        {
+          "shape":"InvalidDocumentContent",
+          "error":{
+            "code":"InvalidDocumentContent",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The content for the configuration document is not valid.</p>"
+        },
+        {
+          "shape":"DocumentLimitExceeded",
+          "error":{
+            "code":"DocumentLimitExceeded",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>You can have at most 100 active configuration documents.</p>"
+        }
+      ],
+      "documentation":"<p>Creates a configuration document.</p> <p>After you create a configuration document, you can use <a>CreateAssociation</a> to associate it with one or more running instances.</p>"
+    },
+    "DeleteAssociation":{
+      "name":"DeleteAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAssociationRequest"},
+      "output":{"shape":"DeleteAssociationResult"},
+      "errors":[
+        {
+          "shape":"AssociationDoesNotExist",
+          "error":{
+            "code":"AssociationDoesNotExist",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified association does not exist.</p>"
+        },
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true,
+          "documentation":"<p>An error occurred on the server side.</p>"
+        },
+        {
+          "shape":"InvalidDocument",
+          "error":{
+            "code":"InvalidDocument",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The configuration document is not valid.</p>"
+        },
+        {
+          "shape":"InvalidInstanceId",
+          "error":{
+            "code":"InvalidInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>You must specify the ID of a running instance.</p>"
+        },
+        {
+          "shape":"TooManyUpdates",
+          "error":{
+            "code":"TooManyUpdates",
+            "httpStatusCode":429,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>There are concurrent updates for a resource that supports one update at a time.</p>"
+        }
+      ],
+      "documentation":"<p>Disassociates the specified configuration document from the specified instance.</p> <p>When you disassociate a configuration document from an instance, it does not change the configuration of the instance. To change the configuration state of an instance after you disassociate a configuration document, you must create a new configuration document with the desired configuration and associate it with the instance.</p>"
+    },
+    "DeleteDocument":{
+      "name":"DeleteDocument",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDocumentRequest"},
+      "output":{"shape":"DeleteDocumentResult"},
+      "errors":[
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true,
+          "documentation":"<p>An error occurred on the server side.</p>"
+        },
+        {
+          "shape":"InvalidDocument",
+          "error":{
+            "code":"InvalidDocument",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The configuration document is not valid.</p>"
+        },
+        {
+          "shape":"AssociatedInstances",
+          "error":{
+            "code":"AssociatedInstances",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>You must disassociate a configuration document from all instances before you can delete it.</p>"
+        }
+      ],
+      "documentation":"<p>Deletes the specified configuration document.</p> <p>You must use <a>DeleteAssociation</a> to disassociate all instances that are associated with the configuration document before you can delete it.</p>"
+    },
+    "DescribeAssociation":{
+      "name":"DescribeAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAssociationRequest"},
+      "output":{"shape":"DescribeAssociationResult"},
+      "errors":[
+        {
+          "shape":"AssociationDoesNotExist",
+          "error":{
+            "code":"AssociationDoesNotExist",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified association does not exist.</p>"
+        },
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true,
+          "documentation":"<p>An error occurred on the server side.</p>"
+        },
+        {
+          "shape":"InvalidDocument",
+          "error":{
+            "code":"InvalidDocument",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The configuration document is not valid.</p>"
+        },
+        {
+          "shape":"InvalidInstanceId",
+          "error":{
+            "code":"InvalidInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>You must specify the ID of a running instance.</p>"
+        }
+      ],
+      "documentation":"<p>Describes the associations for the specified configuration document or instance.</p>"
+    },
+    "DescribeDocument":{
+      "name":"DescribeDocument",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDocumentRequest"},
+      "output":{"shape":"DescribeDocumentResult"},
+      "errors":[
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true,
+          "documentation":"<p>An error occurred on the server side.</p>"
+        },
+        {
+          "shape":"InvalidDocument",
+          "error":{
+            "code":"InvalidDocument",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The configuration document is not valid.</p>"
+        }
+      ],
+      "documentation":"<p>Describes the specified configuration document.</p>"
+    },
+    "GetDocument":{
+      "name":"GetDocument",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDocumentRequest"},
+      "output":{"shape":"GetDocumentResult"},
+      "errors":[
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true,
+          "documentation":"<p>An error occurred on the server side.</p>"
+        },
+        {
+          "shape":"InvalidDocument",
+          "error":{
+            "code":"InvalidDocument",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The configuration document is not valid.</p>"
+        }
+      ],
+      "documentation":"<p>Gets the contents of the specified configuration document.</p>"
+    },
+    "ListAssociations":{
+      "name":"ListAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAssociationsRequest"},
+      "output":{"shape":"ListAssociationsResult"},
+      "errors":[
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true,
+          "documentation":"<p>An error occurred on the server side.</p>"
+        },
+        {
+          "shape":"InvalidNextToken",
+          "error":{
+            "code":"InvalidNextToken",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified token is not valid.</p>"
+        }
+      ],
+      "documentation":"<p>Lists the associations for the specified configuration document or instance.</p>"
+    },
+    "ListDocuments":{
+      "name":"ListDocuments",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDocumentsRequest"},
+      "output":{"shape":"ListDocumentsResult"},
+      "errors":[
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true,
+          "documentation":"<p>An error occurred on the server side.</p>"
+        },
+        {
+          "shape":"InvalidNextToken",
+          "error":{
+            "code":"InvalidNextToken",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified token is not valid.</p>"
+        }
+      ],
+      "documentation":"<p>Describes one or more of your configuration documents.</p>"
+    },
+    "UpdateAssociationStatus":{
+      "name":"UpdateAssociationStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateAssociationStatusRequest"},
+      "output":{"shape":"UpdateAssociationStatusResult"},
+      "errors":[
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true,
+          "documentation":"<p>An error occurred on the server side.</p>"
+        },
+        {
+          "shape":"InvalidInstanceId",
+          "error":{
+            "code":"InvalidInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>You must specify the ID of a running instance.</p>"
+        },
+        {
+          "shape":"InvalidDocument",
+          "error":{
+            "code":"InvalidDocument",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The configuration document is not valid.</p>"
+        },
+        {
+          "shape":"AssociationDoesNotExist",
+          "error":{
+            "code":"AssociationDoesNotExist",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified association does not exist.</p>"
+        },
+        {
+          "shape":"StatusUnchanged",
+          "error":{
+            "code":"StatusUnchanged",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The updated status is the same as the current status.</p>"
+        },
+        {
+          "shape":"TooManyUpdates",
+          "error":{
+            "code":"TooManyUpdates",
+            "httpStatusCode":429,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>There are concurrent updates for a resource that supports one update at a time.</p>"
+        }
+      ],
+      "documentation":"<p>Updates the status of the configuration document associated with the specified instance.</p>"
+    }
+  },
+  "shapes":{
+    "AssociatedInstances":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"AssociatedInstances",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>You must disassociate a configuration document from all instances before you can delete it.</p>"
+    },
+    "Association":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "documentation":"<p>The ID of the instance.</p>"
+        }
+      },
+      "documentation":"<p>Describes an association of a configuration document and an instance.</p>"
+    },
+    "AssociationAlreadyExists":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"AssociationAlreadyExists",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The specified association already exists.</p>"
+    },
+    "AssociationDescription":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "documentation":"<p>The ID of the instance.</p>"
+        },
+        "Date":{
+          "shape":"DateTime",
+          "documentation":"<p>The date when the association was made.</p>"
+        },
+        "Status":{
+          "shape":"AssociationStatus",
+          "documentation":"<p>The association status.</p>"
+        }
+      },
+      "documentation":"<p>Describes an association.</p>"
+    },
+    "AssociationDescriptionList":{
+      "type":"list",
+      "member":{
+        "shape":"AssociationDescription",
+        "locationName":"AssociationDescription"
+      }
+    },
+    "AssociationDoesNotExist":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"AssociationDoesNotExist",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The specified association does not exist.</p>"
+    },
+    "AssociationFilter":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{
+          "shape":"AssociationFilterKey",
+          "documentation":"<p>The name of the filter.</p>"
+        },
+        "value":{
+          "shape":"AssociationFilterValue",
+          "documentation":"<p>The filter value.</p>"
+        }
+      },
+      "documentation":"<p>Describes a filter.</p>"
+    },
+    "AssociationFilterKey":{
+      "type":"string",
+      "enum":[
+        "InstanceId",
+        "Name"
+      ]
+    },
+    "AssociationFilterList":{
+      "type":"list",
+      "member":{
+        "shape":"AssociationFilter",
+        "locationName":"AssociationFilter"
+      },
+      "min":1
+    },
+    "AssociationFilterValue":{
+      "type":"string",
+      "min":1
+    },
+    "AssociationLimitExceeded":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"AssociationLimitExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>You can have at most 2,000 active associations.</p>"
+    },
+    "AssociationList":{
+      "type":"list",
+      "member":{
+        "shape":"Association",
+        "locationName":"Association"
+      }
+    },
+    "AssociationStatus":{
+      "type":"structure",
+      "required":[
+        "Date",
+        "Name",
+        "Message"
+      ],
+      "members":{
+        "Date":{
+          "shape":"DateTime",
+          "documentation":"<p>The date when the status changed.</p>"
+        },
+        "Name":{
+          "shape":"AssociationStatusName",
+          "documentation":"<p>The status.</p>"
+        },
+        "Message":{
+          "shape":"StatusMessage",
+          "documentation":"<p>The reason for the status.</p>"
+        },
+        "AdditionalInfo":{
+          "shape":"StatusAdditionalInfo",
+          "documentation":"<p>A user-defined string.</p>"
+        }
+      },
+      "documentation":"<p>Describes an association status.</p>"
+    },
+    "AssociationStatusName":{
+      "type":"string",
+      "enum":[
+        "Pending",
+        "Success",
+        "Failed"
+      ]
+    },
+    "BatchErrorMessage":{"type":"string"},
+    "CreateAssociationBatchRequest":{
+      "type":"structure",
+      "required":["Entries"],
+      "members":{
+        "Entries":{
+          "shape":"CreateAssociationBatchRequestEntries",
+          "documentation":"<p>One or more associations.</p>"
+        }
+      }
+    },
+    "CreateAssociationBatchRequestEntries":{
+      "type":"list",
+      "member":{
+        "shape":"CreateAssociationBatchRequestEntry",
+        "locationName":"entries"
+      }
+    },
+    "CreateAssociationBatchRequestEntry":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "documentation":"<p>The ID of the instance.</p>"
+        }
+      },
+      "documentation":"<p>Describes the association of a configuration document and an instance.</p>"
+    },
+    "CreateAssociationBatchResult":{
+      "type":"structure",
+      "members":{
+        "Successful":{
+          "shape":"AssociationDescriptionList",
+          "documentation":"<p>Information about the associations that succeeded.</p>"
+        },
+        "Failed":{
+          "shape":"FailedCreateAssociationList",
+          "documentation":"<p>Information about the associations that failed.</p>"
+        }
+      }
+    },
+    "CreateAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "InstanceId"
+      ],
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "documentation":"<p>The ID of the instance.</p>"
+        }
+      }
+    },
+    "CreateAssociationResult":{
+      "type":"structure",
+      "members":{
+        "AssociationDescription":{
+          "shape":"AssociationDescription",
+          "documentation":"<p>Information about the association.</p>"
+        }
+      }
+    },
+    "CreateDocumentRequest":{
+      "type":"structure",
+      "required":[
+        "Content",
+        "Name"
+      ],
+      "members":{
+        "Content":{
+          "shape":"DocumentContent",
+          "documentation":"<p>A valid JSON file. For more information about the contents of this file, see <a href=\"http://docs.aws.amazon.com/ssm/latest/APIReference/aws-ssm-document.html\">Configuration Document</a>.</p>"
+        },
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>A name for the configuration document.</p>"
+        }
+      }
+    },
+    "CreateDocumentResult":{
+      "type":"structure",
+      "members":{
+        "DocumentDescription":{
+          "shape":"DocumentDescription",
+          "documentation":"<p>Information about the configuration document.</p>"
+        }
+      }
+    },
+    "DateTime":{"type":"timestamp"},
+    "DeleteAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "InstanceId"
+      ],
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "documentation":"<p>The ID of the instance.</p>"
+        }
+      }
+    },
+    "DeleteAssociationResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteDocumentRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        }
+      }
+    },
+    "DeleteDocumentResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "InstanceId"
+      ],
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "documentation":"<p>The ID of the instance.</p>"
+        }
+      }
+    },
+    "DescribeAssociationResult":{
+      "type":"structure",
+      "members":{
+        "AssociationDescription":{
+          "shape":"AssociationDescription",
+          "documentation":"<p>Information about the association.</p>"
+        }
+      }
+    },
+    "DescribeDocumentRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        }
+      }
+    },
+    "DescribeDocumentResult":{
+      "type":"structure",
+      "members":{
+        "Document":{
+          "shape":"DocumentDescription",
+          "documentation":"<p>Information about the configuration document.</p>"
+        }
+      }
+    },
+    "DocumentAlreadyExists":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DocumentAlreadyExists",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The specified configuration document already exists.</p>"
+    },
+    "DocumentContent":{
+      "type":"string",
+      "min":1
+    },
+    "DocumentDescription":{
+      "type":"structure",
+      "members":{
+        "Sha1":{
+          "shape":"DocumentSha1",
+          "documentation":"<p>The SHA1 hash of the document, which you can use for verification purposes.</p>"
+        },
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        },
+        "CreatedDate":{
+          "shape":"DateTime",
+          "documentation":"<p>The date when the configuration document was created.</p>"
+        },
+        "Status":{
+          "shape":"DocumentStatus",
+          "documentation":"<p>The status of the configuration document.</p>"
+        }
+      },
+      "documentation":"<p>Describes a configuration document.</p>"
+    },
+    "DocumentFilter":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{
+          "shape":"DocumentFilterKey",
+          "documentation":"<p>The name of the filter.</p>"
+        },
+        "value":{
+          "shape":"DocumentFilterValue",
+          "documentation":"<p>The value of the filter.</p>"
+        }
+      },
+      "documentation":"<p>Describes a filter.</p>"
+    },
+    "DocumentFilterKey":{
+      "type":"string",
+      "enum":["Name"]
+    },
+    "DocumentFilterList":{
+      "type":"list",
+      "member":{
+        "shape":"DocumentFilter",
+        "locationName":"DocumentFilter"
+      },
+      "min":1
+    },
+    "DocumentFilterValue":{
+      "type":"string",
+      "min":1
+    },
+    "DocumentIdentifier":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        }
+      },
+      "documentation":"<p>Describes the name of a configuration document.</p>"
+    },
+    "DocumentIdentifierList":{
+      "type":"list",
+      "member":{
+        "shape":"DocumentIdentifier",
+        "locationName":"DocumentIdentifier"
+      }
+    },
+    "DocumentLimitExceeded":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DocumentLimitExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>You can have at most 100 active configuration documents.</p>"
+    },
+    "DocumentName":{
+      "type":"string",
+      "min":3,
+      "max":64,
+      "pattern":"^[a-zA-Z0-9_\\-.]{3,64}$"
+    },
+    "DocumentSha1":{"type":"string"},
+    "DocumentStatus":{
+      "type":"string",
+      "enum":[
+        "Creating",
+        "Active",
+        "Deleting"
+      ]
+    },
+    "DuplicateInstanceId":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DuplicateInstanceId",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>You cannot specify an instance ID in more than one association.</p>"
+    },
+    "FailedCreateAssociation":{
+      "type":"structure",
+      "members":{
+        "Entry":{
+          "shape":"CreateAssociationBatchRequestEntry",
+          "documentation":"<p>The association.</p>"
+        },
+        "Message":{
+          "shape":"BatchErrorMessage",
+          "documentation":"<p>A description of the failure.</p>"
+        },
+        "Fault":{
+          "shape":"Fault",
+          "documentation":"<p>The source of the failure.</p>"
+        }
+      },
+      "documentation":"<p>Describes a failed association.</p>"
+    },
+    "FailedCreateAssociationList":{
+      "type":"list",
+      "member":{
+        "shape":"FailedCreateAssociation",
+        "locationName":"FailedCreateAssociationEntry"
+      }
+    },
+    "Fault":{
+      "type":"string",
+      "enum":[
+        "Client",
+        "Server",
+        "Unknown"
+      ]
+    },
+    "GetDocumentRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        }
+      }
+    },
+    "GetDocumentResult":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        },
+        "Content":{
+          "shape":"DocumentContent",
+          "documentation":"<p>The contents of the configuration document.</p>"
+        }
+      }
+    },
+    "InstanceId":{
+      "type":"string",
+      "min":10,
+      "max":10,
+      "pattern":"^(?=.{10}$)(i-(\\w){8})"
+    },
+    "InternalServerError":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InternalServerError",
+        "httpStatusCode":500
+      },
+      "exception":true,
+      "documentation":"<p>An error occurred on the server side.</p>"
+    },
+    "InvalidDocument":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidDocument",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The configuration document is not valid.</p>"
+    },
+    "InvalidDocumentContent":{
+      "type":"structure",
+      "members":{
+        "message":{
+          "shape":"String",
+          "documentation":"<p>A description of the validation error.</p>"
+        }
+      },
+      "error":{
+        "code":"InvalidDocumentContent",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The content for the configuration document is not valid.</p>"
+    },
+    "InvalidInstanceId":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidInstanceId",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>You must specify the ID of a running instance.</p>"
+    },
+    "InvalidNextToken":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidNextToken",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The specified token is not valid.</p>"
+    },
+    "ListAssociationsRequest":{
+      "type":"structure",
+      "required":["AssociationFilterList"],
+      "members":{
+        "AssociationFilterList":{
+          "shape":"AssociationFilterList",
+          "documentation":"<p>One or more filters. Use a filter to return a more specific list of results.</p>"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "documentation":"<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>The token for the next set of items to return. (You received this token from a previous call.)</p>"
+        }
+      }
+    },
+    "ListAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "Associations":{
+          "shape":"AssociationList",
+          "documentation":"<p>The associations.</p>"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>"
+        }
+      }
+    },
+    "ListDocumentsRequest":{
+      "type":"structure",
+      "members":{
+        "DocumentFilterList":{
+          "shape":"DocumentFilterList",
+          "documentation":"<p>One or more filters. Use a filter to return a more specific list of results.</p>"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "documentation":"<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>The token for the next set of items to return. (You received this token from a previous call.)</p>"
+        }
+      }
+    },
+    "ListDocumentsResult":{
+      "type":"structure",
+      "members":{
+        "DocumentIdentifiers":{
+          "shape":"DocumentIdentifierList",
+          "documentation":"<p>The names of the configuration documents.</p>"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>"
+        }
+      }
+    },
+    "MaxDocumentSizeExceeded":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"MaxDocumentSizeExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The size limit of a configuration document is 64 KB.</p>"
+    },
+    "MaxResults":{
+      "type":"integer",
+      "min":1,
+      "max":25
+    },
+    "NextToken":{"type":"string"},
+    "StatusAdditionalInfo":{
+      "type":"string",
+      "max":1024
+    },
+    "StatusMessage":{
+      "type":"string",
+      "max":1024
+    },
+    "StatusUnchanged":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"StatusUnchanged",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The updated status is the same as the current status.</p>"
+    },
+    "String":{"type":"string"},
+    "TooManyUpdates":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TooManyUpdates",
+        "httpStatusCode":429,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>There are concurrent updates for a resource that supports one update at a time.</p>"
+    },
+    "UpdateAssociationStatusRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "InstanceId",
+        "AssociationStatus"
+      ],
+      "members":{
+        "Name":{
+          "shape":"DocumentName",
+          "documentation":"<p>The name of the configuration document.</p>"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "documentation":"<p>The ID of the instance.</p>"
+        },
+        "AssociationStatus":{
+          "shape":"AssociationStatus",
+          "documentation":"<p>The association status.</p>"
+        }
+      }
+    },
+    "UpdateAssociationStatusResult":{
+      "type":"structure",
+      "members":{
+        "AssociationDescription":{
+          "shape":"AssociationDescription",
+          "documentation":"<p>Information about the association.</p>"
+        }
+      }
+    }
+  }
+}

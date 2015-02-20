@@ -1,5 +1,7 @@
 package aws
 
+//go:generate go run ../internal/model/cli/gen-endpoints/main.go endpoints.json endpoints_map.go
+
 import "strings"
 
 func (s Service) endpointForRegion() string {

@@ -74,11 +74,11 @@ func main() {
 func (g *generateInfo) writeServiceFile() {
 	file := filepath.Join(g.PackageDir, "service.go")
 	if _, err := os.Stat(file); g.ForceService || (err != nil && os.IsNotExist(err)) {
-		ioutil.WriteFile(file, []byte(g.API.ServiceGoCode()), 0664)
+		ioutil.WriteFile(file, []byte("package "+g.API.PackageName()+"\n\n"+g.API.ServiceGoCode()), 0664)
 	}
 }
 
 func (g *generateInfo) writeAPIFile() {
 	file := filepath.Join(g.PackageDir, "api.go")
-	ioutil.WriteFile(file, []byte(g.API.APIGoCode()), 0664)
+	ioutil.WriteFile(file, []byte("package "+g.API.PackageName()+"\n\n"+g.API.APIGoCode()), 0664)
 }
