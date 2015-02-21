@@ -2,8 +2,8 @@ package jsonrpc_test
 
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
-
 	"github.com/awslabs/aws-sdk-go/aws/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
 
 	"bytes"
 	"encoding/json"
@@ -42,7 +42,7 @@ func NewInputService1ProtocolTest(config *InputService1ProtocolTestConfig) *Inpu
 	service.Initialize()
 
 	// Handlers
-
+	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
 
@@ -92,8 +92,10 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	var input InputService1TestShapeInputShape
 	json.Unmarshal([]byte("{\"Name\":\"myname\"}"), &input)
 	req := svc.InputService1TestCaseOperation1Request(&input)
-	req.Build()
 	r := req.HTTPRequest
+
+	// build request
+	jsonrpc.Build(req)
 
 	// assert body
 	body, _ := ioutil.ReadAll(r.Body)

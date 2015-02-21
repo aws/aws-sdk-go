@@ -1,5 +1,7 @@
 package main
 
+//go:generate go run generate.go protocol/input/json.json ../../aws/protocol/jsonrpc/jsonrpc_input_test.go
+
 import (
 	"bytes"
 	"encoding/json"
@@ -14,13 +16,15 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/util"
 )
 
-type InputTestSuite struct {
+type TestSuite struct {
 	*api.API
 	Description string
 	Cases       []TestCase
+	title       string
 }
 
 type TestCase struct {
+	*TestSuite
 	Given      *api.Operation
 	Params     interface{}     `json:",omitempty"`
 	Data       interface{}     `json:"result,omitempty"`
@@ -64,36 +68,34 @@ func addImports(code string) string {
 		importNames[i] = fmt.Sprintf("%q", n)
 	}
 	str := reImportRemoval.ReplaceAllString(code, "import (\n$1\n"+strings.Join(importNames, "\n")+")")
-	return strings.Replace(str, `"github.com/awslabs/aws-sdk-go/aws/signer/v4"`, "", -1)
+	return str
 }
 
-func removeSigner(code string) string {
-	return strings.Replace(code, `service.Handlers.Sign.PushBack(v4.Sign)`, "", -1)
-}
-
-func (i *InputTestSuite) TestSuite() string {
+func (t *TestSuite) TestSuite() string {
 	var buf bytes.Buffer
 
-	prefix := reStripSpace.ReplaceAllStringFunc(i.Description, func(x string) string {
+	t.title = reStripSpace.ReplaceAllStringFunc(t.Description, func(x string) string {
 		return strings.ToUpper(x[1:])
 	})
 
-	for idx, c := range i.Cases {
-		opName := i.API.StructName() + prefix + "Case" + strconv.Itoa(idx+1)
-		buf.WriteString(c.TestCase(i.API.StructName(), opName) + "\n")
+	for idx, c := range t.Cases {
+		c.TestSuite = t
+		buf.WriteString(c.TestCase(idx) + "\n")
 	}
 	return util.GoFmt(buf.String())
 }
 
 var tplInputTestCase = template.Must(template.New("inputcase").Parse(`
 func Test{{ .OpName }}(t *testing.T) {
-	svc := New{{ .ServiceName }}(nil)
+	svc := New{{ .TestCase.TestSuite.API.StructName }}(nil)
 
 	var input {{ .Given.InputRef.ShapeName }}
 	json.Unmarshal([]byte({{ .ParamsString }}), &input)
 	req := svc.{{ .Given.ExportedName }}Request(&input)
-	req.Build()
 	r := req.HTTPRequest
+
+	// build request
+	{{ .TestCase.TestSuite.API.ProtocolPackage }}.Build(req)
 
 	// assert body
 	body, _ := ioutil.ReadAll(r.Body)
@@ -110,21 +112,19 @@ func Test{{ .OpName }}(t *testing.T) {
 
 type tplInputTestCaseData struct {
 	*TestCase
-	ServiceName, Body, OpName, ParamsString string
+	Body, OpName, ParamsString string
 }
 
 var tplOutputTestCase = template.Must(template.New("outputcase").Parse(`
 func Test{{ .OpName }}(t *testing.T) {
-	svc := New{{ .ServiceName }}(nil)
+	svc := New{{ .TestCase.TestSuite.API.StructName }}(nil)
 
+	buf := bytes.NewReader([]byte({{ .Body }}))
 	req, _ := svc.{{ .Given.ExportedName }}Request()
-	req.Handlers.Build.Init()
-	req.Handlers.Send.Init()
-	req.Handlers.Send.PushBack(func(r *aws.Request) {
-		buf := bytes.NewReader([]byte({{ .Body }}))
-		r.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
-	})
-	req.Send()
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+
+	// unmarshal response
+	{{ .TestCase.TestSuite.API.ProtocolPackage }}.Unmarshal(req)
 
 	// assert response
 	buf, _ := json.Marshal(req.Data)
@@ -138,11 +138,13 @@ func Test{{ .OpName }}(t *testing.T) {
 
 type tplOutputTestCaseData struct {
 	*TestCase
-	Body, ServiceName, OpName, ResponseString string
+	Body, OpName, ResponseString string
 }
 
-func (i *TestCase) TestCase(svcName, opName string) string {
+func (i *TestCase) TestCase(idx int) string {
 	var buf bytes.Buffer
+
+	opName := i.API.StructName() + i.TestSuite.title + "Case" + strconv.Itoa(idx+1)
 
 	if i.Params != nil { // input test
 		pBuf, _ := json.Marshal(i.Params)
@@ -150,7 +152,6 @@ func (i *TestCase) TestCase(svcName, opName string) string {
 			TestCase:     i,
 			Body:         fmt.Sprintf("%q", i.InputTest.Body),
 			OpName:       strings.ToUpper(opName[0:1]) + opName[1:],
-			ServiceName:  svcName,
 			ParamsString: fmt.Sprintf("%q", pBuf),
 		}
 
@@ -164,7 +165,6 @@ func (i *TestCase) TestCase(svcName, opName string) string {
 			Body:           fmt.Sprintf("%q", i.OutputTest.Body),
 			OpName:         strings.ToUpper(opName[0:1]) + opName[1:],
 			ResponseString: fmt.Sprintf("%q", pBuf),
-			ServiceName:    svcName,
 		}
 
 		if err := tplOutputTestCase.Execute(&buf, output); err != nil {
@@ -175,13 +175,13 @@ func (i *TestCase) TestCase(svcName, opName string) string {
 	return util.GoFmt(buf.String())
 }
 
-func GenerateInputTestSuite(filename string) string {
+func GenerateTestSuite(filename string) string {
 	inout := "Input"
 	if strings.Contains(filename, "/output/") {
 		inout = "Output"
 	}
 
-	var suites []InputTestSuite
+	var suites []TestSuite
 	f, err := os.Open(filename)
 	if err != nil {
 		panic(err)
@@ -213,7 +213,7 @@ func GenerateInputTestSuite(filename string) string {
 			s.Rename(svcPrefix + "TestShape" + n)
 		}
 
-		svcCode := addImports(removeSigner(suite.API.ServiceGoCode()))
+		svcCode := addImports(suite.API.ServiceGoCode())
 		if i == 0 {
 			importMatch := reImportRemoval.FindStringSubmatch(svcCode)
 			buf.WriteString(importMatch[0] + "\n\n")
@@ -231,5 +231,15 @@ func GenerateInputTestSuite(filename string) string {
 }
 
 func main() {
-	fmt.Println(GenerateInputTestSuite(os.Args[1]))
+	out := GenerateTestSuite(os.Args[1])
+	if len(os.Args) == 3 {
+		f, err := os.Create(os.Args[2])
+		defer f.Close()
+		if err != nil {
+			panic(err)
+		}
+		f.WriteString(out + "\n")
+	} else {
+		fmt.Println(out)
+	}
 }
