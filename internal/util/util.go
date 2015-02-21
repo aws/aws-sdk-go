@@ -1,6 +1,9 @@
 package util
 
-import "go/format"
+import (
+	"go/format"
+	"regexp"
+)
 
 func GoFmt(buf string) string {
 	formatted, err := format.Source([]byte(buf))
@@ -8,4 +11,10 @@ func GoFmt(buf string) string {
 		panic(err)
 	}
 	return string(formatted)
+}
+
+var reTrim = regexp.MustCompile("\\s")
+
+func Trim(s string) string {
+	return reTrim.ReplaceAllString(s, "")
 }

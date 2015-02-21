@@ -29,17 +29,15 @@ type TestCase struct {
 }
 
 type TestExpectation struct {
-	Body      string
-	URI       string
-	Headers   map[string]string
-	StatuCode uint `json:"status_code"`
+	Body       string
+	URI        string
+	Headers    map[string]string
+	StatusCode uint `json:"status_code"`
 }
 
 const preamble = `
-var reTrim = regexp.MustCompile("\\s")
-func trim(s string) string {
-	return reTrim.ReplaceAllString(s, "")
-}
+var _ bytes.Buffer // always import bytes
+var _ http.Request
 `
 
 var reStripSpace = regexp.MustCompile(`\s(\w)`)
@@ -51,10 +49,12 @@ func removeImports(code string) string {
 }
 
 var extraImports = []string{
+	"bytes",
 	"encoding/json",
 	"io/ioutil",
-	"regexp",
+	"net/http",
 	"testing",
+	"github.com/awslabs/aws-sdk-go/internal/util",
 	"github.com/stretchr/testify/assert",
 }
 
@@ -79,7 +79,7 @@ func (i *InputTestSuite) TestSuite() string {
 	})
 
 	for idx, c := range i.Cases {
-		opName := prefix + "Case" + strconv.Itoa(idx+1)
+		opName := i.API.StructName() + prefix + "Case" + strconv.Itoa(idx+1)
 		buf.WriteString(c.TestCase(i.API.StructName(), opName) + "\n")
 	}
 	return util.GoFmt(buf.String())
@@ -97,13 +97,13 @@ func Test{{ .OpName }}(t *testing.T) {
 
 	// assert body
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, trim(string(body)), trim({{ .Body }}))
+	assert.Equal(t, util.Trim({{ .Body }}), util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, r.URL.Path, "{{ .TestCase.InputTest.URI }}")
+	assert.Equal(t, "{{ .TestCase.InputTest.URI }}", r.URL.Path)
 
 	// assert headers
-{{ range $k, $v := .TestCase.InputTest.Headers }}assert.Equal(t, r.Header.Get("{{ $k }}"), "{{ $v }}")
+{{ range $k, $v := .TestCase.InputTest.Headers }}assert.Equal(t, "{{ $v }}", r.Header.Get("{{ $k }}"))
 {{ end }}
 }
 `))
@@ -114,17 +114,31 @@ type tplInputTestCaseData struct {
 }
 
 var tplOutputTestCase = template.Must(template.New("outputcase").Parse(`
-func Test{{ .Name }}(t *testing.T) {
-	assert.Equal(t, req.HttpRequest.Body, {{ .Body }})
+func Test{{ .OpName }}(t *testing.T) {
+	svc := New{{ .ServiceName }}(nil)
 
-{{ range $k, $v := .TestCase.OutputTest.Headers }}
+	req, _ := svc.{{ .Given.ExportedName }}Request()
+	req.Handlers.Build.Init()
+	req.Handlers.Send.Init()
+	req.Handlers.Send.PushBack(func(r *aws.Request) {
+		buf := bytes.NewReader([]byte({{ .Body }}))
+		r.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	})
+	req.Send()
+
+	// assert response
+	buf, _ := json.Marshal(req.Data)
+	assert.Equal(t, util.Trim({{ .ResponseString }}), util.Trim(string(buf)))
+
+	// assert headers
+{{ range $k, $v := .TestCase.OutputTest.Headers }}assert.Equal(t, "{{ $v }}", req.HTTPResponse.Header.Get("{{ $k }}"))
 {{ end }}
 }
 `))
 
 type tplOutputTestCaseData struct {
 	*TestCase
-	Body, ServiceName, OpName string
+	Body, ServiceName, OpName, ResponseString string
 }
 
 func (i *TestCase) TestCase(svcName, opName string) string {
@@ -144,11 +158,13 @@ func (i *TestCase) TestCase(svcName, opName string) string {
 			panic(err)
 		}
 	} else {
+		pBuf, _ := json.Marshal(i.Data)
 		output := tplOutputTestCaseData{
-			TestCase:    i,
-			Body:        fmt.Sprintf("%q", i.OutputTest.Body),
-			OpName:      strings.ToUpper(opName[0:1]) + opName[1:],
-			ServiceName: svcName,
+			TestCase:       i,
+			Body:           fmt.Sprintf("%q", i.OutputTest.Body),
+			OpName:         strings.ToUpper(opName[0:1]) + opName[1:],
+			ResponseString: fmt.Sprintf("%q", pBuf),
+			ServiceName:    svcName,
 		}
 
 		if err := tplOutputTestCase.Execute(&buf, output); err != nil {
@@ -160,8 +176,10 @@ func (i *TestCase) TestCase(svcName, opName string) string {
 }
 
 func GenerateInputTestSuite(filename string) string {
-	var buf bytes.Buffer
-	buf.WriteString("package protocol_test\n\n")
+	inout := "Input"
+	if strings.Contains(filename, "/output/") {
+		inout = "Output"
+	}
 
 	var suites []InputTestSuite
 	f, err := os.Open(filename)
@@ -174,13 +192,18 @@ func GenerateInputTestSuite(filename string) string {
 		panic(err)
 	}
 
+	var buf bytes.Buffer
+	buf.WriteString("package " + suites[0].ProtocolPackage() + "_test\n\n")
+
 	var innerBuf bytes.Buffer
+	innerBuf.WriteString("//\n// Tests begin here\n//\n\n\n")
+
 	for i, suite := range suites {
-		svcPrefix := "Service" + strconv.Itoa(i+1)
+		svcPrefix := inout + "Service" + strconv.Itoa(i+1)
 		suite.API.Metadata.ServiceAbbreviation = svcPrefix + "ProtocolTest"
 		suite.API.Operations = map[string]*api.Operation{}
 		for idx, c := range suite.Cases {
-			c.Given.ExportedName = svcPrefix + "TestCaseOperation" + strconv.Itoa(idx)
+			c.Given.ExportedName = svcPrefix + "TestCaseOperation" + strconv.Itoa(idx+1)
 			suite.API.Operations[c.Given.ExportedName] = c.Given
 		}
 

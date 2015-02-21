@@ -69,7 +69,7 @@ func (ref *ShapeRef) GoTypeElem() string {
 		return "[]" + ref.Shape.MemberRef.GoType()
 	case "boolean":
 		return "bool"
-	case "string":
+	case "string", "character":
 		return "string"
 	case "blob":
 		return "[]byte"

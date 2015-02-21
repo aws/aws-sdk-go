@@ -1458,3 +1458,8 @@ Bar:
 Foo:
 Struct:
 Arg:
+True:
+Char:
+Str:
+False:
+Bool:
