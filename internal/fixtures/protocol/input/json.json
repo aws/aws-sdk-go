@@ -3,7 +3,7 @@
     "description": "Scalar members",
     "metadata": {
       "protocol": "json",
-      "jsonVersion": 1.1,
+      "jsonVersion": "1.1",
       "targetPrefix": "com.amazonaws.foo"
     },
     "shapes": {

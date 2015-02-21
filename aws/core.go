@@ -154,8 +154,13 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 	if method == "" {
 		method = "POST"
 	}
+	p := operation.HTTPPath
+	if p == "" {
+		p = "/"
+	}
+
 	httpReq, _ := http.NewRequest(method, "", nil)
-	httpReq.URL, _ = url.Parse(service.Endpoint + operation.HTTPPath)
+	httpReq.URL, _ = url.Parse(service.Endpoint + p)
 
 	r := &Request{
 		Service:     service,
