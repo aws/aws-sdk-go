@@ -14,6 +14,7 @@ type ShapeRef struct {
 	ShapeName     string `json:"shape"`
 	Location      string
 	LocationName  string
+	QueryName     string
 	XMLNamespace  XMLInfo
 }
 
@@ -105,6 +106,9 @@ func (ref *ShapeRef) GoTags(toplevel bool) string {
 	}
 	if ref.LocationName != "" {
 		code += `locationName:"` + ref.LocationName + `" `
+	}
+	if ref.QueryName != "" {
+		code += `queryName:"` + ref.QueryName + `" `
 	}
 	code += `type:"` + ref.Shape.Type + `" `
 

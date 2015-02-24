@@ -71,9 +71,12 @@ func (a *API) NiceName() string {
 }
 
 func (a *API) ProtocolPackage() string {
-	if a.Metadata.Protocol == "json" {
+	switch a.Metadata.Protocol {
+	case "json":
 		return "jsonrpc"
-	} else {
+	case "ec2":
+		return "ec2query"
+	default:
 		return strings.Replace(a.Metadata.Protocol, "-", "", -1)
 	}
 }
