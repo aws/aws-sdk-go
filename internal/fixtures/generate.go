@@ -97,6 +97,7 @@ func Test{{ .OpName }}(t *testing.T) {
 
 	// build request
 	{{ .TestCase.TestSuite.API.ProtocolPackage }}.Build(req)
+	assert.NoError(t, req.Error)
 
 	// assert body
 	body, _ := ioutil.ReadAll(r.Body)
@@ -126,6 +127,7 @@ func Test{{ .OpName }}(t *testing.T) {
 
 	// unmarshal response
 	{{ .TestCase.TestSuite.API.ProtocolPackage }}.Unmarshal(req)
+	assert.NoError(t, req.Error)
 
 	// assert response
 	buf, _ := json.Marshal(req.Data)
