@@ -91,7 +91,11 @@ func (ref *ShapeRef) GoTypeElem() string {
 }
 
 func (ref *ShapeRef) GoType() string {
-	return "*" + ref.GoTypeElem()
+	t := ref.GoTypeElem()
+	if !strings.HasPrefix(t, "[]") {
+		t = "*" + t
+	}
+	return t
 }
 
 func (ref *ShapeRef) GoTags(toplevel bool) string {
