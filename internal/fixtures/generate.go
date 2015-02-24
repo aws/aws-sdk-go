@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"net/url"
 	"os"
 	"regexp"
 	"strconv"
@@ -147,6 +148,13 @@ func (i *TestCase) TestCase(idx int) string {
 	opName := i.API.StructName() + i.TestSuite.title + "Case" + strconv.Itoa(idx+1)
 
 	if i.Params != nil { // input test
+		// query test should sort body as form encoded values
+		switch i.API.ProtocolPackage() {
+		case "query", "ec2":
+			m, _ := url.ParseQuery(i.InputTest.Body)
+			i.InputTest.Body = m.Encode()
+		}
+
 		pBuf, _ := json.Marshal(i.Params)
 		input := tplInputTestCaseData{
 			TestCase:     i,
