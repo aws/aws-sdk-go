@@ -10,62 +10,62 @@ func TestResolvedReferences(t *testing.T) {
 	json := `{
 		"operations": {
 			"OperationName": {
-				"input": { "shape": "ShapeName" }
+				"input": { "shape": "TestName" }
 			}
 		},
 		"shapes": {
-			"ShapeName": {
+			"TestName": {
 				"type": "structure",
 				"members": {
-					"memberName1": { "shape": "OtherShape" },
-					"memberName2": { "shape": "OtherShape" }
+					"memberName1": { "shape": "OtherTest" },
+					"memberName2": { "shape": "OtherTest" }
 				}
 			},
-			"OtherShape": { "type": "string" }
+			"OtherTest": { "type": "string" }
 		}
 	}`
 	a := API{}
 	a.AttachString(json)
-	assert.Equal(t, len(a.Shapes["OtherShape"].refs), 2)
+	assert.Equal(t, len(a.Shapes["OtherTest"].refs), 2)
 }
 
 func TestRenamedShapes(t *testing.T) {
 	json := `{
 		"operations": {
 			"OperationName": {
-				"input": { "shape": "ShapeRequest" },
-				"output": { "shape": "ShapeResult" }
+				"input": { "shape": "TestRequest" },
+				"output": { "shape": "TestResult" }
 			}
 		},
 		"shapes": {
-			"ShapeRequest": {
+			"TestRequest": {
 				"type": "structure",
 				"members": {
-					"memberName1": { "shape": "ShapeVpnIcmp" },
-					"memberName2": { "shape": "ShapeVpnIcmp" }
+					"memberName1": { "shape": "TestVpnIcmp" },
+					"memberName2": { "shape": "TestVpnIcmp" }
 				}
 			},
-			"ShapeVpnIcmp": { "type": "string" },
-			"ShapeResult": {
+			"TestVpnIcmp": { "type": "string" },
+			"TestResult": {
 				"type": "structure",
 				"members": {
-					"memberName1": { "shape": "ShapeVpnIcmp" }
+					"memberName1": { "shape": "TestVpnIcmp" }
 				}
 			}
 		}
 	}`
 	a := API{}
 	a.AttachString(json)
-	assert.Nil(t, a.Shapes["ShapeRequest"])
-	assert.NotNil(t, a.Shapes["ShapeInput"])
-	assert.Nil(t, a.Shapes["ShapeInput"].MemberRefs["memberName1"])
-	assert.NotNil(t, a.Shapes["ShapeInput"].MemberRefs["MemberName1"])
-	assert.Nil(t, a.Shapes["ShapeInput"].MemberRefs["memberName2"])
-	assert.NotNil(t, a.Shapes["ShapeInput"].MemberRefs["MemberName2"])
+	assert.Nil(t, a.Shapes["TestRequest"])
+	assert.NotNil(t, a.Shapes["TestInput"])
+	assert.Nil(t, a.Shapes["TestInput"].MemberRefs["memberName1"])
+	assert.NotNil(t, a.Shapes["TestInput"].MemberRefs["MemberName1"])
+	assert.Nil(t, a.Shapes["TestInput"].MemberRefs["memberName2"])
+	assert.NotNil(t, a.Shapes["TestInput"].MemberRefs["MemberName2"])
 
-	assert.Nil(t, a.Shapes["ShapeResult"])
-	assert.NotNil(t, a.Shapes["ShapeOutput"])
+	assert.Nil(t, a.Shapes["TestResult"])
+	assert.NotNil(t, a.Shapes["TestOutput"])
 
-	assert.Nil(t, a.Shapes["ShapeVpnIcmp"])
-	assert.NotNil(t, a.Shapes["ShapeVPNICMP"])
+	assert.Nil(t, a.Shapes["TestVpnIcmp"])
+	assert.NotNil(t, a.Shapes["TestVPNICMP"])
 }
