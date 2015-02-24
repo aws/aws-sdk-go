@@ -152,7 +152,7 @@ func (i *TestCase) TestCase(idx int) string {
 
 	if i.Params != nil { // input test
 		// query test should sort body as form encoded values
-		switch i.API.ProtocolPackage() {
+		switch i.API.Metadata.Protocol {
 		case "query", "ec2":
 			m, _ := url.ParseQuery(i.InputTest.Body)
 			i.InputTest.Body = m.Encode()
@@ -218,6 +218,7 @@ func GenerateTestSuite(filename string) string {
 			suite.API.Operations[c.Given.ExportedName] = c.Given
 		}
 
+		suite.API.NoInflections = true // don't require inflections
 		suite.API.Setup()
 		suite.API.Metadata.EndpointPrefix = suite.API.PackageName()
 

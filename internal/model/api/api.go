@@ -12,9 +12,13 @@ import (
 )
 
 type API struct {
-	Metadata          Metadata
-	Operations        map[string]*Operation
-	Shapes            map[string]*Shape
+	Metadata   Metadata
+	Operations map[string]*Operation
+	Shapes     map[string]*Shape
+
+	// Disables inflection checks. Only use this when generating tests
+	NoInflections bool
+
 	initialized       bool
 	imports           map[string]bool
 	name              string

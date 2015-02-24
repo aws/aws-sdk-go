@@ -153,6 +153,11 @@ func (a *API) exportableName(name string) string {
 	// make sure the symbol is exportable
 	name = strings.ToUpper(name[0:1]) + name[1:]
 
+	// inflections are disabled, stop here.
+	if a.NoInflections {
+		return name
+	}
+
 	// fix common AWS<->Go bugaboos
 	out := ""
 	for _, part := range splitName(name) {
