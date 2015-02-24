@@ -218,6 +218,7 @@ func GenerateTestSuite(filename string) string {
 		}
 
 		suite.API.Setup()
+		suite.API.Metadata.EndpointPrefix = suite.API.PackageName()
 
 		for n, s := range suite.API.Shapes {
 			s.Rename(svcPrefix + "TestShape" + n)
