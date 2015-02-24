@@ -1,11 +1,14 @@
 package query
 
 import (
+	"bytes"
+	"encoding/base64"
 	"fmt"
+	"io/ioutil"
 	"net/url"
 	"reflect"
-	"sort"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
@@ -16,22 +19,24 @@ func Build(r *aws.Request) {
 		"Action":  {r.Operation.Name},
 		"Version": {r.Service.APIVersion},
 	}
-	if err := loadValues(body, r.Params, ""); err != nil {
+	if err := parseValue(body, r.Params, "", ""); err != nil {
 		r.Error = err
 		return
 	}
 
-	r.HTTPRequest.Method = "GET"
-	r.HTTPRequest.URL.RawQuery = body.Encode()
+	r.HTTPRequest.Method = "POST"
+	r.HTTPRequest.Body = ioutil.NopCloser(bytes.NewReader([]byte(body.Encode())))
 }
 
-func loadValues(v url.Values, i interface{}, prefix string) error {
-	value := reflect.ValueOf(i)
-
-	// follow any pointers
+func elemOf(value reflect.Value) reflect.Value {
 	for value.Kind() == reflect.Ptr {
 		value = value.Elem()
 	}
+	return value
+}
+
+func parseValue(v url.Values, i interface{}, prefix string, tag reflect.StructTag) error {
+	value := elemOf(reflect.ValueOf(i))
 
 	// no need to handle zero values
 	if !value.IsValid() {
@@ -40,131 +45,126 @@ func loadValues(v url.Values, i interface{}, prefix string) error {
 
 	switch value.Kind() {
 	case reflect.Struct:
-		return loadStruct(v, value, prefix)
+		return parseStruct(v, value, prefix)
 	case reflect.Slice:
-		for i := 0; i < value.Len(); i++ {
-			slicePrefix := prefix
-			if slicePrefix == "" {
-				slicePrefix = strconv.Itoa(i + 1)
-			} else {
-				slicePrefix = slicePrefix + "." + strconv.Itoa(i+1)
-			}
-			if err := loadValues(v, value.Index(i).Interface(), slicePrefix); err != nil {
-				return err
-			}
+		if tag.Get("type") == "blob" { // this is a scalar slice, not a list
+			return parseScalar(v, value, prefix, tag)
+		} else {
+			return parseList(v, value, prefix, tag)
 		}
-		return nil
 	case reflect.Map:
-		sortedKeys := []string{}
-		keysByString := map[string]reflect.Value{}
-		for _, k := range value.MapKeys() {
-			s := fmt.Sprintf("%v", k.Interface())
-			sortedKeys = append(sortedKeys, s)
-			keysByString[s] = k
-		}
-		sort.Strings(sortedKeys)
-
-		for i, sortKey := range sortedKeys {
-			mapKey := keysByString[sortKey]
-
-			var keyName string
-			if prefix == "" {
-				keyName = strconv.Itoa(i+1) + ".Name"
-			} else {
-				keyName = prefix + "." + strconv.Itoa(i+1) + ".Name"
-			}
-
-			if err := loadValue(v, mapKey, keyName); err != nil {
-				return err
-			}
-
-			mapValue := value.MapIndex(mapKey)
-
-			var valueName string
-			if prefix == "" {
-				valueName = strconv.Itoa(i+1) + ".Value"
-			} else {
-				valueName = prefix + "." + strconv.Itoa(i+1) + ".Value"
-			}
-
-			if err := loadValue(v, mapValue, valueName); err != nil {
-				return err
-			}
-		}
-
-		return nil
+		return parseMap(v, value, prefix, tag)
 	default:
-		panic("unknown request member type: " + value.String())
+		return parseScalar(v, value, prefix, tag)
 	}
 }
 
-func loadStruct(v url.Values, value reflect.Value, prefix string) error {
+func parseStruct(v url.Values, value reflect.Value, prefix string) error {
 	if !value.IsValid() {
 		return nil
 	}
 
 	t := value.Type()
 	for i := 0; i < value.NumField(); i++ {
-		value := value.Field(i)
-		name := t.Field(i).Tag.Get("name")
+		if c := t.Field(i).Name[0:1]; strings.ToLower(c) == c {
+			continue // ignore unexported fields
+		}
+
+		value := elemOf(value.Field(i))
+		field := t.Field(i)
+		name := field.Tag.Get("locationName")
 		if name == "" {
-			name = t.Field(i).Name
+			name = field.Name
 		}
 		if prefix != "" {
 			name = prefix + "." + name
 		}
-		if err := loadValue(v, value, name); err != nil {
+
+		if err := parseValue(v, value.Interface(), name, field.Tag); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func loadValue(v url.Values, value reflect.Value, name string) error {
-	switch casted := value.Interface().(type) {
-	case string:
-		if casted != "" {
-			v.Set(name, casted)
+func parseList(v url.Values, value reflect.Value, prefix string, tag reflect.StructTag) error {
+	// check for unflattened list member
+	if tag.Get("flattened") == "" {
+		prefix += ".member"
+	}
+
+	for i := 0; i < value.Len(); i++ {
+		slicePrefix := prefix
+		if slicePrefix == "" {
+			slicePrefix = strconv.Itoa(i + 1)
+		} else {
+			slicePrefix = slicePrefix + "." + strconv.Itoa(i+1)
 		}
-	case *string:
-		if casted != nil {
-			v.Set(name, *casted)
-		}
-	case *bool:
-		if casted != nil {
-			v.Set(name, strconv.FormatBool(*casted))
-		}
-	case *int64:
-		if casted != nil {
-			v.Set(name, strconv.FormatInt(*casted, 10))
-		}
-	case *int:
-		if casted != nil {
-			v.Set(name, strconv.Itoa(*casted))
-		}
-	case *float64:
-		if casted != nil {
-			v.Set(name, strconv.FormatFloat(*casted, 'f', -1, 64))
-		}
-	case *float32:
-		if casted != nil {
-			v.Set(name, strconv.FormatFloat(float64(*casted), 'f', -1, 32))
-		}
-	case time.Time:
-		if !casted.IsZero() {
-			const ISO8601UTC = "2006-01-02T15:04:05Z"
-			v.Set(name, casted.UTC().Format(ISO8601UTC))
-		}
-	case []string:
-		if len(casted) != 0 {
-			for i, val := range casted {
-				v.Set(fmt.Sprintf("%s.%d", name, i+1), val)
-			}
-		}
-	default:
-		if err := loadValues(v, value.Interface(), name); err != nil {
+		if err := parseValue(v, value.Index(i).Interface(), slicePrefix, ""); err != nil {
 			return err
 		}
+	}
+	return nil
+}
+
+func parseMap(v url.Values, value reflect.Value, prefix string, tag reflect.StructTag) error {
+	// check for unflattened list member
+	if tag.Get("flattened") == "" {
+		prefix += ".entry"
+	}
+
+	for i, mapKey := range value.MapKeys() {
+		mapValue := value.MapIndex(mapKey)
+
+		// serialize key
+		var keyName string
+		if prefix == "" {
+			keyName = strconv.Itoa(i+1) + ".key"
+		} else {
+			keyName = prefix + "." + strconv.Itoa(i+1) + ".key"
+		}
+
+		if err := parseValue(v, mapKey.Interface(), keyName, ""); err != nil {
+			return err
+		}
+
+		// serialize value
+		var valueName string
+		if prefix == "" {
+			valueName = strconv.Itoa(i+1) + ".value"
+		} else {
+			valueName = prefix + "." + strconv.Itoa(i+1) + ".value"
+		}
+
+		if err := parseValue(v, mapValue.Interface(), valueName, ""); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func parseScalar(v url.Values, r reflect.Value, name string, tag reflect.StructTag) error {
+	switch value := r.Interface().(type) {
+	case string:
+		v.Set(name, value)
+	case []byte:
+		v.Set(name, base64.StdEncoding.EncodeToString(value))
+	case bool:
+		v.Set(name, strconv.FormatBool(value))
+	case int64:
+		v.Set(name, strconv.FormatInt(value, 10))
+	case int:
+		v.Set(name, strconv.Itoa(value))
+	case float64:
+		v.Set(name, strconv.FormatFloat(value, 'f', -1, 64))
+	case float32:
+		v.Set(name, strconv.FormatFloat(float64(value), 'f', -1, 32))
+	case time.Time:
+		const ISO8601UTC = "2006-01-02T15:04:05Z"
+		v.Set(name, value.UTC().Format(ISO8601UTC))
+	default:
+		return fmt.Errorf("Unsupported value for param %s: %v (%s)", name, r.Interface(), r.Type().Name())
 	}
 	return nil
 }

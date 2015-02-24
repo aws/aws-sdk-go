@@ -1,6 +1,7 @@
 package main
 
 //go:generate go run generate.go protocol/input/json.json ../../aws/protocol/jsonrpc/jsonrpc_input_test.go
+//go:generate go run generate.go protocol/input/query.json ../../aws/protocol/query/build_test.go
 
 import (
 	"bytes"
