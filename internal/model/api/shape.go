@@ -35,6 +35,7 @@ type Shape struct {
 	Type          string
 	Exception     bool
 	Enum          []string
+	Flattened     bool
 
 	refs []*ShapeRef
 }
@@ -117,6 +118,10 @@ func (ref *ShapeRef) GoTags(toplevel bool) string {
 			}
 		}
 		code += `" `
+	}
+
+	if ref.Shape.Flattened {
+		code += `flattened:"true" `
 	}
 
 	if toplevel {
