@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/gen/endpoints"
+	"github.com/hashicorp/aws-sdk-go/aws"
+	"github.com/hashicorp/aws-sdk-go/gen/endpoints"
 )
 
 // Route53Domains is a client for Amazon Route 53 Domains.

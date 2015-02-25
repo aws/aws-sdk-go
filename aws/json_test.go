@@ -8,7 +8,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/hashicorp/aws-sdk-go/aws"
 )
 
 func TestJSONRequest(t *testing.T) {

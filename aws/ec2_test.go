@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/hashicorp/aws-sdk-go/aws"
 )
 
 func TestEC2Request(t *testing.T) {
