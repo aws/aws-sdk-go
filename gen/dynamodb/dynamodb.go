@@ -86,18 +86,19 @@ func (c *DynamoDB) BatchGetItem(req *BatchGetItemInput) (resp *BatchGetItemOutpu
 // BatchWriteItem the BatchWriteItem operation puts or deletes multiple
 // items in one or more tables. A single call to BatchWriteItem can write
 // up to 16 MB of data, which can comprise as many as 25 put or delete
-// requests. Individual items to be written can be as large as 400 The
-// individual PutItem and DeleteItem operations specified in BatchWriteItem
-// are atomic; however BatchWriteItem as a whole is not. If any requested
-// operations fail because the table's provisioned throughput is exceeded
-// or an internal processing failure occurs, the failed operations are
-// returned in the UnprocessedItems response parameter. You can investigate
-// and optionally resend the requests. Typically, you would call
-// BatchWriteItem in a loop. Each iteration would check for unprocessed
-// items and submit a new BatchWriteItem request with those unprocessed
-// items until all items have been processed. Note that if none of the
-// items can be processed due to insufficient provisioned throughput on all
-// of the tables in the request, then BatchWriteItem will return a
+// requests. Individual items to be written can be as large as 400
+// BatchWriteItem cannot update items. To update items, use the UpdateItem
+// The individual PutItem and DeleteItem operations specified in
+// BatchWriteItem are atomic; however BatchWriteItem as a whole is not. If
+// any requested operations fail because the table's provisioned throughput
+// is exceeded or an internal processing failure occurs, the failed
+// operations are returned in the UnprocessedItems response parameter. You
+// can investigate and optionally resend the requests. Typically, you would
+// call BatchWriteItem in a loop. Each iteration would check for
+// unprocessed items and submit a new BatchWriteItem request with those
+// unprocessed items until all items have been processed. Note that if none
+// of the items can be processed due to insufficient provisioned throughput
+// on all of the tables in the request, then BatchWriteItem will return a
 // ProvisionedThroughputExceededException If DynamoDB returns any
 // unprocessed items, you should retry the batch operation on those items.
 // However, we strongly recommend that you use an exponential backoff
@@ -111,28 +112,27 @@ func (c *DynamoDB) BatchGetItem(req *BatchGetItemInput) (resp *BatchGetItemOutpu
 // Elastic MapReduce or copy data from another database into DynamoDB. In
 // order to improve performance with these large-scale operations,
 // BatchWriteItem does not behave in the same way as individual PutItem and
-// DeleteItem calls would For example, you cannot specify conditions on
+// DeleteItem calls would. For example, you cannot specify conditions on
 // individual put and delete requests, and BatchWriteItem does not return
 // deleted items in the response. If you use a programming language that
 // supports concurrency, such as Java, you can use threads to write items
 // in parallel. Your application must include the necessary logic to manage
 // the threads. With languages that don't support threading, such as you
-// must update or delete the specified items one at a time. In both
-// situations, BatchWriteItem provides an alternative where the API
-// performs the specified put and delete operations in parallel, giving you
-// the power of the thread pool approach without having to introduce
-// complexity into your application. Parallel processing reduces latency,
-// but each specified put and delete request consumes the same number of
-// write capacity units whether it is processed in parallel or not. Delete
-// operations on nonexistent items consume one write capacity unit. If one
-// or more of the following is true, DynamoDB rejects the entire batch
-// write operation: One or more tables specified in the BatchWriteItem
-// request does not exist. Primary key attributes specified on an item in
-// the request do not match those in the corresponding table's primary key
-// schema. You try to perform multiple operations on the same item in the
-// same BatchWriteItem request. For example, you cannot put and delete the
-// same item in the same BatchWriteItem request. There are more than 25
-// requests in the batch.
+// must update provides an alternative where the API performs the specified
+// put and delete operations in parallel, giving you the power of the
+// thread pool approach without having to introduce complexity into your
+// application. Parallel processing reduces latency, but each specified put
+// and delete request consumes the same number of write capacity units
+// whether it is processed in parallel or not. Delete operations on
+// nonexistent items consume one write capacity unit. If one or more of the
+// following is true, DynamoDB rejects the entire batch write operation:
+// One or more tables specified in the BatchWriteItem request does not
+// exist. Primary key attributes specified on an item in the request do not
+// match those in the corresponding table's primary key schema. You try to
+// perform multiple operations on the same item in the same BatchWriteItem
+// request. For example, you cannot put and delete the same item in the
+// same BatchWriteItem request. There are more than 25 requests in the
+// batch.
 func (c *DynamoDB) BatchWriteItem(req *BatchWriteItemInput) (resp *BatchWriteItemOutput, err error) {
 	resp = &BatchWriteItemOutput{}
 	err = c.client.Do("BatchWriteItem", "POST", "/", req, resp)
@@ -146,10 +146,11 @@ func (c *DynamoDB) BatchWriteItem(req *BatchWriteItemInput) (resp *BatchWriteIte
 // receiving a CreateTable request, DynamoDB immediately returns a response
 // with a TableStatus of . After the table is created, DynamoDB sets the
 // TableStatus to . You can perform read and write operations only on an
-// table. If you want to create multiple tables with secondary indexes on
-// them, you must create them sequentially. Only one table with secondary
-// indexes can be in the state at any given time. You can use the
-// DescribeTable API to check the table status.
+// table. You can optionally define secondary indexes on the new table, as
+// part of the CreateTable operation. If you want to create multiple tables
+// with secondary indexes on them, you must create the tables sequentially.
+// Only one table with secondary indexes can be in the state at any given
+// time. You can use the DescribeTable API to check the table status.
 func (c *DynamoDB) CreateTable(req *CreateTableInput) (resp *CreateTableOutput, err error) {
 	resp = &CreateTableOutput{}
 	err = c.client.Do("CreateTable", "POST", "/", req, resp)
@@ -178,9 +179,11 @@ func (c *DynamoDB) DeleteItem(req *DeleteItemInput) (resp *DeleteItemOutput, err
 // can delete it. If a table is in or states, then DynamoDB returns a
 // ResourceInUseException . If the specified table does not exist, DynamoDB
 // returns a ResourceNotFoundException . If table is already in the state,
-// no error is returned. When you delete a table, any indexes on that table
-// are also deleted. Use the DescribeTable API to check the status of the
-// table.
+// no error is returned. DynamoDB might continue to accept data read and
+// write operations, such as GetItem and PutItem , on a table in the state
+// until the table deletion is complete. When you delete a table, any
+// indexes on that table are also deleted. Use the DescribeTable API to
+// check the status of the table.
 func (c *DynamoDB) DeleteTable(req *DeleteTableInput) (resp *DeleteTableOutput, err error) {
 	resp = &DeleteTableOutput{}
 	err = c.client.Do("DeleteTable", "POST", "/", req, resp)
@@ -189,7 +192,12 @@ func (c *DynamoDB) DeleteTable(req *DeleteTableInput) (resp *DeleteTableOutput, 
 
 // DescribeTable returns information about the table, including the current
 // status of the table, when it was created, the primary key schema, and
-// any indexes on the table.
+// any indexes on the table. If you issue a DescribeTable request
+// immediately after a CreateTable request, DynamoDB might return a
+// ResourceNotFoundException. This is because DescribeTable uses an
+// eventually consistent query, and the metadata for your table might not
+// be available at that moment. Wait for a few seconds, and then try the
+// DescribeTable request again.
 func (c *DynamoDB) DescribeTable(req *DescribeTableInput) (resp *DescribeTableOutput, err error) {
 	resp = &DescribeTableOutput{}
 	err = c.client.Do("DescribeTable", "POST", "/", req, resp)
@@ -232,9 +240,11 @@ func (c *DynamoDB) ListTables(req *ListTablesInput) (resp *ListTablesOutput, err
 // values will be rejected with a ValidationException exception. You can
 // request that PutItem return either a copy of the original item (before
 // the update) or a copy of the updated item (after the update). For more
-// information, see the ReturnValues description below. For more
-// information about using this see Working with Items in the Amazon
-// DynamoDB Developer Guide
+// information, see the ReturnValues description below. To prevent a new
+// item from replacing an existing item, use a conditional put operation
+// with ComparisonOperator set to for the primary key attribute, or
+// attributes. For more information about using this see Working with Items
+// in the Amazon DynamoDB Developer Guide
 func (c *DynamoDB) PutItem(req *PutItemInput) (resp *PutItemOutput, err error) {
 	resp = &PutItemOutput{}
 	err = c.client.Do("PutItem", "POST", "/", req, resp)
@@ -267,18 +277,18 @@ func (c *DynamoDB) Query(req *QueryInput) (resp *QueryOutput, err error) {
 }
 
 // Scan the Scan operation returns one or more items and item attributes by
-// accessing every item in the table. To have DynamoDB return fewer items,
-// you can provide a ScanFilter operation. If the total number of scanned
-// items exceeds the maximum data set size limit of 1 MB, the scan stops
-// and results are returned to the user as a LastEvaluatedKey value to
-// continue the scan in a subsequent operation. The results also include
-// the number of items exceeding the limit. A scan can result in no table
-// data meeting the filter criteria. The result set is eventually
-// consistent. By default, Scan operations proceed sequentially; however,
-// for faster performance on large tables, applications can request a
-// parallel Scan operation by specifying the Segment and TotalSegments
-// parameters. For more information, see Parallel Scan in the Amazon
-// DynamoDB Developer Guide
+// accessing every item in a table or a secondary index. To have DynamoDB
+// return fewer items, you can provide a ScanFilter operation. If the total
+// number of scanned items exceeds the maximum data set size limit of 1 MB,
+// the scan stops and results are returned to the user as a
+// LastEvaluatedKey value to continue the scan in a subsequent operation.
+// The results also include the number of items exceeding the limit. A scan
+// can result in no table data meeting the filter criteria. The result set
+// is eventually consistent. By default, Scan operations proceed
+// sequentially; however, for faster performance on a large table or
+// secondary index, applications can request a parallel Scan operation by
+// providing the Segment and TotalSegments parameters. For more
+// information, see Parallel Scan in the Amazon DynamoDB Developer Guide
 func (c *DynamoDB) Scan(req *ScanInput) (resp *ScanOutput, err error) {
 	resp = &ScanOutput{}
 	err = c.client.Do("Scan", "POST", "/", req, resp)
@@ -287,30 +297,32 @@ func (c *DynamoDB) Scan(req *ScanInput) (resp *ScanOutput, err error) {
 
 // UpdateItem edits an existing item's attributes, or adds a new item to
 // the table if it does not already exist. You can put, delete, or add
-// attribute values. You can also perform a conditional update (insert a
-// new attribute name-value pair if it doesn't exist, or replace an
-// existing name-value pair if it has certain expected attribute values).
-// You can also return the item's attribute values in the same UpdateItem
-// operation using the ReturnValues parameter.
+// attribute values. You can also perform a conditional update on an
+// existing item (insert a new attribute name-value pair if it doesn't
+// exist, or replace an existing name-value pair if it has certain expected
+// attribute values). If conditions are specified and the item does not
+// exist, then the operation fails and a new item is not created. You can
+// also return the item's attribute values in the same UpdateItem operation
+// using the ReturnValues parameter.
 func (c *DynamoDB) UpdateItem(req *UpdateItemInput) (resp *UpdateItemOutput, err error) {
 	resp = &UpdateItemOutput{}
 	err = c.client.Do("UpdateItem", "POST", "/", req, resp)
 	return
 }
 
-// UpdateTable updates the provisioned throughput for the given table.
-// Setting the throughput for a table helps you manage performance and is
-// part of the provisioned throughput feature of DynamoDB. The provisioned
-// throughput values can be upgraded or downgraded based on the maximums
+// UpdateTable updates the provisioned throughput for the given table, or
+// manages the global secondary indexes on the table. You can increase or
+// decrease the table's provisioned throughput values within the maximums
 // and minimums listed in the Limits section in the Amazon DynamoDB
-// Developer Guide The table must be in the state for this operation to
-// succeed. UpdateTable is an asynchronous operation; while executing the
-// operation, the table is in the state. While the table is in the state,
-// the table still has the provisioned throughput from before the call. The
-// new provisioned throughput setting is in effect only when the table
-// returns to the state after the UpdateTable operation. You cannot add,
-// modify or delete indexes using UpdateTable . Indexes can only be defined
-// at table creation time.
+// Developer Guide In addition, you can use UpdateTable to add, modify or
+// delete global secondary indexes on the table. For more information, see
+// Managing Global Secondary Indexes in the Amazon DynamoDB Developer Guide
+// . The table must be in the state for UpdateTable to succeed. UpdateTable
+// is an asynchronous operation; while executing the operation, the table
+// is in the state. While the table is in the state, the table still has
+// the provisioned throughput from before the call. The table's new
+// provisioned throughput settings go into effect when the table returns to
+// the state; at that point, the UpdateTable operation is complete.
 func (c *DynamoDB) UpdateTable(req *UpdateTableInput) (resp *UpdateTableOutput, err error) {
 	resp = &UpdateTableOutput{}
 	err = c.client.Do("UpdateTable", "POST", "/", req, resp)
@@ -420,6 +432,14 @@ type ConsumedCapacity struct {
 	TableName              aws.StringValue     `json:"TableName,omitempty"`
 }
 
+// CreateGlobalSecondaryIndexAction is undocumented.
+type CreateGlobalSecondaryIndexAction struct {
+	IndexName             aws.StringValue        `json:"IndexName"`
+	KeySchema             []KeySchemaElement     `json:"KeySchema"`
+	Projection            *Projection            `json:"Projection"`
+	ProvisionedThroughput *ProvisionedThroughput `json:"ProvisionedThroughput"`
+}
+
 // CreateTableInput is undocumented.
 type CreateTableInput struct {
 	AttributeDefinitions   []AttributeDefinition  `json:"AttributeDefinitions"`
@@ -433,6 +453,11 @@ type CreateTableInput struct {
 // CreateTableOutput is undocumented.
 type CreateTableOutput struct {
 	TableDescription *TableDescription `json:"TableDescription,omitempty"`
+}
+
+// DeleteGlobalSecondaryIndexAction is undocumented.
+type DeleteGlobalSecondaryIndexAction struct {
+	IndexName aws.StringValue `json:"IndexName"`
 }
 
 // DeleteItemInput is undocumented.
@@ -516,6 +541,7 @@ type GlobalSecondaryIndex struct {
 
 // GlobalSecondaryIndexDescription is undocumented.
 type GlobalSecondaryIndexDescription struct {
+	Backfilling           aws.BooleanValue                  `json:"Backfilling,omitempty"`
 	IndexName             aws.StringValue                   `json:"IndexName,omitempty"`
 	IndexSizeBytes        aws.LongValue                     `json:"IndexSizeBytes,omitempty"`
 	IndexStatus           aws.StringValue                   `json:"IndexStatus,omitempty"`
@@ -527,6 +553,8 @@ type GlobalSecondaryIndexDescription struct {
 
 // GlobalSecondaryIndexUpdate is undocumented.
 type GlobalSecondaryIndexUpdate struct {
+	Create *CreateGlobalSecondaryIndexAction `json:"Create,omitempty"`
+	Delete *DeleteGlobalSecondaryIndexAction `json:"Delete,omitempty"`
 	Update *UpdateGlobalSecondaryIndexAction `json:"Update,omitempty"`
 }
 
@@ -713,6 +741,7 @@ type ScanInput struct {
 	ExpressionAttributeNames  map[string]string         `json:"ExpressionAttributeNames,omitempty"`
 	ExpressionAttributeValues map[string]AttributeValue `json:"ExpressionAttributeValues,omitempty"`
 	FilterExpression          aws.StringValue           `json:"FilterExpression,omitempty"`
+	IndexName                 aws.StringValue           `json:"IndexName,omitempty"`
 	Limit                     aws.IntegerValue          `json:"Limit,omitempty"`
 	ProjectionExpression      aws.StringValue           `json:"ProjectionExpression,omitempty"`
 	ReturnConsumedCapacity    aws.StringValue           `json:"ReturnConsumedCapacity,omitempty"`
@@ -793,6 +822,7 @@ type UpdateItemOutput struct {
 
 // UpdateTableInput is undocumented.
 type UpdateTableInput struct {
+	AttributeDefinitions        []AttributeDefinition        `json:"AttributeDefinitions,omitempty"`
 	GlobalSecondaryIndexUpdates []GlobalSecondaryIndexUpdate `json:"GlobalSecondaryIndexUpdates,omitempty"`
 	ProvisionedThroughput       *ProvisionedThroughput       `json:"ProvisionedThroughput,omitempty"`
 	TableName                   aws.StringValue              `json:"TableName"`

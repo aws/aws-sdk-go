@@ -48,8 +48,20 @@ func (c *Route53Domains) CheckDomainAvailability(req *CheckDomainAvailabilityReq
 	return
 }
 
+// DeleteTagsForDomain this operation deletes the specified tags for a
+// domain. All tag operations are eventually consistent; subsequent
+// operations may not immediately represent all issued operations.
+func (c *Route53Domains) DeleteTagsForDomain(req *DeleteTagsForDomainRequest) (resp *DeleteTagsForDomainResponse, err error) {
+	resp = &DeleteTagsForDomainResponse{}
+	err = c.client.Do("DeleteTagsForDomain", "POST", "/", req, resp)
+	return
+}
+
 // DisableDomainAutoRenew this operation disables automatic renewal of
-// domain registration for the specified domain.
+// domain registration for the specified domain. Caution! Amazon Route 53
+// doesn't have a manual renewal process, so if you disable automatic
+// renewal, registration for the domain will not be renewed when the
+// expiration date passes, and you will lose control of the domain name.
 func (c *Route53Domains) DisableDomainAutoRenew(req *DisableDomainAutoRenewRequest) (resp *DisableDomainAutoRenewResponse, err error) {
 	resp = &DisableDomainAutoRenewResponse{}
 	err = c.client.Do("DisableDomainAutoRenew", "POST", "/", req, resp)
@@ -74,11 +86,10 @@ func (c *Route53Domains) DisableDomainTransferLock(req *DisableDomainTransferLoc
 // expires. The cost of renewing your domain registration is billed to your
 // AWS account. The period during which you can renew a domain name varies
 // by For a list of TLDs and their renewal policies, see "Renewal,
-// restoration, and deletion times"
-// (http://wiki.gandi.net/en/domains/renew#renewal_restoration_and_deletion_times)
-// on the website for our registrar partner, Gandi. Route 53 requires that
-// you renew before the end of the renewal period that is listed on the
-// Gandi website so we can complete processing before the deadline.
+// restoration, and deletion times" on the website for our registrar
+// partner, Gandi. Route 53 requires that you renew before the end of the
+// renewal period that is listed on the Gandi website so we can complete
+// processing before the deadline.
 func (c *Route53Domains) EnableDomainAutoRenew(req *EnableDomainAutoRenewRequest) (resp *EnableDomainAutoRenewResponse, err error) {
 	resp = &EnableDomainAutoRenewResponse{}
 	err = c.client.Do("EnableDomainAutoRenew", "POST", "/", req, resp)
@@ -130,6 +141,16 @@ func (c *Route53Domains) ListOperations(req *ListOperationsRequest) (resp *ListO
 	return
 }
 
+// ListTagsForDomain this operation returns all of the tags that are
+// associated with the specified domain. All tag operations are eventually
+// consistent; subsequent operations may not immediately represent all
+// issued operations.
+func (c *Route53Domains) ListTagsForDomain(req *ListTagsForDomainRequest) (resp *ListTagsForDomainResponse, err error) {
+	resp = &ListTagsForDomainResponse{}
+	err = c.client.Do("ListTagsForDomain", "POST", "/", req, resp)
+	return
+}
+
 // RegisterDomain this operation registers a domain. Domains are registered
 // by the AWS registrar partner, Gandi. For some top-level domains (TLDs),
 // this operation requires extra parameters. When you register a domain,
@@ -163,22 +184,25 @@ func (c *Route53Domains) RetrieveDomainAuthCode(req *RetrieveDomainAuthCodeReque
 }
 
 // TransferDomain this operation transfers a domain from another registrar
-// to Amazon Route 53. Domains are registered by the AWS registrar, Gandi
-// upon transfer. To transfer a domain, you need to meet all the domain
-// transfer criteria, including the following: You must supply nameservers
-// to transfer a domain. You must disable the domain transfer lock (if any)
-// before transferring the domain. A minimum of 60 days must have elapsed
-// since the domain's registration or last transfer. We recommend you use
-// the Amazon Route 53 as the DNS service for your domain. You can create a
-// hosted zone in Amazon Route 53 for your current domain before
-// transferring your domain. Note that upon transfer, the domain duration
-// is extended for a year if not otherwise specified. Autorenew is enabled
-// by default. If the transfer is successful, this method returns an
-// operation ID that you can use to track the progress and completion of
-// the action. If the request is not completed successfully, the domain
-// registrant will be notified by email. Transferring domains charges your
-// AWS account an amount based on the top-level domain. For more
-// information, see Amazon Route 53 Pricing .
+// to Amazon Route 53. When the transfer is complete, the domain is
+// registered with the AWS registrar partner, Gandi. For transfer
+// requirements, a detailed procedure, and information about viewing the
+// status of a domain transfer, see Transferring Registration for a Domain
+// to Amazon Route 53 in the Amazon Route 53 Developer Guide. If the
+// registrar for your domain is also the DNS service provider for the
+// domain, we highly recommend that you consider transferring your DNS
+// service to Amazon Route 53 or to another DNS service provider before you
+// transfer your registration. Some registrars provide free DNS service
+// when you purchase a domain registration. When you transfer the
+// registration, the previous registrar will not renew your domain
+// registration and could end your DNS service at any time. Caution! If the
+// registrar for your domain is also the DNS service provider for the
+// domain and you don't transfer DNS service to another provider, your
+// website, email, and the web applications associated with the domain
+// might become unavailable. If the transfer is successful, this method
+// returns an operation ID that you can use to track the progress and
+// completion of the action. If the transfer doesn't complete successfully,
+// the domain registrant will be notified by email.
 func (c *Route53Domains) TransferDomain(req *TransferDomainRequest) (resp *TransferDomainResponse, err error) {
 	resp = &TransferDomainResponse{}
 	err = c.client.Do("TransferDomain", "POST", "/", req, resp)
@@ -223,6 +247,15 @@ func (c *Route53Domains) UpdateDomainContactPrivacy(req *UpdateDomainContactPriv
 func (c *Route53Domains) UpdateDomainNameservers(req *UpdateDomainNameserversRequest) (resp *UpdateDomainNameserversResponse, err error) {
 	resp = &UpdateDomainNameserversResponse{}
 	err = c.client.Do("UpdateDomainNameservers", "POST", "/", req, resp)
+	return
+}
+
+// UpdateTagsForDomain this operation adds or updates tags for a specified
+// domain. All tag operations are eventually consistent; subsequent
+// operations may not immediately represent all issued operations.
+func (c *Route53Domains) UpdateTagsForDomain(req *UpdateTagsForDomainRequest) (resp *UpdateTagsForDomainResponse, err error) {
+	resp = &UpdateTagsForDomainResponse{}
+	err = c.client.Do("UpdateTagsForDomain", "POST", "/", req, resp)
 	return
 }
 
@@ -497,6 +530,16 @@ const (
 	CountryCodeZw = "ZW"
 )
 
+// DeleteTagsForDomainRequest is undocumented.
+type DeleteTagsForDomainRequest struct {
+	DomainName   aws.StringValue `json:"DomainName"`
+	TagsToDelete []string        `json:"TagsToDelete"`
+}
+
+// DeleteTagsForDomainResponse is undocumented.
+type DeleteTagsForDomainResponse struct {
+}
+
 // DisableDomainAutoRenewRequest is undocumented.
 type DisableDomainAutoRenewRequest struct {
 	DomainName aws.StringValue `json:"DomainName"`
@@ -562,23 +605,26 @@ type ExtraParam struct {
 
 // Possible values for Route53Domains.
 const (
-	ExtraParamNameAuIDNumber          = "AU_ID_NUMBER"
-	ExtraParamNameAuIDType            = "AU_ID_TYPE"
-	ExtraParamNameBirthCity           = "BIRTH_CITY"
-	ExtraParamNameBirthCountry        = "BIRTH_COUNTRY"
-	ExtraParamNameBirthDateInYyyyMmDd = "BIRTH_DATE_IN_YYYY_MM_DD"
-	ExtraParamNameBirthDepartment     = "BIRTH_DEPARTMENT"
-	ExtraParamNameBrandNumber         = "BRAND_NUMBER"
-	ExtraParamNameCaLegalType         = "CA_LEGAL_TYPE"
-	ExtraParamNameDocumentNumber      = "DOCUMENT_NUMBER"
-	ExtraParamNameDunsNumber          = "DUNS_NUMBER"
-	ExtraParamNameFiBusinessNumber    = "FI_BUSINESS_NUMBER"
-	ExtraParamNameFiIDNumber          = "FI_ID_NUMBER"
-	ExtraParamNameItPin               = "IT_PIN"
-	ExtraParamNameRuPassportData      = "RU_PASSPORT_DATA"
-	ExtraParamNameSeIDNumber          = "SE_ID_NUMBER"
-	ExtraParamNameSgIDNumber          = "SG_ID_NUMBER"
-	ExtraParamNameVatNumber           = "VAT_NUMBER"
+	ExtraParamNameAuIDNumber           = "AU_ID_NUMBER"
+	ExtraParamNameAuIDType             = "AU_ID_TYPE"
+	ExtraParamNameBirthCity            = "BIRTH_CITY"
+	ExtraParamNameBirthCountry         = "BIRTH_COUNTRY"
+	ExtraParamNameBirthDateInYyyyMmDd  = "BIRTH_DATE_IN_YYYY_MM_DD"
+	ExtraParamNameBirthDepartment      = "BIRTH_DEPARTMENT"
+	ExtraParamNameBrandNumber          = "BRAND_NUMBER"
+	ExtraParamNameCaLegalType          = "CA_LEGAL_TYPE"
+	ExtraParamNameDocumentNumber       = "DOCUMENT_NUMBER"
+	ExtraParamNameDunsNumber           = "DUNS_NUMBER"
+	ExtraParamNameEsIdentification     = "ES_IDENTIFICATION"
+	ExtraParamNameEsIdentificationType = "ES_IDENTIFICATION_TYPE"
+	ExtraParamNameEsLegalForm          = "ES_LEGAL_FORM"
+	ExtraParamNameFiBusinessNumber     = "FI_BUSINESS_NUMBER"
+	ExtraParamNameFiIDNumber           = "FI_ID_NUMBER"
+	ExtraParamNameItPin                = "IT_PIN"
+	ExtraParamNameRuPassportData       = "RU_PASSPORT_DATA"
+	ExtraParamNameSeIDNumber           = "SE_ID_NUMBER"
+	ExtraParamNameSgIDNumber           = "SG_ID_NUMBER"
+	ExtraParamNameVatNumber            = "VAT_NUMBER"
 )
 
 // GetDomainDetailRequest is undocumented.
@@ -650,6 +696,16 @@ type ListOperationsResponse struct {
 	Operations     []OperationSummary `json:"Operations"`
 }
 
+// ListTagsForDomainRequest is undocumented.
+type ListTagsForDomainRequest struct {
+	DomainName aws.StringValue `json:"DomainName"`
+}
+
+// ListTagsForDomainResponse is undocumented.
+type ListTagsForDomainResponse struct {
+	TagList []Tag `json:"TagList"`
+}
+
 // Nameserver is undocumented.
 type Nameserver struct {
 	GlueIPs []string        `json:"GlueIps,omitempty"`
@@ -713,6 +769,12 @@ type RetrieveDomainAuthCodeResponse struct {
 	AuthCode aws.StringValue `json:"AuthCode"`
 }
 
+// Tag is undocumented.
+type Tag struct {
+	Key   aws.StringValue `json:"Key,omitempty"`
+	Value aws.StringValue `json:"Value,omitempty"`
+}
+
 // TransferDomainRequest is undocumented.
 type TransferDomainRequest struct {
 	AdminContact                    *ContactDetail   `json:"AdminContact"`
@@ -721,7 +783,7 @@ type TransferDomainRequest struct {
 	DomainName                      aws.StringValue  `json:"DomainName"`
 	DurationInYears                 aws.IntegerValue `json:"DurationInYears"`
 	IDNLangCode                     aws.StringValue  `json:"IdnLangCode,omitempty"`
-	Nameservers                     []Nameserver     `json:"Nameservers"`
+	Nameservers                     []Nameserver     `json:"Nameservers,omitempty"`
 	PrivacyProtectAdminContact      aws.BooleanValue `json:"PrivacyProtectAdminContact,omitempty"`
 	PrivacyProtectRegistrantContact aws.BooleanValue `json:"PrivacyProtectRegistrantContact,omitempty"`
 	PrivacyProtectTechContact       aws.BooleanValue `json:"PrivacyProtectTechContact,omitempty"`
@@ -763,12 +825,23 @@ type UpdateDomainContactResponse struct {
 // UpdateDomainNameserversRequest is undocumented.
 type UpdateDomainNameserversRequest struct {
 	DomainName  aws.StringValue `json:"DomainName"`
+	FIAuthKey   aws.StringValue `json:"FIAuthKey,omitempty"`
 	Nameservers []Nameserver    `json:"Nameservers"`
 }
 
 // UpdateDomainNameserversResponse is undocumented.
 type UpdateDomainNameserversResponse struct {
 	OperationID aws.StringValue `json:"OperationId"`
+}
+
+// UpdateTagsForDomainRequest is undocumented.
+type UpdateTagsForDomainRequest struct {
+	DomainName   aws.StringValue `json:"DomainName"`
+	TagsToUpdate []Tag           `json:"TagsToUpdate,omitempty"`
+}
+
+// UpdateTagsForDomainResponse is undocumented.
+type UpdateTagsForDomainResponse struct {
 }
 
 // avoid errors if the packages aren't referenced

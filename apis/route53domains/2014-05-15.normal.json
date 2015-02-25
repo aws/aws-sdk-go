@@ -39,6 +39,33 @@
       ],
       "documentation":"<p>This operation checks the availability of one domain name. You can access this API without authenticating. Note that if the availability status of a domain is pending, you must submit another request to determine the availability of the domain name.</p>"
     },
+    "DeleteTagsForDomain":{
+      "name":"DeleteTagsForDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"DeleteTagsForDomainRequest",
+        "documentation":"<p>The DeleteTagsForDomainRequest includes the following elements.</p>"
+      },
+      "output":{"shape":"DeleteTagsForDomainResponse"},
+      "errors":[
+        {
+          "shape":"InvalidInput",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>The requested item is not acceptable. For example, for an OperationId it may refer to the ID of an operation that is already completed. For a domain name, it may not be a valid domain name or belong to the requester account.</p>"
+        },
+        {
+          "shape":"OperationLimitExceeded",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
+        }
+      ],
+      "documentation":"<p>This operation deletes the specified tags for a domain.</p> <p>All tag operations are eventually consistent; subsequent operations may not immediately represent all issued operations.</p>"
+    },
     "DisableDomainAutoRenew":{
       "name":"DisableDomainAutoRenew",
       "http":{
@@ -55,7 +82,7 @@
           "documentation":"<p>The requested item is not acceptable. For example, for an OperationId it may refer to the ID of an operation that is already completed. For a domain name, it may not be a valid domain name or belong to the requester account.</p>"
         }
       ],
-      "documentation":"<p>This operation disables automatic renewal of domain registration for the specified domain.</p>"
+      "documentation":"<p>This operation disables automatic renewal of domain registration for the specified domain.</p> <note>Caution! Amazon Route 53 doesn't have a manual renewal process, so if you disable automatic renewal, registration for the domain will not be renewed when the expiration date passes, and you will lose control of the domain name.</note>"
     },
     "DisableDomainTransferLock":{
       "name":"DisableDomainTransferLock",
@@ -115,7 +142,7 @@
           "documentation":"<p>The requested item is not acceptable. For example, for an OperationId it may refer to the ID of an operation that is already completed. For a domain name, it may not be a valid domain name or belong to the requester account.</p>"
         }
       ],
-      "documentation":"<p>This operation configures Amazon Route 53 to automatically renew the specified domain before the domain registration expires. The cost of renewing your domain registration is billed to your AWS account.</p> <p>The period during which you can renew a domain name varies by TLD. For a list of TLDs and their renewal policies, see \"Renewal, restoration, and deletion times\" (http://wiki.gandi.net/en/domains/renew#renewal_restoration_and_deletion_times) on the website for our registrar partner, Gandi. Route 53 requires that you renew before the end of the renewal period that is listed on the Gandi website so we can complete processing before the deadline.</p>"
+      "documentation":"<p>This operation configures Amazon Route 53 to automatically renew the specified domain before the domain registration expires. The cost of renewing your domain registration is billed to your AWS account.</p> <p>The period during which you can renew a domain name varies by TLD. For a list of TLDs and their renewal policies, see <a href=\"http://wiki.gandi.net/en/domains/renew#renewal_restoration_and_deletion_times\">\"Renewal, restoration, and deletion times\"</a> on the website for our registrar partner, Gandi. Route 53 requires that you renew before the end of the renewal period that is listed on the Gandi website so we can complete processing before the deadline.</p>"
     },
     "EnableDomainTransferLock":{
       "name":"EnableDomainTransferLock",
@@ -255,6 +282,36 @@
       ],
       "documentation":"<p>This operation returns the operation IDs of operations that are not yet complete.</p>"
     },
+    "ListTagsForDomain":{
+      "name":"ListTagsForDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"ListTagsForDomainRequest",
+        "documentation":"<p>The ListTagsForDomainRequest includes the following elements.</p>"
+      },
+      "output":{
+        "shape":"ListTagsForDomainResponse",
+        "documentation":"<p>The ListTagsForDomain response includes the following elements.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidInput",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>The requested item is not acceptable. For example, for an OperationId it may refer to the ID of an operation that is already completed. For a domain name, it may not be a valid domain name or belong to the requester account.</p>"
+        },
+        {
+          "shape":"OperationLimitExceeded",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
+        }
+      ],
+      "documentation":"<p>This operation returns all of the tags that are associated with the specified domain.</p> <p>All tag operations are eventually consistent; subsequent operations may not immediately represent all issued operations.</p>"
+    },
     "RegisterDomain":{
       "name":"RegisterDomain",
       "http":{
@@ -385,7 +442,7 @@
           "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
         }
       ],
-      "documentation":"<p>This operation transfers a domain from another registrar to Amazon Route 53. Domains are registered by the AWS registrar, Gandi upon transfer.</p> <p>To transfer a domain, you need to meet all the domain transfer criteria, including the following:</p> <ul> <li>You must supply nameservers to transfer a domain.</li> <li>You must disable the domain transfer lock (if any) before transferring the domain.</li> <li>A minimum of 60 days must have elapsed since the domain's registration or last transfer.</li> </ul> <p>We recommend you use the Amazon Route 53 as the DNS service for your domain. You can create a hosted zone in Amazon Route 53 for your current domain before transferring your domain.</p> <p>Note that upon transfer, the domain duration is extended for a year if not otherwise specified. Autorenew is enabled by default.</p> <p>If the transfer is successful, this method returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email.</p> <p>Transferring domains charges your AWS account an amount based on the top-level domain. For more information, see <a href=\"http://aws.amazon.com/route53/pricing/\">Amazon Route 53 Pricing</a>. </p>"
+      "documentation":"<p>This operation transfers a domain from another registrar to Amazon Route 53. When the transfer is complete, the domain is registered with the AWS registrar partner, Gandi.</p> <p>For transfer requirements, a detailed procedure, and information about viewing the status of a domain transfer, see <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-transfer-to-route-53.html\">Transferring Registration for a Domain to Amazon Route 53</a> in the Amazon Route 53 Developer Guide.</p> <p>If the registrar for your domain is also the DNS service provider for the domain, we highly recommend that you consider transferring your DNS service to Amazon Route 53 or to another DNS service provider before you transfer your registration. Some registrars provide free DNS service when you purchase a domain registration. When you transfer the registration, the previous registrar will not renew your domain registration and could end your DNS service at any time.</p> <note>Caution! If the registrar for your domain is also the DNS service provider for the domain and you don't transfer DNS service to another provider, your website, email, and the web applications associated with the domain might become unavailable.</note> <p>If the transfer is successful, this method returns an operation ID that you can use to track the progress and completion of the action. If the transfer doesn't complete successfully, the domain registrant will be notified by email.</p>"
     },
     "UpdateDomainContact":{
       "name":"UpdateDomainContact",
@@ -512,6 +569,33 @@
         }
       ],
       "documentation":"<p>This operation replaces the current set of name servers for the domain with the specified set of name servers. If you use Amazon Route 53 as your DNS service, specify the four name servers in the delegation set for the hosted zone for the domain. </p> <p>If successful, this operation returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email.</p>"
+    },
+    "UpdateTagsForDomain":{
+      "name":"UpdateTagsForDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"UpdateTagsForDomainRequest",
+        "documentation":"<p>The UpdateTagsForDomainRequest includes the following elements.</p>"
+      },
+      "output":{"shape":"UpdateTagsForDomainResponse"},
+      "errors":[
+        {
+          "shape":"InvalidInput",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>The requested item is not acceptable. For example, for an OperationId it may refer to the ID of an operation that is already completed. For a domain name, it may not be a valid domain name or belong to the requester account.</p>"
+        },
+        {
+          "shape":"OperationLimitExceeded",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
+        }
+      ],
+      "documentation":"<p>This operation adds or updates tags for a specified domain.</p> <p>All tag operations are eventually consistent; subsequent operations may not immediately represent all issued operations.</p>"
     }
   },
   "shapes":{
@@ -541,7 +625,7 @@
       "members":{
         "Availability":{
           "shape":"DomainAvailability",
-          "documentation":"<p>Whether the domain name is available for registering.</p> <p>Type: String</p> <p>Valid values:</p> <ul> <li> <code>AVAILABLE</code> – The domain name is available.</li> <li> <code>AVAILABLE_RESERVED</code> – The domain name is reserved under specific conditions.</li> <li> <code>AVAILABLE_PREORDER</code> – The domain name is available and can be preordered.</li> <li> <code>UNAVAILABLE</code> – The domain name is not available.</li> <li> <code>UNAVAILABLE_PREMIUM</code> – The domain name is not available.</li> <li> <code>UNAVAILABLE_RESTRICTED</code> – The domain name is forbidden.</li> <li> <code>RESERVED</code> – The domain name has been reserved for another person or organization.</li> </ul>"
+          "documentation":"<p>Whether the domain name is available for registering.</p> <note> <p>You can only register domains designated as <code>AVAILABLE</code>.</p> </note> <p>Type: String</p> <p>Valid values:</p> <ul> <li> <code>AVAILABLE</code> – The domain name is available.</li> <li> <code>AVAILABLE_RESERVED</code> – The domain name is reserved under specific conditions.</li> <li> <code>AVAILABLE_PREORDER</code> – The domain name is available and can be preordered.</li> <li> <code>UNAVAILABLE</code> – The domain name is not available.</li> <li> <code>UNAVAILABLE_PREMIUM</code> – The domain name is not available.</li> <li> <code>UNAVAILABLE_RESTRICTED</code> – The domain name is forbidden.</li> <li> <code>RESERVED</code> – The domain name has been reserved for another person or organization.</li> </ul>"
         }
       },
       "documentation":"<p>The CheckDomainAvailability response includes the following elements.</p>"
@@ -866,6 +950,29 @@
       ]
     },
     "DNSSec":{"type":"string"},
+    "DeleteTagsForDomainRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "TagsToDelete"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The domain for which you want to delete one or more tags.</p> <p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Hyphens are allowed only when theyaposre surrounded by letters, numbers, or other hyphens. You canapost specify a hyphen at the beginning or end of a label. To specify an Internationalized Domain Name, you must convert the name to Punycode.</p> <p>Required: Yes</p>"
+        },
+        "TagsToDelete":{
+          "shape":"TagKeyList",
+          "documentation":"<p>A list of tag keys to delete.</p> <p>Type: A list that contains the keys of the tags that you want to delete.</p> <p>Default: None</p> <p>Required: No</p>'&gt;"
+        }
+      },
+      "documentation":"<p>The DeleteTagsForDomainRequest includes the following elements.</p>"
+    },
+    "DeleteTagsForDomainResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisableDomainAutoRenewRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -1024,7 +1131,7 @@
       "members":{
         "Name":{
           "shape":"ExtraParamName",
-          "documentation":"<p>Name of the additional parameter required by the top-level domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: <code>DUNS_NUMBER</code> | <code>BRAND_NUMBER</code> | <code>BIRTH_DEPARTMENT</code> | <code>BIRTH_DATE_IN_YYYY_MM_DD</code> | <code>BIRTH_COUNTRY</code> | <code>BIRTH_CITY</code> | <code>DOCUMENT_NUMBER</code> | <code>AU_ID_NUMBER</code> | <code>AU_ID_TYPE</code> | <code>CA_LEGAL_TYPE</code> | <code>FI_BUSINESS_NUMBER</code> | <code>FI_ID_NUMBER</code> | <code>IT_PIN</code> | <code>RU_PASSPORT_DATA</code> | <code>SE_ID_NUMBER</code> | <code>SG_ID_NUMBER</code> | <code>VAT_NUMBER</code></p> <p>Parent: <code>ExtraParams</code></p> <p>Required: Yes</p>"
+          "documentation":"<p>Name of the additional parameter required by the top-level domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: <code>DUNS_NUMBER</code> | <code>BRAND_NUMBER</code> | <code>BIRTH_DEPARTMENT</code> | <code>BIRTH_DATE_IN_YYYY_MM_DD</code> | <code>BIRTH_COUNTRY</code> | <code>BIRTH_CITY</code> | <code>DOCUMENT_NUMBER</code> | <code>AU_ID_NUMBER</code> | <code>AU_ID_TYPE</code> | <code>CA_LEGAL_TYPE</code> | <code>ES_IDENTIFICATION</code> | <code>ES_IDENTIFICATION_TYPE</code> | <code>ES_LEGAL_FORM</code> | <code>FI_BUSINESS_NUMBER</code> | <code>FI_ID_NUMBER</code> | <code>IT_PIN</code> | <code>RU_PASSPORT_DATA</code> | <code>SE_ID_NUMBER</code> | <code>SG_ID_NUMBER</code> | <code>VAT_NUMBER</code></p> <p>Parent: <code>ExtraParams</code></p> <p>Required: Yes</p>"
         },
         "Value":{
           "shape":"ExtraParamValue",
@@ -1050,6 +1157,9 @@
         "AU_ID_NUMBER",
         "AU_ID_TYPE",
         "CA_LEGAL_TYPE",
+        "ES_IDENTIFICATION",
+        "ES_IDENTIFICATION_TYPE",
+        "ES_LEGAL_FORM",
         "FI_BUSINESS_NUMBER",
         "FI_ID_NUMBER",
         "IT_PIN",
@@ -1063,6 +1173,7 @@
       "type":"string",
       "max":2048
     },
+    "FIAuthKey":{"type":"string"},
     "GetDomainDetailRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -1296,6 +1407,28 @@
       },
       "documentation":"<p>The ListOperations response includes the following elements.</p>"
     },
+    "ListTagsForDomainRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The domain for which you want to get a list of tags.</p>"
+        }
+      },
+      "documentation":"<p>The ListTagsForDomainRequest includes the following elements.</p>"
+    },
+    "ListTagsForDomainResponse":{
+      "type":"structure",
+      "required":["TagList"],
+      "members":{
+        "TagList":{
+          "shape":"TagList",
+          "documentation":"<p>A list of the tags that are associated with the specified domain.</p> <p>Type: A complex type containing a list of tags</p> <p>Each tag includes the following elements.</p> <ul> <li> <p>Key</p> <p>The key (name) of a tag.</p> <p>Type: String</p> </li> <li> <p>Value</p> <p>The value of a tag.</p> <p>Type: String</p> </li> </ul>"
+        }
+      },
+      "documentation":"<p>The ListTagsForDomain response includes the following elements.</p>"
+    },
     "Nameserver":{
       "type":"structure",
       "required":["Name"],
@@ -1494,13 +1627,36 @@
       "exception":true,
       "documentation":"<p>The top-level domain does not support this operation.</p>"
     },
+    "Tag":{
+      "type":"structure",
+      "members":{
+        "Key":{
+          "shape":"TagKey",
+          "documentation":"<p>The key (name) of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: A-Z, a-z, 0-9, space, \".:/=+\\-%@\"</p> <p>Constraints: Each key can be 1-128 characters long.</p> <p>Required: Yes</p>"
+        },
+        "Value":{
+          "shape":"TagValue",
+          "documentation":"<p>The value of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: A-Z, a-z, 0-9, space, \".:/=+\\-%@\"</p> <p>Constraints: Each value can be 0-256 characters long.</p> <p>Required: Yes</p>"
+        }
+      },
+      "documentation":"<p>Each tag includes the following elements.</p>"
+    },
+    "TagKey":{"type":"string"},
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagValue":{"type":"string"},
     "Timestamp":{"type":"timestamp"},
     "TransferDomainRequest":{
       "type":"structure",
       "required":[
         "DomainName",
         "DurationInYears",
-        "Nameservers",
         "AdminContact",
         "RegistrantContact",
         "TechContact"
@@ -1520,7 +1676,7 @@
         },
         "Nameservers":{
           "shape":"NameserverList",
-          "documentation":"<p>Contains details for the host and glue IP addresses.</p> <p>Type: Complex</p> <p>Children: <code>GlueIps</code>, <code>Name</code></p>"
+          "documentation":"<p>Contains details for the host and glue IP addresses.</p> <p>Type: Complex</p> <p>Children: <code>GlueIps</code>, <code>Name</code></p> <p>Required: No</p>"
         },
         "AuthCode":{
           "shape":"DomainAuthCode",
@@ -1656,6 +1812,10 @@
           "shape":"DomainName",
           "documentation":"<p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p> <p>Required: Yes</p>"
         },
+        "FIAuthKey":{
+          "shape":"FIAuthKey",
+          "documentation":"<p>The authorization key for .fi domains</p>"
+        },
         "Nameservers":{
           "shape":"NameserverList",
           "documentation":"<p>A list of new name servers for the domain.</p> <p>Type: Complex</p> <p>Children: <code>Name</code>, <code>GlueIps</code></p> <p>Required: Yes</p>"
@@ -1673,6 +1833,26 @@
         }
       },
       "documentation":"<p>The UpdateDomainNameservers response includes the following element.</p>"
+    },
+    "UpdateTagsForDomainRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "documentation":"<p>The domain for which you want to add or update tags.</p> <p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Hyphens are allowed only when theyaposre surrounded by letters, numbers, or other hyphens. You canapost specify a hyphen at the beginning or end of a label. To specify an Internationalized Domain Name, you must convert the name to Punycode.</p> <p>Required: Yes</p>"
+        },
+        "TagsToUpdate":{
+          "shape":"TagList",
+          "documentation":"<p>A list of the tag keys and values that you want to add or update. If you specify a key that already exists, the corresponding value will be replaced.</p> <p>Type: A complex type containing a list of tags</p> <p>Default: None</p> <p>Required: No</p>'&gt; <p>Each tag includes the following elements:</p> <ul> <li> <p>Key</p> <p>The key (name) of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: Unicode characters including alphanumeric, space, and \".:/=+\\-%@\"</p> <p>Constraints: Each key can be 1-128 characters long.</p> <p>Required: Yes</p> </li> <li> <p>Value</p> <p>The value of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: Unicode characters including alphanumeric, space, and \".:/=+\\-%@\"</p> <p>Constraints: Each value can be 0-256 characters long.</p> <p>Required: Yes</p> </li> </ul>"
+        }
+      },
+      "documentation":"<p>The UpdateTagsForDomainRequest includes the following elements.</p>"
+    },
+    "UpdateTagsForDomainResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "ZipCode":{
       "type":"string",

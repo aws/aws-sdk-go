@@ -53,12 +53,9 @@ func (c *KMS) CreateAlias(req *CreateAliasRequest) (err error) {
 
 // CreateGrant adds a grant to a key to specify who can access the key and
 // under what conditions. Grants are alternate permission mechanisms to key
-// policies. If absent, access to the key is evaluated based on IAM
-// policies attached to the user. By default, grants do not expire. Grants
-// can be listed, retired, or revoked as indicated by the following APIs.
-// Typically, when you are finished using a grant, you retire it. When you
-// want to end a grant immediately, revoke it. For more information about
-// grants, see Grants .
+// policies. For more information about grants, see Grants in the developer
+// guide. If a grant is absent, access to the key is evaluated based on IAM
+// policies attached to the user.
 func (c *KMS) CreateGrant(req *CreateGrantRequest) (resp *CreateGrantResponse, err error) {
 	resp = &CreateGrantResponse{}
 	err = c.client.Do("CreateGrant", "POST", "/", req, resp)
@@ -77,7 +74,15 @@ func (c *KMS) CreateKey(req *CreateKeyRequest) (resp *CreateKeyResponse, err err
 }
 
 // Decrypt decrypts ciphertext. Ciphertext is plaintext that has been
-// previously encrypted by using the Encrypt function.
+// previously encrypted by using any of the following functions: Note that
+// if a caller has been granted access permissions to all keys (through,
+// for example, IAM user policies that grant Decrypt permission on all
+// resources), then ciphertext encrypted by using keys in other accounts
+// where the key grants access to the caller can be decrypted. To remedy
+// this, we recommend that you do not grant Decrypt access in an IAM user
+// policy. Instead grant Decrypt access only in key policies. If you must
+// grant Decrypt access in an IAM user policy, you should scope the
+// resource to specific keys or to specific trusted accounts.
 func (c *KMS) Decrypt(req *DecryptRequest) (resp *DecryptResponse, err error) {
 	resp = &DecryptResponse{}
 	err = c.client.Do("Decrypt", "POST", "/", req, resp)
@@ -129,24 +134,67 @@ func (c *KMS) EnableKeyRotation(req *EnableKeyRotationRequest) (err error) {
 }
 
 // Encrypt encrypts plaintext into ciphertext by using a customer master
-// key.
+// key. The Encrypt function has two primary use cases: You can encrypt up
+// to 4 KB of arbitrary data such as an RSA key, a database password, or
+// other sensitive customer information. If you are moving encrypted data
+// from one region to another, you can use this API to encrypt in the new
+// region the plaintext data key that was used to encrypt the data in the
+// original region. This provides you with an encrypted copy of the data
+// key that can be decrypted in the new region and used there to decrypt
+// the encrypted data. Unless you are moving encrypted data from one region
+// to another, you don't use this function to encrypt a generated data key
+// within a region. You retrieve data keys already encrypted by calling the
+// GenerateDataKey or GenerateDataKeyWithoutPlaintext function. Data keys
+// don't need to be encrypted again by calling Encrypt . If you want to
+// encrypt data locally in your application, you can use the
+// GenerateDataKey function to return a plaintext data encryption key and a
+// copy of the key encrypted under the customer master key of your
+// choosing.
 func (c *KMS) Encrypt(req *EncryptRequest) (resp *EncryptResponse, err error) {
 	resp = &EncryptResponse{}
 	err = c.client.Do("Encrypt", "POST", "/", req, resp)
 	return
 }
 
-// GenerateDataKey generates a secure data key. Data keys are used to
-// encrypt and decrypt data. They are wrapped by customer master keys.
+// GenerateDataKey generates a data key that you can use in your
+// application to locally encrypt data. This call returns a plaintext
+// version of the key in the Plaintext field of the response object and an
+// encrypted copy of the key in the CiphertextBlob field. The key is
+// encrypted by using the master key specified by the KeyId field. To
+// decrypt the encrypted key, pass it to the Decrypt We recommend that you
+// use the following pattern to locally encrypt data: call the
+// GenerateDataKey use the key returned in the Plaintext response field to
+// locally encrypt data, and then erase the plaintext data key from memory.
+// Store the encrypted data key (contained in the CiphertextBlob field)
+// alongside of the locally encrypted data. You should not call the Encrypt
+// function to re-encrypt your data keys within a region. GenerateDataKey
+// always returns the data key encrypted and tied to the customer master
+// key that will be used to decrypt it. There is no need to decrypt it
+// twice. If you decide to use the optional EncryptionContext parameter,
+// you must also store the context in full or at least store enough
+// information along with the encrypted data to be able to reconstruct the
+// context when submitting the ciphertext to the Decrypt It is a good
+// practice to choose a context that you can reconstruct on the fly to
+// better secure the ciphertext. For more information about how this
+// parameter is used, see Encryption Context . To decrypt data, pass the
+// encrypted data key to the Decrypt Decrypt uses the associated master key
+// to decrypt the encrypted data key and returns it as plaintext. Use the
+// plaintext data key to locally decrypt your data and then erase the key
+// from memory. You must specify the encryption context, if any, that you
+// specified when you generated the key. The encryption context is logged
+// by CloudTrail, and you can use this log to help track the use of
+// particular data.
 func (c *KMS) GenerateDataKey(req *GenerateDataKeyRequest) (resp *GenerateDataKeyResponse, err error) {
 	resp = &GenerateDataKeyResponse{}
 	err = c.client.Do("GenerateDataKey", "POST", "/", req, resp)
 	return
 }
 
-// GenerateDataKeyWithoutPlaintext returns a key wrapped by a customer
-// master key without the plaintext copy of that key. To retrieve the
-// plaintext, see GenerateDataKey .
+// GenerateDataKeyWithoutPlaintext returns a data key encrypted by a
+// customer master key without the plaintext copy of that key. Otherwise,
+// this API functions exactly like GenerateDataKey . You can use this API
+// to, for example, satisfy an audit requirement that an encrypted key be
+// made available without exposing the plaintext copy of that key.
 func (c *KMS) GenerateDataKeyWithoutPlaintext(req *GenerateDataKeyWithoutPlaintextRequest) (resp *GenerateDataKeyWithoutPlaintextResponse, err error) {
 	resp = &GenerateDataKeyWithoutPlaintextResponse{}
 	err = c.client.Do("GenerateDataKeyWithoutPlaintext", "POST", "/", req, resp)
@@ -222,7 +270,9 @@ func (c *KMS) ReEncrypt(req *ReEncryptRequest) (resp *ReEncryptResponse, err err
 
 // RetireGrant retires a grant. You can retire a grant when you're done
 // using it to clean up. You should revoke a grant when you intend to
-// actively deny operations that depend on it.
+// actively deny operations that depend on it. The following are permitted
+// to call this The account that created the grant The RetiringPrincipal ,
+// if present The GranteePrincipal , if RetireGrant is a grantee operation
 func (c *KMS) RetireGrant(req *RetireGrantRequest) (err error) {
 	// NRE
 	err = c.client.Do("RetireGrant", "POST", "/", req, nil)
@@ -237,7 +287,7 @@ func (c *KMS) RevokeGrant(req *RevokeGrantRequest) (err error) {
 	return
 }
 
-// UpdateKeyDescription <nil>
+// UpdateKeyDescription is undocumented.
 func (c *KMS) UpdateKeyDescription(req *UpdateKeyDescriptionRequest) (err error) {
 	// NRE
 	err = c.client.Do("UpdateKeyDescription", "POST", "/", req, nil)

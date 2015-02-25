@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2013-04-01",
     "endpointPrefix":"route53",
@@ -680,6 +681,30 @@
       ],
       "documentation":"<p> To retrieve the delegation set for a hosted zone, send a <code>GET</code> request to the <code>2013-04-01/hostedzone/<i>hosted zone ID</i></code> resource. The delegation set is the four Route 53 name servers that were assigned to the hosted zone when you created it.</p>"
     },
+    "GetHostedZoneCount":{
+      "name":"GetHostedZoneCount",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/hostedzonecount"
+      },
+      "input":{
+        "shape":"GetHostedZoneCountRequest",
+        "documentation":"<p> To retrieve a count of all your hosted zones, send a <code>GET</code> request to the <code>2013-04-01/hostedzonecount</code> resource.</p>"
+      },
+      "output":{
+        "shape":"GetHostedZoneCountResponse",
+        "documentation":"<p> A complex type that contains the count of hosted zones associated with the current AWS account.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidInput",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Some value specified in the request is invalid or the XML document is malformed.</p>"
+        }
+      ],
+      "documentation":"<p> To retrieve a count of all your hosted zones, send a <code>GET</code> request to the <code>2013-04-01/hostedzonecount</code> resource.</p>"
+    },
     "GetReusableDelegationSet":{
       "name":"GetReusableDelegationSet",
       "http":{
@@ -801,6 +826,36 @@
         }
       ],
       "documentation":"<p> To retrieve a list of your hosted zones, send a <code>GET</code> request to the <code>2013-04-01/hostedzone</code> resource. The response to this request includes a <code>HostedZones</code> element with zero, one, or multiple <code>HostedZone</code> child elements. By default, the list of hosted zones is displayed on a single page. You can control the length of the page that is displayed by using the <code>MaxItems</code> parameter. You can use the <code>Marker</code> parameter to control the hosted zone that the list begins with. </p> <note> Amazon Route 53 returns a maximum of 100 items. If you set MaxItems to a value greater than 100, Amazon Route 53 returns only the first 100.</note>"
+    },
+    "ListHostedZonesByName":{
+      "name":"ListHostedZonesByName",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/hostedzonesbyname"
+      },
+      "input":{
+        "shape":"ListHostedZonesByNameRequest",
+        "documentation":"<p>To retrieve a list of your hosted zones in lexicographic order, send a <code>GET</code> request to the <code>2013-04-01/hostedzonesbyname</code> resource. The response to this request includes a <code>HostedZones</code> element with zero or more <code>HostedZone</code> child elements lexicographically ordered by DNS name. By default, the list of hosted zones is displayed on a single page. You can control the length of the page that is displayed by using the <code>MaxItems</code> parameter. You can use the <code>DNSName</code> and <code>HostedZoneId</code> parameters to control the hosted zone that the list begins with.</p> <p>For more information about listing hosted zones, see <a href=\"http://docs.amazonwebservices.com/Route53/latest/DeveloperGuide/ListInfoOnHostedZone.html\">Listing the Hosted Zones for an AWS Account</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>"
+      },
+      "output":{
+        "shape":"ListHostedZonesByNameResponse",
+        "documentation":"<p>A complex type that contains the response for the request.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidInput",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Some value specified in the request is invalid or the XML document is malformed.</p>"
+        },
+        {
+          "shape":"InvalidDomainName",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>This error indicates that the specified domain name is not valid.</p>"
+        }
+      ],
+      "documentation":"<p> To retrieve a list of your hosted zones in lexicographic order, send a <code>GET</code> request to the <code>2013-04-01/hostedzonesbyname</code> resource. The response to this request includes a <code>HostedZones</code> element with zero or more <code>HostedZone</code> child elements lexicographically ordered by DNS name. By default, the list of hosted zones is displayed on a single page. You can control the length of the page that is displayed by using the <code>MaxItems</code> parameter. You can use the <code>DNSName</code> and <code>HostedZoneId</code> parameters to control the hosted zone that the list begins with.</p> <note> Amazon Route 53 returns a maximum of 100 items. If you set MaxItems to a value greater than 100, Amazon Route 53 returns only the first 100.</note>"
     },
     "ListResourceRecordSets":{
       "name":"ListResourceRecordSets",
@@ -1819,6 +1874,23 @@
       },
       "documentation":"<p>A complex type that contains information about the status of the specified health check.</p>"
     },
+    "GetHostedZoneCountRequest":{
+      "type":"structure",
+      "members":{
+      },
+      "documentation":"<p> To retrieve a count of all your hosted zones, send a <code>GET</code> request to the <code>2013-04-01/hostedzonecount</code> resource.</p>"
+    },
+    "GetHostedZoneCountResponse":{
+      "type":"structure",
+      "required":["HostedZoneCount"],
+      "members":{
+        "HostedZoneCount":{
+          "shape":"HostedZoneCount",
+          "documentation":"<p> The number of hosted zones associated with the current AWS account.</p>"
+        }
+      },
+      "documentation":"<p> A complex type that contains the count of hosted zones associated with the current AWS account.</p>"
+    },
     "GetHostedZoneRequest":{
       "type":"structure",
       "required":["Id"],
@@ -2083,6 +2155,7 @@
       },
       "documentation":"<p>A complex type that contains an optional comment about your hosted zone. If you don't want to specify a comment, you can omit the <code>HostedZoneConfig</code> and <code>Comment</code> elements from the XML document.</p>"
     },
+    "HostedZoneCount":{"type":"long"},
     "HostedZoneNotEmpty":{
       "type":"structure",
       "members":{
@@ -2325,6 +2398,69 @@
         }
       },
       "documentation":"<p> A complex type that contains the response for the request.</p>"
+    },
+    "ListHostedZonesByNameRequest":{
+      "type":"structure",
+      "members":{
+        "DNSName":{
+          "shape":"DNSName",
+          "location":"querystring",
+          "locationName":"dnsname",
+          "documentation":"<p>The first name in the lexicographic ordering of domain names that you want the <code>ListHostedZonesByNameRequest</code> request to list.</p> <p>If the request returned more than one page of results, submit another request and specify the value of <code>NextDNSName</code> and <code>NextHostedZoneId</code> from the last response in the <code>DNSName</code> and <code>HostedZoneId</code> parameters to get the next page of results.</p>"
+        },
+        "HostedZoneId":{
+          "shape":"ResourceId",
+          "location":"querystring",
+          "locationName":"hostedzoneid",
+          "documentation":"<p>If the request returned more than one page of results, submit another request and specify the value of <code>NextDNSName</code> and <code>NextHostedZoneId</code> from the last response in the <code>DNSName</code> and <code>HostedZoneId</code> parameters to get the next page of results.</p>"
+        },
+        "MaxItems":{
+          "shape":"PageMaxItems",
+          "location":"querystring",
+          "locationName":"maxitems",
+          "documentation":"<p>Specify the maximum number of hosted zones to return per page of results.</p>"
+        }
+      },
+      "documentation":"<p>To retrieve a list of your hosted zones in lexicographic order, send a <code>GET</code> request to the <code>2013-04-01/hostedzonesbyname</code> resource. The response to this request includes a <code>HostedZones</code> element with zero or more <code>HostedZone</code> child elements lexicographically ordered by DNS name. By default, the list of hosted zones is displayed on a single page. You can control the length of the page that is displayed by using the <code>MaxItems</code> parameter. You can use the <code>DNSName</code> and <code>HostedZoneId</code> parameters to control the hosted zone that the list begins with.</p> <p>For more information about listing hosted zones, see <a href=\"http://docs.amazonwebservices.com/Route53/latest/DeveloperGuide/ListInfoOnHostedZone.html\">Listing the Hosted Zones for an AWS Account</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>"
+    },
+    "ListHostedZonesByNameResponse":{
+      "type":"structure",
+      "required":[
+        "HostedZones",
+        "IsTruncated",
+        "MaxItems"
+      ],
+      "members":{
+        "HostedZones":{
+          "shape":"HostedZones",
+          "documentation":"<p>A complex type that contains information about the hosted zones associated with the current AWS account.</p>"
+        },
+        "DNSName":{
+          "shape":"DNSName",
+          "documentation":"<p>The <code>DNSName</code> value sent in the request.</p>"
+        },
+        "HostedZoneId":{
+          "shape":"ResourceId",
+          "documentation":"<p>The <code>HostedZoneId</code> value sent in the request.</p>"
+        },
+        "IsTruncated":{
+          "shape":"PageTruncated",
+          "documentation":"<p>A flag indicating whether there are more hosted zones to be listed. If your results were truncated, you can make a follow-up request for the next page of results by using the <code>NextDNSName</code> and <code>NextHostedZoneId</code> elements.</p> <p>Valid Values: <code>true</code> | <code>false</code></p>"
+        },
+        "NextDNSName":{
+          "shape":"DNSName",
+          "documentation":"<p>If <a>ListHostedZonesByNameResponse$IsTruncated</a> is <code>true</code>, there are more hosted zones associated with the current AWS account. To get the next page of results, make another request to <code>ListHostedZonesByName</code>. Specify the value of <a>ListHostedZonesByNameResponse$NextDNSName</a> in the <a>ListHostedZonesByNameRequest$DNSName</a> element and <a>ListHostedZonesByNameResponse$NextHostedZoneId</a> in the <a>ListHostedZonesByNameRequest$HostedZoneId</a> element.</p>"
+        },
+        "NextHostedZoneId":{
+          "shape":"ResourceId",
+          "documentation":"<p>If <a>ListHostedZonesByNameResponse$IsTruncated</a> is <code>true</code>, there are more hosted zones associated with the current AWS account. To get the next page of results, make another request to <code>ListHostedZonesByName</code>. Specify the value of <a>ListHostedZonesByNameResponse$NextDNSName</a> in the <a>ListHostedZonesByNameRequest$DNSName</a> element and <a>ListHostedZonesByNameResponse$NextHostedZoneId</a> in the <a>ListHostedZonesByNameRequest$HostedZoneId</a> element.</p>"
+        },
+        "MaxItems":{
+          "shape":"PageMaxItems",
+          "documentation":"<p>The maximum number of hosted zones to be included in the response body. If the number of hosted zones associated with this AWS account exceeds <code>MaxItems</code>, the value of <a>ListHostedZonesByNameResponse$IsTruncated</a> in the response is <code>true</code>. Call <code>ListHostedZonesByName</code> again and specify the value of <a>ListHostedZonesByNameResponse$NextDNSName</a> and <a>ListHostedZonesByNameResponse$NextHostedZoneId</a> elements respectively to get the next page of results.</p>"
+        }
+      },
+      "documentation":"<p>A complex type that contains the response for the request.</p>"
     },
     "ListHostedZonesRequest":{
       "type":"structure",

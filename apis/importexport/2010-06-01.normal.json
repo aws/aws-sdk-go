@@ -50,6 +50,11 @@
           "shape":"InvalidAccessKeyIdException",
           "exception":true,
           "documentation":"The AWS Access Key ID specified in the request did not match the manifest's accessKeyId value. The manifest and the request authentication must use the same AWS Access Key ID."
+        },
+        {
+          "shape":"InvalidVersionException",
+          "exception":true,
+          "documentation":"The client tool version is invalid."
         }
       ],
       "documentation":"This operation cancels a specified job. Only the job owner can cancel it. The operation fails if the job has already started or is complete."
@@ -74,11 +79,6 @@
           "shape":"MissingParameterException",
           "exception":true,
           "documentation":"One or more required parameters was missing from the request."
-        },
-        {
-          "shape":"InvalidParameterException",
-          "exception":true,
-          "documentation":"One or more parameters had an invalid value."
         },
         {
           "shape":"InvalidParameterException",
@@ -139,9 +139,74 @@
           "shape":"MalformedManifestException",
           "exception":true,
           "documentation":"Your manifest is not well-formed."
+        },
+        {
+          "shape":"CreateJobQuotaExceededException",
+          "exception":true,
+          "documentation":"Each account can create only a certain number of jobs per day. If you need to create more than this, please contact awsimportexport@amazon.com to explain your particular use case."
+        },
+        {
+          "shape":"InvalidJobIdException",
+          "exception":true,
+          "documentation":"The JOBID was missing, not found, or not associated with the AWS account."
+        },
+        {
+          "shape":"InvalidVersionException",
+          "exception":true,
+          "documentation":"The client tool version is invalid."
         }
       ],
       "documentation":"This operation initiates the process of scheduling an upload or download of your data. You include in the request a manifest that describes the data transfer specifics. The response to the request includes a job ID, which you can use in other operations, a signature that you use to identify your storage device, and the address where you should ship your storage device."
+    },
+    "GetShippingLabel":{
+      "name":"GetShippingLabel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/?Operation=GetShippingLabel"
+      },
+      "input":{"shape":"GetShippingLabelInput"},
+      "output":{
+        "shape":"GetShippingLabelOutput",
+        "resultWrapper":"GetShippingLabelResult"
+      },
+      "errors":[
+        {
+          "shape":"InvalidJobIdException",
+          "exception":true,
+          "documentation":"The JOBID was missing, not found, or not associated with the AWS account."
+        },
+        {
+          "shape":"ExpiredJobIdException",
+          "exception":true,
+          "documentation":"Indicates that the specified job has expired out of the system."
+        },
+        {
+          "shape":"CanceledJobIdException",
+          "exception":true,
+          "documentation":"The specified job ID has been canceled and is no longer valid."
+        },
+        {
+          "shape":"InvalidAccessKeyIdException",
+          "exception":true,
+          "documentation":"The AWS Access Key ID specified in the request did not match the manifest's accessKeyId value. The manifest and the request authentication must use the same AWS Access Key ID."
+        },
+        {
+          "shape":"InvalidAddressException",
+          "exception":true,
+          "documentation":"The address specified in the manifest is invalid."
+        },
+        {
+          "shape":"InvalidVersionException",
+          "exception":true,
+          "documentation":"The client tool version is invalid."
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"One or more parameters had an invalid value."
+        }
+      ],
+      "documentation":"This operation returns information about a job, including where the job is in the processing pipeline, the status of the results, and the signature value associated with the job. You can only return information about jobs you own."
     },
     "GetStatus":{
       "name":"GetStatus",
@@ -178,6 +243,11 @@
           "shape":"InvalidAccessKeyIdException",
           "exception":true,
           "documentation":"The AWS Access Key ID specified in the request did not match the manifest's accessKeyId value. The manifest and the request authentication must use the same AWS Access Key ID."
+        },
+        {
+          "shape":"InvalidVersionException",
+          "exception":true,
+          "documentation":"The client tool version is invalid."
         }
       ],
       "documentation":"This operation returns information about a job, including where the job is in the processing pipeline, the status of the results, and the signature value associated with the job. You can only return information about jobs you own."
@@ -207,6 +277,11 @@
           "shape":"InvalidAccessKeyIdException",
           "exception":true,
           "documentation":"The AWS Access Key ID specified in the request did not match the manifest's accessKeyId value. The manifest and the request authentication must use the same AWS Access Key ID."
+        },
+        {
+          "shape":"InvalidVersionException",
+          "exception":true,
+          "documentation":"The client tool version is invalid."
         }
       ],
       "documentation":"This operation returns the jobs associated with the requester. AWS Import/Export lists the jobs in reverse chronological order based on the date of creation. For example if Job Test1 was created 2009Dec30 and Test2 was created 2010Feb05, the ListJobs operation would return Test2 followed by Test1."
@@ -306,15 +381,38 @@
           "shape":"MalformedManifestException",
           "exception":true,
           "documentation":"Your manifest is not well-formed."
+        },
+        {
+          "shape":"UnableToUpdateJobIdException",
+          "exception":true,
+          "documentation":"AWS Import/Export cannot update the job"
+        },
+        {
+          "shape":"InvalidVersionException",
+          "exception":true,
+          "documentation":"The client tool version is invalid."
         }
       ],
       "documentation":"You use this operation to change the parameters specified in the original manifest file by supplying a new manifest file. The manifest file attached to this request replaces the original manifest file. You can only use the operation after a CreateJob request but before the data transfer starts and you can only use it on jobs you own."
     }
   },
   "shapes":{
-    "AwsShippingAddress":{
+    "APIVersion":{
       "type":"string",
-      "documentation":"Address you ship your storage device to."
+      "documentation":"Specifies the version of the client tool."
+    },
+    "Artifact":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"Description"},
+        "URL":{"shape":"URL"}
+      },
+      "documentation":"A discrete item that contains the description and URL of an artifact (such as a PDF)."
+    },
+    "ArtifactList":{
+      "type":"list",
+      "member":{"shape":"Artifact"},
+      "documentation":"A collection of artifacts."
     },
     "BucketPermissionException":{
       "type":"structure",
@@ -328,7 +426,8 @@
       "type":"structure",
       "required":["JobId"],
       "members":{
-        "JobId":{"shape":"JobId"}
+        "JobId":{"shape":"JobId"},
+        "APIVersion":{"shape":"APIVersion"}
       },
       "documentation":"Input structure for the CancelJob operation."
     },
@@ -362,7 +461,8 @@
         "JobType":{"shape":"JobType"},
         "Manifest":{"shape":"Manifest"},
         "ManifestAddendum":{"shape":"ManifestAddendum"},
-        "ValidateOnly":{"shape":"ValidateOnly"}
+        "ValidateOnly":{"shape":"ValidateOnly"},
+        "APIVersion":{"shape":"APIVersion"}
       },
       "documentation":"Input structure for the CreateJob operation."
     },
@@ -371,12 +471,20 @@
       "members":{
         "JobId":{"shape":"JobId"},
         "JobType":{"shape":"JobType"},
-        "AwsShippingAddress":{"shape":"AwsShippingAddress"},
         "Signature":{"shape":"Signature"},
         "SignatureFileContents":{"shape":"SignatureFileContents"},
-        "WarningMessage":{"shape":"WarningMessage"}
+        "WarningMessage":{"shape":"WarningMessage"},
+        "ArtifactList":{"shape":"ArtifactList"}
       },
       "documentation":"Output structure for the CreateJob operation."
+    },
+    "CreateJobQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true,
+      "documentation":"Each account can create only a certain number of jobs per day. If you need to create more than this, please contact awsimportexport@amazon.com to explain your particular use case."
     },
     "CreationDate":{
       "type":"timestamp",
@@ -385,6 +493,10 @@
     "CurrentManifest":{
       "type":"string",
       "documentation":"The last manifest submitted, which will be used to process the job."
+    },
+    "Description":{
+      "type":"string",
+      "documentation":"The associated description for this object."
     },
     "ErrorCount":{
       "type":"integer",
@@ -402,11 +514,38 @@
       "exception":true,
       "documentation":"Indicates that the specified job has expired out of the system."
     },
+    "GenericString":{"type":"string"},
+    "GetShippingLabelInput":{
+      "type":"structure",
+      "required":["jobIds"],
+      "members":{
+        "jobIds":{"shape":"JobIdList"},
+        "name":{"shape":"GenericString"},
+        "company":{"shape":"GenericString"},
+        "phoneNumber":{"shape":"GenericString"},
+        "country":{"shape":"GenericString"},
+        "stateOrProvince":{"shape":"GenericString"},
+        "city":{"shape":"GenericString"},
+        "postalCode":{"shape":"GenericString"},
+        "street1":{"shape":"GenericString"},
+        "street2":{"shape":"GenericString"},
+        "street3":{"shape":"GenericString"},
+        "APIVersion":{"shape":"GenericString"}
+      }
+    },
+    "GetShippingLabelOutput":{
+      "type":"structure",
+      "members":{
+        "ShippingLabelURL":{"shape":"GenericString"},
+        "Warning":{"shape":"GenericString"}
+      }
+    },
     "GetStatusInput":{
       "type":"structure",
       "required":["JobId"],
       "members":{
-        "JobId":{"shape":"JobId"}
+        "JobId":{"shape":"JobId"},
+        "APIVersion":{"shape":"APIVersion"}
       },
       "documentation":"Input structure for the GetStatus operation."
     },
@@ -415,7 +554,6 @@
       "members":{
         "JobId":{"shape":"JobId"},
         "JobType":{"shape":"JobType"},
-        "AwsShippingAddress":{"shape":"AwsShippingAddress"},
         "LocationCode":{"shape":"LocationCode"},
         "LocationMessage":{"shape":"LocationMessage"},
         "ProgressCode":{"shape":"ProgressCode"},
@@ -428,7 +566,8 @@
         "Signature":{"shape":"Signature"},
         "SignatureFileContents":{"shape":"Signature"},
         "CurrentManifest":{"shape":"CurrentManifest"},
-        "CreationDate":{"shape":"CreationDate"}
+        "CreationDate":{"shape":"CreationDate"},
+        "ArtifactList":{"shape":"ArtifactList"}
       },
       "documentation":"Output structure for the GetStatus operation."
     },
@@ -488,6 +627,14 @@
       "exception":true,
       "documentation":"One or more parameters had an invalid value."
     },
+    "InvalidVersionException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true,
+      "documentation":"The client tool version is invalid."
+    },
     "IsCanceled":{
       "type":"boolean",
       "documentation":"Indicates whether the job was canceled."
@@ -510,6 +657,10 @@
       "type":"string",
       "documentation":"A unique identifier which refers to a particular job."
     },
+    "JobIdList":{
+      "type":"list",
+      "member":{"shape":"GenericString"}
+    },
     "JobType":{
       "type":"string",
       "enum":[
@@ -527,7 +678,8 @@
       "type":"structure",
       "members":{
         "MaxJobs":{"shape":"MaxJobs"},
-        "Marker":{"shape":"Marker"}
+        "Marker":{"shape":"Marker"},
+        "APIVersion":{"shape":"APIVersion"}
       },
       "documentation":"Input structure for the ListJobs operation."
     },
@@ -643,6 +795,10 @@
       "type":"string",
       "documentation":"The shipping tracking number assigned by AWS Import/Export to the storage device when it's returned to you. We return this value when the LocationCode is \"Returned\"."
     },
+    "URL":{
+      "type":"string",
+      "documentation":"The URL for a given Artifact."
+    },
     "UnableToCancelJobIdException":{
       "type":"structure",
       "members":{
@@ -650,6 +806,14 @@
       },
       "exception":true,
       "documentation":"AWS Import/Export cannot cancel the job"
+    },
+    "UnableToUpdateJobIdException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true,
+      "documentation":"AWS Import/Export cannot update the job"
     },
     "UpdateJobInput":{
       "type":"structure",
@@ -663,7 +827,8 @@
         "JobId":{"shape":"JobId"},
         "Manifest":{"shape":"Manifest"},
         "JobType":{"shape":"JobType"},
-        "ValidateOnly":{"shape":"ValidateOnly"}
+        "ValidateOnly":{"shape":"ValidateOnly"},
+        "APIVersion":{"shape":"APIVersion"}
       },
       "documentation":"Input structure for the UpateJob operation."
     },
@@ -671,7 +836,8 @@
       "type":"structure",
       "members":{
         "Success":{"shape":"Success"},
-        "WarningMessage":{"shape":"WarningMessage"}
+        "WarningMessage":{"shape":"WarningMessage"},
+        "ArtifactList":{"shape":"ArtifactList"}
       },
       "documentation":"Output structure for the UpateJob operation."
     },

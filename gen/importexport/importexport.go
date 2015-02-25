@@ -64,6 +64,16 @@ func (c *ImportExport) CreateJob(req *CreateJobInput) (resp *CreateJobResult, er
 	return
 }
 
+// GetShippingLabel this operation returns information about a job,
+// including where the job is in the processing pipeline, the status of the
+// results, and the signature value associated with the job. You can only
+// return information about jobs you own.
+func (c *ImportExport) GetShippingLabel(req *GetShippingLabelInput) (resp *GetShippingLabelResult, err error) {
+	resp = &GetShippingLabelResult{}
+	err = c.client.Do("GetShippingLabel", "POST", "/?Operation=GetShippingLabel", req, resp)
+	return
+}
+
 // GetStatus this operation returns information about a job, including
 // where the job is in the processing pipeline, the status of the results,
 // and the signature value associated with the job. You can only return
@@ -96,9 +106,16 @@ func (c *ImportExport) UpdateJob(req *UpdateJobInput) (resp *UpdateJobResult, er
 	return
 }
 
+// Artifact is undocumented.
+type Artifact struct {
+	Description aws.StringValue `query:"Description" xml:"Description"`
+	URL         aws.StringValue `query:"URL" xml:"URL"`
+}
+
 // CancelJobInput is undocumented.
 type CancelJobInput struct {
-	JobID aws.StringValue `query:"JobId" xml:"JobId"`
+	APIVersion aws.StringValue `query:"APIVersion" xml:"APIVersion"`
+	JobID      aws.StringValue `query:"JobId" xml:"JobId"`
 }
 
 // CancelJobOutput is undocumented.
@@ -108,6 +125,7 @@ type CancelJobOutput struct {
 
 // CreateJobInput is undocumented.
 type CreateJobInput struct {
+	APIVersion       aws.StringValue  `query:"APIVersion" xml:"APIVersion"`
 	JobType          aws.StringValue  `query:"JobType" xml:"JobType"`
 	Manifest         aws.StringValue  `query:"Manifest" xml:"Manifest"`
 	ManifestAddendum aws.StringValue  `query:"ManifestAddendum" xml:"ManifestAddendum"`
@@ -116,7 +134,7 @@ type CreateJobInput struct {
 
 // CreateJobOutput is undocumented.
 type CreateJobOutput struct {
-	AWSShippingAddress    aws.StringValue `query:"AwsShippingAddress" xml:"CreateJobResult>AwsShippingAddress"`
+	ArtifactList          []Artifact      `query:"ArtifactList.member" xml:"CreateJobResult>ArtifactList>member"`
 	JobID                 aws.StringValue `query:"JobId" xml:"CreateJobResult>JobId"`
 	JobType               aws.StringValue `query:"JobType" xml:"CreateJobResult>JobType"`
 	Signature             aws.StringValue `query:"Signature" xml:"CreateJobResult>Signature"`
@@ -124,14 +142,37 @@ type CreateJobOutput struct {
 	WarningMessage        aws.StringValue `query:"WarningMessage" xml:"CreateJobResult>WarningMessage"`
 }
 
+// GetShippingLabelInput is undocumented.
+type GetShippingLabelInput struct {
+	APIVersion      aws.StringValue `query:"APIVersion" xml:"APIVersion"`
+	City            aws.StringValue `query:"city" xml:"city"`
+	Company         aws.StringValue `query:"company" xml:"company"`
+	Country         aws.StringValue `query:"country" xml:"country"`
+	JobIDs          []string        `query:"jobIds.member" xml:"jobIds>member"`
+	Name            aws.StringValue `query:"name" xml:"name"`
+	PhoneNumber     aws.StringValue `query:"phoneNumber" xml:"phoneNumber"`
+	PostalCode      aws.StringValue `query:"postalCode" xml:"postalCode"`
+	StateOrProvince aws.StringValue `query:"stateOrProvince" xml:"stateOrProvince"`
+	Street1         aws.StringValue `query:"street1" xml:"street1"`
+	Street2         aws.StringValue `query:"street2" xml:"street2"`
+	Street3         aws.StringValue `query:"street3" xml:"street3"`
+}
+
+// GetShippingLabelOutput is undocumented.
+type GetShippingLabelOutput struct {
+	ShippingLabelURL aws.StringValue `query:"ShippingLabelURL" xml:"GetShippingLabelResult>ShippingLabelURL"`
+	Warning          aws.StringValue `query:"Warning" xml:"GetShippingLabelResult>Warning"`
+}
+
 // GetStatusInput is undocumented.
 type GetStatusInput struct {
-	JobID aws.StringValue `query:"JobId" xml:"JobId"`
+	APIVersion aws.StringValue `query:"APIVersion" xml:"APIVersion"`
+	JobID      aws.StringValue `query:"JobId" xml:"JobId"`
 }
 
 // GetStatusOutput is undocumented.
 type GetStatusOutput struct {
-	AWSShippingAddress    aws.StringValue  `query:"AwsShippingAddress" xml:"GetStatusResult>AwsShippingAddress"`
+	ArtifactList          []Artifact       `query:"ArtifactList.member" xml:"GetStatusResult>ArtifactList>member"`
 	Carrier               aws.StringValue  `query:"Carrier" xml:"GetStatusResult>Carrier"`
 	CreationDate          time.Time        `query:"CreationDate" xml:"GetStatusResult>CreationDate"`
 	CurrentManifest       aws.StringValue  `query:"CurrentManifest" xml:"GetStatusResult>CurrentManifest"`
@@ -165,8 +206,9 @@ const (
 
 // ListJobsInput is undocumented.
 type ListJobsInput struct {
-	Marker  aws.StringValue  `query:"Marker" xml:"Marker"`
-	MaxJobs aws.IntegerValue `query:"MaxJobs" xml:"MaxJobs"`
+	APIVersion aws.StringValue  `query:"APIVersion" xml:"APIVersion"`
+	Marker     aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxJobs    aws.IntegerValue `query:"MaxJobs" xml:"MaxJobs"`
 }
 
 // ListJobsOutput is undocumented.
@@ -177,6 +219,7 @@ type ListJobsOutput struct {
 
 // UpdateJobInput is undocumented.
 type UpdateJobInput struct {
+	APIVersion   aws.StringValue  `query:"APIVersion" xml:"APIVersion"`
 	JobID        aws.StringValue  `query:"JobId" xml:"JobId"`
 	JobType      aws.StringValue  `query:"JobType" xml:"JobType"`
 	Manifest     aws.StringValue  `query:"Manifest" xml:"Manifest"`
@@ -185,6 +228,7 @@ type UpdateJobInput struct {
 
 // UpdateJobOutput is undocumented.
 type UpdateJobOutput struct {
+	ArtifactList   []Artifact       `query:"ArtifactList.member" xml:"UpdateJobResult>ArtifactList>member"`
 	Success        aws.BooleanValue `query:"Success" xml:"UpdateJobResult>Success"`
 	WarningMessage aws.StringValue  `query:"WarningMessage" xml:"UpdateJobResult>WarningMessage"`
 }
@@ -196,7 +240,7 @@ type CancelJobResult struct {
 
 // CreateJobResult is a wrapper for CreateJobOutput.
 type CreateJobResult struct {
-	AWSShippingAddress    aws.StringValue `query:"AwsShippingAddress" xml:"CreateJobResult>AwsShippingAddress"`
+	ArtifactList          []Artifact      `query:"ArtifactList.member" xml:"CreateJobResult>ArtifactList>member"`
 	JobID                 aws.StringValue `query:"JobId" xml:"CreateJobResult>JobId"`
 	JobType               aws.StringValue `query:"JobType" xml:"CreateJobResult>JobType"`
 	Signature             aws.StringValue `query:"Signature" xml:"CreateJobResult>Signature"`
@@ -204,9 +248,15 @@ type CreateJobResult struct {
 	WarningMessage        aws.StringValue `query:"WarningMessage" xml:"CreateJobResult>WarningMessage"`
 }
 
+// GetShippingLabelResult is a wrapper for GetShippingLabelOutput.
+type GetShippingLabelResult struct {
+	ShippingLabelURL aws.StringValue `query:"ShippingLabelURL" xml:"GetShippingLabelResult>ShippingLabelURL"`
+	Warning          aws.StringValue `query:"Warning" xml:"GetShippingLabelResult>Warning"`
+}
+
 // GetStatusResult is a wrapper for GetStatusOutput.
 type GetStatusResult struct {
-	AWSShippingAddress    aws.StringValue  `query:"AwsShippingAddress" xml:"GetStatusResult>AwsShippingAddress"`
+	ArtifactList          []Artifact       `query:"ArtifactList.member" xml:"GetStatusResult>ArtifactList>member"`
 	Carrier               aws.StringValue  `query:"Carrier" xml:"GetStatusResult>Carrier"`
 	CreationDate          time.Time        `query:"CreationDate" xml:"GetStatusResult>CreationDate"`
 	CurrentManifest       aws.StringValue  `query:"CurrentManifest" xml:"GetStatusResult>CurrentManifest"`
@@ -232,6 +282,7 @@ type ListJobsResult struct {
 
 // UpdateJobResult is a wrapper for UpdateJobOutput.
 type UpdateJobResult struct {
+	ArtifactList   []Artifact       `query:"ArtifactList.member" xml:"UpdateJobResult>ArtifactList>member"`
 	Success        aws.BooleanValue `query:"Success" xml:"UpdateJobResult>Success"`
 	WarningMessage aws.StringValue  `query:"WarningMessage" xml:"UpdateJobResult>WarningMessage"`
 }
