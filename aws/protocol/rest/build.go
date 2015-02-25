@@ -42,7 +42,7 @@ func buildHeaders(r *aws.Request, v reflect.Value) {
 func buildBody(r *aws.Request, v reflect.Value) {
 	payload := v.FieldByName(r.Operation.InPayload)
 	if payload.IsValid() && payload.Type().Kind() == reflect.Interface {
-		reader := payload.Interface().(io.ReadSeeker)
+		reader := payload.Interface().(io.Reader)
 		r.SetReaderBody(reader)
 	}
 }

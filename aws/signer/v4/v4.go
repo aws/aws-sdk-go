@@ -1,11 +1,13 @@
 package v4
 
 import (
+	"bytes"
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"sort"
@@ -39,7 +41,6 @@ type signer struct {
 	SecretAccessKey string
 	SessionToken    string
 	Query           url.Values
-	Body            io.ReadSeeker
 	Debug           uint
 
 	formattedTime      string
@@ -67,7 +68,6 @@ func Sign(req *aws.Request) {
 		Time:            req.Time,
 		ExpireTime:      req.ExpireTime,
 		Query:           req.HTTPRequest.URL.Query(),
-		Body:            req.Body,
 		ServiceName:     req.Service.ServiceName,
 		Region:          req.Service.Config.Region,
 		AccessKeyID:     creds.AccessKeyID,
@@ -218,14 +218,14 @@ func (v4 *signer) buildSignature() {
 func (v4 *signer) bodyDigest() string {
 	hash := v4.Request.Header.Get("X-Amz-Content-Sha256")
 	if hash == "" {
-		if v4.Body == nil {
+		if v4.Request.Body == nil {
 			if v4.ServiceName == "s3" {
 				hash = "UNSIGNED-PAYLOAD"
 			} else {
 				hash = hex.EncodeToString(makeSha256([]byte{}))
 			}
 		} else {
-			hash = hex.EncodeToString(makeSha256Reader(v4.Body))
+			hash = hex.EncodeToString(makeSha256Reader(v4.Request))
 		}
 		v4.Request.Header.Add("X-Amz-Content-Sha256", hash)
 	}
@@ -244,21 +244,42 @@ func makeSha256(data []byte) []byte {
 	return hash.Sum(nil)
 }
 
-func makeSha256Reader(reader io.ReadSeeker) []byte {
-	packet := make([]byte, 4096)
+// makeSha256Reader reads the Body from an http.Request and constructs a sha256
+// hashsum of it.  If the body is seekable, such as one created from os.Open,
+// it will be memory efficient, otherwise it will read the body contents into
+// memory to reset the reader
+func makeSha256Reader(request *http.Request) []byte {
+	// Note, to be able to re-assign in the non-seeker case, we can't take a
+	// naked io.Reader. Taking a 'signable' interface with get/set body could
+	// make sense
+	reader := request.Body
 	hash := sha256.New()
 
-	reader.Seek(0, 0)
-	for {
-		n, err := reader.Read(packet)
-		if n > 0 {
-			hash.Write(packet[0:n])
-		}
-		if err == io.EOF || n == 0 {
-			break
+	writeHash := func(r io.Reader) {
+		packet := make([]byte, 4096)
+		for {
+			n, err := r.Read(packet)
+			if n > 0 {
+				hash.Write(packet[0:n])
+			}
+			if err == io.EOF || n == 0 {
+				break
+			}
 		}
 	}
-	reader.Seek(0, 0)
+
+	if seeker, ok := reader.(io.ReadSeeker); ok {
+		// If we have a seeker, use it
+		seeker.Seek(0, 0)
+		writeHash(seeker)
+		seeker.Seek(0, 0)
+	} else {
+		// If we don't have a seeker, read the body into memory to allow it to be re-read
+		var readerClone bytes.Buffer
+		tee := io.TeeReader(reader, &readerClone)
+		writeHash(tee)
+		request.Body = ioutil.NopCloser(&readerClone)
+	}
 
 	return hash.Sum(nil)
 }

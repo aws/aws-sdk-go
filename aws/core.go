@@ -139,7 +139,7 @@ type Request struct {
 	Operation    *Operation
 	HTTPRequest  *http.Request
 	HTTPResponse *http.Response
-	Body         io.ReadSeeker
+	Body         io.Reader
 	Params       interface{}
 	Error        error
 	Data         interface{}
@@ -243,8 +243,12 @@ func (r *Request) SetBufferBody(buf []byte) {
 	r.SetReaderBody(bytes.NewReader(buf))
 }
 
-func (r *Request) SetReaderBody(reader io.ReadSeeker) {
-	r.HTTPRequest.Body = ioutil.NopCloser(reader)
+func (r *Request) SetReaderBody(reader io.Reader) {
+	if closer, ok := reader.(io.ReadCloser); ok {
+		r.HTTPRequest.Body = closer
+	} else {
+		r.HTTPRequest.Body = ioutil.NopCloser(reader)
+	}
 	r.Body = reader
 }
 
