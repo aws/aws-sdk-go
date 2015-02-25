@@ -1,3 +1,11 @@
+# Caution:
+
+The purpose of this fork is ensure stability in 
+[Terraform](https://github.com/hashicorp/terraform) while the upstream 
+library at github.com/awslabs/aws-sdk-go continues it's internal refactor.  
+
+You probably do not want to use this fork. 
+
 # AWS SDK for Go
 
 [![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/awslabs/aws-sdk-go)
