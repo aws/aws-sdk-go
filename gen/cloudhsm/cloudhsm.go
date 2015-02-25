@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/gen/endpoints"
+	"github.com/hashicorp/aws-sdk-go/aws"
+	"github.com/hashicorp/aws-sdk-go/gen/endpoints"
 )
 
 // CloudHSM is a client for Amazon CloudHSM.

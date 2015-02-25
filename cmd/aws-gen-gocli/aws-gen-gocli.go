@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/awslabs/aws-sdk-go/model"
+	"github.com/hashicorp/aws-sdk-go/model"
 )
 
 func main() {
