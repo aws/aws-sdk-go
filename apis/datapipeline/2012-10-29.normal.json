@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2012-10-29",
     "endpointPrefix":"datapipeline",
@@ -8,7 +9,7 @@
     "targetPrefix":"DataPipeline",
     "protocol":"json"
   },
-  "documentation":"<p> AWS Data Pipeline is a web service that configures and manages a data-driven workflow called a pipeline. AWS Data Pipeline handles the details of scheduling and ensuring that data dependencies are met so your application can focus on processing the data.</p> <p> The AWS Data Pipeline SDKs and CLI implements two main sets of functionality. The first set of actions configure the pipeline in the web service. You perform these actions to create a pipeline and define data sources, schedules, dependencies, and the transforms to be performed on the data. </p> <p> The second set of actions are used by a task runner application that calls the AWS Data Pipeline API to receive the next task ready for processing. The logic for performing the task, such as querying the data, running data analysis, or converting the data from one format to another, is contained within the task runner. The task runner performs the task assigned to it by the web service, reporting progress to the web service as it does so. When the task is done, the task runner reports the final success or failure of the task to the web service. </p> <p> AWS Data Pipeline provides a JAR implementation of a task runner called AWS Data Pipeline Task Runner. AWS Data Pipeline Task Runner provides logic for common data management scenarios, such as performing database queries and running data analysis using Amazon Elastic MapReduce (Amazon EMR). You can use AWS Data Pipeline Task Runner as your task runner, or you can write your own task runner to provide custom data management. </p>",
+  "documentation":"<p> AWS Data Pipeline is a web service that configures and manages a data-driven workflow called a pipeline. AWS Data Pipeline handles the details of scheduling and ensuring that data dependencies are met so your application can focus on processing the data.</p> <p> The AWS Data Pipeline SDKs and CLI implements two main sets of functionality. The first set of actions configure the pipeline in the web service. You perform these actions to create a pipeline and define data sources, schedules, dependencies, and the transforms to be performed on the data. </p> <p> The second set of actions are used by a task runner application that calls the AWS Data Pipeline service to receive the next task ready for processing. The logic for performing the task, such as querying the data, running data analysis, or converting the data from one format to another, is contained within the task runner. The task runner performs the task assigned to it by the web service, reporting progress to the web service as it does so. When the task is done, the task runner reports the final success or failure of the task to the web service. </p> <p> AWS Data Pipeline provides a JAR implementation of a task runner called AWS Data Pipeline Task Runner. AWS Data Pipeline Task Runner provides logic for common data management scenarios, such as performing database queries and running data analysis using Amazon Elastic MapReduce (Amazon EMR). You can use AWS Data Pipeline Task Runner as your task runner, or you can write your own task runner to provide custom data management. </p>",
   "operations":{
     "ActivatePipeline":{
       "name":"ActivatePipeline",
@@ -48,6 +49,45 @@
         }
       ],
       "documentation":"<p> Validates a pipeline and initiates processing. If the pipeline does not pass validation, activation fails. You cannot perform this operation on FINISHED pipelines and attempting to do so will return an InvalidRequestException. </p> <p> Call this action to start processing pipeline tasks of a pipeline you've created using the <a>CreatePipeline</a> and <a>PutPipelineDefinition</a> actions. A pipeline cannot be modified after it has been successfully activated. </p>"
+    },
+    "AddTags":{
+      "name":"AddTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"AddTagsInput",
+        "documentation":"<p>The input to the AddTags action.</p>"
+      },
+      "output":{
+        "shape":"AddTagsOutput",
+        "documentation":"<p>The response from the AddTags action.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InternalServiceError",
+          "exception":true,
+          "fault":true,
+          "documentation":"<p>An internal service error occurred.</p>"
+        },
+        {
+          "shape":"InvalidRequestException",
+          "exception":true,
+          "documentation":"<p>The request was not valid. Verify that your request was properly formatted, that the signature was generated with the correct credentials, and that you haven't exceeded any of the service limits for your account.</p>"
+        },
+        {
+          "shape":"PipelineNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified pipeline was not found. Verify that you used the correct user and account identifiers.</p>"
+        },
+        {
+          "shape":"PipelineDeletedException",
+          "exception":true,
+          "documentation":"<p>The specified pipeline has been deleted.</p>"
+        }
+      ],
+      "documentation":"<p>Add or modify tags in an existing pipeline.</p>"
     },
     "CreatePipeline":{
       "name":"CreatePipeline",
@@ -410,6 +450,45 @@
       ],
       "documentation":"<p>Queries a pipeline for the names of objects that match a specified set of conditions.</p> <p>The objects returned by <a>QueryObjects</a> are paginated and then filtered by the value you set for query. This means the action may return an empty result set with a value set for marker. If <code>HasMoreResults</code> is set to <code>True</code>, you should continue to call <a>QueryObjects</a>, passing in the returned value for marker, until <code>HasMoreResults</code> returns <code>False</code>.</p>"
     },
+    "RemoveTags":{
+      "name":"RemoveTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"RemoveTagsInput",
+        "documentation":"<p>The input to the RemoveTags action.</p>"
+      },
+      "output":{
+        "shape":"RemoveTagsOutput",
+        "documentation":"<p>The result of the RemoveTags action.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InternalServiceError",
+          "exception":true,
+          "fault":true,
+          "documentation":"<p>An internal service error occurred.</p>"
+        },
+        {
+          "shape":"InvalidRequestException",
+          "exception":true,
+          "documentation":"<p>The request was not valid. Verify that your request was properly formatted, that the signature was generated with the correct credentials, and that you haven't exceeded any of the service limits for your account.</p>"
+        },
+        {
+          "shape":"PipelineNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified pipeline was not found. Verify that you used the correct user and account identifiers.</p>"
+        },
+        {
+          "shape":"PipelineDeletedException",
+          "exception":true,
+          "documentation":"<p>The specified pipeline has been deleted.</p>"
+        }
+      ],
+      "documentation":"<p>Remove existing tags from a pipeline.</p>"
+    },
     "ReportTaskProgress":{
       "name":"ReportTaskProgress",
       "http":{
@@ -624,6 +703,30 @@
       },
       "documentation":"<p>Contains the output from the <a>ActivatePipeline</a> action.</p>"
     },
+    "AddTagsInput":{
+      "type":"structure",
+      "required":[
+        "pipelineId",
+        "tags"
+      ],
+      "members":{
+        "pipelineId":{
+          "shape":"id",
+          "documentation":"<p>The identifier of the pipeline to which you want to add the tags.</p>"
+        },
+        "tags":{
+          "shape":"tagList",
+          "documentation":"<p>The tags as key/value pairs to add to the pipeline.</p>"
+        }
+      },
+      "documentation":"<p>The input to the AddTags action.</p>"
+    },
+    "AddTagsOutput":{
+      "type":"structure",
+      "members":{
+      },
+      "documentation":"<p>The response from the AddTags action.</p>"
+    },
     "CreatePipelineInput":{
       "type":"structure",
       "required":[
@@ -642,6 +745,10 @@
         "description":{
           "shape":"string",
           "documentation":"<p>The description of the new pipeline.</p>"
+        },
+        "tags":{
+          "shape":"tagList",
+          "documentation":"<p>A list of tags to associate with a pipeline at creation time. Tags let you control access to pipelines. For more information, see <a href=\"http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html\">Controlling User Access to Pipelines</a> in the <i>AWS Data Pipeline Developer Guide</i>.</p>"
         }
       },
       "documentation":"<p>The input for the <a>CreatePipeline</a> action.</p>"
@@ -1011,6 +1118,10 @@
         "description":{
           "shape":"string",
           "documentation":"<p>Description of the pipeline.</p>"
+        },
+        "tags":{
+          "shape":"tagList",
+          "documentation":"<p>A list of tags to associated with a pipeline. Tags let you control access to pipelines. For more information, see <a href=\"http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html\">Controlling User Access to Pipelines</a> in the <i>AWS Data Pipeline Developer Guide</i>.</p>"
         }
       },
       "documentation":"<p>Contains pipeline metadata.</p>"
@@ -1208,6 +1319,30 @@
       },
       "documentation":"<p>Contains the output from the <a>QueryObjects</a> action.</p>"
     },
+    "RemoveTagsInput":{
+      "type":"structure",
+      "required":[
+        "pipelineId",
+        "tagKeys"
+      ],
+      "members":{
+        "pipelineId":{
+          "shape":"id",
+          "documentation":"<p>The pipeline from which you want to remove tags.</p>"
+        },
+        "tagKeys":{
+          "shape":"stringList",
+          "documentation":"<p>The keys of the tags you wish to remove.</p>"
+        }
+      },
+      "documentation":"<p>The input to the RemoveTags action.</p>"
+    },
+    "RemoveTagsOutput":{
+      "type":"structure",
+      "members":{
+      },
+      "documentation":"<p>The result of the RemoveTags action.</p>"
+    },
     "ReportTaskProgressInput":{
       "type":"structure",
       "required":["taskId"],
@@ -1298,7 +1433,7 @@
         },
         "status":{
           "shape":"string",
-          "documentation":"<p>Specifies the status to be set on all the objects in <code>objectIds</code>. For components, this can be either <code>PAUSE</code> or <code>RESUME</code>. For instances, this can be either <code>CANCEL</code>, <code>RERUN</code>, or <code>MARK_FINISHED</code>.</p>"
+          "documentation":"<p>Specifies the status to be set on all the objects in <code>objectIds</code>. For components, this can be either <code>PAUSE</code> or <code>RESUME</code>. For instances, this can be either <code>TRY_CANCEL</code>, <code>RERUN</code>, or <code>MARK_FINISHED</code>.</p>"
         }
       },
       "documentation":"<p>The input to the <a>SetStatus</a> action.</p>"
@@ -1338,6 +1473,24 @@
       "members":{
       },
       "documentation":"<p>The output from the <a>SetTaskStatus</a> action.</p>"
+    },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{
+          "shape":"tagKey",
+          "documentation":"<p>The key name of a tag defined by a user. For more information, see <a href=\"http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html\">Controlling User Access to Pipelines</a> in the <i>AWS Data Pipeline Developer Guide</i>.</p>"
+        },
+        "value":{
+          "shape":"tagValue",
+          "documentation":"<p>The optional value portion of a tag defined by a user. For more information, see <a href=\"http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html\">Controlling User Access to Pipelines</a> in the <i>AWS Data Pipeline Developer Guide</i>.</p>"
+        }
+      },
+      "documentation":"<p>Tags are key/value pairs defined by a user and associated with a pipeline to control access. AWS Data Pipeline allows you to associate ten tags per pipeline. For more information, see <a href=\"http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html\">Controlling User Access to Pipelines</a> in the <i>AWS Data Pipeline Developer Guide</i>.</p>"
     },
     "TaskNotFoundException":{
       "type":"structure",
@@ -1521,6 +1674,22 @@
     "stringList":{
       "type":"list",
       "member":{"shape":"string"}
+    },
+    "tagKey":{
+      "type":"string",
+      "min":1,
+      "max":128
+    },
+    "tagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "min":0,
+      "max":10
+    },
+    "tagValue":{
+      "type":"string",
+      "min":0,
+      "max":256
     },
     "taskId":{
       "type":"string",

@@ -11,14 +11,9 @@ import (
 	"github.com/awslabs/aws-sdk-go/gen/endpoints"
 )
 
-import (
-	"encoding/xml"
-	"io"
-)
-
 // ECS is a client for Amazon EC2 Container Service.
 type ECS struct {
-	client *aws.QueryClient
+	client *aws.JSONClient
 }
 
 // New returns a new ECS client.
@@ -30,15 +25,15 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *ECS
 	endpoint, service, region := endpoints.Lookup("ecs", region)
 
 	return &ECS{
-		client: &aws.QueryClient{
+		client: &aws.JSONClient{
 			Context: aws.Context{
 				Credentials: creds,
 				Service:     service,
 				Region:      region,
-			},
-			Client:     client,
-			Endpoint:   endpoint,
-			APIVersion: "2014-11-13",
+			}, Client: client,
+			Endpoint:     endpoint,
+			JSONVersion:  "1.1",
+			TargetPrefix: "AmazonEC2ContainerServiceV20141113",
 		},
 	}
 }
@@ -48,8 +43,8 @@ func New(creds aws.CredentialsProvider, region string, client *http.Client) *ECS
 // instance. However, you can create your own cluster with a unique name
 // with the CreateCluster action. During the preview, each account is
 // limited to two clusters.
-func (c *ECS) CreateCluster(req *CreateClusterRequest) (resp *CreateClusterResult, err error) {
-	resp = &CreateClusterResult{}
+func (c *ECS) CreateCluster(req *CreateClusterRequest) (resp *CreateClusterResponse, err error) {
+	resp = &CreateClusterResponse{}
 	err = c.client.Do("CreateCluster", "POST", "/", req, resp)
 	return
 }
@@ -58,8 +53,8 @@ func (c *ECS) CreateCluster(req *CreateClusterRequest) (resp *CreateClusterResul
 // container instances from this cluster before you may delete it. You can
 // list the container instances in a cluster with ListContainerInstances
 // and deregister them with DeregisterContainerInstance
-func (c *ECS) DeleteCluster(req *DeleteClusterRequest) (resp *DeleteClusterResult, err error) {
-	resp = &DeleteClusterResult{}
+func (c *ECS) DeleteCluster(req *DeleteClusterRequest) (resp *DeleteClusterResponse, err error) {
+	resp = &DeleteClusterResponse{}
 	err = c.client.Do("DeleteCluster", "POST", "/", req, resp)
 	return
 }
@@ -67,8 +62,8 @@ func (c *ECS) DeleteCluster(req *DeleteClusterRequest) (resp *DeleteClusterResul
 // DeregisterContainerInstance deregisters an Amazon ECS container instance
 // from the specified cluster. This instance will no longer be available to
 // run tasks.
-func (c *ECS) DeregisterContainerInstance(req *DeregisterContainerInstanceRequest) (resp *DeregisterContainerInstanceResult, err error) {
-	resp = &DeregisterContainerInstanceResult{}
+func (c *ECS) DeregisterContainerInstance(req *DeregisterContainerInstanceRequest) (resp *DeregisterContainerInstanceResponse, err error) {
+	resp = &DeregisterContainerInstanceResponse{}
 	err = c.client.Do("DeregisterContainerInstance", "POST", "/", req, resp)
 	return
 }
@@ -76,15 +71,15 @@ func (c *ECS) DeregisterContainerInstance(req *DeregisterContainerInstanceReques
 // DeregisterTaskDefinition deregisters the specified task definition. You
 // will no longer be able to run tasks from this definition after
 // deregistration.
-func (c *ECS) DeregisterTaskDefinition(req *DeregisterTaskDefinitionRequest) (resp *DeregisterTaskDefinitionResult, err error) {
-	resp = &DeregisterTaskDefinitionResult{}
+func (c *ECS) DeregisterTaskDefinition(req *DeregisterTaskDefinitionRequest) (resp *DeregisterTaskDefinitionResponse, err error) {
+	resp = &DeregisterTaskDefinitionResponse{}
 	err = c.client.Do("DeregisterTaskDefinition", "POST", "/", req, resp)
 	return
 }
 
 // DescribeClusters is undocumented.
-func (c *ECS) DescribeClusters(req *DescribeClustersRequest) (resp *DescribeClustersResult, err error) {
-	resp = &DescribeClustersResult{}
+func (c *ECS) DescribeClusters(req *DescribeClustersRequest) (resp *DescribeClustersResponse, err error) {
+	resp = &DescribeClustersResponse{}
 	err = c.client.Do("DescribeClusters", "POST", "/", req, resp)
 	return
 }
@@ -92,22 +87,25 @@ func (c *ECS) DescribeClusters(req *DescribeClustersRequest) (resp *DescribeClus
 // DescribeContainerInstances describes Amazon EC2 Container Service
 // container instances. Returns metadata about registered and remaining
 // resources on each container instance requested.
-func (c *ECS) DescribeContainerInstances(req *DescribeContainerInstancesRequest) (resp *DescribeContainerInstancesResult, err error) {
-	resp = &DescribeContainerInstancesResult{}
+func (c *ECS) DescribeContainerInstances(req *DescribeContainerInstancesRequest) (resp *DescribeContainerInstancesResponse, err error) {
+	resp = &DescribeContainerInstancesResponse{}
 	err = c.client.Do("DescribeContainerInstances", "POST", "/", req, resp)
 	return
 }
 
-// DescribeTaskDefinition is undocumented.
-func (c *ECS) DescribeTaskDefinition(req *DescribeTaskDefinitionRequest) (resp *DescribeTaskDefinitionResult, err error) {
-	resp = &DescribeTaskDefinitionResult{}
+// DescribeTaskDefinition describes a task definition. You can specify a
+// family and revision to find information on a specific task definition,
+// or you can simply specify the family to find the latest revision in that
+// family.
+func (c *ECS) DescribeTaskDefinition(req *DescribeTaskDefinitionRequest) (resp *DescribeTaskDefinitionResponse, err error) {
+	resp = &DescribeTaskDefinitionResponse{}
 	err = c.client.Do("DescribeTaskDefinition", "POST", "/", req, resp)
 	return
 }
 
 // DescribeTasks is undocumented.
-func (c *ECS) DescribeTasks(req *DescribeTasksRequest) (resp *DescribeTasksResult, err error) {
-	resp = &DescribeTasksResult{}
+func (c *ECS) DescribeTasks(req *DescribeTasksRequest) (resp *DescribeTasksResponse, err error) {
+	resp = &DescribeTasksResponse{}
 	err = c.client.Do("DescribeTasks", "POST", "/", req, resp)
 	return
 }
@@ -116,32 +114,41 @@ func (c *ECS) DescribeTasks(req *DescribeTasksRequest) (resp *DescribeTasksResul
 // Container Service agent, and it is not intended for use outside of the
 // agent. Returns an endpoint for the Amazon EC2 Container Service agent to
 // poll for updates.
-func (c *ECS) DiscoverPollEndpoint(req *DiscoverPollEndpointRequest) (resp *DiscoverPollEndpointResult, err error) {
-	resp = &DiscoverPollEndpointResult{}
+func (c *ECS) DiscoverPollEndpoint(req *DiscoverPollEndpointRequest) (resp *DiscoverPollEndpointResponse, err error) {
+	resp = &DiscoverPollEndpointResponse{}
 	err = c.client.Do("DiscoverPollEndpoint", "POST", "/", req, resp)
 	return
 }
 
 // ListClusters is undocumented.
-func (c *ECS) ListClusters(req *ListClustersRequest) (resp *ListClustersResult, err error) {
-	resp = &ListClustersResult{}
+func (c *ECS) ListClusters(req *ListClustersRequest) (resp *ListClustersResponse, err error) {
+	resp = &ListClustersResponse{}
 	err = c.client.Do("ListClusters", "POST", "/", req, resp)
 	return
 }
 
 // ListContainerInstances returns a list of container instances in a
 // specified cluster.
-func (c *ECS) ListContainerInstances(req *ListContainerInstancesRequest) (resp *ListContainerInstancesResult, err error) {
-	resp = &ListContainerInstancesResult{}
+func (c *ECS) ListContainerInstances(req *ListContainerInstancesRequest) (resp *ListContainerInstancesResponse, err error) {
+	resp = &ListContainerInstancesResponse{}
 	err = c.client.Do("ListContainerInstances", "POST", "/", req, resp)
+	return
+}
+
+// ListTaskDefinitionFamilies returns a list of task definition families
+// that are registered to your account. You can filter the results with the
+// familyPrefix parameter.
+func (c *ECS) ListTaskDefinitionFamilies(req *ListTaskDefinitionFamiliesRequest) (resp *ListTaskDefinitionFamiliesResponse, err error) {
+	resp = &ListTaskDefinitionFamiliesResponse{}
+	err = c.client.Do("ListTaskDefinitionFamilies", "POST", "/", req, resp)
 	return
 }
 
 // ListTaskDefinitions returns a list of task definitions that are
 // registered to your account. You can filter the results by family name
 // with the familyPrefix parameter.
-func (c *ECS) ListTaskDefinitions(req *ListTaskDefinitionsRequest) (resp *ListTaskDefinitionsResult, err error) {
-	resp = &ListTaskDefinitionsResult{}
+func (c *ECS) ListTaskDefinitions(req *ListTaskDefinitionsRequest) (resp *ListTaskDefinitionsResponse, err error) {
+	resp = &ListTaskDefinitionsResponse{}
 	err = c.client.Do("ListTaskDefinitions", "POST", "/", req, resp)
 	return
 }
@@ -149,8 +156,8 @@ func (c *ECS) ListTaskDefinitions(req *ListTaskDefinitionsRequest) (resp *ListTa
 // ListTasks returns a list of tasks for a specified cluster. You can
 // filter the results by family name or by a particular container instance
 // with the family and containerInstance parameters.
-func (c *ECS) ListTasks(req *ListTasksRequest) (resp *ListTasksResult, err error) {
-	resp = &ListTasksResult{}
+func (c *ECS) ListTasks(req *ListTasksRequest) (resp *ListTasksResponse, err error) {
+	resp = &ListTasksResponse{}
 	err = c.client.Do("ListTasks", "POST", "/", req, resp)
 	return
 }
@@ -159,16 +166,19 @@ func (c *ECS) ListTasks(req *ListTasksRequest) (resp *ListTasksResult, err error
 // Container Service agent, and it is not intended for use outside of the
 // agent. Registers an Amazon EC2 instance into the specified cluster. This
 // instance will become available to place containers on.
-func (c *ECS) RegisterContainerInstance(req *RegisterContainerInstanceRequest) (resp *RegisterContainerInstanceResult, err error) {
-	resp = &RegisterContainerInstanceResult{}
+func (c *ECS) RegisterContainerInstance(req *RegisterContainerInstanceRequest) (resp *RegisterContainerInstanceResponse, err error) {
+	resp = &RegisterContainerInstanceResponse{}
 	err = c.client.Do("RegisterContainerInstance", "POST", "/", req, resp)
 	return
 }
 
 // RegisterTaskDefinition registers a new task definition from the supplied
-// family and containerDefinitions
-func (c *ECS) RegisterTaskDefinition(req *RegisterTaskDefinitionRequest) (resp *RegisterTaskDefinitionResult, err error) {
-	resp = &RegisterTaskDefinitionResult{}
+// family and containerDefinitions . Optionally, you can add data volumes
+// to your containers with the volumes parameter. For more information on
+// task definition parameters and defaults, see Amazon ECS Task Definitions
+// in the Amazon EC2 Container Service Developer Guide
+func (c *ECS) RegisterTaskDefinition(req *RegisterTaskDefinitionRequest) (resp *RegisterTaskDefinitionResponse, err error) {
+	resp = &RegisterTaskDefinitionResponse{}
 	err = c.client.Do("RegisterTaskDefinition", "POST", "/", req, resp)
 	return
 }
@@ -176,8 +186,8 @@ func (c *ECS) RegisterTaskDefinition(req *RegisterTaskDefinitionRequest) (resp *
 // RunTask start a task using random placement and the default Amazon ECS
 // scheduler. If you want to use your own scheduler or place a task on a
 // specific container instance, use StartTask instead.
-func (c *ECS) RunTask(req *RunTaskRequest) (resp *RunTaskResult, err error) {
-	resp = &RunTaskResult{}
+func (c *ECS) RunTask(req *RunTaskRequest) (resp *RunTaskResponse, err error) {
+	resp = &RunTaskResponse{}
 	err = c.client.Do("RunTask", "POST", "/", req, resp)
 	return
 }
@@ -185,15 +195,15 @@ func (c *ECS) RunTask(req *RunTaskRequest) (resp *RunTaskResult, err error) {
 // StartTask starts a new task from the specified task definition on the
 // specified container instance or instances. If you want to use the
 // default Amazon ECS scheduler to place your task, use RunTask instead.
-func (c *ECS) StartTask(req *StartTaskRequest) (resp *StartTaskResult, err error) {
-	resp = &StartTaskResult{}
+func (c *ECS) StartTask(req *StartTaskRequest) (resp *StartTaskResponse, err error) {
+	resp = &StartTaskResponse{}
 	err = c.client.Do("StartTask", "POST", "/", req, resp)
 	return
 }
 
 // StopTask is undocumented.
-func (c *ECS) StopTask(req *StopTaskRequest) (resp *StopTaskResult, err error) {
-	resp = &StopTaskResult{}
+func (c *ECS) StopTask(req *StopTaskRequest) (resp *StopTaskResponse, err error) {
+	resp = &StopTaskResponse{}
 	err = c.client.Do("StopTask", "POST", "/", req, resp)
 	return
 }
@@ -201,8 +211,8 @@ func (c *ECS) StopTask(req *StopTaskRequest) (resp *StopTaskResult, err error) {
 // SubmitContainerStateChange this action is only used by the Amazon EC2
 // Container Service agent, and it is not intended for use outside of the
 // agent. Sent to acknowledge that a container changed states.
-func (c *ECS) SubmitContainerStateChange(req *SubmitContainerStateChangeRequest) (resp *SubmitContainerStateChangeResult, err error) {
-	resp = &SubmitContainerStateChangeResult{}
+func (c *ECS) SubmitContainerStateChange(req *SubmitContainerStateChangeRequest) (resp *SubmitContainerStateChangeResponse, err error) {
+	resp = &SubmitContainerStateChangeResponse{}
 	err = c.client.Do("SubmitContainerStateChange", "POST", "/", req, resp)
 	return
 }
@@ -210,473 +220,403 @@ func (c *ECS) SubmitContainerStateChange(req *SubmitContainerStateChangeRequest)
 // SubmitTaskStateChange this action is only used by the Amazon EC2
 // Container Service agent, and it is not intended for use outside of the
 // agent. Sent to acknowledge that a task changed states.
-func (c *ECS) SubmitTaskStateChange(req *SubmitTaskStateChangeRequest) (resp *SubmitTaskStateChangeResult, err error) {
-	resp = &SubmitTaskStateChangeResult{}
+func (c *ECS) SubmitTaskStateChange(req *SubmitTaskStateChangeRequest) (resp *SubmitTaskStateChangeResponse, err error) {
+	resp = &SubmitTaskStateChangeResponse{}
 	err = c.client.Do("SubmitTaskStateChange", "POST", "/", req, resp)
 	return
 }
 
 // Cluster is undocumented.
 type Cluster struct {
-	ClusterARN  aws.StringValue `query:"clusterArn" xml:"clusterArn"`
-	ClusterName aws.StringValue `query:"clusterName" xml:"clusterName"`
-	Status      aws.StringValue `query:"status" xml:"status"`
+	ClusterARN  aws.StringValue `json:"clusterArn,omitempty"`
+	ClusterName aws.StringValue `json:"clusterName,omitempty"`
+	Status      aws.StringValue `json:"status,omitempty"`
 }
 
 // Container is undocumented.
 type Container struct {
-	ContainerARN    aws.StringValue  `query:"containerArn" xml:"containerArn"`
-	ExitCode        aws.IntegerValue `query:"exitCode" xml:"exitCode"`
-	LastStatus      aws.StringValue  `query:"lastStatus" xml:"lastStatus"`
-	Name            aws.StringValue  `query:"name" xml:"name"`
-	NetworkBindings []NetworkBinding `query:"networkBindings.member" xml:"networkBindings>member"`
-	Reason          aws.StringValue  `query:"reason" xml:"reason"`
-	TaskARN         aws.StringValue  `query:"taskArn" xml:"taskArn"`
+	ContainerARN    aws.StringValue  `json:"containerArn,omitempty"`
+	ExitCode        aws.IntegerValue `json:"exitCode,omitempty"`
+	LastStatus      aws.StringValue  `json:"lastStatus,omitempty"`
+	Name            aws.StringValue  `json:"name,omitempty"`
+	NetworkBindings []NetworkBinding `json:"networkBindings,omitempty"`
+	Reason          aws.StringValue  `json:"reason,omitempty"`
+	TaskARN         aws.StringValue  `json:"taskArn,omitempty"`
 }
 
 // ContainerDefinition is undocumented.
 type ContainerDefinition struct {
-	Command      []string         `query:"command.member" xml:"command>member"`
-	CPU          aws.IntegerValue `query:"cpu" xml:"cpu"`
-	EntryPoint   []string         `query:"entryPoint.member" xml:"entryPoint>member"`
-	Environment  []KeyValuePair   `query:"environment.member" xml:"environment>member"`
-	Essential    aws.BooleanValue `query:"essential" xml:"essential"`
-	Image        aws.StringValue  `query:"image" xml:"image"`
-	Links        []string         `query:"links.member" xml:"links>member"`
-	Memory       aws.IntegerValue `query:"memory" xml:"memory"`
-	Name         aws.StringValue  `query:"name" xml:"name"`
-	PortMappings []PortMapping    `query:"portMappings.member" xml:"portMappings>member"`
+	Command      []string         `json:"command,omitempty"`
+	CPU          aws.IntegerValue `json:"cpu,omitempty"`
+	EntryPoint   []string         `json:"entryPoint,omitempty"`
+	Environment  []KeyValuePair   `json:"environment,omitempty"`
+	Essential    aws.BooleanValue `json:"essential,omitempty"`
+	Image        aws.StringValue  `json:"image,omitempty"`
+	Links        []string         `json:"links,omitempty"`
+	Memory       aws.IntegerValue `json:"memory,omitempty"`
+	MountPoints  []MountPoint     `json:"mountPoints,omitempty"`
+	Name         aws.StringValue  `json:"name,omitempty"`
+	PortMappings []PortMapping    `json:"portMappings,omitempty"`
+	VolumesFrom  []VolumeFrom     `json:"volumesFrom,omitempty"`
 }
 
 // ContainerInstance is undocumented.
 type ContainerInstance struct {
-	AgentConnected       aws.BooleanValue `query:"agentConnected" xml:"agentConnected"`
-	ContainerInstanceARN aws.StringValue  `query:"containerInstanceArn" xml:"containerInstanceArn"`
-	EC2InstanceID        aws.StringValue  `query:"ec2InstanceId" xml:"ec2InstanceId"`
-	RegisteredResources  []Resource       `query:"registeredResources.member" xml:"registeredResources>member"`
-	RemainingResources   []Resource       `query:"remainingResources.member" xml:"remainingResources>member"`
-	Status               aws.StringValue  `query:"status" xml:"status"`
+	AgentConnected       aws.BooleanValue `json:"agentConnected,omitempty"`
+	ContainerInstanceARN aws.StringValue  `json:"containerInstanceArn,omitempty"`
+	EC2InstanceID        aws.StringValue  `json:"ec2InstanceId,omitempty"`
+	RegisteredResources  []Resource       `json:"registeredResources,omitempty"`
+	RemainingResources   []Resource       `json:"remainingResources,omitempty"`
+	Status               aws.StringValue  `json:"status,omitempty"`
 }
 
 // ContainerOverride is undocumented.
 type ContainerOverride struct {
-	Command []string        `query:"command.member" xml:"command>member"`
-	Name    aws.StringValue `query:"name" xml:"name"`
+	Command []string        `json:"command,omitempty"`
+	Name    aws.StringValue `json:"name,omitempty"`
 }
 
 // CreateClusterRequest is undocumented.
 type CreateClusterRequest struct {
-	ClusterName aws.StringValue `query:"clusterName" xml:"clusterName"`
+	ClusterName aws.StringValue `json:"clusterName,omitempty"`
 }
 
 // CreateClusterResponse is undocumented.
 type CreateClusterResponse struct {
-	Cluster *Cluster `query:"cluster" xml:"CreateClusterResult>cluster"`
+	Cluster *Cluster `json:"cluster,omitempty"`
 }
 
 // DeleteClusterRequest is undocumented.
 type DeleteClusterRequest struct {
-	Cluster aws.StringValue `query:"cluster" xml:"cluster"`
+	Cluster aws.StringValue `json:"cluster"`
 }
 
 // DeleteClusterResponse is undocumented.
 type DeleteClusterResponse struct {
-	Cluster *Cluster `query:"cluster" xml:"DeleteClusterResult>cluster"`
+	Cluster *Cluster `json:"cluster,omitempty"`
 }
 
 // DeregisterContainerInstanceRequest is undocumented.
 type DeregisterContainerInstanceRequest struct {
-	Cluster           aws.StringValue  `query:"cluster" xml:"cluster"`
-	ContainerInstance aws.StringValue  `query:"containerInstance" xml:"containerInstance"`
-	Force             aws.BooleanValue `query:"force" xml:"force"`
+	Cluster           aws.StringValue  `json:"cluster,omitempty"`
+	ContainerInstance aws.StringValue  `json:"containerInstance"`
+	Force             aws.BooleanValue `json:"force,omitempty"`
 }
 
 // DeregisterContainerInstanceResponse is undocumented.
 type DeregisterContainerInstanceResponse struct {
-	ContainerInstance *ContainerInstance `query:"containerInstance" xml:"DeregisterContainerInstanceResult>containerInstance"`
+	ContainerInstance *ContainerInstance `json:"containerInstance,omitempty"`
 }
 
 // DeregisterTaskDefinitionRequest is undocumented.
 type DeregisterTaskDefinitionRequest struct {
-	TaskDefinition aws.StringValue `query:"taskDefinition" xml:"taskDefinition"`
+	TaskDefinition aws.StringValue `json:"taskDefinition"`
 }
 
 // DeregisterTaskDefinitionResponse is undocumented.
 type DeregisterTaskDefinitionResponse struct {
-	TaskDefinition *TaskDefinition `query:"taskDefinition" xml:"DeregisterTaskDefinitionResult>taskDefinition"`
+	TaskDefinition *TaskDefinition `json:"taskDefinition,omitempty"`
 }
 
 // DescribeClustersRequest is undocumented.
 type DescribeClustersRequest struct {
-	Clusters []string `query:"clusters.member" xml:"clusters>member"`
+	Clusters []string `json:"clusters,omitempty"`
 }
 
 // DescribeClustersResponse is undocumented.
 type DescribeClustersResponse struct {
-	Clusters []Cluster `query:"clusters.member" xml:"DescribeClustersResult>clusters>member"`
-	Failures []Failure `query:"failures.member" xml:"DescribeClustersResult>failures>member"`
+	Clusters []Cluster `json:"clusters,omitempty"`
+	Failures []Failure `json:"failures,omitempty"`
 }
 
 // DescribeContainerInstancesRequest is undocumented.
 type DescribeContainerInstancesRequest struct {
-	Cluster            aws.StringValue `query:"cluster" xml:"cluster"`
-	ContainerInstances []string        `query:"containerInstances.member" xml:"containerInstances>member"`
+	Cluster            aws.StringValue `json:"cluster,omitempty"`
+	ContainerInstances []string        `json:"containerInstances"`
 }
 
 // DescribeContainerInstancesResponse is undocumented.
 type DescribeContainerInstancesResponse struct {
-	ContainerInstances []ContainerInstance `query:"containerInstances.member" xml:"DescribeContainerInstancesResult>containerInstances>member"`
-	Failures           []Failure           `query:"failures.member" xml:"DescribeContainerInstancesResult>failures>member"`
+	ContainerInstances []ContainerInstance `json:"containerInstances,omitempty"`
+	Failures           []Failure           `json:"failures,omitempty"`
 }
 
 // DescribeTaskDefinitionRequest is undocumented.
 type DescribeTaskDefinitionRequest struct {
-	TaskDefinition aws.StringValue `query:"taskDefinition" xml:"taskDefinition"`
+	TaskDefinition aws.StringValue `json:"taskDefinition"`
 }
 
 // DescribeTaskDefinitionResponse is undocumented.
 type DescribeTaskDefinitionResponse struct {
-	TaskDefinition *TaskDefinition `query:"taskDefinition" xml:"DescribeTaskDefinitionResult>taskDefinition"`
+	TaskDefinition *TaskDefinition `json:"taskDefinition,omitempty"`
 }
 
 // DescribeTasksRequest is undocumented.
 type DescribeTasksRequest struct {
-	Cluster aws.StringValue `query:"cluster" xml:"cluster"`
-	Tasks   []string        `query:"tasks.member" xml:"tasks>member"`
+	Cluster aws.StringValue `json:"cluster,omitempty"`
+	Tasks   []string        `json:"tasks"`
 }
 
 // DescribeTasksResponse is undocumented.
 type DescribeTasksResponse struct {
-	Failures []Failure `query:"failures.member" xml:"DescribeTasksResult>failures>member"`
-	Tasks    []Task    `query:"tasks.member" xml:"DescribeTasksResult>tasks>member"`
+	Failures []Failure `json:"failures,omitempty"`
+	Tasks    []Task    `json:"tasks,omitempty"`
 }
 
 // DiscoverPollEndpointRequest is undocumented.
 type DiscoverPollEndpointRequest struct {
-	ContainerInstance aws.StringValue `query:"containerInstance" xml:"containerInstance"`
+	Cluster           aws.StringValue `json:"cluster,omitempty"`
+	ContainerInstance aws.StringValue `json:"containerInstance,omitempty"`
 }
 
 // DiscoverPollEndpointResponse is undocumented.
 type DiscoverPollEndpointResponse struct {
-	Endpoint aws.StringValue `query:"endpoint" xml:"DiscoverPollEndpointResult>endpoint"`
+	Endpoint aws.StringValue `json:"endpoint,omitempty"`
 }
 
 // Failure is undocumented.
 type Failure struct {
-	ARN    aws.StringValue `query:"arn" xml:"arn"`
-	Reason aws.StringValue `query:"reason" xml:"reason"`
+	ARN    aws.StringValue `json:"arn,omitempty"`
+	Reason aws.StringValue `json:"reason,omitempty"`
+}
+
+// HostVolumeProperties is undocumented.
+type HostVolumeProperties struct {
+	SourcePath aws.StringValue `json:"sourcePath,omitempty"`
 }
 
 // KeyValuePair is undocumented.
 type KeyValuePair struct {
-	Name  aws.StringValue `query:"name" xml:"name"`
-	Value aws.StringValue `query:"value" xml:"value"`
+	Name  aws.StringValue `json:"name,omitempty"`
+	Value aws.StringValue `json:"value,omitempty"`
 }
 
 // ListClustersRequest is undocumented.
 type ListClustersRequest struct {
-	MaxResults aws.IntegerValue `query:"maxResults" xml:"maxResults"`
-	NextToken  aws.StringValue  `query:"nextToken" xml:"nextToken"`
+	MaxResults aws.IntegerValue `json:"maxResults,omitempty"`
+	NextToken  aws.StringValue  `json:"nextToken,omitempty"`
 }
 
 // ListClustersResponse is undocumented.
 type ListClustersResponse struct {
-	ClusterARNs []string        `query:"clusterArns.member" xml:"ListClustersResult>clusterArns>member"`
-	NextToken   aws.StringValue `query:"nextToken" xml:"ListClustersResult>nextToken"`
+	ClusterARNs []string        `json:"clusterArns,omitempty"`
+	NextToken   aws.StringValue `json:"nextToken,omitempty"`
 }
 
 // ListContainerInstancesRequest is undocumented.
 type ListContainerInstancesRequest struct {
-	Cluster    aws.StringValue  `query:"cluster" xml:"cluster"`
-	MaxResults aws.IntegerValue `query:"maxResults" xml:"maxResults"`
-	NextToken  aws.StringValue  `query:"nextToken" xml:"nextToken"`
+	Cluster    aws.StringValue  `json:"cluster,omitempty"`
+	MaxResults aws.IntegerValue `json:"maxResults,omitempty"`
+	NextToken  aws.StringValue  `json:"nextToken,omitempty"`
 }
 
 // ListContainerInstancesResponse is undocumented.
 type ListContainerInstancesResponse struct {
-	ContainerInstanceARNs []string        `query:"containerInstanceArns.member" xml:"ListContainerInstancesResult>containerInstanceArns>member"`
-	NextToken             aws.StringValue `query:"nextToken" xml:"ListContainerInstancesResult>nextToken"`
+	ContainerInstanceARNs []string        `json:"containerInstanceArns,omitempty"`
+	NextToken             aws.StringValue `json:"nextToken,omitempty"`
+}
+
+// ListTaskDefinitionFamiliesRequest is undocumented.
+type ListTaskDefinitionFamiliesRequest struct {
+	FamilyPrefix aws.StringValue  `json:"familyPrefix,omitempty"`
+	MaxResults   aws.IntegerValue `json:"maxResults,omitempty"`
+	NextToken    aws.StringValue  `json:"nextToken,omitempty"`
+}
+
+// ListTaskDefinitionFamiliesResponse is undocumented.
+type ListTaskDefinitionFamiliesResponse struct {
+	Families  []string        `json:"families,omitempty"`
+	NextToken aws.StringValue `json:"nextToken,omitempty"`
 }
 
 // ListTaskDefinitionsRequest is undocumented.
 type ListTaskDefinitionsRequest struct {
-	FamilyPrefix aws.StringValue  `query:"familyPrefix" xml:"familyPrefix"`
-	MaxResults   aws.IntegerValue `query:"maxResults" xml:"maxResults"`
-	NextToken    aws.StringValue  `query:"nextToken" xml:"nextToken"`
+	FamilyPrefix aws.StringValue  `json:"familyPrefix,omitempty"`
+	MaxResults   aws.IntegerValue `json:"maxResults,omitempty"`
+	NextToken    aws.StringValue  `json:"nextToken,omitempty"`
 }
 
 // ListTaskDefinitionsResponse is undocumented.
 type ListTaskDefinitionsResponse struct {
-	NextToken          aws.StringValue `query:"nextToken" xml:"ListTaskDefinitionsResult>nextToken"`
-	TaskDefinitionARNs []string        `query:"taskDefinitionArns.member" xml:"ListTaskDefinitionsResult>taskDefinitionArns>member"`
+	NextToken          aws.StringValue `json:"nextToken,omitempty"`
+	TaskDefinitionARNs []string        `json:"taskDefinitionArns,omitempty"`
 }
 
 // ListTasksRequest is undocumented.
 type ListTasksRequest struct {
-	Cluster           aws.StringValue  `query:"cluster" xml:"cluster"`
-	ContainerInstance aws.StringValue  `query:"containerInstance" xml:"containerInstance"`
-	Family            aws.StringValue  `query:"family" xml:"family"`
-	MaxResults        aws.IntegerValue `query:"maxResults" xml:"maxResults"`
-	NextToken         aws.StringValue  `query:"nextToken" xml:"nextToken"`
+	Cluster           aws.StringValue  `json:"cluster,omitempty"`
+	ContainerInstance aws.StringValue  `json:"containerInstance,omitempty"`
+	Family            aws.StringValue  `json:"family,omitempty"`
+	MaxResults        aws.IntegerValue `json:"maxResults,omitempty"`
+	NextToken         aws.StringValue  `json:"nextToken,omitempty"`
 }
 
 // ListTasksResponse is undocumented.
 type ListTasksResponse struct {
-	NextToken aws.StringValue `query:"nextToken" xml:"ListTasksResult>nextToken"`
-	TaskARNs  []string        `query:"taskArns.member" xml:"ListTasksResult>taskArns>member"`
+	NextToken aws.StringValue `json:"nextToken,omitempty"`
+	TaskARNs  []string        `json:"taskArns,omitempty"`
+}
+
+// MountPoint is undocumented.
+type MountPoint struct {
+	ContainerPath aws.StringValue  `json:"containerPath,omitempty"`
+	ReadOnly      aws.BooleanValue `json:"readOnly,omitempty"`
+	SourceVolume  aws.StringValue  `json:"sourceVolume,omitempty"`
 }
 
 // NetworkBinding is undocumented.
 type NetworkBinding struct {
-	BindIP        aws.StringValue  `query:"bindIP" xml:"bindIP"`
-	ContainerPort aws.IntegerValue `query:"containerPort" xml:"containerPort"`
-	HostPort      aws.IntegerValue `query:"hostPort" xml:"hostPort"`
+	BindIP        aws.StringValue  `json:"bindIP,omitempty"`
+	ContainerPort aws.IntegerValue `json:"containerPort,omitempty"`
+	HostPort      aws.IntegerValue `json:"hostPort,omitempty"`
 }
 
 // PortMapping is undocumented.
 type PortMapping struct {
-	ContainerPort aws.IntegerValue `query:"containerPort" xml:"containerPort"`
-	HostPort      aws.IntegerValue `query:"hostPort" xml:"hostPort"`
+	ContainerPort aws.IntegerValue `json:"containerPort,omitempty"`
+	HostPort      aws.IntegerValue `json:"hostPort,omitempty"`
 }
 
 // RegisterContainerInstanceRequest is undocumented.
 type RegisterContainerInstanceRequest struct {
-	Cluster                           aws.StringValue `query:"cluster" xml:"cluster"`
-	InstanceIdentityDocument          aws.StringValue `query:"instanceIdentityDocument" xml:"instanceIdentityDocument"`
-	InstanceIdentityDocumentSignature aws.StringValue `query:"instanceIdentityDocumentSignature" xml:"instanceIdentityDocumentSignature"`
-	TotalResources                    []Resource      `query:"totalResources.member" xml:"totalResources>member"`
+	Cluster                           aws.StringValue `json:"cluster,omitempty"`
+	InstanceIdentityDocument          aws.StringValue `json:"instanceIdentityDocument,omitempty"`
+	InstanceIdentityDocumentSignature aws.StringValue `json:"instanceIdentityDocumentSignature,omitempty"`
+	TotalResources                    []Resource      `json:"totalResources,omitempty"`
 }
 
 // RegisterContainerInstanceResponse is undocumented.
 type RegisterContainerInstanceResponse struct {
-	ContainerInstance *ContainerInstance `query:"containerInstance" xml:"RegisterContainerInstanceResult>containerInstance"`
+	ContainerInstance *ContainerInstance `json:"containerInstance,omitempty"`
 }
 
 // RegisterTaskDefinitionRequest is undocumented.
 type RegisterTaskDefinitionRequest struct {
-	ContainerDefinitions []ContainerDefinition `query:"containerDefinitions.member" xml:"containerDefinitions>member"`
-	Family               aws.StringValue       `query:"family" xml:"family"`
+	ContainerDefinitions []ContainerDefinition `json:"containerDefinitions"`
+	Family               aws.StringValue       `json:"family"`
+	Volumes              []Volume              `json:"volumes,omitempty"`
 }
 
 // RegisterTaskDefinitionResponse is undocumented.
 type RegisterTaskDefinitionResponse struct {
-	TaskDefinition *TaskDefinition `query:"taskDefinition" xml:"RegisterTaskDefinitionResult>taskDefinition"`
+	TaskDefinition *TaskDefinition `json:"taskDefinition,omitempty"`
 }
 
 // Resource is undocumented.
 type Resource struct {
-	DoubleValue    aws.DoubleValue  `query:"doubleValue" xml:"doubleValue"`
-	IntegerValue   aws.IntegerValue `query:"integerValue" xml:"integerValue"`
-	LongValue      aws.LongValue    `query:"longValue" xml:"longValue"`
-	Name           aws.StringValue  `query:"name" xml:"name"`
-	StringSetValue []string         `query:"stringSetValue.member" xml:"stringSetValue>member"`
-	Type           aws.StringValue  `query:"type" xml:"type"`
+	DoubleValue    aws.DoubleValue  `json:"doubleValue,omitempty"`
+	IntegerValue   aws.IntegerValue `json:"integerValue,omitempty"`
+	LongValue      aws.LongValue    `json:"longValue,omitempty"`
+	Name           aws.StringValue  `json:"name,omitempty"`
+	StringSetValue []string         `json:"stringSetValue,omitempty"`
+	Type           aws.StringValue  `json:"type,omitempty"`
 }
 
 // RunTaskRequest is undocumented.
 type RunTaskRequest struct {
-	Cluster        aws.StringValue  `query:"cluster" xml:"cluster"`
-	Count          aws.IntegerValue `query:"count" xml:"count"`
-	Overrides      *TaskOverride    `query:"overrides" xml:"overrides"`
-	TaskDefinition aws.StringValue  `query:"taskDefinition" xml:"taskDefinition"`
+	Cluster        aws.StringValue  `json:"cluster,omitempty"`
+	Count          aws.IntegerValue `json:"count,omitempty"`
+	Overrides      *TaskOverride    `json:"overrides,omitempty"`
+	TaskDefinition aws.StringValue  `json:"taskDefinition"`
 }
 
 // RunTaskResponse is undocumented.
 type RunTaskResponse struct {
-	Failures []Failure `query:"failures.member" xml:"RunTaskResult>failures>member"`
-	Tasks    []Task    `query:"tasks.member" xml:"RunTaskResult>tasks>member"`
+	Failures []Failure `json:"failures,omitempty"`
+	Tasks    []Task    `json:"tasks,omitempty"`
 }
 
 // StartTaskRequest is undocumented.
 type StartTaskRequest struct {
-	Cluster            aws.StringValue `query:"cluster" xml:"cluster"`
-	ContainerInstances []string        `query:"containerInstances.member" xml:"containerInstances>member"`
-	Overrides          *TaskOverride   `query:"overrides" xml:"overrides"`
-	TaskDefinition     aws.StringValue `query:"taskDefinition" xml:"taskDefinition"`
+	Cluster            aws.StringValue `json:"cluster,omitempty"`
+	ContainerInstances []string        `json:"containerInstances"`
+	Overrides          *TaskOverride   `json:"overrides,omitempty"`
+	TaskDefinition     aws.StringValue `json:"taskDefinition"`
 }
 
 // StartTaskResponse is undocumented.
 type StartTaskResponse struct {
-	Failures []Failure `query:"failures.member" xml:"StartTaskResult>failures>member"`
-	Tasks    []Task    `query:"tasks.member" xml:"StartTaskResult>tasks>member"`
+	Failures []Failure `json:"failures,omitempty"`
+	Tasks    []Task    `json:"tasks,omitempty"`
 }
 
 // StopTaskRequest is undocumented.
 type StopTaskRequest struct {
-	Cluster aws.StringValue `query:"cluster" xml:"cluster"`
-	Task    aws.StringValue `query:"task" xml:"task"`
+	Cluster aws.StringValue `json:"cluster,omitempty"`
+	Task    aws.StringValue `json:"task"`
 }
 
 // StopTaskResponse is undocumented.
 type StopTaskResponse struct {
-	Task *Task `query:"task" xml:"StopTaskResult>task"`
+	Task *Task `json:"task,omitempty"`
 }
 
 // SubmitContainerStateChangeRequest is undocumented.
 type SubmitContainerStateChangeRequest struct {
-	Cluster         aws.StringValue  `query:"cluster" xml:"cluster"`
-	ContainerName   aws.StringValue  `query:"containerName" xml:"containerName"`
-	ExitCode        aws.IntegerValue `query:"exitCode" xml:"exitCode"`
-	NetworkBindings []NetworkBinding `query:"networkBindings.member" xml:"networkBindings>member"`
-	Reason          aws.StringValue  `query:"reason" xml:"reason"`
-	Status          aws.StringValue  `query:"status" xml:"status"`
-	Task            aws.StringValue  `query:"task" xml:"task"`
+	Cluster         aws.StringValue  `json:"cluster,omitempty"`
+	ContainerName   aws.StringValue  `json:"containerName,omitempty"`
+	ExitCode        aws.IntegerValue `json:"exitCode,omitempty"`
+	NetworkBindings []NetworkBinding `json:"networkBindings,omitempty"`
+	Reason          aws.StringValue  `json:"reason,omitempty"`
+	Status          aws.StringValue  `json:"status,omitempty"`
+	Task            aws.StringValue  `json:"task,omitempty"`
 }
 
 // SubmitContainerStateChangeResponse is undocumented.
 type SubmitContainerStateChangeResponse struct {
-	Acknowledgment aws.StringValue `query:"acknowledgment" xml:"SubmitContainerStateChangeResult>acknowledgment"`
+	Acknowledgment aws.StringValue `json:"acknowledgment,omitempty"`
 }
 
 // SubmitTaskStateChangeRequest is undocumented.
 type SubmitTaskStateChangeRequest struct {
-	Cluster aws.StringValue `query:"cluster" xml:"cluster"`
-	Reason  aws.StringValue `query:"reason" xml:"reason"`
-	Status  aws.StringValue `query:"status" xml:"status"`
-	Task    aws.StringValue `query:"task" xml:"task"`
+	Cluster aws.StringValue `json:"cluster,omitempty"`
+	Reason  aws.StringValue `json:"reason,omitempty"`
+	Status  aws.StringValue `json:"status,omitempty"`
+	Task    aws.StringValue `json:"task,omitempty"`
 }
 
 // SubmitTaskStateChangeResponse is undocumented.
 type SubmitTaskStateChangeResponse struct {
-	Acknowledgment aws.StringValue `query:"acknowledgment" xml:"SubmitTaskStateChangeResult>acknowledgment"`
+	Acknowledgment aws.StringValue `json:"acknowledgment,omitempty"`
 }
 
 // Task is undocumented.
 type Task struct {
-	ClusterARN           aws.StringValue `query:"clusterArn" xml:"clusterArn"`
-	ContainerInstanceARN aws.StringValue `query:"containerInstanceArn" xml:"containerInstanceArn"`
-	Containers           []Container     `query:"containers.member" xml:"containers>member"`
-	DesiredStatus        aws.StringValue `query:"desiredStatus" xml:"desiredStatus"`
-	LastStatus           aws.StringValue `query:"lastStatus" xml:"lastStatus"`
-	Overrides            *TaskOverride   `query:"overrides" xml:"overrides"`
-	TaskARN              aws.StringValue `query:"taskArn" xml:"taskArn"`
-	TaskDefinitionARN    aws.StringValue `query:"taskDefinitionArn" xml:"taskDefinitionArn"`
+	ClusterARN           aws.StringValue `json:"clusterArn,omitempty"`
+	ContainerInstanceARN aws.StringValue `json:"containerInstanceArn,omitempty"`
+	Containers           []Container     `json:"containers,omitempty"`
+	DesiredStatus        aws.StringValue `json:"desiredStatus,omitempty"`
+	LastStatus           aws.StringValue `json:"lastStatus,omitempty"`
+	Overrides            *TaskOverride   `json:"overrides,omitempty"`
+	TaskARN              aws.StringValue `json:"taskArn,omitempty"`
+	TaskDefinitionARN    aws.StringValue `json:"taskDefinitionArn,omitempty"`
 }
 
 // TaskDefinition is undocumented.
 type TaskDefinition struct {
-	ContainerDefinitions []ContainerDefinition `query:"containerDefinitions.member" xml:"containerDefinitions>member"`
-	Family               aws.StringValue       `query:"family" xml:"family"`
-	Revision             aws.IntegerValue      `query:"revision" xml:"revision"`
-	TaskDefinitionARN    aws.StringValue       `query:"taskDefinitionArn" xml:"taskDefinitionArn"`
+	ContainerDefinitions []ContainerDefinition `json:"containerDefinitions,omitempty"`
+	Family               aws.StringValue       `json:"family,omitempty"`
+	Revision             aws.IntegerValue      `json:"revision,omitempty"`
+	TaskDefinitionARN    aws.StringValue       `json:"taskDefinitionArn,omitempty"`
+	Volumes              []Volume              `json:"volumes,omitempty"`
 }
 
 // TaskOverride is undocumented.
 type TaskOverride struct {
-	ContainerOverrides []ContainerOverride `query:"containerOverrides.member" xml:"containerOverrides>member"`
+	ContainerOverrides []ContainerOverride `json:"containerOverrides,omitempty"`
 }
 
-// CreateClusterResult is a wrapper for CreateClusterResponse.
-type CreateClusterResult struct {
-	Cluster *Cluster `query:"cluster" xml:"CreateClusterResult>cluster"`
+// Volume is undocumented.
+type Volume struct {
+	Host *HostVolumeProperties `json:"host,omitempty"`
+	Name aws.StringValue       `json:"name,omitempty"`
 }
 
-// DeleteClusterResult is a wrapper for DeleteClusterResponse.
-type DeleteClusterResult struct {
-	Cluster *Cluster `query:"cluster" xml:"DeleteClusterResult>cluster"`
-}
-
-// DeregisterContainerInstanceResult is a wrapper for DeregisterContainerInstanceResponse.
-type DeregisterContainerInstanceResult struct {
-	ContainerInstance *ContainerInstance `query:"containerInstance" xml:"DeregisterContainerInstanceResult>containerInstance"`
-}
-
-// DeregisterTaskDefinitionResult is a wrapper for DeregisterTaskDefinitionResponse.
-type DeregisterTaskDefinitionResult struct {
-	TaskDefinition *TaskDefinition `query:"taskDefinition" xml:"DeregisterTaskDefinitionResult>taskDefinition"`
-}
-
-// DescribeClustersResult is a wrapper for DescribeClustersResponse.
-type DescribeClustersResult struct {
-	Clusters []Cluster `query:"clusters.member" xml:"DescribeClustersResult>clusters>member"`
-	Failures []Failure `query:"failures.member" xml:"DescribeClustersResult>failures>member"`
-}
-
-// DescribeContainerInstancesResult is a wrapper for DescribeContainerInstancesResponse.
-type DescribeContainerInstancesResult struct {
-	ContainerInstances []ContainerInstance `query:"containerInstances.member" xml:"DescribeContainerInstancesResult>containerInstances>member"`
-	Failures           []Failure           `query:"failures.member" xml:"DescribeContainerInstancesResult>failures>member"`
-}
-
-// DescribeTaskDefinitionResult is a wrapper for DescribeTaskDefinitionResponse.
-type DescribeTaskDefinitionResult struct {
-	TaskDefinition *TaskDefinition `query:"taskDefinition" xml:"DescribeTaskDefinitionResult>taskDefinition"`
-}
-
-// DescribeTasksResult is a wrapper for DescribeTasksResponse.
-type DescribeTasksResult struct {
-	Failures []Failure `query:"failures.member" xml:"DescribeTasksResult>failures>member"`
-	Tasks    []Task    `query:"tasks.member" xml:"DescribeTasksResult>tasks>member"`
-}
-
-// DiscoverPollEndpointResult is a wrapper for DiscoverPollEndpointResponse.
-type DiscoverPollEndpointResult struct {
-	Endpoint aws.StringValue `query:"endpoint" xml:"DiscoverPollEndpointResult>endpoint"`
-}
-
-// ListClustersResult is a wrapper for ListClustersResponse.
-type ListClustersResult struct {
-	ClusterARNs []string        `query:"clusterArns.member" xml:"ListClustersResult>clusterArns>member"`
-	NextToken   aws.StringValue `query:"nextToken" xml:"ListClustersResult>nextToken"`
-}
-
-// ListContainerInstancesResult is a wrapper for ListContainerInstancesResponse.
-type ListContainerInstancesResult struct {
-	ContainerInstanceARNs []string        `query:"containerInstanceArns.member" xml:"ListContainerInstancesResult>containerInstanceArns>member"`
-	NextToken             aws.StringValue `query:"nextToken" xml:"ListContainerInstancesResult>nextToken"`
-}
-
-// ListTaskDefinitionsResult is a wrapper for ListTaskDefinitionsResponse.
-type ListTaskDefinitionsResult struct {
-	NextToken          aws.StringValue `query:"nextToken" xml:"ListTaskDefinitionsResult>nextToken"`
-	TaskDefinitionARNs []string        `query:"taskDefinitionArns.member" xml:"ListTaskDefinitionsResult>taskDefinitionArns>member"`
-}
-
-// ListTasksResult is a wrapper for ListTasksResponse.
-type ListTasksResult struct {
-	NextToken aws.StringValue `query:"nextToken" xml:"ListTasksResult>nextToken"`
-	TaskARNs  []string        `query:"taskArns.member" xml:"ListTasksResult>taskArns>member"`
-}
-
-// RegisterContainerInstanceResult is a wrapper for RegisterContainerInstanceResponse.
-type RegisterContainerInstanceResult struct {
-	ContainerInstance *ContainerInstance `query:"containerInstance" xml:"RegisterContainerInstanceResult>containerInstance"`
-}
-
-// RegisterTaskDefinitionResult is a wrapper for RegisterTaskDefinitionResponse.
-type RegisterTaskDefinitionResult struct {
-	TaskDefinition *TaskDefinition `query:"taskDefinition" xml:"RegisterTaskDefinitionResult>taskDefinition"`
-}
-
-// RunTaskResult is a wrapper for RunTaskResponse.
-type RunTaskResult struct {
-	Failures []Failure `query:"failures.member" xml:"RunTaskResult>failures>member"`
-	Tasks    []Task    `query:"tasks.member" xml:"RunTaskResult>tasks>member"`
-}
-
-// StartTaskResult is a wrapper for StartTaskResponse.
-type StartTaskResult struct {
-	Failures []Failure `query:"failures.member" xml:"StartTaskResult>failures>member"`
-	Tasks    []Task    `query:"tasks.member" xml:"StartTaskResult>tasks>member"`
-}
-
-// StopTaskResult is a wrapper for StopTaskResponse.
-type StopTaskResult struct {
-	Task *Task `query:"task" xml:"StopTaskResult>task"`
-}
-
-// SubmitContainerStateChangeResult is a wrapper for SubmitContainerStateChangeResponse.
-type SubmitContainerStateChangeResult struct {
-	Acknowledgment aws.StringValue `query:"acknowledgment" xml:"SubmitContainerStateChangeResult>acknowledgment"`
-}
-
-// SubmitTaskStateChangeResult is a wrapper for SubmitTaskStateChangeResponse.
-type SubmitTaskStateChangeResult struct {
-	Acknowledgment aws.StringValue `query:"acknowledgment" xml:"SubmitTaskStateChangeResult>acknowledgment"`
+// VolumeFrom is undocumented.
+type VolumeFrom struct {
+	ReadOnly        aws.BooleanValue `json:"readOnly,omitempty"`
+	SourceContainer aws.StringValue  `json:"sourceContainer,omitempty"`
 }
 
 // avoid errors if the packages aren't referenced
 var _ time.Time
-
-var _ xml.Decoder
-var _ = io.EOF

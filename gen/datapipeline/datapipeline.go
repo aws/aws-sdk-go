@@ -51,6 +51,13 @@ func (c *DataPipeline) ActivatePipeline(req *ActivatePipelineInput) (resp *Activ
 	return
 }
 
+// AddTags is undocumented.
+func (c *DataPipeline) AddTags(req *AddTagsInput) (resp *AddTagsOutput, err error) {
+	resp = &AddTagsOutput{}
+	err = c.client.Do("AddTags", "POST", "/", req, resp)
+	return
+}
+
 // CreatePipeline creates a new empty pipeline. When this action succeeds,
 // you can then use the PutPipelineDefinition action to populate the
 // pipeline.
@@ -173,6 +180,13 @@ func (c *DataPipeline) QueryObjects(req *QueryObjectsInput) (resp *QueryObjectsO
 	return
 }
 
+// RemoveTags is undocumented.
+func (c *DataPipeline) RemoveTags(req *RemoveTagsInput) (resp *RemoveTagsOutput, err error) {
+	resp = &RemoveTagsOutput{}
+	err = c.client.Do("RemoveTags", "POST", "/", req, resp)
+	return
+}
+
 // ReportTaskProgress updates the AWS Data Pipeline service on the progress
 // of the calling task runner. When the task runner is assigned a task, it
 // should call ReportTaskProgress to acknowledge that it has the task
@@ -245,10 +259,21 @@ type ActivatePipelineInput struct {
 type ActivatePipelineOutput struct {
 }
 
+// AddTagsInput is undocumented.
+type AddTagsInput struct {
+	PipelineID aws.StringValue `json:"pipelineId"`
+	Tags       []Tag           `json:"tags"`
+}
+
+// AddTagsOutput is undocumented.
+type AddTagsOutput struct {
+}
+
 // CreatePipelineInput is undocumented.
 type CreatePipelineInput struct {
 	Description aws.StringValue `json:"description,omitempty"`
 	Name        aws.StringValue `json:"name"`
+	Tags        []Tag           `json:"tags,omitempty"`
 	UniqueID    aws.StringValue `json:"uniqueId"`
 }
 
@@ -376,6 +401,7 @@ type PipelineDescription struct {
 	Fields      []Field         `json:"fields"`
 	Name        aws.StringValue `json:"name"`
 	PipelineID  aws.StringValue `json:"pipelineId"`
+	Tags        []Tag           `json:"tags,omitempty"`
 }
 
 // PipelineIDName is undocumented.
@@ -439,6 +465,16 @@ type QueryObjectsOutput struct {
 	Marker         aws.StringValue  `json:"marker,omitempty"`
 }
 
+// RemoveTagsInput is undocumented.
+type RemoveTagsInput struct {
+	PipelineID aws.StringValue `json:"pipelineId"`
+	TagKeys    []string        `json:"tagKeys"`
+}
+
+// RemoveTagsOutput is undocumented.
+type RemoveTagsOutput struct {
+}
+
 // ReportTaskProgressInput is undocumented.
 type ReportTaskProgressInput struct {
 	Fields []Field         `json:"fields,omitempty"`
@@ -486,6 +522,12 @@ type SetTaskStatusInput struct {
 
 // SetTaskStatusOutput is undocumented.
 type SetTaskStatusOutput struct {
+}
+
+// Tag is undocumented.
+type Tag struct {
+	Key   aws.StringValue `json:"key"`
+	Value aws.StringValue `json:"value"`
 }
 
 // TaskObject is undocumented.

@@ -70,6 +70,43 @@ func (c *IAM) AddUserToGroup(req *AddUserToGroupRequest) (err error) {
 	return
 }
 
+// AttachGroupPolicy attaches the specified managed policy to the specified
+// group. You use this API to attach a managed policy to a group. To embed
+// an inline policy in a group, use PutGroupPolicy . For more information
+// about policies, refer to Managed Policies and Inline Policies in the
+// Using guide.
+func (c *IAM) AttachGroupPolicy(req *AttachGroupPolicyRequest) (err error) {
+	// NRE
+	err = c.client.Do("AttachGroupPolicy", "POST", "/", req, nil)
+	return
+}
+
+// AttachRolePolicy attaches the specified managed policy to the specified
+// role. When you attach a managed policy to a role, the managed policy is
+// used as the role's access (permissions) policy. You cannot use a managed
+// policy as the role's trust policy. The role's trust policy is created at
+// the same time as the role, using CreateRole . You can update a role's
+// trust policy using UpdateAssumeRolePolicy . Use this API to attach a
+// managed policy to a role. To embed an inline policy in a role, use
+// PutRolePolicy . For more information about policies, refer to Managed
+// Policies and Inline Policies in the Using guide.
+func (c *IAM) AttachRolePolicy(req *AttachRolePolicyRequest) (err error) {
+	// NRE
+	err = c.client.Do("AttachRolePolicy", "POST", "/", req, nil)
+	return
+}
+
+// AttachUserPolicy attaches the specified managed policy to the specified
+// user. You use this API to attach a managed policy to a user. To embed an
+// inline policy in a user, use PutUserPolicy . For more information about
+// policies, refer to Managed Policies and Inline Policies in the Using
+// guide.
+func (c *IAM) AttachUserPolicy(req *AttachUserPolicyRequest) (err error) {
+	// NRE
+	err = c.client.Do("AttachUserPolicy", "POST", "/", req, nil)
+	return
+}
+
 // ChangePassword changes the password of the IAM user who is calling this
 // action. The root account password is not affected by this action. To
 // change the password for a different user, see UpdateLoginProfile . For
@@ -154,6 +191,34 @@ func (c *IAM) CreateLoginProfile(req *CreateLoginProfileRequest) (resp *CreateLo
 func (c *IAM) CreateOpenIDConnectProvider(req *CreateOpenIDConnectProviderRequest) (resp *CreateOpenIDConnectProviderResult, err error) {
 	resp = &CreateOpenIDConnectProviderResult{}
 	err = c.client.Do("CreateOpenIDConnectProvider", "POST", "/", req, resp)
+	return
+}
+
+// CreatePolicy creates a new managed policy for your AWS account. This
+// operation creates a policy version with a version identifier of v1 and
+// sets v1 as the policy's default version. For more information about
+// policy versions, see Versioning for Managed Policies in the Using guide.
+// For more information about managed policies in general, refer to Managed
+// Policies and Inline Policies in the Using guide.
+func (c *IAM) CreatePolicy(req *CreatePolicyRequest) (resp *CreatePolicyResult, err error) {
+	resp = &CreatePolicyResult{}
+	err = c.client.Do("CreatePolicy", "POST", "/", req, resp)
+	return
+}
+
+// CreatePolicyVersion creates a new version of the specified managed
+// policy. To update a managed policy, you create a new policy version. A
+// managed policy can have up to five versions. If the policy has five
+// versions, you must delete an existing version using DeletePolicyVersion
+// before you create a new version. Optionally, you can set the new version
+// as the policy's default version. The default version is the operative
+// version; that is, the version that is in effect for the IAM users,
+// groups, and roles that the policy is attached to. For more information
+// about managed policy versions, see Versioning for Managed Policies in
+// the Using guide.
+func (c *IAM) CreatePolicyVersion(req *CreatePolicyVersionRequest) (resp *CreatePolicyVersionResult, err error) {
+	resp = &CreatePolicyVersionResult{}
+	err = c.client.Do("CreatePolicyVersion", "POST", "/", req, resp)
 	return
 }
 
@@ -263,8 +328,11 @@ func (c *IAM) DeleteGroup(req *DeleteGroupRequest) (err error) {
 	return
 }
 
-// DeleteGroupPolicy deletes the specified policy that is associated with
-// the specified group.
+// DeleteGroupPolicy deletes the specified inline policy that is embedded
+// in the specified group. A group can also have managed policies attached
+// to it. To detach a managed policy from a group, use DetachGroupPolicy .
+// For more information about policies, refer to Managed Policies and
+// Inline Policies in the Using guide.
 func (c *IAM) DeleteGroupPolicy(req *DeleteGroupPolicyRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteGroupPolicy", "POST", "/", req, nil)
@@ -309,6 +377,40 @@ func (c *IAM) DeleteOpenIDConnectProvider(req *DeleteOpenIDConnectProviderReques
 	return
 }
 
+// DeletePolicy deletes the specified managed policy. Before you can delete
+// a managed policy, you must detach the policy from all users, groups, and
+// roles that it is attached to, and you must delete all of the policy's
+// versions. The following steps describe the process for deleting a
+// managed policy: Detach the policy from all users, groups, and roles that
+// the policy is attached to, using the DetachUserPolicy ,
+// DetachGroupPolicy , or DetachRolePolicy APIs. To list all the users,
+// groups, and roles that a policy is attached to, use
+// ListEntitiesForPolicy . Delete all versions of the policy using
+// DeletePolicyVersion . To list the policy's versions, use
+// ListPolicyVersions . You cannot use DeletePolicyVersion to delete the
+// version that is marked as the default version. You delete the policy's
+// default version in the next step of the process. Delete the policy (this
+// automatically deletes the policy's default version) using this For
+// information about managed policies, refer to Managed Policies and Inline
+// Policies in the Using guide.
+func (c *IAM) DeletePolicy(req *DeletePolicyRequest) (err error) {
+	// NRE
+	err = c.client.Do("DeletePolicy", "POST", "/", req, nil)
+	return
+}
+
+// DeletePolicyVersion deletes the specified version of the specified
+// managed policy. You cannot delete the default version of a policy using
+// this To delete the default version of a policy, use DeletePolicy . To
+// find out which version of a policy is marked as the default version, use
+// ListPolicyVersions . For information about versions for managed
+// policies, refer to Versioning for Managed Policies in the Using guide.
+func (c *IAM) DeletePolicyVersion(req *DeletePolicyVersionRequest) (err error) {
+	// NRE
+	err = c.client.Do("DeletePolicyVersion", "POST", "/", req, nil)
+	return
+}
+
 // DeleteRole deletes the specified role. The role must not have any
 // policies attached. For more information about roles, go to Working with
 // Roles . Make sure you do not have any Amazon EC2 instances running with
@@ -321,8 +423,11 @@ func (c *IAM) DeleteRole(req *DeleteRoleRequest) (err error) {
 	return
 }
 
-// DeleteRolePolicy deletes the specified policy associated with the
-// specified role.
+// DeleteRolePolicy deletes the specified inline policy that is embedded in
+// the specified role. A role can also have managed policies attached to
+// it. To detach a managed policy from a role, use DetachRolePolicy . For
+// more information about policies, refer to Managed Policies and Inline
+// Policies in the Using guide.
 func (c *IAM) DeleteRolePolicy(req *DeleteRolePolicyRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteRolePolicy", "POST", "/", req, nil)
@@ -377,8 +482,11 @@ func (c *IAM) DeleteUser(req *DeleteUserRequest) (err error) {
 	return
 }
 
-// DeleteUserPolicy deletes the specified policy associated with the
-// specified user.
+// DeleteUserPolicy deletes the specified inline policy that is embedded in
+// the specified user. A user can also have managed policies attached to
+// it. To detach a managed policy from a user, use DetachUserPolicy . For
+// more information about policies, refer to Managed Policies and Inline
+// Policies in the Using guide.
 func (c *IAM) DeleteUserPolicy(req *DeleteUserPolicyRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteUserPolicy", "POST", "/", req, nil)
@@ -391,6 +499,39 @@ func (c *IAM) DeleteUserPolicy(req *DeleteUserPolicyRequest) (err error) {
 func (c *IAM) DeleteVirtualMFADevice(req *DeleteVirtualMFADeviceRequest) (err error) {
 	// NRE
 	err = c.client.Do("DeleteVirtualMFADevice", "POST", "/", req, nil)
+	return
+}
+
+// DetachGroupPolicy removes the specified managed policy from the
+// specified group. A group can also have inline policies embedded with it.
+// To delete an inline policy, use the DeleteGroupPolicy For information
+// about policies, refer to Managed Policies and Inline Policies in the
+// Using guide.
+func (c *IAM) DetachGroupPolicy(req *DetachGroupPolicyRequest) (err error) {
+	// NRE
+	err = c.client.Do("DetachGroupPolicy", "POST", "/", req, nil)
+	return
+}
+
+// DetachRolePolicy removes the specified managed policy from the specified
+// role. A role can also have inline policies embedded with it. To delete
+// an inline policy, use the DeleteRolePolicy For information about
+// policies, refer to Managed Policies and Inline Policies in the Using
+// guide.
+func (c *IAM) DetachRolePolicy(req *DetachRolePolicyRequest) (err error) {
+	// NRE
+	err = c.client.Do("DetachRolePolicy", "POST", "/", req, nil)
+	return
+}
+
+// DetachUserPolicy removes the specified managed policy from the specified
+// user. A user can also have inline policies embedded with it. To delete
+// an inline policy, use the DeleteUserPolicy For information about
+// policies, refer to Managed Policies and Inline Policies in the Using
+// guide.
+func (c *IAM) DetachUserPolicy(req *DetachUserPolicyRequest) (err error) {
+	// NRE
+	err = c.client.Do("DetachUserPolicy", "POST", "/", req, nil)
 	return
 }
 
@@ -414,11 +555,11 @@ func (c *IAM) GenerateCredentialReport() (resp *GenerateCredentialReportResult, 
 
 // GetAccountAuthorizationDetails retrieves information about all IAM
 // users, groups, and roles in your account, including their relationships
-// to one another and their attached policies. Use this API to obtain a
-// snapshot of the configuration of IAM permissions (users, groups, roles,
-// and policies) in your account. You can optionally filter the results
-// using the Filter parameter. You can paginate the results using the
-// MaxItems and Marker parameters.
+// to one another and their policies. Use this API to obtain a snapshot of
+// the configuration of IAM permissions (users, groups, roles, and their
+// policies) in your account. You can optionally filter the results using
+// the Filter parameter. You can paginate the results using the MaxItems
+// and Marker parameters.
 func (c *IAM) GetAccountAuthorizationDetails(req *GetAccountAuthorizationDetailsRequest) (resp *GetAccountAuthorizationDetailsResult, err error) {
 	resp = &GetAccountAuthorizationDetailsResult{}
 	err = c.client.Do("GetAccountAuthorizationDetails", "POST", "/", req, resp)
@@ -434,8 +575,8 @@ func (c *IAM) GetAccountPasswordPolicy() (resp *GetAccountPasswordPolicyResult, 
 	return
 }
 
-// GetAccountSummary retrieves account level information about account
-// entity usage and IAM quotas. For information about limitations on IAM
+// GetAccountSummary retrieves information about IAM entity usage and IAM
+// quotas in the AWS account. For information about limitations on IAM
 // entities, see Limitations on IAM Entities in the Using guide.
 func (c *IAM) GetAccountSummary() (resp *GetAccountSummaryResult, err error) {
 	resp = &GetAccountSummaryResult{}
@@ -460,10 +601,13 @@ func (c *IAM) GetGroup(req *GetGroupRequest) (resp *GetGroupResult, err error) {
 	return
 }
 
-// GetGroupPolicy retrieves the specified policy document for the specified
-// group. The returned policy is URL-encoded according to RFC 3986. For
-// more information about RFC 3986, go to
-// http://www.faqs.org/rfcs/rfc3986.html .
+// GetGroupPolicy retrieves the specified inline policy document that is
+// embedded in the specified group. A group can also have managed policies
+// attached to it. To retrieve a managed policy document that is attached
+// to a group, use GetPolicy to determine the policy's default version,
+// then use GetPolicyVersion to retrieve the policy document. For more
+// information about policies, refer to Managed Policies and Inline
+// Policies in the Using guide.
 func (c *IAM) GetGroupPolicy(req *GetGroupPolicyRequest) (resp *GetGroupPolicyResult, err error) {
 	resp = &GetGroupPolicyResult{}
 	err = c.client.Do("GetGroupPolicy", "POST", "/", req, resp)
@@ -497,6 +641,37 @@ func (c *IAM) GetOpenIDConnectProvider(req *GetOpenIDConnectProviderRequest) (re
 	return
 }
 
+// GetPolicy retrieves information about the specified managed policy,
+// including the policy's default version and the total number of users,
+// groups, and roles that the policy is attached to. For a list of the
+// specific users, groups, and roles that the policy is attached to, use
+// the ListEntitiesForPolicy This API returns metadata about the policy. To
+// retrieve the policy document for a specific version of the policy, use
+// GetPolicyVersion . This API retrieves information about managed
+// policies. To retrieve information about an inline policy that is
+// embedded with a user, group, or role, use the GetUserPolicy ,
+// GetGroupPolicy , or GetRolePolicy For more information about policies,
+// refer to Managed Policies and Inline Policies in the Using guide.
+func (c *IAM) GetPolicy(req *GetPolicyRequest) (resp *GetPolicyResult, err error) {
+	resp = &GetPolicyResult{}
+	err = c.client.Do("GetPolicy", "POST", "/", req, resp)
+	return
+}
+
+// GetPolicyVersion retrieves information about the specified version of
+// the specified managed policy, including the policy document. To list the
+// available versions for a policy, use ListPolicyVersions . This API
+// retrieves information about managed policies. To retrieve information
+// about an inline policy that is embedded in a user, group, or role, use
+// the GetUserPolicy , GetGroupPolicy , or GetRolePolicy For more
+// information about the types of policies, refer to Managed Policies and
+// Inline Policies in the Using guide.
+func (c *IAM) GetPolicyVersion(req *GetPolicyVersionRequest) (resp *GetPolicyVersionResult, err error) {
+	resp = &GetPolicyVersionResult{}
+	err = c.client.Do("GetPolicyVersion", "POST", "/", req, resp)
+	return
+}
+
 // GetRole retrieves information about the specified role, including the
 // role's path, and the policy granting permission to assume the role. For
 // more information about ARNs, go to ARNs . For more information about
@@ -509,11 +684,14 @@ func (c *IAM) GetRole(req *GetRoleRequest) (resp *GetRoleResult, err error) {
 	return
 }
 
-// GetRolePolicy retrieves the specified policy document for the specified
-// role. For more information about roles, go to Working with Roles . The
-// returned policy is URL-encoded according to RFC 3986. For more
-// information about RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html
-// .
+// GetRolePolicy retrieves the specified inline policy document that is
+// embedded with the specified role. A role can also have managed policies
+// attached to it. To retrieve a managed policy document that is attached
+// to a role, use GetPolicy to determine the policy's default version, then
+// use GetPolicyVersion to retrieve the policy document. For more
+// information about policies, refer to Managed Policies and Inline
+// Policies in the Using guide. For more information about roles, go to
+// Using Roles to Delegate Permissions and Federate Identities .
 func (c *IAM) GetRolePolicy(req *GetRolePolicyRequest) (resp *GetRolePolicyResult, err error) {
 	resp = &GetRolePolicyResult{}
 	err = c.client.Do("GetRolePolicy", "POST", "/", req, resp)
@@ -547,10 +725,13 @@ func (c *IAM) GetUser(req *GetUserRequest) (resp *GetUserResult, err error) {
 	return
 }
 
-// GetUserPolicy retrieves the specified policy document for the specified
-// user. The returned policy is URL-encoded according to RFC 3986. For more
-// information about RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html
-// .
+// GetUserPolicy retrieves the specified inline policy document that is
+// embedded in the specified user. A user can also have managed policies
+// attached to it. To retrieve a managed policy document that is attached
+// to a user, use GetPolicy to determine the policy's default version, then
+// use GetPolicyVersion to retrieve the policy document. For more
+// information about policies, refer to Managed Policies and Inline
+// Policies in the Using guide.
 func (c *IAM) GetUserPolicy(req *GetUserPolicyRequest) (resp *GetUserPolicyResult, err error) {
 	resp = &GetUserPolicyResult{}
 	err = c.client.Do("GetUserPolicy", "POST", "/", req, resp)
@@ -583,9 +764,73 @@ func (c *IAM) ListAccountAliases(req *ListAccountAliasesRequest) (resp *ListAcco
 	return
 }
 
-// ListGroupPolicies lists the names of the policies associated with the
-// specified group. If there are none, the action returns an empty list.
+// ListAttachedGroupPolicies lists all managed policies that are attached
+// to the specified group. A group can also have inline policies embedded
+// with it. To list the inline policies for a group, use the
+// ListGroupPolicies For information about policies, refer to Managed
+// Policies and Inline Policies in the Using guide. You can paginate the
+// results using the MaxItems and Marker parameters. You can use the
+// PathPrefix parameter to limit the list of policies to only those
+// matching the specified path prefix. If there are no policies attached to
+// the specified group (or none that match the specified path prefix), the
+// action returns an empty list.
+func (c *IAM) ListAttachedGroupPolicies(req *ListAttachedGroupPoliciesRequest) (resp *ListAttachedGroupPoliciesResult, err error) {
+	resp = &ListAttachedGroupPoliciesResult{}
+	err = c.client.Do("ListAttachedGroupPolicies", "POST", "/", req, resp)
+	return
+}
+
+// ListAttachedRolePolicies lists all managed policies that are attached to
+// the specified role. A role can also have inline policies embedded with
+// it. To list the inline policies for a role, use the ListRolePolicies For
+// information about policies, refer to Managed Policies and Inline
+// Policies in the Using guide. You can paginate the results using the
+// MaxItems and Marker parameters. You can use the PathPrefix parameter to
+// limit the list of policies to only those matching the specified path
+// prefix. If there are no policies attached to the specified role (or none
+// that match the specified path prefix), the action returns an empty list.
+func (c *IAM) ListAttachedRolePolicies(req *ListAttachedRolePoliciesRequest) (resp *ListAttachedRolePoliciesResult, err error) {
+	resp = &ListAttachedRolePoliciesResult{}
+	err = c.client.Do("ListAttachedRolePolicies", "POST", "/", req, resp)
+	return
+}
+
+// ListAttachedUserPolicies lists all managed policies that are attached to
+// the specified user. A user can also have inline policies embedded with
+// it. To list the inline policies for a user, use the ListUserPolicies For
+// information about policies, refer to Managed Policies and Inline
+// Policies in the Using guide. You can paginate the results using the
+// MaxItems and Marker parameters. You can use the PathPrefix parameter to
+// limit the list of policies to only those matching the specified path
+// prefix. If there are no policies attached to the specified group (or
+// none that match the specified path prefix), the action returns an empty
+// list.
+func (c *IAM) ListAttachedUserPolicies(req *ListAttachedUserPoliciesRequest) (resp *ListAttachedUserPoliciesResult, err error) {
+	resp = &ListAttachedUserPoliciesResult{}
+	err = c.client.Do("ListAttachedUserPolicies", "POST", "/", req, resp)
+	return
+}
+
+// ListEntitiesForPolicy lists all users, groups, and roles that the
+// specified managed policy is attached to. You can use the optional
+// EntityFilter parameter to limit the results to a particular type of
+// entity (users, groups, or roles). For example, to list only the roles
+// that are attached to the specified policy, set EntityFilter to Role .
 // You can paginate the results using the MaxItems and Marker parameters.
+func (c *IAM) ListEntitiesForPolicy(req *ListEntitiesForPolicyRequest) (resp *ListEntitiesForPolicyResult, err error) {
+	resp = &ListEntitiesForPolicyResult{}
+	err = c.client.Do("ListEntitiesForPolicy", "POST", "/", req, resp)
+	return
+}
+
+// ListGroupPolicies lists the names of the inline policies that are
+// embedded in the specified group. A group can also have managed policies
+// attached to it. To list the managed policies that are attached to a
+// group, use ListAttachedGroupPolicies . For more information about
+// policies, refer to Managed Policies and Inline Policies in the Using
+// guide. You can paginate the results using the MaxItems and Marker
+// parameters. If there are no inline policies embedded with the specified
+// group, the action returns an empty list.
 func (c *IAM) ListGroupPolicies(req *ListGroupPoliciesRequest) (resp *ListGroupPoliciesResult, err error) {
 	resp = &ListGroupPoliciesResult{}
 	err = c.client.Do("ListGroupPolicies", "POST", "/", req, resp)
@@ -649,9 +894,39 @@ func (c *IAM) ListOpenIDConnectProviders(req *ListOpenIDConnectProvidersRequest)
 	return
 }
 
-// ListRolePolicies lists the names of the policies associated with the
-// specified role. If there are none, the action returns an empty list. You
-// can paginate the results using the MaxItems and Marker parameters.
+// ListPolicies lists all the managed policies that are available to your
+// account, including your own customer managed policies and all AWS
+// managed policies. You can filter the list of policies that is returned
+// using the optional OnlyAttached , Scope , and PathPrefix parameters. For
+// example, to list only the customer managed policies in your AWS account,
+// set Scope to Local . To list only AWS managed policies, set Scope to .
+// You can paginate the results using the MaxItems and Marker parameters.
+// For more information about managed policies, refer to Managed Policies
+// and Inline Policies in the Using guide.
+func (c *IAM) ListPolicies(req *ListPoliciesRequest) (resp *ListPoliciesResult, err error) {
+	resp = &ListPoliciesResult{}
+	err = c.client.Do("ListPolicies", "POST", "/", req, resp)
+	return
+}
+
+// ListPolicyVersions lists information about the versions of the specified
+// managed policy, including the version that is set as the policy's
+// default version. For more information about managed policies, refer to
+// Managed Policies and Inline Policies in the Using guide.
+func (c *IAM) ListPolicyVersions(req *ListPolicyVersionsRequest) (resp *ListPolicyVersionsResult, err error) {
+	resp = &ListPolicyVersionsResult{}
+	err = c.client.Do("ListPolicyVersions", "POST", "/", req, resp)
+	return
+}
+
+// ListRolePolicies lists the names of the inline policies that are
+// embedded in the specified role. A role can also have managed policies
+// attached to it. To list the managed policies that are attached to a
+// role, use ListAttachedRolePolicies . For more information about
+// policies, refer to Managed Policies and Inline Policies in the Using
+// guide. You can paginate the results using the MaxItems and Marker
+// parameters. If there are no inline policies embedded with the specified
+// role, the action returns an empty list.
 func (c *IAM) ListRolePolicies(req *ListRolePoliciesRequest) (resp *ListRolePoliciesResult, err error) {
 	resp = &ListRolePoliciesResult{}
 	err = c.client.Do("ListRolePolicies", "POST", "/", req, resp)
@@ -701,9 +976,14 @@ func (c *IAM) ListSigningCertificates(req *ListSigningCertificatesRequest) (resp
 	return
 }
 
-// ListUserPolicies lists the names of the policies associated with the
-// specified user. If there are none, the action returns an empty list. You
-// can paginate the results using the MaxItems and Marker parameters.
+// ListUserPolicies lists the names of the inline policies embedded in the
+// specified user. A user can also have managed policies attached to it. To
+// list the managed policies that are attached to a user, use
+// ListAttachedUserPolicies . For more information about policies, refer to
+// Managed Policies and Inline Policies in the Using guide. You can
+// paginate the results using the MaxItems and Marker parameters. If there
+// are no inline policies embedded with the specified user, the action
+// returns an empty list.
 func (c *IAM) ListUserPolicies(req *ListUserPoliciesRequest) (resp *ListUserPoliciesResult, err error) {
 	resp = &ListUserPoliciesResult{}
 	err = c.client.Do("ListUserPolicies", "POST", "/", req, resp)
@@ -731,48 +1011,56 @@ func (c *IAM) ListVirtualMFADevices(req *ListVirtualMFADevicesRequest) (resp *Li
 	return
 }
 
-// PutGroupPolicy adds (or updates) a policy document associated with the
-// specified group. For information about policies, refer to Overview of
+// PutGroupPolicy adds (or updates) an inline policy document that is
+// embedded in the specified group. A user can also have managed policies
+// attached to it. To attach a managed policy to a group, use
+// AttachGroupPolicy . To create a new managed policy, use CreatePolicy .
+// For information about policies, refer to Managed Policies and Inline
 // Policies in the Using guide. For information about limits on the number
-// of policies you can associate with a group, see Limitations on IAM
+// of inline policies that you can embed in a group, see Limitations on IAM
 // Entities in the Using guide. Because policy documents can be large, you
-// should use rather than GET when calling PutGroupPolicy . For information
-// about setting up signatures and authorization through the go to Signing
-// AWS API Requests in the AWS General Reference . For general information
-// about using the Query API with go to Making Query Requests in the Using
-// guide.
+// should use rather than GET when calling PutGroupPolicy . For general
+// information about using the Query API with go to Making Query Requests
+// in the Using guide.
 func (c *IAM) PutGroupPolicy(req *PutGroupPolicyRequest) (err error) {
 	// NRE
 	err = c.client.Do("PutGroupPolicy", "POST", "/", req, nil)
 	return
 }
 
-// PutRolePolicy adds (or updates) a policy document associated with the
-// specified role. For information about policies, go to Overview of
-// Policies in the Using guide. For information about limits on the
-// policies you can associate with a role, see Limitations on IAM Entities
-// in the Using guide. Because policy documents can be large, you should
-// use rather than GET when calling PutRolePolicy . For information about
-// setting up signatures and authorization through the go to Signing AWS
-// API Requests in the AWS General Reference . For general information
-// about using the Query API with go to Making Query Requests in the Using
-// guide.
+// PutRolePolicy adds (or updates) an inline policy document that is
+// embedded in the specified role. When you embed an inline policy in a
+// role, the inline policy is used as the role's access (permissions)
+// policy. The role's trust policy is created at the same time as the role,
+// using CreateRole . You can update a role's trust policy using
+// UpdateAssumeRolePolicy . For more information about roles, go to Using
+// Roles to Delegate Permissions and Federate Identities . A role can also
+// have a managed policy attached to it. To attach a managed policy to a
+// role, use AttachRolePolicy . To create a new managed policy, use
+// CreatePolicy . For information about policies, refer to Managed Policies
+// and Inline Policies in the Using guide. For information about limits on
+// the number of inline policies that you can embed with a role, see
+// Limitations on IAM Entities in the Using guide. Because policy documents
+// can be large, you should use rather than GET when calling PutRolePolicy
+// . For general information about using the Query API with go to Making
+// Query Requests in the Using guide.
 func (c *IAM) PutRolePolicy(req *PutRolePolicyRequest) (err error) {
 	// NRE
 	err = c.client.Do("PutRolePolicy", "POST", "/", req, nil)
 	return
 }
 
-// PutUserPolicy adds (or updates) a policy document associated with the
-// specified user. For information about policies, refer to Overview of
+// PutUserPolicy adds (or updates) an inline policy document that is
+// embedded in the specified user. A user can also have a managed policy
+// attached to it. To attach a managed policy to a user, use
+// AttachUserPolicy . To create a new managed policy, use CreatePolicy .
+// For information about policies, refer to Managed Policies and Inline
 // Policies in the Using guide. For information about limits on the number
-// of policies you can associate with a user, see Limitations on IAM
+// of inline policies that you can embed in a user, see Limitations on IAM
 // Entities in the Using guide. Because policy documents can be large, you
-// should use rather than GET when calling PutUserPolicy . For information
-// about setting up signatures and authorization through the go to Signing
-// AWS API Requests in the AWS General Reference . For general information
-// about using the Query API with go to Making Query Requests in the Using
-// guide.
+// should use rather than GET when calling PutUserPolicy . For general
+// information about using the Query API with go to Making Query Requests
+// in the Using guide.
 func (c *IAM) PutUserPolicy(req *PutUserPolicyRequest) (err error) {
 	// NRE
 	err = c.client.Do("PutUserPolicy", "POST", "/", req, nil)
@@ -820,6 +1108,18 @@ func (c *IAM) ResyncMFADevice(req *ResyncMFADeviceRequest) (err error) {
 	return
 }
 
+// SetDefaultPolicyVersion sets the specified version of the specified
+// policy as the policy's default (operative) version. This action affects
+// all users, groups, and roles that the policy is attached to. To list the
+// users, groups, and roles that the policy is attached to, use the
+// ListEntitiesForPolicy For information about managed policies, refer to
+// Managed Policies and Inline Policies in the Using guide.
+func (c *IAM) SetDefaultPolicyVersion(req *SetDefaultPolicyVersionRequest) (err error) {
+	// NRE
+	err = c.client.Do("SetDefaultPolicyVersion", "POST", "/", req, nil)
+	return
+}
+
 // UpdateAccessKey changes the status of the specified access key from
 // Active to Inactive, or vice versa. This action can be used to disable a
 // user's key as part of a key rotation work flow. If the UserName field is
@@ -849,7 +1149,7 @@ func (c *IAM) UpdateAccountPasswordPolicy(req *UpdateAccountPasswordPolicyReques
 
 // UpdateAssumeRolePolicy updates the policy that grants an entity
 // permission to assume a role. For more information about roles, go to
-// Working with Roles .
+// Using Roles to Delegate Permissions and Federate Identities .
 func (c *IAM) UpdateAssumeRolePolicy(req *UpdateAssumeRolePolicyRequest) (err error) {
 	// NRE
 	err = c.client.Do("UpdateAssumeRolePolicy", "POST", "/", req, nil)
@@ -886,9 +1186,9 @@ func (c *IAM) UpdateLoginProfile(req *UpdateLoginProfileRequest) (err error) {
 // (The lists are not merged.) Typically, you need to update a thumbprint
 // only when the identity provider's certificate changes, which occurs
 // rarely. However, if the provider's certificate does change, any attempt
-// to assume an IAM role that specifies the IAM provider as a principal
-// will fail until the certificate thumbprint is updated. Because trust for
-// the OpenID Connect provider is ultimately derived from the provider's
+// to assume an IAM role that specifies the provider as a principal will
+// fail until the certificate thumbprint is updated. Because trust for the
+// OpenID Connect provider is ultimately derived from the provider's
 // certificate and is validated by the thumbprint, it is a best practice to
 // limit access to the UpdateOpenIDConnectProviderThumbprint action to
 // highly-privileged users.
@@ -1023,6 +1323,30 @@ type AddUserToGroupRequest struct {
 	UserName  aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
+// AttachGroupPolicyRequest is undocumented.
+type AttachGroupPolicyRequest struct {
+	GroupName aws.StringValue `query:"GroupName" xml:"GroupName"`
+	PolicyARN aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+}
+
+// AttachRolePolicyRequest is undocumented.
+type AttachRolePolicyRequest struct {
+	PolicyARN aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+	RoleName  aws.StringValue `query:"RoleName" xml:"RoleName"`
+}
+
+// AttachUserPolicyRequest is undocumented.
+type AttachUserPolicyRequest struct {
+	PolicyARN aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+	UserName  aws.StringValue `query:"UserName" xml:"UserName"`
+}
+
+// AttachedPolicy is undocumented.
+type AttachedPolicy struct {
+	PolicyARN  aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+	PolicyName aws.StringValue `query:"PolicyName" xml:"PolicyName"`
+}
+
 // ChangePasswordRequest is undocumented.
 type ChangePasswordRequest struct {
 	NewPassword aws.StringValue `query:"NewPassword" xml:"NewPassword"`
@@ -1088,6 +1412,31 @@ type CreateOpenIDConnectProviderRequest struct {
 // CreateOpenIDConnectProviderResponse is undocumented.
 type CreateOpenIDConnectProviderResponse struct {
 	OpenIDConnectProviderARN aws.StringValue `query:"OpenIDConnectProviderArn" xml:"CreateOpenIDConnectProviderResult>OpenIDConnectProviderArn"`
+}
+
+// CreatePolicyRequest is undocumented.
+type CreatePolicyRequest struct {
+	Description    aws.StringValue `query:"Description" xml:"Description"`
+	Path           aws.StringValue `query:"Path" xml:"Path"`
+	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"PolicyDocument"`
+	PolicyName     aws.StringValue `query:"PolicyName" xml:"PolicyName"`
+}
+
+// CreatePolicyResponse is undocumented.
+type CreatePolicyResponse struct {
+	Policy *Policy `query:"Policy" xml:"CreatePolicyResult>Policy"`
+}
+
+// CreatePolicyVersionRequest is undocumented.
+type CreatePolicyVersionRequest struct {
+	PolicyARN      aws.StringValue  `query:"PolicyArn" xml:"PolicyArn"`
+	PolicyDocument aws.StringValue  `query:"PolicyDocument" xml:"PolicyDocument"`
+	SetAsDefault   aws.BooleanValue `query:"SetAsDefault" xml:"SetAsDefault"`
+}
+
+// CreatePolicyVersionResponse is undocumented.
+type CreatePolicyVersionResponse struct {
+	PolicyVersion *PolicyVersion `query:"PolicyVersion" xml:"CreatePolicyVersionResult>PolicyVersion"`
 }
 
 // CreateRoleRequest is undocumented.
@@ -1178,6 +1527,17 @@ type DeleteOpenIDConnectProviderRequest struct {
 	OpenIDConnectProviderARN aws.StringValue `query:"OpenIDConnectProviderArn" xml:"OpenIDConnectProviderArn"`
 }
 
+// DeletePolicyRequest is undocumented.
+type DeletePolicyRequest struct {
+	PolicyARN aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+}
+
+// DeletePolicyVersionRequest is undocumented.
+type DeletePolicyVersionRequest struct {
+	PolicyARN aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+	VersionID aws.StringValue `query:"VersionId" xml:"VersionId"`
+}
+
 // DeleteRolePolicyRequest is undocumented.
 type DeleteRolePolicyRequest struct {
 	PolicyName aws.StringValue `query:"PolicyName" xml:"PolicyName"`
@@ -1219,6 +1579,24 @@ type DeleteUserRequest struct {
 // DeleteVirtualMFADeviceRequest is undocumented.
 type DeleteVirtualMFADeviceRequest struct {
 	SerialNumber aws.StringValue `query:"SerialNumber" xml:"SerialNumber"`
+}
+
+// DetachGroupPolicyRequest is undocumented.
+type DetachGroupPolicyRequest struct {
+	GroupName aws.StringValue `query:"GroupName" xml:"GroupName"`
+	PolicyARN aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+}
+
+// DetachRolePolicyRequest is undocumented.
+type DetachRolePolicyRequest struct {
+	PolicyARN aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+	RoleName  aws.StringValue `query:"RoleName" xml:"RoleName"`
+}
+
+// DetachUserPolicyRequest is undocumented.
+type DetachUserPolicyRequest struct {
+	PolicyARN aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+	UserName  aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
 // EnableMFADeviceRequest is undocumented.
@@ -1334,6 +1712,27 @@ type GetOpenIDConnectProviderResponse struct {
 	CreateDate     time.Time       `query:"CreateDate" xml:"GetOpenIDConnectProviderResult>CreateDate"`
 	ThumbprintList []string        `query:"ThumbprintList.member" xml:"GetOpenIDConnectProviderResult>ThumbprintList>member"`
 	URL            aws.StringValue `query:"Url" xml:"GetOpenIDConnectProviderResult>Url"`
+}
+
+// GetPolicyRequest is undocumented.
+type GetPolicyRequest struct {
+	PolicyARN aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+}
+
+// GetPolicyResponse is undocumented.
+type GetPolicyResponse struct {
+	Policy *Policy `query:"Policy" xml:"GetPolicyResult>Policy"`
+}
+
+// GetPolicyVersionRequest is undocumented.
+type GetPolicyVersionRequest struct {
+	PolicyARN aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+	VersionID aws.StringValue `query:"VersionId" xml:"VersionId"`
+}
+
+// GetPolicyVersionResponse is undocumented.
+type GetPolicyVersionResponse struct {
+	PolicyVersion *PolicyVersion `query:"PolicyVersion" xml:"GetPolicyVersionResult>PolicyVersion"`
 }
 
 // GetRolePolicyRequest is undocumented.
@@ -1460,6 +1859,69 @@ type ListAccountAliasesResponse struct {
 	Marker         aws.StringValue  `query:"Marker" xml:"ListAccountAliasesResult>Marker"`
 }
 
+// ListAttachedGroupPoliciesRequest is undocumented.
+type ListAttachedGroupPoliciesRequest struct {
+	GroupName  aws.StringValue  `query:"GroupName" xml:"GroupName"`
+	Marker     aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems   aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	PathPrefix aws.StringValue  `query:"PathPrefix" xml:"PathPrefix"`
+}
+
+// ListAttachedGroupPoliciesResponse is undocumented.
+type ListAttachedGroupPoliciesResponse struct {
+	AttachedPolicies []AttachedPolicy `query:"AttachedPolicies.member" xml:"ListAttachedGroupPoliciesResult>AttachedPolicies>member"`
+	IsTruncated      aws.BooleanValue `query:"IsTruncated" xml:"ListAttachedGroupPoliciesResult>IsTruncated"`
+	Marker           aws.StringValue  `query:"Marker" xml:"ListAttachedGroupPoliciesResult>Marker"`
+}
+
+// ListAttachedRolePoliciesRequest is undocumented.
+type ListAttachedRolePoliciesRequest struct {
+	Marker     aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems   aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	PathPrefix aws.StringValue  `query:"PathPrefix" xml:"PathPrefix"`
+	RoleName   aws.StringValue  `query:"RoleName" xml:"RoleName"`
+}
+
+// ListAttachedRolePoliciesResponse is undocumented.
+type ListAttachedRolePoliciesResponse struct {
+	AttachedPolicies []AttachedPolicy `query:"AttachedPolicies.member" xml:"ListAttachedRolePoliciesResult>AttachedPolicies>member"`
+	IsTruncated      aws.BooleanValue `query:"IsTruncated" xml:"ListAttachedRolePoliciesResult>IsTruncated"`
+	Marker           aws.StringValue  `query:"Marker" xml:"ListAttachedRolePoliciesResult>Marker"`
+}
+
+// ListAttachedUserPoliciesRequest is undocumented.
+type ListAttachedUserPoliciesRequest struct {
+	Marker     aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems   aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	PathPrefix aws.StringValue  `query:"PathPrefix" xml:"PathPrefix"`
+	UserName   aws.StringValue  `query:"UserName" xml:"UserName"`
+}
+
+// ListAttachedUserPoliciesResponse is undocumented.
+type ListAttachedUserPoliciesResponse struct {
+	AttachedPolicies []AttachedPolicy `query:"AttachedPolicies.member" xml:"ListAttachedUserPoliciesResult>AttachedPolicies>member"`
+	IsTruncated      aws.BooleanValue `query:"IsTruncated" xml:"ListAttachedUserPoliciesResult>IsTruncated"`
+	Marker           aws.StringValue  `query:"Marker" xml:"ListAttachedUserPoliciesResult>Marker"`
+}
+
+// ListEntitiesForPolicyRequest is undocumented.
+type ListEntitiesForPolicyRequest struct {
+	EntityFilter aws.StringValue  `query:"EntityFilter" xml:"EntityFilter"`
+	Marker       aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems     aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	PathPrefix   aws.StringValue  `query:"PathPrefix" xml:"PathPrefix"`
+	PolicyARN    aws.StringValue  `query:"PolicyArn" xml:"PolicyArn"`
+}
+
+// ListEntitiesForPolicyResponse is undocumented.
+type ListEntitiesForPolicyResponse struct {
+	IsTruncated  aws.BooleanValue `query:"IsTruncated" xml:"ListEntitiesForPolicyResult>IsTruncated"`
+	Marker       aws.StringValue  `query:"Marker" xml:"ListEntitiesForPolicyResult>Marker"`
+	PolicyGroups []PolicyGroup    `query:"PolicyGroups.member" xml:"ListEntitiesForPolicyResult>PolicyGroups>member"`
+	PolicyRoles  []PolicyRole     `query:"PolicyRoles.member" xml:"ListEntitiesForPolicyResult>PolicyRoles>member"`
+	PolicyUsers  []PolicyUser     `query:"PolicyUsers.member" xml:"ListEntitiesForPolicyResult>PolicyUsers>member"`
+}
+
 // ListGroupPoliciesRequest is undocumented.
 type ListGroupPoliciesRequest struct {
 	GroupName aws.StringValue  `query:"GroupName" xml:"GroupName"`
@@ -1551,6 +2013,36 @@ type ListOpenIDConnectProvidersRequest struct {
 // ListOpenIDConnectProvidersResponse is undocumented.
 type ListOpenIDConnectProvidersResponse struct {
 	OpenIDConnectProviderList []OpenIDConnectProviderListEntry `query:"OpenIDConnectProviderList.member" xml:"ListOpenIDConnectProvidersResult>OpenIDConnectProviderList>member"`
+}
+
+// ListPoliciesRequest is undocumented.
+type ListPoliciesRequest struct {
+	Marker       aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems     aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	OnlyAttached aws.BooleanValue `query:"OnlyAttached" xml:"OnlyAttached"`
+	PathPrefix   aws.StringValue  `query:"PathPrefix" xml:"PathPrefix"`
+	Scope        aws.StringValue  `query:"Scope" xml:"Scope"`
+}
+
+// ListPoliciesResponse is undocumented.
+type ListPoliciesResponse struct {
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListPoliciesResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListPoliciesResult>Marker"`
+	Policies    []Policy         `query:"Policies.member" xml:"ListPoliciesResult>Policies>member"`
+}
+
+// ListPolicyVersionsRequest is undocumented.
+type ListPolicyVersionsRequest struct {
+	Marker    aws.StringValue  `query:"Marker" xml:"Marker"`
+	MaxItems  aws.IntegerValue `query:"MaxItems" xml:"MaxItems"`
+	PolicyARN aws.StringValue  `query:"PolicyArn" xml:"PolicyArn"`
+}
+
+// ListPolicyVersionsResponse is undocumented.
+type ListPolicyVersionsResponse struct {
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListPolicyVersionsResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListPolicyVersionsResult>Marker"`
+	Versions    []PolicyVersion  `query:"Versions.member" xml:"ListPolicyVersionsResult>Versions>member"`
 }
 
 // ListRolePoliciesRequest is undocumented.
@@ -1693,10 +2185,47 @@ type PasswordPolicy struct {
 	RequireUppercaseCharacters aws.BooleanValue `query:"RequireUppercaseCharacters" xml:"RequireUppercaseCharacters"`
 }
 
+// Policy is undocumented.
+type Policy struct {
+	ARN              aws.StringValue  `query:"Arn" xml:"Arn"`
+	AttachmentCount  aws.IntegerValue `query:"AttachmentCount" xml:"AttachmentCount"`
+	CreateDate       time.Time        `query:"CreateDate" xml:"CreateDate"`
+	DefaultVersionID aws.StringValue  `query:"DefaultVersionId" xml:"DefaultVersionId"`
+	Description      aws.StringValue  `query:"Description" xml:"Description"`
+	IsAttachable     aws.BooleanValue `query:"IsAttachable" xml:"IsAttachable"`
+	Path             aws.StringValue  `query:"Path" xml:"Path"`
+	PolicyID         aws.StringValue  `query:"PolicyId" xml:"PolicyId"`
+	PolicyName       aws.StringValue  `query:"PolicyName" xml:"PolicyName"`
+	UpdateDate       time.Time        `query:"UpdateDate" xml:"UpdateDate"`
+}
+
 // PolicyDetail is undocumented.
 type PolicyDetail struct {
 	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"PolicyDocument"`
 	PolicyName     aws.StringValue `query:"PolicyName" xml:"PolicyName"`
+}
+
+// PolicyGroup is undocumented.
+type PolicyGroup struct {
+	GroupName aws.StringValue `query:"GroupName" xml:"GroupName"`
+}
+
+// PolicyRole is undocumented.
+type PolicyRole struct {
+	RoleName aws.StringValue `query:"RoleName" xml:"RoleName"`
+}
+
+// PolicyUser is undocumented.
+type PolicyUser struct {
+	UserName aws.StringValue `query:"UserName" xml:"UserName"`
+}
+
+// PolicyVersion is undocumented.
+type PolicyVersion struct {
+	CreateDate       time.Time        `query:"CreateDate" xml:"CreateDate"`
+	Document         aws.StringValue  `query:"Document" xml:"Document"`
+	IsDefaultVersion aws.BooleanValue `query:"IsDefaultVersion" xml:"IsDefaultVersion"`
+	VersionID        aws.StringValue  `query:"VersionId" xml:"VersionId"`
 }
 
 // PutGroupPolicyRequest is undocumented.
@@ -1802,6 +2331,12 @@ type ServerCertificateMetadata struct {
 	ServerCertificateID   aws.StringValue `query:"ServerCertificateId" xml:"ServerCertificateId"`
 	ServerCertificateName aws.StringValue `query:"ServerCertificateName" xml:"ServerCertificateName"`
 	UploadDate            time.Time       `query:"UploadDate" xml:"UploadDate"`
+}
+
+// SetDefaultPolicyVersionRequest is undocumented.
+type SetDefaultPolicyVersionRequest struct {
+	PolicyARN aws.StringValue `query:"PolicyArn" xml:"PolicyArn"`
+	VersionID aws.StringValue `query:"VersionId" xml:"VersionId"`
 }
 
 // SigningCertificate is undocumented.
@@ -1955,26 +2490,44 @@ const (
 
 // Possible values for IAM.
 const (
+	PolicyScopeTypeAWS   = "AWS"
+	PolicyScopeTypeAll   = "All"
+	PolicyScopeTypeLocal = "Local"
+)
+
+// Possible values for IAM.
+const (
 	StatusTypeActive   = "Active"
 	StatusTypeInactive = "Inactive"
 )
 
 // Possible values for IAM.
 const (
-	SummaryKeyTypeAccessKeysPerUserQuota          = "AccessKeysPerUserQuota"
-	SummaryKeyTypeAccountMFAenabled               = "AccountMFAEnabled"
-	SummaryKeyTypeGroupPolicySizeQuota            = "GroupPolicySizeQuota"
-	SummaryKeyTypeGroups                          = "Groups"
-	SummaryKeyTypeGroupsPerUserQuota              = "GroupsPerUserQuota"
-	SummaryKeyTypeGroupsQuota                     = "GroupsQuota"
-	SummaryKeyTypeMFAdevices                      = "MFADevices"
-	SummaryKeyTypeMFAdevicesInUse                 = "MFADevicesInUse"
-	SummaryKeyTypeServerCertificates              = "ServerCertificates"
-	SummaryKeyTypeServerCertificatesQuota         = "ServerCertificatesQuota"
-	SummaryKeyTypeSigningCertificatesPerUserQuota = "SigningCertificatesPerUserQuota"
-	SummaryKeyTypeUserPolicySizeQuota             = "UserPolicySizeQuota"
-	SummaryKeyTypeUsers                           = "Users"
-	SummaryKeyTypeUsersQuota                      = "UsersQuota"
+	SummaryKeyTypeAccessKeysPerUserQuota            = "AccessKeysPerUserQuota"
+	SummaryKeyTypeAccountAccessKeysPresent          = "AccountAccessKeysPresent"
+	SummaryKeyTypeAccountMFAenabled                 = "AccountMFAEnabled"
+	SummaryKeyTypeAccountSigningCertificatesPresent = "AccountSigningCertificatesPresent"
+	SummaryKeyTypeAttachedPoliciesPerGroupQuota     = "AttachedPoliciesPerGroupQuota"
+	SummaryKeyTypeAttachedPoliciesPerRoleQuota      = "AttachedPoliciesPerRoleQuota"
+	SummaryKeyTypeAttachedPoliciesPerUserQuota      = "AttachedPoliciesPerUserQuota"
+	SummaryKeyTypeGroupPolicySizeQuota              = "GroupPolicySizeQuota"
+	SummaryKeyTypeGroups                            = "Groups"
+	SummaryKeyTypeGroupsPerUserQuota                = "GroupsPerUserQuota"
+	SummaryKeyTypeGroupsQuota                       = "GroupsQuota"
+	SummaryKeyTypeMFAdevices                        = "MFADevices"
+	SummaryKeyTypeMFAdevicesInUse                   = "MFADevicesInUse"
+	SummaryKeyTypePolicies                          = "Policies"
+	SummaryKeyTypePoliciesQuota                     = "PoliciesQuota"
+	SummaryKeyTypePolicySizeQuota                   = "PolicySizeQuota"
+	SummaryKeyTypePolicyVersionsInUse               = "PolicyVersionsInUse"
+	SummaryKeyTypePolicyVersionsInUseQuota          = "PolicyVersionsInUseQuota"
+	SummaryKeyTypeServerCertificates                = "ServerCertificates"
+	SummaryKeyTypeServerCertificatesQuota           = "ServerCertificatesQuota"
+	SummaryKeyTypeSigningCertificatesPerUserQuota   = "SigningCertificatesPerUserQuota"
+	SummaryKeyTypeUserPolicySizeQuota               = "UserPolicySizeQuota"
+	SummaryKeyTypeUsers                             = "Users"
+	SummaryKeyTypeUsersQuota                        = "UsersQuota"
+	SummaryKeyTypeVersionsPerPolicyQuota            = "VersionsPerPolicyQuota"
 )
 
 type SummaryMapType map[string]int
@@ -2024,6 +2577,16 @@ type CreateLoginProfileResult struct {
 // CreateOpenIDConnectProviderResult is a wrapper for CreateOpenIDConnectProviderResponse.
 type CreateOpenIDConnectProviderResult struct {
 	OpenIDConnectProviderARN aws.StringValue `query:"OpenIDConnectProviderArn" xml:"CreateOpenIDConnectProviderResult>OpenIDConnectProviderArn"`
+}
+
+// CreatePolicyResult is a wrapper for CreatePolicyResponse.
+type CreatePolicyResult struct {
+	Policy *Policy `query:"Policy" xml:"CreatePolicyResult>Policy"`
+}
+
+// CreatePolicyVersionResult is a wrapper for CreatePolicyVersionResponse.
+type CreatePolicyVersionResult struct {
+	PolicyVersion *PolicyVersion `query:"PolicyVersion" xml:"CreatePolicyVersionResult>PolicyVersion"`
 }
 
 // CreateRoleResult is a wrapper for CreateRoleResponse.
@@ -2111,6 +2674,16 @@ type GetOpenIDConnectProviderResult struct {
 	URL            aws.StringValue `query:"Url" xml:"GetOpenIDConnectProviderResult>Url"`
 }
 
+// GetPolicyResult is a wrapper for GetPolicyResponse.
+type GetPolicyResult struct {
+	Policy *Policy `query:"Policy" xml:"GetPolicyResult>Policy"`
+}
+
+// GetPolicyVersionResult is a wrapper for GetPolicyVersionResponse.
+type GetPolicyVersionResult struct {
+	PolicyVersion *PolicyVersion `query:"PolicyVersion" xml:"GetPolicyVersionResult>PolicyVersion"`
+}
+
 // GetRolePolicyResult is a wrapper for GetRolePolicyResponse.
 type GetRolePolicyResult struct {
 	PolicyDocument aws.StringValue `query:"PolicyDocument" xml:"GetRolePolicyResult>PolicyDocument"`
@@ -2161,6 +2734,36 @@ type ListAccountAliasesResult struct {
 	Marker         aws.StringValue  `query:"Marker" xml:"ListAccountAliasesResult>Marker"`
 }
 
+// ListAttachedGroupPoliciesResult is a wrapper for ListAttachedGroupPoliciesResponse.
+type ListAttachedGroupPoliciesResult struct {
+	AttachedPolicies []AttachedPolicy `query:"AttachedPolicies.member" xml:"ListAttachedGroupPoliciesResult>AttachedPolicies>member"`
+	IsTruncated      aws.BooleanValue `query:"IsTruncated" xml:"ListAttachedGroupPoliciesResult>IsTruncated"`
+	Marker           aws.StringValue  `query:"Marker" xml:"ListAttachedGroupPoliciesResult>Marker"`
+}
+
+// ListAttachedRolePoliciesResult is a wrapper for ListAttachedRolePoliciesResponse.
+type ListAttachedRolePoliciesResult struct {
+	AttachedPolicies []AttachedPolicy `query:"AttachedPolicies.member" xml:"ListAttachedRolePoliciesResult>AttachedPolicies>member"`
+	IsTruncated      aws.BooleanValue `query:"IsTruncated" xml:"ListAttachedRolePoliciesResult>IsTruncated"`
+	Marker           aws.StringValue  `query:"Marker" xml:"ListAttachedRolePoliciesResult>Marker"`
+}
+
+// ListAttachedUserPoliciesResult is a wrapper for ListAttachedUserPoliciesResponse.
+type ListAttachedUserPoliciesResult struct {
+	AttachedPolicies []AttachedPolicy `query:"AttachedPolicies.member" xml:"ListAttachedUserPoliciesResult>AttachedPolicies>member"`
+	IsTruncated      aws.BooleanValue `query:"IsTruncated" xml:"ListAttachedUserPoliciesResult>IsTruncated"`
+	Marker           aws.StringValue  `query:"Marker" xml:"ListAttachedUserPoliciesResult>Marker"`
+}
+
+// ListEntitiesForPolicyResult is a wrapper for ListEntitiesForPolicyResponse.
+type ListEntitiesForPolicyResult struct {
+	IsTruncated  aws.BooleanValue `query:"IsTruncated" xml:"ListEntitiesForPolicyResult>IsTruncated"`
+	Marker       aws.StringValue  `query:"Marker" xml:"ListEntitiesForPolicyResult>Marker"`
+	PolicyGroups []PolicyGroup    `query:"PolicyGroups.member" xml:"ListEntitiesForPolicyResult>PolicyGroups>member"`
+	PolicyRoles  []PolicyRole     `query:"PolicyRoles.member" xml:"ListEntitiesForPolicyResult>PolicyRoles>member"`
+	PolicyUsers  []PolicyUser     `query:"PolicyUsers.member" xml:"ListEntitiesForPolicyResult>PolicyUsers>member"`
+}
+
 // ListGroupPoliciesResult is a wrapper for ListGroupPoliciesResponse.
 type ListGroupPoliciesResult struct {
 	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListGroupPoliciesResult>IsTruncated"`
@@ -2206,6 +2809,20 @@ type ListMFADevicesResult struct {
 // ListOpenIDConnectProvidersResult is a wrapper for ListOpenIDConnectProvidersResponse.
 type ListOpenIDConnectProvidersResult struct {
 	OpenIDConnectProviderList []OpenIDConnectProviderListEntry `query:"OpenIDConnectProviderList.member" xml:"ListOpenIDConnectProvidersResult>OpenIDConnectProviderList>member"`
+}
+
+// ListPoliciesResult is a wrapper for ListPoliciesResponse.
+type ListPoliciesResult struct {
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListPoliciesResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListPoliciesResult>Marker"`
+	Policies    []Policy         `query:"Policies.member" xml:"ListPoliciesResult>Policies>member"`
+}
+
+// ListPolicyVersionsResult is a wrapper for ListPolicyVersionsResponse.
+type ListPolicyVersionsResult struct {
+	IsTruncated aws.BooleanValue `query:"IsTruncated" xml:"ListPolicyVersionsResult>IsTruncated"`
+	Marker      aws.StringValue  `query:"Marker" xml:"ListPolicyVersionsResult>Marker"`
+	Versions    []PolicyVersion  `query:"Versions.member" xml:"ListPolicyVersionsResult>Versions>member"`
 }
 
 // ListRolePoliciesResult is a wrapper for ListRolePoliciesResponse.

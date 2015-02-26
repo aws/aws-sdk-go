@@ -1014,6 +1014,45 @@ func (c *Route53) GetHostedZone(req *GetHostedZoneRequest) (resp *GetHostedZoneR
 	return
 }
 
+// GetHostedZoneCount to retrieve a count of all your hosted zones, send a
+// request to the 2013-04-01/hostedzonecount resource.
+func (c *Route53) GetHostedZoneCount(req *GetHostedZoneCountRequest) (resp *GetHostedZoneCountResponse, err error) {
+	resp = &GetHostedZoneCountResponse{}
+
+	var body io.Reader
+	var contentType string
+
+	uri := c.client.Endpoint + "/2013-04-01/hostedzonecount"
+
+	q := url.Values{}
+
+	if len(q) > 0 {
+		uri += "?" + q.Encode()
+	}
+
+	httpReq, err := http.NewRequest("GET", uri, body)
+	if err != nil {
+		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
+	httpResp, err := c.client.Do(httpReq)
+	if err != nil {
+		return
+	}
+
+	defer httpResp.Body.Close()
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
+	}
+
+	return
+}
+
 // GetReusableDelegationSet to retrieve the reusable delegation set, send a
 // request to the 2013-04-01/delegationset/ delegation set resource.
 func (c *Route53) GetReusableDelegationSet(req *GetReusableDelegationSetRequest) (resp *GetReusableDelegationSetResponse, err error) {
@@ -1202,6 +1241,65 @@ func (c *Route53) ListHostedZones(req *ListHostedZonesRequest) (resp *ListHosted
 
 	if req.Marker != nil {
 		q.Set("marker", *req.Marker)
+	}
+
+	if req.MaxItems != nil {
+		q.Set("maxitems", *req.MaxItems)
+	}
+
+	if len(q) > 0 {
+		uri += "?" + q.Encode()
+	}
+
+	httpReq, err := http.NewRequest("GET", uri, body)
+	if err != nil {
+		return
+	}
+
+	if contentType != "" {
+		httpReq.Header.Set("Content-Type", contentType)
+	}
+
+	httpResp, err := c.client.Do(httpReq)
+	if err != nil {
+		return
+	}
+
+	defer httpResp.Body.Close()
+	if e := xml.NewDecoder(httpResp.Body).Decode(resp); e != nil && e != io.EOF {
+		err = e
+		return
+	}
+
+	return
+}
+
+// ListHostedZonesByName to retrieve a list of your hosted zones in
+// lexicographic order, send a request to the 2013-04-01/hostedzonesbyname
+// resource. The response to this request includes a HostedZones element
+// with zero or more HostedZone child elements lexicographically ordered by
+// DNS name. By default, the list of hosted zones is displayed on a single
+// page. You can control the length of the page that is displayed by using
+// the MaxItems parameter. You can use the DNSName and HostedZoneId
+// parameters to control the hosted zone that the list begins with. Amazon
+// Route 53 returns a maximum of 100 items. If you set MaxItems to a value
+// greater than 100, Amazon Route 53 returns only the first 100.
+func (c *Route53) ListHostedZonesByName(req *ListHostedZonesByNameRequest) (resp *ListHostedZonesByNameResponse, err error) {
+	resp = &ListHostedZonesByNameResponse{}
+
+	var body io.Reader
+	var contentType string
+
+	uri := c.client.Endpoint + "/2013-04-01/hostedzonesbyname"
+
+	q := url.Values{}
+
+	if req.DNSName != nil {
+		q.Set("dnsname", *req.DNSName)
+	}
+
+	if req.HostedZoneID != nil {
+		q.Set("hostedzoneid", *req.HostedZoneID)
 	}
 
 	if req.MaxItems != nil {
@@ -2093,6 +2191,26 @@ func (v *GetHealthCheckStatusResponse) MarshalXML(e *xml.Encoder, start xml.Star
 	return aws.MarshalXML(v, e, start)
 }
 
+// GetHostedZoneCountRequest is undocumented.
+type GetHostedZoneCountRequest struct {
+	XMLName xml.Name
+}
+
+func (v *GetHostedZoneCountRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// GetHostedZoneCountResponse is undocumented.
+type GetHostedZoneCountResponse struct {
+	XMLName xml.Name
+
+	HostedZoneCount aws.LongValue `xml:"HostedZoneCount"`
+}
+
+func (v *GetHostedZoneCountResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
 // GetHostedZoneRequest is undocumented.
 type GetHostedZoneRequest struct {
 	XMLName xml.Name
@@ -2273,6 +2391,36 @@ type ListHealthChecksResponse struct {
 }
 
 func (v *ListHealthChecksResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// ListHostedZonesByNameRequest is undocumented.
+type ListHostedZonesByNameRequest struct {
+	XMLName xml.Name
+
+	DNSName      aws.StringValue `xml:"-"`
+	HostedZoneID aws.StringValue `xml:"-"`
+	MaxItems     aws.StringValue `xml:"-"`
+}
+
+func (v *ListHostedZonesByNameRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return aws.MarshalXML(v, e, start)
+}
+
+// ListHostedZonesByNameResponse is undocumented.
+type ListHostedZonesByNameResponse struct {
+	XMLName xml.Name
+
+	DNSName          aws.StringValue  `xml:"DNSName"`
+	HostedZoneID     aws.StringValue  `xml:"HostedZoneId"`
+	HostedZones      []HostedZone     `xml:"HostedZones>HostedZone,omitempty"`
+	IsTruncated      aws.BooleanValue `xml:"IsTruncated"`
+	MaxItems         aws.StringValue  `xml:"MaxItems"`
+	NextDNSName      aws.StringValue  `xml:"NextDNSName"`
+	NextHostedZoneID aws.StringValue  `xml:"NextHostedZoneId"`
+}
+
+func (v *ListHostedZonesByNameResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
