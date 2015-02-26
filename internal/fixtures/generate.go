@@ -1,7 +1,10 @@
 package main
 
-//go:generate go run generate.go protocol/input/json.json ../../aws/protocol/jsonrpc/jsonrpc_input_test.go
+//go:generate go run generate.go protocol/input/json.json ../../aws/protocol/jsonrpc/build_test.go
 //go:generate go run generate.go protocol/input/query.json ../../aws/protocol/query/build_test.go
+//go:generate go run generate.go protocol/output/query.json ../../aws/protocol/query/unmarshal_test.go
+//go:generate go run generate.go protocol/input/ec2.json ../../aws/protocol/ec2/build_test.go
+//go:generate go run generate.go protocol/output/ec2.json ../../aws/protocol/ec2/unmarshal_test.go
 
 import (
 	"bytes"
