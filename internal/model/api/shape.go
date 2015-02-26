@@ -15,6 +15,7 @@ type ShapeRef struct {
 	Location      string
 	LocationName  string
 	QueryName     string
+	Flattened     bool
 	XMLNamespace  XMLInfo
 }
 
@@ -37,6 +38,7 @@ type Shape struct {
 	Exception     bool
 	Enum          []string
 	Flattened     bool
+	ResultWrapper string
 
 	refs []*ShapeRef
 }
@@ -110,6 +112,15 @@ func (ref *ShapeRef) GoTags(toplevel bool) string {
 	if ref.QueryName != "" {
 		code += `queryName:"` + ref.QueryName + `" `
 	}
+	if ref.Shape.MemberRef.LocationName != "" {
+		code += `locationNameList:"` + ref.Shape.MemberRef.LocationName + `" `
+	}
+	if ref.Shape.KeyRef.LocationName != "" {
+		code += `locationNameKey:"` + ref.Shape.KeyRef.LocationName + `" `
+	}
+	if ref.Shape.ValueRef.LocationName != "" {
+		code += `locationNameValue:"` + ref.Shape.ValueRef.LocationName + `" `
+	}
 	code += `type:"` + ref.Shape.Type + `" `
 
 	// embed the timestamp type for easier lookups
@@ -128,11 +139,14 @@ func (ref *ShapeRef) GoTags(toplevel bool) string {
 		code += `" `
 	}
 
-	if ref.Shape.Flattened {
+	if ref.Shape.Flattened || ref.Flattened {
 		code += `flattened:"true" `
 	}
 
 	if toplevel {
+		if ref.Shape.ResultWrapper != "" {
+			code += `resultWrapper:"` + ref.Shape.ResultWrapper + `" `
+		}
 		if ref.Shape.Payload != "" {
 			code += `payload:"` + ref.Shape.Payload + `" `
 		}
@@ -158,7 +172,7 @@ func (s *Shape) GoCode() string {
 		}
 		metaStruct := "metadata" + s.ShapeName
 		ref := &ShapeRef{ShapeName: s.ShapeName, API: s.API, Shape: s}
-		code += "\n" + metaStruct + "\n"
+		code += "\n" + metaStruct + "  `json:\"-\", xml:\"-\"`\n"
 		code += "}\n\n"
 		code += "type " + metaStruct + " struct {\n"
 		code += "SDKShapeTraits bool " + ref.GoTags(true)
