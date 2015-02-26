@@ -131,8 +131,8 @@ func Test{{ .OpName }}(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	buf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim({{ .ResponseString }}), util.Trim(string(buf)))
+	jBuf, _ := json.Marshal(req.Data)
+	assert.Equal(t, util.Trim({{ .ResponseString }}), util.Trim(string(jBuf)))
 
 	// assert headers
 {{ range $k, $v := .TestCase.OutputTest.Headers }}assert.Equal(t, "{{ $v }}", req.HTTPResponse.Header.Get("{{ $k }}"))
