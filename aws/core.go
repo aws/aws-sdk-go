@@ -155,7 +155,7 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 		Service:     service,
 		Handlers:    service.Handlers.copy(),
 		Time:        time.Now(),
-		ExpireTime:  300,
+		ExpireTime:  0,
 		Operation:   operation,
 		HTTPRequest: httpReq,
 		Body:        nil,

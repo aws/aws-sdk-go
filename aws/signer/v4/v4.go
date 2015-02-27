@@ -42,6 +42,7 @@ type signer struct {
 	Body            io.ReadSeeker
 	Debug           uint
 
+	isPresign          bool
 	formattedTime      string
 	formattedShortTime string
 
@@ -80,11 +81,19 @@ func Sign(req *aws.Request) {
 }
 
 func (v4 *signer) sign() {
-	v4.Query.Set("X-Amz-Algorithm", authHeaderPrefix)
-	if v4.SessionToken != "" {
-		v4.Query.Set("X-Amz-Security-Token", v4.SessionToken)
-	} else {
-		v4.Query.Del("X-Amz-Security-Token")
+	if v4.ExpireTime != 0 {
+		v4.isPresign = true
+	}
+
+	if v4.isPresign {
+		v4.Query.Set("X-Amz-Algorithm", authHeaderPrefix)
+		if v4.SessionToken != "" {
+			v4.Query.Set("X-Amz-Security-Token", v4.SessionToken)
+		} else {
+			v4.Query.Del("X-Amz-Security-Token")
+		}
+	} else if v4.SessionToken != "" {
+		v4.Request.Header.Set("X-Amz-Security-Token", v4.SessionToken)
 	}
 
 	v4.build()
@@ -104,19 +113,37 @@ func (v4 *signer) sign() {
 func (v4 *signer) build() {
 	v4.buildTime()             // no depends
 	v4.buildCredentialString() // no depends
-	v4.buildQuery()            // no depends
+	if v4.isPresign {
+		v4.buildQuery() // no depends
+	}
 	v4.buildCanonicalHeaders() // depends on cred string
 	v4.buildCanonicalString()  // depends on canon headers / signed headers
 	v4.buildStringToSign()     // depends on canon string
 	v4.buildSignature()        // depends on string to sign
+
+	if v4.isPresign {
+		v4.Request.URL.RawQuery += "&X-Amz-Signature=" + v4.signature
+	} else {
+		parts := []string{
+			authHeaderPrefix + " Credential=" + v4.AccessKeyID + "/" + v4.credentialString,
+			"SignedHeaders=" + v4.signedHeaders,
+			"Signature=" + v4.signature,
+		}
+		v4.Request.Header.Set("Authorization", strings.Join(parts, ", "))
+	}
 }
 
 func (v4 *signer) buildTime() {
-	duration := int64(v4.ExpireTime / time.Second)
 	v4.formattedTime = v4.Time.UTC().Format(timeFormat)
 	v4.formattedShortTime = v4.Time.UTC().Format(shortTimeFormat)
-	v4.Query.Set("X-Amz-Date", v4.formattedTime)
-	v4.Query.Set("X-Amz-Expires", strconv.FormatInt(duration, 10))
+
+	if v4.isPresign {
+		duration := int64(v4.ExpireTime / time.Second)
+		v4.Query.Set("X-Amz-Date", v4.formattedTime)
+		v4.Query.Set("X-Amz-Expires", strconv.FormatInt(duration, 10))
+	} else {
+		v4.Request.Header.Set("X-Amz-Date", v4.formattedTime)
+	}
 }
 
 func (v4 *signer) buildCredentialString() {
@@ -126,7 +153,10 @@ func (v4 *signer) buildCredentialString() {
 		v4.ServiceName,
 		"aws4_request",
 	}, "/")
-	v4.Query.Set("X-Amz-Credential", v4.AccessKeyID+"/"+v4.credentialString)
+
+	if v4.isPresign {
+		v4.Query.Set("X-Amz-Credential", v4.AccessKeyID+"/"+v4.credentialString)
+	}
 }
 
 func (v4 *signer) buildQuery() {
@@ -158,7 +188,10 @@ func (v4 *signer) buildCanonicalHeaders() {
 	sort.Strings(headers)
 
 	v4.signedHeaders = strings.Join(headers, ";")
-	v4.Query.Set("X-Amz-SignedHeaders", v4.signedHeaders)
+
+	if v4.isPresign {
+		v4.Query.Set("X-Amz-SignedHeaders", v4.signedHeaders)
+	}
 
 	headerValues := make([]string, len(headers))
 	for i, k := range headers {
@@ -212,7 +245,6 @@ func (v4 *signer) buildSignature() {
 	credentials := makeHmac(service, []byte("aws4_request"))
 	signature := makeHmac(credentials, []byte(v4.stringToSign))
 	v4.signature = hex.EncodeToString(signature)
-	v4.Request.URL.RawQuery += "&X-Amz-Signature=" + v4.signature
 }
 
 func (v4 *signer) bodyDigest() string {
