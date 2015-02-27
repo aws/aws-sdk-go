@@ -18,6 +18,8 @@ import (
 const SDKName = "aws-sdk-go"
 const SDKVersion = "0.5.0"
 
+var currentTime = time.Now
+
 func UserAgentHandler(r *Request) {
 	r.HTTPRequest.Header.Set("User-Agent", SDKName+"/"+SDKVersion)
 }
