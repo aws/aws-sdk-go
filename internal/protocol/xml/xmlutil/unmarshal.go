@@ -33,7 +33,10 @@ func parse(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 
 	switch t.Kind() {
 	case reflect.Struct:
-		return parseStruct(r, node, "")
+		if field, ok := t.FieldByName("SDKShapeTraits"); ok {
+			tag = field.Tag
+		}
+		return parseStruct(r, node, tag)
 	case reflect.Slice:
 		if tag.Get("type") == "blob" { // this is a scalar slice, not a list
 			return parseScalar(r, node, tag)
@@ -61,17 +64,15 @@ func parseStruct(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 	}
 
 	// unwrap any wrappers
-	if field, ok := t.FieldByName("SDKShapeTraits"); ok {
-		if wrapper := field.Tag.Get("resultWrapper"); wrapper != "" {
-			if children, ok := node.children[wrapper]; ok {
-				for _, c := range children {
-					err := parseStruct(r, c, "")
-					if err != nil {
-						return err
-					}
+	if wrapper := tag.Get("resultWrapper"); wrapper != "" {
+		if children, ok := node.children[wrapper]; ok {
+			for _, c := range children {
+				err := parseStruct(r, c, "")
+				if err != nil {
+					return err
 				}
-				return nil
 			}
+			return nil
 		}
 	}
 
