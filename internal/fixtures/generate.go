@@ -17,6 +17,7 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/awslabs/aws-sdk-go/internal/fixtures/helpers"
 	"github.com/awslabs/aws-sdk-go/internal/model/api"
 	"github.com/awslabs/aws-sdk-go/internal/util"
 )
@@ -47,6 +48,7 @@ type TestExpectation struct {
 const preamble = `
 var _ bytes.Buffer // always import bytes
 var _ http.Request
+var _ json.Marshaler
 `
 
 var reStripSpace = regexp.MustCompile(`\s(\w)`)
@@ -96,9 +98,8 @@ func Test{{ .OpName }}(t *testing.T) {
 	svc := New{{ .TestCase.TestSuite.API.StructName }}(nil)
 	svc.Endpoint = "https://test"
 
-	var input {{ .Given.InputRef.ShapeName }}
-	json.Unmarshal([]byte({{ .ParamsString }}), &input)
-	req := svc.{{ .Given.ExportedName }}Request(&input)
+	input := {{ .ParamsString }}
+	req := svc.{{ .Given.ExportedName }}Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -106,8 +107,10 @@ func Test{{ .OpName }}(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim({{ .Body }}), util.Trim(string(body)))
+	if r.Body != nil {
+		body, _ := ioutil.ReadAll(r.Body)
+		assert.Equal(t, util.Trim({{ .Body }}), util.Trim(string(body)))
+	}
 
 	// assert URL
 	assert.Equal(t, "https://test{{ .TestCase.InputTest.URI }}", r.URL.String())
@@ -163,12 +166,11 @@ func (i *TestCase) TestCase(idx int) string {
 			i.InputTest.Body = m.Encode()
 		}
 
-		pBuf, _ := json.Marshal(i.Params)
 		input := tplInputTestCaseData{
 			TestCase:     i,
 			Body:         fmt.Sprintf("%q", i.InputTest.Body),
 			OpName:       strings.ToUpper(opName[0:1]) + opName[1:],
-			ParamsString: fmt.Sprintf("%q", pBuf),
+			ParamsString: helpers.ParamsStructFromJSON(i.Params, i.Given.InputRef.Shape),
 		}
 
 		if err := tplInputTestCase.Execute(&buf, input); err != nil {
