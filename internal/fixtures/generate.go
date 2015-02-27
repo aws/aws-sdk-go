@@ -5,6 +5,7 @@ package main
 //go:generate go run generate.go protocol/output/query.json ../../aws/protocol/query/unmarshal_test.go
 //go:generate go run generate.go protocol/input/ec2.json ../../aws/protocol/ec2/build_test.go
 //go:generate go run generate.go protocol/output/ec2.json ../../aws/protocol/ec2/unmarshal_test.go
+//go:generate go run generate.go protocol/input/rest-json.json ../../aws/protocol/restjson/build_test.go
 
 import (
 	"bytes"

@@ -9,8 +9,8 @@ import (
 func Build(r *aws.Request) {
 	rest.Build(r)
 
-	m := rest.PayloadMember(r.Params, r.Operation.InPayload)
-	if m != nil || r.Operation.InPayload == "" {
+	m := rest.PayloadMember(r.Params)
+	if m != nil {
 		jsonrpc.Build(r)
 	}
 }
@@ -18,8 +18,8 @@ func Build(r *aws.Request) {
 func Unmarshal(r *aws.Request) {
 	rest.Unmarshal(r)
 
-	m := rest.PayloadMember(r.Data, r.Operation.OutPayload)
-	if m != nil || r.Operation.OutPayload == "" {
+	m := rest.PayloadMember(r.Data)
+	if m != nil {
 		jsonrpc.Unmarshal(r)
 	}
 }
