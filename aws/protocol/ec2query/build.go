@@ -1,8 +1,6 @@
 package ec2query
 
 import (
-	"bytes"
-	"io/ioutil"
 	"net/url"
 
 	"github.com/awslabs/aws-sdk-go/aws"
@@ -20,5 +18,6 @@ func Build(r *aws.Request) {
 	}
 
 	r.HTTPRequest.Method = "POST"
-	r.HTTPRequest.Body = ioutil.NopCloser(bytes.NewReader([]byte(body.Encode())))
+	r.HTTPRequest.Header.Set("Content-Type", "application/x-www-form-urlencoded; charset=utf-8")
+	r.SetBufferBody([]byte(body.Encode()))
 }
