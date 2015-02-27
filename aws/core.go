@@ -56,20 +56,9 @@ func AfterRetryHandler(r *Request) {
 }
 
 type Operation struct {
-	*OperationBindings
 	Name       string
 	HTTPMethod string
 	HTTPPath   string
-}
-
-type OperationBindings struct {
-	InPayload   string
-	OutPayload  string
-	Required    []string
-	QueryParams []string
-	URIParams   []string
-	InHeaders   []string
-	OutHeaders  []string
 }
 
 type Service struct {
