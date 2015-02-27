@@ -13,7 +13,7 @@ import (
 
 func Parse(body url.Values, i interface{}, isEC2 bool) error {
 	q := queryParser{isEC2: isEC2}
-	return q.parseValue(body, i, "", "")
+	return q.parseValue(body, reflect.ValueOf(i), "", "")
 }
 
 func elemOf(value reflect.Value) reflect.Value {
@@ -27,8 +27,8 @@ type queryParser struct {
 	isEC2 bool
 }
 
-func (q *queryParser) parseValue(v url.Values, i interface{}, prefix string, tag reflect.StructTag) error {
-	value := elemOf(reflect.ValueOf(i))
+func (q *queryParser) parseValue(v url.Values, value reflect.Value, prefix string, tag reflect.StructTag) error {
+	value = elemOf(value)
 
 	// no need to handle zero values
 	if !value.IsValid() {
@@ -83,7 +83,7 @@ func (q *queryParser) parseStruct(v url.Values, value reflect.Value, prefix stri
 			name = prefix + "." + name
 		}
 
-		if err := q.parseValue(v, value.Interface(), name, field.Tag); err != nil {
+		if err := q.parseValue(v, value, name, field.Tag); err != nil {
 			return err
 		}
 	}
@@ -103,7 +103,7 @@ func (q *queryParser) parseList(v url.Values, value reflect.Value, prefix string
 		} else {
 			slicePrefix = slicePrefix + "." + strconv.Itoa(i+1)
 		}
-		if err := q.parseValue(v, value.Index(i).Interface(), slicePrefix, ""); err != nil {
+		if err := q.parseValue(v, value.Index(i), slicePrefix, ""); err != nil {
 			return err
 		}
 	}
@@ -140,7 +140,7 @@ func (q *queryParser) parseMap(v url.Values, value reflect.Value, prefix string,
 			keyName = prefix + "." + strconv.Itoa(i+1) + ".key"
 		}
 
-		if err := q.parseValue(v, mapKey.Interface(), keyName, ""); err != nil {
+		if err := q.parseValue(v, mapKey, keyName, ""); err != nil {
 			return err
 		}
 
@@ -152,7 +152,7 @@ func (q *queryParser) parseMap(v url.Values, value reflect.Value, prefix string,
 			valueName = prefix + "." + strconv.Itoa(i+1) + ".value"
 		}
 
-		if err := q.parseValue(v, mapValue.Interface(), valueName, ""); err != nil {
+		if err := q.parseValue(v, mapValue, valueName, ""); err != nil {
 			return err
 		}
 	}
