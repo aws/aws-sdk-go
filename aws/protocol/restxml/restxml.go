@@ -11,7 +11,7 @@ import (
 func Build(r *aws.Request) {
 	rest.Build(r)
 
-	if m := rest.PayloadMember(r.Params, r.Operation.InPayload); m != nil {
+	if m := rest.PayloadMember(r.Params); m != nil {
 		b, err := xml.Marshal(m)
 		if err != nil {
 			r.Error = err
@@ -24,7 +24,7 @@ func Build(r *aws.Request) {
 func Unmarshal(r *aws.Request) {
 	rest.Unmarshal(r)
 
-	if m := rest.PayloadMember(r.Data, r.Operation.OutPayload); m != nil {
+	if m := rest.PayloadMember(r.Data); m != nil {
 		defer r.HTTPResponse.Body.Close()
 		err := xml.NewDecoder(r.HTTPResponse.Body).Decode(r.Data)
 		if err != nil && err != io.EOF {
