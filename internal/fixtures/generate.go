@@ -94,6 +94,7 @@ func (t *TestSuite) TestSuite() string {
 var tplInputTestCase = template.Must(template.New("inputcase").Parse(`
 func Test{{ .OpName }}(t *testing.T) {
 	svc := New{{ .TestCase.TestSuite.API.StructName }}(nil)
+	svc.Endpoint = "https://test"
 
 	var input {{ .Given.InputRef.ShapeName }}
 	json.Unmarshal([]byte({{ .ParamsString }}), &input)
@@ -109,7 +110,7 @@ func Test{{ .OpName }}(t *testing.T) {
 	assert.Equal(t, util.Trim({{ .Body }}), util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "{{ .TestCase.InputTest.URI }}", r.URL.Path)
+	assert.Equal(t, "https://test{{ .TestCase.InputTest.URI }}", r.URL.String())
 
 	// assert headers
 {{ range $k, $v := .TestCase.InputTest.Headers }}assert.Equal(t, "{{ $v }}", r.Header.Get("{{ $k }}"))
