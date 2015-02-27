@@ -17,6 +17,7 @@ import (
 
 var _ bytes.Buffer // always import bytes
 var _ http.Request
+var _ json.Marshaler
 
 // OutputService1ProtocolTest is a client for OutputService1ProtocolTest.
 type OutputService1ProtocolTest struct {

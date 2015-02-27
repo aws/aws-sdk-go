@@ -7,16 +7,16 @@ import (
 
 	"bytes"
 	"encoding/json"
+	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
-
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
 var _ http.Request
+var _ json.Marshaler
 
 // InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
@@ -73,7 +73,7 @@ type InputService1TestShapeInputShape struct {
 	Bar *string `type:"string"`
 	Foo *string `type:"string"`
 
-	metadataInputService1TestShapeInputShape
+	metadataInputService1TestShapeInputShape `json:"-", xml:"-"`
 }
 
 type metadataInputService1TestShapeInputShape struct {
@@ -134,7 +134,7 @@ var opInputService2TestCaseOperation1 *aws.Operation
 type InputService2TestShapeInputShape struct {
 	StructArg *InputService2TestShapeStructType `type:"structure"`
 
-	metadataInputService2TestShapeInputShape
+	metadataInputService2TestShapeInputShape `json:"-", xml:"-"`
 }
 
 type metadataInputService2TestShapeInputShape struct {
@@ -144,7 +144,7 @@ type metadataInputService2TestShapeInputShape struct {
 type InputService2TestShapeStructType struct {
 	ScalarArg *string `type:"string"`
 
-	metadataInputService2TestShapeStructType
+	metadataInputService2TestShapeStructType `json:"-", xml:"-"`
 }
 
 type metadataInputService2TestShapeStructType struct {
@@ -205,7 +205,7 @@ var opInputService3TestCaseOperation1 *aws.Operation
 type InputService3TestShapeInputShape struct {
 	ListArg []*string `type:"list"`
 
-	metadataInputService3TestShapeInputShape
+	metadataInputService3TestShapeInputShape `json:"-", xml:"-"`
 }
 
 type metadataInputService3TestShapeInputShape struct {
@@ -267,7 +267,7 @@ type InputService4TestShapeInputShape struct {
 	ListArg   []*string `type:"list" flattened:"true"`
 	ScalarArg *string   `type:"string"`
 
-	metadataInputService4TestShapeInputShape
+	metadataInputService4TestShapeInputShape `json:"-", xml:"-"`
 }
 
 type metadataInputService4TestShapeInputShape struct {
@@ -328,7 +328,7 @@ var opInputService5TestCaseOperation1 *aws.Operation
 type InputService5TestShapeInputShape struct {
 	MapArg *map[string]*string `type:"map"`
 
-	metadataInputService5TestShapeInputShape
+	metadataInputService5TestShapeInputShape `json:"-", xml:"-"`
 }
 
 type metadataInputService5TestShapeInputShape struct {
@@ -389,7 +389,7 @@ var opInputService6TestCaseOperation1 *aws.Operation
 type InputService6TestShapeInputShape struct {
 	BlobArg []byte `type:"blob"`
 
-	metadataInputService6TestShapeInputShape
+	metadataInputService6TestShapeInputShape `json:"-", xml:"-"`
 }
 
 type metadataInputService6TestShapeInputShape struct {
@@ -402,10 +402,13 @@ type metadataInputService6TestShapeInputShape struct {
 
 func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	svc := NewInputService1ProtocolTest(nil)
+	svc.Endpoint = "https://test"
 
-	var input InputService1TestShapeInputShape
-	json.Unmarshal([]byte("{\"Bar\":\"val2\",\"Foo\":\"val1\"}"), &input)
-	req := svc.InputService1TestCaseOperation1Request(&input)
+	input := &InputService1TestShapeInputShape{
+		Bar: aws.String("val2"),
+		Foo: aws.String("val1"),
+	}
+	req := svc.InputService1TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -413,11 +416,13 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01"), util.Trim(string(body)))
+	if r.Body != nil {
+		body, _ := ioutil.ReadAll(r.Body)
+		assert.Equal(t, util.Trim("Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01"), util.Trim(string(body)))
+	}
 
 	// assert URL
-	assert.Equal(t, "/", r.URL.Path)
+	assert.Equal(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -425,10 +430,14 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 
 func TestInputService2ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 	svc := NewInputService2ProtocolTest(nil)
+	svc.Endpoint = "https://test"
 
-	var input InputService2TestShapeInputShape
-	json.Unmarshal([]byte("{\"StructArg\":{\"ScalarArg\":\"foo\"}}"), &input)
-	req := svc.InputService2TestCaseOperation1Request(&input)
+	input := &InputService2TestShapeInputShape{
+		StructArg: &InputService2TestShapeStructType{
+			ScalarArg: aws.String("foo"),
+		},
+	}
+	req := svc.InputService2TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -436,11 +445,13 @@ func TestInputService2ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&StructArg.ScalarArg=foo&Version=2014-01-01"), util.Trim(string(body)))
+	if r.Body != nil {
+		body, _ := ioutil.ReadAll(r.Body)
+		assert.Equal(t, util.Trim("Action=OperationName&StructArg.ScalarArg=foo&Version=2014-01-01"), util.Trim(string(body)))
+	}
 
 	// assert URL
-	assert.Equal(t, "/", r.URL.Path)
+	assert.Equal(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -448,10 +459,16 @@ func TestInputService2ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 
 func TestInputService3ProtocolTestListTypesCase1(t *testing.T) {
 	svc := NewInputService3ProtocolTest(nil)
+	svc.Endpoint = "https://test"
 
-	var input InputService3TestShapeInputShape
-	json.Unmarshal([]byte("{\"ListArg\":[\"foo\",\"bar\",\"baz\"]}"), &input)
-	req := svc.InputService3TestCaseOperation1Request(&input)
+	input := &InputService3TestShapeInputShape{
+		ListArg: []*string{
+			aws.String("foo"),
+			aws.String("bar"),
+			aws.String("baz"),
+		},
+	}
+	req := svc.InputService3TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -459,11 +476,13 @@ func TestInputService3ProtocolTestListTypesCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&ListArg.member.1=foo&ListArg.member.2=bar&ListArg.member.3=baz&Version=2014-01-01"), util.Trim(string(body)))
+	if r.Body != nil {
+		body, _ := ioutil.ReadAll(r.Body)
+		assert.Equal(t, util.Trim("Action=OperationName&ListArg.member.1=foo&ListArg.member.2=bar&ListArg.member.3=baz&Version=2014-01-01"), util.Trim(string(body)))
+	}
 
 	// assert URL
-	assert.Equal(t, "/", r.URL.Path)
+	assert.Equal(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -471,10 +490,17 @@ func TestInputService3ProtocolTestListTypesCase1(t *testing.T) {
 
 func TestInputService4ProtocolTestFlattenedListCase1(t *testing.T) {
 	svc := NewInputService4ProtocolTest(nil)
+	svc.Endpoint = "https://test"
 
-	var input InputService4TestShapeInputShape
-	json.Unmarshal([]byte("{\"ListArg\":[\"a\",\"b\",\"c\"],\"ScalarArg\":\"foo\"}"), &input)
-	req := svc.InputService4TestCaseOperation1Request(&input)
+	input := &InputService4TestShapeInputShape{
+		ListArg: []*string{
+			aws.String("a"),
+			aws.String("b"),
+			aws.String("c"),
+		},
+		ScalarArg: aws.String("foo"),
+	}
+	req := svc.InputService4TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -482,11 +508,13 @@ func TestInputService4ProtocolTestFlattenedListCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&ListArg.1=a&ListArg.2=b&ListArg.3=c&ScalarArg=foo&Version=2014-01-01"), util.Trim(string(body)))
+	if r.Body != nil {
+		body, _ := ioutil.ReadAll(r.Body)
+		assert.Equal(t, util.Trim("Action=OperationName&ListArg.1=a&ListArg.2=b&ListArg.3=c&ScalarArg=foo&Version=2014-01-01"), util.Trim(string(body)))
+	}
 
 	// assert URL
-	assert.Equal(t, "/", r.URL.Path)
+	assert.Equal(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -494,10 +522,15 @@ func TestInputService4ProtocolTestFlattenedListCase1(t *testing.T) {
 
 func TestInputService5ProtocolTestSerializeMapTypeCase1(t *testing.T) {
 	svc := NewInputService5ProtocolTest(nil)
+	svc.Endpoint = "https://test"
 
-	var input InputService5TestShapeInputShape
-	json.Unmarshal([]byte("{\"MapArg\":{\"key1\":\"val1\",\"key2\":\"val2\"}}"), &input)
-	req := svc.InputService5TestCaseOperation1Request(&input)
+	input := &InputService5TestShapeInputShape{
+		MapArg: &map[string]*string{
+			"key2": aws.String("val2"),
+			"key1": aws.String("val1"),
+		},
+	}
+	req := svc.InputService5TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -505,11 +538,13 @@ func TestInputService5ProtocolTestSerializeMapTypeCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&MapArg.entry.1.key=key1&MapArg.entry.1.value=val1&MapArg.entry.2.key=key2&MapArg.entry.2.value=val2&Version=2014-01-01"), util.Trim(string(body)))
+	if r.Body != nil {
+		body, _ := ioutil.ReadAll(r.Body)
+		assert.Equal(t, util.Trim("Action=OperationName&MapArg.entry.1.key=key1&MapArg.entry.1.value=val1&MapArg.entry.2.key=key2&MapArg.entry.2.value=val2&Version=2014-01-01"), util.Trim(string(body)))
+	}
 
 	// assert URL
-	assert.Equal(t, "/", r.URL.Path)
+	assert.Equal(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -517,10 +552,12 @@ func TestInputService5ProtocolTestSerializeMapTypeCase1(t *testing.T) {
 
 func TestInputService6ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	svc := NewInputService6ProtocolTest(nil)
+	svc.Endpoint = "https://test"
 
-	var input InputService6TestShapeInputShape
-	json.Unmarshal([]byte("{\"BlobArg\":\"Zm9v\"}"), &input)
-	req := svc.InputService6TestCaseOperation1Request(&input)
+	input := &InputService6TestShapeInputShape{
+		BlobArg: []byte("foo"),
+	}
+	req := svc.InputService6TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -528,12 +565,15 @@ func TestInputService6ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&BlobArg=Zm9v&Version=2014-01-01"), util.Trim(string(body)))
+	if r.Body != nil {
+		body, _ := ioutil.ReadAll(r.Body)
+		assert.Equal(t, util.Trim("Action=OperationName&BlobArg=Zm9v&Version=2014-01-01"), util.Trim(string(body)))
+	}
 
 	// assert URL
-	assert.Equal(t, "/", r.URL.Path)
+	assert.Equal(t, "https://test/", r.URL.String())
 
 	// assert headers
 
 }
+

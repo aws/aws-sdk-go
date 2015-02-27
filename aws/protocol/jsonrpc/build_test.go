@@ -16,6 +16,7 @@ import (
 
 var _ bytes.Buffer // always import bytes
 var _ http.Request
+var _ json.Marshaler
 
 // InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
@@ -34,7 +35,7 @@ func NewInputService1ProtocolTest(config *InputService1ProtocolTestConfig) *Inpu
 
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config.Config),
-		ServiceName:  "",
+		ServiceName:  "inputservice1protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "1.1",
 		TargetPrefix: "com.amazonaws.foo",
@@ -55,7 +56,6 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input
 		opInputService1TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
-			HTTPPath:   "",
 		}
 	}
 
@@ -75,7 +75,7 @@ var opInputService1TestCaseOperation1 *aws.Operation
 type InputService1TestShapeInputShape struct {
 	Name *string `type:"string" json:",omitempty"`
 
-	metadataInputService1TestShapeInputShape
+	metadataInputService1TestShapeInputShape `json:"-", xml:"-"`
 }
 
 type metadataInputService1TestShapeInputShape struct {
@@ -88,21 +88,26 @@ type metadataInputService1TestShapeInputShape struct {
 
 func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	svc := NewInputService1ProtocolTest(nil)
+	svc.Endpoint = "https://test"
 
-	var input InputService1TestShapeInputShape
-	json.Unmarshal([]byte("{\"Name\":\"myname\"}"), &input)
-	req := svc.InputService1TestCaseOperation1Request(&input)
+	input := &InputService1TestShapeInputShape{
+		Name: aws.String("myname"),
+	}
+	req := svc.InputService1TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
 	jsonrpc.Build(req)
+	assert.NoError(t, req.Error)
 
 	// assert body
-	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("{\"Name\": \"myname\"}"), util.Trim(string(body)))
+	if r.Body != nil {
+		body, _ := ioutil.ReadAll(r.Body)
+		assert.Equal(t, util.Trim("{\"Name\": \"myname\"}"), util.Trim(string(body)))
+	}
 
 	// assert URL
-	assert.Equal(t, "/", r.URL.Path)
+	assert.Equal(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
