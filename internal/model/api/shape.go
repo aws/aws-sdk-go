@@ -39,6 +39,7 @@ type Shape struct {
 	Enum          []string
 	Flattened     bool
 	ResultWrapper string
+	Streaming     bool
 
 	refs []*ShapeRef
 }
@@ -168,7 +169,11 @@ func (s *Shape) GoCode() string {
 		code += "struct {\n"
 		for _, n := range s.MemberNames() {
 			m := s.MemberRefs[n]
-			code += n + " " + m.GoType() + " " + m.GoTags(false) + "\n"
+			if s.Streaming && s.Payload == n {
+				code += n + " io.ReadSeeker " + m.GoTags(false) + "\n"
+			} else {
+				code += n + " " + m.GoType() + " " + m.GoTags(false) + "\n"
+			}
 		}
 		metaStruct := "metadata" + s.ShapeName
 		ref := &ShapeRef{ShapeName: s.ShapeName, API: s.API, Shape: s}

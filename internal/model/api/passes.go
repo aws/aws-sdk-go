@@ -114,6 +114,9 @@ func (a *API) renameExportable() {
 		if newName != s.ShapeName {
 			s.Rename(newName)
 		}
+
+		s.Payload = a.exportableName(s.Payload)
+		s.ResultWrapper = a.exportableName(s.ResultWrapper)
 	}
 }
 
@@ -150,6 +153,10 @@ func splitName(name string) []string {
 }
 
 func (a *API) exportableName(name string) string {
+	if name == "" {
+		return name
+	}
+
 	failed := false
 
 	// make sure the symbol is exportable
