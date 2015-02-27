@@ -10,6 +10,20 @@ import (
 	"strings"
 )
 
+// updateTopLevelResultWrappers moved resultWrappers from toplevel shape
+// references to the toplevel shapes for easier code generation
+func (a *API) updateTopLevelResultWrappers() {
+	for _, o := range a.Operations {
+		if o.InputRef.ResultWrapper != "" {
+			o.InputRef.Shape.ResultWrapper = o.InputRef.ResultWrapper
+		}
+		if o.OutputRef.ResultWrapper != "" {
+			o.OutputRef.Shape.ResultWrapper = o.OutputRef.ResultWrapper
+		}
+	}
+
+}
+
 func (a *API) writeShapeNames() {
 	for n, s := range a.Shapes {
 		s.API = a
