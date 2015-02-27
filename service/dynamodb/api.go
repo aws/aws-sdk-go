@@ -336,7 +336,7 @@ type AttributeDefinition struct {
 	AttributeName *string `type:"string" json:",omitempty"`
 	AttributeType *string `type:"string" json:",omitempty"`
 
-	metadataAttributeDefinition
+	metadataAttributeDefinition `json:"-", xml:"-"`
 }
 
 type metadataAttributeDefinition struct {
@@ -344,18 +344,18 @@ type metadataAttributeDefinition struct {
 }
 
 type AttributeValue struct {
-	B    *[]byte                     `type:"blob" json:",omitempty"`
+	B    []byte                      `type:"blob" json:",omitempty"`
 	BOOL *bool                       `type:"boolean" json:",omitempty"`
-	BS   *[]*[]byte                  `type:"list" json:",omitempty"`
-	L    *[]*AttributeValue          `type:"list" json:",omitempty"`
+	BS   [][]byte                    `type:"list" json:",omitempty"`
+	L    []*AttributeValue           `type:"list" json:",omitempty"`
 	M    *map[string]*AttributeValue `type:"map" json:",omitempty"`
 	N    *string                     `type:"string" json:",omitempty"`
-	NS   *[]*string                  `type:"list" json:",omitempty"`
+	NS   []*string                   `type:"list" json:",omitempty"`
 	NULL *bool                       `type:"boolean" json:",omitempty"`
 	S    *string                     `type:"string" json:",omitempty"`
-	SS   *[]*string                  `type:"list" json:",omitempty"`
+	SS   []*string                   `type:"list" json:",omitempty"`
 
-	metadataAttributeValue
+	metadataAttributeValue `json:"-", xml:"-"`
 }
 
 type metadataAttributeValue struct {
@@ -366,7 +366,7 @@ type AttributeValueUpdate struct {
 	Action *string         `type:"string" json:",omitempty"`
 	Value  *AttributeValue `type:"structure" json:",omitempty"`
 
-	metadataAttributeValueUpdate
+	metadataAttributeValueUpdate `json:"-", xml:"-"`
 }
 
 type metadataAttributeValueUpdate struct {
@@ -377,7 +377,7 @@ type BatchGetItemInput struct {
 	RequestItems           *map[string]*KeysAndAttributes `type:"map" json:",omitempty"`
 	ReturnConsumedCapacity *string                        `type:"string" json:",omitempty"`
 
-	metadataBatchGetItemInput
+	metadataBatchGetItemInput `json:"-", xml:"-"`
 }
 
 type metadataBatchGetItemInput struct {
@@ -385,11 +385,11 @@ type metadataBatchGetItemInput struct {
 }
 
 type BatchGetItemOutput struct {
-	ConsumedCapacity *[]*ConsumedCapacity                       `type:"list" json:",omitempty"`
-	Responses        *map[string]*[]*map[string]*AttributeValue `type:"map" json:",omitempty"`
-	UnprocessedKeys  *map[string]*KeysAndAttributes             `type:"map" json:",omitempty"`
+	ConsumedCapacity []*ConsumedCapacity                       `type:"list" json:",omitempty"`
+	Responses        *map[string][]*map[string]*AttributeValue `type:"map" json:",omitempty"`
+	UnprocessedKeys  *map[string]*KeysAndAttributes            `type:"map" json:",omitempty"`
 
-	metadataBatchGetItemOutput
+	metadataBatchGetItemOutput `json:"-", xml:"-"`
 }
 
 type metadataBatchGetItemOutput struct {
@@ -397,11 +397,11 @@ type metadataBatchGetItemOutput struct {
 }
 
 type BatchWriteItemInput struct {
-	RequestItems                *map[string]*[]*WriteRequest `type:"map" json:",omitempty"`
-	ReturnConsumedCapacity      *string                      `type:"string" json:",omitempty"`
-	ReturnItemCollectionMetrics *string                      `type:"string" json:",omitempty"`
+	RequestItems                *map[string][]*WriteRequest `type:"map" json:",omitempty"`
+	ReturnConsumedCapacity      *string                     `type:"string" json:",omitempty"`
+	ReturnItemCollectionMetrics *string                     `type:"string" json:",omitempty"`
 
-	metadataBatchWriteItemInput
+	metadataBatchWriteItemInput `json:"-", xml:"-"`
 }
 
 type metadataBatchWriteItemInput struct {
@@ -409,11 +409,11 @@ type metadataBatchWriteItemInput struct {
 }
 
 type BatchWriteItemOutput struct {
-	ConsumedCapacity      *[]*ConsumedCapacity                  `type:"list" json:",omitempty"`
-	ItemCollectionMetrics *map[string]*[]*ItemCollectionMetrics `type:"map" json:",omitempty"`
-	UnprocessedItems      *map[string]*[]*WriteRequest          `type:"map" json:",omitempty"`
+	ConsumedCapacity      []*ConsumedCapacity                  `type:"list" json:",omitempty"`
+	ItemCollectionMetrics *map[string][]*ItemCollectionMetrics `type:"map" json:",omitempty"`
+	UnprocessedItems      *map[string][]*WriteRequest          `type:"map" json:",omitempty"`
 
-	metadataBatchWriteItemOutput
+	metadataBatchWriteItemOutput `json:"-", xml:"-"`
 }
 
 type metadataBatchWriteItemOutput struct {
@@ -423,7 +423,7 @@ type metadataBatchWriteItemOutput struct {
 type Capacity struct {
 	CapacityUnits *float64 `type:"double" json:",omitempty"`
 
-	metadataCapacity
+	metadataCapacity `json:"-", xml:"-"`
 }
 
 type metadataCapacity struct {
@@ -431,10 +431,10 @@ type metadataCapacity struct {
 }
 
 type Condition struct {
-	AttributeValueList *[]*AttributeValue `type:"list" json:",omitempty"`
-	ComparisonOperator *string            `type:"string" json:",omitempty"`
+	AttributeValueList []*AttributeValue `type:"list" json:",omitempty"`
+	ComparisonOperator *string           `type:"string" json:",omitempty"`
 
-	metadataCondition
+	metadataCondition `json:"-", xml:"-"`
 }
 
 type metadataCondition struct {
@@ -444,7 +444,7 @@ type metadataCondition struct {
 type ConditionalCheckFailedException struct {
 	Message *string `locationName:"message" type:"string" json:",omitempty"`
 
-	metadataConditionalCheckFailedException
+	metadataConditionalCheckFailedException `json:"-", xml:"-"`
 }
 
 type metadataConditionalCheckFailedException struct {
@@ -458,7 +458,7 @@ type ConsumedCapacity struct {
 	Table                  *Capacity             `type:"structure" json:",omitempty"`
 	TableName              *string               `type:"string" json:",omitempty"`
 
-	metadataConsumedCapacity
+	metadataConsumedCapacity `json:"-", xml:"-"`
 }
 
 type metadataConsumedCapacity struct {
@@ -467,11 +467,11 @@ type metadataConsumedCapacity struct {
 
 type CreateGlobalSecondaryIndexAction struct {
 	IndexName             *string                `type:"string" json:",omitempty"`
-	KeySchema             *[]*KeySchemaElement   `type:"list" json:",omitempty"`
+	KeySchema             []*KeySchemaElement    `type:"list" json:",omitempty"`
 	Projection            *Projection            `type:"structure" json:",omitempty"`
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" json:",omitempty"`
 
-	metadataCreateGlobalSecondaryIndexAction
+	metadataCreateGlobalSecondaryIndexAction `json:"-", xml:"-"`
 }
 
 type metadataCreateGlobalSecondaryIndexAction struct {
@@ -479,14 +479,14 @@ type metadataCreateGlobalSecondaryIndexAction struct {
 }
 
 type CreateTableInput struct {
-	AttributeDefinitions   *[]*AttributeDefinition  `type:"list" json:",omitempty"`
-	GlobalSecondaryIndexes *[]*GlobalSecondaryIndex `type:"list" json:",omitempty"`
-	KeySchema              *[]*KeySchemaElement     `type:"list" json:",omitempty"`
-	LocalSecondaryIndexes  *[]*LocalSecondaryIndex  `type:"list" json:",omitempty"`
-	ProvisionedThroughput  *ProvisionedThroughput   `type:"structure" json:",omitempty"`
-	TableName              *string                  `type:"string" json:",omitempty"`
+	AttributeDefinitions   []*AttributeDefinition  `type:"list" json:",omitempty"`
+	GlobalSecondaryIndexes []*GlobalSecondaryIndex `type:"list" json:",omitempty"`
+	KeySchema              []*KeySchemaElement     `type:"list" json:",omitempty"`
+	LocalSecondaryIndexes  []*LocalSecondaryIndex  `type:"list" json:",omitempty"`
+	ProvisionedThroughput  *ProvisionedThroughput  `type:"structure" json:",omitempty"`
+	TableName              *string                 `type:"string" json:",omitempty"`
 
-	metadataCreateTableInput
+	metadataCreateTableInput `json:"-", xml:"-"`
 }
 
 type metadataCreateTableInput struct {
@@ -496,7 +496,7 @@ type metadataCreateTableInput struct {
 type CreateTableOutput struct {
 	TableDescription *TableDescription `type:"structure" json:",omitempty"`
 
-	metadataCreateTableOutput
+	metadataCreateTableOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateTableOutput struct {
@@ -506,7 +506,7 @@ type metadataCreateTableOutput struct {
 type DeleteGlobalSecondaryIndexAction struct {
 	IndexName *string `type:"string" json:",omitempty"`
 
-	metadataDeleteGlobalSecondaryIndexAction
+	metadataDeleteGlobalSecondaryIndexAction `json:"-", xml:"-"`
 }
 
 type metadataDeleteGlobalSecondaryIndexAction struct {
@@ -525,7 +525,7 @@ type DeleteItemInput struct {
 	ReturnValues                *string                             `type:"string" json:",omitempty"`
 	TableName                   *string                             `type:"string" json:",omitempty"`
 
-	metadataDeleteItemInput
+	metadataDeleteItemInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteItemInput struct {
@@ -537,7 +537,7 @@ type DeleteItemOutput struct {
 	ConsumedCapacity      *ConsumedCapacity           `type:"structure" json:",omitempty"`
 	ItemCollectionMetrics *ItemCollectionMetrics      `type:"structure" json:",omitempty"`
 
-	metadataDeleteItemOutput
+	metadataDeleteItemOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteItemOutput struct {
@@ -547,7 +547,7 @@ type metadataDeleteItemOutput struct {
 type DeleteRequest struct {
 	Key *map[string]*AttributeValue `type:"map" json:",omitempty"`
 
-	metadataDeleteRequest
+	metadataDeleteRequest `json:"-", xml:"-"`
 }
 
 type metadataDeleteRequest struct {
@@ -557,7 +557,7 @@ type metadataDeleteRequest struct {
 type DeleteTableInput struct {
 	TableName *string `type:"string" json:",omitempty"`
 
-	metadataDeleteTableInput
+	metadataDeleteTableInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTableInput struct {
@@ -567,7 +567,7 @@ type metadataDeleteTableInput struct {
 type DeleteTableOutput struct {
 	TableDescription *TableDescription `type:"structure" json:",omitempty"`
 
-	metadataDeleteTableOutput
+	metadataDeleteTableOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTableOutput struct {
@@ -577,7 +577,7 @@ type metadataDeleteTableOutput struct {
 type DescribeTableInput struct {
 	TableName *string `type:"string" json:",omitempty"`
 
-	metadataDescribeTableInput
+	metadataDescribeTableInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTableInput struct {
@@ -587,7 +587,7 @@ type metadataDescribeTableInput struct {
 type DescribeTableOutput struct {
 	Table *TableDescription `type:"structure" json:",omitempty"`
 
-	metadataDescribeTableOutput
+	metadataDescribeTableOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTableOutput struct {
@@ -595,12 +595,12 @@ type metadataDescribeTableOutput struct {
 }
 
 type ExpectedAttributeValue struct {
-	AttributeValueList *[]*AttributeValue `type:"list" json:",omitempty"`
-	ComparisonOperator *string            `type:"string" json:",omitempty"`
-	Exists             *bool              `type:"boolean" json:",omitempty"`
-	Value              *AttributeValue    `type:"structure" json:",omitempty"`
+	AttributeValueList []*AttributeValue `type:"list" json:",omitempty"`
+	ComparisonOperator *string           `type:"string" json:",omitempty"`
+	Exists             *bool             `type:"boolean" json:",omitempty"`
+	Value              *AttributeValue   `type:"structure" json:",omitempty"`
 
-	metadataExpectedAttributeValue
+	metadataExpectedAttributeValue `json:"-", xml:"-"`
 }
 
 type metadataExpectedAttributeValue struct {
@@ -608,7 +608,7 @@ type metadataExpectedAttributeValue struct {
 }
 
 type GetItemInput struct {
-	AttributesToGet          *[]*string                  `type:"list" json:",omitempty"`
+	AttributesToGet          []*string                   `type:"list" json:",omitempty"`
 	ConsistentRead           *bool                       `type:"boolean" json:",omitempty"`
 	ExpressionAttributeNames *map[string]*string         `type:"map" json:",omitempty"`
 	Key                      *map[string]*AttributeValue `type:"map" json:",omitempty"`
@@ -616,7 +616,7 @@ type GetItemInput struct {
 	ReturnConsumedCapacity   *string                     `type:"string" json:",omitempty"`
 	TableName                *string                     `type:"string" json:",omitempty"`
 
-	metadataGetItemInput
+	metadataGetItemInput `json:"-", xml:"-"`
 }
 
 type metadataGetItemInput struct {
@@ -627,7 +627,7 @@ type GetItemOutput struct {
 	ConsumedCapacity *ConsumedCapacity           `type:"structure" json:",omitempty"`
 	Item             *map[string]*AttributeValue `type:"map" json:",omitempty"`
 
-	metadataGetItemOutput
+	metadataGetItemOutput `json:"-", xml:"-"`
 }
 
 type metadataGetItemOutput struct {
@@ -636,11 +636,11 @@ type metadataGetItemOutput struct {
 
 type GlobalSecondaryIndex struct {
 	IndexName             *string                `type:"string" json:",omitempty"`
-	KeySchema             *[]*KeySchemaElement   `type:"list" json:",omitempty"`
+	KeySchema             []*KeySchemaElement    `type:"list" json:",omitempty"`
 	Projection            *Projection            `type:"structure" json:",omitempty"`
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" json:",omitempty"`
 
-	metadataGlobalSecondaryIndex
+	metadataGlobalSecondaryIndex `json:"-", xml:"-"`
 }
 
 type metadataGlobalSecondaryIndex struct {
@@ -653,11 +653,11 @@ type GlobalSecondaryIndexDescription struct {
 	IndexSizeBytes        *int64                            `type:"long" json:",omitempty"`
 	IndexStatus           *string                           `type:"string" json:",omitempty"`
 	ItemCount             *int64                            `type:"long" json:",omitempty"`
-	KeySchema             *[]*KeySchemaElement              `type:"list" json:",omitempty"`
+	KeySchema             []*KeySchemaElement               `type:"list" json:",omitempty"`
 	Projection            *Projection                       `type:"structure" json:",omitempty"`
 	ProvisionedThroughput *ProvisionedThroughputDescription `type:"structure" json:",omitempty"`
 
-	metadataGlobalSecondaryIndexDescription
+	metadataGlobalSecondaryIndexDescription `json:"-", xml:"-"`
 }
 
 type metadataGlobalSecondaryIndexDescription struct {
@@ -669,7 +669,7 @@ type GlobalSecondaryIndexUpdate struct {
 	Delete *DeleteGlobalSecondaryIndexAction `type:"structure" json:",omitempty"`
 	Update *UpdateGlobalSecondaryIndexAction `type:"structure" json:",omitempty"`
 
-	metadataGlobalSecondaryIndexUpdate
+	metadataGlobalSecondaryIndexUpdate `json:"-", xml:"-"`
 }
 
 type metadataGlobalSecondaryIndexUpdate struct {
@@ -679,7 +679,7 @@ type metadataGlobalSecondaryIndexUpdate struct {
 type InternalServerError struct {
 	Message *string `locationName:"message" type:"string" json:",omitempty"`
 
-	metadataInternalServerError
+	metadataInternalServerError `json:"-", xml:"-"`
 }
 
 type metadataInternalServerError struct {
@@ -688,9 +688,9 @@ type metadataInternalServerError struct {
 
 type ItemCollectionMetrics struct {
 	ItemCollectionKey   *map[string]*AttributeValue `type:"map" json:",omitempty"`
-	SizeEstimateRangeGB *[]*float64                 `type:"list" json:",omitempty"`
+	SizeEstimateRangeGB []*float64                  `type:"list" json:",omitempty"`
 
-	metadataItemCollectionMetrics
+	metadataItemCollectionMetrics `json:"-", xml:"-"`
 }
 
 type metadataItemCollectionMetrics struct {
@@ -700,7 +700,7 @@ type metadataItemCollectionMetrics struct {
 type ItemCollectionSizeLimitExceededException struct {
 	Message *string `locationName:"message" type:"string" json:",omitempty"`
 
-	metadataItemCollectionSizeLimitExceededException
+	metadataItemCollectionSizeLimitExceededException `json:"-", xml:"-"`
 }
 
 type metadataItemCollectionSizeLimitExceededException struct {
@@ -711,7 +711,7 @@ type KeySchemaElement struct {
 	AttributeName *string `type:"string" json:",omitempty"`
 	KeyType       *string `type:"string" json:",omitempty"`
 
-	metadataKeySchemaElement
+	metadataKeySchemaElement `json:"-", xml:"-"`
 }
 
 type metadataKeySchemaElement struct {
@@ -719,13 +719,13 @@ type metadataKeySchemaElement struct {
 }
 
 type KeysAndAttributes struct {
-	AttributesToGet          *[]*string                     `type:"list" json:",omitempty"`
-	ConsistentRead           *bool                          `type:"boolean" json:",omitempty"`
-	ExpressionAttributeNames *map[string]*string            `type:"map" json:",omitempty"`
-	Keys                     *[]*map[string]*AttributeValue `type:"list" json:",omitempty"`
-	ProjectionExpression     *string                        `type:"string" json:",omitempty"`
+	AttributesToGet          []*string                     `type:"list" json:",omitempty"`
+	ConsistentRead           *bool                         `type:"boolean" json:",omitempty"`
+	ExpressionAttributeNames *map[string]*string           `type:"map" json:",omitempty"`
+	Keys                     []*map[string]*AttributeValue `type:"list" json:",omitempty"`
+	ProjectionExpression     *string                       `type:"string" json:",omitempty"`
 
-	metadataKeysAndAttributes
+	metadataKeysAndAttributes `json:"-", xml:"-"`
 }
 
 type metadataKeysAndAttributes struct {
@@ -735,7 +735,7 @@ type metadataKeysAndAttributes struct {
 type LimitExceededException struct {
 	Message *string `locationName:"message" type:"string" json:",omitempty"`
 
-	metadataLimitExceededException
+	metadataLimitExceededException `json:"-", xml:"-"`
 }
 
 type metadataLimitExceededException struct {
@@ -746,7 +746,7 @@ type ListTablesInput struct {
 	ExclusiveStartTableName *string `type:"string" json:",omitempty"`
 	Limit                   *int    `type:"integer" json:",omitempty"`
 
-	metadataListTablesInput
+	metadataListTablesInput `json:"-", xml:"-"`
 }
 
 type metadataListTablesInput struct {
@@ -754,10 +754,10 @@ type metadataListTablesInput struct {
 }
 
 type ListTablesOutput struct {
-	LastEvaluatedTableName *string    `type:"string" json:",omitempty"`
-	TableNames             *[]*string `type:"list" json:",omitempty"`
+	LastEvaluatedTableName *string   `type:"string" json:",omitempty"`
+	TableNames             []*string `type:"list" json:",omitempty"`
 
-	metadataListTablesOutput
+	metadataListTablesOutput `json:"-", xml:"-"`
 }
 
 type metadataListTablesOutput struct {
@@ -765,11 +765,11 @@ type metadataListTablesOutput struct {
 }
 
 type LocalSecondaryIndex struct {
-	IndexName  *string              `type:"string" json:",omitempty"`
-	KeySchema  *[]*KeySchemaElement `type:"list" json:",omitempty"`
-	Projection *Projection          `type:"structure" json:",omitempty"`
+	IndexName  *string             `type:"string" json:",omitempty"`
+	KeySchema  []*KeySchemaElement `type:"list" json:",omitempty"`
+	Projection *Projection         `type:"structure" json:",omitempty"`
 
-	metadataLocalSecondaryIndex
+	metadataLocalSecondaryIndex `json:"-", xml:"-"`
 }
 
 type metadataLocalSecondaryIndex struct {
@@ -777,13 +777,13 @@ type metadataLocalSecondaryIndex struct {
 }
 
 type LocalSecondaryIndexDescription struct {
-	IndexName      *string              `type:"string" json:",omitempty"`
-	IndexSizeBytes *int64               `type:"long" json:",omitempty"`
-	ItemCount      *int64               `type:"long" json:",omitempty"`
-	KeySchema      *[]*KeySchemaElement `type:"list" json:",omitempty"`
-	Projection     *Projection          `type:"structure" json:",omitempty"`
+	IndexName      *string             `type:"string" json:",omitempty"`
+	IndexSizeBytes *int64              `type:"long" json:",omitempty"`
+	ItemCount      *int64              `type:"long" json:",omitempty"`
+	KeySchema      []*KeySchemaElement `type:"list" json:",omitempty"`
+	Projection     *Projection         `type:"structure" json:",omitempty"`
 
-	metadataLocalSecondaryIndexDescription
+	metadataLocalSecondaryIndexDescription `json:"-", xml:"-"`
 }
 
 type metadataLocalSecondaryIndexDescription struct {
@@ -791,10 +791,10 @@ type metadataLocalSecondaryIndexDescription struct {
 }
 
 type Projection struct {
-	NonKeyAttributes *[]*string `type:"list" json:",omitempty"`
-	ProjectionType   *string    `type:"string" json:",omitempty"`
+	NonKeyAttributes []*string `type:"list" json:",omitempty"`
+	ProjectionType   *string   `type:"string" json:",omitempty"`
 
-	metadataProjection
+	metadataProjection `json:"-", xml:"-"`
 }
 
 type metadataProjection struct {
@@ -805,7 +805,7 @@ type ProvisionedThroughput struct {
 	ReadCapacityUnits  *int64 `type:"long" json:",omitempty"`
 	WriteCapacityUnits *int64 `type:"long" json:",omitempty"`
 
-	metadataProvisionedThroughput
+	metadataProvisionedThroughput `json:"-", xml:"-"`
 }
 
 type metadataProvisionedThroughput struct {
@@ -819,7 +819,7 @@ type ProvisionedThroughputDescription struct {
 	ReadCapacityUnits      *int64     `type:"long" json:",omitempty"`
 	WriteCapacityUnits     *int64     `type:"long" json:",omitempty"`
 
-	metadataProvisionedThroughputDescription
+	metadataProvisionedThroughputDescription `json:"-", xml:"-"`
 }
 
 type metadataProvisionedThroughputDescription struct {
@@ -829,7 +829,7 @@ type metadataProvisionedThroughputDescription struct {
 type ProvisionedThroughputExceededException struct {
 	Message *string `locationName:"message" type:"string" json:",omitempty"`
 
-	metadataProvisionedThroughputExceededException
+	metadataProvisionedThroughputExceededException `json:"-", xml:"-"`
 }
 
 type metadataProvisionedThroughputExceededException struct {
@@ -848,7 +848,7 @@ type PutItemInput struct {
 	ReturnValues                *string                             `type:"string" json:",omitempty"`
 	TableName                   *string                             `type:"string" json:",omitempty"`
 
-	metadataPutItemInput
+	metadataPutItemInput `json:"-", xml:"-"`
 }
 
 type metadataPutItemInput struct {
@@ -860,7 +860,7 @@ type PutItemOutput struct {
 	ConsumedCapacity      *ConsumedCapacity           `type:"structure" json:",omitempty"`
 	ItemCollectionMetrics *ItemCollectionMetrics      `type:"structure" json:",omitempty"`
 
-	metadataPutItemOutput
+	metadataPutItemOutput `json:"-", xml:"-"`
 }
 
 type metadataPutItemOutput struct {
@@ -870,7 +870,7 @@ type metadataPutItemOutput struct {
 type PutRequest struct {
 	Item *map[string]*AttributeValue `type:"map" json:",omitempty"`
 
-	metadataPutRequest
+	metadataPutRequest `json:"-", xml:"-"`
 }
 
 type metadataPutRequest struct {
@@ -878,7 +878,7 @@ type metadataPutRequest struct {
 }
 
 type QueryInput struct {
-	AttributesToGet           *[]*string                  `type:"list" json:",omitempty"`
+	AttributesToGet           []*string                   `type:"list" json:",omitempty"`
 	ConditionalOperator       *string                     `type:"string" json:",omitempty"`
 	ConsistentRead            *bool                       `type:"boolean" json:",omitempty"`
 	ExclusiveStartKey         *map[string]*AttributeValue `type:"map" json:",omitempty"`
@@ -895,7 +895,7 @@ type QueryInput struct {
 	Select                    *string                     `type:"string" json:",omitempty"`
 	TableName                 *string                     `type:"string" json:",omitempty"`
 
-	metadataQueryInput
+	metadataQueryInput `json:"-", xml:"-"`
 }
 
 type metadataQueryInput struct {
@@ -903,13 +903,13 @@ type metadataQueryInput struct {
 }
 
 type QueryOutput struct {
-	ConsumedCapacity *ConsumedCapacity              `type:"structure" json:",omitempty"`
-	Count            *int                           `type:"integer" json:",omitempty"`
-	Items            *[]*map[string]*AttributeValue `type:"list" json:",omitempty"`
-	LastEvaluatedKey *map[string]*AttributeValue    `type:"map" json:",omitempty"`
-	ScannedCount     *int                           `type:"integer" json:",omitempty"`
+	ConsumedCapacity *ConsumedCapacity             `type:"structure" json:",omitempty"`
+	Count            *int                          `type:"integer" json:",omitempty"`
+	Items            []*map[string]*AttributeValue `type:"list" json:",omitempty"`
+	LastEvaluatedKey *map[string]*AttributeValue   `type:"map" json:",omitempty"`
+	ScannedCount     *int                          `type:"integer" json:",omitempty"`
 
-	metadataQueryOutput
+	metadataQueryOutput `json:"-", xml:"-"`
 }
 
 type metadataQueryOutput struct {
@@ -919,7 +919,7 @@ type metadataQueryOutput struct {
 type ResourceInUseException struct {
 	Message *string `locationName:"message" type:"string" json:",omitempty"`
 
-	metadataResourceInUseException
+	metadataResourceInUseException `json:"-", xml:"-"`
 }
 
 type metadataResourceInUseException struct {
@@ -929,7 +929,7 @@ type metadataResourceInUseException struct {
 type ResourceNotFoundException struct {
 	Message *string `locationName:"message" type:"string" json:",omitempty"`
 
-	metadataResourceNotFoundException
+	metadataResourceNotFoundException `json:"-", xml:"-"`
 }
 
 type metadataResourceNotFoundException struct {
@@ -937,7 +937,7 @@ type metadataResourceNotFoundException struct {
 }
 
 type ScanInput struct {
-	AttributesToGet           *[]*string                  `type:"list" json:",omitempty"`
+	AttributesToGet           []*string                   `type:"list" json:",omitempty"`
 	ConditionalOperator       *string                     `type:"string" json:",omitempty"`
 	ExclusiveStartKey         *map[string]*AttributeValue `type:"map" json:",omitempty"`
 	ExpressionAttributeNames  *map[string]*string         `type:"map" json:",omitempty"`
@@ -953,7 +953,7 @@ type ScanInput struct {
 	TableName                 *string                     `type:"string" json:",omitempty"`
 	TotalSegments             *int                        `type:"integer" json:",omitempty"`
 
-	metadataScanInput
+	metadataScanInput `json:"-", xml:"-"`
 }
 
 type metadataScanInput struct {
@@ -961,13 +961,13 @@ type metadataScanInput struct {
 }
 
 type ScanOutput struct {
-	ConsumedCapacity *ConsumedCapacity              `type:"structure" json:",omitempty"`
-	Count            *int                           `type:"integer" json:",omitempty"`
-	Items            *[]*map[string]*AttributeValue `type:"list" json:",omitempty"`
-	LastEvaluatedKey *map[string]*AttributeValue    `type:"map" json:",omitempty"`
-	ScannedCount     *int                           `type:"integer" json:",omitempty"`
+	ConsumedCapacity *ConsumedCapacity             `type:"structure" json:",omitempty"`
+	Count            *int                          `type:"integer" json:",omitempty"`
+	Items            []*map[string]*AttributeValue `type:"list" json:",omitempty"`
+	LastEvaluatedKey *map[string]*AttributeValue   `type:"map" json:",omitempty"`
+	ScannedCount     *int                          `type:"integer" json:",omitempty"`
 
-	metadataScanOutput
+	metadataScanOutput `json:"-", xml:"-"`
 }
 
 type metadataScanOutput struct {
@@ -975,18 +975,18 @@ type metadataScanOutput struct {
 }
 
 type TableDescription struct {
-	AttributeDefinitions   *[]*AttributeDefinition             `type:"list" json:",omitempty"`
-	CreationDateTime       *time.Time                          `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	GlobalSecondaryIndexes *[]*GlobalSecondaryIndexDescription `type:"list" json:",omitempty"`
-	ItemCount              *int64                              `type:"long" json:",omitempty"`
-	KeySchema              *[]*KeySchemaElement                `type:"list" json:",omitempty"`
-	LocalSecondaryIndexes  *[]*LocalSecondaryIndexDescription  `type:"list" json:",omitempty"`
-	ProvisionedThroughput  *ProvisionedThroughputDescription   `type:"structure" json:",omitempty"`
-	TableName              *string                             `type:"string" json:",omitempty"`
-	TableSizeBytes         *int64                              `type:"long" json:",omitempty"`
-	TableStatus            *string                             `type:"string" json:",omitempty"`
+	AttributeDefinitions   []*AttributeDefinition             `type:"list" json:",omitempty"`
+	CreationDateTime       *time.Time                         `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	GlobalSecondaryIndexes []*GlobalSecondaryIndexDescription `type:"list" json:",omitempty"`
+	ItemCount              *int64                             `type:"long" json:",omitempty"`
+	KeySchema              []*KeySchemaElement                `type:"list" json:",omitempty"`
+	LocalSecondaryIndexes  []*LocalSecondaryIndexDescription  `type:"list" json:",omitempty"`
+	ProvisionedThroughput  *ProvisionedThroughputDescription  `type:"structure" json:",omitempty"`
+	TableName              *string                            `type:"string" json:",omitempty"`
+	TableSizeBytes         *int64                             `type:"long" json:",omitempty"`
+	TableStatus            *string                            `type:"string" json:",omitempty"`
 
-	metadataTableDescription
+	metadataTableDescription `json:"-", xml:"-"`
 }
 
 type metadataTableDescription struct {
@@ -997,7 +997,7 @@ type UpdateGlobalSecondaryIndexAction struct {
 	IndexName             *string                `type:"string" json:",omitempty"`
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" json:",omitempty"`
 
-	metadataUpdateGlobalSecondaryIndexAction
+	metadataUpdateGlobalSecondaryIndexAction `json:"-", xml:"-"`
 }
 
 type metadataUpdateGlobalSecondaryIndexAction struct {
@@ -1018,7 +1018,7 @@ type UpdateItemInput struct {
 	TableName                   *string                             `type:"string" json:",omitempty"`
 	UpdateExpression            *string                             `type:"string" json:",omitempty"`
 
-	metadataUpdateItemInput
+	metadataUpdateItemInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateItemInput struct {
@@ -1030,7 +1030,7 @@ type UpdateItemOutput struct {
 	ConsumedCapacity      *ConsumedCapacity           `type:"structure" json:",omitempty"`
 	ItemCollectionMetrics *ItemCollectionMetrics      `type:"structure" json:",omitempty"`
 
-	metadataUpdateItemOutput
+	metadataUpdateItemOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateItemOutput struct {
@@ -1038,12 +1038,12 @@ type metadataUpdateItemOutput struct {
 }
 
 type UpdateTableInput struct {
-	AttributeDefinitions        *[]*AttributeDefinition        `type:"list" json:",omitempty"`
-	GlobalSecondaryIndexUpdates *[]*GlobalSecondaryIndexUpdate `type:"list" json:",omitempty"`
-	ProvisionedThroughput       *ProvisionedThroughput         `type:"structure" json:",omitempty"`
-	TableName                   *string                        `type:"string" json:",omitempty"`
+	AttributeDefinitions        []*AttributeDefinition        `type:"list" json:",omitempty"`
+	GlobalSecondaryIndexUpdates []*GlobalSecondaryIndexUpdate `type:"list" json:",omitempty"`
+	ProvisionedThroughput       *ProvisionedThroughput        `type:"structure" json:",omitempty"`
+	TableName                   *string                       `type:"string" json:",omitempty"`
 
-	metadataUpdateTableInput
+	metadataUpdateTableInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateTableInput struct {
@@ -1053,7 +1053,7 @@ type metadataUpdateTableInput struct {
 type UpdateTableOutput struct {
 	TableDescription *TableDescription `type:"structure" json:",omitempty"`
 
-	metadataUpdateTableOutput
+	metadataUpdateTableOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateTableOutput struct {
@@ -1064,7 +1064,7 @@ type WriteRequest struct {
 	DeleteRequest *DeleteRequest `type:"structure" json:",omitempty"`
 	PutRequest    *PutRequest    `type:"structure" json:",omitempty"`
 
-	metadataWriteRequest
+	metadataWriteRequest `json:"-", xml:"-"`
 }
 
 type metadataWriteRequest struct {
