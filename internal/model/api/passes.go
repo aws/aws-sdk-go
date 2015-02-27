@@ -100,7 +100,9 @@ func (a *API) renameExportable() {
 				s.MemberRefs[newName] = member
 
 				// also apply locationName trait so we keep the old one
-				member.LocationName = mName
+				if member.LocationName == "" {
+					member.LocationName = mName
+				}
 			}
 
 			if newName == "SDKShapeTraits" {
