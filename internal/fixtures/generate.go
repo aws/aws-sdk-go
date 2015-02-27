@@ -82,6 +82,7 @@ func (t *TestSuite) TestSuite() string {
 	t.title = reStripSpace.ReplaceAllStringFunc(t.Description, func(x string) string {
 		return strings.ToUpper(x[1:])
 	})
+	t.title = regexp.MustCompile(`\W`).ReplaceAllString(t.title, "")
 
 	for idx, c := range t.Cases {
 		c.TestSuite = t
