@@ -9,6 +9,10 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/util"
 )
 
+func typeName(shape *api.Shape) string {
+	return shape.GoType()
+}
+
 func ParamsStructFromJSON(value interface{}, shape *api.Shape) string {
 	return util.GoFmt(paramsStructAny(value, shape))
 }
@@ -41,7 +45,7 @@ func paramsStructAny(value interface{}, shape *api.Shape) string {
 }
 
 func paramsStructStruct(value map[string]interface{}, shape *api.Shape) string {
-	out := "&" + shape.ShapeName + "{\n"
+	out := "&" + typeName(shape)[1:] + "{\n"
 	for _, n := range shape.MemberNames() {
 		ref := shape.MemberRefs[n]
 		lowcaseN := strings.ToLower(n[0:1]) + n[1:]
@@ -61,7 +65,7 @@ func paramsStructStruct(value map[string]interface{}, shape *api.Shape) string {
 }
 
 func paramsStructMap(value map[string]interface{}, shape *api.Shape) string {
-	out := "&map[string][" + shape.ShapeName + "]{\n"
+	out := "&" + typeName(shape)[1:] + "{\n"
 	for k, v := range value {
 		out += fmt.Sprintf("%q: %s,\n", k, paramsStructAny(v, shape.ValueRef.Shape))
 	}
@@ -70,7 +74,7 @@ func paramsStructMap(value map[string]interface{}, shape *api.Shape) string {
 }
 
 func paramsStructList(value []interface{}, shape *api.Shape) string {
-	out := "[]" + shape.ShapeName + "{\n"
+	out := typeName(shape) + "{\n"
 	for _, v := range value {
 		out += fmt.Sprintf("%s,\n", paramsStructAny(v, shape.MemberRef.Shape))
 	}

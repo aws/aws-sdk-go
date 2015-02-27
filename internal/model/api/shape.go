@@ -64,14 +64,14 @@ func (s *Shape) MemberNames() []string {
 	return names
 }
 
-func (ref *ShapeRef) GoTypeElem() string {
-	switch ref.Shape.Type {
+func (s *Shape) GoTypeElem() string {
+	switch s.Type {
 	case "structure":
-		return ref.Shape.ShapeName
+		return s.ShapeName
 	case "map":
-		return "map[" + ref.Shape.KeyRef.GoTypeElem() + "]" + ref.Shape.ValueRef.GoType()
+		return "map[" + s.KeyRef.GoTypeElem() + "]" + s.ValueRef.GoType()
 	case "list":
-		return "[]" + ref.Shape.MemberRef.GoType()
+		return "[]" + s.MemberRef.GoType()
 	case "boolean":
 		return "bool"
 	case "string", "character":
@@ -87,19 +87,27 @@ func (ref *ShapeRef) GoTypeElem() string {
 	case "double":
 		return "float64"
 	case "timestamp":
-		ref.API.imports["time"] = true
+		s.API.imports["time"] = true
 		return "time.Time"
 	default:
-		panic("Unsupported shape type: " + ref.Shape.Type)
+		panic("Unsupported shape type: " + s.Type)
 	}
 }
 
-func (ref *ShapeRef) GoType() string {
-	t := ref.GoTypeElem()
+func (s *Shape) GoType() string {
+	t := s.GoTypeElem()
 	if !strings.HasPrefix(t, "[]") {
 		t = "*" + t
 	}
 	return t
+}
+
+func (ref *ShapeRef) GoTypeElem() string {
+	return ref.Shape.GoTypeElem()
+}
+
+func (ref *ShapeRef) GoType() string {
+	return ref.Shape.GoType()
 }
 
 func (ref *ShapeRef) GoTags(toplevel bool) string {
