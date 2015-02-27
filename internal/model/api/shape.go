@@ -155,7 +155,10 @@ func (ref *ShapeRef) GoTags(toplevel bool) string {
 			code += `required:"` + strings.Join(ref.Shape.Required, ",") + `" `
 		}
 	}
-	if strings.Contains(ref.API.Metadata.Protocol, "json") {
+
+	if ref.Location != "" { // omit non-body location elements from JSON/XML
+		code += `json:"-" xml:"-" `
+	} else if strings.Contains(ref.API.Metadata.Protocol, "json") {
 		code += `json:",omitempty"`
 	}
 
