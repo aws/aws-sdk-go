@@ -1,6 +1,7 @@
 package util
 
 import (
+	"fmt"
 	"go/format"
 	"regexp"
 )
@@ -8,7 +9,7 @@ import (
 func GoFmt(buf string) string {
 	formatted, err := format.Source([]byte(buf))
 	if err != nil {
-		panic(err)
+		panic(fmt.Errorf("%s\nOriginal code:\n%s", err.Error(), buf))
 	}
 	return string(formatted)
 }
