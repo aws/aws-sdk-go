@@ -45,7 +45,7 @@ func TestRenamedShapes(t *testing.T) {
 					"memberName2": { "shape": "TestVpnIcmp" }
 				}
 			},
-			"TestVpnIcmp": { "type": "string" },
+			"TestVpnIcmp": { "type": "structure", "members": {} },
 			"TestResult": {
 				"type": "structure",
 				"members": {

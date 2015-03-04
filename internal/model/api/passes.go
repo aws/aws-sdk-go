@@ -129,6 +129,14 @@ func (a *API) renameExportable() {
 	}
 
 	for k, s := range a.Shapes {
+		// FIXME SNS has lower and uppercased shape names with the same name,
+		// except the lowercased variant is used exclusively for string and
+		// other primitive types. Renaming both would cause a collision.
+		// We work around this by only renaming the structure shapes.
+		if s.Type == "string" {
+			continue
+		}
+
 		for mName, member := range s.MemberRefs {
 			newName := a.exportableName(mName)
 			if newName != mName {
