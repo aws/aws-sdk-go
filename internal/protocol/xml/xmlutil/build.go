@@ -36,20 +36,6 @@ type xmlBuilder struct {
 	namespaces map[string]string
 }
 
-func (b *xmlBuilder) xmlNameFor(name string) xml.Name {
-	return xml.Name{Local: name}
-	// parts := strings.SplitN(name, ":", 2)
-	// if len(parts) > 1 {
-	// 	space, local := parts[0], parts[1]
-	// 	if uri, ok := b.namespaces[parts[0]]; ok {
-	// 		space = uri
-	// 	}
-	// 	return xml.Name{Space: space, Local: local}
-	// } else {
-	// 	return xml.Name{Local: parts[0]}
-	// }
-}
-
 func (b *xmlBuilder) buildValue(value reflect.Value, current *XMLNode, tag reflect.StructTag) error {
 	value = elemOf(value)
 	if !value.IsValid() { // no need to handle zero values
@@ -156,7 +142,7 @@ func (b *xmlBuilder) buildList(value reflect.Value, current *XMLNode, tag reflec
 	// check for unflattened list member
 	flattened := tag.Get("flattened") != ""
 
-	xname := b.xmlNameFor(tag.Get("locationName"))
+	xname := xml.Name{Local: tag.Get("locationName")}
 	if flattened {
 		for i := 0; i < value.Len(); i++ {
 			child := NewXMLElement(xname)
@@ -216,7 +202,7 @@ func (b *xmlBuilder) buildScalar(value reflect.Value, current *XMLNode, tag refl
 			tag.Get("locationName"), value.Interface(), value.Type().Name())
 	}
 
-	xname := b.xmlNameFor(tag.Get("locationName"))
+	xname := xml.Name{Local: tag.Get("locationName")}
 	if tag.Get("xmlAttribute") != "" { // put into current node's attribute list
 		attr := xml.Attr{Name: xname, Value: str}
 		current.Attr = append(current.Attr, attr)
