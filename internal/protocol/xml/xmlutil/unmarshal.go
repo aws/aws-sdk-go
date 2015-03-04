@@ -77,6 +77,12 @@ func parseStruct(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 		}
 	}
 
+	// unwrap any payloads
+	if payload := tag.Get("payload"); payload != "" {
+		field, _ := t.FieldByName(payload)
+		return parseStruct(r.FieldByName(payload), node, field.Tag)
+	}
+
 	for i := 0; i < t.NumField(); i++ {
 		field := t.Field(i)
 		if c := field.Name[0:1]; strings.ToLower(c) == c {

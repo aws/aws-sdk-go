@@ -206,8 +206,7 @@ func convertType(v reflect.Value) (*string, error) {
 	case float32:
 		str = strconv.FormatFloat(float64(value), 'f', -1, 32)
 	case time.Time:
-		const ISO8601UTC = "2006-01-02T15:04:05Z"
-		str = value.UTC().Format(ISO8601UTC)
+		str = value.UTC().Format(time.RFC822Z)
 	default:
 		err := fmt.Errorf("Unsupported value for param %v (%s)", v.Interface(), v.Type())
 		return nil, err

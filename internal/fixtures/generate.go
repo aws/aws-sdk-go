@@ -8,6 +8,7 @@ package main
 //go:generate go run generate.go protocol/output/ec2.json ../../aws/protocol/ec2query/unmarshal_test.go
 //go:generate go run generate.go protocol/input/rest-json.json ../../aws/protocol/restjson/build_test.go
 //go:generate go run generate.go protocol/input/rest-xml.json ../../aws/protocol/restxml/build_test.go
+//go:generate go run generate.go protocol/output/rest-xml.json ../../aws/protocol/restxml/unmarshal_test.go
 
 import (
 	"bytes"
@@ -141,7 +142,11 @@ func Test{{ .OpName }}(t *testing.T) {
 
 	buf := bytes.NewReader([]byte({{ .Body }}))
 	req, _ := svc.{{ .Given.ExportedName }}Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+	{{ range $k, $v := .TestCase.OutputTest.Headers }}req.HTTPResponse.Header.Set("{{ $k }}", "{{ $v }}")
+	{{ end }}
 
 	// unmarshal response
 	{{ .TestCase.TestSuite.API.ProtocolPackage }}.Unmarshal(req)
@@ -150,10 +155,6 @@ func Test{{ .OpName }}(t *testing.T) {
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim({{ .ResponseString }}), util.Trim(string(jBuf)))
-
-	// assert headers
-{{ range $k, $v := .TestCase.OutputTest.Headers }}assert.Equal(t, "{{ $v }}", req.HTTPResponse.Header.Get("{{ $k }}"))
-{{ end }}
 }
 `))
 
