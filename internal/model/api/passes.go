@@ -10,15 +10,34 @@ import (
 	"strings"
 )
 
-// updateTopLevelResultWrappers moved resultWrappers from toplevel shape
-// references to the toplevel shapes for easier code generation
-func (a *API) updateTopLevelResultWrappers() {
+// updateTopLevelShapeReferences moves resultWrapper, locationName, and
+// xmlNamespace traits from toplevel shape references to the toplevel
+// shapes for easier code generation
+func (a *API) updateTopLevelShapeReferences() {
 	for _, o := range a.Operations {
+		// these are for Query services
 		if o.InputRef.ResultWrapper != "" {
 			o.InputRef.Shape.ResultWrapper = o.InputRef.ResultWrapper
 		}
 		if o.OutputRef.ResultWrapper != "" {
 			o.OutputRef.Shape.ResultWrapper = o.OutputRef.ResultWrapper
+		}
+
+		// these are for REST-XML services
+		if o.InputRef.LocationName != "" {
+			o.InputRef.Shape.LocationName = o.InputRef.LocationName
+		}
+		if o.InputRef.Location != "" {
+			o.InputRef.Shape.Location = o.InputRef.Location
+		}
+		if o.InputRef.Payload != "" {
+			o.InputRef.Shape.Payload = o.InputRef.Payload
+		}
+		if o.InputRef.XMLNamespace.Prefix != "" {
+			o.InputRef.Shape.XMLNamespace.Prefix = o.InputRef.XMLNamespace.Prefix
+		}
+		if o.InputRef.XMLNamespace.URI != "" {
+			o.InputRef.Shape.XMLNamespace.URI = o.InputRef.XMLNamespace.URI
 		}
 	}
 
@@ -93,6 +112,9 @@ func (a *API) renameToplevelShapes() {
 			re := regexp.MustCompile(`(Response|Result)$`)
 			v.OutputRef.Shape.Rename(re.ReplaceAllString(name, "Output"))
 		}
+
+		v.InputRef.Payload = a.exportableName(v.InputRef.Payload)
+		v.OutputRef.Payload = a.exportableName(v.OutputRef.Payload)
 	}
 }
 
@@ -114,7 +136,8 @@ func (a *API) renameExportable() {
 				s.MemberRefs[newName] = member
 
 				// also apply locationName trait so we keep the old one
-				if member.LocationName == "" {
+				// but only if there's no locationName trait on ref or shape
+				if member.LocationName == "" && member.Shape.LocationName == "" {
 					member.LocationName = mName
 				}
 			}

@@ -50,6 +50,10 @@ const preamble = `
 var _ bytes.Buffer // always import bytes
 var _ http.Request
 var _ json.Marshaler
+var _ time.Time
+var _ xmlutil.XMLNode
+var _ xml.Attr
+var _ = ioutil.Discard
 `
 
 var reStripSpace = regexp.MustCompile(`\s(\w)`)
@@ -63,9 +67,12 @@ func removeImports(code string) string {
 var extraImports = []string{
 	"bytes",
 	"encoding/json",
+	"encoding/xml",
 	"io/ioutil",
 	"net/http",
 	"testing",
+	"time",
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil",
 	"github.com/awslabs/aws-sdk-go/internal/util",
 	"github.com/stretchr/testify/assert",
 }
@@ -107,14 +114,13 @@ func Test{{ .OpName }}(t *testing.T) {
 	{{ .TestCase.TestSuite.API.ProtocolPackage }}.Build(req)
 	assert.NoError(t, req.Error)
 
-	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim({{ .Body }}), util.Trim(string(body)))
-	}
+	{{ if ne .Body "" }}// assert body
+	assert.NotNil(t, r.Body)
+	{{ if eq .TestCase.TestSuite.API.Metadata.Protocol "rest-xml" }}body := util.SortXML(r.Body){{ else }}body, _ := ioutil.ReadAll(r.Body){{ end }}
+	assert.Equal(t, util.Trim({{ .Body }}), util.Trim(string(body))){{ end }}
 
-	// assert URL
-	assert.Equal(t, "https://test{{ .TestCase.InputTest.URI }}", r.URL.String())
+	{{ if ne .TestCase.InputTest.URI "" }}// assert URL
+	assert.Equal(t, "https://test{{ .TestCase.InputTest.URI }}", r.URL.String()){{ end }}
 
 	// assert headers
 {{ range $k, $v := .TestCase.InputTest.Headers }}assert.Equal(t, "{{ $v }}", r.Header.Get("{{ $k }}"))
@@ -165,6 +171,8 @@ func (i *TestCase) TestCase(idx int) string {
 		case "query", "ec2":
 			m, _ := url.ParseQuery(i.InputTest.Body)
 			i.InputTest.Body = m.Encode()
+		case "rest-xml":
+			i.InputTest.Body = util.SortXML(bytes.NewReader([]byte(i.InputTest.Body)))
 		}
 
 		input := tplInputTestCaseData{

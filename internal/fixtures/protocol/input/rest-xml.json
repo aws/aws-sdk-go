@@ -978,11 +978,14 @@
         "type": "structure",
         "members": {
           "foo": {
+            "shape": "String",
             "location":"querystring",
-            "locationName":"param-name",
-            "type": "string"
+            "locationName":"param-name"
           }
         }
+      },
+      "String": {
+        "type": "string"
       }
     },
     "cases": [

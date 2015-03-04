@@ -66,6 +66,11 @@ func Double(v float64) *float64 {
 	return &v
 }
 
+// Time converts a Go time.Time into a TimeValue
+func Time(t time.Time) *time.Time {
+	return &t
+}
+
 // A UnixTimestamp is a Unix timestamp represented as fractional seconds since
 // the Unix epoch.
 type UnixTimestamp struct {

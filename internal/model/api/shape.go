@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"sort"
 	"strings"
 
@@ -17,7 +18,9 @@ type ShapeRef struct {
 	QueryName     string
 	Flattened     bool
 	ResultWrapper string
+	XMLAttribute  bool
 	XMLNamespace  XMLInfo
+	Payload       string
 }
 
 type XMLInfo struct {
@@ -41,6 +44,9 @@ type Shape struct {
 	Flattened     bool
 	ResultWrapper string
 	Streaming     bool
+	Location      string
+	LocationName  string
+	XMLNamespace  XMLInfo
 
 	refs []*ShapeRef
 }
@@ -104,10 +110,18 @@ func (s *Shape) GoType() string {
 }
 
 func (ref *ShapeRef) GoTypeElem() string {
+	if ref.Shape == nil {
+		panic(fmt.Errorf("missing shape definition on reference for %#v", ref))
+	}
+
 	return ref.Shape.GoTypeElem()
 }
 
 func (ref *ShapeRef) GoType() string {
+	if ref.Shape == nil {
+		panic(fmt.Errorf("missing shape definition on reference for %#v", ref))
+	}
+
 	return ref.Shape.GoType()
 }
 
@@ -115,9 +129,13 @@ func (ref *ShapeRef) GoTags(toplevel bool) string {
 	code := "`"
 	if ref.Location != "" {
 		code += `location:"` + ref.Location + `" `
+	} else if ref.Shape.Location != "" {
+		code += `location:"` + ref.Shape.Location + `" `
 	}
 	if ref.LocationName != "" {
 		code += `locationName:"` + ref.LocationName + `" `
+	} else if ref.Shape.LocationName != "" {
+		code += `locationName:"` + ref.Shape.LocationName + `" `
 	}
 	if ref.QueryName != "" {
 		code += `queryName:"` + ref.QueryName + `" `
@@ -153,6 +171,10 @@ func (ref *ShapeRef) GoTags(toplevel bool) string {
 		code += `flattened:"true" `
 	}
 
+	if ref.XMLAttribute {
+		code += `xmlAttribute:"true" `
+	}
+
 	if toplevel {
 		if ref.ResultWrapper != "" {
 			code += `resultWrapper:"` + ref.ResultWrapper + `" `
@@ -165,6 +187,17 @@ func (ref *ShapeRef) GoTags(toplevel bool) string {
 		if len(ref.Shape.Required) > 0 {
 			code += `required:"` + strings.Join(ref.Shape.Required, ",") + `" `
 		}
+		if ref.XMLNamespace.Prefix != "" {
+			code += `xmlPrefix:"` + ref.XMLNamespace.Prefix + `" `
+		} else if ref.Shape.XMLNamespace.Prefix != "" {
+			code += `xmlPrefix:"` + ref.Shape.XMLNamespace.Prefix + `" `
+		}
+		if ref.XMLNamespace.URI != "" {
+			code += `xmlURI:"` + ref.XMLNamespace.URI + `" `
+		} else if ref.Shape.XMLNamespace.URI != "" {
+			code += `xmlURI:"` + ref.Shape.XMLNamespace.URI + `" `
+		}
+
 	}
 
 	if ref.Location != "" { // omit non-body location elements from JSON/XML

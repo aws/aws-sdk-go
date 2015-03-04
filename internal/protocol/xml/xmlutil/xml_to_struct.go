@@ -3,16 +3,33 @@ package xmlutil
 import (
 	"encoding/xml"
 	"io"
+	"sort"
 )
 
-type xmlNode struct {
-	children   map[string][]*xmlNode
-	text       string
-	attributes []xml.Attr
+type XMLNode struct {
+	Name     xml.Name              `json:",omitempty"`
+	Children map[string][]*XMLNode `json:",omitempty"`
+	Text     string                `json:",omitempty"`
+	Attr     []xml.Attr            `json:",omitempty"`
 }
 
-func xmlToStruct(d *xml.Decoder, s *xml.StartElement) (*xmlNode, error) {
-	out := &xmlNode{}
+func NewXMLElement(name xml.Name) *XMLNode {
+	return &XMLNode{
+		Name:     name,
+		Children: map[string][]*XMLNode{},
+		Attr:     []xml.Attr{},
+	}
+}
+
+func (n *XMLNode) AddChild(child *XMLNode) {
+	if _, ok := n.Children[child.Name.Local]; !ok {
+		n.Children[child.Name.Local] = []*XMLNode{}
+	}
+	n.Children[child.Name.Local] = append(n.Children[child.Name.Local], child)
+}
+
+func XMLToStruct(d *xml.Decoder, s *xml.StartElement) (*XMLNode, error) {
+	out := &XMLNode{}
 	for {
 		tok, err := d.Token()
 		if tok == nil || err == io.EOF {
@@ -24,23 +41,26 @@ func xmlToStruct(d *xml.Decoder, s *xml.StartElement) (*xmlNode, error) {
 
 		switch typed := tok.(type) {
 		case xml.CharData:
-			out.text = string(typed.Copy())
+			out.Text = string(typed.Copy())
 		case xml.StartElement:
-			if out.children == nil {
-				out.children = map[string][]*xmlNode{}
+			el := typed.Copy()
+			out.Attr = el.Attr
+			if out.Children == nil {
+				out.Children = map[string][]*XMLNode{}
 			}
 
-			slice := out.children[typed.Name.Local]
+			name := typed.Name.Local
+			slice := out.Children[name]
 			if slice == nil {
-				slice = []*xmlNode{}
+				slice = []*XMLNode{}
 			}
-			el := typed.Copy()
-			node, e := xmlToStruct(d, &el)
+			node, e := XMLToStruct(d, &el)
 			if e != nil {
 				return out, e
 			}
+			node.Name = typed.Name
 			slice = append(slice, node)
-			out.children[typed.Name.Local] = slice
+			out.Children[name] = slice
 		case xml.EndElement:
 			if s != nil && s.Name.Local == typed.Name.Local { // matching end token
 				return out, nil
@@ -48,4 +68,33 @@ func xmlToStruct(d *xml.Decoder, s *xml.StartElement) (*xmlNode, error) {
 		}
 	}
 	return out, nil
+}
+
+func StructToXML(e *xml.Encoder, node *XMLNode, sorted bool) error {
+	e.EncodeToken(xml.StartElement{Name: node.Name, Attr: node.Attr})
+
+	if node.Text != "" {
+		e.EncodeToken(xml.CharData([]byte(node.Text)))
+	} else if sorted {
+		sortedNames := []string{}
+		for k, _ := range node.Children {
+			sortedNames = append(sortedNames, k)
+		}
+		sort.Strings(sortedNames)
+
+		for _, k := range sortedNames {
+			for _, v := range node.Children[k] {
+				StructToXML(e, v, sorted)
+			}
+		}
+	} else {
+		for _, c := range node.Children {
+			for _, v := range c {
+				StructToXML(e, v, sorted)
+			}
+		}
+	}
+
+	e.EncodeToken(xml.EndElement{Name: node.Name})
+	return e.Flush()
 }

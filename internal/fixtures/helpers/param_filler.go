@@ -20,8 +20,10 @@ func ParamsStructFromJSON(value interface{}, shape *api.Shape) string {
 func paramsStructAny(value interface{}, shape *api.Shape) string {
 	switch shape.Type {
 	case "structure":
-		vmap := value.(map[string]interface{})
-		return paramsStructStruct(vmap, shape)
+		if value != nil {
+			vmap := value.(map[string]interface{})
+			return paramsStructStruct(vmap, shape)
+		}
 	case "list":
 		vlist := value.([]interface{})
 		return paramsStructList(vlist, shape)
@@ -37,6 +39,26 @@ func paramsStructAny(value interface{}, shape *api.Shape) string {
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
 			return fmt.Sprintf("[]byte(%#v)", v.Interface())
+		}
+	case "boolean":
+		v := reflect.Indirect(reflect.ValueOf(value))
+		if v.IsValid() {
+			return fmt.Sprintf("aws.Boolean(%#v)", v.Interface())
+		}
+	case "integer":
+		v := reflect.Indirect(reflect.ValueOf(value))
+		if v.IsValid() {
+			return fmt.Sprintf("aws.Integer(%v)", v.Interface())
+		}
+	case "float":
+		v := reflect.Indirect(reflect.ValueOf(value))
+		if v.IsValid() {
+			return fmt.Sprintf("aws.Float(%v)", v.Interface())
+		}
+	case "timestamp":
+		v := reflect.Indirect(reflect.ValueOf(value))
+		if v.IsValid() {
+			return fmt.Sprintf("aws.Time(time.Unix(%d, 0))", int(v.Float()))
 		}
 	default:
 		panic("Unhandled type " + shape.Type)

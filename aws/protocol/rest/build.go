@@ -43,6 +43,8 @@ func buildLocationElements(r *aws.Request, v reflect.Value) {
 			}
 
 			switch field.Tag.Get("location") {
+			case "headers": // header maps
+				buildHeaderMap(r, m, field.Tag.Get("locationName"))
 			case "header":
 				buildHeader(r, m, name)
 			case "uri":
@@ -63,16 +65,21 @@ func buildLocationElements(r *aws.Request, v reflect.Value) {
 func buildBody(r *aws.Request, v reflect.Value) {
 	if field, ok := v.Type().FieldByName("SDKShapeTraits"); ok {
 		if payloadName := field.Tag.Get("payload"); payloadName != "" {
-			payload := v.FieldByName(payloadName)
-			switch reader := payload.Interface().(type) {
-			case io.ReadSeeker:
-				r.SetReaderBody(reader)
-			case []byte:
-				r.SetBufferBody(reader)
-			case string:
-				r.SetBufferBody([]byte(reader))
-			default:
-				r.Error = fmt.Errorf("Unknown payload type %s", payload.Type())
+			pfield, _ := v.Type().FieldByName(payloadName)
+			if ptag := pfield.Tag.Get("type"); ptag != "" && ptag != "structure" {
+				payload := reflect.Indirect(v.FieldByName(payloadName))
+				if payload.IsValid() {
+					switch reader := payload.Interface().(type) {
+					case io.ReadSeeker:
+						r.SetReaderBody(reader)
+					case []byte:
+						r.SetBufferBody(reader)
+					case string:
+						r.SetBufferBody([]byte(reader))
+					default:
+						r.Error = fmt.Errorf("unknown payload type %s", payload.Type())
+					}
+				}
 			}
 		}
 	}
@@ -84,6 +91,18 @@ func buildHeader(r *aws.Request, v reflect.Value, name string) {
 		r.Error = err
 	} else if str != nil {
 		r.HTTPRequest.Header.Add(name, *str)
+	}
+}
+
+func buildHeaderMap(r *aws.Request, v reflect.Value, prefix string) {
+	for _, key := range v.MapKeys() {
+		str, err := convertType(v.MapIndex(key))
+
+		if err != nil {
+			r.Error = err
+		} else if str != nil {
+			r.HTTPRequest.Header.Add(prefix+key.String(), *str)
+		}
 	}
 }
 
@@ -165,6 +184,7 @@ func escapePath(path string, encodeSep bool) string {
 }
 
 func convertType(v reflect.Value) (*string, error) {
+	v = reflect.Indirect(v)
 	if !v.IsValid() {
 		return nil, nil
 	}
@@ -189,7 +209,7 @@ func convertType(v reflect.Value) (*string, error) {
 		const ISO8601UTC = "2006-01-02T15:04:05Z"
 		str = value.UTC().Format(ISO8601UTC)
 	default:
-		err := fmt.Errorf("Unsupported value for param %v (%s)", v.Interface(), v.Type().Name())
+		err := fmt.Errorf("Unsupported value for param %v (%s)", v.Interface(), v.Type())
 		return nil, err
 	}
 	return &str, nil

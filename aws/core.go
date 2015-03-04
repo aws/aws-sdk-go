@@ -165,6 +165,7 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 		Error:       nil,
 		Data:        data,
 	}
+	r.SetBufferBody([]byte{})
 
 	return r
 }

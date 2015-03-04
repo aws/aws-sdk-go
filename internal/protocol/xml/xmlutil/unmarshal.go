@@ -10,9 +10,9 @@ import (
 )
 
 func UnmarshalXML(v interface{}, d *xml.Decoder) error {
-	n, _ := xmlToStruct(d, nil)
-	if n.children != nil {
-		for _, root := range n.children {
+	n, _ := XMLToStruct(d, nil)
+	if n.Children != nil {
+		for _, root := range n.Children {
 			for _, c := range root {
 				err := parse(reflect.ValueOf(v), c, "")
 				if err != nil {
@@ -25,7 +25,7 @@ func UnmarshalXML(v interface{}, d *xml.Decoder) error {
 	return fmt.Errorf("Missing root XML node")
 }
 
-func parse(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
+func parse(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	t := r.Type()
 	if t.Kind() == reflect.Ptr {
 		t = t.Elem() // check kind of actual element type
@@ -50,7 +50,7 @@ func parse(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 	}
 }
 
-func parseStruct(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
+func parseStruct(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	t := r.Type()
 	if r.Kind() == reflect.Ptr {
 		if r.IsNil() { // create the structure if it's nil
@@ -65,8 +65,8 @@ func parseStruct(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 
 	// unwrap any wrappers
 	if wrapper := tag.Get("resultWrapper"); wrapper != "" {
-		if children, ok := node.children[wrapper]; ok {
-			for _, c := range children {
+		if Children, ok := node.Children[wrapper]; ok {
+			for _, c := range Children {
 				err := parseStruct(r, c, "")
 				if err != nil {
 					return err
@@ -89,13 +89,13 @@ func parseStruct(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 		}
 
 		// try to find the field by name in elements
-		elems := node.children[name]
+		elems := node.Children[name]
 
 		if elems == nil { // try to find the field in attributes
-			for _, a := range node.attributes {
+			for _, a := range node.Attr {
 				if name == a.Name.Local {
 					// turn this into a text node for de-serializing
-					elems = []*xmlNode{&xmlNode{text: a.Value}}
+					elems = []*XMLNode{&XMLNode{Text: a.Value}}
 				}
 			}
 		}
@@ -111,7 +111,7 @@ func parseStruct(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 	return nil
 }
 
-func parseList(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
+func parseList(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	t := r.Type()
 
 	if tag.Get("flattened") == "" { // look at all item entries
@@ -120,12 +120,12 @@ func parseList(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 			mname = name
 		}
 
-		if children, ok := node.children[mname]; ok {
+		if Children, ok := node.Children[mname]; ok {
 			if r.IsNil() {
-				r.Set(reflect.MakeSlice(t, len(children), len(children)))
+				r.Set(reflect.MakeSlice(t, len(Children), len(Children)))
 			}
 
-			for i, c := range children {
+			for i, c := range Children {
 				err := parse(r.Index(i), c, "")
 				if err != nil {
 					return err
@@ -148,7 +148,7 @@ func parseList(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 	return nil
 }
 
-func parseMap(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
+func parseMap(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	t := r.Type()
 	if r.Kind() == reflect.Ptr {
 		t = t.Elem()
@@ -161,7 +161,7 @@ func parseMap(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 	}
 
 	if tag.Get("flattened") == "" { // look at all child entries
-		for _, entry := range node.children["entry"] {
+		for _, entry := range node.Children["entry"] {
 			parseMapEntry(r, entry, tag)
 		}
 	} else { // this element is itself an entry
@@ -171,7 +171,7 @@ func parseMap(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 	return nil
 }
 
-func parseMapEntry(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
+func parseMapEntry(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	kname, vname := "key", "value"
 	if n := tag.Get("locationNameKey"); n != "" {
 		kname = n
@@ -180,11 +180,11 @@ func parseMapEntry(r reflect.Value, node *xmlNode, tag reflect.StructTag) error 
 		vname = n
 	}
 
-	keys, ok := node.children[kname]
-	values := node.children[vname]
+	keys, ok := node.Children[kname]
+	values := node.Children[vname]
 	if ok {
 		for i, key := range keys {
-			keyR := reflect.ValueOf(key.text)
+			keyR := reflect.ValueOf(key.Text)
 			value := values[i]
 			valueR := reflect.New(r.Type().Elem()).Elem()
 
@@ -195,7 +195,7 @@ func parseMapEntry(r reflect.Value, node *xmlNode, tag reflect.StructTag) error 
 	return nil
 }
 
-func parseScalar(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
+func parseScalar(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	t := r.Type()
 	if t.Kind() == reflect.Ptr {
 		t = t.Elem()
@@ -203,11 +203,11 @@ func parseScalar(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 
 	switch t.Kind() {
 	case reflect.String:
-		r.Set(reflect.ValueOf(&node.text))
+		r.Set(reflect.ValueOf(&node.Text))
 		return nil
 	case reflect.Slice:
 		if t.Elem().Kind() == reflect.Uint8 { // blob type
-			b, err := base64.StdEncoding.DecodeString(node.text)
+			b, err := base64.StdEncoding.DecodeString(node.Text)
 			if err != nil {
 				return err
 			}
@@ -215,21 +215,21 @@ func parseScalar(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 			return nil
 		}
 	case reflect.Bool:
-		v, err := strconv.ParseBool(node.text)
+		v, err := strconv.ParseBool(node.Text)
 		if err != nil {
 			return err
 		}
 		r.Set(reflect.ValueOf(&v))
 		return nil
 	case reflect.Int64:
-		v, err := strconv.ParseInt(node.text, 10, t.Bits())
+		v, err := strconv.ParseInt(node.Text, 10, t.Bits())
 		if err != nil {
 			return err
 		}
 		r.Set(reflect.ValueOf(&v))
 		return nil
 	case reflect.Int:
-		v, err := strconv.ParseInt(node.text, 10, t.Bits())
+		v, err := strconv.ParseInt(node.Text, 10, t.Bits())
 		if err != nil {
 			return err
 		}
@@ -237,14 +237,14 @@ func parseScalar(r reflect.Value, node *xmlNode, tag reflect.StructTag) error {
 		r.Set(reflect.ValueOf(&i))
 		return nil
 	case reflect.Float64:
-		v, err := strconv.ParseFloat(node.text, t.Bits())
+		v, err := strconv.ParseFloat(node.Text, t.Bits())
 		if err != nil {
 			return err
 		}
 		r.Set(reflect.ValueOf(&v))
 		return nil
 	case reflect.Float32:
-		v, err := strconv.ParseFloat(node.text, t.Bits())
+		v, err := strconv.ParseFloat(node.Text, t.Bits())
 		if err != nil {
 			return err
 		}

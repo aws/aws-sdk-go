@@ -23,3 +23,15 @@ func PayloadMember(i interface{}) interface{} {
 	}
 	return nil
 }
+
+func PayloadType(i interface{}) string {
+	v := reflect.Indirect(reflect.ValueOf(i))
+	if field, ok := v.Type().FieldByName("SDKShapeTraits"); ok {
+		if payloadName := field.Tag.Get("payload"); payloadName != "" {
+			if member, ok := v.Type().FieldByName(payloadName); ok {
+				return member.Tag.Get("type")
+			}
+		}
+	}
+	return ""
+}
