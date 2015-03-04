@@ -7,6 +7,7 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func UnmarshalXML(v interface{}, d *xml.Decoder) error {
@@ -196,64 +197,58 @@ func parseMapEntry(r reflect.Value, node *XMLNode, tag reflect.StructTag) error 
 }
 
 func parseScalar(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
-	t := r.Type()
-	if t.Kind() == reflect.Ptr {
-		t = t.Elem()
-	}
-
-	switch t.Kind() {
-	case reflect.String:
+	switch r.Interface().(type) {
+	case *string:
 		r.Set(reflect.ValueOf(&node.Text))
 		return nil
-	case reflect.Slice:
-		if t.Elem().Kind() == reflect.Uint8 { // blob type
-			b, err := base64.StdEncoding.DecodeString(node.Text)
-			if err != nil {
-				return err
-			}
-			r.Set(reflect.ValueOf(b))
-			return nil
+	case []byte:
+		b, err := base64.StdEncoding.DecodeString(node.Text)
+		if err != nil {
+			return err
 		}
-	case reflect.Bool:
+		r.Set(reflect.ValueOf(b))
+	case *bool:
 		v, err := strconv.ParseBool(node.Text)
 		if err != nil {
 			return err
 		}
 		r.Set(reflect.ValueOf(&v))
-		return nil
-	case reflect.Int64:
-		v, err := strconv.ParseInt(node.Text, 10, t.Bits())
+	case *int64:
+		v, err := strconv.ParseInt(node.Text, 10, 64)
 		if err != nil {
 			return err
 		}
 		r.Set(reflect.ValueOf(&v))
-		return nil
-	case reflect.Int:
-		v, err := strconv.ParseInt(node.Text, 10, t.Bits())
+	case *int:
+		v, err := strconv.ParseInt(node.Text, 10, 32)
 		if err != nil {
 			return err
 		}
 		i := int(v)
 		r.Set(reflect.ValueOf(&i))
-		return nil
-	case reflect.Float64:
-		v, err := strconv.ParseFloat(node.Text, t.Bits())
+	case *float64:
+		v, err := strconv.ParseFloat(node.Text, 64)
 		if err != nil {
 			return err
 		}
 		r.Set(reflect.ValueOf(&v))
-		return nil
-	case reflect.Float32:
-		v, err := strconv.ParseFloat(node.Text, t.Bits())
+	case *float32:
+		v, err := strconv.ParseFloat(node.Text, 32)
 		if err != nil {
 			return err
 		}
 		f := float32(v)
 		r.Set(reflect.ValueOf(&f))
-		return nil
-		// case reflect.Struct:
-		// 	// const ISO8601UTC = "2006-01-02T15:04:05Z"
-		// 	// v.Set(name, value.UTC().Format(ISO8601UTC))
+	case *time.Time:
+		const ISO8601UTC = "2006-01-02T15:04:05Z"
+		t, err := time.Parse(ISO8601UTC, node.Text)
+		if err != nil {
+			return err
+		} else {
+			r.Set(reflect.ValueOf(&t))
+		}
+	default:
+		return fmt.Errorf("Unsupported value: %v (%s)", r.Interface(), r.Type())
 	}
-	return fmt.Errorf("Unsupported value: %v (%s)", r.Interface(), t.Name())
+	return nil
 }
