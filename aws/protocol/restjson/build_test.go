@@ -7,16 +7,23 @@ import (
 
 	"bytes"
 	"encoding/json"
+	"encoding/xml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 	"github.com/awslabs/aws-sdk-go/internal/util"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
+	"time"
 )
 
 var _ bytes.Buffer // always import bytes
 var _ http.Request
 var _ json.Marshaler
+var _ time.Time
+var _ xmlutil.XMLNode
+var _ xml.Attr
+var _ = ioutil.Discard
 
 // InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
@@ -534,10 +541,9 @@ func TestInputService1ProtocolTestURIParameterOnlyWithNoLocationNameCase1(t *tes
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim(""), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(""), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/2014-01-01/jobsByPipeline/foo", r.URL.String())
@@ -561,10 +567,9 @@ func TestInputService2ProtocolTestURIParameterOnlyWithLocationNameCase1(t *testi
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim(""), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(""), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/2014-01-01/jobsByPipeline/bar", r.URL.String())
@@ -590,10 +595,9 @@ func TestInputService3ProtocolTestURIParameterAndQuerystringParamsCase1(t *testi
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim(""), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(""), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/2014-01-01/jobsByPipeline/foo?Ascending=true&PageToken=bar", r.URL.String())
@@ -623,10 +627,9 @@ func TestInputService4ProtocolTestURIParameterQuerystringParamsAndJSONBodyCase1(
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("{\"Config\": {\"A\": \"one\", \"B\": \"two\"}}"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("{\"Config\":{\"A\":\"one\",\"B\":\"two\"}}"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/2014-01-01/jobsByPipeline/foo?Ascending=true&PageToken=bar", r.URL.String())
@@ -657,10 +660,9 @@ func TestInputService5ProtocolTestURIParameterQuerystringParamsHeadersAndJSONBod
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("{\"Config\": {\"A\": \"one\", \"B\": \"two\"}}"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("{\"Config\":{\"A\":\"one\",\"B\":\"two\"}}"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/2014-01-01/jobsByPipeline/foo?Ascending=true&PageToken=bar", r.URL.String())
@@ -687,10 +689,9 @@ func TestInputService6ProtocolTestStreamingPayloadCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("contents"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("contents"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/2014-01-01/vaults/name/archives", r.URL.String())
@@ -713,10 +714,9 @@ func TestInputService7ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsC
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim(""), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(""), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/path", r.URL.String())
@@ -740,10 +740,9 @@ func TestInputService7ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsC
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim(""), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(""), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/path?abc=mno&param-name=", r.URL.String())

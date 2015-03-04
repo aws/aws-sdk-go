@@ -21,7 +21,10 @@ func Build(req *aws.Request) {
 	} else {
 		buf = emptyJSON
 	}
-	req.SetBufferBody(buf)
+
+	if req.Service.TargetPrefix != "" || string(buf) != "{}" {
+		req.SetBufferBody(buf)
+	}
 
 	if req.Service.TargetPrefix != "" {
 		target := req.Service.TargetPrefix + "." + req.Operation.Name

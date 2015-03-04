@@ -7,16 +7,23 @@ import (
 
 	"bytes"
 	"encoding/json"
+	"encoding/xml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 	"github.com/awslabs/aws-sdk-go/internal/util"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
+	"time"
 )
 
 var _ bytes.Buffer // always import bytes
 var _ http.Request
 var _ json.Marshaler
+var _ time.Time
+var _ xmlutil.XMLNode
+var _ xml.Attr
+var _ = ioutil.Discard
 
 // InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
@@ -416,10 +423,9 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -445,10 +451,9 @@ func TestInputService2ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&StructArg.ScalarArg=foo&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&StructArg.ScalarArg=foo&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -476,10 +481,9 @@ func TestInputService3ProtocolTestListTypesCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&ListArg.member.1=foo&ListArg.member.2=bar&ListArg.member.3=baz&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&ListArg.member.1=foo&ListArg.member.2=bar&ListArg.member.3=baz&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -508,10 +512,9 @@ func TestInputService4ProtocolTestFlattenedListCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&ListArg.1=a&ListArg.2=b&ListArg.3=c&ScalarArg=foo&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&ListArg.1=a&ListArg.2=b&ListArg.3=c&ScalarArg=foo&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -526,8 +529,8 @@ func TestInputService5ProtocolTestSerializeMapTypeCase1(t *testing.T) {
 
 	input := &InputService5TestShapeInputShape{
 		MapArg: &map[string]*string{
-			"key2": aws.String("val2"),
 			"key1": aws.String("val1"),
+			"key2": aws.String("val2"),
 		},
 	}
 	req := svc.InputService5TestCaseOperation1Request(input)
@@ -538,10 +541,9 @@ func TestInputService5ProtocolTestSerializeMapTypeCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&MapArg.entry.1.key=key1&MapArg.entry.1.value=val1&MapArg.entry.2.key=key2&MapArg.entry.2.value=val2&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&MapArg.entry.1.key=key1&MapArg.entry.1.value=val1&MapArg.entry.2.key=key2&MapArg.entry.2.value=val2&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -565,10 +567,9 @@ func TestInputService6ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&BlobArg=Zm9v&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&BlobArg=Zm9v&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())

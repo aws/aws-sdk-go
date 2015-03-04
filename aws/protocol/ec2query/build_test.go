@@ -7,16 +7,23 @@ import (
 
 	"bytes"
 	"encoding/json"
+	"encoding/xml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 	"github.com/awslabs/aws-sdk-go/internal/util"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
+	"time"
 )
 
 var _ bytes.Buffer // always import bytes
 var _ http.Request
 var _ json.Marshaler
+var _ time.Time
+var _ xmlutil.XMLNode
+var _ xml.Attr
+var _ = ioutil.Discard
 
 // InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
@@ -478,10 +485,9 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -507,10 +513,9 @@ func TestInputService2ProtocolTestStructureWithLocationNameAndQueryNameAppliedTo
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&BarLocationName=val2&Foo=val1&Version=2014-01-01&yuckQueryName=val3"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&BarLocationName=val2&Foo=val1&Version=2014-01-01&yuckQueryName=val3"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -536,10 +541,9 @@ func TestInputService3ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&Struct.Scalar=foo&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&Struct.Scalar=foo&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -567,10 +571,9 @@ func TestInputService4ProtocolTestListTypesCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&ListArg.1=foo&ListArg.2=bar&ListArg.3=baz&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&ListArg.1=foo&ListArg.2=bar&ListArg.3=baz&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -598,10 +601,9 @@ func TestInputService5ProtocolTestListWithLocationNameAppliedToMemberCase1(t *te
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&ListMemberName.1=a&ListMemberName.2=b&ListMemberName.3=c&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&ListMemberName.1=a&ListMemberName.2=b&ListMemberName.3=c&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -629,10 +631,9 @@ func TestInputService6ProtocolTestListWithLocationNameAndQueryNameCase1(t *testi
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&ListQueryName.1=a&ListQueryName.2=b&ListQueryName.3=c&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&ListQueryName.1=a&ListQueryName.2=b&ListQueryName.3=c&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -656,10 +657,9 @@ func TestInputService7ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("Action=OperationName&BlobArg=Zm9v&Version=2014-01-01"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("Action=OperationName&BlobArg=Zm9v&Version=2014-01-01"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())

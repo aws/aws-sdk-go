@@ -6,6 +6,7 @@ package main
 //go:generate go run generate.go protocol/input/ec2.json ../../aws/protocol/ec2query/build_test.go
 //go:generate go run generate.go protocol/output/ec2.json ../../aws/protocol/ec2query/unmarshal_test.go
 //go:generate go run generate.go protocol/input/rest-json.json ../../aws/protocol/restjson/build_test.go
+//go:generate go run generate.go protocol/input/rest-xml.json ../../aws/protocol/restxml/build_test.go
 
 import (
 	"bytes"
@@ -173,6 +174,8 @@ func (i *TestCase) TestCase(idx int) string {
 			i.InputTest.Body = m.Encode()
 		case "rest-xml":
 			i.InputTest.Body = util.SortXML(bytes.NewReader([]byte(i.InputTest.Body)))
+		case "json", "rest-json":
+			i.InputTest.Body = strings.Replace(i.InputTest.Body, " ", "", -1)
 		}
 
 		input := tplInputTestCaseData{

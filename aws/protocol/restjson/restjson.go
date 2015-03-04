@@ -9,8 +9,7 @@ import (
 func Build(r *aws.Request) {
 	rest.Build(r)
 
-	m := rest.PayloadMember(r.Params)
-	if m != nil {
+	if t := rest.PayloadType(r.Params); t == "structure" || t == "" {
 		jsonrpc.Build(r)
 	}
 }

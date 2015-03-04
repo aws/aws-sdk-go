@@ -7,16 +7,23 @@ import (
 
 	"bytes"
 	"encoding/json"
+	"encoding/xml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 	"github.com/awslabs/aws-sdk-go/internal/util"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
+	"time"
 )
 
 var _ bytes.Buffer // always import bytes
 var _ http.Request
 var _ json.Marshaler
+var _ time.Time
+var _ xmlutil.XMLNode
+var _ xml.Attr
+var _ = ioutil.Discard
 
 // InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
@@ -101,10 +108,9 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert body
-	if r.Body != nil {
-		body, _ := ioutil.ReadAll(r.Body)
-		assert.Equal(t, util.Trim("{\"Name\": \"myname\"}"), util.Trim(string(body)))
-	}
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim("{\"Name\":\"myname\"}"), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())

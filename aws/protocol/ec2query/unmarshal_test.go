@@ -7,10 +7,13 @@ import (
 
 	"bytes"
 	"encoding/json"
+	"encoding/xml"
 	"io/ioutil"
 	"net/http"
 	"testing"
+	"time"
 
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 	"github.com/awslabs/aws-sdk-go/internal/util"
 	"github.com/stretchr/testify/assert"
 )
@@ -18,6 +21,10 @@ import (
 var _ bytes.Buffer // always import bytes
 var _ http.Request
 var _ json.Marshaler
+var _ time.Time
+var _ xmlutil.XMLNode
+var _ xml.Attr
+var _ = ioutil.Discard
 
 // OutputService1ProtocolTest is a client for OutputService1ProtocolTest.
 type OutputService1ProtocolTest struct {
