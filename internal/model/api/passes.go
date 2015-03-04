@@ -3,7 +3,7 @@ package api
 import (
 	"io/ioutil"
 	"os"
-	"path"
+	"path/filepath"
 	"regexp"
 	"runtime"
 	"strconv"
@@ -248,7 +248,7 @@ func (a *API) exportableName(name string) string {
 var whitelistExportNames = func() map[string]string {
 	list := map[string]string{}
 	_, filename, _, _ := runtime.Caller(1)
-	f, err := os.Open(path.Join(path.Dir(filename), "inflections.csv"))
+	f, err := os.Open(filepath.Join(filepath.Dir(filename), "inflections.csv"))
 	if err != nil {
 		panic(err)
 	}
@@ -260,6 +260,7 @@ var whitelistExportNames = func() map[string]string {
 
 	str := string(b)
 	for _, line := range strings.Split(str, "\n") {
+		line = strings.Replace(line, "\r", "", -1)
 		if strings.HasPrefix(line, ";") {
 			continue
 		}
