@@ -1,8 +1,8 @@
 default: generate
 
-install-gen:
-	go install ./cmd/...
+generate-test:
+	go generate ./internal/fixtures
 
-generate: install-gen
+generate:
+	go generate ./aws
 	go generate ./service
-	go install ./service/...
