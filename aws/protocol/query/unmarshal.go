@@ -18,3 +18,7 @@ func Unmarshal(r *aws.Request) {
 		}
 	}
 }
+
+func UnmarshalMeta(r *aws.Request) {
+	// TODO implement unmarshaling of request IDs
+}

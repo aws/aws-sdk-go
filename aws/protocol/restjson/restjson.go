@@ -15,10 +15,16 @@ func Build(r *aws.Request) {
 }
 
 func Unmarshal(r *aws.Request) {
-	rest.Unmarshal(r)
-
 	m := rest.PayloadMember(r.Data)
 	if m != nil {
 		jsonrpc.Unmarshal(r)
 	}
+}
+
+func UnmarshalMeta(r *aws.Request) {
+	rest.Unmarshal(r)
+}
+
+func UnmarshalError(r *aws.Request) {
+	// TODO unmarshal error responses
 }

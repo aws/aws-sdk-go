@@ -32,6 +32,8 @@ func New(config *ImportExportConfig) *ImportExport {
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(query.Build)
 	service.Handlers.Unmarshal.PushBack(query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(query.UnmarshalError)
 
 	return &ImportExport{service}
 }

@@ -24,7 +24,7 @@ func New(config *CloudSearchConfig) *CloudSearch {
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config.Config),
 		ServiceName: "cloudsearch",
-		APIVersion:  "2011-02-01",
+		APIVersion:  "2013-01-01",
 	}
 	service.Initialize()
 
@@ -32,6 +32,8 @@ func New(config *CloudSearchConfig) *CloudSearch {
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(query.Build)
 	service.Handlers.Unmarshal.PushBack(query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(query.UnmarshalError)
 
 	return &CloudSearch{service}
 }

@@ -484,7 +484,7 @@ type CreateHSMInput struct {
 }
 
 type metadataCreateHSMInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubnetId,SshKey,IamRoleArn,SubscriptionType" json:",omitempty"`
+	SDKShapeTraits bool `locationName:"CreateHsmRequest" type:"structure" required:"SubnetId,SshKey,IamRoleArn,SubscriptionType" json:",omitempty"`
 }
 
 type CreateHSMOutput struct {
@@ -545,7 +545,7 @@ type DeleteHSMInput struct {
 }
 
 type metadataDeleteHSMInput struct {
-	SDKShapeTraits bool `type:"structure" required:"HsmArn" json:",omitempty"`
+	SDKShapeTraits bool `locationName:"DeleteHsmRequest" type:"structure" required:"HsmArn" json:",omitempty"`
 }
 
 type DeleteHSMOutput struct {
@@ -819,7 +819,7 @@ type ModifyHSMInput struct {
 }
 
 type metadataModifyHSMInput struct {
-	SDKShapeTraits bool `type:"structure" required:"HsmArn" json:",omitempty"`
+	SDKShapeTraits bool `locationName:"ModifyHsmRequest" type:"structure" required:"HsmArn" json:",omitempty"`
 }
 
 type ModifyHSMOutput struct {

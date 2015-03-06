@@ -1,9 +1,9 @@
 package cognitoidentity
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
 	"github.com/awslabs/aws-sdk-go/aws/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/aws"
 )
 
 // CognitoIdentity is a client for Amazon Cognito Identity.
@@ -34,6 +34,8 @@ func New(config *CognitoIdentityConfig) *CognitoIdentity {
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
 	return &CognitoIdentity{service}
 }

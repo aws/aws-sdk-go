@@ -51,6 +51,8 @@ func NewInputService1ProtocolTest(config *InputService1ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &InputService1ProtocolTest{service}
 }
@@ -113,6 +115,8 @@ func NewInputService2ProtocolTest(config *InputService2ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &InputService2ProtocolTest{service}
 }
@@ -176,6 +180,8 @@ func NewInputService3ProtocolTest(config *InputService3ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &InputService3ProtocolTest{service}
 }
@@ -247,6 +253,8 @@ func NewInputService4ProtocolTest(config *InputService4ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &InputService4ProtocolTest{service}
 }
@@ -308,6 +316,8 @@ func NewInputService5ProtocolTest(config *InputService5ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &InputService5ProtocolTest{service}
 }
@@ -369,6 +379,8 @@ func NewInputService6ProtocolTest(config *InputService6ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &InputService6ProtocolTest{service}
 }
@@ -430,6 +442,8 @@ func NewInputService7ProtocolTest(config *InputService7ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &InputService7ProtocolTest{service}
 }

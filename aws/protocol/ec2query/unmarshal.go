@@ -5,6 +5,7 @@ import (
 	"io"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/protocol/query"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 )
 
@@ -17,4 +18,12 @@ func Unmarshal(r *aws.Request) {
 			return
 		}
 	}
+}
+
+func UnmarshalMeta(r *aws.Request) {
+	// TODO implement unmarshaling of request IDs
+}
+
+func UnmarshalError(r *aws.Request) {
+	query.UnmarshalError(r)
 }

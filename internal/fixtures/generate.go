@@ -149,6 +149,7 @@ func Test{{ .OpName }}(t *testing.T) {
 	{{ end }}
 
 	// unmarshal response
+	{{ .TestCase.TestSuite.API.ProtocolPackage }}.UnmarshalMeta(req)
 	{{ .TestCase.TestSuite.API.ProtocolPackage }}.Unmarshal(req)
 	assert.NoError(t, req.Error)
 

@@ -25,8 +25,6 @@ func Build(r *aws.Request) {
 }
 
 func Unmarshal(r *aws.Request) {
-	rest.Unmarshal(r)
-
 	if t := rest.PayloadType(r.Data); t == "structure" || t == "" {
 		defer r.HTTPResponse.Body.Close()
 		err := xmlutil.UnmarshalXML(r.Data, xml.NewDecoder(r.HTTPResponse.Body))
@@ -35,4 +33,12 @@ func Unmarshal(r *aws.Request) {
 			return
 		}
 	}
+}
+
+func UnmarshalMeta(r *aws.Request) {
+	rest.Unmarshal(r)
+}
+
+func UnmarshalError(r *aws.Request) {
+	// TODO unmarshal error responses
 }

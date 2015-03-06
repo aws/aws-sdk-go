@@ -8,14 +8,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
 	"time"
-
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -52,12 +51,14 @@ func NewOutputService1ProtocolTest(config *OutputService1ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &OutputService1ProtocolTest{service}
 }
 
 // OutputService1TestCaseOperation1Request generates a request for the OutputService1TestCaseOperation1 operation.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request() (req *aws.Request, output *OutputService1TestShapeOutputShape) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request() (req *aws.Request, output *OutputService1TestShapeOutputService1TestShapeOutputShape) {
 	if opOutputService1TestCaseOperation1 == nil {
 		opOutputService1TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
@@ -65,12 +66,12 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request() (
 	}
 
 	req = aws.NewRequest(c.Service, opOutputService1TestCaseOperation1, nil, output)
-	output = &OutputService1TestShapeOutputShape{}
+	output = &OutputService1TestShapeOutputService1TestShapeOutputShape{}
 	req.Data = output
 	return
 }
 
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1() (output *OutputService1TestShapeOutputShape, err error) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1() (output *OutputService1TestShapeOutputService1TestShapeOutputShape, err error) {
 	req, out := c.OutputService1TestCaseOperation1Request()
 	output = out
 	err = req.Send()
@@ -79,7 +80,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1() (output 
 
 var opOutputService1TestCaseOperation1 *aws.Operation
 
-type OutputService1TestShapeOutputShape struct {
+type OutputService1TestShapeOutputService1TestShapeOutputShape struct {
 	Char              *string  `type:"character"`
 	Double            *float64 `type:"double"`
 	FalseBool         *bool    `type:"boolean"`
@@ -91,10 +92,10 @@ type OutputService1TestShapeOutputShape struct {
 	Str               *string  `type:"string"`
 	TrueBool          *bool    `type:"boolean"`
 
-	metadataOutputService1TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService1TestShapeOutputService1TestShapeOutputShape `json:"-", xml:"-"`
 }
 
-type metadataOutputService1TestShapeOutputShape struct {
+type metadataOutputService1TestShapeOutputService1TestShapeOutputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -124,6 +125,8 @@ func NewOutputService2ProtocolTest(config *OutputService2ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &OutputService2ProtocolTest{service}
 }
@@ -187,6 +190,8 @@ func NewOutputService3ProtocolTest(config *OutputService3ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &OutputService3ProtocolTest{service}
 }
@@ -250,6 +255,8 @@ func NewOutputService4ProtocolTest(config *OutputService4ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &OutputService4ProtocolTest{service}
 }
@@ -313,6 +320,8 @@ func NewOutputService5ProtocolTest(config *OutputService5ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &OutputService5ProtocolTest{service}
 }
@@ -376,6 +385,8 @@ func NewOutputService6ProtocolTest(config *OutputService6ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &OutputService6ProtocolTest{service}
 }
@@ -449,6 +460,8 @@ func NewOutputService7ProtocolTest(config *OutputService7ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &OutputService7ProtocolTest{service}
 }
@@ -512,6 +525,8 @@ func NewOutputService8ProtocolTest(config *OutputService8ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &OutputService8ProtocolTest{service}
 }
@@ -575,6 +590,8 @@ func NewOutputService9ProtocolTest(config *OutputService9ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &OutputService9ProtocolTest{service}
 }
@@ -649,6 +666,8 @@ func NewOutputService10ProtocolTest(config *OutputService10ProtocolTestConfig) *
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &OutputService10ProtocolTest{service}
 }
@@ -702,6 +721,7 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	req.HTTPResponse.Header.Set("X-Foo", "abc")
 
 	// unmarshal response
+	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
@@ -720,6 +740,7 @@ func TestOutputService2ProtocolTestBlobCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
+	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
@@ -738,6 +759,7 @@ func TestOutputService3ProtocolTestListsCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
+	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
@@ -756,6 +778,7 @@ func TestOutputService4ProtocolTestListWithCustomMemberNameCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
+	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
@@ -774,6 +797,7 @@ func TestOutputService5ProtocolTestFlattenedListCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
+	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
@@ -792,6 +816,7 @@ func TestOutputService6ProtocolTestNormalMapCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
+	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
@@ -810,6 +835,7 @@ func TestOutputService7ProtocolTestFlattenedMapCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
+	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
@@ -828,6 +854,7 @@ func TestOutputService8ProtocolTestNamedMapCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
+	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
@@ -847,6 +874,7 @@ func TestOutputService9ProtocolTestXMLPayloadCase1(t *testing.T) {
 	req.HTTPResponse.Header.Set("X-Foo", "baz")
 
 	// unmarshal response
+	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
@@ -865,6 +893,7 @@ func TestOutputService10ProtocolTestStreamingPayloadCase1(t *testing.T) {
 	// set headers
 
 	// unmarshal response
+	restxml.UnmarshalMeta(req)
 	restxml.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
@@ -872,3 +901,4 @@ func TestOutputService10ProtocolTestStreamingPayloadCase1(t *testing.T) {
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"Stream\":\"YWJj\"}"), util.Trim(string(jBuf)))
 }
+

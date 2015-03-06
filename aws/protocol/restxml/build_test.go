@@ -51,6 +51,8 @@ func NewInputService1ProtocolTest(config *InputService1ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService1ProtocolTest{service}
 }
@@ -138,6 +140,8 @@ func NewInputService2ProtocolTest(config *InputService2ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService2ProtocolTest{service}
 }
@@ -204,6 +208,8 @@ func NewInputService3ProtocolTest(config *InputService3ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService3ProtocolTest{service}
 }
@@ -279,6 +285,8 @@ func NewInputService4ProtocolTest(config *InputService4ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService4ProtocolTest{service}
 }
@@ -354,6 +362,8 @@ func NewInputService5ProtocolTest(config *InputService5ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService5ProtocolTest{service}
 }
@@ -417,6 +427,8 @@ func NewInputService6ProtocolTest(config *InputService6ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService6ProtocolTest{service}
 }
@@ -480,6 +492,8 @@ func NewInputService7ProtocolTest(config *InputService7ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService7ProtocolTest{service}
 }
@@ -543,6 +557,8 @@ func NewInputService8ProtocolTest(config *InputService8ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService8ProtocolTest{service}
 }
@@ -606,6 +622,8 @@ func NewInputService9ProtocolTest(config *InputService9ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService9ProtocolTest{service}
 }
@@ -679,6 +697,8 @@ func NewInputService10ProtocolTest(config *InputService10ProtocolTestConfig) *In
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService10ProtocolTest{service}
 }
@@ -753,6 +773,8 @@ func NewInputService11ProtocolTest(config *InputService11ProtocolTestConfig) *In
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService11ProtocolTest{service}
 }
@@ -816,6 +838,8 @@ func NewInputService12ProtocolTest(config *InputService12ProtocolTestConfig) *In
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService12ProtocolTest{service}
 }
@@ -879,6 +903,8 @@ func NewInputService13ProtocolTest(config *InputService13ProtocolTestConfig) *In
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService13ProtocolTest{service}
 }
@@ -942,6 +968,8 @@ func NewInputService14ProtocolTest(config *InputService14ProtocolTestConfig) *In
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService14ProtocolTest{service}
 }
@@ -1038,6 +1066,8 @@ func NewInputService15ProtocolTest(config *InputService15ProtocolTestConfig) *In
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService15ProtocolTest{service}
 }
@@ -1122,6 +1152,8 @@ func NewInputService16ProtocolTest(config *InputService16ProtocolTestConfig) *In
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService16ProtocolTest{service}
 }
@@ -1186,6 +1218,8 @@ func NewInputService17ProtocolTest(config *InputService17ProtocolTestConfig) *In
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &InputService17ProtocolTest{service}
 }

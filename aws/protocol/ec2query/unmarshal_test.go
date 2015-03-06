@@ -8,14 +8,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
 	"time"
-
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -52,6 +51,8 @@ func NewOutputService1ProtocolTest(config *OutputService1ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &OutputService1ProtocolTest{service}
 }
@@ -122,6 +123,8 @@ func NewOutputService2ProtocolTest(config *OutputService2ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &OutputService2ProtocolTest{service}
 }
@@ -185,6 +188,8 @@ func NewOutputService3ProtocolTest(config *OutputService3ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &OutputService3ProtocolTest{service}
 }
@@ -248,6 +253,8 @@ func NewOutputService4ProtocolTest(config *OutputService4ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &OutputService4ProtocolTest{service}
 }
@@ -311,6 +318,8 @@ func NewOutputService5ProtocolTest(config *OutputService5ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &OutputService5ProtocolTest{service}
 }
@@ -374,6 +383,8 @@ func NewOutputService6ProtocolTest(config *OutputService6ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &OutputService6ProtocolTest{service}
 }
@@ -447,6 +458,8 @@ func NewOutputService7ProtocolTest(config *OutputService7ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &OutputService7ProtocolTest{service}
 }
@@ -510,6 +523,8 @@ func NewOutputService8ProtocolTest(config *OutputService8ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &OutputService8ProtocolTest{service}
 }
@@ -556,18 +571,18 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><Str>myname</Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char><RequestId>request-id</RequestId></OperationNameResponse>"))
 	req, _ := svc.OutputService1TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	ec2query.UnmarshalMeta(req)
 	ec2query.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"Char\":\"a\",\"Double\":1.3,\"FalseBool\":false,\"Float\":1.2,\"Long\":200,\"Num\":123,\"Str\":\"myname\",\"TrueBool\":true}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
 
 func TestOutputService2ProtocolTestBlobCase1(t *testing.T) {
@@ -575,18 +590,18 @@ func TestOutputService2ProtocolTestBlobCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><Blob>dmFsdWU=</Blob><RequestId>requestid</RequestId></OperationNameResponse>"))
 	req, _ := svc.OutputService2TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	ec2query.UnmarshalMeta(req)
 	ec2query.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"Blob\":\"dmFsdWU=\"}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
 
 func TestOutputService3ProtocolTestListsCase1(t *testing.T) {
@@ -594,18 +609,18 @@ func TestOutputService3ProtocolTestListsCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><ListMember><member>abc</member><member>123</member></ListMember><RequestId>requestid</RequestId></OperationNameResponse>"))
 	req, _ := svc.OutputService3TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	ec2query.UnmarshalMeta(req)
 	ec2query.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"ListMember\":[\"abc\",\"123\"]}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
 
 func TestOutputService4ProtocolTestListWithCustomMemberNameCase1(t *testing.T) {
@@ -613,18 +628,18 @@ func TestOutputService4ProtocolTestListWithCustomMemberNameCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><ListMember><item>abc</item><item>123</item></ListMember><RequestId>requestid</RequestId></OperationNameResponse>"))
 	req, _ := svc.OutputService4TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	ec2query.UnmarshalMeta(req)
 	ec2query.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"ListMember\":[\"abc\",\"123\"]}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
 
 func TestOutputService5ProtocolTestFlattenedListCase1(t *testing.T) {
@@ -632,18 +647,18 @@ func TestOutputService5ProtocolTestFlattenedListCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><ListMember>abc</ListMember><ListMember>123</ListMember><RequestId>requestid</RequestId></OperationNameResponse>"))
 	req, _ := svc.OutputService5TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	ec2query.UnmarshalMeta(req)
 	ec2query.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"ListMember\":[\"abc\",\"123\"]}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
 
 func TestOutputService6ProtocolTestNormalMapCase1(t *testing.T) {
@@ -651,18 +666,18 @@ func TestOutputService6ProtocolTestNormalMapCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><Map><entry><key>qux</key><value><foo>bar</foo></value></entry><entry><key>baz</key><value><foo>bam</foo></value></entry></Map><RequestId>requestid</RequestId></OperationNameResponse>"))
 	req, _ := svc.OutputService6TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	ec2query.UnmarshalMeta(req)
 	ec2query.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"Map\":{\"baz\":{\"Foo\":\"bam\"},\"qux\":{\"Foo\":\"bar\"}}}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
 
 func TestOutputService7ProtocolTestFlattenedMapCase1(t *testing.T) {
@@ -670,18 +685,18 @@ func TestOutputService7ProtocolTestFlattenedMapCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><Map><key>qux</key><value>bar</value></Map><Map><key>baz</key><value>bam</value></Map><RequestId>requestid</RequestId></OperationNameResponse>"))
 	req, _ := svc.OutputService7TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	ec2query.UnmarshalMeta(req)
 	ec2query.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"Map\":{\"baz\":\"bam\",\"qux\":\"bar\"}}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
 
 func TestOutputService8ProtocolTestNamedMapCase1(t *testing.T) {
@@ -689,16 +704,17 @@ func TestOutputService8ProtocolTestNamedMapCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><Map><foo>qux</foo><bar>bar</bar></Map><Map><foo>baz</foo><bar>bam</bar></Map><RequestId>requestid</RequestId></OperationNameResponse>"))
 	req, _ := svc.OutputService8TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	ec2query.UnmarshalMeta(req)
 	ec2query.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"Map\":{\"baz\":\"bam\",\"qux\":\"bar\"}}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
+

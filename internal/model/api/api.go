@@ -190,6 +190,8 @@ func New(config *{{ .StructName }}Config) *{{ .StructName }} {
   service.Handlers.Sign.PushBack(v4.Sign)
   service.Handlers.Build.PushBack({{ .ProtocolPackage }}.Build)
   service.Handlers.Unmarshal.PushBack({{ .ProtocolPackage }}.Unmarshal)
+  service.Handlers.UnmarshalMeta.PushBack({{ .ProtocolPackage }}.UnmarshalMeta)
+  service.Handlers.UnmarshalError.PushBack({{ .ProtocolPackage }}.UnmarshalError)
 
   return &{{ .StructName }}{service}
 }

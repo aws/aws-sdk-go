@@ -2958,7 +2958,7 @@ type LoggingStatus struct {
 }
 
 type metadataLoggingStatus struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLoggingStatusResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"EnableLoggingResult"`
 }
 
 type ModifyClusterMessage struct {

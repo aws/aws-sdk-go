@@ -32,6 +32,8 @@ func New(config *EC2Config) *EC2 {
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(ec2query.Build)
 	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
 	return &EC2{service}
 }

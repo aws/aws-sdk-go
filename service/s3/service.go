@@ -32,6 +32,8 @@ func New(config *S3Config) *S3 {
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
 	return &S3{service}
 }

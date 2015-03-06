@@ -34,6 +34,8 @@ func New(config *ConfigServiceConfig) *ConfigService {
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
 	return &ConfigService{service}
 }

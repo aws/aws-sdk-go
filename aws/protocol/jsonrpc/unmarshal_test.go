@@ -8,14 +8,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
 	"time"
-
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -54,6 +53,8 @@ func NewOutputService1ProtocolTest(config *OutputService1ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
 	return &OutputService1ProtocolTest{service}
 }
@@ -126,6 +127,8 @@ func NewOutputService2ProtocolTest(config *OutputService2ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
 	return &OutputService2ProtocolTest{service}
 }
@@ -202,6 +205,8 @@ func NewOutputService3ProtocolTest(config *OutputService3ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
 	return &OutputService3ProtocolTest{service}
 }
@@ -267,6 +272,8 @@ func NewOutputService4ProtocolTest(config *OutputService4ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
 	return &OutputService4ProtocolTest{service}
 }
@@ -332,6 +339,8 @@ func NewOutputService5ProtocolTest(config *OutputService5ProtocolTestConfig) *Ou
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
 	return &OutputService5ProtocolTest{service}
 }
@@ -378,18 +387,18 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("{\"Str\": \"myname\", \"Num\": 123, \"FalseBool\": false, \"TrueBool\": true, \"Float\": 1.2, \"Double\": 1.3, \"Long\": 200, \"Char\": \"a\"}"))
 	req, _ := svc.OutputService1TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	jsonrpc.UnmarshalMeta(req)
 	jsonrpc.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"Char\":\"a\",\"Double\":1.3,\"FalseBool\":false,\"Float\":1.2,\"Long\":200,\"Num\":123,\"Str\":\"myname\",\"TrueBool\":true}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
 
 func TestOutputService2ProtocolTestBlobMembersCase1(t *testing.T) {
@@ -397,18 +406,18 @@ func TestOutputService2ProtocolTestBlobMembersCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("{\"BlobMember\": \"aGkh\", \"StructMember\": {\"foo\": \"dGhlcmUh\"}}"))
 	req, _ := svc.OutputService2TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	jsonrpc.UnmarshalMeta(req)
 	jsonrpc.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"BlobMember\":\"aGkh\",\"StructMember\":{\"Foo\":\"dGhlcmUh\"}}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
 
 func TestOutputService3ProtocolTestListsCase1(t *testing.T) {
@@ -416,18 +425,18 @@ func TestOutputService3ProtocolTestListsCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("{\"ListMember\": [\"a\", \"b\"]}"))
 	req, _ := svc.OutputService3TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	jsonrpc.UnmarshalMeta(req)
 	jsonrpc.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"ListMember\":[\"a\",\"b\"]}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
 
 func TestOutputService4ProtocolTestMapsCase1(t *testing.T) {
@@ -435,18 +444,18 @@ func TestOutputService4ProtocolTestMapsCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("{\"MapMember\": {\"a\": [1, 2], \"b\": [3, 4]}}"))
 	req, _ := svc.OutputService4TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	jsonrpc.UnmarshalMeta(req)
 	jsonrpc.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"MapMember\":{\"a\":[1,2],\"b\":[3,4]}}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
 
 func TestOutputService5ProtocolTestIgnoresExtraDataCase1(t *testing.T) {
@@ -454,16 +463,17 @@ func TestOutputService5ProtocolTestIgnoresExtraDataCase1(t *testing.T) {
 
 	buf := bytes.NewReader([]byte("{\"foo\": \"bar\"}"))
 	req, _ := svc.OutputService5TestCaseOperation1Request()
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf)}
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
 
 	// unmarshal response
+	jsonrpc.UnmarshalMeta(req)
 	jsonrpc.Unmarshal(req)
 	assert.NoError(t, req.Error)
 
 	// assert response
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{}"), util.Trim(string(jBuf)))
-
-	// assert headers
-
 }
+

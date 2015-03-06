@@ -1,9 +1,9 @@
 package storagegateway
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
 	"github.com/awslabs/aws-sdk-go/aws/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/aws"
 )
 
 // StorageGateway is a client for AWS Storage Gateway.
@@ -34,6 +34,8 @@ func New(config *StorageGatewayConfig) *StorageGateway {
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
 	return &StorageGateway{service}
 }

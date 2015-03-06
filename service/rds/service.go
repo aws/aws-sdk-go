@@ -1,9 +1,9 @@
 package rds
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
 	"github.com/awslabs/aws-sdk-go/aws/protocol/query"
-	"github.com/awslabs/aws-sdk-go/aws"
 )
 
 // RDS is a client for Amazon RDS.
@@ -24,7 +24,7 @@ func New(config *RDSConfig) *RDS {
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config.Config),
 		ServiceName: "rds",
-		APIVersion:  "2013-01-10",
+		APIVersion:  "2014-10-31",
 	}
 	service.Initialize()
 
@@ -32,6 +32,8 @@ func New(config *RDSConfig) *RDS {
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(query.Build)
 	service.Handlers.Unmarshal.PushBack(query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(query.UnmarshalError)
 
 	return &RDS{service}
 }

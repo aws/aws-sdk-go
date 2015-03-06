@@ -53,6 +53,8 @@ func NewInputService1ProtocolTest(config *InputService1ProtocolTestConfig) *Inpu
 	service.Handlers.Sign.PushBack(v4.Sign)
 	service.Handlers.Build.PushBack(jsonrpc.Build)
 	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
 	return &InputService1ProtocolTest{service}
 }
