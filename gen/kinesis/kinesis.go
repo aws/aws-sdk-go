@@ -564,7 +564,7 @@ type Shard struct {
 	ShardID               aws.StringValue      `json:"ShardId"`
 }
 
-// Possible values for Kinesis.
+// Possible values for ShardIteratorType.
 const (
 	ShardIteratorTypeAfterSequenceNumber = "AFTER_SEQUENCE_NUMBER"
 	ShardIteratorTypeAtSequenceNumber    = "AT_SEQUENCE_NUMBER"
@@ -588,7 +588,7 @@ type StreamDescription struct {
 	StreamStatus  aws.StringValue  `json:"StreamStatus"`
 }
 
-// Possible values for Kinesis.
+// Possible values for StreamStatus.
 const (
 	StreamStatusActive   = "ACTIVE"
 	StreamStatusCreating = "CREATING"

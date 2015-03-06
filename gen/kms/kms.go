@@ -285,7 +285,7 @@ type CreateKeyResponse struct {
 	KeyMetadata *KeyMetadata `json:"KeyMetadata,omitempty"`
 }
 
-// Possible values for KMS.
+// Possible values for DataKeySpec.
 const (
 	DataKeySpecAES128 = "AES_128"
 	DataKeySpecAES256 = "AES_256"
@@ -431,7 +431,7 @@ type GrantListEntry struct {
 	RetiringPrincipal aws.StringValue   `json:"RetiringPrincipal,omitempty"`
 }
 
-// Possible values for KMS.
+// Possible values for GrantOperation.
 const (
 	GrantOperationCreateGrant                     = "CreateGrant"
 	GrantOperationDecrypt                         = "Decrypt"
@@ -460,7 +460,7 @@ type KeyMetadata struct {
 	KeyUsage     aws.StringValue    `json:"KeyUsage,omitempty"`
 }
 
-// Possible values for KMS.
+// Possible values for KeyUsageType.
 const (
 	KeyUsageTypeEncryptDecrypt = "ENCRYPT_DECRYPT"
 )

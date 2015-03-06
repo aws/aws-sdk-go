@@ -180,13 +180,13 @@ func (c *CloudHSM) ModifyLunaClient(req *ModifyLunaClientRequest) (resp *ModifyL
 	return
 }
 
-// Possible values for CloudHSM.
+// Possible values for ClientVersion.
 const (
 	ClientVersion51 = "5.1"
 	ClientVersion53 = "5.3"
 )
 
-// Possible values for CloudHSM.
+// Possible values for CloudHsmObjectState.
 const (
 	CloudHSMObjectStateDegraded = "DEGRADED"
 	CloudHSMObjectStateReady    = "READY"
@@ -339,7 +339,7 @@ type GetConfigResponse struct {
 	ConfigType aws.StringValue `json:"ConfigType,omitempty"`
 }
 
-// Possible values for CloudHSM.
+// Possible values for HsmStatus.
 const (
 	HSMStatusDegraded    = "DEGRADED"
 	HSMStatusPending     = "PENDING"
@@ -430,7 +430,7 @@ type ModifyLunaClientResponse struct {
 	ClientARN aws.StringValue `json:"ClientArn,omitempty"`
 }
 
-// Possible values for CloudHSM.
+// Possible values for SubscriptionType.
 const (
 	SubscriptionTypeProduction = "PRODUCTION"
 )

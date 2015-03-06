@@ -154,7 +154,7 @@ func (c *Config) StopConfigurationRecorder(req *StopConfigurationRecorderRequest
 	return
 }
 
-// Possible values for Config.
+// Possible values for ChronologicalOrder.
 const (
 	ChronologicalOrderForward = "Forward"
 	ChronologicalOrderReverse = "Reverse"
@@ -196,7 +196,7 @@ type ConfigurationItem struct {
 	Version                      aws.StringValue    `json:"version,omitempty"`
 }
 
-// Possible values for Config.
+// Possible values for ConfigurationItemStatus.
 const (
 	ConfigurationItemStatusDeleted    = "Deleted"
 	ConfigurationItemStatusDiscovered = "Discovered"
@@ -253,7 +253,7 @@ type DeliveryChannelStatus struct {
 	Name                       aws.StringValue           `json:"name,omitempty"`
 }
 
-// Possible values for Config.
+// Possible values for DeliveryStatus.
 const (
 	DeliveryStatusFailure = "Failure"
 	DeliveryStatusSuccess = "Success"
@@ -326,7 +326,7 @@ type PutDeliveryChannelRequest struct {
 	DeliveryChannel *DeliveryChannel `json:"DeliveryChannel"`
 }
 
-// Possible values for Config.
+// Possible values for RecorderStatus.
 const (
 	RecorderStatusFailure = "Failure"
 	RecorderStatusPending = "Pending"
@@ -340,7 +340,7 @@ type Relationship struct {
 	ResourceType     aws.StringValue `json:"resourceType,omitempty"`
 }
 
-// Possible values for Config.
+// Possible values for ResourceType.
 const (
 	ResourceTypeAWSCloudTrailTrail     = "AWS::CloudTrail::Trail"
 	ResourceTypeAWSEC2CustomerGateway  = "AWS::EC2::CustomerGateway"

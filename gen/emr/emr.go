@@ -254,7 +254,7 @@ func (c *EMR) TerminateJobFlows(req *TerminateJobFlowsInput) (err error) {
 	return
 }
 
-// Possible values for EMR.
+// Possible values for ActionOnFailure.
 const (
 	ActionOnFailureCancelAndWait    = "CANCEL_AND_WAIT"
 	ActionOnFailureContinue         = "CONTINUE"
@@ -333,7 +333,7 @@ type Cluster struct {
 	VisibleToAllUsers       aws.BooleanValue       `json:"VisibleToAllUsers,omitempty"`
 }
 
-// Possible values for EMR.
+// Possible values for ClusterState.
 const (
 	ClusterStateBootstrapping        = "BOOTSTRAPPING"
 	ClusterStateRunning              = "RUNNING"
@@ -350,7 +350,7 @@ type ClusterStateChangeReason struct {
 	Message aws.StringValue `json:"Message,omitempty"`
 }
 
-// Possible values for EMR.
+// Possible values for ClusterStateChangeReasonCode.
 const (
 	ClusterStateChangeReasonCodeAllStepsCompleted = "ALL_STEPS_COMPLETED"
 	ClusterStateChangeReasonCodeBootstrapFailure  = "BOOTSTRAP_FAILURE"
@@ -511,7 +511,7 @@ type InstanceGroupModifyConfig struct {
 	InstanceGroupID           aws.StringValue  `json:"InstanceGroupId"`
 }
 
-// Possible values for EMR.
+// Possible values for InstanceGroupState.
 const (
 	InstanceGroupStateArrested      = "ARRESTED"
 	InstanceGroupStateBootstrapping = "BOOTSTRAPPING"
@@ -531,7 +531,7 @@ type InstanceGroupStateChangeReason struct {
 	Message aws.StringValue `json:"Message,omitempty"`
 }
 
-// Possible values for EMR.
+// Possible values for InstanceGroupStateChangeReasonCode.
 const (
 	InstanceGroupStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
 	InstanceGroupStateChangeReasonCodeInstanceFailure   = "INSTANCE_FAILURE"
@@ -553,21 +553,21 @@ type InstanceGroupTimeline struct {
 	ReadyDateTime    *aws.UnixTimestamp `json:"ReadyDateTime,omitempty"`
 }
 
-// Possible values for EMR.
+// Possible values for InstanceGroupType.
 const (
 	InstanceGroupTypeCore   = "CORE"
 	InstanceGroupTypeMaster = "MASTER"
 	InstanceGroupTypeTask   = "TASK"
 )
 
-// Possible values for EMR.
+// Possible values for InstanceRoleType.
 const (
 	InstanceRoleTypeCore   = "CORE"
 	InstanceRoleTypeMaster = "MASTER"
 	InstanceRoleTypeTask   = "TASK"
 )
 
-// Possible values for EMR.
+// Possible values for InstanceState.
 const (
 	InstanceStateAwaitingFulfillment = "AWAITING_FULFILLMENT"
 	InstanceStateBootstrapping       = "BOOTSTRAPPING"
@@ -582,7 +582,7 @@ type InstanceStateChangeReason struct {
 	Message aws.StringValue `json:"Message,omitempty"`
 }
 
-// Possible values for EMR.
+// Possible values for InstanceStateChangeReasonCode.
 const (
 	InstanceStateChangeReasonCodeBootstrapFailure  = "BOOTSTRAP_FAILURE"
 	InstanceStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
@@ -621,7 +621,7 @@ type JobFlowDetail struct {
 	VisibleToAllUsers     aws.BooleanValue              `json:"VisibleToAllUsers,omitempty"`
 }
 
-// Possible values for EMR.
+// Possible values for JobFlowExecutionState.
 const (
 	JobFlowExecutionStateBootstrapping = "BOOTSTRAPPING"
 	JobFlowExecutionStateCompleted     = "COMPLETED"
@@ -750,7 +750,7 @@ type ListStepsOutput struct {
 	Steps  []StepSummary   `json:"Steps,omitempty"`
 }
 
-// Possible values for EMR.
+// Possible values for MarketType.
 const (
 	MarketTypeOnDemand = "ON_DEMAND"
 	MarketTypeSpot     = "SPOT"
@@ -838,7 +838,7 @@ type StepDetail struct {
 	StepConfig            *StepConfig                `json:"StepConfig"`
 }
 
-// Possible values for EMR.
+// Possible values for StepExecutionState.
 const (
 	StepExecutionStateCancelled   = "CANCELLED"
 	StepExecutionStateCompleted   = "COMPLETED"
@@ -858,7 +858,7 @@ type StepExecutionStatusDetail struct {
 	State                 aws.StringValue    `json:"State"`
 }
 
-// Possible values for EMR.
+// Possible values for StepState.
 const (
 	StepStateCancelled   = "CANCELLED"
 	StepStateCompleted   = "COMPLETED"
@@ -874,7 +874,7 @@ type StepStateChangeReason struct {
 	Message aws.StringValue `json:"Message,omitempty"`
 }
 
-// Possible values for EMR.
+// Possible values for StepStateChangeReasonCode.
 const (
 	StepStateChangeReasonCodeNone = "NONE"
 )

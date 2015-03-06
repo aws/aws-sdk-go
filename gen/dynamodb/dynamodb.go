@@ -317,7 +317,7 @@ func (c *DynamoDB) UpdateTable(req *UpdateTableInput) (resp *UpdateTableOutput, 
 	return
 }
 
-// Possible values for DynamoDB.
+// Possible values for AttributeAction.
 const (
 	AttributeActionAdd    = "ADD"
 	AttributeActionDelete = "DELETE"
@@ -382,7 +382,7 @@ type Capacity struct {
 	CapacityUnits aws.DoubleValue `json:"CapacityUnits,omitempty"`
 }
 
-// Possible values for DynamoDB.
+// Possible values for ComparisonOperator.
 const (
 	ComparisonOperatorBeginsWith  = "BEGINS_WITH"
 	ComparisonOperatorBetween     = "BETWEEN"
@@ -405,7 +405,7 @@ type Condition struct {
 	ComparisonOperator aws.StringValue  `json:"ComparisonOperator"`
 }
 
-// Possible values for DynamoDB.
+// Possible values for ConditionalOperator.
 const (
 	ConditionalOperatorAnd = "AND"
 	ConditionalOperatorOr  = "OR"
@@ -530,7 +530,7 @@ type GlobalSecondaryIndexUpdate struct {
 	Update *UpdateGlobalSecondaryIndexAction `json:"Update,omitempty"`
 }
 
-// Possible values for DynamoDB.
+// Possible values for IndexStatus.
 const (
 	IndexStatusActive   = "ACTIVE"
 	IndexStatusCreating = "CREATING"
@@ -550,7 +550,7 @@ type KeySchemaElement struct {
 	KeyType       aws.StringValue `json:"KeyType"`
 }
 
-// Possible values for DynamoDB.
+// Possible values for KeyType.
 const (
 	KeyTypeHash  = "HASH"
 	KeyTypeRange = "RANGE"
@@ -599,7 +599,7 @@ type Projection struct {
 	ProjectionType   aws.StringValue `json:"ProjectionType,omitempty"`
 }
 
-// Possible values for DynamoDB.
+// Possible values for ProjectionType.
 const (
 	ProjectionTypeAll      = "ALL"
 	ProjectionTypeInclude  = "INCLUDE"
@@ -676,20 +676,20 @@ type QueryOutput struct {
 	ScannedCount     aws.IntegerValue            `json:"ScannedCount,omitempty"`
 }
 
-// Possible values for DynamoDB.
+// Possible values for ReturnConsumedCapacity.
 const (
 	ReturnConsumedCapacityIndexes = "INDEXES"
 	ReturnConsumedCapacityNone    = "NONE"
 	ReturnConsumedCapacityTotal   = "TOTAL"
 )
 
-// Possible values for DynamoDB.
+// Possible values for ReturnItemCollectionMetrics.
 const (
 	ReturnItemCollectionMetricsNone = "NONE"
 	ReturnItemCollectionMetricsSize = "SIZE"
 )
 
-// Possible values for DynamoDB.
+// Possible values for ReturnValue.
 const (
 	ReturnValueAllNew     = "ALL_NEW"
 	ReturnValueAllOld     = "ALL_OLD"
@@ -698,7 +698,7 @@ const (
 	ReturnValueUpdatedOld = "UPDATED_OLD"
 )
 
-// Possible values for DynamoDB.
+// Possible values for ScalarAttributeType.
 const (
 	ScalarAttributeTypeB = "B"
 	ScalarAttributeTypeN = "N"
@@ -732,7 +732,7 @@ type ScanOutput struct {
 	ScannedCount     aws.IntegerValue            `json:"ScannedCount,omitempty"`
 }
 
-// Possible values for DynamoDB.
+// Possible values for Select.
 const (
 	SelectAllAttributes          = "ALL_ATTRIBUTES"
 	SelectAllProjectedAttributes = "ALL_PROJECTED_ATTRIBUTES"
@@ -754,7 +754,7 @@ type TableDescription struct {
 	TableStatus            aws.StringValue                   `json:"TableStatus,omitempty"`
 }
 
-// Possible values for DynamoDB.
+// Possible values for TableStatus.
 const (
 	TableStatusActive   = "ACTIVE"
 	TableStatusCreating = "CREATING"

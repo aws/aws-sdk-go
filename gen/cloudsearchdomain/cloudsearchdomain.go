@@ -300,7 +300,7 @@ type BucketInfo struct {
 	Buckets []Bucket `json:"buckets,omitempty"`
 }
 
-// Possible values for CloudSearchDomain.
+// Possible values for ContentType.
 const (
 	ContentTypeApplicationJSON = "application/json"
 	ContentTypeApplicationXML  = "application/xml"
@@ -326,7 +326,7 @@ type Hits struct {
 	Start  aws.LongValue   `json:"start,omitempty"`
 }
 
-// Possible values for CloudSearchDomain.
+// Possible values for QueryParser.
 const (
 	QueryParserDismax     = "dismax"
 	QueryParserLucene     = "lucene"

@@ -1629,7 +1629,7 @@ func (v *GeoRestriction) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for CloudFront.
+// Possible values for GeoRestrictionType.
 const (
 	GeoRestrictionTypeBlacklist = "blacklist"
 	GeoRestrictionTypeNone      = "none"
@@ -1864,7 +1864,7 @@ func (v *InvalidationSummary) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for CloudFront.
+// Possible values for ItemSelection.
 const (
 	ItemSelectionAll       = "all"
 	ItemSelectionNone      = "none"
@@ -1990,7 +1990,7 @@ func (v *LoggingConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for CloudFront.
+// Possible values for Method.
 const (
 	MethodDelete  = "DELETE"
 	MethodGet     = "GET"
@@ -2001,7 +2001,7 @@ const (
 	MethodPut     = "PUT"
 )
 
-// Possible values for CloudFront.
+// Possible values for MinimumProtocolVersion.
 const (
 	MinimumProtocolVersionSSLv3 = "SSLv3"
 	MinimumProtocolVersionTLSv1 = "TLSv1"
@@ -2021,7 +2021,7 @@ func (v *Origin) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for CloudFront.
+// Possible values for OriginProtocolPolicy.
 const (
 	OriginProtocolPolicyHTTPOnly    = "http-only"
 	OriginProtocolPolicyMatchViewer = "match-viewer"
@@ -2051,7 +2051,7 @@ func (v *Paths) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for CloudFront.
+// Possible values for PriceClass.
 const (
 	PriceClassPriceClass100 = "PriceClass_100"
 	PriceClassPriceClass200 = "PriceClass_200"
@@ -2092,7 +2092,7 @@ func (v *S3OriginConfig) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for CloudFront.
+// Possible values for SSLSupportMethod.
 const (
 	SSLSupportMethodSNIOnly = "sni-only"
 	SSLSupportMethodVIP     = "vip"
@@ -2295,7 +2295,7 @@ func (v *ViewerCertificate) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for CloudFront.
+// Possible values for ViewerProtocolPolicy.
 const (
 	ViewerProtocolPolicyAllowAll        = "allow-all"
 	ViewerProtocolPolicyHTTPSOnly       = "https-only"

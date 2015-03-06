@@ -356,7 +356,7 @@ type CheckDNSAvailabilityResultMessage struct {
 	FullyQualifiedCNAME aws.StringValue  `query:"FullyQualifiedCNAME" xml:"CheckDNSAvailabilityResult>FullyQualifiedCNAME"`
 }
 
-// Possible values for ElasticBeanstalk.
+// Possible values for ConfigurationDeploymentStatus.
 const (
 	ConfigurationDeploymentStatusDeployed = "deployed"
 	ConfigurationDeploymentStatusFailed   = "failed"
@@ -385,7 +385,7 @@ type ConfigurationOptionSetting struct {
 	Value      aws.StringValue `query:"Value" xml:"Value"`
 }
 
-// Possible values for ElasticBeanstalk.
+// Possible values for ConfigurationOptionValueType.
 const (
 	ConfigurationOptionValueTypeList   = "List"
 	ConfigurationOptionValueTypeScalar = "Scalar"
@@ -573,7 +573,7 @@ type EnvironmentDescriptionsMessage struct {
 	Environments []EnvironmentDescription `query:"Environments.member" xml:"DescribeEnvironmentsResult>Environments>member"`
 }
 
-// Possible values for ElasticBeanstalk.
+// Possible values for EnvironmentHealth.
 const (
 	EnvironmentHealthGreen  = "Green"
 	EnvironmentHealthGrey   = "Grey"
@@ -589,7 +589,7 @@ type EnvironmentInfoDescription struct {
 	SampleTimestamp time.Time       `query:"SampleTimestamp" xml:"SampleTimestamp"`
 }
 
-// Possible values for ElasticBeanstalk.
+// Possible values for EnvironmentInfoType.
 const (
 	EnvironmentInfoTypeTail = "tail"
 )
@@ -615,7 +615,7 @@ type EnvironmentResourcesDescription struct {
 	LoadBalancer *LoadBalancerDescription `query:"LoadBalancer" xml:"LoadBalancer"`
 }
 
-// Possible values for ElasticBeanstalk.
+// Possible values for EnvironmentStatus.
 const (
 	EnvironmentStatusLaunching   = "Launching"
 	EnvironmentStatusReady       = "Ready"
@@ -649,7 +649,7 @@ type EventDescriptionsMessage struct {
 	NextToken aws.StringValue    `query:"NextToken" xml:"DescribeEventsResult>NextToken"`
 }
 
-// Possible values for ElasticBeanstalk.
+// Possible values for EventSeverity.
 const (
 	EventSeverityDebug = "DEBUG"
 	EventSeverityError = "ERROR"
@@ -836,7 +836,7 @@ type ValidationMessage struct {
 	Severity   aws.StringValue `query:"Severity" xml:"Severity"`
 }
 
-// Possible values for ElasticBeanstalk.
+// Possible values for ValidationSeverity.
 const (
 	ValidationSeverityError   = "error"
 	ValidationSeverityWarning = "warning"
