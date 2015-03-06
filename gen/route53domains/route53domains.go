@@ -255,7 +255,7 @@ type ContactDetail struct {
 	ZipCode          aws.StringValue `json:"ZipCode,omitempty"`
 }
 
-// Possible values for Route53Domains.
+// Possible values for ContactType.
 const (
 	ContactTypeAssociation = "ASSOCIATION"
 	ContactTypeCompany     = "COMPANY"
@@ -264,7 +264,7 @@ const (
 	ContactTypeReseller    = "RESELLER"
 )
 
-// Possible values for Route53Domains.
+// Possible values for CountryCode.
 const (
 	CountryCodeAd = "AD"
 	CountryCodeAe = "AE"
@@ -516,7 +516,7 @@ type DisableDomainTransferLockResponse struct {
 	OperationID aws.StringValue `json:"OperationId"`
 }
 
-// Possible values for Route53Domains.
+// Possible values for DomainAvailability.
 const (
 	DomainAvailabilityAvailable             = "AVAILABLE"
 	DomainAvailabilityAvailablePreorder     = "AVAILABLE_PREORDER"
@@ -560,7 +560,7 @@ type ExtraParam struct {
 	Value aws.StringValue `json:"Value"`
 }
 
-// Possible values for Route53Domains.
+// Possible values for ExtraParamName.
 const (
 	ExtraParamNameAuIDNumber          = "AU_ID_NUMBER"
 	ExtraParamNameAuIDType            = "AU_ID_TYPE"
@@ -656,7 +656,7 @@ type Nameserver struct {
 	Name    aws.StringValue `json:"Name"`
 }
 
-// Possible values for Route53Domains.
+// Possible values for OperationStatus.
 const (
 	OperationStatusError      = "ERROR"
 	OperationStatusFailed     = "FAILED"
@@ -673,7 +673,7 @@ type OperationSummary struct {
 	Type          aws.StringValue    `json:"Type"`
 }
 
-// Possible values for Route53Domains.
+// Possible values for OperationType.
 const (
 	OperationTypeChangePrivacyProtection = "CHANGE_PRIVACY_PROTECTION"
 	OperationTypeDeleteDomain            = "DELETE_DOMAIN"

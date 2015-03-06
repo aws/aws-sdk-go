@@ -1229,7 +1229,7 @@ type EnableMFADeviceRequest struct {
 	UserName            aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
-// Possible values for IAM.
+// Possible values for EntityType.
 const (
 	EntityTypeGroup = "Group"
 	EntityTypeRole  = "Role"
@@ -1738,12 +1738,12 @@ type RemoveUserFromGroupRequest struct {
 	UserName  aws.StringValue `query:"UserName" xml:"UserName"`
 }
 
-// Possible values for IAM.
+// Possible values for ReportFormatType.
 const (
 	ReportFormatTypeTextCSV = "text/csv"
 )
 
-// Possible values for IAM.
+// Possible values for ReportStateType.
 const (
 	ReportStateTypeComplete   = "COMPLETE"
 	ReportStateTypeInprogress = "INPROGRESS"
@@ -1946,20 +1946,20 @@ type VirtualMFADevice struct {
 	User             *User           `query:"User" xml:"User"`
 }
 
-// Possible values for IAM.
+// Possible values for assignmentStatusType.
 const (
 	AssignmentStatusTypeAny        = "Any"
 	AssignmentStatusTypeAssigned   = "Assigned"
 	AssignmentStatusTypeUnassigned = "Unassigned"
 )
 
-// Possible values for IAM.
+// Possible values for statusType.
 const (
 	StatusTypeActive   = "Active"
 	StatusTypeInactive = "Inactive"
 )
 
-// Possible values for IAM.
+// Possible values for summaryKeyType.
 const (
 	SummaryKeyTypeAccessKeysPerUserQuota          = "AccessKeysPerUserQuota"
 	SummaryKeyTypeAccountMFAenabled               = "AccountMFAEnabled"

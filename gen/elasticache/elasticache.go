@@ -395,7 +395,7 @@ func (c *ElasticCache) RevokeCacheSecurityGroupIngress(req *RevokeCacheSecurityG
 	return
 }
 
-// Possible values for ElasticCache.
+// Possible values for AZMode.
 const (
 	AZModeCrossAz  = "cross-az"
 	AZModeSingleAz = "single-az"
@@ -413,7 +413,7 @@ type AuthorizeCacheSecurityGroupIngressResult struct {
 	CacheSecurityGroup *CacheSecurityGroup `query:"CacheSecurityGroup" xml:"AuthorizeCacheSecurityGroupIngressResult>CacheSecurityGroup"`
 }
 
-// Possible values for ElasticCache.
+// Possible values for AutomaticFailoverStatus.
 const (
 	AutomaticFailoverStatusDisabled  = "disabled"
 	AutomaticFailoverStatusDisabling = "disabling"
@@ -1000,7 +1000,7 @@ type ParameterNameValue struct {
 	ParameterValue aws.StringValue `query:"ParameterValue" xml:"ParameterValue"`
 }
 
-// Possible values for ElasticCache.
+// Possible values for PendingAutomaticFailoverStatus.
 const (
 	PendingAutomaticFailoverStatusDisabled = "disabled"
 	PendingAutomaticFailoverStatusEnabled  = "enabled"
@@ -1155,7 +1155,7 @@ type Snapshot struct {
 	VPCID                      aws.StringValue  `query:"VpcId" xml:"VpcId"`
 }
 
-// Possible values for ElasticCache.
+// Possible values for SourceType.
 const (
 	SourceTypeCacheCluster        = "cache-cluster"
 	SourceTypeCacheParameterGroup = "cache-parameter-group"

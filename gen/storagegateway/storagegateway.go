@@ -1117,7 +1117,7 @@ type Disk struct {
 	DiskStatus             aws.StringValue `json:"DiskStatus,omitempty"`
 }
 
-// Possible values for StorageGateway.
+// Possible values for ErrorCode.
 const (
 	ErrorCodeActivationKeyExpired              = "ActivationKeyExpired"
 	ErrorCodeActivationKeyInvalid              = "ActivationKeyInvalid"

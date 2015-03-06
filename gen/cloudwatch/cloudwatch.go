@@ -183,7 +183,7 @@ type AlarmHistoryItem struct {
 	Timestamp       time.Time       `query:"Timestamp" xml:"Timestamp"`
 }
 
-// Possible values for CloudWatch.
+// Possible values for ComparisonOperator.
 const (
 	ComparisonOperatorGreaterThanOrEqualToThreshold = "GreaterThanOrEqualToThreshold"
 	ComparisonOperatorGreaterThanThreshold          = "GreaterThanThreshold"
@@ -294,7 +294,7 @@ type GetMetricStatisticsOutput struct {
 	Label      aws.StringValue `query:"Label" xml:"GetMetricStatisticsResult>Label"`
 }
 
-// Possible values for CloudWatch.
+// Possible values for HistoryItemType.
 const (
 	HistoryItemTypeAction              = "Action"
 	HistoryItemTypeConfigurationUpdate = "ConfigurationUpdate"
@@ -390,7 +390,7 @@ type SetAlarmStateInput struct {
 	StateValue      aws.StringValue `query:"StateValue" xml:"StateValue"`
 }
 
-// Possible values for CloudWatch.
+// Possible values for StandardUnit.
 const (
 	StandardUnitBits            = "Bits"
 	StandardUnitBitsSecond      = "Bits/Second"
@@ -421,14 +421,14 @@ const (
 	StandardUnitTerabytesSecond = "Terabytes/Second"
 )
 
-// Possible values for CloudWatch.
+// Possible values for StateValue.
 const (
 	StateValueAlarm            = "ALARM"
 	StateValueInsufficientData = "INSUFFICIENT_DATA"
 	StateValueOK               = "OK"
 )
 
-// Possible values for CloudWatch.
+// Possible values for Statistic.
 const (
 	StatisticAverage     = "Average"
 	StatisticMaximum     = "Maximum"

@@ -116,7 +116,7 @@ type {{ exportable $name }} struct {
 
 {{ end }}
 {{ else if $s.Enum }}
-// Possible values for {{ $.Name }}.
+// Possible values for {{ $s.Name }}.
 const (
 {{ range $name, $value := $s.Enums }}
 {{ $name }} = {{ $value }}{{ end }}
@@ -216,7 +216,7 @@ type {{ exportable $name }} struct {
 
 {{ end }}
 {{ else if $s.Enum }}
-// Possible values for {{ $.Name }}.
+// Possible values for {{ $s.Name }}.
 const (
 {{ range $name, $value := $s.Enums }}
 {{ $name }} = {{ $value }}{{ end }}
@@ -296,7 +296,7 @@ type {{ exportable $name }} struct {
 
 {{ end }}
 {{ else if $s.Enum }}
-// Possible values for {{ $.Name }}.
+// Possible values for {{ $s.Name }}.
 const (
 {{ range $name, $value := $s.Enums }}
 {{ $name }} = {{ $value }}{{ end }}
@@ -650,7 +650,7 @@ func (v *{{ exportable $name }}) MarshalXML(e *xml.Encoder, start xml.StartEleme
 
 {{ end }}
 {{ else if $s.Enum }}
-// Possible values for {{ $.Name }}.
+// Possible values for {{ $s.Name }}.
 const (
 {{ range $name, $value := $s.Enums }}
 {{ $name }} = {{ $value }}{{ end }}
@@ -806,7 +806,7 @@ type {{ exportable $name }} struct {
 
 {{ end }}
 {{ else if $s.Enum }}
-// Possible values for {{ $.Name }}.
+// Possible values for {{ $s.Name }}.
 const (
 {{ range $name, $value := $s.Enums }}
 {{ $name }} = {{ $value }}{{ end }}

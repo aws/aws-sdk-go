@@ -809,14 +809,14 @@ type App struct {
 	Type             aws.StringValue       `json:"Type,omitempty"`
 }
 
-// Possible values for OpsWorks.
+// Possible values for AppAttributesKeys.
 const (
 	AppAttributesKeysAutoBundleOnDeploy = "AutoBundleOnDeploy"
 	AppAttributesKeysDocumentRoot       = "DocumentRoot"
 	AppAttributesKeysRailsEnv           = "RailsEnv"
 )
 
-// Possible values for OpsWorks.
+// Possible values for AppType.
 const (
 	AppTypeJava   = "java"
 	AppTypeNodejs = "nodejs"
@@ -826,7 +826,7 @@ const (
 	AppTypeStatic = "static"
 )
 
-// Possible values for OpsWorks.
+// Possible values for Architecture.
 const (
 	ArchitectureI386  = "i386"
 	ArchitectureX8664 = "x86_64"
@@ -866,7 +866,7 @@ type AutoScalingThresholds struct {
 	ThresholdsWaitTime aws.IntegerValue `json:"ThresholdsWaitTime,omitempty"`
 }
 
-// Possible values for OpsWorks.
+// Possible values for AutoScalingType.
 const (
 	AutoScalingTypeLoad  = "load"
 	AutoScalingTypeTimer = "timer"
@@ -1103,7 +1103,7 @@ type DeploymentCommand struct {
 	Name aws.StringValue     `json:"Name"`
 }
 
-// Possible values for OpsWorks.
+// Possible values for DeploymentCommandName.
 const (
 	DeploymentCommandNameDeploy                = "deploy"
 	DeploymentCommandNameExecuteRecipes        = "execute_recipes"
@@ -1484,7 +1484,7 @@ type Layer struct {
 	VolumeConfigurations        []VolumeConfiguration        `json:"VolumeConfigurations,omitempty"`
 }
 
-// Possible values for OpsWorks.
+// Possible values for LayerAttributesKeys.
 const (
 	LayerAttributesKeysBundlerVersion              = "BundlerVersion"
 	LayerAttributesKeysEnableHaproxyStats          = "EnableHaproxyStats"
@@ -1512,7 +1512,7 @@ const (
 	LayerAttributesKeysRubygemsVersion             = "RubygemsVersion"
 )
 
-// Possible values for OpsWorks.
+// Possible values for LayerType.
 const (
 	LayerTypeCustom           = "custom"
 	LayerTypeDBMaster         = "db-master"
@@ -1645,7 +1645,7 @@ type ReportedOS struct {
 	Version aws.StringValue `json:"Version,omitempty"`
 }
 
-// Possible values for OpsWorks.
+// Possible values for RootDeviceType.
 const (
 	RootDeviceTypeEBS           = "ebs"
 	RootDeviceTypeInstanceStore = "instance-store"
@@ -1708,7 +1708,7 @@ type Source struct {
 	Username aws.StringValue `json:"Username,omitempty"`
 }
 
-// Possible values for OpsWorks.
+// Possible values for SourceType.
 const (
 	SourceTypeArchive = "archive"
 	SourceTypeGit     = "git"
@@ -1748,7 +1748,7 @@ type Stack struct {
 	VPCID                     aws.StringValue            `json:"VpcId,omitempty"`
 }
 
-// Possible values for OpsWorks.
+// Possible values for StackAttributesKeys.
 const (
 	StackAttributesKeysColor = "Color"
 )
@@ -1917,7 +1917,7 @@ type UserProfile struct {
 	SSHUsername         aws.StringValue  `json:"SshUsername,omitempty"`
 }
 
-// Possible values for OpsWorks.
+// Possible values for VirtualizationType.
 const (
 	VirtualizationTypeHVM         = "hvm"
 	VirtualizationTypeParavirtual = "paravirtual"

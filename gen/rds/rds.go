@@ -634,7 +634,7 @@ type AddTagsToResourceMessage struct {
 	Tags         []Tag           `query:"Tags.member" xml:"Tags>Tag"`
 }
 
-// Possible values for RDS.
+// Possible values for ApplyMethod.
 const (
 	ApplyMethodImmediate     = "immediate"
 	ApplyMethodPendingReboot = "pending-reboot"
@@ -1782,7 +1782,7 @@ type RevokeDBSecurityGroupIngressResult struct {
 	DBSecurityGroup *DBSecurityGroup `query:"DBSecurityGroup" xml:"RevokeDBSecurityGroupIngressResult>DBSecurityGroup"`
 }
 
-// Possible values for RDS.
+// Possible values for SourceType.
 const (
 	SourceTypeDBInstance       = "db-instance"
 	SourceTypeDBParameterGroup = "db-parameter-group"

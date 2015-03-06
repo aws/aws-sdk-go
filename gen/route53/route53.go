@@ -1650,7 +1650,7 @@ func (v *Change) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for Route53.
+// Possible values for ChangeAction.
 const (
 	ChangeActionCreate = "CREATE"
 	ChangeActionDelete = "DELETE"
@@ -1706,7 +1706,7 @@ func (v *ChangeResourceRecordSetsResponse) MarshalXML(e *xml.Encoder, start xml.
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for Route53.
+// Possible values for ChangeStatus.
 const (
 	ChangeStatusInsync  = "INSYNC"
 	ChangeStatusPending = "PENDING"
@@ -2183,7 +2183,7 @@ func (v *HealthCheckObservation) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for Route53.
+// Possible values for HealthCheckType.
 const (
 	HealthCheckTypeHTTP          = "HTTP"
 	HealthCheckTypeHTTPS         = "HTTPS"
@@ -2408,7 +2408,7 @@ func (v *ListTagsForResourcesResponse) MarshalXML(e *xml.Encoder, start xml.Star
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for Route53.
+// Possible values for RRType.
 const (
 	RRTypeA     = "A"
 	RRTypeAaaa  = "AAAA"
@@ -2454,13 +2454,13 @@ func (v *ResourceRecordSet) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for Route53.
+// Possible values for ResourceRecordSetFailover.
 const (
 	ResourceRecordSetFailoverPrimary   = "PRIMARY"
 	ResourceRecordSetFailoverSecondary = "SECONDARY"
 )
 
-// Possible values for Route53.
+// Possible values for ResourceRecordSetRegion.
 const (
 	ResourceRecordSetRegionApNortheast1 = "ap-northeast-1"
 	ResourceRecordSetRegionApSoutheast1 = "ap-southeast-1"
@@ -2511,7 +2511,7 @@ func (v *Tag) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for Route53.
+// Possible values for TagResourceType.
 const (
 	TagResourceTypeHealthcheck = "healthcheck"
 	TagResourceTypeHostedzone  = "hostedzone"
@@ -2581,7 +2581,7 @@ func (v *VPC) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for Route53.
+// Possible values for VPCRegion.
 const (
 	VPCRegionApNortheast1 = "ap-northeast-1"
 	VPCRegionApSoutheast1 = "ap-southeast-1"

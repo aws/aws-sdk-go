@@ -1741,7 +1741,7 @@ type AbortMultipartUploadInput struct {
 	VaultName aws.StringValue `json:"-"`
 }
 
-// Possible values for Glacier.
+// Possible values for ActionCode.
 const (
 	ActionCodeArchiveRetrieval   = "ArchiveRetrieval"
 	ActionCodeInventoryRetrieval = "InventoryRetrieval"
@@ -2025,7 +2025,7 @@ type SetVaultNotificationsInput struct {
 	VaultNotificationConfig *VaultNotificationConfig `json:"vaultNotificationConfig,omitempty"`
 }
 
-// Possible values for Glacier.
+// Possible values for StatusCode.
 const (
 	StatusCodeFailed     = "Failed"
 	StatusCodeInProgress = "InProgress"

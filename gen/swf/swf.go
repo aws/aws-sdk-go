@@ -841,7 +841,7 @@ type ActivityTaskTimedOutEventAttributes struct {
 	TimeoutType      aws.StringValue `json:"timeoutType"`
 }
 
-// Possible values for SWF.
+// Possible values for ActivityTaskTimeoutType.
 const (
 	ActivityTaskTimeoutTypeHeartbeat       = "HEARTBEAT"
 	ActivityTaskTimeoutTypeScheduleToClose = "SCHEDULE_TO_CLOSE"
@@ -891,7 +891,7 @@ type CancelTimerDecisionAttributes struct {
 	TimerID aws.StringValue `json:"timerId"`
 }
 
-// Possible values for SWF.
+// Possible values for CancelTimerFailedCause.
 const (
 	CancelTimerFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 	CancelTimerFailedCauseTimerIDUnknown        = "TIMER_ID_UNKNOWN"
@@ -909,7 +909,7 @@ type CancelWorkflowExecutionDecisionAttributes struct {
 	Details aws.StringValue `json:"details,omitempty"`
 }
 
-// Possible values for SWF.
+// Possible values for CancelWorkflowExecutionFailedCause.
 const (
 	CancelWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 	CancelWorkflowExecutionFailedCauseUnhandledDecision     = "UNHANDLED_DECISION"
@@ -921,7 +921,7 @@ type CancelWorkflowExecutionFailedEventAttributes struct {
 	DecisionTaskCompletedEventID aws.LongValue   `json:"decisionTaskCompletedEventId"`
 }
 
-// Possible values for SWF.
+// Possible values for ChildPolicy.
 const (
 	ChildPolicyAbandon       = "ABANDON"
 	ChildPolicyRequestCancel = "REQUEST_CANCEL"
@@ -980,7 +980,7 @@ type ChildWorkflowExecutionTimedOutEventAttributes struct {
 	WorkflowType      *WorkflowType      `json:"workflowType"`
 }
 
-// Possible values for SWF.
+// Possible values for CloseStatus.
 const (
 	CloseStatusCanceled       = "CANCELED"
 	CloseStatusCompleted      = "COMPLETED"
@@ -1000,7 +1000,7 @@ type CompleteWorkflowExecutionDecisionAttributes struct {
 	Result aws.StringValue `json:"result,omitempty"`
 }
 
-// Possible values for SWF.
+// Possible values for CompleteWorkflowExecutionFailedCause.
 const (
 	CompleteWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 	CompleteWorkflowExecutionFailedCauseUnhandledDecision     = "UNHANDLED_DECISION"
@@ -1024,7 +1024,7 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	WorkflowTypeVersion          aws.StringValue `json:"workflowTypeVersion,omitempty"`
 }
 
-// Possible values for SWF.
+// Possible values for ContinueAsNewWorkflowExecutionFailedCause.
 const (
 	ContinueAsNewWorkflowExecutionFailedCauseContinueAsNewWorkflowExecutionRateExceeded   = "CONTINUE_AS_NEW_WORKFLOW_EXECUTION_RATE_EXCEEDED"
 	ContinueAsNewWorkflowExecutionFailedCauseDefaultChildPolicyUndefined                  = "DEFAULT_CHILD_POLICY_UNDEFINED"
@@ -1130,12 +1130,12 @@ type DecisionTaskTimedOutEventAttributes struct {
 	TimeoutType      aws.StringValue `json:"timeoutType"`
 }
 
-// Possible values for SWF.
+// Possible values for DecisionTaskTimeoutType.
 const (
 	DecisionTaskTimeoutTypeStartToClose = "START_TO_CLOSE"
 )
 
-// Possible values for SWF.
+// Possible values for DecisionType.
 const (
 	DecisionTypeCancelTimer                            = "CancelTimer"
 	DecisionTypeCancelWorkflowExecution                = "CancelWorkflowExecution"
@@ -1215,7 +1215,7 @@ type DomainInfos struct {
 	NextPageToken aws.StringValue `json:"nextPageToken,omitempty"`
 }
 
-// Possible values for SWF.
+// Possible values for EventType.
 const (
 	EventTypeActivityTaskCancelRequested                     = "ActivityTaskCancelRequested"
 	EventTypeActivityTaskCanceled                            = "ActivityTaskCanceled"
@@ -1266,7 +1266,7 @@ const (
 	EventTypeWorkflowExecutionTimedOut                       = "WorkflowExecutionTimedOut"
 )
 
-// Possible values for SWF.
+// Possible values for ExecutionStatus.
 const (
 	ExecutionStatusClosed = "CLOSED"
 	ExecutionStatusOpen   = "OPEN"
@@ -1296,7 +1296,7 @@ type FailWorkflowExecutionDecisionAttributes struct {
 	Reason  aws.StringValue `json:"reason,omitempty"`
 }
 
-// Possible values for SWF.
+// Possible values for FailWorkflowExecutionFailedCause.
 const (
 	FailWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 	FailWorkflowExecutionFailedCauseUnhandledDecision     = "UNHANDLED_DECISION"
@@ -1473,7 +1473,7 @@ type RecordMarkerDecisionAttributes struct {
 	MarkerName aws.StringValue `json:"markerName"`
 }
 
-// Possible values for SWF.
+// Possible values for RecordMarkerFailedCause.
 const (
 	RecordMarkerFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
@@ -1519,7 +1519,7 @@ type RegisterWorkflowTypeInput struct {
 	Version                             aws.StringValue `json:"version"`
 }
 
-// Possible values for SWF.
+// Possible values for RegistrationStatus.
 const (
 	RegistrationStatusDeprecated = "DEPRECATED"
 	RegistrationStatusRegistered = "REGISTERED"
@@ -1530,7 +1530,7 @@ type RequestCancelActivityTaskDecisionAttributes struct {
 	ActivityID aws.StringValue `json:"activityId"`
 }
 
-// Possible values for SWF.
+// Possible values for RequestCancelActivityTaskFailedCause.
 const (
 	RequestCancelActivityTaskFailedCauseActivityIDUnknown     = "ACTIVITY_ID_UNKNOWN"
 	RequestCancelActivityTaskFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
@@ -1550,7 +1550,7 @@ type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 	WorkflowID aws.StringValue `json:"workflowId"`
 }
 
-// Possible values for SWF.
+// Possible values for RequestCancelExternalWorkflowExecutionFailedCause.
 const (
 	RequestCancelExternalWorkflowExecutionFailedCauseOperationNotPermitted                              = "OPERATION_NOT_PERMITTED"
 	RequestCancelExternalWorkflowExecutionFailedCauseRequestCancelExternalWorkflowExecutionRateExceeded = "REQUEST_CANCEL_EXTERNAL_WORKFLOW_EXECUTION_RATE_EXCEEDED"
@@ -1627,7 +1627,7 @@ type ScheduleActivityTaskDecisionAttributes struct {
 	TaskPriority           aws.StringValue `json:"taskPriority,omitempty"`
 }
 
-// Possible values for SWF.
+// Possible values for ScheduleActivityTaskFailedCause.
 const (
 	ScheduleActivityTaskFailedCauseActivityCreationRateExceeded           = "ACTIVITY_CREATION_RATE_EXCEEDED"
 	ScheduleActivityTaskFailedCauseActivityIDAlreadyInUse                 = "ACTIVITY_ID_ALREADY_IN_USE"
@@ -1659,7 +1659,7 @@ type SignalExternalWorkflowExecutionDecisionAttributes struct {
 	WorkflowID aws.StringValue `json:"workflowId"`
 }
 
-// Possible values for SWF.
+// Possible values for SignalExternalWorkflowExecutionFailedCause.
 const (
 	SignalExternalWorkflowExecutionFailedCauseOperationNotPermitted                       = "OPERATION_NOT_PERMITTED"
 	SignalExternalWorkflowExecutionFailedCauseSignalExternalWorkflowExecutionRateExceeded = "SIGNAL_EXTERNAL_WORKFLOW_EXECUTION_RATE_EXCEEDED"
@@ -1709,7 +1709,7 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	WorkflowType                 *WorkflowType   `json:"workflowType"`
 }
 
-// Possible values for SWF.
+// Possible values for StartChildWorkflowExecutionFailedCause.
 const (
 	StartChildWorkflowExecutionFailedCauseChildCreationRateExceeded                    = "CHILD_CREATION_RATE_EXCEEDED"
 	StartChildWorkflowExecutionFailedCauseDefaultChildPolicyUndefined                  = "DEFAULT_CHILD_POLICY_UNDEFINED"
@@ -1756,7 +1756,7 @@ type StartTimerDecisionAttributes struct {
 	TimerID            aws.StringValue `json:"timerId"`
 }
 
-// Possible values for SWF.
+// Possible values for StartTimerFailedCause.
 const (
 	StartTimerFailedCauseOpenTimersLimitExceeded   = "OPEN_TIMERS_LIMIT_EXCEEDED"
 	StartTimerFailedCauseOperationNotPermitted     = "OPERATION_NOT_PERMITTED"
@@ -1832,7 +1832,7 @@ type WorkflowExecution struct {
 	WorkflowID aws.StringValue `json:"workflowId"`
 }
 
-// Possible values for SWF.
+// Possible values for WorkflowExecutionCancelRequestedCause.
 const (
 	WorkflowExecutionCancelRequestedCauseChildPolicyApplied = "CHILD_POLICY_APPLIED"
 )
@@ -1956,7 +1956,7 @@ type WorkflowExecutionStartedEventAttributes struct {
 	WorkflowType                 *WorkflowType      `json:"workflowType"`
 }
 
-// Possible values for SWF.
+// Possible values for WorkflowExecutionTerminatedCause.
 const (
 	WorkflowExecutionTerminatedCauseChildPolicyApplied = "CHILD_POLICY_APPLIED"
 	WorkflowExecutionTerminatedCauseEventLimitExceeded = "EVENT_LIMIT_EXCEEDED"
@@ -1977,7 +1977,7 @@ type WorkflowExecutionTimedOutEventAttributes struct {
 	TimeoutType aws.StringValue `json:"timeoutType"`
 }
 
-// Possible values for SWF.
+// Possible values for WorkflowExecutionTimeoutType.
 const (
 	WorkflowExecutionTimeoutTypeStartToClose = "START_TO_CLOSE"
 )

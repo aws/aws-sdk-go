@@ -390,7 +390,7 @@ type IdentityNotificationAttributes struct {
 	ForwardingEnabled aws.BooleanValue `query:"ForwardingEnabled" xml:"ForwardingEnabled"`
 }
 
-// Possible values for SES.
+// Possible values for IdentityType.
 const (
 	IdentityTypeDomain       = "Domain"
 	IdentityTypeEmailAddress = "EmailAddress"
@@ -450,7 +450,7 @@ func (m *NotificationAttributes) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 	return nil
 }
 
-// Possible values for SES.
+// Possible values for NotificationType.
 const (
 	NotificationTypeBounce    = "Bounce"
 	NotificationTypeComplaint = "Complaint"
@@ -552,7 +552,7 @@ func (m *VerificationAttributes) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 	return nil
 }
 
-// Possible values for SES.
+// Possible values for VerificationStatus.
 const (
 	VerificationStatusFailed           = "Failed"
 	VerificationStatusNotStarted       = "NotStarted"

@@ -3641,7 +3641,7 @@ func (v *Bucket) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
+// Possible values for BucketCannedACL.
 const (
 	BucketCannedACLAuthenticatedRead = "authenticated-read"
 	BucketCannedACLPrivate           = "private"
@@ -3649,7 +3649,7 @@ const (
 	BucketCannedACLPublicReadWrite   = "public-read-write"
 )
 
-// Possible values for S3.
+// Possible values for BucketLocationConstraint.
 const (
 	BucketLocationConstraintApNortheast1 = "ap-northeast-1"
 	BucketLocationConstraintApSoutheast1 = "ap-southeast-1"
@@ -3674,14 +3674,14 @@ func (v *BucketLoggingStatus) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
+// Possible values for BucketLogsPermission.
 const (
 	BucketLogsPermissionFullControl = "FULL_CONTROL"
 	BucketLogsPermissionRead        = "READ"
 	BucketLogsPermissionWrite       = "WRITE"
 )
 
-// Possible values for S3.
+// Possible values for BucketVersioningStatus.
 const (
 	BucketVersioningStatusEnabled   = "Enabled"
 	BucketVersioningStatusSuspended = "Suspended"
@@ -4133,7 +4133,7 @@ func (v *DeletedObject) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
+// Possible values for EncodingType.
 const (
 	EncodingTypeURL = "url"
 )
@@ -4163,7 +4163,7 @@ func (v *ErrorDocument) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
+// Possible values for Event.
 const (
 	EventS3ObjectCreatedCompleteMultipartUpload = "s3:ObjectCreated:CompleteMultipartUpload"
 	EventS3ObjectCreatedCopy                    = "s3:ObjectCreated:Copy"
@@ -4172,7 +4172,7 @@ const (
 	EventS3ReducedRedundancyLostObject          = "s3:ReducedRedundancyLostObject"
 )
 
-// Possible values for S3.
+// Possible values for ExpirationStatus.
 const (
 	ExpirationStatusDisabled = "Disabled"
 	ExpirationStatusEnabled  = "Enabled"
@@ -4846,19 +4846,19 @@ func (v *LoggingEnabled) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
+// Possible values for MFADelete.
 const (
 	MFADeleteDisabled = "Disabled"
 	MFADeleteEnabled  = "Enabled"
 )
 
-// Possible values for S3.
+// Possible values for MFADeleteStatus.
 const (
 	MFADeleteStatusDisabled = "Disabled"
 	MFADeleteStatusEnabled  = "Enabled"
 )
 
-// Possible values for S3.
+// Possible values for MetadataDirective.
 const (
 	MetadataDirectiveCopy    = "COPY"
 	MetadataDirectiveReplace = "REPLACE"
@@ -4932,7 +4932,7 @@ func (v *Object) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
+// Possible values for ObjectCannedACL.
 const (
 	ObjectCannedACLAuthenticatedRead      = "authenticated-read"
 	ObjectCannedACLBucketOwnerFullControl = "bucket-owner-full-control"
@@ -4954,7 +4954,7 @@ func (v *ObjectIdentifier) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
+// Possible values for ObjectStorageClass.
 const (
 	ObjectStorageClassGlacier           = "GLACIER"
 	ObjectStorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
@@ -4979,7 +4979,7 @@ func (v *ObjectVersion) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
+// Possible values for ObjectVersionStorageClass.
 const (
 	ObjectVersionStorageClassStandard = "STANDARD"
 )
@@ -5010,13 +5010,13 @@ func (v *Part) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
+// Possible values for Payer.
 const (
 	PayerBucketOwner = "BucketOwner"
 	PayerRequester   = "Requester"
 )
 
-// Possible values for S3.
+// Possible values for Permission.
 const (
 	PermissionFullControl = "FULL_CONTROL"
 	PermissionRead        = "READ"
@@ -5025,7 +5025,7 @@ const (
 	PermissionWriteAcp    = "WRITE_ACP"
 )
 
-// Possible values for S3.
+// Possible values for Protocol.
 const (
 	ProtocolHTTP  = "http"
 	ProtocolHTTPS = "https"
@@ -5345,12 +5345,12 @@ func (v *Rule) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
+// Possible values for ServerSideEncryption.
 const (
 	ServerSideEncryptionAES256 = "AES256"
 )
 
-// Possible values for S3.
+// Possible values for StorageClass.
 const (
 	StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
 	StorageClassStandard          = "STANDARD"
@@ -5418,12 +5418,12 @@ func (v *Transition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	return aws.MarshalXML(v, e, start)
 }
 
-// Possible values for S3.
+// Possible values for TransitionStorageClass.
 const (
 	TransitionStorageClassGlacier = "GLACIER"
 )
 
-// Possible values for S3.
+// Possible values for Type.
 const (
 	TypeAmazonCustomerByEmail = "AmazonCustomerByEmail"
 	TypeCanonicalUser         = "CanonicalUser"
