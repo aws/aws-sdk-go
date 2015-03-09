@@ -2,8 +2,8 @@ package emr
 
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
 )
 
 // EMR is a client for Amazon EMR.

@@ -2,8 +2,8 @@ package sqs
 
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/query"
+	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
 )
 
 // SQS is a client for Amazon SQS.

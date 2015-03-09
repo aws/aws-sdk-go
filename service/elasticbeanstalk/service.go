@@ -2,8 +2,8 @@ package elasticbeanstalk
 
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/query"
+	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
 )
 
 // ElasticBeanstalk is a client for Elastic Beanstalk.
