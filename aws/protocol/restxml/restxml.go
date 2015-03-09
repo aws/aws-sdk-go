@@ -6,6 +6,7 @@ import (
 	"io"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/protocol/query"
 	"github.com/awslabs/aws-sdk-go/aws/protocol/rest"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 )
@@ -40,5 +41,5 @@ func UnmarshalMeta(r *aws.Request) {
 }
 
 func UnmarshalError(r *aws.Request) {
-	// TODO unmarshal error responses
+	query.UnmarshalError(r)
 }

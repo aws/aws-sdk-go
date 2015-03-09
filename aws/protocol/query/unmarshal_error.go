@@ -7,7 +7,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
-type queryErrorResponse struct {
+type xmlErrorResponse struct {
 	XMLName   xml.Name `xml:"ErrorResponse"`
 	Code      string   `xml:"Error>Code"`
 	Message   string   `xml:"Error>Message"`
@@ -17,7 +17,7 @@ type queryErrorResponse struct {
 func UnmarshalError(r *aws.Request) {
 	defer r.HTTPResponse.Body.Close()
 
-	resp := &queryErrorResponse{}
+	resp := &xmlErrorResponse{}
 	err := xml.NewDecoder(r.HTTPResponse.Body).Decode(resp)
 	if err != nil && err != io.EOF {
 		r.Error = err
