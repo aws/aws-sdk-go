@@ -14,6 +14,8 @@ import (
 	"github.com/vaughan0/go-ini"
 )
 
+var currentTime = time.Now
+
 // Credentials are used to authenticate and authorize calls that you make to
 // AWS.
 type Credentials struct {
