@@ -13,6 +13,8 @@ import (
 	"reflect"
 	"regexp"
 	"time"
+
+	"github.com/awslabs/aws-sdk-go/internal/endpoints"
 )
 
 const SDKName = "aws-sdk-go"
@@ -174,7 +176,7 @@ func (s *Service) buildEndpoint() {
 	if s.Config.Endpoint != "" {
 		s.Endpoint = s.Config.Endpoint
 	} else {
-		s.Endpoint = s.endpointForRegion()
+		s.Endpoint = endpoints.EndpointForRegion(s.ServiceName, s.Config.Region)
 	}
 
 	if !schemeRE.MatchString(s.Endpoint) {
