@@ -3,7 +3,7 @@ package s3
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
-	"github.com/awslabs/aws-sdk-go/aws/protocol/restxml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/restxml"
 )
 
 // S3 is a client for Amazon S3.

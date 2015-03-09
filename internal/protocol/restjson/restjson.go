@@ -2,8 +2,8 @@ package restjson
 
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/protocol/jsonrpc"
-	"github.com/awslabs/aws-sdk-go/aws/protocol/rest"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/rest"
 )
 
 func Build(r *aws.Request) {

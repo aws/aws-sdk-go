@@ -3,7 +3,7 @@ package codedeploy
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
-	"github.com/awslabs/aws-sdk-go/aws/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
 )
 
 // CodeDeploy is a client for CodeDeploy.

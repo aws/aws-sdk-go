@@ -200,7 +200,7 @@ func New(config *{{ .StructName }}Config) *{{ .StructName }} {
 func (a *API) ServiceGoCode() string {
 	a.resetImports()
 	a.imports["github.com/awslabs/aws-sdk-go/aws/signer/v4"] = true
-	a.imports["github.com/awslabs/aws-sdk-go/aws/protocol/"+a.ProtocolPackage()] = true
+	a.imports["github.com/awslabs/aws-sdk-go/internal/protocol/"+a.ProtocolPackage()] = true
 
 	var buf bytes.Buffer
 	err := tplService.Execute(&buf, a)

@@ -2,19 +2,20 @@ package query_test
 
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/protocol/query"
 	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/query"
 
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
 	"time"
+
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -885,4 +886,3 @@ func TestOutputService10ProtocolTestEmptyXMLResultElementCase1(t *testing.T) {
 	jBuf, _ := json.Marshal(req.Data)
 	assert.Equal(t, util.Trim("{\"Name\":null}"), util.Trim(string(jBuf)))
 }
-

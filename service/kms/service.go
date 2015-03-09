@@ -3,7 +3,7 @@ package kms
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
-	"github.com/awslabs/aws-sdk-go/aws/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
 )
 
 // KMS is a client for KMS.

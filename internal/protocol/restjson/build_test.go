@@ -2,19 +2,20 @@ package restjson_test
 
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/protocol/restjson"
 	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/restjson"
 
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
 	"time"
+
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -764,4 +765,3 @@ func TestInputService7ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsC
 	// assert headers
 
 }
-

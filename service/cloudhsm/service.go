@@ -3,7 +3,7 @@ package cloudhsm
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/aws/signer/v4"
-	"github.com/awslabs/aws-sdk-go/aws/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
 )
 
 // CloudHSM is a client for CloudHSM.
