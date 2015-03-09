@@ -10,9 +10,6 @@ import (
 	"time"
 )
 
-const SDKName = "aws-sdk-go"
-const SDKVersion = "0.5.0"
-
 type Request struct {
 	*Service
 	Handlers     Handlers
