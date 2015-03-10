@@ -41,6 +41,9 @@ func buildLocationElements(r *aws.Request, v reflect.Value) {
 			if m.Kind() == reflect.Ptr {
 				m = m.Elem()
 			}
+			if !m.IsValid() {
+				continue
+			}
 
 			switch field.Tag.Get("location") {
 			case "headers": // header maps
