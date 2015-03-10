@@ -70,14 +70,14 @@ func UnmarshalError(req *aws.Request) {
 }
 
 type jsonErrorResponse struct {
-	Type    string `json:"__type"`
+	Code    string `json:"__type"`
 	Message string `json:"message"`
 }
 
 func (e jsonErrorResponse) Err(StatusCode int) error {
 	return aws.APIError{
 		StatusCode: StatusCode,
-		Type:       e.Type,
+		Code:       e.Code,
 		Message:    e.Message,
 	}
 }

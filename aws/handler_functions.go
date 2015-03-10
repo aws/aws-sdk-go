@@ -6,6 +6,10 @@ import (
 	"time"
 )
 
+var sleepDelay = func(delay time.Duration) {
+	time.Sleep(delay)
+}
+
 func BuildContentLength(r *Request) {
 	var length int64
 	strlen := r.HTTPRequest.Header.Get("Content-Length")
@@ -35,12 +39,14 @@ func SendHandler(r *Request) {
 
 func ValidateResponseHandler(r *Request) {
 	if r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 400 {
-		r.Error = APIError{
+		err := APIError{
 			StatusCode: r.HTTPResponse.StatusCode,
-			Retryable:  r.Service.ShouldRetry(r),
-			RetryDelay: r.Service.RetryRules(r),
 			RetryCount: r.RetryCount,
 		}
+		r.Error = err
+		err.Retryable = r.Service.ShouldRetry(r)
+		err.RetryDelay = r.Service.RetryRules(r)
+		r.Error = err
 	}
 }
 
@@ -50,14 +56,14 @@ func AfterRetryHandler(r *Request) {
 
 	if err := Error(r.Error); err != nil {
 		delay = err.RetryDelay
+		r.RetryCount++
 		if err.Retryable && r.RetryCount < r.Service.MaxRetries() {
-			r.RetryCount++
 			willRetry = true
 		}
 	}
 
 	if willRetry {
 		r.Error = nil
-		time.Sleep(delay)
+		sleepDelay(delay)
 	}
 }

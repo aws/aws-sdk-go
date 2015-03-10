@@ -27,27 +27,16 @@ type Service struct {
 
 var schemeRE = regexp.MustCompile("^([^:]+)://")
 
-func retryRules(r *Request) time.Duration {
-	delay := time.Duration(math.Pow(2, float64(r.RetryCount))) * 30
-	return delay * time.Millisecond
-}
-
-func shouldRetry(r *Request) bool {
-	if err := Error(r.Error); err != nil {
-		if err.StatusCode >= 500 {
-			return true
-		}
-
-		switch err.Code {
-		case "ExpiredTokenException":
-		case "ProvisionedThroughputExceededException", "Throttling":
-			return true
-		}
-	}
-	return false
+func NewService(config *Config) *Service {
+	svc := &Service{Config: config}
+	svc.Initialize()
+	return svc
 }
 
 func (s *Service) Initialize() {
+	if s.Config == nil {
+		s.Config = &Config{}
+	}
 	if s.Config.HTTPClient == nil {
 		s.Config.HTTPClient = http.DefaultClient
 	}
@@ -121,4 +110,32 @@ func (s *Service) AddDebugHandlers() {
 		}
 		fmt.Printf("-----------------------------------------------------\n")
 	})
+}
+
+func (s *Service) MaxRetries() uint {
+	if s.Config.MaxRetries < 0 {
+		return s.DefaultMaxRetries
+	} else {
+		return uint(s.Config.MaxRetries)
+	}
+}
+
+func retryRules(r *Request) time.Duration {
+	delay := time.Duration(math.Pow(2, float64(r.RetryCount))) * 30
+	return delay * time.Millisecond
+}
+
+func shouldRetry(r *Request) bool {
+	if err := Error(r.Error); err != nil {
+		if err.StatusCode >= 500 {
+			return true
+		}
+
+		switch err.Code {
+		case "ExpiredTokenException":
+		case "ProvisionedThroughputExceededException", "Throttling":
+			return true
+		}
+	}
+	return false
 }

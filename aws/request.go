@@ -81,14 +81,6 @@ func (r *Request) SetReaderBody(reader io.ReadSeeker) {
 	r.Body = reader
 }
 
-func (s *Service) MaxRetries() uint {
-	if s.Config.MaxRetries < 0 {
-		return s.DefaultMaxRetries
-	} else {
-		return uint(s.Config.MaxRetries)
-	}
-}
-
 func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	r.ExpireTime = expireTime
 	r.Sign()
