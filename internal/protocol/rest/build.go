@@ -71,7 +71,7 @@ func buildBody(r *aws.Request, v reflect.Value) {
 			pfield, _ := v.Type().FieldByName(payloadName)
 			if ptag := pfield.Tag.Get("type"); ptag != "" && ptag != "structure" {
 				payload := reflect.Indirect(v.FieldByName(payloadName))
-				if payload.IsValid() {
+				if payload.IsValid() && payload.Interface() != nil {
 					switch reader := payload.Interface().(type) {
 					case io.ReadSeeker:
 						r.SetReaderBody(reader)
