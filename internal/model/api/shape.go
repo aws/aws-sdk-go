@@ -18,6 +18,7 @@ type ShapeRef struct {
 	QueryName     string
 	Flattened     bool
 	ResultWrapper string
+	Streaming     bool
 	XMLAttribute  bool
 	XMLNamespace  XMLInfo
 	Payload       string
@@ -216,7 +217,8 @@ func (s *Shape) GoCode() string {
 		code += "struct {\n"
 		for _, n := range s.MemberNames() {
 			m := s.MemberRefs[n]
-			if s.Streaming && s.Payload == n {
+			if (m.Streaming || s.Streaming) && s.Payload == n {
+				s.API.imports["io"] = true
 				code += n + " io.ReadSeeker " + m.GoTags(false) + "\n"
 			} else {
 				code += n + " " + m.GoType() + " " + m.GoTags(false) + "\n"

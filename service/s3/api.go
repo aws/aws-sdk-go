@@ -5,6 +5,7 @@ package s3
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
 	"time"
+	"io"
 )
 
 // AbortMultipartUploadRequest generates a request for the AbortMultipartUpload operation.
@@ -1960,7 +1961,7 @@ type metadataGetObjectInput struct {
 
 type GetObjectOutput struct {
 	AcceptRanges            *string             `location:"header" locationName:"accept-ranges" type:"string" json:"-" xml:"-"`
-	Body                    []byte              `type:"blob"`
+	Body                    io.ReadSeeker       `type:"blob"`
 	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string" json:"-" xml:"-"`
 	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
 	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
@@ -2001,7 +2002,7 @@ type metadataGetObjectTorrentInput struct {
 }
 
 type GetObjectTorrentOutput struct {
-	Body []byte `type:"blob"`
+	Body io.ReadSeeker `type:"blob"`
 
 	metadataGetObjectTorrentOutput `json:"-", xml:"-"`
 }
@@ -2606,7 +2607,7 @@ type metadataPutObjectACLInput struct {
 
 type PutObjectInput struct {
 	ACL                     *string             `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
-	Body                    []byte              `type:"blob"`
+	Body                    io.ReadSeeker       `type:"blob"`
 	Bucket                  *string             `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string" json:"-" xml:"-"`
 	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
@@ -2849,16 +2850,16 @@ type metadataUploadPartCopyOutput struct {
 }
 
 type UploadPartInput struct {
-	Body                 []byte  `type:"blob"`
-	Bucket               *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	ContentLength        *int    `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
-	ContentMD5           *string `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	Key                  *string `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
-	PartNumber           *int    `location:"querystring" locationName:"partNumber" type:"integer" json:"-" xml:"-"`
-	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKey       *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5    *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	UploadID             *string `location:"querystring" locationName:"uploadId" type:"string" json:"-" xml:"-"`
+	Body                 io.ReadSeeker `type:"blob"`
+	Bucket               *string       `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	ContentLength        *int          `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
+	ContentMD5           *string       `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
+	Key                  *string       `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	PartNumber           *int          `location:"querystring" locationName:"partNumber" type:"integer" json:"-" xml:"-"`
+	SSECustomerAlgorithm *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
+	SSECustomerKey       *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
+	SSECustomerKeyMD5    *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
+	UploadID             *string       `location:"querystring" locationName:"uploadId" type:"string" json:"-" xml:"-"`
 
 	metadataUploadPartInput `json:"-", xml:"-"`
 }
