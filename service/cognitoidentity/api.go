@@ -428,7 +428,7 @@ type CreateIdentityPoolInput struct {
 	AllowUnauthenticatedIdentities *bool               `type:"boolean" json:",omitempty"`
 	DeveloperProviderName          *string             `type:"string" json:",omitempty"`
 	IdentityPoolName               *string             `type:"string" json:",omitempty"`
-	OpenIDConnectProviderARNs      []*string           `locationName:"OpenIdConnectProviderARNs" type:"list" json:",omitempty"`
+	OpenIDConnectProviderARNs      []*string           `locationName:"OpenIdConnectProviderARNs" type:"list" json:"OpenIdConnectProviderARNs,omitempty"`
 	SupportedLoginProviders        *map[string]*string `type:"map" json:",omitempty"`
 
 	metadataCreateIdentityPoolInput `json:"-", xml:"-"`
@@ -439,7 +439,7 @@ type metadataCreateIdentityPoolInput struct {
 }
 
 type Credentials struct {
-	AccessKeyID  *string    `locationName:"AccessKeyId" type:"string" json:",omitempty"`
+	AccessKeyID  *string    `locationName:"AccessKeyId" type:"string" json:"AccessKeyId,omitempty"`
 	Expiration   *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 	SecretKey    *string    `type:"string" json:",omitempty"`
 	SessionToken *string    `type:"string" json:",omitempty"`
@@ -452,7 +452,7 @@ type metadataCredentials struct {
 }
 
 type DeleteIdentityPoolInput struct {
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 
 	metadataDeleteIdentityPoolInput `json:"-", xml:"-"`
 }
@@ -462,7 +462,7 @@ type metadataDeleteIdentityPoolInput struct {
 }
 
 type DescribeIdentityInput struct {
-	IdentityID *string `locationName:"IdentityId" type:"string" json:",omitempty"`
+	IdentityID *string `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 
 	metadataDescribeIdentityInput `json:"-", xml:"-"`
 }
@@ -472,7 +472,7 @@ type metadataDescribeIdentityInput struct {
 }
 
 type DescribeIdentityPoolInput struct {
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 
 	metadataDescribeIdentityPoolInput `json:"-", xml:"-"`
 }
@@ -482,7 +482,7 @@ type metadataDescribeIdentityPoolInput struct {
 }
 
 type DeveloperUserAlreadyRegisteredException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataDeveloperUserAlreadyRegisteredException `json:"-", xml:"-"`
 }
@@ -492,7 +492,7 @@ type metadataDeveloperUserAlreadyRegisteredException struct {
 }
 
 type GetCredentialsForIdentityInput struct {
-	IdentityID *string             `locationName:"IdentityId" type:"string" json:",omitempty"`
+	IdentityID *string             `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 	Logins     *map[string]*string `type:"map" json:",omitempty"`
 
 	metadataGetCredentialsForIdentityInput `json:"-", xml:"-"`
@@ -504,7 +504,7 @@ type metadataGetCredentialsForIdentityInput struct {
 
 type GetCredentialsForIdentityOutput struct {
 	Credentials *Credentials `type:"structure" json:",omitempty"`
-	IdentityID  *string      `locationName:"IdentityId" type:"string" json:",omitempty"`
+	IdentityID  *string      `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 
 	metadataGetCredentialsForIdentityOutput `json:"-", xml:"-"`
 }
@@ -514,8 +514,8 @@ type metadataGetCredentialsForIdentityOutput struct {
 }
 
 type GetIDInput struct {
-	AccountID      *string             `locationName:"AccountId" type:"string" json:",omitempty"`
-	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	AccountID      *string             `locationName:"AccountId" type:"string" json:"AccountId,omitempty"`
+	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	Logins         *map[string]*string `type:"map" json:",omitempty"`
 
 	metadataGetIDInput `json:"-", xml:"-"`
@@ -526,7 +526,7 @@ type metadataGetIDInput struct {
 }
 
 type GetIDOutput struct {
-	IdentityID *string `locationName:"IdentityId" type:"string" json:",omitempty"`
+	IdentityID *string `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 
 	metadataGetIDOutput `json:"-", xml:"-"`
 }
@@ -536,7 +536,7 @@ type metadataGetIDOutput struct {
 }
 
 type GetIdentityPoolRolesInput struct {
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 
 	metadataGetIdentityPoolRolesInput `json:"-", xml:"-"`
 }
@@ -546,7 +546,7 @@ type metadataGetIdentityPoolRolesInput struct {
 }
 
 type GetIdentityPoolRolesOutput struct {
-	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	Roles          *map[string]*string `type:"map" json:",omitempty"`
 
 	metadataGetIdentityPoolRolesOutput `json:"-", xml:"-"`
@@ -557,8 +557,8 @@ type metadataGetIdentityPoolRolesOutput struct {
 }
 
 type GetOpenIDTokenForDeveloperIdentityInput struct {
-	IdentityID     *string             `locationName:"IdentityId" type:"string" json:",omitempty"`
-	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityID     *string             `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
+	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	Logins         *map[string]*string `type:"map" json:",omitempty"`
 	TokenDuration  *int64              `type:"long" json:",omitempty"`
 
@@ -570,7 +570,7 @@ type metadataGetOpenIDTokenForDeveloperIdentityInput struct {
 }
 
 type GetOpenIDTokenForDeveloperIdentityOutput struct {
-	IdentityID *string `locationName:"IdentityId" type:"string" json:",omitempty"`
+	IdentityID *string `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 	Token      *string `type:"string" json:",omitempty"`
 
 	metadataGetOpenIDTokenForDeveloperIdentityOutput `json:"-", xml:"-"`
@@ -581,7 +581,7 @@ type metadataGetOpenIDTokenForDeveloperIdentityOutput struct {
 }
 
 type GetOpenIDTokenInput struct {
-	IdentityID *string             `locationName:"IdentityId" type:"string" json:",omitempty"`
+	IdentityID *string             `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 	Logins     *map[string]*string `type:"map" json:",omitempty"`
 
 	metadataGetOpenIDTokenInput `json:"-", xml:"-"`
@@ -592,7 +592,7 @@ type metadataGetOpenIDTokenInput struct {
 }
 
 type GetOpenIDTokenOutput struct {
-	IdentityID *string `locationName:"IdentityId" type:"string" json:",omitempty"`
+	IdentityID *string `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 	Token      *string `type:"string" json:",omitempty"`
 
 	metadataGetOpenIDTokenOutput `json:"-", xml:"-"`
@@ -604,7 +604,7 @@ type metadataGetOpenIDTokenOutput struct {
 
 type IdentityDescription struct {
 	CreationDate     *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	IdentityID       *string    `locationName:"IdentityId" type:"string" json:",omitempty"`
+	IdentityID       *string    `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 	Logins           []*string  `type:"list" json:",omitempty"`
 
@@ -618,9 +618,9 @@ type metadataIdentityDescription struct {
 type IdentityPool struct {
 	AllowUnauthenticatedIdentities *bool               `type:"boolean" json:",omitempty"`
 	DeveloperProviderName          *string             `type:"string" json:",omitempty"`
-	IdentityPoolID                 *string             `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityPoolID                 *string             `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	IdentityPoolName               *string             `type:"string" json:",omitempty"`
-	OpenIDConnectProviderARNs      []*string           `locationName:"OpenIdConnectProviderARNs" type:"list" json:",omitempty"`
+	OpenIDConnectProviderARNs      []*string           `locationName:"OpenIdConnectProviderARNs" type:"list" json:"OpenIdConnectProviderARNs,omitempty"`
 	SupportedLoginProviders        *map[string]*string `type:"map" json:",omitempty"`
 
 	metadataIdentityPool `json:"-", xml:"-"`
@@ -631,7 +631,7 @@ type metadataIdentityPool struct {
 }
 
 type IdentityPoolShortDescription struct {
-	IdentityPoolID   *string `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityPoolID   *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	IdentityPoolName *string `type:"string" json:",omitempty"`
 
 	metadataIdentityPoolShortDescription `json:"-", xml:"-"`
@@ -642,7 +642,7 @@ type metadataIdentityPoolShortDescription struct {
 }
 
 type InternalErrorException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInternalErrorException `json:"-", xml:"-"`
 }
@@ -652,7 +652,7 @@ type metadataInternalErrorException struct {
 }
 
 type InvalidIdentityPoolConfigurationException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidIdentityPoolConfigurationException `json:"-", xml:"-"`
 }
@@ -662,7 +662,7 @@ type metadataInvalidIdentityPoolConfigurationException struct {
 }
 
 type InvalidParameterException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidParameterException `json:"-", xml:"-"`
 }
@@ -672,7 +672,7 @@ type metadataInvalidParameterException struct {
 }
 
 type LimitExceededException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataLimitExceededException `json:"-", xml:"-"`
 }
@@ -682,7 +682,7 @@ type metadataLimitExceededException struct {
 }
 
 type ListIdentitiesInput struct {
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	MaxResults     *int    `type:"integer" json:",omitempty"`
 	NextToken      *string `type:"string" json:",omitempty"`
 
@@ -695,7 +695,7 @@ type metadataListIdentitiesInput struct {
 
 type ListIdentitiesOutput struct {
 	Identities     []*IdentityDescription `type:"list" json:",omitempty"`
-	IdentityPoolID *string                `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityPoolID *string                `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	NextToken      *string                `type:"string" json:",omitempty"`
 
 	metadataListIdentitiesOutput `json:"-", xml:"-"`
@@ -729,8 +729,8 @@ type metadataListIdentityPoolsOutput struct {
 
 type LookupDeveloperIdentityInput struct {
 	DeveloperUserIdentifier *string `type:"string" json:",omitempty"`
-	IdentityID              *string `locationName:"IdentityId" type:"string" json:",omitempty"`
-	IdentityPoolID          *string `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityID              *string `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
+	IdentityPoolID          *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	MaxResults              *int    `type:"integer" json:",omitempty"`
 	NextToken               *string `type:"string" json:",omitempty"`
 
@@ -743,7 +743,7 @@ type metadataLookupDeveloperIdentityInput struct {
 
 type LookupDeveloperIdentityOutput struct {
 	DeveloperUserIdentifierList []*string `type:"list" json:",omitempty"`
-	IdentityID                  *string   `locationName:"IdentityId" type:"string" json:",omitempty"`
+	IdentityID                  *string   `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 	NextToken                   *string   `type:"string" json:",omitempty"`
 
 	metadataLookupDeveloperIdentityOutput `json:"-", xml:"-"`
@@ -756,7 +756,7 @@ type metadataLookupDeveloperIdentityOutput struct {
 type MergeDeveloperIdentitiesInput struct {
 	DestinationUserIdentifier *string `type:"string" json:",omitempty"`
 	DeveloperProviderName     *string `type:"string" json:",omitempty"`
-	IdentityPoolID            *string `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityPoolID            *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	SourceUserIdentifier      *string `type:"string" json:",omitempty"`
 
 	metadataMergeDeveloperIdentitiesInput `json:"-", xml:"-"`
@@ -767,7 +767,7 @@ type metadataMergeDeveloperIdentitiesInput struct {
 }
 
 type MergeDeveloperIdentitiesOutput struct {
-	IdentityID *string `locationName:"IdentityId" type:"string" json:",omitempty"`
+	IdentityID *string `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 
 	metadataMergeDeveloperIdentitiesOutput `json:"-", xml:"-"`
 }
@@ -777,7 +777,7 @@ type metadataMergeDeveloperIdentitiesOutput struct {
 }
 
 type NotAuthorizedException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataNotAuthorizedException `json:"-", xml:"-"`
 }
@@ -787,7 +787,7 @@ type metadataNotAuthorizedException struct {
 }
 
 type ResourceConflictException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataResourceConflictException `json:"-", xml:"-"`
 }
@@ -797,7 +797,7 @@ type metadataResourceConflictException struct {
 }
 
 type ResourceNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataResourceNotFoundException `json:"-", xml:"-"`
 }
@@ -807,7 +807,7 @@ type metadataResourceNotFoundException struct {
 }
 
 type SetIdentityPoolRolesInput struct {
-	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	Roles          *map[string]*string `type:"map" json:",omitempty"`
 
 	metadataSetIdentityPoolRolesInput `json:"-", xml:"-"`
@@ -818,7 +818,7 @@ type metadataSetIdentityPoolRolesInput struct {
 }
 
 type TooManyRequestsException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataTooManyRequestsException `json:"-", xml:"-"`
 }
@@ -830,8 +830,8 @@ type metadataTooManyRequestsException struct {
 type UnlinkDeveloperIdentityInput struct {
 	DeveloperProviderName   *string `type:"string" json:",omitempty"`
 	DeveloperUserIdentifier *string `type:"string" json:",omitempty"`
-	IdentityID              *string `locationName:"IdentityId" type:"string" json:",omitempty"`
-	IdentityPoolID          *string `locationName:"IdentityPoolId" type:"string" json:",omitempty"`
+	IdentityID              *string `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
+	IdentityPoolID          *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 
 	metadataUnlinkDeveloperIdentityInput `json:"-", xml:"-"`
 }
@@ -841,7 +841,7 @@ type metadataUnlinkDeveloperIdentityInput struct {
 }
 
 type UnlinkIdentityInput struct {
-	IdentityID     *string             `locationName:"IdentityId" type:"string" json:",omitempty"`
+	IdentityID     *string             `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 	Logins         *map[string]*string `type:"map" json:",omitempty"`
 	LoginsToRemove []*string           `type:"list" json:",omitempty"`
 

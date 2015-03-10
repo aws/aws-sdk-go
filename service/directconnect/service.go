@@ -1,9 +1,9 @@
 package directconnect
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/aws"
 )
 
 // DirectConnect is a client for AWS Direct Connect.

@@ -1259,7 +1259,7 @@ type metadataActivateGatewayOutput struct {
 }
 
 type AddCacheInput struct {
-	DiskIDs    []*string `locationName:"DiskIds" type:"list" json:",omitempty"`
+	DiskIDs    []*string `locationName:"DiskIds" type:"list" json:"DiskIds,omitempty"`
 	GatewayARN *string   `type:"string" json:",omitempty"`
 
 	metadataAddCacheInput `json:"-", xml:"-"`
@@ -1280,7 +1280,7 @@ type metadataAddCacheOutput struct {
 }
 
 type AddUploadBufferInput struct {
-	DiskIDs    []*string `locationName:"DiskIds" type:"list" json:",omitempty"`
+	DiskIDs    []*string `locationName:"DiskIds" type:"list" json:"DiskIds,omitempty"`
 	GatewayARN *string   `type:"string" json:",omitempty"`
 
 	metadataAddUploadBufferInput `json:"-", xml:"-"`
@@ -1301,7 +1301,7 @@ type metadataAddUploadBufferOutput struct {
 }
 
 type AddWorkingStorageInput struct {
-	DiskIDs    []*string `locationName:"DiskIds" type:"list" json:",omitempty"`
+	DiskIDs    []*string `locationName:"DiskIds" type:"list" json:"DiskIds,omitempty"`
 	GatewayARN *string   `type:"string" json:",omitempty"`
 
 	metadataAddWorkingStorageInput `json:"-", xml:"-"`
@@ -1322,9 +1322,9 @@ type metadataAddWorkingStorageOutput struct {
 }
 
 type CachediSCSIVolume struct {
-	SourceSnapshotID      *string                `locationName:"SourceSnapshotId" type:"string" json:",omitempty"`
+	SourceSnapshotID      *string                `locationName:"SourceSnapshotId" type:"string" json:"SourceSnapshotId,omitempty"`
 	VolumeARN             *string                `type:"string" json:",omitempty"`
-	VolumeID              *string                `locationName:"VolumeId" type:"string" json:",omitempty"`
+	VolumeID              *string                `locationName:"VolumeId" type:"string" json:"VolumeId,omitempty"`
 	VolumeProgress        *float64               `type:"double" json:",omitempty"`
 	VolumeSizeInBytes     *int64                 `type:"long" json:",omitempty"`
 	VolumeStatus          *string                `type:"string" json:",omitempty"`
@@ -1396,8 +1396,8 @@ type metadataChapInfo struct {
 type CreateCachediSCSIVolumeInput struct {
 	ClientToken        *string `type:"string" json:",omitempty"`
 	GatewayARN         *string `type:"string" json:",omitempty"`
-	NetworkInterfaceID *string `locationName:"NetworkInterfaceId" type:"string" json:",omitempty"`
-	SnapshotID         *string `locationName:"SnapshotId" type:"string" json:",omitempty"`
+	NetworkInterfaceID *string `locationName:"NetworkInterfaceId" type:"string" json:"NetworkInterfaceId,omitempty"`
+	SnapshotID         *string `locationName:"SnapshotId" type:"string" json:"SnapshotId,omitempty"`
 	TargetName         *string `type:"string" json:",omitempty"`
 	VolumeSizeInBytes  *int64  `type:"long" json:",omitempty"`
 
@@ -1431,7 +1431,7 @@ type metadataCreateSnapshotFromVolumeRecoveryPointInput struct {
 }
 
 type CreateSnapshotFromVolumeRecoveryPointOutput struct {
-	SnapshotID              *string `locationName:"SnapshotId" type:"string" json:",omitempty"`
+	SnapshotID              *string `locationName:"SnapshotId" type:"string" json:"SnapshotId,omitempty"`
 	VolumeARN               *string `type:"string" json:",omitempty"`
 	VolumeRecoveryPointTime *string `type:"string" json:",omitempty"`
 
@@ -1454,7 +1454,7 @@ type metadataCreateSnapshotInput struct {
 }
 
 type CreateSnapshotOutput struct {
-	SnapshotID *string `locationName:"SnapshotId" type:"string" json:",omitempty"`
+	SnapshotID *string `locationName:"SnapshotId" type:"string" json:"SnapshotId,omitempty"`
 	VolumeARN  *string `type:"string" json:",omitempty"`
 
 	metadataCreateSnapshotOutput `json:"-", xml:"-"`
@@ -1465,11 +1465,11 @@ type metadataCreateSnapshotOutput struct {
 }
 
 type CreateStorediSCSIVolumeInput struct {
-	DiskID               *string `locationName:"DiskId" type:"string" json:",omitempty"`
+	DiskID               *string `locationName:"DiskId" type:"string" json:"DiskId,omitempty"`
 	GatewayARN           *string `type:"string" json:",omitempty"`
-	NetworkInterfaceID   *string `locationName:"NetworkInterfaceId" type:"string" json:",omitempty"`
+	NetworkInterfaceID   *string `locationName:"NetworkInterfaceId" type:"string" json:"NetworkInterfaceId,omitempty"`
 	PreserveExistingData *bool   `type:"boolean" json:",omitempty"`
-	SnapshotID           *string `locationName:"SnapshotId" type:"string" json:",omitempty"`
+	SnapshotID           *string `locationName:"SnapshotId" type:"string" json:"SnapshotId,omitempty"`
 	TargetName           *string `type:"string" json:",omitempty"`
 
 	metadataCreateStorediSCSIVolumeInput `json:"-", xml:"-"`
@@ -1697,7 +1697,7 @@ type DescribeCacheOutput struct {
 	CacheHitPercentage    *float64  `type:"double" json:",omitempty"`
 	CacheMissPercentage   *float64  `type:"double" json:",omitempty"`
 	CacheUsedPercentage   *float64  `type:"double" json:",omitempty"`
-	DiskIDs               []*string `locationName:"DiskIds" type:"list" json:",omitempty"`
+	DiskIDs               []*string `locationName:"DiskIds" type:"list" json:"DiskIds,omitempty"`
 	GatewayARN            *string   `type:"string" json:",omitempty"`
 
 	metadataDescribeCacheOutput `json:"-", xml:"-"`
@@ -1759,7 +1759,7 @@ type metadataDescribeGatewayInformationInput struct {
 
 type DescribeGatewayInformationOutput struct {
 	GatewayARN                 *string             `type:"string" json:",omitempty"`
-	GatewayID                  *string             `locationName:"GatewayId" type:"string" json:",omitempty"`
+	GatewayID                  *string             `locationName:"GatewayId" type:"string" json:"GatewayId,omitempty"`
 	GatewayNetworkInterfaces   []*NetworkInterface `type:"list" json:",omitempty"`
 	GatewayState               *string             `type:"string" json:",omitempty"`
 	GatewayTimezone            *string             `type:"string" json:",omitempty"`
@@ -1923,7 +1923,7 @@ type metadataDescribeUploadBufferInput struct {
 }
 
 type DescribeUploadBufferOutput struct {
-	DiskIDs                      []*string `locationName:"DiskIds" type:"list" json:",omitempty"`
+	DiskIDs                      []*string `locationName:"DiskIds" type:"list" json:"DiskIds,omitempty"`
 	GatewayARN                   *string   `type:"string" json:",omitempty"`
 	UploadBufferAllocatedInBytes *int64    `type:"long" json:",omitempty"`
 	UploadBufferUsedInBytes      *int64    `type:"long" json:",omitempty"`
@@ -1971,7 +1971,7 @@ type metadataDescribeWorkingStorageInput struct {
 }
 
 type DescribeWorkingStorageOutput struct {
-	DiskIDs                        []*string `locationName:"DiskIds" type:"list" json:",omitempty"`
+	DiskIDs                        []*string `locationName:"DiskIds" type:"list" json:"DiskIds,omitempty"`
 	GatewayARN                     *string   `type:"string" json:",omitempty"`
 	WorkingStorageAllocatedInBytes *int64    `type:"long" json:",omitempty"`
 	WorkingStorageUsedInBytes      *int64    `type:"long" json:",omitempty"`
@@ -1985,7 +1985,7 @@ type metadataDescribeWorkingStorageOutput struct {
 
 type DeviceiSCSIAttributes struct {
 	ChapEnabled          *bool   `type:"boolean" json:",omitempty"`
-	NetworkInterfaceID   *string `locationName:"NetworkInterfaceId" type:"string" json:",omitempty"`
+	NetworkInterfaceID   *string `locationName:"NetworkInterfaceId" type:"string" json:"NetworkInterfaceId,omitempty"`
 	NetworkInterfacePort *int    `type:"integer" json:",omitempty"`
 	TargetARN            *string `type:"string" json:",omitempty"`
 
@@ -2019,7 +2019,7 @@ type metadataDisableGatewayOutput struct {
 type Disk struct {
 	DiskAllocationResource *string `type:"string" json:",omitempty"`
 	DiskAllocationType     *string `type:"string" json:",omitempty"`
-	DiskID                 *string `locationName:"DiskId" type:"string" json:",omitempty"`
+	DiskID                 *string `locationName:"DiskId" type:"string" json:"DiskId,omitempty"`
 	DiskNode               *string `type:"string" json:",omitempty"`
 	DiskPath               *string `type:"string" json:",omitempty"`
 	DiskSizeInBytes        *int64  `type:"long" json:",omitempty"`
@@ -2045,8 +2045,8 @@ type metadataGatewayInfo struct {
 }
 
 type InternalServerError struct {
-	Error   *StorageGatewayError `locationName:"error" type:"structure" json:",omitempty"`
-	Message *string              `locationName:"message" type:"string" json:",omitempty"`
+	Error   *StorageGatewayError `locationName:"error" type:"structure" json:"error,omitempty"`
+	Message *string              `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInternalServerError `json:"-", xml:"-"`
 }
@@ -2056,8 +2056,8 @@ type metadataInternalServerError struct {
 }
 
 type InvalidGatewayRequestException struct {
-	Error   *StorageGatewayError `locationName:"error" type:"structure" json:",omitempty"`
-	Message *string              `locationName:"message" type:"string" json:",omitempty"`
+	Error   *StorageGatewayError `locationName:"error" type:"structure" json:"error,omitempty"`
+	Message *string              `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidGatewayRequestException `json:"-", xml:"-"`
 }
@@ -2155,9 +2155,9 @@ type metadataListVolumesOutput struct {
 }
 
 type NetworkInterface struct {
-	IPV4Address *string `locationName:"Ipv4Address" type:"string" json:",omitempty"`
-	IPV6Address *string `locationName:"Ipv6Address" type:"string" json:",omitempty"`
-	MACAddress  *string `locationName:"MacAddress" type:"string" json:",omitempty"`
+	IPV4Address *string `locationName:"Ipv4Address" type:"string" json:"Ipv4Address,omitempty"`
+	IPV6Address *string `locationName:"Ipv6Address" type:"string" json:"Ipv6Address,omitempty"`
+	MACAddress  *string `locationName:"MacAddress" type:"string" json:"MacAddress,omitempty"`
 
 	metadataNetworkInterface `json:"-", xml:"-"`
 }
@@ -2269,8 +2269,8 @@ type metadataStartGatewayOutput struct {
 }
 
 type StorageGatewayError struct {
-	ErrorCode    *string             `locationName:"errorCode" type:"string" json:",omitempty"`
-	ErrorDetails *map[string]*string `locationName:"errorDetails" type:"map" json:",omitempty"`
+	ErrorCode    *string             `locationName:"errorCode" type:"string" json:"errorCode,omitempty"`
+	ErrorDetails *map[string]*string `locationName:"errorDetails" type:"map" json:"errorDetails,omitempty"`
 
 	metadataStorageGatewayError `json:"-", xml:"-"`
 }
@@ -2281,10 +2281,10 @@ type metadataStorageGatewayError struct {
 
 type StorediSCSIVolume struct {
 	PreservedExistingData *bool                  `type:"boolean" json:",omitempty"`
-	SourceSnapshotID      *string                `locationName:"SourceSnapshotId" type:"string" json:",omitempty"`
+	SourceSnapshotID      *string                `locationName:"SourceSnapshotId" type:"string" json:"SourceSnapshotId,omitempty"`
 	VolumeARN             *string                `type:"string" json:",omitempty"`
-	VolumeDiskID          *string                `locationName:"VolumeDiskId" type:"string" json:",omitempty"`
-	VolumeID              *string                `locationName:"VolumeId" type:"string" json:",omitempty"`
+	VolumeDiskID          *string                `locationName:"VolumeDiskId" type:"string" json:"VolumeDiskId,omitempty"`
+	VolumeID              *string                `locationName:"VolumeId" type:"string" json:"VolumeId,omitempty"`
 	VolumeProgress        *float64               `type:"double" json:",omitempty"`
 	VolumeSizeInBytes     *int64                 `type:"long" json:",omitempty"`
 	VolumeStatus          *string                `type:"string" json:",omitempty"`
@@ -2537,7 +2537,7 @@ type metadataVolumeRecoveryPointInfo struct {
 type VolumeiSCSIAttributes struct {
 	ChapEnabled          *bool   `type:"boolean" json:",omitempty"`
 	LunNumber            *int    `type:"integer" json:",omitempty"`
-	NetworkInterfaceID   *string `locationName:"NetworkInterfaceId" type:"string" json:",omitempty"`
+	NetworkInterfaceID   *string `locationName:"NetworkInterfaceId" type:"string" json:"NetworkInterfaceId,omitempty"`
 	NetworkInterfacePort *int    `type:"integer" json:",omitempty"`
 	TargetARN            *string `type:"string" json:",omitempty"`
 

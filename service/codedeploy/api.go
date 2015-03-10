@@ -641,10 +641,10 @@ type metadataApplicationDoesNotExistException struct {
 }
 
 type ApplicationInfo struct {
-	ApplicationID   *string    `locationName:"applicationId" type:"string" json:",omitempty"`
-	ApplicationName *string    `locationName:"applicationName" type:"string" json:",omitempty"`
-	CreateTime      *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LinkedToGitHub  *bool      `locationName:"linkedToGitHub" type:"boolean" json:",omitempty"`
+	ApplicationID   *string    `locationName:"applicationId" type:"string" json:"applicationId,omitempty"`
+	ApplicationName *string    `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	CreateTime      *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unix" json:"createTime,omitempty"`
+	LinkedToGitHub  *bool      `locationName:"linkedToGitHub" type:"boolean" json:"linkedToGitHub,omitempty"`
 
 	metadataApplicationInfo `json:"-", xml:"-"`
 }
@@ -670,8 +670,8 @@ type metadataApplicationNameRequiredException struct {
 }
 
 type AutoScalingGroup struct {
-	Hook *string `locationName:"hook" type:"string" json:",omitempty"`
-	Name *string `locationName:"name" type:"string" json:",omitempty"`
+	Hook *string `locationName:"hook" type:"string" json:"hook,omitempty"`
+	Name *string `locationName:"name" type:"string" json:"name,omitempty"`
 
 	metadataAutoScalingGroup `json:"-", xml:"-"`
 }
@@ -681,7 +681,7 @@ type metadataAutoScalingGroup struct {
 }
 
 type BatchGetApplicationsInput struct {
-	ApplicationNames []*string `locationName:"applicationNames" type:"list" json:",omitempty"`
+	ApplicationNames []*string `locationName:"applicationNames" type:"list" json:"applicationNames,omitempty"`
 
 	metadataBatchGetApplicationsInput `json:"-", xml:"-"`
 }
@@ -691,7 +691,7 @@ type metadataBatchGetApplicationsInput struct {
 }
 
 type BatchGetApplicationsOutput struct {
-	ApplicationsInfo []*ApplicationInfo `locationName:"applicationsInfo" type:"list" json:",omitempty"`
+	ApplicationsInfo []*ApplicationInfo `locationName:"applicationsInfo" type:"list" json:"applicationsInfo,omitempty"`
 
 	metadataBatchGetApplicationsOutput `json:"-", xml:"-"`
 }
@@ -701,7 +701,7 @@ type metadataBatchGetApplicationsOutput struct {
 }
 
 type BatchGetDeploymentsInput struct {
-	DeploymentIDs []*string `locationName:"deploymentIds" type:"list" json:",omitempty"`
+	DeploymentIDs []*string `locationName:"deploymentIds" type:"list" json:"deploymentIds,omitempty"`
 
 	metadataBatchGetDeploymentsInput `json:"-", xml:"-"`
 }
@@ -711,7 +711,7 @@ type metadataBatchGetDeploymentsInput struct {
 }
 
 type BatchGetDeploymentsOutput struct {
-	DeploymentsInfo []*DeploymentInfo `locationName:"deploymentsInfo" type:"list" json:",omitempty"`
+	DeploymentsInfo []*DeploymentInfo `locationName:"deploymentsInfo" type:"list" json:"deploymentsInfo,omitempty"`
 
 	metadataBatchGetDeploymentsOutput `json:"-", xml:"-"`
 }
@@ -729,7 +729,7 @@ type metadataBucketNameFilterRequiredException struct {
 }
 
 type CreateApplicationInput struct {
-	ApplicationName *string `locationName:"applicationName" type:"string" json:",omitempty"`
+	ApplicationName *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
 
 	metadataCreateApplicationInput `json:"-", xml:"-"`
 }
@@ -739,7 +739,7 @@ type metadataCreateApplicationInput struct {
 }
 
 type CreateApplicationOutput struct {
-	ApplicationID *string `locationName:"applicationId" type:"string" json:",omitempty"`
+	ApplicationID *string `locationName:"applicationId" type:"string" json:"applicationId,omitempty"`
 
 	metadataCreateApplicationOutput `json:"-", xml:"-"`
 }
@@ -749,8 +749,8 @@ type metadataCreateApplicationOutput struct {
 }
 
 type CreateDeploymentConfigInput struct {
-	DeploymentConfigName *string              `locationName:"deploymentConfigName" type:"string" json:",omitempty"`
-	MinimumHealthyHosts  *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure" json:",omitempty"`
+	DeploymentConfigName *string              `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
+	MinimumHealthyHosts  *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure" json:"minimumHealthyHosts,omitempty"`
 
 	metadataCreateDeploymentConfigInput `json:"-", xml:"-"`
 }
@@ -760,7 +760,7 @@ type metadataCreateDeploymentConfigInput struct {
 }
 
 type CreateDeploymentConfigOutput struct {
-	DeploymentConfigID *string `locationName:"deploymentConfigId" type:"string" json:",omitempty"`
+	DeploymentConfigID *string `locationName:"deploymentConfigId" type:"string" json:"deploymentConfigId,omitempty"`
 
 	metadataCreateDeploymentConfigOutput `json:"-", xml:"-"`
 }
@@ -770,12 +770,12 @@ type metadataCreateDeploymentConfigOutput struct {
 }
 
 type CreateDeploymentGroupInput struct {
-	ApplicationName      *string         `locationName:"applicationName" type:"string" json:",omitempty"`
-	AutoScalingGroups    []*string       `locationName:"autoScalingGroups" type:"list" json:",omitempty"`
-	DeploymentConfigName *string         `locationName:"deploymentConfigName" type:"string" json:",omitempty"`
-	DeploymentGroupName  *string         `locationName:"deploymentGroupName" type:"string" json:",omitempty"`
-	EC2TagFilters        []*EC2TagFilter `locationName:"ec2TagFilters" type:"list" json:",omitempty"`
-	ServiceRoleARN       *string         `locationName:"serviceRoleArn" type:"string" json:",omitempty"`
+	ApplicationName      *string         `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	AutoScalingGroups    []*string       `locationName:"autoScalingGroups" type:"list" json:"autoScalingGroups,omitempty"`
+	DeploymentConfigName *string         `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
+	DeploymentGroupName  *string         `locationName:"deploymentGroupName" type:"string" json:"deploymentGroupName,omitempty"`
+	EC2TagFilters        []*EC2TagFilter `locationName:"ec2TagFilters" type:"list" json:"ec2TagFilters,omitempty"`
+	ServiceRoleARN       *string         `locationName:"serviceRoleArn" type:"string" json:"serviceRoleArn,omitempty"`
 
 	metadataCreateDeploymentGroupInput `json:"-", xml:"-"`
 }
@@ -785,7 +785,7 @@ type metadataCreateDeploymentGroupInput struct {
 }
 
 type CreateDeploymentGroupOutput struct {
-	DeploymentGroupID *string `locationName:"deploymentGroupId" type:"string" json:",omitempty"`
+	DeploymentGroupID *string `locationName:"deploymentGroupId" type:"string" json:"deploymentGroupId,omitempty"`
 
 	metadataCreateDeploymentGroupOutput `json:"-", xml:"-"`
 }
@@ -795,12 +795,12 @@ type metadataCreateDeploymentGroupOutput struct {
 }
 
 type CreateDeploymentInput struct {
-	ApplicationName               *string           `locationName:"applicationName" type:"string" json:",omitempty"`
-	DeploymentConfigName          *string           `locationName:"deploymentConfigName" type:"string" json:",omitempty"`
-	DeploymentGroupName           *string           `locationName:"deploymentGroupName" type:"string" json:",omitempty"`
-	Description                   *string           `locationName:"description" type:"string" json:",omitempty"`
-	IgnoreApplicationStopFailures *bool             `locationName:"ignoreApplicationStopFailures" type:"boolean" json:",omitempty"`
-	Revision                      *RevisionLocation `locationName:"revision" type:"structure" json:",omitempty"`
+	ApplicationName               *string           `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	DeploymentConfigName          *string           `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
+	DeploymentGroupName           *string           `locationName:"deploymentGroupName" type:"string" json:"deploymentGroupName,omitempty"`
+	Description                   *string           `locationName:"description" type:"string" json:"description,omitempty"`
+	IgnoreApplicationStopFailures *bool             `locationName:"ignoreApplicationStopFailures" type:"boolean" json:"ignoreApplicationStopFailures,omitempty"`
+	Revision                      *RevisionLocation `locationName:"revision" type:"structure" json:"revision,omitempty"`
 
 	metadataCreateDeploymentInput `json:"-", xml:"-"`
 }
@@ -810,7 +810,7 @@ type metadataCreateDeploymentInput struct {
 }
 
 type CreateDeploymentOutput struct {
-	DeploymentID *string `locationName:"deploymentId" type:"string" json:",omitempty"`
+	DeploymentID *string `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
 
 	metadataCreateDeploymentOutput `json:"-", xml:"-"`
 }
@@ -820,7 +820,7 @@ type metadataCreateDeploymentOutput struct {
 }
 
 type DeleteApplicationInput struct {
-	ApplicationName *string `locationName:"applicationName" type:"string" json:",omitempty"`
+	ApplicationName *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
 
 	metadataDeleteApplicationInput `json:"-", xml:"-"`
 }
@@ -830,7 +830,7 @@ type metadataDeleteApplicationInput struct {
 }
 
 type DeleteDeploymentConfigInput struct {
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" json:",omitempty"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
 
 	metadataDeleteDeploymentConfigInput `json:"-", xml:"-"`
 }
@@ -840,8 +840,8 @@ type metadataDeleteDeploymentConfigInput struct {
 }
 
 type DeleteDeploymentGroupInput struct {
-	ApplicationName     *string `locationName:"applicationName" type:"string" json:",omitempty"`
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" json:",omitempty"`
+	ApplicationName     *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" json:"deploymentGroupName,omitempty"`
 
 	metadataDeleteDeploymentGroupInput `json:"-", xml:"-"`
 }
@@ -851,7 +851,7 @@ type metadataDeleteDeploymentGroupInput struct {
 }
 
 type DeleteDeploymentGroupOutput struct {
-	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list" json:",omitempty"`
+	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list" json:"hooksNotCleanedUp,omitempty"`
 
 	metadataDeleteDeploymentGroupOutput `json:"-", xml:"-"`
 }
@@ -893,10 +893,10 @@ type metadataDeploymentConfigInUseException struct {
 }
 
 type DeploymentConfigInfo struct {
-	CreateTime           *time.Time           `locationName:"createTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	DeploymentConfigID   *string              `locationName:"deploymentConfigId" type:"string" json:",omitempty"`
-	DeploymentConfigName *string              `locationName:"deploymentConfigName" type:"string" json:",omitempty"`
-	MinimumHealthyHosts  *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure" json:",omitempty"`
+	CreateTime           *time.Time           `locationName:"createTime" type:"timestamp" timestampFormat:"unix" json:"createTime,omitempty"`
+	DeploymentConfigID   *string              `locationName:"deploymentConfigId" type:"string" json:"deploymentConfigId,omitempty"`
+	DeploymentConfigName *string              `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
+	MinimumHealthyHosts  *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure" json:"minimumHealthyHosts,omitempty"`
 
 	metadataDeploymentConfigInfo `json:"-", xml:"-"`
 }
@@ -946,14 +946,14 @@ type metadataDeploymentGroupDoesNotExistException struct {
 }
 
 type DeploymentGroupInfo struct {
-	ApplicationName      *string             `locationName:"applicationName" type:"string" json:",omitempty"`
-	AutoScalingGroups    []*AutoScalingGroup `locationName:"autoScalingGroups" type:"list" json:",omitempty"`
-	DeploymentConfigName *string             `locationName:"deploymentConfigName" type:"string" json:",omitempty"`
-	DeploymentGroupID    *string             `locationName:"deploymentGroupId" type:"string" json:",omitempty"`
-	DeploymentGroupName  *string             `locationName:"deploymentGroupName" type:"string" json:",omitempty"`
-	EC2TagFilters        []*EC2TagFilter     `locationName:"ec2TagFilters" type:"list" json:",omitempty"`
-	ServiceRoleARN       *string             `locationName:"serviceRoleArn" type:"string" json:",omitempty"`
-	TargetRevision       *RevisionLocation   `locationName:"targetRevision" type:"structure" json:",omitempty"`
+	ApplicationName      *string             `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	AutoScalingGroups    []*AutoScalingGroup `locationName:"autoScalingGroups" type:"list" json:"autoScalingGroups,omitempty"`
+	DeploymentConfigName *string             `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
+	DeploymentGroupID    *string             `locationName:"deploymentGroupId" type:"string" json:"deploymentGroupId,omitempty"`
+	DeploymentGroupName  *string             `locationName:"deploymentGroupName" type:"string" json:"deploymentGroupName,omitempty"`
+	EC2TagFilters        []*EC2TagFilter     `locationName:"ec2TagFilters" type:"list" json:"ec2TagFilters,omitempty"`
+	ServiceRoleARN       *string             `locationName:"serviceRoleArn" type:"string" json:"serviceRoleArn,omitempty"`
+	TargetRevision       *RevisionLocation   `locationName:"targetRevision" type:"structure" json:"targetRevision,omitempty"`
 
 	metadataDeploymentGroupInfo `json:"-", xml:"-"`
 }
@@ -987,20 +987,20 @@ type metadataDeploymentIDRequiredException struct {
 }
 
 type DeploymentInfo struct {
-	ApplicationName               *string             `locationName:"applicationName" type:"string" json:",omitempty"`
-	CompleteTime                  *time.Time          `locationName:"completeTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	CreateTime                    *time.Time          `locationName:"createTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Creator                       *string             `locationName:"creator" type:"string" json:",omitempty"`
-	DeploymentConfigName          *string             `locationName:"deploymentConfigName" type:"string" json:",omitempty"`
-	DeploymentGroupName           *string             `locationName:"deploymentGroupName" type:"string" json:",omitempty"`
-	DeploymentID                  *string             `locationName:"deploymentId" type:"string" json:",omitempty"`
-	DeploymentOverview            *DeploymentOverview `locationName:"deploymentOverview" type:"structure" json:",omitempty"`
-	Description                   *string             `locationName:"description" type:"string" json:",omitempty"`
-	ErrorInformation              *ErrorInformation   `locationName:"errorInformation" type:"structure" json:",omitempty"`
-	IgnoreApplicationStopFailures *bool               `locationName:"ignoreApplicationStopFailures" type:"boolean" json:",omitempty"`
-	Revision                      *RevisionLocation   `locationName:"revision" type:"structure" json:",omitempty"`
-	StartTime                     *time.Time          `locationName:"startTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Status                        *string             `locationName:"status" type:"string" json:",omitempty"`
+	ApplicationName               *string             `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	CompleteTime                  *time.Time          `locationName:"completeTime" type:"timestamp" timestampFormat:"unix" json:"completeTime,omitempty"`
+	CreateTime                    *time.Time          `locationName:"createTime" type:"timestamp" timestampFormat:"unix" json:"createTime,omitempty"`
+	Creator                       *string             `locationName:"creator" type:"string" json:"creator,omitempty"`
+	DeploymentConfigName          *string             `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
+	DeploymentGroupName           *string             `locationName:"deploymentGroupName" type:"string" json:"deploymentGroupName,omitempty"`
+	DeploymentID                  *string             `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
+	DeploymentOverview            *DeploymentOverview `locationName:"deploymentOverview" type:"structure" json:"deploymentOverview,omitempty"`
+	Description                   *string             `locationName:"description" type:"string" json:"description,omitempty"`
+	ErrorInformation              *ErrorInformation   `locationName:"errorInformation" type:"structure" json:"errorInformation,omitempty"`
+	IgnoreApplicationStopFailures *bool               `locationName:"ignoreApplicationStopFailures" type:"boolean" json:"ignoreApplicationStopFailures,omitempty"`
+	Revision                      *RevisionLocation   `locationName:"revision" type:"structure" json:"revision,omitempty"`
+	StartTime                     *time.Time          `locationName:"startTime" type:"timestamp" timestampFormat:"unix" json:"startTime,omitempty"`
+	Status                        *string             `locationName:"status" type:"string" json:"status,omitempty"`
 
 	metadataDeploymentInfo `json:"-", xml:"-"`
 }
@@ -1048,10 +1048,10 @@ type metadataDescriptionTooLongException struct {
 }
 
 type Diagnostics struct {
-	ErrorCode  *string `locationName:"errorCode" type:"string" json:",omitempty"`
-	LogTail    *string `locationName:"logTail" type:"string" json:",omitempty"`
-	Message    *string `locationName:"message" type:"string" json:",omitempty"`
-	ScriptName *string `locationName:"scriptName" type:"string" json:",omitempty"`
+	ErrorCode  *string `locationName:"errorCode" type:"string" json:"errorCode,omitempty"`
+	LogTail    *string `locationName:"logTail" type:"string" json:"logTail,omitempty"`
+	Message    *string `locationName:"message" type:"string" json:"message,omitempty"`
+	ScriptName *string `locationName:"scriptName" type:"string" json:"scriptName,omitempty"`
 
 	metadataDiagnostics `json:"-", xml:"-"`
 }
@@ -1073,8 +1073,8 @@ type metadataEC2TagFilter struct {
 }
 
 type ErrorInformation struct {
-	Code    *string `locationName:"code" type:"string" json:",omitempty"`
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Code    *string `locationName:"code" type:"string" json:"code,omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataErrorInformation `json:"-", xml:"-"`
 }
@@ -1084,11 +1084,11 @@ type metadataErrorInformation struct {
 }
 
 type GenericRevisionInfo struct {
-	DeploymentGroups []*string  `locationName:"deploymentGroups" type:"list" json:",omitempty"`
-	Description      *string    `locationName:"description" type:"string" json:",omitempty"`
-	FirstUsedTime    *time.Time `locationName:"firstUsedTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LastUsedTime     *time.Time `locationName:"lastUsedTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	RegisterTime     *time.Time `locationName:"registerTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	DeploymentGroups []*string  `locationName:"deploymentGroups" type:"list" json:"deploymentGroups,omitempty"`
+	Description      *string    `locationName:"description" type:"string" json:"description,omitempty"`
+	FirstUsedTime    *time.Time `locationName:"firstUsedTime" type:"timestamp" timestampFormat:"unix" json:"firstUsedTime,omitempty"`
+	LastUsedTime     *time.Time `locationName:"lastUsedTime" type:"timestamp" timestampFormat:"unix" json:"lastUsedTime,omitempty"`
+	RegisterTime     *time.Time `locationName:"registerTime" type:"timestamp" timestampFormat:"unix" json:"registerTime,omitempty"`
 
 	metadataGenericRevisionInfo `json:"-", xml:"-"`
 }
@@ -1098,7 +1098,7 @@ type metadataGenericRevisionInfo struct {
 }
 
 type GetApplicationInput struct {
-	ApplicationName *string `locationName:"applicationName" type:"string" json:",omitempty"`
+	ApplicationName *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
 
 	metadataGetApplicationInput `json:"-", xml:"-"`
 }
@@ -1108,7 +1108,7 @@ type metadataGetApplicationInput struct {
 }
 
 type GetApplicationOutput struct {
-	Application *ApplicationInfo `locationName:"application" type:"structure" json:",omitempty"`
+	Application *ApplicationInfo `locationName:"application" type:"structure" json:"application,omitempty"`
 
 	metadataGetApplicationOutput `json:"-", xml:"-"`
 }
@@ -1118,8 +1118,8 @@ type metadataGetApplicationOutput struct {
 }
 
 type GetApplicationRevisionInput struct {
-	ApplicationName *string           `locationName:"applicationName" type:"string" json:",omitempty"`
-	Revision        *RevisionLocation `locationName:"revision" type:"structure" json:",omitempty"`
+	ApplicationName *string           `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	Revision        *RevisionLocation `locationName:"revision" type:"structure" json:"revision,omitempty"`
 
 	metadataGetApplicationRevisionInput `json:"-", xml:"-"`
 }
@@ -1129,9 +1129,9 @@ type metadataGetApplicationRevisionInput struct {
 }
 
 type GetApplicationRevisionOutput struct {
-	ApplicationName *string              `locationName:"applicationName" type:"string" json:",omitempty"`
-	Revision        *RevisionLocation    `locationName:"revision" type:"structure" json:",omitempty"`
-	RevisionInfo    *GenericRevisionInfo `locationName:"revisionInfo" type:"structure" json:",omitempty"`
+	ApplicationName *string              `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	Revision        *RevisionLocation    `locationName:"revision" type:"structure" json:"revision,omitempty"`
+	RevisionInfo    *GenericRevisionInfo `locationName:"revisionInfo" type:"structure" json:"revisionInfo,omitempty"`
 
 	metadataGetApplicationRevisionOutput `json:"-", xml:"-"`
 }
@@ -1141,7 +1141,7 @@ type metadataGetApplicationRevisionOutput struct {
 }
 
 type GetDeploymentConfigInput struct {
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" json:",omitempty"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
 
 	metadataGetDeploymentConfigInput `json:"-", xml:"-"`
 }
@@ -1151,7 +1151,7 @@ type metadataGetDeploymentConfigInput struct {
 }
 
 type GetDeploymentConfigOutput struct {
-	DeploymentConfigInfo *DeploymentConfigInfo `locationName:"deploymentConfigInfo" type:"structure" json:",omitempty"`
+	DeploymentConfigInfo *DeploymentConfigInfo `locationName:"deploymentConfigInfo" type:"structure" json:"deploymentConfigInfo,omitempty"`
 
 	metadataGetDeploymentConfigOutput `json:"-", xml:"-"`
 }
@@ -1161,8 +1161,8 @@ type metadataGetDeploymentConfigOutput struct {
 }
 
 type GetDeploymentGroupInput struct {
-	ApplicationName     *string `locationName:"applicationName" type:"string" json:",omitempty"`
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" json:",omitempty"`
+	ApplicationName     *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" json:"deploymentGroupName,omitempty"`
 
 	metadataGetDeploymentGroupInput `json:"-", xml:"-"`
 }
@@ -1172,7 +1172,7 @@ type metadataGetDeploymentGroupInput struct {
 }
 
 type GetDeploymentGroupOutput struct {
-	DeploymentGroupInfo *DeploymentGroupInfo `locationName:"deploymentGroupInfo" type:"structure" json:",omitempty"`
+	DeploymentGroupInfo *DeploymentGroupInfo `locationName:"deploymentGroupInfo" type:"structure" json:"deploymentGroupInfo,omitempty"`
 
 	metadataGetDeploymentGroupOutput `json:"-", xml:"-"`
 }
@@ -1182,7 +1182,7 @@ type metadataGetDeploymentGroupOutput struct {
 }
 
 type GetDeploymentInput struct {
-	DeploymentID *string `locationName:"deploymentId" type:"string" json:",omitempty"`
+	DeploymentID *string `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
 
 	metadataGetDeploymentInput `json:"-", xml:"-"`
 }
@@ -1192,8 +1192,8 @@ type metadataGetDeploymentInput struct {
 }
 
 type GetDeploymentInstanceInput struct {
-	DeploymentID *string `locationName:"deploymentId" type:"string" json:",omitempty"`
-	InstanceID   *string `locationName:"instanceId" type:"string" json:",omitempty"`
+	DeploymentID *string `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
+	InstanceID   *string `locationName:"instanceId" type:"string" json:"instanceId,omitempty"`
 
 	metadataGetDeploymentInstanceInput `json:"-", xml:"-"`
 }
@@ -1203,7 +1203,7 @@ type metadataGetDeploymentInstanceInput struct {
 }
 
 type GetDeploymentInstanceOutput struct {
-	InstanceSummary *InstanceSummary `locationName:"instanceSummary" type:"structure" json:",omitempty"`
+	InstanceSummary *InstanceSummary `locationName:"instanceSummary" type:"structure" json:"instanceSummary,omitempty"`
 
 	metadataGetDeploymentInstanceOutput `json:"-", xml:"-"`
 }
@@ -1213,7 +1213,7 @@ type metadataGetDeploymentInstanceOutput struct {
 }
 
 type GetDeploymentOutput struct {
-	DeploymentInfo *DeploymentInfo `locationName:"deploymentInfo" type:"structure" json:",omitempty"`
+	DeploymentInfo *DeploymentInfo `locationName:"deploymentInfo" type:"structure" json:"deploymentInfo,omitempty"`
 
 	metadataGetDeploymentOutput `json:"-", xml:"-"`
 }
@@ -1223,8 +1223,8 @@ type metadataGetDeploymentOutput struct {
 }
 
 type GitHubLocation struct {
-	CommitID   *string `locationName:"commitId" type:"string" json:",omitempty"`
-	Repository *string `locationName:"repository" type:"string" json:",omitempty"`
+	CommitID   *string `locationName:"commitId" type:"string" json:"commitId,omitempty"`
+	Repository *string `locationName:"repository" type:"string" json:"repository,omitempty"`
 
 	metadataGitHubLocation `json:"-", xml:"-"`
 }
@@ -1250,11 +1250,11 @@ type metadataInstanceIDRequiredException struct {
 }
 
 type InstanceSummary struct {
-	DeploymentID    *string           `locationName:"deploymentId" type:"string" json:",omitempty"`
-	InstanceID      *string           `locationName:"instanceId" type:"string" json:",omitempty"`
-	LastUpdatedAt   *time.Time        `locationName:"lastUpdatedAt" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LifecycleEvents []*LifecycleEvent `locationName:"lifecycleEvents" type:"list" json:",omitempty"`
-	Status          *string           `locationName:"status" type:"string" json:",omitempty"`
+	DeploymentID    *string           `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
+	InstanceID      *string           `locationName:"instanceId" type:"string" json:"instanceId,omitempty"`
+	LastUpdatedAt   *time.Time        `locationName:"lastUpdatedAt" type:"timestamp" timestampFormat:"unix" json:"lastUpdatedAt,omitempty"`
+	LifecycleEvents []*LifecycleEvent `locationName:"lifecycleEvents" type:"list" json:"lifecycleEvents,omitempty"`
+	Status          *string           `locationName:"status" type:"string" json:"status,omitempty"`
 
 	metadataInstanceSummary `json:"-", xml:"-"`
 }
@@ -1416,11 +1416,11 @@ type metadataInvalidTimeRangeException struct {
 }
 
 type LifecycleEvent struct {
-	Diagnostics        *Diagnostics `locationName:"diagnostics" type:"structure" json:",omitempty"`
-	EndTime            *time.Time   `locationName:"endTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LifecycleEventName *string      `locationName:"lifecycleEventName" type:"string" json:",omitempty"`
-	StartTime          *time.Time   `locationName:"startTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Status             *string      `locationName:"status" type:"string" json:",omitempty"`
+	Diagnostics        *Diagnostics `locationName:"diagnostics" type:"structure" json:"diagnostics,omitempty"`
+	EndTime            *time.Time   `locationName:"endTime" type:"timestamp" timestampFormat:"unix" json:"endTime,omitempty"`
+	LifecycleEventName *string      `locationName:"lifecycleEventName" type:"string" json:"lifecycleEventName,omitempty"`
+	StartTime          *time.Time   `locationName:"startTime" type:"timestamp" timestampFormat:"unix" json:"startTime,omitempty"`
+	Status             *string      `locationName:"status" type:"string" json:"status,omitempty"`
 
 	metadataLifecycleEvent `json:"-", xml:"-"`
 }
@@ -1430,13 +1430,13 @@ type metadataLifecycleEvent struct {
 }
 
 type ListApplicationRevisionsInput struct {
-	ApplicationName *string `locationName:"applicationName" type:"string" json:",omitempty"`
-	Deployed        *string `locationName:"deployed" type:"string" json:",omitempty"`
-	NextToken       *string `locationName:"nextToken" type:"string" json:",omitempty"`
-	S3Bucket        *string `locationName:"s3Bucket" type:"string" json:",omitempty"`
-	S3KeyPrefix     *string `locationName:"s3KeyPrefix" type:"string" json:",omitempty"`
-	SortBy          *string `locationName:"sortBy" type:"string" json:",omitempty"`
-	SortOrder       *string `locationName:"sortOrder" type:"string" json:",omitempty"`
+	ApplicationName *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	Deployed        *string `locationName:"deployed" type:"string" json:"deployed,omitempty"`
+	NextToken       *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	S3Bucket        *string `locationName:"s3Bucket" type:"string" json:"s3Bucket,omitempty"`
+	S3KeyPrefix     *string `locationName:"s3KeyPrefix" type:"string" json:"s3KeyPrefix,omitempty"`
+	SortBy          *string `locationName:"sortBy" type:"string" json:"sortBy,omitempty"`
+	SortOrder       *string `locationName:"sortOrder" type:"string" json:"sortOrder,omitempty"`
 
 	metadataListApplicationRevisionsInput `json:"-", xml:"-"`
 }
@@ -1446,8 +1446,8 @@ type metadataListApplicationRevisionsInput struct {
 }
 
 type ListApplicationRevisionsOutput struct {
-	NextToken *string             `locationName:"nextToken" type:"string" json:",omitempty"`
-	Revisions []*RevisionLocation `locationName:"revisions" type:"list" json:",omitempty"`
+	NextToken *string             `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	Revisions []*RevisionLocation `locationName:"revisions" type:"list" json:"revisions,omitempty"`
 
 	metadataListApplicationRevisionsOutput `json:"-", xml:"-"`
 }
@@ -1457,7 +1457,7 @@ type metadataListApplicationRevisionsOutput struct {
 }
 
 type ListApplicationsInput struct {
-	NextToken *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	NextToken *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListApplicationsInput `json:"-", xml:"-"`
 }
@@ -1467,8 +1467,8 @@ type metadataListApplicationsInput struct {
 }
 
 type ListApplicationsOutput struct {
-	Applications []*string `locationName:"applications" type:"list" json:",omitempty"`
-	NextToken    *string   `locationName:"nextToken" type:"string" json:",omitempty"`
+	Applications []*string `locationName:"applications" type:"list" json:"applications,omitempty"`
+	NextToken    *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListApplicationsOutput `json:"-", xml:"-"`
 }
@@ -1478,7 +1478,7 @@ type metadataListApplicationsOutput struct {
 }
 
 type ListDeploymentConfigsInput struct {
-	NextToken *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	NextToken *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListDeploymentConfigsInput `json:"-", xml:"-"`
 }
@@ -1488,8 +1488,8 @@ type metadataListDeploymentConfigsInput struct {
 }
 
 type ListDeploymentConfigsOutput struct {
-	DeploymentConfigsList []*string `locationName:"deploymentConfigsList" type:"list" json:",omitempty"`
-	NextToken             *string   `locationName:"nextToken" type:"string" json:",omitempty"`
+	DeploymentConfigsList []*string `locationName:"deploymentConfigsList" type:"list" json:"deploymentConfigsList,omitempty"`
+	NextToken             *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListDeploymentConfigsOutput `json:"-", xml:"-"`
 }
@@ -1499,8 +1499,8 @@ type metadataListDeploymentConfigsOutput struct {
 }
 
 type ListDeploymentGroupsInput struct {
-	ApplicationName *string `locationName:"applicationName" type:"string" json:",omitempty"`
-	NextToken       *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	ApplicationName *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	NextToken       *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListDeploymentGroupsInput `json:"-", xml:"-"`
 }
@@ -1510,9 +1510,9 @@ type metadataListDeploymentGroupsInput struct {
 }
 
 type ListDeploymentGroupsOutput struct {
-	ApplicationName  *string   `locationName:"applicationName" type:"string" json:",omitempty"`
-	DeploymentGroups []*string `locationName:"deploymentGroups" type:"list" json:",omitempty"`
-	NextToken        *string   `locationName:"nextToken" type:"string" json:",omitempty"`
+	ApplicationName  *string   `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	DeploymentGroups []*string `locationName:"deploymentGroups" type:"list" json:"deploymentGroups,omitempty"`
+	NextToken        *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListDeploymentGroupsOutput `json:"-", xml:"-"`
 }
@@ -1522,9 +1522,9 @@ type metadataListDeploymentGroupsOutput struct {
 }
 
 type ListDeploymentInstancesInput struct {
-	DeploymentID         *string   `locationName:"deploymentId" type:"string" json:",omitempty"`
-	InstanceStatusFilter []*string `locationName:"instanceStatusFilter" type:"list" json:",omitempty"`
-	NextToken            *string   `locationName:"nextToken" type:"string" json:",omitempty"`
+	DeploymentID         *string   `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
+	InstanceStatusFilter []*string `locationName:"instanceStatusFilter" type:"list" json:"instanceStatusFilter,omitempty"`
+	NextToken            *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListDeploymentInstancesInput `json:"-", xml:"-"`
 }
@@ -1534,8 +1534,8 @@ type metadataListDeploymentInstancesInput struct {
 }
 
 type ListDeploymentInstancesOutput struct {
-	InstancesList []*string `locationName:"instancesList" type:"list" json:",omitempty"`
-	NextToken     *string   `locationName:"nextToken" type:"string" json:",omitempty"`
+	InstancesList []*string `locationName:"instancesList" type:"list" json:"instancesList,omitempty"`
+	NextToken     *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListDeploymentInstancesOutput `json:"-", xml:"-"`
 }
@@ -1545,11 +1545,11 @@ type metadataListDeploymentInstancesOutput struct {
 }
 
 type ListDeploymentsInput struct {
-	ApplicationName     *string    `locationName:"applicationName" type:"string" json:",omitempty"`
-	CreateTimeRange     *TimeRange `locationName:"createTimeRange" type:"structure" json:",omitempty"`
-	DeploymentGroupName *string    `locationName:"deploymentGroupName" type:"string" json:",omitempty"`
-	IncludeOnlyStatuses []*string  `locationName:"includeOnlyStatuses" type:"list" json:",omitempty"`
-	NextToken           *string    `locationName:"nextToken" type:"string" json:",omitempty"`
+	ApplicationName     *string    `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	CreateTimeRange     *TimeRange `locationName:"createTimeRange" type:"structure" json:"createTimeRange,omitempty"`
+	DeploymentGroupName *string    `locationName:"deploymentGroupName" type:"string" json:"deploymentGroupName,omitempty"`
+	IncludeOnlyStatuses []*string  `locationName:"includeOnlyStatuses" type:"list" json:"includeOnlyStatuses,omitempty"`
+	NextToken           *string    `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListDeploymentsInput `json:"-", xml:"-"`
 }
@@ -1559,8 +1559,8 @@ type metadataListDeploymentsInput struct {
 }
 
 type ListDeploymentsOutput struct {
-	Deployments []*string `locationName:"deployments" type:"list" json:",omitempty"`
-	NextToken   *string   `locationName:"nextToken" type:"string" json:",omitempty"`
+	Deployments []*string `locationName:"deployments" type:"list" json:"deployments,omitempty"`
+	NextToken   *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListDeploymentsOutput `json:"-", xml:"-"`
 }
@@ -1570,8 +1570,8 @@ type metadataListDeploymentsOutput struct {
 }
 
 type MinimumHealthyHosts struct {
-	Type  *string `locationName:"type" type:"string" json:",omitempty"`
-	Value *int    `locationName:"value" type:"integer" json:",omitempty"`
+	Type  *string `locationName:"type" type:"string" json:"type,omitempty"`
+	Value *int    `locationName:"value" type:"integer" json:"value,omitempty"`
 
 	metadataMinimumHealthyHosts `json:"-", xml:"-"`
 }
@@ -1581,9 +1581,9 @@ type metadataMinimumHealthyHosts struct {
 }
 
 type RegisterApplicationRevisionInput struct {
-	ApplicationName *string           `locationName:"applicationName" type:"string" json:",omitempty"`
-	Description     *string           `locationName:"description" type:"string" json:",omitempty"`
-	Revision        *RevisionLocation `locationName:"revision" type:"structure" json:",omitempty"`
+	ApplicationName *string           `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	Description     *string           `locationName:"description" type:"string" json:"description,omitempty"`
+	Revision        *RevisionLocation `locationName:"revision" type:"structure" json:"revision,omitempty"`
 
 	metadataRegisterApplicationRevisionInput `json:"-", xml:"-"`
 }
@@ -1601,9 +1601,9 @@ type metadataRevisionDoesNotExistException struct {
 }
 
 type RevisionLocation struct {
-	GitHubLocation *GitHubLocation `locationName:"gitHubLocation" type:"structure" json:",omitempty"`
-	RevisionType   *string         `locationName:"revisionType" type:"string" json:",omitempty"`
-	S3Location     *S3Location     `locationName:"s3Location" type:"structure" json:",omitempty"`
+	GitHubLocation *GitHubLocation `locationName:"gitHubLocation" type:"structure" json:"gitHubLocation,omitempty"`
+	RevisionType   *string         `locationName:"revisionType" type:"string" json:"revisionType,omitempty"`
+	S3Location     *S3Location     `locationName:"s3Location" type:"structure" json:"s3Location,omitempty"`
 
 	metadataRevisionLocation `json:"-", xml:"-"`
 }
@@ -1629,11 +1629,11 @@ type metadataRoleRequiredException struct {
 }
 
 type S3Location struct {
-	Bucket     *string `locationName:"bucket" type:"string" json:",omitempty"`
-	BundleType *string `locationName:"bundleType" type:"string" json:",omitempty"`
-	ETag       *string `locationName:"eTag" type:"string" json:",omitempty"`
-	Key        *string `locationName:"key" type:"string" json:",omitempty"`
-	Version    *string `locationName:"version" type:"string" json:",omitempty"`
+	Bucket     *string `locationName:"bucket" type:"string" json:"bucket,omitempty"`
+	BundleType *string `locationName:"bundleType" type:"string" json:"bundleType,omitempty"`
+	ETag       *string `locationName:"eTag" type:"string" json:"eTag,omitempty"`
+	Key        *string `locationName:"key" type:"string" json:"key,omitempty"`
+	Version    *string `locationName:"version" type:"string" json:"version,omitempty"`
 
 	metadataS3Location `json:"-", xml:"-"`
 }
@@ -1643,7 +1643,7 @@ type metadataS3Location struct {
 }
 
 type StopDeploymentInput struct {
-	DeploymentID *string `locationName:"deploymentId" type:"string" json:",omitempty"`
+	DeploymentID *string `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
 
 	metadataStopDeploymentInput `json:"-", xml:"-"`
 }
@@ -1653,8 +1653,8 @@ type metadataStopDeploymentInput struct {
 }
 
 type StopDeploymentOutput struct {
-	Status        *string `locationName:"status" type:"string" json:",omitempty"`
-	StatusMessage *string `locationName:"statusMessage" type:"string" json:",omitempty"`
+	Status        *string `locationName:"status" type:"string" json:"status,omitempty"`
+	StatusMessage *string `locationName:"statusMessage" type:"string" json:"statusMessage,omitempty"`
 
 	metadataStopDeploymentOutput `json:"-", xml:"-"`
 }
@@ -1664,8 +1664,8 @@ type metadataStopDeploymentOutput struct {
 }
 
 type TimeRange struct {
-	End   *time.Time `locationName:"end" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	End   *time.Time `locationName:"end" type:"timestamp" timestampFormat:"unix" json:"end,omitempty"`
+	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"unix" json:"start,omitempty"`
 
 	metadataTimeRange `json:"-", xml:"-"`
 }
@@ -1675,8 +1675,8 @@ type metadataTimeRange struct {
 }
 
 type UpdateApplicationInput struct {
-	ApplicationName    *string `locationName:"applicationName" type:"string" json:",omitempty"`
-	NewApplicationName *string `locationName:"newApplicationName" type:"string" json:",omitempty"`
+	ApplicationName    *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	NewApplicationName *string `locationName:"newApplicationName" type:"string" json:"newApplicationName,omitempty"`
 
 	metadataUpdateApplicationInput `json:"-", xml:"-"`
 }
@@ -1686,13 +1686,13 @@ type metadataUpdateApplicationInput struct {
 }
 
 type UpdateDeploymentGroupInput struct {
-	ApplicationName            *string         `locationName:"applicationName" type:"string" json:",omitempty"`
-	AutoScalingGroups          []*string       `locationName:"autoScalingGroups" type:"list" json:",omitempty"`
-	CurrentDeploymentGroupName *string         `locationName:"currentDeploymentGroupName" type:"string" json:",omitempty"`
-	DeploymentConfigName       *string         `locationName:"deploymentConfigName" type:"string" json:",omitempty"`
-	EC2TagFilters              []*EC2TagFilter `locationName:"ec2TagFilters" type:"list" json:",omitempty"`
-	NewDeploymentGroupName     *string         `locationName:"newDeploymentGroupName" type:"string" json:",omitempty"`
-	ServiceRoleARN             *string         `locationName:"serviceRoleArn" type:"string" json:",omitempty"`
+	ApplicationName            *string         `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	AutoScalingGroups          []*string       `locationName:"autoScalingGroups" type:"list" json:"autoScalingGroups,omitempty"`
+	CurrentDeploymentGroupName *string         `locationName:"currentDeploymentGroupName" type:"string" json:"currentDeploymentGroupName,omitempty"`
+	DeploymentConfigName       *string         `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
+	EC2TagFilters              []*EC2TagFilter `locationName:"ec2TagFilters" type:"list" json:"ec2TagFilters,omitempty"`
+	NewDeploymentGroupName     *string         `locationName:"newDeploymentGroupName" type:"string" json:"newDeploymentGroupName,omitempty"`
+	ServiceRoleARN             *string         `locationName:"serviceRoleArn" type:"string" json:"serviceRoleArn,omitempty"`
 
 	metadataUpdateDeploymentGroupInput `json:"-", xml:"-"`
 }
@@ -1702,7 +1702,7 @@ type metadataUpdateDeploymentGroupInput struct {
 }
 
 type UpdateDeploymentGroupOutput struct {
-	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list" json:",omitempty"`
+	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list" json:"hooksNotCleanedUp,omitempty"`
 
 	metadataUpdateDeploymentGroupOutput `json:"-", xml:"-"`
 }

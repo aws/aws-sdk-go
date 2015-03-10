@@ -291,7 +291,7 @@ type metadataAssociatedInstances struct {
 }
 
 type Association struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" json:",omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	Name       *string `type:"string" json:",omitempty"`
 
 	metadataAssociation `json:"-", xml:"-"`
@@ -311,7 +311,7 @@ type metadataAssociationAlreadyExists struct {
 
 type AssociationDescription struct {
 	Date       *time.Time         `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	InstanceID *string            `locationName:"InstanceId" type:"string" json:",omitempty"`
+	InstanceID *string            `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	Name       *string            `type:"string" json:",omitempty"`
 	Status     *AssociationStatus `type:"structure" json:",omitempty"`
 
@@ -331,8 +331,8 @@ type metadataAssociationDoesNotExist struct {
 }
 
 type AssociationFilter struct {
-	Key   *string `locationName:"key" type:"string" json:",omitempty"`
-	Value *string `locationName:"value" type:"string" json:",omitempty"`
+	Key   *string `locationName:"key" type:"string" json:"key,omitempty"`
+	Value *string `locationName:"value" type:"string" json:"value,omitempty"`
 
 	metadataAssociationFilter `json:"-", xml:"-"`
 }
@@ -384,7 +384,7 @@ type metadataCreateAssociationBatchOutput struct {
 }
 
 type CreateAssociationBatchRequestEntry struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" json:",omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	Name       *string `type:"string" json:",omitempty"`
 
 	metadataCreateAssociationBatchRequestEntry `json:"-", xml:"-"`
@@ -395,7 +395,7 @@ type metadataCreateAssociationBatchRequestEntry struct {
 }
 
 type CreateAssociationInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" json:",omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	Name       *string `type:"string" json:",omitempty"`
 
 	metadataCreateAssociationInput `json:"-", xml:"-"`
@@ -437,7 +437,7 @@ type metadataCreateDocumentOutput struct {
 }
 
 type DeleteAssociationInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" json:",omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	Name       *string `type:"string" json:",omitempty"`
 
 	metadataDeleteAssociationInput `json:"-", xml:"-"`
@@ -474,7 +474,7 @@ type metadataDeleteDocumentOutput struct {
 }
 
 type DescribeAssociationInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" json:",omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	Name       *string `type:"string" json:",omitempty"`
 
 	metadataDescribeAssociationInput `json:"-", xml:"-"`
@@ -525,7 +525,7 @@ type metadataDocumentAlreadyExists struct {
 type DocumentDescription struct {
 	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 	Name        *string    `type:"string" json:",omitempty"`
-	SHA1        *string    `locationName:"Sha1" type:"string" json:",omitempty"`
+	SHA1        *string    `locationName:"Sha1" type:"string" json:"Sha1,omitempty"`
 	Status      *string    `type:"string" json:",omitempty"`
 
 	metadataDocumentDescription `json:"-", xml:"-"`
@@ -536,8 +536,8 @@ type metadataDocumentDescription struct {
 }
 
 type DocumentFilter struct {
-	Key   *string `locationName:"key" type:"string" json:",omitempty"`
-	Value *string `locationName:"value" type:"string" json:",omitempty"`
+	Key   *string `locationName:"key" type:"string" json:"key,omitempty"`
+	Value *string `locationName:"value" type:"string" json:"value,omitempty"`
 
 	metadataDocumentFilter `json:"-", xml:"-"`
 }
@@ -622,7 +622,7 @@ type metadataInvalidDocument struct {
 }
 
 type InvalidDocumentContent struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidDocumentContent `json:"-", xml:"-"`
 }
@@ -719,7 +719,7 @@ type metadataTooManyUpdates struct {
 
 type UpdateAssociationStatusInput struct {
 	AssociationStatus *AssociationStatus `type:"structure" json:",omitempty"`
-	InstanceID        *string            `locationName:"InstanceId" type:"string" json:",omitempty"`
+	InstanceID        *string            `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	Name              *string            `type:"string" json:",omitempty"`
 
 	metadataUpdateAssociationStatusInput `json:"-", xml:"-"`

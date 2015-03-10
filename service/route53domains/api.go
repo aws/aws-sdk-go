@@ -459,7 +459,7 @@ var opUpdateTagsForDomain *aws.Operation
 
 type CheckDomainAvailabilityInput struct {
 	DomainName  *string `type:"string" json:",omitempty"`
-	IDNLangCode *string `locationName:"IdnLangCode" type:"string" json:",omitempty"`
+	IDNLangCode *string `locationName:"IdnLangCode" type:"string" json:"IdnLangCode,omitempty"`
 
 	metadataCheckDomainAvailabilityInput `json:"-", xml:"-"`
 }
@@ -549,7 +549,7 @@ type metadataDisableDomainTransferLockInput struct {
 }
 
 type DisableDomainTransferLockOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" json:",omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
 
 	metadataDisableDomainTransferLockOutput `json:"-", xml:"-"`
 }
@@ -559,7 +559,7 @@ type metadataDisableDomainTransferLockOutput struct {
 }
 
 type DomainLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataDomainLimitExceeded `json:"-", xml:"-"`
 }
@@ -582,7 +582,7 @@ type metadataDomainSummary struct {
 }
 
 type DuplicateRequest struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataDuplicateRequest `json:"-", xml:"-"`
 }
@@ -620,7 +620,7 @@ type metadataEnableDomainTransferLockInput struct {
 }
 
 type EnableDomainTransferLockOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" json:",omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
 
 	metadataEnableDomainTransferLockOutput `json:"-", xml:"-"`
 }
@@ -657,15 +657,15 @@ type GetDomainDetailOutput struct {
 	AdminPrivacy      *bool          `type:"boolean" json:",omitempty"`
 	AutoRenew         *bool          `type:"boolean" json:",omitempty"`
 	CreationDate      *time.Time     `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	DNSSec            *string        `locationName:"DnsSec" type:"string" json:",omitempty"`
+	DNSSec            *string        `locationName:"DnsSec" type:"string" json:"DnsSec,omitempty"`
 	DomainName        *string        `type:"string" json:",omitempty"`
 	ExpirationDate    *time.Time     `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 	Nameservers       []*Nameserver  `type:"list" json:",omitempty"`
 	RegistrantContact *ContactDetail `type:"structure" json:",omitempty"`
 	RegistrantPrivacy *bool          `type:"boolean" json:",omitempty"`
 	RegistrarName     *string        `type:"string" json:",omitempty"`
-	RegistrarURL      *string        `locationName:"RegistrarUrl" type:"string" json:",omitempty"`
-	RegistryDomainID  *string        `locationName:"RegistryDomainId" type:"string" json:",omitempty"`
+	RegistrarURL      *string        `locationName:"RegistrarUrl" type:"string" json:"RegistrarUrl,omitempty"`
+	RegistryDomainID  *string        `locationName:"RegistryDomainId" type:"string" json:"RegistryDomainId,omitempty"`
 	Reseller          *string        `type:"string" json:",omitempty"`
 	StatusList        []*string      `type:"list" json:",omitempty"`
 	TechContact       *ContactDetail `type:"structure" json:",omitempty"`
@@ -681,7 +681,7 @@ type metadataGetDomainDetailOutput struct {
 }
 
 type GetOperationDetailInput struct {
-	OperationID *string `locationName:"OperationId" type:"string" json:",omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
 
 	metadataGetOperationDetailInput `json:"-", xml:"-"`
 }
@@ -693,7 +693,7 @@ type metadataGetOperationDetailInput struct {
 type GetOperationDetailOutput struct {
 	DomainName    *string    `type:"string" json:",omitempty"`
 	Message       *string    `type:"string" json:",omitempty"`
-	OperationID   *string    `locationName:"OperationId" type:"string" json:",omitempty"`
+	OperationID   *string    `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
 	Status        *string    `type:"string" json:",omitempty"`
 	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 	Type          *string    `type:"string" json:",omitempty"`
@@ -706,7 +706,7 @@ type metadataGetOperationDetailOutput struct {
 }
 
 type InvalidInput struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidInput `json:"-", xml:"-"`
 }
@@ -780,7 +780,7 @@ type metadataListTagsForDomainOutput struct {
 }
 
 type Nameserver struct {
-	GlueIPs []*string `locationName:"GlueIps" type:"list" json:",omitempty"`
+	GlueIPs []*string `locationName:"GlueIps" type:"list" json:"GlueIps,omitempty"`
 	Name    *string   `type:"string" json:",omitempty"`
 
 	metadataNameserver `json:"-", xml:"-"`
@@ -791,7 +791,7 @@ type metadataNameserver struct {
 }
 
 type OperationLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataOperationLimitExceeded `json:"-", xml:"-"`
 }
@@ -801,7 +801,7 @@ type metadataOperationLimitExceeded struct {
 }
 
 type OperationSummary struct {
-	OperationID   *string    `locationName:"OperationId" type:"string" json:",omitempty"`
+	OperationID   *string    `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
 	Status        *string    `type:"string" json:",omitempty"`
 	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 	Type          *string    `type:"string" json:",omitempty"`
@@ -818,7 +818,7 @@ type RegisterDomainInput struct {
 	AutoRenew                       *bool          `type:"boolean" json:",omitempty"`
 	DomainName                      *string        `type:"string" json:",omitempty"`
 	DurationInYears                 *int           `type:"integer" json:",omitempty"`
-	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string" json:",omitempty"`
+	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string" json:"IdnLangCode,omitempty"`
 	PrivacyProtectAdminContact      *bool          `type:"boolean" json:",omitempty"`
 	PrivacyProtectRegistrantContact *bool          `type:"boolean" json:",omitempty"`
 	PrivacyProtectTechContact       *bool          `type:"boolean" json:",omitempty"`
@@ -833,7 +833,7 @@ type metadataRegisterDomainInput struct {
 }
 
 type RegisterDomainOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" json:",omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
 
 	metadataRegisterDomainOutput `json:"-", xml:"-"`
 }
@@ -863,7 +863,7 @@ type metadataRetrieveDomainAuthCodeOutput struct {
 }
 
 type TLDRulesViolation struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataTLDRulesViolation `json:"-", xml:"-"`
 }
@@ -889,7 +889,7 @@ type TransferDomainInput struct {
 	AutoRenew                       *bool          `type:"boolean" json:",omitempty"`
 	DomainName                      *string        `type:"string" json:",omitempty"`
 	DurationInYears                 *int           `type:"integer" json:",omitempty"`
-	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string" json:",omitempty"`
+	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string" json:"IdnLangCode,omitempty"`
 	Nameservers                     []*Nameserver  `type:"list" json:",omitempty"`
 	PrivacyProtectAdminContact      *bool          `type:"boolean" json:",omitempty"`
 	PrivacyProtectRegistrantContact *bool          `type:"boolean" json:",omitempty"`
@@ -905,7 +905,7 @@ type metadataTransferDomainInput struct {
 }
 
 type TransferDomainOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" json:",omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
 
 	metadataTransferDomainOutput `json:"-", xml:"-"`
 }
@@ -915,7 +915,7 @@ type metadataTransferDomainOutput struct {
 }
 
 type UnsupportedTLD struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataUnsupportedTLD `json:"-", xml:"-"`
 }
@@ -938,7 +938,7 @@ type metadataUpdateDomainContactInput struct {
 }
 
 type UpdateDomainContactOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" json:",omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
 
 	metadataUpdateDomainContactOutput `json:"-", xml:"-"`
 }
@@ -961,7 +961,7 @@ type metadataUpdateDomainContactPrivacyInput struct {
 }
 
 type UpdateDomainContactPrivacyOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" json:",omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
 
 	metadataUpdateDomainContactPrivacyOutput `json:"-", xml:"-"`
 }
@@ -983,7 +983,7 @@ type metadataUpdateDomainNameserversInput struct {
 }
 
 type UpdateDomainNameserversOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" json:",omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
 
 	metadataUpdateDomainNameserversOutput `json:"-", xml:"-"`
 }

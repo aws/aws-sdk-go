@@ -1,9 +1,9 @@
 package ecs
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/aws"
 )
 
 // ECS is a client for Amazon ECS.

@@ -442,7 +442,7 @@ type metadataCondition struct {
 }
 
 type ConditionalCheckFailedException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataConditionalCheckFailedException `json:"-", xml:"-"`
 }
@@ -677,7 +677,7 @@ type metadataGlobalSecondaryIndexUpdate struct {
 }
 
 type InternalServerError struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInternalServerError `json:"-", xml:"-"`
 }
@@ -698,7 +698,7 @@ type metadataItemCollectionMetrics struct {
 }
 
 type ItemCollectionSizeLimitExceededException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataItemCollectionSizeLimitExceededException `json:"-", xml:"-"`
 }
@@ -733,7 +733,7 @@ type metadataKeysAndAttributes struct {
 }
 
 type LimitExceededException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataLimitExceededException `json:"-", xml:"-"`
 }
@@ -827,7 +827,7 @@ type metadataProvisionedThroughputDescription struct {
 }
 
 type ProvisionedThroughputExceededException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataProvisionedThroughputExceededException `json:"-", xml:"-"`
 }
@@ -917,7 +917,7 @@ type metadataQueryOutput struct {
 }
 
 type ResourceInUseException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataResourceInUseException `json:"-", xml:"-"`
 }
@@ -927,7 +927,7 @@ type metadataResourceInUseException struct {
 }
 
 type ResourceNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataResourceNotFoundException `json:"-", xml:"-"`
 }

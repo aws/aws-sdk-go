@@ -357,8 +357,8 @@ func (c *Support) ResolveCase(input *ResolveCaseInput) (output *ResolveCaseOutpu
 var opResolveCase *aws.Operation
 
 type AddAttachmentsToSetInput struct {
-	AttachmentSetID *string       `locationName:"attachmentSetId" type:"string" json:",omitempty"`
-	Attachments     []*Attachment `locationName:"attachments" type:"list" json:",omitempty"`
+	AttachmentSetID *string       `locationName:"attachmentSetId" type:"string" json:"attachmentSetId,omitempty"`
+	Attachments     []*Attachment `locationName:"attachments" type:"list" json:"attachments,omitempty"`
 
 	metadataAddAttachmentsToSetInput `json:"-", xml:"-"`
 }
@@ -368,8 +368,8 @@ type metadataAddAttachmentsToSetInput struct {
 }
 
 type AddAttachmentsToSetOutput struct {
-	AttachmentSetID *string `locationName:"attachmentSetId" type:"string" json:",omitempty"`
-	ExpiryTime      *string `locationName:"expiryTime" type:"string" json:",omitempty"`
+	AttachmentSetID *string `locationName:"attachmentSetId" type:"string" json:"attachmentSetId,omitempty"`
+	ExpiryTime      *string `locationName:"expiryTime" type:"string" json:"expiryTime,omitempty"`
 
 	metadataAddAttachmentsToSetOutput `json:"-", xml:"-"`
 }
@@ -379,10 +379,10 @@ type metadataAddAttachmentsToSetOutput struct {
 }
 
 type AddCommunicationToCaseInput struct {
-	AttachmentSetID   *string   `locationName:"attachmentSetId" type:"string" json:",omitempty"`
-	CCEmailAddresses  []*string `locationName:"ccEmailAddresses" type:"list" json:",omitempty"`
-	CaseID            *string   `locationName:"caseId" type:"string" json:",omitempty"`
-	CommunicationBody *string   `locationName:"communicationBody" type:"string" json:",omitempty"`
+	AttachmentSetID   *string   `locationName:"attachmentSetId" type:"string" json:"attachmentSetId,omitempty"`
+	CCEmailAddresses  []*string `locationName:"ccEmailAddresses" type:"list" json:"ccEmailAddresses,omitempty"`
+	CaseID            *string   `locationName:"caseId" type:"string" json:"caseId,omitempty"`
+	CommunicationBody *string   `locationName:"communicationBody" type:"string" json:"communicationBody,omitempty"`
 
 	metadataAddCommunicationToCaseInput `json:"-", xml:"-"`
 }
@@ -392,7 +392,7 @@ type metadataAddCommunicationToCaseInput struct {
 }
 
 type AddCommunicationToCaseOutput struct {
-	Result *bool `locationName:"result" type:"boolean" json:",omitempty"`
+	Result *bool `locationName:"result" type:"boolean" json:"result,omitempty"`
 
 	metadataAddCommunicationToCaseOutput `json:"-", xml:"-"`
 }
@@ -402,8 +402,8 @@ type metadataAddCommunicationToCaseOutput struct {
 }
 
 type Attachment struct {
-	Data     []byte  `locationName:"data" type:"blob" json:",omitempty"`
-	FileName *string `locationName:"fileName" type:"string" json:",omitempty"`
+	Data     []byte  `locationName:"data" type:"blob" json:"data,omitempty"`
+	FileName *string `locationName:"fileName" type:"string" json:"fileName,omitempty"`
 
 	metadataAttachment `json:"-", xml:"-"`
 }
@@ -413,8 +413,8 @@ type metadataAttachment struct {
 }
 
 type AttachmentDetails struct {
-	AttachmentID *string `locationName:"attachmentId" type:"string" json:",omitempty"`
-	FileName     *string `locationName:"fileName" type:"string" json:",omitempty"`
+	AttachmentID *string `locationName:"attachmentId" type:"string" json:"attachmentId,omitempty"`
+	FileName     *string `locationName:"fileName" type:"string" json:"fileName,omitempty"`
 
 	metadataAttachmentDetails `json:"-", xml:"-"`
 }
@@ -424,7 +424,7 @@ type metadataAttachmentDetails struct {
 }
 
 type AttachmentIDNotFound struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataAttachmentIDNotFound `json:"-", xml:"-"`
 }
@@ -434,7 +434,7 @@ type metadataAttachmentIDNotFound struct {
 }
 
 type AttachmentLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataAttachmentLimitExceeded `json:"-", xml:"-"`
 }
@@ -444,7 +444,7 @@ type metadataAttachmentLimitExceeded struct {
 }
 
 type AttachmentSetExpired struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataAttachmentSetExpired `json:"-", xml:"-"`
 }
@@ -454,7 +454,7 @@ type metadataAttachmentSetExpired struct {
 }
 
 type AttachmentSetIDNotFound struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataAttachmentSetIDNotFound `json:"-", xml:"-"`
 }
@@ -464,7 +464,7 @@ type metadataAttachmentSetIDNotFound struct {
 }
 
 type AttachmentSetSizeLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataAttachmentSetSizeLimitExceeded `json:"-", xml:"-"`
 }
@@ -474,7 +474,7 @@ type metadataAttachmentSetSizeLimitExceeded struct {
 }
 
 type CaseCreationLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataCaseCreationLimitExceeded `json:"-", xml:"-"`
 }
@@ -484,18 +484,18 @@ type metadataCaseCreationLimitExceeded struct {
 }
 
 type CaseDetails struct {
-	CCEmailAddresses     []*string                 `locationName:"ccEmailAddresses" type:"list" json:",omitempty"`
-	CaseID               *string                   `locationName:"caseId" type:"string" json:",omitempty"`
-	CategoryCode         *string                   `locationName:"categoryCode" type:"string" json:",omitempty"`
-	DisplayID            *string                   `locationName:"displayId" type:"string" json:",omitempty"`
-	Language             *string                   `locationName:"language" type:"string" json:",omitempty"`
-	RecentCommunications *RecentCaseCommunications `locationName:"recentCommunications" type:"structure" json:",omitempty"`
-	ServiceCode          *string                   `locationName:"serviceCode" type:"string" json:",omitempty"`
-	SeverityCode         *string                   `locationName:"severityCode" type:"string" json:",omitempty"`
-	Status               *string                   `locationName:"status" type:"string" json:",omitempty"`
-	Subject              *string                   `locationName:"subject" type:"string" json:",omitempty"`
-	SubmittedBy          *string                   `locationName:"submittedBy" type:"string" json:",omitempty"`
-	TimeCreated          *string                   `locationName:"timeCreated" type:"string" json:",omitempty"`
+	CCEmailAddresses     []*string                 `locationName:"ccEmailAddresses" type:"list" json:"ccEmailAddresses,omitempty"`
+	CaseID               *string                   `locationName:"caseId" type:"string" json:"caseId,omitempty"`
+	CategoryCode         *string                   `locationName:"categoryCode" type:"string" json:"categoryCode,omitempty"`
+	DisplayID            *string                   `locationName:"displayId" type:"string" json:"displayId,omitempty"`
+	Language             *string                   `locationName:"language" type:"string" json:"language,omitempty"`
+	RecentCommunications *RecentCaseCommunications `locationName:"recentCommunications" type:"structure" json:"recentCommunications,omitempty"`
+	ServiceCode          *string                   `locationName:"serviceCode" type:"string" json:"serviceCode,omitempty"`
+	SeverityCode         *string                   `locationName:"severityCode" type:"string" json:"severityCode,omitempty"`
+	Status               *string                   `locationName:"status" type:"string" json:"status,omitempty"`
+	Subject              *string                   `locationName:"subject" type:"string" json:"subject,omitempty"`
+	SubmittedBy          *string                   `locationName:"submittedBy" type:"string" json:"submittedBy,omitempty"`
+	TimeCreated          *string                   `locationName:"timeCreated" type:"string" json:"timeCreated,omitempty"`
 
 	metadataCaseDetails `json:"-", xml:"-"`
 }
@@ -505,7 +505,7 @@ type metadataCaseDetails struct {
 }
 
 type CaseIDNotFound struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataCaseIDNotFound `json:"-", xml:"-"`
 }
@@ -515,8 +515,8 @@ type metadataCaseIDNotFound struct {
 }
 
 type Category struct {
-	Code *string `locationName:"code" type:"string" json:",omitempty"`
-	Name *string `locationName:"name" type:"string" json:",omitempty"`
+	Code *string `locationName:"code" type:"string" json:"code,omitempty"`
+	Name *string `locationName:"name" type:"string" json:"name,omitempty"`
 
 	metadataCategory `json:"-", xml:"-"`
 }
@@ -526,11 +526,11 @@ type metadataCategory struct {
 }
 
 type Communication struct {
-	AttachmentSet []*AttachmentDetails `locationName:"attachmentSet" type:"list" json:",omitempty"`
-	Body          *string              `locationName:"body" type:"string" json:",omitempty"`
-	CaseID        *string              `locationName:"caseId" type:"string" json:",omitempty"`
-	SubmittedBy   *string              `locationName:"submittedBy" type:"string" json:",omitempty"`
-	TimeCreated   *string              `locationName:"timeCreated" type:"string" json:",omitempty"`
+	AttachmentSet []*AttachmentDetails `locationName:"attachmentSet" type:"list" json:"attachmentSet,omitempty"`
+	Body          *string              `locationName:"body" type:"string" json:"body,omitempty"`
+	CaseID        *string              `locationName:"caseId" type:"string" json:"caseId,omitempty"`
+	SubmittedBy   *string              `locationName:"submittedBy" type:"string" json:"submittedBy,omitempty"`
+	TimeCreated   *string              `locationName:"timeCreated" type:"string" json:"timeCreated,omitempty"`
 
 	metadataCommunication `json:"-", xml:"-"`
 }
@@ -540,15 +540,15 @@ type metadataCommunication struct {
 }
 
 type CreateCaseInput struct {
-	AttachmentSetID   *string   `locationName:"attachmentSetId" type:"string" json:",omitempty"`
-	CCEmailAddresses  []*string `locationName:"ccEmailAddresses" type:"list" json:",omitempty"`
-	CategoryCode      *string   `locationName:"categoryCode" type:"string" json:",omitempty"`
-	CommunicationBody *string   `locationName:"communicationBody" type:"string" json:",omitempty"`
-	IssueType         *string   `locationName:"issueType" type:"string" json:",omitempty"`
-	Language          *string   `locationName:"language" type:"string" json:",omitempty"`
-	ServiceCode       *string   `locationName:"serviceCode" type:"string" json:",omitempty"`
-	SeverityCode      *string   `locationName:"severityCode" type:"string" json:",omitempty"`
-	Subject           *string   `locationName:"subject" type:"string" json:",omitempty"`
+	AttachmentSetID   *string   `locationName:"attachmentSetId" type:"string" json:"attachmentSetId,omitempty"`
+	CCEmailAddresses  []*string `locationName:"ccEmailAddresses" type:"list" json:"ccEmailAddresses,omitempty"`
+	CategoryCode      *string   `locationName:"categoryCode" type:"string" json:"categoryCode,omitempty"`
+	CommunicationBody *string   `locationName:"communicationBody" type:"string" json:"communicationBody,omitempty"`
+	IssueType         *string   `locationName:"issueType" type:"string" json:"issueType,omitempty"`
+	Language          *string   `locationName:"language" type:"string" json:"language,omitempty"`
+	ServiceCode       *string   `locationName:"serviceCode" type:"string" json:"serviceCode,omitempty"`
+	SeverityCode      *string   `locationName:"severityCode" type:"string" json:"severityCode,omitempty"`
+	Subject           *string   `locationName:"subject" type:"string" json:"subject,omitempty"`
 
 	metadataCreateCaseInput `json:"-", xml:"-"`
 }
@@ -558,7 +558,7 @@ type metadataCreateCaseInput struct {
 }
 
 type CreateCaseOutput struct {
-	CaseID *string `locationName:"caseId" type:"string" json:",omitempty"`
+	CaseID *string `locationName:"caseId" type:"string" json:"caseId,omitempty"`
 
 	metadataCreateCaseOutput `json:"-", xml:"-"`
 }
@@ -568,7 +568,7 @@ type metadataCreateCaseOutput struct {
 }
 
 type DescribeAttachmentInput struct {
-	AttachmentID *string `locationName:"attachmentId" type:"string" json:",omitempty"`
+	AttachmentID *string `locationName:"attachmentId" type:"string" json:"attachmentId,omitempty"`
 
 	metadataDescribeAttachmentInput `json:"-", xml:"-"`
 }
@@ -578,7 +578,7 @@ type metadataDescribeAttachmentInput struct {
 }
 
 type DescribeAttachmentLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataDescribeAttachmentLimitExceeded `json:"-", xml:"-"`
 }
@@ -588,7 +588,7 @@ type metadataDescribeAttachmentLimitExceeded struct {
 }
 
 type DescribeAttachmentOutput struct {
-	Attachment *Attachment `locationName:"attachment" type:"structure" json:",omitempty"`
+	Attachment *Attachment `locationName:"attachment" type:"structure" json:"attachment,omitempty"`
 
 	metadataDescribeAttachmentOutput `json:"-", xml:"-"`
 }
@@ -598,15 +598,15 @@ type metadataDescribeAttachmentOutput struct {
 }
 
 type DescribeCasesInput struct {
-	AfterTime             *string   `locationName:"afterTime" type:"string" json:",omitempty"`
-	BeforeTime            *string   `locationName:"beforeTime" type:"string" json:",omitempty"`
-	CaseIDList            []*string `locationName:"caseIdList" type:"list" json:",omitempty"`
-	DisplayID             *string   `locationName:"displayId" type:"string" json:",omitempty"`
-	IncludeCommunications *bool     `locationName:"includeCommunications" type:"boolean" json:",omitempty"`
-	IncludeResolvedCases  *bool     `locationName:"includeResolvedCases" type:"boolean" json:",omitempty"`
-	Language              *string   `locationName:"language" type:"string" json:",omitempty"`
-	MaxResults            *int      `locationName:"maxResults" type:"integer" json:",omitempty"`
-	NextToken             *string   `locationName:"nextToken" type:"string" json:",omitempty"`
+	AfterTime             *string   `locationName:"afterTime" type:"string" json:"afterTime,omitempty"`
+	BeforeTime            *string   `locationName:"beforeTime" type:"string" json:"beforeTime,omitempty"`
+	CaseIDList            []*string `locationName:"caseIdList" type:"list" json:"caseIdList,omitempty"`
+	DisplayID             *string   `locationName:"displayId" type:"string" json:"displayId,omitempty"`
+	IncludeCommunications *bool     `locationName:"includeCommunications" type:"boolean" json:"includeCommunications,omitempty"`
+	IncludeResolvedCases  *bool     `locationName:"includeResolvedCases" type:"boolean" json:"includeResolvedCases,omitempty"`
+	Language              *string   `locationName:"language" type:"string" json:"language,omitempty"`
+	MaxResults            *int      `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	NextToken             *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeCasesInput `json:"-", xml:"-"`
 }
@@ -616,8 +616,8 @@ type metadataDescribeCasesInput struct {
 }
 
 type DescribeCasesOutput struct {
-	Cases     []*CaseDetails `locationName:"cases" type:"list" json:",omitempty"`
-	NextToken *string        `locationName:"nextToken" type:"string" json:",omitempty"`
+	Cases     []*CaseDetails `locationName:"cases" type:"list" json:"cases,omitempty"`
+	NextToken *string        `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeCasesOutput `json:"-", xml:"-"`
 }
@@ -627,11 +627,11 @@ type metadataDescribeCasesOutput struct {
 }
 
 type DescribeCommunicationsInput struct {
-	AfterTime  *string `locationName:"afterTime" type:"string" json:",omitempty"`
-	BeforeTime *string `locationName:"beforeTime" type:"string" json:",omitempty"`
-	CaseID     *string `locationName:"caseId" type:"string" json:",omitempty"`
-	MaxResults *int    `locationName:"maxResults" type:"integer" json:",omitempty"`
-	NextToken  *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	AfterTime  *string `locationName:"afterTime" type:"string" json:"afterTime,omitempty"`
+	BeforeTime *string `locationName:"beforeTime" type:"string" json:"beforeTime,omitempty"`
+	CaseID     *string `locationName:"caseId" type:"string" json:"caseId,omitempty"`
+	MaxResults *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	NextToken  *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeCommunicationsInput `json:"-", xml:"-"`
 }
@@ -641,8 +641,8 @@ type metadataDescribeCommunicationsInput struct {
 }
 
 type DescribeCommunicationsOutput struct {
-	Communications []*Communication `locationName:"communications" type:"list" json:",omitempty"`
-	NextToken      *string          `locationName:"nextToken" type:"string" json:",omitempty"`
+	Communications []*Communication `locationName:"communications" type:"list" json:"communications,omitempty"`
+	NextToken      *string          `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeCommunicationsOutput `json:"-", xml:"-"`
 }
@@ -652,8 +652,8 @@ type metadataDescribeCommunicationsOutput struct {
 }
 
 type DescribeServicesInput struct {
-	Language        *string   `locationName:"language" type:"string" json:",omitempty"`
-	ServiceCodeList []*string `locationName:"serviceCodeList" type:"list" json:",omitempty"`
+	Language        *string   `locationName:"language" type:"string" json:"language,omitempty"`
+	ServiceCodeList []*string `locationName:"serviceCodeList" type:"list" json:"serviceCodeList,omitempty"`
 
 	metadataDescribeServicesInput `json:"-", xml:"-"`
 }
@@ -663,7 +663,7 @@ type metadataDescribeServicesInput struct {
 }
 
 type DescribeServicesOutput struct {
-	Services []*Service `locationName:"services" type:"list" json:",omitempty"`
+	Services []*Service `locationName:"services" type:"list" json:"services,omitempty"`
 
 	metadataDescribeServicesOutput `json:"-", xml:"-"`
 }
@@ -673,7 +673,7 @@ type metadataDescribeServicesOutput struct {
 }
 
 type DescribeSeverityLevelsInput struct {
-	Language *string `locationName:"language" type:"string" json:",omitempty"`
+	Language *string `locationName:"language" type:"string" json:"language,omitempty"`
 
 	metadataDescribeSeverityLevelsInput `json:"-", xml:"-"`
 }
@@ -683,7 +683,7 @@ type metadataDescribeSeverityLevelsInput struct {
 }
 
 type DescribeSeverityLevelsOutput struct {
-	SeverityLevels []*SeverityLevel `locationName:"severityLevels" type:"list" json:",omitempty"`
+	SeverityLevels []*SeverityLevel `locationName:"severityLevels" type:"list" json:"severityLevels,omitempty"`
 
 	metadataDescribeSeverityLevelsOutput `json:"-", xml:"-"`
 }
@@ -693,7 +693,7 @@ type metadataDescribeSeverityLevelsOutput struct {
 }
 
 type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
-	CheckIDs []*string `locationName:"checkIds" type:"list" json:",omitempty"`
+	CheckIDs []*string `locationName:"checkIds" type:"list" json:"checkIds,omitempty"`
 
 	metadataDescribeTrustedAdvisorCheckRefreshStatusesInput `json:"-", xml:"-"`
 }
@@ -703,7 +703,7 @@ type metadataDescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 }
 
 type DescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
-	Statuses []*TrustedAdvisorCheckRefreshStatus `locationName:"statuses" type:"list" json:",omitempty"`
+	Statuses []*TrustedAdvisorCheckRefreshStatus `locationName:"statuses" type:"list" json:"statuses,omitempty"`
 
 	metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput `json:"-", xml:"-"`
 }
@@ -713,8 +713,8 @@ type metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
 }
 
 type DescribeTrustedAdvisorCheckResultInput struct {
-	CheckID  *string `locationName:"checkId" type:"string" json:",omitempty"`
-	Language *string `locationName:"language" type:"string" json:",omitempty"`
+	CheckID  *string `locationName:"checkId" type:"string" json:"checkId,omitempty"`
+	Language *string `locationName:"language" type:"string" json:"language,omitempty"`
 
 	metadataDescribeTrustedAdvisorCheckResultInput `json:"-", xml:"-"`
 }
@@ -724,7 +724,7 @@ type metadataDescribeTrustedAdvisorCheckResultInput struct {
 }
 
 type DescribeTrustedAdvisorCheckResultOutput struct {
-	Result *TrustedAdvisorCheckResult `locationName:"result" type:"structure" json:",omitempty"`
+	Result *TrustedAdvisorCheckResult `locationName:"result" type:"structure" json:"result,omitempty"`
 
 	metadataDescribeTrustedAdvisorCheckResultOutput `json:"-", xml:"-"`
 }
@@ -734,7 +734,7 @@ type metadataDescribeTrustedAdvisorCheckResultOutput struct {
 }
 
 type DescribeTrustedAdvisorCheckSummariesInput struct {
-	CheckIDs []*string `locationName:"checkIds" type:"list" json:",omitempty"`
+	CheckIDs []*string `locationName:"checkIds" type:"list" json:"checkIds,omitempty"`
 
 	metadataDescribeTrustedAdvisorCheckSummariesInput `json:"-", xml:"-"`
 }
@@ -744,7 +744,7 @@ type metadataDescribeTrustedAdvisorCheckSummariesInput struct {
 }
 
 type DescribeTrustedAdvisorCheckSummariesOutput struct {
-	Summaries []*TrustedAdvisorCheckSummary `locationName:"summaries" type:"list" json:",omitempty"`
+	Summaries []*TrustedAdvisorCheckSummary `locationName:"summaries" type:"list" json:"summaries,omitempty"`
 
 	metadataDescribeTrustedAdvisorCheckSummariesOutput `json:"-", xml:"-"`
 }
@@ -754,7 +754,7 @@ type metadataDescribeTrustedAdvisorCheckSummariesOutput struct {
 }
 
 type DescribeTrustedAdvisorChecksInput struct {
-	Language *string `locationName:"language" type:"string" json:",omitempty"`
+	Language *string `locationName:"language" type:"string" json:"language,omitempty"`
 
 	metadataDescribeTrustedAdvisorChecksInput `json:"-", xml:"-"`
 }
@@ -764,7 +764,7 @@ type metadataDescribeTrustedAdvisorChecksInput struct {
 }
 
 type DescribeTrustedAdvisorChecksOutput struct {
-	Checks []*TrustedAdvisorCheckDescription `locationName:"checks" type:"list" json:",omitempty"`
+	Checks []*TrustedAdvisorCheckDescription `locationName:"checks" type:"list" json:"checks,omitempty"`
 
 	metadataDescribeTrustedAdvisorChecksOutput `json:"-", xml:"-"`
 }
@@ -774,7 +774,7 @@ type metadataDescribeTrustedAdvisorChecksOutput struct {
 }
 
 type InternalServerError struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInternalServerError `json:"-", xml:"-"`
 }
@@ -784,8 +784,8 @@ type metadataInternalServerError struct {
 }
 
 type RecentCaseCommunications struct {
-	Communications []*Communication `locationName:"communications" type:"list" json:",omitempty"`
-	NextToken      *string          `locationName:"nextToken" type:"string" json:",omitempty"`
+	Communications []*Communication `locationName:"communications" type:"list" json:"communications,omitempty"`
+	NextToken      *string          `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataRecentCaseCommunications `json:"-", xml:"-"`
 }
@@ -795,7 +795,7 @@ type metadataRecentCaseCommunications struct {
 }
 
 type RefreshTrustedAdvisorCheckInput struct {
-	CheckID *string `locationName:"checkId" type:"string" json:",omitempty"`
+	CheckID *string `locationName:"checkId" type:"string" json:"checkId,omitempty"`
 
 	metadataRefreshTrustedAdvisorCheckInput `json:"-", xml:"-"`
 }
@@ -805,7 +805,7 @@ type metadataRefreshTrustedAdvisorCheckInput struct {
 }
 
 type RefreshTrustedAdvisorCheckOutput struct {
-	Status *TrustedAdvisorCheckRefreshStatus `locationName:"status" type:"structure" json:",omitempty"`
+	Status *TrustedAdvisorCheckRefreshStatus `locationName:"status" type:"structure" json:"status,omitempty"`
 
 	metadataRefreshTrustedAdvisorCheckOutput `json:"-", xml:"-"`
 }
@@ -815,7 +815,7 @@ type metadataRefreshTrustedAdvisorCheckOutput struct {
 }
 
 type ResolveCaseInput struct {
-	CaseID *string `locationName:"caseId" type:"string" json:",omitempty"`
+	CaseID *string `locationName:"caseId" type:"string" json:"caseId,omitempty"`
 
 	metadataResolveCaseInput `json:"-", xml:"-"`
 }
@@ -825,8 +825,8 @@ type metadataResolveCaseInput struct {
 }
 
 type ResolveCaseOutput struct {
-	FinalCaseStatus   *string `locationName:"finalCaseStatus" type:"string" json:",omitempty"`
-	InitialCaseStatus *string `locationName:"initialCaseStatus" type:"string" json:",omitempty"`
+	FinalCaseStatus   *string `locationName:"finalCaseStatus" type:"string" json:"finalCaseStatus,omitempty"`
+	InitialCaseStatus *string `locationName:"initialCaseStatus" type:"string" json:"initialCaseStatus,omitempty"`
 
 	metadataResolveCaseOutput `json:"-", xml:"-"`
 }
@@ -836,9 +836,9 @@ type metadataResolveCaseOutput struct {
 }
 
 type Service struct {
-	Categories []*Category `locationName:"categories" type:"list" json:",omitempty"`
-	Code       *string     `locationName:"code" type:"string" json:",omitempty"`
-	Name       *string     `locationName:"name" type:"string" json:",omitempty"`
+	Categories []*Category `locationName:"categories" type:"list" json:"categories,omitempty"`
+	Code       *string     `locationName:"code" type:"string" json:"code,omitempty"`
+	Name       *string     `locationName:"name" type:"string" json:"name,omitempty"`
 
 	metadataService `json:"-", xml:"-"`
 }
@@ -848,8 +848,8 @@ type metadataService struct {
 }
 
 type SeverityLevel struct {
-	Code *string `locationName:"code" type:"string" json:",omitempty"`
-	Name *string `locationName:"name" type:"string" json:",omitempty"`
+	Code *string `locationName:"code" type:"string" json:"code,omitempty"`
+	Name *string `locationName:"name" type:"string" json:"name,omitempty"`
 
 	metadataSeverityLevel `json:"-", xml:"-"`
 }
@@ -859,7 +859,7 @@ type metadataSeverityLevel struct {
 }
 
 type TrustedAdvisorCategorySpecificSummary struct {
-	CostOptimizing *TrustedAdvisorCostOptimizingSummary `locationName:"costOptimizing" type:"structure" json:",omitempty"`
+	CostOptimizing *TrustedAdvisorCostOptimizingSummary `locationName:"costOptimizing" type:"structure" json:"costOptimizing,omitempty"`
 
 	metadataTrustedAdvisorCategorySpecificSummary `json:"-", xml:"-"`
 }
@@ -869,11 +869,11 @@ type metadataTrustedAdvisorCategorySpecificSummary struct {
 }
 
 type TrustedAdvisorCheckDescription struct {
-	Category    *string   `locationName:"category" type:"string" json:",omitempty"`
-	Description *string   `locationName:"description" type:"string" json:",omitempty"`
-	ID          *string   `locationName:"id" type:"string" json:",omitempty"`
-	Metadata    []*string `locationName:"metadata" type:"list" json:",omitempty"`
-	Name        *string   `locationName:"name" type:"string" json:",omitempty"`
+	Category    *string   `locationName:"category" type:"string" json:"category,omitempty"`
+	Description *string   `locationName:"description" type:"string" json:"description,omitempty"`
+	ID          *string   `locationName:"id" type:"string" json:"id,omitempty"`
+	Metadata    []*string `locationName:"metadata" type:"list" json:"metadata,omitempty"`
+	Name        *string   `locationName:"name" type:"string" json:"name,omitempty"`
 
 	metadataTrustedAdvisorCheckDescription `json:"-", xml:"-"`
 }
@@ -883,9 +883,9 @@ type metadataTrustedAdvisorCheckDescription struct {
 }
 
 type TrustedAdvisorCheckRefreshStatus struct {
-	CheckID                    *string `locationName:"checkId" type:"string" json:",omitempty"`
-	MillisUntilNextRefreshable *int64  `locationName:"millisUntilNextRefreshable" type:"long" json:",omitempty"`
-	Status                     *string `locationName:"status" type:"string" json:",omitempty"`
+	CheckID                    *string `locationName:"checkId" type:"string" json:"checkId,omitempty"`
+	MillisUntilNextRefreshable *int64  `locationName:"millisUntilNextRefreshable" type:"long" json:"millisUntilNextRefreshable,omitempty"`
+	Status                     *string `locationName:"status" type:"string" json:"status,omitempty"`
 
 	metadataTrustedAdvisorCheckRefreshStatus `json:"-", xml:"-"`
 }
@@ -895,12 +895,12 @@ type metadataTrustedAdvisorCheckRefreshStatus struct {
 }
 
 type TrustedAdvisorCheckResult struct {
-	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" json:",omitempty"`
-	CheckID                 *string                                `locationName:"checkId" type:"string" json:",omitempty"`
-	FlaggedResources        []*TrustedAdvisorResourceDetail        `locationName:"flaggedResources" type:"list" json:",omitempty"`
-	ResourcesSummary        *TrustedAdvisorResourcesSummary        `locationName:"resourcesSummary" type:"structure" json:",omitempty"`
-	Status                  *string                                `locationName:"status" type:"string" json:",omitempty"`
-	Timestamp               *string                                `locationName:"timestamp" type:"string" json:",omitempty"`
+	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" json:"categorySpecificSummary,omitempty"`
+	CheckID                 *string                                `locationName:"checkId" type:"string" json:"checkId,omitempty"`
+	FlaggedResources        []*TrustedAdvisorResourceDetail        `locationName:"flaggedResources" type:"list" json:"flaggedResources,omitempty"`
+	ResourcesSummary        *TrustedAdvisorResourcesSummary        `locationName:"resourcesSummary" type:"structure" json:"resourcesSummary,omitempty"`
+	Status                  *string                                `locationName:"status" type:"string" json:"status,omitempty"`
+	Timestamp               *string                                `locationName:"timestamp" type:"string" json:"timestamp,omitempty"`
 
 	metadataTrustedAdvisorCheckResult `json:"-", xml:"-"`
 }
@@ -910,12 +910,12 @@ type metadataTrustedAdvisorCheckResult struct {
 }
 
 type TrustedAdvisorCheckSummary struct {
-	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" json:",omitempty"`
-	CheckID                 *string                                `locationName:"checkId" type:"string" json:",omitempty"`
-	HasFlaggedResources     *bool                                  `locationName:"hasFlaggedResources" type:"boolean" json:",omitempty"`
-	ResourcesSummary        *TrustedAdvisorResourcesSummary        `locationName:"resourcesSummary" type:"structure" json:",omitempty"`
-	Status                  *string                                `locationName:"status" type:"string" json:",omitempty"`
-	Timestamp               *string                                `locationName:"timestamp" type:"string" json:",omitempty"`
+	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" json:"categorySpecificSummary,omitempty"`
+	CheckID                 *string                                `locationName:"checkId" type:"string" json:"checkId,omitempty"`
+	HasFlaggedResources     *bool                                  `locationName:"hasFlaggedResources" type:"boolean" json:"hasFlaggedResources,omitempty"`
+	ResourcesSummary        *TrustedAdvisorResourcesSummary        `locationName:"resourcesSummary" type:"structure" json:"resourcesSummary,omitempty"`
+	Status                  *string                                `locationName:"status" type:"string" json:"status,omitempty"`
+	Timestamp               *string                                `locationName:"timestamp" type:"string" json:"timestamp,omitempty"`
 
 	metadataTrustedAdvisorCheckSummary `json:"-", xml:"-"`
 }
@@ -925,8 +925,8 @@ type metadataTrustedAdvisorCheckSummary struct {
 }
 
 type TrustedAdvisorCostOptimizingSummary struct {
-	EstimatedMonthlySavings        *float64 `locationName:"estimatedMonthlySavings" type:"double" json:",omitempty"`
-	EstimatedPercentMonthlySavings *float64 `locationName:"estimatedPercentMonthlySavings" type:"double" json:",omitempty"`
+	EstimatedMonthlySavings        *float64 `locationName:"estimatedMonthlySavings" type:"double" json:"estimatedMonthlySavings,omitempty"`
+	EstimatedPercentMonthlySavings *float64 `locationName:"estimatedPercentMonthlySavings" type:"double" json:"estimatedPercentMonthlySavings,omitempty"`
 
 	metadataTrustedAdvisorCostOptimizingSummary `json:"-", xml:"-"`
 }
@@ -936,11 +936,11 @@ type metadataTrustedAdvisorCostOptimizingSummary struct {
 }
 
 type TrustedAdvisorResourceDetail struct {
-	IsSuppressed *bool     `locationName:"isSuppressed" type:"boolean" json:",omitempty"`
-	Metadata     []*string `locationName:"metadata" type:"list" json:",omitempty"`
-	Region       *string   `locationName:"region" type:"string" json:",omitempty"`
-	ResourceID   *string   `locationName:"resourceId" type:"string" json:",omitempty"`
-	Status       *string   `locationName:"status" type:"string" json:",omitempty"`
+	IsSuppressed *bool     `locationName:"isSuppressed" type:"boolean" json:"isSuppressed,omitempty"`
+	Metadata     []*string `locationName:"metadata" type:"list" json:"metadata,omitempty"`
+	Region       *string   `locationName:"region" type:"string" json:"region,omitempty"`
+	ResourceID   *string   `locationName:"resourceId" type:"string" json:"resourceId,omitempty"`
+	Status       *string   `locationName:"status" type:"string" json:"status,omitempty"`
 
 	metadataTrustedAdvisorResourceDetail `json:"-", xml:"-"`
 }
@@ -950,10 +950,10 @@ type metadataTrustedAdvisorResourceDetail struct {
 }
 
 type TrustedAdvisorResourcesSummary struct {
-	ResourcesFlagged    *int64 `locationName:"resourcesFlagged" type:"long" json:",omitempty"`
-	ResourcesIgnored    *int64 `locationName:"resourcesIgnored" type:"long" json:",omitempty"`
-	ResourcesProcessed  *int64 `locationName:"resourcesProcessed" type:"long" json:",omitempty"`
-	ResourcesSuppressed *int64 `locationName:"resourcesSuppressed" type:"long" json:",omitempty"`
+	ResourcesFlagged    *int64 `locationName:"resourcesFlagged" type:"long" json:"resourcesFlagged,omitempty"`
+	ResourcesIgnored    *int64 `locationName:"resourcesIgnored" type:"long" json:"resourcesIgnored,omitempty"`
+	ResourcesProcessed  *int64 `locationName:"resourcesProcessed" type:"long" json:"resourcesProcessed,omitempty"`
+	ResourcesSuppressed *int64 `locationName:"resourcesSuppressed" type:"long" json:"resourcesSuppressed,omitempty"`
 
 	metadataTrustedAdvisorResourcesSummary `json:"-", xml:"-"`
 }

@@ -482,11 +482,11 @@ func (c *DirectConnect) DescribeVirtualInterfaces(input *DescribeVirtualInterfac
 var opDescribeVirtualInterfaces *aws.Operation
 
 type AllocateConnectionOnInterconnectInput struct {
-	Bandwidth      *string `locationName:"bandwidth" type:"string" json:",omitempty"`
-	ConnectionName *string `locationName:"connectionName" type:"string" json:",omitempty"`
-	InterconnectID *string `locationName:"interconnectId" type:"string" json:",omitempty"`
-	OwnerAccount   *string `locationName:"ownerAccount" type:"string" json:",omitempty"`
-	VLAN           *int    `locationName:"vlan" type:"integer" json:",omitempty"`
+	Bandwidth      *string `locationName:"bandwidth" type:"string" json:"bandwidth,omitempty"`
+	ConnectionName *string `locationName:"connectionName" type:"string" json:"connectionName,omitempty"`
+	InterconnectID *string `locationName:"interconnectId" type:"string" json:"interconnectId,omitempty"`
+	OwnerAccount   *string `locationName:"ownerAccount" type:"string" json:"ownerAccount,omitempty"`
+	VLAN           *int    `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
 
 	metadataAllocateConnectionOnInterconnectInput `json:"-", xml:"-"`
 }
@@ -496,9 +496,9 @@ type metadataAllocateConnectionOnInterconnectInput struct {
 }
 
 type AllocatePrivateVirtualInterfaceInput struct {
-	ConnectionID                         *string                               `locationName:"connectionId" type:"string" json:",omitempty"`
-	NewPrivateVirtualInterfaceAllocation *NewPrivateVirtualInterfaceAllocation `locationName:"newPrivateVirtualInterfaceAllocation" type:"structure" json:",omitempty"`
-	OwnerAccount                         *string                               `locationName:"ownerAccount" type:"string" json:",omitempty"`
+	ConnectionID                         *string                               `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
+	NewPrivateVirtualInterfaceAllocation *NewPrivateVirtualInterfaceAllocation `locationName:"newPrivateVirtualInterfaceAllocation" type:"structure" json:"newPrivateVirtualInterfaceAllocation,omitempty"`
+	OwnerAccount                         *string                               `locationName:"ownerAccount" type:"string" json:"ownerAccount,omitempty"`
 
 	metadataAllocatePrivateVirtualInterfaceInput `json:"-", xml:"-"`
 }
@@ -508,9 +508,9 @@ type metadataAllocatePrivateVirtualInterfaceInput struct {
 }
 
 type AllocatePublicVirtualInterfaceInput struct {
-	ConnectionID                        *string                              `locationName:"connectionId" type:"string" json:",omitempty"`
-	NewPublicVirtualInterfaceAllocation *NewPublicVirtualInterfaceAllocation `locationName:"newPublicVirtualInterfaceAllocation" type:"structure" json:",omitempty"`
-	OwnerAccount                        *string                              `locationName:"ownerAccount" type:"string" json:",omitempty"`
+	ConnectionID                        *string                              `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
+	NewPublicVirtualInterfaceAllocation *NewPublicVirtualInterfaceAllocation `locationName:"newPublicVirtualInterfaceAllocation" type:"structure" json:"newPublicVirtualInterfaceAllocation,omitempty"`
+	OwnerAccount                        *string                              `locationName:"ownerAccount" type:"string" json:"ownerAccount,omitempty"`
 
 	metadataAllocatePublicVirtualInterfaceInput `json:"-", xml:"-"`
 }
@@ -520,7 +520,7 @@ type metadataAllocatePublicVirtualInterfaceInput struct {
 }
 
 type ConfirmConnectionInput struct {
-	ConnectionID *string `locationName:"connectionId" type:"string" json:",omitempty"`
+	ConnectionID *string `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
 
 	metadataConfirmConnectionInput `json:"-", xml:"-"`
 }
@@ -530,7 +530,7 @@ type metadataConfirmConnectionInput struct {
 }
 
 type ConfirmConnectionOutput struct {
-	ConnectionState *string `locationName:"connectionState" type:"string" json:",omitempty"`
+	ConnectionState *string `locationName:"connectionState" type:"string" json:"connectionState,omitempty"`
 
 	metadataConfirmConnectionOutput `json:"-", xml:"-"`
 }
@@ -540,8 +540,8 @@ type metadataConfirmConnectionOutput struct {
 }
 
 type ConfirmPrivateVirtualInterfaceInput struct {
-	VirtualGatewayID   *string `locationName:"virtualGatewayId" type:"string" json:",omitempty"`
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:",omitempty"`
+	VirtualGatewayID   *string `locationName:"virtualGatewayId" type:"string" json:"virtualGatewayId,omitempty"`
+	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:"virtualInterfaceId,omitempty"`
 
 	metadataConfirmPrivateVirtualInterfaceInput `json:"-", xml:"-"`
 }
@@ -551,7 +551,7 @@ type metadataConfirmPrivateVirtualInterfaceInput struct {
 }
 
 type ConfirmPrivateVirtualInterfaceOutput struct {
-	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" json:",omitempty"`
+	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" json:"virtualInterfaceState,omitempty"`
 
 	metadataConfirmPrivateVirtualInterfaceOutput `json:"-", xml:"-"`
 }
@@ -561,7 +561,7 @@ type metadataConfirmPrivateVirtualInterfaceOutput struct {
 }
 
 type ConfirmPublicVirtualInterfaceInput struct {
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:",omitempty"`
+	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:"virtualInterfaceId,omitempty"`
 
 	metadataConfirmPublicVirtualInterfaceInput `json:"-", xml:"-"`
 }
@@ -571,7 +571,7 @@ type metadataConfirmPublicVirtualInterfaceInput struct {
 }
 
 type ConfirmPublicVirtualInterfaceOutput struct {
-	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" json:",omitempty"`
+	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" json:"virtualInterfaceState,omitempty"`
 
 	metadataConfirmPublicVirtualInterfaceOutput `json:"-", xml:"-"`
 }
@@ -581,15 +581,15 @@ type metadataConfirmPublicVirtualInterfaceOutput struct {
 }
 
 type Connection struct {
-	Bandwidth       *string `locationName:"bandwidth" type:"string" json:",omitempty"`
-	ConnectionID    *string `locationName:"connectionId" type:"string" json:",omitempty"`
-	ConnectionName  *string `locationName:"connectionName" type:"string" json:",omitempty"`
-	ConnectionState *string `locationName:"connectionState" type:"string" json:",omitempty"`
-	Location        *string `locationName:"location" type:"string" json:",omitempty"`
-	OwnerAccount    *string `locationName:"ownerAccount" type:"string" json:",omitempty"`
-	PartnerName     *string `locationName:"partnerName" type:"string" json:",omitempty"`
-	Region          *string `locationName:"region" type:"string" json:",omitempty"`
-	VLAN            *int    `locationName:"vlan" type:"integer" json:",omitempty"`
+	Bandwidth       *string `locationName:"bandwidth" type:"string" json:"bandwidth,omitempty"`
+	ConnectionID    *string `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
+	ConnectionName  *string `locationName:"connectionName" type:"string" json:"connectionName,omitempty"`
+	ConnectionState *string `locationName:"connectionState" type:"string" json:"connectionState,omitempty"`
+	Location        *string `locationName:"location" type:"string" json:"location,omitempty"`
+	OwnerAccount    *string `locationName:"ownerAccount" type:"string" json:"ownerAccount,omitempty"`
+	PartnerName     *string `locationName:"partnerName" type:"string" json:"partnerName,omitempty"`
+	Region          *string `locationName:"region" type:"string" json:"region,omitempty"`
+	VLAN            *int    `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
 
 	metadataConnection `json:"-", xml:"-"`
 }
@@ -599,7 +599,7 @@ type metadataConnection struct {
 }
 
 type Connections struct {
-	Connections []*Connection `locationName:"connections" type:"list" json:",omitempty"`
+	Connections []*Connection `locationName:"connections" type:"list" json:"connections,omitempty"`
 
 	metadataConnections `json:"-", xml:"-"`
 }
@@ -609,9 +609,9 @@ type metadataConnections struct {
 }
 
 type CreateConnectionInput struct {
-	Bandwidth      *string `locationName:"bandwidth" type:"string" json:",omitempty"`
-	ConnectionName *string `locationName:"connectionName" type:"string" json:",omitempty"`
-	Location       *string `locationName:"location" type:"string" json:",omitempty"`
+	Bandwidth      *string `locationName:"bandwidth" type:"string" json:"bandwidth,omitempty"`
+	ConnectionName *string `locationName:"connectionName" type:"string" json:"connectionName,omitempty"`
+	Location       *string `locationName:"location" type:"string" json:"location,omitempty"`
 
 	metadataCreateConnectionInput `json:"-", xml:"-"`
 }
@@ -621,9 +621,9 @@ type metadataCreateConnectionInput struct {
 }
 
 type CreateInterconnectInput struct {
-	Bandwidth        *string `locationName:"bandwidth" type:"string" json:",omitempty"`
-	InterconnectName *string `locationName:"interconnectName" type:"string" json:",omitempty"`
-	Location         *string `locationName:"location" type:"string" json:",omitempty"`
+	Bandwidth        *string `locationName:"bandwidth" type:"string" json:"bandwidth,omitempty"`
+	InterconnectName *string `locationName:"interconnectName" type:"string" json:"interconnectName,omitempty"`
+	Location         *string `locationName:"location" type:"string" json:"location,omitempty"`
 
 	metadataCreateInterconnectInput `json:"-", xml:"-"`
 }
@@ -633,8 +633,8 @@ type metadataCreateInterconnectInput struct {
 }
 
 type CreatePrivateVirtualInterfaceInput struct {
-	ConnectionID               *string                     `locationName:"connectionId" type:"string" json:",omitempty"`
-	NewPrivateVirtualInterface *NewPrivateVirtualInterface `locationName:"newPrivateVirtualInterface" type:"structure" json:",omitempty"`
+	ConnectionID               *string                     `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
+	NewPrivateVirtualInterface *NewPrivateVirtualInterface `locationName:"newPrivateVirtualInterface" type:"structure" json:"newPrivateVirtualInterface,omitempty"`
 
 	metadataCreatePrivateVirtualInterfaceInput `json:"-", xml:"-"`
 }
@@ -644,8 +644,8 @@ type metadataCreatePrivateVirtualInterfaceInput struct {
 }
 
 type CreatePublicVirtualInterfaceInput struct {
-	ConnectionID              *string                    `locationName:"connectionId" type:"string" json:",omitempty"`
-	NewPublicVirtualInterface *NewPublicVirtualInterface `locationName:"newPublicVirtualInterface" type:"structure" json:",omitempty"`
+	ConnectionID              *string                    `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
+	NewPublicVirtualInterface *NewPublicVirtualInterface `locationName:"newPublicVirtualInterface" type:"structure" json:"newPublicVirtualInterface,omitempty"`
 
 	metadataCreatePublicVirtualInterfaceInput `json:"-", xml:"-"`
 }
@@ -655,7 +655,7 @@ type metadataCreatePublicVirtualInterfaceInput struct {
 }
 
 type DeleteConnectionInput struct {
-	ConnectionID *string `locationName:"connectionId" type:"string" json:",omitempty"`
+	ConnectionID *string `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
 
 	metadataDeleteConnectionInput `json:"-", xml:"-"`
 }
@@ -665,7 +665,7 @@ type metadataDeleteConnectionInput struct {
 }
 
 type DeleteInterconnectInput struct {
-	InterconnectID *string `locationName:"interconnectId" type:"string" json:",omitempty"`
+	InterconnectID *string `locationName:"interconnectId" type:"string" json:"interconnectId,omitempty"`
 
 	metadataDeleteInterconnectInput `json:"-", xml:"-"`
 }
@@ -675,7 +675,7 @@ type metadataDeleteInterconnectInput struct {
 }
 
 type DeleteInterconnectOutput struct {
-	InterconnectState *string `locationName:"interconnectState" type:"string" json:",omitempty"`
+	InterconnectState *string `locationName:"interconnectState" type:"string" json:"interconnectState,omitempty"`
 
 	metadataDeleteInterconnectOutput `json:"-", xml:"-"`
 }
@@ -685,7 +685,7 @@ type metadataDeleteInterconnectOutput struct {
 }
 
 type DeleteVirtualInterfaceInput struct {
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:",omitempty"`
+	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:"virtualInterfaceId,omitempty"`
 
 	metadataDeleteVirtualInterfaceInput `json:"-", xml:"-"`
 }
@@ -695,7 +695,7 @@ type metadataDeleteVirtualInterfaceInput struct {
 }
 
 type DeleteVirtualInterfaceOutput struct {
-	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" json:",omitempty"`
+	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" json:"virtualInterfaceState,omitempty"`
 
 	metadataDeleteVirtualInterfaceOutput `json:"-", xml:"-"`
 }
@@ -705,7 +705,7 @@ type metadataDeleteVirtualInterfaceOutput struct {
 }
 
 type DescribeConnectionsInput struct {
-	ConnectionID *string `locationName:"connectionId" type:"string" json:",omitempty"`
+	ConnectionID *string `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
 
 	metadataDescribeConnectionsInput `json:"-", xml:"-"`
 }
@@ -715,7 +715,7 @@ type metadataDescribeConnectionsInput struct {
 }
 
 type DescribeConnectionsOnInterconnectInput struct {
-	InterconnectID *string `locationName:"interconnectId" type:"string" json:",omitempty"`
+	InterconnectID *string `locationName:"interconnectId" type:"string" json:"interconnectId,omitempty"`
 
 	metadataDescribeConnectionsOnInterconnectInput `json:"-", xml:"-"`
 }
@@ -725,7 +725,7 @@ type metadataDescribeConnectionsOnInterconnectInput struct {
 }
 
 type DescribeInterconnectsInput struct {
-	InterconnectID *string `locationName:"interconnectId" type:"string" json:",omitempty"`
+	InterconnectID *string `locationName:"interconnectId" type:"string" json:"interconnectId,omitempty"`
 
 	metadataDescribeInterconnectsInput `json:"-", xml:"-"`
 }
@@ -735,8 +735,8 @@ type metadataDescribeInterconnectsInput struct {
 }
 
 type DescribeVirtualInterfacesInput struct {
-	ConnectionID       *string `locationName:"connectionId" type:"string" json:",omitempty"`
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:",omitempty"`
+	ConnectionID       *string `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
+	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:"virtualInterfaceId,omitempty"`
 
 	metadataDescribeVirtualInterfacesInput `json:"-", xml:"-"`
 }
@@ -746,7 +746,7 @@ type metadataDescribeVirtualInterfacesInput struct {
 }
 
 type DirectConnectClientException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataDirectConnectClientException `json:"-", xml:"-"`
 }
@@ -756,7 +756,7 @@ type metadataDirectConnectClientException struct {
 }
 
 type DirectConnectServerException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataDirectConnectServerException `json:"-", xml:"-"`
 }
@@ -766,12 +766,12 @@ type metadataDirectConnectServerException struct {
 }
 
 type Interconnect struct {
-	Bandwidth         *string `locationName:"bandwidth" type:"string" json:",omitempty"`
-	InterconnectID    *string `locationName:"interconnectId" type:"string" json:",omitempty"`
-	InterconnectName  *string `locationName:"interconnectName" type:"string" json:",omitempty"`
-	InterconnectState *string `locationName:"interconnectState" type:"string" json:",omitempty"`
-	Location          *string `locationName:"location" type:"string" json:",omitempty"`
-	Region            *string `locationName:"region" type:"string" json:",omitempty"`
+	Bandwidth         *string `locationName:"bandwidth" type:"string" json:"bandwidth,omitempty"`
+	InterconnectID    *string `locationName:"interconnectId" type:"string" json:"interconnectId,omitempty"`
+	InterconnectName  *string `locationName:"interconnectName" type:"string" json:"interconnectName,omitempty"`
+	InterconnectState *string `locationName:"interconnectState" type:"string" json:"interconnectState,omitempty"`
+	Location          *string `locationName:"location" type:"string" json:"location,omitempty"`
+	Region            *string `locationName:"region" type:"string" json:"region,omitempty"`
 
 	metadataInterconnect `json:"-", xml:"-"`
 }
@@ -781,7 +781,7 @@ type metadataInterconnect struct {
 }
 
 type Interconnects struct {
-	Interconnects []*Interconnect `locationName:"interconnects" type:"list" json:",omitempty"`
+	Interconnects []*Interconnect `locationName:"interconnects" type:"list" json:"interconnects,omitempty"`
 
 	metadataInterconnects `json:"-", xml:"-"`
 }
@@ -791,8 +791,8 @@ type metadataInterconnects struct {
 }
 
 type Location struct {
-	LocationCode *string `locationName:"locationCode" type:"string" json:",omitempty"`
-	LocationName *string `locationName:"locationName" type:"string" json:",omitempty"`
+	LocationCode *string `locationName:"locationCode" type:"string" json:"locationCode,omitempty"`
+	LocationName *string `locationName:"locationName" type:"string" json:"locationName,omitempty"`
 
 	metadataLocation `json:"-", xml:"-"`
 }
@@ -802,7 +802,7 @@ type metadataLocation struct {
 }
 
 type Locations struct {
-	Locations []*Location `locationName:"locations" type:"list" json:",omitempty"`
+	Locations []*Location `locationName:"locations" type:"list" json:"locations,omitempty"`
 
 	metadataLocations `json:"-", xml:"-"`
 }
@@ -812,13 +812,13 @@ type metadataLocations struct {
 }
 
 type NewPrivateVirtualInterface struct {
-	ASN                  *int    `locationName:"asn" type:"integer" json:",omitempty"`
-	AmazonAddress        *string `locationName:"amazonAddress" type:"string" json:",omitempty"`
-	AuthKey              *string `locationName:"authKey" type:"string" json:",omitempty"`
-	CustomerAddress      *string `locationName:"customerAddress" type:"string" json:",omitempty"`
-	VLAN                 *int    `locationName:"vlan" type:"integer" json:",omitempty"`
-	VirtualGatewayID     *string `locationName:"virtualGatewayId" type:"string" json:",omitempty"`
-	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" json:",omitempty"`
+	ASN                  *int    `locationName:"asn" type:"integer" json:"asn,omitempty"`
+	AmazonAddress        *string `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
+	AuthKey              *string `locationName:"authKey" type:"string" json:"authKey,omitempty"`
+	CustomerAddress      *string `locationName:"customerAddress" type:"string" json:"customerAddress,omitempty"`
+	VLAN                 *int    `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
+	VirtualGatewayID     *string `locationName:"virtualGatewayId" type:"string" json:"virtualGatewayId,omitempty"`
+	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" json:"virtualInterfaceName,omitempty"`
 
 	metadataNewPrivateVirtualInterface `json:"-", xml:"-"`
 }
@@ -828,12 +828,12 @@ type metadataNewPrivateVirtualInterface struct {
 }
 
 type NewPrivateVirtualInterfaceAllocation struct {
-	ASN                  *int    `locationName:"asn" type:"integer" json:",omitempty"`
-	AmazonAddress        *string `locationName:"amazonAddress" type:"string" json:",omitempty"`
-	AuthKey              *string `locationName:"authKey" type:"string" json:",omitempty"`
-	CustomerAddress      *string `locationName:"customerAddress" type:"string" json:",omitempty"`
-	VLAN                 *int    `locationName:"vlan" type:"integer" json:",omitempty"`
-	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" json:",omitempty"`
+	ASN                  *int    `locationName:"asn" type:"integer" json:"asn,omitempty"`
+	AmazonAddress        *string `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
+	AuthKey              *string `locationName:"authKey" type:"string" json:"authKey,omitempty"`
+	CustomerAddress      *string `locationName:"customerAddress" type:"string" json:"customerAddress,omitempty"`
+	VLAN                 *int    `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
+	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" json:"virtualInterfaceName,omitempty"`
 
 	metadataNewPrivateVirtualInterfaceAllocation `json:"-", xml:"-"`
 }
@@ -843,13 +843,13 @@ type metadataNewPrivateVirtualInterfaceAllocation struct {
 }
 
 type NewPublicVirtualInterface struct {
-	ASN                  *int                 `locationName:"asn" type:"integer" json:",omitempty"`
-	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" json:",omitempty"`
-	AuthKey              *string              `locationName:"authKey" type:"string" json:",omitempty"`
-	CustomerAddress      *string              `locationName:"customerAddress" type:"string" json:",omitempty"`
-	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" json:",omitempty"`
-	VLAN                 *int                 `locationName:"vlan" type:"integer" json:",omitempty"`
-	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" json:",omitempty"`
+	ASN                  *int                 `locationName:"asn" type:"integer" json:"asn,omitempty"`
+	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
+	AuthKey              *string              `locationName:"authKey" type:"string" json:"authKey,omitempty"`
+	CustomerAddress      *string              `locationName:"customerAddress" type:"string" json:"customerAddress,omitempty"`
+	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" json:"routeFilterPrefixes,omitempty"`
+	VLAN                 *int                 `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
+	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" json:"virtualInterfaceName,omitempty"`
 
 	metadataNewPublicVirtualInterface `json:"-", xml:"-"`
 }
@@ -859,13 +859,13 @@ type metadataNewPublicVirtualInterface struct {
 }
 
 type NewPublicVirtualInterfaceAllocation struct {
-	ASN                  *int                 `locationName:"asn" type:"integer" json:",omitempty"`
-	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" json:",omitempty"`
-	AuthKey              *string              `locationName:"authKey" type:"string" json:",omitempty"`
-	CustomerAddress      *string              `locationName:"customerAddress" type:"string" json:",omitempty"`
-	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" json:",omitempty"`
-	VLAN                 *int                 `locationName:"vlan" type:"integer" json:",omitempty"`
-	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" json:",omitempty"`
+	ASN                  *int                 `locationName:"asn" type:"integer" json:"asn,omitempty"`
+	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
+	AuthKey              *string              `locationName:"authKey" type:"string" json:"authKey,omitempty"`
+	CustomerAddress      *string              `locationName:"customerAddress" type:"string" json:"customerAddress,omitempty"`
+	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" json:"routeFilterPrefixes,omitempty"`
+	VLAN                 *int                 `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
+	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" json:"virtualInterfaceName,omitempty"`
 
 	metadataNewPublicVirtualInterfaceAllocation `json:"-", xml:"-"`
 }
@@ -875,7 +875,7 @@ type metadataNewPublicVirtualInterfaceAllocation struct {
 }
 
 type RouteFilterPrefix struct {
-	CIDR *string `locationName:"cidr" type:"string" json:",omitempty"`
+	CIDR *string `locationName:"cidr" type:"string" json:"cidr,omitempty"`
 
 	metadataRouteFilterPrefix `json:"-", xml:"-"`
 }
@@ -885,8 +885,8 @@ type metadataRouteFilterPrefix struct {
 }
 
 type VirtualGateway struct {
-	VirtualGatewayID    *string `locationName:"virtualGatewayId" type:"string" json:",omitempty"`
-	VirtualGatewayState *string `locationName:"virtualGatewayState" type:"string" json:",omitempty"`
+	VirtualGatewayID    *string `locationName:"virtualGatewayId" type:"string" json:"virtualGatewayId,omitempty"`
+	VirtualGatewayState *string `locationName:"virtualGatewayState" type:"string" json:"virtualGatewayState,omitempty"`
 
 	metadataVirtualGateway `json:"-", xml:"-"`
 }
@@ -896,7 +896,7 @@ type metadataVirtualGateway struct {
 }
 
 type VirtualGateways struct {
-	VirtualGateways []*VirtualGateway `locationName:"virtualGateways" type:"list" json:",omitempty"`
+	VirtualGateways []*VirtualGateway `locationName:"virtualGateways" type:"list" json:"virtualGateways,omitempty"`
 
 	metadataVirtualGateways `json:"-", xml:"-"`
 }
@@ -906,21 +906,21 @@ type metadataVirtualGateways struct {
 }
 
 type VirtualInterface struct {
-	ASN                   *int                 `locationName:"asn" type:"integer" json:",omitempty"`
-	AmazonAddress         *string              `locationName:"amazonAddress" type:"string" json:",omitempty"`
-	AuthKey               *string              `locationName:"authKey" type:"string" json:",omitempty"`
-	ConnectionID          *string              `locationName:"connectionId" type:"string" json:",omitempty"`
-	CustomerAddress       *string              `locationName:"customerAddress" type:"string" json:",omitempty"`
-	CustomerRouterConfig  *string              `locationName:"customerRouterConfig" type:"string" json:",omitempty"`
-	Location              *string              `locationName:"location" type:"string" json:",omitempty"`
-	OwnerAccount          *string              `locationName:"ownerAccount" type:"string" json:",omitempty"`
-	RouteFilterPrefixes   []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" json:",omitempty"`
-	VLAN                  *int                 `locationName:"vlan" type:"integer" json:",omitempty"`
-	VirtualGatewayID      *string              `locationName:"virtualGatewayId" type:"string" json:",omitempty"`
-	VirtualInterfaceID    *string              `locationName:"virtualInterfaceId" type:"string" json:",omitempty"`
-	VirtualInterfaceName  *string              `locationName:"virtualInterfaceName" type:"string" json:",omitempty"`
-	VirtualInterfaceState *string              `locationName:"virtualInterfaceState" type:"string" json:",omitempty"`
-	VirtualInterfaceType  *string              `locationName:"virtualInterfaceType" type:"string" json:",omitempty"`
+	ASN                   *int                 `locationName:"asn" type:"integer" json:"asn,omitempty"`
+	AmazonAddress         *string              `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
+	AuthKey               *string              `locationName:"authKey" type:"string" json:"authKey,omitempty"`
+	ConnectionID          *string              `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
+	CustomerAddress       *string              `locationName:"customerAddress" type:"string" json:"customerAddress,omitempty"`
+	CustomerRouterConfig  *string              `locationName:"customerRouterConfig" type:"string" json:"customerRouterConfig,omitempty"`
+	Location              *string              `locationName:"location" type:"string" json:"location,omitempty"`
+	OwnerAccount          *string              `locationName:"ownerAccount" type:"string" json:"ownerAccount,omitempty"`
+	RouteFilterPrefixes   []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" json:"routeFilterPrefixes,omitempty"`
+	VLAN                  *int                 `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
+	VirtualGatewayID      *string              `locationName:"virtualGatewayId" type:"string" json:"virtualGatewayId,omitempty"`
+	VirtualInterfaceID    *string              `locationName:"virtualInterfaceId" type:"string" json:"virtualInterfaceId,omitempty"`
+	VirtualInterfaceName  *string              `locationName:"virtualInterfaceName" type:"string" json:"virtualInterfaceName,omitempty"`
+	VirtualInterfaceState *string              `locationName:"virtualInterfaceState" type:"string" json:"virtualInterfaceState,omitempty"`
+	VirtualInterfaceType  *string              `locationName:"virtualInterfaceType" type:"string" json:"virtualInterfaceType,omitempty"`
 
 	metadataVirtualInterface `json:"-", xml:"-"`
 }
@@ -930,7 +930,7 @@ type metadataVirtualInterface struct {
 }
 
 type VirtualInterfaces struct {
-	VirtualInterfaces []*VirtualInterface `locationName:"virtualInterfaces" type:"list" json:",omitempty"`
+	VirtualInterfaces []*VirtualInterface `locationName:"virtualInterfaces" type:"list" json:"virtualInterfaces,omitempty"`
 
 	metadataVirtualInterfaces `json:"-", xml:"-"`
 }

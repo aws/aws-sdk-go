@@ -1604,7 +1604,7 @@ type ClusterParameterGroupNameMessage struct {
 }
 
 type metadataClusterParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ResetClusterParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyClusterParameterGroupResult"`
 }
 
 type ClusterParameterGroupNotFoundFault struct {
@@ -2958,7 +2958,7 @@ type LoggingStatus struct {
 }
 
 type metadataLoggingStatus struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"EnableLoggingResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DisableLoggingResult"`
 }
 
 type ModifyClusterMessage struct {

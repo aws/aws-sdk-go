@@ -2,8 +2,8 @@ package route53
 
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/restxml"
 	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/restxml"
 )
 
 // Route53 is a client for Route 53.

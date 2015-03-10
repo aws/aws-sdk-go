@@ -273,11 +273,11 @@ func (c *ConfigService) StopConfigurationRecorder(input *StopConfigurationRecord
 var opStopConfigurationRecorder *aws.Operation
 
 type ConfigExportDeliveryInfo struct {
-	LastAttemptTime    *time.Time `locationName:"lastAttemptTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LastErrorCode      *string    `locationName:"lastErrorCode" type:"string" json:",omitempty"`
-	LastErrorMessage   *string    `locationName:"lastErrorMessage" type:"string" json:",omitempty"`
-	LastStatus         *string    `locationName:"lastStatus" type:"string" json:",omitempty"`
-	LastSuccessfulTime *time.Time `locationName:"lastSuccessfulTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	LastAttemptTime    *time.Time `locationName:"lastAttemptTime" type:"timestamp" timestampFormat:"unix" json:"lastAttemptTime,omitempty"`
+	LastErrorCode      *string    `locationName:"lastErrorCode" type:"string" json:"lastErrorCode,omitempty"`
+	LastErrorMessage   *string    `locationName:"lastErrorMessage" type:"string" json:"lastErrorMessage,omitempty"`
+	LastStatus         *string    `locationName:"lastStatus" type:"string" json:"lastStatus,omitempty"`
+	LastSuccessfulTime *time.Time `locationName:"lastSuccessfulTime" type:"timestamp" timestampFormat:"unix" json:"lastSuccessfulTime,omitempty"`
 
 	metadataConfigExportDeliveryInfo `json:"-", xml:"-"`
 }
@@ -287,10 +287,10 @@ type metadataConfigExportDeliveryInfo struct {
 }
 
 type ConfigStreamDeliveryInfo struct {
-	LastErrorCode        *string    `locationName:"lastErrorCode" type:"string" json:",omitempty"`
-	LastErrorMessage     *string    `locationName:"lastErrorMessage" type:"string" json:",omitempty"`
-	LastStatus           *string    `locationName:"lastStatus" type:"string" json:",omitempty"`
-	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	LastErrorCode        *string    `locationName:"lastErrorCode" type:"string" json:"lastErrorCode,omitempty"`
+	LastErrorMessage     *string    `locationName:"lastErrorMessage" type:"string" json:"lastErrorMessage,omitempty"`
+	LastStatus           *string    `locationName:"lastStatus" type:"string" json:"lastStatus,omitempty"`
+	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix" json:"lastStatusChangeTime,omitempty"`
 
 	metadataConfigStreamDeliveryInfo `json:"-", xml:"-"`
 }
@@ -300,21 +300,21 @@ type metadataConfigStreamDeliveryInfo struct {
 }
 
 type ConfigurationItem struct {
-	ARN                          *string             `locationName:"arn" type:"string" json:",omitempty"`
-	AccountID                    *string             `locationName:"accountId" type:"string" json:",omitempty"`
-	AvailabilityZone             *string             `locationName:"availabilityZone" type:"string" json:",omitempty"`
-	Configuration                *string             `locationName:"configuration" type:"string" json:",omitempty"`
-	ConfigurationItemCaptureTime *time.Time          `locationName:"configurationItemCaptureTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	ConfigurationItemMD5Hash     *string             `locationName:"configurationItemMD5Hash" type:"string" json:",omitempty"`
-	ConfigurationItemStatus      *string             `locationName:"configurationItemStatus" type:"string" json:",omitempty"`
-	ConfigurationStateID         *string             `locationName:"configurationStateId" type:"string" json:",omitempty"`
-	RelatedEvents                []*string           `locationName:"relatedEvents" type:"list" json:",omitempty"`
-	Relationships                []*Relationship     `locationName:"relationships" type:"list" json:",omitempty"`
-	ResourceCreationTime         *time.Time          `locationName:"resourceCreationTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	ResourceID                   *string             `locationName:"resourceId" type:"string" json:",omitempty"`
-	ResourceType                 *string             `locationName:"resourceType" type:"string" json:",omitempty"`
-	Tags                         *map[string]*string `locationName:"tags" type:"map" json:",omitempty"`
-	Version                      *string             `locationName:"version" type:"string" json:",omitempty"`
+	ARN                          *string             `locationName:"arn" type:"string" json:"arn,omitempty"`
+	AccountID                    *string             `locationName:"accountId" type:"string" json:"accountId,omitempty"`
+	AvailabilityZone             *string             `locationName:"availabilityZone" type:"string" json:"availabilityZone,omitempty"`
+	Configuration                *string             `locationName:"configuration" type:"string" json:"configuration,omitempty"`
+	ConfigurationItemCaptureTime *time.Time          `locationName:"configurationItemCaptureTime" type:"timestamp" timestampFormat:"unix" json:"configurationItemCaptureTime,omitempty"`
+	ConfigurationItemMD5Hash     *string             `locationName:"configurationItemMD5Hash" type:"string" json:"configurationItemMD5Hash,omitempty"`
+	ConfigurationItemStatus      *string             `locationName:"configurationItemStatus" type:"string" json:"configurationItemStatus,omitempty"`
+	ConfigurationStateID         *string             `locationName:"configurationStateId" type:"string" json:"configurationStateId,omitempty"`
+	RelatedEvents                []*string           `locationName:"relatedEvents" type:"list" json:"relatedEvents,omitempty"`
+	Relationships                []*Relationship     `locationName:"relationships" type:"list" json:"relationships,omitempty"`
+	ResourceCreationTime         *time.Time          `locationName:"resourceCreationTime" type:"timestamp" timestampFormat:"unix" json:"resourceCreationTime,omitempty"`
+	ResourceID                   *string             `locationName:"resourceId" type:"string" json:"resourceId,omitempty"`
+	ResourceType                 *string             `locationName:"resourceType" type:"string" json:"resourceType,omitempty"`
+	Tags                         *map[string]*string `locationName:"tags" type:"map" json:"tags,omitempty"`
+	Version                      *string             `locationName:"version" type:"string" json:"version,omitempty"`
 
 	metadataConfigurationItem `json:"-", xml:"-"`
 }
@@ -324,8 +324,8 @@ type metadataConfigurationItem struct {
 }
 
 type ConfigurationRecorder struct {
-	Name    *string `locationName:"name" type:"string" json:",omitempty"`
-	RoleARN *string `locationName:"roleARN" type:"string" json:",omitempty"`
+	Name    *string `locationName:"name" type:"string" json:"name,omitempty"`
+	RoleARN *string `locationName:"roleARN" type:"string" json:"roleARN,omitempty"`
 
 	metadataConfigurationRecorder `json:"-", xml:"-"`
 }
@@ -335,14 +335,14 @@ type metadataConfigurationRecorder struct {
 }
 
 type ConfigurationRecorderStatus struct {
-	LastErrorCode        *string    `locationName:"lastErrorCode" type:"string" json:",omitempty"`
-	LastErrorMessage     *string    `locationName:"lastErrorMessage" type:"string" json:",omitempty"`
-	LastStartTime        *time.Time `locationName:"lastStartTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LastStatus           *string    `locationName:"lastStatus" type:"string" json:",omitempty"`
-	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LastStopTime         *time.Time `locationName:"lastStopTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Name                 *string    `locationName:"name" type:"string" json:",omitempty"`
-	Recording            *bool      `locationName:"recording" type:"boolean" json:",omitempty"`
+	LastErrorCode        *string    `locationName:"lastErrorCode" type:"string" json:"lastErrorCode,omitempty"`
+	LastErrorMessage     *string    `locationName:"lastErrorMessage" type:"string" json:"lastErrorMessage,omitempty"`
+	LastStartTime        *time.Time `locationName:"lastStartTime" type:"timestamp" timestampFormat:"unix" json:"lastStartTime,omitempty"`
+	LastStatus           *string    `locationName:"lastStatus" type:"string" json:"lastStatus,omitempty"`
+	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix" json:"lastStatusChangeTime,omitempty"`
+	LastStopTime         *time.Time `locationName:"lastStopTime" type:"timestamp" timestampFormat:"unix" json:"lastStopTime,omitempty"`
+	Name                 *string    `locationName:"name" type:"string" json:"name,omitempty"`
+	Recording            *bool      `locationName:"recording" type:"boolean" json:"recording,omitempty"`
 
 	metadataConfigurationRecorderStatus `json:"-", xml:"-"`
 }
@@ -362,7 +362,7 @@ type metadataDeleteDeliveryChannelInput struct {
 }
 
 type DeliverConfigSnapshotInput struct {
-	DeliveryChannelName *string `locationName:"deliveryChannelName" type:"string" json:",omitempty"`
+	DeliveryChannelName *string `locationName:"deliveryChannelName" type:"string" json:"deliveryChannelName,omitempty"`
 
 	metadataDeliverConfigSnapshotInput `json:"-", xml:"-"`
 }
@@ -372,7 +372,7 @@ type metadataDeliverConfigSnapshotInput struct {
 }
 
 type DeliverConfigSnapshotOutput struct {
-	ConfigSnapshotID *string `locationName:"configSnapshotId" type:"string" json:",omitempty"`
+	ConfigSnapshotID *string `locationName:"configSnapshotId" type:"string" json:"configSnapshotId,omitempty"`
 
 	metadataDeliverConfigSnapshotOutput `json:"-", xml:"-"`
 }
@@ -382,10 +382,10 @@ type metadataDeliverConfigSnapshotOutput struct {
 }
 
 type DeliveryChannel struct {
-	Name         *string `locationName:"name" type:"string" json:",omitempty"`
-	S3BucketName *string `locationName:"s3BucketName" type:"string" json:",omitempty"`
-	S3KeyPrefix  *string `locationName:"s3KeyPrefix" type:"string" json:",omitempty"`
-	SNSTopicARN  *string `locationName:"snsTopicARN" type:"string" json:",omitempty"`
+	Name         *string `locationName:"name" type:"string" json:"name,omitempty"`
+	S3BucketName *string `locationName:"s3BucketName" type:"string" json:"s3BucketName,omitempty"`
+	S3KeyPrefix  *string `locationName:"s3KeyPrefix" type:"string" json:"s3KeyPrefix,omitempty"`
+	SNSTopicARN  *string `locationName:"snsTopicARN" type:"string" json:"snsTopicARN,omitempty"`
 
 	metadataDeliveryChannel `json:"-", xml:"-"`
 }
@@ -395,10 +395,10 @@ type metadataDeliveryChannel struct {
 }
 
 type DeliveryChannelStatus struct {
-	ConfigHistoryDeliveryInfo  *ConfigExportDeliveryInfo `locationName:"configHistoryDeliveryInfo" type:"structure" json:",omitempty"`
-	ConfigSnapshotDeliveryInfo *ConfigExportDeliveryInfo `locationName:"configSnapshotDeliveryInfo" type:"structure" json:",omitempty"`
-	ConfigStreamDeliveryInfo   *ConfigStreamDeliveryInfo `locationName:"configStreamDeliveryInfo" type:"structure" json:",omitempty"`
-	Name                       *string                   `locationName:"name" type:"string" json:",omitempty"`
+	ConfigHistoryDeliveryInfo  *ConfigExportDeliveryInfo `locationName:"configHistoryDeliveryInfo" type:"structure" json:"configHistoryDeliveryInfo,omitempty"`
+	ConfigSnapshotDeliveryInfo *ConfigExportDeliveryInfo `locationName:"configSnapshotDeliveryInfo" type:"structure" json:"configSnapshotDeliveryInfo,omitempty"`
+	ConfigStreamDeliveryInfo   *ConfigStreamDeliveryInfo `locationName:"configStreamDeliveryInfo" type:"structure" json:"configStreamDeliveryInfo,omitempty"`
+	Name                       *string                   `locationName:"name" type:"string" json:"name,omitempty"`
 
 	metadataDeliveryChannelStatus `json:"-", xml:"-"`
 }
@@ -488,13 +488,13 @@ type metadataDescribeDeliveryChannelsOutput struct {
 }
 
 type GetResourceConfigHistoryInput struct {
-	ChronologicalOrder *string    `locationName:"chronologicalOrder" type:"string" json:",omitempty"`
-	EarlierTime        *time.Time `locationName:"earlierTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LaterTime          *time.Time `locationName:"laterTime" type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Limit              *int       `locationName:"limit" type:"integer" json:",omitempty"`
-	NextToken          *string    `locationName:"nextToken" type:"string" json:",omitempty"`
-	ResourceID         *string    `locationName:"resourceId" type:"string" json:",omitempty"`
-	ResourceType       *string    `locationName:"resourceType" type:"string" json:",omitempty"`
+	ChronologicalOrder *string    `locationName:"chronologicalOrder" type:"string" json:"chronologicalOrder,omitempty"`
+	EarlierTime        *time.Time `locationName:"earlierTime" type:"timestamp" timestampFormat:"unix" json:"earlierTime,omitempty"`
+	LaterTime          *time.Time `locationName:"laterTime" type:"timestamp" timestampFormat:"unix" json:"laterTime,omitempty"`
+	Limit              *int       `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	NextToken          *string    `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	ResourceID         *string    `locationName:"resourceId" type:"string" json:"resourceId,omitempty"`
+	ResourceType       *string    `locationName:"resourceType" type:"string" json:"resourceType,omitempty"`
 
 	metadataGetResourceConfigHistoryInput `json:"-", xml:"-"`
 }
@@ -504,8 +504,8 @@ type metadataGetResourceConfigHistoryInput struct {
 }
 
 type GetResourceConfigHistoryOutput struct {
-	ConfigurationItems []*ConfigurationItem `locationName:"configurationItems" type:"list" json:",omitempty"`
-	NextToken          *string              `locationName:"nextToken" type:"string" json:",omitempty"`
+	ConfigurationItems []*ConfigurationItem `locationName:"configurationItems" type:"list" json:"configurationItems,omitempty"`
+	NextToken          *string              `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataGetResourceConfigHistoryOutput `json:"-", xml:"-"`
 }
@@ -679,9 +679,9 @@ type metadataPutDeliveryChannelInput struct {
 }
 
 type Relationship struct {
-	RelationshipName *string `locationName:"relationshipName" type:"string" json:",omitempty"`
-	ResourceID       *string `locationName:"resourceId" type:"string" json:",omitempty"`
-	ResourceType     *string `locationName:"resourceType" type:"string" json:",omitempty"`
+	RelationshipName *string `locationName:"relationshipName" type:"string" json:"relationshipName,omitempty"`
+	ResourceID       *string `locationName:"resourceId" type:"string" json:"resourceId,omitempty"`
+	ResourceType     *string `locationName:"resourceType" type:"string" json:"resourceType,omitempty"`
 
 	metadataRelationship `json:"-", xml:"-"`
 }
