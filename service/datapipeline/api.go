@@ -403,8 +403,8 @@ func (c *DataPipeline) ValidatePipelineDefinition(input *ValidatePipelineDefinit
 var opValidatePipelineDefinition *aws.Operation
 
 type ActivatePipelineInput struct {
-	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list" json:",omitempty"`
-	PipelineID      *string           `locationName:"pipelineId" type:"string" json:",omitempty"`
+	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list" json:"parameterValues,omitempty"`
+	PipelineID      *string           `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
 
 	metadataActivatePipelineInput `json:"-", xml:"-"`
 }
@@ -422,9 +422,9 @@ type metadataActivatePipelineOutput struct {
 }
 
 type CreatePipelineInput struct {
-	Description *string `locationName:"description" type:"string" json:",omitempty"`
-	Name        *string `locationName:"name" type:"string" json:",omitempty"`
-	UniqueID    *string `locationName:"uniqueId" type:"string" json:",omitempty"`
+	Description *string `locationName:"description" type:"string" json:"description,omitempty"`
+	Name        *string `locationName:"name" type:"string" json:"name,omitempty"`
+	UniqueID    *string `locationName:"uniqueId" type:"string" json:"uniqueId,omitempty"`
 
 	metadataCreatePipelineInput `json:"-", xml:"-"`
 }
@@ -434,7 +434,7 @@ type metadataCreatePipelineInput struct {
 }
 
 type CreatePipelineOutput struct {
-	PipelineID *string `locationName:"pipelineId" type:"string" json:",omitempty"`
+	PipelineID *string `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
 
 	metadataCreatePipelineOutput `json:"-", xml:"-"`
 }
@@ -444,7 +444,7 @@ type metadataCreatePipelineOutput struct {
 }
 
 type DeletePipelineInput struct {
-	PipelineID *string `locationName:"pipelineId" type:"string" json:",omitempty"`
+	PipelineID *string `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
 
 	metadataDeletePipelineInput `json:"-", xml:"-"`
 }
@@ -454,10 +454,10 @@ type metadataDeletePipelineInput struct {
 }
 
 type DescribeObjectsInput struct {
-	EvaluateExpressions *bool     `locationName:"evaluateExpressions" type:"boolean" json:",omitempty"`
-	Marker              *string   `locationName:"marker" type:"string" json:",omitempty"`
-	ObjectIDs           []*string `locationName:"objectIds" type:"list" json:",omitempty"`
-	PipelineID          *string   `locationName:"pipelineId" type:"string" json:",omitempty"`
+	EvaluateExpressions *bool     `locationName:"evaluateExpressions" type:"boolean" json:"evaluateExpressions,omitempty"`
+	Marker              *string   `locationName:"marker" type:"string" json:"marker,omitempty"`
+	ObjectIDs           []*string `locationName:"objectIds" type:"list" json:"objectIds,omitempty"`
+	PipelineID          *string   `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
 
 	metadataDescribeObjectsInput `json:"-", xml:"-"`
 }
@@ -467,9 +467,9 @@ type metadataDescribeObjectsInput struct {
 }
 
 type DescribeObjectsOutput struct {
-	HasMoreResults  *bool             `locationName:"hasMoreResults" type:"boolean" json:",omitempty"`
-	Marker          *string           `locationName:"marker" type:"string" json:",omitempty"`
-	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" json:",omitempty"`
+	HasMoreResults  *bool             `locationName:"hasMoreResults" type:"boolean" json:"hasMoreResults,omitempty"`
+	Marker          *string           `locationName:"marker" type:"string" json:"marker,omitempty"`
+	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" json:"pipelineObjects,omitempty"`
 
 	metadataDescribeObjectsOutput `json:"-", xml:"-"`
 }
@@ -479,7 +479,7 @@ type metadataDescribeObjectsOutput struct {
 }
 
 type DescribePipelinesInput struct {
-	PipelineIDs []*string `locationName:"pipelineIds" type:"list" json:",omitempty"`
+	PipelineIDs []*string `locationName:"pipelineIds" type:"list" json:"pipelineIds,omitempty"`
 
 	metadataDescribePipelinesInput `json:"-", xml:"-"`
 }
@@ -489,7 +489,7 @@ type metadataDescribePipelinesInput struct {
 }
 
 type DescribePipelinesOutput struct {
-	PipelineDescriptionList []*PipelineDescription `locationName:"pipelineDescriptionList" type:"list" json:",omitempty"`
+	PipelineDescriptionList []*PipelineDescription `locationName:"pipelineDescriptionList" type:"list" json:"pipelineDescriptionList,omitempty"`
 
 	metadataDescribePipelinesOutput `json:"-", xml:"-"`
 }
@@ -499,9 +499,9 @@ type metadataDescribePipelinesOutput struct {
 }
 
 type EvaluateExpressionInput struct {
-	Expression *string `locationName:"expression" type:"string" json:",omitempty"`
-	ObjectID   *string `locationName:"objectId" type:"string" json:",omitempty"`
-	PipelineID *string `locationName:"pipelineId" type:"string" json:",omitempty"`
+	Expression *string `locationName:"expression" type:"string" json:"expression,omitempty"`
+	ObjectID   *string `locationName:"objectId" type:"string" json:"objectId,omitempty"`
+	PipelineID *string `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
 
 	metadataEvaluateExpressionInput `json:"-", xml:"-"`
 }
@@ -511,7 +511,7 @@ type metadataEvaluateExpressionInput struct {
 }
 
 type EvaluateExpressionOutput struct {
-	EvaluatedExpression *string `locationName:"evaluatedExpression" type:"string" json:",omitempty"`
+	EvaluatedExpression *string `locationName:"evaluatedExpression" type:"string" json:"evaluatedExpression,omitempty"`
 
 	metadataEvaluateExpressionOutput `json:"-", xml:"-"`
 }
@@ -521,9 +521,9 @@ type metadataEvaluateExpressionOutput struct {
 }
 
 type Field struct {
-	Key         *string `locationName:"key" type:"string" json:",omitempty"`
-	RefValue    *string `locationName:"refValue" type:"string" json:",omitempty"`
-	StringValue *string `locationName:"stringValue" type:"string" json:",omitempty"`
+	Key         *string `locationName:"key" type:"string" json:"key,omitempty"`
+	RefValue    *string `locationName:"refValue" type:"string" json:"refValue,omitempty"`
+	StringValue *string `locationName:"stringValue" type:"string" json:"stringValue,omitempty"`
 
 	metadataField `json:"-", xml:"-"`
 }
@@ -533,8 +533,8 @@ type metadataField struct {
 }
 
 type GetPipelineDefinitionInput struct {
-	PipelineID *string `locationName:"pipelineId" type:"string" json:",omitempty"`
-	Version    *string `locationName:"version" type:"string" json:",omitempty"`
+	PipelineID *string `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
+	Version    *string `locationName:"version" type:"string" json:"version,omitempty"`
 
 	metadataGetPipelineDefinitionInput `json:"-", xml:"-"`
 }
@@ -544,9 +544,9 @@ type metadataGetPipelineDefinitionInput struct {
 }
 
 type GetPipelineDefinitionOutput struct {
-	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list" json:",omitempty"`
-	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list" json:",omitempty"`
-	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" json:",omitempty"`
+	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list" json:"parameterObjects,omitempty"`
+	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list" json:"parameterValues,omitempty"`
+	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" json:"pipelineObjects,omitempty"`
 
 	metadataGetPipelineDefinitionOutput `json:"-", xml:"-"`
 }
@@ -556,8 +556,8 @@ type metadataGetPipelineDefinitionOutput struct {
 }
 
 type InstanceIdentity struct {
-	Document  *string `locationName:"document" type:"string" json:",omitempty"`
-	Signature *string `locationName:"signature" type:"string" json:",omitempty"`
+	Document  *string `locationName:"document" type:"string" json:"document,omitempty"`
+	Signature *string `locationName:"signature" type:"string" json:"signature,omitempty"`
 
 	metadataInstanceIdentity `json:"-", xml:"-"`
 }
@@ -567,7 +567,7 @@ type metadataInstanceIdentity struct {
 }
 
 type InternalServiceError struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInternalServiceError `json:"-", xml:"-"`
 }
@@ -577,7 +577,7 @@ type metadataInternalServiceError struct {
 }
 
 type InvalidRequestException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidRequestException `json:"-", xml:"-"`
 }
@@ -587,7 +587,7 @@ type metadataInvalidRequestException struct {
 }
 
 type ListPipelinesInput struct {
-	Marker *string `locationName:"marker" type:"string" json:",omitempty"`
+	Marker *string `locationName:"marker" type:"string" json:"marker,omitempty"`
 
 	metadataListPipelinesInput `json:"-", xml:"-"`
 }
@@ -597,9 +597,9 @@ type metadataListPipelinesInput struct {
 }
 
 type ListPipelinesOutput struct {
-	HasMoreResults *bool             `locationName:"hasMoreResults" type:"boolean" json:",omitempty"`
-	Marker         *string           `locationName:"marker" type:"string" json:",omitempty"`
-	PipelineIDList []*PipelineIDName `locationName:"pipelineIdList" type:"list" json:",omitempty"`
+	HasMoreResults *bool             `locationName:"hasMoreResults" type:"boolean" json:"hasMoreResults,omitempty"`
+	Marker         *string           `locationName:"marker" type:"string" json:"marker,omitempty"`
+	PipelineIDList []*PipelineIDName `locationName:"pipelineIdList" type:"list" json:"pipelineIdList,omitempty"`
 
 	metadataListPipelinesOutput `json:"-", xml:"-"`
 }
@@ -609,8 +609,8 @@ type metadataListPipelinesOutput struct {
 }
 
 type Operator struct {
-	Type   *string   `locationName:"type" type:"string" json:",omitempty"`
-	Values []*string `locationName:"values" type:"list" json:",omitempty"`
+	Type   *string   `locationName:"type" type:"string" json:"type,omitempty"`
+	Values []*string `locationName:"values" type:"list" json:"values,omitempty"`
 
 	metadataOperator `json:"-", xml:"-"`
 }
@@ -620,8 +620,8 @@ type metadataOperator struct {
 }
 
 type ParameterAttribute struct {
-	Key         *string `locationName:"key" type:"string" json:",omitempty"`
-	StringValue *string `locationName:"stringValue" type:"string" json:",omitempty"`
+	Key         *string `locationName:"key" type:"string" json:"key,omitempty"`
+	StringValue *string `locationName:"stringValue" type:"string" json:"stringValue,omitempty"`
 
 	metadataParameterAttribute `json:"-", xml:"-"`
 }
@@ -631,8 +631,8 @@ type metadataParameterAttribute struct {
 }
 
 type ParameterObject struct {
-	Attributes []*ParameterAttribute `locationName:"attributes" type:"list" json:",omitempty"`
-	ID         *string               `locationName:"id" type:"string" json:",omitempty"`
+	Attributes []*ParameterAttribute `locationName:"attributes" type:"list" json:"attributes,omitempty"`
+	ID         *string               `locationName:"id" type:"string" json:"id,omitempty"`
 
 	metadataParameterObject `json:"-", xml:"-"`
 }
@@ -642,8 +642,8 @@ type metadataParameterObject struct {
 }
 
 type ParameterValue struct {
-	ID          *string `locationName:"id" type:"string" json:",omitempty"`
-	StringValue *string `locationName:"stringValue" type:"string" json:",omitempty"`
+	ID          *string `locationName:"id" type:"string" json:"id,omitempty"`
+	StringValue *string `locationName:"stringValue" type:"string" json:"stringValue,omitempty"`
 
 	metadataParameterValue `json:"-", xml:"-"`
 }
@@ -653,7 +653,7 @@ type metadataParameterValue struct {
 }
 
 type PipelineDeletedException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataPipelineDeletedException `json:"-", xml:"-"`
 }
@@ -663,10 +663,10 @@ type metadataPipelineDeletedException struct {
 }
 
 type PipelineDescription struct {
-	Description *string  `locationName:"description" type:"string" json:",omitempty"`
-	Fields      []*Field `locationName:"fields" type:"list" json:",omitempty"`
-	Name        *string  `locationName:"name" type:"string" json:",omitempty"`
-	PipelineID  *string  `locationName:"pipelineId" type:"string" json:",omitempty"`
+	Description *string  `locationName:"description" type:"string" json:"description,omitempty"`
+	Fields      []*Field `locationName:"fields" type:"list" json:"fields,omitempty"`
+	Name        *string  `locationName:"name" type:"string" json:"name,omitempty"`
+	PipelineID  *string  `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
 
 	metadataPipelineDescription `json:"-", xml:"-"`
 }
@@ -676,8 +676,8 @@ type metadataPipelineDescription struct {
 }
 
 type PipelineIDName struct {
-	ID   *string `locationName:"id" type:"string" json:",omitempty"`
-	Name *string `locationName:"name" type:"string" json:",omitempty"`
+	ID   *string `locationName:"id" type:"string" json:"id,omitempty"`
+	Name *string `locationName:"name" type:"string" json:"name,omitempty"`
 
 	metadataPipelineIDName `json:"-", xml:"-"`
 }
@@ -687,7 +687,7 @@ type metadataPipelineIDName struct {
 }
 
 type PipelineNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataPipelineNotFoundException `json:"-", xml:"-"`
 }
@@ -697,9 +697,9 @@ type metadataPipelineNotFoundException struct {
 }
 
 type PipelineObject struct {
-	Fields []*Field `locationName:"fields" type:"list" json:",omitempty"`
-	ID     *string  `locationName:"id" type:"string" json:",omitempty"`
-	Name   *string  `locationName:"name" type:"string" json:",omitempty"`
+	Fields []*Field `locationName:"fields" type:"list" json:"fields,omitempty"`
+	ID     *string  `locationName:"id" type:"string" json:"id,omitempty"`
+	Name   *string  `locationName:"name" type:"string" json:"name,omitempty"`
 
 	metadataPipelineObject `json:"-", xml:"-"`
 }
@@ -709,9 +709,9 @@ type metadataPipelineObject struct {
 }
 
 type PollForTaskInput struct {
-	Hostname         *string           `locationName:"hostname" type:"string" json:",omitempty"`
-	InstanceIdentity *InstanceIdentity `locationName:"instanceIdentity" type:"structure" json:",omitempty"`
-	WorkerGroup      *string           `locationName:"workerGroup" type:"string" json:",omitempty"`
+	Hostname         *string           `locationName:"hostname" type:"string" json:"hostname,omitempty"`
+	InstanceIdentity *InstanceIdentity `locationName:"instanceIdentity" type:"structure" json:"instanceIdentity,omitempty"`
+	WorkerGroup      *string           `locationName:"workerGroup" type:"string" json:"workerGroup,omitempty"`
 
 	metadataPollForTaskInput `json:"-", xml:"-"`
 }
@@ -721,7 +721,7 @@ type metadataPollForTaskInput struct {
 }
 
 type PollForTaskOutput struct {
-	TaskObject *TaskObject `locationName:"taskObject" type:"structure" json:",omitempty"`
+	TaskObject *TaskObject `locationName:"taskObject" type:"structure" json:"taskObject,omitempty"`
 
 	metadataPollForTaskOutput `json:"-", xml:"-"`
 }
@@ -731,10 +731,10 @@ type metadataPollForTaskOutput struct {
 }
 
 type PutPipelineDefinitionInput struct {
-	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list" json:",omitempty"`
-	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list" json:",omitempty"`
-	PipelineID       *string            `locationName:"pipelineId" type:"string" json:",omitempty"`
-	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" json:",omitempty"`
+	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list" json:"parameterObjects,omitempty"`
+	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list" json:"parameterValues,omitempty"`
+	PipelineID       *string            `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
+	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" json:"pipelineObjects,omitempty"`
 
 	metadataPutPipelineDefinitionInput `json:"-", xml:"-"`
 }
@@ -744,9 +744,9 @@ type metadataPutPipelineDefinitionInput struct {
 }
 
 type PutPipelineDefinitionOutput struct {
-	Errored            *bool                `locationName:"errored" type:"boolean" json:",omitempty"`
-	ValidationErrors   []*ValidationError   `locationName:"validationErrors" type:"list" json:",omitempty"`
-	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list" json:",omitempty"`
+	Errored            *bool                `locationName:"errored" type:"boolean" json:"errored,omitempty"`
+	ValidationErrors   []*ValidationError   `locationName:"validationErrors" type:"list" json:"validationErrors,omitempty"`
+	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list" json:"validationWarnings,omitempty"`
 
 	metadataPutPipelineDefinitionOutput `json:"-", xml:"-"`
 }
@@ -756,7 +756,7 @@ type metadataPutPipelineDefinitionOutput struct {
 }
 
 type Query struct {
-	Selectors []*Selector `locationName:"selectors" type:"list" json:",omitempty"`
+	Selectors []*Selector `locationName:"selectors" type:"list" json:"selectors,omitempty"`
 
 	metadataQuery `json:"-", xml:"-"`
 }
@@ -766,11 +766,11 @@ type metadataQuery struct {
 }
 
 type QueryObjectsInput struct {
-	Limit      *int    `locationName:"limit" type:"integer" json:",omitempty"`
-	Marker     *string `locationName:"marker" type:"string" json:",omitempty"`
-	PipelineID *string `locationName:"pipelineId" type:"string" json:",omitempty"`
-	Query      *Query  `locationName:"query" type:"structure" json:",omitempty"`
-	Sphere     *string `locationName:"sphere" type:"string" json:",omitempty"`
+	Limit      *int    `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	Marker     *string `locationName:"marker" type:"string" json:"marker,omitempty"`
+	PipelineID *string `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
+	Query      *Query  `locationName:"query" type:"structure" json:"query,omitempty"`
+	Sphere     *string `locationName:"sphere" type:"string" json:"sphere,omitempty"`
 
 	metadataQueryObjectsInput `json:"-", xml:"-"`
 }
@@ -780,9 +780,9 @@ type metadataQueryObjectsInput struct {
 }
 
 type QueryObjectsOutput struct {
-	HasMoreResults *bool     `locationName:"hasMoreResults" type:"boolean" json:",omitempty"`
-	IDs            []*string `locationName:"ids" type:"list" json:",omitempty"`
-	Marker         *string   `locationName:"marker" type:"string" json:",omitempty"`
+	HasMoreResults *bool     `locationName:"hasMoreResults" type:"boolean" json:"hasMoreResults,omitempty"`
+	IDs            []*string `locationName:"ids" type:"list" json:"ids,omitempty"`
+	Marker         *string   `locationName:"marker" type:"string" json:"marker,omitempty"`
 
 	metadataQueryObjectsOutput `json:"-", xml:"-"`
 }
@@ -792,8 +792,8 @@ type metadataQueryObjectsOutput struct {
 }
 
 type ReportTaskProgressInput struct {
-	Fields []*Field `locationName:"fields" type:"list" json:",omitempty"`
-	TaskID *string  `locationName:"taskId" type:"string" json:",omitempty"`
+	Fields []*Field `locationName:"fields" type:"list" json:"fields,omitempty"`
+	TaskID *string  `locationName:"taskId" type:"string" json:"taskId,omitempty"`
 
 	metadataReportTaskProgressInput `json:"-", xml:"-"`
 }
@@ -803,7 +803,7 @@ type metadataReportTaskProgressInput struct {
 }
 
 type ReportTaskProgressOutput struct {
-	Canceled *bool `locationName:"canceled" type:"boolean" json:",omitempty"`
+	Canceled *bool `locationName:"canceled" type:"boolean" json:"canceled,omitempty"`
 
 	metadataReportTaskProgressOutput `json:"-", xml:"-"`
 }
@@ -813,9 +813,9 @@ type metadataReportTaskProgressOutput struct {
 }
 
 type ReportTaskRunnerHeartbeatInput struct {
-	Hostname     *string `locationName:"hostname" type:"string" json:",omitempty"`
-	TaskRunnerID *string `locationName:"taskrunnerId" type:"string" json:",omitempty"`
-	WorkerGroup  *string `locationName:"workerGroup" type:"string" json:",omitempty"`
+	Hostname     *string `locationName:"hostname" type:"string" json:"hostname,omitempty"`
+	TaskRunnerID *string `locationName:"taskrunnerId" type:"string" json:"taskrunnerId,omitempty"`
+	WorkerGroup  *string `locationName:"workerGroup" type:"string" json:"workerGroup,omitempty"`
 
 	metadataReportTaskRunnerHeartbeatInput `json:"-", xml:"-"`
 }
@@ -825,7 +825,7 @@ type metadataReportTaskRunnerHeartbeatInput struct {
 }
 
 type ReportTaskRunnerHeartbeatOutput struct {
-	Terminate *bool `locationName:"terminate" type:"boolean" json:",omitempty"`
+	Terminate *bool `locationName:"terminate" type:"boolean" json:"terminate,omitempty"`
 
 	metadataReportTaskRunnerHeartbeatOutput `json:"-", xml:"-"`
 }
@@ -835,8 +835,8 @@ type metadataReportTaskRunnerHeartbeatOutput struct {
 }
 
 type Selector struct {
-	FieldName *string   `locationName:"fieldName" type:"string" json:",omitempty"`
-	Operator  *Operator `locationName:"operator" type:"structure" json:",omitempty"`
+	FieldName *string   `locationName:"fieldName" type:"string" json:"fieldName,omitempty"`
+	Operator  *Operator `locationName:"operator" type:"structure" json:"operator,omitempty"`
 
 	metadataSelector `json:"-", xml:"-"`
 }
@@ -846,9 +846,9 @@ type metadataSelector struct {
 }
 
 type SetStatusInput struct {
-	ObjectIDs  []*string `locationName:"objectIds" type:"list" json:",omitempty"`
-	PipelineID *string   `locationName:"pipelineId" type:"string" json:",omitempty"`
-	Status     *string   `locationName:"status" type:"string" json:",omitempty"`
+	ObjectIDs  []*string `locationName:"objectIds" type:"list" json:"objectIds,omitempty"`
+	PipelineID *string   `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
+	Status     *string   `locationName:"status" type:"string" json:"status,omitempty"`
 
 	metadataSetStatusInput `json:"-", xml:"-"`
 }
@@ -858,11 +858,11 @@ type metadataSetStatusInput struct {
 }
 
 type SetTaskStatusInput struct {
-	ErrorID         *string `locationName:"errorId" type:"string" json:",omitempty"`
-	ErrorMessage    *string `locationName:"errorMessage" type:"string" json:",omitempty"`
-	ErrorStackTrace *string `locationName:"errorStackTrace" type:"string" json:",omitempty"`
-	TaskID          *string `locationName:"taskId" type:"string" json:",omitempty"`
-	TaskStatus      *string `locationName:"taskStatus" type:"string" json:",omitempty"`
+	ErrorID         *string `locationName:"errorId" type:"string" json:"errorId,omitempty"`
+	ErrorMessage    *string `locationName:"errorMessage" type:"string" json:"errorMessage,omitempty"`
+	ErrorStackTrace *string `locationName:"errorStackTrace" type:"string" json:"errorStackTrace,omitempty"`
+	TaskID          *string `locationName:"taskId" type:"string" json:"taskId,omitempty"`
+	TaskStatus      *string `locationName:"taskStatus" type:"string" json:"taskStatus,omitempty"`
 
 	metadataSetTaskStatusInput `json:"-", xml:"-"`
 }
@@ -880,7 +880,7 @@ type metadataSetTaskStatusOutput struct {
 }
 
 type TaskNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataTaskNotFoundException `json:"-", xml:"-"`
 }
@@ -890,10 +890,10 @@ type metadataTaskNotFoundException struct {
 }
 
 type TaskObject struct {
-	AttemptID  *string                     `locationName:"attemptId" type:"string" json:",omitempty"`
-	Objects    *map[string]*PipelineObject `locationName:"objects" type:"map" json:",omitempty"`
-	PipelineID *string                     `locationName:"pipelineId" type:"string" json:",omitempty"`
-	TaskID     *string                     `locationName:"taskId" type:"string" json:",omitempty"`
+	AttemptID  *string                     `locationName:"attemptId" type:"string" json:"attemptId,omitempty"`
+	Objects    *map[string]*PipelineObject `locationName:"objects" type:"map" json:"objects,omitempty"`
+	PipelineID *string                     `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
+	TaskID     *string                     `locationName:"taskId" type:"string" json:"taskId,omitempty"`
 
 	metadataTaskObject `json:"-", xml:"-"`
 }
@@ -903,10 +903,10 @@ type metadataTaskObject struct {
 }
 
 type ValidatePipelineDefinitionInput struct {
-	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list" json:",omitempty"`
-	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list" json:",omitempty"`
-	PipelineID       *string            `locationName:"pipelineId" type:"string" json:",omitempty"`
-	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" json:",omitempty"`
+	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list" json:"parameterObjects,omitempty"`
+	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list" json:"parameterValues,omitempty"`
+	PipelineID       *string            `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
+	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" json:"pipelineObjects,omitempty"`
 
 	metadataValidatePipelineDefinitionInput `json:"-", xml:"-"`
 }
@@ -916,9 +916,9 @@ type metadataValidatePipelineDefinitionInput struct {
 }
 
 type ValidatePipelineDefinitionOutput struct {
-	Errored            *bool                `locationName:"errored" type:"boolean" json:",omitempty"`
-	ValidationErrors   []*ValidationError   `locationName:"validationErrors" type:"list" json:",omitempty"`
-	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list" json:",omitempty"`
+	Errored            *bool                `locationName:"errored" type:"boolean" json:"errored,omitempty"`
+	ValidationErrors   []*ValidationError   `locationName:"validationErrors" type:"list" json:"validationErrors,omitempty"`
+	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list" json:"validationWarnings,omitempty"`
 
 	metadataValidatePipelineDefinitionOutput `json:"-", xml:"-"`
 }
@@ -928,8 +928,8 @@ type metadataValidatePipelineDefinitionOutput struct {
 }
 
 type ValidationError struct {
-	Errors []*string `locationName:"errors" type:"list" json:",omitempty"`
-	ID     *string   `locationName:"id" type:"string" json:",omitempty"`
+	Errors []*string `locationName:"errors" type:"list" json:"errors,omitempty"`
+	ID     *string   `locationName:"id" type:"string" json:"id,omitempty"`
 
 	metadataValidationError `json:"-", xml:"-"`
 }
@@ -939,8 +939,8 @@ type metadataValidationError struct {
 }
 
 type ValidationWarning struct {
-	ID       *string   `locationName:"id" type:"string" json:",omitempty"`
-	Warnings []*string `locationName:"warnings" type:"list" json:",omitempty"`
+	ID       *string   `locationName:"id" type:"string" json:"id,omitempty"`
+	Warnings []*string `locationName:"warnings" type:"list" json:"warnings,omitempty"`
 
 	metadataValidationWarning `json:"-", xml:"-"`
 }

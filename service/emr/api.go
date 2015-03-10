@@ -426,7 +426,7 @@ var opTerminateJobFlows *aws.Operation
 
 type AddInstanceGroupsInput struct {
 	InstanceGroups []*InstanceGroupConfig `type:"list" json:",omitempty"`
-	JobFlowID      *string                `locationName:"JobFlowId" type:"string" json:",omitempty"`
+	JobFlowID      *string                `locationName:"JobFlowId" type:"string" json:"JobFlowId,omitempty"`
 
 	metadataAddInstanceGroupsInput `json:"-", xml:"-"`
 }
@@ -436,8 +436,8 @@ type metadataAddInstanceGroupsInput struct {
 }
 
 type AddInstanceGroupsOutput struct {
-	InstanceGroupIDs []*string `locationName:"InstanceGroupIds" type:"list" json:",omitempty"`
-	JobFlowID        *string   `locationName:"JobFlowId" type:"string" json:",omitempty"`
+	InstanceGroupIDs []*string `locationName:"InstanceGroupIds" type:"list" json:"InstanceGroupIds,omitempty"`
+	JobFlowID        *string   `locationName:"JobFlowId" type:"string" json:"JobFlowId,omitempty"`
 
 	metadataAddInstanceGroupsOutput `json:"-", xml:"-"`
 }
@@ -447,7 +447,7 @@ type metadataAddInstanceGroupsOutput struct {
 }
 
 type AddJobFlowStepsInput struct {
-	JobFlowID *string       `locationName:"JobFlowId" type:"string" json:",omitempty"`
+	JobFlowID *string       `locationName:"JobFlowId" type:"string" json:"JobFlowId,omitempty"`
 	Steps     []*StepConfig `type:"list" json:",omitempty"`
 
 	metadataAddJobFlowStepsInput `json:"-", xml:"-"`
@@ -458,7 +458,7 @@ type metadataAddJobFlowStepsInput struct {
 }
 
 type AddJobFlowStepsOutput struct {
-	StepIDs []*string `locationName:"StepIds" type:"list" json:",omitempty"`
+	StepIDs []*string `locationName:"StepIds" type:"list" json:"StepIds,omitempty"`
 
 	metadataAddJobFlowStepsOutput `json:"-", xml:"-"`
 }
@@ -468,7 +468,7 @@ type metadataAddJobFlowStepsOutput struct {
 }
 
 type AddTagsInput struct {
-	ResourceID *string `locationName:"ResourceId" type:"string" json:",omitempty"`
+	ResourceID *string `locationName:"ResourceId" type:"string" json:"ResourceId,omitempty"`
 	Tags       []*Tag  `type:"list" json:",omitempty"`
 
 	metadataAddTagsInput `json:"-", xml:"-"`
@@ -523,14 +523,14 @@ type metadataBootstrapActionDetail struct {
 type Cluster struct {
 	Applications            []*Application         `type:"list" json:",omitempty"`
 	AutoTerminate           *bool                  `type:"boolean" json:",omitempty"`
-	EC2InstanceAttributes   *EC2InstanceAttributes `locationName:"Ec2InstanceAttributes" type:"structure" json:",omitempty"`
-	ID                      *string                `locationName:"Id" type:"string" json:",omitempty"`
-	LogURI                  *string                `locationName:"LogUri" type:"string" json:",omitempty"`
-	MasterPublicDNSName     *string                `locationName:"MasterPublicDnsName" type:"string" json:",omitempty"`
+	EC2InstanceAttributes   *EC2InstanceAttributes `locationName:"Ec2InstanceAttributes" type:"structure" json:"Ec2InstanceAttributes,omitempty"`
+	ID                      *string                `locationName:"Id" type:"string" json:"Id,omitempty"`
+	LogURI                  *string                `locationName:"LogUri" type:"string" json:"LogUri,omitempty"`
+	MasterPublicDNSName     *string                `locationName:"MasterPublicDnsName" type:"string" json:"MasterPublicDnsName,omitempty"`
 	Name                    *string                `type:"string" json:",omitempty"`
 	NormalizedInstanceHours *int                   `type:"integer" json:",omitempty"`
-	RequestedAMIVersion     *string                `locationName:"RequestedAmiVersion" type:"string" json:",omitempty"`
-	RunningAMIVersion       *string                `locationName:"RunningAmiVersion" type:"string" json:",omitempty"`
+	RequestedAMIVersion     *string                `locationName:"RequestedAmiVersion" type:"string" json:"RequestedAmiVersion,omitempty"`
+	RunningAMIVersion       *string                `locationName:"RunningAmiVersion" type:"string" json:"RunningAmiVersion,omitempty"`
 	ServiceRole             *string                `type:"string" json:",omitempty"`
 	Status                  *ClusterStatus         `type:"structure" json:",omitempty"`
 	Tags                    []*Tag                 `type:"list" json:",omitempty"`
@@ -568,7 +568,7 @@ type metadataClusterStatus struct {
 }
 
 type ClusterSummary struct {
-	ID                      *string        `locationName:"Id" type:"string" json:",omitempty"`
+	ID                      *string        `locationName:"Id" type:"string" json:"Id,omitempty"`
 	Name                    *string        `type:"string" json:",omitempty"`
 	NormalizedInstanceHours *int           `type:"integer" json:",omitempty"`
 	Status                  *ClusterStatus `type:"structure" json:",omitempty"`
@@ -605,7 +605,7 @@ type metadataCommand struct {
 }
 
 type DescribeClusterInput struct {
-	ClusterID *string `locationName:"ClusterId" type:"string" json:",omitempty"`
+	ClusterID *string `locationName:"ClusterId" type:"string" json:"ClusterId,omitempty"`
 
 	metadataDescribeClusterInput `json:"-", xml:"-"`
 }
@@ -627,7 +627,7 @@ type metadataDescribeClusterOutput struct {
 type DescribeJobFlowsInput struct {
 	CreatedAfter  *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 	CreatedBefore *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	JobFlowIDs    []*string  `locationName:"JobFlowIds" type:"list" json:",omitempty"`
+	JobFlowIDs    []*string  `locationName:"JobFlowIds" type:"list" json:"JobFlowIds,omitempty"`
 	JobFlowStates []*string  `type:"list" json:",omitempty"`
 
 	metadataDescribeJobFlowsInput `json:"-", xml:"-"`
@@ -648,8 +648,8 @@ type metadataDescribeJobFlowsOutput struct {
 }
 
 type DescribeStepInput struct {
-	ClusterID *string `locationName:"ClusterId" type:"string" json:",omitempty"`
-	StepID    *string `locationName:"StepId" type:"string" json:",omitempty"`
+	ClusterID *string `locationName:"ClusterId" type:"string" json:"ClusterId,omitempty"`
+	StepID    *string `locationName:"StepId" type:"string" json:"StepId,omitempty"`
 
 	metadataDescribeStepInput `json:"-", xml:"-"`
 }
@@ -671,12 +671,12 @@ type metadataDescribeStepOutput struct {
 type EC2InstanceAttributes struct {
 	AdditionalMasterSecurityGroups []*string `type:"list" json:",omitempty"`
 	AdditionalSlaveSecurityGroups  []*string `type:"list" json:",omitempty"`
-	EC2AvailabilityZone            *string   `locationName:"Ec2AvailabilityZone" type:"string" json:",omitempty"`
-	EC2KeyName                     *string   `locationName:"Ec2KeyName" type:"string" json:",omitempty"`
-	EC2SubnetID                    *string   `locationName:"Ec2SubnetId" type:"string" json:",omitempty"`
-	EMRManagedMasterSecurityGroup  *string   `locationName:"EmrManagedMasterSecurityGroup" type:"string" json:",omitempty"`
-	EMRManagedSlaveSecurityGroup   *string   `locationName:"EmrManagedSlaveSecurityGroup" type:"string" json:",omitempty"`
-	IAMInstanceProfile             *string   `locationName:"IamInstanceProfile" type:"string" json:",omitempty"`
+	EC2AvailabilityZone            *string   `locationName:"Ec2AvailabilityZone" type:"string" json:"Ec2AvailabilityZone,omitempty"`
+	EC2KeyName                     *string   `locationName:"Ec2KeyName" type:"string" json:"Ec2KeyName,omitempty"`
+	EC2SubnetID                    *string   `locationName:"Ec2SubnetId" type:"string" json:"Ec2SubnetId,omitempty"`
+	EMRManagedMasterSecurityGroup  *string   `locationName:"EmrManagedMasterSecurityGroup" type:"string" json:"EmrManagedMasterSecurityGroup,omitempty"`
+	EMRManagedSlaveSecurityGroup   *string   `locationName:"EmrManagedSlaveSecurityGroup" type:"string" json:"EmrManagedSlaveSecurityGroup,omitempty"`
+	IAMInstanceProfile             *string   `locationName:"IamInstanceProfile" type:"string" json:"IamInstanceProfile,omitempty"`
 
 	metadataEC2InstanceAttributes `json:"-", xml:"-"`
 }
@@ -687,7 +687,7 @@ type metadataEC2InstanceAttributes struct {
 
 type HadoopJARStepConfig struct {
 	Args       []*string   `type:"list" json:",omitempty"`
-	JAR        *string     `locationName:"Jar" type:"string" json:",omitempty"`
+	JAR        *string     `locationName:"Jar" type:"string" json:"Jar,omitempty"`
 	MainClass  *string     `type:"string" json:",omitempty"`
 	Properties []*KeyValue `type:"list" json:",omitempty"`
 
@@ -700,7 +700,7 @@ type metadataHadoopJARStepConfig struct {
 
 type HadoopStepConfig struct {
 	Args       []*string           `type:"list" json:",omitempty"`
-	JAR        *string             `locationName:"Jar" type:"string" json:",omitempty"`
+	JAR        *string             `locationName:"Jar" type:"string" json:"Jar,omitempty"`
 	MainClass  *string             `type:"string" json:",omitempty"`
 	Properties *map[string]*string `type:"map" json:",omitempty"`
 
@@ -712,12 +712,12 @@ type metadataHadoopStepConfig struct {
 }
 
 type Instance struct {
-	EC2InstanceID    *string         `locationName:"Ec2InstanceId" type:"string" json:",omitempty"`
-	ID               *string         `locationName:"Id" type:"string" json:",omitempty"`
-	PrivateDNSName   *string         `locationName:"PrivateDnsName" type:"string" json:",omitempty"`
-	PrivateIPAddress *string         `locationName:"PrivateIpAddress" type:"string" json:",omitempty"`
-	PublicDNSName    *string         `locationName:"PublicDnsName" type:"string" json:",omitempty"`
-	PublicIPAddress  *string         `locationName:"PublicIpAddress" type:"string" json:",omitempty"`
+	EC2InstanceID    *string         `locationName:"Ec2InstanceId" type:"string" json:"Ec2InstanceId,omitempty"`
+	ID               *string         `locationName:"Id" type:"string" json:"Id,omitempty"`
+	PrivateDNSName   *string         `locationName:"PrivateDnsName" type:"string" json:"PrivateDnsName,omitempty"`
+	PrivateIPAddress *string         `locationName:"PrivateIpAddress" type:"string" json:"PrivateIpAddress,omitempty"`
+	PublicDNSName    *string         `locationName:"PublicDnsName" type:"string" json:"PublicDnsName,omitempty"`
+	PublicIPAddress  *string         `locationName:"PublicIpAddress" type:"string" json:"PublicIpAddress,omitempty"`
 	Status           *InstanceStatus `type:"structure" json:",omitempty"`
 
 	metadataInstance `json:"-", xml:"-"`
@@ -729,7 +729,7 @@ type metadataInstance struct {
 
 type InstanceGroup struct {
 	BidPrice               *string              `type:"string" json:",omitempty"`
-	ID                     *string              `locationName:"Id" type:"string" json:",omitempty"`
+	ID                     *string              `locationName:"Id" type:"string" json:"Id,omitempty"`
 	InstanceGroupType      *string              `type:"string" json:",omitempty"`
 	InstanceType           *string              `type:"string" json:",omitempty"`
 	Market                 *string              `type:"string" json:",omitempty"`
@@ -764,7 +764,7 @@ type InstanceGroupDetail struct {
 	BidPrice              *string    `type:"string" json:",omitempty"`
 	CreationDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 	EndDateTime           *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	InstanceGroupID       *string    `locationName:"InstanceGroupId" type:"string" json:",omitempty"`
+	InstanceGroupID       *string    `locationName:"InstanceGroupId" type:"string" json:"InstanceGroupId,omitempty"`
 	InstanceRequestCount  *int       `type:"integer" json:",omitempty"`
 	InstanceRole          *string    `type:"string" json:",omitempty"`
 	InstanceRunningCount  *int       `type:"integer" json:",omitempty"`
@@ -784,9 +784,9 @@ type metadataInstanceGroupDetail struct {
 }
 
 type InstanceGroupModifyConfig struct {
-	EC2InstanceIDsToTerminate []*string `locationName:"EC2InstanceIdsToTerminate" type:"list" json:",omitempty"`
+	EC2InstanceIDsToTerminate []*string `locationName:"EC2InstanceIdsToTerminate" type:"list" json:"EC2InstanceIdsToTerminate,omitempty"`
 	InstanceCount             *int      `type:"integer" json:",omitempty"`
-	InstanceGroupID           *string   `locationName:"InstanceGroupId" type:"string" json:",omitempty"`
+	InstanceGroupID           *string   `locationName:"InstanceGroupId" type:"string" json:"InstanceGroupId,omitempty"`
 
 	metadataInstanceGroupModifyConfig `json:"-", xml:"-"`
 }
@@ -895,13 +895,13 @@ type metadataInvalidRequestException struct {
 }
 
 type JobFlowDetail struct {
-	AMIVersion            *string                       `locationName:"AmiVersion" type:"string" json:",omitempty"`
+	AMIVersion            *string                       `locationName:"AmiVersion" type:"string" json:"AmiVersion,omitempty"`
 	BootstrapActions      []*BootstrapActionDetail      `type:"list" json:",omitempty"`
 	ExecutionStatusDetail *JobFlowExecutionStatusDetail `type:"structure" json:",omitempty"`
 	Instances             *JobFlowInstancesDetail       `type:"structure" json:",omitempty"`
-	JobFlowID             *string                       `locationName:"JobFlowId" type:"string" json:",omitempty"`
+	JobFlowID             *string                       `locationName:"JobFlowId" type:"string" json:"JobFlowId,omitempty"`
 	JobFlowRole           *string                       `type:"string" json:",omitempty"`
-	LogURI                *string                       `locationName:"LogUri" type:"string" json:",omitempty"`
+	LogURI                *string                       `locationName:"LogUri" type:"string" json:"LogUri,omitempty"`
 	Name                  *string                       `type:"string" json:",omitempty"`
 	ServiceRole           *string                       `type:"string" json:",omitempty"`
 	Steps                 []*StepDetail                 `type:"list" json:",omitempty"`
@@ -933,10 +933,10 @@ type metadataJobFlowExecutionStatusDetail struct {
 type JobFlowInstancesConfig struct {
 	AdditionalMasterSecurityGroups []*string              `type:"list" json:",omitempty"`
 	AdditionalSlaveSecurityGroups  []*string              `type:"list" json:",omitempty"`
-	EC2KeyName                     *string                `locationName:"Ec2KeyName" type:"string" json:",omitempty"`
-	EC2SubnetID                    *string                `locationName:"Ec2SubnetId" type:"string" json:",omitempty"`
-	EMRManagedMasterSecurityGroup  *string                `locationName:"EmrManagedMasterSecurityGroup" type:"string" json:",omitempty"`
-	EMRManagedSlaveSecurityGroup   *string                `locationName:"EmrManagedSlaveSecurityGroup" type:"string" json:",omitempty"`
+	EC2KeyName                     *string                `locationName:"Ec2KeyName" type:"string" json:"Ec2KeyName,omitempty"`
+	EC2SubnetID                    *string                `locationName:"Ec2SubnetId" type:"string" json:"Ec2SubnetId,omitempty"`
+	EMRManagedMasterSecurityGroup  *string                `locationName:"EmrManagedMasterSecurityGroup" type:"string" json:"EmrManagedMasterSecurityGroup,omitempty"`
+	EMRManagedSlaveSecurityGroup   *string                `locationName:"EmrManagedSlaveSecurityGroup" type:"string" json:"EmrManagedSlaveSecurityGroup,omitempty"`
 	HadoopVersion                  *string                `type:"string" json:",omitempty"`
 	InstanceCount                  *int                   `type:"integer" json:",omitempty"`
 	InstanceGroups                 []*InstanceGroupConfig `type:"list" json:",omitempty"`
@@ -954,15 +954,15 @@ type metadataJobFlowInstancesConfig struct {
 }
 
 type JobFlowInstancesDetail struct {
-	EC2KeyName                  *string                `locationName:"Ec2KeyName" type:"string" json:",omitempty"`
-	EC2SubnetID                 *string                `locationName:"Ec2SubnetId" type:"string" json:",omitempty"`
+	EC2KeyName                  *string                `locationName:"Ec2KeyName" type:"string" json:"Ec2KeyName,omitempty"`
+	EC2SubnetID                 *string                `locationName:"Ec2SubnetId" type:"string" json:"Ec2SubnetId,omitempty"`
 	HadoopVersion               *string                `type:"string" json:",omitempty"`
 	InstanceCount               *int                   `type:"integer" json:",omitempty"`
 	InstanceGroups              []*InstanceGroupDetail `type:"list" json:",omitempty"`
 	KeepJobFlowAliveWhenNoSteps *bool                  `type:"boolean" json:",omitempty"`
-	MasterInstanceID            *string                `locationName:"MasterInstanceId" type:"string" json:",omitempty"`
+	MasterInstanceID            *string                `locationName:"MasterInstanceId" type:"string" json:"MasterInstanceId,omitempty"`
 	MasterInstanceType          *string                `type:"string" json:",omitempty"`
-	MasterPublicDNSName         *string                `locationName:"MasterPublicDnsName" type:"string" json:",omitempty"`
+	MasterPublicDNSName         *string                `locationName:"MasterPublicDnsName" type:"string" json:"MasterPublicDnsName,omitempty"`
 	NormalizedInstanceHours     *int                   `type:"integer" json:",omitempty"`
 	Placement                   *PlacementType         `type:"structure" json:",omitempty"`
 	SlaveInstanceType           *string                `type:"string" json:",omitempty"`
@@ -987,7 +987,7 @@ type metadataKeyValue struct {
 }
 
 type ListBootstrapActionsInput struct {
-	ClusterID *string `locationName:"ClusterId" type:"string" json:",omitempty"`
+	ClusterID *string `locationName:"ClusterId" type:"string" json:"ClusterId,omitempty"`
 	Marker    *string `type:"string" json:",omitempty"`
 
 	metadataListBootstrapActionsInput `json:"-", xml:"-"`
@@ -1033,7 +1033,7 @@ type metadataListClustersOutput struct {
 }
 
 type ListInstanceGroupsInput struct {
-	ClusterID *string `locationName:"ClusterId" type:"string" json:",omitempty"`
+	ClusterID *string `locationName:"ClusterId" type:"string" json:"ClusterId,omitempty"`
 	Marker    *string `type:"string" json:",omitempty"`
 
 	metadataListInstanceGroupsInput `json:"-", xml:"-"`
@@ -1055,8 +1055,8 @@ type metadataListInstanceGroupsOutput struct {
 }
 
 type ListInstancesInput struct {
-	ClusterID          *string   `locationName:"ClusterId" type:"string" json:",omitempty"`
-	InstanceGroupID    *string   `locationName:"InstanceGroupId" type:"string" json:",omitempty"`
+	ClusterID          *string   `locationName:"ClusterId" type:"string" json:"ClusterId,omitempty"`
+	InstanceGroupID    *string   `locationName:"InstanceGroupId" type:"string" json:"InstanceGroupId,omitempty"`
 	InstanceGroupTypes []*string `type:"list" json:",omitempty"`
 	Marker             *string   `type:"string" json:",omitempty"`
 
@@ -1079,9 +1079,9 @@ type metadataListInstancesOutput struct {
 }
 
 type ListStepsInput struct {
-	ClusterID  *string   `locationName:"ClusterId" type:"string" json:",omitempty"`
+	ClusterID  *string   `locationName:"ClusterId" type:"string" json:"ClusterId,omitempty"`
 	Marker     *string   `type:"string" json:",omitempty"`
-	StepIDs    []*string `locationName:"StepIds" type:"list" json:",omitempty"`
+	StepIDs    []*string `locationName:"StepIds" type:"list" json:"StepIds,omitempty"`
 	StepStates []*string `type:"list" json:",omitempty"`
 
 	metadataListStepsInput `json:"-", xml:"-"`
@@ -1123,7 +1123,7 @@ type metadataPlacementType struct {
 }
 
 type RemoveTagsInput struct {
-	ResourceID *string   `locationName:"ResourceId" type:"string" json:",omitempty"`
+	ResourceID *string   `locationName:"ResourceId" type:"string" json:"ResourceId,omitempty"`
 	TagKeys    []*string `type:"list" json:",omitempty"`
 
 	metadataRemoveTagsInput `json:"-", xml:"-"`
@@ -1142,12 +1142,12 @@ type metadataRemoveTagsOutput struct {
 }
 
 type RunJobFlowInput struct {
-	AMIVersion           *string                   `locationName:"AmiVersion" type:"string" json:",omitempty"`
+	AMIVersion           *string                   `locationName:"AmiVersion" type:"string" json:"AmiVersion,omitempty"`
 	AdditionalInfo       *string                   `type:"string" json:",omitempty"`
 	BootstrapActions     []*BootstrapActionConfig  `type:"list" json:",omitempty"`
 	Instances            *JobFlowInstancesConfig   `type:"structure" json:",omitempty"`
 	JobFlowRole          *string                   `type:"string" json:",omitempty"`
-	LogURI               *string                   `locationName:"LogUri" type:"string" json:",omitempty"`
+	LogURI               *string                   `locationName:"LogUri" type:"string" json:"LogUri,omitempty"`
 	Name                 *string                   `type:"string" json:",omitempty"`
 	NewSupportedProducts []*SupportedProductConfig `type:"list" json:",omitempty"`
 	ServiceRole          *string                   `type:"string" json:",omitempty"`
@@ -1164,7 +1164,7 @@ type metadataRunJobFlowInput struct {
 }
 
 type RunJobFlowOutput struct {
-	JobFlowID *string `locationName:"JobFlowId" type:"string" json:",omitempty"`
+	JobFlowID *string `locationName:"JobFlowId" type:"string" json:"JobFlowId,omitempty"`
 
 	metadataRunJobFlowOutput `json:"-", xml:"-"`
 }
@@ -1185,7 +1185,7 @@ type metadataScriptBootstrapActionConfig struct {
 }
 
 type SetTerminationProtectionInput struct {
-	JobFlowIDs           []*string `locationName:"JobFlowIds" type:"list" json:",omitempty"`
+	JobFlowIDs           []*string `locationName:"JobFlowIds" type:"list" json:"JobFlowIds,omitempty"`
 	TerminationProtected *bool     `type:"boolean" json:",omitempty"`
 
 	metadataSetTerminationProtectionInput `json:"-", xml:"-"`
@@ -1196,7 +1196,7 @@ type metadataSetTerminationProtectionInput struct {
 }
 
 type SetVisibleToAllUsersInput struct {
-	JobFlowIDs        []*string `locationName:"JobFlowIds" type:"list" json:",omitempty"`
+	JobFlowIDs        []*string `locationName:"JobFlowIds" type:"list" json:"JobFlowIds,omitempty"`
 	VisibleToAllUsers *bool     `type:"boolean" json:",omitempty"`
 
 	metadataSetVisibleToAllUsersInput `json:"-", xml:"-"`
@@ -1209,7 +1209,7 @@ type metadataSetVisibleToAllUsersInput struct {
 type Step struct {
 	ActionOnFailure *string           `type:"string" json:",omitempty"`
 	Config          *HadoopStepConfig `type:"structure" json:",omitempty"`
-	ID              *string           `locationName:"Id" type:"string" json:",omitempty"`
+	ID              *string           `locationName:"Id" type:"string" json:"Id,omitempty"`
 	Name            *string           `type:"string" json:",omitempty"`
 	Status          *StepStatus       `type:"structure" json:",omitempty"`
 
@@ -1222,7 +1222,7 @@ type metadataStep struct {
 
 type StepConfig struct {
 	ActionOnFailure *string              `type:"string" json:",omitempty"`
-	HadoopJARStep   *HadoopJARStepConfig `locationName:"HadoopJarStep" type:"structure" json:",omitempty"`
+	HadoopJARStep   *HadoopJARStepConfig `locationName:"HadoopJarStep" type:"structure" json:"HadoopJarStep,omitempty"`
 	Name            *string              `type:"string" json:",omitempty"`
 
 	metadataStepConfig `json:"-", xml:"-"`
@@ -1283,7 +1283,7 @@ type metadataStepStatus struct {
 type StepSummary struct {
 	ActionOnFailure *string           `type:"string" json:",omitempty"`
 	Config          *HadoopStepConfig `type:"structure" json:",omitempty"`
-	ID              *string           `locationName:"Id" type:"string" json:",omitempty"`
+	ID              *string           `locationName:"Id" type:"string" json:"Id,omitempty"`
 	Name            *string           `type:"string" json:",omitempty"`
 	Status          *StepStatus       `type:"structure" json:",omitempty"`
 
@@ -1329,7 +1329,7 @@ type metadataTag struct {
 }
 
 type TerminateJobFlowsInput struct {
-	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" json:",omitempty"`
+	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" json:"JobFlowIds,omitempty"`
 
 	metadataTerminateJobFlowsInput `json:"-", xml:"-"`
 }

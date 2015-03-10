@@ -613,9 +613,9 @@ func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (err error)
 var opUpdateKeyDescription *aws.Operation
 
 type AliasListEntry struct {
-	AliasARN    *string `locationName:"AliasArn" type:"string" json:",omitempty"`
+	AliasARN    *string `locationName:"AliasArn" type:"string" json:"AliasArn,omitempty"`
 	AliasName   *string `type:"string" json:",omitempty"`
-	TargetKeyID *string `locationName:"TargetKeyId" type:"string" json:",omitempty"`
+	TargetKeyID *string `locationName:"TargetKeyId" type:"string" json:"TargetKeyId,omitempty"`
 
 	metadataAliasListEntry `json:"-", xml:"-"`
 }
@@ -625,7 +625,7 @@ type metadataAliasListEntry struct {
 }
 
 type AlreadyExistsException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataAlreadyExistsException `json:"-", xml:"-"`
 }
@@ -636,7 +636,7 @@ type metadataAlreadyExistsException struct {
 
 type CreateAliasInput struct {
 	AliasName   *string `type:"string" json:",omitempty"`
-	TargetKeyID *string `locationName:"TargetKeyId" type:"string" json:",omitempty"`
+	TargetKeyID *string `locationName:"TargetKeyId" type:"string" json:"TargetKeyId,omitempty"`
 
 	metadataCreateAliasInput `json:"-", xml:"-"`
 }
@@ -649,7 +649,7 @@ type CreateGrantInput struct {
 	Constraints       *GrantConstraints `type:"structure" json:",omitempty"`
 	GrantTokens       []*string         `type:"list" json:",omitempty"`
 	GranteePrincipal  *string           `type:"string" json:",omitempty"`
-	KeyID             *string           `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID             *string           `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	Operations        []*string         `type:"list" json:",omitempty"`
 	RetiringPrincipal *string           `type:"string" json:",omitempty"`
 
@@ -661,7 +661,7 @@ type metadataCreateGrantInput struct {
 }
 
 type CreateGrantOutput struct {
-	GrantID    *string `locationName:"GrantId" type:"string" json:",omitempty"`
+	GrantID    *string `locationName:"GrantId" type:"string" json:"GrantId,omitempty"`
 	GrantToken *string `type:"string" json:",omitempty"`
 
 	metadataCreateGrantOutput `json:"-", xml:"-"`
@@ -706,7 +706,7 @@ type metadataDecryptInput struct {
 }
 
 type DecryptOutput struct {
-	KeyID     *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID     *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	Plaintext []byte  `type:"blob" json:",omitempty"`
 
 	metadataDecryptOutput `json:"-", xml:"-"`
@@ -727,7 +727,7 @@ type metadataDeleteAliasInput struct {
 }
 
 type DependencyTimeoutException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataDependencyTimeoutException `json:"-", xml:"-"`
 }
@@ -737,7 +737,7 @@ type metadataDependencyTimeoutException struct {
 }
 
 type DescribeKeyInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
 	metadataDescribeKeyInput `json:"-", xml:"-"`
 }
@@ -757,7 +757,7 @@ type metadataDescribeKeyOutput struct {
 }
 
 type DisableKeyInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
 	metadataDisableKeyInput `json:"-", xml:"-"`
 }
@@ -767,7 +767,7 @@ type metadataDisableKeyInput struct {
 }
 
 type DisableKeyRotationInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
 	metadataDisableKeyRotationInput `json:"-", xml:"-"`
 }
@@ -777,7 +777,7 @@ type metadataDisableKeyRotationInput struct {
 }
 
 type DisabledException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataDisabledException `json:"-", xml:"-"`
 }
@@ -787,7 +787,7 @@ type metadataDisabledException struct {
 }
 
 type EnableKeyInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
 	metadataEnableKeyInput `json:"-", xml:"-"`
 }
@@ -797,7 +797,7 @@ type metadataEnableKeyInput struct {
 }
 
 type EnableKeyRotationInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
 	metadataEnableKeyRotationInput `json:"-", xml:"-"`
 }
@@ -809,7 +809,7 @@ type metadataEnableKeyRotationInput struct {
 type EncryptInput struct {
 	EncryptionContext *map[string]*string `type:"map" json:",omitempty"`
 	GrantTokens       []*string           `type:"list" json:",omitempty"`
-	KeyID             *string             `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID             *string             `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	Plaintext         []byte              `type:"blob" json:",omitempty"`
 
 	metadataEncryptInput `json:"-", xml:"-"`
@@ -821,7 +821,7 @@ type metadataEncryptInput struct {
 
 type EncryptOutput struct {
 	CiphertextBlob []byte  `type:"blob" json:",omitempty"`
-	KeyID          *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID          *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
 	metadataEncryptOutput `json:"-", xml:"-"`
 }
@@ -833,7 +833,7 @@ type metadataEncryptOutput struct {
 type GenerateDataKeyInput struct {
 	EncryptionContext *map[string]*string `type:"map" json:",omitempty"`
 	GrantTokens       []*string           `type:"list" json:",omitempty"`
-	KeyID             *string             `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID             *string             `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	KeySpec           *string             `type:"string" json:",omitempty"`
 	NumberOfBytes     *int                `type:"integer" json:",omitempty"`
 
@@ -846,7 +846,7 @@ type metadataGenerateDataKeyInput struct {
 
 type GenerateDataKeyOutput struct {
 	CiphertextBlob []byte  `type:"blob" json:",omitempty"`
-	KeyID          *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID          *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	Plaintext      []byte  `type:"blob" json:",omitempty"`
 
 	metadataGenerateDataKeyOutput `json:"-", xml:"-"`
@@ -859,7 +859,7 @@ type metadataGenerateDataKeyOutput struct {
 type GenerateDataKeyWithoutPlaintextInput struct {
 	EncryptionContext *map[string]*string `type:"map" json:",omitempty"`
 	GrantTokens       []*string           `type:"list" json:",omitempty"`
-	KeyID             *string             `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID             *string             `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	KeySpec           *string             `type:"string" json:",omitempty"`
 	NumberOfBytes     *int                `type:"integer" json:",omitempty"`
 
@@ -872,7 +872,7 @@ type metadataGenerateDataKeyWithoutPlaintextInput struct {
 
 type GenerateDataKeyWithoutPlaintextOutput struct {
 	CiphertextBlob []byte  `type:"blob" json:",omitempty"`
-	KeyID          *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID          *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
 	metadataGenerateDataKeyWithoutPlaintextOutput `json:"-", xml:"-"`
 }
@@ -902,7 +902,7 @@ type metadataGenerateRandomOutput struct {
 }
 
 type GetKeyPolicyInput struct {
-	KeyID      *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID      *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	PolicyName *string `type:"string" json:",omitempty"`
 
 	metadataGetKeyPolicyInput `json:"-", xml:"-"`
@@ -923,7 +923,7 @@ type metadataGetKeyPolicyOutput struct {
 }
 
 type GetKeyRotationStatusInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
 	metadataGetKeyRotationStatusInput `json:"-", xml:"-"`
 }
@@ -955,7 +955,7 @@ type metadataGrantConstraints struct {
 
 type GrantListEntry struct {
 	Constraints       *GrantConstraints `type:"structure" json:",omitempty"`
-	GrantID           *string           `locationName:"GrantId" type:"string" json:",omitempty"`
+	GrantID           *string           `locationName:"GrantId" type:"string" json:"GrantId,omitempty"`
 	GranteePrincipal  *string           `type:"string" json:",omitempty"`
 	IssuingAccount    *string           `type:"string" json:",omitempty"`
 	Operations        []*string         `type:"list" json:",omitempty"`
@@ -969,7 +969,7 @@ type metadataGrantListEntry struct {
 }
 
 type InvalidARNException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidARNException `json:"-", xml:"-"`
 }
@@ -979,7 +979,7 @@ type metadataInvalidARNException struct {
 }
 
 type InvalidAliasNameException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidAliasNameException `json:"-", xml:"-"`
 }
@@ -989,7 +989,7 @@ type metadataInvalidAliasNameException struct {
 }
 
 type InvalidCiphertextException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidCiphertextException `json:"-", xml:"-"`
 }
@@ -999,7 +999,7 @@ type metadataInvalidCiphertextException struct {
 }
 
 type InvalidGrantTokenException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidGrantTokenException `json:"-", xml:"-"`
 }
@@ -1009,7 +1009,7 @@ type metadataInvalidGrantTokenException struct {
 }
 
 type InvalidKeyUsageException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidKeyUsageException `json:"-", xml:"-"`
 }
@@ -1019,7 +1019,7 @@ type metadataInvalidKeyUsageException struct {
 }
 
 type InvalidMarkerException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidMarkerException `json:"-", xml:"-"`
 }
@@ -1029,7 +1029,7 @@ type metadataInvalidMarkerException struct {
 }
 
 type KMSInternalException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataKMSInternalException `json:"-", xml:"-"`
 }
@@ -1039,8 +1039,8 @@ type metadataKMSInternalException struct {
 }
 
 type KeyListEntry struct {
-	KeyARN *string `locationName:"KeyArn" type:"string" json:",omitempty"`
-	KeyID  *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyARN *string `locationName:"KeyArn" type:"string" json:"KeyArn,omitempty"`
+	KeyID  *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
 	metadataKeyListEntry `json:"-", xml:"-"`
 }
@@ -1050,12 +1050,12 @@ type metadataKeyListEntry struct {
 }
 
 type KeyMetadata struct {
-	ARN          *string    `locationName:"Arn" type:"string" json:",omitempty"`
-	AWSAccountID *string    `locationName:"AWSAccountId" type:"string" json:",omitempty"`
+	ARN          *string    `locationName:"Arn" type:"string" json:"Arn,omitempty"`
+	AWSAccountID *string    `locationName:"AWSAccountId" type:"string" json:"AWSAccountId,omitempty"`
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 	Description  *string    `type:"string" json:",omitempty"`
 	Enabled      *bool      `type:"boolean" json:",omitempty"`
-	KeyID        *string    `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID        *string    `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	KeyUsage     *string    `type:"string" json:",omitempty"`
 
 	metadataKeyMetadata `json:"-", xml:"-"`
@@ -1066,7 +1066,7 @@ type metadataKeyMetadata struct {
 }
 
 type KeyUnavailableException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataKeyUnavailableException `json:"-", xml:"-"`
 }
@@ -1076,7 +1076,7 @@ type metadataKeyUnavailableException struct {
 }
 
 type LimitExceededException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataLimitExceededException `json:"-", xml:"-"`
 }
@@ -1109,7 +1109,7 @@ type metadataListAliasesOutput struct {
 }
 
 type ListGrantsInput struct {
-	KeyID  *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID  *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	Limit  *int    `type:"integer" json:",omitempty"`
 	Marker *string `type:"string" json:",omitempty"`
 
@@ -1133,7 +1133,7 @@ type metadataListGrantsOutput struct {
 }
 
 type ListKeyPoliciesInput struct {
-	KeyID  *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID  *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	Limit  *int    `type:"integer" json:",omitempty"`
 	Marker *string `type:"string" json:",omitempty"`
 
@@ -1180,7 +1180,7 @@ type metadataListKeysOutput struct {
 }
 
 type MalformedPolicyDocumentException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataMalformedPolicyDocumentException `json:"-", xml:"-"`
 }
@@ -1190,7 +1190,7 @@ type metadataMalformedPolicyDocumentException struct {
 }
 
 type NotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataNotFoundException `json:"-", xml:"-"`
 }
@@ -1200,7 +1200,7 @@ type metadataNotFoundException struct {
 }
 
 type PutKeyPolicyInput struct {
-	KeyID      *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID      *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	Policy     *string `type:"string" json:",omitempty"`
 	PolicyName *string `type:"string" json:",omitempty"`
 
@@ -1214,7 +1214,7 @@ type metadataPutKeyPolicyInput struct {
 type ReEncryptInput struct {
 	CiphertextBlob               []byte              `type:"blob" json:",omitempty"`
 	DestinationEncryptionContext *map[string]*string `type:"map" json:",omitempty"`
-	DestinationKeyID             *string             `locationName:"DestinationKeyId" type:"string" json:",omitempty"`
+	DestinationKeyID             *string             `locationName:"DestinationKeyId" type:"string" json:"DestinationKeyId,omitempty"`
 	GrantTokens                  []*string           `type:"list" json:",omitempty"`
 	SourceEncryptionContext      *map[string]*string `type:"map" json:",omitempty"`
 
@@ -1227,8 +1227,8 @@ type metadataReEncryptInput struct {
 
 type ReEncryptOutput struct {
 	CiphertextBlob []byte  `type:"blob" json:",omitempty"`
-	KeyID          *string `locationName:"KeyId" type:"string" json:",omitempty"`
-	SourceKeyID    *string `locationName:"SourceKeyId" type:"string" json:",omitempty"`
+	KeyID          *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
+	SourceKeyID    *string `locationName:"SourceKeyId" type:"string" json:"SourceKeyId,omitempty"`
 
 	metadataReEncryptOutput `json:"-", xml:"-"`
 }
@@ -1248,8 +1248,8 @@ type metadataRetireGrantInput struct {
 }
 
 type RevokeGrantInput struct {
-	GrantID *string `locationName:"GrantId" type:"string" json:",omitempty"`
-	KeyID   *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	GrantID *string `locationName:"GrantId" type:"string" json:"GrantId,omitempty"`
+	KeyID   *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
 	metadataRevokeGrantInput `json:"-", xml:"-"`
 }
@@ -1259,7 +1259,7 @@ type metadataRevokeGrantInput struct {
 }
 
 type UnsupportedOperationException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataUnsupportedOperationException `json:"-", xml:"-"`
 }
@@ -1270,7 +1270,7 @@ type metadataUnsupportedOperationException struct {
 
 type UpdateKeyDescriptionInput struct {
 	Description *string `type:"string" json:",omitempty"`
-	KeyID       *string `locationName:"KeyId" type:"string" json:",omitempty"`
+	KeyID       *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
 	metadataUpdateKeyDescriptionInput `json:"-", xml:"-"`
 }

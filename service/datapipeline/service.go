@@ -2,8 +2,8 @@ package datapipeline
 
 import (
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
 )
 
 // DataPipeline is a client for AWS Data Pipeline.

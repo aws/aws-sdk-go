@@ -1,8 +1,8 @@
 package ssm
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
 )
 

@@ -532,7 +532,7 @@ func (c *ECS) SubmitTaskStateChange(input *SubmitTaskStateChangeInput) (output *
 var opSubmitTaskStateChange *aws.Operation
 
 type ClientException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataClientException `json:"-", xml:"-"`
 }
@@ -542,9 +542,9 @@ type metadataClientException struct {
 }
 
 type Cluster struct {
-	ClusterARN  *string `locationName:"clusterArn" type:"string" json:",omitempty"`
-	ClusterName *string `locationName:"clusterName" type:"string" json:",omitempty"`
-	Status      *string `locationName:"status" type:"string" json:",omitempty"`
+	ClusterARN  *string `locationName:"clusterArn" type:"string" json:"clusterArn,omitempty"`
+	ClusterName *string `locationName:"clusterName" type:"string" json:"clusterName,omitempty"`
+	Status      *string `locationName:"status" type:"string" json:"status,omitempty"`
 
 	metadataCluster `json:"-", xml:"-"`
 }
@@ -554,13 +554,13 @@ type metadataCluster struct {
 }
 
 type Container struct {
-	ContainerARN    *string           `locationName:"containerArn" type:"string" json:",omitempty"`
-	ExitCode        *int              `locationName:"exitCode" type:"integer" json:",omitempty"`
-	LastStatus      *string           `locationName:"lastStatus" type:"string" json:",omitempty"`
-	Name            *string           `locationName:"name" type:"string" json:",omitempty"`
-	NetworkBindings []*NetworkBinding `locationName:"networkBindings" type:"list" json:",omitempty"`
-	Reason          *string           `locationName:"reason" type:"string" json:",omitempty"`
-	TaskARN         *string           `locationName:"taskArn" type:"string" json:",omitempty"`
+	ContainerARN    *string           `locationName:"containerArn" type:"string" json:"containerArn,omitempty"`
+	ExitCode        *int              `locationName:"exitCode" type:"integer" json:"exitCode,omitempty"`
+	LastStatus      *string           `locationName:"lastStatus" type:"string" json:"lastStatus,omitempty"`
+	Name            *string           `locationName:"name" type:"string" json:"name,omitempty"`
+	NetworkBindings []*NetworkBinding `locationName:"networkBindings" type:"list" json:"networkBindings,omitempty"`
+	Reason          *string           `locationName:"reason" type:"string" json:"reason,omitempty"`
+	TaskARN         *string           `locationName:"taskArn" type:"string" json:"taskArn,omitempty"`
 
 	metadataContainer `json:"-", xml:"-"`
 }
@@ -570,18 +570,18 @@ type metadataContainer struct {
 }
 
 type ContainerDefinition struct {
-	CPU          *int            `locationName:"cpu" type:"integer" json:",omitempty"`
-	Command      []*string       `locationName:"command" type:"list" json:",omitempty"`
-	EntryPoint   []*string       `locationName:"entryPoint" type:"list" json:",omitempty"`
-	Environment  []*KeyValuePair `locationName:"environment" type:"list" json:",omitempty"`
-	Essential    *bool           `locationName:"essential" type:"boolean" json:",omitempty"`
-	Image        *string         `locationName:"image" type:"string" json:",omitempty"`
-	Links        []*string       `locationName:"links" type:"list" json:",omitempty"`
-	Memory       *int            `locationName:"memory" type:"integer" json:",omitempty"`
-	MountPoints  []*MountPoint   `locationName:"mountPoints" type:"list" json:",omitempty"`
-	Name         *string         `locationName:"name" type:"string" json:",omitempty"`
-	PortMappings []*PortMapping  `locationName:"portMappings" type:"list" json:",omitempty"`
-	VolumesFrom  []*VolumeFrom   `locationName:"volumesFrom" type:"list" json:",omitempty"`
+	CPU          *int            `locationName:"cpu" type:"integer" json:"cpu,omitempty"`
+	Command      []*string       `locationName:"command" type:"list" json:"command,omitempty"`
+	EntryPoint   []*string       `locationName:"entryPoint" type:"list" json:"entryPoint,omitempty"`
+	Environment  []*KeyValuePair `locationName:"environment" type:"list" json:"environment,omitempty"`
+	Essential    *bool           `locationName:"essential" type:"boolean" json:"essential,omitempty"`
+	Image        *string         `locationName:"image" type:"string" json:"image,omitempty"`
+	Links        []*string       `locationName:"links" type:"list" json:"links,omitempty"`
+	Memory       *int            `locationName:"memory" type:"integer" json:"memory,omitempty"`
+	MountPoints  []*MountPoint   `locationName:"mountPoints" type:"list" json:"mountPoints,omitempty"`
+	Name         *string         `locationName:"name" type:"string" json:"name,omitempty"`
+	PortMappings []*PortMapping  `locationName:"portMappings" type:"list" json:"portMappings,omitempty"`
+	VolumesFrom  []*VolumeFrom   `locationName:"volumesFrom" type:"list" json:"volumesFrom,omitempty"`
 
 	metadataContainerDefinition `json:"-", xml:"-"`
 }
@@ -591,12 +591,12 @@ type metadataContainerDefinition struct {
 }
 
 type ContainerInstance struct {
-	AgentConnected       *bool       `locationName:"agentConnected" type:"boolean" json:",omitempty"`
-	ContainerInstanceARN *string     `locationName:"containerInstanceArn" type:"string" json:",omitempty"`
-	EC2InstanceID        *string     `locationName:"ec2InstanceId" type:"string" json:",omitempty"`
-	RegisteredResources  []*Resource `locationName:"registeredResources" type:"list" json:",omitempty"`
-	RemainingResources   []*Resource `locationName:"remainingResources" type:"list" json:",omitempty"`
-	Status               *string     `locationName:"status" type:"string" json:",omitempty"`
+	AgentConnected       *bool       `locationName:"agentConnected" type:"boolean" json:"agentConnected,omitempty"`
+	ContainerInstanceARN *string     `locationName:"containerInstanceArn" type:"string" json:"containerInstanceArn,omitempty"`
+	EC2InstanceID        *string     `locationName:"ec2InstanceId" type:"string" json:"ec2InstanceId,omitempty"`
+	RegisteredResources  []*Resource `locationName:"registeredResources" type:"list" json:"registeredResources,omitempty"`
+	RemainingResources   []*Resource `locationName:"remainingResources" type:"list" json:"remainingResources,omitempty"`
+	Status               *string     `locationName:"status" type:"string" json:"status,omitempty"`
 
 	metadataContainerInstance `json:"-", xml:"-"`
 }
@@ -606,8 +606,8 @@ type metadataContainerInstance struct {
 }
 
 type ContainerOverride struct {
-	Command []*string `locationName:"command" type:"list" json:",omitempty"`
-	Name    *string   `locationName:"name" type:"string" json:",omitempty"`
+	Command []*string `locationName:"command" type:"list" json:"command,omitempty"`
+	Name    *string   `locationName:"name" type:"string" json:"name,omitempty"`
 
 	metadataContainerOverride `json:"-", xml:"-"`
 }
@@ -617,7 +617,7 @@ type metadataContainerOverride struct {
 }
 
 type CreateClusterInput struct {
-	ClusterName *string `locationName:"clusterName" type:"string" json:",omitempty"`
+	ClusterName *string `locationName:"clusterName" type:"string" json:"clusterName,omitempty"`
 
 	metadataCreateClusterInput `json:"-", xml:"-"`
 }
@@ -627,7 +627,7 @@ type metadataCreateClusterInput struct {
 }
 
 type CreateClusterOutput struct {
-	Cluster *Cluster `locationName:"cluster" type:"structure" json:",omitempty"`
+	Cluster *Cluster `locationName:"cluster" type:"structure" json:"cluster,omitempty"`
 
 	metadataCreateClusterOutput `json:"-", xml:"-"`
 }
@@ -637,7 +637,7 @@ type metadataCreateClusterOutput struct {
 }
 
 type DeleteClusterInput struct {
-	Cluster *string `locationName:"cluster" type:"string" json:",omitempty"`
+	Cluster *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
 
 	metadataDeleteClusterInput `json:"-", xml:"-"`
 }
@@ -647,7 +647,7 @@ type metadataDeleteClusterInput struct {
 }
 
 type DeleteClusterOutput struct {
-	Cluster *Cluster `locationName:"cluster" type:"structure" json:",omitempty"`
+	Cluster *Cluster `locationName:"cluster" type:"structure" json:"cluster,omitempty"`
 
 	metadataDeleteClusterOutput `json:"-", xml:"-"`
 }
@@ -657,9 +657,9 @@ type metadataDeleteClusterOutput struct {
 }
 
 type DeregisterContainerInstanceInput struct {
-	Cluster           *string `locationName:"cluster" type:"string" json:",omitempty"`
-	ContainerInstance *string `locationName:"containerInstance" type:"string" json:",omitempty"`
-	Force             *bool   `locationName:"force" type:"boolean" json:",omitempty"`
+	Cluster           *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	ContainerInstance *string `locationName:"containerInstance" type:"string" json:"containerInstance,omitempty"`
+	Force             *bool   `locationName:"force" type:"boolean" json:"force,omitempty"`
 
 	metadataDeregisterContainerInstanceInput `json:"-", xml:"-"`
 }
@@ -669,7 +669,7 @@ type metadataDeregisterContainerInstanceInput struct {
 }
 
 type DeregisterContainerInstanceOutput struct {
-	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure" json:",omitempty"`
+	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure" json:"containerInstance,omitempty"`
 
 	metadataDeregisterContainerInstanceOutput `json:"-", xml:"-"`
 }
@@ -679,7 +679,7 @@ type metadataDeregisterContainerInstanceOutput struct {
 }
 
 type DeregisterTaskDefinitionInput struct {
-	TaskDefinition *string `locationName:"taskDefinition" type:"string" json:",omitempty"`
+	TaskDefinition *string `locationName:"taskDefinition" type:"string" json:"taskDefinition,omitempty"`
 
 	metadataDeregisterTaskDefinitionInput `json:"-", xml:"-"`
 }
@@ -689,7 +689,7 @@ type metadataDeregisterTaskDefinitionInput struct {
 }
 
 type DeregisterTaskDefinitionOutput struct {
-	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure" json:",omitempty"`
+	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure" json:"taskDefinition,omitempty"`
 
 	metadataDeregisterTaskDefinitionOutput `json:"-", xml:"-"`
 }
@@ -699,7 +699,7 @@ type metadataDeregisterTaskDefinitionOutput struct {
 }
 
 type DescribeClustersInput struct {
-	Clusters []*string `locationName:"clusters" type:"list" json:",omitempty"`
+	Clusters []*string `locationName:"clusters" type:"list" json:"clusters,omitempty"`
 
 	metadataDescribeClustersInput `json:"-", xml:"-"`
 }
@@ -709,8 +709,8 @@ type metadataDescribeClustersInput struct {
 }
 
 type DescribeClustersOutput struct {
-	Clusters []*Cluster `locationName:"clusters" type:"list" json:",omitempty"`
-	Failures []*Failure `locationName:"failures" type:"list" json:",omitempty"`
+	Clusters []*Cluster `locationName:"clusters" type:"list" json:"clusters,omitempty"`
+	Failures []*Failure `locationName:"failures" type:"list" json:"failures,omitempty"`
 
 	metadataDescribeClustersOutput `json:"-", xml:"-"`
 }
@@ -720,8 +720,8 @@ type metadataDescribeClustersOutput struct {
 }
 
 type DescribeContainerInstancesInput struct {
-	Cluster            *string   `locationName:"cluster" type:"string" json:",omitempty"`
-	ContainerInstances []*string `locationName:"containerInstances" type:"list" json:",omitempty"`
+	Cluster            *string   `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	ContainerInstances []*string `locationName:"containerInstances" type:"list" json:"containerInstances,omitempty"`
 
 	metadataDescribeContainerInstancesInput `json:"-", xml:"-"`
 }
@@ -731,8 +731,8 @@ type metadataDescribeContainerInstancesInput struct {
 }
 
 type DescribeContainerInstancesOutput struct {
-	ContainerInstances []*ContainerInstance `locationName:"containerInstances" type:"list" json:",omitempty"`
-	Failures           []*Failure           `locationName:"failures" type:"list" json:",omitempty"`
+	ContainerInstances []*ContainerInstance `locationName:"containerInstances" type:"list" json:"containerInstances,omitempty"`
+	Failures           []*Failure           `locationName:"failures" type:"list" json:"failures,omitempty"`
 
 	metadataDescribeContainerInstancesOutput `json:"-", xml:"-"`
 }
@@ -742,7 +742,7 @@ type metadataDescribeContainerInstancesOutput struct {
 }
 
 type DescribeTaskDefinitionInput struct {
-	TaskDefinition *string `locationName:"taskDefinition" type:"string" json:",omitempty"`
+	TaskDefinition *string `locationName:"taskDefinition" type:"string" json:"taskDefinition,omitempty"`
 
 	metadataDescribeTaskDefinitionInput `json:"-", xml:"-"`
 }
@@ -752,7 +752,7 @@ type metadataDescribeTaskDefinitionInput struct {
 }
 
 type DescribeTaskDefinitionOutput struct {
-	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure" json:",omitempty"`
+	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure" json:"taskDefinition,omitempty"`
 
 	metadataDescribeTaskDefinitionOutput `json:"-", xml:"-"`
 }
@@ -762,8 +762,8 @@ type metadataDescribeTaskDefinitionOutput struct {
 }
 
 type DescribeTasksInput struct {
-	Cluster *string   `locationName:"cluster" type:"string" json:",omitempty"`
-	Tasks   []*string `locationName:"tasks" type:"list" json:",omitempty"`
+	Cluster *string   `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	Tasks   []*string `locationName:"tasks" type:"list" json:"tasks,omitempty"`
 
 	metadataDescribeTasksInput `json:"-", xml:"-"`
 }
@@ -773,8 +773,8 @@ type metadataDescribeTasksInput struct {
 }
 
 type DescribeTasksOutput struct {
-	Failures []*Failure `locationName:"failures" type:"list" json:",omitempty"`
-	Tasks    []*Task    `locationName:"tasks" type:"list" json:",omitempty"`
+	Failures []*Failure `locationName:"failures" type:"list" json:"failures,omitempty"`
+	Tasks    []*Task    `locationName:"tasks" type:"list" json:"tasks,omitempty"`
 
 	metadataDescribeTasksOutput `json:"-", xml:"-"`
 }
@@ -784,8 +784,8 @@ type metadataDescribeTasksOutput struct {
 }
 
 type DiscoverPollEndpointInput struct {
-	Cluster           *string `locationName:"cluster" type:"string" json:",omitempty"`
-	ContainerInstance *string `locationName:"containerInstance" type:"string" json:",omitempty"`
+	Cluster           *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	ContainerInstance *string `locationName:"containerInstance" type:"string" json:"containerInstance,omitempty"`
 
 	metadataDiscoverPollEndpointInput `json:"-", xml:"-"`
 }
@@ -795,7 +795,7 @@ type metadataDiscoverPollEndpointInput struct {
 }
 
 type DiscoverPollEndpointOutput struct {
-	Endpoint *string `locationName:"endpoint" type:"string" json:",omitempty"`
+	Endpoint *string `locationName:"endpoint" type:"string" json:"endpoint,omitempty"`
 
 	metadataDiscoverPollEndpointOutput `json:"-", xml:"-"`
 }
@@ -805,8 +805,8 @@ type metadataDiscoverPollEndpointOutput struct {
 }
 
 type Failure struct {
-	ARN    *string `locationName:"arn" type:"string" json:",omitempty"`
-	Reason *string `locationName:"reason" type:"string" json:",omitempty"`
+	ARN    *string `locationName:"arn" type:"string" json:"arn,omitempty"`
+	Reason *string `locationName:"reason" type:"string" json:"reason,omitempty"`
 
 	metadataFailure `json:"-", xml:"-"`
 }
@@ -816,7 +816,7 @@ type metadataFailure struct {
 }
 
 type HostVolumeProperties struct {
-	SourcePath *string `locationName:"sourcePath" type:"string" json:",omitempty"`
+	SourcePath *string `locationName:"sourcePath" type:"string" json:"sourcePath,omitempty"`
 
 	metadataHostVolumeProperties `json:"-", xml:"-"`
 }
@@ -826,8 +826,8 @@ type metadataHostVolumeProperties struct {
 }
 
 type KeyValuePair struct {
-	Name  *string `locationName:"name" type:"string" json:",omitempty"`
-	Value *string `locationName:"value" type:"string" json:",omitempty"`
+	Name  *string `locationName:"name" type:"string" json:"name,omitempty"`
+	Value *string `locationName:"value" type:"string" json:"value,omitempty"`
 
 	metadataKeyValuePair `json:"-", xml:"-"`
 }
@@ -837,8 +837,8 @@ type metadataKeyValuePair struct {
 }
 
 type ListClustersInput struct {
-	MaxResults *int    `locationName:"maxResults" type:"integer" json:",omitempty"`
-	NextToken  *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	MaxResults *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	NextToken  *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListClustersInput `json:"-", xml:"-"`
 }
@@ -848,8 +848,8 @@ type metadataListClustersInput struct {
 }
 
 type ListClustersOutput struct {
-	ClusterARNs []*string `locationName:"clusterArns" type:"list" json:",omitempty"`
-	NextToken   *string   `locationName:"nextToken" type:"string" json:",omitempty"`
+	ClusterARNs []*string `locationName:"clusterArns" type:"list" json:"clusterArns,omitempty"`
+	NextToken   *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListClustersOutput `json:"-", xml:"-"`
 }
@@ -859,9 +859,9 @@ type metadataListClustersOutput struct {
 }
 
 type ListContainerInstancesInput struct {
-	Cluster    *string `locationName:"cluster" type:"string" json:",omitempty"`
-	MaxResults *int    `locationName:"maxResults" type:"integer" json:",omitempty"`
-	NextToken  *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	Cluster    *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	MaxResults *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	NextToken  *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListContainerInstancesInput `json:"-", xml:"-"`
 }
@@ -871,8 +871,8 @@ type metadataListContainerInstancesInput struct {
 }
 
 type ListContainerInstancesOutput struct {
-	ContainerInstanceARNs []*string `locationName:"containerInstanceArns" type:"list" json:",omitempty"`
-	NextToken             *string   `locationName:"nextToken" type:"string" json:",omitempty"`
+	ContainerInstanceARNs []*string `locationName:"containerInstanceArns" type:"list" json:"containerInstanceArns,omitempty"`
+	NextToken             *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListContainerInstancesOutput `json:"-", xml:"-"`
 }
@@ -882,9 +882,9 @@ type metadataListContainerInstancesOutput struct {
 }
 
 type ListTaskDefinitionFamiliesInput struct {
-	FamilyPrefix *string `locationName:"familyPrefix" type:"string" json:",omitempty"`
-	MaxResults   *int    `locationName:"maxResults" type:"integer" json:",omitempty"`
-	NextToken    *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	FamilyPrefix *string `locationName:"familyPrefix" type:"string" json:"familyPrefix,omitempty"`
+	MaxResults   *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	NextToken    *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListTaskDefinitionFamiliesInput `json:"-", xml:"-"`
 }
@@ -894,8 +894,8 @@ type metadataListTaskDefinitionFamiliesInput struct {
 }
 
 type ListTaskDefinitionFamiliesOutput struct {
-	Families  []*string `locationName:"families" type:"list" json:",omitempty"`
-	NextToken *string   `locationName:"nextToken" type:"string" json:",omitempty"`
+	Families  []*string `locationName:"families" type:"list" json:"families,omitempty"`
+	NextToken *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListTaskDefinitionFamiliesOutput `json:"-", xml:"-"`
 }
@@ -905,9 +905,9 @@ type metadataListTaskDefinitionFamiliesOutput struct {
 }
 
 type ListTaskDefinitionsInput struct {
-	FamilyPrefix *string `locationName:"familyPrefix" type:"string" json:",omitempty"`
-	MaxResults   *int    `locationName:"maxResults" type:"integer" json:",omitempty"`
-	NextToken    *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	FamilyPrefix *string `locationName:"familyPrefix" type:"string" json:"familyPrefix,omitempty"`
+	MaxResults   *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	NextToken    *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListTaskDefinitionsInput `json:"-", xml:"-"`
 }
@@ -917,8 +917,8 @@ type metadataListTaskDefinitionsInput struct {
 }
 
 type ListTaskDefinitionsOutput struct {
-	NextToken          *string   `locationName:"nextToken" type:"string" json:",omitempty"`
-	TaskDefinitionARNs []*string `locationName:"taskDefinitionArns" type:"list" json:",omitempty"`
+	NextToken          *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	TaskDefinitionARNs []*string `locationName:"taskDefinitionArns" type:"list" json:"taskDefinitionArns,omitempty"`
 
 	metadataListTaskDefinitionsOutput `json:"-", xml:"-"`
 }
@@ -928,11 +928,11 @@ type metadataListTaskDefinitionsOutput struct {
 }
 
 type ListTasksInput struct {
-	Cluster           *string `locationName:"cluster" type:"string" json:",omitempty"`
-	ContainerInstance *string `locationName:"containerInstance" type:"string" json:",omitempty"`
-	Family            *string `locationName:"family" type:"string" json:",omitempty"`
-	MaxResults        *int    `locationName:"maxResults" type:"integer" json:",omitempty"`
-	NextToken         *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	Cluster           *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	ContainerInstance *string `locationName:"containerInstance" type:"string" json:"containerInstance,omitempty"`
+	Family            *string `locationName:"family" type:"string" json:"family,omitempty"`
+	MaxResults        *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	NextToken         *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListTasksInput `json:"-", xml:"-"`
 }
@@ -942,8 +942,8 @@ type metadataListTasksInput struct {
 }
 
 type ListTasksOutput struct {
-	NextToken *string   `locationName:"nextToken" type:"string" json:",omitempty"`
-	TaskARNs  []*string `locationName:"taskArns" type:"list" json:",omitempty"`
+	NextToken *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	TaskARNs  []*string `locationName:"taskArns" type:"list" json:"taskArns,omitempty"`
 
 	metadataListTasksOutput `json:"-", xml:"-"`
 }
@@ -953,9 +953,9 @@ type metadataListTasksOutput struct {
 }
 
 type MountPoint struct {
-	ContainerPath *string `locationName:"containerPath" type:"string" json:",omitempty"`
-	ReadOnly      *bool   `locationName:"readOnly" type:"boolean" json:",omitempty"`
-	SourceVolume  *string `locationName:"sourceVolume" type:"string" json:",omitempty"`
+	ContainerPath *string `locationName:"containerPath" type:"string" json:"containerPath,omitempty"`
+	ReadOnly      *bool   `locationName:"readOnly" type:"boolean" json:"readOnly,omitempty"`
+	SourceVolume  *string `locationName:"sourceVolume" type:"string" json:"sourceVolume,omitempty"`
 
 	metadataMountPoint `json:"-", xml:"-"`
 }
@@ -965,9 +965,9 @@ type metadataMountPoint struct {
 }
 
 type NetworkBinding struct {
-	BindIP        *string `locationName:"bindIP" type:"string" json:",omitempty"`
-	ContainerPort *int    `locationName:"containerPort" type:"integer" json:",omitempty"`
-	HostPort      *int    `locationName:"hostPort" type:"integer" json:",omitempty"`
+	BindIP        *string `locationName:"bindIP" type:"string" json:"bindIP,omitempty"`
+	ContainerPort *int    `locationName:"containerPort" type:"integer" json:"containerPort,omitempty"`
+	HostPort      *int    `locationName:"hostPort" type:"integer" json:"hostPort,omitempty"`
 
 	metadataNetworkBinding `json:"-", xml:"-"`
 }
@@ -977,8 +977,8 @@ type metadataNetworkBinding struct {
 }
 
 type PortMapping struct {
-	ContainerPort *int `locationName:"containerPort" type:"integer" json:",omitempty"`
-	HostPort      *int `locationName:"hostPort" type:"integer" json:",omitempty"`
+	ContainerPort *int `locationName:"containerPort" type:"integer" json:"containerPort,omitempty"`
+	HostPort      *int `locationName:"hostPort" type:"integer" json:"hostPort,omitempty"`
 
 	metadataPortMapping `json:"-", xml:"-"`
 }
@@ -988,10 +988,10 @@ type metadataPortMapping struct {
 }
 
 type RegisterContainerInstanceInput struct {
-	Cluster                           *string     `locationName:"cluster" type:"string" json:",omitempty"`
-	InstanceIdentityDocument          *string     `locationName:"instanceIdentityDocument" type:"string" json:",omitempty"`
-	InstanceIdentityDocumentSignature *string     `locationName:"instanceIdentityDocumentSignature" type:"string" json:",omitempty"`
-	TotalResources                    []*Resource `locationName:"totalResources" type:"list" json:",omitempty"`
+	Cluster                           *string     `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	InstanceIdentityDocument          *string     `locationName:"instanceIdentityDocument" type:"string" json:"instanceIdentityDocument,omitempty"`
+	InstanceIdentityDocumentSignature *string     `locationName:"instanceIdentityDocumentSignature" type:"string" json:"instanceIdentityDocumentSignature,omitempty"`
+	TotalResources                    []*Resource `locationName:"totalResources" type:"list" json:"totalResources,omitempty"`
 
 	metadataRegisterContainerInstanceInput `json:"-", xml:"-"`
 }
@@ -1001,7 +1001,7 @@ type metadataRegisterContainerInstanceInput struct {
 }
 
 type RegisterContainerInstanceOutput struct {
-	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure" json:",omitempty"`
+	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure" json:"containerInstance,omitempty"`
 
 	metadataRegisterContainerInstanceOutput `json:"-", xml:"-"`
 }
@@ -1011,9 +1011,9 @@ type metadataRegisterContainerInstanceOutput struct {
 }
 
 type RegisterTaskDefinitionInput struct {
-	ContainerDefinitions []*ContainerDefinition `locationName:"containerDefinitions" type:"list" json:",omitempty"`
-	Family               *string                `locationName:"family" type:"string" json:",omitempty"`
-	Volumes              []*Volume              `locationName:"volumes" type:"list" json:",omitempty"`
+	ContainerDefinitions []*ContainerDefinition `locationName:"containerDefinitions" type:"list" json:"containerDefinitions,omitempty"`
+	Family               *string                `locationName:"family" type:"string" json:"family,omitempty"`
+	Volumes              []*Volume              `locationName:"volumes" type:"list" json:"volumes,omitempty"`
 
 	metadataRegisterTaskDefinitionInput `json:"-", xml:"-"`
 }
@@ -1023,7 +1023,7 @@ type metadataRegisterTaskDefinitionInput struct {
 }
 
 type RegisterTaskDefinitionOutput struct {
-	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure" json:",omitempty"`
+	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure" json:"taskDefinition,omitempty"`
 
 	metadataRegisterTaskDefinitionOutput `json:"-", xml:"-"`
 }
@@ -1033,12 +1033,12 @@ type metadataRegisterTaskDefinitionOutput struct {
 }
 
 type Resource struct {
-	DoubleValue    *float64  `locationName:"doubleValue" type:"double" json:",omitempty"`
-	IntegerValue   *int      `locationName:"integerValue" type:"integer" json:",omitempty"`
-	LongValue      *int64    `locationName:"longValue" type:"long" json:",omitempty"`
-	Name           *string   `locationName:"name" type:"string" json:",omitempty"`
-	StringSetValue []*string `locationName:"stringSetValue" type:"list" json:",omitempty"`
-	Type           *string   `locationName:"type" type:"string" json:",omitempty"`
+	DoubleValue    *float64  `locationName:"doubleValue" type:"double" json:"doubleValue,omitempty"`
+	IntegerValue   *int      `locationName:"integerValue" type:"integer" json:"integerValue,omitempty"`
+	LongValue      *int64    `locationName:"longValue" type:"long" json:"longValue,omitempty"`
+	Name           *string   `locationName:"name" type:"string" json:"name,omitempty"`
+	StringSetValue []*string `locationName:"stringSetValue" type:"list" json:"stringSetValue,omitempty"`
+	Type           *string   `locationName:"type" type:"string" json:"type,omitempty"`
 
 	metadataResource `json:"-", xml:"-"`
 }
@@ -1048,10 +1048,10 @@ type metadataResource struct {
 }
 
 type RunTaskInput struct {
-	Cluster        *string       `locationName:"cluster" type:"string" json:",omitempty"`
-	Count          *int          `locationName:"count" type:"integer" json:",omitempty"`
-	Overrides      *TaskOverride `locationName:"overrides" type:"structure" json:",omitempty"`
-	TaskDefinition *string       `locationName:"taskDefinition" type:"string" json:",omitempty"`
+	Cluster        *string       `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	Count          *int          `locationName:"count" type:"integer" json:"count,omitempty"`
+	Overrides      *TaskOverride `locationName:"overrides" type:"structure" json:"overrides,omitempty"`
+	TaskDefinition *string       `locationName:"taskDefinition" type:"string" json:"taskDefinition,omitempty"`
 
 	metadataRunTaskInput `json:"-", xml:"-"`
 }
@@ -1061,8 +1061,8 @@ type metadataRunTaskInput struct {
 }
 
 type RunTaskOutput struct {
-	Failures []*Failure `locationName:"failures" type:"list" json:",omitempty"`
-	Tasks    []*Task    `locationName:"tasks" type:"list" json:",omitempty"`
+	Failures []*Failure `locationName:"failures" type:"list" json:"failures,omitempty"`
+	Tasks    []*Task    `locationName:"tasks" type:"list" json:"tasks,omitempty"`
 
 	metadataRunTaskOutput `json:"-", xml:"-"`
 }
@@ -1072,7 +1072,7 @@ type metadataRunTaskOutput struct {
 }
 
 type ServerException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataServerException `json:"-", xml:"-"`
 }
@@ -1082,10 +1082,10 @@ type metadataServerException struct {
 }
 
 type StartTaskInput struct {
-	Cluster            *string       `locationName:"cluster" type:"string" json:",omitempty"`
-	ContainerInstances []*string     `locationName:"containerInstances" type:"list" json:",omitempty"`
-	Overrides          *TaskOverride `locationName:"overrides" type:"structure" json:",omitempty"`
-	TaskDefinition     *string       `locationName:"taskDefinition" type:"string" json:",omitempty"`
+	Cluster            *string       `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	ContainerInstances []*string     `locationName:"containerInstances" type:"list" json:"containerInstances,omitempty"`
+	Overrides          *TaskOverride `locationName:"overrides" type:"structure" json:"overrides,omitempty"`
+	TaskDefinition     *string       `locationName:"taskDefinition" type:"string" json:"taskDefinition,omitempty"`
 
 	metadataStartTaskInput `json:"-", xml:"-"`
 }
@@ -1095,8 +1095,8 @@ type metadataStartTaskInput struct {
 }
 
 type StartTaskOutput struct {
-	Failures []*Failure `locationName:"failures" type:"list" json:",omitempty"`
-	Tasks    []*Task    `locationName:"tasks" type:"list" json:",omitempty"`
+	Failures []*Failure `locationName:"failures" type:"list" json:"failures,omitempty"`
+	Tasks    []*Task    `locationName:"tasks" type:"list" json:"tasks,omitempty"`
 
 	metadataStartTaskOutput `json:"-", xml:"-"`
 }
@@ -1106,8 +1106,8 @@ type metadataStartTaskOutput struct {
 }
 
 type StopTaskInput struct {
-	Cluster *string `locationName:"cluster" type:"string" json:",omitempty"`
-	Task    *string `locationName:"task" type:"string" json:",omitempty"`
+	Cluster *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	Task    *string `locationName:"task" type:"string" json:"task,omitempty"`
 
 	metadataStopTaskInput `json:"-", xml:"-"`
 }
@@ -1117,7 +1117,7 @@ type metadataStopTaskInput struct {
 }
 
 type StopTaskOutput struct {
-	Task *Task `locationName:"task" type:"structure" json:",omitempty"`
+	Task *Task `locationName:"task" type:"structure" json:"task,omitempty"`
 
 	metadataStopTaskOutput `json:"-", xml:"-"`
 }
@@ -1127,13 +1127,13 @@ type metadataStopTaskOutput struct {
 }
 
 type SubmitContainerStateChangeInput struct {
-	Cluster         *string           `locationName:"cluster" type:"string" json:",omitempty"`
-	ContainerName   *string           `locationName:"containerName" type:"string" json:",omitempty"`
-	ExitCode        *int              `locationName:"exitCode" type:"integer" json:",omitempty"`
-	NetworkBindings []*NetworkBinding `locationName:"networkBindings" type:"list" json:",omitempty"`
-	Reason          *string           `locationName:"reason" type:"string" json:",omitempty"`
-	Status          *string           `locationName:"status" type:"string" json:",omitempty"`
-	Task            *string           `locationName:"task" type:"string" json:",omitempty"`
+	Cluster         *string           `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	ContainerName   *string           `locationName:"containerName" type:"string" json:"containerName,omitempty"`
+	ExitCode        *int              `locationName:"exitCode" type:"integer" json:"exitCode,omitempty"`
+	NetworkBindings []*NetworkBinding `locationName:"networkBindings" type:"list" json:"networkBindings,omitempty"`
+	Reason          *string           `locationName:"reason" type:"string" json:"reason,omitempty"`
+	Status          *string           `locationName:"status" type:"string" json:"status,omitempty"`
+	Task            *string           `locationName:"task" type:"string" json:"task,omitempty"`
 
 	metadataSubmitContainerStateChangeInput `json:"-", xml:"-"`
 }
@@ -1143,7 +1143,7 @@ type metadataSubmitContainerStateChangeInput struct {
 }
 
 type SubmitContainerStateChangeOutput struct {
-	Acknowledgment *string `locationName:"acknowledgment" type:"string" json:",omitempty"`
+	Acknowledgment *string `locationName:"acknowledgment" type:"string" json:"acknowledgment,omitempty"`
 
 	metadataSubmitContainerStateChangeOutput `json:"-", xml:"-"`
 }
@@ -1153,10 +1153,10 @@ type metadataSubmitContainerStateChangeOutput struct {
 }
 
 type SubmitTaskStateChangeInput struct {
-	Cluster *string `locationName:"cluster" type:"string" json:",omitempty"`
-	Reason  *string `locationName:"reason" type:"string" json:",omitempty"`
-	Status  *string `locationName:"status" type:"string" json:",omitempty"`
-	Task    *string `locationName:"task" type:"string" json:",omitempty"`
+	Cluster *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	Reason  *string `locationName:"reason" type:"string" json:"reason,omitempty"`
+	Status  *string `locationName:"status" type:"string" json:"status,omitempty"`
+	Task    *string `locationName:"task" type:"string" json:"task,omitempty"`
 
 	metadataSubmitTaskStateChangeInput `json:"-", xml:"-"`
 }
@@ -1166,7 +1166,7 @@ type metadataSubmitTaskStateChangeInput struct {
 }
 
 type SubmitTaskStateChangeOutput struct {
-	Acknowledgment *string `locationName:"acknowledgment" type:"string" json:",omitempty"`
+	Acknowledgment *string `locationName:"acknowledgment" type:"string" json:"acknowledgment,omitempty"`
 
 	metadataSubmitTaskStateChangeOutput `json:"-", xml:"-"`
 }
@@ -1176,14 +1176,14 @@ type metadataSubmitTaskStateChangeOutput struct {
 }
 
 type Task struct {
-	ClusterARN           *string       `locationName:"clusterArn" type:"string" json:",omitempty"`
-	ContainerInstanceARN *string       `locationName:"containerInstanceArn" type:"string" json:",omitempty"`
-	Containers           []*Container  `locationName:"containers" type:"list" json:",omitempty"`
-	DesiredStatus        *string       `locationName:"desiredStatus" type:"string" json:",omitempty"`
-	LastStatus           *string       `locationName:"lastStatus" type:"string" json:",omitempty"`
-	Overrides            *TaskOverride `locationName:"overrides" type:"structure" json:",omitempty"`
-	TaskARN              *string       `locationName:"taskArn" type:"string" json:",omitempty"`
-	TaskDefinitionARN    *string       `locationName:"taskDefinitionArn" type:"string" json:",omitempty"`
+	ClusterARN           *string       `locationName:"clusterArn" type:"string" json:"clusterArn,omitempty"`
+	ContainerInstanceARN *string       `locationName:"containerInstanceArn" type:"string" json:"containerInstanceArn,omitempty"`
+	Containers           []*Container  `locationName:"containers" type:"list" json:"containers,omitempty"`
+	DesiredStatus        *string       `locationName:"desiredStatus" type:"string" json:"desiredStatus,omitempty"`
+	LastStatus           *string       `locationName:"lastStatus" type:"string" json:"lastStatus,omitempty"`
+	Overrides            *TaskOverride `locationName:"overrides" type:"structure" json:"overrides,omitempty"`
+	TaskARN              *string       `locationName:"taskArn" type:"string" json:"taskArn,omitempty"`
+	TaskDefinitionARN    *string       `locationName:"taskDefinitionArn" type:"string" json:"taskDefinitionArn,omitempty"`
 
 	metadataTask `json:"-", xml:"-"`
 }
@@ -1193,11 +1193,11 @@ type metadataTask struct {
 }
 
 type TaskDefinition struct {
-	ContainerDefinitions []*ContainerDefinition `locationName:"containerDefinitions" type:"list" json:",omitempty"`
-	Family               *string                `locationName:"family" type:"string" json:",omitempty"`
-	Revision             *int                   `locationName:"revision" type:"integer" json:",omitempty"`
-	TaskDefinitionARN    *string                `locationName:"taskDefinitionArn" type:"string" json:",omitempty"`
-	Volumes              []*Volume              `locationName:"volumes" type:"list" json:",omitempty"`
+	ContainerDefinitions []*ContainerDefinition `locationName:"containerDefinitions" type:"list" json:"containerDefinitions,omitempty"`
+	Family               *string                `locationName:"family" type:"string" json:"family,omitempty"`
+	Revision             *int                   `locationName:"revision" type:"integer" json:"revision,omitempty"`
+	TaskDefinitionARN    *string                `locationName:"taskDefinitionArn" type:"string" json:"taskDefinitionArn,omitempty"`
+	Volumes              []*Volume              `locationName:"volumes" type:"list" json:"volumes,omitempty"`
 
 	metadataTaskDefinition `json:"-", xml:"-"`
 }
@@ -1207,7 +1207,7 @@ type metadataTaskDefinition struct {
 }
 
 type TaskOverride struct {
-	ContainerOverrides []*ContainerOverride `locationName:"containerOverrides" type:"list" json:",omitempty"`
+	ContainerOverrides []*ContainerOverride `locationName:"containerOverrides" type:"list" json:"containerOverrides,omitempty"`
 
 	metadataTaskOverride `json:"-", xml:"-"`
 }
@@ -1217,8 +1217,8 @@ type metadataTaskOverride struct {
 }
 
 type Volume struct {
-	Host *HostVolumeProperties `locationName:"host" type:"structure" json:",omitempty"`
-	Name *string               `locationName:"name" type:"string" json:",omitempty"`
+	Host *HostVolumeProperties `locationName:"host" type:"structure" json:"host,omitempty"`
+	Name *string               `locationName:"name" type:"string" json:"name,omitempty"`
 
 	metadataVolume `json:"-", xml:"-"`
 }
@@ -1228,8 +1228,8 @@ type metadataVolume struct {
 }
 
 type VolumeFrom struct {
-	ReadOnly        *bool   `locationName:"readOnly" type:"boolean" json:",omitempty"`
-	SourceContainer *string `locationName:"sourceContainer" type:"string" json:",omitempty"`
+	ReadOnly        *bool   `locationName:"readOnly" type:"boolean" json:"readOnly,omitempty"`
+	SourceContainer *string `locationName:"sourceContainer" type:"string" json:"sourceContainer,omitempty"`
 
 	metadataVolumeFrom `json:"-", xml:"-"`
 }

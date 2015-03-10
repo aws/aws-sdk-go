@@ -352,7 +352,7 @@ type metadataDeleteStreamInput struct {
 }
 
 type DescribeStreamInput struct {
-	ExclusiveStartShardID *string `locationName:"ExclusiveStartShardId" type:"string" json:",omitempty"`
+	ExclusiveStartShardID *string `locationName:"ExclusiveStartShardId" type:"string" json:"ExclusiveStartShardId,omitempty"`
 	Limit                 *int    `type:"integer" json:",omitempty"`
 	StreamName            *string `type:"string" json:",omitempty"`
 
@@ -374,7 +374,7 @@ type metadataDescribeStreamOutput struct {
 }
 
 type ExpiredIteratorException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataExpiredIteratorException `json:"-", xml:"-"`
 }
@@ -406,7 +406,7 @@ type metadataGetRecordsOutput struct {
 }
 
 type GetShardIteratorInput struct {
-	ShardID                *string `locationName:"ShardId" type:"string" json:",omitempty"`
+	ShardID                *string `locationName:"ShardId" type:"string" json:"ShardId,omitempty"`
 	ShardIteratorType      *string `type:"string" json:",omitempty"`
 	StartingSequenceNumber *string `type:"string" json:",omitempty"`
 	StreamName             *string `type:"string" json:",omitempty"`
@@ -440,7 +440,7 @@ type metadataHashKeyRange struct {
 }
 
 type InvalidArgumentException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataInvalidArgumentException `json:"-", xml:"-"`
 }
@@ -450,7 +450,7 @@ type metadataInvalidArgumentException struct {
 }
 
 type LimitExceededException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataLimitExceededException `json:"-", xml:"-"`
 }
@@ -517,7 +517,7 @@ type metadataMergeShardsInput struct {
 }
 
 type ProvisionedThroughputExceededException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataProvisionedThroughputExceededException `json:"-", xml:"-"`
 }
@@ -542,7 +542,7 @@ type metadataPutRecordInput struct {
 
 type PutRecordOutput struct {
 	SequenceNumber *string `type:"string" json:",omitempty"`
-	ShardID        *string `locationName:"ShardId" type:"string" json:",omitempty"`
+	ShardID        *string `locationName:"ShardId" type:"string" json:"ShardId,omitempty"`
 
 	metadataPutRecordOutput `json:"-", xml:"-"`
 }
@@ -589,7 +589,7 @@ type PutRecordsResultEntry struct {
 	ErrorCode      *string `type:"string" json:",omitempty"`
 	ErrorMessage   *string `type:"string" json:",omitempty"`
 	SequenceNumber *string `type:"string" json:",omitempty"`
-	ShardID        *string `locationName:"ShardId" type:"string" json:",omitempty"`
+	ShardID        *string `locationName:"ShardId" type:"string" json:"ShardId,omitempty"`
 
 	metadataPutRecordsResultEntry `json:"-", xml:"-"`
 }
@@ -622,7 +622,7 @@ type metadataRemoveTagsFromStreamInput struct {
 }
 
 type ResourceInUseException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataResourceInUseException `json:"-", xml:"-"`
 }
@@ -632,7 +632,7 @@ type metadataResourceInUseException struct {
 }
 
 type ResourceNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:",omitempty"`
+	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
 	metadataResourceNotFoundException `json:"-", xml:"-"`
 }
@@ -653,11 +653,11 @@ type metadataSequenceNumberRange struct {
 }
 
 type Shard struct {
-	AdjacentParentShardID *string              `locationName:"AdjacentParentShardId" type:"string" json:",omitempty"`
+	AdjacentParentShardID *string              `locationName:"AdjacentParentShardId" type:"string" json:"AdjacentParentShardId,omitempty"`
 	HashKeyRange          *HashKeyRange        `type:"structure" json:",omitempty"`
-	ParentShardID         *string              `locationName:"ParentShardId" type:"string" json:",omitempty"`
+	ParentShardID         *string              `locationName:"ParentShardId" type:"string" json:"ParentShardId,omitempty"`
 	SequenceNumberRange   *SequenceNumberRange `type:"structure" json:",omitempty"`
-	ShardID               *string              `locationName:"ShardId" type:"string" json:",omitempty"`
+	ShardID               *string              `locationName:"ShardId" type:"string" json:"ShardId,omitempty"`
 
 	metadataShard `json:"-", xml:"-"`
 }

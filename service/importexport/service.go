@@ -1,9 +1,9 @@
 package importexport
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/query"
 	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/query"
+	"github.com/awslabs/aws-sdk-go/aws"
 )
 
 // ImportExport is a client for AWS Import/Export.
