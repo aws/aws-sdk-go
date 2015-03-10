@@ -440,8 +440,8 @@ type metadataCloudHSMInternalException struct {
 }
 
 type CloudHSMServiceException struct {
-	Message   *string `locationName:"message" type:"string" json:",omitempty"`
-	Retryable *bool   `locationName:"retryable" type:"boolean" json:",omitempty"`
+	Message   *string `locationName:"message" type:"string" json:"message,omitempty"`
+	Retryable *bool   `locationName:"retryable" type:"boolean" json:"retryable,omitempty"`
 
 	metadataCloudHSMServiceException `json:"-", xml:"-"`
 }
@@ -461,7 +461,7 @@ type metadataCreateHAPGInput struct {
 }
 
 type CreateHAPGOutput struct {
-	HAPGARN *string `locationName:"HapgArn" type:"string" json:",omitempty"`
+	HAPGARN *string `locationName:"HapgArn" type:"string" json:"HapgArn,omitempty"`
 
 	metadataCreateHAPGOutput `json:"-", xml:"-"`
 }
@@ -471,14 +471,14 @@ type metadataCreateHAPGOutput struct {
 }
 
 type CreateHSMInput struct {
-	ClientToken      *string `locationName:"ClientToken" type:"string" json:",omitempty"`
-	ENIIP            *string `locationName:"EniIp" type:"string" json:",omitempty"`
-	ExternalID       *string `locationName:"ExternalId" type:"string" json:",omitempty"`
-	IAMRoleARN       *string `locationName:"IamRoleArn" type:"string" json:",omitempty"`
-	SSHKey           *string `locationName:"SshKey" type:"string" json:",omitempty"`
-	SubnetID         *string `locationName:"SubnetId" type:"string" json:",omitempty"`
-	SubscriptionType *string `locationName:"SubscriptionType" type:"string" json:",omitempty"`
-	SyslogIP         *string `locationName:"SyslogIp" type:"string" json:",omitempty"`
+	ClientToken      *string `locationName:"ClientToken" type:"string" json:"ClientToken,omitempty"`
+	ENIIP            *string `locationName:"EniIp" type:"string" json:"EniIp,omitempty"`
+	ExternalID       *string `locationName:"ExternalId" type:"string" json:"ExternalId,omitempty"`
+	IAMRoleARN       *string `locationName:"IamRoleArn" type:"string" json:"IamRoleArn,omitempty"`
+	SSHKey           *string `locationName:"SshKey" type:"string" json:"SshKey,omitempty"`
+	SubnetID         *string `locationName:"SubnetId" type:"string" json:"SubnetId,omitempty"`
+	SubscriptionType *string `locationName:"SubscriptionType" type:"string" json:"SubscriptionType,omitempty"`
+	SyslogIP         *string `locationName:"SyslogIp" type:"string" json:"SyslogIp,omitempty"`
 
 	metadataCreateHSMInput `json:"-", xml:"-"`
 }
@@ -488,7 +488,7 @@ type metadataCreateHSMInput struct {
 }
 
 type CreateHSMOutput struct {
-	HSMARN *string `locationName:"HsmArn" type:"string" json:",omitempty"`
+	HSMARN *string `locationName:"HsmArn" type:"string" json:"HsmArn,omitempty"`
 
 	metadataCreateHSMOutput `json:"-", xml:"-"`
 }
@@ -509,7 +509,7 @@ type metadataCreateLunaClientInput struct {
 }
 
 type CreateLunaClientOutput struct {
-	ClientARN *string `locationName:"ClientArn" type:"string" json:",omitempty"`
+	ClientARN *string `locationName:"ClientArn" type:"string" json:"ClientArn,omitempty"`
 
 	metadataCreateLunaClientOutput `json:"-", xml:"-"`
 }
@@ -519,7 +519,7 @@ type metadataCreateLunaClientOutput struct {
 }
 
 type DeleteHAPGInput struct {
-	HAPGARN *string `locationName:"HapgArn" type:"string" json:",omitempty"`
+	HAPGARN *string `locationName:"HapgArn" type:"string" json:"HapgArn,omitempty"`
 
 	metadataDeleteHAPGInput `json:"-", xml:"-"`
 }
@@ -539,7 +539,7 @@ type metadataDeleteHAPGOutput struct {
 }
 
 type DeleteHSMInput struct {
-	HSMARN *string `locationName:"HsmArn" type:"string" json:",omitempty"`
+	HSMARN *string `locationName:"HsmArn" type:"string" json:"HsmArn,omitempty"`
 
 	metadataDeleteHSMInput `json:"-", xml:"-"`
 }
@@ -559,7 +559,7 @@ type metadataDeleteHSMOutput struct {
 }
 
 type DeleteLunaClientInput struct {
-	ClientARN *string `locationName:"ClientArn" type:"string" json:",omitempty"`
+	ClientARN *string `locationName:"ClientArn" type:"string" json:"ClientArn,omitempty"`
 
 	metadataDeleteLunaClientInput `json:"-", xml:"-"`
 }
@@ -579,7 +579,7 @@ type metadataDeleteLunaClientOutput struct {
 }
 
 type DescribeHAPGInput struct {
-	HAPGARN *string `locationName:"HapgArn" type:"string" json:",omitempty"`
+	HAPGARN *string `locationName:"HapgArn" type:"string" json:"HapgArn,omitempty"`
 
 	metadataDescribeHAPGInput `json:"-", xml:"-"`
 }
@@ -589,11 +589,11 @@ type metadataDescribeHAPGInput struct {
 }
 
 type DescribeHAPGOutput struct {
-	HAPGARN                 *string   `locationName:"HapgArn" type:"string" json:",omitempty"`
-	HAPGSerial              *string   `locationName:"HapgSerial" type:"string" json:",omitempty"`
-	HSMsLastActionFailed    []*string `locationName:"HsmsLastActionFailed" type:"list" json:",omitempty"`
-	HSMsPendingDeletion     []*string `locationName:"HsmsPendingDeletion" type:"list" json:",omitempty"`
-	HSMsPendingRegistration []*string `locationName:"HsmsPendingRegistration" type:"list" json:",omitempty"`
+	HAPGARN                 *string   `locationName:"HapgArn" type:"string" json:"HapgArn,omitempty"`
+	HAPGSerial              *string   `locationName:"HapgSerial" type:"string" json:"HapgSerial,omitempty"`
+	HSMsLastActionFailed    []*string `locationName:"HsmsLastActionFailed" type:"list" json:"HsmsLastActionFailed,omitempty"`
+	HSMsPendingDeletion     []*string `locationName:"HsmsPendingDeletion" type:"list" json:"HsmsPendingDeletion,omitempty"`
+	HSMsPendingRegistration []*string `locationName:"HsmsPendingRegistration" type:"list" json:"HsmsPendingRegistration,omitempty"`
 	Label                   *string   `type:"string" json:",omitempty"`
 	LastModifiedTimestamp   *string   `type:"string" json:",omitempty"`
 	PartitionSerialList     []*string `type:"list" json:",omitempty"`
@@ -607,8 +607,8 @@ type metadataDescribeHAPGOutput struct {
 }
 
 type DescribeHSMInput struct {
-	HSMARN          *string `locationName:"HsmArn" type:"string" json:",omitempty"`
-	HSMSerialNumber *string `locationName:"HsmSerialNumber" type:"string" json:",omitempty"`
+	HSMARN          *string `locationName:"HsmArn" type:"string" json:"HsmArn,omitempty"`
+	HSMSerialNumber *string `locationName:"HsmSerialNumber" type:"string" json:"HsmSerialNumber,omitempty"`
 
 	metadataDescribeHSMInput `json:"-", xml:"-"`
 }
@@ -619,25 +619,25 @@ type metadataDescribeHSMInput struct {
 
 type DescribeHSMOutput struct {
 	AvailabilityZone      *string   `type:"string" json:",omitempty"`
-	ENIID                 *string   `locationName:"EniId" type:"string" json:",omitempty"`
-	ENIIP                 *string   `locationName:"EniIp" type:"string" json:",omitempty"`
-	HSMARN                *string   `locationName:"HsmArn" type:"string" json:",omitempty"`
-	HSMType               *string   `locationName:"HsmType" type:"string" json:",omitempty"`
-	IAMRoleARN            *string   `locationName:"IamRoleArn" type:"string" json:",omitempty"`
+	ENIID                 *string   `locationName:"EniId" type:"string" json:"EniId,omitempty"`
+	ENIIP                 *string   `locationName:"EniIp" type:"string" json:"EniIp,omitempty"`
+	HSMARN                *string   `locationName:"HsmArn" type:"string" json:"HsmArn,omitempty"`
+	HSMType               *string   `locationName:"HsmType" type:"string" json:"HsmType,omitempty"`
+	IAMRoleARN            *string   `locationName:"IamRoleArn" type:"string" json:"IamRoleArn,omitempty"`
 	Partitions            []*string `type:"list" json:",omitempty"`
-	SSHKeyLastUpdated     *string   `locationName:"SshKeyLastUpdated" type:"string" json:",omitempty"`
-	SSHPublicKey          *string   `locationName:"SshPublicKey" type:"string" json:",omitempty"`
+	SSHKeyLastUpdated     *string   `locationName:"SshKeyLastUpdated" type:"string" json:"SshKeyLastUpdated,omitempty"`
+	SSHPublicKey          *string   `locationName:"SshPublicKey" type:"string" json:"SshPublicKey,omitempty"`
 	SerialNumber          *string   `type:"string" json:",omitempty"`
 	ServerCertLastUpdated *string   `type:"string" json:",omitempty"`
-	ServerCertURI         *string   `locationName:"ServerCertUri" type:"string" json:",omitempty"`
+	ServerCertURI         *string   `locationName:"ServerCertUri" type:"string" json:"ServerCertUri,omitempty"`
 	SoftwareVersion       *string   `type:"string" json:",omitempty"`
 	Status                *string   `type:"string" json:",omitempty"`
 	StatusDetails         *string   `type:"string" json:",omitempty"`
-	SubnetID              *string   `locationName:"SubnetId" type:"string" json:",omitempty"`
+	SubnetID              *string   `locationName:"SubnetId" type:"string" json:"SubnetId,omitempty"`
 	SubscriptionEndDate   *string   `type:"string" json:",omitempty"`
 	SubscriptionStartDate *string   `type:"string" json:",omitempty"`
 	SubscriptionType      *string   `type:"string" json:",omitempty"`
-	VPCID                 *string   `locationName:"VpcId" type:"string" json:",omitempty"`
+	VPCID                 *string   `locationName:"VpcId" type:"string" json:"VpcId,omitempty"`
 	VendorName            *string   `type:"string" json:",omitempty"`
 
 	metadataDescribeHSMOutput `json:"-", xml:"-"`
@@ -649,7 +649,7 @@ type metadataDescribeHSMOutput struct {
 
 type DescribeLunaClientInput struct {
 	CertificateFingerprint *string `type:"string" json:",omitempty"`
-	ClientARN              *string `locationName:"ClientArn" type:"string" json:",omitempty"`
+	ClientARN              *string `locationName:"ClientArn" type:"string" json:"ClientArn,omitempty"`
 
 	metadataDescribeLunaClientInput `json:"-", xml:"-"`
 }
@@ -661,7 +661,7 @@ type metadataDescribeLunaClientInput struct {
 type DescribeLunaClientOutput struct {
 	Certificate            *string `type:"string" json:",omitempty"`
 	CertificateFingerprint *string `type:"string" json:",omitempty"`
-	ClientARN              *string `locationName:"ClientArn" type:"string" json:",omitempty"`
+	ClientARN              *string `locationName:"ClientArn" type:"string" json:"ClientArn,omitempty"`
 	Label                  *string `type:"string" json:",omitempty"`
 	LastModifiedTimestamp  *string `type:"string" json:",omitempty"`
 
@@ -673,9 +673,9 @@ type metadataDescribeLunaClientOutput struct {
 }
 
 type GetConfigInput struct {
-	ClientARN     *string   `locationName:"ClientArn" type:"string" json:",omitempty"`
+	ClientARN     *string   `locationName:"ClientArn" type:"string" json:"ClientArn,omitempty"`
 	ClientVersion *string   `type:"string" json:",omitempty"`
-	HAPGList      []*string `locationName:"HapgList" type:"list" json:",omitempty"`
+	HAPGList      []*string `locationName:"HapgList" type:"list" json:"HapgList,omitempty"`
 
 	metadataGetConfigInput `json:"-", xml:"-"`
 }
@@ -733,7 +733,7 @@ type metadataListHSMsInput struct {
 }
 
 type ListHSMsOutput struct {
-	HSMList   []*string `locationName:"HsmList" type:"list" json:",omitempty"`
+	HSMList   []*string `locationName:"HsmList" type:"list" json:"HsmList,omitempty"`
 	NextToken *string   `type:"string" json:",omitempty"`
 
 	metadataListHSMsOutput `json:"-", xml:"-"`
@@ -754,7 +754,7 @@ type metadataListHapgsInput struct {
 }
 
 type ListHapgsOutput struct {
-	HAPGList  []*string `locationName:"HapgList" type:"list" json:",omitempty"`
+	HAPGList  []*string `locationName:"HapgList" type:"list" json:"HapgList,omitempty"`
 	NextToken *string   `type:"string" json:",omitempty"`
 
 	metadataListHapgsOutput `json:"-", xml:"-"`
@@ -786,7 +786,7 @@ type metadataListLunaClientsOutput struct {
 }
 
 type ModifyHAPGInput struct {
-	HAPGARN             *string   `locationName:"HapgArn" type:"string" json:",omitempty"`
+	HAPGARN             *string   `locationName:"HapgArn" type:"string" json:"HapgArn,omitempty"`
 	Label               *string   `type:"string" json:",omitempty"`
 	PartitionSerialList []*string `type:"list" json:",omitempty"`
 
@@ -798,7 +798,7 @@ type metadataModifyHAPGInput struct {
 }
 
 type ModifyHAPGOutput struct {
-	HAPGARN *string `locationName:"HapgArn" type:"string" json:",omitempty"`
+	HAPGARN *string `locationName:"HapgArn" type:"string" json:"HapgArn,omitempty"`
 
 	metadataModifyHAPGOutput `json:"-", xml:"-"`
 }
@@ -808,12 +808,12 @@ type metadataModifyHAPGOutput struct {
 }
 
 type ModifyHSMInput struct {
-	ENIIP      *string `locationName:"EniIp" type:"string" json:",omitempty"`
-	ExternalID *string `locationName:"ExternalId" type:"string" json:",omitempty"`
-	HSMARN     *string `locationName:"HsmArn" type:"string" json:",omitempty"`
-	IAMRoleARN *string `locationName:"IamRoleArn" type:"string" json:",omitempty"`
-	SubnetID   *string `locationName:"SubnetId" type:"string" json:",omitempty"`
-	SyslogIP   *string `locationName:"SyslogIp" type:"string" json:",omitempty"`
+	ENIIP      *string `locationName:"EniIp" type:"string" json:"EniIp,omitempty"`
+	ExternalID *string `locationName:"ExternalId" type:"string" json:"ExternalId,omitempty"`
+	HSMARN     *string `locationName:"HsmArn" type:"string" json:"HsmArn,omitempty"`
+	IAMRoleARN *string `locationName:"IamRoleArn" type:"string" json:"IamRoleArn,omitempty"`
+	SubnetID   *string `locationName:"SubnetId" type:"string" json:"SubnetId,omitempty"`
+	SyslogIP   *string `locationName:"SyslogIp" type:"string" json:"SyslogIp,omitempty"`
 
 	metadataModifyHSMInput `json:"-", xml:"-"`
 }
@@ -823,7 +823,7 @@ type metadataModifyHSMInput struct {
 }
 
 type ModifyHSMOutput struct {
-	HSMARN *string `locationName:"HsmArn" type:"string" json:",omitempty"`
+	HSMARN *string `locationName:"HsmArn" type:"string" json:"HsmArn,omitempty"`
 
 	metadataModifyHSMOutput `json:"-", xml:"-"`
 }
@@ -834,7 +834,7 @@ type metadataModifyHSMOutput struct {
 
 type ModifyLunaClientInput struct {
 	Certificate *string `type:"string" json:",omitempty"`
-	ClientARN   *string `locationName:"ClientArn" type:"string" json:",omitempty"`
+	ClientARN   *string `locationName:"ClientArn" type:"string" json:"ClientArn,omitempty"`
 
 	metadataModifyLunaClientInput `json:"-", xml:"-"`
 }
@@ -844,7 +844,7 @@ type metadataModifyLunaClientInput struct {
 }
 
 type ModifyLunaClientOutput struct {
-	ClientARN *string `locationName:"ClientArn" type:"string" json:",omitempty"`
+	ClientARN *string `locationName:"ClientArn" type:"string" json:"ClientArn,omitempty"`
 
 	metadataModifyLunaClientOutput `json:"-", xml:"-"`
 }

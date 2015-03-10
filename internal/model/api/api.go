@@ -128,8 +128,23 @@ func (a *API) importsGoCode() string {
 		return ""
 	}
 
-	code := "import (\n"
+	corePkgs, extPkgs := []string{}, []string{}
 	for i, _ := range a.imports {
+		if strings.Contains(i, ".") {
+			extPkgs = append(extPkgs, i)
+		} else {
+			corePkgs = append(corePkgs, i)
+		}
+	}
+	sort.Strings(corePkgs)
+	sort.Strings(extPkgs)
+
+	code := "import (\n"
+	for _, i := range corePkgs {
+		code += fmt.Sprintf("\t%q\n", i)
+	}
+	code += "\n"
+	for _, i := range extPkgs {
 		code += fmt.Sprintf("\t%q\n", i)
 	}
 	code += ")\n\n"

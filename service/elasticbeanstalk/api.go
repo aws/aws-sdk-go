@@ -4,6 +4,7 @@ package elasticbeanstalk
 
 import (
 	"time"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
@@ -738,7 +739,7 @@ type ApplicationDescriptionMessage struct {
 }
 
 type metadataApplicationDescriptionMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"UpdateApplicationResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateApplicationResult"`
 }
 
 type ApplicationDescriptionsMessage struct {
@@ -875,7 +876,7 @@ type ConfigurationSettingsDescription struct {
 }
 
 type metadataConfigurationSettingsDescription struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"UpdateConfigurationTemplateResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateConfigurationTemplateResult"`
 }
 
 type ConfigurationSettingsDescriptions struct {
@@ -1128,7 +1129,7 @@ type EnvironmentDescription struct {
 }
 
 type metadataEnvironmentDescription struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateEnvironmentResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"TerminateEnvironmentResult"`
 }
 
 type EnvironmentDescriptionsMessage struct {

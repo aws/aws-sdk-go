@@ -4,6 +4,7 @@ package elb
 
 import (
 	"time"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 

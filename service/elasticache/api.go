@@ -4,6 +4,7 @@ package elasticache
 
 import (
 	"time"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
@@ -2518,7 +2519,7 @@ type TagListMessage struct {
 }
 
 type metadataTagListMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AddTagsToResourceResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"RemoveTagsFromResourceResult"`
 }
 
 type TagNotFoundFault struct {

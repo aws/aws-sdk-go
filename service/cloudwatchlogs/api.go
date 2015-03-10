@@ -341,7 +341,7 @@ func (c *CloudWatchLogs) TestMetricFilter(input *TestMetricFilterInput) (output 
 var opTestMetricFilter *aws.Operation
 
 type CreateLogGroupInput struct {
-	LogGroupName *string `locationName:"logGroupName" type:"string" json:",omitempty"`
+	LogGroupName *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
 
 	metadataCreateLogGroupInput `json:"-", xml:"-"`
 }
@@ -351,8 +351,8 @@ type metadataCreateLogGroupInput struct {
 }
 
 type CreateLogStreamInput struct {
-	LogGroupName  *string `locationName:"logGroupName" type:"string" json:",omitempty"`
-	LogStreamName *string `locationName:"logStreamName" type:"string" json:",omitempty"`
+	LogGroupName  *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
+	LogStreamName *string `locationName:"logStreamName" type:"string" json:"logStreamName,omitempty"`
 
 	metadataCreateLogStreamInput `json:"-", xml:"-"`
 }
@@ -362,7 +362,7 @@ type metadataCreateLogStreamInput struct {
 }
 
 type DataAlreadyAcceptedException struct {
-	ExpectedSequenceToken *string `locationName:"expectedSequenceToken" type:"string" json:",omitempty"`
+	ExpectedSequenceToken *string `locationName:"expectedSequenceToken" type:"string" json:"expectedSequenceToken,omitempty"`
 
 	metadataDataAlreadyAcceptedException `json:"-", xml:"-"`
 }
@@ -372,7 +372,7 @@ type metadataDataAlreadyAcceptedException struct {
 }
 
 type DeleteLogGroupInput struct {
-	LogGroupName *string `locationName:"logGroupName" type:"string" json:",omitempty"`
+	LogGroupName *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
 
 	metadataDeleteLogGroupInput `json:"-", xml:"-"`
 }
@@ -382,8 +382,8 @@ type metadataDeleteLogGroupInput struct {
 }
 
 type DeleteLogStreamInput struct {
-	LogGroupName  *string `locationName:"logGroupName" type:"string" json:",omitempty"`
-	LogStreamName *string `locationName:"logStreamName" type:"string" json:",omitempty"`
+	LogGroupName  *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
+	LogStreamName *string `locationName:"logStreamName" type:"string" json:"logStreamName,omitempty"`
 
 	metadataDeleteLogStreamInput `json:"-", xml:"-"`
 }
@@ -393,8 +393,8 @@ type metadataDeleteLogStreamInput struct {
 }
 
 type DeleteMetricFilterInput struct {
-	FilterName   *string `locationName:"filterName" type:"string" json:",omitempty"`
-	LogGroupName *string `locationName:"logGroupName" type:"string" json:",omitempty"`
+	FilterName   *string `locationName:"filterName" type:"string" json:"filterName,omitempty"`
+	LogGroupName *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
 
 	metadataDeleteMetricFilterInput `json:"-", xml:"-"`
 }
@@ -404,7 +404,7 @@ type metadataDeleteMetricFilterInput struct {
 }
 
 type DeleteRetentionPolicyInput struct {
-	LogGroupName *string `locationName:"logGroupName" type:"string" json:",omitempty"`
+	LogGroupName *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
 
 	metadataDeleteRetentionPolicyInput `json:"-", xml:"-"`
 }
@@ -414,9 +414,9 @@ type metadataDeleteRetentionPolicyInput struct {
 }
 
 type DescribeLogGroupsInput struct {
-	Limit              *int    `locationName:"limit" type:"integer" json:",omitempty"`
-	LogGroupNamePrefix *string `locationName:"logGroupNamePrefix" type:"string" json:",omitempty"`
-	NextToken          *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	Limit              *int    `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	LogGroupNamePrefix *string `locationName:"logGroupNamePrefix" type:"string" json:"logGroupNamePrefix,omitempty"`
+	NextToken          *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeLogGroupsInput `json:"-", xml:"-"`
 }
@@ -426,8 +426,8 @@ type metadataDescribeLogGroupsInput struct {
 }
 
 type DescribeLogGroupsOutput struct {
-	LogGroups []*LogGroup `locationName:"logGroups" type:"list" json:",omitempty"`
-	NextToken *string     `locationName:"nextToken" type:"string" json:",omitempty"`
+	LogGroups []*LogGroup `locationName:"logGroups" type:"list" json:"logGroups,omitempty"`
+	NextToken *string     `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeLogGroupsOutput `json:"-", xml:"-"`
 }
@@ -437,10 +437,10 @@ type metadataDescribeLogGroupsOutput struct {
 }
 
 type DescribeLogStreamsInput struct {
-	Limit               *int    `locationName:"limit" type:"integer" json:",omitempty"`
-	LogGroupName        *string `locationName:"logGroupName" type:"string" json:",omitempty"`
-	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" type:"string" json:",omitempty"`
-	NextToken           *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	Limit               *int    `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	LogGroupName        *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
+	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" type:"string" json:"logStreamNamePrefix,omitempty"`
+	NextToken           *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeLogStreamsInput `json:"-", xml:"-"`
 }
@@ -450,8 +450,8 @@ type metadataDescribeLogStreamsInput struct {
 }
 
 type DescribeLogStreamsOutput struct {
-	LogStreams []*LogStream `locationName:"logStreams" type:"list" json:",omitempty"`
-	NextToken  *string      `locationName:"nextToken" type:"string" json:",omitempty"`
+	LogStreams []*LogStream `locationName:"logStreams" type:"list" json:"logStreams,omitempty"`
+	NextToken  *string      `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeLogStreamsOutput `json:"-", xml:"-"`
 }
@@ -461,10 +461,10 @@ type metadataDescribeLogStreamsOutput struct {
 }
 
 type DescribeMetricFiltersInput struct {
-	FilterNamePrefix *string `locationName:"filterNamePrefix" type:"string" json:",omitempty"`
-	Limit            *int    `locationName:"limit" type:"integer" json:",omitempty"`
-	LogGroupName     *string `locationName:"logGroupName" type:"string" json:",omitempty"`
-	NextToken        *string `locationName:"nextToken" type:"string" json:",omitempty"`
+	FilterNamePrefix *string `locationName:"filterNamePrefix" type:"string" json:"filterNamePrefix,omitempty"`
+	Limit            *int    `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	LogGroupName     *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
+	NextToken        *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeMetricFiltersInput `json:"-", xml:"-"`
 }
@@ -474,8 +474,8 @@ type metadataDescribeMetricFiltersInput struct {
 }
 
 type DescribeMetricFiltersOutput struct {
-	MetricFilters []*MetricFilter `locationName:"metricFilters" type:"list" json:",omitempty"`
-	NextToken     *string         `locationName:"nextToken" type:"string" json:",omitempty"`
+	MetricFilters []*MetricFilter `locationName:"metricFilters" type:"list" json:"metricFilters,omitempty"`
+	NextToken     *string         `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeMetricFiltersOutput `json:"-", xml:"-"`
 }
@@ -485,13 +485,13 @@ type metadataDescribeMetricFiltersOutput struct {
 }
 
 type GetLogEventsInput struct {
-	EndTime       *int64  `locationName:"endTime" type:"long" json:",omitempty"`
-	Limit         *int    `locationName:"limit" type:"integer" json:",omitempty"`
-	LogGroupName  *string `locationName:"logGroupName" type:"string" json:",omitempty"`
-	LogStreamName *string `locationName:"logStreamName" type:"string" json:",omitempty"`
-	NextToken     *string `locationName:"nextToken" type:"string" json:",omitempty"`
-	StartFromHead *bool   `locationName:"startFromHead" type:"boolean" json:",omitempty"`
-	StartTime     *int64  `locationName:"startTime" type:"long" json:",omitempty"`
+	EndTime       *int64  `locationName:"endTime" type:"long" json:"endTime,omitempty"`
+	Limit         *int    `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	LogGroupName  *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
+	LogStreamName *string `locationName:"logStreamName" type:"string" json:"logStreamName,omitempty"`
+	NextToken     *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	StartFromHead *bool   `locationName:"startFromHead" type:"boolean" json:"startFromHead,omitempty"`
+	StartTime     *int64  `locationName:"startTime" type:"long" json:"startTime,omitempty"`
 
 	metadataGetLogEventsInput `json:"-", xml:"-"`
 }
@@ -501,9 +501,9 @@ type metadataGetLogEventsInput struct {
 }
 
 type GetLogEventsOutput struct {
-	Events            []*OutputLogEvent `locationName:"events" type:"list" json:",omitempty"`
-	NextBackwardToken *string           `locationName:"nextBackwardToken" type:"string" json:",omitempty"`
-	NextForwardToken  *string           `locationName:"nextForwardToken" type:"string" json:",omitempty"`
+	Events            []*OutputLogEvent `locationName:"events" type:"list" json:"events,omitempty"`
+	NextBackwardToken *string           `locationName:"nextBackwardToken" type:"string" json:"nextBackwardToken,omitempty"`
+	NextForwardToken  *string           `locationName:"nextForwardToken" type:"string" json:"nextForwardToken,omitempty"`
 
 	metadataGetLogEventsOutput `json:"-", xml:"-"`
 }
@@ -513,8 +513,8 @@ type metadataGetLogEventsOutput struct {
 }
 
 type InputLogEvent struct {
-	Message   *string `locationName:"message" type:"string" json:",omitempty"`
-	Timestamp *int64  `locationName:"timestamp" type:"long" json:",omitempty"`
+	Message   *string `locationName:"message" type:"string" json:"message,omitempty"`
+	Timestamp *int64  `locationName:"timestamp" type:"long" json:"timestamp,omitempty"`
 
 	metadataInputLogEvent `json:"-", xml:"-"`
 }
@@ -532,7 +532,7 @@ type metadataInvalidParameterException struct {
 }
 
 type InvalidSequenceTokenException struct {
-	ExpectedSequenceToken *string `locationName:"expectedSequenceToken" type:"string" json:",omitempty"`
+	ExpectedSequenceToken *string `locationName:"expectedSequenceToken" type:"string" json:"expectedSequenceToken,omitempty"`
 
 	metadataInvalidSequenceTokenException `json:"-", xml:"-"`
 }
@@ -550,12 +550,12 @@ type metadataLimitExceededException struct {
 }
 
 type LogGroup struct {
-	ARN               *string `locationName:"arn" type:"string" json:",omitempty"`
-	CreationTime      *int64  `locationName:"creationTime" type:"long" json:",omitempty"`
-	LogGroupName      *string `locationName:"logGroupName" type:"string" json:",omitempty"`
-	MetricFilterCount *int    `locationName:"metricFilterCount" type:"integer" json:",omitempty"`
-	RetentionInDays   *int    `locationName:"retentionInDays" type:"integer" json:",omitempty"`
-	StoredBytes       *int64  `locationName:"storedBytes" type:"long" json:",omitempty"`
+	ARN               *string `locationName:"arn" type:"string" json:"arn,omitempty"`
+	CreationTime      *int64  `locationName:"creationTime" type:"long" json:"creationTime,omitempty"`
+	LogGroupName      *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
+	MetricFilterCount *int    `locationName:"metricFilterCount" type:"integer" json:"metricFilterCount,omitempty"`
+	RetentionInDays   *int    `locationName:"retentionInDays" type:"integer" json:"retentionInDays,omitempty"`
+	StoredBytes       *int64  `locationName:"storedBytes" type:"long" json:"storedBytes,omitempty"`
 
 	metadataLogGroup `json:"-", xml:"-"`
 }
@@ -565,14 +565,14 @@ type metadataLogGroup struct {
 }
 
 type LogStream struct {
-	ARN                 *string `locationName:"arn" type:"string" json:",omitempty"`
-	CreationTime        *int64  `locationName:"creationTime" type:"long" json:",omitempty"`
-	FirstEventTimestamp *int64  `locationName:"firstEventTimestamp" type:"long" json:",omitempty"`
-	LastEventTimestamp  *int64  `locationName:"lastEventTimestamp" type:"long" json:",omitempty"`
-	LastIngestionTime   *int64  `locationName:"lastIngestionTime" type:"long" json:",omitempty"`
-	LogStreamName       *string `locationName:"logStreamName" type:"string" json:",omitempty"`
-	StoredBytes         *int64  `locationName:"storedBytes" type:"long" json:",omitempty"`
-	UploadSequenceToken *string `locationName:"uploadSequenceToken" type:"string" json:",omitempty"`
+	ARN                 *string `locationName:"arn" type:"string" json:"arn,omitempty"`
+	CreationTime        *int64  `locationName:"creationTime" type:"long" json:"creationTime,omitempty"`
+	FirstEventTimestamp *int64  `locationName:"firstEventTimestamp" type:"long" json:"firstEventTimestamp,omitempty"`
+	LastEventTimestamp  *int64  `locationName:"lastEventTimestamp" type:"long" json:"lastEventTimestamp,omitempty"`
+	LastIngestionTime   *int64  `locationName:"lastIngestionTime" type:"long" json:"lastIngestionTime,omitempty"`
+	LogStreamName       *string `locationName:"logStreamName" type:"string" json:"logStreamName,omitempty"`
+	StoredBytes         *int64  `locationName:"storedBytes" type:"long" json:"storedBytes,omitempty"`
+	UploadSequenceToken *string `locationName:"uploadSequenceToken" type:"string" json:"uploadSequenceToken,omitempty"`
 
 	metadataLogStream `json:"-", xml:"-"`
 }
@@ -582,10 +582,10 @@ type metadataLogStream struct {
 }
 
 type MetricFilter struct {
-	CreationTime          *int64                  `locationName:"creationTime" type:"long" json:",omitempty"`
-	FilterName            *string                 `locationName:"filterName" type:"string" json:",omitempty"`
-	FilterPattern         *string                 `locationName:"filterPattern" type:"string" json:",omitempty"`
-	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list" json:",omitempty"`
+	CreationTime          *int64                  `locationName:"creationTime" type:"long" json:"creationTime,omitempty"`
+	FilterName            *string                 `locationName:"filterName" type:"string" json:"filterName,omitempty"`
+	FilterPattern         *string                 `locationName:"filterPattern" type:"string" json:"filterPattern,omitempty"`
+	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list" json:"metricTransformations,omitempty"`
 
 	metadataMetricFilter `json:"-", xml:"-"`
 }
@@ -595,9 +595,9 @@ type metadataMetricFilter struct {
 }
 
 type MetricFilterMatchRecord struct {
-	EventMessage    *string             `locationName:"eventMessage" type:"string" json:",omitempty"`
-	EventNumber     *int64              `locationName:"eventNumber" type:"long" json:",omitempty"`
-	ExtractedValues *map[string]*string `locationName:"extractedValues" type:"map" json:",omitempty"`
+	EventMessage    *string             `locationName:"eventMessage" type:"string" json:"eventMessage,omitempty"`
+	EventNumber     *int64              `locationName:"eventNumber" type:"long" json:"eventNumber,omitempty"`
+	ExtractedValues *map[string]*string `locationName:"extractedValues" type:"map" json:"extractedValues,omitempty"`
 
 	metadataMetricFilterMatchRecord `json:"-", xml:"-"`
 }
@@ -607,9 +607,9 @@ type metadataMetricFilterMatchRecord struct {
 }
 
 type MetricTransformation struct {
-	MetricName      *string `locationName:"metricName" type:"string" json:",omitempty"`
-	MetricNamespace *string `locationName:"metricNamespace" type:"string" json:",omitempty"`
-	MetricValue     *string `locationName:"metricValue" type:"string" json:",omitempty"`
+	MetricName      *string `locationName:"metricName" type:"string" json:"metricName,omitempty"`
+	MetricNamespace *string `locationName:"metricNamespace" type:"string" json:"metricNamespace,omitempty"`
+	MetricValue     *string `locationName:"metricValue" type:"string" json:"metricValue,omitempty"`
 
 	metadataMetricTransformation `json:"-", xml:"-"`
 }
@@ -627,9 +627,9 @@ type metadataOperationAbortedException struct {
 }
 
 type OutputLogEvent struct {
-	IngestionTime *int64  `locationName:"ingestionTime" type:"long" json:",omitempty"`
-	Message       *string `locationName:"message" type:"string" json:",omitempty"`
-	Timestamp     *int64  `locationName:"timestamp" type:"long" json:",omitempty"`
+	IngestionTime *int64  `locationName:"ingestionTime" type:"long" json:"ingestionTime,omitempty"`
+	Message       *string `locationName:"message" type:"string" json:"message,omitempty"`
+	Timestamp     *int64  `locationName:"timestamp" type:"long" json:"timestamp,omitempty"`
 
 	metadataOutputLogEvent `json:"-", xml:"-"`
 }
@@ -639,10 +639,10 @@ type metadataOutputLogEvent struct {
 }
 
 type PutLogEventsInput struct {
-	LogEvents     []*InputLogEvent `locationName:"logEvents" type:"list" json:",omitempty"`
-	LogGroupName  *string          `locationName:"logGroupName" type:"string" json:",omitempty"`
-	LogStreamName *string          `locationName:"logStreamName" type:"string" json:",omitempty"`
-	SequenceToken *string          `locationName:"sequenceToken" type:"string" json:",omitempty"`
+	LogEvents     []*InputLogEvent `locationName:"logEvents" type:"list" json:"logEvents,omitempty"`
+	LogGroupName  *string          `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
+	LogStreamName *string          `locationName:"logStreamName" type:"string" json:"logStreamName,omitempty"`
+	SequenceToken *string          `locationName:"sequenceToken" type:"string" json:"sequenceToken,omitempty"`
 
 	metadataPutLogEventsInput `json:"-", xml:"-"`
 }
@@ -652,7 +652,7 @@ type metadataPutLogEventsInput struct {
 }
 
 type PutLogEventsOutput struct {
-	NextSequenceToken *string `locationName:"nextSequenceToken" type:"string" json:",omitempty"`
+	NextSequenceToken *string `locationName:"nextSequenceToken" type:"string" json:"nextSequenceToken,omitempty"`
 
 	metadataPutLogEventsOutput `json:"-", xml:"-"`
 }
@@ -662,10 +662,10 @@ type metadataPutLogEventsOutput struct {
 }
 
 type PutMetricFilterInput struct {
-	FilterName            *string                 `locationName:"filterName" type:"string" json:",omitempty"`
-	FilterPattern         *string                 `locationName:"filterPattern" type:"string" json:",omitempty"`
-	LogGroupName          *string                 `locationName:"logGroupName" type:"string" json:",omitempty"`
-	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list" json:",omitempty"`
+	FilterName            *string                 `locationName:"filterName" type:"string" json:"filterName,omitempty"`
+	FilterPattern         *string                 `locationName:"filterPattern" type:"string" json:"filterPattern,omitempty"`
+	LogGroupName          *string                 `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
+	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list" json:"metricTransformations,omitempty"`
 
 	metadataPutMetricFilterInput `json:"-", xml:"-"`
 }
@@ -675,8 +675,8 @@ type metadataPutMetricFilterInput struct {
 }
 
 type PutRetentionPolicyInput struct {
-	LogGroupName    *string `locationName:"logGroupName" type:"string" json:",omitempty"`
-	RetentionInDays *int    `locationName:"retentionInDays" type:"integer" json:",omitempty"`
+	LogGroupName    *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
+	RetentionInDays *int    `locationName:"retentionInDays" type:"integer" json:"retentionInDays,omitempty"`
 
 	metadataPutRetentionPolicyInput `json:"-", xml:"-"`
 }
@@ -710,8 +710,8 @@ type metadataServiceUnavailableException struct {
 }
 
 type TestMetricFilterInput struct {
-	FilterPattern    *string   `locationName:"filterPattern" type:"string" json:",omitempty"`
-	LogEventMessages []*string `locationName:"logEventMessages" type:"list" json:",omitempty"`
+	FilterPattern    *string   `locationName:"filterPattern" type:"string" json:"filterPattern,omitempty"`
+	LogEventMessages []*string `locationName:"logEventMessages" type:"list" json:"logEventMessages,omitempty"`
 
 	metadataTestMetricFilterInput `json:"-", xml:"-"`
 }
@@ -721,7 +721,7 @@ type metadataTestMetricFilterInput struct {
 }
 
 type TestMetricFilterOutput struct {
-	Matches []*MetricFilterMatchRecord `locationName:"matches" type:"list" json:",omitempty"`
+	Matches []*MetricFilterMatchRecord `locationName:"matches" type:"list" json:"matches,omitempty"`
 
 	metadataTestMetricFilterOutput `json:"-", xml:"-"`
 }
