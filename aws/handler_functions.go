@@ -56,8 +56,8 @@ func AfterRetryHandler(r *Request) {
 
 	if err := Error(r.Error); err != nil {
 		delay = err.RetryDelay
-		r.RetryCount++
 		if err.Retryable && r.RetryCount < r.Service.MaxRetries() {
+			r.RetryCount++
 			willRetry = true
 		}
 	}
