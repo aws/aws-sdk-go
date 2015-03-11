@@ -1,7 +1,7 @@
 default: generate
 
-generate-test:
-	go generate ./internal/fixtures
+generate-protocol-test:
+	go generate ./internal/fixtures/protocol
 
 generate:
 	go generate ./aws
