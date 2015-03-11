@@ -257,8 +257,14 @@ var whitelistExportNames = func() map[string]string {
 	if err != nil {
 		panic(err)
 	}
-
 	str := string(b)
+
+	if f, err := os.Open("inflections.csv"); err == nil {
+		if additionalInflections, err := ioutil.ReadAll(f); err == nil {
+			str += "\n" + string(additionalInflections)
+		}
+	}
+
 	for _, line := range strings.Split(str, "\n") {
 		line = strings.Replace(line, "\r", "", -1)
 		if strings.HasPrefix(line, ";") {
