@@ -8,14 +8,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
 	"time"
-
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -25,6 +24,7 @@ var _ time.Time
 var _ xmlutil.XMLNode
 var _ xml.Attr
 var _ = ioutil.Discard
+var _ = util.Trim("")
 
 // InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
@@ -1852,3 +1852,4 @@ func TestInputService17ProtocolTestOmitsNullQueryParamsButSerializesEmptyStrings
 	// assert headers
 
 }
+

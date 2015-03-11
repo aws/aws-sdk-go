@@ -1,14 +1,14 @@
 package main
 
-//go:generate go run generate.go protocol/input/json.json ../../aws/protocol/jsonrpc/build_test.go
-//go:generate go run generate.go protocol/output/json.json ../../aws/protocol/jsonrpc/unmarshal_test.go
-//go:generate go run generate.go protocol/input/query.json ../../aws/protocol/query/build_test.go
-//go:generate go run generate.go protocol/output/query.json ../../aws/protocol/query/unmarshal_test.go
-//go:generate go run generate.go protocol/input/ec2.json ../../aws/protocol/ec2query/build_test.go
-//go:generate go run generate.go protocol/output/ec2.json ../../aws/protocol/ec2query/unmarshal_test.go
-//go:generate go run generate.go protocol/input/rest-json.json ../../aws/protocol/restjson/build_test.go
-//go:generate go run generate.go protocol/input/rest-xml.json ../../aws/protocol/restxml/build_test.go
-//go:generate go run generate.go protocol/output/rest-xml.json ../../aws/protocol/restxml/unmarshal_test.go
+//go:generate go run generate.go protocol/input/json.json ../protocol/jsonrpc/build_test.go
+//go:generate go run generate.go protocol/output/json.json ../protocol/jsonrpc/unmarshal_test.go
+//go:generate go run generate.go protocol/input/query.json ../protocol/query/build_test.go
+//go:generate go run generate.go protocol/output/query.json ../protocol/query/unmarshal_test.go
+//go:generate go run generate.go protocol/input/ec2.json ../protocol/ec2query/build_test.go
+//go:generate go run generate.go protocol/output/ec2.json ../protocol/ec2query/unmarshal_test.go
+//go:generate go run generate.go protocol/input/rest-json.json ../protocol/restjson/build_test.go
+//go:generate go run generate.go protocol/input/rest-xml.json ../protocol/restxml/build_test.go
+//go:generate go run generate.go protocol/output/rest-xml.json ../protocol/restxml/unmarshal_test.go
 
 import (
 	"bytes"
@@ -24,6 +24,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/fixtures/helpers"
 	"github.com/awslabs/aws-sdk-go/internal/model/api"
 	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/awslabs/aws-sdk-go/internal/util/utilassert"
 )
 
 type TestSuite struct {
@@ -57,6 +58,7 @@ var _ time.Time
 var _ xmlutil.XMLNode
 var _ xml.Attr
 var _ = ioutil.Discard
+var _ = util.Trim("")
 `
 
 var reStripSpace = regexp.MustCompile(`\s(\w)`)
@@ -141,7 +143,7 @@ func Test{{ .OpName }}(t *testing.T) {
 	svc := New{{ .TestCase.TestSuite.API.StructName }}(nil)
 
 	buf := bytes.NewReader([]byte({{ .Body }}))
-	req, _ := svc.{{ .Given.ExportedName }}Request()
+	req, out := svc.{{ .Given.ExportedName }}Request()
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -154,14 +156,14 @@ func Test{{ .OpName }}(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	jBuf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim({{ .ResponseString }}), util.Trim(string(jBuf)))
+	assert.NotNil(t, out) // ensure out variable is used
+	{{ .Assertions }}
 }
 `))
 
 type tplOutputTestCaseData struct {
 	*TestCase
-	Body, OpName, ResponseString string
+	Body, OpName, Assertions string
 }
 
 func (i *TestCase) TestCase(idx int) string {
@@ -192,12 +194,11 @@ func (i *TestCase) TestCase(idx int) string {
 			panic(err)
 		}
 	} else {
-		pBuf, _ := json.Marshal(i.Data)
 		output := tplOutputTestCaseData{
-			TestCase:       i,
-			Body:           fmt.Sprintf("%q", i.OutputTest.Body),
-			OpName:         strings.ToUpper(opName[0:1]) + opName[1:],
-			ResponseString: fmt.Sprintf("%q", pBuf),
+			TestCase:   i,
+			Body:       fmt.Sprintf("%q", i.OutputTest.Body),
+			OpName:     strings.ToUpper(opName[0:1]) + opName[1:],
+			Assertions: utilassert.GenerateAssertions(i.Data, i.Given.OutputRef.Shape, "out"),
 		}
 
 		if err := tplOutputTestCase.Execute(&buf, output); err != nil {

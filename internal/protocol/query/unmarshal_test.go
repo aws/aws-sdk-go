@@ -8,14 +8,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
 	"time"
-
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -25,6 +24,7 @@ var _ time.Time
 var _ xmlutil.XMLNode
 var _ xml.Attr
 var _ = ioutil.Discard
+var _ = util.Trim("")
 
 // OutputService1ProtocolTest is a client for OutputService1ProtocolTest.
 type OutputService1ProtocolTest struct {
@@ -701,7 +701,7 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	svc := NewOutputService1ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><Str>myname</Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char></OperationNameResult><ResponseMetadata><RequestId>request-id</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, _ := svc.OutputService1TestCaseOperation1Request()
+	req, out := svc.OutputService1TestCaseOperation1Request()
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -712,15 +712,23 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	jBuf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim("{\"Char\":\"a\",\"Double\":1.3,\"FalseBool\":false,\"Float\":1.2,\"Long\":200,\"Num\":123,\"Str\":\"myname\",\"TrueBool\":true}"), util.Trim(string(jBuf)))
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "a", *out.Char)
+	assert.Equal(t, 1.3, *out.Double)
+	assert.Equal(t, false, *out.FalseBool)
+	assert.Equal(t, 1.2, *out.Float)
+	assert.Equal(t, 200, *out.Long)
+	assert.Equal(t, 123, *out.Num)
+	assert.Equal(t, "myname", *out.Str)
+	assert.Equal(t, true, *out.TrueBool)
+
 }
 
 func TestOutputService2ProtocolTestCustomResultWrapperCase1(t *testing.T) {
 	svc := NewOutputService2ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><Wrapper><Str>myname</Str></Wrapper><ResponseMetadata><RequestId>request-id</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, _ := svc.OutputService2TestCaseOperation1Request()
+	req, out := svc.OutputService2TestCaseOperation1Request()
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -731,15 +739,16 @@ func TestOutputService2ProtocolTestCustomResultWrapperCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	jBuf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim("{\"Str\":\"myname\"}"), util.Trim(string(jBuf)))
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "myname", *out.Str)
+
 }
 
 func TestOutputService3ProtocolTestBlobCase1(t *testing.T) {
 	svc := NewOutputService3ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><Blob>dmFsdWU=</Blob></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, _ := svc.OutputService3TestCaseOperation1Request()
+	req, out := svc.OutputService3TestCaseOperation1Request()
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -750,15 +759,16 @@ func TestOutputService3ProtocolTestBlobCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	jBuf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim("{\"Blob\":\"dmFsdWU=\"}"), util.Trim(string(jBuf)))
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "value", string(out.Blob))
+
 }
 
 func TestOutputService4ProtocolTestListsCase1(t *testing.T) {
 	svc := NewOutputService4ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><ListMember><member>abc</member><member>123</member></ListMember></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, _ := svc.OutputService4TestCaseOperation1Request()
+	req, out := svc.OutputService4TestCaseOperation1Request()
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -769,15 +779,17 @@ func TestOutputService4ProtocolTestListsCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	jBuf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim("{\"ListMember\":[\"abc\",\"123\"]}"), util.Trim(string(jBuf)))
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "abc", *out.ListMember[0])
+	assert.Equal(t, "123", *out.ListMember[1])
+
 }
 
 func TestOutputService5ProtocolTestListWithCustomMemberNameCase1(t *testing.T) {
 	svc := NewOutputService5ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><ListMember><item>abc</item><item>123</item></ListMember></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, _ := svc.OutputService5TestCaseOperation1Request()
+	req, out := svc.OutputService5TestCaseOperation1Request()
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -788,15 +800,17 @@ func TestOutputService5ProtocolTestListWithCustomMemberNameCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	jBuf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim("{\"ListMember\":[\"abc\",\"123\"]}"), util.Trim(string(jBuf)))
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "abc", *out.ListMember[0])
+	assert.Equal(t, "123", *out.ListMember[1])
+
 }
 
 func TestOutputService6ProtocolTestFlattenedListCase1(t *testing.T) {
 	svc := NewOutputService6ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><ListMember>abc</ListMember><ListMember>123</ListMember></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, _ := svc.OutputService6TestCaseOperation1Request()
+	req, out := svc.OutputService6TestCaseOperation1Request()
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -807,15 +821,17 @@ func TestOutputService6ProtocolTestFlattenedListCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	jBuf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim("{\"ListMember\":[\"abc\",\"123\"]}"), util.Trim(string(jBuf)))
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "abc", *out.ListMember[0])
+	assert.Equal(t, "123", *out.ListMember[1])
+
 }
 
 func TestOutputService7ProtocolTestNormalMapCase1(t *testing.T) {
 	svc := NewOutputService7ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><Map><entry><key>qux</key><value><foo>bar</foo></value></entry><entry><key>baz</key><value><foo>bam</foo></value></entry></Map></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, _ := svc.OutputService7TestCaseOperation1Request()
+	req, out := svc.OutputService7TestCaseOperation1Request()
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -826,15 +842,17 @@ func TestOutputService7ProtocolTestNormalMapCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	jBuf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim("{\"Map\":{\"baz\":{\"Foo\":\"bam\"},\"qux\":{\"Foo\":\"bar\"}}}"), util.Trim(string(jBuf)))
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "bam", *(*out.Map)["baz"].Foo)
+	assert.Equal(t, "bar", *(*out.Map)["qux"].Foo)
+
 }
 
 func TestOutputService8ProtocolTestFlattenedMapCase1(t *testing.T) {
 	svc := NewOutputService8ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><Map><key>qux</key><value>bar</value></Map><Map><key>baz</key><value>bam</value></Map></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, _ := svc.OutputService8TestCaseOperation1Request()
+	req, out := svc.OutputService8TestCaseOperation1Request()
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -845,15 +863,17 @@ func TestOutputService8ProtocolTestFlattenedMapCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	jBuf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim("{\"Map\":{\"baz\":\"bam\",\"qux\":\"bar\"}}"), util.Trim(string(jBuf)))
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "bam", *(*out.Map)["baz"])
+	assert.Equal(t, "bar", *(*out.Map)["qux"])
+
 }
 
 func TestOutputService9ProtocolTestNamedMapCase1(t *testing.T) {
 	svc := NewOutputService9ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><Map><foo>qux</foo><bar>bar</bar></Map><Map><foo>baz</foo><bar>bam</bar></Map></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, _ := svc.OutputService9TestCaseOperation1Request()
+	req, out := svc.OutputService9TestCaseOperation1Request()
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -864,15 +884,17 @@ func TestOutputService9ProtocolTestNamedMapCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	jBuf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim("{\"Map\":{\"baz\":\"bam\",\"qux\":\"bar\"}}"), util.Trim(string(jBuf)))
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "bam", *(*out.Map)["baz"])
+	assert.Equal(t, "bar", *(*out.Map)["qux"])
+
 }
 
 func TestOutputService10ProtocolTestEmptyXMLResultElementCase1(t *testing.T) {
 	svc := NewOutputService10ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult/><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, _ := svc.OutputService10TestCaseOperation1Request()
+	req, out := svc.OutputService10TestCaseOperation1Request()
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -883,6 +905,7 @@ func TestOutputService10ProtocolTestEmptyXMLResultElementCase1(t *testing.T) {
 	assert.NoError(t, req.Error)
 
 	// assert response
-	jBuf, _ := json.Marshal(req.Data)
-	assert.Equal(t, util.Trim("{\"Name\":null}"), util.Trim(string(jBuf)))
+	assert.NotNil(t, out) // ensure out variable is used
+
 }
+

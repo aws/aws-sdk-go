@@ -8,14 +8,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
 	"time"
-
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -25,6 +24,7 @@ var _ time.Time
 var _ xmlutil.XMLNode
 var _ xml.Attr
 var _ = ioutil.Discard
+var _ = util.Trim("")
 
 // InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
@@ -438,7 +438,7 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *Input
 var opInputService6TestCaseOperation1 *aws.Operation
 
 type InputService6TestShapeInputShape struct {
-	Body      []byte  `locationName:"body" type:"blob" json:",omitempty"`
+	Body      []byte  `locationName:"body" type:"blob" json:"body,omitempty"`
 	Checksum  *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string" json:"-" xml:"-"`
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" json:"-" xml:"-"`
 
@@ -765,3 +765,4 @@ func TestInputService7ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsC
 	// assert headers
 
 }
+
