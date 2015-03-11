@@ -1,14 +1,14 @@
 package main
 
-//go:generate go run generate.go ../protocol/input/json.json ../../protocol/jsonrpc/build_test.go
-//go:generate go run generate.go ../protocol/output/json.json ../../protocol/jsonrpc/unmarshal_test.go
-//go:generate go run generate.go ../protocol/input/query.json ../../protocol/query/build_test.go
-//go:generate go run generate.go ../protocol/output/query.json ../../protocol/query/unmarshal_test.go
-//go:generate go run generate.go ../protocol/input/ec2.json ../../protocol/ec2query/build_test.go
-//go:generate go run generate.go ../protocol/output/ec2.json ../../protocol/ec2query/unmarshal_test.go
-//go:generate go run generate.go ../protocol/input/rest-json.json ../../protocol/restjson/build_test.go
-//go:generate go run generate.go ../protocol/input/rest-xml.json ../../protocol/restxml/build_test.go
-//go:generate go run generate.go ../protocol/output/rest-xml.json ../../protocol/restxml/unmarshal_test.go
+//go:generate go run generate.go input/json.json ../../protocol/jsonrpc/build_test.go
+//go:generate go run generate.go output/json.json ../../protocol/jsonrpc/unmarshal_test.go
+//go:generate go run generate.go input/query.json ../../protocol/query/build_test.go
+//go:generate go run generate.go output/query.json ../../protocol/query/unmarshal_test.go
+//go:generate go run generate.go input/ec2.json ../../protocol/ec2query/build_test.go
+//go:generate go run generate.go output/ec2.json ../../protocol/ec2query/unmarshal_test.go
+//go:generate go run generate.go input/rest-json.json ../../protocol/restjson/build_test.go
+//go:generate go run generate.go input/rest-xml.json ../../protocol/restxml/build_test.go
+//go:generate go run generate.go output/rest-xml.json ../../protocol/restxml/unmarshal_test.go
 
 import (
 	"bytes"
