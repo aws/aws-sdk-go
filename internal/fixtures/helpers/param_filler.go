@@ -7,29 +7,43 @@ import (
 
 	"github.com/awslabs/aws-sdk-go/internal/model/api"
 	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/awslabs/aws-sdk-go/internal/util/utilsort"
 )
 
-func typeName(shape *api.Shape) string {
-	return shape.GoType()
+type paramFiller struct {
+	prefixPackageName bool
 }
 
-func ParamsStructFromJSON(value interface{}, shape *api.Shape) string {
-	return util.GoFmt(paramsStructAny(value, shape))
+func (f paramFiller) typeName(shape *api.Shape) string {
+	if f.prefixPackageName {
+		return "*" + shape.API.PackageName() + "." + shape.GoTypeElem()
+	} else {
+		return shape.GoType()
+	}
 }
 
-func paramsStructAny(value interface{}, shape *api.Shape) string {
+func ParamsStructFromJSON(value interface{}, shape *api.Shape, prefixPackageName bool) string {
+	f := paramFiller{prefixPackageName: prefixPackageName}
+	return util.GoFmt(f.paramsStructAny(value, shape))
+}
+
+func (f paramFiller) paramsStructAny(value interface{}, shape *api.Shape) string {
+	if value == nil {
+		return ""
+	}
+
 	switch shape.Type {
 	case "structure":
 		if value != nil {
 			vmap := value.(map[string]interface{})
-			return paramsStructStruct(vmap, shape)
+			return f.paramsStructStruct(vmap, shape)
 		}
 	case "list":
 		vlist := value.([]interface{})
-		return paramsStructList(vlist, shape)
+		return f.paramsStructList(vlist, shape)
 	case "map":
 		vmap := value.(map[string]interface{})
-		return paramsStructMap(vmap, shape)
+		return f.paramsStructMap(vmap, shape)
 	case "string", "character":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
@@ -66,19 +80,13 @@ func paramsStructAny(value interface{}, shape *api.Shape) string {
 	return ""
 }
 
-func paramsStructStruct(value map[string]interface{}, shape *api.Shape) string {
-	out := "&" + typeName(shape)[1:] + "{\n"
+func (f paramFiller) paramsStructStruct(value map[string]interface{}, shape *api.Shape) string {
+	out := "&" + f.typeName(shape)[1:] + "{\n"
 	for _, n := range shape.MemberNames() {
 		ref := shape.MemberRefs[n]
-		lowcaseN := strings.ToLower(n[0:1]) + n[1:]
-		name := ""
-		if _, ok := value[n]; ok {
-			name = n
-		} else if _, ok = value[lowcaseN]; ok {
-			name = lowcaseN
-		}
+		name := findMember(value, n)
 
-		if val := paramsStructAny(value[name], ref.Shape); val != "" {
+		if val := f.paramsStructAny(value[name], ref.Shape); val != "" {
 			out += fmt.Sprintf("%s: %s,\n", n, val)
 		}
 	}
@@ -86,20 +94,31 @@ func paramsStructStruct(value map[string]interface{}, shape *api.Shape) string {
 	return out
 }
 
-func paramsStructMap(value map[string]interface{}, shape *api.Shape) string {
-	out := "&" + typeName(shape)[1:] + "{\n"
-	for k, v := range value {
-		out += fmt.Sprintf("%q: %s,\n", k, paramsStructAny(v, shape.ValueRef.Shape))
+func (f paramFiller) paramsStructMap(value map[string]interface{}, shape *api.Shape) string {
+	out := "&" + f.typeName(shape)[1:] + "{\n"
+	keys := utilsort.SortedKeys(value)
+	for _, k := range keys {
+		v := value[k]
+		out += fmt.Sprintf("%q: %s,\n", k, f.paramsStructAny(v, shape.ValueRef.Shape))
 	}
 	out += "}"
 	return out
 }
 
-func paramsStructList(value []interface{}, shape *api.Shape) string {
-	out := typeName(shape) + "{\n"
+func (f paramFiller) paramsStructList(value []interface{}, shape *api.Shape) string {
+	out := f.typeName(shape) + "{\n"
 	for _, v := range value {
-		out += fmt.Sprintf("%s,\n", paramsStructAny(v, shape.MemberRef.Shape))
+		out += fmt.Sprintf("%s,\n", f.paramsStructAny(v, shape.MemberRef.Shape))
 	}
 	out += "}"
 	return out
+}
+
+func findMember(value map[string]interface{}, key string) string {
+	for actualKey, _ := range value {
+		if strings.ToLower(key) == strings.ToLower(actualKey) {
+			return actualKey
+		}
+	}
+	return ""
 }

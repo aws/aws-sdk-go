@@ -187,7 +187,7 @@ func (i *TestCase) TestCase(idx int) string {
 			TestCase:     i,
 			Body:         fmt.Sprintf("%q", i.InputTest.Body),
 			OpName:       strings.ToUpper(opName[0:1]) + opName[1:],
-			ParamsString: helpers.ParamsStructFromJSON(i.Params, i.Given.InputRef.Shape),
+			ParamsString: helpers.ParamsStructFromJSON(i.Params, i.Given.InputRef.Shape, false),
 		}
 
 		if err := tplInputTestCase.Execute(&buf, input); err != nil {

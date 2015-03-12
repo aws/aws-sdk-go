@@ -2,8 +2,10 @@ package utilassert
 
 import (
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
+	"testing"
 
 	"github.com/awslabs/aws-sdk-go/internal/model/api"
 	"github.com/awslabs/aws-sdk-go/internal/util/utilsort"
@@ -53,4 +55,13 @@ func GenerateAssertions(out interface{}, shape *api.Shape, prefix string) string
 			return fmt.Sprintf("assert.Equal(t, %#v, *%s)\n", out, prefix)
 		}
 	}
+}
+
+func Match(t *testing.T, regex, expected string) {
+	if !regexp.MustCompile(regex).Match([]byte(expected)) {
+		t.Errorf("%q\n\tdoes not match /%s/", expected, regex)
+	}
+}
+
+func PathToNestedStruct(path string, terminalValue interface{}) {
 }

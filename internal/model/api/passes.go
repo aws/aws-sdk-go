@@ -113,14 +113,14 @@ func (a *API) renameToplevelShapes() {
 			v.OutputRef.Shape.Rename(re.ReplaceAllString(name, "Output"))
 		}
 
-		v.InputRef.Payload = a.exportableName(v.InputRef.Payload)
-		v.OutputRef.Payload = a.exportableName(v.OutputRef.Payload)
+		v.InputRef.Payload = a.ExportableName(v.InputRef.Payload)
+		v.OutputRef.Payload = a.ExportableName(v.OutputRef.Payload)
 	}
 }
 
 func (a *API) renameExportable() {
 	for name, op := range a.Operations {
-		newName := a.exportableName(name)
+		newName := a.ExportableName(name)
 		if newName != name {
 			delete(a.Operations, name)
 			a.Operations[newName] = op
@@ -138,7 +138,7 @@ func (a *API) renameExportable() {
 		}
 
 		for mName, member := range s.MemberRefs {
-			newName := a.exportableName(mName)
+			newName := a.ExportableName(mName)
 			if newName != mName {
 				delete(s.MemberRefs, mName)
 				s.MemberRefs[newName] = member
@@ -155,13 +155,13 @@ func (a *API) renameExportable() {
 			}
 		}
 
-		newName := a.exportableName(k)
+		newName := a.ExportableName(k)
 		if newName != s.ShapeName {
 			s.Rename(newName)
 		}
 
-		s.Payload = a.exportableName(s.Payload)
-		s.ResultWrapper = a.exportableName(s.ResultWrapper)
+		s.Payload = a.ExportableName(s.Payload)
+		s.ResultWrapper = a.ExportableName(s.ResultWrapper)
 	}
 }
 
@@ -222,7 +222,7 @@ func splitName(name string) []string {
 	return out
 }
 
-func (a *API) exportableName(name string) string {
+func (a *API) ExportableName(name string) string {
 	if name == "" {
 		return name
 	}
