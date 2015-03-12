@@ -45,14 +45,14 @@ type TestAssertion struct {
 var tplTestSuite = template.Must(template.New("testsuite").Parse(`
 // +build integration
 
-package {{ .PackageName }}_test
+package {{ .API.PackageName }}_test
 
 import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/internal/util/utilassert"
-	"github.com/awslabs/aws-sdk-go/service/{{ .PackageName }}"
+	"github.com/awslabs/aws-sdk-go/service/{{ .API.PackageName }}"
 	"github.com/stretchr/testify/assert"
 )
 
