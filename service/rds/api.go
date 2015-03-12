@@ -58,6 +58,31 @@ func (c *RDS) AddTagsToResource(input *AddTagsToResourceMessage) (output *AddTag
 
 var opAddTagsToResource *aws.Operation
 
+// ApplyPendingMaintenanceActionRequest generates a request for the ApplyPendingMaintenanceAction operation.
+func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanceActionMessage) (req *aws.Request, output *ApplyPendingMaintenanceActionOutput) {
+	if opApplyPendingMaintenanceAction == nil {
+		opApplyPendingMaintenanceAction = &aws.Operation{
+			Name:       "ApplyPendingMaintenanceAction",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opApplyPendingMaintenanceAction, input, output)
+	output = &ApplyPendingMaintenanceActionOutput{}
+	req.Data = output
+	return
+}
+
+func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceActionMessage) (output *ApplyPendingMaintenanceActionOutput, err error) {
+	req, out := c.ApplyPendingMaintenanceActionRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opApplyPendingMaintenanceAction *aws.Operation
+
 // AuthorizeDBSecurityGroupIngressRequest generates a request for the AuthorizeDBSecurityGroupIngress operation.
 func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityGroupIngressMessage) (req *aws.Request, output *AuthorizeDBSecurityGroupIngressOutput) {
 	if opAuthorizeDBSecurityGroupIngress == nil {
@@ -83,6 +108,31 @@ func (c *RDS) AuthorizeDBSecurityGroupIngress(input *AuthorizeDBSecurityGroupIng
 
 var opAuthorizeDBSecurityGroupIngress *aws.Operation
 
+// CopyDBParameterGroupRequest generates a request for the CopyDBParameterGroup operation.
+func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupMessage) (req *aws.Request, output *CopyDBParameterGroupOutput) {
+	if opCopyDBParameterGroup == nil {
+		opCopyDBParameterGroup = &aws.Operation{
+			Name:       "CopyDBParameterGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opCopyDBParameterGroup, input, output)
+	output = &CopyDBParameterGroupOutput{}
+	req.Data = output
+	return
+}
+
+func (c *RDS) CopyDBParameterGroup(input *CopyDBParameterGroupMessage) (output *CopyDBParameterGroupOutput, err error) {
+	req, out := c.CopyDBParameterGroupRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opCopyDBParameterGroup *aws.Operation
+
 // CopyDBSnapshotRequest generates a request for the CopyDBSnapshot operation.
 func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotMessage) (req *aws.Request, output *CopyDBSnapshotOutput) {
 	if opCopyDBSnapshot == nil {
@@ -107,6 +157,31 @@ func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotMessage) (output *CopyDBSnapsh
 }
 
 var opCopyDBSnapshot *aws.Operation
+
+// CopyOptionGroupRequest generates a request for the CopyOptionGroup operation.
+func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupMessage) (req *aws.Request, output *CopyOptionGroupOutput) {
+	if opCopyOptionGroup == nil {
+		opCopyOptionGroup = &aws.Operation{
+			Name:       "CopyOptionGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opCopyOptionGroup, input, output)
+	output = &CopyOptionGroupOutput{}
+	req.Data = output
+	return
+}
+
+func (c *RDS) CopyOptionGroup(input *CopyOptionGroupMessage) (output *CopyOptionGroupOutput, err error) {
+	req, out := c.CopyOptionGroupRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opCopyOptionGroup *aws.Operation
 
 // CreateDBInstanceRequest generates a request for the CreateDBInstance operation.
 func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceMessage) (req *aws.Request, output *CreateDBInstanceOutput) {
@@ -858,6 +933,31 @@ func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInsta
 
 var opDescribeOrderableDBInstanceOptions *aws.Operation
 
+// DescribePendingMaintenanceActionsRequest generates a request for the DescribePendingMaintenanceActions operation.
+func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMaintenanceActionsMessage) (req *aws.Request, output *PendingMaintenanceActionsMessage) {
+	if opDescribePendingMaintenanceActions == nil {
+		opDescribePendingMaintenanceActions = &aws.Operation{
+			Name:       "DescribePendingMaintenanceActions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opDescribePendingMaintenanceActions, input, output)
+	output = &PendingMaintenanceActionsMessage{}
+	req.Data = output
+	return
+}
+
+func (c *RDS) DescribePendingMaintenanceActions(input *DescribePendingMaintenanceActionsMessage) (output *PendingMaintenanceActionsMessage, err error) {
+	req, out := c.DescribePendingMaintenanceActionsRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opDescribePendingMaintenanceActions *aws.Operation
+
 // DescribeReservedDBInstancesRequest generates a request for the DescribeReservedDBInstances operation.
 func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstancesMessage) (req *aws.Request, output *ReservedDBInstanceMessage) {
 	if opDescribeReservedDBInstances == nil {
@@ -1348,6 +1448,28 @@ type metadataAddTagsToResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type ApplyPendingMaintenanceActionMessage struct {
+	ApplyAction        *string `type:"string"`
+	OptInType          *string `type:"string"`
+	ResourceIdentifier *string `type:"string"`
+
+	metadataApplyPendingMaintenanceActionMessage `json:"-", xml:"-"`
+}
+
+type metadataApplyPendingMaintenanceActionMessage struct {
+	SDKShapeTraits bool `type:"structure" required:"ResourceIdentifier,ApplyAction,OptInType"`
+}
+
+type ApplyPendingMaintenanceActionOutput struct {
+	ResourcePendingMaintenanceActions *ResourcePendingMaintenanceActions `type:"structure"`
+
+	metadataApplyPendingMaintenanceActionOutput `json:"-", xml:"-"`
+}
+
+type metadataApplyPendingMaintenanceActionOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"ApplyPendingMaintenanceActionResult"`
+}
+
 type AuthorizationAlreadyExistsFault struct {
 	metadataAuthorizationAlreadyExistsFault `json:"-", xml:"-"`
 }
@@ -1397,8 +1519,7 @@ type metadataAuthorizeDBSecurityGroupIngressOutput struct {
 }
 
 type AvailabilityZone struct {
-	Name                   *string `type:"string"`
-	ProvisionedIOPSCapable *bool   `locationName:"ProvisionedIopsCapable" type:"boolean"`
+	Name *string `type:"string"`
 
 	metadataAvailabilityZone `json:"-", xml:"-"`
 }
@@ -1416,6 +1537,29 @@ type CharacterSet struct {
 
 type metadataCharacterSet struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+type CopyDBParameterGroupMessage struct {
+	SourceDBParameterGroupIdentifier  *string `type:"string"`
+	Tags                              []*Tag  `locationNameList:"Tag" type:"list"`
+	TargetDBParameterGroupDescription *string `type:"string"`
+	TargetDBParameterGroupIdentifier  *string `type:"string"`
+
+	metadataCopyDBParameterGroupMessage `json:"-", xml:"-"`
+}
+
+type metadataCopyDBParameterGroupMessage struct {
+	SDKShapeTraits bool `type:"structure" required:"SourceDBParameterGroupIdentifier,TargetDBParameterGroupIdentifier,TargetDBParameterGroupDescription"`
+}
+
+type CopyDBParameterGroupOutput struct {
+	DBParameterGroup *DBParameterGroup `type:"structure"`
+
+	metadataCopyDBParameterGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataCopyDBParameterGroupOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"CopyDBParameterGroupResult"`
 }
 
 type CopyDBSnapshotMessage struct {
@@ -1440,6 +1584,29 @@ type metadataCopyDBSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CopyDBSnapshotResult"`
 }
 
+type CopyOptionGroupMessage struct {
+	SourceOptionGroupIdentifier  *string `type:"string"`
+	Tags                         []*Tag  `locationNameList:"Tag" type:"list"`
+	TargetOptionGroupDescription *string `type:"string"`
+	TargetOptionGroupIdentifier  *string `type:"string"`
+
+	metadataCopyOptionGroupMessage `json:"-", xml:"-"`
+}
+
+type metadataCopyOptionGroupMessage struct {
+	SDKShapeTraits bool `type:"structure" required:"SourceOptionGroupIdentifier,TargetOptionGroupIdentifier,TargetOptionGroupDescription"`
+}
+
+type CopyOptionGroupOutput struct {
+	OptionGroup *OptionGroup `type:"structure"`
+
+	metadataCopyOptionGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataCopyOptionGroupOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"CopyOptionGroupResult"`
+}
+
 type CreateDBInstanceMessage struct {
 	AllocatedStorage           *int      `type:"integer"`
 	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
@@ -1455,6 +1622,7 @@ type CreateDBInstanceMessage struct {
 	Engine                     *string   `type:"string"`
 	EngineVersion              *string   `type:"string"`
 	IOPS                       *int      `locationName:"Iops" type:"integer"`
+	KMSKeyID                   *string   `locationName:"KmsKeyId" type:"string"`
 	LicenseModel               *string   `type:"string"`
 	MasterUserPassword         *string   `type:"string"`
 	MasterUsername             *string   `type:"string"`
@@ -1464,6 +1632,10 @@ type CreateDBInstanceMessage struct {
 	PreferredBackupWindow      *string   `type:"string"`
 	PreferredMaintenanceWindow *string   `type:"string"`
 	PubliclyAccessible         *bool     `type:"boolean"`
+	StorageEncrypted           *bool     `type:"boolean"`
+	StorageType                *string   `type:"string"`
+	TDECredentialARN           *string   `locationName:"TdeCredentialArn" type:"string"`
+	TDECredentialPassword      *string   `locationName:"TdeCredentialPassword" type:"string"`
 	Tags                       []*Tag    `locationNameList:"Tag" type:"list"`
 	VPCSecurityGroupIDs        []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
@@ -1495,6 +1667,7 @@ type CreateDBInstanceReadReplicaMessage struct {
 	Port                       *int    `type:"integer"`
 	PubliclyAccessible         *bool   `type:"boolean"`
 	SourceDBInstanceIdentifier *string `type:"string"`
+	StorageType                *string `type:"string"`
 	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataCreateDBInstanceReadReplicaMessage `json:"-", xml:"-"`
@@ -1694,11 +1867,13 @@ type DBInstance struct {
 	DBParameterGroups                     []*DBParameterGroupStatus     `locationNameList:"DBParameterGroup" type:"list"`
 	DBSecurityGroups                      []*DBSecurityGroupMembership  `locationNameList:"DBSecurityGroup" type:"list"`
 	DBSubnetGroup                         *DBSubnetGroup                `type:"structure"`
+	DBiResourceID                         *string                       `locationName:"DbiResourceId" type:"string"`
 	Endpoint                              *Endpoint                     `type:"structure"`
 	Engine                                *string                       `type:"string"`
 	EngineVersion                         *string                       `type:"string"`
 	IOPS                                  *int                          `locationName:"Iops" type:"integer"`
 	InstanceCreateTime                    *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
+	KMSKeyID                              *string                       `locationName:"KmsKeyId" type:"string"`
 	LatestRestorableTime                  *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
 	LicenseModel                          *string                       `type:"string"`
 	MasterUsername                        *string                       `type:"string"`
@@ -1712,6 +1887,9 @@ type DBInstance struct {
 	ReadReplicaSourceDBInstanceIdentifier *string                       `type:"string"`
 	SecondaryAvailabilityZone             *string                       `type:"string"`
 	StatusInfos                           []*DBInstanceStatusInfo       `locationNameList:"DBInstanceStatusInfo" type:"list"`
+	StorageEncrypted                      *bool                         `type:"boolean"`
+	StorageType                           *string                       `type:"string"`
+	TDECredentialARN                      *string                       `locationName:"TdeCredentialArn" type:"string"`
 	VPCSecurityGroups                     []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroups" locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
 	metadataDBInstance `json:"-", xml:"-"`
@@ -1799,7 +1977,7 @@ type DBParameterGroupNameMessage struct {
 }
 
 type metadataDBParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ResetDBParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyDBParameterGroupResult"`
 }
 
 type DBParameterGroupNotFoundFault struct {
@@ -1914,10 +2092,12 @@ type DBSnapshot struct {
 	AvailabilityZone     *string    `type:"string"`
 	DBInstanceIdentifier *string    `type:"string"`
 	DBSnapshotIdentifier *string    `type:"string"`
+	Encrypted            *bool      `type:"boolean"`
 	Engine               *string    `type:"string"`
 	EngineVersion        *string    `type:"string"`
 	IOPS                 *int       `locationName:"Iops" type:"integer"`
 	InstanceCreateTime   *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	KMSKeyID             *string    `locationName:"KmsKeyId" type:"string"`
 	LicenseModel         *string    `type:"string"`
 	MasterUsername       *string    `type:"string"`
 	OptionGroupName      *string    `type:"string"`
@@ -1927,6 +2107,8 @@ type DBSnapshot struct {
 	SnapshotType         *string    `type:"string"`
 	SourceRegion         *string    `type:"string"`
 	Status               *string    `type:"string"`
+	StorageType          *string    `type:"string"`
+	TDECredentialARN     *string    `locationName:"TdeCredentialArn" type:"string"`
 	VPCID                *string    `locationName:"VpcId" type:"string"`
 
 	metadataDBSnapshot `json:"-", xml:"-"`
@@ -2426,6 +2608,19 @@ type metadataDescribeOrderableDBInstanceOptionsMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"Engine"`
 }
 
+type DescribePendingMaintenanceActionsMessage struct {
+	Filters            []*Filter `locationNameList:"Filter" type:"list"`
+	Marker             *string   `type:"string"`
+	MaxRecords         *int      `type:"integer"`
+	ResourceIdentifier *string   `type:"string"`
+
+	metadataDescribePendingMaintenanceActionsMessage `json:"-", xml:"-"`
+}
+
+type metadataDescribePendingMaintenanceActionsMessage struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DescribeReservedDBInstancesMessage struct {
 	DBInstanceClass               *string   `type:"string"`
 	Duration                      *string   `type:"string"`
@@ -2741,6 +2936,14 @@ type metadataInvalidVPCNetworkStateFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type KMSKeyNotAccessibleFault struct {
+	metadataKMSKeyNotAccessibleFault `json:"-", xml:"-"`
+}
+
+type metadataKMSKeyNotAccessibleFault struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type ListTagsForResourceMessage struct {
 	Filters      []*Filter `locationNameList:"Filter" type:"list"`
 	ResourceName *string   `type:"string"`
@@ -2770,6 +2973,9 @@ type ModifyDBInstanceMessage struct {
 	OptionGroupName            *string   `type:"string"`
 	PreferredBackupWindow      *string   `type:"string"`
 	PreferredMaintenanceWindow *string   `type:"string"`
+	StorageType                *string   `type:"string"`
+	TDECredentialARN           *string   `locationName:"TdeCredentialArn" type:"string"`
+	TDECredentialPassword      *string   `locationName:"TdeCredentialPassword" type:"string"`
 	VPCSecurityGroupIDs        []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataModifyDBInstanceMessage `json:"-", xml:"-"`
@@ -3027,14 +3233,17 @@ type metadataOptionSetting struct {
 }
 
 type OrderableDBInstanceOption struct {
-	AvailabilityZones  []*AvailabilityZone `locationNameList:"AvailabilityZone" type:"list"`
-	DBInstanceClass    *string             `type:"string"`
-	Engine             *string             `type:"string"`
-	EngineVersion      *string             `type:"string"`
-	LicenseModel       *string             `type:"string"`
-	MultiAZCapable     *bool               `type:"boolean"`
-	ReadReplicaCapable *bool               `type:"boolean"`
-	VPC                *bool               `locationName:"Vpc" type:"boolean"`
+	AvailabilityZones         []*AvailabilityZone `locationNameList:"AvailabilityZone" type:"list"`
+	DBInstanceClass           *string             `type:"string"`
+	Engine                    *string             `type:"string"`
+	EngineVersion             *string             `type:"string"`
+	LicenseModel              *string             `type:"string"`
+	MultiAZCapable            *bool               `type:"boolean"`
+	ReadReplicaCapable        *bool               `type:"boolean"`
+	StorageType               *string             `type:"string"`
+	SupportsIOPS              *bool               `locationName:"SupportsIops" type:"boolean"`
+	SupportsStorageEncryption *bool               `type:"boolean"`
+	VPC                       *bool               `locationName:"Vpc" type:"boolean"`
 
 	metadataOrderableDBInstanceOption `json:"-", xml:"-"`
 }
@@ -3073,6 +3282,31 @@ type metadataParameter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type PendingMaintenanceAction struct {
+	Action               *string    `type:"string"`
+	AutoAppliedAfterDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	CurrentApplyDate     *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	ForcedApplyDate      *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	OptInStatus          *string    `type:"string"`
+
+	metadataPendingMaintenanceAction `json:"-", xml:"-"`
+}
+
+type metadataPendingMaintenanceAction struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type PendingMaintenanceActionsMessage struct {
+	Marker                    *string                              `type:"string"`
+	PendingMaintenanceActions []*ResourcePendingMaintenanceActions `locationNameList:"ResourcePendingMaintenanceActions" type:"list"`
+
+	metadataPendingMaintenanceActionsMessage `json:"-", xml:"-"`
+}
+
+type metadataPendingMaintenanceActionsMessage struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribePendingMaintenanceActionsResult"`
+}
+
 type PendingModifiedValues struct {
 	AllocatedStorage      *int    `type:"integer"`
 	BackupRetentionPeriod *int    `type:"integer"`
@@ -3083,6 +3317,7 @@ type PendingModifiedValues struct {
 	MasterUserPassword    *string `type:"string"`
 	MultiAZ               *bool   `type:"boolean"`
 	Port                  *int    `type:"integer"`
+	StorageType           *string `type:"string"`
 
 	metadataPendingModifiedValues `json:"-", xml:"-"`
 }
@@ -3332,6 +3567,25 @@ type metadataResetDBParameterGroupMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName"`
 }
 
+type ResourceNotFoundFault struct {
+	metadataResourceNotFoundFault `json:"-", xml:"-"`
+}
+
+type metadataResourceNotFoundFault struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ResourcePendingMaintenanceActions struct {
+	PendingMaintenanceActionDetails []*PendingMaintenanceAction `locationNameList:"PendingMaintenanceAction" type:"list"`
+	ResourceIdentifier              *string                     `type:"string"`
+
+	metadataResourcePendingMaintenanceActions `json:"-", xml:"-"`
+}
+
+type metadataResourcePendingMaintenanceActions struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type RestoreDBInstanceFromDBSnapshotMessage struct {
 	AutoMinorVersionUpgrade *bool   `type:"boolean"`
 	AvailabilityZone        *string `type:"string"`
@@ -3347,6 +3601,9 @@ type RestoreDBInstanceFromDBSnapshotMessage struct {
 	OptionGroupName         *string `type:"string"`
 	Port                    *int    `type:"integer"`
 	PubliclyAccessible      *bool   `type:"boolean"`
+	StorageType             *string `type:"string"`
+	TDECredentialARN        *string `locationName:"TdeCredentialArn" type:"string"`
+	TDECredentialPassword   *string `locationName:"TdeCredentialPassword" type:"string"`
 	Tags                    []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataRestoreDBInstanceFromDBSnapshotMessage `json:"-", xml:"-"`
@@ -3381,6 +3638,9 @@ type RestoreDBInstanceToPointInTimeMessage struct {
 	PubliclyAccessible         *bool      `type:"boolean"`
 	RestoreTime                *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	SourceDBInstanceIdentifier *string    `type:"string"`
+	StorageType                *string    `type:"string"`
+	TDECredentialARN           *string    `locationName:"TdeCredentialArn" type:"string"`
+	TDECredentialPassword      *string    `locationName:"TdeCredentialPassword" type:"string"`
 	Tags                       []*Tag     `locationNameList:"Tag" type:"list"`
 	TargetDBInstanceIdentifier *string    `type:"string"`
 	UseLatestRestorableTime    *bool      `type:"boolean"`
@@ -3471,6 +3731,14 @@ type StorageQuotaExceededFault struct {
 }
 
 type metadataStorageQuotaExceededFault struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type StorageTypeNotSupportedFault struct {
+	metadataStorageTypeNotSupportedFault `json:"-", xml:"-"`
+}
+
+type metadataStorageTypeNotSupportedFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
