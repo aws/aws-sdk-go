@@ -3,6 +3,7 @@ package jsonrpc
 import (
 	"encoding/json"
 	"io/ioutil"
+	"strings"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
@@ -66,18 +67,16 @@ func UnmarshalError(req *aws.Request) {
 		req.Error = err
 		return
 	}
-	req.Error = jsonErr.Err(req.HTTPResponse.StatusCode)
+
+	codes := strings.SplitN(jsonErr.Code, "#", 2)
+	req.Error = aws.APIError{
+		StatusCode: req.HTTPResponse.StatusCode,
+		Code:       codes[len(codes)-1],
+		Message:    jsonErr.Message,
+	}
 }
 
 type jsonErrorResponse struct {
 	Code    string `json:"__type"`
 	Message string `json:"message"`
-}
-
-func (e jsonErrorResponse) Err(StatusCode int) error {
-	return aws.APIError{
-		StatusCode: StatusCode,
-		Code:       e.Code,
-		Message:    e.Message,
-	}
 }
