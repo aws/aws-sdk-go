@@ -15,7 +15,7 @@ type paramFiller struct {
 }
 
 func (f paramFiller) typeName(shape *api.Shape) string {
-	if f.prefixPackageName {
+	if f.prefixPackageName && shape.Type == "structure" {
 		return "*" + shape.API.PackageName() + "." + shape.GoTypeElem()
 	} else {
 		return shape.GoType()
