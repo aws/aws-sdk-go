@@ -102,7 +102,6 @@ func (t *TestSuite) write() {
 	}
 
 	b := []byte(util.GoFmt(buf.String()))
-	fmt.Println(string(b))
 	ioutil.WriteFile(file, b, 0644)
 }
 
