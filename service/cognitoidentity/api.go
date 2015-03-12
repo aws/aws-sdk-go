@@ -34,7 +34,7 @@ func (c *CognitoIdentity) CreateIdentityPool(input *CreateIdentityPoolInput) (ou
 var opCreateIdentityPool *aws.Operation
 
 // DeleteIdentityPoolRequest generates a request for the DeleteIdentityPool operation.
-func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInput) (req *aws.Request) {
+func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInput) (req *aws.Request, output *DeleteIdentityPoolOutput) {
 	if opDeleteIdentityPool == nil {
 		opDeleteIdentityPool = &aws.Operation{
 			Name:       "DeleteIdentityPool",
@@ -43,13 +43,15 @@ func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteIdentityPool, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteIdentityPool, input, output)
+	output = &DeleteIdentityPoolOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CognitoIdentity) DeleteIdentityPool(input *DeleteIdentityPoolInput) (err error) {
-	req := c.DeleteIdentityPoolRequest(input)
+func (c *CognitoIdentity) DeleteIdentityPool(input *DeleteIdentityPoolInput) (output *DeleteIdentityPoolOutput, err error) {
+	req, out := c.DeleteIdentityPoolRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -332,7 +334,7 @@ func (c *CognitoIdentity) MergeDeveloperIdentities(input *MergeDeveloperIdentiti
 var opMergeDeveloperIdentities *aws.Operation
 
 // SetIdentityPoolRolesRequest generates a request for the SetIdentityPoolRoles operation.
-func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRolesInput) (req *aws.Request) {
+func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRolesInput) (req *aws.Request, output *SetIdentityPoolRolesOutput) {
 	if opSetIdentityPoolRoles == nil {
 		opSetIdentityPoolRoles = &aws.Operation{
 			Name:       "SetIdentityPoolRoles",
@@ -341,13 +343,15 @@ func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRole
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetIdentityPoolRoles, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetIdentityPoolRoles, input, output)
+	output = &SetIdentityPoolRolesOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CognitoIdentity) SetIdentityPoolRoles(input *SetIdentityPoolRolesInput) (err error) {
-	req := c.SetIdentityPoolRolesRequest(input)
+func (c *CognitoIdentity) SetIdentityPoolRoles(input *SetIdentityPoolRolesInput) (output *SetIdentityPoolRolesOutput, err error) {
+	req, out := c.SetIdentityPoolRolesRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -355,7 +359,7 @@ func (c *CognitoIdentity) SetIdentityPoolRoles(input *SetIdentityPoolRolesInput)
 var opSetIdentityPoolRoles *aws.Operation
 
 // UnlinkDeveloperIdentityRequest generates a request for the UnlinkDeveloperIdentity operation.
-func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperIdentityInput) (req *aws.Request) {
+func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperIdentityInput) (req *aws.Request, output *UnlinkDeveloperIdentityOutput) {
 	if opUnlinkDeveloperIdentity == nil {
 		opUnlinkDeveloperIdentity = &aws.Operation{
 			Name:       "UnlinkDeveloperIdentity",
@@ -364,13 +368,15 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnlinkDeveloperIdentity, input, nil)
-
+	req = aws.NewRequest(c.Service, opUnlinkDeveloperIdentity, input, output)
+	output = &UnlinkDeveloperIdentityOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentityInput) (err error) {
-	req := c.UnlinkDeveloperIdentityRequest(input)
+func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentityInput) (output *UnlinkDeveloperIdentityOutput, err error) {
+	req, out := c.UnlinkDeveloperIdentityRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -378,7 +384,7 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentity
 var opUnlinkDeveloperIdentity *aws.Operation
 
 // UnlinkIdentityRequest generates a request for the UnlinkIdentity operation.
-func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req *aws.Request) {
+func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req *aws.Request, output *UnlinkIdentityOutput) {
 	if opUnlinkIdentity == nil {
 		opUnlinkIdentity = &aws.Operation{
 			Name:       "UnlinkIdentity",
@@ -387,13 +393,15 @@ func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnlinkIdentity, input, nil)
-
+	req = aws.NewRequest(c.Service, opUnlinkIdentity, input, output)
+	output = &UnlinkIdentityOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CognitoIdentity) UnlinkIdentity(input *UnlinkIdentityInput) (err error) {
-	req := c.UnlinkIdentityRequest(input)
+func (c *CognitoIdentity) UnlinkIdentity(input *UnlinkIdentityInput) (output *UnlinkIdentityOutput, err error) {
+	req, out := c.UnlinkIdentityRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -460,6 +468,14 @@ type DeleteIdentityPoolInput struct {
 
 type metadataDeleteIdentityPoolInput struct {
 	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId" json:",omitempty"`
+}
+
+type DeleteIdentityPoolOutput struct {
+	metadataDeleteIdentityPoolOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteIdentityPoolOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeIdentityInput struct {
@@ -818,6 +834,14 @@ type metadataSetIdentityPoolRolesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,Roles" json:",omitempty"`
 }
 
+type SetIdentityPoolRolesOutput struct {
+	metadataSetIdentityPoolRolesOutput `json:"-", xml:"-"`
+}
+
+type metadataSetIdentityPoolRolesOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type TooManyRequestsException struct {
 	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
@@ -841,6 +865,14 @@ type metadataUnlinkDeveloperIdentityInput struct {
 	SDKShapeTraits bool `type:"structure" required:"IdentityId,IdentityPoolId,DeveloperProviderName,DeveloperUserIdentifier" json:",omitempty"`
 }
 
+type UnlinkDeveloperIdentityOutput struct {
+	metadataUnlinkDeveloperIdentityOutput `json:"-", xml:"-"`
+}
+
+type metadataUnlinkDeveloperIdentityOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type UnlinkIdentityInput struct {
 	IdentityID     *string             `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 	Logins         *map[string]*string `type:"map" json:",omitempty"`
@@ -851,4 +883,12 @@ type UnlinkIdentityInput struct {
 
 type metadataUnlinkIdentityInput struct {
 	SDKShapeTraits bool `type:"structure" required:"IdentityId,Logins,LoginsToRemove" json:",omitempty"`
+}
+
+type UnlinkIdentityOutput struct {
+	metadataUnlinkIdentityOutput `json:"-", xml:"-"`
+}
+
+type metadataUnlinkIdentityOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }

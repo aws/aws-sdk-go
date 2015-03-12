@@ -259,7 +259,7 @@ func (c *ElastiCache) DeleteCacheCluster(input *DeleteCacheClusterMessage) (outp
 var opDeleteCacheCluster *aws.Operation
 
 // DeleteCacheParameterGroupRequest generates a request for the DeleteCacheParameterGroup operation.
-func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParameterGroupMessage) (req *aws.Request) {
+func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParameterGroupMessage) (req *aws.Request, output *DeleteCacheParameterGroupOutput) {
 	if opDeleteCacheParameterGroup == nil {
 		opDeleteCacheParameterGroup = &aws.Operation{
 			Name:       "DeleteCacheParameterGroup",
@@ -268,13 +268,15 @@ func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParamet
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCacheParameterGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteCacheParameterGroup, input, output)
+	output = &DeleteCacheParameterGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroupMessage) (err error) {
-	req := c.DeleteCacheParameterGroupRequest(input)
+func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroupMessage) (output *DeleteCacheParameterGroupOutput, err error) {
+	req, out := c.DeleteCacheParameterGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -282,7 +284,7 @@ func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroup
 var opDeleteCacheParameterGroup *aws.Operation
 
 // DeleteCacheSecurityGroupRequest generates a request for the DeleteCacheSecurityGroup operation.
-func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurityGroupMessage) (req *aws.Request) {
+func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurityGroupMessage) (req *aws.Request, output *DeleteCacheSecurityGroupOutput) {
 	if opDeleteCacheSecurityGroup == nil {
 		opDeleteCacheSecurityGroup = &aws.Operation{
 			Name:       "DeleteCacheSecurityGroup",
@@ -291,13 +293,15 @@ func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurity
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCacheSecurityGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteCacheSecurityGroup, input, output)
+	output = &DeleteCacheSecurityGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupMessage) (err error) {
-	req := c.DeleteCacheSecurityGroupRequest(input)
+func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupMessage) (output *DeleteCacheSecurityGroupOutput, err error) {
+	req, out := c.DeleteCacheSecurityGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -305,7 +309,7 @@ func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupMe
 var opDeleteCacheSecurityGroup *aws.Operation
 
 // DeleteCacheSubnetGroupRequest generates a request for the DeleteCacheSubnetGroup operation.
-func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGroupMessage) (req *aws.Request) {
+func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGroupMessage) (req *aws.Request, output *DeleteCacheSubnetGroupOutput) {
 	if opDeleteCacheSubnetGroup == nil {
 		opDeleteCacheSubnetGroup = &aws.Operation{
 			Name:       "DeleteCacheSubnetGroup",
@@ -314,13 +318,15 @@ func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGrou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCacheSubnetGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteCacheSubnetGroup, input, output)
+	output = &DeleteCacheSubnetGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupMessage) (err error) {
-	req := c.DeleteCacheSubnetGroupRequest(input)
+func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupMessage) (output *DeleteCacheSubnetGroupOutput, err error) {
+	req, out := c.DeleteCacheSubnetGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1545,6 +1551,14 @@ type metadataDeleteCacheParameterGroupMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName"`
 }
 
+type DeleteCacheParameterGroupOutput struct {
+	metadataDeleteCacheParameterGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteCacheParameterGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteCacheSecurityGroupMessage struct {
 	CacheSecurityGroupName *string `type:"string"`
 
@@ -1555,6 +1569,14 @@ type metadataDeleteCacheSecurityGroupMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheSecurityGroupName"`
 }
 
+type DeleteCacheSecurityGroupOutput struct {
+	metadataDeleteCacheSecurityGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteCacheSecurityGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteCacheSubnetGroupMessage struct {
 	CacheSubnetGroupName *string `type:"string"`
 
@@ -1563,6 +1585,14 @@ type DeleteCacheSubnetGroupMessage struct {
 
 type metadataDeleteCacheSubnetGroupMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheSubnetGroupName"`
+}
+
+type DeleteCacheSubnetGroupOutput struct {
+	metadataDeleteCacheSubnetGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteCacheSubnetGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteReplicationGroupMessage struct {

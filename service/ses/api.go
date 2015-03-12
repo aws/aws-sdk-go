@@ -34,7 +34,7 @@ func (c *SES) DeleteIdentity(input *DeleteIdentityInput) (output *DeleteIdentity
 var opDeleteIdentity *aws.Operation
 
 // DeleteVerifiedEmailAddressRequest generates a request for the DeleteVerifiedEmailAddress operation.
-func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddressInput) (req *aws.Request) {
+func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddressInput) (req *aws.Request, output *DeleteVerifiedEmailAddressOutput) {
 	if opDeleteVerifiedEmailAddress == nil {
 		opDeleteVerifiedEmailAddress = &aws.Operation{
 			Name:       "DeleteVerifiedEmailAddress",
@@ -43,13 +43,15 @@ func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddres
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVerifiedEmailAddress, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteVerifiedEmailAddress, input, output)
+	output = &DeleteVerifiedEmailAddressOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SES) DeleteVerifiedEmailAddress(input *DeleteVerifiedEmailAddressInput) (err error) {
-	req := c.DeleteVerifiedEmailAddressRequest(input)
+func (c *SES) DeleteVerifiedEmailAddress(input *DeleteVerifiedEmailAddressInput) (output *DeleteVerifiedEmailAddressOutput, err error) {
+	req, out := c.DeleteVerifiedEmailAddressRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -132,7 +134,7 @@ func (c *SES) GetIdentityVerificationAttributes(input *GetIdentityVerificationAt
 var opGetIdentityVerificationAttributes *aws.Operation
 
 // GetSendQuotaRequest generates a request for the GetSendQuota operation.
-func (c *SES) GetSendQuotaRequest() (req *aws.Request, output *GetSendQuotaOutput) {
+func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *aws.Request, output *GetSendQuotaOutput) {
 	if opGetSendQuota == nil {
 		opGetSendQuota = &aws.Operation{
 			Name:       "GetSendQuota",
@@ -141,14 +143,14 @@ func (c *SES) GetSendQuotaRequest() (req *aws.Request, output *GetSendQuotaOutpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetSendQuota, nil, output)
+	req = aws.NewRequest(c.Service, opGetSendQuota, input, output)
 	output = &GetSendQuotaOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SES) GetSendQuota() (output *GetSendQuotaOutput, err error) {
-	req, out := c.GetSendQuotaRequest()
+func (c *SES) GetSendQuota(input *GetSendQuotaInput) (output *GetSendQuotaOutput, err error) {
+	req, out := c.GetSendQuotaRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -157,7 +159,7 @@ func (c *SES) GetSendQuota() (output *GetSendQuotaOutput, err error) {
 var opGetSendQuota *aws.Operation
 
 // GetSendStatisticsRequest generates a request for the GetSendStatistics operation.
-func (c *SES) GetSendStatisticsRequest() (req *aws.Request, output *GetSendStatisticsOutput) {
+func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *aws.Request, output *GetSendStatisticsOutput) {
 	if opGetSendStatistics == nil {
 		opGetSendStatistics = &aws.Operation{
 			Name:       "GetSendStatistics",
@@ -166,14 +168,14 @@ func (c *SES) GetSendStatisticsRequest() (req *aws.Request, output *GetSendStati
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetSendStatistics, nil, output)
+	req = aws.NewRequest(c.Service, opGetSendStatistics, input, output)
 	output = &GetSendStatisticsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SES) GetSendStatistics() (output *GetSendStatisticsOutput, err error) {
-	req, out := c.GetSendStatisticsRequest()
+func (c *SES) GetSendStatistics(input *GetSendStatisticsInput) (output *GetSendStatisticsOutput, err error) {
+	req, out := c.GetSendStatisticsRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -207,7 +209,7 @@ func (c *SES) ListIdentities(input *ListIdentitiesInput) (output *ListIdentities
 var opListIdentities *aws.Operation
 
 // ListVerifiedEmailAddressesRequest generates a request for the ListVerifiedEmailAddresses operation.
-func (c *SES) ListVerifiedEmailAddressesRequest() (req *aws.Request, output *ListVerifiedEmailAddressesOutput) {
+func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddressesInput) (req *aws.Request, output *ListVerifiedEmailAddressesOutput) {
 	if opListVerifiedEmailAddresses == nil {
 		opListVerifiedEmailAddresses = &aws.Operation{
 			Name:       "ListVerifiedEmailAddresses",
@@ -216,14 +218,14 @@ func (c *SES) ListVerifiedEmailAddressesRequest() (req *aws.Request, output *Lis
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListVerifiedEmailAddresses, nil, output)
+	req = aws.NewRequest(c.Service, opListVerifiedEmailAddresses, input, output)
 	output = &ListVerifiedEmailAddressesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SES) ListVerifiedEmailAddresses() (output *ListVerifiedEmailAddressesOutput, err error) {
-	req, out := c.ListVerifiedEmailAddressesRequest()
+func (c *SES) ListVerifiedEmailAddresses(input *ListVerifiedEmailAddressesInput) (output *ListVerifiedEmailAddressesOutput, err error) {
+	req, out := c.ListVerifiedEmailAddressesRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -407,7 +409,7 @@ func (c *SES) VerifyDomainIdentity(input *VerifyDomainIdentityInput) (output *Ve
 var opVerifyDomainIdentity *aws.Operation
 
 // VerifyEmailAddressRequest generates a request for the VerifyEmailAddress operation.
-func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *aws.Request) {
+func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *aws.Request, output *VerifyEmailAddressOutput) {
 	if opVerifyEmailAddress == nil {
 		opVerifyEmailAddress = &aws.Operation{
 			Name:       "VerifyEmailAddress",
@@ -416,13 +418,15 @@ func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opVerifyEmailAddress, input, nil)
-
+	req = aws.NewRequest(c.Service, opVerifyEmailAddress, input, output)
+	output = &VerifyEmailAddressOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SES) VerifyEmailAddress(input *VerifyEmailAddressInput) (err error) {
-	req := c.VerifyEmailAddressRequest(input)
+func (c *SES) VerifyEmailAddress(input *VerifyEmailAddressInput) (output *VerifyEmailAddressOutput, err error) {
+	req, out := c.VerifyEmailAddressRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -504,6 +508,14 @@ type metadataDeleteVerifiedEmailAddressInput struct {
 	SDKShapeTraits bool `type:"structure" required:"EmailAddress"`
 }
 
+type DeleteVerifiedEmailAddressOutput struct {
+	metadataDeleteVerifiedEmailAddressOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteVerifiedEmailAddressOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type Destination struct {
 	BCCAddresses []*string `locationName:"BccAddresses" type:"list"`
 	CCAddresses  []*string `locationName:"CcAddresses" type:"list"`
@@ -576,6 +588,14 @@ type metadataGetIdentityVerificationAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"GetIdentityVerificationAttributesResult" required:"VerificationAttributes"`
 }
 
+type GetSendQuotaInput struct {
+	metadataGetSendQuotaInput `json:"-", xml:"-"`
+}
+
+type metadataGetSendQuotaInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type GetSendQuotaOutput struct {
 	Max24HourSend   *float64 `type:"double"`
 	MaxSendRate     *float64 `type:"double"`
@@ -586,6 +606,14 @@ type GetSendQuotaOutput struct {
 
 type metadataGetSendQuotaOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"GetSendQuotaResult"`
+}
+
+type GetSendStatisticsInput struct {
+	metadataGetSendStatisticsInput `json:"-", xml:"-"`
+}
+
+type metadataGetSendStatisticsInput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetSendStatisticsOutput struct {
@@ -655,6 +683,14 @@ type ListIdentitiesOutput struct {
 
 type metadataListIdentitiesOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ListIdentitiesResult" required:"Identities"`
+}
+
+type ListVerifiedEmailAddressesInput struct {
+	metadataListVerifiedEmailAddressesInput `json:"-", xml:"-"`
+}
+
+type metadataListVerifiedEmailAddressesInput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListVerifiedEmailAddressesOutput struct {
@@ -862,6 +898,14 @@ type VerifyEmailAddressInput struct {
 
 type metadataVerifyEmailAddressInput struct {
 	SDKShapeTraits bool `type:"structure" required:"EmailAddress"`
+}
+
+type VerifyEmailAddressOutput struct {
+	metadataVerifyEmailAddressOutput `json:"-", xml:"-"`
+}
+
+type metadataVerifyEmailAddressOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type VerifyEmailIdentityInput struct {

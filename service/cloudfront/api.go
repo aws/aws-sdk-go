@@ -109,7 +109,7 @@ func (c *CloudFront) CreateStreamingDistribution(input *CreateStreamingDistribut
 var opCreateStreamingDistribution *aws.Operation
 
 // DeleteCloudFrontOriginAccessIdentityRequest generates a request for the DeleteCloudFrontOriginAccessIdentity operation.
-func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCloudFrontOriginAccessIdentityInput) (req *aws.Request) {
+func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *DeleteCloudFrontOriginAccessIdentityOutput) {
 	if opDeleteCloudFrontOriginAccessIdentity == nil {
 		opDeleteCloudFrontOriginAccessIdentity = &aws.Operation{
 			Name:       "DeleteCloudFrontOriginAccessIdentity2014_11_06",
@@ -118,13 +118,15 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCl
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCloudFrontOriginAccessIdentity, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteCloudFrontOriginAccessIdentity, input, output)
+	output = &DeleteCloudFrontOriginAccessIdentityOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFrontOriginAccessIdentityInput) (err error) {
-	req := c.DeleteCloudFrontOriginAccessIdentityRequest(input)
+func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFrontOriginAccessIdentityInput) (output *DeleteCloudFrontOriginAccessIdentityOutput, err error) {
+	req, out := c.DeleteCloudFrontOriginAccessIdentityRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -132,7 +134,7 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFron
 var opDeleteCloudFrontOriginAccessIdentity *aws.Operation
 
 // DeleteDistributionRequest generates a request for the DeleteDistribution operation.
-func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (req *aws.Request) {
+func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (req *aws.Request, output *DeleteDistributionOutput) {
 	if opDeleteDistribution == nil {
 		opDeleteDistribution = &aws.Operation{
 			Name:       "DeleteDistribution2014_11_06",
@@ -141,13 +143,15 @@ func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDistribution, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteDistribution, input, output)
+	output = &DeleteDistributionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (err error) {
-	req := c.DeleteDistributionRequest(input)
+func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (output *DeleteDistributionOutput, err error) {
+	req, out := c.DeleteDistributionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -155,7 +159,7 @@ func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (err err
 var opDeleteDistribution *aws.Operation
 
 // DeleteStreamingDistributionRequest generates a request for the DeleteStreamingDistribution operation.
-func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDistributionInput) (req *aws.Request) {
+func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDistributionInput) (req *aws.Request, output *DeleteStreamingDistributionOutput) {
 	if opDeleteStreamingDistribution == nil {
 		opDeleteStreamingDistribution = &aws.Operation{
 			Name:       "DeleteStreamingDistribution2014_11_06",
@@ -164,13 +168,15 @@ func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteStreamingDistribution, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteStreamingDistribution, input, output)
+	output = &DeleteStreamingDistributionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistributionInput) (err error) {
-	req := c.DeleteStreamingDistributionRequest(input)
+func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistributionInput) (output *DeleteStreamingDistributionOutput, err error) {
+	req, out := c.DeleteStreamingDistributionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -874,6 +880,14 @@ type metadataDeleteCloudFrontOriginAccessIdentityInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Id"`
 }
 
+type DeleteCloudFrontOriginAccessIdentityOutput struct {
+	metadataDeleteCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteCloudFrontOriginAccessIdentityOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteDistributionInput struct {
 	ID      *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
@@ -885,6 +899,14 @@ type metadataDeleteDistributionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Id"`
 }
 
+type DeleteDistributionOutput struct {
+	metadataDeleteDistributionOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteDistributionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteStreamingDistributionInput struct {
 	ID      *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
@@ -894,6 +916,14 @@ type DeleteStreamingDistributionInput struct {
 
 type metadataDeleteStreamingDistributionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Id"`
+}
+
+type DeleteStreamingDistributionOutput struct {
+	metadataDeleteStreamingDistributionOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteStreamingDistributionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Distribution struct {

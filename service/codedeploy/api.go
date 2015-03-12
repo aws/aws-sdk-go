@@ -159,7 +159,7 @@ func (c *CodeDeploy) CreateDeploymentGroup(input *CreateDeploymentGroupInput) (o
 var opCreateDeploymentGroup *aws.Operation
 
 // DeleteApplicationRequest generates a request for the DeleteApplication operation.
-func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (req *aws.Request) {
+func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (req *aws.Request, output *DeleteApplicationOutput) {
 	if opDeleteApplication == nil {
 		opDeleteApplication = &aws.Operation{
 			Name:       "DeleteApplication",
@@ -168,13 +168,15 @@ func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteApplication, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteApplication, input, output)
+	output = &DeleteApplicationOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CodeDeploy) DeleteApplication(input *DeleteApplicationInput) (err error) {
-	req := c.DeleteApplicationRequest(input)
+func (c *CodeDeploy) DeleteApplication(input *DeleteApplicationInput) (output *DeleteApplicationOutput, err error) {
+	req, out := c.DeleteApplicationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -182,7 +184,7 @@ func (c *CodeDeploy) DeleteApplication(input *DeleteApplicationInput) (err error
 var opDeleteApplication *aws.Operation
 
 // DeleteDeploymentConfigRequest generates a request for the DeleteDeploymentConfig operation.
-func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfigInput) (req *aws.Request) {
+func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfigInput) (req *aws.Request, output *DeleteDeploymentConfigOutput) {
 	if opDeleteDeploymentConfig == nil {
 		opDeleteDeploymentConfig = &aws.Operation{
 			Name:       "DeleteDeploymentConfig",
@@ -191,13 +193,15 @@ func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfig
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDeploymentConfig, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteDeploymentConfig, input, output)
+	output = &DeleteDeploymentConfigOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CodeDeploy) DeleteDeploymentConfig(input *DeleteDeploymentConfigInput) (err error) {
-	req := c.DeleteDeploymentConfigRequest(input)
+func (c *CodeDeploy) DeleteDeploymentConfig(input *DeleteDeploymentConfigInput) (output *DeleteDeploymentConfigOutput, err error) {
+	req, out := c.DeleteDeploymentConfigRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -530,7 +534,7 @@ func (c *CodeDeploy) ListDeployments(input *ListDeploymentsInput) (output *ListD
 var opListDeployments *aws.Operation
 
 // RegisterApplicationRevisionRequest generates a request for the RegisterApplicationRevision operation.
-func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicationRevisionInput) (req *aws.Request) {
+func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicationRevisionInput) (req *aws.Request, output *RegisterApplicationRevisionOutput) {
 	if opRegisterApplicationRevision == nil {
 		opRegisterApplicationRevision = &aws.Operation{
 			Name:       "RegisterApplicationRevision",
@@ -539,13 +543,15 @@ func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicati
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterApplicationRevision, input, nil)
-
+	req = aws.NewRequest(c.Service, opRegisterApplicationRevision, input, output)
+	output = &RegisterApplicationRevisionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CodeDeploy) RegisterApplicationRevision(input *RegisterApplicationRevisionInput) (err error) {
-	req := c.RegisterApplicationRevisionRequest(input)
+func (c *CodeDeploy) RegisterApplicationRevision(input *RegisterApplicationRevisionInput) (output *RegisterApplicationRevisionOutput, err error) {
+	req, out := c.RegisterApplicationRevisionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -578,7 +584,7 @@ func (c *CodeDeploy) StopDeployment(input *StopDeploymentInput) (output *StopDep
 var opStopDeployment *aws.Operation
 
 // UpdateApplicationRequest generates a request for the UpdateApplication operation.
-func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (req *aws.Request) {
+func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (req *aws.Request, output *UpdateApplicationOutput) {
 	if opUpdateApplication == nil {
 		opUpdateApplication = &aws.Operation{
 			Name:       "UpdateApplication",
@@ -587,13 +593,15 @@ func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateApplication, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateApplication, input, output)
+	output = &UpdateApplicationOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CodeDeploy) UpdateApplication(input *UpdateApplicationInput) (err error) {
-	req := c.UpdateApplicationRequest(input)
+func (c *CodeDeploy) UpdateApplication(input *UpdateApplicationInput) (output *UpdateApplicationOutput, err error) {
+	req, out := c.UpdateApplicationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -830,6 +838,14 @@ type metadataDeleteApplicationInput struct {
 	SDKShapeTraits bool `type:"structure" required:"applicationName" json:",omitempty"`
 }
 
+type DeleteApplicationOutput struct {
+	metadataDeleteApplicationOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteApplicationOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DeleteDeploymentConfigInput struct {
 	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
 
@@ -838,6 +854,14 @@ type DeleteDeploymentConfigInput struct {
 
 type metadataDeleteDeploymentConfigInput struct {
 	SDKShapeTraits bool `type:"structure" required:"deploymentConfigName" json:",omitempty"`
+}
+
+type DeleteDeploymentConfigOutput struct {
+	metadataDeleteDeploymentConfigOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteDeploymentConfigOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteDeploymentGroupInput struct {
@@ -1593,6 +1617,14 @@ type metadataRegisterApplicationRevisionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"applicationName,revision" json:",omitempty"`
 }
 
+type RegisterApplicationRevisionOutput struct {
+	metadataRegisterApplicationRevisionOutput `json:"-", xml:"-"`
+}
+
+type metadataRegisterApplicationRevisionOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type RevisionDoesNotExistException struct {
 	metadataRevisionDoesNotExistException `json:"-", xml:"-"`
 }
@@ -1683,6 +1715,14 @@ type UpdateApplicationInput struct {
 }
 
 type metadataUpdateApplicationInput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type UpdateApplicationOutput struct {
+	metadataUpdateApplicationOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateApplicationOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

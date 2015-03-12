@@ -284,7 +284,7 @@ func (c *EMR) ListSteps(input *ListStepsInput) (output *ListStepsOutput, err err
 var opListSteps *aws.Operation
 
 // ModifyInstanceGroupsRequest generates a request for the ModifyInstanceGroups operation.
-func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req *aws.Request) {
+func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req *aws.Request, output *ModifyInstanceGroupsOutput) {
 	if opModifyInstanceGroups == nil {
 		opModifyInstanceGroups = &aws.Operation{
 			Name:       "ModifyInstanceGroups",
@@ -293,13 +293,15 @@ func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyInstanceGroups, input, nil)
-
+	req = aws.NewRequest(c.Service, opModifyInstanceGroups, input, output)
+	output = &ModifyInstanceGroupsOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (err error) {
-	req := c.ModifyInstanceGroupsRequest(input)
+func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (output *ModifyInstanceGroupsOutput, err error) {
+	req, out := c.ModifyInstanceGroupsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -357,7 +359,7 @@ func (c *EMR) RunJobFlow(input *RunJobFlowInput) (output *RunJobFlowOutput, err 
 var opRunJobFlow *aws.Operation
 
 // SetTerminationProtectionRequest generates a request for the SetTerminationProtection operation.
-func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInput) (req *aws.Request) {
+func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInput) (req *aws.Request, output *SetTerminationProtectionOutput) {
 	if opSetTerminationProtection == nil {
 		opSetTerminationProtection = &aws.Operation{
 			Name:       "SetTerminationProtection",
@@ -366,13 +368,15 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetTerminationProtection, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetTerminationProtection, input, output)
+	output = &SetTerminationProtectionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (err error) {
-	req := c.SetTerminationProtectionRequest(input)
+func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (output *SetTerminationProtectionOutput, err error) {
+	req, out := c.SetTerminationProtectionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -380,7 +384,7 @@ func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (er
 var opSetTerminationProtection *aws.Operation
 
 // SetVisibleToAllUsersRequest generates a request for the SetVisibleToAllUsers operation.
-func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req *aws.Request) {
+func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req *aws.Request, output *SetVisibleToAllUsersOutput) {
 	if opSetVisibleToAllUsers == nil {
 		opSetVisibleToAllUsers = &aws.Operation{
 			Name:       "SetVisibleToAllUsers",
@@ -389,13 +393,15 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetVisibleToAllUsers, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetVisibleToAllUsers, input, output)
+	output = &SetVisibleToAllUsersOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (err error) {
-	req := c.SetVisibleToAllUsersRequest(input)
+func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (output *SetVisibleToAllUsersOutput, err error) {
+	req, out := c.SetVisibleToAllUsersRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -403,7 +409,7 @@ func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (err error)
 var opSetVisibleToAllUsers *aws.Operation
 
 // TerminateJobFlowsRequest generates a request for the TerminateJobFlows operation.
-func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *aws.Request) {
+func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *aws.Request, output *TerminateJobFlowsOutput) {
 	if opTerminateJobFlows == nil {
 		opTerminateJobFlows = &aws.Operation{
 			Name:       "TerminateJobFlows",
@@ -412,13 +418,15 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opTerminateJobFlows, input, nil)
-
+	req = aws.NewRequest(c.Service, opTerminateJobFlows, input, output)
+	output = &TerminateJobFlowsOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (err error) {
-	req := c.TerminateJobFlowsRequest(input)
+func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (output *TerminateJobFlowsOutput, err error) {
+	req, out := c.TerminateJobFlowsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1113,6 +1121,14 @@ type metadataModifyInstanceGroupsInput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
+type ModifyInstanceGroupsOutput struct {
+	metadataModifyInstanceGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataModifyInstanceGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type PlacementType struct {
 	AvailabilityZone *string `type:"string" json:",omitempty"`
 
@@ -1196,6 +1212,14 @@ type metadataSetTerminationProtectionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"JobFlowIds,TerminationProtected" json:",omitempty"`
 }
 
+type SetTerminationProtectionOutput struct {
+	metadataSetTerminationProtectionOutput `json:"-", xml:"-"`
+}
+
+type metadataSetTerminationProtectionOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type SetVisibleToAllUsersInput struct {
 	JobFlowIDs        []*string `locationName:"JobFlowIds" type:"list" json:"JobFlowIds,omitempty"`
 	VisibleToAllUsers *bool     `type:"boolean" json:",omitempty"`
@@ -1205,6 +1229,14 @@ type SetVisibleToAllUsersInput struct {
 
 type metadataSetVisibleToAllUsersInput struct {
 	SDKShapeTraits bool `type:"structure" required:"JobFlowIds,VisibleToAllUsers" json:",omitempty"`
+}
+
+type SetVisibleToAllUsersOutput struct {
+	metadataSetVisibleToAllUsersOutput `json:"-", xml:"-"`
+}
+
+type metadataSetVisibleToAllUsersOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type Step struct {
@@ -1337,4 +1369,12 @@ type TerminateJobFlowsInput struct {
 
 type metadataTerminateJobFlowsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"JobFlowIds" json:",omitempty"`
+}
+
+type TerminateJobFlowsOutput struct {
+	metadataTerminateJobFlowsOutput `json:"-", xml:"-"`
+}
+
+type metadataTerminateJobFlowsOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }

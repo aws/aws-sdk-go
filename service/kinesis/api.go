@@ -7,7 +7,7 @@ import (
 )
 
 // AddTagsToStreamRequest generates a request for the AddTagsToStream operation.
-func (c *Kinesis) AddTagsToStreamRequest(input *AddTagsToStreamInput) (req *aws.Request) {
+func (c *Kinesis) AddTagsToStreamRequest(input *AddTagsToStreamInput) (req *aws.Request, output *AddTagsToStreamOutput) {
 	if opAddTagsToStream == nil {
 		opAddTagsToStream = &aws.Operation{
 			Name:       "AddTagsToStream",
@@ -16,13 +16,15 @@ func (c *Kinesis) AddTagsToStreamRequest(input *AddTagsToStreamInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddTagsToStream, input, nil)
-
+	req = aws.NewRequest(c.Service, opAddTagsToStream, input, output)
+	output = &AddTagsToStreamOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Kinesis) AddTagsToStream(input *AddTagsToStreamInput) (err error) {
-	req := c.AddTagsToStreamRequest(input)
+func (c *Kinesis) AddTagsToStream(input *AddTagsToStreamInput) (output *AddTagsToStreamOutput, err error) {
+	req, out := c.AddTagsToStreamRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -30,7 +32,7 @@ func (c *Kinesis) AddTagsToStream(input *AddTagsToStreamInput) (err error) {
 var opAddTagsToStream *aws.Operation
 
 // CreateStreamRequest generates a request for the CreateStream operation.
-func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *aws.Request) {
+func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *aws.Request, output *CreateStreamOutput) {
 	if opCreateStream == nil {
 		opCreateStream = &aws.Operation{
 			Name:       "CreateStream",
@@ -39,13 +41,15 @@ func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateStream, input, nil)
-
+	req = aws.NewRequest(c.Service, opCreateStream, input, output)
+	output = &CreateStreamOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Kinesis) CreateStream(input *CreateStreamInput) (err error) {
-	req := c.CreateStreamRequest(input)
+func (c *Kinesis) CreateStream(input *CreateStreamInput) (output *CreateStreamOutput, err error) {
+	req, out := c.CreateStreamRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -53,7 +57,7 @@ func (c *Kinesis) CreateStream(input *CreateStreamInput) (err error) {
 var opCreateStream *aws.Operation
 
 // DeleteStreamRequest generates a request for the DeleteStream operation.
-func (c *Kinesis) DeleteStreamRequest(input *DeleteStreamInput) (req *aws.Request) {
+func (c *Kinesis) DeleteStreamRequest(input *DeleteStreamInput) (req *aws.Request, output *DeleteStreamOutput) {
 	if opDeleteStream == nil {
 		opDeleteStream = &aws.Operation{
 			Name:       "DeleteStream",
@@ -62,13 +66,15 @@ func (c *Kinesis) DeleteStreamRequest(input *DeleteStreamInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteStream, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteStream, input, output)
+	output = &DeleteStreamOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Kinesis) DeleteStream(input *DeleteStreamInput) (err error) {
-	req := c.DeleteStreamRequest(input)
+func (c *Kinesis) DeleteStream(input *DeleteStreamInput) (output *DeleteStreamOutput, err error) {
+	req, out := c.DeleteStreamRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -201,7 +207,7 @@ func (c *Kinesis) ListTagsForStream(input *ListTagsForStreamInput) (output *List
 var opListTagsForStream *aws.Operation
 
 // MergeShardsRequest generates a request for the MergeShards operation.
-func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *aws.Request) {
+func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *aws.Request, output *MergeShardsOutput) {
 	if opMergeShards == nil {
 		opMergeShards = &aws.Operation{
 			Name:       "MergeShards",
@@ -210,13 +216,15 @@ func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *aws.Request)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opMergeShards, input, nil)
-
+	req = aws.NewRequest(c.Service, opMergeShards, input, output)
+	output = &MergeShardsOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Kinesis) MergeShards(input *MergeShardsInput) (err error) {
-	req := c.MergeShardsRequest(input)
+func (c *Kinesis) MergeShards(input *MergeShardsInput) (output *MergeShardsOutput, err error) {
+	req, out := c.MergeShardsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -274,7 +282,7 @@ func (c *Kinesis) PutRecords(input *PutRecordsInput) (output *PutRecordsOutput, 
 var opPutRecords *aws.Operation
 
 // RemoveTagsFromStreamRequest generates a request for the RemoveTagsFromStream operation.
-func (c *Kinesis) RemoveTagsFromStreamRequest(input *RemoveTagsFromStreamInput) (req *aws.Request) {
+func (c *Kinesis) RemoveTagsFromStreamRequest(input *RemoveTagsFromStreamInput) (req *aws.Request, output *RemoveTagsFromStreamOutput) {
 	if opRemoveTagsFromStream == nil {
 		opRemoveTagsFromStream = &aws.Operation{
 			Name:       "RemoveTagsFromStream",
@@ -283,13 +291,15 @@ func (c *Kinesis) RemoveTagsFromStreamRequest(input *RemoveTagsFromStreamInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveTagsFromStream, input, nil)
-
+	req = aws.NewRequest(c.Service, opRemoveTagsFromStream, input, output)
+	output = &RemoveTagsFromStreamOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Kinesis) RemoveTagsFromStream(input *RemoveTagsFromStreamInput) (err error) {
-	req := c.RemoveTagsFromStreamRequest(input)
+func (c *Kinesis) RemoveTagsFromStream(input *RemoveTagsFromStreamInput) (output *RemoveTagsFromStreamOutput, err error) {
+	req, out := c.RemoveTagsFromStreamRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -297,7 +307,7 @@ func (c *Kinesis) RemoveTagsFromStream(input *RemoveTagsFromStreamInput) (err er
 var opRemoveTagsFromStream *aws.Operation
 
 // SplitShardRequest generates a request for the SplitShard operation.
-func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *aws.Request) {
+func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *aws.Request, output *SplitShardOutput) {
 	if opSplitShard == nil {
 		opSplitShard = &aws.Operation{
 			Name:       "SplitShard",
@@ -306,13 +316,15 @@ func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSplitShard, input, nil)
-
+	req = aws.NewRequest(c.Service, opSplitShard, input, output)
+	output = &SplitShardOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Kinesis) SplitShard(input *SplitShardInput) (err error) {
-	req := c.SplitShardRequest(input)
+func (c *Kinesis) SplitShard(input *SplitShardInput) (output *SplitShardOutput, err error) {
+	req, out := c.SplitShardRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -330,6 +342,14 @@ type metadataAddTagsToStreamInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StreamName,Tags" json:",omitempty"`
 }
 
+type AddTagsToStreamOutput struct {
+	metadataAddTagsToStreamOutput `json:"-", xml:"-"`
+}
+
+type metadataAddTagsToStreamOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type CreateStreamInput struct {
 	ShardCount *int    `type:"integer" json:",omitempty"`
 	StreamName *string `type:"string" json:",omitempty"`
@@ -341,6 +361,14 @@ type metadataCreateStreamInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StreamName,ShardCount" json:",omitempty"`
 }
 
+type CreateStreamOutput struct {
+	metadataCreateStreamOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateStreamOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DeleteStreamInput struct {
 	StreamName *string `type:"string" json:",omitempty"`
 
@@ -349,6 +377,14 @@ type DeleteStreamInput struct {
 
 type metadataDeleteStreamInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StreamName" json:",omitempty"`
+}
+
+type DeleteStreamOutput struct {
+	metadataDeleteStreamOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteStreamOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeStreamInput struct {
@@ -516,6 +552,14 @@ type metadataMergeShardsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StreamName,ShardToMerge,AdjacentShardToMerge" json:",omitempty"`
 }
 
+type MergeShardsOutput struct {
+	metadataMergeShardsOutput `json:"-", xml:"-"`
+}
+
+type metadataMergeShardsOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type ProvisionedThroughputExceededException struct {
 	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
@@ -621,6 +665,14 @@ type metadataRemoveTagsFromStreamInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StreamName,TagKeys" json:",omitempty"`
 }
 
+type RemoveTagsFromStreamOutput struct {
+	metadataRemoveTagsFromStreamOutput `json:"-", xml:"-"`
+}
+
+type metadataRemoveTagsFromStreamOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type ResourceInUseException struct {
 	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
@@ -676,6 +728,14 @@ type SplitShardInput struct {
 
 type metadataSplitShardInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StreamName,ShardToSplit,NewStartingHashKey" json:",omitempty"`
+}
+
+type SplitShardOutput struct {
+	metadataSplitShardOutput `json:"-", xml:"-"`
+}
+
+type metadataSplitShardOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type StreamDescription struct {

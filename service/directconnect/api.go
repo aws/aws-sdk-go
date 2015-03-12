@@ -407,7 +407,7 @@ func (c *DirectConnect) DescribeInterconnects(input *DescribeInterconnectsInput)
 var opDescribeInterconnects *aws.Operation
 
 // DescribeLocationsRequest generates a request for the DescribeLocations operation.
-func (c *DirectConnect) DescribeLocationsRequest() (req *aws.Request, output *Locations) {
+func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) (req *aws.Request, output *Locations) {
 	if opDescribeLocations == nil {
 		opDescribeLocations = &aws.Operation{
 			Name:       "DescribeLocations",
@@ -416,14 +416,14 @@ func (c *DirectConnect) DescribeLocationsRequest() (req *aws.Request, output *Lo
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLocations, nil, output)
+	req = aws.NewRequest(c.Service, opDescribeLocations, input, output)
 	output = &Locations{}
 	req.Data = output
 	return
 }
 
-func (c *DirectConnect) DescribeLocations() (output *Locations, err error) {
-	req, out := c.DescribeLocationsRequest()
+func (c *DirectConnect) DescribeLocations(input *DescribeLocationsInput) (output *Locations, err error) {
+	req, out := c.DescribeLocationsRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -432,7 +432,7 @@ func (c *DirectConnect) DescribeLocations() (output *Locations, err error) {
 var opDescribeLocations *aws.Operation
 
 // DescribeVirtualGatewaysRequest generates a request for the DescribeVirtualGateways operation.
-func (c *DirectConnect) DescribeVirtualGatewaysRequest() (req *aws.Request, output *VirtualGateways) {
+func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGatewaysInput) (req *aws.Request, output *VirtualGateways) {
 	if opDescribeVirtualGateways == nil {
 		opDescribeVirtualGateways = &aws.Operation{
 			Name:       "DescribeVirtualGateways",
@@ -441,14 +441,14 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest() (req *aws.Request, outp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVirtualGateways, nil, output)
+	req = aws.NewRequest(c.Service, opDescribeVirtualGateways, input, output)
 	output = &VirtualGateways{}
 	req.Data = output
 	return
 }
 
-func (c *DirectConnect) DescribeVirtualGateways() (output *VirtualGateways, err error) {
-	req, out := c.DescribeVirtualGatewaysRequest()
+func (c *DirectConnect) DescribeVirtualGateways(input *DescribeVirtualGatewaysInput) (output *VirtualGateways, err error) {
+	req, out := c.DescribeVirtualGatewaysRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -731,6 +731,22 @@ type DescribeInterconnectsInput struct {
 }
 
 type metadataDescribeInterconnectsInput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type DescribeLocationsInput struct {
+	metadataDescribeLocationsInput `json:"-", xml:"-"`
+}
+
+type metadataDescribeLocationsInput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type DescribeVirtualGatewaysInput struct {
+	metadataDescribeVirtualGatewaysInput `json:"-", xml:"-"`
+}
+
+type metadataDescribeVirtualGatewaysInput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

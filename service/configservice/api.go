@@ -9,7 +9,7 @@ import (
 )
 
 // DeleteDeliveryChannelRequest generates a request for the DeleteDeliveryChannel operation.
-func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChannelInput) (req *aws.Request) {
+func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChannelInput) (req *aws.Request, output *DeleteDeliveryChannelOutput) {
 	if opDeleteDeliveryChannel == nil {
 		opDeleteDeliveryChannel = &aws.Operation{
 			Name:       "DeleteDeliveryChannel",
@@ -18,13 +18,15 @@ func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChanne
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDeliveryChannel, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteDeliveryChannel, input, output)
+	output = &DeleteDeliveryChannelOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ConfigService) DeleteDeliveryChannel(input *DeleteDeliveryChannelInput) (err error) {
-	req := c.DeleteDeliveryChannelRequest(input)
+func (c *ConfigService) DeleteDeliveryChannel(input *DeleteDeliveryChannelInput) (output *DeleteDeliveryChannelOutput, err error) {
+	req, out := c.DeleteDeliveryChannelRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -182,7 +184,7 @@ func (c *ConfigService) GetResourceConfigHistory(input *GetResourceConfigHistory
 var opGetResourceConfigHistory *aws.Operation
 
 // PutConfigurationRecorderRequest generates a request for the PutConfigurationRecorder operation.
-func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationRecorderInput) (req *aws.Request) {
+func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationRecorderInput) (req *aws.Request, output *PutConfigurationRecorderOutput) {
 	if opPutConfigurationRecorder == nil {
 		opPutConfigurationRecorder = &aws.Operation{
 			Name:       "PutConfigurationRecorder",
@@ -191,13 +193,15 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutConfigurationRecorder, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutConfigurationRecorder, input, output)
+	output = &PutConfigurationRecorderOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorderInput) (err error) {
-	req := c.PutConfigurationRecorderRequest(input)
+func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorderInput) (output *PutConfigurationRecorderOutput, err error) {
+	req, out := c.PutConfigurationRecorderRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -205,7 +209,7 @@ func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorder
 var opPutConfigurationRecorder *aws.Operation
 
 // PutDeliveryChannelRequest generates a request for the PutDeliveryChannel operation.
-func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput) (req *aws.Request) {
+func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput) (req *aws.Request, output *PutDeliveryChannelOutput) {
 	if opPutDeliveryChannel == nil {
 		opPutDeliveryChannel = &aws.Operation{
 			Name:       "PutDeliveryChannel",
@@ -214,13 +218,15 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutDeliveryChannel, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutDeliveryChannel, input, output)
+	output = &PutDeliveryChannelOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (err error) {
-	req := c.PutDeliveryChannelRequest(input)
+func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (output *PutDeliveryChannelOutput, err error) {
+	req, out := c.PutDeliveryChannelRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -228,7 +234,7 @@ func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (err 
 var opPutDeliveryChannel *aws.Operation
 
 // StartConfigurationRecorderRequest generates a request for the StartConfigurationRecorder operation.
-func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurationRecorderInput) (req *aws.Request) {
+func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurationRecorderInput) (req *aws.Request, output *StartConfigurationRecorderOutput) {
 	if opStartConfigurationRecorder == nil {
 		opStartConfigurationRecorder = &aws.Operation{
 			Name:       "StartConfigurationRecorder",
@@ -237,13 +243,15 @@ func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStartConfigurationRecorder, input, nil)
-
+	req = aws.NewRequest(c.Service, opStartConfigurationRecorder, input, output)
+	output = &StartConfigurationRecorderOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ConfigService) StartConfigurationRecorder(input *StartConfigurationRecorderInput) (err error) {
-	req := c.StartConfigurationRecorderRequest(input)
+func (c *ConfigService) StartConfigurationRecorder(input *StartConfigurationRecorderInput) (output *StartConfigurationRecorderOutput, err error) {
+	req, out := c.StartConfigurationRecorderRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -251,7 +259,7 @@ func (c *ConfigService) StartConfigurationRecorder(input *StartConfigurationReco
 var opStartConfigurationRecorder *aws.Operation
 
 // StopConfigurationRecorderRequest generates a request for the StopConfigurationRecorder operation.
-func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfigurationRecorderInput) (req *aws.Request) {
+func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfigurationRecorderInput) (req *aws.Request, output *StopConfigurationRecorderOutput) {
 	if opStopConfigurationRecorder == nil {
 		opStopConfigurationRecorder = &aws.Operation{
 			Name:       "StopConfigurationRecorder",
@@ -260,13 +268,15 @@ func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfiguratio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStopConfigurationRecorder, input, nil)
-
+	req = aws.NewRequest(c.Service, opStopConfigurationRecorder, input, output)
+	output = &StopConfigurationRecorderOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ConfigService) StopConfigurationRecorder(input *StopConfigurationRecorderInput) (err error) {
-	req := c.StopConfigurationRecorderRequest(input)
+func (c *ConfigService) StopConfigurationRecorder(input *StopConfigurationRecorderInput) (output *StopConfigurationRecorderOutput, err error) {
+	req, out := c.StopConfigurationRecorderRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -360,6 +370,14 @@ type DeleteDeliveryChannelInput struct {
 
 type metadataDeleteDeliveryChannelInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DeliveryChannelName" json:",omitempty"`
+}
+
+type DeleteDeliveryChannelOutput struct {
+	metadataDeleteDeliveryChannelOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteDeliveryChannelOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeliverConfigSnapshotInput struct {
@@ -669,6 +687,14 @@ type metadataPutConfigurationRecorderInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ConfigurationRecorder" json:",omitempty"`
 }
 
+type PutConfigurationRecorderOutput struct {
+	metadataPutConfigurationRecorderOutput `json:"-", xml:"-"`
+}
+
+type metadataPutConfigurationRecorderOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type PutDeliveryChannelInput struct {
 	DeliveryChannel *DeliveryChannel `type:"structure" json:",omitempty"`
 
@@ -677,6 +703,14 @@ type PutDeliveryChannelInput struct {
 
 type metadataPutDeliveryChannelInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DeliveryChannel" json:",omitempty"`
+}
+
+type PutDeliveryChannelOutput struct {
+	metadataPutDeliveryChannelOutput `json:"-", xml:"-"`
+}
+
+type metadataPutDeliveryChannelOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type Relationship struct {
@@ -709,6 +743,14 @@ type metadataStartConfigurationRecorderInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ConfigurationRecorderName" json:",omitempty"`
 }
 
+type StartConfigurationRecorderOutput struct {
+	metadataStartConfigurationRecorderOutput `json:"-", xml:"-"`
+}
+
+type metadataStartConfigurationRecorderOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type StopConfigurationRecorderInput struct {
 	ConfigurationRecorderName *string `type:"string" json:",omitempty"`
 
@@ -717,6 +759,14 @@ type StopConfigurationRecorderInput struct {
 
 type metadataStopConfigurationRecorderInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ConfigurationRecorderName" json:",omitempty"`
+}
+
+type StopConfigurationRecorderOutput struct {
+	metadataStopConfigurationRecorderOutput `json:"-", xml:"-"`
+}
+
+type metadataStopConfigurationRecorderOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ValidationException struct {

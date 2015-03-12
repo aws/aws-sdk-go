@@ -7,7 +7,7 @@ import (
 )
 
 // CreateLogGroupRequest generates a request for the CreateLogGroup operation.
-func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req *aws.Request) {
+func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req *aws.Request, output *CreateLogGroupOutput) {
 	if opCreateLogGroup == nil {
 		opCreateLogGroup = &aws.Operation{
 			Name:       "CreateLogGroup",
@@ -16,13 +16,15 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLogGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opCreateLogGroup, input, output)
+	output = &CreateLogGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudWatchLogs) CreateLogGroup(input *CreateLogGroupInput) (err error) {
-	req := c.CreateLogGroupRequest(input)
+func (c *CloudWatchLogs) CreateLogGroup(input *CreateLogGroupInput) (output *CreateLogGroupOutput, err error) {
+	req, out := c.CreateLogGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -30,7 +32,7 @@ func (c *CloudWatchLogs) CreateLogGroup(input *CreateLogGroupInput) (err error) 
 var opCreateLogGroup *aws.Operation
 
 // CreateLogStreamRequest generates a request for the CreateLogStream operation.
-func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (req *aws.Request) {
+func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (req *aws.Request, output *CreateLogStreamOutput) {
 	if opCreateLogStream == nil {
 		opCreateLogStream = &aws.Operation{
 			Name:       "CreateLogStream",
@@ -39,13 +41,15 @@ func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLogStream, input, nil)
-
+	req = aws.NewRequest(c.Service, opCreateLogStream, input, output)
+	output = &CreateLogStreamOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudWatchLogs) CreateLogStream(input *CreateLogStreamInput) (err error) {
-	req := c.CreateLogStreamRequest(input)
+func (c *CloudWatchLogs) CreateLogStream(input *CreateLogStreamInput) (output *CreateLogStreamOutput, err error) {
+	req, out := c.CreateLogStreamRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -53,7 +57,7 @@ func (c *CloudWatchLogs) CreateLogStream(input *CreateLogStreamInput) (err error
 var opCreateLogStream *aws.Operation
 
 // DeleteLogGroupRequest generates a request for the DeleteLogGroup operation.
-func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req *aws.Request) {
+func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req *aws.Request, output *DeleteLogGroupOutput) {
 	if opDeleteLogGroup == nil {
 		opDeleteLogGroup = &aws.Operation{
 			Name:       "DeleteLogGroup",
@@ -62,13 +66,15 @@ func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLogGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteLogGroup, input, output)
+	output = &DeleteLogGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudWatchLogs) DeleteLogGroup(input *DeleteLogGroupInput) (err error) {
-	req := c.DeleteLogGroupRequest(input)
+func (c *CloudWatchLogs) DeleteLogGroup(input *DeleteLogGroupInput) (output *DeleteLogGroupOutput, err error) {
+	req, out := c.DeleteLogGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -76,7 +82,7 @@ func (c *CloudWatchLogs) DeleteLogGroup(input *DeleteLogGroupInput) (err error) 
 var opDeleteLogGroup *aws.Operation
 
 // DeleteLogStreamRequest generates a request for the DeleteLogStream operation.
-func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (req *aws.Request) {
+func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (req *aws.Request, output *DeleteLogStreamOutput) {
 	if opDeleteLogStream == nil {
 		opDeleteLogStream = &aws.Operation{
 			Name:       "DeleteLogStream",
@@ -85,13 +91,15 @@ func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLogStream, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteLogStream, input, output)
+	output = &DeleteLogStreamOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudWatchLogs) DeleteLogStream(input *DeleteLogStreamInput) (err error) {
-	req := c.DeleteLogStreamRequest(input)
+func (c *CloudWatchLogs) DeleteLogStream(input *DeleteLogStreamInput) (output *DeleteLogStreamOutput, err error) {
+	req, out := c.DeleteLogStreamRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -99,7 +107,7 @@ func (c *CloudWatchLogs) DeleteLogStream(input *DeleteLogStreamInput) (err error
 var opDeleteLogStream *aws.Operation
 
 // DeleteMetricFilterRequest generates a request for the DeleteMetricFilter operation.
-func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInput) (req *aws.Request) {
+func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInput) (req *aws.Request, output *DeleteMetricFilterOutput) {
 	if opDeleteMetricFilter == nil {
 		opDeleteMetricFilter = &aws.Operation{
 			Name:       "DeleteMetricFilter",
@@ -108,13 +116,15 @@ func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteMetricFilter, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteMetricFilter, input, output)
+	output = &DeleteMetricFilterOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudWatchLogs) DeleteMetricFilter(input *DeleteMetricFilterInput) (err error) {
-	req := c.DeleteMetricFilterRequest(input)
+func (c *CloudWatchLogs) DeleteMetricFilter(input *DeleteMetricFilterInput) (output *DeleteMetricFilterOutput, err error) {
+	req, out := c.DeleteMetricFilterRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -122,7 +132,7 @@ func (c *CloudWatchLogs) DeleteMetricFilter(input *DeleteMetricFilterInput) (err
 var opDeleteMetricFilter *aws.Operation
 
 // DeleteRetentionPolicyRequest generates a request for the DeleteRetentionPolicy operation.
-func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPolicyInput) (req *aws.Request) {
+func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPolicyInput) (req *aws.Request, output *DeleteRetentionPolicyOutput) {
 	if opDeleteRetentionPolicy == nil {
 		opDeleteRetentionPolicy = &aws.Operation{
 			Name:       "DeleteRetentionPolicy",
@@ -131,13 +141,15 @@ func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPoli
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteRetentionPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteRetentionPolicy, input, output)
+	output = &DeleteRetentionPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudWatchLogs) DeleteRetentionPolicy(input *DeleteRetentionPolicyInput) (err error) {
-	req := c.DeleteRetentionPolicyRequest(input)
+func (c *CloudWatchLogs) DeleteRetentionPolicy(input *DeleteRetentionPolicyInput) (output *DeleteRetentionPolicyOutput, err error) {
+	req, out := c.DeleteRetentionPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -270,7 +282,7 @@ func (c *CloudWatchLogs) PutLogEvents(input *PutLogEventsInput) (output *PutLogE
 var opPutLogEvents *aws.Operation
 
 // PutMetricFilterRequest generates a request for the PutMetricFilter operation.
-func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (req *aws.Request) {
+func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (req *aws.Request, output *PutMetricFilterOutput) {
 	if opPutMetricFilter == nil {
 		opPutMetricFilter = &aws.Operation{
 			Name:       "PutMetricFilter",
@@ -279,13 +291,15 @@ func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutMetricFilter, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutMetricFilter, input, output)
+	output = &PutMetricFilterOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudWatchLogs) PutMetricFilter(input *PutMetricFilterInput) (err error) {
-	req := c.PutMetricFilterRequest(input)
+func (c *CloudWatchLogs) PutMetricFilter(input *PutMetricFilterInput) (output *PutMetricFilterOutput, err error) {
+	req, out := c.PutMetricFilterRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -293,7 +307,7 @@ func (c *CloudWatchLogs) PutMetricFilter(input *PutMetricFilterInput) (err error
 var opPutMetricFilter *aws.Operation
 
 // PutRetentionPolicyRequest generates a request for the PutRetentionPolicy operation.
-func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInput) (req *aws.Request) {
+func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInput) (req *aws.Request, output *PutRetentionPolicyOutput) {
 	if opPutRetentionPolicy == nil {
 		opPutRetentionPolicy = &aws.Operation{
 			Name:       "PutRetentionPolicy",
@@ -302,13 +316,15 @@ func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutRetentionPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutRetentionPolicy, input, output)
+	output = &PutRetentionPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudWatchLogs) PutRetentionPolicy(input *PutRetentionPolicyInput) (err error) {
-	req := c.PutRetentionPolicyRequest(input)
+func (c *CloudWatchLogs) PutRetentionPolicy(input *PutRetentionPolicyInput) (output *PutRetentionPolicyOutput, err error) {
+	req, out := c.PutRetentionPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -350,6 +366,14 @@ type metadataCreateLogGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"logGroupName" json:",omitempty"`
 }
 
+type CreateLogGroupOutput struct {
+	metadataCreateLogGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateLogGroupOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type CreateLogStreamInput struct {
 	LogGroupName  *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
 	LogStreamName *string `locationName:"logStreamName" type:"string" json:"logStreamName,omitempty"`
@@ -359,6 +383,14 @@ type CreateLogStreamInput struct {
 
 type metadataCreateLogStreamInput struct {
 	SDKShapeTraits bool `type:"structure" required:"logGroupName,logStreamName" json:",omitempty"`
+}
+
+type CreateLogStreamOutput struct {
+	metadataCreateLogStreamOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateLogStreamOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DataAlreadyAcceptedException struct {
@@ -381,6 +413,14 @@ type metadataDeleteLogGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"logGroupName" json:",omitempty"`
 }
 
+type DeleteLogGroupOutput struct {
+	metadataDeleteLogGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteLogGroupOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DeleteLogStreamInput struct {
 	LogGroupName  *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
 	LogStreamName *string `locationName:"logStreamName" type:"string" json:"logStreamName,omitempty"`
@@ -390,6 +430,14 @@ type DeleteLogStreamInput struct {
 
 type metadataDeleteLogStreamInput struct {
 	SDKShapeTraits bool `type:"structure" required:"logGroupName,logStreamName" json:",omitempty"`
+}
+
+type DeleteLogStreamOutput struct {
+	metadataDeleteLogStreamOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteLogStreamOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteMetricFilterInput struct {
@@ -403,6 +451,14 @@ type metadataDeleteMetricFilterInput struct {
 	SDKShapeTraits bool `type:"structure" required:"logGroupName,filterName" json:",omitempty"`
 }
 
+type DeleteMetricFilterOutput struct {
+	metadataDeleteMetricFilterOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteMetricFilterOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DeleteRetentionPolicyInput struct {
 	LogGroupName *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
 
@@ -411,6 +467,14 @@ type DeleteRetentionPolicyInput struct {
 
 type metadataDeleteRetentionPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"logGroupName" json:",omitempty"`
+}
+
+type DeleteRetentionPolicyOutput struct {
+	metadataDeleteRetentionPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteRetentionPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeLogGroupsInput struct {
@@ -674,6 +738,14 @@ type metadataPutMetricFilterInput struct {
 	SDKShapeTraits bool `type:"structure" required:"logGroupName,filterName,filterPattern,metricTransformations" json:",omitempty"`
 }
 
+type PutMetricFilterOutput struct {
+	metadataPutMetricFilterOutput `json:"-", xml:"-"`
+}
+
+type metadataPutMetricFilterOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type PutRetentionPolicyInput struct {
 	LogGroupName    *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
 	RetentionInDays *int    `locationName:"retentionInDays" type:"integer" json:"retentionInDays,omitempty"`
@@ -683,6 +755,14 @@ type PutRetentionPolicyInput struct {
 
 type metadataPutRetentionPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"logGroupName,retentionInDays" json:",omitempty"`
+}
+
+type PutRetentionPolicyOutput struct {
+	metadataPutRetentionPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataPutRetentionPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ResourceAlreadyExistsException struct {

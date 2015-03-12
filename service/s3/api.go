@@ -10,7 +10,7 @@ import (
 )
 
 // AbortMultipartUploadRequest generates a request for the AbortMultipartUpload operation.
-func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req *aws.Request) {
+func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req *aws.Request, output *AbortMultipartUploadOutput) {
 	if opAbortMultipartUpload == nil {
 		opAbortMultipartUpload = &aws.Operation{
 			Name:       "AbortMultipartUpload",
@@ -19,13 +19,15 @@ func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAbortMultipartUpload, input, nil)
-
+	req = aws.NewRequest(c.Service, opAbortMultipartUpload, input, output)
+	output = &AbortMultipartUploadOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) AbortMultipartUpload(input *AbortMultipartUploadInput) (err error) {
-	req := c.AbortMultipartUploadRequest(input)
+func (c *S3) AbortMultipartUpload(input *AbortMultipartUploadInput) (output *AbortMultipartUploadOutput, err error) {
+	req, out := c.AbortMultipartUploadRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -133,7 +135,7 @@ func (c *S3) CreateMultipartUpload(input *CreateMultipartUploadInput) (output *C
 var opCreateMultipartUpload *aws.Operation
 
 // DeleteBucketRequest generates a request for the DeleteBucket operation.
-func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *aws.Request) {
+func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *aws.Request, output *DeleteBucketOutput) {
 	if opDeleteBucket == nil {
 		opDeleteBucket = &aws.Operation{
 			Name:       "DeleteBucket",
@@ -142,13 +144,15 @@ func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucket, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteBucket, input, output)
+	output = &DeleteBucketOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) DeleteBucket(input *DeleteBucketInput) (err error) {
-	req := c.DeleteBucketRequest(input)
+func (c *S3) DeleteBucket(input *DeleteBucketInput) (output *DeleteBucketOutput, err error) {
+	req, out := c.DeleteBucketRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -156,7 +160,7 @@ func (c *S3) DeleteBucket(input *DeleteBucketInput) (err error) {
 var opDeleteBucket *aws.Operation
 
 // DeleteBucketCORSRequest generates a request for the DeleteBucketCORS operation.
-func (c *S3) DeleteBucketCORSRequest(input *DeleteBucketCORSInput) (req *aws.Request) {
+func (c *S3) DeleteBucketCORSRequest(input *DeleteBucketCORSInput) (req *aws.Request, output *DeleteBucketCORSOutput) {
 	if opDeleteBucketCORS == nil {
 		opDeleteBucketCORS = &aws.Operation{
 			Name:       "DeleteBucketCors",
@@ -165,13 +169,15 @@ func (c *S3) DeleteBucketCORSRequest(input *DeleteBucketCORSInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucketCORS, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteBucketCORS, input, output)
+	output = &DeleteBucketCORSOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) DeleteBucketCORS(input *DeleteBucketCORSInput) (err error) {
-	req := c.DeleteBucketCORSRequest(input)
+func (c *S3) DeleteBucketCORS(input *DeleteBucketCORSInput) (output *DeleteBucketCORSOutput, err error) {
+	req, out := c.DeleteBucketCORSRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -179,7 +185,7 @@ func (c *S3) DeleteBucketCORS(input *DeleteBucketCORSInput) (err error) {
 var opDeleteBucketCORS *aws.Operation
 
 // DeleteBucketLifecycleRequest generates a request for the DeleteBucketLifecycle operation.
-func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (req *aws.Request) {
+func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (req *aws.Request, output *DeleteBucketLifecycleOutput) {
 	if opDeleteBucketLifecycle == nil {
 		opDeleteBucketLifecycle = &aws.Operation{
 			Name:       "DeleteBucketLifecycle",
@@ -188,13 +194,15 @@ func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucketLifecycle, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteBucketLifecycle, input, output)
+	output = &DeleteBucketLifecycleOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) DeleteBucketLifecycle(input *DeleteBucketLifecycleInput) (err error) {
-	req := c.DeleteBucketLifecycleRequest(input)
+func (c *S3) DeleteBucketLifecycle(input *DeleteBucketLifecycleInput) (output *DeleteBucketLifecycleOutput, err error) {
+	req, out := c.DeleteBucketLifecycleRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -202,7 +210,7 @@ func (c *S3) DeleteBucketLifecycle(input *DeleteBucketLifecycleInput) (err error
 var opDeleteBucketLifecycle *aws.Operation
 
 // DeleteBucketPolicyRequest generates a request for the DeleteBucketPolicy operation.
-func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *aws.Request) {
+func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *aws.Request, output *DeleteBucketPolicyOutput) {
 	if opDeleteBucketPolicy == nil {
 		opDeleteBucketPolicy = &aws.Operation{
 			Name:       "DeleteBucketPolicy",
@@ -211,13 +219,15 @@ func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucketPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteBucketPolicy, input, output)
+	output = &DeleteBucketPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) DeleteBucketPolicy(input *DeleteBucketPolicyInput) (err error) {
-	req := c.DeleteBucketPolicyRequest(input)
+func (c *S3) DeleteBucketPolicy(input *DeleteBucketPolicyInput) (output *DeleteBucketPolicyOutput, err error) {
+	req, out := c.DeleteBucketPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -225,7 +235,7 @@ func (c *S3) DeleteBucketPolicy(input *DeleteBucketPolicyInput) (err error) {
 var opDeleteBucketPolicy *aws.Operation
 
 // DeleteBucketTaggingRequest generates a request for the DeleteBucketTagging operation.
-func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *aws.Request) {
+func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *aws.Request, output *DeleteBucketTaggingOutput) {
 	if opDeleteBucketTagging == nil {
 		opDeleteBucketTagging = &aws.Operation{
 			Name:       "DeleteBucketTagging",
@@ -234,13 +244,15 @@ func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucketTagging, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteBucketTagging, input, output)
+	output = &DeleteBucketTaggingOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) DeleteBucketTagging(input *DeleteBucketTaggingInput) (err error) {
-	req := c.DeleteBucketTaggingRequest(input)
+func (c *S3) DeleteBucketTagging(input *DeleteBucketTaggingInput) (output *DeleteBucketTaggingOutput, err error) {
+	req, out := c.DeleteBucketTaggingRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -248,7 +260,7 @@ func (c *S3) DeleteBucketTagging(input *DeleteBucketTaggingInput) (err error) {
 var opDeleteBucketTagging *aws.Operation
 
 // DeleteBucketWebsiteRequest generates a request for the DeleteBucketWebsite operation.
-func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *aws.Request) {
+func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *aws.Request, output *DeleteBucketWebsiteOutput) {
 	if opDeleteBucketWebsite == nil {
 		opDeleteBucketWebsite = &aws.Operation{
 			Name:       "DeleteBucketWebsite",
@@ -257,13 +269,15 @@ func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucketWebsite, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteBucketWebsite, input, output)
+	output = &DeleteBucketWebsiteOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) DeleteBucketWebsite(input *DeleteBucketWebsiteInput) (err error) {
-	req := c.DeleteBucketWebsiteRequest(input)
+func (c *S3) DeleteBucketWebsite(input *DeleteBucketWebsiteInput) (output *DeleteBucketWebsiteOutput, err error) {
+	req, out := c.DeleteBucketWebsiteRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -671,7 +685,7 @@ func (c *S3) GetObjectTorrent(input *GetObjectTorrentInput) (output *GetObjectTo
 var opGetObjectTorrent *aws.Operation
 
 // HeadBucketRequest generates a request for the HeadBucket operation.
-func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *aws.Request) {
+func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *aws.Request, output *HeadBucketOutput) {
 	if opHeadBucket == nil {
 		opHeadBucket = &aws.Operation{
 			Name:       "HeadBucket",
@@ -680,13 +694,15 @@ func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opHeadBucket, input, nil)
-
+	req = aws.NewRequest(c.Service, opHeadBucket, input, output)
+	output = &HeadBucketOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) HeadBucket(input *HeadBucketInput) (err error) {
-	req := c.HeadBucketRequest(input)
+func (c *S3) HeadBucket(input *HeadBucketInput) (output *HeadBucketOutput, err error) {
+	req, out := c.HeadBucketRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -719,7 +735,7 @@ func (c *S3) HeadObject(input *HeadObjectInput) (output *HeadObjectOutput, err e
 var opHeadObject *aws.Operation
 
 // ListBucketsRequest generates a request for the ListBuckets operation.
-func (c *S3) ListBucketsRequest() (req *aws.Request, output *ListBucketsOutput) {
+func (c *S3) ListBucketsRequest(input *ListBucketsInput) (req *aws.Request, output *ListBucketsOutput) {
 	if opListBuckets == nil {
 		opListBuckets = &aws.Operation{
 			Name:       "ListBuckets",
@@ -728,14 +744,14 @@ func (c *S3) ListBucketsRequest() (req *aws.Request, output *ListBucketsOutput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListBuckets, nil, output)
+	req = aws.NewRequest(c.Service, opListBuckets, input, output)
 	output = &ListBucketsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *S3) ListBuckets() (output *ListBucketsOutput, err error) {
-	req, out := c.ListBucketsRequest()
+func (c *S3) ListBuckets(input *ListBucketsInput) (output *ListBucketsOutput, err error) {
+	req, out := c.ListBucketsRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -844,7 +860,7 @@ func (c *S3) ListParts(input *ListPartsInput) (output *ListPartsOutput, err erro
 var opListParts *aws.Operation
 
 // PutBucketACLRequest generates a request for the PutBucketACL operation.
-func (c *S3) PutBucketACLRequest(input *PutBucketACLInput) (req *aws.Request) {
+func (c *S3) PutBucketACLRequest(input *PutBucketACLInput) (req *aws.Request, output *PutBucketACLOutput) {
 	if opPutBucketACL == nil {
 		opPutBucketACL = &aws.Operation{
 			Name:       "PutBucketAcl",
@@ -853,13 +869,15 @@ func (c *S3) PutBucketACLRequest(input *PutBucketACLInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketACL, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutBucketACL, input, output)
+	output = &PutBucketACLOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) PutBucketACL(input *PutBucketACLInput) (err error) {
-	req := c.PutBucketACLRequest(input)
+func (c *S3) PutBucketACL(input *PutBucketACLInput) (output *PutBucketACLOutput, err error) {
+	req, out := c.PutBucketACLRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -867,7 +885,7 @@ func (c *S3) PutBucketACL(input *PutBucketACLInput) (err error) {
 var opPutBucketACL *aws.Operation
 
 // PutBucketCORSRequest generates a request for the PutBucketCORS operation.
-func (c *S3) PutBucketCORSRequest(input *PutBucketCORSInput) (req *aws.Request) {
+func (c *S3) PutBucketCORSRequest(input *PutBucketCORSInput) (req *aws.Request, output *PutBucketCORSOutput) {
 	if opPutBucketCORS == nil {
 		opPutBucketCORS = &aws.Operation{
 			Name:       "PutBucketCors",
@@ -876,13 +894,15 @@ func (c *S3) PutBucketCORSRequest(input *PutBucketCORSInput) (req *aws.Request) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketCORS, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutBucketCORS, input, output)
+	output = &PutBucketCORSOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) PutBucketCORS(input *PutBucketCORSInput) (err error) {
-	req := c.PutBucketCORSRequest(input)
+func (c *S3) PutBucketCORS(input *PutBucketCORSInput) (output *PutBucketCORSOutput, err error) {
+	req, out := c.PutBucketCORSRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -890,7 +910,7 @@ func (c *S3) PutBucketCORS(input *PutBucketCORSInput) (err error) {
 var opPutBucketCORS *aws.Operation
 
 // PutBucketLifecycleRequest generates a request for the PutBucketLifecycle operation.
-func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *aws.Request) {
+func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *aws.Request, output *PutBucketLifecycleOutput) {
 	if opPutBucketLifecycle == nil {
 		opPutBucketLifecycle = &aws.Operation{
 			Name:       "PutBucketLifecycle",
@@ -899,13 +919,15 @@ func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketLifecycle, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutBucketLifecycle, input, output)
+	output = &PutBucketLifecycleOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (err error) {
-	req := c.PutBucketLifecycleRequest(input)
+func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (output *PutBucketLifecycleOutput, err error) {
+	req, out := c.PutBucketLifecycleRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -913,7 +935,7 @@ func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (err error) {
 var opPutBucketLifecycle *aws.Operation
 
 // PutBucketLoggingRequest generates a request for the PutBucketLogging operation.
-func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *aws.Request) {
+func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *aws.Request, output *PutBucketLoggingOutput) {
 	if opPutBucketLogging == nil {
 		opPutBucketLogging = &aws.Operation{
 			Name:       "PutBucketLogging",
@@ -922,13 +944,15 @@ func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketLogging, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutBucketLogging, input, output)
+	output = &PutBucketLoggingOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) PutBucketLogging(input *PutBucketLoggingInput) (err error) {
-	req := c.PutBucketLoggingRequest(input)
+func (c *S3) PutBucketLogging(input *PutBucketLoggingInput) (output *PutBucketLoggingOutput, err error) {
+	req, out := c.PutBucketLoggingRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -936,7 +960,7 @@ func (c *S3) PutBucketLogging(input *PutBucketLoggingInput) (err error) {
 var opPutBucketLogging *aws.Operation
 
 // PutBucketNotificationRequest generates a request for the PutBucketNotification operation.
-func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (req *aws.Request) {
+func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (req *aws.Request, output *PutBucketNotificationOutput) {
 	if opPutBucketNotification == nil {
 		opPutBucketNotification = &aws.Operation{
 			Name:       "PutBucketNotification",
@@ -945,13 +969,15 @@ func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketNotification, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutBucketNotification, input, output)
+	output = &PutBucketNotificationOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (err error) {
-	req := c.PutBucketNotificationRequest(input)
+func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (output *PutBucketNotificationOutput, err error) {
+	req, out := c.PutBucketNotificationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -959,7 +985,7 @@ func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (err error
 var opPutBucketNotification *aws.Operation
 
 // PutBucketPolicyRequest generates a request for the PutBucketPolicy operation.
-func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *aws.Request) {
+func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *aws.Request, output *PutBucketPolicyOutput) {
 	if opPutBucketPolicy == nil {
 		opPutBucketPolicy = &aws.Operation{
 			Name:       "PutBucketPolicy",
@@ -968,13 +994,15 @@ func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutBucketPolicy, input, output)
+	output = &PutBucketPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (err error) {
-	req := c.PutBucketPolicyRequest(input)
+func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (output *PutBucketPolicyOutput, err error) {
+	req, out := c.PutBucketPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -982,7 +1010,7 @@ func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (err error) {
 var opPutBucketPolicy *aws.Operation
 
 // PutBucketRequestPaymentRequest generates a request for the PutBucketRequestPayment operation.
-func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketInputPaymentInput) (req *aws.Request) {
+func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketInputPaymentInput) (req *aws.Request, output *PutBucketRequestPaymentOutput) {
 	if opPutBucketRequestPayment == nil {
 		opPutBucketRequestPayment = &aws.Operation{
 			Name:       "PutBucketRequestPayment",
@@ -991,13 +1019,15 @@ func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketInputPaymentInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketRequestPayment, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutBucketRequestPayment, input, output)
+	output = &PutBucketRequestPaymentOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) PutBucketRequestPayment(input *PutBucketInputPaymentInput) (err error) {
-	req := c.PutBucketRequestPaymentRequest(input)
+func (c *S3) PutBucketRequestPayment(input *PutBucketInputPaymentInput) (output *PutBucketRequestPaymentOutput, err error) {
+	req, out := c.PutBucketRequestPaymentRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1005,7 +1035,7 @@ func (c *S3) PutBucketRequestPayment(input *PutBucketInputPaymentInput) (err err
 var opPutBucketRequestPayment *aws.Operation
 
 // PutBucketTaggingRequest generates a request for the PutBucketTagging operation.
-func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *aws.Request) {
+func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *aws.Request, output *PutBucketTaggingOutput) {
 	if opPutBucketTagging == nil {
 		opPutBucketTagging = &aws.Operation{
 			Name:       "PutBucketTagging",
@@ -1014,13 +1044,15 @@ func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketTagging, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutBucketTagging, input, output)
+	output = &PutBucketTaggingOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) PutBucketTagging(input *PutBucketTaggingInput) (err error) {
-	req := c.PutBucketTaggingRequest(input)
+func (c *S3) PutBucketTagging(input *PutBucketTaggingInput) (output *PutBucketTaggingOutput, err error) {
+	req, out := c.PutBucketTaggingRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1028,7 +1060,7 @@ func (c *S3) PutBucketTagging(input *PutBucketTaggingInput) (err error) {
 var opPutBucketTagging *aws.Operation
 
 // PutBucketVersioningRequest generates a request for the PutBucketVersioning operation.
-func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *aws.Request) {
+func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *aws.Request, output *PutBucketVersioningOutput) {
 	if opPutBucketVersioning == nil {
 		opPutBucketVersioning = &aws.Operation{
 			Name:       "PutBucketVersioning",
@@ -1037,13 +1069,15 @@ func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketVersioning, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutBucketVersioning, input, output)
+	output = &PutBucketVersioningOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) PutBucketVersioning(input *PutBucketVersioningInput) (err error) {
-	req := c.PutBucketVersioningRequest(input)
+func (c *S3) PutBucketVersioning(input *PutBucketVersioningInput) (output *PutBucketVersioningOutput, err error) {
+	req, out := c.PutBucketVersioningRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1051,7 +1085,7 @@ func (c *S3) PutBucketVersioning(input *PutBucketVersioningInput) (err error) {
 var opPutBucketVersioning *aws.Operation
 
 // PutBucketWebsiteRequest generates a request for the PutBucketWebsite operation.
-func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *aws.Request) {
+func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *aws.Request, output *PutBucketWebsiteOutput) {
 	if opPutBucketWebsite == nil {
 		opPutBucketWebsite = &aws.Operation{
 			Name:       "PutBucketWebsite",
@@ -1060,13 +1094,15 @@ func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketWebsite, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutBucketWebsite, input, output)
+	output = &PutBucketWebsiteOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) PutBucketWebsite(input *PutBucketWebsiteInput) (err error) {
-	req := c.PutBucketWebsiteRequest(input)
+func (c *S3) PutBucketWebsite(input *PutBucketWebsiteInput) (output *PutBucketWebsiteOutput, err error) {
+	req, out := c.PutBucketWebsiteRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1099,7 +1135,7 @@ func (c *S3) PutObject(input *PutObjectInput) (output *PutObjectOutput, err erro
 var opPutObject *aws.Operation
 
 // PutObjectACLRequest generates a request for the PutObjectACL operation.
-func (c *S3) PutObjectACLRequest(input *PutObjectACLInput) (req *aws.Request) {
+func (c *S3) PutObjectACLRequest(input *PutObjectACLInput) (req *aws.Request, output *PutObjectACLOutput) {
 	if opPutObjectACL == nil {
 		opPutObjectACL = &aws.Operation{
 			Name:       "PutObjectAcl",
@@ -1108,13 +1144,15 @@ func (c *S3) PutObjectACLRequest(input *PutObjectACLInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutObjectACL, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutObjectACL, input, output)
+	output = &PutObjectACLOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) PutObjectACL(input *PutObjectACLInput) (err error) {
-	req := c.PutObjectACLRequest(input)
+func (c *S3) PutObjectACL(input *PutObjectACLInput) (output *PutObjectACLOutput, err error) {
+	req, out := c.PutObjectACLRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1122,7 +1160,7 @@ func (c *S3) PutObjectACL(input *PutObjectACLInput) (err error) {
 var opPutObjectACL *aws.Operation
 
 // RestoreObjectRequest generates a request for the RestoreObject operation.
-func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *aws.Request) {
+func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *aws.Request, output *RestoreObjectOutput) {
 	if opRestoreObject == nil {
 		opRestoreObject = &aws.Operation{
 			Name:       "RestoreObject",
@@ -1131,13 +1169,15 @@ func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *aws.Request) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRestoreObject, input, nil)
-
+	req = aws.NewRequest(c.Service, opRestoreObject, input, output)
+	output = &RestoreObjectOutput{}
+	req.Data = output
 	return
 }
 
-func (c *S3) RestoreObject(input *RestoreObjectInput) (err error) {
-	req := c.RestoreObjectRequest(input)
+func (c *S3) RestoreObject(input *RestoreObjectInput) (output *RestoreObjectOutput, err error) {
+	req, out := c.RestoreObjectRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1204,6 +1244,14 @@ type AbortMultipartUploadInput struct {
 
 type metadataAbortMultipartUploadInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Bucket,Key,UploadId"`
+}
+
+type AbortMultipartUploadOutput struct {
+	metadataAbortMultipartUploadOutput `json:"-", xml:"-"`
+}
+
+type metadataAbortMultipartUploadOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AccessControlPolicy struct {
@@ -1537,6 +1585,14 @@ type metadataDeleteBucketCORSInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Bucket"`
 }
 
+type DeleteBucketCORSOutput struct {
+	metadataDeleteBucketCORSOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteBucketCORSOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteBucketInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 
@@ -1557,6 +1613,22 @@ type metadataDeleteBucketLifecycleInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Bucket"`
 }
 
+type DeleteBucketLifecycleOutput struct {
+	metadataDeleteBucketLifecycleOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteBucketLifecycleOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DeleteBucketOutput struct {
+	metadataDeleteBucketOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteBucketOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteBucketPolicyInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 
@@ -1565,6 +1637,14 @@ type DeleteBucketPolicyInput struct {
 
 type metadataDeleteBucketPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+}
+
+type DeleteBucketPolicyOutput struct {
+	metadataDeleteBucketPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteBucketPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteBucketTaggingInput struct {
@@ -1577,6 +1657,14 @@ type metadataDeleteBucketTaggingInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Bucket"`
 }
 
+type DeleteBucketTaggingOutput struct {
+	metadataDeleteBucketTaggingOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteBucketTaggingOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteBucketWebsiteInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 
@@ -1585,6 +1673,14 @@ type DeleteBucketWebsiteInput struct {
 
 type metadataDeleteBucketWebsiteInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+}
+
+type DeleteBucketWebsiteOutput struct {
+	metadataDeleteBucketWebsiteOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteBucketWebsiteOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteMarkerEntry struct {
@@ -2047,6 +2143,14 @@ type metadataHeadBucketInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Bucket"`
 }
 
+type HeadBucketOutput struct {
+	metadataHeadBucketOutput `json:"-", xml:"-"`
+}
+
+type metadataHeadBucketOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type HeadObjectInput struct {
 	Bucket               *string    `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 	IfMatch              *string    `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
@@ -2136,6 +2240,14 @@ type LifecycleExpiration struct {
 }
 
 type metadataLifecycleExpiration struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ListBucketsInput struct {
+	metadataListBucketsInput `json:"-", xml:"-"`
+}
+
+type metadataListBucketsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2478,6 +2590,14 @@ type metadataPutBucketACLInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"AccessControlPolicy" required:"Bucket"`
 }
 
+type PutBucketACLOutput struct {
+	metadataPutBucketACLOutput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketACLOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type PutBucketCORSInput struct {
 	Bucket            *string            `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 	CORSConfiguration *CORSConfiguration `locationName:"CORSConfiguration" type:"structure"`
@@ -2488,6 +2608,14 @@ type PutBucketCORSInput struct {
 
 type metadataPutBucketCORSInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CORSConfiguration" required:"Bucket"`
+}
+
+type PutBucketCORSOutput struct {
+	metadataPutBucketCORSOutput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketCORSOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutBucketInputPaymentInput struct {
@@ -2514,6 +2642,14 @@ type metadataPutBucketLifecycleInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"LifecycleConfiguration" required:"Bucket"`
 }
 
+type PutBucketLifecycleOutput struct {
+	metadataPutBucketLifecycleOutput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketLifecycleOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type PutBucketLoggingInput struct {
 	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 	BucketLoggingStatus *BucketLoggingStatus `locationName:"BucketLoggingStatus" type:"structure"`
@@ -2524,6 +2660,14 @@ type PutBucketLoggingInput struct {
 
 type metadataPutBucketLoggingInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"BucketLoggingStatus" required:"Bucket,BucketLoggingStatus"`
+}
+
+type PutBucketLoggingOutput struct {
+	metadataPutBucketLoggingOutput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketLoggingOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutBucketNotificationInput struct {
@@ -2538,6 +2682,14 @@ type metadataPutBucketNotificationInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"NotificationConfiguration" required:"Bucket,NotificationConfiguration"`
 }
 
+type PutBucketNotificationOutput struct {
+	metadataPutBucketNotificationOutput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketNotificationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type PutBucketPolicyInput struct {
 	Bucket     *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
@@ -2550,6 +2702,22 @@ type metadataPutBucketPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Policy" required:"Bucket,Policy"`
 }
 
+type PutBucketPolicyOutput struct {
+	metadataPutBucketPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type PutBucketRequestPaymentOutput struct {
+	metadataPutBucketRequestPaymentOutput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketRequestPaymentOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type PutBucketTaggingInput struct {
 	Bucket     *string  `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 	ContentMD5 *string  `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
@@ -2560,6 +2728,14 @@ type PutBucketTaggingInput struct {
 
 type metadataPutBucketTaggingInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Tagging" required:"Bucket,Tagging"`
+}
+
+type PutBucketTaggingOutput struct {
+	metadataPutBucketTaggingOutput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketTaggingOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutBucketVersioningInput struct {
@@ -2575,6 +2751,14 @@ type metadataPutBucketVersioningInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"VersioningConfiguration" required:"Bucket,VersioningConfiguration"`
 }
 
+type PutBucketVersioningOutput struct {
+	metadataPutBucketVersioningOutput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketVersioningOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type PutBucketWebsiteInput struct {
 	Bucket               *string               `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 	ContentMD5           *string               `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
@@ -2585,6 +2769,14 @@ type PutBucketWebsiteInput struct {
 
 type metadataPutBucketWebsiteInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"WebsiteConfiguration" required:"Bucket,WebsiteConfiguration"`
+}
+
+type PutBucketWebsiteOutput struct {
+	metadataPutBucketWebsiteOutput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketWebsiteOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutObjectACLInput struct {
@@ -2604,6 +2796,14 @@ type PutObjectACLInput struct {
 
 type metadataPutObjectACLInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"AccessControlPolicy" required:"Bucket,Key"`
+}
+
+type PutObjectACLOutput struct {
+	metadataPutObjectACLOutput `json:"-", xml:"-"`
+}
+
+type metadataPutObjectACLOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutObjectInput struct {
@@ -2714,6 +2914,14 @@ type RestoreObjectInput struct {
 
 type metadataRestoreObjectInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"RestoreRequest" required:"Bucket,Key"`
+}
+
+type RestoreObjectOutput struct {
+	metadataRestoreObjectOutput `json:"-", xml:"-"`
+}
+
+type metadataRestoreObjectOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RestoreRequest struct {

@@ -9,7 +9,7 @@ import (
 )
 
 // AddClientIDToOpenIDConnectProviderRequest generates a request for the AddClientIDToOpenIDConnectProvider operation.
-func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpenIDConnectProviderInput) (req *aws.Request) {
+func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpenIDConnectProviderInput) (req *aws.Request, output *AddClientIDToOpenIDConnectProviderOutput) {
 	if opAddClientIDToOpenIDConnectProvider == nil {
 		opAddClientIDToOpenIDConnectProvider = &aws.Operation{
 			Name:       "AddClientIDToOpenIDConnectProvider",
@@ -18,13 +18,15 @@ func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpen
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddClientIDToOpenIDConnectProvider, input, nil)
-
+	req = aws.NewRequest(c.Service, opAddClientIDToOpenIDConnectProvider, input, output)
+	output = &AddClientIDToOpenIDConnectProviderOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) AddClientIDToOpenIDConnectProvider(input *AddClientIDToOpenIDConnectProviderInput) (err error) {
-	req := c.AddClientIDToOpenIDConnectProviderRequest(input)
+func (c *IAM) AddClientIDToOpenIDConnectProvider(input *AddClientIDToOpenIDConnectProviderInput) (output *AddClientIDToOpenIDConnectProviderOutput, err error) {
+	req, out := c.AddClientIDToOpenIDConnectProviderRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -32,7 +34,7 @@ func (c *IAM) AddClientIDToOpenIDConnectProvider(input *AddClientIDToOpenIDConne
 var opAddClientIDToOpenIDConnectProvider *aws.Operation
 
 // AddRoleToInstanceProfileRequest generates a request for the AddRoleToInstanceProfile operation.
-func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInput) (req *aws.Request) {
+func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInput) (req *aws.Request, output *AddRoleToInstanceProfileOutput) {
 	if opAddRoleToInstanceProfile == nil {
 		opAddRoleToInstanceProfile = &aws.Operation{
 			Name:       "AddRoleToInstanceProfile",
@@ -41,13 +43,15 @@ func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddRoleToInstanceProfile, input, nil)
-
+	req = aws.NewRequest(c.Service, opAddRoleToInstanceProfile, input, output)
+	output = &AddRoleToInstanceProfileOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) AddRoleToInstanceProfile(input *AddRoleToInstanceProfileInput) (err error) {
-	req := c.AddRoleToInstanceProfileRequest(input)
+func (c *IAM) AddRoleToInstanceProfile(input *AddRoleToInstanceProfileInput) (output *AddRoleToInstanceProfileOutput, err error) {
+	req, out := c.AddRoleToInstanceProfileRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -55,7 +59,7 @@ func (c *IAM) AddRoleToInstanceProfile(input *AddRoleToInstanceProfileInput) (er
 var opAddRoleToInstanceProfile *aws.Operation
 
 // AddUserToGroupRequest generates a request for the AddUserToGroup operation.
-func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *aws.Request) {
+func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *aws.Request, output *AddUserToGroupOutput) {
 	if opAddUserToGroup == nil {
 		opAddUserToGroup = &aws.Operation{
 			Name:       "AddUserToGroup",
@@ -64,13 +68,15 @@ func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddUserToGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opAddUserToGroup, input, output)
+	output = &AddUserToGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) AddUserToGroup(input *AddUserToGroupInput) (err error) {
-	req := c.AddUserToGroupRequest(input)
+func (c *IAM) AddUserToGroup(input *AddUserToGroupInput) (output *AddUserToGroupOutput, err error) {
+	req, out := c.AddUserToGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -78,7 +84,7 @@ func (c *IAM) AddUserToGroup(input *AddUserToGroupInput) (err error) {
 var opAddUserToGroup *aws.Operation
 
 // AttachGroupPolicyRequest generates a request for the AttachGroupPolicy operation.
-func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *aws.Request) {
+func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *aws.Request, output *AttachGroupPolicyOutput) {
 	if opAttachGroupPolicy == nil {
 		opAttachGroupPolicy = &aws.Operation{
 			Name:       "AttachGroupPolicy",
@@ -87,13 +93,15 @@ func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachGroupPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opAttachGroupPolicy, input, output)
+	output = &AttachGroupPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) AttachGroupPolicy(input *AttachGroupPolicyInput) (err error) {
-	req := c.AttachGroupPolicyRequest(input)
+func (c *IAM) AttachGroupPolicy(input *AttachGroupPolicyInput) (output *AttachGroupPolicyOutput, err error) {
+	req, out := c.AttachGroupPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -101,7 +109,7 @@ func (c *IAM) AttachGroupPolicy(input *AttachGroupPolicyInput) (err error) {
 var opAttachGroupPolicy *aws.Operation
 
 // AttachRolePolicyRequest generates a request for the AttachRolePolicy operation.
-func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *aws.Request) {
+func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *aws.Request, output *AttachRolePolicyOutput) {
 	if opAttachRolePolicy == nil {
 		opAttachRolePolicy = &aws.Operation{
 			Name:       "AttachRolePolicy",
@@ -110,13 +118,15 @@ func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachRolePolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opAttachRolePolicy, input, output)
+	output = &AttachRolePolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) AttachRolePolicy(input *AttachRolePolicyInput) (err error) {
-	req := c.AttachRolePolicyRequest(input)
+func (c *IAM) AttachRolePolicy(input *AttachRolePolicyInput) (output *AttachRolePolicyOutput, err error) {
+	req, out := c.AttachRolePolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -124,7 +134,7 @@ func (c *IAM) AttachRolePolicy(input *AttachRolePolicyInput) (err error) {
 var opAttachRolePolicy *aws.Operation
 
 // AttachUserPolicyRequest generates a request for the AttachUserPolicy operation.
-func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *aws.Request) {
+func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *aws.Request, output *AttachUserPolicyOutput) {
 	if opAttachUserPolicy == nil {
 		opAttachUserPolicy = &aws.Operation{
 			Name:       "AttachUserPolicy",
@@ -133,13 +143,15 @@ func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachUserPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opAttachUserPolicy, input, output)
+	output = &AttachUserPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) AttachUserPolicy(input *AttachUserPolicyInput) (err error) {
-	req := c.AttachUserPolicyRequest(input)
+func (c *IAM) AttachUserPolicy(input *AttachUserPolicyInput) (output *AttachUserPolicyOutput, err error) {
+	req, out := c.AttachUserPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -147,7 +159,7 @@ func (c *IAM) AttachUserPolicy(input *AttachUserPolicyInput) (err error) {
 var opAttachUserPolicy *aws.Operation
 
 // ChangePasswordRequest generates a request for the ChangePassword operation.
-func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *aws.Request) {
+func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *aws.Request, output *ChangePasswordOutput) {
 	if opChangePassword == nil {
 		opChangePassword = &aws.Operation{
 			Name:       "ChangePassword",
@@ -156,13 +168,15 @@ func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opChangePassword, input, nil)
-
+	req = aws.NewRequest(c.Service, opChangePassword, input, output)
+	output = &ChangePasswordOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) ChangePassword(input *ChangePasswordInput) (err error) {
-	req := c.ChangePasswordRequest(input)
+func (c *IAM) ChangePassword(input *ChangePasswordInput) (output *ChangePasswordOutput, err error) {
+	req, out := c.ChangePasswordRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -195,7 +209,7 @@ func (c *IAM) CreateAccessKey(input *CreateAccessKeyInput) (output *CreateAccess
 var opCreateAccessKey *aws.Operation
 
 // CreateAccountAliasRequest generates a request for the CreateAccountAlias operation.
-func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *aws.Request) {
+func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *aws.Request, output *CreateAccountAliasOutput) {
 	if opCreateAccountAlias == nil {
 		opCreateAccountAlias = &aws.Operation{
 			Name:       "CreateAccountAlias",
@@ -204,13 +218,15 @@ func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateAccountAlias, input, nil)
-
+	req = aws.NewRequest(c.Service, opCreateAccountAlias, input, output)
+	output = &CreateAccountAliasOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) CreateAccountAlias(input *CreateAccountAliasInput) (err error) {
-	req := c.CreateAccountAliasRequest(input)
+func (c *IAM) CreateAccountAlias(input *CreateAccountAliasInput) (output *CreateAccountAliasOutput, err error) {
+	req, out := c.CreateAccountAliasRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -468,7 +484,7 @@ func (c *IAM) CreateVirtualMFADevice(input *CreateVirtualMFADeviceInput) (output
 var opCreateVirtualMFADevice *aws.Operation
 
 // DeactivateMFADeviceRequest generates a request for the DeactivateMFADevice operation.
-func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *aws.Request) {
+func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *aws.Request, output *DeactivateMFADeviceOutput) {
 	if opDeactivateMFADevice == nil {
 		opDeactivateMFADevice = &aws.Operation{
 			Name:       "DeactivateMFADevice",
@@ -477,13 +493,15 @@ func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeactivateMFADevice, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeactivateMFADevice, input, output)
+	output = &DeactivateMFADeviceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeactivateMFADevice(input *DeactivateMFADeviceInput) (err error) {
-	req := c.DeactivateMFADeviceRequest(input)
+func (c *IAM) DeactivateMFADevice(input *DeactivateMFADeviceInput) (output *DeactivateMFADeviceOutput, err error) {
+	req, out := c.DeactivateMFADeviceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -491,7 +509,7 @@ func (c *IAM) DeactivateMFADevice(input *DeactivateMFADeviceInput) (err error) {
 var opDeactivateMFADevice *aws.Operation
 
 // DeleteAccessKeyRequest generates a request for the DeleteAccessKey operation.
-func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *aws.Request) {
+func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *aws.Request, output *DeleteAccessKeyOutput) {
 	if opDeleteAccessKey == nil {
 		opDeleteAccessKey = &aws.Operation{
 			Name:       "DeleteAccessKey",
@@ -500,13 +518,15 @@ func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAccessKey, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteAccessKey, input, output)
+	output = &DeleteAccessKeyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteAccessKey(input *DeleteAccessKeyInput) (err error) {
-	req := c.DeleteAccessKeyRequest(input)
+func (c *IAM) DeleteAccessKey(input *DeleteAccessKeyInput) (output *DeleteAccessKeyOutput, err error) {
+	req, out := c.DeleteAccessKeyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -514,7 +534,7 @@ func (c *IAM) DeleteAccessKey(input *DeleteAccessKeyInput) (err error) {
 var opDeleteAccessKey *aws.Operation
 
 // DeleteAccountAliasRequest generates a request for the DeleteAccountAlias operation.
-func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *aws.Request) {
+func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *aws.Request, output *DeleteAccountAliasOutput) {
 	if opDeleteAccountAlias == nil {
 		opDeleteAccountAlias = &aws.Operation{
 			Name:       "DeleteAccountAlias",
@@ -523,13 +543,15 @@ func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAccountAlias, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteAccountAlias, input, output)
+	output = &DeleteAccountAliasOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteAccountAlias(input *DeleteAccountAliasInput) (err error) {
-	req := c.DeleteAccountAliasRequest(input)
+func (c *IAM) DeleteAccountAlias(input *DeleteAccountAliasInput) (output *DeleteAccountAliasOutput, err error) {
+	req, out := c.DeleteAccountAliasRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -537,7 +559,7 @@ func (c *IAM) DeleteAccountAlias(input *DeleteAccountAliasInput) (err error) {
 var opDeleteAccountAlias *aws.Operation
 
 // DeleteAccountPasswordPolicyRequest generates a request for the DeleteAccountPasswordPolicy operation.
-func (c *IAM) DeleteAccountPasswordPolicyRequest() (req *aws.Request) {
+func (c *IAM) DeleteAccountPasswordPolicyRequest(input *DeleteAccountPasswordPolicyInput) (req *aws.Request, output *DeleteAccountPasswordPolicyOutput) {
 	if opDeleteAccountPasswordPolicy == nil {
 		opDeleteAccountPasswordPolicy = &aws.Operation{
 			Name:       "DeleteAccountPasswordPolicy",
@@ -546,13 +568,15 @@ func (c *IAM) DeleteAccountPasswordPolicyRequest() (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAccountPasswordPolicy, nil, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteAccountPasswordPolicy, input, output)
+	output = &DeleteAccountPasswordPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteAccountPasswordPolicy() (err error) {
-	req := c.DeleteAccountPasswordPolicyRequest()
+func (c *IAM) DeleteAccountPasswordPolicy(input *DeleteAccountPasswordPolicyInput) (output *DeleteAccountPasswordPolicyOutput, err error) {
+	req, out := c.DeleteAccountPasswordPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -560,7 +584,7 @@ func (c *IAM) DeleteAccountPasswordPolicy() (err error) {
 var opDeleteAccountPasswordPolicy *aws.Operation
 
 // DeleteGroupRequest generates a request for the DeleteGroup operation.
-func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *aws.Request) {
+func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *aws.Request, output *DeleteGroupOutput) {
 	if opDeleteGroup == nil {
 		opDeleteGroup = &aws.Operation{
 			Name:       "DeleteGroup",
@@ -569,13 +593,15 @@ func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteGroup, input, output)
+	output = &DeleteGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteGroup(input *DeleteGroupInput) (err error) {
-	req := c.DeleteGroupRequest(input)
+func (c *IAM) DeleteGroup(input *DeleteGroupInput) (output *DeleteGroupOutput, err error) {
+	req, out := c.DeleteGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -583,7 +609,7 @@ func (c *IAM) DeleteGroup(input *DeleteGroupInput) (err error) {
 var opDeleteGroup *aws.Operation
 
 // DeleteGroupPolicyRequest generates a request for the DeleteGroupPolicy operation.
-func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *aws.Request) {
+func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *aws.Request, output *DeleteGroupPolicyOutput) {
 	if opDeleteGroupPolicy == nil {
 		opDeleteGroupPolicy = &aws.Operation{
 			Name:       "DeleteGroupPolicy",
@@ -592,13 +618,15 @@ func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteGroupPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteGroupPolicy, input, output)
+	output = &DeleteGroupPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteGroupPolicy(input *DeleteGroupPolicyInput) (err error) {
-	req := c.DeleteGroupPolicyRequest(input)
+func (c *IAM) DeleteGroupPolicy(input *DeleteGroupPolicyInput) (output *DeleteGroupPolicyOutput, err error) {
+	req, out := c.DeleteGroupPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -606,7 +634,7 @@ func (c *IAM) DeleteGroupPolicy(input *DeleteGroupPolicyInput) (err error) {
 var opDeleteGroupPolicy *aws.Operation
 
 // DeleteInstanceProfileRequest generates a request for the DeleteInstanceProfile operation.
-func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (req *aws.Request) {
+func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (req *aws.Request, output *DeleteInstanceProfileOutput) {
 	if opDeleteInstanceProfile == nil {
 		opDeleteInstanceProfile = &aws.Operation{
 			Name:       "DeleteInstanceProfile",
@@ -615,13 +643,15 @@ func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteInstanceProfile, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteInstanceProfile, input, output)
+	output = &DeleteInstanceProfileOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteInstanceProfile(input *DeleteInstanceProfileInput) (err error) {
-	req := c.DeleteInstanceProfileRequest(input)
+func (c *IAM) DeleteInstanceProfile(input *DeleteInstanceProfileInput) (output *DeleteInstanceProfileOutput, err error) {
+	req, out := c.DeleteInstanceProfileRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -629,7 +659,7 @@ func (c *IAM) DeleteInstanceProfile(input *DeleteInstanceProfileInput) (err erro
 var opDeleteInstanceProfile *aws.Operation
 
 // DeleteLoginProfileRequest generates a request for the DeleteLoginProfile operation.
-func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *aws.Request) {
+func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *aws.Request, output *DeleteLoginProfileOutput) {
 	if opDeleteLoginProfile == nil {
 		opDeleteLoginProfile = &aws.Operation{
 			Name:       "DeleteLoginProfile",
@@ -638,13 +668,15 @@ func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLoginProfile, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteLoginProfile, input, output)
+	output = &DeleteLoginProfileOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteLoginProfile(input *DeleteLoginProfileInput) (err error) {
-	req := c.DeleteLoginProfileRequest(input)
+func (c *IAM) DeleteLoginProfile(input *DeleteLoginProfileInput) (output *DeleteLoginProfileOutput, err error) {
+	req, out := c.DeleteLoginProfileRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -652,7 +684,7 @@ func (c *IAM) DeleteLoginProfile(input *DeleteLoginProfileInput) (err error) {
 var opDeleteLoginProfile *aws.Operation
 
 // DeleteOpenIDConnectProviderRequest generates a request for the DeleteOpenIDConnectProvider operation.
-func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProviderInput) (req *aws.Request) {
+func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProviderInput) (req *aws.Request, output *DeleteOpenIDConnectProviderOutput) {
 	if opDeleteOpenIDConnectProvider == nil {
 		opDeleteOpenIDConnectProvider = &aws.Operation{
 			Name:       "DeleteOpenIDConnectProvider",
@@ -661,13 +693,15 @@ func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProvi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteOpenIDConnectProvider, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteOpenIDConnectProvider, input, output)
+	output = &DeleteOpenIDConnectProviderOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteOpenIDConnectProvider(input *DeleteOpenIDConnectProviderInput) (err error) {
-	req := c.DeleteOpenIDConnectProviderRequest(input)
+func (c *IAM) DeleteOpenIDConnectProvider(input *DeleteOpenIDConnectProviderInput) (output *DeleteOpenIDConnectProviderOutput, err error) {
+	req, out := c.DeleteOpenIDConnectProviderRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -675,7 +709,7 @@ func (c *IAM) DeleteOpenIDConnectProvider(input *DeleteOpenIDConnectProviderInpu
 var opDeleteOpenIDConnectProvider *aws.Operation
 
 // DeletePolicyRequest generates a request for the DeletePolicy operation.
-func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request) {
+func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, output *DeletePolicyOutput) {
 	if opDeletePolicy == nil {
 		opDeletePolicy = &aws.Operation{
 			Name:       "DeletePolicy",
@@ -684,13 +718,15 @@ func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeletePolicy, input, output)
+	output = &DeletePolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeletePolicy(input *DeletePolicyInput) (err error) {
-	req := c.DeletePolicyRequest(input)
+func (c *IAM) DeletePolicy(input *DeletePolicyInput) (output *DeletePolicyOutput, err error) {
+	req, out := c.DeletePolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -698,7 +734,7 @@ func (c *IAM) DeletePolicy(input *DeletePolicyInput) (err error) {
 var opDeletePolicy *aws.Operation
 
 // DeletePolicyVersionRequest generates a request for the DeletePolicyVersion operation.
-func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *aws.Request) {
+func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *aws.Request, output *DeletePolicyVersionOutput) {
 	if opDeletePolicyVersion == nil {
 		opDeletePolicyVersion = &aws.Operation{
 			Name:       "DeletePolicyVersion",
@@ -707,13 +743,15 @@ func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePolicyVersion, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeletePolicyVersion, input, output)
+	output = &DeletePolicyVersionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeletePolicyVersion(input *DeletePolicyVersionInput) (err error) {
-	req := c.DeletePolicyVersionRequest(input)
+func (c *IAM) DeletePolicyVersion(input *DeletePolicyVersionInput) (output *DeletePolicyVersionOutput, err error) {
+	req, out := c.DeletePolicyVersionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -721,7 +759,7 @@ func (c *IAM) DeletePolicyVersion(input *DeletePolicyVersionInput) (err error) {
 var opDeletePolicyVersion *aws.Operation
 
 // DeleteRoleRequest generates a request for the DeleteRole operation.
-func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *aws.Request) {
+func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *aws.Request, output *DeleteRoleOutput) {
 	if opDeleteRole == nil {
 		opDeleteRole = &aws.Operation{
 			Name:       "DeleteRole",
@@ -730,13 +768,15 @@ func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteRole, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteRole, input, output)
+	output = &DeleteRoleOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteRole(input *DeleteRoleInput) (err error) {
-	req := c.DeleteRoleRequest(input)
+func (c *IAM) DeleteRole(input *DeleteRoleInput) (output *DeleteRoleOutput, err error) {
+	req, out := c.DeleteRoleRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -744,7 +784,7 @@ func (c *IAM) DeleteRole(input *DeleteRoleInput) (err error) {
 var opDeleteRole *aws.Operation
 
 // DeleteRolePolicyRequest generates a request for the DeleteRolePolicy operation.
-func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *aws.Request) {
+func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *aws.Request, output *DeleteRolePolicyOutput) {
 	if opDeleteRolePolicy == nil {
 		opDeleteRolePolicy = &aws.Operation{
 			Name:       "DeleteRolePolicy",
@@ -753,13 +793,15 @@ func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteRolePolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteRolePolicy, input, output)
+	output = &DeleteRolePolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteRolePolicy(input *DeleteRolePolicyInput) (err error) {
-	req := c.DeleteRolePolicyRequest(input)
+func (c *IAM) DeleteRolePolicy(input *DeleteRolePolicyInput) (output *DeleteRolePolicyOutput, err error) {
+	req, out := c.DeleteRolePolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -767,7 +809,7 @@ func (c *IAM) DeleteRolePolicy(input *DeleteRolePolicyInput) (err error) {
 var opDeleteRolePolicy *aws.Operation
 
 // DeleteSAMLProviderRequest generates a request for the DeleteSAMLProvider operation.
-func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *aws.Request) {
+func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *aws.Request, output *DeleteSAMLProviderOutput) {
 	if opDeleteSAMLProvider == nil {
 		opDeleteSAMLProvider = &aws.Operation{
 			Name:       "DeleteSAMLProvider",
@@ -776,13 +818,15 @@ func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSAMLProvider, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteSAMLProvider, input, output)
+	output = &DeleteSAMLProviderOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteSAMLProvider(input *DeleteSAMLProviderInput) (err error) {
-	req := c.DeleteSAMLProviderRequest(input)
+func (c *IAM) DeleteSAMLProvider(input *DeleteSAMLProviderInput) (output *DeleteSAMLProviderOutput, err error) {
+	req, out := c.DeleteSAMLProviderRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -790,7 +834,7 @@ func (c *IAM) DeleteSAMLProvider(input *DeleteSAMLProviderInput) (err error) {
 var opDeleteSAMLProvider *aws.Operation
 
 // DeleteServerCertificateRequest generates a request for the DeleteServerCertificate operation.
-func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput) (req *aws.Request) {
+func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput) (req *aws.Request, output *DeleteServerCertificateOutput) {
 	if opDeleteServerCertificate == nil {
 		opDeleteServerCertificate = &aws.Operation{
 			Name:       "DeleteServerCertificate",
@@ -799,13 +843,15 @@ func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteServerCertificate, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteServerCertificate, input, output)
+	output = &DeleteServerCertificateOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteServerCertificate(input *DeleteServerCertificateInput) (err error) {
-	req := c.DeleteServerCertificateRequest(input)
+func (c *IAM) DeleteServerCertificate(input *DeleteServerCertificateInput) (output *DeleteServerCertificateOutput, err error) {
+	req, out := c.DeleteServerCertificateRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -813,7 +859,7 @@ func (c *IAM) DeleteServerCertificate(input *DeleteServerCertificateInput) (err 
 var opDeleteServerCertificate *aws.Operation
 
 // DeleteSigningCertificateRequest generates a request for the DeleteSigningCertificate operation.
-func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInput) (req *aws.Request) {
+func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInput) (req *aws.Request, output *DeleteSigningCertificateOutput) {
 	if opDeleteSigningCertificate == nil {
 		opDeleteSigningCertificate = &aws.Operation{
 			Name:       "DeleteSigningCertificate",
@@ -822,13 +868,15 @@ func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSigningCertificate, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteSigningCertificate, input, output)
+	output = &DeleteSigningCertificateOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteSigningCertificate(input *DeleteSigningCertificateInput) (err error) {
-	req := c.DeleteSigningCertificateRequest(input)
+func (c *IAM) DeleteSigningCertificate(input *DeleteSigningCertificateInput) (output *DeleteSigningCertificateOutput, err error) {
+	req, out := c.DeleteSigningCertificateRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -836,7 +884,7 @@ func (c *IAM) DeleteSigningCertificate(input *DeleteSigningCertificateInput) (er
 var opDeleteSigningCertificate *aws.Operation
 
 // DeleteUserRequest generates a request for the DeleteUser operation.
-func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *aws.Request) {
+func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *aws.Request, output *DeleteUserOutput) {
 	if opDeleteUser == nil {
 		opDeleteUser = &aws.Operation{
 			Name:       "DeleteUser",
@@ -845,13 +893,15 @@ func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteUser, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteUser, input, output)
+	output = &DeleteUserOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteUser(input *DeleteUserInput) (err error) {
-	req := c.DeleteUserRequest(input)
+func (c *IAM) DeleteUser(input *DeleteUserInput) (output *DeleteUserOutput, err error) {
+	req, out := c.DeleteUserRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -859,7 +909,7 @@ func (c *IAM) DeleteUser(input *DeleteUserInput) (err error) {
 var opDeleteUser *aws.Operation
 
 // DeleteUserPolicyRequest generates a request for the DeleteUserPolicy operation.
-func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *aws.Request) {
+func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *aws.Request, output *DeleteUserPolicyOutput) {
 	if opDeleteUserPolicy == nil {
 		opDeleteUserPolicy = &aws.Operation{
 			Name:       "DeleteUserPolicy",
@@ -868,13 +918,15 @@ func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteUserPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteUserPolicy, input, output)
+	output = &DeleteUserPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteUserPolicy(input *DeleteUserPolicyInput) (err error) {
-	req := c.DeleteUserPolicyRequest(input)
+func (c *IAM) DeleteUserPolicy(input *DeleteUserPolicyInput) (output *DeleteUserPolicyOutput, err error) {
+	req, out := c.DeleteUserPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -882,7 +934,7 @@ func (c *IAM) DeleteUserPolicy(input *DeleteUserPolicyInput) (err error) {
 var opDeleteUserPolicy *aws.Operation
 
 // DeleteVirtualMFADeviceRequest generates a request for the DeleteVirtualMFADevice operation.
-func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) (req *aws.Request) {
+func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) (req *aws.Request, output *DeleteVirtualMFADeviceOutput) {
 	if opDeleteVirtualMFADevice == nil {
 		opDeleteVirtualMFADevice = &aws.Operation{
 			Name:       "DeleteVirtualMFADevice",
@@ -891,13 +943,15 @@ func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVirtualMFADevice, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteVirtualMFADevice, input, output)
+	output = &DeleteVirtualMFADeviceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DeleteVirtualMFADevice(input *DeleteVirtualMFADeviceInput) (err error) {
-	req := c.DeleteVirtualMFADeviceRequest(input)
+func (c *IAM) DeleteVirtualMFADevice(input *DeleteVirtualMFADeviceInput) (output *DeleteVirtualMFADeviceOutput, err error) {
+	req, out := c.DeleteVirtualMFADeviceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -905,7 +959,7 @@ func (c *IAM) DeleteVirtualMFADevice(input *DeleteVirtualMFADeviceInput) (err er
 var opDeleteVirtualMFADevice *aws.Operation
 
 // DetachGroupPolicyRequest generates a request for the DetachGroupPolicy operation.
-func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *aws.Request) {
+func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *aws.Request, output *DetachGroupPolicyOutput) {
 	if opDetachGroupPolicy == nil {
 		opDetachGroupPolicy = &aws.Operation{
 			Name:       "DetachGroupPolicy",
@@ -914,13 +968,15 @@ func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachGroupPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opDetachGroupPolicy, input, output)
+	output = &DetachGroupPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DetachGroupPolicy(input *DetachGroupPolicyInput) (err error) {
-	req := c.DetachGroupPolicyRequest(input)
+func (c *IAM) DetachGroupPolicy(input *DetachGroupPolicyInput) (output *DetachGroupPolicyOutput, err error) {
+	req, out := c.DetachGroupPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -928,7 +984,7 @@ func (c *IAM) DetachGroupPolicy(input *DetachGroupPolicyInput) (err error) {
 var opDetachGroupPolicy *aws.Operation
 
 // DetachRolePolicyRequest generates a request for the DetachRolePolicy operation.
-func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *aws.Request) {
+func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *aws.Request, output *DetachRolePolicyOutput) {
 	if opDetachRolePolicy == nil {
 		opDetachRolePolicy = &aws.Operation{
 			Name:       "DetachRolePolicy",
@@ -937,13 +993,15 @@ func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachRolePolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opDetachRolePolicy, input, output)
+	output = &DetachRolePolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DetachRolePolicy(input *DetachRolePolicyInput) (err error) {
-	req := c.DetachRolePolicyRequest(input)
+func (c *IAM) DetachRolePolicy(input *DetachRolePolicyInput) (output *DetachRolePolicyOutput, err error) {
+	req, out := c.DetachRolePolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -951,7 +1009,7 @@ func (c *IAM) DetachRolePolicy(input *DetachRolePolicyInput) (err error) {
 var opDetachRolePolicy *aws.Operation
 
 // DetachUserPolicyRequest generates a request for the DetachUserPolicy operation.
-func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *aws.Request) {
+func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *aws.Request, output *DetachUserPolicyOutput) {
 	if opDetachUserPolicy == nil {
 		opDetachUserPolicy = &aws.Operation{
 			Name:       "DetachUserPolicy",
@@ -960,13 +1018,15 @@ func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachUserPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opDetachUserPolicy, input, output)
+	output = &DetachUserPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) DetachUserPolicy(input *DetachUserPolicyInput) (err error) {
-	req := c.DetachUserPolicyRequest(input)
+func (c *IAM) DetachUserPolicy(input *DetachUserPolicyInput) (output *DetachUserPolicyOutput, err error) {
+	req, out := c.DetachUserPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -974,7 +1034,7 @@ func (c *IAM) DetachUserPolicy(input *DetachUserPolicyInput) (err error) {
 var opDetachUserPolicy *aws.Operation
 
 // EnableMFADeviceRequest generates a request for the EnableMFADevice operation.
-func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *aws.Request) {
+func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *aws.Request, output *EnableMFADeviceOutput) {
 	if opEnableMFADevice == nil {
 		opEnableMFADevice = &aws.Operation{
 			Name:       "EnableMFADevice",
@@ -983,13 +1043,15 @@ func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableMFADevice, input, nil)
-
+	req = aws.NewRequest(c.Service, opEnableMFADevice, input, output)
+	output = &EnableMFADeviceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) EnableMFADevice(input *EnableMFADeviceInput) (err error) {
-	req := c.EnableMFADeviceRequest(input)
+func (c *IAM) EnableMFADevice(input *EnableMFADeviceInput) (output *EnableMFADeviceOutput, err error) {
+	req, out := c.EnableMFADeviceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -997,7 +1059,7 @@ func (c *IAM) EnableMFADevice(input *EnableMFADeviceInput) (err error) {
 var opEnableMFADevice *aws.Operation
 
 // GenerateCredentialReportRequest generates a request for the GenerateCredentialReport operation.
-func (c *IAM) GenerateCredentialReportRequest() (req *aws.Request, output *GenerateCredentialReportOutput) {
+func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInput) (req *aws.Request, output *GenerateCredentialReportOutput) {
 	if opGenerateCredentialReport == nil {
 		opGenerateCredentialReport = &aws.Operation{
 			Name:       "GenerateCredentialReport",
@@ -1006,14 +1068,14 @@ func (c *IAM) GenerateCredentialReportRequest() (req *aws.Request, output *Gener
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGenerateCredentialReport, nil, output)
+	req = aws.NewRequest(c.Service, opGenerateCredentialReport, input, output)
 	output = &GenerateCredentialReportOutput{}
 	req.Data = output
 	return
 }
 
-func (c *IAM) GenerateCredentialReport() (output *GenerateCredentialReportOutput, err error) {
-	req, out := c.GenerateCredentialReportRequest()
+func (c *IAM) GenerateCredentialReport(input *GenerateCredentialReportInput) (output *GenerateCredentialReportOutput, err error) {
+	req, out := c.GenerateCredentialReportRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -1047,7 +1109,7 @@ func (c *IAM) GetAccountAuthorizationDetails(input *GetAccountAuthorizationDetai
 var opGetAccountAuthorizationDetails *aws.Operation
 
 // GetAccountPasswordPolicyRequest generates a request for the GetAccountPasswordPolicy operation.
-func (c *IAM) GetAccountPasswordPolicyRequest() (req *aws.Request, output *GetAccountPasswordPolicyOutput) {
+func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInput) (req *aws.Request, output *GetAccountPasswordPolicyOutput) {
 	if opGetAccountPasswordPolicy == nil {
 		opGetAccountPasswordPolicy = &aws.Operation{
 			Name:       "GetAccountPasswordPolicy",
@@ -1056,14 +1118,14 @@ func (c *IAM) GetAccountPasswordPolicyRequest() (req *aws.Request, output *GetAc
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetAccountPasswordPolicy, nil, output)
+	req = aws.NewRequest(c.Service, opGetAccountPasswordPolicy, input, output)
 	output = &GetAccountPasswordPolicyOutput{}
 	req.Data = output
 	return
 }
 
-func (c *IAM) GetAccountPasswordPolicy() (output *GetAccountPasswordPolicyOutput, err error) {
-	req, out := c.GetAccountPasswordPolicyRequest()
+func (c *IAM) GetAccountPasswordPolicy(input *GetAccountPasswordPolicyInput) (output *GetAccountPasswordPolicyOutput, err error) {
+	req, out := c.GetAccountPasswordPolicyRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -1072,7 +1134,7 @@ func (c *IAM) GetAccountPasswordPolicy() (output *GetAccountPasswordPolicyOutput
 var opGetAccountPasswordPolicy *aws.Operation
 
 // GetAccountSummaryRequest generates a request for the GetAccountSummary operation.
-func (c *IAM) GetAccountSummaryRequest() (req *aws.Request, output *GetAccountSummaryOutput) {
+func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *aws.Request, output *GetAccountSummaryOutput) {
 	if opGetAccountSummary == nil {
 		opGetAccountSummary = &aws.Operation{
 			Name:       "GetAccountSummary",
@@ -1081,14 +1143,14 @@ func (c *IAM) GetAccountSummaryRequest() (req *aws.Request, output *GetAccountSu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetAccountSummary, nil, output)
+	req = aws.NewRequest(c.Service, opGetAccountSummary, input, output)
 	output = &GetAccountSummaryOutput{}
 	req.Data = output
 	return
 }
 
-func (c *IAM) GetAccountSummary() (output *GetAccountSummaryOutput, err error) {
-	req, out := c.GetAccountSummaryRequest()
+func (c *IAM) GetAccountSummary(input *GetAccountSummaryInput) (output *GetAccountSummaryOutput, err error) {
+	req, out := c.GetAccountSummaryRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -1097,7 +1159,7 @@ func (c *IAM) GetAccountSummary() (output *GetAccountSummaryOutput, err error) {
 var opGetAccountSummary *aws.Operation
 
 // GetCredentialReportRequest generates a request for the GetCredentialReport operation.
-func (c *IAM) GetCredentialReportRequest() (req *aws.Request, output *GetCredentialReportOutput) {
+func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *aws.Request, output *GetCredentialReportOutput) {
 	if opGetCredentialReport == nil {
 		opGetCredentialReport = &aws.Operation{
 			Name:       "GetCredentialReport",
@@ -1106,14 +1168,14 @@ func (c *IAM) GetCredentialReportRequest() (req *aws.Request, output *GetCredent
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetCredentialReport, nil, output)
+	req = aws.NewRequest(c.Service, opGetCredentialReport, input, output)
 	output = &GetCredentialReportOutput{}
 	req.Data = output
 	return
 }
 
-func (c *IAM) GetCredentialReport() (output *GetCredentialReportOutput, err error) {
-	req, out := c.GetCredentialReportRequest()
+func (c *IAM) GetCredentialReport(input *GetCredentialReportInput) (output *GetCredentialReportOutput, err error) {
+	req, out := c.GetCredentialReportRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -2022,7 +2084,7 @@ func (c *IAM) ListVirtualMFADevices(input *ListVirtualMFADevicesInput) (output *
 var opListVirtualMFADevices *aws.Operation
 
 // PutGroupPolicyRequest generates a request for the PutGroupPolicy operation.
-func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *aws.Request) {
+func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *aws.Request, output *PutGroupPolicyOutput) {
 	if opPutGroupPolicy == nil {
 		opPutGroupPolicy = &aws.Operation{
 			Name:       "PutGroupPolicy",
@@ -2031,13 +2093,15 @@ func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutGroupPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutGroupPolicy, input, output)
+	output = &PutGroupPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) PutGroupPolicy(input *PutGroupPolicyInput) (err error) {
-	req := c.PutGroupPolicyRequest(input)
+func (c *IAM) PutGroupPolicy(input *PutGroupPolicyInput) (output *PutGroupPolicyOutput, err error) {
+	req, out := c.PutGroupPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2045,7 +2109,7 @@ func (c *IAM) PutGroupPolicy(input *PutGroupPolicyInput) (err error) {
 var opPutGroupPolicy *aws.Operation
 
 // PutRolePolicyRequest generates a request for the PutRolePolicy operation.
-func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *aws.Request) {
+func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *aws.Request, output *PutRolePolicyOutput) {
 	if opPutRolePolicy == nil {
 		opPutRolePolicy = &aws.Operation{
 			Name:       "PutRolePolicy",
@@ -2054,13 +2118,15 @@ func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *aws.Request)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutRolePolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutRolePolicy, input, output)
+	output = &PutRolePolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) PutRolePolicy(input *PutRolePolicyInput) (err error) {
-	req := c.PutRolePolicyRequest(input)
+func (c *IAM) PutRolePolicy(input *PutRolePolicyInput) (output *PutRolePolicyOutput, err error) {
+	req, out := c.PutRolePolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2068,7 +2134,7 @@ func (c *IAM) PutRolePolicy(input *PutRolePolicyInput) (err error) {
 var opPutRolePolicy *aws.Operation
 
 // PutUserPolicyRequest generates a request for the PutUserPolicy operation.
-func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *aws.Request) {
+func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *aws.Request, output *PutUserPolicyOutput) {
 	if opPutUserPolicy == nil {
 		opPutUserPolicy = &aws.Operation{
 			Name:       "PutUserPolicy",
@@ -2077,13 +2143,15 @@ func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *aws.Request)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutUserPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutUserPolicy, input, output)
+	output = &PutUserPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) PutUserPolicy(input *PutUserPolicyInput) (err error) {
-	req := c.PutUserPolicyRequest(input)
+func (c *IAM) PutUserPolicy(input *PutUserPolicyInput) (output *PutUserPolicyOutput, err error) {
+	req, out := c.PutUserPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2091,7 +2159,7 @@ func (c *IAM) PutUserPolicy(input *PutUserPolicyInput) (err error) {
 var opPutUserPolicy *aws.Operation
 
 // RemoveClientIDFromOpenIDConnectProviderRequest generates a request for the RemoveClientIDFromOpenIDConnectProvider operation.
-func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClientIDFromOpenIDConnectProviderInput) (req *aws.Request) {
+func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClientIDFromOpenIDConnectProviderInput) (req *aws.Request, output *RemoveClientIDFromOpenIDConnectProviderOutput) {
 	if opRemoveClientIDFromOpenIDConnectProvider == nil {
 		opRemoveClientIDFromOpenIDConnectProvider = &aws.Operation{
 			Name:       "RemoveClientIDFromOpenIDConnectProvider",
@@ -2100,13 +2168,15 @@ func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClient
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveClientIDFromOpenIDConnectProvider, input, nil)
-
+	req = aws.NewRequest(c.Service, opRemoveClientIDFromOpenIDConnectProvider, input, output)
+	output = &RemoveClientIDFromOpenIDConnectProviderOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) RemoveClientIDFromOpenIDConnectProvider(input *RemoveClientIDFromOpenIDConnectProviderInput) (err error) {
-	req := c.RemoveClientIDFromOpenIDConnectProviderRequest(input)
+func (c *IAM) RemoveClientIDFromOpenIDConnectProvider(input *RemoveClientIDFromOpenIDConnectProviderInput) (output *RemoveClientIDFromOpenIDConnectProviderOutput, err error) {
+	req, out := c.RemoveClientIDFromOpenIDConnectProviderRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2114,7 +2184,7 @@ func (c *IAM) RemoveClientIDFromOpenIDConnectProvider(input *RemoveClientIDFromO
 var opRemoveClientIDFromOpenIDConnectProvider *aws.Operation
 
 // RemoveRoleFromInstanceProfileRequest generates a request for the RemoveRoleFromInstanceProfile operation.
-func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstanceProfileInput) (req *aws.Request) {
+func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstanceProfileInput) (req *aws.Request, output *RemoveRoleFromInstanceProfileOutput) {
 	if opRemoveRoleFromInstanceProfile == nil {
 		opRemoveRoleFromInstanceProfile = &aws.Operation{
 			Name:       "RemoveRoleFromInstanceProfile",
@@ -2123,13 +2193,15 @@ func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstance
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveRoleFromInstanceProfile, input, nil)
-
+	req = aws.NewRequest(c.Service, opRemoveRoleFromInstanceProfile, input, output)
+	output = &RemoveRoleFromInstanceProfileOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) RemoveRoleFromInstanceProfile(input *RemoveRoleFromInstanceProfileInput) (err error) {
-	req := c.RemoveRoleFromInstanceProfileRequest(input)
+func (c *IAM) RemoveRoleFromInstanceProfile(input *RemoveRoleFromInstanceProfileInput) (output *RemoveRoleFromInstanceProfileOutput, err error) {
+	req, out := c.RemoveRoleFromInstanceProfileRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2137,7 +2209,7 @@ func (c *IAM) RemoveRoleFromInstanceProfile(input *RemoveRoleFromInstanceProfile
 var opRemoveRoleFromInstanceProfile *aws.Operation
 
 // RemoveUserFromGroupRequest generates a request for the RemoveUserFromGroup operation.
-func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *aws.Request) {
+func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *aws.Request, output *RemoveUserFromGroupOutput) {
 	if opRemoveUserFromGroup == nil {
 		opRemoveUserFromGroup = &aws.Operation{
 			Name:       "RemoveUserFromGroup",
@@ -2146,13 +2218,15 @@ func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveUserFromGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opRemoveUserFromGroup, input, output)
+	output = &RemoveUserFromGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) RemoveUserFromGroup(input *RemoveUserFromGroupInput) (err error) {
-	req := c.RemoveUserFromGroupRequest(input)
+func (c *IAM) RemoveUserFromGroup(input *RemoveUserFromGroupInput) (output *RemoveUserFromGroupOutput, err error) {
+	req, out := c.RemoveUserFromGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2160,7 +2234,7 @@ func (c *IAM) RemoveUserFromGroup(input *RemoveUserFromGroupInput) (err error) {
 var opRemoveUserFromGroup *aws.Operation
 
 // ResyncMFADeviceRequest generates a request for the ResyncMFADevice operation.
-func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *aws.Request) {
+func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *aws.Request, output *ResyncMFADeviceOutput) {
 	if opResyncMFADevice == nil {
 		opResyncMFADevice = &aws.Operation{
 			Name:       "ResyncMFADevice",
@@ -2169,13 +2243,15 @@ func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResyncMFADevice, input, nil)
-
+	req = aws.NewRequest(c.Service, opResyncMFADevice, input, output)
+	output = &ResyncMFADeviceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) ResyncMFADevice(input *ResyncMFADeviceInput) (err error) {
-	req := c.ResyncMFADeviceRequest(input)
+func (c *IAM) ResyncMFADevice(input *ResyncMFADeviceInput) (output *ResyncMFADeviceOutput, err error) {
+	req, out := c.ResyncMFADeviceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2183,7 +2259,7 @@ func (c *IAM) ResyncMFADevice(input *ResyncMFADeviceInput) (err error) {
 var opResyncMFADevice *aws.Operation
 
 // SetDefaultPolicyVersionRequest generates a request for the SetDefaultPolicyVersion operation.
-func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput) (req *aws.Request) {
+func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput) (req *aws.Request, output *SetDefaultPolicyVersionOutput) {
 	if opSetDefaultPolicyVersion == nil {
 		opSetDefaultPolicyVersion = &aws.Operation{
 			Name:       "SetDefaultPolicyVersion",
@@ -2192,13 +2268,15 @@ func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetDefaultPolicyVersion, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetDefaultPolicyVersion, input, output)
+	output = &SetDefaultPolicyVersionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) SetDefaultPolicyVersion(input *SetDefaultPolicyVersionInput) (err error) {
-	req := c.SetDefaultPolicyVersionRequest(input)
+func (c *IAM) SetDefaultPolicyVersion(input *SetDefaultPolicyVersionInput) (output *SetDefaultPolicyVersionOutput, err error) {
+	req, out := c.SetDefaultPolicyVersionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2206,7 +2284,7 @@ func (c *IAM) SetDefaultPolicyVersion(input *SetDefaultPolicyVersionInput) (err 
 var opSetDefaultPolicyVersion *aws.Operation
 
 // UpdateAccessKeyRequest generates a request for the UpdateAccessKey operation.
-func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *aws.Request) {
+func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *aws.Request, output *UpdateAccessKeyOutput) {
 	if opUpdateAccessKey == nil {
 		opUpdateAccessKey = &aws.Operation{
 			Name:       "UpdateAccessKey",
@@ -2215,13 +2293,15 @@ func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateAccessKey, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateAccessKey, input, output)
+	output = &UpdateAccessKeyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) UpdateAccessKey(input *UpdateAccessKeyInput) (err error) {
-	req := c.UpdateAccessKeyRequest(input)
+func (c *IAM) UpdateAccessKey(input *UpdateAccessKeyInput) (output *UpdateAccessKeyOutput, err error) {
+	req, out := c.UpdateAccessKeyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2229,7 +2309,7 @@ func (c *IAM) UpdateAccessKey(input *UpdateAccessKeyInput) (err error) {
 var opUpdateAccessKey *aws.Operation
 
 // UpdateAccountPasswordPolicyRequest generates a request for the UpdateAccountPasswordPolicy operation.
-func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPolicyInput) (req *aws.Request) {
+func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPolicyInput) (req *aws.Request, output *UpdateAccountPasswordPolicyOutput) {
 	if opUpdateAccountPasswordPolicy == nil {
 		opUpdateAccountPasswordPolicy = &aws.Operation{
 			Name:       "UpdateAccountPasswordPolicy",
@@ -2238,13 +2318,15 @@ func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPol
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateAccountPasswordPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateAccountPasswordPolicy, input, output)
+	output = &UpdateAccountPasswordPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) UpdateAccountPasswordPolicy(input *UpdateAccountPasswordPolicyInput) (err error) {
-	req := c.UpdateAccountPasswordPolicyRequest(input)
+func (c *IAM) UpdateAccountPasswordPolicy(input *UpdateAccountPasswordPolicyInput) (output *UpdateAccountPasswordPolicyOutput, err error) {
+	req, out := c.UpdateAccountPasswordPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2252,7 +2334,7 @@ func (c *IAM) UpdateAccountPasswordPolicy(input *UpdateAccountPasswordPolicyInpu
 var opUpdateAccountPasswordPolicy *aws.Operation
 
 // UpdateAssumeRolePolicyRequest generates a request for the UpdateAssumeRolePolicy operation.
-func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) (req *aws.Request) {
+func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) (req *aws.Request, output *UpdateAssumeRolePolicyOutput) {
 	if opUpdateAssumeRolePolicy == nil {
 		opUpdateAssumeRolePolicy = &aws.Operation{
 			Name:       "UpdateAssumeRolePolicy",
@@ -2261,13 +2343,15 @@ func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateAssumeRolePolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateAssumeRolePolicy, input, output)
+	output = &UpdateAssumeRolePolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) UpdateAssumeRolePolicy(input *UpdateAssumeRolePolicyInput) (err error) {
-	req := c.UpdateAssumeRolePolicyRequest(input)
+func (c *IAM) UpdateAssumeRolePolicy(input *UpdateAssumeRolePolicyInput) (output *UpdateAssumeRolePolicyOutput, err error) {
+	req, out := c.UpdateAssumeRolePolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2275,7 +2359,7 @@ func (c *IAM) UpdateAssumeRolePolicy(input *UpdateAssumeRolePolicyInput) (err er
 var opUpdateAssumeRolePolicy *aws.Operation
 
 // UpdateGroupRequest generates a request for the UpdateGroup operation.
-func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *aws.Request) {
+func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *aws.Request, output *UpdateGroupOutput) {
 	if opUpdateGroup == nil {
 		opUpdateGroup = &aws.Operation{
 			Name:       "UpdateGroup",
@@ -2284,13 +2368,15 @@ func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateGroup, input, output)
+	output = &UpdateGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) UpdateGroup(input *UpdateGroupInput) (err error) {
-	req := c.UpdateGroupRequest(input)
+func (c *IAM) UpdateGroup(input *UpdateGroupInput) (output *UpdateGroupOutput, err error) {
+	req, out := c.UpdateGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2298,7 +2384,7 @@ func (c *IAM) UpdateGroup(input *UpdateGroupInput) (err error) {
 var opUpdateGroup *aws.Operation
 
 // UpdateLoginProfileRequest generates a request for the UpdateLoginProfile operation.
-func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *aws.Request) {
+func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *aws.Request, output *UpdateLoginProfileOutput) {
 	if opUpdateLoginProfile == nil {
 		opUpdateLoginProfile = &aws.Operation{
 			Name:       "UpdateLoginProfile",
@@ -2307,13 +2393,15 @@ func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateLoginProfile, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateLoginProfile, input, output)
+	output = &UpdateLoginProfileOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) UpdateLoginProfile(input *UpdateLoginProfileInput) (err error) {
-	req := c.UpdateLoginProfileRequest(input)
+func (c *IAM) UpdateLoginProfile(input *UpdateLoginProfileInput) (output *UpdateLoginProfileOutput, err error) {
+	req, out := c.UpdateLoginProfileRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2321,7 +2409,7 @@ func (c *IAM) UpdateLoginProfile(input *UpdateLoginProfileInput) (err error) {
 var opUpdateLoginProfile *aws.Operation
 
 // UpdateOpenIDConnectProviderThumbprintRequest generates a request for the UpdateOpenIDConnectProviderThumbprint operation.
-func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDConnectProviderThumbprintInput) (req *aws.Request) {
+func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDConnectProviderThumbprintInput) (req *aws.Request, output *UpdateOpenIDConnectProviderThumbprintOutput) {
 	if opUpdateOpenIDConnectProviderThumbprint == nil {
 		opUpdateOpenIDConnectProviderThumbprint = &aws.Operation{
 			Name:       "UpdateOpenIDConnectProviderThumbprint",
@@ -2330,13 +2418,15 @@ func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDCo
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateOpenIDConnectProviderThumbprint, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateOpenIDConnectProviderThumbprint, input, output)
+	output = &UpdateOpenIDConnectProviderThumbprintOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) UpdateOpenIDConnectProviderThumbprint(input *UpdateOpenIDConnectProviderThumbprintInput) (err error) {
-	req := c.UpdateOpenIDConnectProviderThumbprintRequest(input)
+func (c *IAM) UpdateOpenIDConnectProviderThumbprint(input *UpdateOpenIDConnectProviderThumbprintInput) (output *UpdateOpenIDConnectProviderThumbprintOutput, err error) {
+	req, out := c.UpdateOpenIDConnectProviderThumbprintRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2369,7 +2459,7 @@ func (c *IAM) UpdateSAMLProvider(input *UpdateSAMLProviderInput) (output *Update
 var opUpdateSAMLProvider *aws.Operation
 
 // UpdateServerCertificateRequest generates a request for the UpdateServerCertificate operation.
-func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput) (req *aws.Request) {
+func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput) (req *aws.Request, output *UpdateServerCertificateOutput) {
 	if opUpdateServerCertificate == nil {
 		opUpdateServerCertificate = &aws.Operation{
 			Name:       "UpdateServerCertificate",
@@ -2378,13 +2468,15 @@ func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateServerCertificate, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateServerCertificate, input, output)
+	output = &UpdateServerCertificateOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) UpdateServerCertificate(input *UpdateServerCertificateInput) (err error) {
-	req := c.UpdateServerCertificateRequest(input)
+func (c *IAM) UpdateServerCertificate(input *UpdateServerCertificateInput) (output *UpdateServerCertificateOutput, err error) {
+	req, out := c.UpdateServerCertificateRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2392,7 +2484,7 @@ func (c *IAM) UpdateServerCertificate(input *UpdateServerCertificateInput) (err 
 var opUpdateServerCertificate *aws.Operation
 
 // UpdateSigningCertificateRequest generates a request for the UpdateSigningCertificate operation.
-func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInput) (req *aws.Request) {
+func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInput) (req *aws.Request, output *UpdateSigningCertificateOutput) {
 	if opUpdateSigningCertificate == nil {
 		opUpdateSigningCertificate = &aws.Operation{
 			Name:       "UpdateSigningCertificate",
@@ -2401,13 +2493,15 @@ func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateSigningCertificate, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateSigningCertificate, input, output)
+	output = &UpdateSigningCertificateOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) UpdateSigningCertificate(input *UpdateSigningCertificateInput) (err error) {
-	req := c.UpdateSigningCertificateRequest(input)
+func (c *IAM) UpdateSigningCertificate(input *UpdateSigningCertificateInput) (output *UpdateSigningCertificateOutput, err error) {
+	req, out := c.UpdateSigningCertificateRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2415,7 +2509,7 @@ func (c *IAM) UpdateSigningCertificate(input *UpdateSigningCertificateInput) (er
 var opUpdateSigningCertificate *aws.Operation
 
 // UpdateUserRequest generates a request for the UpdateUser operation.
-func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *aws.Request) {
+func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *aws.Request, output *UpdateUserOutput) {
 	if opUpdateUser == nil {
 		opUpdateUser = &aws.Operation{
 			Name:       "UpdateUser",
@@ -2424,13 +2518,15 @@ func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateUser, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateUser, input, output)
+	output = &UpdateUserOutput{}
+	req.Data = output
 	return
 }
 
-func (c *IAM) UpdateUser(input *UpdateUserInput) (err error) {
-	req := c.UpdateUserRequest(input)
+func (c *IAM) UpdateUser(input *UpdateUserInput) (output *UpdateUserOutput, err error) {
+	req, out := c.UpdateUserRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2525,6 +2621,14 @@ type metadataAddClientIDToOpenIDConnectProviderInput struct {
 	SDKShapeTraits bool `type:"structure" required:"OpenIDConnectProviderArn,ClientID"`
 }
 
+type AddClientIDToOpenIDConnectProviderOutput struct {
+	metadataAddClientIDToOpenIDConnectProviderOutput `json:"-", xml:"-"`
+}
+
+type metadataAddClientIDToOpenIDConnectProviderOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type AddRoleToInstanceProfileInput struct {
 	InstanceProfileName *string `type:"string"`
 	RoleName            *string `type:"string"`
@@ -2534,6 +2638,14 @@ type AddRoleToInstanceProfileInput struct {
 
 type metadataAddRoleToInstanceProfileInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceProfileName,RoleName"`
+}
+
+type AddRoleToInstanceProfileOutput struct {
+	metadataAddRoleToInstanceProfileOutput `json:"-", xml:"-"`
+}
+
+type metadataAddRoleToInstanceProfileOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddUserToGroupInput struct {
@@ -2547,6 +2659,14 @@ type metadataAddUserToGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupName,UserName"`
 }
 
+type AddUserToGroupOutput struct {
+	metadataAddUserToGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataAddUserToGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type AttachGroupPolicyInput struct {
 	GroupName *string `type:"string"`
 	PolicyARN *string `locationName:"PolicyArn" type:"string"`
@@ -2556,6 +2676,14 @@ type AttachGroupPolicyInput struct {
 
 type metadataAttachGroupPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupName,PolicyArn"`
+}
+
+type AttachGroupPolicyOutput struct {
+	metadataAttachGroupPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataAttachGroupPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachRolePolicyInput struct {
@@ -2569,6 +2697,14 @@ type metadataAttachRolePolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyArn"`
 }
 
+type AttachRolePolicyOutput struct {
+	metadataAttachRolePolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataAttachRolePolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type AttachUserPolicyInput struct {
 	PolicyARN *string `locationName:"PolicyArn" type:"string"`
 	UserName  *string `type:"string"`
@@ -2578,6 +2714,14 @@ type AttachUserPolicyInput struct {
 
 type metadataAttachUserPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName,PolicyArn"`
+}
+
+type AttachUserPolicyOutput struct {
+	metadataAttachUserPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataAttachUserPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachedPolicy struct {
@@ -2600,6 +2744,14 @@ type ChangePasswordInput struct {
 
 type metadataChangePasswordInput struct {
 	SDKShapeTraits bool `type:"structure" required:"OldPassword,NewPassword"`
+}
+
+type ChangePasswordOutput struct {
+	metadataChangePasswordOutput `json:"-", xml:"-"`
+}
+
+type metadataChangePasswordOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAccessKeyInput struct {
@@ -2630,6 +2782,14 @@ type CreateAccountAliasInput struct {
 
 type metadataCreateAccountAliasInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AccountAlias"`
+}
+
+type CreateAccountAliasOutput struct {
+	metadataCreateAccountAliasOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateAccountAliasOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateGroupInput struct {
@@ -2889,6 +3049,14 @@ type metadataDeactivateMFADeviceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName,SerialNumber"`
 }
 
+type DeactivateMFADeviceOutput struct {
+	metadataDeactivateMFADeviceOutput `json:"-", xml:"-"`
+}
+
+type metadataDeactivateMFADeviceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteAccessKeyInput struct {
 	AccessKeyID *string `locationName:"AccessKeyId" type:"string"`
 	UserName    *string `type:"string"`
@@ -2900,6 +3068,14 @@ type metadataDeleteAccessKeyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AccessKeyId"`
 }
 
+type DeleteAccessKeyOutput struct {
+	metadataDeleteAccessKeyOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteAccessKeyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteAccountAliasInput struct {
 	AccountAlias *string `type:"string"`
 
@@ -2908,6 +3084,30 @@ type DeleteAccountAliasInput struct {
 
 type metadataDeleteAccountAliasInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AccountAlias"`
+}
+
+type DeleteAccountAliasOutput struct {
+	metadataDeleteAccountAliasOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteAccountAliasOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DeleteAccountPasswordPolicyInput struct {
+	metadataDeleteAccountPasswordPolicyInput `json:"-", xml:"-"`
+}
+
+type metadataDeleteAccountPasswordPolicyInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DeleteAccountPasswordPolicyOutput struct {
+	metadataDeleteAccountPasswordPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteAccountPasswordPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteConflictException struct {
@@ -2930,6 +3130,14 @@ type metadataDeleteGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupName"`
 }
 
+type DeleteGroupOutput struct {
+	metadataDeleteGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteGroupPolicyInput struct {
 	GroupName  *string `type:"string"`
 	PolicyName *string `type:"string"`
@@ -2939,6 +3147,14 @@ type DeleteGroupPolicyInput struct {
 
 type metadataDeleteGroupPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupName,PolicyName"`
+}
+
+type DeleteGroupPolicyOutput struct {
+	metadataDeleteGroupPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteGroupPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteInstanceProfileInput struct {
@@ -2951,6 +3167,14 @@ type metadataDeleteInstanceProfileInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceProfileName"`
 }
 
+type DeleteInstanceProfileOutput struct {
+	metadataDeleteInstanceProfileOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteInstanceProfileOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteLoginProfileInput struct {
 	UserName *string `type:"string"`
 
@@ -2959,6 +3183,14 @@ type DeleteLoginProfileInput struct {
 
 type metadataDeleteLoginProfileInput struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName"`
+}
+
+type DeleteLoginProfileOutput struct {
+	metadataDeleteLoginProfileOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteLoginProfileOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteOpenIDConnectProviderInput struct {
@@ -2971,6 +3203,14 @@ type metadataDeleteOpenIDConnectProviderInput struct {
 	SDKShapeTraits bool `type:"structure" required:"OpenIDConnectProviderArn"`
 }
 
+type DeleteOpenIDConnectProviderOutput struct {
+	metadataDeleteOpenIDConnectProviderOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteOpenIDConnectProviderOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeletePolicyInput struct {
 	PolicyARN *string `locationName:"PolicyArn" type:"string"`
 
@@ -2979,6 +3219,14 @@ type DeletePolicyInput struct {
 
 type metadataDeletePolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"PolicyArn"`
+}
+
+type DeletePolicyOutput struct {
+	metadataDeletePolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataDeletePolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeletePolicyVersionInput struct {
@@ -2992,6 +3240,14 @@ type metadataDeletePolicyVersionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"PolicyArn,VersionId"`
 }
 
+type DeletePolicyVersionOutput struct {
+	metadataDeletePolicyVersionOutput `json:"-", xml:"-"`
+}
+
+type metadataDeletePolicyVersionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteRoleInput struct {
 	RoleName *string `type:"string"`
 
@@ -3000,6 +3256,14 @@ type DeleteRoleInput struct {
 
 type metadataDeleteRoleInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RoleName"`
+}
+
+type DeleteRoleOutput struct {
+	metadataDeleteRoleOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteRoleOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteRolePolicyInput struct {
@@ -3013,6 +3277,14 @@ type metadataDeleteRolePolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyName"`
 }
 
+type DeleteRolePolicyOutput struct {
+	metadataDeleteRolePolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteRolePolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteSAMLProviderInput struct {
 	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string"`
 
@@ -3023,6 +3295,14 @@ type metadataDeleteSAMLProviderInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SAMLProviderArn"`
 }
 
+type DeleteSAMLProviderOutput struct {
+	metadataDeleteSAMLProviderOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteSAMLProviderOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteServerCertificateInput struct {
 	ServerCertificateName *string `type:"string"`
 
@@ -3031,6 +3311,14 @@ type DeleteServerCertificateInput struct {
 
 type metadataDeleteServerCertificateInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ServerCertificateName"`
+}
+
+type DeleteServerCertificateOutput struct {
+	metadataDeleteServerCertificateOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteServerCertificateOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteSigningCertificateInput struct {
@@ -3044,6 +3332,14 @@ type metadataDeleteSigningCertificateInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CertificateId"`
 }
 
+type DeleteSigningCertificateOutput struct {
+	metadataDeleteSigningCertificateOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteSigningCertificateOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteUserInput struct {
 	UserName *string `type:"string"`
 
@@ -3052,6 +3348,14 @@ type DeleteUserInput struct {
 
 type metadataDeleteUserInput struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName"`
+}
+
+type DeleteUserOutput struct {
+	metadataDeleteUserOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteUserOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteUserPolicyInput struct {
@@ -3065,6 +3369,14 @@ type metadataDeleteUserPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName,PolicyName"`
 }
 
+type DeleteUserPolicyOutput struct {
+	metadataDeleteUserPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteUserPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteVirtualMFADeviceInput struct {
 	SerialNumber *string `type:"string"`
 
@@ -3073,6 +3385,14 @@ type DeleteVirtualMFADeviceInput struct {
 
 type metadataDeleteVirtualMFADeviceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SerialNumber"`
+}
+
+type DeleteVirtualMFADeviceOutput struct {
+	metadataDeleteVirtualMFADeviceOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteVirtualMFADeviceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachGroupPolicyInput struct {
@@ -3086,6 +3406,14 @@ type metadataDetachGroupPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupName,PolicyArn"`
 }
 
+type DetachGroupPolicyOutput struct {
+	metadataDetachGroupPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataDetachGroupPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DetachRolePolicyInput struct {
 	PolicyARN *string `locationName:"PolicyArn" type:"string"`
 	RoleName  *string `type:"string"`
@@ -3097,6 +3425,14 @@ type metadataDetachRolePolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyArn"`
 }
 
+type DetachRolePolicyOutput struct {
+	metadataDetachRolePolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataDetachRolePolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DetachUserPolicyInput struct {
 	PolicyARN *string `locationName:"PolicyArn" type:"string"`
 	UserName  *string `type:"string"`
@@ -3106,6 +3442,14 @@ type DetachUserPolicyInput struct {
 
 type metadataDetachUserPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName,PolicyArn"`
+}
+
+type DetachUserPolicyOutput struct {
+	metadataDetachUserPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataDetachUserPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DuplicateCertificateException struct {
@@ -3131,6 +3475,14 @@ type metadataEnableMFADeviceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName,SerialNumber,AuthenticationCode1,AuthenticationCode2"`
 }
 
+type EnableMFADeviceOutput struct {
+	metadataEnableMFADeviceOutput `json:"-", xml:"-"`
+}
+
+type metadataEnableMFADeviceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type EntityAlreadyExistsException struct {
 	Message *string `locationName:"message" type:"string"`
 
@@ -3148,6 +3500,14 @@ type EntityTemporarilyUnmodifiableException struct {
 }
 
 type metadataEntityTemporarilyUnmodifiableException struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type GenerateCredentialReportInput struct {
+	metadataGenerateCredentialReportInput `json:"-", xml:"-"`
+}
+
+type metadataGenerateCredentialReportInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -3188,6 +3548,14 @@ type metadataGetAccountAuthorizationDetailsOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"GetAccountAuthorizationDetailsResult"`
 }
 
+type GetAccountPasswordPolicyInput struct {
+	metadataGetAccountPasswordPolicyInput `json:"-", xml:"-"`
+}
+
+type metadataGetAccountPasswordPolicyInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type GetAccountPasswordPolicyOutput struct {
 	PasswordPolicy *PasswordPolicy `type:"structure"`
 
@@ -3198,6 +3566,14 @@ type metadataGetAccountPasswordPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"GetAccountPasswordPolicyResult" required:"PasswordPolicy"`
 }
 
+type GetAccountSummaryInput struct {
+	metadataGetAccountSummaryInput `json:"-", xml:"-"`
+}
+
+type metadataGetAccountSummaryInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type GetAccountSummaryOutput struct {
 	SummaryMap *map[string]*int `type:"map"`
 
@@ -3206,6 +3582,14 @@ type GetAccountSummaryOutput struct {
 
 type metadataGetAccountSummaryOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"GetAccountSummaryResult"`
+}
+
+type GetCredentialReportInput struct {
+	metadataGetCredentialReportInput `json:"-", xml:"-"`
+}
+
+type metadataGetCredentialReportInput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetCredentialReportOutput struct {
@@ -4330,6 +4714,14 @@ type metadataPutGroupPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupName,PolicyName,PolicyDocument"`
 }
 
+type PutGroupPolicyOutput struct {
+	metadataPutGroupPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataPutGroupPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type PutRolePolicyInput struct {
 	PolicyDocument *string `type:"string"`
 	PolicyName     *string `type:"string"`
@@ -4340,6 +4732,14 @@ type PutRolePolicyInput struct {
 
 type metadataPutRolePolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyName,PolicyDocument"`
+}
+
+type PutRolePolicyOutput struct {
+	metadataPutRolePolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataPutRolePolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutUserPolicyInput struct {
@@ -4354,6 +4754,14 @@ type metadataPutUserPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName,PolicyName,PolicyDocument"`
 }
 
+type PutUserPolicyOutput struct {
+	metadataPutUserPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataPutUserPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type RemoveClientIDFromOpenIDConnectProviderInput struct {
 	ClientID                 *string `type:"string"`
 	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string"`
@@ -4363,6 +4771,14 @@ type RemoveClientIDFromOpenIDConnectProviderInput struct {
 
 type metadataRemoveClientIDFromOpenIDConnectProviderInput struct {
 	SDKShapeTraits bool `type:"structure" required:"OpenIDConnectProviderArn,ClientID"`
+}
+
+type RemoveClientIDFromOpenIDConnectProviderOutput struct {
+	metadataRemoveClientIDFromOpenIDConnectProviderOutput `json:"-", xml:"-"`
+}
+
+type metadataRemoveClientIDFromOpenIDConnectProviderOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveRoleFromInstanceProfileInput struct {
@@ -4376,6 +4792,14 @@ type metadataRemoveRoleFromInstanceProfileInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceProfileName,RoleName"`
 }
 
+type RemoveRoleFromInstanceProfileOutput struct {
+	metadataRemoveRoleFromInstanceProfileOutput `json:"-", xml:"-"`
+}
+
+type metadataRemoveRoleFromInstanceProfileOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type RemoveUserFromGroupInput struct {
 	GroupName *string `type:"string"`
 	UserName  *string `type:"string"`
@@ -4385,6 +4809,14 @@ type RemoveUserFromGroupInput struct {
 
 type metadataRemoveUserFromGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupName,UserName"`
+}
+
+type RemoveUserFromGroupOutput struct {
+	metadataRemoveUserFromGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataRemoveUserFromGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResyncMFADeviceInput struct {
@@ -4398,6 +4830,14 @@ type ResyncMFADeviceInput struct {
 
 type metadataResyncMFADeviceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName,SerialNumber,AuthenticationCode1,AuthenticationCode2"`
+}
+
+type ResyncMFADeviceOutput struct {
+	metadataResyncMFADeviceOutput `json:"-", xml:"-"`
+}
+
+type metadataResyncMFADeviceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Role struct {
@@ -4492,6 +4932,14 @@ type metadataSetDefaultPolicyVersionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"PolicyArn,VersionId"`
 }
 
+type SetDefaultPolicyVersionOutput struct {
+	metadataSetDefaultPolicyVersionOutput `json:"-", xml:"-"`
+}
+
+type metadataSetDefaultPolicyVersionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type SigningCertificate struct {
 	CertificateBody *string    `type:"string"`
 	CertificateID   *string    `locationName:"CertificateId" type:"string"`
@@ -4518,6 +4966,14 @@ type metadataUpdateAccessKeyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AccessKeyId,Status"`
 }
 
+type UpdateAccessKeyOutput struct {
+	metadataUpdateAccessKeyOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateAccessKeyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type UpdateAccountPasswordPolicyInput struct {
 	AllowUsersToChangePassword *bool `type:"boolean"`
 	HardExpiry                 *bool `type:"boolean"`
@@ -4536,6 +4992,14 @@ type metadataUpdateAccountPasswordPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type UpdateAccountPasswordPolicyOutput struct {
+	metadataUpdateAccountPasswordPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateAccountPasswordPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type UpdateAssumeRolePolicyInput struct {
 	PolicyDocument *string `type:"string"`
 	RoleName       *string `type:"string"`
@@ -4545,6 +5009,14 @@ type UpdateAssumeRolePolicyInput struct {
 
 type metadataUpdateAssumeRolePolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyDocument"`
+}
+
+type UpdateAssumeRolePolicyOutput struct {
+	metadataUpdateAssumeRolePolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateAssumeRolePolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateGroupInput struct {
@@ -4559,6 +5031,14 @@ type metadataUpdateGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupName"`
 }
 
+type UpdateGroupOutput struct {
+	metadataUpdateGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type UpdateLoginProfileInput struct {
 	Password              *string `type:"string"`
 	PasswordResetRequired *bool   `type:"boolean"`
@@ -4571,6 +5051,14 @@ type metadataUpdateLoginProfileInput struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName"`
 }
 
+type UpdateLoginProfileOutput struct {
+	metadataUpdateLoginProfileOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateLoginProfileOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type UpdateOpenIDConnectProviderThumbprintInput struct {
 	OpenIDConnectProviderARN *string   `locationName:"OpenIDConnectProviderArn" type:"string"`
 	ThumbprintList           []*string `type:"list"`
@@ -4580,6 +5068,14 @@ type UpdateOpenIDConnectProviderThumbprintInput struct {
 
 type metadataUpdateOpenIDConnectProviderThumbprintInput struct {
 	SDKShapeTraits bool `type:"structure" required:"OpenIDConnectProviderArn,ThumbprintList"`
+}
+
+type UpdateOpenIDConnectProviderThumbprintOutput struct {
+	metadataUpdateOpenIDConnectProviderThumbprintOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateOpenIDConnectProviderThumbprintOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateSAMLProviderInput struct {
@@ -4615,6 +5111,14 @@ type metadataUpdateServerCertificateInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ServerCertificateName"`
 }
 
+type UpdateServerCertificateOutput struct {
+	metadataUpdateServerCertificateOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateServerCertificateOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type UpdateSigningCertificateInput struct {
 	CertificateID *string `locationName:"CertificateId" type:"string"`
 	Status        *string `type:"string"`
@@ -4627,6 +5131,14 @@ type metadataUpdateSigningCertificateInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CertificateId,Status"`
 }
 
+type UpdateSigningCertificateOutput struct {
+	metadataUpdateSigningCertificateOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateSigningCertificateOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type UpdateUserInput struct {
 	NewPath     *string `type:"string"`
 	NewUserName *string `type:"string"`
@@ -4637,6 +5149,14 @@ type UpdateUserInput struct {
 
 type metadataUpdateUserInput struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName"`
+}
+
+type UpdateUserOutput struct {
+	metadataUpdateUserOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateUserOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UploadServerCertificateInput struct {

@@ -509,7 +509,7 @@ func (c *CloudSearch) IndexDocuments(input *IndexDocumentsInput) (output *IndexD
 var opIndexDocuments *aws.Operation
 
 // ListDomainNamesRequest generates a request for the ListDomainNames operation.
-func (c *CloudSearch) ListDomainNamesRequest() (req *aws.Request, output *ListDomainNamesOutput) {
+func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *aws.Request, output *ListDomainNamesOutput) {
 	if opListDomainNames == nil {
 		opListDomainNames = &aws.Operation{
 			Name:       "ListDomainNames",
@@ -518,14 +518,14 @@ func (c *CloudSearch) ListDomainNamesRequest() (req *aws.Request, output *ListDo
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDomainNames, nil, output)
+	req = aws.NewRequest(c.Service, opListDomainNames, input, output)
 	output = &ListDomainNamesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *CloudSearch) ListDomainNames() (output *ListDomainNamesOutput, err error) {
-	req, out := c.ListDomainNamesRequest()
+func (c *CloudSearch) ListDomainNames(input *ListDomainNamesInput) (output *ListDomainNamesOutput, err error) {
+	req, out := c.ListDomainNamesRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -1328,6 +1328,14 @@ type Limits struct {
 
 type metadataLimits struct {
 	SDKShapeTraits bool `type:"structure" required:"MaximumReplicationCount,MaximumPartitionCount"`
+}
+
+type ListDomainNamesInput struct {
+	metadataListDomainNamesInput `json:"-", xml:"-"`
+}
+
+type metadataListDomainNamesInput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListDomainNamesOutput struct {

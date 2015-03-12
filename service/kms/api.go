@@ -9,7 +9,7 @@ import (
 )
 
 // CreateAliasRequest generates a request for the CreateAlias operation.
-func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request) {
+func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request, output *CreateAliasOutput) {
 	if opCreateAlias == nil {
 		opCreateAlias = &aws.Operation{
 			Name:       "CreateAlias",
@@ -18,13 +18,15 @@ func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateAlias, input, nil)
-
+	req = aws.NewRequest(c.Service, opCreateAlias, input, output)
+	output = &CreateAliasOutput{}
+	req.Data = output
 	return
 }
 
-func (c *KMS) CreateAlias(input *CreateAliasInput) (err error) {
-	req := c.CreateAliasRequest(input)
+func (c *KMS) CreateAlias(input *CreateAliasInput) (output *CreateAliasOutput, err error) {
+	req, out := c.CreateAliasRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -107,7 +109,7 @@ func (c *KMS) Decrypt(input *DecryptInput) (output *DecryptOutput, err error) {
 var opDecrypt *aws.Operation
 
 // DeleteAliasRequest generates a request for the DeleteAlias operation.
-func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *aws.Request) {
+func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *aws.Request, output *DeleteAliasOutput) {
 	if opDeleteAlias == nil {
 		opDeleteAlias = &aws.Operation{
 			Name:       "DeleteAlias",
@@ -116,13 +118,15 @@ func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAlias, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteAlias, input, output)
+	output = &DeleteAliasOutput{}
+	req.Data = output
 	return
 }
 
-func (c *KMS) DeleteAlias(input *DeleteAliasInput) (err error) {
-	req := c.DeleteAliasRequest(input)
+func (c *KMS) DeleteAlias(input *DeleteAliasInput) (output *DeleteAliasOutput, err error) {
+	req, out := c.DeleteAliasRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -155,7 +159,7 @@ func (c *KMS) DescribeKey(input *DescribeKeyInput) (output *DescribeKeyOutput, e
 var opDescribeKey *aws.Operation
 
 // DisableKeyRequest generates a request for the DisableKey operation.
-func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *aws.Request) {
+func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *aws.Request, output *DisableKeyOutput) {
 	if opDisableKey == nil {
 		opDisableKey = &aws.Operation{
 			Name:       "DisableKey",
@@ -164,13 +168,15 @@ func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableKey, input, nil)
-
+	req = aws.NewRequest(c.Service, opDisableKey, input, output)
+	output = &DisableKeyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *KMS) DisableKey(input *DisableKeyInput) (err error) {
-	req := c.DisableKeyRequest(input)
+func (c *KMS) DisableKey(input *DisableKeyInput) (output *DisableKeyOutput, err error) {
+	req, out := c.DisableKeyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -178,7 +184,7 @@ func (c *KMS) DisableKey(input *DisableKeyInput) (err error) {
 var opDisableKey *aws.Operation
 
 // DisableKeyRotationRequest generates a request for the DisableKeyRotation operation.
-func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *aws.Request) {
+func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *aws.Request, output *DisableKeyRotationOutput) {
 	if opDisableKeyRotation == nil {
 		opDisableKeyRotation = &aws.Operation{
 			Name:       "DisableKeyRotation",
@@ -187,13 +193,15 @@ func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableKeyRotation, input, nil)
-
+	req = aws.NewRequest(c.Service, opDisableKeyRotation, input, output)
+	output = &DisableKeyRotationOutput{}
+	req.Data = output
 	return
 }
 
-func (c *KMS) DisableKeyRotation(input *DisableKeyRotationInput) (err error) {
-	req := c.DisableKeyRotationRequest(input)
+func (c *KMS) DisableKeyRotation(input *DisableKeyRotationInput) (output *DisableKeyRotationOutput, err error) {
+	req, out := c.DisableKeyRotationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -201,7 +209,7 @@ func (c *KMS) DisableKeyRotation(input *DisableKeyRotationInput) (err error) {
 var opDisableKeyRotation *aws.Operation
 
 // EnableKeyRequest generates a request for the EnableKey operation.
-func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *aws.Request) {
+func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *aws.Request, output *EnableKeyOutput) {
 	if opEnableKey == nil {
 		opEnableKey = &aws.Operation{
 			Name:       "EnableKey",
@@ -210,13 +218,15 @@ func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableKey, input, nil)
-
+	req = aws.NewRequest(c.Service, opEnableKey, input, output)
+	output = &EnableKeyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *KMS) EnableKey(input *EnableKeyInput) (err error) {
-	req := c.EnableKeyRequest(input)
+func (c *KMS) EnableKey(input *EnableKeyInput) (output *EnableKeyOutput, err error) {
+	req, out := c.EnableKeyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -224,7 +234,7 @@ func (c *KMS) EnableKey(input *EnableKeyInput) (err error) {
 var opEnableKey *aws.Operation
 
 // EnableKeyRotationRequest generates a request for the EnableKeyRotation operation.
-func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *aws.Request) {
+func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *aws.Request, output *EnableKeyRotationOutput) {
 	if opEnableKeyRotation == nil {
 		opEnableKeyRotation = &aws.Operation{
 			Name:       "EnableKeyRotation",
@@ -233,13 +243,15 @@ func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableKeyRotation, input, nil)
-
+	req = aws.NewRequest(c.Service, opEnableKeyRotation, input, output)
+	output = &EnableKeyRotationOutput{}
+	req.Data = output
 	return
 }
 
-func (c *KMS) EnableKeyRotation(input *EnableKeyRotationInput) (err error) {
-	req := c.EnableKeyRotationRequest(input)
+func (c *KMS) EnableKeyRotation(input *EnableKeyRotationInput) (output *EnableKeyRotationOutput, err error) {
+	req, out := c.EnableKeyRotationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -497,7 +509,7 @@ func (c *KMS) ListKeys(input *ListKeysInput) (output *ListKeysOutput, err error)
 var opListKeys *aws.Operation
 
 // PutKeyPolicyRequest generates a request for the PutKeyPolicy operation.
-func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *aws.Request) {
+func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *aws.Request, output *PutKeyPolicyOutput) {
 	if opPutKeyPolicy == nil {
 		opPutKeyPolicy = &aws.Operation{
 			Name:       "PutKeyPolicy",
@@ -506,13 +518,15 @@ func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutKeyPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opPutKeyPolicy, input, output)
+	output = &PutKeyPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *KMS) PutKeyPolicy(input *PutKeyPolicyInput) (err error) {
-	req := c.PutKeyPolicyRequest(input)
+func (c *KMS) PutKeyPolicy(input *PutKeyPolicyInput) (output *PutKeyPolicyOutput, err error) {
+	req, out := c.PutKeyPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -545,7 +559,7 @@ func (c *KMS) ReEncrypt(input *ReEncryptInput) (output *ReEncryptOutput, err err
 var opReEncrypt *aws.Operation
 
 // RetireGrantRequest generates a request for the RetireGrant operation.
-func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request) {
+func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request, output *RetireGrantOutput) {
 	if opRetireGrant == nil {
 		opRetireGrant = &aws.Operation{
 			Name:       "RetireGrant",
@@ -554,13 +568,15 @@ func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRetireGrant, input, nil)
-
+	req = aws.NewRequest(c.Service, opRetireGrant, input, output)
+	output = &RetireGrantOutput{}
+	req.Data = output
 	return
 }
 
-func (c *KMS) RetireGrant(input *RetireGrantInput) (err error) {
-	req := c.RetireGrantRequest(input)
+func (c *KMS) RetireGrant(input *RetireGrantInput) (output *RetireGrantOutput, err error) {
+	req, out := c.RetireGrantRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -568,7 +584,7 @@ func (c *KMS) RetireGrant(input *RetireGrantInput) (err error) {
 var opRetireGrant *aws.Operation
 
 // RevokeGrantRequest generates a request for the RevokeGrant operation.
-func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *aws.Request) {
+func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *aws.Request, output *RevokeGrantOutput) {
 	if opRevokeGrant == nil {
 		opRevokeGrant = &aws.Operation{
 			Name:       "RevokeGrant",
@@ -577,13 +593,15 @@ func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRevokeGrant, input, nil)
-
+	req = aws.NewRequest(c.Service, opRevokeGrant, input, output)
+	output = &RevokeGrantOutput{}
+	req.Data = output
 	return
 }
 
-func (c *KMS) RevokeGrant(input *RevokeGrantInput) (err error) {
-	req := c.RevokeGrantRequest(input)
+func (c *KMS) RevokeGrant(input *RevokeGrantInput) (output *RevokeGrantOutput, err error) {
+	req, out := c.RevokeGrantRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -591,7 +609,7 @@ func (c *KMS) RevokeGrant(input *RevokeGrantInput) (err error) {
 var opRevokeGrant *aws.Operation
 
 // UpdateKeyDescriptionRequest generates a request for the UpdateKeyDescription operation.
-func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req *aws.Request) {
+func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req *aws.Request, output *UpdateKeyDescriptionOutput) {
 	if opUpdateKeyDescription == nil {
 		opUpdateKeyDescription = &aws.Operation{
 			Name:       "UpdateKeyDescription",
@@ -600,13 +618,15 @@ func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateKeyDescription, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateKeyDescription, input, output)
+	output = &UpdateKeyDescriptionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (err error) {
-	req := c.UpdateKeyDescriptionRequest(input)
+func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (output *UpdateKeyDescriptionOutput, err error) {
+	req, out := c.UpdateKeyDescriptionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -644,6 +664,14 @@ type CreateAliasInput struct {
 
 type metadataCreateAliasInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AliasName,TargetKeyId" json:",omitempty"`
+}
+
+type CreateAliasOutput struct {
+	metadataCreateAliasOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateAliasOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateGrantInput struct {
@@ -727,6 +755,14 @@ type metadataDeleteAliasInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AliasName" json:",omitempty"`
 }
 
+type DeleteAliasOutput struct {
+	metadataDeleteAliasOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteAliasOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DependencyTimeoutException struct {
 	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
 
@@ -767,6 +803,14 @@ type metadataDisableKeyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"KeyId" json:",omitempty"`
 }
 
+type DisableKeyOutput struct {
+	metadataDisableKeyOutput `json:"-", xml:"-"`
+}
+
+type metadataDisableKeyOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DisableKeyRotationInput struct {
 	KeyID *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
@@ -775,6 +819,14 @@ type DisableKeyRotationInput struct {
 
 type metadataDisableKeyRotationInput struct {
 	SDKShapeTraits bool `type:"structure" required:"KeyId" json:",omitempty"`
+}
+
+type DisableKeyRotationOutput struct {
+	metadataDisableKeyRotationOutput `json:"-", xml:"-"`
+}
+
+type metadataDisableKeyRotationOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DisabledException struct {
@@ -797,6 +849,14 @@ type metadataEnableKeyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"KeyId" json:",omitempty"`
 }
 
+type EnableKeyOutput struct {
+	metadataEnableKeyOutput `json:"-", xml:"-"`
+}
+
+type metadataEnableKeyOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type EnableKeyRotationInput struct {
 	KeyID *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
@@ -805,6 +865,14 @@ type EnableKeyRotationInput struct {
 
 type metadataEnableKeyRotationInput struct {
 	SDKShapeTraits bool `type:"structure" required:"KeyId" json:",omitempty"`
+}
+
+type EnableKeyRotationOutput struct {
+	metadataEnableKeyRotationOutput `json:"-", xml:"-"`
+}
+
+type metadataEnableKeyRotationOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type EncryptInput struct {
@@ -1212,6 +1280,14 @@ type metadataPutKeyPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"KeyId,PolicyName,Policy" json:",omitempty"`
 }
 
+type PutKeyPolicyOutput struct {
+	metadataPutKeyPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataPutKeyPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type ReEncryptInput struct {
 	CiphertextBlob               []byte              `type:"blob" json:",omitempty"`
 	DestinationEncryptionContext *map[string]*string `type:"map" json:",omitempty"`
@@ -1248,6 +1324,14 @@ type metadataRetireGrantInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GrantToken" json:",omitempty"`
 }
 
+type RetireGrantOutput struct {
+	metadataRetireGrantOutput `json:"-", xml:"-"`
+}
+
+type metadataRetireGrantOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type RevokeGrantInput struct {
 	GrantID *string `locationName:"GrantId" type:"string" json:"GrantId,omitempty"`
 	KeyID   *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
@@ -1257,6 +1341,14 @@ type RevokeGrantInput struct {
 
 type metadataRevokeGrantInput struct {
 	SDKShapeTraits bool `type:"structure" required:"KeyId,GrantId" json:",omitempty"`
+}
+
+type RevokeGrantOutput struct {
+	metadataRevokeGrantOutput `json:"-", xml:"-"`
+}
+
+type metadataRevokeGrantOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UnsupportedOperationException struct {
@@ -1278,4 +1370,12 @@ type UpdateKeyDescriptionInput struct {
 
 type metadataUpdateKeyDescriptionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"KeyId,Description" json:",omitempty"`
+}
+
+type UpdateKeyDescriptionOutput struct {
+	metadataUpdateKeyDescriptionOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateKeyDescriptionOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }

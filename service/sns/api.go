@@ -7,7 +7,7 @@ import (
 )
 
 // AddPermissionRequest generates a request for the AddPermission operation.
-func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request) {
+func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request, output *AddPermissionOutput) {
 	if opAddPermission == nil {
 		opAddPermission = &aws.Operation{
 			Name:       "AddPermission",
@@ -16,13 +16,15 @@ func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddPermission, input, nil)
-
+	req = aws.NewRequest(c.Service, opAddPermission, input, output)
+	output = &AddPermissionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SNS) AddPermission(input *AddPermissionInput) (err error) {
-	req := c.AddPermissionRequest(input)
+func (c *SNS) AddPermission(input *AddPermissionInput) (output *AddPermissionOutput, err error) {
+	req, out := c.AddPermissionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -130,7 +132,7 @@ func (c *SNS) CreateTopic(input *CreateTopicInput) (output *CreateTopicOutput, e
 var opCreateTopic *aws.Operation
 
 // DeleteEndpointRequest generates a request for the DeleteEndpoint operation.
-func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *aws.Request) {
+func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *aws.Request, output *DeleteEndpointOutput) {
 	if opDeleteEndpoint == nil {
 		opDeleteEndpoint = &aws.Operation{
 			Name:       "DeleteEndpoint",
@@ -139,13 +141,15 @@ func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteEndpoint, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteEndpoint, input, output)
+	output = &DeleteEndpointOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SNS) DeleteEndpoint(input *DeleteEndpointInput) (err error) {
-	req := c.DeleteEndpointRequest(input)
+func (c *SNS) DeleteEndpoint(input *DeleteEndpointInput) (output *DeleteEndpointOutput, err error) {
+	req, out := c.DeleteEndpointRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -153,7 +157,7 @@ func (c *SNS) DeleteEndpoint(input *DeleteEndpointInput) (err error) {
 var opDeleteEndpoint *aws.Operation
 
 // DeletePlatformApplicationRequest generates a request for the DeletePlatformApplication operation.
-func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationInput) (req *aws.Request) {
+func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationInput) (req *aws.Request, output *DeletePlatformApplicationOutput) {
 	if opDeletePlatformApplication == nil {
 		opDeletePlatformApplication = &aws.Operation{
 			Name:       "DeletePlatformApplication",
@@ -162,13 +166,15 @@ func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePlatformApplication, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeletePlatformApplication, input, output)
+	output = &DeletePlatformApplicationOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SNS) DeletePlatformApplication(input *DeletePlatformApplicationInput) (err error) {
-	req := c.DeletePlatformApplicationRequest(input)
+func (c *SNS) DeletePlatformApplication(input *DeletePlatformApplicationInput) (output *DeletePlatformApplicationOutput, err error) {
+	req, out := c.DeletePlatformApplicationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -176,7 +182,7 @@ func (c *SNS) DeletePlatformApplication(input *DeletePlatformApplicationInput) (
 var opDeletePlatformApplication *aws.Operation
 
 // DeleteTopicRequest generates a request for the DeleteTopic operation.
-func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *aws.Request) {
+func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *aws.Request, output *DeleteTopicOutput) {
 	if opDeleteTopic == nil {
 		opDeleteTopic = &aws.Operation{
 			Name:       "DeleteTopic",
@@ -185,13 +191,15 @@ func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTopic, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteTopic, input, output)
+	output = &DeleteTopicOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SNS) DeleteTopic(input *DeleteTopicInput) (err error) {
-	req := c.DeleteTopicRequest(input)
+func (c *SNS) DeleteTopic(input *DeleteTopicInput) (output *DeleteTopicOutput, err error) {
+	req, out := c.DeleteTopicRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -449,7 +457,7 @@ func (c *SNS) Publish(input *PublishInput) (output *PublishOutput, err error) {
 var opPublish *aws.Operation
 
 // RemovePermissionRequest generates a request for the RemovePermission operation.
-func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Request) {
+func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Request, output *RemovePermissionOutput) {
 	if opRemovePermission == nil {
 		opRemovePermission = &aws.Operation{
 			Name:       "RemovePermission",
@@ -458,13 +466,15 @@ func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemovePermission, input, nil)
-
+	req = aws.NewRequest(c.Service, opRemovePermission, input, output)
+	output = &RemovePermissionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SNS) RemovePermission(input *RemovePermissionInput) (err error) {
-	req := c.RemovePermissionRequest(input)
+func (c *SNS) RemovePermission(input *RemovePermissionInput) (output *RemovePermissionOutput, err error) {
+	req, out := c.RemovePermissionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -472,7 +482,7 @@ func (c *SNS) RemovePermission(input *RemovePermissionInput) (err error) {
 var opRemovePermission *aws.Operation
 
 // SetEndpointAttributesRequest generates a request for the SetEndpointAttributes operation.
-func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (req *aws.Request) {
+func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (req *aws.Request, output *SetEndpointAttributesOutput) {
 	if opSetEndpointAttributes == nil {
 		opSetEndpointAttributes = &aws.Operation{
 			Name:       "SetEndpointAttributes",
@@ -481,13 +491,15 @@ func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetEndpointAttributes, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetEndpointAttributes, input, output)
+	output = &SetEndpointAttributesOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SNS) SetEndpointAttributes(input *SetEndpointAttributesInput) (err error) {
-	req := c.SetEndpointAttributesRequest(input)
+func (c *SNS) SetEndpointAttributes(input *SetEndpointAttributesInput) (output *SetEndpointAttributesOutput, err error) {
+	req, out := c.SetEndpointAttributesRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -495,7 +507,7 @@ func (c *SNS) SetEndpointAttributes(input *SetEndpointAttributesInput) (err erro
 var opSetEndpointAttributes *aws.Operation
 
 // SetPlatformApplicationAttributesRequest generates a request for the SetPlatformApplicationAttributes operation.
-func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicationAttributesInput) (req *aws.Request) {
+func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicationAttributesInput) (req *aws.Request, output *SetPlatformApplicationAttributesOutput) {
 	if opSetPlatformApplicationAttributes == nil {
 		opSetPlatformApplicationAttributes = &aws.Operation{
 			Name:       "SetPlatformApplicationAttributes",
@@ -504,13 +516,15 @@ func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetPlatformApplicationAttributes, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetPlatformApplicationAttributes, input, output)
+	output = &SetPlatformApplicationAttributesOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SNS) SetPlatformApplicationAttributes(input *SetPlatformApplicationAttributesInput) (err error) {
-	req := c.SetPlatformApplicationAttributesRequest(input)
+func (c *SNS) SetPlatformApplicationAttributes(input *SetPlatformApplicationAttributesInput) (output *SetPlatformApplicationAttributesOutput, err error) {
+	req, out := c.SetPlatformApplicationAttributesRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -518,7 +532,7 @@ func (c *SNS) SetPlatformApplicationAttributes(input *SetPlatformApplicationAttr
 var opSetPlatformApplicationAttributes *aws.Operation
 
 // SetSubscriptionAttributesRequest generates a request for the SetSubscriptionAttributes operation.
-func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesInput) (req *aws.Request) {
+func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesInput) (req *aws.Request, output *SetSubscriptionAttributesOutput) {
 	if opSetSubscriptionAttributes == nil {
 		opSetSubscriptionAttributes = &aws.Operation{
 			Name:       "SetSubscriptionAttributes",
@@ -527,13 +541,15 @@ func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetSubscriptionAttributes, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetSubscriptionAttributes, input, output)
+	output = &SetSubscriptionAttributesOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SNS) SetSubscriptionAttributes(input *SetSubscriptionAttributesInput) (err error) {
-	req := c.SetSubscriptionAttributesRequest(input)
+func (c *SNS) SetSubscriptionAttributes(input *SetSubscriptionAttributesInput) (output *SetSubscriptionAttributesOutput, err error) {
+	req, out := c.SetSubscriptionAttributesRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -541,7 +557,7 @@ func (c *SNS) SetSubscriptionAttributes(input *SetSubscriptionAttributesInput) (
 var opSetSubscriptionAttributes *aws.Operation
 
 // SetTopicAttributesRequest generates a request for the SetTopicAttributes operation.
-func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *aws.Request) {
+func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *aws.Request, output *SetTopicAttributesOutput) {
 	if opSetTopicAttributes == nil {
 		opSetTopicAttributes = &aws.Operation{
 			Name:       "SetTopicAttributes",
@@ -550,13 +566,15 @@ func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetTopicAttributes, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetTopicAttributes, input, output)
+	output = &SetTopicAttributesOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SNS) SetTopicAttributes(input *SetTopicAttributesInput) (err error) {
-	req := c.SetTopicAttributesRequest(input)
+func (c *SNS) SetTopicAttributes(input *SetTopicAttributesInput) (output *SetTopicAttributesOutput, err error) {
+	req, out := c.SetTopicAttributesRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -589,7 +607,7 @@ func (c *SNS) Subscribe(input *SubscribeInput) (output *SubscribeOutput, err err
 var opSubscribe *aws.Operation
 
 // UnsubscribeRequest generates a request for the Unsubscribe operation.
-func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *aws.Request) {
+func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *aws.Request, output *UnsubscribeOutput) {
 	if opUnsubscribe == nil {
 		opUnsubscribe = &aws.Operation{
 			Name:       "Unsubscribe",
@@ -598,13 +616,15 @@ func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnsubscribe, input, nil)
-
+	req = aws.NewRequest(c.Service, opUnsubscribe, input, output)
+	output = &UnsubscribeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SNS) Unsubscribe(input *UnsubscribeInput) (err error) {
-	req := c.UnsubscribeRequest(input)
+func (c *SNS) Unsubscribe(input *UnsubscribeInput) (output *UnsubscribeOutput, err error) {
+	req, out := c.UnsubscribeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -622,6 +642,14 @@ type AddPermissionInput struct {
 
 type metadataAddPermissionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"TopicArn,Label,AWSAccountId,ActionName"`
+}
+
+type AddPermissionOutput struct {
+	metadataAddPermissionOutput `json:"-", xml:"-"`
+}
+
+type metadataAddPermissionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AuthorizationErrorException struct {
@@ -731,6 +759,14 @@ type metadataDeleteEndpointInput struct {
 	SDKShapeTraits bool `type:"structure" required:"EndpointArn"`
 }
 
+type DeleteEndpointOutput struct {
+	metadataDeleteEndpointOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteEndpointOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeletePlatformApplicationInput struct {
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
 
@@ -741,6 +777,14 @@ type metadataDeletePlatformApplicationInput struct {
 	SDKShapeTraits bool `type:"structure" required:"PlatformApplicationArn"`
 }
 
+type DeletePlatformApplicationOutput struct {
+	metadataDeletePlatformApplicationOutput `json:"-", xml:"-"`
+}
+
+type metadataDeletePlatformApplicationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteTopicInput struct {
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
@@ -749,6 +793,14 @@ type DeleteTopicInput struct {
 
 type metadataDeleteTopicInput struct {
 	SDKShapeTraits bool `type:"structure" required:"TopicArn"`
+}
+
+type DeleteTopicOutput struct {
+	metadataDeleteTopicOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteTopicOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Endpoint struct {
@@ -1068,6 +1120,14 @@ type metadataRemovePermissionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"TopicArn,Label"`
 }
 
+type RemovePermissionOutput struct {
+	metadataRemovePermissionOutput `json:"-", xml:"-"`
+}
+
+type metadataRemovePermissionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type SetEndpointAttributesInput struct {
 	Attributes  *map[string]*string `type:"map"`
 	EndpointARN *string             `locationName:"EndpointArn" type:"string"`
@@ -1079,6 +1139,14 @@ type metadataSetEndpointAttributesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"EndpointArn,Attributes"`
 }
 
+type SetEndpointAttributesOutput struct {
+	metadataSetEndpointAttributesOutput `json:"-", xml:"-"`
+}
+
+type metadataSetEndpointAttributesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type SetPlatformApplicationAttributesInput struct {
 	Attributes             *map[string]*string `type:"map"`
 	PlatformApplicationARN *string             `locationName:"PlatformApplicationArn" type:"string"`
@@ -1088,6 +1156,14 @@ type SetPlatformApplicationAttributesInput struct {
 
 type metadataSetPlatformApplicationAttributesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"PlatformApplicationArn,Attributes"`
+}
+
+type SetPlatformApplicationAttributesOutput struct {
+	metadataSetPlatformApplicationAttributesOutput `json:"-", xml:"-"`
+}
+
+type metadataSetPlatformApplicationAttributesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetSubscriptionAttributesInput struct {
@@ -1102,6 +1178,14 @@ type metadataSetSubscriptionAttributesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubscriptionArn,AttributeName"`
 }
 
+type SetSubscriptionAttributesOutput struct {
+	metadataSetSubscriptionAttributesOutput `json:"-", xml:"-"`
+}
+
+type metadataSetSubscriptionAttributesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type SetTopicAttributesInput struct {
 	AttributeName  *string `type:"string"`
 	AttributeValue *string `type:"string"`
@@ -1112,6 +1196,14 @@ type SetTopicAttributesInput struct {
 
 type metadataSetTopicAttributesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"TopicArn,AttributeName"`
+}
+
+type SetTopicAttributesOutput struct {
+	metadataSetTopicAttributesOutput `json:"-", xml:"-"`
+}
+
+type metadataSetTopicAttributesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SubscribeInput struct {
@@ -1188,4 +1280,12 @@ type UnsubscribeInput struct {
 
 type metadataUnsubscribeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubscriptionArn"`
+}
+
+type UnsubscribeOutput struct {
+	metadataUnsubscribeOutput `json:"-", xml:"-"`
+}
+
+type metadataUnsubscribeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }

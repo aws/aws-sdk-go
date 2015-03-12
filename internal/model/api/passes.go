@@ -165,6 +165,31 @@ func (a *API) renameExportable() {
 	}
 }
 
+// createInputOutputShapes creates toplevel input/output shapes if they
+// have not been defined in the API. This normalizes all APIs to always
+// have an input and output structure in the signature.
+func (a *API) createInputOutputShapes() {
+	for _, v := range a.Operations {
+		if !v.HasInput() {
+			shape := a.makeIOShape(v.ExportedName + "Input")
+			v.InputRef = ShapeRef{API: a, ShapeName: shape.ShapeName, Shape: shape}
+		}
+		if !v.HasOutput() {
+			shape := a.makeIOShape(v.ExportedName + "Output")
+			v.OutputRef = ShapeRef{API: a, ShapeName: shape.ShapeName, Shape: shape}
+		}
+	}
+}
+
+func (a *API) makeIOShape(name string) *Shape {
+	shape := &Shape{
+		API: a, ShapeName: name, Type: "structure",
+		MemberRefs: map[string]*ShapeRef{},
+	}
+	a.Shapes[name] = shape
+	return shape
+}
+
 func splitName(name string) []string {
 	out, buf := []string{}, ""
 

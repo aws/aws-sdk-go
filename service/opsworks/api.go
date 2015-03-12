@@ -7,7 +7,7 @@ import (
 )
 
 // AssignInstanceRequest generates a request for the AssignInstance operation.
-func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *aws.Request) {
+func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *aws.Request, output *AssignInstanceOutput) {
 	if opAssignInstance == nil {
 		opAssignInstance = &aws.Operation{
 			Name:       "AssignInstance",
@@ -16,13 +16,15 @@ func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssignInstance, input, nil)
-
+	req = aws.NewRequest(c.Service, opAssignInstance, input, output)
+	output = &AssignInstanceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) AssignInstance(input *AssignInstanceInput) (err error) {
-	req := c.AssignInstanceRequest(input)
+func (c *OpsWorks) AssignInstance(input *AssignInstanceInput) (output *AssignInstanceOutput, err error) {
+	req, out := c.AssignInstanceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -30,7 +32,7 @@ func (c *OpsWorks) AssignInstance(input *AssignInstanceInput) (err error) {
 var opAssignInstance *aws.Operation
 
 // AssignVolumeRequest generates a request for the AssignVolume operation.
-func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *aws.Request) {
+func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *aws.Request, output *AssignVolumeOutput) {
 	if opAssignVolume == nil {
 		opAssignVolume = &aws.Operation{
 			Name:       "AssignVolume",
@@ -39,13 +41,15 @@ func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssignVolume, input, nil)
-
+	req = aws.NewRequest(c.Service, opAssignVolume, input, output)
+	output = &AssignVolumeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) AssignVolume(input *AssignVolumeInput) (err error) {
-	req := c.AssignVolumeRequest(input)
+func (c *OpsWorks) AssignVolume(input *AssignVolumeInput) (output *AssignVolumeOutput, err error) {
+	req, out := c.AssignVolumeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -53,7 +57,7 @@ func (c *OpsWorks) AssignVolume(input *AssignVolumeInput) (err error) {
 var opAssignVolume *aws.Operation
 
 // AssociateElasticIPRequest generates a request for the AssociateElasticIP operation.
-func (c *OpsWorks) AssociateElasticIPRequest(input *AssociateElasticIPInput) (req *aws.Request) {
+func (c *OpsWorks) AssociateElasticIPRequest(input *AssociateElasticIPInput) (req *aws.Request, output *AssociateElasticIPOutput) {
 	if opAssociateElasticIP == nil {
 		opAssociateElasticIP = &aws.Operation{
 			Name:       "AssociateElasticIp",
@@ -62,13 +66,15 @@ func (c *OpsWorks) AssociateElasticIPRequest(input *AssociateElasticIPInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssociateElasticIP, input, nil)
-
+	req = aws.NewRequest(c.Service, opAssociateElasticIP, input, output)
+	output = &AssociateElasticIPOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) AssociateElasticIP(input *AssociateElasticIPInput) (err error) {
-	req := c.AssociateElasticIPRequest(input)
+func (c *OpsWorks) AssociateElasticIP(input *AssociateElasticIPInput) (output *AssociateElasticIPOutput, err error) {
+	req, out := c.AssociateElasticIPRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -76,7 +82,7 @@ func (c *OpsWorks) AssociateElasticIP(input *AssociateElasticIPInput) (err error
 var opAssociateElasticIP *aws.Operation
 
 // AttachElasticLoadBalancerRequest generates a request for the AttachElasticLoadBalancer operation.
-func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBalancerInput) (req *aws.Request) {
+func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBalancerInput) (req *aws.Request, output *AttachElasticLoadBalancerOutput) {
 	if opAttachElasticLoadBalancer == nil {
 		opAttachElasticLoadBalancer = &aws.Operation{
 			Name:       "AttachElasticLoadBalancer",
@@ -85,13 +91,15 @@ func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBala
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachElasticLoadBalancer, input, nil)
-
+	req = aws.NewRequest(c.Service, opAttachElasticLoadBalancer, input, output)
+	output = &AttachElasticLoadBalancerOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) AttachElasticLoadBalancer(input *AttachElasticLoadBalancerInput) (err error) {
-	req := c.AttachElasticLoadBalancerRequest(input)
+func (c *OpsWorks) AttachElasticLoadBalancer(input *AttachElasticLoadBalancerInput) (output *AttachElasticLoadBalancerOutput, err error) {
+	req, out := c.AttachElasticLoadBalancerRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -274,7 +282,7 @@ func (c *OpsWorks) CreateUserProfile(input *CreateUserProfileInput) (output *Cre
 var opCreateUserProfile *aws.Operation
 
 // DeleteAppRequest generates a request for the DeleteApp operation.
-func (c *OpsWorks) DeleteAppRequest(input *DeleteAppInput) (req *aws.Request) {
+func (c *OpsWorks) DeleteAppRequest(input *DeleteAppInput) (req *aws.Request, output *DeleteAppOutput) {
 	if opDeleteApp == nil {
 		opDeleteApp = &aws.Operation{
 			Name:       "DeleteApp",
@@ -283,13 +291,15 @@ func (c *OpsWorks) DeleteAppRequest(input *DeleteAppInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteApp, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteApp, input, output)
+	output = &DeleteAppOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DeleteApp(input *DeleteAppInput) (err error) {
-	req := c.DeleteAppRequest(input)
+func (c *OpsWorks) DeleteApp(input *DeleteAppInput) (output *DeleteAppOutput, err error) {
+	req, out := c.DeleteAppRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -297,7 +307,7 @@ func (c *OpsWorks) DeleteApp(input *DeleteAppInput) (err error) {
 var opDeleteApp *aws.Operation
 
 // DeleteInstanceRequest generates a request for the DeleteInstance operation.
-func (c *OpsWorks) DeleteInstanceRequest(input *DeleteInstanceInput) (req *aws.Request) {
+func (c *OpsWorks) DeleteInstanceRequest(input *DeleteInstanceInput) (req *aws.Request, output *DeleteInstanceOutput) {
 	if opDeleteInstance == nil {
 		opDeleteInstance = &aws.Operation{
 			Name:       "DeleteInstance",
@@ -306,13 +316,15 @@ func (c *OpsWorks) DeleteInstanceRequest(input *DeleteInstanceInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteInstance, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteInstance, input, output)
+	output = &DeleteInstanceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DeleteInstance(input *DeleteInstanceInput) (err error) {
-	req := c.DeleteInstanceRequest(input)
+func (c *OpsWorks) DeleteInstance(input *DeleteInstanceInput) (output *DeleteInstanceOutput, err error) {
+	req, out := c.DeleteInstanceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -320,7 +332,7 @@ func (c *OpsWorks) DeleteInstance(input *DeleteInstanceInput) (err error) {
 var opDeleteInstance *aws.Operation
 
 // DeleteLayerRequest generates a request for the DeleteLayer operation.
-func (c *OpsWorks) DeleteLayerRequest(input *DeleteLayerInput) (req *aws.Request) {
+func (c *OpsWorks) DeleteLayerRequest(input *DeleteLayerInput) (req *aws.Request, output *DeleteLayerOutput) {
 	if opDeleteLayer == nil {
 		opDeleteLayer = &aws.Operation{
 			Name:       "DeleteLayer",
@@ -329,13 +341,15 @@ func (c *OpsWorks) DeleteLayerRequest(input *DeleteLayerInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLayer, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteLayer, input, output)
+	output = &DeleteLayerOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DeleteLayer(input *DeleteLayerInput) (err error) {
-	req := c.DeleteLayerRequest(input)
+func (c *OpsWorks) DeleteLayer(input *DeleteLayerInput) (output *DeleteLayerOutput, err error) {
+	req, out := c.DeleteLayerRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -343,7 +357,7 @@ func (c *OpsWorks) DeleteLayer(input *DeleteLayerInput) (err error) {
 var opDeleteLayer *aws.Operation
 
 // DeleteStackRequest generates a request for the DeleteStack operation.
-func (c *OpsWorks) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request) {
+func (c *OpsWorks) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request, output *DeleteStackOutput) {
 	if opDeleteStack == nil {
 		opDeleteStack = &aws.Operation{
 			Name:       "DeleteStack",
@@ -352,13 +366,15 @@ func (c *OpsWorks) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteStack, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteStack, input, output)
+	output = &DeleteStackOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DeleteStack(input *DeleteStackInput) (err error) {
-	req := c.DeleteStackRequest(input)
+func (c *OpsWorks) DeleteStack(input *DeleteStackInput) (output *DeleteStackOutput, err error) {
+	req, out := c.DeleteStackRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -366,7 +382,7 @@ func (c *OpsWorks) DeleteStack(input *DeleteStackInput) (err error) {
 var opDeleteStack *aws.Operation
 
 // DeleteUserProfileRequest generates a request for the DeleteUserProfile operation.
-func (c *OpsWorks) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req *aws.Request) {
+func (c *OpsWorks) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req *aws.Request, output *DeleteUserProfileOutput) {
 	if opDeleteUserProfile == nil {
 		opDeleteUserProfile = &aws.Operation{
 			Name:       "DeleteUserProfile",
@@ -375,13 +391,15 @@ func (c *OpsWorks) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteUserProfile, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteUserProfile, input, output)
+	output = &DeleteUserProfileOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DeleteUserProfile(input *DeleteUserProfileInput) (err error) {
-	req := c.DeleteUserProfileRequest(input)
+func (c *OpsWorks) DeleteUserProfile(input *DeleteUserProfileInput) (output *DeleteUserProfileOutput, err error) {
+	req, out := c.DeleteUserProfileRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -389,7 +407,7 @@ func (c *OpsWorks) DeleteUserProfile(input *DeleteUserProfileInput) (err error) 
 var opDeleteUserProfile *aws.Operation
 
 // DeregisterElasticIPRequest generates a request for the DeregisterElasticIP operation.
-func (c *OpsWorks) DeregisterElasticIPRequest(input *DeregisterElasticIPInput) (req *aws.Request) {
+func (c *OpsWorks) DeregisterElasticIPRequest(input *DeregisterElasticIPInput) (req *aws.Request, output *DeregisterElasticIPOutput) {
 	if opDeregisterElasticIP == nil {
 		opDeregisterElasticIP = &aws.Operation{
 			Name:       "DeregisterElasticIp",
@@ -398,13 +416,15 @@ func (c *OpsWorks) DeregisterElasticIPRequest(input *DeregisterElasticIPInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterElasticIP, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeregisterElasticIP, input, output)
+	output = &DeregisterElasticIPOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DeregisterElasticIP(input *DeregisterElasticIPInput) (err error) {
-	req := c.DeregisterElasticIPRequest(input)
+func (c *OpsWorks) DeregisterElasticIP(input *DeregisterElasticIPInput) (output *DeregisterElasticIPOutput, err error) {
+	req, out := c.DeregisterElasticIPRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -412,7 +432,7 @@ func (c *OpsWorks) DeregisterElasticIP(input *DeregisterElasticIPInput) (err err
 var opDeregisterElasticIP *aws.Operation
 
 // DeregisterInstanceRequest generates a request for the DeregisterInstance operation.
-func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (req *aws.Request) {
+func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (req *aws.Request, output *DeregisterInstanceOutput) {
 	if opDeregisterInstance == nil {
 		opDeregisterInstance = &aws.Operation{
 			Name:       "DeregisterInstance",
@@ -421,13 +441,15 @@ func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterInstance, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeregisterInstance, input, output)
+	output = &DeregisterInstanceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DeregisterInstance(input *DeregisterInstanceInput) (err error) {
-	req := c.DeregisterInstanceRequest(input)
+func (c *OpsWorks) DeregisterInstance(input *DeregisterInstanceInput) (output *DeregisterInstanceOutput, err error) {
+	req, out := c.DeregisterInstanceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -435,7 +457,7 @@ func (c *OpsWorks) DeregisterInstance(input *DeregisterInstanceInput) (err error
 var opDeregisterInstance *aws.Operation
 
 // DeregisterRDSDBInstanceRequest generates a request for the DeregisterRDSDBInstance operation.
-func (c *OpsWorks) DeregisterRDSDBInstanceRequest(input *DeregisterRDSDBInstanceInput) (req *aws.Request) {
+func (c *OpsWorks) DeregisterRDSDBInstanceRequest(input *DeregisterRDSDBInstanceInput) (req *aws.Request, output *DeregisterRDSDBInstanceOutput) {
 	if opDeregisterRDSDBInstance == nil {
 		opDeregisterRDSDBInstance = &aws.Operation{
 			Name:       "DeregisterRdsDbInstance",
@@ -444,13 +466,15 @@ func (c *OpsWorks) DeregisterRDSDBInstanceRequest(input *DeregisterRDSDBInstance
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterRDSDBInstance, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeregisterRDSDBInstance, input, output)
+	output = &DeregisterRDSDBInstanceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DeregisterRDSDBInstance(input *DeregisterRDSDBInstanceInput) (err error) {
-	req := c.DeregisterRDSDBInstanceRequest(input)
+func (c *OpsWorks) DeregisterRDSDBInstance(input *DeregisterRDSDBInstanceInput) (output *DeregisterRDSDBInstanceOutput, err error) {
+	req, out := c.DeregisterRDSDBInstanceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -458,7 +482,7 @@ func (c *OpsWorks) DeregisterRDSDBInstance(input *DeregisterRDSDBInstanceInput) 
 var opDeregisterRDSDBInstance *aws.Operation
 
 // DeregisterVolumeRequest generates a request for the DeregisterVolume operation.
-func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *aws.Request) {
+func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *aws.Request, output *DeregisterVolumeOutput) {
 	if opDeregisterVolume == nil {
 		opDeregisterVolume = &aws.Operation{
 			Name:       "DeregisterVolume",
@@ -467,13 +491,15 @@ func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterVolume, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeregisterVolume, input, output)
+	output = &DeregisterVolumeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DeregisterVolume(input *DeregisterVolumeInput) (err error) {
-	req := c.DeregisterVolumeRequest(input)
+func (c *OpsWorks) DeregisterVolume(input *DeregisterVolumeInput) (output *DeregisterVolumeOutput, err error) {
+	req, out := c.DeregisterVolumeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -681,7 +707,7 @@ func (c *OpsWorks) DescribeLoadBasedAutoScaling(input *DescribeLoadBasedAutoScal
 var opDescribeLoadBasedAutoScaling *aws.Operation
 
 // DescribeMyUserProfileRequest generates a request for the DescribeMyUserProfile operation.
-func (c *OpsWorks) DescribeMyUserProfileRequest() (req *aws.Request, output *DescribeMyUserProfileOutput) {
+func (c *OpsWorks) DescribeMyUserProfileRequest(input *DescribeMyUserProfileInput) (req *aws.Request, output *DescribeMyUserProfileOutput) {
 	if opDescribeMyUserProfile == nil {
 		opDescribeMyUserProfile = &aws.Operation{
 			Name:       "DescribeMyUserProfile",
@@ -690,14 +716,14 @@ func (c *OpsWorks) DescribeMyUserProfileRequest() (req *aws.Request, output *Des
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeMyUserProfile, nil, output)
+	req = aws.NewRequest(c.Service, opDescribeMyUserProfile, input, output)
 	output = &DescribeMyUserProfileOutput{}
 	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DescribeMyUserProfile() (output *DescribeMyUserProfileOutput, err error) {
-	req, out := c.DescribeMyUserProfileRequest()
+func (c *OpsWorks) DescribeMyUserProfile(input *DescribeMyUserProfileInput) (output *DescribeMyUserProfileOutput, err error) {
+	req, out := c.DescribeMyUserProfileRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -956,7 +982,7 @@ func (c *OpsWorks) DescribeVolumes(input *DescribeVolumesInput) (output *Describ
 var opDescribeVolumes *aws.Operation
 
 // DetachElasticLoadBalancerRequest generates a request for the DetachElasticLoadBalancer operation.
-func (c *OpsWorks) DetachElasticLoadBalancerRequest(input *DetachElasticLoadBalancerInput) (req *aws.Request) {
+func (c *OpsWorks) DetachElasticLoadBalancerRequest(input *DetachElasticLoadBalancerInput) (req *aws.Request, output *DetachElasticLoadBalancerOutput) {
 	if opDetachElasticLoadBalancer == nil {
 		opDetachElasticLoadBalancer = &aws.Operation{
 			Name:       "DetachElasticLoadBalancer",
@@ -965,13 +991,15 @@ func (c *OpsWorks) DetachElasticLoadBalancerRequest(input *DetachElasticLoadBala
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachElasticLoadBalancer, input, nil)
-
+	req = aws.NewRequest(c.Service, opDetachElasticLoadBalancer, input, output)
+	output = &DetachElasticLoadBalancerOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DetachElasticLoadBalancer(input *DetachElasticLoadBalancerInput) (err error) {
-	req := c.DetachElasticLoadBalancerRequest(input)
+func (c *OpsWorks) DetachElasticLoadBalancer(input *DetachElasticLoadBalancerInput) (output *DetachElasticLoadBalancerOutput, err error) {
+	req, out := c.DetachElasticLoadBalancerRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -979,7 +1007,7 @@ func (c *OpsWorks) DetachElasticLoadBalancer(input *DetachElasticLoadBalancerInp
 var opDetachElasticLoadBalancer *aws.Operation
 
 // DisassociateElasticIPRequest generates a request for the DisassociateElasticIP operation.
-func (c *OpsWorks) DisassociateElasticIPRequest(input *DisassociateElasticIPInput) (req *aws.Request) {
+func (c *OpsWorks) DisassociateElasticIPRequest(input *DisassociateElasticIPInput) (req *aws.Request, output *DisassociateElasticIPOutput) {
 	if opDisassociateElasticIP == nil {
 		opDisassociateElasticIP = &aws.Operation{
 			Name:       "DisassociateElasticIp",
@@ -988,13 +1016,15 @@ func (c *OpsWorks) DisassociateElasticIPRequest(input *DisassociateElasticIPInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisassociateElasticIP, input, nil)
-
+	req = aws.NewRequest(c.Service, opDisassociateElasticIP, input, output)
+	output = &DisassociateElasticIPOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) DisassociateElasticIP(input *DisassociateElasticIPInput) (err error) {
-	req := c.DisassociateElasticIPRequest(input)
+func (c *OpsWorks) DisassociateElasticIP(input *DisassociateElasticIPInput) (output *DisassociateElasticIPOutput, err error) {
+	req, out := c.DisassociateElasticIPRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1027,7 +1057,7 @@ func (c *OpsWorks) GetHostnameSuggestion(input *GetHostnameSuggestionInput) (out
 var opGetHostnameSuggestion *aws.Operation
 
 // RebootInstanceRequest generates a request for the RebootInstance operation.
-func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *aws.Request) {
+func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *aws.Request, output *RebootInstanceOutput) {
 	if opRebootInstance == nil {
 		opRebootInstance = &aws.Operation{
 			Name:       "RebootInstance",
@@ -1036,13 +1066,15 @@ func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRebootInstance, input, nil)
-
+	req = aws.NewRequest(c.Service, opRebootInstance, input, output)
+	output = &RebootInstanceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) RebootInstance(input *RebootInstanceInput) (err error) {
-	req := c.RebootInstanceRequest(input)
+func (c *OpsWorks) RebootInstance(input *RebootInstanceInput) (output *RebootInstanceOutput, err error) {
+	req, out := c.RebootInstanceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1100,7 +1132,7 @@ func (c *OpsWorks) RegisterInstance(input *RegisterInstanceInput) (output *Regis
 var opRegisterInstance *aws.Operation
 
 // RegisterRDSDBInstanceRequest generates a request for the RegisterRDSDBInstance operation.
-func (c *OpsWorks) RegisterRDSDBInstanceRequest(input *RegisterRDSDBInstanceInput) (req *aws.Request) {
+func (c *OpsWorks) RegisterRDSDBInstanceRequest(input *RegisterRDSDBInstanceInput) (req *aws.Request, output *RegisterRDSDBInstanceOutput) {
 	if opRegisterRDSDBInstance == nil {
 		opRegisterRDSDBInstance = &aws.Operation{
 			Name:       "RegisterRdsDbInstance",
@@ -1109,13 +1141,15 @@ func (c *OpsWorks) RegisterRDSDBInstanceRequest(input *RegisterRDSDBInstanceInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterRDSDBInstance, input, nil)
-
+	req = aws.NewRequest(c.Service, opRegisterRDSDBInstance, input, output)
+	output = &RegisterRDSDBInstanceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) RegisterRDSDBInstance(input *RegisterRDSDBInstanceInput) (err error) {
-	req := c.RegisterRDSDBInstanceRequest(input)
+func (c *OpsWorks) RegisterRDSDBInstance(input *RegisterRDSDBInstanceInput) (output *RegisterRDSDBInstanceOutput, err error) {
+	req, out := c.RegisterRDSDBInstanceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1148,7 +1182,7 @@ func (c *OpsWorks) RegisterVolume(input *RegisterVolumeInput) (output *RegisterV
 var opRegisterVolume *aws.Operation
 
 // SetLoadBasedAutoScalingRequest generates a request for the SetLoadBasedAutoScaling operation.
-func (c *OpsWorks) SetLoadBasedAutoScalingRequest(input *SetLoadBasedAutoScalingInput) (req *aws.Request) {
+func (c *OpsWorks) SetLoadBasedAutoScalingRequest(input *SetLoadBasedAutoScalingInput) (req *aws.Request, output *SetLoadBasedAutoScalingOutput) {
 	if opSetLoadBasedAutoScaling == nil {
 		opSetLoadBasedAutoScaling = &aws.Operation{
 			Name:       "SetLoadBasedAutoScaling",
@@ -1157,13 +1191,15 @@ func (c *OpsWorks) SetLoadBasedAutoScalingRequest(input *SetLoadBasedAutoScaling
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetLoadBasedAutoScaling, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetLoadBasedAutoScaling, input, output)
+	output = &SetLoadBasedAutoScalingOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) SetLoadBasedAutoScaling(input *SetLoadBasedAutoScalingInput) (err error) {
-	req := c.SetLoadBasedAutoScalingRequest(input)
+func (c *OpsWorks) SetLoadBasedAutoScaling(input *SetLoadBasedAutoScalingInput) (output *SetLoadBasedAutoScalingOutput, err error) {
+	req, out := c.SetLoadBasedAutoScalingRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1171,7 +1207,7 @@ func (c *OpsWorks) SetLoadBasedAutoScaling(input *SetLoadBasedAutoScalingInput) 
 var opSetLoadBasedAutoScaling *aws.Operation
 
 // SetPermissionRequest generates a request for the SetPermission operation.
-func (c *OpsWorks) SetPermissionRequest(input *SetPermissionInput) (req *aws.Request) {
+func (c *OpsWorks) SetPermissionRequest(input *SetPermissionInput) (req *aws.Request, output *SetPermissionOutput) {
 	if opSetPermission == nil {
 		opSetPermission = &aws.Operation{
 			Name:       "SetPermission",
@@ -1180,13 +1216,15 @@ func (c *OpsWorks) SetPermissionRequest(input *SetPermissionInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetPermission, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetPermission, input, output)
+	output = &SetPermissionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) SetPermission(input *SetPermissionInput) (err error) {
-	req := c.SetPermissionRequest(input)
+func (c *OpsWorks) SetPermission(input *SetPermissionInput) (output *SetPermissionOutput, err error) {
+	req, out := c.SetPermissionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1194,7 +1232,7 @@ func (c *OpsWorks) SetPermission(input *SetPermissionInput) (err error) {
 var opSetPermission *aws.Operation
 
 // SetTimeBasedAutoScalingRequest generates a request for the SetTimeBasedAutoScaling operation.
-func (c *OpsWorks) SetTimeBasedAutoScalingRequest(input *SetTimeBasedAutoScalingInput) (req *aws.Request) {
+func (c *OpsWorks) SetTimeBasedAutoScalingRequest(input *SetTimeBasedAutoScalingInput) (req *aws.Request, output *SetTimeBasedAutoScalingOutput) {
 	if opSetTimeBasedAutoScaling == nil {
 		opSetTimeBasedAutoScaling = &aws.Operation{
 			Name:       "SetTimeBasedAutoScaling",
@@ -1203,13 +1241,15 @@ func (c *OpsWorks) SetTimeBasedAutoScalingRequest(input *SetTimeBasedAutoScaling
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetTimeBasedAutoScaling, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetTimeBasedAutoScaling, input, output)
+	output = &SetTimeBasedAutoScalingOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) SetTimeBasedAutoScaling(input *SetTimeBasedAutoScalingInput) (err error) {
-	req := c.SetTimeBasedAutoScalingRequest(input)
+func (c *OpsWorks) SetTimeBasedAutoScaling(input *SetTimeBasedAutoScalingInput) (output *SetTimeBasedAutoScalingOutput, err error) {
+	req, out := c.SetTimeBasedAutoScalingRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1217,7 +1257,7 @@ func (c *OpsWorks) SetTimeBasedAutoScaling(input *SetTimeBasedAutoScalingInput) 
 var opSetTimeBasedAutoScaling *aws.Operation
 
 // StartInstanceRequest generates a request for the StartInstance operation.
-func (c *OpsWorks) StartInstanceRequest(input *StartInstanceInput) (req *aws.Request) {
+func (c *OpsWorks) StartInstanceRequest(input *StartInstanceInput) (req *aws.Request, output *StartInstanceOutput) {
 	if opStartInstance == nil {
 		opStartInstance = &aws.Operation{
 			Name:       "StartInstance",
@@ -1226,13 +1266,15 @@ func (c *OpsWorks) StartInstanceRequest(input *StartInstanceInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStartInstance, input, nil)
-
+	req = aws.NewRequest(c.Service, opStartInstance, input, output)
+	output = &StartInstanceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) StartInstance(input *StartInstanceInput) (err error) {
-	req := c.StartInstanceRequest(input)
+func (c *OpsWorks) StartInstance(input *StartInstanceInput) (output *StartInstanceOutput, err error) {
+	req, out := c.StartInstanceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1240,7 +1282,7 @@ func (c *OpsWorks) StartInstance(input *StartInstanceInput) (err error) {
 var opStartInstance *aws.Operation
 
 // StartStackRequest generates a request for the StartStack operation.
-func (c *OpsWorks) StartStackRequest(input *StartStackInput) (req *aws.Request) {
+func (c *OpsWorks) StartStackRequest(input *StartStackInput) (req *aws.Request, output *StartStackOutput) {
 	if opStartStack == nil {
 		opStartStack = &aws.Operation{
 			Name:       "StartStack",
@@ -1249,13 +1291,15 @@ func (c *OpsWorks) StartStackRequest(input *StartStackInput) (req *aws.Request) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStartStack, input, nil)
-
+	req = aws.NewRequest(c.Service, opStartStack, input, output)
+	output = &StartStackOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) StartStack(input *StartStackInput) (err error) {
-	req := c.StartStackRequest(input)
+func (c *OpsWorks) StartStack(input *StartStackInput) (output *StartStackOutput, err error) {
+	req, out := c.StartStackRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1263,7 +1307,7 @@ func (c *OpsWorks) StartStack(input *StartStackInput) (err error) {
 var opStartStack *aws.Operation
 
 // StopInstanceRequest generates a request for the StopInstance operation.
-func (c *OpsWorks) StopInstanceRequest(input *StopInstanceInput) (req *aws.Request) {
+func (c *OpsWorks) StopInstanceRequest(input *StopInstanceInput) (req *aws.Request, output *StopInstanceOutput) {
 	if opStopInstance == nil {
 		opStopInstance = &aws.Operation{
 			Name:       "StopInstance",
@@ -1272,13 +1316,15 @@ func (c *OpsWorks) StopInstanceRequest(input *StopInstanceInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStopInstance, input, nil)
-
+	req = aws.NewRequest(c.Service, opStopInstance, input, output)
+	output = &StopInstanceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) StopInstance(input *StopInstanceInput) (err error) {
-	req := c.StopInstanceRequest(input)
+func (c *OpsWorks) StopInstance(input *StopInstanceInput) (output *StopInstanceOutput, err error) {
+	req, out := c.StopInstanceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1286,7 +1332,7 @@ func (c *OpsWorks) StopInstance(input *StopInstanceInput) (err error) {
 var opStopInstance *aws.Operation
 
 // StopStackRequest generates a request for the StopStack operation.
-func (c *OpsWorks) StopStackRequest(input *StopStackInput) (req *aws.Request) {
+func (c *OpsWorks) StopStackRequest(input *StopStackInput) (req *aws.Request, output *StopStackOutput) {
 	if opStopStack == nil {
 		opStopStack = &aws.Operation{
 			Name:       "StopStack",
@@ -1295,13 +1341,15 @@ func (c *OpsWorks) StopStackRequest(input *StopStackInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStopStack, input, nil)
-
+	req = aws.NewRequest(c.Service, opStopStack, input, output)
+	output = &StopStackOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) StopStack(input *StopStackInput) (err error) {
-	req := c.StopStackRequest(input)
+func (c *OpsWorks) StopStack(input *StopStackInput) (output *StopStackOutput, err error) {
+	req, out := c.StopStackRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1309,7 +1357,7 @@ func (c *OpsWorks) StopStack(input *StopStackInput) (err error) {
 var opStopStack *aws.Operation
 
 // UnassignInstanceRequest generates a request for the UnassignInstance operation.
-func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *aws.Request) {
+func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *aws.Request, output *UnassignInstanceOutput) {
 	if opUnassignInstance == nil {
 		opUnassignInstance = &aws.Operation{
 			Name:       "UnassignInstance",
@@ -1318,13 +1366,15 @@ func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnassignInstance, input, nil)
-
+	req = aws.NewRequest(c.Service, opUnassignInstance, input, output)
+	output = &UnassignInstanceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) UnassignInstance(input *UnassignInstanceInput) (err error) {
-	req := c.UnassignInstanceRequest(input)
+func (c *OpsWorks) UnassignInstance(input *UnassignInstanceInput) (output *UnassignInstanceOutput, err error) {
+	req, out := c.UnassignInstanceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1332,7 +1382,7 @@ func (c *OpsWorks) UnassignInstance(input *UnassignInstanceInput) (err error) {
 var opUnassignInstance *aws.Operation
 
 // UnassignVolumeRequest generates a request for the UnassignVolume operation.
-func (c *OpsWorks) UnassignVolumeRequest(input *UnassignVolumeInput) (req *aws.Request) {
+func (c *OpsWorks) UnassignVolumeRequest(input *UnassignVolumeInput) (req *aws.Request, output *UnassignVolumeOutput) {
 	if opUnassignVolume == nil {
 		opUnassignVolume = &aws.Operation{
 			Name:       "UnassignVolume",
@@ -1341,13 +1391,15 @@ func (c *OpsWorks) UnassignVolumeRequest(input *UnassignVolumeInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnassignVolume, input, nil)
-
+	req = aws.NewRequest(c.Service, opUnassignVolume, input, output)
+	output = &UnassignVolumeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) UnassignVolume(input *UnassignVolumeInput) (err error) {
-	req := c.UnassignVolumeRequest(input)
+func (c *OpsWorks) UnassignVolume(input *UnassignVolumeInput) (output *UnassignVolumeOutput, err error) {
+	req, out := c.UnassignVolumeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1355,7 +1407,7 @@ func (c *OpsWorks) UnassignVolume(input *UnassignVolumeInput) (err error) {
 var opUnassignVolume *aws.Operation
 
 // UpdateAppRequest generates a request for the UpdateApp operation.
-func (c *OpsWorks) UpdateAppRequest(input *UpdateAppInput) (req *aws.Request) {
+func (c *OpsWorks) UpdateAppRequest(input *UpdateAppInput) (req *aws.Request, output *UpdateAppOutput) {
 	if opUpdateApp == nil {
 		opUpdateApp = &aws.Operation{
 			Name:       "UpdateApp",
@@ -1364,13 +1416,15 @@ func (c *OpsWorks) UpdateAppRequest(input *UpdateAppInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateApp, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateApp, input, output)
+	output = &UpdateAppOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) UpdateApp(input *UpdateAppInput) (err error) {
-	req := c.UpdateAppRequest(input)
+func (c *OpsWorks) UpdateApp(input *UpdateAppInput) (output *UpdateAppOutput, err error) {
+	req, out := c.UpdateAppRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1378,7 +1432,7 @@ func (c *OpsWorks) UpdateApp(input *UpdateAppInput) (err error) {
 var opUpdateApp *aws.Operation
 
 // UpdateElasticIPRequest generates a request for the UpdateElasticIP operation.
-func (c *OpsWorks) UpdateElasticIPRequest(input *UpdateElasticIPInput) (req *aws.Request) {
+func (c *OpsWorks) UpdateElasticIPRequest(input *UpdateElasticIPInput) (req *aws.Request, output *UpdateElasticIPOutput) {
 	if opUpdateElasticIP == nil {
 		opUpdateElasticIP = &aws.Operation{
 			Name:       "UpdateElasticIp",
@@ -1387,13 +1441,15 @@ func (c *OpsWorks) UpdateElasticIPRequest(input *UpdateElasticIPInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateElasticIP, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateElasticIP, input, output)
+	output = &UpdateElasticIPOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) UpdateElasticIP(input *UpdateElasticIPInput) (err error) {
-	req := c.UpdateElasticIPRequest(input)
+func (c *OpsWorks) UpdateElasticIP(input *UpdateElasticIPInput) (output *UpdateElasticIPOutput, err error) {
+	req, out := c.UpdateElasticIPRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1401,7 +1457,7 @@ func (c *OpsWorks) UpdateElasticIP(input *UpdateElasticIPInput) (err error) {
 var opUpdateElasticIP *aws.Operation
 
 // UpdateInstanceRequest generates a request for the UpdateInstance operation.
-func (c *OpsWorks) UpdateInstanceRequest(input *UpdateInstanceInput) (req *aws.Request) {
+func (c *OpsWorks) UpdateInstanceRequest(input *UpdateInstanceInput) (req *aws.Request, output *UpdateInstanceOutput) {
 	if opUpdateInstance == nil {
 		opUpdateInstance = &aws.Operation{
 			Name:       "UpdateInstance",
@@ -1410,13 +1466,15 @@ func (c *OpsWorks) UpdateInstanceRequest(input *UpdateInstanceInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateInstance, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateInstance, input, output)
+	output = &UpdateInstanceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) UpdateInstance(input *UpdateInstanceInput) (err error) {
-	req := c.UpdateInstanceRequest(input)
+func (c *OpsWorks) UpdateInstance(input *UpdateInstanceInput) (output *UpdateInstanceOutput, err error) {
+	req, out := c.UpdateInstanceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1424,7 +1482,7 @@ func (c *OpsWorks) UpdateInstance(input *UpdateInstanceInput) (err error) {
 var opUpdateInstance *aws.Operation
 
 // UpdateLayerRequest generates a request for the UpdateLayer operation.
-func (c *OpsWorks) UpdateLayerRequest(input *UpdateLayerInput) (req *aws.Request) {
+func (c *OpsWorks) UpdateLayerRequest(input *UpdateLayerInput) (req *aws.Request, output *UpdateLayerOutput) {
 	if opUpdateLayer == nil {
 		opUpdateLayer = &aws.Operation{
 			Name:       "UpdateLayer",
@@ -1433,13 +1491,15 @@ func (c *OpsWorks) UpdateLayerRequest(input *UpdateLayerInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateLayer, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateLayer, input, output)
+	output = &UpdateLayerOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) UpdateLayer(input *UpdateLayerInput) (err error) {
-	req := c.UpdateLayerRequest(input)
+func (c *OpsWorks) UpdateLayer(input *UpdateLayerInput) (output *UpdateLayerOutput, err error) {
+	req, out := c.UpdateLayerRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1447,7 +1507,7 @@ func (c *OpsWorks) UpdateLayer(input *UpdateLayerInput) (err error) {
 var opUpdateLayer *aws.Operation
 
 // UpdateMyUserProfileRequest generates a request for the UpdateMyUserProfile operation.
-func (c *OpsWorks) UpdateMyUserProfileRequest(input *UpdateMyUserProfileInput) (req *aws.Request) {
+func (c *OpsWorks) UpdateMyUserProfileRequest(input *UpdateMyUserProfileInput) (req *aws.Request, output *UpdateMyUserProfileOutput) {
 	if opUpdateMyUserProfile == nil {
 		opUpdateMyUserProfile = &aws.Operation{
 			Name:       "UpdateMyUserProfile",
@@ -1456,13 +1516,15 @@ func (c *OpsWorks) UpdateMyUserProfileRequest(input *UpdateMyUserProfileInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateMyUserProfile, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateMyUserProfile, input, output)
+	output = &UpdateMyUserProfileOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) UpdateMyUserProfile(input *UpdateMyUserProfileInput) (err error) {
-	req := c.UpdateMyUserProfileRequest(input)
+func (c *OpsWorks) UpdateMyUserProfile(input *UpdateMyUserProfileInput) (output *UpdateMyUserProfileOutput, err error) {
+	req, out := c.UpdateMyUserProfileRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1470,7 +1532,7 @@ func (c *OpsWorks) UpdateMyUserProfile(input *UpdateMyUserProfileInput) (err err
 var opUpdateMyUserProfile *aws.Operation
 
 // UpdateRDSDBInstanceRequest generates a request for the UpdateRDSDBInstance operation.
-func (c *OpsWorks) UpdateRDSDBInstanceRequest(input *UpdateRDSDBInstanceInput) (req *aws.Request) {
+func (c *OpsWorks) UpdateRDSDBInstanceRequest(input *UpdateRDSDBInstanceInput) (req *aws.Request, output *UpdateRDSDBInstanceOutput) {
 	if opUpdateRDSDBInstance == nil {
 		opUpdateRDSDBInstance = &aws.Operation{
 			Name:       "UpdateRdsDbInstance",
@@ -1479,13 +1541,15 @@ func (c *OpsWorks) UpdateRDSDBInstanceRequest(input *UpdateRDSDBInstanceInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateRDSDBInstance, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateRDSDBInstance, input, output)
+	output = &UpdateRDSDBInstanceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) UpdateRDSDBInstance(input *UpdateRDSDBInstanceInput) (err error) {
-	req := c.UpdateRDSDBInstanceRequest(input)
+func (c *OpsWorks) UpdateRDSDBInstance(input *UpdateRDSDBInstanceInput) (output *UpdateRDSDBInstanceOutput, err error) {
+	req, out := c.UpdateRDSDBInstanceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1493,7 +1557,7 @@ func (c *OpsWorks) UpdateRDSDBInstance(input *UpdateRDSDBInstanceInput) (err err
 var opUpdateRDSDBInstance *aws.Operation
 
 // UpdateStackRequest generates a request for the UpdateStack operation.
-func (c *OpsWorks) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request) {
+func (c *OpsWorks) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request, output *UpdateStackOutput) {
 	if opUpdateStack == nil {
 		opUpdateStack = &aws.Operation{
 			Name:       "UpdateStack",
@@ -1502,13 +1566,15 @@ func (c *OpsWorks) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateStack, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateStack, input, output)
+	output = &UpdateStackOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) UpdateStack(input *UpdateStackInput) (err error) {
-	req := c.UpdateStackRequest(input)
+func (c *OpsWorks) UpdateStack(input *UpdateStackInput) (output *UpdateStackOutput, err error) {
+	req, out := c.UpdateStackRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1516,7 +1582,7 @@ func (c *OpsWorks) UpdateStack(input *UpdateStackInput) (err error) {
 var opUpdateStack *aws.Operation
 
 // UpdateUserProfileRequest generates a request for the UpdateUserProfile operation.
-func (c *OpsWorks) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req *aws.Request) {
+func (c *OpsWorks) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req *aws.Request, output *UpdateUserProfileOutput) {
 	if opUpdateUserProfile == nil {
 		opUpdateUserProfile = &aws.Operation{
 			Name:       "UpdateUserProfile",
@@ -1525,13 +1591,15 @@ func (c *OpsWorks) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateUserProfile, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateUserProfile, input, output)
+	output = &UpdateUserProfileOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) UpdateUserProfile(input *UpdateUserProfileInput) (err error) {
-	req := c.UpdateUserProfileRequest(input)
+func (c *OpsWorks) UpdateUserProfile(input *UpdateUserProfileInput) (output *UpdateUserProfileOutput, err error) {
+	req, out := c.UpdateUserProfileRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1539,7 +1607,7 @@ func (c *OpsWorks) UpdateUserProfile(input *UpdateUserProfileInput) (err error) 
 var opUpdateUserProfile *aws.Operation
 
 // UpdateVolumeRequest generates a request for the UpdateVolume operation.
-func (c *OpsWorks) UpdateVolumeRequest(input *UpdateVolumeInput) (req *aws.Request) {
+func (c *OpsWorks) UpdateVolumeRequest(input *UpdateVolumeInput) (req *aws.Request, output *UpdateVolumeOutput) {
 	if opUpdateVolume == nil {
 		opUpdateVolume = &aws.Operation{
 			Name:       "UpdateVolume",
@@ -1548,13 +1616,15 @@ func (c *OpsWorks) UpdateVolumeRequest(input *UpdateVolumeInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateVolume, input, nil)
-
+	req = aws.NewRequest(c.Service, opUpdateVolume, input, output)
+	output = &UpdateVolumeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *OpsWorks) UpdateVolume(input *UpdateVolumeInput) (err error) {
-	req := c.UpdateVolumeRequest(input)
+func (c *OpsWorks) UpdateVolume(input *UpdateVolumeInput) (output *UpdateVolumeOutput, err error) {
+	req, out := c.UpdateVolumeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1595,6 +1665,14 @@ type metadataAssignInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId,LayerIds" json:",omitempty"`
 }
 
+type AssignInstanceOutput struct {
+	metadataAssignInstanceOutput `json:"-", xml:"-"`
+}
+
+type metadataAssignInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type AssignVolumeInput struct {
 	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	VolumeID   *string `locationName:"VolumeId" type:"string" json:"VolumeId,omitempty"`
@@ -1604,6 +1682,14 @@ type AssignVolumeInput struct {
 
 type metadataAssignVolumeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VolumeId" json:",omitempty"`
+}
+
+type AssignVolumeOutput struct {
+	metadataAssignVolumeOutput `json:"-", xml:"-"`
+}
+
+type metadataAssignVolumeOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type AssociateElasticIPInput struct {
@@ -1617,6 +1703,14 @@ type metadataAssociateElasticIPInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ElasticIp" json:",omitempty"`
 }
 
+type AssociateElasticIPOutput struct {
+	metadataAssociateElasticIPOutput `json:"-", xml:"-"`
+}
+
+type metadataAssociateElasticIPOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type AttachElasticLoadBalancerInput struct {
 	ElasticLoadBalancerName *string `type:"string" json:",omitempty"`
 	LayerID                 *string `locationName:"LayerId" type:"string" json:"LayerId,omitempty"`
@@ -1626,6 +1720,14 @@ type AttachElasticLoadBalancerInput struct {
 
 type metadataAttachElasticLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ElasticLoadBalancerName,LayerId" json:",omitempty"`
+}
+
+type AttachElasticLoadBalancerOutput struct {
+	metadataAttachElasticLoadBalancerOutput `json:"-", xml:"-"`
+}
+
+type metadataAttachElasticLoadBalancerOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type AutoScalingThresholds struct {
@@ -1920,6 +2022,14 @@ type metadataDeleteAppInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AppId" json:",omitempty"`
 }
 
+type DeleteAppOutput struct {
+	metadataDeleteAppOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteAppOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DeleteInstanceInput struct {
 	DeleteElasticIP *bool   `locationName:"DeleteElasticIp" type:"boolean" json:"DeleteElasticIp,omitempty"`
 	DeleteVolumes   *bool   `type:"boolean" json:",omitempty"`
@@ -1932,6 +2042,14 @@ type metadataDeleteInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId" json:",omitempty"`
 }
 
+type DeleteInstanceOutput struct {
+	metadataDeleteInstanceOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DeleteLayerInput struct {
 	LayerID *string `locationName:"LayerId" type:"string" json:"LayerId,omitempty"`
 
@@ -1940,6 +2058,14 @@ type DeleteLayerInput struct {
 
 type metadataDeleteLayerInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LayerId" json:",omitempty"`
+}
+
+type DeleteLayerOutput struct {
+	metadataDeleteLayerOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteLayerOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteStackInput struct {
@@ -1952,6 +2078,14 @@ type metadataDeleteStackInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StackId" json:",omitempty"`
 }
 
+type DeleteStackOutput struct {
+	metadataDeleteStackOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteStackOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DeleteUserProfileInput struct {
 	IAMUserARN *string `locationName:"IamUserArn" type:"string" json:"IamUserArn,omitempty"`
 
@@ -1960,6 +2094,14 @@ type DeleteUserProfileInput struct {
 
 type metadataDeleteUserProfileInput struct {
 	SDKShapeTraits bool `type:"structure" required:"IamUserArn" json:",omitempty"`
+}
+
+type DeleteUserProfileOutput struct {
+	metadataDeleteUserProfileOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteUserProfileOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type Deployment struct {
@@ -2004,6 +2146,14 @@ type metadataDeregisterElasticIPInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ElasticIp" json:",omitempty"`
 }
 
+type DeregisterElasticIPOutput struct {
+	metadataDeregisterElasticIPOutput `json:"-", xml:"-"`
+}
+
+type metadataDeregisterElasticIPOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DeregisterInstanceInput struct {
 	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 
@@ -2012,6 +2162,14 @@ type DeregisterInstanceInput struct {
 
 type metadataDeregisterInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId" json:",omitempty"`
+}
+
+type DeregisterInstanceOutput struct {
+	metadataDeregisterInstanceOutput `json:"-", xml:"-"`
+}
+
+type metadataDeregisterInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeregisterRDSDBInstanceInput struct {
@@ -2024,6 +2182,14 @@ type metadataDeregisterRDSDBInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RdsDbInstanceArn" json:",omitempty"`
 }
 
+type DeregisterRDSDBInstanceOutput struct {
+	metadataDeregisterRDSDBInstanceOutput `json:"-", xml:"-"`
+}
+
+type metadataDeregisterRDSDBInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DeregisterVolumeInput struct {
 	VolumeID *string `locationName:"VolumeId" type:"string" json:"VolumeId,omitempty"`
 
@@ -2032,6 +2198,14 @@ type DeregisterVolumeInput struct {
 
 type metadataDeregisterVolumeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VolumeId" json:",omitempty"`
+}
+
+type DeregisterVolumeOutput struct {
+	metadataDeregisterVolumeOutput `json:"-", xml:"-"`
+}
+
+type metadataDeregisterVolumeOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeAppsInput struct {
@@ -2202,6 +2376,14 @@ type DescribeLoadBasedAutoScalingOutput struct {
 }
 
 type metadataDescribeLoadBasedAutoScalingOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type DescribeMyUserProfileInput struct {
+	metadataDescribeMyUserProfileInput `json:"-", xml:"-"`
+}
+
+type metadataDescribeMyUserProfileInput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -2436,6 +2618,14 @@ type metadataDetachElasticLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ElasticLoadBalancerName,LayerId" json:",omitempty"`
 }
 
+type DetachElasticLoadBalancerOutput struct {
+	metadataDetachElasticLoadBalancerOutput `json:"-", xml:"-"`
+}
+
+type metadataDetachElasticLoadBalancerOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DisassociateElasticIPInput struct {
 	ElasticIP *string `locationName:"ElasticIp" type:"string" json:"ElasticIp,omitempty"`
 
@@ -2444,6 +2634,14 @@ type DisassociateElasticIPInput struct {
 
 type metadataDisassociateElasticIPInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ElasticIp" json:",omitempty"`
+}
+
+type DisassociateElasticIPOutput struct {
+	metadataDisassociateElasticIPOutput `json:"-", xml:"-"`
+}
+
+type metadataDisassociateElasticIPOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ElasticIP struct {
@@ -2708,6 +2906,14 @@ type metadataRebootInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId" json:",omitempty"`
 }
 
+type RebootInstanceOutput struct {
+	metadataRebootInstanceOutput `json:"-", xml:"-"`
+}
+
+type metadataRebootInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type Recipes struct {
 	Configure []*string `type:"list" json:",omitempty"`
 	Deploy    []*string `type:"list" json:",omitempty"`
@@ -2780,6 +2986,14 @@ type RegisterRDSDBInstanceInput struct {
 
 type metadataRegisterRDSDBInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StackId,RdsDbInstanceArn,DbUser,DbPassword" json:",omitempty"`
+}
+
+type RegisterRDSDBInstanceOutput struct {
+	metadataRegisterRDSDBInstanceOutput `json:"-", xml:"-"`
+}
+
+type metadataRegisterRDSDBInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RegisterVolumeInput struct {
@@ -2878,6 +3092,14 @@ type metadataSetLoadBasedAutoScalingInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LayerId" json:",omitempty"`
 }
 
+type SetLoadBasedAutoScalingOutput struct {
+	metadataSetLoadBasedAutoScalingOutput `json:"-", xml:"-"`
+}
+
+type metadataSetLoadBasedAutoScalingOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type SetPermissionInput struct {
 	AllowSSH   *bool   `locationName:"AllowSsh" type:"boolean" json:"AllowSsh,omitempty"`
 	AllowSudo  *bool   `type:"boolean" json:",omitempty"`
@@ -2892,6 +3114,14 @@ type metadataSetPermissionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StackId,IamUserArn" json:",omitempty"`
 }
 
+type SetPermissionOutput struct {
+	metadataSetPermissionOutput `json:"-", xml:"-"`
+}
+
+type metadataSetPermissionOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type SetTimeBasedAutoScalingInput struct {
 	AutoScalingSchedule *WeeklyAutoScalingSchedule `type:"structure" json:",omitempty"`
 	InstanceID          *string                    `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
@@ -2901,6 +3131,14 @@ type SetTimeBasedAutoScalingInput struct {
 
 type metadataSetTimeBasedAutoScalingInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId" json:",omitempty"`
+}
+
+type SetTimeBasedAutoScalingOutput struct {
+	metadataSetTimeBasedAutoScalingOutput `json:"-", xml:"-"`
+}
+
+type metadataSetTimeBasedAutoScalingOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ShutdownEventConfiguration struct {
@@ -2995,6 +3233,14 @@ type metadataStartInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId" json:",omitempty"`
 }
 
+type StartInstanceOutput struct {
+	metadataStartInstanceOutput `json:"-", xml:"-"`
+}
+
+type metadataStartInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type StartStackInput struct {
 	StackID *string `locationName:"StackId" type:"string" json:"StackId,omitempty"`
 
@@ -3003,6 +3249,14 @@ type StartStackInput struct {
 
 type metadataStartStackInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StackId" json:",omitempty"`
+}
+
+type StartStackOutput struct {
+	metadataStartStackOutput `json:"-", xml:"-"`
+}
+
+type metadataStartStackOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type StopInstanceInput struct {
@@ -3015,6 +3269,14 @@ type metadataStopInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId" json:",omitempty"`
 }
 
+type StopInstanceOutput struct {
+	metadataStopInstanceOutput `json:"-", xml:"-"`
+}
+
+type metadataStopInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type StopStackInput struct {
 	StackID *string `locationName:"StackId" type:"string" json:"StackId,omitempty"`
 
@@ -3023,6 +3285,14 @@ type StopStackInput struct {
 
 type metadataStopStackInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StackId" json:",omitempty"`
+}
+
+type StopStackOutput struct {
+	metadataStopStackOutput `json:"-", xml:"-"`
+}
+
+type metadataStopStackOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type TimeBasedAutoScalingConfiguration struct {
@@ -3046,6 +3316,14 @@ type metadataUnassignInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId" json:",omitempty"`
 }
 
+type UnassignInstanceOutput struct {
+	metadataUnassignInstanceOutput `json:"-", xml:"-"`
+}
+
+type metadataUnassignInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type UnassignVolumeInput struct {
 	VolumeID *string `locationName:"VolumeId" type:"string" json:"VolumeId,omitempty"`
 
@@ -3054,6 +3332,14 @@ type UnassignVolumeInput struct {
 
 type metadataUnassignVolumeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VolumeId" json:",omitempty"`
+}
+
+type UnassignVolumeOutput struct {
+	metadataUnassignVolumeOutput `json:"-", xml:"-"`
+}
+
+type metadataUnassignVolumeOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateAppInput struct {
@@ -3076,6 +3362,14 @@ type metadataUpdateAppInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AppId" json:",omitempty"`
 }
 
+type UpdateAppOutput struct {
+	metadataUpdateAppOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateAppOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type UpdateElasticIPInput struct {
 	ElasticIP *string `locationName:"ElasticIp" type:"string" json:"ElasticIp,omitempty"`
 	Name      *string `type:"string" json:",omitempty"`
@@ -3085,6 +3379,14 @@ type UpdateElasticIPInput struct {
 
 type metadataUpdateElasticIPInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ElasticIp" json:",omitempty"`
+}
+
+type UpdateElasticIPOutput struct {
+	metadataUpdateElasticIPOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateElasticIPOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateInstanceInput struct {
@@ -3105,6 +3407,14 @@ type UpdateInstanceInput struct {
 
 type metadataUpdateInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId" json:",omitempty"`
+}
+
+type UpdateInstanceOutput struct {
+	metadataUpdateInstanceOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateLayerInput struct {
@@ -3131,6 +3441,14 @@ type metadataUpdateLayerInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LayerId" json:",omitempty"`
 }
 
+type UpdateLayerOutput struct {
+	metadataUpdateLayerOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateLayerOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type UpdateMyUserProfileInput struct {
 	SSHPublicKey *string `locationName:"SshPublicKey" type:"string" json:"SshPublicKey,omitempty"`
 
@@ -3138,6 +3456,14 @@ type UpdateMyUserProfileInput struct {
 }
 
 type metadataUpdateMyUserProfileInput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type UpdateMyUserProfileOutput struct {
+	metadataUpdateMyUserProfileOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateMyUserProfileOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -3151,6 +3477,14 @@ type UpdateRDSDBInstanceInput struct {
 
 type metadataUpdateRDSDBInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RdsDbInstanceArn" json:",omitempty"`
+}
+
+type UpdateRDSDBInstanceOutput struct {
+	metadataUpdateRDSDBInstanceOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateRDSDBInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateStackInput struct {
@@ -3179,6 +3513,14 @@ type metadataUpdateStackInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StackId" json:",omitempty"`
 }
 
+type UpdateStackOutput struct {
+	metadataUpdateStackOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateStackOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type UpdateUserProfileInput struct {
 	AllowSelfManagement *bool   `type:"boolean" json:",omitempty"`
 	IAMUserARN          *string `locationName:"IamUserArn" type:"string" json:"IamUserArn,omitempty"`
@@ -3192,6 +3534,14 @@ type metadataUpdateUserProfileInput struct {
 	SDKShapeTraits bool `type:"structure" required:"IamUserArn" json:",omitempty"`
 }
 
+type UpdateUserProfileOutput struct {
+	metadataUpdateUserProfileOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateUserProfileOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type UpdateVolumeInput struct {
 	MountPoint *string `type:"string" json:",omitempty"`
 	Name       *string `type:"string" json:",omitempty"`
@@ -3202,6 +3552,14 @@ type UpdateVolumeInput struct {
 
 type metadataUpdateVolumeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VolumeId" json:",omitempty"`
+}
+
+type UpdateVolumeOutput struct {
+	metadataUpdateVolumeOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateVolumeOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UserProfile struct {

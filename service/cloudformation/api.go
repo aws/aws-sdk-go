@@ -9,7 +9,7 @@ import (
 )
 
 // CancelUpdateStackRequest generates a request for the CancelUpdateStack operation.
-func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput) (req *aws.Request) {
+func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput) (req *aws.Request, output *CancelUpdateStackOutput) {
 	if opCancelUpdateStack == nil {
 		opCancelUpdateStack = &aws.Operation{
 			Name:       "CancelUpdateStack",
@@ -18,13 +18,15 @@ func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelUpdateStack, input, nil)
-
+	req = aws.NewRequest(c.Service, opCancelUpdateStack, input, output)
+	output = &CancelUpdateStackOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (err error) {
-	req := c.CancelUpdateStackRequest(input)
+func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (output *CancelUpdateStackOutput, err error) {
+	req, out := c.CancelUpdateStackRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -57,7 +59,7 @@ func (c *CloudFormation) CreateStack(input *CreateStackInput) (output *CreateSta
 var opCreateStack *aws.Operation
 
 // DeleteStackRequest generates a request for the DeleteStack operation.
-func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request) {
+func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request, output *DeleteStackOutput) {
 	if opDeleteStack == nil {
 		opDeleteStack = &aws.Operation{
 			Name:       "DeleteStack",
@@ -66,13 +68,15 @@ func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteStack, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteStack, input, output)
+	output = &DeleteStackOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudFormation) DeleteStack(input *DeleteStackInput) (err error) {
-	req := c.DeleteStackRequest(input)
+func (c *CloudFormation) DeleteStack(input *DeleteStackInput) (output *DeleteStackOutput, err error) {
+	req, out := c.DeleteStackRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -330,7 +334,7 @@ func (c *CloudFormation) ListStacks(input *ListStacksInput) (output *ListStacksO
 var opListStacks *aws.Operation
 
 // SetStackPolicyRequest generates a request for the SetStackPolicy operation.
-func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req *aws.Request) {
+func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req *aws.Request, output *SetStackPolicyOutput) {
 	if opSetStackPolicy == nil {
 		opSetStackPolicy = &aws.Operation{
 			Name:       "SetStackPolicy",
@@ -339,13 +343,15 @@ func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetStackPolicy, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetStackPolicy, input, output)
+	output = &SetStackPolicyOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudFormation) SetStackPolicy(input *SetStackPolicyInput) (err error) {
-	req := c.SetStackPolicyRequest(input)
+func (c *CloudFormation) SetStackPolicy(input *SetStackPolicyInput) (output *SetStackPolicyOutput, err error) {
+	req, out := c.SetStackPolicyRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -353,7 +359,7 @@ func (c *CloudFormation) SetStackPolicy(input *SetStackPolicyInput) (err error) 
 var opSetStackPolicy *aws.Operation
 
 // SignalResourceRequest generates a request for the SignalResource operation.
-func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req *aws.Request) {
+func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req *aws.Request, output *SignalResourceOutput) {
 	if opSignalResource == nil {
 		opSignalResource = &aws.Operation{
 			Name:       "SignalResource",
@@ -362,13 +368,15 @@ func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSignalResource, input, nil)
-
+	req = aws.NewRequest(c.Service, opSignalResource, input, output)
+	output = &SignalResourceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *CloudFormation) SignalResource(input *SignalResourceInput) (err error) {
-	req := c.SignalResourceRequest(input)
+func (c *CloudFormation) SignalResource(input *SignalResourceInput) (output *SignalResourceOutput, err error) {
+	req, out := c.SignalResourceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -443,6 +451,14 @@ type metadataCancelUpdateStackInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StackName"`
 }
 
+type CancelUpdateStackOutput struct {
+	metadataCancelUpdateStackOutput `json:"-", xml:"-"`
+}
+
+type metadataCancelUpdateStackOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type CreateStackInput struct {
 	Capabilities     []*string    `type:"list"`
 	DisableRollback  *bool        `type:"boolean"`
@@ -482,6 +498,14 @@ type DeleteStackInput struct {
 
 type metadataDeleteStackInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StackName"`
+}
+
+type DeleteStackOutput struct {
+	metadataDeleteStackOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteStackOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStackEventsInput struct {
@@ -769,6 +793,14 @@ type metadataSetStackPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StackName"`
 }
 
+type SetStackPolicyOutput struct {
+	metadataSetStackPolicyOutput `json:"-", xml:"-"`
+}
+
+type metadataSetStackPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type SignalResourceInput struct {
 	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string"`
 	StackName         *string `type:"string"`
@@ -780,6 +812,14 @@ type SignalResourceInput struct {
 
 type metadataSignalResourceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"StackName,LogicalResourceId,UniqueId,Status"`
+}
+
+type SignalResourceOutput struct {
+	metadataSignalResourceOutput `json:"-", xml:"-"`
+}
+
+type metadataSignalResourceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Stack struct {

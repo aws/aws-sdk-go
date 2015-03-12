@@ -7,7 +7,7 @@ import (
 )
 
 // AddPermissionRequest generates a request for the AddPermission operation.
-func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request) {
+func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request, output *AddPermissionOutput) {
 	if opAddPermission == nil {
 		opAddPermission = &aws.Operation{
 			Name:       "AddPermission",
@@ -16,13 +16,15 @@ func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddPermission, input, nil)
-
+	req = aws.NewRequest(c.Service, opAddPermission, input, output)
+	output = &AddPermissionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SQS) AddPermission(input *AddPermissionInput) (err error) {
-	req := c.AddPermissionRequest(input)
+func (c *SQS) AddPermission(input *AddPermissionInput) (output *AddPermissionOutput, err error) {
+	req, out := c.AddPermissionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -30,7 +32,7 @@ func (c *SQS) AddPermission(input *AddPermissionInput) (err error) {
 var opAddPermission *aws.Operation
 
 // ChangeMessageVisibilityRequest generates a request for the ChangeMessageVisibility operation.
-func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput) (req *aws.Request) {
+func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput) (req *aws.Request, output *ChangeMessageVisibilityOutput) {
 	if opChangeMessageVisibility == nil {
 		opChangeMessageVisibility = &aws.Operation{
 			Name:       "ChangeMessageVisibility",
@@ -39,13 +41,15 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opChangeMessageVisibility, input, nil)
-
+	req = aws.NewRequest(c.Service, opChangeMessageVisibility, input, output)
+	output = &ChangeMessageVisibilityOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SQS) ChangeMessageVisibility(input *ChangeMessageVisibilityInput) (err error) {
-	req := c.ChangeMessageVisibilityRequest(input)
+func (c *SQS) ChangeMessageVisibility(input *ChangeMessageVisibilityInput) (output *ChangeMessageVisibilityOutput, err error) {
+	req, out := c.ChangeMessageVisibilityRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -103,7 +107,7 @@ func (c *SQS) CreateQueue(input *CreateQueueInput) (output *CreateQueueOutput, e
 var opCreateQueue *aws.Operation
 
 // DeleteMessageRequest generates a request for the DeleteMessage operation.
-func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *aws.Request) {
+func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *aws.Request, output *DeleteMessageOutput) {
 	if opDeleteMessage == nil {
 		opDeleteMessage = &aws.Operation{
 			Name:       "DeleteMessage",
@@ -112,13 +116,15 @@ func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *aws.Request)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteMessage, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteMessage, input, output)
+	output = &DeleteMessageOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SQS) DeleteMessage(input *DeleteMessageInput) (err error) {
-	req := c.DeleteMessageRequest(input)
+func (c *SQS) DeleteMessage(input *DeleteMessageInput) (output *DeleteMessageOutput, err error) {
+	req, out := c.DeleteMessageRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -151,7 +157,7 @@ func (c *SQS) DeleteMessageBatch(input *DeleteMessageBatchInput) (output *Delete
 var opDeleteMessageBatch *aws.Operation
 
 // DeleteQueueRequest generates a request for the DeleteQueue operation.
-func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *aws.Request) {
+func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *aws.Request, output *DeleteQueueOutput) {
 	if opDeleteQueue == nil {
 		opDeleteQueue = &aws.Operation{
 			Name:       "DeleteQueue",
@@ -160,13 +166,15 @@ func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteQueue, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteQueue, input, output)
+	output = &DeleteQueueOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SQS) DeleteQueue(input *DeleteQueueInput) (err error) {
-	req := c.DeleteQueueRequest(input)
+func (c *SQS) DeleteQueue(input *DeleteQueueInput) (output *DeleteQueueOutput, err error) {
+	req, out := c.DeleteQueueRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -274,7 +282,7 @@ func (c *SQS) ListQueues(input *ListQueuesInput) (output *ListQueuesOutput, err 
 var opListQueues *aws.Operation
 
 // PurgeQueueRequest generates a request for the PurgeQueue operation.
-func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *aws.Request) {
+func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *aws.Request, output *PurgeQueueOutput) {
 	if opPurgeQueue == nil {
 		opPurgeQueue = &aws.Operation{
 			Name:       "PurgeQueue",
@@ -283,13 +291,15 @@ func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPurgeQueue, input, nil)
-
+	req = aws.NewRequest(c.Service, opPurgeQueue, input, output)
+	output = &PurgeQueueOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SQS) PurgeQueue(input *PurgeQueueInput) (err error) {
-	req := c.PurgeQueueRequest(input)
+func (c *SQS) PurgeQueue(input *PurgeQueueInput) (output *PurgeQueueOutput, err error) {
+	req, out := c.PurgeQueueRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -322,7 +332,7 @@ func (c *SQS) ReceiveMessage(input *ReceiveMessageInput) (output *ReceiveMessage
 var opReceiveMessage *aws.Operation
 
 // RemovePermissionRequest generates a request for the RemovePermission operation.
-func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Request) {
+func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Request, output *RemovePermissionOutput) {
 	if opRemovePermission == nil {
 		opRemovePermission = &aws.Operation{
 			Name:       "RemovePermission",
@@ -331,13 +341,15 @@ func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemovePermission, input, nil)
-
+	req = aws.NewRequest(c.Service, opRemovePermission, input, output)
+	output = &RemovePermissionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SQS) RemovePermission(input *RemovePermissionInput) (err error) {
-	req := c.RemovePermissionRequest(input)
+func (c *SQS) RemovePermission(input *RemovePermissionInput) (output *RemovePermissionOutput, err error) {
+	req, out := c.RemovePermissionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -395,7 +407,7 @@ func (c *SQS) SendMessageBatch(input *SendMessageBatchInput) (output *SendMessag
 var opSendMessageBatch *aws.Operation
 
 // SetQueueAttributesRequest generates a request for the SetQueueAttributes operation.
-func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *aws.Request) {
+func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *aws.Request, output *SetQueueAttributesOutput) {
 	if opSetQueueAttributes == nil {
 		opSetQueueAttributes = &aws.Operation{
 			Name:       "SetQueueAttributes",
@@ -404,13 +416,15 @@ func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetQueueAttributes, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetQueueAttributes, input, output)
+	output = &SetQueueAttributesOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SQS) SetQueueAttributes(input *SetQueueAttributesInput) (err error) {
-	req := c.SetQueueAttributesRequest(input)
+func (c *SQS) SetQueueAttributes(input *SetQueueAttributesInput) (output *SetQueueAttributesOutput, err error) {
+	req, out := c.SetQueueAttributesRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -428,6 +442,14 @@ type AddPermissionInput struct {
 
 type metadataAddPermissionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"QueueUrl,Label,AWSAccountIds,Actions"`
+}
+
+type AddPermissionOutput struct {
+	metadataAddPermissionOutput `json:"-", xml:"-"`
+}
+
+type metadataAddPermissionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BatchEntryIDsNotDistinct struct {
@@ -515,6 +537,14 @@ type metadataChangeMessageVisibilityInput struct {
 	SDKShapeTraits bool `type:"structure" required:"QueueUrl,ReceiptHandle,VisibilityTimeout"`
 }
 
+type ChangeMessageVisibilityOutput struct {
+	metadataChangeMessageVisibilityOutput `json:"-", xml:"-"`
+}
+
+type metadataChangeMessageVisibilityOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type CreateQueueInput struct {
 	Attributes *map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 	QueueName  *string             `type:"string"`
@@ -590,6 +620,14 @@ type metadataDeleteMessageInput struct {
 	SDKShapeTraits bool `type:"structure" required:"QueueUrl,ReceiptHandle"`
 }
 
+type DeleteMessageOutput struct {
+	metadataDeleteMessageOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteMessageOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteQueueInput struct {
 	QueueURL *string `locationName:"QueueUrl" type:"string"`
 
@@ -598,6 +636,14 @@ type DeleteQueueInput struct {
 
 type metadataDeleteQueueInput struct {
 	SDKShapeTraits bool `type:"structure" required:"QueueUrl"`
+}
+
+type DeleteQueueOutput struct {
+	metadataDeleteQueueOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteQueueOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EmptyBatchRequest struct {
@@ -786,6 +832,14 @@ type metadataPurgeQueueInput struct {
 	SDKShapeTraits bool `type:"structure" required:"QueueUrl"`
 }
 
+type PurgeQueueOutput struct {
+	metadataPurgeQueueOutput `json:"-", xml:"-"`
+}
+
+type metadataPurgeQueueOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type QueueDeletedRecently struct {
 	metadataQueueDeletedRecently `json:"-", xml:"-"`
 }
@@ -852,6 +906,14 @@ type RemovePermissionInput struct {
 
 type metadataRemovePermissionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"QueueUrl,Label"`
+}
+
+type RemovePermissionOutput struct {
+	metadataRemovePermissionOutput `json:"-", xml:"-"`
+}
+
+type metadataRemovePermissionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SendMessageBatchInput struct {
@@ -936,6 +998,14 @@ type SetQueueAttributesInput struct {
 
 type metadataSetQueueAttributesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"QueueUrl,Attributes"`
+}
+
+type SetQueueAttributesOutput struct {
+	metadataSetQueueAttributesOutput `json:"-", xml:"-"`
+}
+
+type metadataSetQueueAttributesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TooManyEntriesInBatchRequest struct {

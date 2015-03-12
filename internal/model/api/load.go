@@ -42,6 +42,7 @@ func (a *API) Setup() {
 	a.renameExportable()
 	a.renameToplevelShapes()
 	a.updateTopLevelShapeReferences()
+	a.createInputOutputShapes()
 
 	if len(a.unrecognizedNames) > 0 {
 		msg := []string{

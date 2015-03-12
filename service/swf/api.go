@@ -109,7 +109,7 @@ func (c *SWF) CountPendingDecisionTasks(input *CountPendingDecisionTasksInput) (
 var opCountPendingDecisionTasks *aws.Operation
 
 // DeprecateActivityTypeRequest generates a request for the DeprecateActivityType operation.
-func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (req *aws.Request) {
+func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (req *aws.Request, output *DeprecateActivityTypeOutput) {
 	if opDeprecateActivityType == nil {
 		opDeprecateActivityType = &aws.Operation{
 			Name:       "DeprecateActivityType",
@@ -118,13 +118,15 @@ func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeprecateActivityType, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeprecateActivityType, input, output)
+	output = &DeprecateActivityTypeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) DeprecateActivityType(input *DeprecateActivityTypeInput) (err error) {
-	req := c.DeprecateActivityTypeRequest(input)
+func (c *SWF) DeprecateActivityType(input *DeprecateActivityTypeInput) (output *DeprecateActivityTypeOutput, err error) {
+	req, out := c.DeprecateActivityTypeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -132,7 +134,7 @@ func (c *SWF) DeprecateActivityType(input *DeprecateActivityTypeInput) (err erro
 var opDeprecateActivityType *aws.Operation
 
 // DeprecateDomainRequest generates a request for the DeprecateDomain operation.
-func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *aws.Request) {
+func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *aws.Request, output *DeprecateDomainOutput) {
 	if opDeprecateDomain == nil {
 		opDeprecateDomain = &aws.Operation{
 			Name:       "DeprecateDomain",
@@ -141,13 +143,15 @@ func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeprecateDomain, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeprecateDomain, input, output)
+	output = &DeprecateDomainOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) DeprecateDomain(input *DeprecateDomainInput) (err error) {
-	req := c.DeprecateDomainRequest(input)
+func (c *SWF) DeprecateDomain(input *DeprecateDomainInput) (output *DeprecateDomainOutput, err error) {
+	req, out := c.DeprecateDomainRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -155,7 +159,7 @@ func (c *SWF) DeprecateDomain(input *DeprecateDomainInput) (err error) {
 var opDeprecateDomain *aws.Operation
 
 // DeprecateWorkflowTypeRequest generates a request for the DeprecateWorkflowType operation.
-func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (req *aws.Request) {
+func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (req *aws.Request, output *DeprecateWorkflowTypeOutput) {
 	if opDeprecateWorkflowType == nil {
 		opDeprecateWorkflowType = &aws.Operation{
 			Name:       "DeprecateWorkflowType",
@@ -164,13 +168,15 @@ func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeprecateWorkflowType, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeprecateWorkflowType, input, output)
+	output = &DeprecateWorkflowTypeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) DeprecateWorkflowType(input *DeprecateWorkflowTypeInput) (err error) {
-	req := c.DeprecateWorkflowTypeRequest(input)
+func (c *SWF) DeprecateWorkflowType(input *DeprecateWorkflowTypeInput) (output *DeprecateWorkflowTypeOutput, err error) {
+	req, out := c.DeprecateWorkflowTypeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -503,7 +509,7 @@ func (c *SWF) RecordActivityTaskHeartbeat(input *RecordActivityTaskHeartbeatInpu
 var opRecordActivityTaskHeartbeat *aws.Operation
 
 // RegisterActivityTypeRequest generates a request for the RegisterActivityType operation.
-func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req *aws.Request) {
+func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req *aws.Request, output *RegisterActivityTypeOutput) {
 	if opRegisterActivityType == nil {
 		opRegisterActivityType = &aws.Operation{
 			Name:       "RegisterActivityType",
@@ -512,13 +518,15 @@ func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterActivityType, input, nil)
-
+	req = aws.NewRequest(c.Service, opRegisterActivityType, input, output)
+	output = &RegisterActivityTypeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) RegisterActivityType(input *RegisterActivityTypeInput) (err error) {
-	req := c.RegisterActivityTypeRequest(input)
+func (c *SWF) RegisterActivityType(input *RegisterActivityTypeInput) (output *RegisterActivityTypeOutput, err error) {
+	req, out := c.RegisterActivityTypeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -526,7 +534,7 @@ func (c *SWF) RegisterActivityType(input *RegisterActivityTypeInput) (err error)
 var opRegisterActivityType *aws.Operation
 
 // RegisterDomainRequest generates a request for the RegisterDomain operation.
-func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *aws.Request) {
+func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *aws.Request, output *RegisterDomainOutput) {
 	if opRegisterDomain == nil {
 		opRegisterDomain = &aws.Operation{
 			Name:       "RegisterDomain",
@@ -535,13 +543,15 @@ func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterDomain, input, nil)
-
+	req = aws.NewRequest(c.Service, opRegisterDomain, input, output)
+	output = &RegisterDomainOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) RegisterDomain(input *RegisterDomainInput) (err error) {
-	req := c.RegisterDomainRequest(input)
+func (c *SWF) RegisterDomain(input *RegisterDomainInput) (output *RegisterDomainOutput, err error) {
+	req, out := c.RegisterDomainRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -549,7 +559,7 @@ func (c *SWF) RegisterDomain(input *RegisterDomainInput) (err error) {
 var opRegisterDomain *aws.Operation
 
 // RegisterWorkflowTypeRequest generates a request for the RegisterWorkflowType operation.
-func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req *aws.Request) {
+func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req *aws.Request, output *RegisterWorkflowTypeOutput) {
 	if opRegisterWorkflowType == nil {
 		opRegisterWorkflowType = &aws.Operation{
 			Name:       "RegisterWorkflowType",
@@ -558,13 +568,15 @@ func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterWorkflowType, input, nil)
-
+	req = aws.NewRequest(c.Service, opRegisterWorkflowType, input, output)
+	output = &RegisterWorkflowTypeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) RegisterWorkflowType(input *RegisterWorkflowTypeInput) (err error) {
-	req := c.RegisterWorkflowTypeRequest(input)
+func (c *SWF) RegisterWorkflowType(input *RegisterWorkflowTypeInput) (output *RegisterWorkflowTypeOutput, err error) {
+	req, out := c.RegisterWorkflowTypeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -572,7 +584,7 @@ func (c *SWF) RegisterWorkflowType(input *RegisterWorkflowTypeInput) (err error)
 var opRegisterWorkflowType *aws.Operation
 
 // RequestCancelWorkflowExecutionRequest generates a request for the RequestCancelWorkflowExecution operation.
-func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflowExecutionInput) (req *aws.Request) {
+func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflowExecutionInput) (req *aws.Request, output *RequestCancelWorkflowExecutionOutput) {
 	if opRequestCancelWorkflowExecution == nil {
 		opRequestCancelWorkflowExecution = &aws.Operation{
 			Name:       "RequestCancelWorkflowExecution",
@@ -581,13 +593,15 @@ func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflow
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRequestCancelWorkflowExecution, input, nil)
-
+	req = aws.NewRequest(c.Service, opRequestCancelWorkflowExecution, input, output)
+	output = &RequestCancelWorkflowExecutionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) RequestCancelWorkflowExecution(input *RequestCancelWorkflowExecutionInput) (err error) {
-	req := c.RequestCancelWorkflowExecutionRequest(input)
+func (c *SWF) RequestCancelWorkflowExecution(input *RequestCancelWorkflowExecutionInput) (output *RequestCancelWorkflowExecutionOutput, err error) {
+	req, out := c.RequestCancelWorkflowExecutionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -595,7 +609,7 @@ func (c *SWF) RequestCancelWorkflowExecution(input *RequestCancelWorkflowExecuti
 var opRequestCancelWorkflowExecution *aws.Operation
 
 // RespondActivityTaskCanceledRequest generates a request for the RespondActivityTaskCanceled operation.
-func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCanceledInput) (req *aws.Request) {
+func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCanceledInput) (req *aws.Request, output *RespondActivityTaskCanceledOutput) {
 	if opRespondActivityTaskCanceled == nil {
 		opRespondActivityTaskCanceled = &aws.Operation{
 			Name:       "RespondActivityTaskCanceled",
@@ -604,13 +618,15 @@ func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCance
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRespondActivityTaskCanceled, input, nil)
-
+	req = aws.NewRequest(c.Service, opRespondActivityTaskCanceled, input, output)
+	output = &RespondActivityTaskCanceledOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) RespondActivityTaskCanceled(input *RespondActivityTaskCanceledInput) (err error) {
-	req := c.RespondActivityTaskCanceledRequest(input)
+func (c *SWF) RespondActivityTaskCanceled(input *RespondActivityTaskCanceledInput) (output *RespondActivityTaskCanceledOutput, err error) {
+	req, out := c.RespondActivityTaskCanceledRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -618,7 +634,7 @@ func (c *SWF) RespondActivityTaskCanceled(input *RespondActivityTaskCanceledInpu
 var opRespondActivityTaskCanceled *aws.Operation
 
 // RespondActivityTaskCompletedRequest generates a request for the RespondActivityTaskCompleted operation.
-func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskCompletedInput) (req *aws.Request) {
+func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskCompletedInput) (req *aws.Request, output *RespondActivityTaskCompletedOutput) {
 	if opRespondActivityTaskCompleted == nil {
 		opRespondActivityTaskCompleted = &aws.Operation{
 			Name:       "RespondActivityTaskCompleted",
@@ -627,13 +643,15 @@ func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskComp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRespondActivityTaskCompleted, input, nil)
-
+	req = aws.NewRequest(c.Service, opRespondActivityTaskCompleted, input, output)
+	output = &RespondActivityTaskCompletedOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) RespondActivityTaskCompleted(input *RespondActivityTaskCompletedInput) (err error) {
-	req := c.RespondActivityTaskCompletedRequest(input)
+func (c *SWF) RespondActivityTaskCompleted(input *RespondActivityTaskCompletedInput) (output *RespondActivityTaskCompletedOutput, err error) {
+	req, out := c.RespondActivityTaskCompletedRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -641,7 +659,7 @@ func (c *SWF) RespondActivityTaskCompleted(input *RespondActivityTaskCompletedIn
 var opRespondActivityTaskCompleted *aws.Operation
 
 // RespondActivityTaskFailedRequest generates a request for the RespondActivityTaskFailed operation.
-func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedInput) (req *aws.Request) {
+func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedInput) (req *aws.Request, output *RespondActivityTaskFailedOutput) {
 	if opRespondActivityTaskFailed == nil {
 		opRespondActivityTaskFailed = &aws.Operation{
 			Name:       "RespondActivityTaskFailed",
@@ -650,13 +668,15 @@ func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRespondActivityTaskFailed, input, nil)
-
+	req = aws.NewRequest(c.Service, opRespondActivityTaskFailed, input, output)
+	output = &RespondActivityTaskFailedOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) RespondActivityTaskFailed(input *RespondActivityTaskFailedInput) (err error) {
-	req := c.RespondActivityTaskFailedRequest(input)
+func (c *SWF) RespondActivityTaskFailed(input *RespondActivityTaskFailedInput) (output *RespondActivityTaskFailedOutput, err error) {
+	req, out := c.RespondActivityTaskFailedRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -664,7 +684,7 @@ func (c *SWF) RespondActivityTaskFailed(input *RespondActivityTaskFailedInput) (
 var opRespondActivityTaskFailed *aws.Operation
 
 // RespondDecisionTaskCompletedRequest generates a request for the RespondDecisionTaskCompleted operation.
-func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskCompletedInput) (req *aws.Request) {
+func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskCompletedInput) (req *aws.Request, output *RespondDecisionTaskCompletedOutput) {
 	if opRespondDecisionTaskCompleted == nil {
 		opRespondDecisionTaskCompleted = &aws.Operation{
 			Name:       "RespondDecisionTaskCompleted",
@@ -673,13 +693,15 @@ func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskComp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRespondDecisionTaskCompleted, input, nil)
-
+	req = aws.NewRequest(c.Service, opRespondDecisionTaskCompleted, input, output)
+	output = &RespondDecisionTaskCompletedOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) RespondDecisionTaskCompleted(input *RespondDecisionTaskCompletedInput) (err error) {
-	req := c.RespondDecisionTaskCompletedRequest(input)
+func (c *SWF) RespondDecisionTaskCompleted(input *RespondDecisionTaskCompletedInput) (output *RespondDecisionTaskCompletedOutput, err error) {
+	req, out := c.RespondDecisionTaskCompletedRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -687,7 +709,7 @@ func (c *SWF) RespondDecisionTaskCompleted(input *RespondDecisionTaskCompletedIn
 var opRespondDecisionTaskCompleted *aws.Operation
 
 // SignalWorkflowExecutionRequest generates a request for the SignalWorkflowExecution operation.
-func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput) (req *aws.Request) {
+func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput) (req *aws.Request, output *SignalWorkflowExecutionOutput) {
 	if opSignalWorkflowExecution == nil {
 		opSignalWorkflowExecution = &aws.Operation{
 			Name:       "SignalWorkflowExecution",
@@ -696,13 +718,15 @@ func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSignalWorkflowExecution, input, nil)
-
+	req = aws.NewRequest(c.Service, opSignalWorkflowExecution, input, output)
+	output = &SignalWorkflowExecutionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) SignalWorkflowExecution(input *SignalWorkflowExecutionInput) (err error) {
-	req := c.SignalWorkflowExecutionRequest(input)
+func (c *SWF) SignalWorkflowExecution(input *SignalWorkflowExecutionInput) (output *SignalWorkflowExecutionOutput, err error) {
+	req, out := c.SignalWorkflowExecutionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -735,7 +759,7 @@ func (c *SWF) StartWorkflowExecution(input *StartWorkflowExecutionInput) (output
 var opStartWorkflowExecution *aws.Operation
 
 // TerminateWorkflowExecutionRequest generates a request for the TerminateWorkflowExecution operation.
-func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutionInput) (req *aws.Request) {
+func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutionInput) (req *aws.Request, output *TerminateWorkflowExecutionOutput) {
 	if opTerminateWorkflowExecution == nil {
 		opTerminateWorkflowExecution = &aws.Operation{
 			Name:       "TerminateWorkflowExecution",
@@ -744,13 +768,15 @@ func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opTerminateWorkflowExecution, input, nil)
-
+	req = aws.NewRequest(c.Service, opTerminateWorkflowExecution, input, output)
+	output = &TerminateWorkflowExecutionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput) (err error) {
-	req := c.TerminateWorkflowExecutionRequest(input)
+func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput) (output *TerminateWorkflowExecutionOutput, err error) {
+	req, out := c.TerminateWorkflowExecutionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1279,6 +1305,14 @@ type metadataDeprecateActivityTypeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,activityType" json:",omitempty"`
 }
 
+type DeprecateActivityTypeOutput struct {
+	metadataDeprecateActivityTypeOutput `json:"-", xml:"-"`
+}
+
+type metadataDeprecateActivityTypeOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DeprecateDomainInput struct {
 	Name *string `locationName:"name" type:"string" json:"name,omitempty"`
 
@@ -1287,6 +1321,14 @@ type DeprecateDomainInput struct {
 
 type metadataDeprecateDomainInput struct {
 	SDKShapeTraits bool `type:"structure" required:"name" json:",omitempty"`
+}
+
+type DeprecateDomainOutput struct {
+	metadataDeprecateDomainOutput `json:"-", xml:"-"`
+}
+
+type metadataDeprecateDomainOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeprecateWorkflowTypeInput struct {
@@ -1298,6 +1340,14 @@ type DeprecateWorkflowTypeInput struct {
 
 type metadataDeprecateWorkflowTypeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,workflowType" json:",omitempty"`
+}
+
+type DeprecateWorkflowTypeOutput struct {
+	metadataDeprecateWorkflowTypeOutput `json:"-", xml:"-"`
+}
+
+type metadataDeprecateWorkflowTypeOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeActivityTypeInput struct {
@@ -1748,6 +1798,14 @@ type metadataRegisterActivityTypeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,name,version" json:",omitempty"`
 }
 
+type RegisterActivityTypeOutput struct {
+	metadataRegisterActivityTypeOutput `json:"-", xml:"-"`
+}
+
+type metadataRegisterActivityTypeOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type RegisterDomainInput struct {
 	Description                            *string `locationName:"description" type:"string" json:"description,omitempty"`
 	Name                                   *string `locationName:"name" type:"string" json:"name,omitempty"`
@@ -1758,6 +1816,14 @@ type RegisterDomainInput struct {
 
 type metadataRegisterDomainInput struct {
 	SDKShapeTraits bool `type:"structure" required:"name,workflowExecutionRetentionPeriodInDays" json:",omitempty"`
+}
+
+type RegisterDomainOutput struct {
+	metadataRegisterDomainOutput `json:"-", xml:"-"`
+}
+
+type metadataRegisterDomainOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RegisterWorkflowTypeInput struct {
@@ -1776,6 +1842,14 @@ type RegisterWorkflowTypeInput struct {
 
 type metadataRegisterWorkflowTypeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,name,version" json:",omitempty"`
+}
+
+type RegisterWorkflowTypeOutput struct {
+	metadataRegisterWorkflowTypeOutput `json:"-", xml:"-"`
+}
+
+type metadataRegisterWorkflowTypeOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RequestCancelActivityTaskDecisionAttributes struct {
@@ -1852,6 +1926,14 @@ type metadataRequestCancelWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,workflowId" json:",omitempty"`
 }
 
+type RequestCancelWorkflowExecutionOutput struct {
+	metadataRequestCancelWorkflowExecutionOutput `json:"-", xml:"-"`
+}
+
+type metadataRequestCancelWorkflowExecutionOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type RespondActivityTaskCanceledInput struct {
 	Details   *string `locationName:"details" type:"string" json:"details,omitempty"`
 	TaskToken *string `locationName:"taskToken" type:"string" json:"taskToken,omitempty"`
@@ -1863,6 +1945,14 @@ type metadataRespondActivityTaskCanceledInput struct {
 	SDKShapeTraits bool `type:"structure" required:"taskToken" json:",omitempty"`
 }
 
+type RespondActivityTaskCanceledOutput struct {
+	metadataRespondActivityTaskCanceledOutput `json:"-", xml:"-"`
+}
+
+type metadataRespondActivityTaskCanceledOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type RespondActivityTaskCompletedInput struct {
 	Result    *string `locationName:"result" type:"string" json:"result,omitempty"`
 	TaskToken *string `locationName:"taskToken" type:"string" json:"taskToken,omitempty"`
@@ -1872,6 +1962,14 @@ type RespondActivityTaskCompletedInput struct {
 
 type metadataRespondActivityTaskCompletedInput struct {
 	SDKShapeTraits bool `type:"structure" required:"taskToken" json:",omitempty"`
+}
+
+type RespondActivityTaskCompletedOutput struct {
+	metadataRespondActivityTaskCompletedOutput `json:"-", xml:"-"`
+}
+
+type metadataRespondActivityTaskCompletedOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RespondActivityTaskFailedInput struct {
@@ -1886,6 +1984,14 @@ type metadataRespondActivityTaskFailedInput struct {
 	SDKShapeTraits bool `type:"structure" required:"taskToken" json:",omitempty"`
 }
 
+type RespondActivityTaskFailedOutput struct {
+	metadataRespondActivityTaskFailedOutput `json:"-", xml:"-"`
+}
+
+type metadataRespondActivityTaskFailedOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type RespondDecisionTaskCompletedInput struct {
 	Decisions        []*Decision `locationName:"decisions" type:"list" json:"decisions,omitempty"`
 	ExecutionContext *string     `locationName:"executionContext" type:"string" json:"executionContext,omitempty"`
@@ -1896,6 +2002,14 @@ type RespondDecisionTaskCompletedInput struct {
 
 type metadataRespondDecisionTaskCompletedInput struct {
 	SDKShapeTraits bool `type:"structure" required:"taskToken" json:",omitempty"`
+}
+
+type RespondDecisionTaskCompletedOutput struct {
+	metadataRespondDecisionTaskCompletedOutput `json:"-", xml:"-"`
+}
+
+type metadataRespondDecisionTaskCompletedOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type Run struct {
@@ -1996,6 +2110,14 @@ type SignalWorkflowExecutionInput struct {
 
 type metadataSignalWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,workflowId,signalName" json:",omitempty"`
+}
+
+type SignalWorkflowExecutionOutput struct {
+	metadataSignalWorkflowExecutionOutput `json:"-", xml:"-"`
+}
+
+type metadataSignalWorkflowExecutionOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type StartChildWorkflowExecutionDecisionAttributes struct {
@@ -2128,6 +2250,14 @@ type TerminateWorkflowExecutionInput struct {
 
 type metadataTerminateWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,workflowId" json:",omitempty"`
+}
+
+type TerminateWorkflowExecutionOutput struct {
+	metadataTerminateWorkflowExecutionOutput `json:"-", xml:"-"`
+}
+
+type metadataTerminateWorkflowExecutionOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type TimerCanceledEventAttributes struct {

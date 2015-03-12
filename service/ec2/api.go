@@ -59,7 +59,7 @@ func (c *EC2) AllocateAddress(input *AllocateAddressInput) (output *AllocateAddr
 var opAllocateAddress *aws.Operation
 
 // AssignPrivateIPAddressesRequest generates a request for the AssignPrivateIPAddresses operation.
-func (c *EC2) AssignPrivateIPAddressesRequest(input *AssignPrivateIPAddressesInput) (req *aws.Request) {
+func (c *EC2) AssignPrivateIPAddressesRequest(input *AssignPrivateIPAddressesInput) (req *aws.Request, output *AssignPrivateIPAddressesOutput) {
 	if opAssignPrivateIPAddresses == nil {
 		opAssignPrivateIPAddresses = &aws.Operation{
 			Name:       "AssignPrivateIpAddresses",
@@ -68,13 +68,15 @@ func (c *EC2) AssignPrivateIPAddressesRequest(input *AssignPrivateIPAddressesInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssignPrivateIPAddresses, input, nil)
-
+	req = aws.NewRequest(c.Service, opAssignPrivateIPAddresses, input, output)
+	output = &AssignPrivateIPAddressesOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) AssignPrivateIPAddresses(input *AssignPrivateIPAddressesInput) (err error) {
-	req := c.AssignPrivateIPAddressesRequest(input)
+func (c *EC2) AssignPrivateIPAddresses(input *AssignPrivateIPAddressesInput) (output *AssignPrivateIPAddressesOutput, err error) {
+	req, out := c.AssignPrivateIPAddressesRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -107,7 +109,7 @@ func (c *EC2) AssociateAddress(input *AssociateAddressInput) (output *AssociateA
 var opAssociateAddress *aws.Operation
 
 // AssociateDHCPOptionsRequest generates a request for the AssociateDHCPOptions operation.
-func (c *EC2) AssociateDHCPOptionsRequest(input *AssociateDHCPOptionsInput) (req *aws.Request) {
+func (c *EC2) AssociateDHCPOptionsRequest(input *AssociateDHCPOptionsInput) (req *aws.Request, output *AssociateDHCPOptionsOutput) {
 	if opAssociateDHCPOptions == nil {
 		opAssociateDHCPOptions = &aws.Operation{
 			Name:       "AssociateDhcpOptions",
@@ -116,13 +118,15 @@ func (c *EC2) AssociateDHCPOptionsRequest(input *AssociateDHCPOptionsInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssociateDHCPOptions, input, nil)
-
+	req = aws.NewRequest(c.Service, opAssociateDHCPOptions, input, output)
+	output = &AssociateDHCPOptionsOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) AssociateDHCPOptions(input *AssociateDHCPOptionsInput) (err error) {
-	req := c.AssociateDHCPOptionsRequest(input)
+func (c *EC2) AssociateDHCPOptions(input *AssociateDHCPOptionsInput) (output *AssociateDHCPOptionsOutput, err error) {
+	req, out := c.AssociateDHCPOptionsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -180,7 +184,7 @@ func (c *EC2) AttachClassicLinkVPC(input *AttachClassicLinkVPCInput) (output *At
 var opAttachClassicLinkVPC *aws.Operation
 
 // AttachInternetGatewayRequest generates a request for the AttachInternetGateway operation.
-func (c *EC2) AttachInternetGatewayRequest(input *AttachInternetGatewayInput) (req *aws.Request) {
+func (c *EC2) AttachInternetGatewayRequest(input *AttachInternetGatewayInput) (req *aws.Request, output *AttachInternetGatewayOutput) {
 	if opAttachInternetGateway == nil {
 		opAttachInternetGateway = &aws.Operation{
 			Name:       "AttachInternetGateway",
@@ -189,13 +193,15 @@ func (c *EC2) AttachInternetGatewayRequest(input *AttachInternetGatewayInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachInternetGateway, input, nil)
-
+	req = aws.NewRequest(c.Service, opAttachInternetGateway, input, output)
+	output = &AttachInternetGatewayOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) AttachInternetGateway(input *AttachInternetGatewayInput) (err error) {
-	req := c.AttachInternetGatewayRequest(input)
+func (c *EC2) AttachInternetGateway(input *AttachInternetGatewayInput) (output *AttachInternetGatewayOutput, err error) {
+	req, out := c.AttachInternetGatewayRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -278,7 +284,7 @@ func (c *EC2) AttachVolume(input *AttachVolumeInput) (output *VolumeAttachment, 
 var opAttachVolume *aws.Operation
 
 // AuthorizeSecurityGroupEgressRequest generates a request for the AuthorizeSecurityGroupEgress operation.
-func (c *EC2) AuthorizeSecurityGroupEgressRequest(input *AuthorizeSecurityGroupEgressInput) (req *aws.Request) {
+func (c *EC2) AuthorizeSecurityGroupEgressRequest(input *AuthorizeSecurityGroupEgressInput) (req *aws.Request, output *AuthorizeSecurityGroupEgressOutput) {
 	if opAuthorizeSecurityGroupEgress == nil {
 		opAuthorizeSecurityGroupEgress = &aws.Operation{
 			Name:       "AuthorizeSecurityGroupEgress",
@@ -287,13 +293,15 @@ func (c *EC2) AuthorizeSecurityGroupEgressRequest(input *AuthorizeSecurityGroupE
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAuthorizeSecurityGroupEgress, input, nil)
-
+	req = aws.NewRequest(c.Service, opAuthorizeSecurityGroupEgress, input, output)
+	output = &AuthorizeSecurityGroupEgressOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) AuthorizeSecurityGroupEgress(input *AuthorizeSecurityGroupEgressInput) (err error) {
-	req := c.AuthorizeSecurityGroupEgressRequest(input)
+func (c *EC2) AuthorizeSecurityGroupEgress(input *AuthorizeSecurityGroupEgressInput) (output *AuthorizeSecurityGroupEgressOutput, err error) {
+	req, out := c.AuthorizeSecurityGroupEgressRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -301,7 +309,7 @@ func (c *EC2) AuthorizeSecurityGroupEgress(input *AuthorizeSecurityGroupEgressIn
 var opAuthorizeSecurityGroupEgress *aws.Operation
 
 // AuthorizeSecurityGroupIngressRequest generates a request for the AuthorizeSecurityGroupIngress operation.
-func (c *EC2) AuthorizeSecurityGroupIngressRequest(input *AuthorizeSecurityGroupIngressInput) (req *aws.Request) {
+func (c *EC2) AuthorizeSecurityGroupIngressRequest(input *AuthorizeSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeSecurityGroupIngressOutput) {
 	if opAuthorizeSecurityGroupIngress == nil {
 		opAuthorizeSecurityGroupIngress = &aws.Operation{
 			Name:       "AuthorizeSecurityGroupIngress",
@@ -310,13 +318,15 @@ func (c *EC2) AuthorizeSecurityGroupIngressRequest(input *AuthorizeSecurityGroup
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAuthorizeSecurityGroupIngress, input, nil)
-
+	req = aws.NewRequest(c.Service, opAuthorizeSecurityGroupIngress, input, output)
+	output = &AuthorizeSecurityGroupIngressOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) AuthorizeSecurityGroupIngress(input *AuthorizeSecurityGroupIngressInput) (err error) {
-	req := c.AuthorizeSecurityGroupIngressRequest(input)
+func (c *EC2) AuthorizeSecurityGroupIngress(input *AuthorizeSecurityGroupIngressInput) (output *AuthorizeSecurityGroupIngressOutput, err error) {
+	req, out := c.AuthorizeSecurityGroupIngressRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -374,7 +384,7 @@ func (c *EC2) CancelBundleTask(input *CancelBundleTaskInput) (output *CancelBund
 var opCancelBundleTask *aws.Operation
 
 // CancelConversionTaskRequest generates a request for the CancelConversionTask operation.
-func (c *EC2) CancelConversionTaskRequest(input *CancelConversionInput) (req *aws.Request) {
+func (c *EC2) CancelConversionTaskRequest(input *CancelConversionInput) (req *aws.Request, output *CancelConversionTaskOutput) {
 	if opCancelConversionTask == nil {
 		opCancelConversionTask = &aws.Operation{
 			Name:       "CancelConversionTask",
@@ -383,13 +393,15 @@ func (c *EC2) CancelConversionTaskRequest(input *CancelConversionInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelConversionTask, input, nil)
-
+	req = aws.NewRequest(c.Service, opCancelConversionTask, input, output)
+	output = &CancelConversionTaskOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) CancelConversionTask(input *CancelConversionInput) (err error) {
-	req := c.CancelConversionTaskRequest(input)
+func (c *EC2) CancelConversionTask(input *CancelConversionInput) (output *CancelConversionTaskOutput, err error) {
+	req, out := c.CancelConversionTaskRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -397,7 +409,7 @@ func (c *EC2) CancelConversionTask(input *CancelConversionInput) (err error) {
 var opCancelConversionTask *aws.Operation
 
 // CancelExportTaskRequest generates a request for the CancelExportTask operation.
-func (c *EC2) CancelExportTaskRequest(input *CancelExportTaskInput) (req *aws.Request) {
+func (c *EC2) CancelExportTaskRequest(input *CancelExportTaskInput) (req *aws.Request, output *CancelExportTaskOutput) {
 	if opCancelExportTask == nil {
 		opCancelExportTask = &aws.Operation{
 			Name:       "CancelExportTask",
@@ -406,13 +418,15 @@ func (c *EC2) CancelExportTaskRequest(input *CancelExportTaskInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelExportTask, input, nil)
-
+	req = aws.NewRequest(c.Service, opCancelExportTask, input, output)
+	output = &CancelExportTaskOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) CancelExportTask(input *CancelExportTaskInput) (err error) {
-	req := c.CancelExportTaskRequest(input)
+func (c *EC2) CancelExportTask(input *CancelExportTaskInput) (output *CancelExportTaskOutput, err error) {
+	req, out := c.CancelExportTaskRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -720,7 +734,7 @@ func (c *EC2) CreateNetworkACL(input *CreateNetworkACLInput) (output *CreateNetw
 var opCreateNetworkACL *aws.Operation
 
 // CreateNetworkACLEntryRequest generates a request for the CreateNetworkACLEntry operation.
-func (c *EC2) CreateNetworkACLEntryRequest(input *CreateNetworkACLEntryInput) (req *aws.Request) {
+func (c *EC2) CreateNetworkACLEntryRequest(input *CreateNetworkACLEntryInput) (req *aws.Request, output *CreateNetworkACLEntryOutput) {
 	if opCreateNetworkACLEntry == nil {
 		opCreateNetworkACLEntry = &aws.Operation{
 			Name:       "CreateNetworkAclEntry",
@@ -729,13 +743,15 @@ func (c *EC2) CreateNetworkACLEntryRequest(input *CreateNetworkACLEntryInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateNetworkACLEntry, input, nil)
-
+	req = aws.NewRequest(c.Service, opCreateNetworkACLEntry, input, output)
+	output = &CreateNetworkACLEntryOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) CreateNetworkACLEntry(input *CreateNetworkACLEntryInput) (err error) {
-	req := c.CreateNetworkACLEntryRequest(input)
+func (c *EC2) CreateNetworkACLEntry(input *CreateNetworkACLEntryInput) (output *CreateNetworkACLEntryOutput, err error) {
+	req, out := c.CreateNetworkACLEntryRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -768,7 +784,7 @@ func (c *EC2) CreateNetworkInterface(input *CreateNetworkInterfaceInput) (output
 var opCreateNetworkInterface *aws.Operation
 
 // CreatePlacementGroupRequest generates a request for the CreatePlacementGroup operation.
-func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req *aws.Request) {
+func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req *aws.Request, output *CreatePlacementGroupOutput) {
 	if opCreatePlacementGroup == nil {
 		opCreatePlacementGroup = &aws.Operation{
 			Name:       "CreatePlacementGroup",
@@ -777,13 +793,15 @@ func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreatePlacementGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opCreatePlacementGroup, input, output)
+	output = &CreatePlacementGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) CreatePlacementGroup(input *CreatePlacementGroupInput) (err error) {
-	req := c.CreatePlacementGroupRequest(input)
+func (c *EC2) CreatePlacementGroup(input *CreatePlacementGroupInput) (output *CreatePlacementGroupOutput, err error) {
+	req, out := c.CreatePlacementGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -816,7 +834,7 @@ func (c *EC2) CreateReservedInstancesListing(input *CreateReservedInstancesListi
 var opCreateReservedInstancesListing *aws.Operation
 
 // CreateRouteRequest generates a request for the CreateRoute operation.
-func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *aws.Request) {
+func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *aws.Request, output *CreateRouteOutput) {
 	if opCreateRoute == nil {
 		opCreateRoute = &aws.Operation{
 			Name:       "CreateRoute",
@@ -825,13 +843,15 @@ func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateRoute, input, nil)
-
+	req = aws.NewRequest(c.Service, opCreateRoute, input, output)
+	output = &CreateRouteOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) CreateRoute(input *CreateRouteInput) (err error) {
-	req := c.CreateRouteRequest(input)
+func (c *EC2) CreateRoute(input *CreateRouteInput) (output *CreateRouteOutput, err error) {
+	req, out := c.CreateRouteRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -964,7 +984,7 @@ func (c *EC2) CreateSubnet(input *CreateSubnetInput) (output *CreateSubnetOutput
 var opCreateSubnet *aws.Operation
 
 // CreateTagsRequest generates a request for the CreateTags operation.
-func (c *EC2) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request) {
+func (c *EC2) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, output *CreateTagsOutput) {
 	if opCreateTags == nil {
 		opCreateTags = &aws.Operation{
 			Name:       "CreateTags",
@@ -973,13 +993,15 @@ func (c *EC2) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateTags, input, nil)
-
+	req = aws.NewRequest(c.Service, opCreateTags, input, output)
+	output = &CreateTagsOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) CreateTags(input *CreateTagsInput) (err error) {
-	req := c.CreateTagsRequest(input)
+func (c *EC2) CreateTags(input *CreateTagsInput) (output *CreateTagsOutput, err error) {
+	req, out := c.CreateTagsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1062,7 +1084,7 @@ func (c *EC2) CreateVPNConnection(input *CreateVPNConnectionInput) (output *Crea
 var opCreateVPNConnection *aws.Operation
 
 // CreateVPNConnectionRouteRequest generates a request for the CreateVPNConnectionRoute operation.
-func (c *EC2) CreateVPNConnectionRouteRequest(input *CreateVPNConnectionRouteInput) (req *aws.Request) {
+func (c *EC2) CreateVPNConnectionRouteRequest(input *CreateVPNConnectionRouteInput) (req *aws.Request, output *CreateVPNConnectionRouteOutput) {
 	if opCreateVPNConnectionRoute == nil {
 		opCreateVPNConnectionRoute = &aws.Operation{
 			Name:       "CreateVpnConnectionRoute",
@@ -1071,13 +1093,15 @@ func (c *EC2) CreateVPNConnectionRouteRequest(input *CreateVPNConnectionRouteInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateVPNConnectionRoute, input, nil)
-
+	req = aws.NewRequest(c.Service, opCreateVPNConnectionRoute, input, output)
+	output = &CreateVPNConnectionRouteOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) CreateVPNConnectionRoute(input *CreateVPNConnectionRouteInput) (err error) {
-	req := c.CreateVPNConnectionRouteRequest(input)
+func (c *EC2) CreateVPNConnectionRoute(input *CreateVPNConnectionRouteInput) (output *CreateVPNConnectionRouteOutput, err error) {
+	req, out := c.CreateVPNConnectionRouteRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1135,7 +1159,7 @@ func (c *EC2) CreateVolume(input *CreateVolumeInput) (output *Volume, err error)
 var opCreateVolume *aws.Operation
 
 // DeleteCustomerGatewayRequest generates a request for the DeleteCustomerGateway operation.
-func (c *EC2) DeleteCustomerGatewayRequest(input *DeleteCustomerGatewayInput) (req *aws.Request) {
+func (c *EC2) DeleteCustomerGatewayRequest(input *DeleteCustomerGatewayInput) (req *aws.Request, output *DeleteCustomerGatewayOutput) {
 	if opDeleteCustomerGateway == nil {
 		opDeleteCustomerGateway = &aws.Operation{
 			Name:       "DeleteCustomerGateway",
@@ -1144,13 +1168,15 @@ func (c *EC2) DeleteCustomerGatewayRequest(input *DeleteCustomerGatewayInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCustomerGateway, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteCustomerGateway, input, output)
+	output = &DeleteCustomerGatewayOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteCustomerGateway(input *DeleteCustomerGatewayInput) (err error) {
-	req := c.DeleteCustomerGatewayRequest(input)
+func (c *EC2) DeleteCustomerGateway(input *DeleteCustomerGatewayInput) (output *DeleteCustomerGatewayOutput, err error) {
+	req, out := c.DeleteCustomerGatewayRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1158,7 +1184,7 @@ func (c *EC2) DeleteCustomerGateway(input *DeleteCustomerGatewayInput) (err erro
 var opDeleteCustomerGateway *aws.Operation
 
 // DeleteDHCPOptionsRequest generates a request for the DeleteDHCPOptions operation.
-func (c *EC2) DeleteDHCPOptionsRequest(input *DeleteDHCPOptionsInput) (req *aws.Request) {
+func (c *EC2) DeleteDHCPOptionsRequest(input *DeleteDHCPOptionsInput) (req *aws.Request, output *DeleteDHCPOptionsOutput) {
 	if opDeleteDHCPOptions == nil {
 		opDeleteDHCPOptions = &aws.Operation{
 			Name:       "DeleteDhcpOptions",
@@ -1167,13 +1193,15 @@ func (c *EC2) DeleteDHCPOptionsRequest(input *DeleteDHCPOptionsInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDHCPOptions, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteDHCPOptions, input, output)
+	output = &DeleteDHCPOptionsOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteDHCPOptions(input *DeleteDHCPOptionsInput) (err error) {
-	req := c.DeleteDHCPOptionsRequest(input)
+func (c *EC2) DeleteDHCPOptions(input *DeleteDHCPOptionsInput) (output *DeleteDHCPOptionsOutput, err error) {
+	req, out := c.DeleteDHCPOptionsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1181,7 +1209,7 @@ func (c *EC2) DeleteDHCPOptions(input *DeleteDHCPOptionsInput) (err error) {
 var opDeleteDHCPOptions *aws.Operation
 
 // DeleteInternetGatewayRequest generates a request for the DeleteInternetGateway operation.
-func (c *EC2) DeleteInternetGatewayRequest(input *DeleteInternetGatewayInput) (req *aws.Request) {
+func (c *EC2) DeleteInternetGatewayRequest(input *DeleteInternetGatewayInput) (req *aws.Request, output *DeleteInternetGatewayOutput) {
 	if opDeleteInternetGateway == nil {
 		opDeleteInternetGateway = &aws.Operation{
 			Name:       "DeleteInternetGateway",
@@ -1190,13 +1218,15 @@ func (c *EC2) DeleteInternetGatewayRequest(input *DeleteInternetGatewayInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteInternetGateway, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteInternetGateway, input, output)
+	output = &DeleteInternetGatewayOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteInternetGateway(input *DeleteInternetGatewayInput) (err error) {
-	req := c.DeleteInternetGatewayRequest(input)
+func (c *EC2) DeleteInternetGateway(input *DeleteInternetGatewayInput) (output *DeleteInternetGatewayOutput, err error) {
+	req, out := c.DeleteInternetGatewayRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1204,7 +1234,7 @@ func (c *EC2) DeleteInternetGateway(input *DeleteInternetGatewayInput) (err erro
 var opDeleteInternetGateway *aws.Operation
 
 // DeleteKeyPairRequest generates a request for the DeleteKeyPair operation.
-func (c *EC2) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *aws.Request) {
+func (c *EC2) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *aws.Request, output *DeleteKeyPairOutput) {
 	if opDeleteKeyPair == nil {
 		opDeleteKeyPair = &aws.Operation{
 			Name:       "DeleteKeyPair",
@@ -1213,13 +1243,15 @@ func (c *EC2) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *aws.Request)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteKeyPair, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteKeyPair, input, output)
+	output = &DeleteKeyPairOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteKeyPair(input *DeleteKeyPairInput) (err error) {
-	req := c.DeleteKeyPairRequest(input)
+func (c *EC2) DeleteKeyPair(input *DeleteKeyPairInput) (output *DeleteKeyPairOutput, err error) {
+	req, out := c.DeleteKeyPairRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1227,7 +1259,7 @@ func (c *EC2) DeleteKeyPair(input *DeleteKeyPairInput) (err error) {
 var opDeleteKeyPair *aws.Operation
 
 // DeleteNetworkACLRequest generates a request for the DeleteNetworkACL operation.
-func (c *EC2) DeleteNetworkACLRequest(input *DeleteNetworkACLInput) (req *aws.Request) {
+func (c *EC2) DeleteNetworkACLRequest(input *DeleteNetworkACLInput) (req *aws.Request, output *DeleteNetworkACLOutput) {
 	if opDeleteNetworkACL == nil {
 		opDeleteNetworkACL = &aws.Operation{
 			Name:       "DeleteNetworkAcl",
@@ -1236,13 +1268,15 @@ func (c *EC2) DeleteNetworkACLRequest(input *DeleteNetworkACLInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteNetworkACL, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteNetworkACL, input, output)
+	output = &DeleteNetworkACLOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteNetworkACL(input *DeleteNetworkACLInput) (err error) {
-	req := c.DeleteNetworkACLRequest(input)
+func (c *EC2) DeleteNetworkACL(input *DeleteNetworkACLInput) (output *DeleteNetworkACLOutput, err error) {
+	req, out := c.DeleteNetworkACLRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1250,7 +1284,7 @@ func (c *EC2) DeleteNetworkACL(input *DeleteNetworkACLInput) (err error) {
 var opDeleteNetworkACL *aws.Operation
 
 // DeleteNetworkACLEntryRequest generates a request for the DeleteNetworkACLEntry operation.
-func (c *EC2) DeleteNetworkACLEntryRequest(input *DeleteNetworkACLEntryInput) (req *aws.Request) {
+func (c *EC2) DeleteNetworkACLEntryRequest(input *DeleteNetworkACLEntryInput) (req *aws.Request, output *DeleteNetworkACLEntryOutput) {
 	if opDeleteNetworkACLEntry == nil {
 		opDeleteNetworkACLEntry = &aws.Operation{
 			Name:       "DeleteNetworkAclEntry",
@@ -1259,13 +1293,15 @@ func (c *EC2) DeleteNetworkACLEntryRequest(input *DeleteNetworkACLEntryInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteNetworkACLEntry, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteNetworkACLEntry, input, output)
+	output = &DeleteNetworkACLEntryOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteNetworkACLEntry(input *DeleteNetworkACLEntryInput) (err error) {
-	req := c.DeleteNetworkACLEntryRequest(input)
+func (c *EC2) DeleteNetworkACLEntry(input *DeleteNetworkACLEntryInput) (output *DeleteNetworkACLEntryOutput, err error) {
+	req, out := c.DeleteNetworkACLEntryRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1273,7 +1309,7 @@ func (c *EC2) DeleteNetworkACLEntry(input *DeleteNetworkACLEntryInput) (err erro
 var opDeleteNetworkACLEntry *aws.Operation
 
 // DeleteNetworkInterfaceRequest generates a request for the DeleteNetworkInterface operation.
-func (c *EC2) DeleteNetworkInterfaceRequest(input *DeleteNetworkInterfaceInput) (req *aws.Request) {
+func (c *EC2) DeleteNetworkInterfaceRequest(input *DeleteNetworkInterfaceInput) (req *aws.Request, output *DeleteNetworkInterfaceOutput) {
 	if opDeleteNetworkInterface == nil {
 		opDeleteNetworkInterface = &aws.Operation{
 			Name:       "DeleteNetworkInterface",
@@ -1282,13 +1318,15 @@ func (c *EC2) DeleteNetworkInterfaceRequest(input *DeleteNetworkInterfaceInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteNetworkInterface, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteNetworkInterface, input, output)
+	output = &DeleteNetworkInterfaceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteNetworkInterface(input *DeleteNetworkInterfaceInput) (err error) {
-	req := c.DeleteNetworkInterfaceRequest(input)
+func (c *EC2) DeleteNetworkInterface(input *DeleteNetworkInterfaceInput) (output *DeleteNetworkInterfaceOutput, err error) {
+	req, out := c.DeleteNetworkInterfaceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1296,7 +1334,7 @@ func (c *EC2) DeleteNetworkInterface(input *DeleteNetworkInterfaceInput) (err er
 var opDeleteNetworkInterface *aws.Operation
 
 // DeletePlacementGroupRequest generates a request for the DeletePlacementGroup operation.
-func (c *EC2) DeletePlacementGroupRequest(input *DeletePlacementGroupInput) (req *aws.Request) {
+func (c *EC2) DeletePlacementGroupRequest(input *DeletePlacementGroupInput) (req *aws.Request, output *DeletePlacementGroupOutput) {
 	if opDeletePlacementGroup == nil {
 		opDeletePlacementGroup = &aws.Operation{
 			Name:       "DeletePlacementGroup",
@@ -1305,13 +1343,15 @@ func (c *EC2) DeletePlacementGroupRequest(input *DeletePlacementGroupInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePlacementGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeletePlacementGroup, input, output)
+	output = &DeletePlacementGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeletePlacementGroup(input *DeletePlacementGroupInput) (err error) {
-	req := c.DeletePlacementGroupRequest(input)
+func (c *EC2) DeletePlacementGroup(input *DeletePlacementGroupInput) (output *DeletePlacementGroupOutput, err error) {
+	req, out := c.DeletePlacementGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1319,7 +1359,7 @@ func (c *EC2) DeletePlacementGroup(input *DeletePlacementGroupInput) (err error)
 var opDeletePlacementGroup *aws.Operation
 
 // DeleteRouteRequest generates a request for the DeleteRoute operation.
-func (c *EC2) DeleteRouteRequest(input *DeleteRouteInput) (req *aws.Request) {
+func (c *EC2) DeleteRouteRequest(input *DeleteRouteInput) (req *aws.Request, output *DeleteRouteOutput) {
 	if opDeleteRoute == nil {
 		opDeleteRoute = &aws.Operation{
 			Name:       "DeleteRoute",
@@ -1328,13 +1368,15 @@ func (c *EC2) DeleteRouteRequest(input *DeleteRouteInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteRoute, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteRoute, input, output)
+	output = &DeleteRouteOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteRoute(input *DeleteRouteInput) (err error) {
-	req := c.DeleteRouteRequest(input)
+func (c *EC2) DeleteRoute(input *DeleteRouteInput) (output *DeleteRouteOutput, err error) {
+	req, out := c.DeleteRouteRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1342,7 +1384,7 @@ func (c *EC2) DeleteRoute(input *DeleteRouteInput) (err error) {
 var opDeleteRoute *aws.Operation
 
 // DeleteRouteTableRequest generates a request for the DeleteRouteTable operation.
-func (c *EC2) DeleteRouteTableRequest(input *DeleteRouteTableInput) (req *aws.Request) {
+func (c *EC2) DeleteRouteTableRequest(input *DeleteRouteTableInput) (req *aws.Request, output *DeleteRouteTableOutput) {
 	if opDeleteRouteTable == nil {
 		opDeleteRouteTable = &aws.Operation{
 			Name:       "DeleteRouteTable",
@@ -1351,13 +1393,15 @@ func (c *EC2) DeleteRouteTableRequest(input *DeleteRouteTableInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteRouteTable, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteRouteTable, input, output)
+	output = &DeleteRouteTableOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteRouteTable(input *DeleteRouteTableInput) (err error) {
-	req := c.DeleteRouteTableRequest(input)
+func (c *EC2) DeleteRouteTable(input *DeleteRouteTableInput) (output *DeleteRouteTableOutput, err error) {
+	req, out := c.DeleteRouteTableRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1365,7 +1409,7 @@ func (c *EC2) DeleteRouteTable(input *DeleteRouteTableInput) (err error) {
 var opDeleteRouteTable *aws.Operation
 
 // DeleteSecurityGroupRequest generates a request for the DeleteSecurityGroup operation.
-func (c *EC2) DeleteSecurityGroupRequest(input *DeleteSecurityGroupInput) (req *aws.Request) {
+func (c *EC2) DeleteSecurityGroupRequest(input *DeleteSecurityGroupInput) (req *aws.Request, output *DeleteSecurityGroupOutput) {
 	if opDeleteSecurityGroup == nil {
 		opDeleteSecurityGroup = &aws.Operation{
 			Name:       "DeleteSecurityGroup",
@@ -1374,13 +1418,15 @@ func (c *EC2) DeleteSecurityGroupRequest(input *DeleteSecurityGroupInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSecurityGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteSecurityGroup, input, output)
+	output = &DeleteSecurityGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteSecurityGroup(input *DeleteSecurityGroupInput) (err error) {
-	req := c.DeleteSecurityGroupRequest(input)
+func (c *EC2) DeleteSecurityGroup(input *DeleteSecurityGroupInput) (output *DeleteSecurityGroupOutput, err error) {
+	req, out := c.DeleteSecurityGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1388,7 +1434,7 @@ func (c *EC2) DeleteSecurityGroup(input *DeleteSecurityGroupInput) (err error) {
 var opDeleteSecurityGroup *aws.Operation
 
 // DeleteSnapshotRequest generates a request for the DeleteSnapshot operation.
-func (c *EC2) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Request) {
+func (c *EC2) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Request, output *DeleteSnapshotOutput) {
 	if opDeleteSnapshot == nil {
 		opDeleteSnapshot = &aws.Operation{
 			Name:       "DeleteSnapshot",
@@ -1397,13 +1443,15 @@ func (c *EC2) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSnapshot, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteSnapshot, input, output)
+	output = &DeleteSnapshotOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteSnapshot(input *DeleteSnapshotInput) (err error) {
-	req := c.DeleteSnapshotRequest(input)
+func (c *EC2) DeleteSnapshot(input *DeleteSnapshotInput) (output *DeleteSnapshotOutput, err error) {
+	req, out := c.DeleteSnapshotRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1411,7 +1459,7 @@ func (c *EC2) DeleteSnapshot(input *DeleteSnapshotInput) (err error) {
 var opDeleteSnapshot *aws.Operation
 
 // DeleteSpotDatafeedSubscriptionRequest generates a request for the DeleteSpotDatafeedSubscription operation.
-func (c *EC2) DeleteSpotDatafeedSubscriptionRequest(input *DeleteSpotDatafeedSubscriptionInput) (req *aws.Request) {
+func (c *EC2) DeleteSpotDatafeedSubscriptionRequest(input *DeleteSpotDatafeedSubscriptionInput) (req *aws.Request, output *DeleteSpotDatafeedSubscriptionOutput) {
 	if opDeleteSpotDatafeedSubscription == nil {
 		opDeleteSpotDatafeedSubscription = &aws.Operation{
 			Name:       "DeleteSpotDatafeedSubscription",
@@ -1420,13 +1468,15 @@ func (c *EC2) DeleteSpotDatafeedSubscriptionRequest(input *DeleteSpotDatafeedSub
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSpotDatafeedSubscription, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteSpotDatafeedSubscription, input, output)
+	output = &DeleteSpotDatafeedSubscriptionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteSpotDatafeedSubscription(input *DeleteSpotDatafeedSubscriptionInput) (err error) {
-	req := c.DeleteSpotDatafeedSubscriptionRequest(input)
+func (c *EC2) DeleteSpotDatafeedSubscription(input *DeleteSpotDatafeedSubscriptionInput) (output *DeleteSpotDatafeedSubscriptionOutput, err error) {
+	req, out := c.DeleteSpotDatafeedSubscriptionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1434,7 +1484,7 @@ func (c *EC2) DeleteSpotDatafeedSubscription(input *DeleteSpotDatafeedSubscripti
 var opDeleteSpotDatafeedSubscription *aws.Operation
 
 // DeleteSubnetRequest generates a request for the DeleteSubnet operation.
-func (c *EC2) DeleteSubnetRequest(input *DeleteSubnetInput) (req *aws.Request) {
+func (c *EC2) DeleteSubnetRequest(input *DeleteSubnetInput) (req *aws.Request, output *DeleteSubnetOutput) {
 	if opDeleteSubnet == nil {
 		opDeleteSubnet = &aws.Operation{
 			Name:       "DeleteSubnet",
@@ -1443,13 +1493,15 @@ func (c *EC2) DeleteSubnetRequest(input *DeleteSubnetInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSubnet, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteSubnet, input, output)
+	output = &DeleteSubnetOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteSubnet(input *DeleteSubnetInput) (err error) {
-	req := c.DeleteSubnetRequest(input)
+func (c *EC2) DeleteSubnet(input *DeleteSubnetInput) (output *DeleteSubnetOutput, err error) {
+	req, out := c.DeleteSubnetRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1457,7 +1509,7 @@ func (c *EC2) DeleteSubnet(input *DeleteSubnetInput) (err error) {
 var opDeleteSubnet *aws.Operation
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
-func (c *EC2) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request) {
+func (c *EC2) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
 	if opDeleteTags == nil {
 		opDeleteTags = &aws.Operation{
 			Name:       "DeleteTags",
@@ -1466,13 +1518,15 @@ func (c *EC2) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTags, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteTags, input, output)
+	output = &DeleteTagsOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteTags(input *DeleteTagsInput) (err error) {
-	req := c.DeleteTagsRequest(input)
+func (c *EC2) DeleteTags(input *DeleteTagsInput) (output *DeleteTagsOutput, err error) {
+	req, out := c.DeleteTagsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1480,7 +1534,7 @@ func (c *EC2) DeleteTags(input *DeleteTagsInput) (err error) {
 var opDeleteTags *aws.Operation
 
 // DeleteVPCRequest generates a request for the DeleteVPC operation.
-func (c *EC2) DeleteVPCRequest(input *DeleteVPCInput) (req *aws.Request) {
+func (c *EC2) DeleteVPCRequest(input *DeleteVPCInput) (req *aws.Request, output *DeleteVPCOutput) {
 	if opDeleteVPC == nil {
 		opDeleteVPC = &aws.Operation{
 			Name:       "DeleteVpc",
@@ -1489,13 +1543,15 @@ func (c *EC2) DeleteVPCRequest(input *DeleteVPCInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVPC, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteVPC, input, output)
+	output = &DeleteVPCOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteVPC(input *DeleteVPCInput) (err error) {
-	req := c.DeleteVPCRequest(input)
+func (c *EC2) DeleteVPC(input *DeleteVPCInput) (output *DeleteVPCOutput, err error) {
+	req, out := c.DeleteVPCRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1528,7 +1584,7 @@ func (c *EC2) DeleteVPCPeeringConnection(input *DeleteVPCPeeringConnectionInput)
 var opDeleteVPCPeeringConnection *aws.Operation
 
 // DeleteVPNConnectionRequest generates a request for the DeleteVPNConnection operation.
-func (c *EC2) DeleteVPNConnectionRequest(input *DeleteVPNConnectionInput) (req *aws.Request) {
+func (c *EC2) DeleteVPNConnectionRequest(input *DeleteVPNConnectionInput) (req *aws.Request, output *DeleteVPNConnectionOutput) {
 	if opDeleteVPNConnection == nil {
 		opDeleteVPNConnection = &aws.Operation{
 			Name:       "DeleteVpnConnection",
@@ -1537,13 +1593,15 @@ func (c *EC2) DeleteVPNConnectionRequest(input *DeleteVPNConnectionInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVPNConnection, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteVPNConnection, input, output)
+	output = &DeleteVPNConnectionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteVPNConnection(input *DeleteVPNConnectionInput) (err error) {
-	req := c.DeleteVPNConnectionRequest(input)
+func (c *EC2) DeleteVPNConnection(input *DeleteVPNConnectionInput) (output *DeleteVPNConnectionOutput, err error) {
+	req, out := c.DeleteVPNConnectionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1551,7 +1609,7 @@ func (c *EC2) DeleteVPNConnection(input *DeleteVPNConnectionInput) (err error) {
 var opDeleteVPNConnection *aws.Operation
 
 // DeleteVPNConnectionRouteRequest generates a request for the DeleteVPNConnectionRoute operation.
-func (c *EC2) DeleteVPNConnectionRouteRequest(input *DeleteVPNConnectionRouteInput) (req *aws.Request) {
+func (c *EC2) DeleteVPNConnectionRouteRequest(input *DeleteVPNConnectionRouteInput) (req *aws.Request, output *DeleteVPNConnectionRouteOutput) {
 	if opDeleteVPNConnectionRoute == nil {
 		opDeleteVPNConnectionRoute = &aws.Operation{
 			Name:       "DeleteVpnConnectionRoute",
@@ -1560,13 +1618,15 @@ func (c *EC2) DeleteVPNConnectionRouteRequest(input *DeleteVPNConnectionRouteInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVPNConnectionRoute, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteVPNConnectionRoute, input, output)
+	output = &DeleteVPNConnectionRouteOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteVPNConnectionRoute(input *DeleteVPNConnectionRouteInput) (err error) {
-	req := c.DeleteVPNConnectionRouteRequest(input)
+func (c *EC2) DeleteVPNConnectionRoute(input *DeleteVPNConnectionRouteInput) (output *DeleteVPNConnectionRouteOutput, err error) {
+	req, out := c.DeleteVPNConnectionRouteRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1574,7 +1634,7 @@ func (c *EC2) DeleteVPNConnectionRoute(input *DeleteVPNConnectionRouteInput) (er
 var opDeleteVPNConnectionRoute *aws.Operation
 
 // DeleteVPNGatewayRequest generates a request for the DeleteVPNGateway operation.
-func (c *EC2) DeleteVPNGatewayRequest(input *DeleteVPNGatewayInput) (req *aws.Request) {
+func (c *EC2) DeleteVPNGatewayRequest(input *DeleteVPNGatewayInput) (req *aws.Request, output *DeleteVPNGatewayOutput) {
 	if opDeleteVPNGateway == nil {
 		opDeleteVPNGateway = &aws.Operation{
 			Name:       "DeleteVpnGateway",
@@ -1583,13 +1643,15 @@ func (c *EC2) DeleteVPNGatewayRequest(input *DeleteVPNGatewayInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVPNGateway, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteVPNGateway, input, output)
+	output = &DeleteVPNGatewayOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteVPNGateway(input *DeleteVPNGatewayInput) (err error) {
-	req := c.DeleteVPNGatewayRequest(input)
+func (c *EC2) DeleteVPNGateway(input *DeleteVPNGatewayInput) (output *DeleteVPNGatewayOutput, err error) {
+	req, out := c.DeleteVPNGatewayRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1597,7 +1659,7 @@ func (c *EC2) DeleteVPNGateway(input *DeleteVPNGatewayInput) (err error) {
 var opDeleteVPNGateway *aws.Operation
 
 // DeleteVolumeRequest generates a request for the DeleteVolume operation.
-func (c *EC2) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request) {
+func (c *EC2) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request, output *DeleteVolumeOutput) {
 	if opDeleteVolume == nil {
 		opDeleteVolume = &aws.Operation{
 			Name:       "DeleteVolume",
@@ -1606,13 +1668,15 @@ func (c *EC2) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVolume, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteVolume, input, output)
+	output = &DeleteVolumeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeleteVolume(input *DeleteVolumeInput) (err error) {
-	req := c.DeleteVolumeRequest(input)
+func (c *EC2) DeleteVolume(input *DeleteVolumeInput) (output *DeleteVolumeOutput, err error) {
+	req, out := c.DeleteVolumeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1620,7 +1684,7 @@ func (c *EC2) DeleteVolume(input *DeleteVolumeInput) (err error) {
 var opDeleteVolume *aws.Operation
 
 // DeregisterImageRequest generates a request for the DeregisterImage operation.
-func (c *EC2) DeregisterImageRequest(input *DeregisterImageInput) (req *aws.Request) {
+func (c *EC2) DeregisterImageRequest(input *DeregisterImageInput) (req *aws.Request, output *DeregisterImageOutput) {
 	if opDeregisterImage == nil {
 		opDeregisterImage = &aws.Operation{
 			Name:       "DeregisterImage",
@@ -1629,13 +1693,15 @@ func (c *EC2) DeregisterImageRequest(input *DeregisterImageInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterImage, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeregisterImage, input, output)
+	output = &DeregisterImageOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DeregisterImage(input *DeregisterImageInput) (err error) {
-	req := c.DeregisterImageRequest(input)
+func (c *EC2) DeregisterImage(input *DeregisterImageInput) (output *DeregisterImageOutput, err error) {
+	req, out := c.DeregisterImageRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2743,7 +2809,7 @@ func (c *EC2) DetachClassicLinkVPC(input *DetachClassicLinkVPCInput) (output *De
 var opDetachClassicLinkVPC *aws.Operation
 
 // DetachInternetGatewayRequest generates a request for the DetachInternetGateway operation.
-func (c *EC2) DetachInternetGatewayRequest(input *DetachInternetGatewayInput) (req *aws.Request) {
+func (c *EC2) DetachInternetGatewayRequest(input *DetachInternetGatewayInput) (req *aws.Request, output *DetachInternetGatewayOutput) {
 	if opDetachInternetGateway == nil {
 		opDetachInternetGateway = &aws.Operation{
 			Name:       "DetachInternetGateway",
@@ -2752,13 +2818,15 @@ func (c *EC2) DetachInternetGatewayRequest(input *DetachInternetGatewayInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachInternetGateway, input, nil)
-
+	req = aws.NewRequest(c.Service, opDetachInternetGateway, input, output)
+	output = &DetachInternetGatewayOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DetachInternetGateway(input *DetachInternetGatewayInput) (err error) {
-	req := c.DetachInternetGatewayRequest(input)
+func (c *EC2) DetachInternetGateway(input *DetachInternetGatewayInput) (output *DetachInternetGatewayOutput, err error) {
+	req, out := c.DetachInternetGatewayRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2766,7 +2834,7 @@ func (c *EC2) DetachInternetGateway(input *DetachInternetGatewayInput) (err erro
 var opDetachInternetGateway *aws.Operation
 
 // DetachNetworkInterfaceRequest generates a request for the DetachNetworkInterface operation.
-func (c *EC2) DetachNetworkInterfaceRequest(input *DetachNetworkInterfaceInput) (req *aws.Request) {
+func (c *EC2) DetachNetworkInterfaceRequest(input *DetachNetworkInterfaceInput) (req *aws.Request, output *DetachNetworkInterfaceOutput) {
 	if opDetachNetworkInterface == nil {
 		opDetachNetworkInterface = &aws.Operation{
 			Name:       "DetachNetworkInterface",
@@ -2775,13 +2843,15 @@ func (c *EC2) DetachNetworkInterfaceRequest(input *DetachNetworkInterfaceInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachNetworkInterface, input, nil)
-
+	req = aws.NewRequest(c.Service, opDetachNetworkInterface, input, output)
+	output = &DetachNetworkInterfaceOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DetachNetworkInterface(input *DetachNetworkInterfaceInput) (err error) {
-	req := c.DetachNetworkInterfaceRequest(input)
+func (c *EC2) DetachNetworkInterface(input *DetachNetworkInterfaceInput) (output *DetachNetworkInterfaceOutput, err error) {
+	req, out := c.DetachNetworkInterfaceRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2789,7 +2859,7 @@ func (c *EC2) DetachNetworkInterface(input *DetachNetworkInterfaceInput) (err er
 var opDetachNetworkInterface *aws.Operation
 
 // DetachVPNGatewayRequest generates a request for the DetachVPNGateway operation.
-func (c *EC2) DetachVPNGatewayRequest(input *DetachVPNGatewayInput) (req *aws.Request) {
+func (c *EC2) DetachVPNGatewayRequest(input *DetachVPNGatewayInput) (req *aws.Request, output *DetachVPNGatewayOutput) {
 	if opDetachVPNGateway == nil {
 		opDetachVPNGateway = &aws.Operation{
 			Name:       "DetachVpnGateway",
@@ -2798,13 +2868,15 @@ func (c *EC2) DetachVPNGatewayRequest(input *DetachVPNGatewayInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachVPNGateway, input, nil)
-
+	req = aws.NewRequest(c.Service, opDetachVPNGateway, input, output)
+	output = &DetachVPNGatewayOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DetachVPNGateway(input *DetachVPNGatewayInput) (err error) {
-	req := c.DetachVPNGatewayRequest(input)
+func (c *EC2) DetachVPNGateway(input *DetachVPNGatewayInput) (output *DetachVPNGatewayOutput, err error) {
+	req, out := c.DetachVPNGatewayRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2837,7 +2909,7 @@ func (c *EC2) DetachVolume(input *DetachVolumeInput) (output *VolumeAttachment, 
 var opDetachVolume *aws.Operation
 
 // DisableVGWRoutePropagationRequest generates a request for the DisableVGWRoutePropagation operation.
-func (c *EC2) DisableVGWRoutePropagationRequest(input *DisableVGWRoutePropagationInput) (req *aws.Request) {
+func (c *EC2) DisableVGWRoutePropagationRequest(input *DisableVGWRoutePropagationInput) (req *aws.Request, output *DisableVGWRoutePropagationOutput) {
 	if opDisableVGWRoutePropagation == nil {
 		opDisableVGWRoutePropagation = &aws.Operation{
 			Name:       "DisableVgwRoutePropagation",
@@ -2846,13 +2918,15 @@ func (c *EC2) DisableVGWRoutePropagationRequest(input *DisableVGWRoutePropagatio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableVGWRoutePropagation, input, nil)
-
+	req = aws.NewRequest(c.Service, opDisableVGWRoutePropagation, input, output)
+	output = &DisableVGWRoutePropagationOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DisableVGWRoutePropagation(input *DisableVGWRoutePropagationInput) (err error) {
-	req := c.DisableVGWRoutePropagationRequest(input)
+func (c *EC2) DisableVGWRoutePropagation(input *DisableVGWRoutePropagationInput) (output *DisableVGWRoutePropagationOutput, err error) {
+	req, out := c.DisableVGWRoutePropagationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2885,7 +2959,7 @@ func (c *EC2) DisableVPCClassicLink(input *DisableVPCClassicLinkInput) (output *
 var opDisableVPCClassicLink *aws.Operation
 
 // DisassociateAddressRequest generates a request for the DisassociateAddress operation.
-func (c *EC2) DisassociateAddressRequest(input *DisassociateAddressInput) (req *aws.Request) {
+func (c *EC2) DisassociateAddressRequest(input *DisassociateAddressInput) (req *aws.Request, output *DisassociateAddressOutput) {
 	if opDisassociateAddress == nil {
 		opDisassociateAddress = &aws.Operation{
 			Name:       "DisassociateAddress",
@@ -2894,13 +2968,15 @@ func (c *EC2) DisassociateAddressRequest(input *DisassociateAddressInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisassociateAddress, input, nil)
-
+	req = aws.NewRequest(c.Service, opDisassociateAddress, input, output)
+	output = &DisassociateAddressOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DisassociateAddress(input *DisassociateAddressInput) (err error) {
-	req := c.DisassociateAddressRequest(input)
+func (c *EC2) DisassociateAddress(input *DisassociateAddressInput) (output *DisassociateAddressOutput, err error) {
+	req, out := c.DisassociateAddressRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2908,7 +2984,7 @@ func (c *EC2) DisassociateAddress(input *DisassociateAddressInput) (err error) {
 var opDisassociateAddress *aws.Operation
 
 // DisassociateRouteTableRequest generates a request for the DisassociateRouteTable operation.
-func (c *EC2) DisassociateRouteTableRequest(input *DisassociateRouteTableInput) (req *aws.Request) {
+func (c *EC2) DisassociateRouteTableRequest(input *DisassociateRouteTableInput) (req *aws.Request, output *DisassociateRouteTableOutput) {
 	if opDisassociateRouteTable == nil {
 		opDisassociateRouteTable = &aws.Operation{
 			Name:       "DisassociateRouteTable",
@@ -2917,13 +2993,15 @@ func (c *EC2) DisassociateRouteTableRequest(input *DisassociateRouteTableInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisassociateRouteTable, input, nil)
-
+	req = aws.NewRequest(c.Service, opDisassociateRouteTable, input, output)
+	output = &DisassociateRouteTableOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) DisassociateRouteTable(input *DisassociateRouteTableInput) (err error) {
-	req := c.DisassociateRouteTableRequest(input)
+func (c *EC2) DisassociateRouteTable(input *DisassociateRouteTableInput) (output *DisassociateRouteTableOutput, err error) {
+	req, out := c.DisassociateRouteTableRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2931,7 +3009,7 @@ func (c *EC2) DisassociateRouteTable(input *DisassociateRouteTableInput) (err er
 var opDisassociateRouteTable *aws.Operation
 
 // EnableVGWRoutePropagationRequest generates a request for the EnableVGWRoutePropagation operation.
-func (c *EC2) EnableVGWRoutePropagationRequest(input *EnableVGWRoutePropagationInput) (req *aws.Request) {
+func (c *EC2) EnableVGWRoutePropagationRequest(input *EnableVGWRoutePropagationInput) (req *aws.Request, output *EnableVGWRoutePropagationOutput) {
 	if opEnableVGWRoutePropagation == nil {
 		opEnableVGWRoutePropagation = &aws.Operation{
 			Name:       "EnableVgwRoutePropagation",
@@ -2940,13 +3018,15 @@ func (c *EC2) EnableVGWRoutePropagationRequest(input *EnableVGWRoutePropagationI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableVGWRoutePropagation, input, nil)
-
+	req = aws.NewRequest(c.Service, opEnableVGWRoutePropagation, input, output)
+	output = &EnableVGWRoutePropagationOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) EnableVGWRoutePropagation(input *EnableVGWRoutePropagationInput) (err error) {
-	req := c.EnableVGWRoutePropagationRequest(input)
+func (c *EC2) EnableVGWRoutePropagation(input *EnableVGWRoutePropagationInput) (output *EnableVGWRoutePropagationOutput, err error) {
+	req, out := c.EnableVGWRoutePropagationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -2979,7 +3059,7 @@ func (c *EC2) EnableVPCClassicLink(input *EnableVPCClassicLinkInput) (output *En
 var opEnableVPCClassicLink *aws.Operation
 
 // EnableVolumeIORequest generates a request for the EnableVolumeIO operation.
-func (c *EC2) EnableVolumeIORequest(input *EnableVolumeIOInput) (req *aws.Request) {
+func (c *EC2) EnableVolumeIORequest(input *EnableVolumeIOInput) (req *aws.Request, output *EnableVolumeIOOutput) {
 	if opEnableVolumeIO == nil {
 		opEnableVolumeIO = &aws.Operation{
 			Name:       "EnableVolumeIO",
@@ -2988,13 +3068,15 @@ func (c *EC2) EnableVolumeIORequest(input *EnableVolumeIOInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableVolumeIO, input, nil)
-
+	req = aws.NewRequest(c.Service, opEnableVolumeIO, input, output)
+	output = &EnableVolumeIOOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) EnableVolumeIO(input *EnableVolumeIOInput) (err error) {
-	req := c.EnableVolumeIORequest(input)
+func (c *EC2) EnableVolumeIO(input *EnableVolumeIOInput) (output *EnableVolumeIOOutput, err error) {
+	req, out := c.EnableVolumeIORequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3127,7 +3209,7 @@ func (c *EC2) ImportVolume(input *ImportVolumeInput) (output *ImportVolumeOutput
 var opImportVolume *aws.Operation
 
 // ModifyImageAttributeRequest generates a request for the ModifyImageAttribute operation.
-func (c *EC2) ModifyImageAttributeRequest(input *ModifyImageAttributeInput) (req *aws.Request) {
+func (c *EC2) ModifyImageAttributeRequest(input *ModifyImageAttributeInput) (req *aws.Request, output *ModifyImageAttributeOutput) {
 	if opModifyImageAttribute == nil {
 		opModifyImageAttribute = &aws.Operation{
 			Name:       "ModifyImageAttribute",
@@ -3136,13 +3218,15 @@ func (c *EC2) ModifyImageAttributeRequest(input *ModifyImageAttributeInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyImageAttribute, input, nil)
-
+	req = aws.NewRequest(c.Service, opModifyImageAttribute, input, output)
+	output = &ModifyImageAttributeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ModifyImageAttribute(input *ModifyImageAttributeInput) (err error) {
-	req := c.ModifyImageAttributeRequest(input)
+func (c *EC2) ModifyImageAttribute(input *ModifyImageAttributeInput) (output *ModifyImageAttributeOutput, err error) {
+	req, out := c.ModifyImageAttributeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3150,7 +3234,7 @@ func (c *EC2) ModifyImageAttribute(input *ModifyImageAttributeInput) (err error)
 var opModifyImageAttribute *aws.Operation
 
 // ModifyInstanceAttributeRequest generates a request for the ModifyInstanceAttribute operation.
-func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput) (req *aws.Request) {
+func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput) (req *aws.Request, output *ModifyInstanceAttributeOutput) {
 	if opModifyInstanceAttribute == nil {
 		opModifyInstanceAttribute = &aws.Operation{
 			Name:       "ModifyInstanceAttribute",
@@ -3159,13 +3243,15 @@ func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyInstanceAttribute, input, nil)
-
+	req = aws.NewRequest(c.Service, opModifyInstanceAttribute, input, output)
+	output = &ModifyInstanceAttributeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ModifyInstanceAttribute(input *ModifyInstanceAttributeInput) (err error) {
-	req := c.ModifyInstanceAttributeRequest(input)
+func (c *EC2) ModifyInstanceAttribute(input *ModifyInstanceAttributeInput) (output *ModifyInstanceAttributeOutput, err error) {
+	req, out := c.ModifyInstanceAttributeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3173,7 +3259,7 @@ func (c *EC2) ModifyInstanceAttribute(input *ModifyInstanceAttributeInput) (err 
 var opModifyInstanceAttribute *aws.Operation
 
 // ModifyNetworkInterfaceAttributeRequest generates a request for the ModifyNetworkInterfaceAttribute operation.
-func (c *EC2) ModifyNetworkInterfaceAttributeRequest(input *ModifyNetworkInterfaceAttributeInput) (req *aws.Request) {
+func (c *EC2) ModifyNetworkInterfaceAttributeRequest(input *ModifyNetworkInterfaceAttributeInput) (req *aws.Request, output *ModifyNetworkInterfaceAttributeOutput) {
 	if opModifyNetworkInterfaceAttribute == nil {
 		opModifyNetworkInterfaceAttribute = &aws.Operation{
 			Name:       "ModifyNetworkInterfaceAttribute",
@@ -3182,13 +3268,15 @@ func (c *EC2) ModifyNetworkInterfaceAttributeRequest(input *ModifyNetworkInterfa
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyNetworkInterfaceAttribute, input, nil)
-
+	req = aws.NewRequest(c.Service, opModifyNetworkInterfaceAttribute, input, output)
+	output = &ModifyNetworkInterfaceAttributeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ModifyNetworkInterfaceAttribute(input *ModifyNetworkInterfaceAttributeInput) (err error) {
-	req := c.ModifyNetworkInterfaceAttributeRequest(input)
+func (c *EC2) ModifyNetworkInterfaceAttribute(input *ModifyNetworkInterfaceAttributeInput) (output *ModifyNetworkInterfaceAttributeOutput, err error) {
+	req, out := c.ModifyNetworkInterfaceAttributeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3221,7 +3309,7 @@ func (c *EC2) ModifyReservedInstances(input *ModifyReservedInstancesInput) (outp
 var opModifyReservedInstances *aws.Operation
 
 // ModifySnapshotAttributeRequest generates a request for the ModifySnapshotAttribute operation.
-func (c *EC2) ModifySnapshotAttributeRequest(input *ModifySnapshotAttributeInput) (req *aws.Request) {
+func (c *EC2) ModifySnapshotAttributeRequest(input *ModifySnapshotAttributeInput) (req *aws.Request, output *ModifySnapshotAttributeOutput) {
 	if opModifySnapshotAttribute == nil {
 		opModifySnapshotAttribute = &aws.Operation{
 			Name:       "ModifySnapshotAttribute",
@@ -3230,13 +3318,15 @@ func (c *EC2) ModifySnapshotAttributeRequest(input *ModifySnapshotAttributeInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifySnapshotAttribute, input, nil)
-
+	req = aws.NewRequest(c.Service, opModifySnapshotAttribute, input, output)
+	output = &ModifySnapshotAttributeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ModifySnapshotAttribute(input *ModifySnapshotAttributeInput) (err error) {
-	req := c.ModifySnapshotAttributeRequest(input)
+func (c *EC2) ModifySnapshotAttribute(input *ModifySnapshotAttributeInput) (output *ModifySnapshotAttributeOutput, err error) {
+	req, out := c.ModifySnapshotAttributeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3244,7 +3334,7 @@ func (c *EC2) ModifySnapshotAttribute(input *ModifySnapshotAttributeInput) (err 
 var opModifySnapshotAttribute *aws.Operation
 
 // ModifySubnetAttributeRequest generates a request for the ModifySubnetAttribute operation.
-func (c *EC2) ModifySubnetAttributeRequest(input *ModifySubnetAttributeInput) (req *aws.Request) {
+func (c *EC2) ModifySubnetAttributeRequest(input *ModifySubnetAttributeInput) (req *aws.Request, output *ModifySubnetAttributeOutput) {
 	if opModifySubnetAttribute == nil {
 		opModifySubnetAttribute = &aws.Operation{
 			Name:       "ModifySubnetAttribute",
@@ -3253,13 +3343,15 @@ func (c *EC2) ModifySubnetAttributeRequest(input *ModifySubnetAttributeInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifySubnetAttribute, input, nil)
-
+	req = aws.NewRequest(c.Service, opModifySubnetAttribute, input, output)
+	output = &ModifySubnetAttributeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ModifySubnetAttribute(input *ModifySubnetAttributeInput) (err error) {
-	req := c.ModifySubnetAttributeRequest(input)
+func (c *EC2) ModifySubnetAttribute(input *ModifySubnetAttributeInput) (output *ModifySubnetAttributeOutput, err error) {
+	req, out := c.ModifySubnetAttributeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3267,7 +3359,7 @@ func (c *EC2) ModifySubnetAttribute(input *ModifySubnetAttributeInput) (err erro
 var opModifySubnetAttribute *aws.Operation
 
 // ModifyVPCAttributeRequest generates a request for the ModifyVPCAttribute operation.
-func (c *EC2) ModifyVPCAttributeRequest(input *ModifyVPCAttributeInput) (req *aws.Request) {
+func (c *EC2) ModifyVPCAttributeRequest(input *ModifyVPCAttributeInput) (req *aws.Request, output *ModifyVPCAttributeOutput) {
 	if opModifyVPCAttribute == nil {
 		opModifyVPCAttribute = &aws.Operation{
 			Name:       "ModifyVpcAttribute",
@@ -3276,13 +3368,15 @@ func (c *EC2) ModifyVPCAttributeRequest(input *ModifyVPCAttributeInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyVPCAttribute, input, nil)
-
+	req = aws.NewRequest(c.Service, opModifyVPCAttribute, input, output)
+	output = &ModifyVPCAttributeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ModifyVPCAttribute(input *ModifyVPCAttributeInput) (err error) {
-	req := c.ModifyVPCAttributeRequest(input)
+func (c *EC2) ModifyVPCAttribute(input *ModifyVPCAttributeInput) (output *ModifyVPCAttributeOutput, err error) {
+	req, out := c.ModifyVPCAttributeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3290,7 +3384,7 @@ func (c *EC2) ModifyVPCAttribute(input *ModifyVPCAttributeInput) (err error) {
 var opModifyVPCAttribute *aws.Operation
 
 // ModifyVolumeAttributeRequest generates a request for the ModifyVolumeAttribute operation.
-func (c *EC2) ModifyVolumeAttributeRequest(input *ModifyVolumeAttributeInput) (req *aws.Request) {
+func (c *EC2) ModifyVolumeAttributeRequest(input *ModifyVolumeAttributeInput) (req *aws.Request, output *ModifyVolumeAttributeOutput) {
 	if opModifyVolumeAttribute == nil {
 		opModifyVolumeAttribute = &aws.Operation{
 			Name:       "ModifyVolumeAttribute",
@@ -3299,13 +3393,15 @@ func (c *EC2) ModifyVolumeAttributeRequest(input *ModifyVolumeAttributeInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyVolumeAttribute, input, nil)
-
+	req = aws.NewRequest(c.Service, opModifyVolumeAttribute, input, output)
+	output = &ModifyVolumeAttributeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ModifyVolumeAttribute(input *ModifyVolumeAttributeInput) (err error) {
-	req := c.ModifyVolumeAttributeRequest(input)
+func (c *EC2) ModifyVolumeAttribute(input *ModifyVolumeAttributeInput) (output *ModifyVolumeAttributeOutput, err error) {
+	req, out := c.ModifyVolumeAttributeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3363,7 +3459,7 @@ func (c *EC2) PurchaseReservedInstancesOffering(input *PurchaseReservedInstances
 var opPurchaseReservedInstancesOffering *aws.Operation
 
 // RebootInstancesRequest generates a request for the RebootInstances operation.
-func (c *EC2) RebootInstancesRequest(input *RebootInstancesInput) (req *aws.Request) {
+func (c *EC2) RebootInstancesRequest(input *RebootInstancesInput) (req *aws.Request, output *RebootInstancesOutput) {
 	if opRebootInstances == nil {
 		opRebootInstances = &aws.Operation{
 			Name:       "RebootInstances",
@@ -3372,13 +3468,15 @@ func (c *EC2) RebootInstancesRequest(input *RebootInstancesInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRebootInstances, input, nil)
-
+	req = aws.NewRequest(c.Service, opRebootInstances, input, output)
+	output = &RebootInstancesOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) RebootInstances(input *RebootInstancesInput) (err error) {
-	req := c.RebootInstancesRequest(input)
+func (c *EC2) RebootInstances(input *RebootInstancesInput) (output *RebootInstancesOutput, err error) {
+	req, out := c.RebootInstancesRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3436,7 +3534,7 @@ func (c *EC2) RejectVPCPeeringConnection(input *RejectVPCPeeringConnectionInput)
 var opRejectVPCPeeringConnection *aws.Operation
 
 // ReleaseAddressRequest generates a request for the ReleaseAddress operation.
-func (c *EC2) ReleaseAddressRequest(input *ReleaseAddressInput) (req *aws.Request) {
+func (c *EC2) ReleaseAddressRequest(input *ReleaseAddressInput) (req *aws.Request, output *ReleaseAddressOutput) {
 	if opReleaseAddress == nil {
 		opReleaseAddress = &aws.Operation{
 			Name:       "ReleaseAddress",
@@ -3445,13 +3543,15 @@ func (c *EC2) ReleaseAddressRequest(input *ReleaseAddressInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReleaseAddress, input, nil)
-
+	req = aws.NewRequest(c.Service, opReleaseAddress, input, output)
+	output = &ReleaseAddressOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ReleaseAddress(input *ReleaseAddressInput) (err error) {
-	req := c.ReleaseAddressRequest(input)
+func (c *EC2) ReleaseAddress(input *ReleaseAddressInput) (output *ReleaseAddressOutput, err error) {
+	req, out := c.ReleaseAddressRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3484,7 +3584,7 @@ func (c *EC2) ReplaceNetworkACLAssociation(input *ReplaceNetworkACLAssociationIn
 var opReplaceNetworkACLAssociation *aws.Operation
 
 // ReplaceNetworkACLEntryRequest generates a request for the ReplaceNetworkACLEntry operation.
-func (c *EC2) ReplaceNetworkACLEntryRequest(input *ReplaceNetworkACLEntryInput) (req *aws.Request) {
+func (c *EC2) ReplaceNetworkACLEntryRequest(input *ReplaceNetworkACLEntryInput) (req *aws.Request, output *ReplaceNetworkACLEntryOutput) {
 	if opReplaceNetworkACLEntry == nil {
 		opReplaceNetworkACLEntry = &aws.Operation{
 			Name:       "ReplaceNetworkAclEntry",
@@ -3493,13 +3593,15 @@ func (c *EC2) ReplaceNetworkACLEntryRequest(input *ReplaceNetworkACLEntryInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReplaceNetworkACLEntry, input, nil)
-
+	req = aws.NewRequest(c.Service, opReplaceNetworkACLEntry, input, output)
+	output = &ReplaceNetworkACLEntryOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ReplaceNetworkACLEntry(input *ReplaceNetworkACLEntryInput) (err error) {
-	req := c.ReplaceNetworkACLEntryRequest(input)
+func (c *EC2) ReplaceNetworkACLEntry(input *ReplaceNetworkACLEntryInput) (output *ReplaceNetworkACLEntryOutput, err error) {
+	req, out := c.ReplaceNetworkACLEntryRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3507,7 +3609,7 @@ func (c *EC2) ReplaceNetworkACLEntry(input *ReplaceNetworkACLEntryInput) (err er
 var opReplaceNetworkACLEntry *aws.Operation
 
 // ReplaceRouteRequest generates a request for the ReplaceRoute operation.
-func (c *EC2) ReplaceRouteRequest(input *ReplaceRouteInput) (req *aws.Request) {
+func (c *EC2) ReplaceRouteRequest(input *ReplaceRouteInput) (req *aws.Request, output *ReplaceRouteOutput) {
 	if opReplaceRoute == nil {
 		opReplaceRoute = &aws.Operation{
 			Name:       "ReplaceRoute",
@@ -3516,13 +3618,15 @@ func (c *EC2) ReplaceRouteRequest(input *ReplaceRouteInput) (req *aws.Request) {
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReplaceRoute, input, nil)
-
+	req = aws.NewRequest(c.Service, opReplaceRoute, input, output)
+	output = &ReplaceRouteOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ReplaceRoute(input *ReplaceRouteInput) (err error) {
-	req := c.ReplaceRouteRequest(input)
+func (c *EC2) ReplaceRoute(input *ReplaceRouteInput) (output *ReplaceRouteOutput, err error) {
+	req, out := c.ReplaceRouteRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3555,7 +3659,7 @@ func (c *EC2) ReplaceRouteTableAssociation(input *ReplaceRouteTableAssociationIn
 var opReplaceRouteTableAssociation *aws.Operation
 
 // ReportInstanceStatusRequest generates a request for the ReportInstanceStatus operation.
-func (c *EC2) ReportInstanceStatusRequest(input *ReportInstanceStatusInput) (req *aws.Request) {
+func (c *EC2) ReportInstanceStatusRequest(input *ReportInstanceStatusInput) (req *aws.Request, output *ReportInstanceStatusOutput) {
 	if opReportInstanceStatus == nil {
 		opReportInstanceStatus = &aws.Operation{
 			Name:       "ReportInstanceStatus",
@@ -3564,13 +3668,15 @@ func (c *EC2) ReportInstanceStatusRequest(input *ReportInstanceStatusInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReportInstanceStatus, input, nil)
-
+	req = aws.NewRequest(c.Service, opReportInstanceStatus, input, output)
+	output = &ReportInstanceStatusOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ReportInstanceStatus(input *ReportInstanceStatusInput) (err error) {
-	req := c.ReportInstanceStatusRequest(input)
+func (c *EC2) ReportInstanceStatus(input *ReportInstanceStatusInput) (output *ReportInstanceStatusOutput, err error) {
+	req, out := c.ReportInstanceStatusRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3603,7 +3709,7 @@ func (c *EC2) RequestSpotInstances(input *InputSpotInstancesInput) (output *Requ
 var opRequestSpotInstances *aws.Operation
 
 // ResetImageAttributeRequest generates a request for the ResetImageAttribute operation.
-func (c *EC2) ResetImageAttributeRequest(input *ResetImageAttributeInput) (req *aws.Request) {
+func (c *EC2) ResetImageAttributeRequest(input *ResetImageAttributeInput) (req *aws.Request, output *ResetImageAttributeOutput) {
 	if opResetImageAttribute == nil {
 		opResetImageAttribute = &aws.Operation{
 			Name:       "ResetImageAttribute",
@@ -3612,13 +3718,15 @@ func (c *EC2) ResetImageAttributeRequest(input *ResetImageAttributeInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetImageAttribute, input, nil)
-
+	req = aws.NewRequest(c.Service, opResetImageAttribute, input, output)
+	output = &ResetImageAttributeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ResetImageAttribute(input *ResetImageAttributeInput) (err error) {
-	req := c.ResetImageAttributeRequest(input)
+func (c *EC2) ResetImageAttribute(input *ResetImageAttributeInput) (output *ResetImageAttributeOutput, err error) {
+	req, out := c.ResetImageAttributeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3626,7 +3734,7 @@ func (c *EC2) ResetImageAttribute(input *ResetImageAttributeInput) (err error) {
 var opResetImageAttribute *aws.Operation
 
 // ResetInstanceAttributeRequest generates a request for the ResetInstanceAttribute operation.
-func (c *EC2) ResetInstanceAttributeRequest(input *ResetInstanceAttributeInput) (req *aws.Request) {
+func (c *EC2) ResetInstanceAttributeRequest(input *ResetInstanceAttributeInput) (req *aws.Request, output *ResetInstanceAttributeOutput) {
 	if opResetInstanceAttribute == nil {
 		opResetInstanceAttribute = &aws.Operation{
 			Name:       "ResetInstanceAttribute",
@@ -3635,13 +3743,15 @@ func (c *EC2) ResetInstanceAttributeRequest(input *ResetInstanceAttributeInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetInstanceAttribute, input, nil)
-
+	req = aws.NewRequest(c.Service, opResetInstanceAttribute, input, output)
+	output = &ResetInstanceAttributeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ResetInstanceAttribute(input *ResetInstanceAttributeInput) (err error) {
-	req := c.ResetInstanceAttributeRequest(input)
+func (c *EC2) ResetInstanceAttribute(input *ResetInstanceAttributeInput) (output *ResetInstanceAttributeOutput, err error) {
+	req, out := c.ResetInstanceAttributeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3649,7 +3759,7 @@ func (c *EC2) ResetInstanceAttribute(input *ResetInstanceAttributeInput) (err er
 var opResetInstanceAttribute *aws.Operation
 
 // ResetNetworkInterfaceAttributeRequest generates a request for the ResetNetworkInterfaceAttribute operation.
-func (c *EC2) ResetNetworkInterfaceAttributeRequest(input *ResetNetworkInterfaceAttributeInput) (req *aws.Request) {
+func (c *EC2) ResetNetworkInterfaceAttributeRequest(input *ResetNetworkInterfaceAttributeInput) (req *aws.Request, output *ResetNetworkInterfaceAttributeOutput) {
 	if opResetNetworkInterfaceAttribute == nil {
 		opResetNetworkInterfaceAttribute = &aws.Operation{
 			Name:       "ResetNetworkInterfaceAttribute",
@@ -3658,13 +3768,15 @@ func (c *EC2) ResetNetworkInterfaceAttributeRequest(input *ResetNetworkInterface
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetNetworkInterfaceAttribute, input, nil)
-
+	req = aws.NewRequest(c.Service, opResetNetworkInterfaceAttribute, input, output)
+	output = &ResetNetworkInterfaceAttributeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ResetNetworkInterfaceAttribute(input *ResetNetworkInterfaceAttributeInput) (err error) {
-	req := c.ResetNetworkInterfaceAttributeRequest(input)
+func (c *EC2) ResetNetworkInterfaceAttribute(input *ResetNetworkInterfaceAttributeInput) (output *ResetNetworkInterfaceAttributeOutput, err error) {
+	req, out := c.ResetNetworkInterfaceAttributeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3672,7 +3784,7 @@ func (c *EC2) ResetNetworkInterfaceAttribute(input *ResetNetworkInterfaceAttribu
 var opResetNetworkInterfaceAttribute *aws.Operation
 
 // ResetSnapshotAttributeRequest generates a request for the ResetSnapshotAttribute operation.
-func (c *EC2) ResetSnapshotAttributeRequest(input *ResetSnapshotAttributeInput) (req *aws.Request) {
+func (c *EC2) ResetSnapshotAttributeRequest(input *ResetSnapshotAttributeInput) (req *aws.Request, output *ResetSnapshotAttributeOutput) {
 	if opResetSnapshotAttribute == nil {
 		opResetSnapshotAttribute = &aws.Operation{
 			Name:       "ResetSnapshotAttribute",
@@ -3681,13 +3793,15 @@ func (c *EC2) ResetSnapshotAttributeRequest(input *ResetSnapshotAttributeInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetSnapshotAttribute, input, nil)
-
+	req = aws.NewRequest(c.Service, opResetSnapshotAttribute, input, output)
+	output = &ResetSnapshotAttributeOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) ResetSnapshotAttribute(input *ResetSnapshotAttributeInput) (err error) {
-	req := c.ResetSnapshotAttributeRequest(input)
+func (c *EC2) ResetSnapshotAttribute(input *ResetSnapshotAttributeInput) (output *ResetSnapshotAttributeOutput, err error) {
+	req, out := c.ResetSnapshotAttributeRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3695,7 +3809,7 @@ func (c *EC2) ResetSnapshotAttribute(input *ResetSnapshotAttributeInput) (err er
 var opResetSnapshotAttribute *aws.Operation
 
 // RevokeSecurityGroupEgressRequest generates a request for the RevokeSecurityGroupEgress operation.
-func (c *EC2) RevokeSecurityGroupEgressRequest(input *RevokeSecurityGroupEgressInput) (req *aws.Request) {
+func (c *EC2) RevokeSecurityGroupEgressRequest(input *RevokeSecurityGroupEgressInput) (req *aws.Request, output *RevokeSecurityGroupEgressOutput) {
 	if opRevokeSecurityGroupEgress == nil {
 		opRevokeSecurityGroupEgress = &aws.Operation{
 			Name:       "RevokeSecurityGroupEgress",
@@ -3704,13 +3818,15 @@ func (c *EC2) RevokeSecurityGroupEgressRequest(input *RevokeSecurityGroupEgressI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRevokeSecurityGroupEgress, input, nil)
-
+	req = aws.NewRequest(c.Service, opRevokeSecurityGroupEgress, input, output)
+	output = &RevokeSecurityGroupEgressOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) RevokeSecurityGroupEgress(input *RevokeSecurityGroupEgressInput) (err error) {
-	req := c.RevokeSecurityGroupEgressRequest(input)
+func (c *EC2) RevokeSecurityGroupEgress(input *RevokeSecurityGroupEgressInput) (output *RevokeSecurityGroupEgressOutput, err error) {
+	req, out := c.RevokeSecurityGroupEgressRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3718,7 +3834,7 @@ func (c *EC2) RevokeSecurityGroupEgress(input *RevokeSecurityGroupEgressInput) (
 var opRevokeSecurityGroupEgress *aws.Operation
 
 // RevokeSecurityGroupIngressRequest generates a request for the RevokeSecurityGroupIngress operation.
-func (c *EC2) RevokeSecurityGroupIngressRequest(input *RevokeSecurityGroupIngressInput) (req *aws.Request) {
+func (c *EC2) RevokeSecurityGroupIngressRequest(input *RevokeSecurityGroupIngressInput) (req *aws.Request, output *RevokeSecurityGroupIngressOutput) {
 	if opRevokeSecurityGroupIngress == nil {
 		opRevokeSecurityGroupIngress = &aws.Operation{
 			Name:       "RevokeSecurityGroupIngress",
@@ -3727,13 +3843,15 @@ func (c *EC2) RevokeSecurityGroupIngressRequest(input *RevokeSecurityGroupIngres
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRevokeSecurityGroupIngress, input, nil)
-
+	req = aws.NewRequest(c.Service, opRevokeSecurityGroupIngress, input, output)
+	output = &RevokeSecurityGroupIngressOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) RevokeSecurityGroupIngress(input *RevokeSecurityGroupIngressInput) (err error) {
-	req := c.RevokeSecurityGroupIngressRequest(input)
+func (c *EC2) RevokeSecurityGroupIngress(input *RevokeSecurityGroupIngressInput) (output *RevokeSecurityGroupIngressOutput, err error) {
+	req, out := c.RevokeSecurityGroupIngressRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3841,7 +3959,7 @@ func (c *EC2) TerminateInstances(input *TerminateInstancesInput) (output *Termin
 var opTerminateInstances *aws.Operation
 
 // UnassignPrivateIPAddressesRequest generates a request for the UnassignPrivateIPAddresses operation.
-func (c *EC2) UnassignPrivateIPAddressesRequest(input *UnassignPrivateIPAddressesInput) (req *aws.Request) {
+func (c *EC2) UnassignPrivateIPAddressesRequest(input *UnassignPrivateIPAddressesInput) (req *aws.Request, output *UnassignPrivateIPAddressesOutput) {
 	if opUnassignPrivateIPAddresses == nil {
 		opUnassignPrivateIPAddresses = &aws.Operation{
 			Name:       "UnassignPrivateIpAddresses",
@@ -3850,13 +3968,15 @@ func (c *EC2) UnassignPrivateIPAddressesRequest(input *UnassignPrivateIPAddresse
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnassignPrivateIPAddresses, input, nil)
-
+	req = aws.NewRequest(c.Service, opUnassignPrivateIPAddresses, input, output)
+	output = &UnassignPrivateIPAddressesOutput{}
+	req.Data = output
 	return
 }
 
-func (c *EC2) UnassignPrivateIPAddresses(input *UnassignPrivateIPAddressesInput) (err error) {
-	req := c.UnassignPrivateIPAddressesRequest(input)
+func (c *EC2) UnassignPrivateIPAddresses(input *UnassignPrivateIPAddressesInput) (output *UnassignPrivateIPAddressesOutput, err error) {
+	req, out := c.UnassignPrivateIPAddressesRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -3983,6 +4103,14 @@ type metadataAssignPrivateIPAddressesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId"`
 }
 
+type AssignPrivateIPAddressesOutput struct {
+	metadataAssignPrivateIPAddressesOutput `json:"-", xml:"-"`
+}
+
+type metadataAssignPrivateIPAddressesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type AssociateAddressInput struct {
 	AllocationID       *string `locationName:"AllocationId" type:"string"`
 	AllowReassociation *bool   `locationName:"allowReassociation" type:"boolean"`
@@ -4019,6 +4147,14 @@ type AssociateDHCPOptionsInput struct {
 
 type metadataAssociateDHCPOptionsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DhcpOptionsId,VpcId"`
+}
+
+type AssociateDHCPOptionsOutput struct {
+	metadataAssociateDHCPOptionsOutput `json:"-", xml:"-"`
+}
+
+type metadataAssociateDHCPOptionsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssociateRouteTableInput struct {
@@ -4076,6 +4212,14 @@ type AttachInternetGatewayInput struct {
 
 type metadataAttachInternetGatewayInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InternetGatewayId,VpcId"`
+}
+
+type AttachInternetGatewayOutput struct {
+	metadataAttachInternetGatewayOutput `json:"-", xml:"-"`
+}
+
+type metadataAttachInternetGatewayOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachNetworkInterfaceInput struct {
@@ -4174,6 +4318,14 @@ type metadataAuthorizeSecurityGroupEgressInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupId"`
 }
 
+type AuthorizeSecurityGroupEgressOutput struct {
+	metadataAuthorizeSecurityGroupEgressOutput `json:"-", xml:"-"`
+}
+
+type metadataAuthorizeSecurityGroupEgressOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type AuthorizeSecurityGroupIngressInput struct {
 	CIDRIP                     *string         `locationName:"CidrIp" type:"string"`
 	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
@@ -4190,6 +4342,14 @@ type AuthorizeSecurityGroupIngressInput struct {
 }
 
 type metadataAuthorizeSecurityGroupIngressInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type AuthorizeSecurityGroupIngressOutput struct {
+	metadataAuthorizeSecurityGroupIngressOutput `json:"-", xml:"-"`
+}
+
+type metadataAuthorizeSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -4322,6 +4482,14 @@ type metadataCancelConversionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ConversionTaskId"`
 }
 
+type CancelConversionTaskOutput struct {
+	metadataCancelConversionTaskOutput `json:"-", xml:"-"`
+}
+
+type metadataCancelConversionTaskOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type CancelExportTaskInput struct {
 	ExportTaskID *string `locationName:"exportTaskId" type:"string"`
 
@@ -4330,6 +4498,14 @@ type CancelExportTaskInput struct {
 
 type metadataCancelExportTaskInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ExportTaskId"`
+}
+
+type CancelExportTaskOutput struct {
+	metadataCancelExportTaskOutput `json:"-", xml:"-"`
+}
+
+type metadataCancelExportTaskOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CancelReservedInstancesListingInput struct {
@@ -4626,6 +4802,14 @@ type metadataCreateNetworkACLEntryInput struct {
 	SDKShapeTraits bool `type:"structure" required:"NetworkAclId,RuleNumber,Protocol,RuleAction,Egress,CidrBlock"`
 }
 
+type CreateNetworkACLEntryOutput struct {
+	metadataCreateNetworkACLEntryOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateNetworkACLEntryOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type CreateNetworkACLInput struct {
 	DryRun *bool   `locationName:"dryRun" type:"boolean"`
 	VPCID  *string `locationName:"vpcId" type:"string"`
@@ -4685,6 +4869,14 @@ type metadataCreatePlacementGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupName,Strategy"`
 }
 
+type CreatePlacementGroupOutput struct {
+	metadataCreatePlacementGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataCreatePlacementGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type CreateReservedInstancesListingInput struct {
 	ClientToken         *string                       `locationName:"clientToken" type:"string"`
 	InstanceCount       *int                          `locationName:"instanceCount" type:"integer"`
@@ -4722,6 +4914,14 @@ type CreateRouteInput struct {
 
 type metadataCreateRouteInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RouteTableId,DestinationCidrBlock"`
+}
+
+type CreateRouteOutput struct {
+	metadataCreateRouteOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateRouteOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateRouteTableInput struct {
@@ -4837,6 +5037,14 @@ type metadataCreateTagsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Resources,Tags"`
 }
 
+type CreateTagsOutput struct {
+	metadataCreateTagsOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateTagsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type CreateVPCInput struct {
 	CIDRBlock       *string `locationName:"CidrBlock" type:"string"`
 	DryRun          *bool   `locationName:"dryRun" type:"boolean"`
@@ -4915,6 +5123,14 @@ type CreateVPNConnectionRouteInput struct {
 
 type metadataCreateVPNConnectionRouteInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VpnConnectionId,DestinationCidrBlock"`
+}
+
+type CreateVPNConnectionRouteOutput struct {
+	metadataCreateVPNConnectionRouteOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateVPNConnectionRouteOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateVPNGatewayInput struct {
@@ -5027,6 +5243,14 @@ type metadataDeleteCustomerGatewayInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CustomerGatewayId"`
 }
 
+type DeleteCustomerGatewayOutput struct {
+	metadataDeleteCustomerGatewayOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteCustomerGatewayOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteDHCPOptionsInput struct {
 	DHCPOptionsID *string `locationName:"DhcpOptionsId" type:"string"`
 	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
@@ -5036,6 +5260,14 @@ type DeleteDHCPOptionsInput struct {
 
 type metadataDeleteDHCPOptionsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DhcpOptionsId"`
+}
+
+type DeleteDHCPOptionsOutput struct {
+	metadataDeleteDHCPOptionsOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteDHCPOptionsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteInternetGatewayInput struct {
@@ -5049,6 +5281,14 @@ type metadataDeleteInternetGatewayInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InternetGatewayId"`
 }
 
+type DeleteInternetGatewayOutput struct {
+	metadataDeleteInternetGatewayOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteInternetGatewayOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteKeyPairInput struct {
 	DryRun  *bool   `locationName:"dryRun" type:"boolean"`
 	KeyName *string `type:"string"`
@@ -5058,6 +5298,14 @@ type DeleteKeyPairInput struct {
 
 type metadataDeleteKeyPairInput struct {
 	SDKShapeTraits bool `type:"structure" required:"KeyName"`
+}
+
+type DeleteKeyPairOutput struct {
+	metadataDeleteKeyPairOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteKeyPairOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteNetworkACLEntryInput struct {
@@ -5073,6 +5321,14 @@ type metadataDeleteNetworkACLEntryInput struct {
 	SDKShapeTraits bool `type:"structure" required:"NetworkAclId,RuleNumber,Egress"`
 }
 
+type DeleteNetworkACLEntryOutput struct {
+	metadataDeleteNetworkACLEntryOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteNetworkACLEntryOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteNetworkACLInput struct {
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
 	NetworkACLID *string `locationName:"networkAclId" type:"string"`
@@ -5082,6 +5338,14 @@ type DeleteNetworkACLInput struct {
 
 type metadataDeleteNetworkACLInput struct {
 	SDKShapeTraits bool `type:"structure" required:"NetworkAclId"`
+}
+
+type DeleteNetworkACLOutput struct {
+	metadataDeleteNetworkACLOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteNetworkACLOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteNetworkInterfaceInput struct {
@@ -5095,6 +5359,14 @@ type metadataDeleteNetworkInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId"`
 }
 
+type DeleteNetworkInterfaceOutput struct {
+	metadataDeleteNetworkInterfaceOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteNetworkInterfaceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeletePlacementGroupInput struct {
 	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
 	GroupName *string `locationName:"groupName" type:"string"`
@@ -5104,6 +5376,14 @@ type DeletePlacementGroupInput struct {
 
 type metadataDeletePlacementGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupName"`
+}
+
+type DeletePlacementGroupOutput struct {
+	metadataDeletePlacementGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataDeletePlacementGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteRouteInput struct {
@@ -5118,6 +5398,14 @@ type metadataDeleteRouteInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RouteTableId,DestinationCidrBlock"`
 }
 
+type DeleteRouteOutput struct {
+	metadataDeleteRouteOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteRouteOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteRouteTableInput struct {
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
 	RouteTableID *string `locationName:"routeTableId" type:"string"`
@@ -5127,6 +5415,14 @@ type DeleteRouteTableInput struct {
 
 type metadataDeleteRouteTableInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RouteTableId"`
+}
+
+type DeleteRouteTableOutput struct {
+	metadataDeleteRouteTableOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteRouteTableOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteSecurityGroupInput struct {
@@ -5141,6 +5437,14 @@ type metadataDeleteSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type DeleteSecurityGroupOutput struct {
+	metadataDeleteSecurityGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteSecurityGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteSnapshotInput struct {
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
 	SnapshotID *string `locationName:"SnapshotId" type:"string"`
@@ -5152,6 +5456,14 @@ type metadataDeleteSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SnapshotId"`
 }
 
+type DeleteSnapshotOutput struct {
+	metadataDeleteSnapshotOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteSnapshotOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteSpotDatafeedSubscriptionInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
@@ -5159,6 +5471,14 @@ type DeleteSpotDatafeedSubscriptionInput struct {
 }
 
 type metadataDeleteSpotDatafeedSubscriptionInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DeleteSpotDatafeedSubscriptionOutput struct {
+	metadataDeleteSpotDatafeedSubscriptionOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteSpotDatafeedSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -5173,6 +5493,14 @@ type metadataDeleteSubnetInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubnetId"`
 }
 
+type DeleteSubnetOutput struct {
+	metadataDeleteSubnetOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteSubnetOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteTagsInput struct {
 	DryRun    *bool     `locationName:"dryRun" type:"boolean"`
 	Resources []*string `locationName:"resourceId" type:"list"`
@@ -5185,6 +5513,14 @@ type metadataDeleteTagsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Resources"`
 }
 
+type DeleteTagsOutput struct {
+	metadataDeleteTagsOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteTagsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteVPCInput struct {
 	DryRun *bool   `locationName:"dryRun" type:"boolean"`
 	VPCID  *string `locationName:"VpcId" type:"string"`
@@ -5194,6 +5530,14 @@ type DeleteVPCInput struct {
 
 type metadataDeleteVPCInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VpcId"`
+}
+
+type DeleteVPCOutput struct {
+	metadataDeleteVPCOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteVPCOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteVPCPeeringConnectionInput struct {
@@ -5228,6 +5572,14 @@ type metadataDeleteVPNConnectionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VpnConnectionId"`
 }
 
+type DeleteVPNConnectionOutput struct {
+	metadataDeleteVPNConnectionOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteVPNConnectionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteVPNConnectionRouteInput struct {
 	DestinationCIDRBlock *string `locationName:"DestinationCidrBlock" type:"string"`
 	VPNConnectionID      *string `locationName:"VpnConnectionId" type:"string"`
@@ -5237,6 +5589,14 @@ type DeleteVPNConnectionRouteInput struct {
 
 type metadataDeleteVPNConnectionRouteInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VpnConnectionId,DestinationCidrBlock"`
+}
+
+type DeleteVPNConnectionRouteOutput struct {
+	metadataDeleteVPNConnectionRouteOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteVPNConnectionRouteOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteVPNGatewayInput struct {
@@ -5250,6 +5610,14 @@ type metadataDeleteVPNGatewayInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VpnGatewayId"`
 }
 
+type DeleteVPNGatewayOutput struct {
+	metadataDeleteVPNGatewayOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteVPNGatewayOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteVolumeInput struct {
 	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
 	VolumeID *string `locationName:"VolumeId" type:"string"`
@@ -5261,6 +5629,14 @@ type metadataDeleteVolumeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VolumeId"`
 }
 
+type DeleteVolumeOutput struct {
+	metadataDeleteVolumeOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteVolumeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeregisterImageInput struct {
 	DryRun  *bool   `locationName:"dryRun" type:"boolean"`
 	ImageID *string `locationName:"ImageId" type:"string"`
@@ -5270,6 +5646,14 @@ type DeregisterImageInput struct {
 
 type metadataDeregisterImageInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ImageId"`
+}
+
+type DeregisterImageOutput struct {
+	metadataDeregisterImageOutput `json:"-", xml:"-"`
+}
+
+type metadataDeregisterImageOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAccountAttributesInput struct {
@@ -6282,6 +6666,14 @@ type metadataDetachInternetGatewayInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InternetGatewayId,VpcId"`
 }
 
+type DetachInternetGatewayOutput struct {
+	metadataDetachInternetGatewayOutput `json:"-", xml:"-"`
+}
+
+type metadataDetachInternetGatewayOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DetachNetworkInterfaceInput struct {
 	AttachmentID *string `locationName:"attachmentId" type:"string"`
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
@@ -6294,6 +6686,14 @@ type metadataDetachNetworkInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AttachmentId"`
 }
 
+type DetachNetworkInterfaceOutput struct {
+	metadataDetachNetworkInterfaceOutput `json:"-", xml:"-"`
+}
+
+type metadataDetachNetworkInterfaceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DetachVPNGatewayInput struct {
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
 	VPCID        *string `locationName:"VpcId" type:"string"`
@@ -6304,6 +6704,14 @@ type DetachVPNGatewayInput struct {
 
 type metadataDetachVPNGatewayInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VpnGatewayId,VpcId"`
+}
+
+type DetachVPNGatewayOutput struct {
+	metadataDetachVPNGatewayOutput `json:"-", xml:"-"`
+}
+
+type metadataDetachVPNGatewayOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachVolumeInput struct {
@@ -6329,6 +6737,14 @@ type DisableVGWRoutePropagationInput struct {
 
 type metadataDisableVGWRoutePropagationInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RouteTableId,GatewayId"`
+}
+
+type DisableVGWRoutePropagationOutput struct {
+	metadataDisableVGWRoutePropagationOutput `json:"-", xml:"-"`
+}
+
+type metadataDisableVGWRoutePropagationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableVPCClassicLinkInput struct {
@@ -6364,6 +6780,14 @@ type metadataDisassociateAddressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type DisassociateAddressOutput struct {
+	metadataDisassociateAddressOutput `json:"-", xml:"-"`
+}
+
+type metadataDisassociateAddressOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DisassociateRouteTableInput struct {
 	AssociationID *string `locationName:"associationId" type:"string"`
 	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
@@ -6373,6 +6797,14 @@ type DisassociateRouteTableInput struct {
 
 type metadataDisassociateRouteTableInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AssociationId"`
+}
+
+type DisassociateRouteTableOutput struct {
+	metadataDisassociateRouteTableOutput `json:"-", xml:"-"`
+}
+
+type metadataDisassociateRouteTableOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DiskImage struct {
@@ -6473,6 +6905,14 @@ type metadataEnableVGWRoutePropagationInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RouteTableId,GatewayId"`
 }
 
+type EnableVGWRoutePropagationOutput struct {
+	metadataEnableVGWRoutePropagationOutput `json:"-", xml:"-"`
+}
+
+type metadataEnableVGWRoutePropagationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type EnableVPCClassicLinkInput struct {
 	DryRun *bool   `locationName:"dryRun" type:"boolean"`
 	VPCID  *string `locationName:"vpcId" type:"string"`
@@ -6503,6 +6943,14 @@ type EnableVolumeIOInput struct {
 
 type metadataEnableVolumeIOInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VolumeId"`
+}
+
+type EnableVolumeIOOutput struct {
+	metadataEnableVolumeIOOutput `json:"-", xml:"-"`
+}
+
+type metadataEnableVolumeIOOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ExportTask struct {
@@ -7264,6 +7712,14 @@ type metadataModifyImageAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ImageId"`
 }
 
+type ModifyImageAttributeOutput struct {
+	metadataModifyImageAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataModifyImageAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type ModifyInstanceAttributeInput struct {
 	Attribute                         *string                                    `locationName:"attribute" type:"string"`
 	BlockDeviceMappings               []*InstanceBlockDeviceMappingSpecification `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
@@ -7288,6 +7744,14 @@ type metadataModifyInstanceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId"`
 }
 
+type ModifyInstanceAttributeOutput struct {
+	metadataModifyInstanceAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataModifyInstanceAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type ModifyNetworkInterfaceAttributeInput struct {
 	Attachment         *NetworkInterfaceAttachmentChanges `locationName:"attachment" type:"structure"`
 	Description        *AttributeValue                    `locationName:"description" type:"structure"`
@@ -7301,6 +7765,14 @@ type ModifyNetworkInterfaceAttributeInput struct {
 
 type metadataModifyNetworkInterfaceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId"`
+}
+
+type ModifyNetworkInterfaceAttributeOutput struct {
+	metadataModifyNetworkInterfaceAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataModifyNetworkInterfaceAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyReservedInstancesInput struct {
@@ -7341,6 +7813,14 @@ type metadataModifySnapshotAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SnapshotId"`
 }
 
+type ModifySnapshotAttributeOutput struct {
+	metadataModifySnapshotAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataModifySnapshotAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type ModifySubnetAttributeInput struct {
 	MapPublicIPOnLaunch *AttributeBooleanValue `locationName:"MapPublicIpOnLaunch" type:"structure"`
 	SubnetID            *string                `locationName:"subnetId" type:"string"`
@@ -7350,6 +7830,14 @@ type ModifySubnetAttributeInput struct {
 
 type metadataModifySubnetAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubnetId"`
+}
+
+type ModifySubnetAttributeOutput struct {
+	metadataModifySubnetAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataModifySubnetAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyVPCAttributeInput struct {
@@ -7364,6 +7852,14 @@ type metadataModifyVPCAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VpcId"`
 }
 
+type ModifyVPCAttributeOutput struct {
+	metadataModifyVPCAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataModifyVPCAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type ModifyVolumeAttributeInput struct {
 	AutoEnableIO *AttributeBooleanValue `type:"structure"`
 	DryRun       *bool                  `locationName:"dryRun" type:"boolean"`
@@ -7374,6 +7870,14 @@ type ModifyVolumeAttributeInput struct {
 
 type metadataModifyVolumeAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"VolumeId"`
+}
+
+type ModifyVolumeAttributeOutput struct {
+	metadataModifyVolumeAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataModifyVolumeAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type MonitorInstancesInput struct {
@@ -7679,6 +8183,14 @@ type metadataRebootInstancesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceIds"`
 }
 
+type RebootInstancesOutput struct {
+	metadataRebootInstancesOutput `json:"-", xml:"-"`
+}
+
+type metadataRebootInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type RecurringCharge struct {
 	Amount    *float64 `locationName:"amount" type:"double"`
 	Frequency *string  `locationName:"frequency" type:"string"`
@@ -7764,6 +8276,14 @@ type metadataReleaseAddressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type ReleaseAddressOutput struct {
+	metadataReleaseAddressOutput `json:"-", xml:"-"`
+}
+
+type metadataReleaseAddressOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type ReplaceNetworkACLAssociationInput struct {
 	AssociationID *string `locationName:"associationId" type:"string"`
 	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
@@ -7804,6 +8324,14 @@ type metadataReplaceNetworkACLEntryInput struct {
 	SDKShapeTraits bool `type:"structure" required:"NetworkAclId,RuleNumber,Protocol,RuleAction,Egress,CidrBlock"`
 }
 
+type ReplaceNetworkACLEntryOutput struct {
+	metadataReplaceNetworkACLEntryOutput `json:"-", xml:"-"`
+}
+
+type metadataReplaceNetworkACLEntryOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type ReplaceRouteInput struct {
 	DestinationCIDRBlock   *string `locationName:"destinationCidrBlock" type:"string"`
 	DryRun                 *bool   `locationName:"dryRun" type:"boolean"`
@@ -7818,6 +8346,14 @@ type ReplaceRouteInput struct {
 
 type metadataReplaceRouteInput struct {
 	SDKShapeTraits bool `type:"structure" required:"RouteTableId,DestinationCidrBlock"`
+}
+
+type ReplaceRouteOutput struct {
+	metadataReplaceRouteOutput `json:"-", xml:"-"`
+}
+
+type metadataReplaceRouteOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReplaceRouteTableAssociationInput struct {
@@ -7856,6 +8392,14 @@ type ReportInstanceStatusInput struct {
 
 type metadataReportInstanceStatusInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Instances,Status,ReasonCodes"`
+}
+
+type ReportInstanceStatusOutput struct {
+	metadataReportInstanceStatusOutput `json:"-", xml:"-"`
+}
+
+type metadataReportInstanceStatusOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RequestSpotInstancesOutput struct {
@@ -8048,6 +8592,14 @@ type metadataResetImageAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ImageId,Attribute"`
 }
 
+type ResetImageAttributeOutput struct {
+	metadataResetImageAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataResetImageAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type ResetInstanceAttributeInput struct {
 	Attribute  *string `locationName:"attribute" type:"string"`
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
@@ -8058,6 +8610,14 @@ type ResetInstanceAttributeInput struct {
 
 type metadataResetInstanceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId,Attribute"`
+}
+
+type ResetInstanceAttributeOutput struct {
+	metadataResetInstanceAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataResetInstanceAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResetNetworkInterfaceAttributeInput struct {
@@ -8072,6 +8632,14 @@ type metadataResetNetworkInterfaceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId"`
 }
 
+type ResetNetworkInterfaceAttributeOutput struct {
+	metadataResetNetworkInterfaceAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataResetNetworkInterfaceAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type ResetSnapshotAttributeInput struct {
 	Attribute  *string `type:"string"`
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
@@ -8082,6 +8650,14 @@ type ResetSnapshotAttributeInput struct {
 
 type metadataResetSnapshotAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SnapshotId,Attribute"`
+}
+
+type ResetSnapshotAttributeOutput struct {
+	metadataResetSnapshotAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataResetSnapshotAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RevokeSecurityGroupEgressInput struct {
@@ -8102,6 +8678,14 @@ type metadataRevokeSecurityGroupEgressInput struct {
 	SDKShapeTraits bool `type:"structure" required:"GroupId"`
 }
 
+type RevokeSecurityGroupEgressOutput struct {
+	metadataRevokeSecurityGroupEgressOutput `json:"-", xml:"-"`
+}
+
+type metadataRevokeSecurityGroupEgressOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type RevokeSecurityGroupIngressInput struct {
 	CIDRIP                     *string         `locationName:"CidrIp" type:"string"`
 	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
@@ -8118,6 +8702,14 @@ type RevokeSecurityGroupIngressInput struct {
 }
 
 type metadataRevokeSecurityGroupIngressInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type RevokeSecurityGroupIngressOutput struct {
+	metadataRevokeSecurityGroupIngressOutput `json:"-", xml:"-"`
+}
+
+type metadataRevokeSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -8484,6 +9076,14 @@ type UnassignPrivateIPAddressesInput struct {
 
 type metadataUnassignPrivateIPAddressesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId,PrivateIpAddresses"`
+}
+
+type UnassignPrivateIPAddressesOutput struct {
+	metadataUnassignPrivateIPAddressesOutput `json:"-", xml:"-"`
+}
+
+type metadataUnassignPrivateIPAddressesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UnmonitorInstancesInput struct {

@@ -57,7 +57,7 @@ func (c *DataPipeline) CreatePipeline(input *CreatePipelineInput) (output *Creat
 var opCreatePipeline *aws.Operation
 
 // DeletePipelineRequest generates a request for the DeletePipeline operation.
-func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *aws.Request) {
+func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *aws.Request, output *DeletePipelineOutput) {
 	if opDeletePipeline == nil {
 		opDeletePipeline = &aws.Operation{
 			Name:       "DeletePipeline",
@@ -66,13 +66,15 @@ func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePipeline, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeletePipeline, input, output)
+	output = &DeletePipelineOutput{}
+	req.Data = output
 	return
 }
 
-func (c *DataPipeline) DeletePipeline(input *DeletePipelineInput) (err error) {
-	req := c.DeletePipelineRequest(input)
+func (c *DataPipeline) DeletePipeline(input *DeletePipelineInput) (output *DeletePipelineOutput, err error) {
+	req, out := c.DeletePipelineRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -330,7 +332,7 @@ func (c *DataPipeline) ReportTaskRunnerHeartbeat(input *ReportTaskRunnerHeartbea
 var opReportTaskRunnerHeartbeat *aws.Operation
 
 // SetStatusRequest generates a request for the SetStatus operation.
-func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *aws.Request) {
+func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *aws.Request, output *SetStatusOutput) {
 	if opSetStatus == nil {
 		opSetStatus = &aws.Operation{
 			Name:       "SetStatus",
@@ -339,13 +341,15 @@ func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetStatus, input, nil)
-
+	req = aws.NewRequest(c.Service, opSetStatus, input, output)
+	output = &SetStatusOutput{}
+	req.Data = output
 	return
 }
 
-func (c *DataPipeline) SetStatus(input *SetStatusInput) (err error) {
-	req := c.SetStatusRequest(input)
+func (c *DataPipeline) SetStatus(input *SetStatusInput) (output *SetStatusOutput, err error) {
+	req, out := c.SetStatusRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -451,6 +455,14 @@ type DeletePipelineInput struct {
 
 type metadataDeletePipelineInput struct {
 	SDKShapeTraits bool `type:"structure" required:"pipelineId" json:",omitempty"`
+}
+
+type DeletePipelineOutput struct {
+	metadataDeletePipelineOutput `json:"-", xml:"-"`
+}
+
+type metadataDeletePipelineOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeObjectsInput struct {
@@ -855,6 +867,14 @@ type SetStatusInput struct {
 
 type metadataSetStatusInput struct {
 	SDKShapeTraits bool `type:"structure" required:"pipelineId,objectIds,status" json:",omitempty"`
+}
+
+type SetStatusOutput struct {
+	metadataSetStatusOutput `json:"-", xml:"-"`
+}
+
+type metadataSetStatusOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type SetTaskStatusInput struct {

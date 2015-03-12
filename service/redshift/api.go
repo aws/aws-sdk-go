@@ -284,7 +284,7 @@ func (c *Redshift) CreateHSMConfiguration(input *CreateHSMConfigurationMessage) 
 var opCreateHSMConfiguration *aws.Operation
 
 // CreateTagsRequest generates a request for the CreateTags operation.
-func (c *Redshift) CreateTagsRequest(input *CreateTagsMessage) (req *aws.Request) {
+func (c *Redshift) CreateTagsRequest(input *CreateTagsMessage) (req *aws.Request, output *CreateTagsOutput) {
 	if opCreateTags == nil {
 		opCreateTags = &aws.Operation{
 			Name:       "CreateTags",
@@ -293,13 +293,15 @@ func (c *Redshift) CreateTagsRequest(input *CreateTagsMessage) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateTags, input, nil)
-
+	req = aws.NewRequest(c.Service, opCreateTags, input, output)
+	output = &CreateTagsOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Redshift) CreateTags(input *CreateTagsMessage) (err error) {
-	req := c.CreateTagsRequest(input)
+func (c *Redshift) CreateTags(input *CreateTagsMessage) (output *CreateTagsOutput, err error) {
+	req, out := c.CreateTagsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -332,7 +334,7 @@ func (c *Redshift) DeleteCluster(input *DeleteClusterMessage) (output *DeleteClu
 var opDeleteCluster *aws.Operation
 
 // DeleteClusterParameterGroupRequest generates a request for the DeleteClusterParameterGroup operation.
-func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParameterGroupMessage) (req *aws.Request) {
+func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParameterGroupMessage) (req *aws.Request, output *DeleteClusterParameterGroupOutput) {
 	if opDeleteClusterParameterGroup == nil {
 		opDeleteClusterParameterGroup = &aws.Operation{
 			Name:       "DeleteClusterParameterGroup",
@@ -341,13 +343,15 @@ func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParame
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteClusterParameterGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteClusterParameterGroup, input, output)
+	output = &DeleteClusterParameterGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Redshift) DeleteClusterParameterGroup(input *DeleteClusterParameterGroupMessage) (err error) {
-	req := c.DeleteClusterParameterGroupRequest(input)
+func (c *Redshift) DeleteClusterParameterGroup(input *DeleteClusterParameterGroupMessage) (output *DeleteClusterParameterGroupOutput, err error) {
+	req, out := c.DeleteClusterParameterGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -355,7 +359,7 @@ func (c *Redshift) DeleteClusterParameterGroup(input *DeleteClusterParameterGrou
 var opDeleteClusterParameterGroup *aws.Operation
 
 // DeleteClusterSecurityGroupRequest generates a request for the DeleteClusterSecurityGroup operation.
-func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurityGroupMessage) (req *aws.Request) {
+func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurityGroupMessage) (req *aws.Request, output *DeleteClusterSecurityGroupOutput) {
 	if opDeleteClusterSecurityGroup == nil {
 		opDeleteClusterSecurityGroup = &aws.Operation{
 			Name:       "DeleteClusterSecurityGroup",
@@ -364,13 +368,15 @@ func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurit
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteClusterSecurityGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteClusterSecurityGroup, input, output)
+	output = &DeleteClusterSecurityGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Redshift) DeleteClusterSecurityGroup(input *DeleteClusterSecurityGroupMessage) (err error) {
-	req := c.DeleteClusterSecurityGroupRequest(input)
+func (c *Redshift) DeleteClusterSecurityGroup(input *DeleteClusterSecurityGroupMessage) (output *DeleteClusterSecurityGroupOutput, err error) {
+	req, out := c.DeleteClusterSecurityGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -403,7 +409,7 @@ func (c *Redshift) DeleteClusterSnapshot(input *DeleteClusterSnapshotMessage) (o
 var opDeleteClusterSnapshot *aws.Operation
 
 // DeleteClusterSubnetGroupRequest generates a request for the DeleteClusterSubnetGroup operation.
-func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGroupMessage) (req *aws.Request) {
+func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGroupMessage) (req *aws.Request, output *DeleteClusterSubnetGroupOutput) {
 	if opDeleteClusterSubnetGroup == nil {
 		opDeleteClusterSubnetGroup = &aws.Operation{
 			Name:       "DeleteClusterSubnetGroup",
@@ -412,13 +418,15 @@ func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGro
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteClusterSubnetGroup, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteClusterSubnetGroup, input, output)
+	output = &DeleteClusterSubnetGroupOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupMessage) (err error) {
-	req := c.DeleteClusterSubnetGroupRequest(input)
+func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupMessage) (output *DeleteClusterSubnetGroupOutput, err error) {
+	req, out := c.DeleteClusterSubnetGroupRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -426,7 +434,7 @@ func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupMessa
 var opDeleteClusterSubnetGroup *aws.Operation
 
 // DeleteEventSubscriptionRequest generates a request for the DeleteEventSubscription operation.
-func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionMessage) (req *aws.Request) {
+func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionMessage) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
 	if opDeleteEventSubscription == nil {
 		opDeleteEventSubscription = &aws.Operation{
 			Name:       "DeleteEventSubscription",
@@ -435,13 +443,15 @@ func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscription
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteEventSubscription, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteEventSubscription, input, output)
+	output = &DeleteEventSubscriptionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Redshift) DeleteEventSubscription(input *DeleteEventSubscriptionMessage) (err error) {
-	req := c.DeleteEventSubscriptionRequest(input)
+func (c *Redshift) DeleteEventSubscription(input *DeleteEventSubscriptionMessage) (output *DeleteEventSubscriptionOutput, err error) {
+	req, out := c.DeleteEventSubscriptionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -449,7 +459,7 @@ func (c *Redshift) DeleteEventSubscription(input *DeleteEventSubscriptionMessage
 var opDeleteEventSubscription *aws.Operation
 
 // DeleteHSMClientCertificateRequest generates a request for the DeleteHSMClientCertificate operation.
-func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCertificateMessage) (req *aws.Request) {
+func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCertificateMessage) (req *aws.Request, output *DeleteHSMClientCertificateOutput) {
 	if opDeleteHSMClientCertificate == nil {
 		opDeleteHSMClientCertificate = &aws.Operation{
 			Name:       "DeleteHsmClientCertificate",
@@ -458,13 +468,15 @@ func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCerti
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteHSMClientCertificate, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteHSMClientCertificate, input, output)
+	output = &DeleteHSMClientCertificateOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Redshift) DeleteHSMClientCertificate(input *DeleteHSMClientCertificateMessage) (err error) {
-	req := c.DeleteHSMClientCertificateRequest(input)
+func (c *Redshift) DeleteHSMClientCertificate(input *DeleteHSMClientCertificateMessage) (output *DeleteHSMClientCertificateOutput, err error) {
+	req, out := c.DeleteHSMClientCertificateRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -472,7 +484,7 @@ func (c *Redshift) DeleteHSMClientCertificate(input *DeleteHSMClientCertificateM
 var opDeleteHSMClientCertificate *aws.Operation
 
 // DeleteHSMConfigurationRequest generates a request for the DeleteHSMConfiguration operation.
-func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationMessage) (req *aws.Request) {
+func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationMessage) (req *aws.Request, output *DeleteHSMConfigurationOutput) {
 	if opDeleteHSMConfiguration == nil {
 		opDeleteHSMConfiguration = &aws.Operation{
 			Name:       "DeleteHsmConfiguration",
@@ -481,13 +493,15 @@ func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationMe
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteHSMConfiguration, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteHSMConfiguration, input, output)
+	output = &DeleteHSMConfigurationOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Redshift) DeleteHSMConfiguration(input *DeleteHSMConfigurationMessage) (err error) {
-	req := c.DeleteHSMConfigurationRequest(input)
+func (c *Redshift) DeleteHSMConfiguration(input *DeleteHSMConfigurationMessage) (output *DeleteHSMConfigurationOutput, err error) {
+	req, out := c.DeleteHSMConfigurationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -495,7 +509,7 @@ func (c *Redshift) DeleteHSMConfiguration(input *DeleteHSMConfigurationMessage) 
 var opDeleteHSMConfiguration *aws.Operation
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
-func (c *Redshift) DeleteTagsRequest(input *DeleteTagsMessage) (req *aws.Request) {
+func (c *Redshift) DeleteTagsRequest(input *DeleteTagsMessage) (req *aws.Request, output *DeleteTagsOutput) {
 	if opDeleteTags == nil {
 		opDeleteTags = &aws.Operation{
 			Name:       "DeleteTags",
@@ -504,13 +518,15 @@ func (c *Redshift) DeleteTagsRequest(input *DeleteTagsMessage) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTags, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteTags, input, output)
+	output = &DeleteTagsOutput{}
+	req.Data = output
 	return
 }
 
-func (c *Redshift) DeleteTags(input *DeleteTagsMessage) (err error) {
-	req := c.DeleteTagsRequest(input)
+func (c *Redshift) DeleteTags(input *DeleteTagsMessage) (output *DeleteTagsOutput, err error) {
+	req, out := c.DeleteTagsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -1605,7 +1621,7 @@ type ClusterParameterGroupNameMessage struct {
 }
 
 type metadataClusterParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyClusterParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"ResetClusterParameterGroupResult"`
 }
 
 type ClusterParameterGroupNotFoundFault struct {
@@ -2089,6 +2105,14 @@ type metadataCreateTagsMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName,Tags"`
 }
 
+type CreateTagsOutput struct {
+	metadataCreateTagsOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateTagsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DefaultClusterParameters struct {
 	Marker               *string      `type:"string"`
 	ParameterGroupFamily *string      `type:"string"`
@@ -2133,6 +2157,14 @@ type metadataDeleteClusterParameterGroupMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName"`
 }
 
+type DeleteClusterParameterGroupOutput struct {
+	metadataDeleteClusterParameterGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteClusterParameterGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteClusterSecurityGroupMessage struct {
 	ClusterSecurityGroupName *string `type:"string"`
 
@@ -2141,6 +2173,14 @@ type DeleteClusterSecurityGroupMessage struct {
 
 type metadataDeleteClusterSecurityGroupMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterSecurityGroupName"`
+}
+
+type DeleteClusterSecurityGroupOutput struct {
+	metadataDeleteClusterSecurityGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteClusterSecurityGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteClusterSnapshotMessage struct {
@@ -2174,6 +2214,14 @@ type metadataDeleteClusterSubnetGroupMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterSubnetGroupName"`
 }
 
+type DeleteClusterSubnetGroupOutput struct {
+	metadataDeleteClusterSubnetGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteClusterSubnetGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteEventSubscriptionMessage struct {
 	SubscriptionName *string `type:"string"`
 
@@ -2182,6 +2230,14 @@ type DeleteEventSubscriptionMessage struct {
 
 type metadataDeleteEventSubscriptionMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"SubscriptionName"`
+}
+
+type DeleteEventSubscriptionOutput struct {
+	metadataDeleteEventSubscriptionOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteEventSubscriptionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteHSMClientCertificateMessage struct {
@@ -2194,6 +2250,14 @@ type metadataDeleteHSMClientCertificateMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"HsmClientCertificateIdentifier"`
 }
 
+type DeleteHSMClientCertificateOutput struct {
+	metadataDeleteHSMClientCertificateOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteHSMClientCertificateOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteHSMConfigurationMessage struct {
 	HSMConfigurationIdentifier *string `locationName:"HsmConfigurationIdentifier" type:"string"`
 
@@ -2202,6 +2266,14 @@ type DeleteHSMConfigurationMessage struct {
 
 type metadataDeleteHSMConfigurationMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"HsmConfigurationIdentifier"`
+}
+
+type DeleteHSMConfigurationOutput struct {
+	metadataDeleteHSMConfigurationOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteHSMConfigurationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteTagsMessage struct {
@@ -2213,6 +2285,14 @@ type DeleteTagsMessage struct {
 
 type metadataDeleteTagsMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName,TagKeys"`
+}
+
+type DeleteTagsOutput struct {
+	metadataDeleteTagsOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteTagsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeClusterParameterGroupsMessage struct {
@@ -2959,7 +3039,7 @@ type LoggingStatus struct {
 }
 
 type metadataLoggingStatus struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLoggingStatusResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DisableLoggingResult"`
 }
 
 type ModifyClusterMessage struct {

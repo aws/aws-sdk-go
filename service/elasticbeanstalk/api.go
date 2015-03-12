@@ -134,7 +134,7 @@ func (c *ElasticBeanstalk) CreateEnvironment(input *CreateEnvironmentMessage) (o
 var opCreateEnvironment *aws.Operation
 
 // CreateStorageLocationRequest generates a request for the CreateStorageLocation operation.
-func (c *ElasticBeanstalk) CreateStorageLocationRequest() (req *aws.Request, output *CreateStorageLocationResultMessage) {
+func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLocationInput) (req *aws.Request, output *CreateStorageLocationResultMessage) {
 	if opCreateStorageLocation == nil {
 		opCreateStorageLocation = &aws.Operation{
 			Name:       "CreateStorageLocation",
@@ -143,14 +143,14 @@ func (c *ElasticBeanstalk) CreateStorageLocationRequest() (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateStorageLocation, nil, output)
+	req = aws.NewRequest(c.Service, opCreateStorageLocation, input, output)
 	output = &CreateStorageLocationResultMessage{}
 	req.Data = output
 	return
 }
 
-func (c *ElasticBeanstalk) CreateStorageLocation() (output *CreateStorageLocationResultMessage, err error) {
-	req, out := c.CreateStorageLocationRequest()
+func (c *ElasticBeanstalk) CreateStorageLocation(input *CreateStorageLocationInput) (output *CreateStorageLocationResultMessage, err error) {
+	req, out := c.CreateStorageLocationRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -159,7 +159,7 @@ func (c *ElasticBeanstalk) CreateStorageLocation() (output *CreateStorageLocatio
 var opCreateStorageLocation *aws.Operation
 
 // DeleteApplicationRequest generates a request for the DeleteApplication operation.
-func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationMessage) (req *aws.Request) {
+func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationMessage) (req *aws.Request, output *DeleteApplicationOutput) {
 	if opDeleteApplication == nil {
 		opDeleteApplication = &aws.Operation{
 			Name:       "DeleteApplication",
@@ -168,13 +168,15 @@ func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationMess
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteApplication, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteApplication, input, output)
+	output = &DeleteApplicationOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationMessage) (err error) {
-	req := c.DeleteApplicationRequest(input)
+func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationMessage) (output *DeleteApplicationOutput, err error) {
+	req, out := c.DeleteApplicationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -182,7 +184,7 @@ func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationMessage) (e
 var opDeleteApplication *aws.Operation
 
 // DeleteApplicationVersionRequest generates a request for the DeleteApplicationVersion operation.
-func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicationVersionMessage) (req *aws.Request) {
+func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicationVersionMessage) (req *aws.Request, output *DeleteApplicationVersionOutput) {
 	if opDeleteApplicationVersion == nil {
 		opDeleteApplicationVersion = &aws.Operation{
 			Name:       "DeleteApplicationVersion",
@@ -191,13 +193,15 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteApplicationVersion, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteApplicationVersion, input, output)
+	output = &DeleteApplicationVersionOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVersionMessage) (err error) {
-	req := c.DeleteApplicationVersionRequest(input)
+func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVersionMessage) (output *DeleteApplicationVersionOutput, err error) {
+	req, out := c.DeleteApplicationVersionRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -205,7 +209,7 @@ func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVers
 var opDeleteApplicationVersion *aws.Operation
 
 // DeleteConfigurationTemplateRequest generates a request for the DeleteConfigurationTemplate operation.
-func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfigurationTemplateMessage) (req *aws.Request) {
+func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfigurationTemplateMessage) (req *aws.Request, output *DeleteConfigurationTemplateOutput) {
 	if opDeleteConfigurationTemplate == nil {
 		opDeleteConfigurationTemplate = &aws.Operation{
 			Name:       "DeleteConfigurationTemplate",
@@ -214,13 +218,15 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteConfigurationTemplate, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteConfigurationTemplate, input, output)
+	output = &DeleteConfigurationTemplateOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfigurationTemplateMessage) (err error) {
-	req := c.DeleteConfigurationTemplateRequest(input)
+func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfigurationTemplateMessage) (output *DeleteConfigurationTemplateOutput, err error) {
+	req, out := c.DeleteConfigurationTemplateRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -228,7 +234,7 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfiguratio
 var opDeleteConfigurationTemplate *aws.Operation
 
 // DeleteEnvironmentConfigurationRequest generates a request for the DeleteEnvironmentConfiguration operation.
-func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEnvironmentConfigurationMessage) (req *aws.Request) {
+func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEnvironmentConfigurationMessage) (req *aws.Request, output *DeleteEnvironmentConfigurationOutput) {
 	if opDeleteEnvironmentConfiguration == nil {
 		opDeleteEnvironmentConfiguration = &aws.Operation{
 			Name:       "DeleteEnvironmentConfiguration",
@@ -237,13 +243,15 @@ func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteEnvironmentConfiguration, input, nil)
-
+	req = aws.NewRequest(c.Service, opDeleteEnvironmentConfiguration, input, output)
+	output = &DeleteEnvironmentConfigurationOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ElasticBeanstalk) DeleteEnvironmentConfiguration(input *DeleteEnvironmentConfigurationMessage) (err error) {
-	req := c.DeleteEnvironmentConfigurationRequest(input)
+func (c *ElasticBeanstalk) DeleteEnvironmentConfiguration(input *DeleteEnvironmentConfigurationMessage) (output *DeleteEnvironmentConfigurationOutput, err error) {
+	req, out := c.DeleteEnvironmentConfigurationRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -426,7 +434,7 @@ func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsMessage) (output 
 var opDescribeEvents *aws.Operation
 
 // ListAvailableSolutionStacksRequest generates a request for the ListAvailableSolutionStacks operation.
-func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest() (req *aws.Request, output *ListAvailableSolutionStacksResultMessage) {
+func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailableSolutionStacksInput) (req *aws.Request, output *ListAvailableSolutionStacksResultMessage) {
 	if opListAvailableSolutionStacks == nil {
 		opListAvailableSolutionStacks = &aws.Operation{
 			Name:       "ListAvailableSolutionStacks",
@@ -435,14 +443,14 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest() (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListAvailableSolutionStacks, nil, output)
+	req = aws.NewRequest(c.Service, opListAvailableSolutionStacks, input, output)
 	output = &ListAvailableSolutionStacksResultMessage{}
 	req.Data = output
 	return
 }
 
-func (c *ElasticBeanstalk) ListAvailableSolutionStacks() (output *ListAvailableSolutionStacksResultMessage, err error) {
-	req, out := c.ListAvailableSolutionStacksRequest()
+func (c *ElasticBeanstalk) ListAvailableSolutionStacks(input *ListAvailableSolutionStacksInput) (output *ListAvailableSolutionStacksResultMessage, err error) {
+	req, out := c.ListAvailableSolutionStacksRequest(input)
 	output = out
 	err = req.Send()
 	return
@@ -451,7 +459,7 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacks() (output *ListAvailableS
 var opListAvailableSolutionStacks *aws.Operation
 
 // RebuildEnvironmentRequest generates a request for the RebuildEnvironment operation.
-func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentMessage) (req *aws.Request) {
+func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentMessage) (req *aws.Request, output *RebuildEnvironmentOutput) {
 	if opRebuildEnvironment == nil {
 		opRebuildEnvironment = &aws.Operation{
 			Name:       "RebuildEnvironment",
@@ -460,13 +468,15 @@ func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentMe
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRebuildEnvironment, input, nil)
-
+	req = aws.NewRequest(c.Service, opRebuildEnvironment, input, output)
+	output = &RebuildEnvironmentOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ElasticBeanstalk) RebuildEnvironment(input *RebuildEnvironmentMessage) (err error) {
-	req := c.RebuildEnvironmentRequest(input)
+func (c *ElasticBeanstalk) RebuildEnvironment(input *RebuildEnvironmentMessage) (output *RebuildEnvironmentOutput, err error) {
+	req, out := c.RebuildEnvironmentRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -474,7 +484,7 @@ func (c *ElasticBeanstalk) RebuildEnvironment(input *RebuildEnvironmentMessage) 
 var opRebuildEnvironment *aws.Operation
 
 // RequestEnvironmentInfoRequest generates a request for the RequestEnvironmentInfo operation.
-func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironmentInfoMessage) (req *aws.Request) {
+func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironmentInfoMessage) (req *aws.Request, output *RequestEnvironmentInfoOutput) {
 	if opRequestEnvironmentInfo == nil {
 		opRequestEnvironmentInfo = &aws.Operation{
 			Name:       "RequestEnvironmentInfo",
@@ -483,13 +493,15 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRequestEnvironmentInfo, input, nil)
-
+	req = aws.NewRequest(c.Service, opRequestEnvironmentInfo, input, output)
+	output = &RequestEnvironmentInfoOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ElasticBeanstalk) RequestEnvironmentInfo(input *RequestEnvironmentInfoMessage) (err error) {
-	req := c.RequestEnvironmentInfoRequest(input)
+func (c *ElasticBeanstalk) RequestEnvironmentInfo(input *RequestEnvironmentInfoMessage) (output *RequestEnvironmentInfoOutput, err error) {
+	req, out := c.RequestEnvironmentInfoRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -497,7 +509,7 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfo(input *RequestEnvironmentInfoM
 var opRequestEnvironmentInfo *aws.Operation
 
 // RestartAppServerRequest generates a request for the RestartAppServer operation.
-func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerMessage) (req *aws.Request) {
+func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerMessage) (req *aws.Request, output *RestartAppServerOutput) {
 	if opRestartAppServer == nil {
 		opRestartAppServer = &aws.Operation{
 			Name:       "RestartAppServer",
@@ -506,13 +518,15 @@ func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerMessag
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRestartAppServer, input, nil)
-
+	req = aws.NewRequest(c.Service, opRestartAppServer, input, output)
+	output = &RestartAppServerOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ElasticBeanstalk) RestartAppServer(input *RestartAppServerMessage) (err error) {
-	req := c.RestartAppServerRequest(input)
+func (c *ElasticBeanstalk) RestartAppServer(input *RestartAppServerMessage) (output *RestartAppServerOutput, err error) {
+	req, out := c.RestartAppServerRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -545,7 +559,7 @@ func (c *ElasticBeanstalk) RetrieveEnvironmentInfo(input *RetrieveEnvironmentInf
 var opRetrieveEnvironmentInfo *aws.Operation
 
 // SwapEnvironmentCNAMEsRequest generates a request for the SwapEnvironmentCNAMEs operation.
-func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCNAMEsMessage) (req *aws.Request) {
+func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCNAMEsMessage) (req *aws.Request, output *SwapEnvironmentCNAMEsOutput) {
 	if opSwapEnvironmentCNAMEs == nil {
 		opSwapEnvironmentCNAMEs = &aws.Operation{
 			Name:       "SwapEnvironmentCNAMEs",
@@ -554,13 +568,15 @@ func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCN
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSwapEnvironmentCNAMEs, input, nil)
-
+	req = aws.NewRequest(c.Service, opSwapEnvironmentCNAMEs, input, output)
+	output = &SwapEnvironmentCNAMEsOutput{}
+	req.Data = output
 	return
 }
 
-func (c *ElasticBeanstalk) SwapEnvironmentCNAMEs(input *SwapEnvironmentCNAMEsMessage) (err error) {
-	req := c.SwapEnvironmentCNAMEsRequest(input)
+func (c *ElasticBeanstalk) SwapEnvironmentCNAMEs(input *SwapEnvironmentCNAMEsMessage) (output *SwapEnvironmentCNAMEsOutput, err error) {
+	req, out := c.SwapEnvironmentCNAMEsRequest(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -774,7 +790,7 @@ type ApplicationVersionDescriptionMessage struct {
 }
 
 type metadataApplicationVersionDescriptionMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateApplicationVersionResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"UpdateApplicationVersionResult"`
 }
 
 type ApplicationVersionDescriptionsMessage struct {
@@ -960,6 +976,14 @@ type metadataCreateEnvironmentMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName,EnvironmentName"`
 }
 
+type CreateStorageLocationInput struct {
+	metadataCreateStorageLocationInput `json:"-", xml:"-"`
+}
+
+type metadataCreateStorageLocationInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type CreateStorageLocationResultMessage struct {
 	S3Bucket *string `type:"string"`
 
@@ -981,6 +1005,14 @@ type metadataDeleteApplicationMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName"`
 }
 
+type DeleteApplicationOutput struct {
+	metadataDeleteApplicationOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteApplicationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteApplicationVersionMessage struct {
 	ApplicationName    *string `type:"string"`
 	DeleteSourceBundle *bool   `type:"boolean"`
@@ -991,6 +1023,14 @@ type DeleteApplicationVersionMessage struct {
 
 type metadataDeleteApplicationVersionMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName,VersionLabel"`
+}
+
+type DeleteApplicationVersionOutput struct {
+	metadataDeleteApplicationVersionOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteApplicationVersionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteConfigurationTemplateMessage struct {
@@ -1004,6 +1044,14 @@ type metadataDeleteConfigurationTemplateMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName,TemplateName"`
 }
 
+type DeleteConfigurationTemplateOutput struct {
+	metadataDeleteConfigurationTemplateOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteConfigurationTemplateOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteEnvironmentConfigurationMessage struct {
 	ApplicationName *string `type:"string"`
 	EnvironmentName *string `type:"string"`
@@ -1013,6 +1061,14 @@ type DeleteEnvironmentConfigurationMessage struct {
 
 type metadataDeleteEnvironmentConfigurationMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName,EnvironmentName"`
+}
+
+type DeleteEnvironmentConfigurationOutput struct {
+	metadataDeleteEnvironmentConfigurationOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteEnvironmentConfigurationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeApplicationVersionsMessage struct {
@@ -1129,7 +1185,7 @@ type EnvironmentDescription struct {
 }
 
 type metadataEnvironmentDescription struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"TerminateEnvironmentResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateEnvironmentResult"`
 }
 
 type EnvironmentDescriptionsMessage struct {
@@ -1259,6 +1315,14 @@ type metadataLaunchConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type ListAvailableSolutionStacksInput struct {
+	metadataListAvailableSolutionStacksInput `json:"-", xml:"-"`
+}
+
+type metadataListAvailableSolutionStacksInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type ListAvailableSolutionStacksResultMessage struct {
 	SolutionStackDetails []*SolutionStackDescription `type:"list"`
 	SolutionStacks       []*string                   `type:"list"`
@@ -1355,6 +1419,14 @@ type metadataRebuildEnvironmentMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type RebuildEnvironmentOutput struct {
+	metadataRebuildEnvironmentOutput `json:"-", xml:"-"`
+}
+
+type metadataRebuildEnvironmentOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type RequestEnvironmentInfoMessage struct {
 	EnvironmentID   *string `locationName:"EnvironmentId" type:"string"`
 	EnvironmentName *string `type:"string"`
@@ -1367,6 +1439,14 @@ type metadataRequestEnvironmentInfoMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"InfoType"`
 }
 
+type RequestEnvironmentInfoOutput struct {
+	metadataRequestEnvironmentInfoOutput `json:"-", xml:"-"`
+}
+
+type metadataRequestEnvironmentInfoOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type RestartAppServerMessage struct {
 	EnvironmentID   *string `locationName:"EnvironmentId" type:"string"`
 	EnvironmentName *string `type:"string"`
@@ -1375,6 +1455,14 @@ type RestartAppServerMessage struct {
 }
 
 type metadataRestartAppServerMessage struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type RestartAppServerOutput struct {
+	metadataRestartAppServerOutput `json:"-", xml:"-"`
+}
+
+type metadataRestartAppServerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1467,6 +1555,14 @@ type SwapEnvironmentCNAMEsMessage struct {
 }
 
 type metadataSwapEnvironmentCNAMEsMessage struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type SwapEnvironmentCNAMEsOutput struct {
+	metadataSwapEnvironmentCNAMEsOutput `json:"-", xml:"-"`
+}
+
+type metadataSwapEnvironmentCNAMEsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
