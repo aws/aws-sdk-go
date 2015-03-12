@@ -1512,3 +1512,5 @@ Hapgs:
 Clients:
 Retryable:
 Eni:ENI
+Acquisition:
+Hls:HLS
