@@ -42,6 +42,10 @@ func main() {
 	flag.BoolVar(&forceService, "force", false, "force re-generation of PACKAGE/service.go")
 	flag.Parse()
 
+	if os.Getenv("FORCE") != "" {
+		forceService = true
+	}
+
 	files := []string{}
 	for i := 0; i < flag.NArg(); i++ {
 		file := flag.Arg(i)

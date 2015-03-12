@@ -223,6 +223,6 @@ func (a *API) ServiceGoCode() string {
 		panic(err)
 	}
 
-	code := a.importsGoCode() + strings.TrimSpace(buf.String())
+	code := a.importsGoCode() + buf.String()
 	return util.GoFmt(code)
 }
