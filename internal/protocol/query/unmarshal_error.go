@@ -22,9 +22,10 @@ func UnmarshalError(r *aws.Request) {
 	if err != nil && err != io.EOF {
 		r.Error = err
 	} else {
-		apiErr := r.Error.(aws.APIError)
-		apiErr.Code = resp.Code
-		apiErr.Message = resp.Message
-		r.Error = apiErr
+		r.Error = aws.APIError{
+			StatusCode: r.HTTPResponse.StatusCode,
+			Code:       resp.Code,
+			Message:    resp.Message,
+		}
 	}
 }
