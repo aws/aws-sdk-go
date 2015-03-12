@@ -33,7 +33,9 @@ func New(config *S3Config) *S3 {
 	service.Handlers.Build.PushBack(restxml.Build)
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
 	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+
+	// S3 uses a custom error parser
+	service.Handlers.UnmarshalError.PushBack(unmarshalError)
 
 	return &S3{service}
 }
