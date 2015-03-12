@@ -1,0 +1,51 @@
+{
+	"api_version": "2014-11-11",
+	"cases": [
+		{
+			"description": "Making a basic request",
+			"operation": "ListEventSources",
+			"input": {},
+			"assertions": [
+				{
+					"assertion": "equal",
+					"context": "error",
+					"path": "",
+					"expected": null
+				},
+				{
+					"assertion": "typeof",
+					"context": "data",
+					"path": "EventSources",
+					"expected": "list"
+				}
+			]
+		},
+		{
+			"description": "Error handling",
+			"operation": "GetEventSource",
+			"input": {
+				"UUID": "fake-uuid"
+			},
+			"assertions": [
+				{
+					"assertion": "notequal",
+					"context": "error",
+					"path": "",
+					"expected": null
+				},
+				{
+					"assertion": "equal",
+					"context": "error",
+					"path": "code",
+					"expected": "ResourceNotFoundException"
+				},
+				{
+					"assertion": "contains",
+					"context": "error",
+					"path": "message",
+					"expected": "does not exist"
+				}
+			]
+		}
+	]
+}

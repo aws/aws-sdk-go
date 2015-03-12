@@ -122,7 +122,7 @@ func (t *TestCase) GoCode() string {
 }
 
 func (t *TestCase) InputCode() string {
-	op := t.API.Operations[t.Operation]
+	op := t.API.Operations[t.API.ExportableName(t.Operation)]
 	if op.InputRef.Shape == nil {
 		return ""
 	}
