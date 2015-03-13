@@ -35,8 +35,7 @@ func (o *Operation) HasOutput() bool {
 var tplOperation = template.Must(template.New("operation").Parse(`
 // {{ .ExportedName }}Request generates a request for the {{ .ExportedName }} operation.
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
-	`{{ if .HasInput }}input {{ .InputRef.GoType }}{{ end }}) ` +
-	`(req *aws.Request{{ if .HasOutput }}, output {{ .OutputRef.GoType }}{{ end }}) {
+	`input {{ .InputRef.GoType }}) (req *aws.Request, output {{ .OutputRef.GoType }}) {
 	if op{{ .ExportedName }} == nil {
 		op{{ .ExportedName }} = &aws.Operation{
 			Name:       "{{ .Name }}",
@@ -47,19 +46,17 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		}
 	}
 
-	req = aws.NewRequest(c.Service, op{{ .ExportedName }}, ` +
-	`{{ if .HasInput }}input{{ else }}nil{{ end }}, {{ if .HasOutput }}output{{ else }}nil{{ end }})
-	{{ if .HasOutput }}output = &{{ .OutputRef.GoTypeElem }}{}
-	req.Data = output{{ end }}
+	req = aws.NewRequest(c.Service, op{{ .ExportedName }}, input, output)
+	output = &{{ .OutputRef.GoTypeElem }}{}
+	req.Data = output
 	return
 }
 
 func (c *{{ .API.StructName }}) {{ .ExportedName }}(` +
-	`{{ if .HasInput }}input {{ .InputRef.GoType }}{{ end }}) ` +
-	`({{ if .HasOutput }}output {{ .OutputRef.GoType }},{{ end }} err error) {
-	req{{ if .HasOutput }}, out{{ end }} := c.{{ .ExportedName }}Request({{ if .HasInput }}input{{ end }})
-	{{ if .HasOutput }}output = out
-	{{ end }}err = req.Send()
+	`input {{ .InputRef.GoType }}) (output {{ .OutputRef.GoType }}, err error) {
+	req, out := c.{{ .ExportedName }}Request(input)
+	output = out
+	err = req.Send()
 	return
 }
 
