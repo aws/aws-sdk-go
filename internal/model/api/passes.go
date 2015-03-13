@@ -92,28 +92,6 @@ func (r *referenceResolver) resolveShape(shape *Shape) {
 	}
 }
 
-func removeReference(refs []*ShapeRef, ref *ShapeRef) []*ShapeRef {
-	list := []*ShapeRef{}
-	for _, v := range refs {
-		if v != ref {
-			list = append(list, ref)
-		}
-	}
-	return list
-}
-
-func (a *API) createShapeFromRef(ref *ShapeRef, name string) {
-	// create a new copy of this shape
-	copy := *ref.Shape
-	copy.ShapeName = name
-	copy.refs = []*ShapeRef{ref}
-	removeReference(ref.Shape.refs, ref)
-
-	// add this copy to shape list and update ref
-	a.Shapes[name] = &copy
-	ref.ShapeName = name
-}
-
 func (a *API) renameToplevelShapes() {
 	for _, v := range a.Operations {
 		if v.HasInput() {
