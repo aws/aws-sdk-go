@@ -384,7 +384,7 @@ func (c *EC2) CancelBundleTask(input *CancelBundleTaskInput) (output *CancelBund
 var opCancelBundleTask *aws.Operation
 
 // CancelConversionTaskRequest generates a request for the CancelConversionTask operation.
-func (c *EC2) CancelConversionTaskRequest(input *CancelConversionInput) (req *aws.Request, output *CancelConversionTaskOutput) {
+func (c *EC2) CancelConversionTaskRequest(input *CancelConversionTaskInput) (req *aws.Request, output *CancelConversionTaskOutput) {
 	if opCancelConversionTask == nil {
 		opCancelConversionTask = &aws.Operation{
 			Name:       "CancelConversionTask",
@@ -399,7 +399,7 @@ func (c *EC2) CancelConversionTaskRequest(input *CancelConversionInput) (req *aw
 	return
 }
 
-func (c *EC2) CancelConversionTask(input *CancelConversionInput) (output *CancelConversionTaskOutput, err error) {
+func (c *EC2) CancelConversionTask(input *CancelConversionTaskInput) (output *CancelConversionTaskOutput, err error) {
 	req, out := c.CancelConversionTaskRequest(input)
 	output = out
 	err = req.Send()
@@ -459,7 +459,7 @@ func (c *EC2) CancelReservedInstancesListing(input *CancelReservedInstancesListi
 var opCancelReservedInstancesListing *aws.Operation
 
 // CancelSpotInstanceRequestsRequest generates a request for the CancelSpotInstanceRequests operation.
-func (c *EC2) CancelSpotInstanceRequestsRequest(input *CancelSpotInstanceInputsInput) (req *aws.Request, output *CancelSpotInstanceRequestsOutput) {
+func (c *EC2) CancelSpotInstanceRequestsRequest(input *CancelSpotInstanceRequestsInput) (req *aws.Request, output *CancelSpotInstanceRequestsOutput) {
 	if opCancelSpotInstanceRequests == nil {
 		opCancelSpotInstanceRequests = &aws.Operation{
 			Name:       "CancelSpotInstanceRequests",
@@ -474,7 +474,7 @@ func (c *EC2) CancelSpotInstanceRequestsRequest(input *CancelSpotInstanceInputsI
 	return
 }
 
-func (c *EC2) CancelSpotInstanceRequests(input *CancelSpotInstanceInputsInput) (output *CancelSpotInstanceRequestsOutput, err error) {
+func (c *EC2) CancelSpotInstanceRequests(input *CancelSpotInstanceRequestsInput) (output *CancelSpotInstanceRequestsOutput, err error) {
 	req, out := c.CancelSpotInstanceRequestsRequest(input)
 	output = out
 	err = req.Send()
@@ -684,7 +684,7 @@ func (c *EC2) CreateInternetGateway(input *CreateInternetGatewayInput) (output *
 var opCreateInternetGateway *aws.Operation
 
 // CreateKeyPairRequest generates a request for the CreateKeyPair operation.
-func (c *EC2) CreateKeyPairRequest(input *CreateKeyPairInput) (req *aws.Request, output *KeyPair) {
+func (c *EC2) CreateKeyPairRequest(input *CreateKeyPairInput) (req *aws.Request, output *CreateKeyPairOutput) {
 	if opCreateKeyPair == nil {
 		opCreateKeyPair = &aws.Operation{
 			Name:       "CreateKeyPair",
@@ -694,12 +694,12 @@ func (c *EC2) CreateKeyPairRequest(input *CreateKeyPairInput) (req *aws.Request,
 	}
 
 	req = aws.NewRequest(c.Service, opCreateKeyPair, input, output)
-	output = &KeyPair{}
+	output = &CreateKeyPairOutput{}
 	req.Data = output
 	return
 }
 
-func (c *EC2) CreateKeyPair(input *CreateKeyPairInput) (output *KeyPair, err error) {
+func (c *EC2) CreateKeyPair(input *CreateKeyPairInput) (output *CreateKeyPairOutput, err error) {
 	req, out := c.CreateKeyPairRequest(input)
 	output = out
 	err = req.Send()
@@ -1934,7 +1934,7 @@ func (c *EC2) DescribeExportTasks(input *DescribeExportTasksInput) (output *Desc
 var opDescribeExportTasks *aws.Operation
 
 // DescribeImageAttributeRequest generates a request for the DescribeImageAttribute operation.
-func (c *EC2) DescribeImageAttributeRequest(input *DescribeImageAttributeInput) (req *aws.Request, output *ImageAttribute) {
+func (c *EC2) DescribeImageAttributeRequest(input *DescribeImageAttributeInput) (req *aws.Request, output *DescribeImageAttributeOutput) {
 	if opDescribeImageAttribute == nil {
 		opDescribeImageAttribute = &aws.Operation{
 			Name:       "DescribeImageAttribute",
@@ -1944,12 +1944,12 @@ func (c *EC2) DescribeImageAttributeRequest(input *DescribeImageAttributeInput) 
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeImageAttribute, input, output)
-	output = &ImageAttribute{}
+	output = &DescribeImageAttributeOutput{}
 	req.Data = output
 	return
 }
 
-func (c *EC2) DescribeImageAttribute(input *DescribeImageAttributeInput) (output *ImageAttribute, err error) {
+func (c *EC2) DescribeImageAttribute(input *DescribeImageAttributeInput) (output *DescribeImageAttributeOutput, err error) {
 	req, out := c.DescribeImageAttributeRequest(input)
 	output = out
 	err = req.Send()
@@ -1984,7 +1984,7 @@ func (c *EC2) DescribeImages(input *DescribeImagesInput) (output *DescribeImages
 var opDescribeImages *aws.Operation
 
 // DescribeInstanceAttributeRequest generates a request for the DescribeInstanceAttribute operation.
-func (c *EC2) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeInput) (req *aws.Request, output *InstanceAttribute) {
+func (c *EC2) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeInput) (req *aws.Request, output *DescribeInstanceAttributeOutput) {
 	if opDescribeInstanceAttribute == nil {
 		opDescribeInstanceAttribute = &aws.Operation{
 			Name:       "DescribeInstanceAttribute",
@@ -1994,12 +1994,12 @@ func (c *EC2) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeI
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeInstanceAttribute, input, output)
-	output = &InstanceAttribute{}
+	output = &DescribeInstanceAttributeOutput{}
 	req.Data = output
 	return
 }
 
-func (c *EC2) DescribeInstanceAttribute(input *DescribeInstanceAttributeInput) (output *InstanceAttribute, err error) {
+func (c *EC2) DescribeInstanceAttribute(input *DescribeInstanceAttributeInput) (output *DescribeInstanceAttributeOutput, err error) {
 	req, out := c.DescribeInstanceAttributeRequest(input)
 	output = out
 	err = req.Send()
@@ -2459,7 +2459,7 @@ func (c *EC2) DescribeSpotDatafeedSubscription(input *DescribeSpotDatafeedSubscr
 var opDescribeSpotDatafeedSubscription *aws.Operation
 
 // DescribeSpotInstanceRequestsRequest generates a request for the DescribeSpotInstanceRequests operation.
-func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceInputsInput) (req *aws.Request, output *DescribeSpotInstanceRequestsOutput) {
+func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceRequestsInput) (req *aws.Request, output *DescribeSpotInstanceRequestsOutput) {
 	if opDescribeSpotInstanceRequests == nil {
 		opDescribeSpotInstanceRequests = &aws.Operation{
 			Name:       "DescribeSpotInstanceRequests",
@@ -2474,7 +2474,7 @@ func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceInp
 	return
 }
 
-func (c *EC2) DescribeSpotInstanceRequests(input *DescribeSpotInstanceInputsInput) (output *DescribeSpotInstanceRequestsOutput, err error) {
+func (c *EC2) DescribeSpotInstanceRequests(input *DescribeSpotInstanceRequestsInput) (output *DescribeSpotInstanceRequestsOutput, err error) {
 	req, out := c.DescribeSpotInstanceRequestsRequest(input)
 	output = out
 	err = req.Send()
@@ -3684,7 +3684,7 @@ func (c *EC2) ReportInstanceStatus(input *ReportInstanceStatusInput) (output *Re
 var opReportInstanceStatus *aws.Operation
 
 // RequestSpotInstancesRequest generates a request for the RequestSpotInstances operation.
-func (c *EC2) RequestSpotInstancesRequest(input *InputSpotInstancesInput) (req *aws.Request, output *RequestSpotInstancesOutput) {
+func (c *EC2) RequestSpotInstancesRequest(input *RequestSpotInstancesInput) (req *aws.Request, output *RequestSpotInstancesOutput) {
 	if opRequestSpotInstances == nil {
 		opRequestSpotInstances = &aws.Operation{
 			Name:       "RequestSpotInstances",
@@ -3699,7 +3699,7 @@ func (c *EC2) RequestSpotInstancesRequest(input *InputSpotInstancesInput) (req *
 	return
 }
 
-func (c *EC2) RequestSpotInstances(input *InputSpotInstancesInput) (output *RequestSpotInstancesOutput, err error) {
+func (c *EC2) RequestSpotInstances(input *RequestSpotInstancesInput) (output *RequestSpotInstancesOutput, err error) {
 	req, out := c.RequestSpotInstancesRequest(input)
 	output = out
 	err = req.Send()
@@ -4470,15 +4470,15 @@ type metadataCancelBundleTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type CancelConversionInput struct {
+type CancelConversionTaskInput struct {
 	ConversionTaskID *string `locationName:"conversionTaskId" type:"string"`
 	DryRun           *bool   `locationName:"dryRun" type:"boolean"`
 	ReasonMessage    *string `locationName:"reasonMessage" type:"string"`
 
-	metadataCancelConversionInput `json:"-", xml:"-"`
+	metadataCancelConversionTaskInput `json:"-", xml:"-"`
 }
 
-type metadataCancelConversionInput struct {
+type metadataCancelConversionTaskInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ConversionTaskId"`
 }
 
@@ -4528,14 +4528,14 @@ type metadataCancelReservedInstancesListingOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type CancelSpotInstanceInputsInput struct {
+type CancelSpotInstanceRequestsInput struct {
 	DryRun                 *bool     `locationName:"dryRun" type:"boolean"`
 	SpotInstanceRequestIDs []*string `locationName:"SpotInstanceRequestId" locationNameList:"SpotInstanceRequestId" type:"list"`
 
-	metadataCancelSpotInstanceInputsInput `json:"-", xml:"-"`
+	metadataCancelSpotInstanceRequestsInput `json:"-", xml:"-"`
 }
 
-type metadataCancelSpotInstanceInputsInput struct {
+type metadataCancelSpotInstanceRequestsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SpotInstanceRequestIds"`
 }
 
@@ -4782,6 +4782,18 @@ type CreateKeyPairInput struct {
 
 type metadataCreateKeyPairInput struct {
 	SDKShapeTraits bool `type:"structure" required:"KeyName"`
+}
+
+type CreateKeyPairOutput struct {
+	KeyFingerprint *string `locationName:"keyFingerprint" type:"string"`
+	KeyMaterial    *string `locationName:"keyMaterial" type:"string"`
+	KeyName        *string `locationName:"keyName" type:"string"`
+
+	metadataCreateKeyPairOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateKeyPairOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateNetworkACLEntryInput struct {
@@ -5867,6 +5879,23 @@ type metadataDescribeImageAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ImageId,Attribute"`
 }
 
+type DescribeImageAttributeOutput struct {
+	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
+	Description         *AttributeValue       `locationName:"description" type:"structure"`
+	ImageID             *string               `locationName:"imageId" type:"string"`
+	KernelID            *AttributeValue       `locationName:"kernel" type:"structure"`
+	LaunchPermissions   []*LaunchPermission   `locationName:"launchPermission" locationNameList:"item" type:"list"`
+	ProductCodes        []*ProductCode        `locationName:"productCodes" locationNameList:"item" type:"list"`
+	RAMDiskID           *AttributeValue       `locationName:"ramdisk" type:"structure"`
+	SRIOVNetSupport     *AttributeValue       `locationName:"sriovNetSupport" type:"structure"`
+
+	metadataDescribeImageAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeImageAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DescribeImagesInput struct {
 	DryRun          *bool     `locationName:"dryRun" type:"boolean"`
 	ExecutableUsers []*string `locationName:"ExecutableBy" locationNameList:"ExecutableBy" type:"list"`
@@ -5901,6 +5930,29 @@ type DescribeInstanceAttributeInput struct {
 
 type metadataDescribeInstanceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId,Attribute"`
+}
+
+type DescribeInstanceAttributeOutput struct {
+	BlockDeviceMappings               []*InstanceBlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
+	DisableAPITermination             *AttributeBooleanValue        `locationName:"disableApiTermination" type:"structure"`
+	EBSOptimized                      *AttributeBooleanValue        `locationName:"ebsOptimized" type:"structure"`
+	Groups                            []*GroupIdentifier            `locationName:"groupSet" locationNameList:"item" type:"list"`
+	InstanceID                        *string                       `locationName:"instanceId" type:"string"`
+	InstanceInitiatedShutdownBehavior *AttributeValue               `locationName:"instanceInitiatedShutdownBehavior" type:"structure"`
+	InstanceType                      *AttributeValue               `locationName:"instanceType" type:"structure"`
+	KernelID                          *AttributeValue               `locationName:"kernel" type:"structure"`
+	ProductCodes                      []*ProductCode                `locationName:"productCodes" locationNameList:"item" type:"list"`
+	RAMDiskID                         *AttributeValue               `locationName:"ramdisk" type:"structure"`
+	RootDeviceName                    *AttributeValue               `locationName:"rootDeviceName" type:"structure"`
+	SRIOVNetSupport                   *AttributeValue               `locationName:"sriovNetSupport" type:"structure"`
+	SourceDestCheck                   *AttributeBooleanValue        `locationName:"sourceDestCheck" type:"structure"`
+	UserData                          *AttributeValue               `locationName:"userData" type:"structure"`
+
+	metadataDescribeInstanceAttributeOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeInstanceAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeInstanceStatusInput struct {
@@ -6327,15 +6379,15 @@ type metadataDescribeSpotDatafeedSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeSpotInstanceInputsInput struct {
+type DescribeSpotInstanceRequestsInput struct {
 	DryRun                 *bool     `locationName:"dryRun" type:"boolean"`
 	Filters                []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 	SpotInstanceRequestIDs []*string `locationName:"SpotInstanceRequestId" locationNameList:"SpotInstanceRequestId" type:"list"`
 
-	metadataDescribeSpotInstanceInputsInput `json:"-", xml:"-"`
+	metadataDescribeSpotInstanceRequestsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeSpotInstanceInputsInput struct {
+type metadataDescribeSpotInstanceRequestsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -7151,23 +7203,6 @@ type metadataImage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ImageAttribute struct {
-	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
-	Description         *AttributeValue       `locationName:"description" type:"structure"`
-	ImageID             *string               `locationName:"imageId" type:"string"`
-	KernelID            *AttributeValue       `locationName:"kernel" type:"structure"`
-	LaunchPermissions   []*LaunchPermission   `locationName:"launchPermission" locationNameList:"item" type:"list"`
-	ProductCodes        []*ProductCode        `locationName:"productCodes" locationNameList:"item" type:"list"`
-	RAMDiskID           *AttributeValue       `locationName:"ramdisk" type:"structure"`
-	SRIOVNetSupport     *AttributeValue       `locationName:"sriovNetSupport" type:"structure"`
-
-	metadataImageAttribute `json:"-", xml:"-"`
-}
-
-type metadataImageAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type ImportInstanceInput struct {
 	Description         *string                            `locationName:"description" type:"string"`
 	DiskImages          []*DiskImage                       `locationName:"diskImage" type:"list"`
@@ -7302,24 +7337,6 @@ type metadataImportVolumeTaskDetails struct {
 	SDKShapeTraits bool `type:"structure" required:"BytesConverted,AvailabilityZone,Image,Volume"`
 }
 
-type InputSpotInstancesInput struct {
-	AvailabilityZoneGroup *string                         `locationName:"availabilityZoneGroup" type:"string"`
-	DryRun                *bool                           `locationName:"dryRun" type:"boolean"`
-	InstanceCount         *int                            `locationName:"instanceCount" type:"integer"`
-	LaunchGroup           *string                         `locationName:"launchGroup" type:"string"`
-	LaunchSpecification   *RequestSpotLaunchSpecification `type:"structure"`
-	SpotPrice             *string                         `locationName:"spotPrice" type:"string"`
-	Type                  *string                         `locationName:"type" type:"string"`
-	ValidFrom             *time.Time                      `locationName:"validFrom" type:"timestamp" timestampFormat:"iso8601"`
-	ValidUntil            *time.Time                      `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
-
-	metadataInputSpotInstancesInput `json:"-", xml:"-"`
-}
-
-type metadataInputSpotInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SpotPrice"`
-}
-
 type Instance struct {
 	AMILaunchIndex        *int                          `locationName:"amiLaunchIndex" type:"integer"`
 	Architecture          *string                       `locationName:"architecture" type:"string"`
@@ -7363,29 +7380,6 @@ type Instance struct {
 }
 
 type metadataInstance struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InstanceAttribute struct {
-	BlockDeviceMappings               []*InstanceBlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
-	DisableAPITermination             *AttributeBooleanValue        `locationName:"disableApiTermination" type:"structure"`
-	EBSOptimized                      *AttributeBooleanValue        `locationName:"ebsOptimized" type:"structure"`
-	Groups                            []*GroupIdentifier            `locationName:"groupSet" locationNameList:"item" type:"list"`
-	InstanceID                        *string                       `locationName:"instanceId" type:"string"`
-	InstanceInitiatedShutdownBehavior *AttributeValue               `locationName:"instanceInitiatedShutdownBehavior" type:"structure"`
-	InstanceType                      *AttributeValue               `locationName:"instanceType" type:"structure"`
-	KernelID                          *AttributeValue               `locationName:"kernel" type:"structure"`
-	ProductCodes                      []*ProductCode                `locationName:"productCodes" locationNameList:"item" type:"list"`
-	RAMDiskID                         *AttributeValue               `locationName:"ramdisk" type:"structure"`
-	RootDeviceName                    *AttributeValue               `locationName:"rootDeviceName" type:"structure"`
-	SRIOVNetSupport                   *AttributeValue               `locationName:"sriovNetSupport" type:"structure"`
-	SourceDestCheck                   *AttributeBooleanValue        `locationName:"sourceDestCheck" type:"structure"`
-	UserData                          *AttributeValue               `locationName:"userData" type:"structure"`
-
-	metadataInstanceAttribute `json:"-", xml:"-"`
-}
-
-type metadataInstanceAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -7621,18 +7615,6 @@ type InternetGatewayAttachment struct {
 }
 
 type metadataInternetGatewayAttachment struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type KeyPair struct {
-	KeyFingerprint *string `locationName:"keyFingerprint" type:"string"`
-	KeyMaterial    *string `locationName:"keyMaterial" type:"string"`
-	KeyName        *string `locationName:"keyName" type:"string"`
-
-	metadataKeyPair `json:"-", xml:"-"`
-}
-
-type metadataKeyPair struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -8400,6 +8382,24 @@ type ReportInstanceStatusOutput struct {
 
 type metadataReportInstanceStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+type RequestSpotInstancesInput struct {
+	AvailabilityZoneGroup *string                         `locationName:"availabilityZoneGroup" type:"string"`
+	DryRun                *bool                           `locationName:"dryRun" type:"boolean"`
+	InstanceCount         *int                            `locationName:"instanceCount" type:"integer"`
+	LaunchGroup           *string                         `locationName:"launchGroup" type:"string"`
+	LaunchSpecification   *RequestSpotLaunchSpecification `type:"structure"`
+	SpotPrice             *string                         `locationName:"spotPrice" type:"string"`
+	Type                  *string                         `locationName:"type" type:"string"`
+	ValidFrom             *time.Time                      `locationName:"validFrom" type:"timestamp" timestampFormat:"iso8601"`
+	ValidUntil            *time.Time                      `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
+
+	metadataRequestSpotInstancesInput `json:"-", xml:"-"`
+}
+
+type metadataRequestSpotInstancesInput struct {
+	SDKShapeTraits bool `type:"structure" required:"SpotPrice"`
 }
 
 type RequestSpotInstancesOutput struct {

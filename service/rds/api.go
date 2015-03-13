@@ -9,7 +9,7 @@ import (
 )
 
 // AddSourceIdentifierToSubscriptionRequest generates a request for the AddSourceIdentifierToSubscription operation.
-func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifierToSubscriptionMessage) (req *aws.Request, output *AddSourceIdentifierToSubscriptionOutput) {
+func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifierToSubscriptionInput) (req *aws.Request, output *AddSourceIdentifierToSubscriptionOutput) {
 	if opAddSourceIdentifierToSubscription == nil {
 		opAddSourceIdentifierToSubscription = &aws.Operation{
 			Name:       "AddSourceIdentifierToSubscription",
@@ -24,7 +24,7 @@ func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifie
 	return
 }
 
-func (c *RDS) AddSourceIdentifierToSubscription(input *AddSourceIdentifierToSubscriptionMessage) (output *AddSourceIdentifierToSubscriptionOutput, err error) {
+func (c *RDS) AddSourceIdentifierToSubscription(input *AddSourceIdentifierToSubscriptionInput) (output *AddSourceIdentifierToSubscriptionOutput, err error) {
 	req, out := c.AddSourceIdentifierToSubscriptionRequest(input)
 	output = out
 	err = req.Send()
@@ -34,7 +34,7 @@ func (c *RDS) AddSourceIdentifierToSubscription(input *AddSourceIdentifierToSubs
 var opAddSourceIdentifierToSubscription *aws.Operation
 
 // AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
-func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceMessage) (req *aws.Request, output *AddTagsToResourceOutput) {
+func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.Request, output *AddTagsToResourceOutput) {
 	if opAddTagsToResource == nil {
 		opAddTagsToResource = &aws.Operation{
 			Name:       "AddTagsToResource",
@@ -49,7 +49,7 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceMessage) (req *aw
 	return
 }
 
-func (c *RDS) AddTagsToResource(input *AddTagsToResourceMessage) (output *AddTagsToResourceOutput, err error) {
+func (c *RDS) AddTagsToResource(input *AddTagsToResourceInput) (output *AddTagsToResourceOutput, err error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	output = out
 	err = req.Send()
@@ -59,7 +59,7 @@ func (c *RDS) AddTagsToResource(input *AddTagsToResourceMessage) (output *AddTag
 var opAddTagsToResource *aws.Operation
 
 // ApplyPendingMaintenanceActionRequest generates a request for the ApplyPendingMaintenanceAction operation.
-func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanceActionMessage) (req *aws.Request, output *ApplyPendingMaintenanceActionOutput) {
+func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanceActionInput) (req *aws.Request, output *ApplyPendingMaintenanceActionOutput) {
 	if opApplyPendingMaintenanceAction == nil {
 		opApplyPendingMaintenanceAction = &aws.Operation{
 			Name:       "ApplyPendingMaintenanceAction",
@@ -74,7 +74,7 @@ func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanc
 	return
 }
 
-func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceActionMessage) (output *ApplyPendingMaintenanceActionOutput, err error) {
+func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceActionInput) (output *ApplyPendingMaintenanceActionOutput, err error) {
 	req, out := c.ApplyPendingMaintenanceActionRequest(input)
 	output = out
 	err = req.Send()
@@ -84,7 +84,7 @@ func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceAction
 var opApplyPendingMaintenanceAction *aws.Operation
 
 // AuthorizeDBSecurityGroupIngressRequest generates a request for the AuthorizeDBSecurityGroupIngress operation.
-func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityGroupIngressMessage) (req *aws.Request, output *AuthorizeDBSecurityGroupIngressOutput) {
+func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeDBSecurityGroupIngressOutput) {
 	if opAuthorizeDBSecurityGroupIngress == nil {
 		opAuthorizeDBSecurityGroupIngress = &aws.Operation{
 			Name:       "AuthorizeDBSecurityGroupIngress",
@@ -99,7 +99,7 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityG
 	return
 }
 
-func (c *RDS) AuthorizeDBSecurityGroupIngress(input *AuthorizeDBSecurityGroupIngressMessage) (output *AuthorizeDBSecurityGroupIngressOutput, err error) {
+func (c *RDS) AuthorizeDBSecurityGroupIngress(input *AuthorizeDBSecurityGroupIngressInput) (output *AuthorizeDBSecurityGroupIngressOutput, err error) {
 	req, out := c.AuthorizeDBSecurityGroupIngressRequest(input)
 	output = out
 	err = req.Send()
@@ -109,7 +109,7 @@ func (c *RDS) AuthorizeDBSecurityGroupIngress(input *AuthorizeDBSecurityGroupIng
 var opAuthorizeDBSecurityGroupIngress *aws.Operation
 
 // CopyDBParameterGroupRequest generates a request for the CopyDBParameterGroup operation.
-func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupMessage) (req *aws.Request, output *CopyDBParameterGroupOutput) {
+func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req *aws.Request, output *CopyDBParameterGroupOutput) {
 	if opCopyDBParameterGroup == nil {
 		opCopyDBParameterGroup = &aws.Operation{
 			Name:       "CopyDBParameterGroup",
@@ -124,7 +124,7 @@ func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupMessage) (r
 	return
 }
 
-func (c *RDS) CopyDBParameterGroup(input *CopyDBParameterGroupMessage) (output *CopyDBParameterGroupOutput, err error) {
+func (c *RDS) CopyDBParameterGroup(input *CopyDBParameterGroupInput) (output *CopyDBParameterGroupOutput, err error) {
 	req, out := c.CopyDBParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -134,7 +134,7 @@ func (c *RDS) CopyDBParameterGroup(input *CopyDBParameterGroupMessage) (output *
 var opCopyDBParameterGroup *aws.Operation
 
 // CopyDBSnapshotRequest generates a request for the CopyDBSnapshot operation.
-func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotMessage) (req *aws.Request, output *CopyDBSnapshotOutput) {
+func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *aws.Request, output *CopyDBSnapshotOutput) {
 	if opCopyDBSnapshot == nil {
 		opCopyDBSnapshot = &aws.Operation{
 			Name:       "CopyDBSnapshot",
@@ -149,7 +149,7 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotMessage) (req *aws.Requ
 	return
 }
 
-func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotMessage) (output *CopyDBSnapshotOutput, err error) {
+func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotInput) (output *CopyDBSnapshotOutput, err error) {
 	req, out := c.CopyDBSnapshotRequest(input)
 	output = out
 	err = req.Send()
@@ -159,7 +159,7 @@ func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotMessage) (output *CopyDBSnapsh
 var opCopyDBSnapshot *aws.Operation
 
 // CopyOptionGroupRequest generates a request for the CopyOptionGroup operation.
-func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupMessage) (req *aws.Request, output *CopyOptionGroupOutput) {
+func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *aws.Request, output *CopyOptionGroupOutput) {
 	if opCopyOptionGroup == nil {
 		opCopyOptionGroup = &aws.Operation{
 			Name:       "CopyOptionGroup",
@@ -174,7 +174,7 @@ func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupMessage) (req *aws.Re
 	return
 }
 
-func (c *RDS) CopyOptionGroup(input *CopyOptionGroupMessage) (output *CopyOptionGroupOutput, err error) {
+func (c *RDS) CopyOptionGroup(input *CopyOptionGroupInput) (output *CopyOptionGroupOutput, err error) {
 	req, out := c.CopyOptionGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -184,7 +184,7 @@ func (c *RDS) CopyOptionGroup(input *CopyOptionGroupMessage) (output *CopyOption
 var opCopyOptionGroup *aws.Operation
 
 // CreateDBInstanceRequest generates a request for the CreateDBInstance operation.
-func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceMessage) (req *aws.Request, output *CreateDBInstanceOutput) {
+func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *aws.Request, output *CreateDBInstanceOutput) {
 	if opCreateDBInstance == nil {
 		opCreateDBInstance = &aws.Operation{
 			Name:       "CreateDBInstance",
@@ -199,7 +199,7 @@ func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceMessage) (req *aws.
 	return
 }
 
-func (c *RDS) CreateDBInstance(input *CreateDBInstanceMessage) (output *CreateDBInstanceOutput, err error) {
+func (c *RDS) CreateDBInstance(input *CreateDBInstanceInput) (output *CreateDBInstanceOutput, err error) {
 	req, out := c.CreateDBInstanceRequest(input)
 	output = out
 	err = req.Send()
@@ -209,7 +209,7 @@ func (c *RDS) CreateDBInstance(input *CreateDBInstanceMessage) (output *CreateDB
 var opCreateDBInstance *aws.Operation
 
 // CreateDBInstanceReadReplicaRequest generates a request for the CreateDBInstanceReadReplica operation.
-func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadReplicaMessage) (req *aws.Request, output *CreateDBInstanceReadReplicaOutput) {
+func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadReplicaInput) (req *aws.Request, output *CreateDBInstanceReadReplicaOutput) {
 	if opCreateDBInstanceReadReplica == nil {
 		opCreateDBInstanceReadReplica = &aws.Operation{
 			Name:       "CreateDBInstanceReadReplica",
@@ -224,7 +224,7 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 	return
 }
 
-func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaMessage) (output *CreateDBInstanceReadReplicaOutput, err error) {
+func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaInput) (output *CreateDBInstanceReadReplicaOutput, err error) {
 	req, out := c.CreateDBInstanceReadReplicaRequest(input)
 	output = out
 	err = req.Send()
@@ -234,7 +234,7 @@ func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaMess
 var opCreateDBInstanceReadReplica *aws.Operation
 
 // CreateDBParameterGroupRequest generates a request for the CreateDBParameterGroup operation.
-func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupMessage) (req *aws.Request, output *CreateDBParameterGroupOutput) {
+func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) (req *aws.Request, output *CreateDBParameterGroupOutput) {
 	if opCreateDBParameterGroup == nil {
 		opCreateDBParameterGroup = &aws.Operation{
 			Name:       "CreateDBParameterGroup",
@@ -249,7 +249,7 @@ func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupMessage
 	return
 }
 
-func (c *RDS) CreateDBParameterGroup(input *CreateDBParameterGroupMessage) (output *CreateDBParameterGroupOutput, err error) {
+func (c *RDS) CreateDBParameterGroup(input *CreateDBParameterGroupInput) (output *CreateDBParameterGroupOutput, err error) {
 	req, out := c.CreateDBParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -259,7 +259,7 @@ func (c *RDS) CreateDBParameterGroup(input *CreateDBParameterGroupMessage) (outp
 var opCreateDBParameterGroup *aws.Operation
 
 // CreateDBSecurityGroupRequest generates a request for the CreateDBSecurityGroup operation.
-func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupMessage) (req *aws.Request, output *CreateDBSecurityGroupOutput) {
+func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (req *aws.Request, output *CreateDBSecurityGroupOutput) {
 	if opCreateDBSecurityGroup == nil {
 		opCreateDBSecurityGroup = &aws.Operation{
 			Name:       "CreateDBSecurityGroup",
@@ -274,7 +274,7 @@ func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupMessage) 
 	return
 }
 
-func (c *RDS) CreateDBSecurityGroup(input *CreateDBSecurityGroupMessage) (output *CreateDBSecurityGroupOutput, err error) {
+func (c *RDS) CreateDBSecurityGroup(input *CreateDBSecurityGroupInput) (output *CreateDBSecurityGroupOutput, err error) {
 	req, out := c.CreateDBSecurityGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -284,7 +284,7 @@ func (c *RDS) CreateDBSecurityGroup(input *CreateDBSecurityGroupMessage) (output
 var opCreateDBSecurityGroup *aws.Operation
 
 // CreateDBSnapshotRequest generates a request for the CreateDBSnapshot operation.
-func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotMessage) (req *aws.Request, output *CreateDBSnapshotOutput) {
+func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *aws.Request, output *CreateDBSnapshotOutput) {
 	if opCreateDBSnapshot == nil {
 		opCreateDBSnapshot = &aws.Operation{
 			Name:       "CreateDBSnapshot",
@@ -299,7 +299,7 @@ func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotMessage) (req *aws.
 	return
 }
 
-func (c *RDS) CreateDBSnapshot(input *CreateDBSnapshotMessage) (output *CreateDBSnapshotOutput, err error) {
+func (c *RDS) CreateDBSnapshot(input *CreateDBSnapshotInput) (output *CreateDBSnapshotOutput, err error) {
 	req, out := c.CreateDBSnapshotRequest(input)
 	output = out
 	err = req.Send()
@@ -309,7 +309,7 @@ func (c *RDS) CreateDBSnapshot(input *CreateDBSnapshotMessage) (output *CreateDB
 var opCreateDBSnapshot *aws.Operation
 
 // CreateDBSubnetGroupRequest generates a request for the CreateDBSubnetGroup operation.
-func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupMessage) (req *aws.Request, output *CreateDBSubnetGroupOutput) {
+func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *aws.Request, output *CreateDBSubnetGroupOutput) {
 	if opCreateDBSubnetGroup == nil {
 		opCreateDBSubnetGroup = &aws.Operation{
 			Name:       "CreateDBSubnetGroup",
@@ -324,7 +324,7 @@ func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupMessage) (req
 	return
 }
 
-func (c *RDS) CreateDBSubnetGroup(input *CreateDBSubnetGroupMessage) (output *CreateDBSubnetGroupOutput, err error) {
+func (c *RDS) CreateDBSubnetGroup(input *CreateDBSubnetGroupInput) (output *CreateDBSubnetGroupOutput, err error) {
 	req, out := c.CreateDBSubnetGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -334,7 +334,7 @@ func (c *RDS) CreateDBSubnetGroup(input *CreateDBSubnetGroupMessage) (output *Cr
 var opCreateDBSubnetGroup *aws.Operation
 
 // CreateEventSubscriptionRequest generates a request for the CreateEventSubscription operation.
-func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionMessage) (req *aws.Request, output *CreateEventSubscriptionOutput) {
+func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *aws.Request, output *CreateEventSubscriptionOutput) {
 	if opCreateEventSubscription == nil {
 		opCreateEventSubscription = &aws.Operation{
 			Name:       "CreateEventSubscription",
@@ -349,7 +349,7 @@ func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionMessa
 	return
 }
 
-func (c *RDS) CreateEventSubscription(input *CreateEventSubscriptionMessage) (output *CreateEventSubscriptionOutput, err error) {
+func (c *RDS) CreateEventSubscription(input *CreateEventSubscriptionInput) (output *CreateEventSubscriptionOutput, err error) {
 	req, out := c.CreateEventSubscriptionRequest(input)
 	output = out
 	err = req.Send()
@@ -359,7 +359,7 @@ func (c *RDS) CreateEventSubscription(input *CreateEventSubscriptionMessage) (ou
 var opCreateEventSubscription *aws.Operation
 
 // CreateOptionGroupRequest generates a request for the CreateOptionGroup operation.
-func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupMessage) (req *aws.Request, output *CreateOptionGroupOutput) {
+func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *aws.Request, output *CreateOptionGroupOutput) {
 	if opCreateOptionGroup == nil {
 		opCreateOptionGroup = &aws.Operation{
 			Name:       "CreateOptionGroup",
@@ -374,7 +374,7 @@ func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupMessage) (req *aw
 	return
 }
 
-func (c *RDS) CreateOptionGroup(input *CreateOptionGroupMessage) (output *CreateOptionGroupOutput, err error) {
+func (c *RDS) CreateOptionGroup(input *CreateOptionGroupInput) (output *CreateOptionGroupOutput, err error) {
 	req, out := c.CreateOptionGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -384,7 +384,7 @@ func (c *RDS) CreateOptionGroup(input *CreateOptionGroupMessage) (output *Create
 var opCreateOptionGroup *aws.Operation
 
 // DeleteDBInstanceRequest generates a request for the DeleteDBInstance operation.
-func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceMessage) (req *aws.Request, output *DeleteDBInstanceOutput) {
+func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *aws.Request, output *DeleteDBInstanceOutput) {
 	if opDeleteDBInstance == nil {
 		opDeleteDBInstance = &aws.Operation{
 			Name:       "DeleteDBInstance",
@@ -399,7 +399,7 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceMessage) (req *aws.
 	return
 }
 
-func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceMessage) (output *DeleteDBInstanceOutput, err error) {
+func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceInput) (output *DeleteDBInstanceOutput, err error) {
 	req, out := c.DeleteDBInstanceRequest(input)
 	output = out
 	err = req.Send()
@@ -409,7 +409,7 @@ func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceMessage) (output *DeleteDB
 var opDeleteDBInstance *aws.Operation
 
 // DeleteDBParameterGroupRequest generates a request for the DeleteDBParameterGroup operation.
-func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupMessage) (req *aws.Request, output *DeleteDBParameterGroupOutput) {
+func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) (req *aws.Request, output *DeleteDBParameterGroupOutput) {
 	if opDeleteDBParameterGroup == nil {
 		opDeleteDBParameterGroup = &aws.Operation{
 			Name:       "DeleteDBParameterGroup",
@@ -424,7 +424,7 @@ func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupMessage
 	return
 }
 
-func (c *RDS) DeleteDBParameterGroup(input *DeleteDBParameterGroupMessage) (output *DeleteDBParameterGroupOutput, err error) {
+func (c *RDS) DeleteDBParameterGroup(input *DeleteDBParameterGroupInput) (output *DeleteDBParameterGroupOutput, err error) {
 	req, out := c.DeleteDBParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -434,7 +434,7 @@ func (c *RDS) DeleteDBParameterGroup(input *DeleteDBParameterGroupMessage) (outp
 var opDeleteDBParameterGroup *aws.Operation
 
 // DeleteDBSecurityGroupRequest generates a request for the DeleteDBSecurityGroup operation.
-func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupMessage) (req *aws.Request, output *DeleteDBSecurityGroupOutput) {
+func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (req *aws.Request, output *DeleteDBSecurityGroupOutput) {
 	if opDeleteDBSecurityGroup == nil {
 		opDeleteDBSecurityGroup = &aws.Operation{
 			Name:       "DeleteDBSecurityGroup",
@@ -449,7 +449,7 @@ func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupMessage) 
 	return
 }
 
-func (c *RDS) DeleteDBSecurityGroup(input *DeleteDBSecurityGroupMessage) (output *DeleteDBSecurityGroupOutput, err error) {
+func (c *RDS) DeleteDBSecurityGroup(input *DeleteDBSecurityGroupInput) (output *DeleteDBSecurityGroupOutput, err error) {
 	req, out := c.DeleteDBSecurityGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -459,7 +459,7 @@ func (c *RDS) DeleteDBSecurityGroup(input *DeleteDBSecurityGroupMessage) (output
 var opDeleteDBSecurityGroup *aws.Operation
 
 // DeleteDBSnapshotRequest generates a request for the DeleteDBSnapshot operation.
-func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotMessage) (req *aws.Request, output *DeleteDBSnapshotOutput) {
+func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *aws.Request, output *DeleteDBSnapshotOutput) {
 	if opDeleteDBSnapshot == nil {
 		opDeleteDBSnapshot = &aws.Operation{
 			Name:       "DeleteDBSnapshot",
@@ -474,7 +474,7 @@ func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotMessage) (req *aws.
 	return
 }
 
-func (c *RDS) DeleteDBSnapshot(input *DeleteDBSnapshotMessage) (output *DeleteDBSnapshotOutput, err error) {
+func (c *RDS) DeleteDBSnapshot(input *DeleteDBSnapshotInput) (output *DeleteDBSnapshotOutput, err error) {
 	req, out := c.DeleteDBSnapshotRequest(input)
 	output = out
 	err = req.Send()
@@ -484,7 +484,7 @@ func (c *RDS) DeleteDBSnapshot(input *DeleteDBSnapshotMessage) (output *DeleteDB
 var opDeleteDBSnapshot *aws.Operation
 
 // DeleteDBSubnetGroupRequest generates a request for the DeleteDBSubnetGroup operation.
-func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupMessage) (req *aws.Request, output *DeleteDBSubnetGroupOutput) {
+func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *aws.Request, output *DeleteDBSubnetGroupOutput) {
 	if opDeleteDBSubnetGroup == nil {
 		opDeleteDBSubnetGroup = &aws.Operation{
 			Name:       "DeleteDBSubnetGroup",
@@ -499,7 +499,7 @@ func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupMessage) (req
 	return
 }
 
-func (c *RDS) DeleteDBSubnetGroup(input *DeleteDBSubnetGroupMessage) (output *DeleteDBSubnetGroupOutput, err error) {
+func (c *RDS) DeleteDBSubnetGroup(input *DeleteDBSubnetGroupInput) (output *DeleteDBSubnetGroupOutput, err error) {
 	req, out := c.DeleteDBSubnetGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -509,7 +509,7 @@ func (c *RDS) DeleteDBSubnetGroup(input *DeleteDBSubnetGroupMessage) (output *De
 var opDeleteDBSubnetGroup *aws.Operation
 
 // DeleteEventSubscriptionRequest generates a request for the DeleteEventSubscription operation.
-func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionMessage) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
+func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
 	if opDeleteEventSubscription == nil {
 		opDeleteEventSubscription = &aws.Operation{
 			Name:       "DeleteEventSubscription",
@@ -524,7 +524,7 @@ func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionMessa
 	return
 }
 
-func (c *RDS) DeleteEventSubscription(input *DeleteEventSubscriptionMessage) (output *DeleteEventSubscriptionOutput, err error) {
+func (c *RDS) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (output *DeleteEventSubscriptionOutput, err error) {
 	req, out := c.DeleteEventSubscriptionRequest(input)
 	output = out
 	err = req.Send()
@@ -534,7 +534,7 @@ func (c *RDS) DeleteEventSubscription(input *DeleteEventSubscriptionMessage) (ou
 var opDeleteEventSubscription *aws.Operation
 
 // DeleteOptionGroupRequest generates a request for the DeleteOptionGroup operation.
-func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupMessage) (req *aws.Request, output *DeleteOptionGroupOutput) {
+func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupInput) (req *aws.Request, output *DeleteOptionGroupOutput) {
 	if opDeleteOptionGroup == nil {
 		opDeleteOptionGroup = &aws.Operation{
 			Name:       "DeleteOptionGroup",
@@ -549,7 +549,7 @@ func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupMessage) (req *aw
 	return
 }
 
-func (c *RDS) DeleteOptionGroup(input *DeleteOptionGroupMessage) (output *DeleteOptionGroupOutput, err error) {
+func (c *RDS) DeleteOptionGroup(input *DeleteOptionGroupInput) (output *DeleteOptionGroupOutput, err error) {
 	req, out := c.DeleteOptionGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -559,7 +559,7 @@ func (c *RDS) DeleteOptionGroup(input *DeleteOptionGroupMessage) (output *Delete
 var opDeleteOptionGroup *aws.Operation
 
 // DescribeDBEngineVersionsRequest generates a request for the DescribeDBEngineVersions operation.
-func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsMessage) (req *aws.Request, output *DBEngineVersionMessage) {
+func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInput) (req *aws.Request, output *DescribeDBEngineVersionsOutput) {
 	if opDescribeDBEngineVersions == nil {
 		opDescribeDBEngineVersions = &aws.Operation{
 			Name:       "DescribeDBEngineVersions",
@@ -569,12 +569,12 @@ func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsMes
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeDBEngineVersions, input, output)
-	output = &DBEngineVersionMessage{}
+	output = &DescribeDBEngineVersionsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsMessage) (output *DBEngineVersionMessage, err error) {
+func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsInput) (output *DescribeDBEngineVersionsOutput, err error) {
 	req, out := c.DescribeDBEngineVersionsRequest(input)
 	output = out
 	err = req.Send()
@@ -584,7 +584,7 @@ func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsMessage) (
 var opDescribeDBEngineVersions *aws.Operation
 
 // DescribeDBInstancesRequest generates a request for the DescribeDBInstances operation.
-func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesMessage) (req *aws.Request, output *DBInstanceMessage) {
+func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *aws.Request, output *DescribeDBInstancesOutput) {
 	if opDescribeDBInstances == nil {
 		opDescribeDBInstances = &aws.Operation{
 			Name:       "DescribeDBInstances",
@@ -594,12 +594,12 @@ func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesMessage) (req
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeDBInstances, input, output)
-	output = &DBInstanceMessage{}
+	output = &DescribeDBInstancesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesMessage) (output *DBInstanceMessage, err error) {
+func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesInput) (output *DescribeDBInstancesOutput, err error) {
 	req, out := c.DescribeDBInstancesRequest(input)
 	output = out
 	err = req.Send()
@@ -609,7 +609,7 @@ func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesMessage) (output *DB
 var opDescribeDBInstances *aws.Operation
 
 // DescribeDBLogFilesRequest generates a request for the DescribeDBLogFiles operation.
-func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesMessage) (req *aws.Request, output *DescribeDBLogFilesOutput) {
+func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *aws.Request, output *DescribeDBLogFilesOutput) {
 	if opDescribeDBLogFiles == nil {
 		opDescribeDBLogFiles = &aws.Operation{
 			Name:       "DescribeDBLogFiles",
@@ -624,7 +624,7 @@ func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesMessage) (req *
 	return
 }
 
-func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesMessage) (output *DescribeDBLogFilesOutput, err error) {
+func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesInput) (output *DescribeDBLogFilesOutput, err error) {
 	req, out := c.DescribeDBLogFilesRequest(input)
 	output = out
 	err = req.Send()
@@ -634,7 +634,7 @@ func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesMessage) (output *Desc
 var opDescribeDBLogFiles *aws.Operation
 
 // DescribeDBParameterGroupsRequest generates a request for the DescribeDBParameterGroups operation.
-func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsMessage) (req *aws.Request, output *DBParameterGroupsMessage) {
+func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsInput) (req *aws.Request, output *DescribeDBParameterGroupsOutput) {
 	if opDescribeDBParameterGroups == nil {
 		opDescribeDBParameterGroups = &aws.Operation{
 			Name:       "DescribeDBParameterGroups",
@@ -644,12 +644,12 @@ func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsM
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeDBParameterGroups, input, output)
-	output = &DBParameterGroupsMessage{}
+	output = &DescribeDBParameterGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsMessage) (output *DBParameterGroupsMessage, err error) {
+func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsInput) (output *DescribeDBParameterGroupsOutput, err error) {
 	req, out := c.DescribeDBParameterGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -659,7 +659,7 @@ func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsMessage)
 var opDescribeDBParameterGroups *aws.Operation
 
 // DescribeDBParametersRequest generates a request for the DescribeDBParameters operation.
-func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersMessage) (req *aws.Request, output *DBParameterGroupDetails) {
+func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req *aws.Request, output *DescribeDBParametersOutput) {
 	if opDescribeDBParameters == nil {
 		opDescribeDBParameters = &aws.Operation{
 			Name:       "DescribeDBParameters",
@@ -669,12 +669,12 @@ func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersMessage) (r
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeDBParameters, input, output)
-	output = &DBParameterGroupDetails{}
+	output = &DescribeDBParametersOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeDBParameters(input *DescribeDBParametersMessage) (output *DBParameterGroupDetails, err error) {
+func (c *RDS) DescribeDBParameters(input *DescribeDBParametersInput) (output *DescribeDBParametersOutput, err error) {
 	req, out := c.DescribeDBParametersRequest(input)
 	output = out
 	err = req.Send()
@@ -684,7 +684,7 @@ func (c *RDS) DescribeDBParameters(input *DescribeDBParametersMessage) (output *
 var opDescribeDBParameters *aws.Operation
 
 // DescribeDBSecurityGroupsRequest generates a request for the DescribeDBSecurityGroups operation.
-func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsMessage) (req *aws.Request, output *DBSecurityGroupMessage) {
+func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInput) (req *aws.Request, output *DescribeDBSecurityGroupsOutput) {
 	if opDescribeDBSecurityGroups == nil {
 		opDescribeDBSecurityGroups = &aws.Operation{
 			Name:       "DescribeDBSecurityGroups",
@@ -694,12 +694,12 @@ func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsMes
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeDBSecurityGroups, input, output)
-	output = &DBSecurityGroupMessage{}
+	output = &DescribeDBSecurityGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsMessage) (output *DBSecurityGroupMessage, err error) {
+func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsInput) (output *DescribeDBSecurityGroupsOutput, err error) {
 	req, out := c.DescribeDBSecurityGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -709,7 +709,7 @@ func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsMessage) (
 var opDescribeDBSecurityGroups *aws.Operation
 
 // DescribeDBSnapshotsRequest generates a request for the DescribeDBSnapshots operation.
-func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsMessage) (req *aws.Request, output *DBSnapshotMessage) {
+func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *aws.Request, output *DescribeDBSnapshotsOutput) {
 	if opDescribeDBSnapshots == nil {
 		opDescribeDBSnapshots = &aws.Operation{
 			Name:       "DescribeDBSnapshots",
@@ -719,12 +719,12 @@ func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsMessage) (req
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeDBSnapshots, input, output)
-	output = &DBSnapshotMessage{}
+	output = &DescribeDBSnapshotsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsMessage) (output *DBSnapshotMessage, err error) {
+func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsInput) (output *DescribeDBSnapshotsOutput, err error) {
 	req, out := c.DescribeDBSnapshotsRequest(input)
 	output = out
 	err = req.Send()
@@ -734,7 +734,7 @@ func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsMessage) (output *DB
 var opDescribeDBSnapshots *aws.Operation
 
 // DescribeDBSubnetGroupsRequest generates a request for the DescribeDBSubnetGroups operation.
-func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsMessage) (req *aws.Request, output *DBSubnetGroupMessage) {
+func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) (req *aws.Request, output *DescribeDBSubnetGroupsOutput) {
 	if opDescribeDBSubnetGroups == nil {
 		opDescribeDBSubnetGroups = &aws.Operation{
 			Name:       "DescribeDBSubnetGroups",
@@ -744,12 +744,12 @@ func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsMessage
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeDBSubnetGroups, input, output)
-	output = &DBSubnetGroupMessage{}
+	output = &DescribeDBSubnetGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsMessage) (output *DBSubnetGroupMessage, err error) {
+func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsInput) (output *DescribeDBSubnetGroupsOutput, err error) {
 	req, out := c.DescribeDBSubnetGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -759,7 +759,7 @@ func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsMessage) (outp
 var opDescribeDBSubnetGroups *aws.Operation
 
 // DescribeEngineDefaultParametersRequest generates a request for the DescribeEngineDefaultParameters operation.
-func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersMessage) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
+func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
 	if opDescribeEngineDefaultParameters == nil {
 		opDescribeEngineDefaultParameters = &aws.Operation{
 			Name:       "DescribeEngineDefaultParameters",
@@ -774,7 +774,7 @@ func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaul
 	return
 }
 
-func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersMessage) (output *DescribeEngineDefaultParametersOutput, err error) {
+func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersInput) (output *DescribeEngineDefaultParametersOutput, err error) {
 	req, out := c.DescribeEngineDefaultParametersRequest(input)
 	output = out
 	err = req.Send()
@@ -784,7 +784,7 @@ func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParame
 var opDescribeEngineDefaultParameters *aws.Operation
 
 // DescribeEventCategoriesRequest generates a request for the DescribeEventCategories operation.
-func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesMessage) (req *aws.Request, output *EventCategoriesMessage) {
+func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *aws.Request, output *DescribeEventCategoriesOutput) {
 	if opDescribeEventCategories == nil {
 		opDescribeEventCategories = &aws.Operation{
 			Name:       "DescribeEventCategories",
@@ -794,12 +794,12 @@ func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesMessa
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeEventCategories, input, output)
-	output = &EventCategoriesMessage{}
+	output = &DescribeEventCategoriesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeEventCategories(input *DescribeEventCategoriesMessage) (output *EventCategoriesMessage, err error) {
+func (c *RDS) DescribeEventCategories(input *DescribeEventCategoriesInput) (output *DescribeEventCategoriesOutput, err error) {
 	req, out := c.DescribeEventCategoriesRequest(input)
 	output = out
 	err = req.Send()
@@ -809,7 +809,7 @@ func (c *RDS) DescribeEventCategories(input *DescribeEventCategoriesMessage) (ou
 var opDescribeEventCategories *aws.Operation
 
 // DescribeEventSubscriptionsRequest generates a request for the DescribeEventSubscriptions operation.
-func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsMessage) (req *aws.Request, output *EventSubscriptionsMessage) {
+func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *aws.Request, output *DescribeEventSubscriptionsOutput) {
 	if opDescribeEventSubscriptions == nil {
 		opDescribeEventSubscriptions = &aws.Operation{
 			Name:       "DescribeEventSubscriptions",
@@ -819,12 +819,12 @@ func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscription
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeEventSubscriptions, input, output)
-	output = &EventSubscriptionsMessage{}
+	output = &DescribeEventSubscriptionsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsMessage) (output *EventSubscriptionsMessage, err error) {
+func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (output *DescribeEventSubscriptionsOutput, err error) {
 	req, out := c.DescribeEventSubscriptionsRequest(input)
 	output = out
 	err = req.Send()
@@ -834,7 +834,7 @@ func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsMessag
 var opDescribeEventSubscriptions *aws.Operation
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
-func (c *RDS) DescribeEventsRequest(input *DescribeEventsMessage) (req *aws.Request, output *EventsMessage) {
+func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
 			Name:       "DescribeEvents",
@@ -844,12 +844,12 @@ func (c *RDS) DescribeEventsRequest(input *DescribeEventsMessage) (req *aws.Requ
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeEvents, input, output)
-	output = &EventsMessage{}
+	output = &DescribeEventsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeEvents(input *DescribeEventsMessage) (output *EventsMessage, err error) {
+func (c *RDS) DescribeEvents(input *DescribeEventsInput) (output *DescribeEventsOutput, err error) {
 	req, out := c.DescribeEventsRequest(input)
 	output = out
 	err = req.Send()
@@ -859,7 +859,7 @@ func (c *RDS) DescribeEvents(input *DescribeEventsMessage) (output *EventsMessag
 var opDescribeEvents *aws.Operation
 
 // DescribeOptionGroupOptionsRequest generates a request for the DescribeOptionGroupOptions operation.
-func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOptionsMessage) (req *aws.Request, output *OptionGroupOptionsMessage) {
+func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOptionsInput) (req *aws.Request, output *DescribeOptionGroupOptionsOutput) {
 	if opDescribeOptionGroupOptions == nil {
 		opDescribeOptionGroupOptions = &aws.Operation{
 			Name:       "DescribeOptionGroupOptions",
@@ -869,12 +869,12 @@ func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOption
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeOptionGroupOptions, input, output)
-	output = &OptionGroupOptionsMessage{}
+	output = &DescribeOptionGroupOptionsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsMessage) (output *OptionGroupOptionsMessage, err error) {
+func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsInput) (output *DescribeOptionGroupOptionsOutput, err error) {
 	req, out := c.DescribeOptionGroupOptionsRequest(input)
 	output = out
 	err = req.Send()
@@ -884,7 +884,7 @@ func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsMessag
 var opDescribeOptionGroupOptions *aws.Operation
 
 // DescribeOptionGroupsRequest generates a request for the DescribeOptionGroups operation.
-func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsMessage) (req *aws.Request, output *OptionGroups) {
+func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req *aws.Request, output *DescribeOptionGroupsOutput) {
 	if opDescribeOptionGroups == nil {
 		opDescribeOptionGroups = &aws.Operation{
 			Name:       "DescribeOptionGroups",
@@ -894,12 +894,12 @@ func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsMessage) (r
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeOptionGroups, input, output)
-	output = &OptionGroups{}
+	output = &DescribeOptionGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsMessage) (output *OptionGroups, err error) {
+func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsInput) (output *DescribeOptionGroupsOutput, err error) {
 	req, out := c.DescribeOptionGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -909,7 +909,7 @@ func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsMessage) (output *
 var opDescribeOptionGroups *aws.Operation
 
 // DescribeOrderableDBInstanceOptionsRequest generates a request for the DescribeOrderableDBInstanceOptions operation.
-func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderableDBInstanceOptionsMessage) (req *aws.Request, output *OrderableDBInstanceOptionsMessage) {
+func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderableDBInstanceOptionsInput) (req *aws.Request, output *DescribeOrderableDBInstanceOptionsOutput) {
 	if opDescribeOrderableDBInstanceOptions == nil {
 		opDescribeOrderableDBInstanceOptions = &aws.Operation{
 			Name:       "DescribeOrderableDBInstanceOptions",
@@ -919,12 +919,12 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderable
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeOrderableDBInstanceOptions, input, output)
-	output = &OrderableDBInstanceOptionsMessage{}
+	output = &DescribeOrderableDBInstanceOptionsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInstanceOptionsMessage) (output *OrderableDBInstanceOptionsMessage, err error) {
+func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInstanceOptionsInput) (output *DescribeOrderableDBInstanceOptionsOutput, err error) {
 	req, out := c.DescribeOrderableDBInstanceOptionsRequest(input)
 	output = out
 	err = req.Send()
@@ -934,7 +934,7 @@ func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInsta
 var opDescribeOrderableDBInstanceOptions *aws.Operation
 
 // DescribePendingMaintenanceActionsRequest generates a request for the DescribePendingMaintenanceActions operation.
-func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMaintenanceActionsMessage) (req *aws.Request, output *PendingMaintenanceActionsMessage) {
+func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMaintenanceActionsInput) (req *aws.Request, output *DescribePendingMaintenanceActionsOutput) {
 	if opDescribePendingMaintenanceActions == nil {
 		opDescribePendingMaintenanceActions = &aws.Operation{
 			Name:       "DescribePendingMaintenanceActions",
@@ -944,12 +944,12 @@ func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMai
 	}
 
 	req = aws.NewRequest(c.Service, opDescribePendingMaintenanceActions, input, output)
-	output = &PendingMaintenanceActionsMessage{}
+	output = &DescribePendingMaintenanceActionsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribePendingMaintenanceActions(input *DescribePendingMaintenanceActionsMessage) (output *PendingMaintenanceActionsMessage, err error) {
+func (c *RDS) DescribePendingMaintenanceActions(input *DescribePendingMaintenanceActionsInput) (output *DescribePendingMaintenanceActionsOutput, err error) {
 	req, out := c.DescribePendingMaintenanceActionsRequest(input)
 	output = out
 	err = req.Send()
@@ -959,7 +959,7 @@ func (c *RDS) DescribePendingMaintenanceActions(input *DescribePendingMaintenanc
 var opDescribePendingMaintenanceActions *aws.Operation
 
 // DescribeReservedDBInstancesRequest generates a request for the DescribeReservedDBInstances operation.
-func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstancesMessage) (req *aws.Request, output *ReservedDBInstanceMessage) {
+func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstancesInput) (req *aws.Request, output *DescribeReservedDBInstancesOutput) {
 	if opDescribeReservedDBInstances == nil {
 		opDescribeReservedDBInstances = &aws.Operation{
 			Name:       "DescribeReservedDBInstances",
@@ -969,12 +969,12 @@ func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstan
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeReservedDBInstances, input, output)
-	output = &ReservedDBInstanceMessage{}
+	output = &DescribeReservedDBInstancesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesMessage) (output *ReservedDBInstanceMessage, err error) {
+func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesInput) (output *DescribeReservedDBInstancesOutput, err error) {
 	req, out := c.DescribeReservedDBInstancesRequest(input)
 	output = out
 	err = req.Send()
@@ -984,7 +984,7 @@ func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesMess
 var opDescribeReservedDBInstances *aws.Operation
 
 // DescribeReservedDBInstancesOfferingsRequest generates a request for the DescribeReservedDBInstancesOfferings operation.
-func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReservedDBInstancesOfferingsMessage) (req *aws.Request, output *ReservedDBInstancesOfferingMessage) {
+func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReservedDBInstancesOfferingsInput) (req *aws.Request, output *DescribeReservedDBInstancesOfferingsOutput) {
 	if opDescribeReservedDBInstancesOfferings == nil {
 		opDescribeReservedDBInstancesOfferings = &aws.Operation{
 			Name:       "DescribeReservedDBInstancesOfferings",
@@ -994,12 +994,12 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReserve
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeReservedDBInstancesOfferings, input, output)
-	output = &ReservedDBInstancesOfferingMessage{}
+	output = &DescribeReservedDBInstancesOfferingsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInstancesOfferingsMessage) (output *ReservedDBInstancesOfferingMessage, err error) {
+func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInstancesOfferingsInput) (output *DescribeReservedDBInstancesOfferingsOutput, err error) {
 	req, out := c.DescribeReservedDBInstancesOfferingsRequest(input)
 	output = out
 	err = req.Send()
@@ -1009,7 +1009,7 @@ func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInst
 var opDescribeReservedDBInstancesOfferings *aws.Operation
 
 // DownloadDBLogFilePortionRequest generates a request for the DownloadDBLogFilePortion operation.
-func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionMessage) (req *aws.Request, output *DownloadDBLogFilePortionDetails) {
+func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInput) (req *aws.Request, output *DownloadDBLogFilePortionOutput) {
 	if opDownloadDBLogFilePortion == nil {
 		opDownloadDBLogFilePortion = &aws.Operation{
 			Name:       "DownloadDBLogFilePortion",
@@ -1019,12 +1019,12 @@ func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionMes
 	}
 
 	req = aws.NewRequest(c.Service, opDownloadDBLogFilePortion, input, output)
-	output = &DownloadDBLogFilePortionDetails{}
+	output = &DownloadDBLogFilePortionOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionMessage) (output *DownloadDBLogFilePortionDetails, err error) {
+func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionInput) (output *DownloadDBLogFilePortionOutput, err error) {
 	req, out := c.DownloadDBLogFilePortionRequest(input)
 	output = out
 	err = req.Send()
@@ -1034,7 +1034,7 @@ func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionMessage) (
 var opDownloadDBLogFilePortion *aws.Operation
 
 // ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
-func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceMessage) (req *aws.Request, output *TagListMessage) {
+func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *ListTagsForResourceOutput) {
 	if opListTagsForResource == nil {
 		opListTagsForResource = &aws.Operation{
 			Name:       "ListTagsForResource",
@@ -1044,12 +1044,12 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceMessage) (req
 	}
 
 	req = aws.NewRequest(c.Service, opListTagsForResource, input, output)
-	output = &TagListMessage{}
+	output = &ListTagsForResourceOutput{}
 	req.Data = output
 	return
 }
 
-func (c *RDS) ListTagsForResource(input *ListTagsForResourceMessage) (output *TagListMessage, err error) {
+func (c *RDS) ListTagsForResource(input *ListTagsForResourceInput) (output *ListTagsForResourceOutput, err error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	output = out
 	err = req.Send()
@@ -1059,7 +1059,7 @@ func (c *RDS) ListTagsForResource(input *ListTagsForResourceMessage) (output *Ta
 var opListTagsForResource *aws.Operation
 
 // ModifyDBInstanceRequest generates a request for the ModifyDBInstance operation.
-func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceMessage) (req *aws.Request, output *ModifyDBInstanceOutput) {
+func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *aws.Request, output *ModifyDBInstanceOutput) {
 	if opModifyDBInstance == nil {
 		opModifyDBInstance = &aws.Operation{
 			Name:       "ModifyDBInstance",
@@ -1074,7 +1074,7 @@ func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceMessage) (req *aws.
 	return
 }
 
-func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceMessage) (output *ModifyDBInstanceOutput, err error) {
+func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceInput) (output *ModifyDBInstanceOutput, err error) {
 	req, out := c.ModifyDBInstanceRequest(input)
 	output = out
 	err = req.Send()
@@ -1084,7 +1084,7 @@ func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceMessage) (output *ModifyDB
 var opModifyDBInstance *aws.Operation
 
 // ModifyDBParameterGroupRequest generates a request for the ModifyDBParameterGroup operation.
-func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupMessage) (req *aws.Request, output *DBParameterGroupNameMessage) {
+func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) (req *aws.Request, output *DBParameterGroupNameMessage) {
 	if opModifyDBParameterGroup == nil {
 		opModifyDBParameterGroup = &aws.Operation{
 			Name:       "ModifyDBParameterGroup",
@@ -1099,7 +1099,7 @@ func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupMessage
 	return
 }
 
-func (c *RDS) ModifyDBParameterGroup(input *ModifyDBParameterGroupMessage) (output *DBParameterGroupNameMessage, err error) {
+func (c *RDS) ModifyDBParameterGroup(input *ModifyDBParameterGroupInput) (output *DBParameterGroupNameMessage, err error) {
 	req, out := c.ModifyDBParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -1109,7 +1109,7 @@ func (c *RDS) ModifyDBParameterGroup(input *ModifyDBParameterGroupMessage) (outp
 var opModifyDBParameterGroup *aws.Operation
 
 // ModifyDBSubnetGroupRequest generates a request for the ModifyDBSubnetGroup operation.
-func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupMessage) (req *aws.Request, output *ModifyDBSubnetGroupOutput) {
+func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *aws.Request, output *ModifyDBSubnetGroupOutput) {
 	if opModifyDBSubnetGroup == nil {
 		opModifyDBSubnetGroup = &aws.Operation{
 			Name:       "ModifyDBSubnetGroup",
@@ -1124,7 +1124,7 @@ func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupMessage) (req
 	return
 }
 
-func (c *RDS) ModifyDBSubnetGroup(input *ModifyDBSubnetGroupMessage) (output *ModifyDBSubnetGroupOutput, err error) {
+func (c *RDS) ModifyDBSubnetGroup(input *ModifyDBSubnetGroupInput) (output *ModifyDBSubnetGroupOutput, err error) {
 	req, out := c.ModifyDBSubnetGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -1134,7 +1134,7 @@ func (c *RDS) ModifyDBSubnetGroup(input *ModifyDBSubnetGroupMessage) (output *Mo
 var opModifyDBSubnetGroup *aws.Operation
 
 // ModifyEventSubscriptionRequest generates a request for the ModifyEventSubscription operation.
-func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionMessage) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
+func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
 	if opModifyEventSubscription == nil {
 		opModifyEventSubscription = &aws.Operation{
 			Name:       "ModifyEventSubscription",
@@ -1149,7 +1149,7 @@ func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionMessa
 	return
 }
 
-func (c *RDS) ModifyEventSubscription(input *ModifyEventSubscriptionMessage) (output *ModifyEventSubscriptionOutput, err error) {
+func (c *RDS) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (output *ModifyEventSubscriptionOutput, err error) {
 	req, out := c.ModifyEventSubscriptionRequest(input)
 	output = out
 	err = req.Send()
@@ -1159,7 +1159,7 @@ func (c *RDS) ModifyEventSubscription(input *ModifyEventSubscriptionMessage) (ou
 var opModifyEventSubscription *aws.Operation
 
 // ModifyOptionGroupRequest generates a request for the ModifyOptionGroup operation.
-func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupMessage) (req *aws.Request, output *ModifyOptionGroupOutput) {
+func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *aws.Request, output *ModifyOptionGroupOutput) {
 	if opModifyOptionGroup == nil {
 		opModifyOptionGroup = &aws.Operation{
 			Name:       "ModifyOptionGroup",
@@ -1174,7 +1174,7 @@ func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupMessage) (req *aw
 	return
 }
 
-func (c *RDS) ModifyOptionGroup(input *ModifyOptionGroupMessage) (output *ModifyOptionGroupOutput, err error) {
+func (c *RDS) ModifyOptionGroup(input *ModifyOptionGroupInput) (output *ModifyOptionGroupOutput, err error) {
 	req, out := c.ModifyOptionGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -1184,7 +1184,7 @@ func (c *RDS) ModifyOptionGroup(input *ModifyOptionGroupMessage) (output *Modify
 var opModifyOptionGroup *aws.Operation
 
 // PromoteReadReplicaRequest generates a request for the PromoteReadReplica operation.
-func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaMessage) (req *aws.Request, output *PromoteReadReplicaOutput) {
+func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *aws.Request, output *PromoteReadReplicaOutput) {
 	if opPromoteReadReplica == nil {
 		opPromoteReadReplica = &aws.Operation{
 			Name:       "PromoteReadReplica",
@@ -1199,7 +1199,7 @@ func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaMessage) (req *
 	return
 }
 
-func (c *RDS) PromoteReadReplica(input *PromoteReadReplicaMessage) (output *PromoteReadReplicaOutput, err error) {
+func (c *RDS) PromoteReadReplica(input *PromoteReadReplicaInput) (output *PromoteReadReplicaOutput, err error) {
 	req, out := c.PromoteReadReplicaRequest(input)
 	output = out
 	err = req.Send()
@@ -1209,7 +1209,7 @@ func (c *RDS) PromoteReadReplica(input *PromoteReadReplicaMessage) (output *Prom
 var opPromoteReadReplica *aws.Operation
 
 // PurchaseReservedDBInstancesOfferingRequest generates a request for the PurchaseReservedDBInstancesOffering operation.
-func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReservedDBInstancesOfferingMessage) (req *aws.Request, output *PurchaseReservedDBInstancesOfferingOutput) {
+func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReservedDBInstancesOfferingInput) (req *aws.Request, output *PurchaseReservedDBInstancesOfferingOutput) {
 	if opPurchaseReservedDBInstancesOffering == nil {
 		opPurchaseReservedDBInstancesOffering = &aws.Operation{
 			Name:       "PurchaseReservedDBInstancesOffering",
@@ -1224,7 +1224,7 @@ func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReserved
 	return
 }
 
-func (c *RDS) PurchaseReservedDBInstancesOffering(input *PurchaseReservedDBInstancesOfferingMessage) (output *PurchaseReservedDBInstancesOfferingOutput, err error) {
+func (c *RDS) PurchaseReservedDBInstancesOffering(input *PurchaseReservedDBInstancesOfferingInput) (output *PurchaseReservedDBInstancesOfferingOutput, err error) {
 	req, out := c.PurchaseReservedDBInstancesOfferingRequest(input)
 	output = out
 	err = req.Send()
@@ -1234,7 +1234,7 @@ func (c *RDS) PurchaseReservedDBInstancesOffering(input *PurchaseReservedDBInsta
 var opPurchaseReservedDBInstancesOffering *aws.Operation
 
 // RebootDBInstanceRequest generates a request for the RebootDBInstance operation.
-func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceMessage) (req *aws.Request, output *RebootDBInstanceOutput) {
+func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *aws.Request, output *RebootDBInstanceOutput) {
 	if opRebootDBInstance == nil {
 		opRebootDBInstance = &aws.Operation{
 			Name:       "RebootDBInstance",
@@ -1249,7 +1249,7 @@ func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceMessage) (req *aws.
 	return
 }
 
-func (c *RDS) RebootDBInstance(input *RebootDBInstanceMessage) (output *RebootDBInstanceOutput, err error) {
+func (c *RDS) RebootDBInstance(input *RebootDBInstanceInput) (output *RebootDBInstanceOutput, err error) {
 	req, out := c.RebootDBInstanceRequest(input)
 	output = out
 	err = req.Send()
@@ -1259,7 +1259,7 @@ func (c *RDS) RebootDBInstance(input *RebootDBInstanceMessage) (output *RebootDB
 var opRebootDBInstance *aws.Operation
 
 // RemoveSourceIdentifierFromSubscriptionRequest generates a request for the RemoveSourceIdentifierFromSubscription operation.
-func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceIdentifierFromSubscriptionMessage) (req *aws.Request, output *RemoveSourceIdentifierFromSubscriptionOutput) {
+func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceIdentifierFromSubscriptionInput) (req *aws.Request, output *RemoveSourceIdentifierFromSubscriptionOutput) {
 	if opRemoveSourceIdentifierFromSubscription == nil {
 		opRemoveSourceIdentifierFromSubscription = &aws.Operation{
 			Name:       "RemoveSourceIdentifierFromSubscription",
@@ -1274,7 +1274,7 @@ func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceI
 	return
 }
 
-func (c *RDS) RemoveSourceIdentifierFromSubscription(input *RemoveSourceIdentifierFromSubscriptionMessage) (output *RemoveSourceIdentifierFromSubscriptionOutput, err error) {
+func (c *RDS) RemoveSourceIdentifierFromSubscription(input *RemoveSourceIdentifierFromSubscriptionInput) (output *RemoveSourceIdentifierFromSubscriptionOutput, err error) {
 	req, out := c.RemoveSourceIdentifierFromSubscriptionRequest(input)
 	output = out
 	err = req.Send()
@@ -1284,7 +1284,7 @@ func (c *RDS) RemoveSourceIdentifierFromSubscription(input *RemoveSourceIdentifi
 var opRemoveSourceIdentifierFromSubscription *aws.Operation
 
 // RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
-func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceMessage) (req *aws.Request, output *RemoveTagsFromResourceOutput) {
+func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *aws.Request, output *RemoveTagsFromResourceOutput) {
 	if opRemoveTagsFromResource == nil {
 		opRemoveTagsFromResource = &aws.Operation{
 			Name:       "RemoveTagsFromResource",
@@ -1299,7 +1299,7 @@ func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceMessage
 	return
 }
 
-func (c *RDS) RemoveTagsFromResource(input *RemoveTagsFromResourceMessage) (output *RemoveTagsFromResourceOutput, err error) {
+func (c *RDS) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (output *RemoveTagsFromResourceOutput, err error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	output = out
 	err = req.Send()
@@ -1309,7 +1309,7 @@ func (c *RDS) RemoveTagsFromResource(input *RemoveTagsFromResourceMessage) (outp
 var opRemoveTagsFromResource *aws.Operation
 
 // ResetDBParameterGroupRequest generates a request for the ResetDBParameterGroup operation.
-func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupMessage) (req *aws.Request, output *DBParameterGroupNameMessage) {
+func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (req *aws.Request, output *DBParameterGroupNameMessage) {
 	if opResetDBParameterGroup == nil {
 		opResetDBParameterGroup = &aws.Operation{
 			Name:       "ResetDBParameterGroup",
@@ -1324,7 +1324,7 @@ func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupMessage) 
 	return
 }
 
-func (c *RDS) ResetDBParameterGroup(input *ResetDBParameterGroupMessage) (output *DBParameterGroupNameMessage, err error) {
+func (c *RDS) ResetDBParameterGroup(input *ResetDBParameterGroupInput) (output *DBParameterGroupNameMessage, err error) {
 	req, out := c.ResetDBParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -1334,7 +1334,7 @@ func (c *RDS) ResetDBParameterGroup(input *ResetDBParameterGroupMessage) (output
 var opResetDBParameterGroup *aws.Operation
 
 // RestoreDBInstanceFromDBSnapshotRequest generates a request for the RestoreDBInstanceFromDBSnapshot operation.
-func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFromDBSnapshotMessage) (req *aws.Request, output *RestoreDBInstanceFromDBSnapshotOutput) {
+func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFromDBSnapshotInput) (req *aws.Request, output *RestoreDBInstanceFromDBSnapshotOutput) {
 	if opRestoreDBInstanceFromDBSnapshot == nil {
 		opRestoreDBInstanceFromDBSnapshot = &aws.Operation{
 			Name:       "RestoreDBInstanceFromDBSnapshot",
@@ -1349,7 +1349,7 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 	return
 }
 
-func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnapshotMessage) (output *RestoreDBInstanceFromDBSnapshotOutput, err error) {
+func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnapshotInput) (output *RestoreDBInstanceFromDBSnapshotOutput, err error) {
 	req, out := c.RestoreDBInstanceFromDBSnapshotRequest(input)
 	output = out
 	err = req.Send()
@@ -1359,7 +1359,7 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnap
 var opRestoreDBInstanceFromDBSnapshot *aws.Operation
 
 // RestoreDBInstanceToPointInTimeRequest generates a request for the RestoreDBInstanceToPointInTime operation.
-func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPointInTimeMessage) (req *aws.Request, output *RestoreDBInstanceToPointInTimeOutput) {
+func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPointInTimeInput) (req *aws.Request, output *RestoreDBInstanceToPointInTimeOutput) {
 	if opRestoreDBInstanceToPointInTime == nil {
 		opRestoreDBInstanceToPointInTime = &aws.Operation{
 			Name:       "RestoreDBInstanceToPointInTime",
@@ -1374,7 +1374,7 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 	return
 }
 
-func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTimeMessage) (output *RestoreDBInstanceToPointInTimeOutput, err error) {
+func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTimeInput) (output *RestoreDBInstanceToPointInTimeOutput, err error) {
 	req, out := c.RestoreDBInstanceToPointInTimeRequest(input)
 	output = out
 	err = req.Send()
@@ -1384,7 +1384,7 @@ func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTi
 var opRestoreDBInstanceToPointInTime *aws.Operation
 
 // RevokeDBSecurityGroupIngressRequest generates a request for the RevokeDBSecurityGroupIngress operation.
-func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIngressMessage) (req *aws.Request, output *RevokeDBSecurityGroupIngressOutput) {
+func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIngressInput) (req *aws.Request, output *RevokeDBSecurityGroupIngressOutput) {
 	if opRevokeDBSecurityGroupIngress == nil {
 		opRevokeDBSecurityGroupIngress = &aws.Operation{
 			Name:       "RevokeDBSecurityGroupIngress",
@@ -1399,7 +1399,7 @@ func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIn
 	return
 }
 
-func (c *RDS) RevokeDBSecurityGroupIngress(input *RevokeDBSecurityGroupIngressMessage) (output *RevokeDBSecurityGroupIngressOutput, err error) {
+func (c *RDS) RevokeDBSecurityGroupIngress(input *RevokeDBSecurityGroupIngressInput) (output *RevokeDBSecurityGroupIngressOutput, err error) {
 	req, out := c.RevokeDBSecurityGroupIngressRequest(input)
 	output = out
 	err = req.Send()
@@ -1408,14 +1408,14 @@ func (c *RDS) RevokeDBSecurityGroupIngress(input *RevokeDBSecurityGroupIngressMe
 
 var opRevokeDBSecurityGroupIngress *aws.Operation
 
-type AddSourceIdentifierToSubscriptionMessage struct {
+type AddSourceIdentifierToSubscriptionInput struct {
 	SourceIdentifier *string `type:"string"`
 	SubscriptionName *string `type:"string"`
 
-	metadataAddSourceIdentifierToSubscriptionMessage `json:"-", xml:"-"`
+	metadataAddSourceIdentifierToSubscriptionInput `json:"-", xml:"-"`
 }
 
-type metadataAddSourceIdentifierToSubscriptionMessage struct {
+type metadataAddSourceIdentifierToSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubscriptionName,SourceIdentifier"`
 }
 
@@ -1429,14 +1429,14 @@ type metadataAddSourceIdentifierToSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"AddSourceIdentifierToSubscriptionResult"`
 }
 
-type AddTagsToResourceMessage struct {
+type AddTagsToResourceInput struct {
 	ResourceName *string `type:"string"`
 	Tags         []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataAddTagsToResourceMessage `json:"-", xml:"-"`
+	metadataAddTagsToResourceInput `json:"-", xml:"-"`
 }
 
-type metadataAddTagsToResourceMessage struct {
+type metadataAddTagsToResourceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName,Tags"`
 }
 
@@ -1448,15 +1448,15 @@ type metadataAddTagsToResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ApplyPendingMaintenanceActionMessage struct {
+type ApplyPendingMaintenanceActionInput struct {
 	ApplyAction        *string `type:"string"`
 	OptInType          *string `type:"string"`
 	ResourceIdentifier *string `type:"string"`
 
-	metadataApplyPendingMaintenanceActionMessage `json:"-", xml:"-"`
+	metadataApplyPendingMaintenanceActionInput `json:"-", xml:"-"`
 }
 
-type metadataApplyPendingMaintenanceActionMessage struct {
+type metadataApplyPendingMaintenanceActionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceIdentifier,ApplyAction,OptInType"`
 }
 
@@ -1494,17 +1494,17 @@ type metadataAuthorizationQuotaExceededFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type AuthorizeDBSecurityGroupIngressMessage struct {
+type AuthorizeDBSecurityGroupIngressInput struct {
 	CIDRIP                  *string `type:"string"`
 	DBSecurityGroupName     *string `type:"string"`
 	EC2SecurityGroupID      *string `locationName:"EC2SecurityGroupId" type:"string"`
 	EC2SecurityGroupName    *string `type:"string"`
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
-	metadataAuthorizeDBSecurityGroupIngressMessage `json:"-", xml:"-"`
+	metadataAuthorizeDBSecurityGroupIngressInput `json:"-", xml:"-"`
 }
 
-type metadataAuthorizeDBSecurityGroupIngressMessage struct {
+type metadataAuthorizeDBSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBSecurityGroupName"`
 }
 
@@ -1539,16 +1539,16 @@ type metadataCharacterSet struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type CopyDBParameterGroupMessage struct {
+type CopyDBParameterGroupInput struct {
 	SourceDBParameterGroupIdentifier  *string `type:"string"`
 	Tags                              []*Tag  `locationNameList:"Tag" type:"list"`
 	TargetDBParameterGroupDescription *string `type:"string"`
 	TargetDBParameterGroupIdentifier  *string `type:"string"`
 
-	metadataCopyDBParameterGroupMessage `json:"-", xml:"-"`
+	metadataCopyDBParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCopyDBParameterGroupMessage struct {
+type metadataCopyDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SourceDBParameterGroupIdentifier,TargetDBParameterGroupIdentifier,TargetDBParameterGroupDescription"`
 }
 
@@ -1562,15 +1562,15 @@ type metadataCopyDBParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CopyDBParameterGroupResult"`
 }
 
-type CopyDBSnapshotMessage struct {
+type CopyDBSnapshotInput struct {
 	SourceDBSnapshotIdentifier *string `type:"string"`
 	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
 	TargetDBSnapshotIdentifier *string `type:"string"`
 
-	metadataCopyDBSnapshotMessage `json:"-", xml:"-"`
+	metadataCopyDBSnapshotInput `json:"-", xml:"-"`
 }
 
-type metadataCopyDBSnapshotMessage struct {
+type metadataCopyDBSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SourceDBSnapshotIdentifier,TargetDBSnapshotIdentifier"`
 }
 
@@ -1584,16 +1584,16 @@ type metadataCopyDBSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CopyDBSnapshotResult"`
 }
 
-type CopyOptionGroupMessage struct {
+type CopyOptionGroupInput struct {
 	SourceOptionGroupIdentifier  *string `type:"string"`
 	Tags                         []*Tag  `locationNameList:"Tag" type:"list"`
 	TargetOptionGroupDescription *string `type:"string"`
 	TargetOptionGroupIdentifier  *string `type:"string"`
 
-	metadataCopyOptionGroupMessage `json:"-", xml:"-"`
+	metadataCopyOptionGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCopyOptionGroupMessage struct {
+type metadataCopyOptionGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SourceOptionGroupIdentifier,TargetOptionGroupIdentifier,TargetOptionGroupDescription"`
 }
 
@@ -1607,7 +1607,7 @@ type metadataCopyOptionGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CopyOptionGroupResult"`
 }
 
-type CreateDBInstanceMessage struct {
+type CreateDBInstanceInput struct {
 	AllocatedStorage           *int      `type:"integer"`
 	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
 	AvailabilityZone           *string   `type:"string"`
@@ -1639,10 +1639,10 @@ type CreateDBInstanceMessage struct {
 	Tags                       []*Tag    `locationNameList:"Tag" type:"list"`
 	VPCSecurityGroupIDs        []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataCreateDBInstanceMessage `json:"-", xml:"-"`
+	metadataCreateDBInstanceInput `json:"-", xml:"-"`
 }
 
-type metadataCreateDBInstanceMessage struct {
+type metadataCreateDBInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier,AllocatedStorage,DBInstanceClass,Engine,MasterUsername,MasterUserPassword"`
 }
 
@@ -1656,7 +1656,7 @@ type metadataCreateDBInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBInstanceResult"`
 }
 
-type CreateDBInstanceReadReplicaMessage struct {
+type CreateDBInstanceReadReplicaInput struct {
 	AutoMinorVersionUpgrade    *bool   `type:"boolean"`
 	AvailabilityZone           *string `type:"string"`
 	DBInstanceClass            *string `type:"string"`
@@ -1670,10 +1670,10 @@ type CreateDBInstanceReadReplicaMessage struct {
 	StorageType                *string `type:"string"`
 	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBInstanceReadReplicaMessage `json:"-", xml:"-"`
+	metadataCreateDBInstanceReadReplicaInput `json:"-", xml:"-"`
 }
 
-type metadataCreateDBInstanceReadReplicaMessage struct {
+type metadataCreateDBInstanceReadReplicaInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier,SourceDBInstanceIdentifier"`
 }
 
@@ -1687,16 +1687,16 @@ type metadataCreateDBInstanceReadReplicaOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBInstanceReadReplicaResult"`
 }
 
-type CreateDBParameterGroupMessage struct {
+type CreateDBParameterGroupInput struct {
 	DBParameterGroupFamily *string `type:"string"`
 	DBParameterGroupName   *string `type:"string"`
 	Description            *string `type:"string"`
 	Tags                   []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBParameterGroupMessage `json:"-", xml:"-"`
+	metadataCreateDBParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateDBParameterGroupMessage struct {
+type metadataCreateDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName,DBParameterGroupFamily,Description"`
 }
 
@@ -1710,15 +1710,15 @@ type metadataCreateDBParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBParameterGroupResult"`
 }
 
-type CreateDBSecurityGroupMessage struct {
+type CreateDBSecurityGroupInput struct {
 	DBSecurityGroupDescription *string `type:"string"`
 	DBSecurityGroupName        *string `type:"string"`
 	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBSecurityGroupMessage `json:"-", xml:"-"`
+	metadataCreateDBSecurityGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateDBSecurityGroupMessage struct {
+type metadataCreateDBSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBSecurityGroupName,DBSecurityGroupDescription"`
 }
 
@@ -1732,15 +1732,15 @@ type metadataCreateDBSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBSecurityGroupResult"`
 }
 
-type CreateDBSnapshotMessage struct {
+type CreateDBSnapshotInput struct {
 	DBInstanceIdentifier *string `type:"string"`
 	DBSnapshotIdentifier *string `type:"string"`
 	Tags                 []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBSnapshotMessage `json:"-", xml:"-"`
+	metadataCreateDBSnapshotInput `json:"-", xml:"-"`
 }
 
-type metadataCreateDBSnapshotMessage struct {
+type metadataCreateDBSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBSnapshotIdentifier,DBInstanceIdentifier"`
 }
 
@@ -1754,16 +1754,16 @@ type metadataCreateDBSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBSnapshotResult"`
 }
 
-type CreateDBSubnetGroupMessage struct {
+type CreateDBSubnetGroupInput struct {
 	DBSubnetGroupDescription *string   `type:"string"`
 	DBSubnetGroupName        *string   `type:"string"`
 	SubnetIDs                []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
 	Tags                     []*Tag    `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBSubnetGroupMessage `json:"-", xml:"-"`
+	metadataCreateDBSubnetGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateDBSubnetGroupMessage struct {
+type metadataCreateDBSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBSubnetGroupName,DBSubnetGroupDescription,SubnetIds"`
 }
 
@@ -1777,7 +1777,7 @@ type metadataCreateDBSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBSubnetGroupResult"`
 }
 
-type CreateEventSubscriptionMessage struct {
+type CreateEventSubscriptionInput struct {
 	Enabled          *bool     `type:"boolean"`
 	EventCategories  []*string `locationNameList:"EventCategory" type:"list"`
 	SNSTopicARN      *string   `locationName:"SnsTopicArn" type:"string"`
@@ -1786,10 +1786,10 @@ type CreateEventSubscriptionMessage struct {
 	SubscriptionName *string   `type:"string"`
 	Tags             []*Tag    `locationNameList:"Tag" type:"list"`
 
-	metadataCreateEventSubscriptionMessage `json:"-", xml:"-"`
+	metadataCreateEventSubscriptionInput `json:"-", xml:"-"`
 }
 
-type metadataCreateEventSubscriptionMessage struct {
+type metadataCreateEventSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubscriptionName,SnsTopicArn"`
 }
 
@@ -1803,17 +1803,17 @@ type metadataCreateEventSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateEventSubscriptionResult"`
 }
 
-type CreateOptionGroupMessage struct {
+type CreateOptionGroupInput struct {
 	EngineName             *string `type:"string"`
 	MajorEngineVersion     *string `type:"string"`
 	OptionGroupDescription *string `type:"string"`
 	OptionGroupName        *string `type:"string"`
 	Tags                   []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataCreateOptionGroupMessage `json:"-", xml:"-"`
+	metadataCreateOptionGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateOptionGroupMessage struct {
+type metadataCreateOptionGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"OptionGroupName,EngineName,MajorEngineVersion,OptionGroupDescription"`
 }
 
@@ -1841,17 +1841,6 @@ type DBEngineVersion struct {
 
 type metadataDBEngineVersion struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBEngineVersionMessage struct {
-	DBEngineVersions []*DBEngineVersion `locationNameList:"DBEngineVersion" type:"list"`
-	Marker           *string            `type:"string"`
-
-	metadataDBEngineVersionMessage `json:"-", xml:"-"`
-}
-
-type metadataDBEngineVersionMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBEngineVersionsResult"`
 }
 
 type DBInstance struct {
@@ -1907,17 +1896,6 @@ type metadataDBInstanceAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DBInstanceMessage struct {
-	DBInstances []*DBInstance `locationNameList:"DBInstance" type:"list"`
-	Marker      *string       `type:"string"`
-
-	metadataDBInstanceMessage `json:"-", xml:"-"`
-}
-
-type metadataDBInstanceMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBInstancesResult"`
-}
-
 type DBInstanceNotFoundFault struct {
 	metadataDBInstanceNotFoundFault `json:"-", xml:"-"`
 }
@@ -1959,17 +1937,6 @@ type metadataDBParameterGroupAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DBParameterGroupDetails struct {
-	Marker     *string      `type:"string"`
-	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
-
-	metadataDBParameterGroupDetails `json:"-", xml:"-"`
-}
-
-type metadataDBParameterGroupDetails struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBParametersResult"`
-}
-
 type DBParameterGroupNameMessage struct {
 	DBParameterGroupName *string `type:"string"`
 
@@ -1977,7 +1944,7 @@ type DBParameterGroupNameMessage struct {
 }
 
 type metadataDBParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyDBParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"ResetDBParameterGroupResult"`
 }
 
 type DBParameterGroupNotFoundFault struct {
@@ -2005,17 +1972,6 @@ type DBParameterGroupStatus struct {
 
 type metadataDBParameterGroupStatus struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBParameterGroupsMessage struct {
-	DBParameterGroups []*DBParameterGroup `locationNameList:"DBParameterGroup" type:"list"`
-	Marker            *string             `type:"string"`
-
-	metadataDBParameterGroupsMessage `json:"-", xml:"-"`
-}
-
-type metadataDBParameterGroupsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBParameterGroupsResult"`
 }
 
 type DBSecurityGroup struct {
@@ -2050,17 +2006,6 @@ type DBSecurityGroupMembership struct {
 
 type metadataDBSecurityGroupMembership struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSecurityGroupMessage struct {
-	DBSecurityGroups []*DBSecurityGroup `locationNameList:"DBSecurityGroup" type:"list"`
-	Marker           *string            `type:"string"`
-
-	metadataDBSecurityGroupMessage `json:"-", xml:"-"`
-}
-
-type metadataDBSecurityGroupMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBSecurityGroupsResult"`
 }
 
 type DBSecurityGroupNotFoundFault struct {
@@ -2126,17 +2071,6 @@ type metadataDBSnapshotAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DBSnapshotMessage struct {
-	DBSnapshots []*DBSnapshot `locationNameList:"DBSnapshot" type:"list"`
-	Marker      *string       `type:"string"`
-
-	metadataDBSnapshotMessage `json:"-", xml:"-"`
-}
-
-type metadataDBSnapshotMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBSnapshotsResult"`
-}
-
 type DBSnapshotNotFoundFault struct {
 	metadataDBSnapshotNotFoundFault `json:"-", xml:"-"`
 }
@@ -2173,17 +2107,6 @@ type DBSubnetGroupDoesNotCoverEnoughAZs struct {
 
 type metadataDBSubnetGroupDoesNotCoverEnoughAZs struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSubnetGroupMessage struct {
-	DBSubnetGroups []*DBSubnetGroup `locationNameList:"DBSubnetGroup" type:"list"`
-	Marker         *string          `type:"string"`
-
-	metadataDBSubnetGroupMessage `json:"-", xml:"-"`
-}
-
-type metadataDBSubnetGroupMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBSubnetGroupsResult"`
 }
 
 type DBSubnetGroupNotAllowedFault struct {
@@ -2226,15 +2149,15 @@ type metadataDBUpgradeDependencyFailureFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteDBInstanceMessage struct {
+type DeleteDBInstanceInput struct {
 	DBInstanceIdentifier      *string `type:"string"`
 	FinalDBSnapshotIdentifier *string `type:"string"`
 	SkipFinalSnapshot         *bool   `type:"boolean"`
 
-	metadataDeleteDBInstanceMessage `json:"-", xml:"-"`
+	metadataDeleteDBInstanceInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteDBInstanceMessage struct {
+type metadataDeleteDBInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier"`
 }
 
@@ -2248,13 +2171,13 @@ type metadataDeleteDBInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteDBInstanceResult"`
 }
 
-type DeleteDBParameterGroupMessage struct {
+type DeleteDBParameterGroupInput struct {
 	DBParameterGroupName *string `type:"string"`
 
-	metadataDeleteDBParameterGroupMessage `json:"-", xml:"-"`
+	metadataDeleteDBParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteDBParameterGroupMessage struct {
+type metadataDeleteDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName"`
 }
 
@@ -2266,13 +2189,13 @@ type metadataDeleteDBParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteDBSecurityGroupMessage struct {
+type DeleteDBSecurityGroupInput struct {
 	DBSecurityGroupName *string `type:"string"`
 
-	metadataDeleteDBSecurityGroupMessage `json:"-", xml:"-"`
+	metadataDeleteDBSecurityGroupInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteDBSecurityGroupMessage struct {
+type metadataDeleteDBSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBSecurityGroupName"`
 }
 
@@ -2284,13 +2207,13 @@ type metadataDeleteDBSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteDBSnapshotMessage struct {
+type DeleteDBSnapshotInput struct {
 	DBSnapshotIdentifier *string `type:"string"`
 
-	metadataDeleteDBSnapshotMessage `json:"-", xml:"-"`
+	metadataDeleteDBSnapshotInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteDBSnapshotMessage struct {
+type metadataDeleteDBSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBSnapshotIdentifier"`
 }
 
@@ -2304,13 +2227,13 @@ type metadataDeleteDBSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteDBSnapshotResult"`
 }
 
-type DeleteDBSubnetGroupMessage struct {
+type DeleteDBSubnetGroupInput struct {
 	DBSubnetGroupName *string `type:"string"`
 
-	metadataDeleteDBSubnetGroupMessage `json:"-", xml:"-"`
+	metadataDeleteDBSubnetGroupInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteDBSubnetGroupMessage struct {
+type metadataDeleteDBSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBSubnetGroupName"`
 }
 
@@ -2322,13 +2245,13 @@ type metadataDeleteDBSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteEventSubscriptionMessage struct {
+type DeleteEventSubscriptionInput struct {
 	SubscriptionName *string `type:"string"`
 
-	metadataDeleteEventSubscriptionMessage `json:"-", xml:"-"`
+	metadataDeleteEventSubscriptionInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteEventSubscriptionMessage struct {
+type metadataDeleteEventSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubscriptionName"`
 }
 
@@ -2342,13 +2265,13 @@ type metadataDeleteEventSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteEventSubscriptionResult"`
 }
 
-type DeleteOptionGroupMessage struct {
+type DeleteOptionGroupInput struct {
 	OptionGroupName *string `type:"string"`
 
-	metadataDeleteOptionGroupMessage `json:"-", xml:"-"`
+	metadataDeleteOptionGroupInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteOptionGroupMessage struct {
+type metadataDeleteOptionGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"OptionGroupName"`
 }
 
@@ -2360,7 +2283,7 @@ type metadataDeleteOptionGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeDBEngineVersionsMessage struct {
+type DescribeDBEngineVersionsInput struct {
 	DBParameterGroupFamily     *string   `type:"string"`
 	DefaultOnly                *bool     `type:"boolean"`
 	Engine                     *string   `type:"string"`
@@ -2370,24 +2293,46 @@ type DescribeDBEngineVersionsMessage struct {
 	Marker                     *string   `type:"string"`
 	MaxRecords                 *int      `type:"integer"`
 
-	metadataDescribeDBEngineVersionsMessage `json:"-", xml:"-"`
+	metadataDescribeDBEngineVersionsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeDBEngineVersionsMessage struct {
+type metadataDescribeDBEngineVersionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeDBInstancesMessage struct {
+type DescribeDBEngineVersionsOutput struct {
+	DBEngineVersions []*DBEngineVersion `locationNameList:"DBEngineVersion" type:"list"`
+	Marker           *string            `type:"string"`
+
+	metadataDescribeDBEngineVersionsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeDBEngineVersionsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBEngineVersionsResult"`
+}
+
+type DescribeDBInstancesInput struct {
 	DBInstanceIdentifier *string   `type:"string"`
 	Filters              []*Filter `locationNameList:"Filter" type:"list"`
 	Marker               *string   `type:"string"`
 	MaxRecords           *int      `type:"integer"`
 
-	metadataDescribeDBInstancesMessage `json:"-", xml:"-"`
+	metadataDescribeDBInstancesInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeDBInstancesMessage struct {
+type metadataDescribeDBInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeDBInstancesOutput struct {
+	DBInstances []*DBInstance `locationNameList:"DBInstance" type:"list"`
+	Marker      *string       `type:"string"`
+
+	metadataDescribeDBInstancesOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeDBInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBInstancesResult"`
 }
 
 type DescribeDBLogFilesDetails struct {
@@ -2402,7 +2347,7 @@ type metadataDescribeDBLogFilesDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeDBLogFilesMessage struct {
+type DescribeDBLogFilesInput struct {
 	DBInstanceIdentifier *string   `type:"string"`
 	FileLastWritten      *int64    `type:"long"`
 	FileSize             *int64    `type:"long"`
@@ -2411,10 +2356,10 @@ type DescribeDBLogFilesMessage struct {
 	Marker               *string   `type:"string"`
 	MaxRecords           *int      `type:"integer"`
 
-	metadataDescribeDBLogFilesMessage `json:"-", xml:"-"`
+	metadataDescribeDBLogFilesInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeDBLogFilesMessage struct {
+type metadataDescribeDBLogFilesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier"`
 }
 
@@ -2429,47 +2374,80 @@ type metadataDescribeDBLogFilesOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBLogFilesResult"`
 }
 
-type DescribeDBParameterGroupsMessage struct {
+type DescribeDBParameterGroupsInput struct {
 	DBParameterGroupName *string   `type:"string"`
 	Filters              []*Filter `locationNameList:"Filter" type:"list"`
 	Marker               *string   `type:"string"`
 	MaxRecords           *int      `type:"integer"`
 
-	metadataDescribeDBParameterGroupsMessage `json:"-", xml:"-"`
+	metadataDescribeDBParameterGroupsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeDBParameterGroupsMessage struct {
+type metadataDescribeDBParameterGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeDBParametersMessage struct {
+type DescribeDBParameterGroupsOutput struct {
+	DBParameterGroups []*DBParameterGroup `locationNameList:"DBParameterGroup" type:"list"`
+	Marker            *string             `type:"string"`
+
+	metadataDescribeDBParameterGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeDBParameterGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBParameterGroupsResult"`
+}
+
+type DescribeDBParametersInput struct {
 	DBParameterGroupName *string   `type:"string"`
 	Filters              []*Filter `locationNameList:"Filter" type:"list"`
 	Marker               *string   `type:"string"`
 	MaxRecords           *int      `type:"integer"`
 	Source               *string   `type:"string"`
 
-	metadataDescribeDBParametersMessage `json:"-", xml:"-"`
+	metadataDescribeDBParametersInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeDBParametersMessage struct {
+type metadataDescribeDBParametersInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName"`
 }
 
-type DescribeDBSecurityGroupsMessage struct {
+type DescribeDBParametersOutput struct {
+	Marker     *string      `type:"string"`
+	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
+
+	metadataDescribeDBParametersOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeDBParametersOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBParametersResult"`
+}
+
+type DescribeDBSecurityGroupsInput struct {
 	DBSecurityGroupName *string   `type:"string"`
 	Filters             []*Filter `locationNameList:"Filter" type:"list"`
 	Marker              *string   `type:"string"`
 	MaxRecords          *int      `type:"integer"`
 
-	metadataDescribeDBSecurityGroupsMessage `json:"-", xml:"-"`
+	metadataDescribeDBSecurityGroupsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeDBSecurityGroupsMessage struct {
+type metadataDescribeDBSecurityGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeDBSnapshotsMessage struct {
+type DescribeDBSecurityGroupsOutput struct {
+	DBSecurityGroups []*DBSecurityGroup `locationNameList:"DBSecurityGroup" type:"list"`
+	Marker           *string            `type:"string"`
+
+	metadataDescribeDBSecurityGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeDBSecurityGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBSecurityGroupsResult"`
+}
+
+type DescribeDBSnapshotsInput struct {
 	DBInstanceIdentifier *string   `type:"string"`
 	DBSnapshotIdentifier *string   `type:"string"`
 	Filters              []*Filter `locationNameList:"Filter" type:"list"`
@@ -2477,36 +2455,58 @@ type DescribeDBSnapshotsMessage struct {
 	MaxRecords           *int      `type:"integer"`
 	SnapshotType         *string   `type:"string"`
 
-	metadataDescribeDBSnapshotsMessage `json:"-", xml:"-"`
+	metadataDescribeDBSnapshotsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeDBSnapshotsMessage struct {
+type metadataDescribeDBSnapshotsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeDBSubnetGroupsMessage struct {
+type DescribeDBSnapshotsOutput struct {
+	DBSnapshots []*DBSnapshot `locationNameList:"DBSnapshot" type:"list"`
+	Marker      *string       `type:"string"`
+
+	metadataDescribeDBSnapshotsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeDBSnapshotsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBSnapshotsResult"`
+}
+
+type DescribeDBSubnetGroupsInput struct {
 	DBSubnetGroupName *string   `type:"string"`
 	Filters           []*Filter `locationNameList:"Filter" type:"list"`
 	Marker            *string   `type:"string"`
 	MaxRecords        *int      `type:"integer"`
 
-	metadataDescribeDBSubnetGroupsMessage `json:"-", xml:"-"`
+	metadataDescribeDBSubnetGroupsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeDBSubnetGroupsMessage struct {
+type metadataDescribeDBSubnetGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeEngineDefaultParametersMessage struct {
+type DescribeDBSubnetGroupsOutput struct {
+	DBSubnetGroups []*DBSubnetGroup `locationNameList:"DBSubnetGroup" type:"list"`
+	Marker         *string          `type:"string"`
+
+	metadataDescribeDBSubnetGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeDBSubnetGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBSubnetGroupsResult"`
+}
+
+type DescribeEngineDefaultParametersInput struct {
 	DBParameterGroupFamily *string   `type:"string"`
 	Filters                []*Filter `locationNameList:"Filter" type:"list"`
 	Marker                 *string   `type:"string"`
 	MaxRecords             *int      `type:"integer"`
 
-	metadataDescribeEngineDefaultParametersMessage `json:"-", xml:"-"`
+	metadataDescribeEngineDefaultParametersInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeEngineDefaultParametersMessage struct {
+type metadataDescribeEngineDefaultParametersInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupFamily"`
 }
 
@@ -2520,31 +2520,52 @@ type metadataDescribeEngineDefaultParametersOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEngineDefaultParametersResult"`
 }
 
-type DescribeEventCategoriesMessage struct {
+type DescribeEventCategoriesInput struct {
 	Filters    []*Filter `locationNameList:"Filter" type:"list"`
 	SourceType *string   `type:"string"`
 
-	metadataDescribeEventCategoriesMessage `json:"-", xml:"-"`
+	metadataDescribeEventCategoriesInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeEventCategoriesMessage struct {
+type metadataDescribeEventCategoriesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeEventSubscriptionsMessage struct {
+type DescribeEventCategoriesOutput struct {
+	EventCategoriesMapList []*EventCategoriesMap `locationNameList:"EventCategoriesMap" type:"list"`
+
+	metadataDescribeEventCategoriesOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeEventCategoriesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventCategoriesResult"`
+}
+
+type DescribeEventSubscriptionsInput struct {
 	Filters          []*Filter `locationNameList:"Filter" type:"list"`
 	Marker           *string   `type:"string"`
 	MaxRecords       *int      `type:"integer"`
 	SubscriptionName *string   `type:"string"`
 
-	metadataDescribeEventSubscriptionsMessage `json:"-", xml:"-"`
+	metadataDescribeEventSubscriptionsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeEventSubscriptionsMessage struct {
+type metadataDescribeEventSubscriptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeEventsMessage struct {
+type DescribeEventSubscriptionsOutput struct {
+	EventSubscriptionsList []*EventSubscription `locationNameList:"EventSubscription" type:"list"`
+	Marker                 *string              `type:"string"`
+
+	metadataDescribeEventSubscriptionsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeEventSubscriptionsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventSubscriptionsResult"`
+}
+
+type DescribeEventsInput struct {
 	Duration         *int       `type:"integer"`
 	EndTime          *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	EventCategories  []*string  `locationNameList:"EventCategory" type:"list"`
@@ -2555,28 +2576,50 @@ type DescribeEventsMessage struct {
 	SourceType       *string    `type:"string"`
 	StartTime        *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeEventsMessage `json:"-", xml:"-"`
+	metadataDescribeEventsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeEventsMessage struct {
+type metadataDescribeEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeOptionGroupOptionsMessage struct {
+type DescribeEventsOutput struct {
+	Events []*Event `locationNameList:"Event" type:"list"`
+	Marker *string  `type:"string"`
+
+	metadataDescribeEventsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeEventsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventsResult"`
+}
+
+type DescribeOptionGroupOptionsInput struct {
 	EngineName         *string   `type:"string"`
 	Filters            []*Filter `locationNameList:"Filter" type:"list"`
 	MajorEngineVersion *string   `type:"string"`
 	Marker             *string   `type:"string"`
 	MaxRecords         *int      `type:"integer"`
 
-	metadataDescribeOptionGroupOptionsMessage `json:"-", xml:"-"`
+	metadataDescribeOptionGroupOptionsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeOptionGroupOptionsMessage struct {
+type metadataDescribeOptionGroupOptionsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"EngineName"`
 }
 
-type DescribeOptionGroupsMessage struct {
+type DescribeOptionGroupOptionsOutput struct {
+	Marker             *string              `type:"string"`
+	OptionGroupOptions []*OptionGroupOption `locationNameList:"OptionGroupOption" type:"list"`
+
+	metadataDescribeOptionGroupOptionsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeOptionGroupOptionsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOptionGroupOptionsResult"`
+}
+
+type DescribeOptionGroupsInput struct {
 	EngineName         *string   `type:"string"`
 	Filters            []*Filter `locationNameList:"Filter" type:"list"`
 	MajorEngineVersion *string   `type:"string"`
@@ -2584,14 +2627,25 @@ type DescribeOptionGroupsMessage struct {
 	MaxRecords         *int      `type:"integer"`
 	OptionGroupName    *string   `type:"string"`
 
-	metadataDescribeOptionGroupsMessage `json:"-", xml:"-"`
+	metadataDescribeOptionGroupsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeOptionGroupsMessage struct {
+type metadataDescribeOptionGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeOrderableDBInstanceOptionsMessage struct {
+type DescribeOptionGroupsOutput struct {
+	Marker           *string        `type:"string"`
+	OptionGroupsList []*OptionGroup `locationNameList:"OptionGroup" type:"list"`
+
+	metadataDescribeOptionGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeOptionGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOptionGroupsResult"`
+}
+
+type DescribeOrderableDBInstanceOptionsInput struct {
 	DBInstanceClass *string   `type:"string"`
 	Engine          *string   `type:"string"`
 	EngineVersion   *string   `type:"string"`
@@ -2601,27 +2655,49 @@ type DescribeOrderableDBInstanceOptionsMessage struct {
 	MaxRecords      *int      `type:"integer"`
 	VPC             *bool     `locationName:"Vpc" type:"boolean"`
 
-	metadataDescribeOrderableDBInstanceOptionsMessage `json:"-", xml:"-"`
+	metadataDescribeOrderableDBInstanceOptionsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeOrderableDBInstanceOptionsMessage struct {
+type metadataDescribeOrderableDBInstanceOptionsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"Engine"`
 }
 
-type DescribePendingMaintenanceActionsMessage struct {
+type DescribeOrderableDBInstanceOptionsOutput struct {
+	Marker                     *string                      `type:"string"`
+	OrderableDBInstanceOptions []*OrderableDBInstanceOption `locationNameList:"OrderableDBInstanceOption" type:"list"`
+
+	metadataDescribeOrderableDBInstanceOptionsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeOrderableDBInstanceOptionsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOrderableDBInstanceOptionsResult"`
+}
+
+type DescribePendingMaintenanceActionsInput struct {
 	Filters            []*Filter `locationNameList:"Filter" type:"list"`
 	Marker             *string   `type:"string"`
 	MaxRecords         *int      `type:"integer"`
 	ResourceIdentifier *string   `type:"string"`
 
-	metadataDescribePendingMaintenanceActionsMessage `json:"-", xml:"-"`
+	metadataDescribePendingMaintenanceActionsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribePendingMaintenanceActionsMessage struct {
+type metadataDescribePendingMaintenanceActionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeReservedDBInstancesMessage struct {
+type DescribePendingMaintenanceActionsOutput struct {
+	Marker                    *string                              `type:"string"`
+	PendingMaintenanceActions []*ResourcePendingMaintenanceActions `locationNameList:"ResourcePendingMaintenanceActions" type:"list"`
+
+	metadataDescribePendingMaintenanceActionsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribePendingMaintenanceActionsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribePendingMaintenanceActionsResult"`
+}
+
+type DescribeReservedDBInstancesInput struct {
 	DBInstanceClass               *string   `type:"string"`
 	Duration                      *string   `type:"string"`
 	Filters                       []*Filter `locationNameList:"Filter" type:"list"`
@@ -2633,14 +2709,14 @@ type DescribeReservedDBInstancesMessage struct {
 	ReservedDBInstanceID          *string   `locationName:"ReservedDBInstanceId" type:"string"`
 	ReservedDBInstancesOfferingID *string   `locationName:"ReservedDBInstancesOfferingId" type:"string"`
 
-	metadataDescribeReservedDBInstancesMessage `json:"-", xml:"-"`
+	metadataDescribeReservedDBInstancesInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeReservedDBInstancesMessage struct {
+type metadataDescribeReservedDBInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeReservedDBInstancesOfferingsMessage struct {
+type DescribeReservedDBInstancesOfferingsInput struct {
 	DBInstanceClass               *string   `type:"string"`
 	Duration                      *string   `type:"string"`
 	Filters                       []*Filter `locationNameList:"Filter" type:"list"`
@@ -2651,36 +2727,58 @@ type DescribeReservedDBInstancesOfferingsMessage struct {
 	ProductDescription            *string   `type:"string"`
 	ReservedDBInstancesOfferingID *string   `locationName:"ReservedDBInstancesOfferingId" type:"string"`
 
-	metadataDescribeReservedDBInstancesOfferingsMessage `json:"-", xml:"-"`
+	metadataDescribeReservedDBInstancesOfferingsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeReservedDBInstancesOfferingsMessage struct {
+type metadataDescribeReservedDBInstancesOfferingsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DownloadDBLogFilePortionDetails struct {
-	AdditionalDataPending *bool   `type:"boolean"`
-	LogFileData           *string `type:"string"`
-	Marker                *string `type:"string"`
+type DescribeReservedDBInstancesOfferingsOutput struct {
+	Marker                       *string                        `type:"string"`
+	ReservedDBInstancesOfferings []*ReservedDBInstancesOffering `locationNameList:"ReservedDBInstancesOffering" type:"list"`
 
-	metadataDownloadDBLogFilePortionDetails `json:"-", xml:"-"`
+	metadataDescribeReservedDBInstancesOfferingsOutput `json:"-", xml:"-"`
 }
 
-type metadataDownloadDBLogFilePortionDetails struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DownloadDBLogFilePortionResult"`
+type metadataDescribeReservedDBInstancesOfferingsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedDBInstancesOfferingsResult"`
 }
 
-type DownloadDBLogFilePortionMessage struct {
+type DescribeReservedDBInstancesOutput struct {
+	Marker              *string               `type:"string"`
+	ReservedDBInstances []*ReservedDBInstance `locationNameList:"ReservedDBInstance" type:"list"`
+
+	metadataDescribeReservedDBInstancesOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeReservedDBInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedDBInstancesResult"`
+}
+
+type DownloadDBLogFilePortionInput struct {
 	DBInstanceIdentifier *string `type:"string"`
 	LogFileName          *string `type:"string"`
 	Marker               *string `type:"string"`
 	NumberOfLines        *int    `type:"integer"`
 
-	metadataDownloadDBLogFilePortionMessage `json:"-", xml:"-"`
+	metadataDownloadDBLogFilePortionInput `json:"-", xml:"-"`
 }
 
-type metadataDownloadDBLogFilePortionMessage struct {
+type metadataDownloadDBLogFilePortionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier,LogFileName"`
+}
+
+type DownloadDBLogFilePortionOutput struct {
+	AdditionalDataPending *bool   `type:"boolean"`
+	LogFileData           *string `type:"string"`
+	Marker                *string `type:"string"`
+
+	metadataDownloadDBLogFilePortionOutput `json:"-", xml:"-"`
+}
+
+type metadataDownloadDBLogFilePortionOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DownloadDBLogFilePortionResult"`
 }
 
 type EC2SecurityGroup struct {
@@ -2744,16 +2842,6 @@ type metadataEventCategoriesMap struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type EventCategoriesMessage struct {
-	EventCategoriesMapList []*EventCategoriesMap `locationNameList:"EventCategoriesMap" type:"list"`
-
-	metadataEventCategoriesMessage `json:"-", xml:"-"`
-}
-
-type metadataEventCategoriesMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventCategoriesResult"`
-}
-
 type EventSubscription struct {
 	CustSubscriptionID       *string   `locationName:"CustSubscriptionId" type:"string"`
 	CustomerAWSID            *string   `locationName:"CustomerAwsId" type:"string"`
@@ -2778,28 +2866,6 @@ type EventSubscriptionQuotaExceededFault struct {
 
 type metadataEventSubscriptionQuotaExceededFault struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type EventSubscriptionsMessage struct {
-	EventSubscriptionsList []*EventSubscription `locationNameList:"EventSubscription" type:"list"`
-	Marker                 *string              `type:"string"`
-
-	metadataEventSubscriptionsMessage `json:"-", xml:"-"`
-}
-
-type metadataEventSubscriptionsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventSubscriptionsResult"`
-}
-
-type EventsMessage struct {
-	Events []*Event `locationNameList:"Event" type:"list"`
-	Marker *string  `type:"string"`
-
-	metadataEventsMessage `json:"-", xml:"-"`
-}
-
-type metadataEventsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventsResult"`
 }
 
 type Filter struct {
@@ -2944,18 +3010,28 @@ type metadataKMSKeyNotAccessibleFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ListTagsForResourceMessage struct {
+type ListTagsForResourceInput struct {
 	Filters      []*Filter `locationNameList:"Filter" type:"list"`
 	ResourceName *string   `type:"string"`
 
-	metadataListTagsForResourceMessage `json:"-", xml:"-"`
+	metadataListTagsForResourceInput `json:"-", xml:"-"`
 }
 
-type metadataListTagsForResourceMessage struct {
+type metadataListTagsForResourceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName"`
 }
 
-type ModifyDBInstanceMessage struct {
+type ListTagsForResourceOutput struct {
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
+	metadataListTagsForResourceOutput `json:"-", xml:"-"`
+}
+
+type metadataListTagsForResourceOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"ListTagsForResourceResult"`
+}
+
+type ModifyDBInstanceInput struct {
 	AllocatedStorage           *int      `type:"integer"`
 	AllowMajorVersionUpgrade   *bool     `type:"boolean"`
 	ApplyImmediately           *bool     `type:"boolean"`
@@ -2978,10 +3054,10 @@ type ModifyDBInstanceMessage struct {
 	TDECredentialPassword      *string   `locationName:"TdeCredentialPassword" type:"string"`
 	VPCSecurityGroupIDs        []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataModifyDBInstanceMessage `json:"-", xml:"-"`
+	metadataModifyDBInstanceInput `json:"-", xml:"-"`
 }
 
-type metadataModifyDBInstanceMessage struct {
+type metadataModifyDBInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier"`
 }
 
@@ -2995,26 +3071,36 @@ type metadataModifyDBInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyDBInstanceResult"`
 }
 
-type ModifyDBParameterGroupMessage struct {
+type ModifyDBParameterGroupInput struct {
 	DBParameterGroupName *string      `type:"string"`
 	Parameters           []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataModifyDBParameterGroupMessage `json:"-", xml:"-"`
+	metadataModifyDBParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataModifyDBParameterGroupMessage struct {
+type metadataModifyDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName,Parameters"`
 }
 
-type ModifyDBSubnetGroupMessage struct {
+type ModifyDBParameterGroupOutput struct {
+	DBParameterGroupName *string `type:"string"`
+
+	metadataModifyDBParameterGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataModifyDBParameterGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ModifyDBSubnetGroupInput struct {
 	DBSubnetGroupDescription *string   `type:"string"`
 	DBSubnetGroupName        *string   `type:"string"`
 	SubnetIDs                []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
 
-	metadataModifyDBSubnetGroupMessage `json:"-", xml:"-"`
+	metadataModifyDBSubnetGroupInput `json:"-", xml:"-"`
 }
 
-type metadataModifyDBSubnetGroupMessage struct {
+type metadataModifyDBSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBSubnetGroupName,SubnetIds"`
 }
 
@@ -3028,17 +3114,17 @@ type metadataModifyDBSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyDBSubnetGroupResult"`
 }
 
-type ModifyEventSubscriptionMessage struct {
+type ModifyEventSubscriptionInput struct {
 	Enabled          *bool     `type:"boolean"`
 	EventCategories  []*string `locationNameList:"EventCategory" type:"list"`
 	SNSTopicARN      *string   `locationName:"SnsTopicArn" type:"string"`
 	SourceType       *string   `type:"string"`
 	SubscriptionName *string   `type:"string"`
 
-	metadataModifyEventSubscriptionMessage `json:"-", xml:"-"`
+	metadataModifyEventSubscriptionInput `json:"-", xml:"-"`
 }
 
-type metadataModifyEventSubscriptionMessage struct {
+type metadataModifyEventSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubscriptionName"`
 }
 
@@ -3052,16 +3138,16 @@ type metadataModifyEventSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyEventSubscriptionResult"`
 }
 
-type ModifyOptionGroupMessage struct {
+type ModifyOptionGroupInput struct {
 	ApplyImmediately *bool                  `type:"boolean"`
 	OptionGroupName  *string                `type:"string"`
 	OptionsToInclude []*OptionConfiguration `locationNameList:"OptionConfiguration" type:"list"`
 	OptionsToRemove  []*string              `type:"list"`
 
-	metadataModifyOptionGroupMessage `json:"-", xml:"-"`
+	metadataModifyOptionGroupInput `json:"-", xml:"-"`
 }
 
-type metadataModifyOptionGroupMessage struct {
+type metadataModifyOptionGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"OptionGroupName"`
 }
 
@@ -3184,34 +3270,12 @@ type metadataOptionGroupOptionSetting struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type OptionGroupOptionsMessage struct {
-	Marker             *string              `type:"string"`
-	OptionGroupOptions []*OptionGroupOption `locationNameList:"OptionGroupOption" type:"list"`
-
-	metadataOptionGroupOptionsMessage `json:"-", xml:"-"`
-}
-
-type metadataOptionGroupOptionsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOptionGroupOptionsResult"`
-}
-
 type OptionGroupQuotaExceededFault struct {
 	metadataOptionGroupQuotaExceededFault `json:"-", xml:"-"`
 }
 
 type metadataOptionGroupQuotaExceededFault struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type OptionGroups struct {
-	Marker           *string        `type:"string"`
-	OptionGroupsList []*OptionGroup `locationNameList:"OptionGroup" type:"list"`
-
-	metadataOptionGroups `json:"-", xml:"-"`
-}
-
-type metadataOptionGroups struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOptionGroupsResult"`
 }
 
 type OptionSetting struct {
@@ -3252,17 +3316,6 @@ type metadataOrderableDBInstanceOption struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type OrderableDBInstanceOptionsMessage struct {
-	Marker                     *string                      `type:"string"`
-	OrderableDBInstanceOptions []*OrderableDBInstanceOption `locationNameList:"OrderableDBInstanceOption" type:"list"`
-
-	metadataOrderableDBInstanceOptionsMessage `json:"-", xml:"-"`
-}
-
-type metadataOrderableDBInstanceOptionsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOrderableDBInstanceOptionsResult"`
-}
-
 type Parameter struct {
 	AllowedValues        *string `type:"string"`
 	ApplyMethod          *string `type:"string"`
@@ -3296,17 +3349,6 @@ type metadataPendingMaintenanceAction struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type PendingMaintenanceActionsMessage struct {
-	Marker                    *string                              `type:"string"`
-	PendingMaintenanceActions []*ResourcePendingMaintenanceActions `locationNameList:"ResourcePendingMaintenanceActions" type:"list"`
-
-	metadataPendingMaintenanceActionsMessage `json:"-", xml:"-"`
-}
-
-type metadataPendingMaintenanceActionsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribePendingMaintenanceActionsResult"`
-}
-
 type PendingModifiedValues struct {
 	AllocatedStorage      *int    `type:"integer"`
 	BackupRetentionPeriod *int    `type:"integer"`
@@ -3334,15 +3376,15 @@ type metadataPointInTimeRestoreNotEnabledFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type PromoteReadReplicaMessage struct {
+type PromoteReadReplicaInput struct {
 	BackupRetentionPeriod *int    `type:"integer"`
 	DBInstanceIdentifier  *string `type:"string"`
 	PreferredBackupWindow *string `type:"string"`
 
-	metadataPromoteReadReplicaMessage `json:"-", xml:"-"`
+	metadataPromoteReadReplicaInput `json:"-", xml:"-"`
 }
 
-type metadataPromoteReadReplicaMessage struct {
+type metadataPromoteReadReplicaInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier"`
 }
 
@@ -3364,16 +3406,16 @@ type metadataProvisionedIOPSNotAvailableInAZFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type PurchaseReservedDBInstancesOfferingMessage struct {
+type PurchaseReservedDBInstancesOfferingInput struct {
 	DBInstanceCount               *int    `type:"integer"`
 	ReservedDBInstanceID          *string `locationName:"ReservedDBInstanceId" type:"string"`
 	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
 	Tags                          []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataPurchaseReservedDBInstancesOfferingMessage `json:"-", xml:"-"`
+	metadataPurchaseReservedDBInstancesOfferingInput `json:"-", xml:"-"`
 }
 
-type metadataPurchaseReservedDBInstancesOfferingMessage struct {
+type metadataPurchaseReservedDBInstancesOfferingInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ReservedDBInstancesOfferingId"`
 }
 
@@ -3387,14 +3429,14 @@ type metadataPurchaseReservedDBInstancesOfferingOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"PurchaseReservedDBInstancesOfferingResult"`
 }
 
-type RebootDBInstanceMessage struct {
+type RebootDBInstanceInput struct {
 	DBInstanceIdentifier *string `type:"string"`
 	ForceFailover        *bool   `type:"boolean"`
 
-	metadataRebootDBInstanceMessage `json:"-", xml:"-"`
+	metadataRebootDBInstanceInput `json:"-", xml:"-"`
 }
 
-type metadataRebootDBInstanceMessage struct {
+type metadataRebootDBInstanceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier"`
 }
 
@@ -3419,14 +3461,14 @@ type metadataRecurringCharge struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type RemoveSourceIdentifierFromSubscriptionMessage struct {
+type RemoveSourceIdentifierFromSubscriptionInput struct {
 	SourceIdentifier *string `type:"string"`
 	SubscriptionName *string `type:"string"`
 
-	metadataRemoveSourceIdentifierFromSubscriptionMessage `json:"-", xml:"-"`
+	metadataRemoveSourceIdentifierFromSubscriptionInput `json:"-", xml:"-"`
 }
 
-type metadataRemoveSourceIdentifierFromSubscriptionMessage struct {
+type metadataRemoveSourceIdentifierFromSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubscriptionName,SourceIdentifier"`
 }
 
@@ -3440,14 +3482,14 @@ type metadataRemoveSourceIdentifierFromSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"RemoveSourceIdentifierFromSubscriptionResult"`
 }
 
-type RemoveTagsFromResourceMessage struct {
+type RemoveTagsFromResourceInput struct {
 	ResourceName *string   `type:"string"`
 	TagKeys      []*string `type:"list"`
 
-	metadataRemoveTagsFromResourceMessage `json:"-", xml:"-"`
+	metadataRemoveTagsFromResourceInput `json:"-", xml:"-"`
 }
 
-type metadataRemoveTagsFromResourceMessage struct {
+type metadataRemoveTagsFromResourceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName,TagKeys"`
 }
 
@@ -3490,17 +3532,6 @@ type metadataReservedDBInstanceAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ReservedDBInstanceMessage struct {
-	Marker              *string               `type:"string"`
-	ReservedDBInstances []*ReservedDBInstance `locationNameList:"ReservedDBInstance" type:"list"`
-
-	metadataReservedDBInstanceMessage `json:"-", xml:"-"`
-}
-
-type metadataReservedDBInstanceMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedDBInstancesResult"`
-}
-
 type ReservedDBInstanceNotFoundFault struct {
 	metadataReservedDBInstanceNotFoundFault `json:"-", xml:"-"`
 }
@@ -3536,17 +3567,6 @@ type metadataReservedDBInstancesOffering struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ReservedDBInstancesOfferingMessage struct {
-	Marker                       *string                        `type:"string"`
-	ReservedDBInstancesOfferings []*ReservedDBInstancesOffering `locationNameList:"ReservedDBInstancesOffering" type:"list"`
-
-	metadataReservedDBInstancesOfferingMessage `json:"-", xml:"-"`
-}
-
-type metadataReservedDBInstancesOfferingMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedDBInstancesOfferingsResult"`
-}
-
 type ReservedDBInstancesOfferingNotFoundFault struct {
 	metadataReservedDBInstancesOfferingNotFoundFault `json:"-", xml:"-"`
 }
@@ -3555,16 +3575,26 @@ type metadataReservedDBInstancesOfferingNotFoundFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ResetDBParameterGroupMessage struct {
+type ResetDBParameterGroupInput struct {
 	DBParameterGroupName *string      `type:"string"`
 	Parameters           []*Parameter `locationNameList:"Parameter" type:"list"`
 	ResetAllParameters   *bool        `type:"boolean"`
 
-	metadataResetDBParameterGroupMessage `json:"-", xml:"-"`
+	metadataResetDBParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataResetDBParameterGroupMessage struct {
+type metadataResetDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName"`
+}
+
+type ResetDBParameterGroupOutput struct {
+	DBParameterGroupName *string `type:"string"`
+
+	metadataResetDBParameterGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataResetDBParameterGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResourceNotFoundFault struct {
@@ -3586,7 +3616,7 @@ type metadataResourcePendingMaintenanceActions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type RestoreDBInstanceFromDBSnapshotMessage struct {
+type RestoreDBInstanceFromDBSnapshotInput struct {
 	AutoMinorVersionUpgrade *bool   `type:"boolean"`
 	AvailabilityZone        *string `type:"string"`
 	DBInstanceClass         *string `type:"string"`
@@ -3606,10 +3636,10 @@ type RestoreDBInstanceFromDBSnapshotMessage struct {
 	TDECredentialPassword   *string `locationName:"TdeCredentialPassword" type:"string"`
 	Tags                    []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataRestoreDBInstanceFromDBSnapshotMessage `json:"-", xml:"-"`
+	metadataRestoreDBInstanceFromDBSnapshotInput `json:"-", xml:"-"`
 }
 
-type metadataRestoreDBInstanceFromDBSnapshotMessage struct {
+type metadataRestoreDBInstanceFromDBSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier,DBSnapshotIdentifier"`
 }
 
@@ -3623,7 +3653,7 @@ type metadataRestoreDBInstanceFromDBSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"RestoreDBInstanceFromDBSnapshotResult"`
 }
 
-type RestoreDBInstanceToPointInTimeMessage struct {
+type RestoreDBInstanceToPointInTimeInput struct {
 	AutoMinorVersionUpgrade    *bool      `type:"boolean"`
 	AvailabilityZone           *string    `type:"string"`
 	DBInstanceClass            *string    `type:"string"`
@@ -3645,10 +3675,10 @@ type RestoreDBInstanceToPointInTimeMessage struct {
 	TargetDBInstanceIdentifier *string    `type:"string"`
 	UseLatestRestorableTime    *bool      `type:"boolean"`
 
-	metadataRestoreDBInstanceToPointInTimeMessage `json:"-", xml:"-"`
+	metadataRestoreDBInstanceToPointInTimeInput `json:"-", xml:"-"`
 }
 
-type metadataRestoreDBInstanceToPointInTimeMessage struct {
+type metadataRestoreDBInstanceToPointInTimeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SourceDBInstanceIdentifier,TargetDBInstanceIdentifier"`
 }
 
@@ -3662,17 +3692,17 @@ type metadataRestoreDBInstanceToPointInTimeOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"RestoreDBInstanceToPointInTimeResult"`
 }
 
-type RevokeDBSecurityGroupIngressMessage struct {
+type RevokeDBSecurityGroupIngressInput struct {
 	CIDRIP                  *string `type:"string"`
 	DBSecurityGroupName     *string `type:"string"`
 	EC2SecurityGroupID      *string `locationName:"EC2SecurityGroupId" type:"string"`
 	EC2SecurityGroupName    *string `type:"string"`
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
-	metadataRevokeDBSecurityGroupIngressMessage `json:"-", xml:"-"`
+	metadataRevokeDBSecurityGroupIngressInput `json:"-", xml:"-"`
 }
 
-type metadataRevokeDBSecurityGroupIngressMessage struct {
+type metadataRevokeDBSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBSecurityGroupName"`
 }
 
@@ -3795,16 +3825,6 @@ type Tag struct {
 
 type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type TagListMessage struct {
-	TagList []*Tag `locationNameList:"Tag" type:"list"`
-
-	metadataTagListMessage `json:"-", xml:"-"`
-}
-
-type metadataTagListMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListTagsForResourceResult"`
 }
 
 type VPCSecurityGroupMembership struct {

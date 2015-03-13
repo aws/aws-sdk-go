@@ -9,7 +9,7 @@ import (
 )
 
 // AttachInstancesRequest generates a request for the AttachInstances operation.
-func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesQuery) (req *aws.Request, output *AttachInstancesOutput) {
+func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *aws.Request, output *AttachInstancesOutput) {
 	if opAttachInstances == nil {
 		opAttachInstances = &aws.Operation{
 			Name:       "AttachInstances",
@@ -24,7 +24,7 @@ func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesQuery) (req *
 	return
 }
 
-func (c *AutoScaling) AttachInstances(input *AttachInstancesQuery) (output *AttachInstancesOutput, err error) {
+func (c *AutoScaling) AttachInstances(input *AttachInstancesInput) (output *AttachInstancesOutput, err error) {
 	req, out := c.AttachInstancesRequest(input)
 	output = out
 	err = req.Send()
@@ -34,7 +34,7 @@ func (c *AutoScaling) AttachInstances(input *AttachInstancesQuery) (output *Atta
 var opAttachInstances *aws.Operation
 
 // CompleteLifecycleActionRequest generates a request for the CompleteLifecycleAction operation.
-func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionType) (req *aws.Request, output *CompleteLifecycleActionAnswer) {
+func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionInput) (req *aws.Request, output *CompleteLifecycleActionOutput) {
 	if opCompleteLifecycleAction == nil {
 		opCompleteLifecycleAction = &aws.Operation{
 			Name:       "CompleteLifecycleAction",
@@ -44,12 +44,12 @@ func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleAct
 	}
 
 	req = aws.NewRequest(c.Service, opCompleteLifecycleAction, input, output)
-	output = &CompleteLifecycleActionAnswer{}
+	output = &CompleteLifecycleActionOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) CompleteLifecycleAction(input *CompleteLifecycleActionType) (output *CompleteLifecycleActionAnswer, err error) {
+func (c *AutoScaling) CompleteLifecycleAction(input *CompleteLifecycleActionInput) (output *CompleteLifecycleActionOutput, err error) {
 	req, out := c.CompleteLifecycleActionRequest(input)
 	output = out
 	err = req.Send()
@@ -59,7 +59,7 @@ func (c *AutoScaling) CompleteLifecycleAction(input *CompleteLifecycleActionType
 var opCompleteLifecycleAction *aws.Operation
 
 // CreateAutoScalingGroupRequest generates a request for the CreateAutoScalingGroup operation.
-func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGroupType) (req *aws.Request, output *CreateAutoScalingGroupOutput) {
+func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGroupInput) (req *aws.Request, output *CreateAutoScalingGroupOutput) {
 	if opCreateAutoScalingGroup == nil {
 		opCreateAutoScalingGroup = &aws.Operation{
 			Name:       "CreateAutoScalingGroup",
@@ -74,7 +74,7 @@ func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGrou
 	return
 }
 
-func (c *AutoScaling) CreateAutoScalingGroup(input *CreateAutoScalingGroupType) (output *CreateAutoScalingGroupOutput, err error) {
+func (c *AutoScaling) CreateAutoScalingGroup(input *CreateAutoScalingGroupInput) (output *CreateAutoScalingGroupOutput, err error) {
 	req, out := c.CreateAutoScalingGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -84,7 +84,7 @@ func (c *AutoScaling) CreateAutoScalingGroup(input *CreateAutoScalingGroupType) 
 var opCreateAutoScalingGroup *aws.Operation
 
 // CreateLaunchConfigurationRequest generates a request for the CreateLaunchConfiguration operation.
-func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfigurationType) (req *aws.Request, output *CreateLaunchConfigurationOutput) {
+func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfigurationInput) (req *aws.Request, output *CreateLaunchConfigurationOutput) {
 	if opCreateLaunchConfiguration == nil {
 		opCreateLaunchConfiguration = &aws.Operation{
 			Name:       "CreateLaunchConfiguration",
@@ -99,7 +99,7 @@ func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfig
 	return
 }
 
-func (c *AutoScaling) CreateLaunchConfiguration(input *CreateLaunchConfigurationType) (output *CreateLaunchConfigurationOutput, err error) {
+func (c *AutoScaling) CreateLaunchConfiguration(input *CreateLaunchConfigurationInput) (output *CreateLaunchConfigurationOutput, err error) {
 	req, out := c.CreateLaunchConfigurationRequest(input)
 	output = out
 	err = req.Send()
@@ -109,7 +109,7 @@ func (c *AutoScaling) CreateLaunchConfiguration(input *CreateLaunchConfiguration
 var opCreateLaunchConfiguration *aws.Operation
 
 // CreateOrUpdateTagsRequest generates a request for the CreateOrUpdateTags operation.
-func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsType) (req *aws.Request, output *CreateOrUpdateTagsOutput) {
+func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsInput) (req *aws.Request, output *CreateOrUpdateTagsOutput) {
 	if opCreateOrUpdateTags == nil {
 		opCreateOrUpdateTags = &aws.Operation{
 			Name:       "CreateOrUpdateTags",
@@ -124,7 +124,7 @@ func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsType) (
 	return
 }
 
-func (c *AutoScaling) CreateOrUpdateTags(input *CreateOrUpdateTagsType) (output *CreateOrUpdateTagsOutput, err error) {
+func (c *AutoScaling) CreateOrUpdateTags(input *CreateOrUpdateTagsInput) (output *CreateOrUpdateTagsOutput, err error) {
 	req, out := c.CreateOrUpdateTagsRequest(input)
 	output = out
 	err = req.Send()
@@ -134,7 +134,7 @@ func (c *AutoScaling) CreateOrUpdateTags(input *CreateOrUpdateTagsType) (output 
 var opCreateOrUpdateTags *aws.Operation
 
 // DeleteAutoScalingGroupRequest generates a request for the DeleteAutoScalingGroup operation.
-func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGroupType) (req *aws.Request, output *DeleteAutoScalingGroupOutput) {
+func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGroupInput) (req *aws.Request, output *DeleteAutoScalingGroupOutput) {
 	if opDeleteAutoScalingGroup == nil {
 		opDeleteAutoScalingGroup = &aws.Operation{
 			Name:       "DeleteAutoScalingGroup",
@@ -149,7 +149,7 @@ func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGrou
 	return
 }
 
-func (c *AutoScaling) DeleteAutoScalingGroup(input *DeleteAutoScalingGroupType) (output *DeleteAutoScalingGroupOutput, err error) {
+func (c *AutoScaling) DeleteAutoScalingGroup(input *DeleteAutoScalingGroupInput) (output *DeleteAutoScalingGroupOutput, err error) {
 	req, out := c.DeleteAutoScalingGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -159,7 +159,7 @@ func (c *AutoScaling) DeleteAutoScalingGroup(input *DeleteAutoScalingGroupType) 
 var opDeleteAutoScalingGroup *aws.Operation
 
 // DeleteLaunchConfigurationRequest generates a request for the DeleteLaunchConfiguration operation.
-func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *LaunchConfigurationNameType) (req *aws.Request, output *DeleteLaunchConfigurationOutput) {
+func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfigurationInput) (req *aws.Request, output *DeleteLaunchConfigurationOutput) {
 	if opDeleteLaunchConfiguration == nil {
 		opDeleteLaunchConfiguration = &aws.Operation{
 			Name:       "DeleteLaunchConfiguration",
@@ -174,7 +174,7 @@ func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *LaunchConfiguratio
 	return
 }
 
-func (c *AutoScaling) DeleteLaunchConfiguration(input *LaunchConfigurationNameType) (output *DeleteLaunchConfigurationOutput, err error) {
+func (c *AutoScaling) DeleteLaunchConfiguration(input *DeleteLaunchConfigurationInput) (output *DeleteLaunchConfigurationOutput, err error) {
 	req, out := c.DeleteLaunchConfigurationRequest(input)
 	output = out
 	err = req.Send()
@@ -184,7 +184,7 @@ func (c *AutoScaling) DeleteLaunchConfiguration(input *LaunchConfigurationNameTy
 var opDeleteLaunchConfiguration *aws.Operation
 
 // DeleteLifecycleHookRequest generates a request for the DeleteLifecycleHook operation.
-func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookType) (req *aws.Request, output *DeleteLifecycleHookAnswer) {
+func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput) (req *aws.Request, output *DeleteLifecycleHookOutput) {
 	if opDeleteLifecycleHook == nil {
 		opDeleteLifecycleHook = &aws.Operation{
 			Name:       "DeleteLifecycleHook",
@@ -194,12 +194,12 @@ func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookType)
 	}
 
 	req = aws.NewRequest(c.Service, opDeleteLifecycleHook, input, output)
-	output = &DeleteLifecycleHookAnswer{}
+	output = &DeleteLifecycleHookOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DeleteLifecycleHook(input *DeleteLifecycleHookType) (output *DeleteLifecycleHookAnswer, err error) {
+func (c *AutoScaling) DeleteLifecycleHook(input *DeleteLifecycleHookInput) (output *DeleteLifecycleHookOutput, err error) {
 	req, out := c.DeleteLifecycleHookRequest(input)
 	output = out
 	err = req.Send()
@@ -209,7 +209,7 @@ func (c *AutoScaling) DeleteLifecycleHook(input *DeleteLifecycleHookType) (outpu
 var opDeleteLifecycleHook *aws.Operation
 
 // DeleteNotificationConfigurationRequest generates a request for the DeleteNotificationConfiguration operation.
-func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotificationConfigurationType) (req *aws.Request, output *DeleteNotificationConfigurationOutput) {
+func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotificationConfigurationInput) (req *aws.Request, output *DeleteNotificationConfigurationOutput) {
 	if opDeleteNotificationConfiguration == nil {
 		opDeleteNotificationConfiguration = &aws.Operation{
 			Name:       "DeleteNotificationConfiguration",
@@ -224,7 +224,7 @@ func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotifi
 	return
 }
 
-func (c *AutoScaling) DeleteNotificationConfiguration(input *DeleteNotificationConfigurationType) (output *DeleteNotificationConfigurationOutput, err error) {
+func (c *AutoScaling) DeleteNotificationConfiguration(input *DeleteNotificationConfigurationInput) (output *DeleteNotificationConfigurationOutput, err error) {
 	req, out := c.DeleteNotificationConfigurationRequest(input)
 	output = out
 	err = req.Send()
@@ -234,7 +234,7 @@ func (c *AutoScaling) DeleteNotificationConfiguration(input *DeleteNotificationC
 var opDeleteNotificationConfiguration *aws.Operation
 
 // DeletePolicyRequest generates a request for the DeletePolicy operation.
-func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyType) (req *aws.Request, output *DeletePolicyOutput) {
+func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, output *DeletePolicyOutput) {
 	if opDeletePolicy == nil {
 		opDeletePolicy = &aws.Operation{
 			Name:       "DeletePolicy",
@@ -249,7 +249,7 @@ func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyType) (req *aws.Req
 	return
 }
 
-func (c *AutoScaling) DeletePolicy(input *DeletePolicyType) (output *DeletePolicyOutput, err error) {
+func (c *AutoScaling) DeletePolicy(input *DeletePolicyInput) (output *DeletePolicyOutput, err error) {
 	req, out := c.DeletePolicyRequest(input)
 	output = out
 	err = req.Send()
@@ -259,7 +259,7 @@ func (c *AutoScaling) DeletePolicy(input *DeletePolicyType) (output *DeletePolic
 var opDeletePolicy *aws.Operation
 
 // DeleteScheduledActionRequest generates a request for the DeleteScheduledAction operation.
-func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionType) (req *aws.Request, output *DeleteScheduledActionOutput) {
+func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionInput) (req *aws.Request, output *DeleteScheduledActionOutput) {
 	if opDeleteScheduledAction == nil {
 		opDeleteScheduledAction = &aws.Operation{
 			Name:       "DeleteScheduledAction",
@@ -274,7 +274,7 @@ func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionT
 	return
 }
 
-func (c *AutoScaling) DeleteScheduledAction(input *DeleteScheduledActionType) (output *DeleteScheduledActionOutput, err error) {
+func (c *AutoScaling) DeleteScheduledAction(input *DeleteScheduledActionInput) (output *DeleteScheduledActionOutput, err error) {
 	req, out := c.DeleteScheduledActionRequest(input)
 	output = out
 	err = req.Send()
@@ -284,7 +284,7 @@ func (c *AutoScaling) DeleteScheduledAction(input *DeleteScheduledActionType) (o
 var opDeleteScheduledAction *aws.Operation
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
-func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsType) (req *aws.Request, output *DeleteTagsOutput) {
+func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
 	if opDeleteTags == nil {
 		opDeleteTags = &aws.Operation{
 			Name:       "DeleteTags",
@@ -299,7 +299,7 @@ func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsType) (req *aws.Request
 	return
 }
 
-func (c *AutoScaling) DeleteTags(input *DeleteTagsType) (output *DeleteTagsOutput, err error) {
+func (c *AutoScaling) DeleteTags(input *DeleteTagsInput) (output *DeleteTagsOutput, err error) {
 	req, out := c.DeleteTagsRequest(input)
 	output = out
 	err = req.Send()
@@ -309,7 +309,7 @@ func (c *AutoScaling) DeleteTags(input *DeleteTagsType) (output *DeleteTagsOutpu
 var opDeleteTags *aws.Operation
 
 // DescribeAccountLimitsRequest generates a request for the DescribeAccountLimits operation.
-func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *aws.Request, output *DescribeAccountLimitsAnswer) {
+func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *aws.Request, output *DescribeAccountLimitsOutput) {
 	if opDescribeAccountLimits == nil {
 		opDescribeAccountLimits = &aws.Operation{
 			Name:       "DescribeAccountLimits",
@@ -319,12 +319,12 @@ func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsI
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeAccountLimits, input, output)
-	output = &DescribeAccountLimitsAnswer{}
+	output = &DescribeAccountLimitsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeAccountLimits(input *DescribeAccountLimitsInput) (output *DescribeAccountLimitsAnswer, err error) {
+func (c *AutoScaling) DescribeAccountLimits(input *DescribeAccountLimitsInput) (output *DescribeAccountLimitsOutput, err error) {
 	req, out := c.DescribeAccountLimitsRequest(input)
 	output = out
 	err = req.Send()
@@ -334,7 +334,7 @@ func (c *AutoScaling) DescribeAccountLimits(input *DescribeAccountLimitsInput) (
 var opDescribeAccountLimits *aws.Operation
 
 // DescribeAdjustmentTypesRequest generates a request for the DescribeAdjustmentTypes operation.
-func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTypesInput) (req *aws.Request, output *DescribeAdjustmentTypesAnswer) {
+func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTypesInput) (req *aws.Request, output *DescribeAdjustmentTypesOutput) {
 	if opDescribeAdjustmentTypes == nil {
 		opDescribeAdjustmentTypes = &aws.Operation{
 			Name:       "DescribeAdjustmentTypes",
@@ -344,12 +344,12 @@ func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTy
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeAdjustmentTypes, input, output)
-	output = &DescribeAdjustmentTypesAnswer{}
+	output = &DescribeAdjustmentTypesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeAdjustmentTypes(input *DescribeAdjustmentTypesInput) (output *DescribeAdjustmentTypesAnswer, err error) {
+func (c *AutoScaling) DescribeAdjustmentTypes(input *DescribeAdjustmentTypesInput) (output *DescribeAdjustmentTypesOutput, err error) {
 	req, out := c.DescribeAdjustmentTypesRequest(input)
 	output = out
 	err = req.Send()
@@ -359,7 +359,7 @@ func (c *AutoScaling) DescribeAdjustmentTypes(input *DescribeAdjustmentTypesInpu
 var opDescribeAdjustmentTypes *aws.Operation
 
 // DescribeAutoScalingGroupsRequest generates a request for the DescribeAutoScalingGroups operation.
-func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *AutoScalingGroupNamesType) (req *aws.Request, output *AutoScalingGroupsType) {
+func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalingGroupsInput) (req *aws.Request, output *DescribeAutoScalingGroupsOutput) {
 	if opDescribeAutoScalingGroups == nil {
 		opDescribeAutoScalingGroups = &aws.Operation{
 			Name:       "DescribeAutoScalingGroups",
@@ -369,12 +369,12 @@ func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *AutoScalingGroupNa
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeAutoScalingGroups, input, output)
-	output = &AutoScalingGroupsType{}
+	output = &DescribeAutoScalingGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeAutoScalingGroups(input *AutoScalingGroupNamesType) (output *AutoScalingGroupsType, err error) {
+func (c *AutoScaling) DescribeAutoScalingGroups(input *DescribeAutoScalingGroupsInput) (output *DescribeAutoScalingGroupsOutput, err error) {
 	req, out := c.DescribeAutoScalingGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -384,7 +384,7 @@ func (c *AutoScaling) DescribeAutoScalingGroups(input *AutoScalingGroupNamesType
 var opDescribeAutoScalingGroups *aws.Operation
 
 // DescribeAutoScalingInstancesRequest generates a request for the DescribeAutoScalingInstances operation.
-func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoScalingInstancesType) (req *aws.Request, output *AutoScalingInstancesType) {
+func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoScalingInstancesInput) (req *aws.Request, output *DescribeAutoScalingInstancesOutput) {
 	if opDescribeAutoScalingInstances == nil {
 		opDescribeAutoScalingInstances = &aws.Operation{
 			Name:       "DescribeAutoScalingInstances",
@@ -394,12 +394,12 @@ func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoSca
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeAutoScalingInstances, input, output)
-	output = &AutoScalingInstancesType{}
+	output = &DescribeAutoScalingInstancesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeAutoScalingInstances(input *DescribeAutoScalingInstancesType) (output *AutoScalingInstancesType, err error) {
+func (c *AutoScaling) DescribeAutoScalingInstances(input *DescribeAutoScalingInstancesInput) (output *DescribeAutoScalingInstancesOutput, err error) {
 	req, out := c.DescribeAutoScalingInstancesRequest(input)
 	output = out
 	err = req.Send()
@@ -409,7 +409,7 @@ func (c *AutoScaling) DescribeAutoScalingInstances(input *DescribeAutoScalingIns
 var opDescribeAutoScalingInstances *aws.Operation
 
 // DescribeAutoScalingNotificationTypesRequest generates a request for the DescribeAutoScalingNotificationTypes operation.
-func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *DescribeAutoScalingNotificationTypesInput) (req *aws.Request, output *DescribeAutoScalingNotificationTypesAnswer) {
+func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *DescribeAutoScalingNotificationTypesInput) (req *aws.Request, output *DescribeAutoScalingNotificationTypesOutput) {
 	if opDescribeAutoScalingNotificationTypes == nil {
 		opDescribeAutoScalingNotificationTypes = &aws.Operation{
 			Name:       "DescribeAutoScalingNotificationTypes",
@@ -419,12 +419,12 @@ func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *Describ
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeAutoScalingNotificationTypes, input, output)
-	output = &DescribeAutoScalingNotificationTypesAnswer{}
+	output = &DescribeAutoScalingNotificationTypesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeAutoScalingNotificationTypes(input *DescribeAutoScalingNotificationTypesInput) (output *DescribeAutoScalingNotificationTypesAnswer, err error) {
+func (c *AutoScaling) DescribeAutoScalingNotificationTypes(input *DescribeAutoScalingNotificationTypesInput) (output *DescribeAutoScalingNotificationTypesOutput, err error) {
 	req, out := c.DescribeAutoScalingNotificationTypesRequest(input)
 	output = out
 	err = req.Send()
@@ -434,7 +434,7 @@ func (c *AutoScaling) DescribeAutoScalingNotificationTypes(input *DescribeAutoSc
 var opDescribeAutoScalingNotificationTypes *aws.Operation
 
 // DescribeLaunchConfigurationsRequest generates a request for the DescribeLaunchConfigurations operation.
-func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *LaunchConfigurationNamesType) (req *aws.Request, output *LaunchConfigurationsType) {
+func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchConfigurationsInput) (req *aws.Request, output *DescribeLaunchConfigurationsOutput) {
 	if opDescribeLaunchConfigurations == nil {
 		opDescribeLaunchConfigurations = &aws.Operation{
 			Name:       "DescribeLaunchConfigurations",
@@ -444,12 +444,12 @@ func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *LaunchConfigura
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeLaunchConfigurations, input, output)
-	output = &LaunchConfigurationsType{}
+	output = &DescribeLaunchConfigurationsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeLaunchConfigurations(input *LaunchConfigurationNamesType) (output *LaunchConfigurationsType, err error) {
+func (c *AutoScaling) DescribeLaunchConfigurations(input *DescribeLaunchConfigurationsInput) (output *DescribeLaunchConfigurationsOutput, err error) {
 	req, out := c.DescribeLaunchConfigurationsRequest(input)
 	output = out
 	err = req.Send()
@@ -459,7 +459,7 @@ func (c *AutoScaling) DescribeLaunchConfigurations(input *LaunchConfigurationNam
 var opDescribeLaunchConfigurations *aws.Operation
 
 // DescribeLifecycleHookTypesRequest generates a request for the DescribeLifecycleHookTypes operation.
-func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycleHookTypesInput) (req *aws.Request, output *DescribeLifecycleHookTypesAnswer) {
+func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycleHookTypesInput) (req *aws.Request, output *DescribeLifecycleHookTypesOutput) {
 	if opDescribeLifecycleHookTypes == nil {
 		opDescribeLifecycleHookTypes = &aws.Operation{
 			Name:       "DescribeLifecycleHookTypes",
@@ -469,12 +469,12 @@ func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycle
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeLifecycleHookTypes, input, output)
-	output = &DescribeLifecycleHookTypesAnswer{}
+	output = &DescribeLifecycleHookTypesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeLifecycleHookTypes(input *DescribeLifecycleHookTypesInput) (output *DescribeLifecycleHookTypesAnswer, err error) {
+func (c *AutoScaling) DescribeLifecycleHookTypes(input *DescribeLifecycleHookTypesInput) (output *DescribeLifecycleHookTypesOutput, err error) {
 	req, out := c.DescribeLifecycleHookTypesRequest(input)
 	output = out
 	err = req.Send()
@@ -484,7 +484,7 @@ func (c *AutoScaling) DescribeLifecycleHookTypes(input *DescribeLifecycleHookTyp
 var opDescribeLifecycleHookTypes *aws.Operation
 
 // DescribeLifecycleHooksRequest generates a request for the DescribeLifecycleHooks operation.
-func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHooksType) (req *aws.Request, output *DescribeLifecycleHooksAnswer) {
+func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHooksInput) (req *aws.Request, output *DescribeLifecycleHooksOutput) {
 	if opDescribeLifecycleHooks == nil {
 		opDescribeLifecycleHooks = &aws.Operation{
 			Name:       "DescribeLifecycleHooks",
@@ -494,12 +494,12 @@ func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHook
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeLifecycleHooks, input, output)
-	output = &DescribeLifecycleHooksAnswer{}
+	output = &DescribeLifecycleHooksOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeLifecycleHooks(input *DescribeLifecycleHooksType) (output *DescribeLifecycleHooksAnswer, err error) {
+func (c *AutoScaling) DescribeLifecycleHooks(input *DescribeLifecycleHooksInput) (output *DescribeLifecycleHooksOutput, err error) {
 	req, out := c.DescribeLifecycleHooksRequest(input)
 	output = out
 	err = req.Send()
@@ -509,7 +509,7 @@ func (c *AutoScaling) DescribeLifecycleHooks(input *DescribeLifecycleHooksType) 
 var opDescribeLifecycleHooks *aws.Operation
 
 // DescribeMetricCollectionTypesRequest generates a request for the DescribeMetricCollectionTypes operation.
-func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *aws.Request, output *DescribeMetricCollectionTypesAnswer) {
+func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *aws.Request, output *DescribeMetricCollectionTypesOutput) {
 	if opDescribeMetricCollectionTypes == nil {
 		opDescribeMetricCollectionTypes = &aws.Operation{
 			Name:       "DescribeMetricCollectionTypes",
@@ -519,12 +519,12 @@ func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetric
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeMetricCollectionTypes, input, output)
-	output = &DescribeMetricCollectionTypesAnswer{}
+	output = &DescribeMetricCollectionTypesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeMetricCollectionTypes(input *DescribeMetricCollectionTypesInput) (output *DescribeMetricCollectionTypesAnswer, err error) {
+func (c *AutoScaling) DescribeMetricCollectionTypes(input *DescribeMetricCollectionTypesInput) (output *DescribeMetricCollectionTypesOutput, err error) {
 	req, out := c.DescribeMetricCollectionTypesRequest(input)
 	output = out
 	err = req.Send()
@@ -534,7 +534,7 @@ func (c *AutoScaling) DescribeMetricCollectionTypes(input *DescribeMetricCollect
 var opDescribeMetricCollectionTypes *aws.Operation
 
 // DescribeNotificationConfigurationsRequest generates a request for the DescribeNotificationConfigurations operation.
-func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeNotificationConfigurationsType) (req *aws.Request, output *DescribeNotificationConfigurationsAnswer) {
+func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeNotificationConfigurationsInput) (req *aws.Request, output *DescribeNotificationConfigurationsOutput) {
 	if opDescribeNotificationConfigurations == nil {
 		opDescribeNotificationConfigurations = &aws.Operation{
 			Name:       "DescribeNotificationConfigurations",
@@ -544,12 +544,12 @@ func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeN
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeNotificationConfigurations, input, output)
-	output = &DescribeNotificationConfigurationsAnswer{}
+	output = &DescribeNotificationConfigurationsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeNotificationConfigurations(input *DescribeNotificationConfigurationsType) (output *DescribeNotificationConfigurationsAnswer, err error) {
+func (c *AutoScaling) DescribeNotificationConfigurations(input *DescribeNotificationConfigurationsInput) (output *DescribeNotificationConfigurationsOutput, err error) {
 	req, out := c.DescribeNotificationConfigurationsRequest(input)
 	output = out
 	err = req.Send()
@@ -559,7 +559,7 @@ func (c *AutoScaling) DescribeNotificationConfigurations(input *DescribeNotifica
 var opDescribeNotificationConfigurations *aws.Operation
 
 // DescribePoliciesRequest generates a request for the DescribePolicies operation.
-func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesType) (req *aws.Request, output *PoliciesType) {
+func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req *aws.Request, output *DescribePoliciesOutput) {
 	if opDescribePolicies == nil {
 		opDescribePolicies = &aws.Operation{
 			Name:       "DescribePolicies",
@@ -569,12 +569,12 @@ func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesType) (req 
 	}
 
 	req = aws.NewRequest(c.Service, opDescribePolicies, input, output)
-	output = &PoliciesType{}
+	output = &DescribePoliciesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribePolicies(input *DescribePoliciesType) (output *PoliciesType, err error) {
+func (c *AutoScaling) DescribePolicies(input *DescribePoliciesInput) (output *DescribePoliciesOutput, err error) {
 	req, out := c.DescribePoliciesRequest(input)
 	output = out
 	err = req.Send()
@@ -584,7 +584,7 @@ func (c *AutoScaling) DescribePolicies(input *DescribePoliciesType) (output *Pol
 var opDescribePolicies *aws.Operation
 
 // DescribeScalingActivitiesRequest generates a request for the DescribeScalingActivities operation.
-func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesType) (req *aws.Request, output *ActivitiesType) {
+func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *aws.Request, output *DescribeScalingActivitiesOutput) {
 	if opDescribeScalingActivities == nil {
 		opDescribeScalingActivities = &aws.Operation{
 			Name:       "DescribeScalingActivities",
@@ -594,12 +594,12 @@ func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingAct
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeScalingActivities, input, output)
-	output = &ActivitiesType{}
+	output = &DescribeScalingActivitiesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeScalingActivities(input *DescribeScalingActivitiesType) (output *ActivitiesType, err error) {
+func (c *AutoScaling) DescribeScalingActivities(input *DescribeScalingActivitiesInput) (output *DescribeScalingActivitiesOutput, err error) {
 	req, out := c.DescribeScalingActivitiesRequest(input)
 	output = out
 	err = req.Send()
@@ -609,7 +609,7 @@ func (c *AutoScaling) DescribeScalingActivities(input *DescribeScalingActivities
 var opDescribeScalingActivities *aws.Operation
 
 // DescribeScalingProcessTypesRequest generates a request for the DescribeScalingProcessTypes operation.
-func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingProcessTypesInput) (req *aws.Request, output *ProcessesType) {
+func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingProcessTypesInput) (req *aws.Request, output *DescribeScalingProcessTypesOutput) {
 	if opDescribeScalingProcessTypes == nil {
 		opDescribeScalingProcessTypes = &aws.Operation{
 			Name:       "DescribeScalingProcessTypes",
@@ -619,12 +619,12 @@ func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingP
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeScalingProcessTypes, input, output)
-	output = &ProcessesType{}
+	output = &DescribeScalingProcessTypesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeScalingProcessTypes(input *DescribeScalingProcessTypesInput) (output *ProcessesType, err error) {
+func (c *AutoScaling) DescribeScalingProcessTypes(input *DescribeScalingProcessTypesInput) (output *DescribeScalingProcessTypesOutput, err error) {
 	req, out := c.DescribeScalingProcessTypesRequest(input)
 	output = out
 	err = req.Send()
@@ -634,7 +634,7 @@ func (c *AutoScaling) DescribeScalingProcessTypes(input *DescribeScalingProcessT
 var opDescribeScalingProcessTypes *aws.Operation
 
 // DescribeScheduledActionsRequest generates a request for the DescribeScheduledActions operation.
-func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsType) (req *aws.Request, output *ScheduledActionsType) {
+func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsInput) (req *aws.Request, output *DescribeScheduledActionsOutput) {
 	if opDescribeScheduledActions == nil {
 		opDescribeScheduledActions = &aws.Operation{
 			Name:       "DescribeScheduledActions",
@@ -644,12 +644,12 @@ func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledAc
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeScheduledActions, input, output)
-	output = &ScheduledActionsType{}
+	output = &DescribeScheduledActionsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeScheduledActions(input *DescribeScheduledActionsType) (output *ScheduledActionsType, err error) {
+func (c *AutoScaling) DescribeScheduledActions(input *DescribeScheduledActionsInput) (output *DescribeScheduledActionsOutput, err error) {
 	req, out := c.DescribeScheduledActionsRequest(input)
 	output = out
 	err = req.Send()
@@ -659,7 +659,7 @@ func (c *AutoScaling) DescribeScheduledActions(input *DescribeScheduledActionsTy
 var opDescribeScheduledActions *aws.Operation
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
-func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsType) (req *aws.Request, output *TagsType) {
+func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
 			Name:       "DescribeTags",
@@ -669,12 +669,12 @@ func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsType) (req *aws.Req
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeTags, input, output)
-	output = &TagsType{}
+	output = &DescribeTagsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeTags(input *DescribeTagsType) (output *TagsType, err error) {
+func (c *AutoScaling) DescribeTags(input *DescribeTagsInput) (output *DescribeTagsOutput, err error) {
 	req, out := c.DescribeTagsRequest(input)
 	output = out
 	err = req.Send()
@@ -684,7 +684,7 @@ func (c *AutoScaling) DescribeTags(input *DescribeTagsType) (output *TagsType, e
 var opDescribeTags *aws.Operation
 
 // DescribeTerminationPolicyTypesRequest generates a request for the DescribeTerminationPolicyTypes operation.
-func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTerminationPolicyTypesInput) (req *aws.Request, output *DescribeTerminationPolicyTypesAnswer) {
+func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTerminationPolicyTypesInput) (req *aws.Request, output *DescribeTerminationPolicyTypesOutput) {
 	if opDescribeTerminationPolicyTypes == nil {
 		opDescribeTerminationPolicyTypes = &aws.Operation{
 			Name:       "DescribeTerminationPolicyTypes",
@@ -694,12 +694,12 @@ func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTermi
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeTerminationPolicyTypes, input, output)
-	output = &DescribeTerminationPolicyTypesAnswer{}
+	output = &DescribeTerminationPolicyTypesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DescribeTerminationPolicyTypes(input *DescribeTerminationPolicyTypesInput) (output *DescribeTerminationPolicyTypesAnswer, err error) {
+func (c *AutoScaling) DescribeTerminationPolicyTypes(input *DescribeTerminationPolicyTypesInput) (output *DescribeTerminationPolicyTypesOutput, err error) {
 	req, out := c.DescribeTerminationPolicyTypesRequest(input)
 	output = out
 	err = req.Send()
@@ -709,7 +709,7 @@ func (c *AutoScaling) DescribeTerminationPolicyTypes(input *DescribeTerminationP
 var opDescribeTerminationPolicyTypes *aws.Operation
 
 // DetachInstancesRequest generates a request for the DetachInstances operation.
-func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesQuery) (req *aws.Request, output *DetachInstancesAnswer) {
+func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *aws.Request, output *DetachInstancesOutput) {
 	if opDetachInstances == nil {
 		opDetachInstances = &aws.Operation{
 			Name:       "DetachInstances",
@@ -719,12 +719,12 @@ func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesQuery) (req *
 	}
 
 	req = aws.NewRequest(c.Service, opDetachInstances, input, output)
-	output = &DetachInstancesAnswer{}
+	output = &DetachInstancesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) DetachInstances(input *DetachInstancesQuery) (output *DetachInstancesAnswer, err error) {
+func (c *AutoScaling) DetachInstances(input *DetachInstancesInput) (output *DetachInstancesOutput, err error) {
 	req, out := c.DetachInstancesRequest(input)
 	output = out
 	err = req.Send()
@@ -734,7 +734,7 @@ func (c *AutoScaling) DetachInstances(input *DetachInstancesQuery) (output *Deta
 var opDetachInstances *aws.Operation
 
 // DisableMetricsCollectionRequest generates a request for the DisableMetricsCollection operation.
-func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsCollectionQuery) (req *aws.Request, output *DisableMetricsCollectionOutput) {
+func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsCollectionInput) (req *aws.Request, output *DisableMetricsCollectionOutput) {
 	if opDisableMetricsCollection == nil {
 		opDisableMetricsCollection = &aws.Operation{
 			Name:       "DisableMetricsCollection",
@@ -749,7 +749,7 @@ func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsColle
 	return
 }
 
-func (c *AutoScaling) DisableMetricsCollection(input *DisableMetricsCollectionQuery) (output *DisableMetricsCollectionOutput, err error) {
+func (c *AutoScaling) DisableMetricsCollection(input *DisableMetricsCollectionInput) (output *DisableMetricsCollectionOutput, err error) {
 	req, out := c.DisableMetricsCollectionRequest(input)
 	output = out
 	err = req.Send()
@@ -759,7 +759,7 @@ func (c *AutoScaling) DisableMetricsCollection(input *DisableMetricsCollectionQu
 var opDisableMetricsCollection *aws.Operation
 
 // EnableMetricsCollectionRequest generates a request for the EnableMetricsCollection operation.
-func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollectionQuery) (req *aws.Request, output *EnableMetricsCollectionOutput) {
+func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollectionInput) (req *aws.Request, output *EnableMetricsCollectionOutput) {
 	if opEnableMetricsCollection == nil {
 		opEnableMetricsCollection = &aws.Operation{
 			Name:       "EnableMetricsCollection",
@@ -774,7 +774,7 @@ func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollect
 	return
 }
 
-func (c *AutoScaling) EnableMetricsCollection(input *EnableMetricsCollectionQuery) (output *EnableMetricsCollectionOutput, err error) {
+func (c *AutoScaling) EnableMetricsCollection(input *EnableMetricsCollectionInput) (output *EnableMetricsCollectionOutput, err error) {
 	req, out := c.EnableMetricsCollectionRequest(input)
 	output = out
 	err = req.Send()
@@ -784,7 +784,7 @@ func (c *AutoScaling) EnableMetricsCollection(input *EnableMetricsCollectionQuer
 var opEnableMetricsCollection *aws.Operation
 
 // EnterStandbyRequest generates a request for the EnterStandby operation.
-func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyQuery) (req *aws.Request, output *EnterStandbyAnswer) {
+func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *aws.Request, output *EnterStandbyOutput) {
 	if opEnterStandby == nil {
 		opEnterStandby = &aws.Operation{
 			Name:       "EnterStandby",
@@ -794,12 +794,12 @@ func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyQuery) (req *aws.Re
 	}
 
 	req = aws.NewRequest(c.Service, opEnterStandby, input, output)
-	output = &EnterStandbyAnswer{}
+	output = &EnterStandbyOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) EnterStandby(input *EnterStandbyQuery) (output *EnterStandbyAnswer, err error) {
+func (c *AutoScaling) EnterStandby(input *EnterStandbyInput) (output *EnterStandbyOutput, err error) {
 	req, out := c.EnterStandbyRequest(input)
 	output = out
 	err = req.Send()
@@ -809,7 +809,7 @@ func (c *AutoScaling) EnterStandby(input *EnterStandbyQuery) (output *EnterStand
 var opEnterStandby *aws.Operation
 
 // ExecutePolicyRequest generates a request for the ExecutePolicy operation.
-func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyType) (req *aws.Request, output *ExecutePolicyOutput) {
+func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *aws.Request, output *ExecutePolicyOutput) {
 	if opExecutePolicy == nil {
 		opExecutePolicy = &aws.Operation{
 			Name:       "ExecutePolicy",
@@ -824,7 +824,7 @@ func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyType) (req *aws.R
 	return
 }
 
-func (c *AutoScaling) ExecutePolicy(input *ExecutePolicyType) (output *ExecutePolicyOutput, err error) {
+func (c *AutoScaling) ExecutePolicy(input *ExecutePolicyInput) (output *ExecutePolicyOutput, err error) {
 	req, out := c.ExecutePolicyRequest(input)
 	output = out
 	err = req.Send()
@@ -834,7 +834,7 @@ func (c *AutoScaling) ExecutePolicy(input *ExecutePolicyType) (output *ExecutePo
 var opExecutePolicy *aws.Operation
 
 // ExitStandbyRequest generates a request for the ExitStandby operation.
-func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyQuery) (req *aws.Request, output *ExitStandbyAnswer) {
+func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *aws.Request, output *ExitStandbyOutput) {
 	if opExitStandby == nil {
 		opExitStandby = &aws.Operation{
 			Name:       "ExitStandby",
@@ -844,12 +844,12 @@ func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyQuery) (req *aws.Requ
 	}
 
 	req = aws.NewRequest(c.Service, opExitStandby, input, output)
-	output = &ExitStandbyAnswer{}
+	output = &ExitStandbyOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) ExitStandby(input *ExitStandbyQuery) (output *ExitStandbyAnswer, err error) {
+func (c *AutoScaling) ExitStandby(input *ExitStandbyInput) (output *ExitStandbyOutput, err error) {
 	req, out := c.ExitStandbyRequest(input)
 	output = out
 	err = req.Send()
@@ -859,7 +859,7 @@ func (c *AutoScaling) ExitStandby(input *ExitStandbyQuery) (output *ExitStandbyA
 var opExitStandby *aws.Operation
 
 // PutLifecycleHookRequest generates a request for the PutLifecycleHook operation.
-func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookType) (req *aws.Request, output *PutLifecycleHookAnswer) {
+func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req *aws.Request, output *PutLifecycleHookOutput) {
 	if opPutLifecycleHook == nil {
 		opPutLifecycleHook = &aws.Operation{
 			Name:       "PutLifecycleHook",
@@ -869,12 +869,12 @@ func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookType) (req 
 	}
 
 	req = aws.NewRequest(c.Service, opPutLifecycleHook, input, output)
-	output = &PutLifecycleHookAnswer{}
+	output = &PutLifecycleHookOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) PutLifecycleHook(input *PutLifecycleHookType) (output *PutLifecycleHookAnswer, err error) {
+func (c *AutoScaling) PutLifecycleHook(input *PutLifecycleHookInput) (output *PutLifecycleHookOutput, err error) {
 	req, out := c.PutLifecycleHookRequest(input)
 	output = out
 	err = req.Send()
@@ -884,7 +884,7 @@ func (c *AutoScaling) PutLifecycleHook(input *PutLifecycleHookType) (output *Put
 var opPutLifecycleHook *aws.Operation
 
 // PutNotificationConfigurationRequest generates a request for the PutNotificationConfiguration operation.
-func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotificationConfigurationType) (req *aws.Request, output *PutNotificationConfigurationOutput) {
+func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotificationConfigurationInput) (req *aws.Request, output *PutNotificationConfigurationOutput) {
 	if opPutNotificationConfiguration == nil {
 		opPutNotificationConfiguration = &aws.Operation{
 			Name:       "PutNotificationConfiguration",
@@ -899,7 +899,7 @@ func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotification
 	return
 }
 
-func (c *AutoScaling) PutNotificationConfiguration(input *PutNotificationConfigurationType) (output *PutNotificationConfigurationOutput, err error) {
+func (c *AutoScaling) PutNotificationConfiguration(input *PutNotificationConfigurationInput) (output *PutNotificationConfigurationOutput, err error) {
 	req, out := c.PutNotificationConfigurationRequest(input)
 	output = out
 	err = req.Send()
@@ -909,7 +909,7 @@ func (c *AutoScaling) PutNotificationConfiguration(input *PutNotificationConfigu
 var opPutNotificationConfiguration *aws.Operation
 
 // PutScalingPolicyRequest generates a request for the PutScalingPolicy operation.
-func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyType) (req *aws.Request, output *PolicyARNType) {
+func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *aws.Request, output *PutScalingPolicyOutput) {
 	if opPutScalingPolicy == nil {
 		opPutScalingPolicy = &aws.Operation{
 			Name:       "PutScalingPolicy",
@@ -919,12 +919,12 @@ func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyType) (req 
 	}
 
 	req = aws.NewRequest(c.Service, opPutScalingPolicy, input, output)
-	output = &PolicyARNType{}
+	output = &PutScalingPolicyOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) PutScalingPolicy(input *PutScalingPolicyType) (output *PolicyARNType, err error) {
+func (c *AutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) (output *PutScalingPolicyOutput, err error) {
 	req, out := c.PutScalingPolicyRequest(input)
 	output = out
 	err = req.Send()
@@ -934,7 +934,7 @@ func (c *AutoScaling) PutScalingPolicy(input *PutScalingPolicyType) (output *Pol
 var opPutScalingPolicy *aws.Operation
 
 // PutScheduledUpdateGroupActionRequest generates a request for the PutScheduledUpdateGroupAction operation.
-func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUpdateGroupActionType) (req *aws.Request, output *PutScheduledUpdateGroupActionOutput) {
+func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUpdateGroupActionInput) (req *aws.Request, output *PutScheduledUpdateGroupActionOutput) {
 	if opPutScheduledUpdateGroupAction == nil {
 		opPutScheduledUpdateGroupAction = &aws.Operation{
 			Name:       "PutScheduledUpdateGroupAction",
@@ -949,7 +949,7 @@ func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUp
 	return
 }
 
-func (c *AutoScaling) PutScheduledUpdateGroupAction(input *PutScheduledUpdateGroupActionType) (output *PutScheduledUpdateGroupActionOutput, err error) {
+func (c *AutoScaling) PutScheduledUpdateGroupAction(input *PutScheduledUpdateGroupActionInput) (output *PutScheduledUpdateGroupActionOutput, err error) {
 	req, out := c.PutScheduledUpdateGroupActionRequest(input)
 	output = out
 	err = req.Send()
@@ -959,7 +959,7 @@ func (c *AutoScaling) PutScheduledUpdateGroupAction(input *PutScheduledUpdateGro
 var opPutScheduledUpdateGroupAction *aws.Operation
 
 // RecordLifecycleActionHeartbeatRequest generates a request for the RecordLifecycleActionHeartbeat operation.
-func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecycleActionHeartbeatType) (req *aws.Request, output *RecordLifecycleActionHeartbeatAnswer) {
+func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecycleActionHeartbeatInput) (req *aws.Request, output *RecordLifecycleActionHeartbeatOutput) {
 	if opRecordLifecycleActionHeartbeat == nil {
 		opRecordLifecycleActionHeartbeat = &aws.Operation{
 			Name:       "RecordLifecycleActionHeartbeat",
@@ -969,12 +969,12 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecyc
 	}
 
 	req = aws.NewRequest(c.Service, opRecordLifecycleActionHeartbeat, input, output)
-	output = &RecordLifecycleActionHeartbeatAnswer{}
+	output = &RecordLifecycleActionHeartbeatOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) RecordLifecycleActionHeartbeat(input *RecordLifecycleActionHeartbeatType) (output *RecordLifecycleActionHeartbeatAnswer, err error) {
+func (c *AutoScaling) RecordLifecycleActionHeartbeat(input *RecordLifecycleActionHeartbeatInput) (output *RecordLifecycleActionHeartbeatOutput, err error) {
 	req, out := c.RecordLifecycleActionHeartbeatRequest(input)
 	output = out
 	err = req.Send()
@@ -1009,7 +1009,7 @@ func (c *AutoScaling) ResumeProcesses(input *ScalingProcessQuery) (output *Resum
 var opResumeProcesses *aws.Operation
 
 // SetDesiredCapacityRequest generates a request for the SetDesiredCapacity operation.
-func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityType) (req *aws.Request, output *SetDesiredCapacityOutput) {
+func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityInput) (req *aws.Request, output *SetDesiredCapacityOutput) {
 	if opSetDesiredCapacity == nil {
 		opSetDesiredCapacity = &aws.Operation{
 			Name:       "SetDesiredCapacity",
@@ -1024,7 +1024,7 @@ func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityType) (
 	return
 }
 
-func (c *AutoScaling) SetDesiredCapacity(input *SetDesiredCapacityType) (output *SetDesiredCapacityOutput, err error) {
+func (c *AutoScaling) SetDesiredCapacity(input *SetDesiredCapacityInput) (output *SetDesiredCapacityOutput, err error) {
 	req, out := c.SetDesiredCapacityRequest(input)
 	output = out
 	err = req.Send()
@@ -1034,7 +1034,7 @@ func (c *AutoScaling) SetDesiredCapacity(input *SetDesiredCapacityType) (output 
 var opSetDesiredCapacity *aws.Operation
 
 // SetInstanceHealthRequest generates a request for the SetInstanceHealth operation.
-func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthQuery) (req *aws.Request, output *SetInstanceHealthOutput) {
+func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthInput) (req *aws.Request, output *SetInstanceHealthOutput) {
 	if opSetInstanceHealth == nil {
 		opSetInstanceHealth = &aws.Operation{
 			Name:       "SetInstanceHealth",
@@ -1049,7 +1049,7 @@ func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthQuery) (r
 	return
 }
 
-func (c *AutoScaling) SetInstanceHealth(input *SetInstanceHealthQuery) (output *SetInstanceHealthOutput, err error) {
+func (c *AutoScaling) SetInstanceHealth(input *SetInstanceHealthInput) (output *SetInstanceHealthOutput, err error) {
 	req, out := c.SetInstanceHealthRequest(input)
 	output = out
 	err = req.Send()
@@ -1084,7 +1084,7 @@ func (c *AutoScaling) SuspendProcesses(input *ScalingProcessQuery) (output *Susp
 var opSuspendProcesses *aws.Operation
 
 // TerminateInstanceInAutoScalingGroupRequest generates a request for the TerminateInstanceInAutoScalingGroup operation.
-func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *TerminateInstanceInAutoScalingGroupType) (req *aws.Request, output *ActivityType) {
+func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *TerminateInstanceInAutoScalingGroupInput) (req *aws.Request, output *TerminateInstanceInAutoScalingGroupOutput) {
 	if opTerminateInstanceInAutoScalingGroup == nil {
 		opTerminateInstanceInAutoScalingGroup = &aws.Operation{
 			Name:       "TerminateInstanceInAutoScalingGroup",
@@ -1094,12 +1094,12 @@ func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *Terminat
 	}
 
 	req = aws.NewRequest(c.Service, opTerminateInstanceInAutoScalingGroup, input, output)
-	output = &ActivityType{}
+	output = &TerminateInstanceInAutoScalingGroupOutput{}
 	req.Data = output
 	return
 }
 
-func (c *AutoScaling) TerminateInstanceInAutoScalingGroup(input *TerminateInstanceInAutoScalingGroupType) (output *ActivityType, err error) {
+func (c *AutoScaling) TerminateInstanceInAutoScalingGroup(input *TerminateInstanceInAutoScalingGroupInput) (output *TerminateInstanceInAutoScalingGroupOutput, err error) {
 	req, out := c.TerminateInstanceInAutoScalingGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -1109,7 +1109,7 @@ func (c *AutoScaling) TerminateInstanceInAutoScalingGroup(input *TerminateInstan
 var opTerminateInstanceInAutoScalingGroup *aws.Operation
 
 // UpdateAutoScalingGroupRequest generates a request for the UpdateAutoScalingGroup operation.
-func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGroupType) (req *aws.Request, output *UpdateAutoScalingGroupOutput) {
+func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGroupInput) (req *aws.Request, output *UpdateAutoScalingGroupOutput) {
 	if opUpdateAutoScalingGroup == nil {
 		opUpdateAutoScalingGroup = &aws.Operation{
 			Name:       "UpdateAutoScalingGroup",
@@ -1124,7 +1124,7 @@ func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGrou
 	return
 }
 
-func (c *AutoScaling) UpdateAutoScalingGroup(input *UpdateAutoScalingGroupType) (output *UpdateAutoScalingGroupOutput, err error) {
+func (c *AutoScaling) UpdateAutoScalingGroup(input *UpdateAutoScalingGroupInput) (output *UpdateAutoScalingGroupOutput, err error) {
 	req, out := c.UpdateAutoScalingGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -1132,17 +1132,6 @@ func (c *AutoScaling) UpdateAutoScalingGroup(input *UpdateAutoScalingGroupType) 
 }
 
 var opUpdateAutoScalingGroup *aws.Operation
-
-type ActivitiesType struct {
-	Activities []*Activity `type:"list"`
-	NextToken  *string     `type:"string"`
-
-	metadataActivitiesType `json:"-", xml:"-"`
-}
-
-type metadataActivitiesType struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeScalingActivitiesResult" required:"Activities"`
-}
 
 type Activity struct {
 	ActivityID           *string    `locationName:"ActivityId" type:"string"`
@@ -1161,16 +1150,6 @@ type Activity struct {
 
 type metadataActivity struct {
 	SDKShapeTraits bool `type:"structure" required:"ActivityId,AutoScalingGroupName,Cause,StartTime,StatusCode"`
-}
-
-type ActivityType struct {
-	Activity *Activity `type:"structure"`
-
-	metadataActivityType `json:"-", xml:"-"`
-}
-
-type metadataActivityType struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"TerminateInstanceInAutoScalingGroupResult"`
 }
 
 type AdjustmentType struct {
@@ -1204,23 +1183,23 @@ type metadataAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type AttachInstancesInput struct {
+	AutoScalingGroupName *string   `type:"string"`
+	InstanceIDs          []*string `locationName:"InstanceIds" type:"list"`
+
+	metadataAttachInstancesInput `json:"-", xml:"-"`
+}
+
+type metadataAttachInstancesInput struct {
+	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
+}
+
 type AttachInstancesOutput struct {
 	metadataAttachInstancesOutput `json:"-", xml:"-"`
 }
 
 type metadataAttachInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type AttachInstancesQuery struct {
-	AutoScalingGroupName *string   `type:"string"`
-	InstanceIDs          []*string `locationName:"InstanceIds" type:"list"`
-
-	metadataAttachInstancesQuery `json:"-", xml:"-"`
-}
-
-type metadataAttachInstancesQuery struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
 }
 
 type AutoScalingGroup struct {
@@ -1252,29 +1231,6 @@ type metadataAutoScalingGroup struct {
 	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,LaunchConfigurationName,MinSize,MaxSize,DesiredCapacity,DefaultCooldown,AvailabilityZones,HealthCheckType,CreatedTime"`
 }
 
-type AutoScalingGroupNamesType struct {
-	AutoScalingGroupNames []*string `type:"list"`
-	MaxRecords            *int      `type:"integer"`
-	NextToken             *string   `type:"string"`
-
-	metadataAutoScalingGroupNamesType `json:"-", xml:"-"`
-}
-
-type metadataAutoScalingGroupNamesType struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type AutoScalingGroupsType struct {
-	AutoScalingGroups []*AutoScalingGroup `type:"list"`
-	NextToken         *string             `type:"string"`
-
-	metadataAutoScalingGroupsType `json:"-", xml:"-"`
-}
-
-type metadataAutoScalingGroupsType struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAutoScalingGroupsResult" required:"AutoScalingGroups"`
-}
-
 type AutoScalingInstanceDetails struct {
 	AutoScalingGroupName    *string `type:"string"`
 	AvailabilityZone        *string `type:"string"`
@@ -1290,17 +1246,6 @@ type metadataAutoScalingInstanceDetails struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId,AutoScalingGroupName,AvailabilityZone,LifecycleState,HealthStatus,LaunchConfigurationName"`
 }
 
-type AutoScalingInstancesType struct {
-	AutoScalingInstances []*AutoScalingInstanceDetails `type:"list"`
-	NextToken            *string                       `type:"string"`
-
-	metadataAutoScalingInstancesType `json:"-", xml:"-"`
-}
-
-type metadataAutoScalingInstancesType struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAutoScalingInstancesResult"`
-}
-
 type BlockDeviceMapping struct {
 	DeviceName  *string `type:"string"`
 	EBS         *EBS    `locationName:"Ebs" type:"structure"`
@@ -1314,36 +1259,28 @@ type metadataBlockDeviceMapping struct {
 	SDKShapeTraits bool `type:"structure" required:"DeviceName"`
 }
 
-type CompleteLifecycleActionAnswer struct {
-	metadataCompleteLifecycleActionAnswer `json:"-", xml:"-"`
-}
-
-type metadataCompleteLifecycleActionAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CompleteLifecycleActionResult"`
-}
-
-type CompleteLifecycleActionType struct {
+type CompleteLifecycleActionInput struct {
 	AutoScalingGroupName  *string `type:"string"`
 	LifecycleActionResult *string `type:"string"`
 	LifecycleActionToken  *string `type:"string"`
 	LifecycleHookName     *string `type:"string"`
 
-	metadataCompleteLifecycleActionType `json:"-", xml:"-"`
+	metadataCompleteLifecycleActionInput `json:"-", xml:"-"`
 }
 
-type metadataCompleteLifecycleActionType struct {
+type metadataCompleteLifecycleActionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LifecycleHookName,AutoScalingGroupName,LifecycleActionToken,LifecycleActionResult"`
 }
 
-type CreateAutoScalingGroupOutput struct {
-	metadataCreateAutoScalingGroupOutput `json:"-", xml:"-"`
+type CompleteLifecycleActionOutput struct {
+	metadataCompleteLifecycleActionOutput `json:"-", xml:"-"`
 }
 
-type metadataCreateAutoScalingGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+type metadataCompleteLifecycleActionOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"CompleteLifecycleActionResult"`
 }
 
-type CreateAutoScalingGroupType struct {
+type CreateAutoScalingGroupInput struct {
 	AutoScalingGroupName    *string   `type:"string"`
 	AvailabilityZones       []*string `type:"list"`
 	DefaultCooldown         *int      `type:"integer"`
@@ -1360,22 +1297,22 @@ type CreateAutoScalingGroupType struct {
 	TerminationPolicies     []*string `type:"list"`
 	VPCZoneIdentifier       *string   `type:"string"`
 
-	metadataCreateAutoScalingGroupType `json:"-", xml:"-"`
+	metadataCreateAutoScalingGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateAutoScalingGroupType struct {
+type metadataCreateAutoScalingGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,MinSize,MaxSize"`
 }
 
-type CreateLaunchConfigurationOutput struct {
-	metadataCreateLaunchConfigurationOutput `json:"-", xml:"-"`
+type CreateAutoScalingGroupOutput struct {
+	metadataCreateAutoScalingGroupOutput `json:"-", xml:"-"`
 }
 
-type metadataCreateLaunchConfigurationOutput struct {
+type metadataCreateAutoScalingGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type CreateLaunchConfigurationType struct {
+type CreateLaunchConfigurationInput struct {
 	AssociatePublicIPAddress     *bool                 `locationName:"AssociatePublicIpAddress" type:"boolean"`
 	BlockDeviceMappings          []*BlockDeviceMapping `type:"list"`
 	ClassicLinkVPCID             *string               `locationName:"ClassicLinkVPCId" type:"string"`
@@ -1395,11 +1332,29 @@ type CreateLaunchConfigurationType struct {
 	SpotPrice                    *string               `type:"string"`
 	UserData                     *string               `type:"string"`
 
-	metadataCreateLaunchConfigurationType `json:"-", xml:"-"`
+	metadataCreateLaunchConfigurationInput `json:"-", xml:"-"`
 }
 
-type metadataCreateLaunchConfigurationType struct {
+type metadataCreateLaunchConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LaunchConfigurationName"`
+}
+
+type CreateLaunchConfigurationOutput struct {
+	metadataCreateLaunchConfigurationOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateLaunchConfigurationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type CreateOrUpdateTagsInput struct {
+	Tags []*Tag `type:"list"`
+
+	metadataCreateOrUpdateTagsInput `json:"-", xml:"-"`
+}
+
+type metadataCreateOrUpdateTagsInput struct {
+	SDKShapeTraits bool `type:"structure" required:"Tags"`
 }
 
 type CreateOrUpdateTagsOutput struct {
@@ -1410,14 +1365,15 @@ type metadataCreateOrUpdateTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type CreateOrUpdateTagsType struct {
-	Tags []*Tag `type:"list"`
+type DeleteAutoScalingGroupInput struct {
+	AutoScalingGroupName *string `type:"string"`
+	ForceDelete          *bool   `type:"boolean"`
 
-	metadataCreateOrUpdateTagsType `json:"-", xml:"-"`
+	metadataDeleteAutoScalingGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateOrUpdateTagsType struct {
-	SDKShapeTraits bool `type:"structure" required:"Tags"`
+type metadataDeleteAutoScalingGroupInput struct {
+	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
 }
 
 type DeleteAutoScalingGroupOutput struct {
@@ -1428,15 +1384,14 @@ type metadataDeleteAutoScalingGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteAutoScalingGroupType struct {
-	AutoScalingGroupName *string `type:"string"`
-	ForceDelete          *bool   `type:"boolean"`
+type DeleteLaunchConfigurationInput struct {
+	LaunchConfigurationName *string `type:"string"`
 
-	metadataDeleteAutoScalingGroupType `json:"-", xml:"-"`
+	metadataDeleteLaunchConfigurationInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteAutoScalingGroupType struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
+type metadataDeleteLaunchConfigurationInput struct {
+	SDKShapeTraits bool `type:"structure" required:"LaunchConfigurationName"`
 }
 
 type DeleteLaunchConfigurationOutput struct {
@@ -1447,23 +1402,34 @@ type metadataDeleteLaunchConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteLifecycleHookAnswer struct {
-	metadataDeleteLifecycleHookAnswer `json:"-", xml:"-"`
-}
-
-type metadataDeleteLifecycleHookAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteLifecycleHookResult"`
-}
-
-type DeleteLifecycleHookType struct {
+type DeleteLifecycleHookInput struct {
 	AutoScalingGroupName *string `type:"string"`
 	LifecycleHookName    *string `type:"string"`
 
-	metadataDeleteLifecycleHookType `json:"-", xml:"-"`
+	metadataDeleteLifecycleHookInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteLifecycleHookType struct {
+type metadataDeleteLifecycleHookInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LifecycleHookName,AutoScalingGroupName"`
+}
+
+type DeleteLifecycleHookOutput struct {
+	metadataDeleteLifecycleHookOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteLifecycleHookOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteLifecycleHookResult"`
+}
+
+type DeleteNotificationConfigurationInput struct {
+	AutoScalingGroupName *string `type:"string"`
+	TopicARN             *string `type:"string"`
+
+	metadataDeleteNotificationConfigurationInput `json:"-", xml:"-"`
+}
+
+type metadataDeleteNotificationConfigurationInput struct {
+	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,TopicARN"`
 }
 
 type DeleteNotificationConfigurationOutput struct {
@@ -1474,15 +1440,15 @@ type metadataDeleteNotificationConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteNotificationConfigurationType struct {
+type DeletePolicyInput struct {
 	AutoScalingGroupName *string `type:"string"`
-	TopicARN             *string `type:"string"`
+	PolicyName           *string `type:"string"`
 
-	metadataDeleteNotificationConfigurationType `json:"-", xml:"-"`
+	metadataDeletePolicyInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteNotificationConfigurationType struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,TopicARN"`
+type metadataDeletePolicyInput struct {
+	SDKShapeTraits bool `type:"structure" required:"PolicyName"`
 }
 
 type DeletePolicyOutput struct {
@@ -1493,15 +1459,15 @@ type metadataDeletePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeletePolicyType struct {
+type DeleteScheduledActionInput struct {
 	AutoScalingGroupName *string `type:"string"`
-	PolicyName           *string `type:"string"`
+	ScheduledActionName  *string `type:"string"`
 
-	metadataDeletePolicyType `json:"-", xml:"-"`
+	metadataDeleteScheduledActionInput `json:"-", xml:"-"`
 }
 
-type metadataDeletePolicyType struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyName"`
+type metadataDeleteScheduledActionInput struct {
+	SDKShapeTraits bool `type:"structure" required:"ScheduledActionName"`
 }
 
 type DeleteScheduledActionOutput struct {
@@ -1512,15 +1478,14 @@ type metadataDeleteScheduledActionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteScheduledActionType struct {
-	AutoScalingGroupName *string `type:"string"`
-	ScheduledActionName  *string `type:"string"`
+type DeleteTagsInput struct {
+	Tags []*Tag `type:"list"`
 
-	metadataDeleteScheduledActionType `json:"-", xml:"-"`
+	metadataDeleteTagsInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteScheduledActionType struct {
-	SDKShapeTraits bool `type:"structure" required:"ScheduledActionName"`
+type metadataDeleteTagsInput struct {
+	SDKShapeTraits bool `type:"structure" required:"Tags"`
 }
 
 type DeleteTagsOutput struct {
@@ -1531,27 +1496,6 @@ type metadataDeleteTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteTagsType struct {
-	Tags []*Tag `type:"list"`
-
-	metadataDeleteTagsType `json:"-", xml:"-"`
-}
-
-type metadataDeleteTagsType struct {
-	SDKShapeTraits bool `type:"structure" required:"Tags"`
-}
-
-type DescribeAccountLimitsAnswer struct {
-	MaxNumberOfAutoScalingGroups    *int `type:"integer"`
-	MaxNumberOfLaunchConfigurations *int `type:"integer"`
-
-	metadataDescribeAccountLimitsAnswer `json:"-", xml:"-"`
-}
-
-type metadataDescribeAccountLimitsAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAccountLimitsResult"`
-}
-
 type DescribeAccountLimitsInput struct {
 	metadataDescribeAccountLimitsInput `json:"-", xml:"-"`
 }
@@ -1560,14 +1504,15 @@ type metadataDescribeAccountLimitsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeAdjustmentTypesAnswer struct {
-	AdjustmentTypes []*AdjustmentType `type:"list"`
+type DescribeAccountLimitsOutput struct {
+	MaxNumberOfAutoScalingGroups    *int `type:"integer"`
+	MaxNumberOfLaunchConfigurations *int `type:"integer"`
 
-	metadataDescribeAdjustmentTypesAnswer `json:"-", xml:"-"`
+	metadataDescribeAccountLimitsOutput `json:"-", xml:"-"`
 }
 
-type metadataDescribeAdjustmentTypesAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAdjustmentTypesResult"`
+type metadataDescribeAccountLimitsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAccountLimitsResult"`
 }
 
 type DescribeAdjustmentTypesInput struct {
@@ -1578,26 +1523,60 @@ type metadataDescribeAdjustmentTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeAutoScalingInstancesType struct {
+type DescribeAdjustmentTypesOutput struct {
+	AdjustmentTypes []*AdjustmentType `type:"list"`
+
+	metadataDescribeAdjustmentTypesOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeAdjustmentTypesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAdjustmentTypesResult"`
+}
+
+type DescribeAutoScalingGroupsInput struct {
+	AutoScalingGroupNames []*string `type:"list"`
+	MaxRecords            *int      `type:"integer"`
+	NextToken             *string   `type:"string"`
+
+	metadataDescribeAutoScalingGroupsInput `json:"-", xml:"-"`
+}
+
+type metadataDescribeAutoScalingGroupsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeAutoScalingGroupsOutput struct {
+	AutoScalingGroups []*AutoScalingGroup `type:"list"`
+	NextToken         *string             `type:"string"`
+
+	metadataDescribeAutoScalingGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeAutoScalingGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAutoScalingGroupsResult" required:"AutoScalingGroups"`
+}
+
+type DescribeAutoScalingInstancesInput struct {
 	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
 	MaxRecords  *int      `type:"integer"`
 	NextToken   *string   `type:"string"`
 
-	metadataDescribeAutoScalingInstancesType `json:"-", xml:"-"`
+	metadataDescribeAutoScalingInstancesInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeAutoScalingInstancesType struct {
+type metadataDescribeAutoScalingInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeAutoScalingNotificationTypesAnswer struct {
-	AutoScalingNotificationTypes []*string `type:"list"`
+type DescribeAutoScalingInstancesOutput struct {
+	AutoScalingInstances []*AutoScalingInstanceDetails `type:"list"`
+	NextToken            *string                       `type:"string"`
 
-	metadataDescribeAutoScalingNotificationTypesAnswer `json:"-", xml:"-"`
+	metadataDescribeAutoScalingInstancesOutput `json:"-", xml:"-"`
 }
 
-type metadataDescribeAutoScalingNotificationTypesAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAutoScalingNotificationTypesResult"`
+type metadataDescribeAutoScalingInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAutoScalingInstancesResult"`
 }
 
 type DescribeAutoScalingNotificationTypesInput struct {
@@ -1608,14 +1587,37 @@ type metadataDescribeAutoScalingNotificationTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeLifecycleHookTypesAnswer struct {
-	LifecycleHookTypes []*string `type:"list"`
+type DescribeAutoScalingNotificationTypesOutput struct {
+	AutoScalingNotificationTypes []*string `type:"list"`
 
-	metadataDescribeLifecycleHookTypesAnswer `json:"-", xml:"-"`
+	metadataDescribeAutoScalingNotificationTypesOutput `json:"-", xml:"-"`
 }
 
-type metadataDescribeLifecycleHookTypesAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLifecycleHookTypesResult"`
+type metadataDescribeAutoScalingNotificationTypesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAutoScalingNotificationTypesResult"`
+}
+
+type DescribeLaunchConfigurationsInput struct {
+	LaunchConfigurationNames []*string `type:"list"`
+	MaxRecords               *int      `type:"integer"`
+	NextToken                *string   `type:"string"`
+
+	metadataDescribeLaunchConfigurationsInput `json:"-", xml:"-"`
+}
+
+type metadataDescribeLaunchConfigurationsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeLaunchConfigurationsOutput struct {
+	LaunchConfigurations []*LaunchConfiguration `type:"list"`
+	NextToken            *string                `type:"string"`
+
+	metadataDescribeLaunchConfigurationsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeLaunchConfigurationsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLaunchConfigurationsResult" required:"LaunchConfigurations"`
 }
 
 type DescribeLifecycleHookTypesInput struct {
@@ -1626,36 +1628,35 @@ type metadataDescribeLifecycleHookTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeLifecycleHooksAnswer struct {
-	LifecycleHooks []*LifecycleHook `type:"list"`
+type DescribeLifecycleHookTypesOutput struct {
+	LifecycleHookTypes []*string `type:"list"`
 
-	metadataDescribeLifecycleHooksAnswer `json:"-", xml:"-"`
+	metadataDescribeLifecycleHookTypesOutput `json:"-", xml:"-"`
 }
 
-type metadataDescribeLifecycleHooksAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLifecycleHooksResult"`
+type metadataDescribeLifecycleHookTypesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLifecycleHookTypesResult"`
 }
 
-type DescribeLifecycleHooksType struct {
+type DescribeLifecycleHooksInput struct {
 	AutoScalingGroupName *string   `type:"string"`
 	LifecycleHookNames   []*string `type:"list"`
 
-	metadataDescribeLifecycleHooksType `json:"-", xml:"-"`
+	metadataDescribeLifecycleHooksInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeLifecycleHooksType struct {
+type metadataDescribeLifecycleHooksInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
 }
 
-type DescribeMetricCollectionTypesAnswer struct {
-	Granularities []*MetricGranularityType `type:"list"`
-	Metrics       []*MetricCollectionType  `type:"list"`
+type DescribeLifecycleHooksOutput struct {
+	LifecycleHooks []*LifecycleHook `type:"list"`
 
-	metadataDescribeMetricCollectionTypesAnswer `json:"-", xml:"-"`
+	metadataDescribeLifecycleHooksOutput `json:"-", xml:"-"`
 }
 
-type metadataDescribeMetricCollectionTypesAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeMetricCollectionTypesResult"`
+type metadataDescribeLifecycleHooksOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLifecycleHooksResult"`
 }
 
 type DescribeMetricCollectionTypesInput struct {
@@ -1666,53 +1667,86 @@ type metadataDescribeMetricCollectionTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeNotificationConfigurationsAnswer struct {
-	NextToken                  *string                      `type:"string"`
-	NotificationConfigurations []*NotificationConfiguration `type:"list"`
+type DescribeMetricCollectionTypesOutput struct {
+	Granularities []*MetricGranularityType `type:"list"`
+	Metrics       []*MetricCollectionType  `type:"list"`
 
-	metadataDescribeNotificationConfigurationsAnswer `json:"-", xml:"-"`
+	metadataDescribeMetricCollectionTypesOutput `json:"-", xml:"-"`
 }
 
-type metadataDescribeNotificationConfigurationsAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeNotificationConfigurationsResult" required:"NotificationConfigurations"`
+type metadataDescribeMetricCollectionTypesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeMetricCollectionTypesResult"`
 }
 
-type DescribeNotificationConfigurationsType struct {
+type DescribeNotificationConfigurationsInput struct {
 	AutoScalingGroupNames []*string `type:"list"`
 	MaxRecords            *int      `type:"integer"`
 	NextToken             *string   `type:"string"`
 
-	metadataDescribeNotificationConfigurationsType `json:"-", xml:"-"`
+	metadataDescribeNotificationConfigurationsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeNotificationConfigurationsType struct {
+type metadataDescribeNotificationConfigurationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribePoliciesType struct {
+type DescribeNotificationConfigurationsOutput struct {
+	NextToken                  *string                      `type:"string"`
+	NotificationConfigurations []*NotificationConfiguration `type:"list"`
+
+	metadataDescribeNotificationConfigurationsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeNotificationConfigurationsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeNotificationConfigurationsResult" required:"NotificationConfigurations"`
+}
+
+type DescribePoliciesInput struct {
 	AutoScalingGroupName *string   `type:"string"`
 	MaxRecords           *int      `type:"integer"`
 	NextToken            *string   `type:"string"`
 	PolicyNames          []*string `type:"list"`
 
-	metadataDescribePoliciesType `json:"-", xml:"-"`
+	metadataDescribePoliciesInput `json:"-", xml:"-"`
 }
 
-type metadataDescribePoliciesType struct {
+type metadataDescribePoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeScalingActivitiesType struct {
+type DescribePoliciesOutput struct {
+	NextToken       *string          `type:"string"`
+	ScalingPolicies []*ScalingPolicy `type:"list"`
+
+	metadataDescribePoliciesOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribePoliciesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribePoliciesResult"`
+}
+
+type DescribeScalingActivitiesInput struct {
 	ActivityIDs          []*string `locationName:"ActivityIds" type:"list"`
 	AutoScalingGroupName *string   `type:"string"`
 	MaxRecords           *int      `type:"integer"`
 	NextToken            *string   `type:"string"`
 
-	metadataDescribeScalingActivitiesType `json:"-", xml:"-"`
+	metadataDescribeScalingActivitiesInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeScalingActivitiesType struct {
+type metadataDescribeScalingActivitiesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeScalingActivitiesOutput struct {
+	Activities []*Activity `type:"list"`
+	NextToken  *string     `type:"string"`
+
+	metadataDescribeScalingActivitiesOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeScalingActivitiesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeScalingActivitiesResult" required:"Activities"`
 }
 
 type DescribeScalingProcessTypesInput struct {
@@ -1723,7 +1757,17 @@ type metadataDescribeScalingProcessTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeScheduledActionsType struct {
+type DescribeScalingProcessTypesOutput struct {
+	Processes []*ProcessType `type:"list"`
+
+	metadataDescribeScalingProcessTypesOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeScalingProcessTypesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeScalingProcessTypesResult"`
+}
+
+type DescribeScheduledActionsInput struct {
 	AutoScalingGroupName *string    `type:"string"`
 	EndTime              *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	MaxRecords           *int       `type:"integer"`
@@ -1731,33 +1775,45 @@ type DescribeScheduledActionsType struct {
 	ScheduledActionNames []*string  `type:"list"`
 	StartTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeScheduledActionsType `json:"-", xml:"-"`
+	metadataDescribeScheduledActionsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeScheduledActionsType struct {
+type metadataDescribeScheduledActionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeTagsType struct {
+type DescribeScheduledActionsOutput struct {
+	NextToken                   *string                       `type:"string"`
+	ScheduledUpdateGroupActions []*ScheduledUpdateGroupAction `type:"list"`
+
+	metadataDescribeScheduledActionsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeScheduledActionsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeScheduledActionsResult"`
+}
+
+type DescribeTagsInput struct {
 	Filters    []*Filter `type:"list"`
 	MaxRecords *int      `type:"integer"`
 	NextToken  *string   `type:"string"`
 
-	metadataDescribeTagsType `json:"-", xml:"-"`
+	metadataDescribeTagsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeTagsType struct {
+type metadataDescribeTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeTerminationPolicyTypesAnswer struct {
-	TerminationPolicyTypes []*string `type:"list"`
+type DescribeTagsOutput struct {
+	NextToken *string           `type:"string"`
+	Tags      []*TagDescription `type:"list"`
 
-	metadataDescribeTerminationPolicyTypesAnswer `json:"-", xml:"-"`
+	metadataDescribeTagsOutput `json:"-", xml:"-"`
 }
 
-type metadataDescribeTerminationPolicyTypesAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeTerminationPolicyTypesResult"`
+type metadataDescribeTagsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeTagsResult"`
 }
 
 type DescribeTerminationPolicyTypesInput struct {
@@ -1768,26 +1824,47 @@ type metadataDescribeTerminationPolicyTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DetachInstancesAnswer struct {
-	Activities []*Activity `type:"list"`
+type DescribeTerminationPolicyTypesOutput struct {
+	TerminationPolicyTypes []*string `type:"list"`
 
-	metadataDetachInstancesAnswer `json:"-", xml:"-"`
+	metadataDescribeTerminationPolicyTypesOutput `json:"-", xml:"-"`
 }
 
-type metadataDetachInstancesAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DetachInstancesResult"`
+type metadataDescribeTerminationPolicyTypesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeTerminationPolicyTypesResult"`
 }
 
-type DetachInstancesQuery struct {
+type DetachInstancesInput struct {
 	AutoScalingGroupName           *string   `type:"string"`
 	InstanceIDs                    []*string `locationName:"InstanceIds" type:"list"`
 	ShouldDecrementDesiredCapacity *bool     `type:"boolean"`
 
-	metadataDetachInstancesQuery `json:"-", xml:"-"`
+	metadataDetachInstancesInput `json:"-", xml:"-"`
 }
 
-type metadataDetachInstancesQuery struct {
+type metadataDetachInstancesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,ShouldDecrementDesiredCapacity"`
+}
+
+type DetachInstancesOutput struct {
+	Activities []*Activity `type:"list"`
+
+	metadataDetachInstancesOutput `json:"-", xml:"-"`
+}
+
+type metadataDetachInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DetachInstancesResult"`
+}
+
+type DisableMetricsCollectionInput struct {
+	AutoScalingGroupName *string   `type:"string"`
+	Metrics              []*string `type:"list"`
+
+	metadataDisableMetricsCollectionInput `json:"-", xml:"-"`
+}
+
+type metadataDisableMetricsCollectionInput struct {
+	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
 }
 
 type DisableMetricsCollectionOutput struct {
@@ -1796,17 +1873,6 @@ type DisableMetricsCollectionOutput struct {
 
 type metadataDisableMetricsCollectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type DisableMetricsCollectionQuery struct {
-	AutoScalingGroupName *string   `type:"string"`
-	Metrics              []*string `type:"list"`
-
-	metadataDisableMetricsCollectionQuery `json:"-", xml:"-"`
-}
-
-type metadataDisableMetricsCollectionQuery struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
 }
 
 type EBS struct {
@@ -1823,24 +1889,24 @@ type metadataEBS struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type EnableMetricsCollectionInput struct {
+	AutoScalingGroupName *string   `type:"string"`
+	Granularity          *string   `type:"string"`
+	Metrics              []*string `type:"list"`
+
+	metadataEnableMetricsCollectionInput `json:"-", xml:"-"`
+}
+
+type metadataEnableMetricsCollectionInput struct {
+	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,Granularity"`
+}
+
 type EnableMetricsCollectionOutput struct {
 	metadataEnableMetricsCollectionOutput `json:"-", xml:"-"`
 }
 
 type metadataEnableMetricsCollectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type EnableMetricsCollectionQuery struct {
-	AutoScalingGroupName *string   `type:"string"`
-	Granularity          *string   `type:"string"`
-	Metrics              []*string `type:"list"`
-
-	metadataEnableMetricsCollectionQuery `json:"-", xml:"-"`
-}
-
-type metadataEnableMetricsCollectionQuery struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,Granularity"`
 }
 
 type EnabledMetric struct {
@@ -1854,26 +1920,38 @@ type metadataEnabledMetric struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type EnterStandbyAnswer struct {
-	Activities []*Activity `type:"list"`
-
-	metadataEnterStandbyAnswer `json:"-", xml:"-"`
-}
-
-type metadataEnterStandbyAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"EnterStandbyResult"`
-}
-
-type EnterStandbyQuery struct {
+type EnterStandbyInput struct {
 	AutoScalingGroupName           *string   `type:"string"`
 	InstanceIDs                    []*string `locationName:"InstanceIds" type:"list"`
 	ShouldDecrementDesiredCapacity *bool     `type:"boolean"`
 
-	metadataEnterStandbyQuery `json:"-", xml:"-"`
+	metadataEnterStandbyInput `json:"-", xml:"-"`
 }
 
-type metadataEnterStandbyQuery struct {
+type metadataEnterStandbyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,ShouldDecrementDesiredCapacity"`
+}
+
+type EnterStandbyOutput struct {
+	Activities []*Activity `type:"list"`
+
+	metadataEnterStandbyOutput `json:"-", xml:"-"`
+}
+
+type metadataEnterStandbyOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"EnterStandbyResult"`
+}
+
+type ExecutePolicyInput struct {
+	AutoScalingGroupName *string `type:"string"`
+	HonorCooldown        *bool   `type:"boolean"`
+	PolicyName           *string `type:"string"`
+
+	metadataExecutePolicyInput `json:"-", xml:"-"`
+}
+
+type metadataExecutePolicyInput struct {
+	SDKShapeTraits bool `type:"structure" required:"PolicyName"`
 }
 
 type ExecutePolicyOutput struct {
@@ -1884,37 +1962,25 @@ type metadataExecutePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ExecutePolicyType struct {
-	AutoScalingGroupName *string `type:"string"`
-	HonorCooldown        *bool   `type:"boolean"`
-	PolicyName           *string `type:"string"`
-
-	metadataExecutePolicyType `json:"-", xml:"-"`
-}
-
-type metadataExecutePolicyType struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyName"`
-}
-
-type ExitStandbyAnswer struct {
-	Activities []*Activity `type:"list"`
-
-	metadataExitStandbyAnswer `json:"-", xml:"-"`
-}
-
-type metadataExitStandbyAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ExitStandbyResult"`
-}
-
-type ExitStandbyQuery struct {
+type ExitStandbyInput struct {
 	AutoScalingGroupName *string   `type:"string"`
 	InstanceIDs          []*string `locationName:"InstanceIds" type:"list"`
 
-	metadataExitStandbyQuery `json:"-", xml:"-"`
+	metadataExitStandbyInput `json:"-", xml:"-"`
 }
 
-type metadataExitStandbyQuery struct {
+type metadataExitStandbyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
+}
+
+type ExitStandbyOutput struct {
+	Activities []*Activity `type:"list"`
+
+	metadataExitStandbyOutput `json:"-", xml:"-"`
+}
+
+type metadataExitStandbyOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"ExitStandbyResult"`
 }
 
 type Filter struct {
@@ -1990,39 +2056,6 @@ type metadataLaunchConfiguration struct {
 	SDKShapeTraits bool `type:"structure" required:"LaunchConfigurationName,ImageId,InstanceType,CreatedTime"`
 }
 
-type LaunchConfigurationNameType struct {
-	LaunchConfigurationName *string `type:"string"`
-
-	metadataLaunchConfigurationNameType `json:"-", xml:"-"`
-}
-
-type metadataLaunchConfigurationNameType struct {
-	SDKShapeTraits bool `type:"structure" required:"LaunchConfigurationName"`
-}
-
-type LaunchConfigurationNamesType struct {
-	LaunchConfigurationNames []*string `type:"list"`
-	MaxRecords               *int      `type:"integer"`
-	NextToken                *string   `type:"string"`
-
-	metadataLaunchConfigurationNamesType `json:"-", xml:"-"`
-}
-
-type metadataLaunchConfigurationNamesType struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type LaunchConfigurationsType struct {
-	LaunchConfigurations []*LaunchConfiguration `type:"list"`
-	NextToken            *string                `type:"string"`
-
-	metadataLaunchConfigurationsType `json:"-", xml:"-"`
-}
-
-type metadataLaunchConfigurationsType struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLaunchConfigurationsResult" required:"LaunchConfigurations"`
-}
-
 type LifecycleHook struct {
 	AutoScalingGroupName  *string `type:"string"`
 	DefaultResult         *string `type:"string"`
@@ -2083,27 +2116,6 @@ type metadataNotificationConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type PoliciesType struct {
-	NextToken       *string          `type:"string"`
-	ScalingPolicies []*ScalingPolicy `type:"list"`
-
-	metadataPoliciesType `json:"-", xml:"-"`
-}
-
-type metadataPoliciesType struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribePoliciesResult"`
-}
-
-type PolicyARNType struct {
-	PolicyARN *string `type:"string"`
-
-	metadataPolicyARNType `json:"-", xml:"-"`
-}
-
-type metadataPolicyARNType struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"PutScalingPolicyResult"`
-}
-
 type ProcessType struct {
 	ProcessName *string `type:"string"`
 
@@ -2114,25 +2126,7 @@ type metadataProcessType struct {
 	SDKShapeTraits bool `type:"structure" required:"ProcessName"`
 }
 
-type ProcessesType struct {
-	Processes []*ProcessType `type:"list"`
-
-	metadataProcessesType `json:"-", xml:"-"`
-}
-
-type metadataProcessesType struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeScalingProcessTypesResult"`
-}
-
-type PutLifecycleHookAnswer struct {
-	metadataPutLifecycleHookAnswer `json:"-", xml:"-"`
-}
-
-type metadataPutLifecycleHookAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"PutLifecycleHookResult"`
-}
-
-type PutLifecycleHookType struct {
+type PutLifecycleHookInput struct {
 	AutoScalingGroupName  *string `type:"string"`
 	DefaultResult         *string `type:"string"`
 	HeartbeatTimeout      *int    `type:"integer"`
@@ -2142,11 +2136,31 @@ type PutLifecycleHookType struct {
 	NotificationTargetARN *string `type:"string"`
 	RoleARN               *string `type:"string"`
 
-	metadataPutLifecycleHookType `json:"-", xml:"-"`
+	metadataPutLifecycleHookInput `json:"-", xml:"-"`
 }
 
-type metadataPutLifecycleHookType struct {
+type metadataPutLifecycleHookInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LifecycleHookName,AutoScalingGroupName"`
+}
+
+type PutLifecycleHookOutput struct {
+	metadataPutLifecycleHookOutput `json:"-", xml:"-"`
+}
+
+type metadataPutLifecycleHookOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"PutLifecycleHookResult"`
+}
+
+type PutNotificationConfigurationInput struct {
+	AutoScalingGroupName *string   `type:"string"`
+	NotificationTypes    []*string `type:"list"`
+	TopicARN             *string   `type:"string"`
+
+	metadataPutNotificationConfigurationInput `json:"-", xml:"-"`
+}
+
+type metadataPutNotificationConfigurationInput struct {
+	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,TopicARN,NotificationTypes"`
 }
 
 type PutNotificationConfigurationOutput struct {
@@ -2157,19 +2171,7 @@ type metadataPutNotificationConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type PutNotificationConfigurationType struct {
-	AutoScalingGroupName *string   `type:"string"`
-	NotificationTypes    []*string `type:"list"`
-	TopicARN             *string   `type:"string"`
-
-	metadataPutNotificationConfigurationType `json:"-", xml:"-"`
-}
-
-type metadataPutNotificationConfigurationType struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,TopicARN,NotificationTypes"`
-}
-
-type PutScalingPolicyType struct {
+type PutScalingPolicyInput struct {
 	AdjustmentType       *string `type:"string"`
 	AutoScalingGroupName *string `type:"string"`
 	Cooldown             *int    `type:"integer"`
@@ -2177,22 +2179,24 @@ type PutScalingPolicyType struct {
 	PolicyName           *string `type:"string"`
 	ScalingAdjustment    *int    `type:"integer"`
 
-	metadataPutScalingPolicyType `json:"-", xml:"-"`
+	metadataPutScalingPolicyInput `json:"-", xml:"-"`
 }
 
-type metadataPutScalingPolicyType struct {
+type metadataPutScalingPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,PolicyName,ScalingAdjustment,AdjustmentType"`
 }
 
-type PutScheduledUpdateGroupActionOutput struct {
-	metadataPutScheduledUpdateGroupActionOutput `json:"-", xml:"-"`
+type PutScalingPolicyOutput struct {
+	PolicyARN *string `type:"string"`
+
+	metadataPutScalingPolicyOutput `json:"-", xml:"-"`
 }
 
-type metadataPutScheduledUpdateGroupActionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+type metadataPutScalingPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"PutScalingPolicyResult"`
 }
 
-type PutScheduledUpdateGroupActionType struct {
+type PutScheduledUpdateGroupActionInput struct {
 	AutoScalingGroupName *string    `type:"string"`
 	DesiredCapacity      *int       `type:"integer"`
 	EndTime              *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -2203,31 +2207,39 @@ type PutScheduledUpdateGroupActionType struct {
 	StartTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	Time                 *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataPutScheduledUpdateGroupActionType `json:"-", xml:"-"`
+	metadataPutScheduledUpdateGroupActionInput `json:"-", xml:"-"`
 }
 
-type metadataPutScheduledUpdateGroupActionType struct {
+type metadataPutScheduledUpdateGroupActionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,ScheduledActionName"`
 }
 
-type RecordLifecycleActionHeartbeatAnswer struct {
-	metadataRecordLifecycleActionHeartbeatAnswer `json:"-", xml:"-"`
+type PutScheduledUpdateGroupActionOutput struct {
+	metadataPutScheduledUpdateGroupActionOutput `json:"-", xml:"-"`
 }
 
-type metadataRecordLifecycleActionHeartbeatAnswer struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RecordLifecycleActionHeartbeatResult"`
+type metadataPutScheduledUpdateGroupActionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
-type RecordLifecycleActionHeartbeatType struct {
+type RecordLifecycleActionHeartbeatInput struct {
 	AutoScalingGroupName *string `type:"string"`
 	LifecycleActionToken *string `type:"string"`
 	LifecycleHookName    *string `type:"string"`
 
-	metadataRecordLifecycleActionHeartbeatType `json:"-", xml:"-"`
+	metadataRecordLifecycleActionHeartbeatInput `json:"-", xml:"-"`
 }
 
-type metadataRecordLifecycleActionHeartbeatType struct {
+type metadataRecordLifecycleActionHeartbeatInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LifecycleHookName,AutoScalingGroupName,LifecycleActionToken"`
+}
+
+type RecordLifecycleActionHeartbeatOutput struct {
+	metadataRecordLifecycleActionHeartbeatOutput `json:"-", xml:"-"`
+}
+
+type metadataRecordLifecycleActionHeartbeatOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"RecordLifecycleActionHeartbeatResult"`
 }
 
 type ResourceInUseFault struct {
@@ -2286,17 +2298,6 @@ type metadataScalingProcessQuery struct {
 	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
 }
 
-type ScheduledActionsType struct {
-	NextToken                   *string                       `type:"string"`
-	ScheduledUpdateGroupActions []*ScheduledUpdateGroupAction `type:"list"`
-
-	metadataScheduledActionsType `json:"-", xml:"-"`
-}
-
-type metadataScheduledActionsType struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeScheduledActionsResult"`
-}
-
 type ScheduledUpdateGroupAction struct {
 	AutoScalingGroupName *string    `type:"string"`
 	DesiredCapacity      *int       `type:"integer"`
@@ -2316,6 +2317,18 @@ type metadataScheduledUpdateGroupAction struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type SetDesiredCapacityInput struct {
+	AutoScalingGroupName *string `type:"string"`
+	DesiredCapacity      *int    `type:"integer"`
+	HonorCooldown        *bool   `type:"boolean"`
+
+	metadataSetDesiredCapacityInput `json:"-", xml:"-"`
+}
+
+type metadataSetDesiredCapacityInput struct {
+	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,DesiredCapacity"`
+}
+
 type SetDesiredCapacityOutput struct {
 	metadataSetDesiredCapacityOutput `json:"-", xml:"-"`
 }
@@ -2324,16 +2337,16 @@ type metadataSetDesiredCapacityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type SetDesiredCapacityType struct {
-	AutoScalingGroupName *string `type:"string"`
-	DesiredCapacity      *int    `type:"integer"`
-	HonorCooldown        *bool   `type:"boolean"`
+type SetInstanceHealthInput struct {
+	HealthStatus             *string `type:"string"`
+	InstanceID               *string `locationName:"InstanceId" type:"string"`
+	ShouldRespectGracePeriod *bool   `type:"boolean"`
 
-	metadataSetDesiredCapacityType `json:"-", xml:"-"`
+	metadataSetInstanceHealthInput `json:"-", xml:"-"`
 }
 
-type metadataSetDesiredCapacityType struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,DesiredCapacity"`
+type metadataSetInstanceHealthInput struct {
+	SDKShapeTraits bool `type:"structure" required:"InstanceId,HealthStatus"`
 }
 
 type SetInstanceHealthOutput struct {
@@ -2342,18 +2355,6 @@ type SetInstanceHealthOutput struct {
 
 type metadataSetInstanceHealthOutput struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type SetInstanceHealthQuery struct {
-	HealthStatus             *string `type:"string"`
-	InstanceID               *string `locationName:"InstanceId" type:"string"`
-	ShouldRespectGracePeriod *bool   `type:"boolean"`
-
-	metadataSetInstanceHealthQuery `json:"-", xml:"-"`
-}
-
-type metadataSetInstanceHealthQuery struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId,HealthStatus"`
 }
 
 type SuspendProcessesOutput struct {
@@ -2403,37 +2404,28 @@ type metadataTagDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type TagsType struct {
-	NextToken *string           `type:"string"`
-	Tags      []*TagDescription `type:"list"`
-
-	metadataTagsType `json:"-", xml:"-"`
-}
-
-type metadataTagsType struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeTagsResult"`
-}
-
-type TerminateInstanceInAutoScalingGroupType struct {
+type TerminateInstanceInAutoScalingGroupInput struct {
 	InstanceID                     *string `locationName:"InstanceId" type:"string"`
 	ShouldDecrementDesiredCapacity *bool   `type:"boolean"`
 
-	metadataTerminateInstanceInAutoScalingGroupType `json:"-", xml:"-"`
+	metadataTerminateInstanceInAutoScalingGroupInput `json:"-", xml:"-"`
 }
 
-type metadataTerminateInstanceInAutoScalingGroupType struct {
+type metadataTerminateInstanceInAutoScalingGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"InstanceId,ShouldDecrementDesiredCapacity"`
 }
 
-type UpdateAutoScalingGroupOutput struct {
-	metadataUpdateAutoScalingGroupOutput `json:"-", xml:"-"`
+type TerminateInstanceInAutoScalingGroupOutput struct {
+	Activity *Activity `type:"structure"`
+
+	metadataTerminateInstanceInAutoScalingGroupOutput `json:"-", xml:"-"`
 }
 
-type metadataUpdateAutoScalingGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+type metadataTerminateInstanceInAutoScalingGroupOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"TerminateInstanceInAutoScalingGroupResult"`
 }
 
-type UpdateAutoScalingGroupType struct {
+type UpdateAutoScalingGroupInput struct {
 	AutoScalingGroupName    *string   `type:"string"`
 	AvailabilityZones       []*string `type:"list"`
 	DefaultCooldown         *int      `type:"integer"`
@@ -2447,9 +2439,17 @@ type UpdateAutoScalingGroupType struct {
 	TerminationPolicies     []*string `type:"list"`
 	VPCZoneIdentifier       *string   `type:"string"`
 
-	metadataUpdateAutoScalingGroupType `json:"-", xml:"-"`
+	metadataUpdateAutoScalingGroupInput `json:"-", xml:"-"`
 }
 
-type metadataUpdateAutoScalingGroupType struct {
+type metadataUpdateAutoScalingGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
+}
+
+type UpdateAutoScalingGroupOutput struct {
+	metadataUpdateAutoScalingGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataUpdateAutoScalingGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }

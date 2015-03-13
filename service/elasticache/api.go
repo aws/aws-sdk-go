@@ -9,7 +9,7 @@ import (
 )
 
 // AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
-func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceMessage) (req *aws.Request, output *TagListMessage) {
+func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.Request, output *TagListMessage) {
 	if opAddTagsToResource == nil {
 		opAddTagsToResource = &aws.Operation{
 			Name:       "AddTagsToResource",
@@ -24,7 +24,7 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceMessage) 
 	return
 }
 
-func (c *ElastiCache) AddTagsToResource(input *AddTagsToResourceMessage) (output *TagListMessage, err error) {
+func (c *ElastiCache) AddTagsToResource(input *AddTagsToResourceInput) (output *TagListMessage, err error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	output = out
 	err = req.Send()
@@ -34,7 +34,7 @@ func (c *ElastiCache) AddTagsToResource(input *AddTagsToResourceMessage) (output
 var opAddTagsToResource *aws.Operation
 
 // AuthorizeCacheSecurityGroupIngressRequest generates a request for the AuthorizeCacheSecurityGroupIngress operation.
-func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *AuthorizeCacheSecurityGroupIngressMessage) (req *aws.Request, output *AuthorizeCacheSecurityGroupIngressOutput) {
+func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *AuthorizeCacheSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeCacheSecurityGroupIngressOutput) {
 	if opAuthorizeCacheSecurityGroupIngress == nil {
 		opAuthorizeCacheSecurityGroupIngress = &aws.Operation{
 			Name:       "AuthorizeCacheSecurityGroupIngress",
@@ -49,7 +49,7 @@ func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *Authorize
 	return
 }
 
-func (c *ElastiCache) AuthorizeCacheSecurityGroupIngress(input *AuthorizeCacheSecurityGroupIngressMessage) (output *AuthorizeCacheSecurityGroupIngressOutput, err error) {
+func (c *ElastiCache) AuthorizeCacheSecurityGroupIngress(input *AuthorizeCacheSecurityGroupIngressInput) (output *AuthorizeCacheSecurityGroupIngressOutput, err error) {
 	req, out := c.AuthorizeCacheSecurityGroupIngressRequest(input)
 	output = out
 	err = req.Send()
@@ -59,7 +59,7 @@ func (c *ElastiCache) AuthorizeCacheSecurityGroupIngress(input *AuthorizeCacheSe
 var opAuthorizeCacheSecurityGroupIngress *aws.Operation
 
 // CopySnapshotRequest generates a request for the CopySnapshot operation.
-func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotMessage) (req *aws.Request, output *CopySnapshotOutput) {
+func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, output *CopySnapshotOutput) {
 	if opCopySnapshot == nil {
 		opCopySnapshot = &aws.Operation{
 			Name:       "CopySnapshot",
@@ -74,7 +74,7 @@ func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotMessage) (req *aws.
 	return
 }
 
-func (c *ElastiCache) CopySnapshot(input *CopySnapshotMessage) (output *CopySnapshotOutput, err error) {
+func (c *ElastiCache) CopySnapshot(input *CopySnapshotInput) (output *CopySnapshotOutput, err error) {
 	req, out := c.CopySnapshotRequest(input)
 	output = out
 	err = req.Send()
@@ -84,7 +84,7 @@ func (c *ElastiCache) CopySnapshot(input *CopySnapshotMessage) (output *CopySnap
 var opCopySnapshot *aws.Operation
 
 // CreateCacheClusterRequest generates a request for the CreateCacheCluster operation.
-func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterMessage) (req *aws.Request, output *CreateCacheClusterOutput) {
+func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) (req *aws.Request, output *CreateCacheClusterOutput) {
 	if opCreateCacheCluster == nil {
 		opCreateCacheCluster = &aws.Operation{
 			Name:       "CreateCacheCluster",
@@ -99,7 +99,7 @@ func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterMessage
 	return
 }
 
-func (c *ElastiCache) CreateCacheCluster(input *CreateCacheClusterMessage) (output *CreateCacheClusterOutput, err error) {
+func (c *ElastiCache) CreateCacheCluster(input *CreateCacheClusterInput) (output *CreateCacheClusterOutput, err error) {
 	req, out := c.CreateCacheClusterRequest(input)
 	output = out
 	err = req.Send()
@@ -109,7 +109,7 @@ func (c *ElastiCache) CreateCacheCluster(input *CreateCacheClusterMessage) (outp
 var opCreateCacheCluster *aws.Operation
 
 // CreateCacheParameterGroupRequest generates a request for the CreateCacheParameterGroup operation.
-func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParameterGroupMessage) (req *aws.Request, output *CreateCacheParameterGroupOutput) {
+func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParameterGroupInput) (req *aws.Request, output *CreateCacheParameterGroupOutput) {
 	if opCreateCacheParameterGroup == nil {
 		opCreateCacheParameterGroup = &aws.Operation{
 			Name:       "CreateCacheParameterGroup",
@@ -124,7 +124,7 @@ func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParamet
 	return
 }
 
-func (c *ElastiCache) CreateCacheParameterGroup(input *CreateCacheParameterGroupMessage) (output *CreateCacheParameterGroupOutput, err error) {
+func (c *ElastiCache) CreateCacheParameterGroup(input *CreateCacheParameterGroupInput) (output *CreateCacheParameterGroupOutput, err error) {
 	req, out := c.CreateCacheParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -134,7 +134,7 @@ func (c *ElastiCache) CreateCacheParameterGroup(input *CreateCacheParameterGroup
 var opCreateCacheParameterGroup *aws.Operation
 
 // CreateCacheSecurityGroupRequest generates a request for the CreateCacheSecurityGroup operation.
-func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurityGroupMessage) (req *aws.Request, output *CreateCacheSecurityGroupOutput) {
+func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurityGroupInput) (req *aws.Request, output *CreateCacheSecurityGroupOutput) {
 	if opCreateCacheSecurityGroup == nil {
 		opCreateCacheSecurityGroup = &aws.Operation{
 			Name:       "CreateCacheSecurityGroup",
@@ -149,7 +149,7 @@ func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurity
 	return
 }
 
-func (c *ElastiCache) CreateCacheSecurityGroup(input *CreateCacheSecurityGroupMessage) (output *CreateCacheSecurityGroupOutput, err error) {
+func (c *ElastiCache) CreateCacheSecurityGroup(input *CreateCacheSecurityGroupInput) (output *CreateCacheSecurityGroupOutput, err error) {
 	req, out := c.CreateCacheSecurityGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -159,7 +159,7 @@ func (c *ElastiCache) CreateCacheSecurityGroup(input *CreateCacheSecurityGroupMe
 var opCreateCacheSecurityGroup *aws.Operation
 
 // CreateCacheSubnetGroupRequest generates a request for the CreateCacheSubnetGroup operation.
-func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGroupMessage) (req *aws.Request, output *CreateCacheSubnetGroupOutput) {
+func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGroupInput) (req *aws.Request, output *CreateCacheSubnetGroupOutput) {
 	if opCreateCacheSubnetGroup == nil {
 		opCreateCacheSubnetGroup = &aws.Operation{
 			Name:       "CreateCacheSubnetGroup",
@@ -174,7 +174,7 @@ func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGrou
 	return
 }
 
-func (c *ElastiCache) CreateCacheSubnetGroup(input *CreateCacheSubnetGroupMessage) (output *CreateCacheSubnetGroupOutput, err error) {
+func (c *ElastiCache) CreateCacheSubnetGroup(input *CreateCacheSubnetGroupInput) (output *CreateCacheSubnetGroupOutput, err error) {
 	req, out := c.CreateCacheSubnetGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -184,7 +184,7 @@ func (c *ElastiCache) CreateCacheSubnetGroup(input *CreateCacheSubnetGroupMessag
 var opCreateCacheSubnetGroup *aws.Operation
 
 // CreateReplicationGroupRequest generates a request for the CreateReplicationGroup operation.
-func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGroupMessage) (req *aws.Request, output *CreateReplicationGroupOutput) {
+func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGroupInput) (req *aws.Request, output *CreateReplicationGroupOutput) {
 	if opCreateReplicationGroup == nil {
 		opCreateReplicationGroup = &aws.Operation{
 			Name:       "CreateReplicationGroup",
@@ -199,7 +199,7 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 	return
 }
 
-func (c *ElastiCache) CreateReplicationGroup(input *CreateReplicationGroupMessage) (output *CreateReplicationGroupOutput, err error) {
+func (c *ElastiCache) CreateReplicationGroup(input *CreateReplicationGroupInput) (output *CreateReplicationGroupOutput, err error) {
 	req, out := c.CreateReplicationGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -209,7 +209,7 @@ func (c *ElastiCache) CreateReplicationGroup(input *CreateReplicationGroupMessag
 var opCreateReplicationGroup *aws.Operation
 
 // CreateSnapshotRequest generates a request for the CreateSnapshot operation.
-func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotMessage) (req *aws.Request, output *CreateSnapshotOutput) {
+func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Request, output *CreateSnapshotOutput) {
 	if opCreateSnapshot == nil {
 		opCreateSnapshot = &aws.Operation{
 			Name:       "CreateSnapshot",
@@ -224,7 +224,7 @@ func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotMessage) (req *
 	return
 }
 
-func (c *ElastiCache) CreateSnapshot(input *CreateSnapshotMessage) (output *CreateSnapshotOutput, err error) {
+func (c *ElastiCache) CreateSnapshot(input *CreateSnapshotInput) (output *CreateSnapshotOutput, err error) {
 	req, out := c.CreateSnapshotRequest(input)
 	output = out
 	err = req.Send()
@@ -234,7 +234,7 @@ func (c *ElastiCache) CreateSnapshot(input *CreateSnapshotMessage) (output *Crea
 var opCreateSnapshot *aws.Operation
 
 // DeleteCacheClusterRequest generates a request for the DeleteCacheCluster operation.
-func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterMessage) (req *aws.Request, output *DeleteCacheClusterOutput) {
+func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) (req *aws.Request, output *DeleteCacheClusterOutput) {
 	if opDeleteCacheCluster == nil {
 		opDeleteCacheCluster = &aws.Operation{
 			Name:       "DeleteCacheCluster",
@@ -249,7 +249,7 @@ func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterMessage
 	return
 }
 
-func (c *ElastiCache) DeleteCacheCluster(input *DeleteCacheClusterMessage) (output *DeleteCacheClusterOutput, err error) {
+func (c *ElastiCache) DeleteCacheCluster(input *DeleteCacheClusterInput) (output *DeleteCacheClusterOutput, err error) {
 	req, out := c.DeleteCacheClusterRequest(input)
 	output = out
 	err = req.Send()
@@ -259,7 +259,7 @@ func (c *ElastiCache) DeleteCacheCluster(input *DeleteCacheClusterMessage) (outp
 var opDeleteCacheCluster *aws.Operation
 
 // DeleteCacheParameterGroupRequest generates a request for the DeleteCacheParameterGroup operation.
-func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParameterGroupMessage) (req *aws.Request, output *DeleteCacheParameterGroupOutput) {
+func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParameterGroupInput) (req *aws.Request, output *DeleteCacheParameterGroupOutput) {
 	if opDeleteCacheParameterGroup == nil {
 		opDeleteCacheParameterGroup = &aws.Operation{
 			Name:       "DeleteCacheParameterGroup",
@@ -274,7 +274,7 @@ func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParamet
 	return
 }
 
-func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroupMessage) (output *DeleteCacheParameterGroupOutput, err error) {
+func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroupInput) (output *DeleteCacheParameterGroupOutput, err error) {
 	req, out := c.DeleteCacheParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -284,7 +284,7 @@ func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroup
 var opDeleteCacheParameterGroup *aws.Operation
 
 // DeleteCacheSecurityGroupRequest generates a request for the DeleteCacheSecurityGroup operation.
-func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurityGroupMessage) (req *aws.Request, output *DeleteCacheSecurityGroupOutput) {
+func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurityGroupInput) (req *aws.Request, output *DeleteCacheSecurityGroupOutput) {
 	if opDeleteCacheSecurityGroup == nil {
 		opDeleteCacheSecurityGroup = &aws.Operation{
 			Name:       "DeleteCacheSecurityGroup",
@@ -299,7 +299,7 @@ func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurity
 	return
 }
 
-func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupMessage) (output *DeleteCacheSecurityGroupOutput, err error) {
+func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupInput) (output *DeleteCacheSecurityGroupOutput, err error) {
 	req, out := c.DeleteCacheSecurityGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -309,7 +309,7 @@ func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupMe
 var opDeleteCacheSecurityGroup *aws.Operation
 
 // DeleteCacheSubnetGroupRequest generates a request for the DeleteCacheSubnetGroup operation.
-func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGroupMessage) (req *aws.Request, output *DeleteCacheSubnetGroupOutput) {
+func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGroupInput) (req *aws.Request, output *DeleteCacheSubnetGroupOutput) {
 	if opDeleteCacheSubnetGroup == nil {
 		opDeleteCacheSubnetGroup = &aws.Operation{
 			Name:       "DeleteCacheSubnetGroup",
@@ -324,7 +324,7 @@ func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGrou
 	return
 }
 
-func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupMessage) (output *DeleteCacheSubnetGroupOutput, err error) {
+func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupInput) (output *DeleteCacheSubnetGroupOutput, err error) {
 	req, out := c.DeleteCacheSubnetGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -334,7 +334,7 @@ func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupMessag
 var opDeleteCacheSubnetGroup *aws.Operation
 
 // DeleteReplicationGroupRequest generates a request for the DeleteReplicationGroup operation.
-func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGroupMessage) (req *aws.Request, output *DeleteReplicationGroupOutput) {
+func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGroupInput) (req *aws.Request, output *DeleteReplicationGroupOutput) {
 	if opDeleteReplicationGroup == nil {
 		opDeleteReplicationGroup = &aws.Operation{
 			Name:       "DeleteReplicationGroup",
@@ -349,7 +349,7 @@ func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGrou
 	return
 }
 
-func (c *ElastiCache) DeleteReplicationGroup(input *DeleteReplicationGroupMessage) (output *DeleteReplicationGroupOutput, err error) {
+func (c *ElastiCache) DeleteReplicationGroup(input *DeleteReplicationGroupInput) (output *DeleteReplicationGroupOutput, err error) {
 	req, out := c.DeleteReplicationGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -359,7 +359,7 @@ func (c *ElastiCache) DeleteReplicationGroup(input *DeleteReplicationGroupMessag
 var opDeleteReplicationGroup *aws.Operation
 
 // DeleteSnapshotRequest generates a request for the DeleteSnapshot operation.
-func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotMessage) (req *aws.Request, output *DeleteSnapshotOutput) {
+func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Request, output *DeleteSnapshotOutput) {
 	if opDeleteSnapshot == nil {
 		opDeleteSnapshot = &aws.Operation{
 			Name:       "DeleteSnapshot",
@@ -374,7 +374,7 @@ func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotMessage) (req *
 	return
 }
 
-func (c *ElastiCache) DeleteSnapshot(input *DeleteSnapshotMessage) (output *DeleteSnapshotOutput, err error) {
+func (c *ElastiCache) DeleteSnapshot(input *DeleteSnapshotInput) (output *DeleteSnapshotOutput, err error) {
 	req, out := c.DeleteSnapshotRequest(input)
 	output = out
 	err = req.Send()
@@ -384,7 +384,7 @@ func (c *ElastiCache) DeleteSnapshot(input *DeleteSnapshotMessage) (output *Dele
 var opDeleteSnapshot *aws.Operation
 
 // DescribeCacheClustersRequest generates a request for the DescribeCacheClusters operation.
-func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersMessage) (req *aws.Request, output *CacheClusterMessage) {
+func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersInput) (req *aws.Request, output *DescribeCacheClustersOutput) {
 	if opDescribeCacheClusters == nil {
 		opDescribeCacheClusters = &aws.Operation{
 			Name:       "DescribeCacheClusters",
@@ -394,12 +394,12 @@ func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersM
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeCacheClusters, input, output)
-	output = &CacheClusterMessage{}
+	output = &DescribeCacheClustersOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DescribeCacheClusters(input *DescribeCacheClustersMessage) (output *CacheClusterMessage, err error) {
+func (c *ElastiCache) DescribeCacheClusters(input *DescribeCacheClustersInput) (output *DescribeCacheClustersOutput, err error) {
 	req, out := c.DescribeCacheClustersRequest(input)
 	output = out
 	err = req.Send()
@@ -409,7 +409,7 @@ func (c *ElastiCache) DescribeCacheClusters(input *DescribeCacheClustersMessage)
 var opDescribeCacheClusters *aws.Operation
 
 // DescribeCacheEngineVersionsRequest generates a request for the DescribeCacheEngineVersions operation.
-func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEngineVersionsMessage) (req *aws.Request, output *CacheEngineVersionMessage) {
+func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEngineVersionsInput) (req *aws.Request, output *DescribeCacheEngineVersionsOutput) {
 	if opDescribeCacheEngineVersions == nil {
 		opDescribeCacheEngineVersions = &aws.Operation{
 			Name:       "DescribeCacheEngineVersions",
@@ -419,12 +419,12 @@ func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEng
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeCacheEngineVersions, input, output)
-	output = &CacheEngineVersionMessage{}
+	output = &DescribeCacheEngineVersionsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DescribeCacheEngineVersions(input *DescribeCacheEngineVersionsMessage) (output *CacheEngineVersionMessage, err error) {
+func (c *ElastiCache) DescribeCacheEngineVersions(input *DescribeCacheEngineVersionsInput) (output *DescribeCacheEngineVersionsOutput, err error) {
 	req, out := c.DescribeCacheEngineVersionsRequest(input)
 	output = out
 	err = req.Send()
@@ -434,7 +434,7 @@ func (c *ElastiCache) DescribeCacheEngineVersions(input *DescribeCacheEngineVers
 var opDescribeCacheEngineVersions *aws.Operation
 
 // DescribeCacheParameterGroupsRequest generates a request for the DescribeCacheParameterGroups operation.
-func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCacheParameterGroupsMessage) (req *aws.Request, output *CacheParameterGroupsMessage) {
+func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCacheParameterGroupsInput) (req *aws.Request, output *DescribeCacheParameterGroupsOutput) {
 	if opDescribeCacheParameterGroups == nil {
 		opDescribeCacheParameterGroups = &aws.Operation{
 			Name:       "DescribeCacheParameterGroups",
@@ -444,12 +444,12 @@ func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCachePa
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeCacheParameterGroups, input, output)
-	output = &CacheParameterGroupsMessage{}
+	output = &DescribeCacheParameterGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DescribeCacheParameterGroups(input *DescribeCacheParameterGroupsMessage) (output *CacheParameterGroupsMessage, err error) {
+func (c *ElastiCache) DescribeCacheParameterGroups(input *DescribeCacheParameterGroupsInput) (output *DescribeCacheParameterGroupsOutput, err error) {
 	req, out := c.DescribeCacheParameterGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -459,7 +459,7 @@ func (c *ElastiCache) DescribeCacheParameterGroups(input *DescribeCacheParameter
 var opDescribeCacheParameterGroups *aws.Operation
 
 // DescribeCacheParametersRequest generates a request for the DescribeCacheParameters operation.
-func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParametersMessage) (req *aws.Request, output *CacheParameterGroupDetails) {
+func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParametersInput) (req *aws.Request, output *DescribeCacheParametersOutput) {
 	if opDescribeCacheParameters == nil {
 		opDescribeCacheParameters = &aws.Operation{
 			Name:       "DescribeCacheParameters",
@@ -469,12 +469,12 @@ func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParamet
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeCacheParameters, input, output)
-	output = &CacheParameterGroupDetails{}
+	output = &DescribeCacheParametersOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DescribeCacheParameters(input *DescribeCacheParametersMessage) (output *CacheParameterGroupDetails, err error) {
+func (c *ElastiCache) DescribeCacheParameters(input *DescribeCacheParametersInput) (output *DescribeCacheParametersOutput, err error) {
 	req, out := c.DescribeCacheParametersRequest(input)
 	output = out
 	err = req.Send()
@@ -484,7 +484,7 @@ func (c *ElastiCache) DescribeCacheParameters(input *DescribeCacheParametersMess
 var opDescribeCacheParameters *aws.Operation
 
 // DescribeCacheSecurityGroupsRequest generates a request for the DescribeCacheSecurityGroups operation.
-func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSecurityGroupsMessage) (req *aws.Request, output *CacheSecurityGroupMessage) {
+func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSecurityGroupsInput) (req *aws.Request, output *DescribeCacheSecurityGroupsOutput) {
 	if opDescribeCacheSecurityGroups == nil {
 		opDescribeCacheSecurityGroups = &aws.Operation{
 			Name:       "DescribeCacheSecurityGroups",
@@ -494,12 +494,12 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSec
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeCacheSecurityGroups, input, output)
-	output = &CacheSecurityGroupMessage{}
+	output = &DescribeCacheSecurityGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DescribeCacheSecurityGroups(input *DescribeCacheSecurityGroupsMessage) (output *CacheSecurityGroupMessage, err error) {
+func (c *ElastiCache) DescribeCacheSecurityGroups(input *DescribeCacheSecurityGroupsInput) (output *DescribeCacheSecurityGroupsOutput, err error) {
 	req, out := c.DescribeCacheSecurityGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -509,7 +509,7 @@ func (c *ElastiCache) DescribeCacheSecurityGroups(input *DescribeCacheSecurityGr
 var opDescribeCacheSecurityGroups *aws.Operation
 
 // DescribeCacheSubnetGroupsRequest generates a request for the DescribeCacheSubnetGroups operation.
-func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubnetGroupsMessage) (req *aws.Request, output *CacheSubnetGroupMessage) {
+func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubnetGroupsInput) (req *aws.Request, output *DescribeCacheSubnetGroupsOutput) {
 	if opDescribeCacheSubnetGroups == nil {
 		opDescribeCacheSubnetGroups = &aws.Operation{
 			Name:       "DescribeCacheSubnetGroups",
@@ -519,12 +519,12 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubne
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeCacheSubnetGroups, input, output)
-	output = &CacheSubnetGroupMessage{}
+	output = &DescribeCacheSubnetGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DescribeCacheSubnetGroups(input *DescribeCacheSubnetGroupsMessage) (output *CacheSubnetGroupMessage, err error) {
+func (c *ElastiCache) DescribeCacheSubnetGroups(input *DescribeCacheSubnetGroupsInput) (output *DescribeCacheSubnetGroupsOutput, err error) {
 	req, out := c.DescribeCacheSubnetGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -534,7 +534,7 @@ func (c *ElastiCache) DescribeCacheSubnetGroups(input *DescribeCacheSubnetGroups
 var opDescribeCacheSubnetGroups *aws.Operation
 
 // DescribeEngineDefaultParametersRequest generates a request for the DescribeEngineDefaultParameters operation.
-func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersMessage) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
+func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
 	if opDescribeEngineDefaultParameters == nil {
 		opDescribeEngineDefaultParameters = &aws.Operation{
 			Name:       "DescribeEngineDefaultParameters",
@@ -549,7 +549,7 @@ func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngi
 	return
 }
 
-func (c *ElastiCache) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersMessage) (output *DescribeEngineDefaultParametersOutput, err error) {
+func (c *ElastiCache) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersInput) (output *DescribeEngineDefaultParametersOutput, err error) {
 	req, out := c.DescribeEngineDefaultParametersRequest(input)
 	output = out
 	err = req.Send()
@@ -559,7 +559,7 @@ func (c *ElastiCache) DescribeEngineDefaultParameters(input *DescribeEngineDefau
 var opDescribeEngineDefaultParameters *aws.Operation
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
-func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsMessage) (req *aws.Request, output *EventsMessage) {
+func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
 			Name:       "DescribeEvents",
@@ -569,12 +569,12 @@ func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsMessage) (req *
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeEvents, input, output)
-	output = &EventsMessage{}
+	output = &DescribeEventsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DescribeEvents(input *DescribeEventsMessage) (output *EventsMessage, err error) {
+func (c *ElastiCache) DescribeEvents(input *DescribeEventsInput) (output *DescribeEventsOutput, err error) {
 	req, out := c.DescribeEventsRequest(input)
 	output = out
 	err = req.Send()
@@ -584,7 +584,7 @@ func (c *ElastiCache) DescribeEvents(input *DescribeEventsMessage) (output *Even
 var opDescribeEvents *aws.Operation
 
 // DescribeReplicationGroupsRequest generates a request for the DescribeReplicationGroups operation.
-func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicationGroupsMessage) (req *aws.Request, output *ReplicationGroupMessage) {
+func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicationGroupsInput) (req *aws.Request, output *DescribeReplicationGroupsOutput) {
 	if opDescribeReplicationGroups == nil {
 		opDescribeReplicationGroups = &aws.Operation{
 			Name:       "DescribeReplicationGroups",
@@ -594,12 +594,12 @@ func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicatio
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeReplicationGroups, input, output)
-	output = &ReplicationGroupMessage{}
+	output = &DescribeReplicationGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DescribeReplicationGroups(input *DescribeReplicationGroupsMessage) (output *ReplicationGroupMessage, err error) {
+func (c *ElastiCache) DescribeReplicationGroups(input *DescribeReplicationGroupsInput) (output *DescribeReplicationGroupsOutput, err error) {
 	req, out := c.DescribeReplicationGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -609,7 +609,7 @@ func (c *ElastiCache) DescribeReplicationGroups(input *DescribeReplicationGroups
 var opDescribeReplicationGroups *aws.Operation
 
 // DescribeReservedCacheNodesRequest generates a request for the DescribeReservedCacheNodes operation.
-func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedCacheNodesMessage) (req *aws.Request, output *ReservedCacheNodeMessage) {
+func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedCacheNodesInput) (req *aws.Request, output *DescribeReservedCacheNodesOutput) {
 	if opDescribeReservedCacheNodes == nil {
 		opDescribeReservedCacheNodes = &aws.Operation{
 			Name:       "DescribeReservedCacheNodes",
@@ -619,12 +619,12 @@ func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedC
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeReservedCacheNodes, input, output)
-	output = &ReservedCacheNodeMessage{}
+	output = &DescribeReservedCacheNodesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DescribeReservedCacheNodes(input *DescribeReservedCacheNodesMessage) (output *ReservedCacheNodeMessage, err error) {
+func (c *ElastiCache) DescribeReservedCacheNodes(input *DescribeReservedCacheNodesInput) (output *DescribeReservedCacheNodesOutput, err error) {
 	req, out := c.DescribeReservedCacheNodesRequest(input)
 	output = out
 	err = req.Send()
@@ -634,7 +634,7 @@ func (c *ElastiCache) DescribeReservedCacheNodes(input *DescribeReservedCacheNod
 var opDescribeReservedCacheNodes *aws.Operation
 
 // DescribeReservedCacheNodesOfferingsRequest generates a request for the DescribeReservedCacheNodesOfferings operation.
-func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *DescribeReservedCacheNodesOfferingsMessage) (req *aws.Request, output *ReservedCacheNodesOfferingMessage) {
+func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *DescribeReservedCacheNodesOfferingsInput) (req *aws.Request, output *DescribeReservedCacheNodesOfferingsOutput) {
 	if opDescribeReservedCacheNodesOfferings == nil {
 		opDescribeReservedCacheNodesOfferings = &aws.Operation{
 			Name:       "DescribeReservedCacheNodesOfferings",
@@ -644,12 +644,12 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *Describe
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeReservedCacheNodesOfferings, input, output)
-	output = &ReservedCacheNodesOfferingMessage{}
+	output = &DescribeReservedCacheNodesOfferingsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DescribeReservedCacheNodesOfferings(input *DescribeReservedCacheNodesOfferingsMessage) (output *ReservedCacheNodesOfferingMessage, err error) {
+func (c *ElastiCache) DescribeReservedCacheNodesOfferings(input *DescribeReservedCacheNodesOfferingsInput) (output *DescribeReservedCacheNodesOfferingsOutput, err error) {
 	req, out := c.DescribeReservedCacheNodesOfferingsRequest(input)
 	output = out
 	err = req.Send()
@@ -659,7 +659,7 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferings(input *DescribeReserve
 var opDescribeReservedCacheNodesOfferings *aws.Operation
 
 // DescribeSnapshotsRequest generates a request for the DescribeSnapshots operation.
-func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsMessage) (req *aws.Request, output *DescribeSnapshotsListMessage) {
+func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.Request, output *DescribeSnapshotsOutput) {
 	if opDescribeSnapshots == nil {
 		opDescribeSnapshots = &aws.Operation{
 			Name:       "DescribeSnapshots",
@@ -669,12 +669,12 @@ func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsMessage) 
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeSnapshots, input, output)
-	output = &DescribeSnapshotsListMessage{}
+	output = &DescribeSnapshotsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ElastiCache) DescribeSnapshots(input *DescribeSnapshotsMessage) (output *DescribeSnapshotsListMessage, err error) {
+func (c *ElastiCache) DescribeSnapshots(input *DescribeSnapshotsInput) (output *DescribeSnapshotsOutput, err error) {
 	req, out := c.DescribeSnapshotsRequest(input)
 	output = out
 	err = req.Send()
@@ -684,7 +684,7 @@ func (c *ElastiCache) DescribeSnapshots(input *DescribeSnapshotsMessage) (output
 var opDescribeSnapshots *aws.Operation
 
 // ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
-func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceMessage) (req *aws.Request, output *TagListMessage) {
+func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *TagListMessage) {
 	if opListTagsForResource == nil {
 		opListTagsForResource = &aws.Operation{
 			Name:       "ListTagsForResource",
@@ -699,7 +699,7 @@ func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceMessa
 	return
 }
 
-func (c *ElastiCache) ListTagsForResource(input *ListTagsForResourceMessage) (output *TagListMessage, err error) {
+func (c *ElastiCache) ListTagsForResource(input *ListTagsForResourceInput) (output *TagListMessage, err error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	output = out
 	err = req.Send()
@@ -709,7 +709,7 @@ func (c *ElastiCache) ListTagsForResource(input *ListTagsForResourceMessage) (ou
 var opListTagsForResource *aws.Operation
 
 // ModifyCacheClusterRequest generates a request for the ModifyCacheCluster operation.
-func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterMessage) (req *aws.Request, output *ModifyCacheClusterOutput) {
+func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) (req *aws.Request, output *ModifyCacheClusterOutput) {
 	if opModifyCacheCluster == nil {
 		opModifyCacheCluster = &aws.Operation{
 			Name:       "ModifyCacheCluster",
@@ -724,7 +724,7 @@ func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterMessage
 	return
 }
 
-func (c *ElastiCache) ModifyCacheCluster(input *ModifyCacheClusterMessage) (output *ModifyCacheClusterOutput, err error) {
+func (c *ElastiCache) ModifyCacheCluster(input *ModifyCacheClusterInput) (output *ModifyCacheClusterOutput, err error) {
 	req, out := c.ModifyCacheClusterRequest(input)
 	output = out
 	err = req.Send()
@@ -734,7 +734,7 @@ func (c *ElastiCache) ModifyCacheCluster(input *ModifyCacheClusterMessage) (outp
 var opModifyCacheCluster *aws.Operation
 
 // ModifyCacheParameterGroupRequest generates a request for the ModifyCacheParameterGroup operation.
-func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParameterGroupMessage) (req *aws.Request, output *CacheParameterGroupNameMessage) {
+func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParameterGroupInput) (req *aws.Request, output *CacheParameterGroupNameMessage) {
 	if opModifyCacheParameterGroup == nil {
 		opModifyCacheParameterGroup = &aws.Operation{
 			Name:       "ModifyCacheParameterGroup",
@@ -749,7 +749,7 @@ func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParamet
 	return
 }
 
-func (c *ElastiCache) ModifyCacheParameterGroup(input *ModifyCacheParameterGroupMessage) (output *CacheParameterGroupNameMessage, err error) {
+func (c *ElastiCache) ModifyCacheParameterGroup(input *ModifyCacheParameterGroupInput) (output *CacheParameterGroupNameMessage, err error) {
 	req, out := c.ModifyCacheParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -759,7 +759,7 @@ func (c *ElastiCache) ModifyCacheParameterGroup(input *ModifyCacheParameterGroup
 var opModifyCacheParameterGroup *aws.Operation
 
 // ModifyCacheSubnetGroupRequest generates a request for the ModifyCacheSubnetGroup operation.
-func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGroupMessage) (req *aws.Request, output *ModifyCacheSubnetGroupOutput) {
+func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGroupInput) (req *aws.Request, output *ModifyCacheSubnetGroupOutput) {
 	if opModifyCacheSubnetGroup == nil {
 		opModifyCacheSubnetGroup = &aws.Operation{
 			Name:       "ModifyCacheSubnetGroup",
@@ -774,7 +774,7 @@ func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGrou
 	return
 }
 
-func (c *ElastiCache) ModifyCacheSubnetGroup(input *ModifyCacheSubnetGroupMessage) (output *ModifyCacheSubnetGroupOutput, err error) {
+func (c *ElastiCache) ModifyCacheSubnetGroup(input *ModifyCacheSubnetGroupInput) (output *ModifyCacheSubnetGroupOutput, err error) {
 	req, out := c.ModifyCacheSubnetGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -784,7 +784,7 @@ func (c *ElastiCache) ModifyCacheSubnetGroup(input *ModifyCacheSubnetGroupMessag
 var opModifyCacheSubnetGroup *aws.Operation
 
 // ModifyReplicationGroupRequest generates a request for the ModifyReplicationGroup operation.
-func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGroupMessage) (req *aws.Request, output *ModifyReplicationGroupOutput) {
+func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGroupInput) (req *aws.Request, output *ModifyReplicationGroupOutput) {
 	if opModifyReplicationGroup == nil {
 		opModifyReplicationGroup = &aws.Operation{
 			Name:       "ModifyReplicationGroup",
@@ -799,7 +799,7 @@ func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGrou
 	return
 }
 
-func (c *ElastiCache) ModifyReplicationGroup(input *ModifyReplicationGroupMessage) (output *ModifyReplicationGroupOutput, err error) {
+func (c *ElastiCache) ModifyReplicationGroup(input *ModifyReplicationGroupInput) (output *ModifyReplicationGroupOutput, err error) {
 	req, out := c.ModifyReplicationGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -809,7 +809,7 @@ func (c *ElastiCache) ModifyReplicationGroup(input *ModifyReplicationGroupMessag
 var opModifyReplicationGroup *aws.Operation
 
 // PurchaseReservedCacheNodesOfferingRequest generates a request for the PurchaseReservedCacheNodesOffering operation.
-func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseReservedCacheNodesOfferingMessage) (req *aws.Request, output *PurchaseReservedCacheNodesOfferingOutput) {
+func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseReservedCacheNodesOfferingInput) (req *aws.Request, output *PurchaseReservedCacheNodesOfferingOutput) {
 	if opPurchaseReservedCacheNodesOffering == nil {
 		opPurchaseReservedCacheNodesOffering = &aws.Operation{
 			Name:       "PurchaseReservedCacheNodesOffering",
@@ -824,7 +824,7 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseR
 	return
 }
 
-func (c *ElastiCache) PurchaseReservedCacheNodesOffering(input *PurchaseReservedCacheNodesOfferingMessage) (output *PurchaseReservedCacheNodesOfferingOutput, err error) {
+func (c *ElastiCache) PurchaseReservedCacheNodesOffering(input *PurchaseReservedCacheNodesOfferingInput) (output *PurchaseReservedCacheNodesOfferingOutput, err error) {
 	req, out := c.PurchaseReservedCacheNodesOfferingRequest(input)
 	output = out
 	err = req.Send()
@@ -834,7 +834,7 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOffering(input *PurchaseReserved
 var opPurchaseReservedCacheNodesOffering *aws.Operation
 
 // RebootCacheClusterRequest generates a request for the RebootCacheCluster operation.
-func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterMessage) (req *aws.Request, output *RebootCacheClusterOutput) {
+func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) (req *aws.Request, output *RebootCacheClusterOutput) {
 	if opRebootCacheCluster == nil {
 		opRebootCacheCluster = &aws.Operation{
 			Name:       "RebootCacheCluster",
@@ -849,7 +849,7 @@ func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterMessage
 	return
 }
 
-func (c *ElastiCache) RebootCacheCluster(input *RebootCacheClusterMessage) (output *RebootCacheClusterOutput, err error) {
+func (c *ElastiCache) RebootCacheCluster(input *RebootCacheClusterInput) (output *RebootCacheClusterOutput, err error) {
 	req, out := c.RebootCacheClusterRequest(input)
 	output = out
 	err = req.Send()
@@ -859,7 +859,7 @@ func (c *ElastiCache) RebootCacheCluster(input *RebootCacheClusterMessage) (outp
 var opRebootCacheCluster *aws.Operation
 
 // RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
-func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceMessage) (req *aws.Request, output *TagListMessage) {
+func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *aws.Request, output *TagListMessage) {
 	if opRemoveTagsFromResource == nil {
 		opRemoveTagsFromResource = &aws.Operation{
 			Name:       "RemoveTagsFromResource",
@@ -874,7 +874,7 @@ func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourc
 	return
 }
 
-func (c *ElastiCache) RemoveTagsFromResource(input *RemoveTagsFromResourceMessage) (output *TagListMessage, err error) {
+func (c *ElastiCache) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (output *TagListMessage, err error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	output = out
 	err = req.Send()
@@ -884,7 +884,7 @@ func (c *ElastiCache) RemoveTagsFromResource(input *RemoveTagsFromResourceMessag
 var opRemoveTagsFromResource *aws.Operation
 
 // ResetCacheParameterGroupRequest generates a request for the ResetCacheParameterGroup operation.
-func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameterGroupMessage) (req *aws.Request, output *CacheParameterGroupNameMessage) {
+func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameterGroupInput) (req *aws.Request, output *CacheParameterGroupNameMessage) {
 	if opResetCacheParameterGroup == nil {
 		opResetCacheParameterGroup = &aws.Operation{
 			Name:       "ResetCacheParameterGroup",
@@ -899,7 +899,7 @@ func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameter
 	return
 }
 
-func (c *ElastiCache) ResetCacheParameterGroup(input *ResetCacheParameterGroupMessage) (output *CacheParameterGroupNameMessage, err error) {
+func (c *ElastiCache) ResetCacheParameterGroup(input *ResetCacheParameterGroupInput) (output *CacheParameterGroupNameMessage, err error) {
 	req, out := c.ResetCacheParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -909,7 +909,7 @@ func (c *ElastiCache) ResetCacheParameterGroup(input *ResetCacheParameterGroupMe
 var opResetCacheParameterGroup *aws.Operation
 
 // RevokeCacheSecurityGroupIngressRequest generates a request for the RevokeCacheSecurityGroupIngress operation.
-func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheSecurityGroupIngressMessage) (req *aws.Request, output *RevokeCacheSecurityGroupIngressOutput) {
+func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheSecurityGroupIngressInput) (req *aws.Request, output *RevokeCacheSecurityGroupIngressOutput) {
 	if opRevokeCacheSecurityGroupIngress == nil {
 		opRevokeCacheSecurityGroupIngress = &aws.Operation{
 			Name:       "RevokeCacheSecurityGroupIngress",
@@ -924,7 +924,7 @@ func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheS
 	return
 }
 
-func (c *ElastiCache) RevokeCacheSecurityGroupIngress(input *RevokeCacheSecurityGroupIngressMessage) (output *RevokeCacheSecurityGroupIngressOutput, err error) {
+func (c *ElastiCache) RevokeCacheSecurityGroupIngress(input *RevokeCacheSecurityGroupIngressInput) (output *RevokeCacheSecurityGroupIngressOutput, err error) {
 	req, out := c.RevokeCacheSecurityGroupIngressRequest(input)
 	output = out
 	err = req.Send()
@@ -933,15 +933,25 @@ func (c *ElastiCache) RevokeCacheSecurityGroupIngress(input *RevokeCacheSecurity
 
 var opRevokeCacheSecurityGroupIngress *aws.Operation
 
-type AddTagsToResourceMessage struct {
+type AddTagsToResourceInput struct {
 	ResourceName *string `type:"string"`
 	Tags         []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataAddTagsToResourceMessage `json:"-", xml:"-"`
+	metadataAddTagsToResourceInput `json:"-", xml:"-"`
 }
 
-type metadataAddTagsToResourceMessage struct {
+type metadataAddTagsToResourceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName,Tags"`
+}
+
+type AddTagsToResourceOutput struct {
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
+	metadataAddTagsToResourceOutput `json:"-", xml:"-"`
+}
+
+type metadataAddTagsToResourceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AuthorizationAlreadyExistsFault struct {
@@ -960,15 +970,15 @@ type metadataAuthorizationNotFoundFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type AuthorizeCacheSecurityGroupIngressMessage struct {
+type AuthorizeCacheSecurityGroupIngressInput struct {
 	CacheSecurityGroupName  *string `type:"string"`
 	EC2SecurityGroupName    *string `type:"string"`
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
-	metadataAuthorizeCacheSecurityGroupIngressMessage `json:"-", xml:"-"`
+	metadataAuthorizeCacheSecurityGroupIngressInput `json:"-", xml:"-"`
 }
 
-type metadataAuthorizeCacheSecurityGroupIngressMessage struct {
+type metadataAuthorizeCacheSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheSecurityGroupName,EC2SecurityGroupName,EC2SecurityGroupOwnerId"`
 }
 
@@ -1031,17 +1041,6 @@ type metadataCacheClusterAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type CacheClusterMessage struct {
-	CacheClusters []*CacheCluster `locationNameList:"CacheCluster" type:"list"`
-	Marker        *string         `type:"string"`
-
-	metadataCacheClusterMessage `json:"-", xml:"-"`
-}
-
-type metadataCacheClusterMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheClustersResult"`
-}
-
 type CacheClusterNotFoundFault struct {
 	metadataCacheClusterNotFoundFault `json:"-", xml:"-"`
 }
@@ -1062,17 +1061,6 @@ type CacheEngineVersion struct {
 
 type metadataCacheEngineVersion struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type CacheEngineVersionMessage struct {
-	CacheEngineVersions []*CacheEngineVersion `locationNameList:"CacheEngineVersion" type:"list"`
-	Marker              *string               `type:"string"`
-
-	metadataCacheEngineVersionMessage `json:"-", xml:"-"`
-}
-
-type metadataCacheEngineVersionMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheEngineVersionsResult"`
 }
 
 type CacheNode struct {
@@ -1139,18 +1127,6 @@ type metadataCacheParameterGroupAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type CacheParameterGroupDetails struct {
-	CacheNodeTypeSpecificParameters []*CacheNodeTypeSpecificParameter `locationNameList:"CacheNodeTypeSpecificParameter" type:"list"`
-	Marker                          *string                           `type:"string"`
-	Parameters                      []*Parameter                      `locationNameList:"Parameter" type:"list"`
-
-	metadataCacheParameterGroupDetails `json:"-", xml:"-"`
-}
-
-type metadataCacheParameterGroupDetails struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheParametersResult"`
-}
-
 type CacheParameterGroupNameMessage struct {
 	CacheParameterGroupName *string `type:"string"`
 
@@ -1189,17 +1165,6 @@ type metadataCacheParameterGroupStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type CacheParameterGroupsMessage struct {
-	CacheParameterGroups []*CacheParameterGroup `locationNameList:"CacheParameterGroup" type:"list"`
-	Marker               *string                `type:"string"`
-
-	metadataCacheParameterGroupsMessage `json:"-", xml:"-"`
-}
-
-type metadataCacheParameterGroupsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheParameterGroupsResult"`
-}
-
 type CacheSecurityGroup struct {
 	CacheSecurityGroupName *string             `type:"string"`
 	Description            *string             `type:"string"`
@@ -1230,17 +1195,6 @@ type CacheSecurityGroupMembership struct {
 
 type metadataCacheSecurityGroupMembership struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type CacheSecurityGroupMessage struct {
-	CacheSecurityGroups []*CacheSecurityGroup `locationNameList:"CacheSecurityGroup" type:"list"`
-	Marker              *string               `type:"string"`
-
-	metadataCacheSecurityGroupMessage `json:"-", xml:"-"`
-}
-
-type metadataCacheSecurityGroupMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheSecurityGroupsResult"`
 }
 
 type CacheSecurityGroupNotFoundFault struct {
@@ -1288,17 +1242,6 @@ type metadataCacheSubnetGroupInUse struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type CacheSubnetGroupMessage struct {
-	CacheSubnetGroups []*CacheSubnetGroup `locationNameList:"CacheSubnetGroup" type:"list"`
-	Marker            *string             `type:"string"`
-
-	metadataCacheSubnetGroupMessage `json:"-", xml:"-"`
-}
-
-type metadataCacheSubnetGroupMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheSubnetGroupsResult"`
-}
-
 type CacheSubnetGroupNotFoundFault struct {
 	metadataCacheSubnetGroupNotFoundFault `json:"-", xml:"-"`
 }
@@ -1331,14 +1274,14 @@ type metadataClusterQuotaForCustomerExceededFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type CopySnapshotMessage struct {
+type CopySnapshotInput struct {
 	SourceSnapshotName *string `type:"string"`
 	TargetSnapshotName *string `type:"string"`
 
-	metadataCopySnapshotMessage `json:"-", xml:"-"`
+	metadataCopySnapshotInput `json:"-", xml:"-"`
 }
 
-type metadataCopySnapshotMessage struct {
+type metadataCopySnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SourceSnapshotName,TargetSnapshotName"`
 }
 
@@ -1352,7 +1295,7 @@ type metadataCopySnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CopySnapshotResult"`
 }
 
-type CreateCacheClusterMessage struct {
+type CreateCacheClusterInput struct {
 	AZMode                     *string   `type:"string"`
 	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
 	CacheClusterID             *string   `locationName:"CacheClusterId" type:"string"`
@@ -1376,10 +1319,10 @@ type CreateCacheClusterMessage struct {
 	SnapshotWindow             *string   `type:"string"`
 	Tags                       []*Tag    `locationNameList:"Tag" type:"list"`
 
-	metadataCreateCacheClusterMessage `json:"-", xml:"-"`
+	metadataCreateCacheClusterInput `json:"-", xml:"-"`
 }
 
-type metadataCreateCacheClusterMessage struct {
+type metadataCreateCacheClusterInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheClusterId"`
 }
 
@@ -1393,15 +1336,15 @@ type metadataCreateCacheClusterOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateCacheClusterResult"`
 }
 
-type CreateCacheParameterGroupMessage struct {
+type CreateCacheParameterGroupInput struct {
 	CacheParameterGroupFamily *string `type:"string"`
 	CacheParameterGroupName   *string `type:"string"`
 	Description               *string `type:"string"`
 
-	metadataCreateCacheParameterGroupMessage `json:"-", xml:"-"`
+	metadataCreateCacheParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateCacheParameterGroupMessage struct {
+type metadataCreateCacheParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName,CacheParameterGroupFamily,Description"`
 }
 
@@ -1415,14 +1358,14 @@ type metadataCreateCacheParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateCacheParameterGroupResult"`
 }
 
-type CreateCacheSecurityGroupMessage struct {
+type CreateCacheSecurityGroupInput struct {
 	CacheSecurityGroupName *string `type:"string"`
 	Description            *string `type:"string"`
 
-	metadataCreateCacheSecurityGroupMessage `json:"-", xml:"-"`
+	metadataCreateCacheSecurityGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateCacheSecurityGroupMessage struct {
+type metadataCreateCacheSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheSecurityGroupName,Description"`
 }
 
@@ -1436,15 +1379,15 @@ type metadataCreateCacheSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateCacheSecurityGroupResult"`
 }
 
-type CreateCacheSubnetGroupMessage struct {
+type CreateCacheSubnetGroupInput struct {
 	CacheSubnetGroupDescription *string   `type:"string"`
 	CacheSubnetGroupName        *string   `type:"string"`
 	SubnetIDs                   []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
 
-	metadataCreateCacheSubnetGroupMessage `json:"-", xml:"-"`
+	metadataCreateCacheSubnetGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateCacheSubnetGroupMessage struct {
+type metadataCreateCacheSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheSubnetGroupName,CacheSubnetGroupDescription,SubnetIds"`
 }
 
@@ -1458,7 +1401,7 @@ type metadataCreateCacheSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateCacheSubnetGroupResult"`
 }
 
-type CreateReplicationGroupMessage struct {
+type CreateReplicationGroupInput struct {
 	AutoMinorVersionUpgrade     *bool     `type:"boolean"`
 	AutomaticFailoverEnabled    *bool     `type:"boolean"`
 	CacheNodeType               *string   `type:"string"`
@@ -1482,10 +1425,10 @@ type CreateReplicationGroupMessage struct {
 	SnapshotWindow              *string   `type:"string"`
 	Tags                        []*Tag    `locationNameList:"Tag" type:"list"`
 
-	metadataCreateReplicationGroupMessage `json:"-", xml:"-"`
+	metadataCreateReplicationGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateReplicationGroupMessage struct {
+type metadataCreateReplicationGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ReplicationGroupId,ReplicationGroupDescription"`
 }
 
@@ -1499,14 +1442,14 @@ type metadataCreateReplicationGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateReplicationGroupResult"`
 }
 
-type CreateSnapshotMessage struct {
+type CreateSnapshotInput struct {
 	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
 	SnapshotName   *string `type:"string"`
 
-	metadataCreateSnapshotMessage `json:"-", xml:"-"`
+	metadataCreateSnapshotInput `json:"-", xml:"-"`
 }
 
-type metadataCreateSnapshotMessage struct {
+type metadataCreateSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheClusterId,SnapshotName"`
 }
 
@@ -1520,14 +1463,14 @@ type metadataCreateSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateSnapshotResult"`
 }
 
-type DeleteCacheClusterMessage struct {
+type DeleteCacheClusterInput struct {
 	CacheClusterID          *string `locationName:"CacheClusterId" type:"string"`
 	FinalSnapshotIdentifier *string `type:"string"`
 
-	metadataDeleteCacheClusterMessage `json:"-", xml:"-"`
+	metadataDeleteCacheClusterInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteCacheClusterMessage struct {
+type metadataDeleteCacheClusterInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheClusterId"`
 }
 
@@ -1541,13 +1484,13 @@ type metadataDeleteCacheClusterOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteCacheClusterResult"`
 }
 
-type DeleteCacheParameterGroupMessage struct {
+type DeleteCacheParameterGroupInput struct {
 	CacheParameterGroupName *string `type:"string"`
 
-	metadataDeleteCacheParameterGroupMessage `json:"-", xml:"-"`
+	metadataDeleteCacheParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteCacheParameterGroupMessage struct {
+type metadataDeleteCacheParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName"`
 }
 
@@ -1559,13 +1502,13 @@ type metadataDeleteCacheParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteCacheSecurityGroupMessage struct {
+type DeleteCacheSecurityGroupInput struct {
 	CacheSecurityGroupName *string `type:"string"`
 
-	metadataDeleteCacheSecurityGroupMessage `json:"-", xml:"-"`
+	metadataDeleteCacheSecurityGroupInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteCacheSecurityGroupMessage struct {
+type metadataDeleteCacheSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheSecurityGroupName"`
 }
 
@@ -1577,13 +1520,13 @@ type metadataDeleteCacheSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteCacheSubnetGroupMessage struct {
+type DeleteCacheSubnetGroupInput struct {
 	CacheSubnetGroupName *string `type:"string"`
 
-	metadataDeleteCacheSubnetGroupMessage `json:"-", xml:"-"`
+	metadataDeleteCacheSubnetGroupInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteCacheSubnetGroupMessage struct {
+type metadataDeleteCacheSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheSubnetGroupName"`
 }
 
@@ -1595,15 +1538,15 @@ type metadataDeleteCacheSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteReplicationGroupMessage struct {
+type DeleteReplicationGroupInput struct {
 	FinalSnapshotIdentifier *string `type:"string"`
 	ReplicationGroupID      *string `locationName:"ReplicationGroupId" type:"string"`
 	RetainPrimaryCluster    *bool   `type:"boolean"`
 
-	metadataDeleteReplicationGroupMessage `json:"-", xml:"-"`
+	metadataDeleteReplicationGroupInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteReplicationGroupMessage struct {
+type metadataDeleteReplicationGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ReplicationGroupId"`
 }
 
@@ -1617,13 +1560,13 @@ type metadataDeleteReplicationGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteReplicationGroupResult"`
 }
 
-type DeleteSnapshotMessage struct {
+type DeleteSnapshotInput struct {
 	SnapshotName *string `type:"string"`
 
-	metadataDeleteSnapshotMessage `json:"-", xml:"-"`
+	metadataDeleteSnapshotInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteSnapshotMessage struct {
+type metadataDeleteSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SnapshotName"`
 }
 
@@ -1637,20 +1580,31 @@ type metadataDeleteSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteSnapshotResult"`
 }
 
-type DescribeCacheClustersMessage struct {
+type DescribeCacheClustersInput struct {
 	CacheClusterID    *string `locationName:"CacheClusterId" type:"string"`
 	Marker            *string `type:"string"`
 	MaxRecords        *int    `type:"integer"`
 	ShowCacheNodeInfo *bool   `type:"boolean"`
 
-	metadataDescribeCacheClustersMessage `json:"-", xml:"-"`
+	metadataDescribeCacheClustersInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeCacheClustersMessage struct {
+type metadataDescribeCacheClustersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeCacheEngineVersionsMessage struct {
+type DescribeCacheClustersOutput struct {
+	CacheClusters []*CacheCluster `locationNameList:"CacheCluster" type:"list"`
+	Marker        *string         `type:"string"`
+
+	metadataDescribeCacheClustersOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeCacheClustersOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheClustersResult"`
+}
+
+type DescribeCacheEngineVersionsInput struct {
 	CacheParameterGroupFamily *string `type:"string"`
 	DefaultOnly               *bool   `type:"boolean"`
 	Engine                    *string `type:"string"`
@@ -1658,71 +1612,127 @@ type DescribeCacheEngineVersionsMessage struct {
 	Marker                    *string `type:"string"`
 	MaxRecords                *int    `type:"integer"`
 
-	metadataDescribeCacheEngineVersionsMessage `json:"-", xml:"-"`
+	metadataDescribeCacheEngineVersionsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeCacheEngineVersionsMessage struct {
+type metadataDescribeCacheEngineVersionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeCacheParameterGroupsMessage struct {
+type DescribeCacheEngineVersionsOutput struct {
+	CacheEngineVersions []*CacheEngineVersion `locationNameList:"CacheEngineVersion" type:"list"`
+	Marker              *string               `type:"string"`
+
+	metadataDescribeCacheEngineVersionsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeCacheEngineVersionsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheEngineVersionsResult"`
+}
+
+type DescribeCacheParameterGroupsInput struct {
 	CacheParameterGroupName *string `type:"string"`
 	Marker                  *string `type:"string"`
 	MaxRecords              *int    `type:"integer"`
 
-	metadataDescribeCacheParameterGroupsMessage `json:"-", xml:"-"`
+	metadataDescribeCacheParameterGroupsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeCacheParameterGroupsMessage struct {
+type metadataDescribeCacheParameterGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeCacheParametersMessage struct {
+type DescribeCacheParameterGroupsOutput struct {
+	CacheParameterGroups []*CacheParameterGroup `locationNameList:"CacheParameterGroup" type:"list"`
+	Marker               *string                `type:"string"`
+
+	metadataDescribeCacheParameterGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeCacheParameterGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheParameterGroupsResult"`
+}
+
+type DescribeCacheParametersInput struct {
 	CacheParameterGroupName *string `type:"string"`
 	Marker                  *string `type:"string"`
 	MaxRecords              *int    `type:"integer"`
 	Source                  *string `type:"string"`
 
-	metadataDescribeCacheParametersMessage `json:"-", xml:"-"`
+	metadataDescribeCacheParametersInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeCacheParametersMessage struct {
+type metadataDescribeCacheParametersInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName"`
 }
 
-type DescribeCacheSecurityGroupsMessage struct {
+type DescribeCacheParametersOutput struct {
+	CacheNodeTypeSpecificParameters []*CacheNodeTypeSpecificParameter `locationNameList:"CacheNodeTypeSpecificParameter" type:"list"`
+	Marker                          *string                           `type:"string"`
+	Parameters                      []*Parameter                      `locationNameList:"Parameter" type:"list"`
+
+	metadataDescribeCacheParametersOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeCacheParametersOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheParametersResult"`
+}
+
+type DescribeCacheSecurityGroupsInput struct {
 	CacheSecurityGroupName *string `type:"string"`
 	Marker                 *string `type:"string"`
 	MaxRecords             *int    `type:"integer"`
 
-	metadataDescribeCacheSecurityGroupsMessage `json:"-", xml:"-"`
+	metadataDescribeCacheSecurityGroupsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeCacheSecurityGroupsMessage struct {
+type metadataDescribeCacheSecurityGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeCacheSubnetGroupsMessage struct {
+type DescribeCacheSecurityGroupsOutput struct {
+	CacheSecurityGroups []*CacheSecurityGroup `locationNameList:"CacheSecurityGroup" type:"list"`
+	Marker              *string               `type:"string"`
+
+	metadataDescribeCacheSecurityGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeCacheSecurityGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheSecurityGroupsResult"`
+}
+
+type DescribeCacheSubnetGroupsInput struct {
 	CacheSubnetGroupName *string `type:"string"`
 	Marker               *string `type:"string"`
 	MaxRecords           *int    `type:"integer"`
 
-	metadataDescribeCacheSubnetGroupsMessage `json:"-", xml:"-"`
+	metadataDescribeCacheSubnetGroupsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeCacheSubnetGroupsMessage struct {
+type metadataDescribeCacheSubnetGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeEngineDefaultParametersMessage struct {
+type DescribeCacheSubnetGroupsOutput struct {
+	CacheSubnetGroups []*CacheSubnetGroup `locationNameList:"CacheSubnetGroup" type:"list"`
+	Marker            *string             `type:"string"`
+
+	metadataDescribeCacheSubnetGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeCacheSubnetGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheSubnetGroupsResult"`
+}
+
+type DescribeEngineDefaultParametersInput struct {
 	CacheParameterGroupFamily *string `type:"string"`
 	Marker                    *string `type:"string"`
 	MaxRecords                *int    `type:"integer"`
 
-	metadataDescribeEngineDefaultParametersMessage `json:"-", xml:"-"`
+	metadataDescribeEngineDefaultParametersInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeEngineDefaultParametersMessage struct {
+type metadataDescribeEngineDefaultParametersInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupFamily"`
 }
 
@@ -1736,7 +1746,7 @@ type metadataDescribeEngineDefaultParametersOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEngineDefaultParametersResult"`
 }
 
-type DescribeEventsMessage struct {
+type DescribeEventsInput struct {
 	Duration         *int       `type:"integer"`
 	EndTime          *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	Marker           *string    `type:"string"`
@@ -1745,26 +1755,48 @@ type DescribeEventsMessage struct {
 	SourceType       *string    `type:"string"`
 	StartTime        *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeEventsMessage `json:"-", xml:"-"`
+	metadataDescribeEventsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeEventsMessage struct {
+type metadataDescribeEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeReplicationGroupsMessage struct {
+type DescribeEventsOutput struct {
+	Events []*Event `locationNameList:"Event" type:"list"`
+	Marker *string  `type:"string"`
+
+	metadataDescribeEventsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeEventsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventsResult"`
+}
+
+type DescribeReplicationGroupsInput struct {
 	Marker             *string `type:"string"`
 	MaxRecords         *int    `type:"integer"`
 	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string"`
 
-	metadataDescribeReplicationGroupsMessage `json:"-", xml:"-"`
+	metadataDescribeReplicationGroupsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeReplicationGroupsMessage struct {
+type metadataDescribeReplicationGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeReservedCacheNodesMessage struct {
+type DescribeReplicationGroupsOutput struct {
+	Marker            *string             `type:"string"`
+	ReplicationGroups []*ReplicationGroup `locationNameList:"ReplicationGroup" type:"list"`
+
+	metadataDescribeReplicationGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeReplicationGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReplicationGroupsResult"`
+}
+
+type DescribeReservedCacheNodesInput struct {
 	CacheNodeType                *string `type:"string"`
 	Duration                     *string `type:"string"`
 	Marker                       *string `type:"string"`
@@ -1774,14 +1806,14 @@ type DescribeReservedCacheNodesMessage struct {
 	ReservedCacheNodeID          *string `locationName:"ReservedCacheNodeId" type:"string"`
 	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
 
-	metadataDescribeReservedCacheNodesMessage `json:"-", xml:"-"`
+	metadataDescribeReservedCacheNodesInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeReservedCacheNodesMessage struct {
+type metadataDescribeReservedCacheNodesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeReservedCacheNodesOfferingsMessage struct {
+type DescribeReservedCacheNodesOfferingsInput struct {
 	CacheNodeType                *string `type:"string"`
 	Duration                     *string `type:"string"`
 	Marker                       *string `type:"string"`
@@ -1790,36 +1822,58 @@ type DescribeReservedCacheNodesOfferingsMessage struct {
 	ProductDescription           *string `type:"string"`
 	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
 
-	metadataDescribeReservedCacheNodesOfferingsMessage `json:"-", xml:"-"`
+	metadataDescribeReservedCacheNodesOfferingsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeReservedCacheNodesOfferingsMessage struct {
+type metadataDescribeReservedCacheNodesOfferingsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeSnapshotsListMessage struct {
-	Marker    *string     `type:"string"`
-	Snapshots []*Snapshot `locationNameList:"Snapshot" type:"list"`
+type DescribeReservedCacheNodesOfferingsOutput struct {
+	Marker                      *string                       `type:"string"`
+	ReservedCacheNodesOfferings []*ReservedCacheNodesOffering `locationNameList:"ReservedCacheNodesOffering" type:"list"`
 
-	metadataDescribeSnapshotsListMessage `json:"-", xml:"-"`
+	metadataDescribeReservedCacheNodesOfferingsOutput `json:"-", xml:"-"`
 }
 
-type metadataDescribeSnapshotsListMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeSnapshotsResult"`
+type metadataDescribeReservedCacheNodesOfferingsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedCacheNodesOfferingsResult"`
 }
 
-type DescribeSnapshotsMessage struct {
+type DescribeReservedCacheNodesOutput struct {
+	Marker             *string              `type:"string"`
+	ReservedCacheNodes []*ReservedCacheNode `locationNameList:"ReservedCacheNode" type:"list"`
+
+	metadataDescribeReservedCacheNodesOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeReservedCacheNodesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedCacheNodesResult"`
+}
+
+type DescribeSnapshotsInput struct {
 	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
 	Marker         *string `type:"string"`
 	MaxRecords     *int    `type:"integer"`
 	SnapshotName   *string `type:"string"`
 	SnapshotSource *string `type:"string"`
 
-	metadataDescribeSnapshotsMessage `json:"-", xml:"-"`
+	metadataDescribeSnapshotsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeSnapshotsMessage struct {
+type metadataDescribeSnapshotsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeSnapshotsOutput struct {
+	Marker    *string     `type:"string"`
+	Snapshots []*Snapshot `locationNameList:"Snapshot" type:"list"`
+
+	metadataDescribeSnapshotsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeSnapshotsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeSnapshotsResult"`
 }
 
 type EC2SecurityGroup struct {
@@ -1869,17 +1923,6 @@ type Event struct {
 
 type metadataEvent struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type EventsMessage struct {
-	Events []*Event `locationNameList:"Event" type:"list"`
-	Marker *string  `type:"string"`
-
-	metadataEventsMessage `json:"-", xml:"-"`
-}
-
-type metadataEventsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventsResult"`
 }
 
 type InsufficientCacheClusterCapacityFault struct {
@@ -1974,17 +2017,27 @@ type metadataInvalidVPCNetworkStateFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ListTagsForResourceMessage struct {
+type ListTagsForResourceInput struct {
 	ResourceName *string `type:"string"`
 
-	metadataListTagsForResourceMessage `json:"-", xml:"-"`
+	metadataListTagsForResourceInput `json:"-", xml:"-"`
 }
 
-type metadataListTagsForResourceMessage struct {
+type metadataListTagsForResourceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName"`
 }
 
-type ModifyCacheClusterMessage struct {
+type ListTagsForResourceOutput struct {
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
+	metadataListTagsForResourceOutput `json:"-", xml:"-"`
+}
+
+type metadataListTagsForResourceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ModifyCacheClusterInput struct {
 	AZMode                     *string   `type:"string"`
 	ApplyImmediately           *bool     `type:"boolean"`
 	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
@@ -2002,10 +2055,10 @@ type ModifyCacheClusterMessage struct {
 	SnapshotRetentionLimit     *int      `type:"integer"`
 	SnapshotWindow             *string   `type:"string"`
 
-	metadataModifyCacheClusterMessage `json:"-", xml:"-"`
+	metadataModifyCacheClusterInput `json:"-", xml:"-"`
 }
 
-type metadataModifyCacheClusterMessage struct {
+type metadataModifyCacheClusterInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheClusterId"`
 }
 
@@ -2019,26 +2072,36 @@ type metadataModifyCacheClusterOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyCacheClusterResult"`
 }
 
-type ModifyCacheParameterGroupMessage struct {
+type ModifyCacheParameterGroupInput struct {
 	CacheParameterGroupName *string               `type:"string"`
 	ParameterNameValues     []*ParameterNameValue `locationNameList:"ParameterNameValue" type:"list"`
 
-	metadataModifyCacheParameterGroupMessage `json:"-", xml:"-"`
+	metadataModifyCacheParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataModifyCacheParameterGroupMessage struct {
+type metadataModifyCacheParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName,ParameterNameValues"`
 }
 
-type ModifyCacheSubnetGroupMessage struct {
+type ModifyCacheParameterGroupOutput struct {
+	CacheParameterGroupName *string `type:"string"`
+
+	metadataModifyCacheParameterGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataModifyCacheParameterGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ModifyCacheSubnetGroupInput struct {
 	CacheSubnetGroupDescription *string   `type:"string"`
 	CacheSubnetGroupName        *string   `type:"string"`
 	SubnetIDs                   []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
 
-	metadataModifyCacheSubnetGroupMessage `json:"-", xml:"-"`
+	metadataModifyCacheSubnetGroupInput `json:"-", xml:"-"`
 }
 
-type metadataModifyCacheSubnetGroupMessage struct {
+type metadataModifyCacheSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheSubnetGroupName"`
 }
 
@@ -2052,7 +2115,7 @@ type metadataModifyCacheSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyCacheSubnetGroupResult"`
 }
 
-type ModifyReplicationGroupMessage struct {
+type ModifyReplicationGroupInput struct {
 	ApplyImmediately            *bool     `type:"boolean"`
 	AutoMinorVersionUpgrade     *bool     `type:"boolean"`
 	AutomaticFailoverEnabled    *bool     `type:"boolean"`
@@ -2070,10 +2133,10 @@ type ModifyReplicationGroupMessage struct {
 	SnapshotWindow              *string   `type:"string"`
 	SnapshottingClusterID       *string   `locationName:"SnapshottingClusterId" type:"string"`
 
-	metadataModifyReplicationGroupMessage `json:"-", xml:"-"`
+	metadataModifyReplicationGroupInput `json:"-", xml:"-"`
 }
 
-type metadataModifyReplicationGroupMessage struct {
+type metadataModifyReplicationGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ReplicationGroupId"`
 }
 
@@ -2194,15 +2257,15 @@ type metadataPendingModifiedValues struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type PurchaseReservedCacheNodesOfferingMessage struct {
+type PurchaseReservedCacheNodesOfferingInput struct {
 	CacheNodeCount               *int    `type:"integer"`
 	ReservedCacheNodeID          *string `locationName:"ReservedCacheNodeId" type:"string"`
 	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
 
-	metadataPurchaseReservedCacheNodesOfferingMessage `json:"-", xml:"-"`
+	metadataPurchaseReservedCacheNodesOfferingInput `json:"-", xml:"-"`
 }
 
-type metadataPurchaseReservedCacheNodesOfferingMessage struct {
+type metadataPurchaseReservedCacheNodesOfferingInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ReservedCacheNodesOfferingId"`
 }
 
@@ -2216,14 +2279,14 @@ type metadataPurchaseReservedCacheNodesOfferingOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"PurchaseReservedCacheNodesOfferingResult"`
 }
 
-type RebootCacheClusterMessage struct {
+type RebootCacheClusterInput struct {
 	CacheClusterID       *string   `locationName:"CacheClusterId" type:"string"`
 	CacheNodeIDsToReboot []*string `locationName:"CacheNodeIdsToReboot" locationNameList:"CacheNodeId" type:"list"`
 
-	metadataRebootCacheClusterMessage `json:"-", xml:"-"`
+	metadataRebootCacheClusterInput `json:"-", xml:"-"`
 }
 
-type metadataRebootCacheClusterMessage struct {
+type metadataRebootCacheClusterInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheClusterId,CacheNodeIdsToReboot"`
 }
 
@@ -2248,15 +2311,25 @@ type metadataRecurringCharge struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type RemoveTagsFromResourceMessage struct {
+type RemoveTagsFromResourceInput struct {
 	ResourceName *string   `type:"string"`
 	TagKeys      []*string `type:"list"`
 
-	metadataRemoveTagsFromResourceMessage `json:"-", xml:"-"`
+	metadataRemoveTagsFromResourceInput `json:"-", xml:"-"`
 }
 
-type metadataRemoveTagsFromResourceMessage struct {
+type metadataRemoveTagsFromResourceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName,TagKeys"`
+}
+
+type RemoveTagsFromResourceOutput struct {
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
+	metadataRemoveTagsFromResourceOutput `json:"-", xml:"-"`
+}
+
+type metadataRemoveTagsFromResourceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReplicationGroup struct {
@@ -2282,17 +2355,6 @@ type ReplicationGroupAlreadyExistsFault struct {
 
 type metadataReplicationGroupAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type ReplicationGroupMessage struct {
-	Marker            *string             `type:"string"`
-	ReplicationGroups []*ReplicationGroup `locationNameList:"ReplicationGroup" type:"list"`
-
-	metadataReplicationGroupMessage `json:"-", xml:"-"`
-}
-
-type metadataReplicationGroupMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReplicationGroupsResult"`
 }
 
 type ReplicationGroupNotFoundFault struct {
@@ -2343,17 +2405,6 @@ type metadataReservedCacheNodeAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ReservedCacheNodeMessage struct {
-	Marker             *string              `type:"string"`
-	ReservedCacheNodes []*ReservedCacheNode `locationNameList:"ReservedCacheNode" type:"list"`
-
-	metadataReservedCacheNodeMessage `json:"-", xml:"-"`
-}
-
-type metadataReservedCacheNodeMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedCacheNodesResult"`
-}
-
 type ReservedCacheNodeNotFoundFault struct {
 	metadataReservedCacheNodeNotFoundFault `json:"-", xml:"-"`
 }
@@ -2387,17 +2438,6 @@ type metadataReservedCacheNodesOffering struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ReservedCacheNodesOfferingMessage struct {
-	Marker                      *string                       `type:"string"`
-	ReservedCacheNodesOfferings []*ReservedCacheNodesOffering `locationNameList:"ReservedCacheNodesOffering" type:"list"`
-
-	metadataReservedCacheNodesOfferingMessage `json:"-", xml:"-"`
-}
-
-type metadataReservedCacheNodesOfferingMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedCacheNodesOfferingsResult"`
-}
-
 type ReservedCacheNodesOfferingNotFoundFault struct {
 	metadataReservedCacheNodesOfferingNotFoundFault `json:"-", xml:"-"`
 }
@@ -2406,27 +2446,37 @@ type metadataReservedCacheNodesOfferingNotFoundFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ResetCacheParameterGroupMessage struct {
+type ResetCacheParameterGroupInput struct {
 	CacheParameterGroupName *string               `type:"string"`
 	ParameterNameValues     []*ParameterNameValue `locationNameList:"ParameterNameValue" type:"list"`
 	ResetAllParameters      *bool                 `type:"boolean"`
 
-	metadataResetCacheParameterGroupMessage `json:"-", xml:"-"`
+	metadataResetCacheParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataResetCacheParameterGroupMessage struct {
+type metadataResetCacheParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName,ParameterNameValues"`
 }
 
-type RevokeCacheSecurityGroupIngressMessage struct {
+type ResetCacheParameterGroupOutput struct {
+	CacheParameterGroupName *string `type:"string"`
+
+	metadataResetCacheParameterGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataResetCacheParameterGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type RevokeCacheSecurityGroupIngressInput struct {
 	CacheSecurityGroupName  *string `type:"string"`
 	EC2SecurityGroupName    *string `type:"string"`
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
-	metadataRevokeCacheSecurityGroupIngressMessage `json:"-", xml:"-"`
+	metadataRevokeCacheSecurityGroupIngressInput `json:"-", xml:"-"`
 }
 
-type metadataRevokeCacheSecurityGroupIngressMessage struct {
+type metadataRevokeCacheSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheSecurityGroupName,EC2SecurityGroupName,EC2SecurityGroupOwnerId"`
 }
 
@@ -2549,7 +2599,7 @@ type TagListMessage struct {
 }
 
 type metadataTagListMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RemoveTagsFromResourceResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"AddTagsToResourceResult"`
 }
 
 type TagNotFoundFault struct {

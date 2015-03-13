@@ -159,7 +159,7 @@ func (c *ELB) CreateLBCookieStickinessPolicy(input *CreateLBCookieStickinessPoli
 var opCreateLBCookieStickinessPolicy *aws.Operation
 
 // CreateLoadBalancerRequest generates a request for the CreateLoadBalancer operation.
-func (c *ELB) CreateLoadBalancerRequest(input *CreateAccessPointInput) (req *aws.Request, output *CreateAccessPointOutput) {
+func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *aws.Request, output *CreateLoadBalancerOutput) {
 	if opCreateLoadBalancer == nil {
 		opCreateLoadBalancer = &aws.Operation{
 			Name:       "CreateLoadBalancer",
@@ -169,12 +169,12 @@ func (c *ELB) CreateLoadBalancerRequest(input *CreateAccessPointInput) (req *aws
 	}
 
 	req = aws.NewRequest(c.Service, opCreateLoadBalancer, input, output)
-	output = &CreateAccessPointOutput{}
+	output = &CreateLoadBalancerOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ELB) CreateLoadBalancer(input *CreateAccessPointInput) (output *CreateAccessPointOutput, err error) {
+func (c *ELB) CreateLoadBalancer(input *CreateLoadBalancerInput) (output *CreateLoadBalancerOutput, err error) {
 	req, out := c.CreateLoadBalancerRequest(input)
 	output = out
 	err = req.Send()
@@ -184,7 +184,7 @@ func (c *ELB) CreateLoadBalancer(input *CreateAccessPointInput) (output *CreateA
 var opCreateLoadBalancer *aws.Operation
 
 // CreateLoadBalancerListenersRequest generates a request for the CreateLoadBalancerListeners operation.
-func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListenerInput) (req *aws.Request, output *CreateLoadBalancerListenerOutput) {
+func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListenersInput) (req *aws.Request, output *CreateLoadBalancerListenersOutput) {
 	if opCreateLoadBalancerListeners == nil {
 		opCreateLoadBalancerListeners = &aws.Operation{
 			Name:       "CreateLoadBalancerListeners",
@@ -194,12 +194,12 @@ func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListen
 	}
 
 	req = aws.NewRequest(c.Service, opCreateLoadBalancerListeners, input, output)
-	output = &CreateLoadBalancerListenerOutput{}
+	output = &CreateLoadBalancerListenersOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ELB) CreateLoadBalancerListeners(input *CreateLoadBalancerListenerInput) (output *CreateLoadBalancerListenerOutput, err error) {
+func (c *ELB) CreateLoadBalancerListeners(input *CreateLoadBalancerListenersInput) (output *CreateLoadBalancerListenersOutput, err error) {
 	req, out := c.CreateLoadBalancerListenersRequest(input)
 	output = out
 	err = req.Send()
@@ -234,7 +234,7 @@ func (c *ELB) CreateLoadBalancerPolicy(input *CreateLoadBalancerPolicyInput) (ou
 var opCreateLoadBalancerPolicy *aws.Operation
 
 // DeleteLoadBalancerRequest generates a request for the DeleteLoadBalancer operation.
-func (c *ELB) DeleteLoadBalancerRequest(input *DeleteAccessPointInput) (req *aws.Request, output *DeleteAccessPointOutput) {
+func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *aws.Request, output *DeleteLoadBalancerOutput) {
 	if opDeleteLoadBalancer == nil {
 		opDeleteLoadBalancer = &aws.Operation{
 			Name:       "DeleteLoadBalancer",
@@ -244,12 +244,12 @@ func (c *ELB) DeleteLoadBalancerRequest(input *DeleteAccessPointInput) (req *aws
 	}
 
 	req = aws.NewRequest(c.Service, opDeleteLoadBalancer, input, output)
-	output = &DeleteAccessPointOutput{}
+	output = &DeleteLoadBalancerOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ELB) DeleteLoadBalancer(input *DeleteAccessPointInput) (output *DeleteAccessPointOutput, err error) {
+func (c *ELB) DeleteLoadBalancer(input *DeleteLoadBalancerInput) (output *DeleteLoadBalancerOutput, err error) {
 	req, out := c.DeleteLoadBalancerRequest(input)
 	output = out
 	err = req.Send()
@@ -259,7 +259,7 @@ func (c *ELB) DeleteLoadBalancer(input *DeleteAccessPointInput) (output *DeleteA
 var opDeleteLoadBalancer *aws.Operation
 
 // DeleteLoadBalancerListenersRequest generates a request for the DeleteLoadBalancerListeners operation.
-func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListenerInput) (req *aws.Request, output *DeleteLoadBalancerListenerOutput) {
+func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListenersInput) (req *aws.Request, output *DeleteLoadBalancerListenersOutput) {
 	if opDeleteLoadBalancerListeners == nil {
 		opDeleteLoadBalancerListeners = &aws.Operation{
 			Name:       "DeleteLoadBalancerListeners",
@@ -269,12 +269,12 @@ func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListen
 	}
 
 	req = aws.NewRequest(c.Service, opDeleteLoadBalancerListeners, input, output)
-	output = &DeleteLoadBalancerListenerOutput{}
+	output = &DeleteLoadBalancerListenersOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ELB) DeleteLoadBalancerListeners(input *DeleteLoadBalancerListenerInput) (output *DeleteLoadBalancerListenerOutput, err error) {
+func (c *ELB) DeleteLoadBalancerListeners(input *DeleteLoadBalancerListenersInput) (output *DeleteLoadBalancerListenersOutput, err error) {
 	req, out := c.DeleteLoadBalancerListenersRequest(input)
 	output = out
 	err = req.Send()
@@ -309,7 +309,7 @@ func (c *ELB) DeleteLoadBalancerPolicy(input *DeleteLoadBalancerPolicyInput) (ou
 var opDeleteLoadBalancerPolicy *aws.Operation
 
 // DeregisterInstancesFromLoadBalancerRequest generates a request for the DeregisterInstancesFromLoadBalancer operation.
-func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterEndPointsInput) (req *aws.Request, output *DeregisterEndPointsOutput) {
+func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstancesFromLoadBalancerInput) (req *aws.Request, output *DeregisterInstancesFromLoadBalancerOutput) {
 	if opDeregisterInstancesFromLoadBalancer == nil {
 		opDeregisterInstancesFromLoadBalancer = &aws.Operation{
 			Name:       "DeregisterInstancesFromLoadBalancer",
@@ -319,12 +319,12 @@ func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterEndPoi
 	}
 
 	req = aws.NewRequest(c.Service, opDeregisterInstancesFromLoadBalancer, input, output)
-	output = &DeregisterEndPointsOutput{}
+	output = &DeregisterInstancesFromLoadBalancerOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ELB) DeregisterInstancesFromLoadBalancer(input *DeregisterEndPointsInput) (output *DeregisterEndPointsOutput, err error) {
+func (c *ELB) DeregisterInstancesFromLoadBalancer(input *DeregisterInstancesFromLoadBalancerInput) (output *DeregisterInstancesFromLoadBalancerOutput, err error) {
 	req, out := c.DeregisterInstancesFromLoadBalancerRequest(input)
 	output = out
 	err = req.Send()
@@ -334,7 +334,7 @@ func (c *ELB) DeregisterInstancesFromLoadBalancer(input *DeregisterEndPointsInpu
 var opDeregisterInstancesFromLoadBalancer *aws.Operation
 
 // DescribeInstanceHealthRequest generates a request for the DescribeInstanceHealth operation.
-func (c *ELB) DescribeInstanceHealthRequest(input *DescribeEndPointStateInput) (req *aws.Request, output *DescribeEndPointStateOutput) {
+func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) (req *aws.Request, output *DescribeInstanceHealthOutput) {
 	if opDescribeInstanceHealth == nil {
 		opDescribeInstanceHealth = &aws.Operation{
 			Name:       "DescribeInstanceHealth",
@@ -344,12 +344,12 @@ func (c *ELB) DescribeInstanceHealthRequest(input *DescribeEndPointStateInput) (
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeInstanceHealth, input, output)
-	output = &DescribeEndPointStateOutput{}
+	output = &DescribeInstanceHealthOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ELB) DescribeInstanceHealth(input *DescribeEndPointStateInput) (output *DescribeEndPointStateOutput, err error) {
+func (c *ELB) DescribeInstanceHealth(input *DescribeInstanceHealthInput) (output *DescribeInstanceHealthOutput, err error) {
 	req, out := c.DescribeInstanceHealthRequest(input)
 	output = out
 	err = req.Send()
@@ -434,7 +434,7 @@ func (c *ELB) DescribeLoadBalancerPolicyTypes(input *DescribeLoadBalancerPolicyT
 var opDescribeLoadBalancerPolicyTypes *aws.Operation
 
 // DescribeLoadBalancersRequest generates a request for the DescribeLoadBalancers operation.
-func (c *ELB) DescribeLoadBalancersRequest(input *DescribeAccessPointsInput) (req *aws.Request, output *DescribeAccessPointsOutput) {
+func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *aws.Request, output *DescribeLoadBalancersOutput) {
 	if opDescribeLoadBalancers == nil {
 		opDescribeLoadBalancers = &aws.Operation{
 			Name:       "DescribeLoadBalancers",
@@ -444,12 +444,12 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeAccessPointsInput) (re
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeLoadBalancers, input, output)
-	output = &DescribeAccessPointsOutput{}
+	output = &DescribeLoadBalancersOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ELB) DescribeLoadBalancers(input *DescribeAccessPointsInput) (output *DescribeAccessPointsOutput, err error) {
+func (c *ELB) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (output *DescribeLoadBalancersOutput, err error) {
 	req, out := c.DescribeLoadBalancersRequest(input)
 	output = out
 	err = req.Send()
@@ -509,7 +509,7 @@ func (c *ELB) DetachLoadBalancerFromSubnets(input *DetachLoadBalancerFromSubnets
 var opDetachLoadBalancerFromSubnets *aws.Operation
 
 // DisableAvailabilityZonesForLoadBalancerRequest generates a request for the DisableAvailabilityZonesForLoadBalancer operation.
-func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *RemoveAvailabilityZonesInput) (req *aws.Request, output *RemoveAvailabilityZonesOutput) {
+func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvailabilityZonesForLoadBalancerInput) (req *aws.Request, output *DisableAvailabilityZonesForLoadBalancerOutput) {
 	if opDisableAvailabilityZonesForLoadBalancer == nil {
 		opDisableAvailabilityZonesForLoadBalancer = &aws.Operation{
 			Name:       "DisableAvailabilityZonesForLoadBalancer",
@@ -519,12 +519,12 @@ func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *RemoveAvaila
 	}
 
 	req = aws.NewRequest(c.Service, opDisableAvailabilityZonesForLoadBalancer, input, output)
-	output = &RemoveAvailabilityZonesOutput{}
+	output = &DisableAvailabilityZonesForLoadBalancerOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ELB) DisableAvailabilityZonesForLoadBalancer(input *RemoveAvailabilityZonesInput) (output *RemoveAvailabilityZonesOutput, err error) {
+func (c *ELB) DisableAvailabilityZonesForLoadBalancer(input *DisableAvailabilityZonesForLoadBalancerInput) (output *DisableAvailabilityZonesForLoadBalancerOutput, err error) {
 	req, out := c.DisableAvailabilityZonesForLoadBalancerRequest(input)
 	output = out
 	err = req.Send()
@@ -534,7 +534,7 @@ func (c *ELB) DisableAvailabilityZonesForLoadBalancer(input *RemoveAvailabilityZ
 var opDisableAvailabilityZonesForLoadBalancer *aws.Operation
 
 // EnableAvailabilityZonesForLoadBalancerRequest generates a request for the EnableAvailabilityZonesForLoadBalancer operation.
-func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *AddAvailabilityZonesInput) (req *aws.Request, output *AddAvailabilityZonesOutput) {
+func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailabilityZonesForLoadBalancerInput) (req *aws.Request, output *EnableAvailabilityZonesForLoadBalancerOutput) {
 	if opEnableAvailabilityZonesForLoadBalancer == nil {
 		opEnableAvailabilityZonesForLoadBalancer = &aws.Operation{
 			Name:       "EnableAvailabilityZonesForLoadBalancer",
@@ -544,12 +544,12 @@ func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *AddAvailabili
 	}
 
 	req = aws.NewRequest(c.Service, opEnableAvailabilityZonesForLoadBalancer, input, output)
-	output = &AddAvailabilityZonesOutput{}
+	output = &EnableAvailabilityZonesForLoadBalancerOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ELB) EnableAvailabilityZonesForLoadBalancer(input *AddAvailabilityZonesInput) (output *AddAvailabilityZonesOutput, err error) {
+func (c *ELB) EnableAvailabilityZonesForLoadBalancer(input *EnableAvailabilityZonesForLoadBalancerInput) (output *EnableAvailabilityZonesForLoadBalancerOutput, err error) {
 	req, out := c.EnableAvailabilityZonesForLoadBalancerRequest(input)
 	output = out
 	err = req.Send()
@@ -584,7 +584,7 @@ func (c *ELB) ModifyLoadBalancerAttributes(input *ModifyLoadBalancerAttributesIn
 var opModifyLoadBalancerAttributes *aws.Operation
 
 // RegisterInstancesWithLoadBalancerRequest generates a request for the RegisterInstancesWithLoadBalancer operation.
-func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterEndPointsInput) (req *aws.Request, output *RegisterEndPointsOutput) {
+func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesWithLoadBalancerInput) (req *aws.Request, output *RegisterInstancesWithLoadBalancerOutput) {
 	if opRegisterInstancesWithLoadBalancer == nil {
 		opRegisterInstancesWithLoadBalancer = &aws.Operation{
 			Name:       "RegisterInstancesWithLoadBalancer",
@@ -594,12 +594,12 @@ func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterEndPointsI
 	}
 
 	req = aws.NewRequest(c.Service, opRegisterInstancesWithLoadBalancer, input, output)
-	output = &RegisterEndPointsOutput{}
+	output = &RegisterInstancesWithLoadBalancerOutput{}
 	req.Data = output
 	return
 }
 
-func (c *ELB) RegisterInstancesWithLoadBalancer(input *RegisterEndPointsInput) (output *RegisterEndPointsOutput, err error) {
+func (c *ELB) RegisterInstancesWithLoadBalancer(input *RegisterInstancesWithLoadBalancerInput) (output *RegisterInstancesWithLoadBalancerOutput, err error) {
 	req, out := c.RegisterInstancesWithLoadBalancerRequest(input)
 	output = out
 	err = req.Send()
@@ -727,27 +727,6 @@ type AccessPointNotFoundException struct {
 
 type metadataAccessPointNotFoundException struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type AddAvailabilityZonesInput struct {
-	AvailabilityZones []*string `type:"list"`
-	LoadBalancerName  *string   `type:"string"`
-
-	metadataAddAvailabilityZonesInput `json:"-", xml:"-"`
-}
-
-type metadataAddAvailabilityZonesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,AvailabilityZones"`
-}
-
-type AddAvailabilityZonesOutput struct {
-	AvailabilityZones []*string `type:"list"`
-
-	metadataAddAvailabilityZonesOutput `json:"-", xml:"-"`
-}
-
-type metadataAddAvailabilityZonesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"EnableAvailabilityZonesForLoadBalancerResult"`
 }
 
 type AddTagsInput struct {
@@ -894,32 +873,6 @@ type metadataConnectionSettings struct {
 	SDKShapeTraits bool `type:"structure" required:"IdleTimeout"`
 }
 
-type CreateAccessPointInput struct {
-	AvailabilityZones []*string   `type:"list"`
-	Listeners         []*Listener `type:"list"`
-	LoadBalancerName  *string     `type:"string"`
-	Scheme            *string     `type:"string"`
-	SecurityGroups    []*string   `type:"list"`
-	Subnets           []*string   `type:"list"`
-	Tags              []*Tag      `type:"list"`
-
-	metadataCreateAccessPointInput `json:"-", xml:"-"`
-}
-
-type metadataCreateAccessPointInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,Listeners"`
-}
-
-type CreateAccessPointOutput struct {
-	DNSName *string `type:"string"`
-
-	metadataCreateAccessPointOutput `json:"-", xml:"-"`
-}
-
-type metadataCreateAccessPointOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateLoadBalancerResult"`
-}
-
 type CreateAppCookieStickinessPolicyInput struct {
 	CookieName       *string `type:"string"`
 	LoadBalancerName *string `type:"string"`
@@ -960,23 +913,49 @@ type metadataCreateLBCookieStickinessPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateLBCookieStickinessPolicyResult"`
 }
 
-type CreateLoadBalancerListenerInput struct {
-	Listeners        []*Listener `type:"list"`
-	LoadBalancerName *string     `type:"string"`
+type CreateLoadBalancerInput struct {
+	AvailabilityZones []*string   `type:"list"`
+	Listeners         []*Listener `type:"list"`
+	LoadBalancerName  *string     `type:"string"`
+	Scheme            *string     `type:"string"`
+	SecurityGroups    []*string   `type:"list"`
+	Subnets           []*string   `type:"list"`
+	Tags              []*Tag      `type:"list"`
 
-	metadataCreateLoadBalancerListenerInput `json:"-", xml:"-"`
+	metadataCreateLoadBalancerInput `json:"-", xml:"-"`
 }
 
-type metadataCreateLoadBalancerListenerInput struct {
+type metadataCreateLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,Listeners"`
 }
 
-type CreateLoadBalancerListenerOutput struct {
-	metadataCreateLoadBalancerListenerOutput `json:"-", xml:"-"`
+type CreateLoadBalancerListenersInput struct {
+	Listeners        []*Listener `type:"list"`
+	LoadBalancerName *string     `type:"string"`
+
+	metadataCreateLoadBalancerListenersInput `json:"-", xml:"-"`
 }
 
-type metadataCreateLoadBalancerListenerOutput struct {
+type metadataCreateLoadBalancerListenersInput struct {
+	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,Listeners"`
+}
+
+type CreateLoadBalancerListenersOutput struct {
+	metadataCreateLoadBalancerListenersOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateLoadBalancerListenersOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateLoadBalancerListenersResult"`
+}
+
+type CreateLoadBalancerOutput struct {
+	DNSName *string `type:"string"`
+
+	metadataCreateLoadBalancerOutput `json:"-", xml:"-"`
+}
+
+type metadataCreateLoadBalancerOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateLoadBalancerResult"`
 }
 
 type CreateLoadBalancerPolicyInput struct {
@@ -1010,41 +989,41 @@ type metadataCrossZoneLoadBalancing struct {
 	SDKShapeTraits bool `type:"structure" required:"Enabled"`
 }
 
-type DeleteAccessPointInput struct {
+type DeleteLoadBalancerInput struct {
 	LoadBalancerName *string `type:"string"`
 
-	metadataDeleteAccessPointInput `json:"-", xml:"-"`
+	metadataDeleteLoadBalancerInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteAccessPointInput struct {
+type metadataDeleteLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName"`
 }
 
-type DeleteAccessPointOutput struct {
-	metadataDeleteAccessPointOutput `json:"-", xml:"-"`
-}
-
-type metadataDeleteAccessPointOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteLoadBalancerResult"`
-}
-
-type DeleteLoadBalancerListenerInput struct {
+type DeleteLoadBalancerListenersInput struct {
 	LoadBalancerName  *string `type:"string"`
 	LoadBalancerPorts []*int  `type:"list"`
 
-	metadataDeleteLoadBalancerListenerInput `json:"-", xml:"-"`
+	metadataDeleteLoadBalancerListenersInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteLoadBalancerListenerInput struct {
+type metadataDeleteLoadBalancerListenersInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,LoadBalancerPorts"`
 }
 
-type DeleteLoadBalancerListenerOutput struct {
-	metadataDeleteLoadBalancerListenerOutput `json:"-", xml:"-"`
+type DeleteLoadBalancerListenersOutput struct {
+	metadataDeleteLoadBalancerListenersOutput `json:"-", xml:"-"`
 }
 
-type metadataDeleteLoadBalancerListenerOutput struct {
+type metadataDeleteLoadBalancerListenersOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteLoadBalancerListenersResult"`
+}
+
+type DeleteLoadBalancerOutput struct {
+	metadataDeleteLoadBalancerOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteLoadBalancerOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteLoadBalancerResult"`
 }
 
 type DeleteLoadBalancerPolicyInput struct {
@@ -1066,68 +1045,45 @@ type metadataDeleteLoadBalancerPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteLoadBalancerPolicyResult"`
 }
 
-type DeregisterEndPointsInput struct {
+type DeregisterInstancesFromLoadBalancerInput struct {
 	Instances        []*Instance `type:"list"`
 	LoadBalancerName *string     `type:"string"`
 
-	metadataDeregisterEndPointsInput `json:"-", xml:"-"`
+	metadataDeregisterInstancesFromLoadBalancerInput `json:"-", xml:"-"`
 }
 
-type metadataDeregisterEndPointsInput struct {
+type metadataDeregisterInstancesFromLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,Instances"`
 }
 
-type DeregisterEndPointsOutput struct {
+type DeregisterInstancesFromLoadBalancerOutput struct {
 	Instances []*Instance `type:"list"`
 
-	metadataDeregisterEndPointsOutput `json:"-", xml:"-"`
+	metadataDeregisterInstancesFromLoadBalancerOutput `json:"-", xml:"-"`
 }
 
-type metadataDeregisterEndPointsOutput struct {
+type metadataDeregisterInstancesFromLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DeregisterInstancesFromLoadBalancerResult"`
 }
 
-type DescribeAccessPointsInput struct {
-	LoadBalancerNames []*string `type:"list"`
-	Marker            *string   `type:"string"`
-	PageSize          *int      `type:"integer"`
-
-	metadataDescribeAccessPointsInput `json:"-", xml:"-"`
-}
-
-type metadataDescribeAccessPointsInput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DescribeAccessPointsOutput struct {
-	LoadBalancerDescriptions []*LoadBalancerDescription `type:"list"`
-	NextMarker               *string                    `type:"string"`
-
-	metadataDescribeAccessPointsOutput `json:"-", xml:"-"`
-}
-
-type metadataDescribeAccessPointsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLoadBalancersResult"`
-}
-
-type DescribeEndPointStateInput struct {
+type DescribeInstanceHealthInput struct {
 	Instances        []*Instance `type:"list"`
 	LoadBalancerName *string     `type:"string"`
 
-	metadataDescribeEndPointStateInput `json:"-", xml:"-"`
+	metadataDescribeInstanceHealthInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeEndPointStateInput struct {
+type metadataDescribeInstanceHealthInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName"`
 }
 
-type DescribeEndPointStateOutput struct {
+type DescribeInstanceHealthOutput struct {
 	InstanceStates []*InstanceState `type:"list"`
 
-	metadataDescribeEndPointStateOutput `json:"-", xml:"-"`
+	metadataDescribeInstanceHealthOutput `json:"-", xml:"-"`
 }
 
-type metadataDescribeEndPointStateOutput struct {
+type metadataDescribeInstanceHealthOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeInstanceHealthResult"`
 }
 
@@ -1192,6 +1148,29 @@ type metadataDescribeLoadBalancerPolicyTypesOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLoadBalancerPolicyTypesResult"`
 }
 
+type DescribeLoadBalancersInput struct {
+	LoadBalancerNames []*string `type:"list"`
+	Marker            *string   `type:"string"`
+	PageSize          *int      `type:"integer"`
+
+	metadataDescribeLoadBalancersInput `json:"-", xml:"-"`
+}
+
+type metadataDescribeLoadBalancersInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeLoadBalancersOutput struct {
+	LoadBalancerDescriptions []*LoadBalancerDescription `type:"list"`
+	NextMarker               *string                    `type:"string"`
+
+	metadataDescribeLoadBalancersOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeLoadBalancersOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLoadBalancersResult"`
+}
+
 type DescribeTagsInput struct {
 	LoadBalancerNames []*string `type:"list"`
 
@@ -1233,6 +1212,27 @@ type metadataDetachLoadBalancerFromSubnetsOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DetachLoadBalancerFromSubnetsResult"`
 }
 
+type DisableAvailabilityZonesForLoadBalancerInput struct {
+	AvailabilityZones []*string `type:"list"`
+	LoadBalancerName  *string   `type:"string"`
+
+	metadataDisableAvailabilityZonesForLoadBalancerInput `json:"-", xml:"-"`
+}
+
+type metadataDisableAvailabilityZonesForLoadBalancerInput struct {
+	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,AvailabilityZones"`
+}
+
+type DisableAvailabilityZonesForLoadBalancerOutput struct {
+	AvailabilityZones []*string `type:"list"`
+
+	metadataDisableAvailabilityZonesForLoadBalancerOutput `json:"-", xml:"-"`
+}
+
+type metadataDisableAvailabilityZonesForLoadBalancerOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DisableAvailabilityZonesForLoadBalancerResult"`
+}
+
 type DuplicateAccessPointNameException struct {
 	metadataDuplicateAccessPointNameException `json:"-", xml:"-"`
 }
@@ -1263,6 +1263,27 @@ type DuplicateTagKeysException struct {
 
 type metadataDuplicateTagKeysException struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+type EnableAvailabilityZonesForLoadBalancerInput struct {
+	AvailabilityZones []*string `type:"list"`
+	LoadBalancerName  *string   `type:"string"`
+
+	metadataEnableAvailabilityZonesForLoadBalancerInput `json:"-", xml:"-"`
+}
+
+type metadataEnableAvailabilityZonesForLoadBalancerInput struct {
+	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,AvailabilityZones"`
+}
+
+type EnableAvailabilityZonesForLoadBalancerOutput struct {
+	AvailabilityZones []*string `type:"list"`
+
+	metadataEnableAvailabilityZonesForLoadBalancerOutput `json:"-", xml:"-"`
+}
+
+type metadataEnableAvailabilityZonesForLoadBalancerOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"EnableAvailabilityZonesForLoadBalancerResult"`
 }
 
 type HealthCheck struct {
@@ -1543,46 +1564,25 @@ type metadataPolicyTypeNotFoundException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type RegisterEndPointsInput struct {
+type RegisterInstancesWithLoadBalancerInput struct {
 	Instances        []*Instance `type:"list"`
 	LoadBalancerName *string     `type:"string"`
 
-	metadataRegisterEndPointsInput `json:"-", xml:"-"`
+	metadataRegisterInstancesWithLoadBalancerInput `json:"-", xml:"-"`
 }
 
-type metadataRegisterEndPointsInput struct {
+type metadataRegisterInstancesWithLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,Instances"`
 }
 
-type RegisterEndPointsOutput struct {
+type RegisterInstancesWithLoadBalancerOutput struct {
 	Instances []*Instance `type:"list"`
 
-	metadataRegisterEndPointsOutput `json:"-", xml:"-"`
+	metadataRegisterInstancesWithLoadBalancerOutput `json:"-", xml:"-"`
 }
 
-type metadataRegisterEndPointsOutput struct {
+type metadataRegisterInstancesWithLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"RegisterInstancesWithLoadBalancerResult"`
-}
-
-type RemoveAvailabilityZonesInput struct {
-	AvailabilityZones []*string `type:"list"`
-	LoadBalancerName  *string   `type:"string"`
-
-	metadataRemoveAvailabilityZonesInput `json:"-", xml:"-"`
-}
-
-type metadataRemoveAvailabilityZonesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,AvailabilityZones"`
-}
-
-type RemoveAvailabilityZonesOutput struct {
-	AvailabilityZones []*string `type:"list"`
-
-	metadataRemoveAvailabilityZonesOutput `json:"-", xml:"-"`
-}
-
-type metadataRemoveAvailabilityZonesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DisableAvailabilityZonesForLoadBalancerResult"`
 }
 
 type RemoveTagsInput struct {

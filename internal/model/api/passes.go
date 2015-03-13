@@ -100,19 +100,48 @@ func (r *referenceResolver) resolveShape(shape *Shape) {
 	}
 }
 
+func removeReference(refs []*ShapeRef, ref *ShapeRef) []*ShapeRef {
+	list := []*ShapeRef{}
+	for _, v := range refs {
+		if v != ref {
+			list = append(list, ref)
+		}
+	}
+	return list
+}
+
+func (a *API) createShapeFromRef(ref *ShapeRef, name string) {
+	// create a new copy of this shape
+	copy := *ref.Shape
+	copy.ShapeName = name
+	copy.refs = []*ShapeRef{ref}
+	removeReference(ref.Shape.refs, ref)
+
+	// add this copy to shape list and update ref
+	a.Shapes[name] = &copy
+	ref.ShapeName = name
+}
+
 func (a *API) renameToplevelShapes() {
 	for _, v := range a.Operations {
-		name := v.InputRef.ShapeName
-		if strings.HasSuffix(name, "Request") {
-			v.InputRef.Shape.Rename(strings.Replace(name, "Request", "Input", -1))
+		if v.HasInput() {
+			name := v.ExportedName + "Input"
+			switch n := len(v.InputRef.Shape.refs); {
+			case n == 1:
+				v.InputRef.Shape.Rename(name)
+			case n > 1 && v.InputRef.ResultWrapper != "":
+				a.createShapeFromRef(&v.InputRef, name)
+			}
 		}
-
-		name = v.OutputRef.ShapeName
-		if strings.HasSuffix(name, "Response") || strings.HasSuffix(name, "Result") {
-			re := regexp.MustCompile(`(Response|Result)$`)
-			v.OutputRef.Shape.Rename(re.ReplaceAllString(name, "Output"))
+		if v.HasOutput() {
+			name := v.ExportedName + "Output"
+			switch n := len(v.OutputRef.Shape.refs); {
+			case n == 1:
+				v.OutputRef.Shape.Rename(name)
+			case n > 1 && v.OutputRef.ResultWrapper != "":
+				a.createShapeFromRef(&v.OutputRef, name)
+			}
 		}
-
 		v.InputRef.Payload = a.ExportableName(v.InputRef.Payload)
 		v.OutputRef.Payload = a.ExportableName(v.OutputRef.Payload)
 	}
@@ -173,10 +202,12 @@ func (a *API) createInputOutputShapes() {
 		if !v.HasInput() {
 			shape := a.makeIOShape(v.ExportedName + "Input")
 			v.InputRef = ShapeRef{API: a, ShapeName: shape.ShapeName, Shape: shape}
+			shape.refs = append(shape.refs, &v.InputRef)
 		}
 		if !v.HasOutput() {
 			shape := a.makeIOShape(v.ExportedName + "Output")
 			v.OutputRef = ShapeRef{API: a, ShapeName: shape.ShapeName, Shape: shape}
+			shape.refs = append(shape.refs, &v.OutputRef)
 		}
 	}
 }
@@ -265,9 +296,8 @@ func (a *API) ExportableName(name string) string {
 
 	if failed {
 		return name
-	} else {
-		return out
 	}
+	return out
 }
 
 var whitelistExportNames = func() map[string]string {

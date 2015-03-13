@@ -184,7 +184,7 @@ func (c *SWF) DeprecateWorkflowType(input *DeprecateWorkflowTypeInput) (output *
 var opDeprecateWorkflowType *aws.Operation
 
 // DescribeActivityTypeRequest generates a request for the DescribeActivityType operation.
-func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req *aws.Request, output *ActivityTypeDetail) {
+func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req *aws.Request, output *DescribeActivityTypeOutput) {
 	if opDescribeActivityType == nil {
 		opDescribeActivityType = &aws.Operation{
 			Name:       "DescribeActivityType",
@@ -194,12 +194,12 @@ func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeActivityType, input, output)
-	output = &ActivityTypeDetail{}
+	output = &DescribeActivityTypeOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) DescribeActivityType(input *DescribeActivityTypeInput) (output *ActivityTypeDetail, err error) {
+func (c *SWF) DescribeActivityType(input *DescribeActivityTypeInput) (output *DescribeActivityTypeOutput, err error) {
 	req, out := c.DescribeActivityTypeRequest(input)
 	output = out
 	err = req.Send()
@@ -209,7 +209,7 @@ func (c *SWF) DescribeActivityType(input *DescribeActivityTypeInput) (output *Ac
 var opDescribeActivityType *aws.Operation
 
 // DescribeDomainRequest generates a request for the DescribeDomain operation.
-func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *aws.Request, output *DomainDetail) {
+func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *aws.Request, output *DescribeDomainOutput) {
 	if opDescribeDomain == nil {
 		opDescribeDomain = &aws.Operation{
 			Name:       "DescribeDomain",
@@ -219,12 +219,12 @@ func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *aws.Reques
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeDomain, input, output)
-	output = &DomainDetail{}
+	output = &DescribeDomainOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) DescribeDomain(input *DescribeDomainInput) (output *DomainDetail, err error) {
+func (c *SWF) DescribeDomain(input *DescribeDomainInput) (output *DescribeDomainOutput, err error) {
 	req, out := c.DescribeDomainRequest(input)
 	output = out
 	err = req.Send()
@@ -234,7 +234,7 @@ func (c *SWF) DescribeDomain(input *DescribeDomainInput) (output *DomainDetail, 
 var opDescribeDomain *aws.Operation
 
 // DescribeWorkflowExecutionRequest generates a request for the DescribeWorkflowExecution operation.
-func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionInput) (req *aws.Request, output *WorkflowExecutionDetail) {
+func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionInput) (req *aws.Request, output *DescribeWorkflowExecutionOutput) {
 	if opDescribeWorkflowExecution == nil {
 		opDescribeWorkflowExecution = &aws.Operation{
 			Name:       "DescribeWorkflowExecution",
@@ -244,12 +244,12 @@ func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionI
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeWorkflowExecution, input, output)
-	output = &WorkflowExecutionDetail{}
+	output = &DescribeWorkflowExecutionOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) DescribeWorkflowExecution(input *DescribeWorkflowExecutionInput) (output *WorkflowExecutionDetail, err error) {
+func (c *SWF) DescribeWorkflowExecution(input *DescribeWorkflowExecutionInput) (output *DescribeWorkflowExecutionOutput, err error) {
 	req, out := c.DescribeWorkflowExecutionRequest(input)
 	output = out
 	err = req.Send()
@@ -259,7 +259,7 @@ func (c *SWF) DescribeWorkflowExecution(input *DescribeWorkflowExecutionInput) (
 var opDescribeWorkflowExecution *aws.Operation
 
 // DescribeWorkflowTypeRequest generates a request for the DescribeWorkflowType operation.
-func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req *aws.Request, output *WorkflowTypeDetail) {
+func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req *aws.Request, output *DescribeWorkflowTypeOutput) {
 	if opDescribeWorkflowType == nil {
 		opDescribeWorkflowType = &aws.Operation{
 			Name:       "DescribeWorkflowType",
@@ -269,12 +269,12 @@ func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeWorkflowType, input, output)
-	output = &WorkflowTypeDetail{}
+	output = &DescribeWorkflowTypeOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) DescribeWorkflowType(input *DescribeWorkflowTypeInput) (output *WorkflowTypeDetail, err error) {
+func (c *SWF) DescribeWorkflowType(input *DescribeWorkflowTypeInput) (output *DescribeWorkflowTypeOutput, err error) {
 	req, out := c.DescribeWorkflowTypeRequest(input)
 	output = out
 	err = req.Send()
@@ -284,7 +284,7 @@ func (c *SWF) DescribeWorkflowType(input *DescribeWorkflowTypeInput) (output *Wo
 var opDescribeWorkflowType *aws.Operation
 
 // GetWorkflowExecutionHistoryRequest generates a request for the GetWorkflowExecutionHistory operation.
-func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHistoryInput) (req *aws.Request, output *History) {
+func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHistoryInput) (req *aws.Request, output *GetWorkflowExecutionHistoryOutput) {
 	if opGetWorkflowExecutionHistory == nil {
 		opGetWorkflowExecutionHistory = &aws.Operation{
 			Name:       "GetWorkflowExecutionHistory",
@@ -294,12 +294,12 @@ func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHist
 	}
 
 	req = aws.NewRequest(c.Service, opGetWorkflowExecutionHistory, input, output)
-	output = &History{}
+	output = &GetWorkflowExecutionHistoryOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) GetWorkflowExecutionHistory(input *GetWorkflowExecutionHistoryInput) (output *History, err error) {
+func (c *SWF) GetWorkflowExecutionHistory(input *GetWorkflowExecutionHistoryInput) (output *GetWorkflowExecutionHistoryOutput, err error) {
 	req, out := c.GetWorkflowExecutionHistoryRequest(input)
 	output = out
 	err = req.Send()
@@ -309,7 +309,7 @@ func (c *SWF) GetWorkflowExecutionHistory(input *GetWorkflowExecutionHistoryInpu
 var opGetWorkflowExecutionHistory *aws.Operation
 
 // ListActivityTypesRequest generates a request for the ListActivityTypes operation.
-func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *aws.Request, output *ActivityTypeInfos) {
+func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *aws.Request, output *ListActivityTypesOutput) {
 	if opListActivityTypes == nil {
 		opListActivityTypes = &aws.Operation{
 			Name:       "ListActivityTypes",
@@ -319,12 +319,12 @@ func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *aws.
 	}
 
 	req = aws.NewRequest(c.Service, opListActivityTypes, input, output)
-	output = &ActivityTypeInfos{}
+	output = &ListActivityTypesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) ListActivityTypes(input *ListActivityTypesInput) (output *ActivityTypeInfos, err error) {
+func (c *SWF) ListActivityTypes(input *ListActivityTypesInput) (output *ListActivityTypesOutput, err error) {
 	req, out := c.ListActivityTypesRequest(input)
 	output = out
 	err = req.Send()
@@ -359,7 +359,7 @@ func (c *SWF) ListClosedWorkflowExecutions(input *ListClosedWorkflowExecutionsIn
 var opListClosedWorkflowExecutions *aws.Operation
 
 // ListDomainsRequest generates a request for the ListDomains operation.
-func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, output *DomainInfos) {
+func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, output *ListDomainsOutput) {
 	if opListDomains == nil {
 		opListDomains = &aws.Operation{
 			Name:       "ListDomains",
@@ -369,12 +369,12 @@ func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, out
 	}
 
 	req = aws.NewRequest(c.Service, opListDomains, input, output)
-	output = &DomainInfos{}
+	output = &ListDomainsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) ListDomains(input *ListDomainsInput) (output *DomainInfos, err error) {
+func (c *SWF) ListDomains(input *ListDomainsInput) (output *ListDomainsOutput, err error) {
 	req, out := c.ListDomainsRequest(input)
 	output = out
 	err = req.Send()
@@ -409,7 +409,7 @@ func (c *SWF) ListOpenWorkflowExecutions(input *ListOpenWorkflowExecutionsInput)
 var opListOpenWorkflowExecutions *aws.Operation
 
 // ListWorkflowTypesRequest generates a request for the ListWorkflowTypes operation.
-func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *aws.Request, output *WorkflowTypeInfos) {
+func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *aws.Request, output *ListWorkflowTypesOutput) {
 	if opListWorkflowTypes == nil {
 		opListWorkflowTypes = &aws.Operation{
 			Name:       "ListWorkflowTypes",
@@ -419,12 +419,12 @@ func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *aws.
 	}
 
 	req = aws.NewRequest(c.Service, opListWorkflowTypes, input, output)
-	output = &WorkflowTypeInfos{}
+	output = &ListWorkflowTypesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) ListWorkflowTypes(input *ListWorkflowTypesInput) (output *WorkflowTypeInfos, err error) {
+func (c *SWF) ListWorkflowTypes(input *ListWorkflowTypesInput) (output *ListWorkflowTypesOutput, err error) {
 	req, out := c.ListWorkflowTypesRequest(input)
 	output = out
 	err = req.Send()
@@ -434,7 +434,7 @@ func (c *SWF) ListWorkflowTypes(input *ListWorkflowTypesInput) (output *Workflow
 var opListWorkflowTypes *aws.Operation
 
 // PollForActivityTaskRequest generates a request for the PollForActivityTask operation.
-func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *aws.Request, output *ActivityTask) {
+func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *aws.Request, output *PollForActivityTaskOutput) {
 	if opPollForActivityTask == nil {
 		opPollForActivityTask = &aws.Operation{
 			Name:       "PollForActivityTask",
@@ -444,12 +444,12 @@ func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *
 	}
 
 	req = aws.NewRequest(c.Service, opPollForActivityTask, input, output)
-	output = &ActivityTask{}
+	output = &PollForActivityTaskOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) PollForActivityTask(input *PollForActivityTaskInput) (output *ActivityTask, err error) {
+func (c *SWF) PollForActivityTask(input *PollForActivityTaskInput) (output *PollForActivityTaskOutput, err error) {
 	req, out := c.PollForActivityTaskRequest(input)
 	output = out
 	err = req.Send()
@@ -459,7 +459,7 @@ func (c *SWF) PollForActivityTask(input *PollForActivityTaskInput) (output *Acti
 var opPollForActivityTask *aws.Operation
 
 // PollForDecisionTaskRequest generates a request for the PollForDecisionTask operation.
-func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *aws.Request, output *DecisionTask) {
+func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *aws.Request, output *PollForDecisionTaskOutput) {
 	if opPollForDecisionTask == nil {
 		opPollForDecisionTask = &aws.Operation{
 			Name:       "PollForDecisionTask",
@@ -469,12 +469,12 @@ func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *
 	}
 
 	req = aws.NewRequest(c.Service, opPollForDecisionTask, input, output)
-	output = &DecisionTask{}
+	output = &PollForDecisionTaskOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) PollForDecisionTask(input *PollForDecisionTaskInput) (output *DecisionTask, err error) {
+func (c *SWF) PollForDecisionTask(input *PollForDecisionTaskInput) (output *PollForDecisionTaskOutput, err error) {
 	req, out := c.PollForDecisionTaskRequest(input)
 	output = out
 	err = req.Send()
@@ -484,7 +484,7 @@ func (c *SWF) PollForDecisionTask(input *PollForDecisionTaskInput) (output *Deci
 var opPollForDecisionTask *aws.Operation
 
 // RecordActivityTaskHeartbeatRequest generates a request for the RecordActivityTaskHeartbeat operation.
-func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartbeatInput) (req *aws.Request, output *ActivityTaskStatus) {
+func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartbeatInput) (req *aws.Request, output *RecordActivityTaskHeartbeatOutput) {
 	if opRecordActivityTaskHeartbeat == nil {
 		opRecordActivityTaskHeartbeat = &aws.Operation{
 			Name:       "RecordActivityTaskHeartbeat",
@@ -494,12 +494,12 @@ func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartb
 	}
 
 	req = aws.NewRequest(c.Service, opRecordActivityTaskHeartbeat, input, output)
-	output = &ActivityTaskStatus{}
+	output = &RecordActivityTaskHeartbeatOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) RecordActivityTaskHeartbeat(input *RecordActivityTaskHeartbeatInput) (output *ActivityTaskStatus, err error) {
+func (c *SWF) RecordActivityTaskHeartbeat(input *RecordActivityTaskHeartbeatInput) (output *RecordActivityTaskHeartbeatOutput, err error) {
 	req, out := c.RecordActivityTaskHeartbeatRequest(input)
 	output = out
 	err = req.Send()
@@ -734,7 +734,7 @@ func (c *SWF) SignalWorkflowExecution(input *SignalWorkflowExecutionInput) (outp
 var opSignalWorkflowExecution *aws.Operation
 
 // StartWorkflowExecutionRequest generates a request for the StartWorkflowExecution operation.
-func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) (req *aws.Request, output *Run) {
+func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) (req *aws.Request, output *StartWorkflowExecutionOutput) {
 	if opStartWorkflowExecution == nil {
 		opStartWorkflowExecution = &aws.Operation{
 			Name:       "StartWorkflowExecution",
@@ -744,12 +744,12 @@ func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) 
 	}
 
 	req = aws.NewRequest(c.Service, opStartWorkflowExecution, input, output)
-	output = &Run{}
+	output = &StartWorkflowExecutionOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SWF) StartWorkflowExecution(input *StartWorkflowExecutionInput) (output *Run, err error) {
+func (c *SWF) StartWorkflowExecution(input *StartWorkflowExecutionInput) (output *StartWorkflowExecutionOutput, err error) {
 	req, out := c.StartWorkflowExecutionRequest(input)
 	output = out
 	err = req.Send()
@@ -782,21 +782,6 @@ func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput)
 }
 
 var opTerminateWorkflowExecution *aws.Operation
-
-type ActivityTask struct {
-	ActivityID        *string            `locationName:"activityId" type:"string" json:"activityId,omitempty"`
-	ActivityType      *ActivityType      `locationName:"activityType" type:"structure" json:"activityType,omitempty"`
-	Input             *string            `locationName:"input" type:"string" json:"input,omitempty"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" json:"startedEventId,omitempty"`
-	TaskToken         *string            `locationName:"taskToken" type:"string" json:"taskToken,omitempty"`
-	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" json:"workflowExecution,omitempty"`
-
-	metadataActivityTask `json:"-", xml:"-"`
-}
-
-type metadataActivityTask struct {
-	SDKShapeTraits bool `type:"structure" required:"taskToken,activityId,startedEventId,workflowExecution,activityType" json:",omitempty"`
-}
 
 type ActivityTaskCancelRequestedEventAttributes struct {
 	ActivityID                   *string `locationName:"activityId" type:"string" json:"activityId,omitempty"`
@@ -878,16 +863,6 @@ type metadataActivityTaskStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure" required:"scheduledEventId" json:",omitempty"`
 }
 
-type ActivityTaskStatus struct {
-	CancelRequested *bool `locationName:"cancelRequested" type:"boolean" json:"cancelRequested,omitempty"`
-
-	metadataActivityTaskStatus `json:"-", xml:"-"`
-}
-
-type metadataActivityTaskStatus struct {
-	SDKShapeTraits bool `type:"structure" required:"cancelRequested" json:",omitempty"`
-}
-
 type ActivityTaskTimedOutEventAttributes struct {
 	Details          *string `locationName:"details" type:"string" json:"details,omitempty"`
 	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" json:"scheduledEventId,omitempty"`
@@ -927,17 +902,6 @@ type metadataActivityTypeConfiguration struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type ActivityTypeDetail struct {
-	Configuration *ActivityTypeConfiguration `locationName:"configuration" type:"structure" json:"configuration,omitempty"`
-	TypeInfo      *ActivityTypeInfo          `locationName:"typeInfo" type:"structure" json:"typeInfo,omitempty"`
-
-	metadataActivityTypeDetail `json:"-", xml:"-"`
-}
-
-type metadataActivityTypeDetail struct {
-	SDKShapeTraits bool `type:"structure" required:"typeInfo,configuration" json:",omitempty"`
-}
-
 type ActivityTypeInfo struct {
 	ActivityType    *ActivityType `locationName:"activityType" type:"structure" json:"activityType,omitempty"`
 	CreationDate    *time.Time    `locationName:"creationDate" type:"timestamp" timestampFormat:"unix" json:"creationDate,omitempty"`
@@ -950,17 +914,6 @@ type ActivityTypeInfo struct {
 
 type metadataActivityTypeInfo struct {
 	SDKShapeTraits bool `type:"structure" required:"activityType,status,creationDate" json:",omitempty"`
-}
-
-type ActivityTypeInfos struct {
-	NextPageToken *string             `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	TypeInfos     []*ActivityTypeInfo `locationName:"typeInfos" type:"list" json:"typeInfos,omitempty"`
-
-	metadataActivityTypeInfos `json:"-", xml:"-"`
-}
-
-type metadataActivityTypeInfos struct {
-	SDKShapeTraits bool `type:"structure" required:"typeInfos" json:",omitempty"`
 }
 
 type CancelTimerDecisionAttributes struct {
@@ -1221,22 +1174,6 @@ type metadataDecision struct {
 	SDKShapeTraits bool `type:"structure" required:"decisionType" json:",omitempty"`
 }
 
-type DecisionTask struct {
-	Events                 []*HistoryEvent    `locationName:"events" type:"list" json:"events,omitempty"`
-	NextPageToken          *string            `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	PreviousStartedEventID *int64             `locationName:"previousStartedEventId" type:"long" json:"previousStartedEventId,omitempty"`
-	StartedEventID         *int64             `locationName:"startedEventId" type:"long" json:"startedEventId,omitempty"`
-	TaskToken              *string            `locationName:"taskToken" type:"string" json:"taskToken,omitempty"`
-	WorkflowExecution      *WorkflowExecution `locationName:"workflowExecution" type:"structure" json:"workflowExecution,omitempty"`
-	WorkflowType           *WorkflowType      `locationName:"workflowType" type:"structure" json:"workflowType,omitempty"`
-
-	metadataDecisionTask `json:"-", xml:"-"`
-}
-
-type metadataDecisionTask struct {
-	SDKShapeTraits bool `type:"structure" required:"taskToken,startedEventId,workflowExecution,workflowType,events" json:",omitempty"`
-}
-
 type DecisionTaskCompletedEventAttributes struct {
 	ExecutionContext *string `locationName:"executionContext" type:"string" json:"executionContext,omitempty"`
 	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" json:"scheduledEventId,omitempty"`
@@ -1361,6 +1298,17 @@ type metadataDescribeActivityTypeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,activityType" json:",omitempty"`
 }
 
+type DescribeActivityTypeOutput struct {
+	Configuration *ActivityTypeConfiguration `locationName:"configuration" type:"structure" json:"configuration,omitempty"`
+	TypeInfo      *ActivityTypeInfo          `locationName:"typeInfo" type:"structure" json:"typeInfo,omitempty"`
+
+	metadataDescribeActivityTypeOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeActivityTypeOutput struct {
+	SDKShapeTraits bool `type:"structure" required:"typeInfo,configuration" json:",omitempty"`
+}
+
 type DescribeDomainInput struct {
 	Name *string `locationName:"name" type:"string" json:"name,omitempty"`
 
@@ -1369,6 +1317,17 @@ type DescribeDomainInput struct {
 
 type metadataDescribeDomainInput struct {
 	SDKShapeTraits bool `type:"structure" required:"name" json:",omitempty"`
+}
+
+type DescribeDomainOutput struct {
+	Configuration *DomainConfiguration `locationName:"configuration" type:"structure" json:"configuration,omitempty"`
+	DomainInfo    *DomainInfo          `locationName:"domainInfo" type:"structure" json:"domainInfo,omitempty"`
+
+	metadataDescribeDomainOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeDomainOutput struct {
+	SDKShapeTraits bool `type:"structure" required:"domainInfo,configuration" json:",omitempty"`
 }
 
 type DescribeWorkflowExecutionInput struct {
@@ -1382,6 +1341,20 @@ type metadataDescribeWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,execution" json:",omitempty"`
 }
 
+type DescribeWorkflowExecutionOutput struct {
+	ExecutionConfiguration      *WorkflowExecutionConfiguration `locationName:"executionConfiguration" type:"structure" json:"executionConfiguration,omitempty"`
+	ExecutionInfo               *WorkflowExecutionInfo          `locationName:"executionInfo" type:"structure" json:"executionInfo,omitempty"`
+	LatestActivityTaskTimestamp *time.Time                      `locationName:"latestActivityTaskTimestamp" type:"timestamp" timestampFormat:"unix" json:"latestActivityTaskTimestamp,omitempty"`
+	LatestExecutionContext      *string                         `locationName:"latestExecutionContext" type:"string" json:"latestExecutionContext,omitempty"`
+	OpenCounts                  *WorkflowExecutionOpenCounts    `locationName:"openCounts" type:"structure" json:"openCounts,omitempty"`
+
+	metadataDescribeWorkflowExecutionOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeWorkflowExecutionOutput struct {
+	SDKShapeTraits bool `type:"structure" required:"executionInfo,executionConfiguration,openCounts" json:",omitempty"`
+}
+
 type DescribeWorkflowTypeInput struct {
 	Domain       *string       `locationName:"domain" type:"string" json:"domain,omitempty"`
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" json:"workflowType,omitempty"`
@@ -1391,6 +1364,17 @@ type DescribeWorkflowTypeInput struct {
 
 type metadataDescribeWorkflowTypeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,workflowType" json:",omitempty"`
+}
+
+type DescribeWorkflowTypeOutput struct {
+	Configuration *WorkflowTypeConfiguration `locationName:"configuration" type:"structure" json:"configuration,omitempty"`
+	TypeInfo      *WorkflowTypeInfo          `locationName:"typeInfo" type:"structure" json:"typeInfo,omitempty"`
+
+	metadataDescribeWorkflowTypeOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeWorkflowTypeOutput struct {
+	SDKShapeTraits bool `type:"structure" required:"typeInfo,configuration" json:",omitempty"`
 }
 
 type DomainAlreadyExistsFault struct {
@@ -1423,17 +1407,6 @@ type metadataDomainDeprecatedFault struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type DomainDetail struct {
-	Configuration *DomainConfiguration `locationName:"configuration" type:"structure" json:"configuration,omitempty"`
-	DomainInfo    *DomainInfo          `locationName:"domainInfo" type:"structure" json:"domainInfo,omitempty"`
-
-	metadataDomainDetail `json:"-", xml:"-"`
-}
-
-type metadataDomainDetail struct {
-	SDKShapeTraits bool `type:"structure" required:"domainInfo,configuration" json:",omitempty"`
-}
-
 type DomainInfo struct {
 	Description *string `locationName:"description" type:"string" json:"description,omitempty"`
 	Name        *string `locationName:"name" type:"string" json:"name,omitempty"`
@@ -1444,17 +1417,6 @@ type DomainInfo struct {
 
 type metadataDomainInfo struct {
 	SDKShapeTraits bool `type:"structure" required:"name,status" json:",omitempty"`
-}
-
-type DomainInfos struct {
-	DomainInfos   []*DomainInfo `locationName:"domainInfos" type:"list" json:"domainInfos,omitempty"`
-	NextPageToken *string       `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-
-	metadataDomainInfos `json:"-", xml:"-"`
-}
-
-type metadataDomainInfos struct {
-	SDKShapeTraits bool `type:"structure" required:"domainInfos" json:",omitempty"`
 }
 
 type ExecutionTimeFilter struct {
@@ -1526,14 +1488,14 @@ type metadataGetWorkflowExecutionHistoryInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,execution" json:",omitempty"`
 }
 
-type History struct {
+type GetWorkflowExecutionHistoryOutput struct {
 	Events        []*HistoryEvent `locationName:"events" type:"list" json:"events,omitempty"`
 	NextPageToken *string         `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
 
-	metadataHistory `json:"-", xml:"-"`
+	metadataGetWorkflowExecutionHistoryOutput `json:"-", xml:"-"`
 }
 
-type metadataHistory struct {
+type metadataGetWorkflowExecutionHistoryOutput struct {
 	SDKShapeTraits bool `type:"structure" required:"events" json:",omitempty"`
 }
 
@@ -1621,6 +1583,17 @@ type metadataListActivityTypesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,registrationStatus" json:",omitempty"`
 }
 
+type ListActivityTypesOutput struct {
+	NextPageToken *string             `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
+	TypeInfos     []*ActivityTypeInfo `locationName:"typeInfos" type:"list" json:"typeInfos,omitempty"`
+
+	metadataListActivityTypesOutput `json:"-", xml:"-"`
+}
+
+type metadataListActivityTypesOutput struct {
+	SDKShapeTraits bool `type:"structure" required:"typeInfos" json:",omitempty"`
+}
+
 type ListClosedWorkflowExecutionsInput struct {
 	CloseStatusFilter *CloseStatusFilter       `locationName:"closeStatusFilter" type:"structure" json:"closeStatusFilter,omitempty"`
 	CloseTimeFilter   *ExecutionTimeFilter     `locationName:"closeTimeFilter" type:"structure" json:"closeTimeFilter,omitempty"`
@@ -1653,6 +1626,17 @@ type metadataListDomainsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"registrationStatus" json:",omitempty"`
 }
 
+type ListDomainsOutput struct {
+	DomainInfos   []*DomainInfo `locationName:"domainInfos" type:"list" json:"domainInfos,omitempty"`
+	NextPageToken *string       `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
+
+	metadataListDomainsOutput `json:"-", xml:"-"`
+}
+
+type metadataListDomainsOutput struct {
+	SDKShapeTraits bool `type:"structure" required:"domainInfos" json:",omitempty"`
+}
+
 type ListOpenWorkflowExecutionsInput struct {
 	Domain          *string                  `locationName:"domain" type:"string" json:"domain,omitempty"`
 	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure" json:"executionFilter,omitempty"`
@@ -1683,6 +1667,17 @@ type ListWorkflowTypesInput struct {
 
 type metadataListWorkflowTypesInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,registrationStatus" json:",omitempty"`
+}
+
+type ListWorkflowTypesOutput struct {
+	NextPageToken *string             `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
+	TypeInfos     []*WorkflowTypeInfo `locationName:"typeInfos" type:"list" json:"typeInfos,omitempty"`
+
+	metadataListWorkflowTypesOutput `json:"-", xml:"-"`
+}
+
+type metadataListWorkflowTypesOutput struct {
+	SDKShapeTraits bool `type:"structure" required:"typeInfos" json:",omitempty"`
 }
 
 type MarkerRecordedEventAttributes struct {
@@ -1730,6 +1725,21 @@ type metadataPollForActivityTaskInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,taskList" json:",omitempty"`
 }
 
+type PollForActivityTaskOutput struct {
+	ActivityID        *string            `locationName:"activityId" type:"string" json:"activityId,omitempty"`
+	ActivityType      *ActivityType      `locationName:"activityType" type:"structure" json:"activityType,omitempty"`
+	Input             *string            `locationName:"input" type:"string" json:"input,omitempty"`
+	StartedEventID    *int64             `locationName:"startedEventId" type:"long" json:"startedEventId,omitempty"`
+	TaskToken         *string            `locationName:"taskToken" type:"string" json:"taskToken,omitempty"`
+	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" json:"workflowExecution,omitempty"`
+
+	metadataPollForActivityTaskOutput `json:"-", xml:"-"`
+}
+
+type metadataPollForActivityTaskOutput struct {
+	SDKShapeTraits bool `type:"structure" required:"taskToken,activityId,startedEventId,workflowExecution,activityType" json:",omitempty"`
+}
+
 type PollForDecisionTaskInput struct {
 	Domain          *string   `locationName:"domain" type:"string" json:"domain,omitempty"`
 	Identity        *string   `locationName:"identity" type:"string" json:"identity,omitempty"`
@@ -1745,6 +1755,22 @@ type metadataPollForDecisionTaskInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,taskList" json:",omitempty"`
 }
 
+type PollForDecisionTaskOutput struct {
+	Events                 []*HistoryEvent    `locationName:"events" type:"list" json:"events,omitempty"`
+	NextPageToken          *string            `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
+	PreviousStartedEventID *int64             `locationName:"previousStartedEventId" type:"long" json:"previousStartedEventId,omitempty"`
+	StartedEventID         *int64             `locationName:"startedEventId" type:"long" json:"startedEventId,omitempty"`
+	TaskToken              *string            `locationName:"taskToken" type:"string" json:"taskToken,omitempty"`
+	WorkflowExecution      *WorkflowExecution `locationName:"workflowExecution" type:"structure" json:"workflowExecution,omitempty"`
+	WorkflowType           *WorkflowType      `locationName:"workflowType" type:"structure" json:"workflowType,omitempty"`
+
+	metadataPollForDecisionTaskOutput `json:"-", xml:"-"`
+}
+
+type metadataPollForDecisionTaskOutput struct {
+	SDKShapeTraits bool `type:"structure" required:"taskToken,startedEventId,workflowExecution,workflowType,events" json:",omitempty"`
+}
+
 type RecordActivityTaskHeartbeatInput struct {
 	Details   *string `locationName:"details" type:"string" json:"details,omitempty"`
 	TaskToken *string `locationName:"taskToken" type:"string" json:"taskToken,omitempty"`
@@ -1754,6 +1780,16 @@ type RecordActivityTaskHeartbeatInput struct {
 
 type metadataRecordActivityTaskHeartbeatInput struct {
 	SDKShapeTraits bool `type:"structure" required:"taskToken" json:",omitempty"`
+}
+
+type RecordActivityTaskHeartbeatOutput struct {
+	CancelRequested *bool `locationName:"cancelRequested" type:"boolean" json:"cancelRequested,omitempty"`
+
+	metadataRecordActivityTaskHeartbeatOutput `json:"-", xml:"-"`
+}
+
+type metadataRecordActivityTaskHeartbeatOutput struct {
+	SDKShapeTraits bool `type:"structure" required:"cancelRequested" json:",omitempty"`
 }
 
 type RecordMarkerDecisionAttributes struct {
@@ -2012,16 +2048,6 @@ type metadataRespondDecisionTaskCompletedOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type Run struct {
-	RunID *string `locationName:"runId" type:"string" json:"runId,omitempty"`
-
-	metadataRun `json:"-", xml:"-"`
-}
-
-type metadataRun struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type ScheduleActivityTaskDecisionAttributes struct {
 	ActivityID             *string       `locationName:"activityId" type:"string" json:"activityId,omitempty"`
 	ActivityType           *ActivityType `locationName:"activityType" type:"structure" json:"activityType,omitempty"`
@@ -2215,6 +2241,16 @@ type StartWorkflowExecutionInput struct {
 
 type metadataStartWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"domain,workflowId,workflowType" json:",omitempty"`
+}
+
+type StartWorkflowExecutionOutput struct {
+	RunID *string `locationName:"runId" type:"string" json:"runId,omitempty"`
+
+	metadataStartWorkflowExecutionOutput `json:"-", xml:"-"`
+}
+
+type metadataStartWorkflowExecutionOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type TagFilter struct {
@@ -2425,20 +2461,6 @@ type metadataWorkflowExecutionCount struct {
 	SDKShapeTraits bool `type:"structure" required:"count" json:",omitempty"`
 }
 
-type WorkflowExecutionDetail struct {
-	ExecutionConfiguration      *WorkflowExecutionConfiguration `locationName:"executionConfiguration" type:"structure" json:"executionConfiguration,omitempty"`
-	ExecutionInfo               *WorkflowExecutionInfo          `locationName:"executionInfo" type:"structure" json:"executionInfo,omitempty"`
-	LatestActivityTaskTimestamp *time.Time                      `locationName:"latestActivityTaskTimestamp" type:"timestamp" timestampFormat:"unix" json:"latestActivityTaskTimestamp,omitempty"`
-	LatestExecutionContext      *string                         `locationName:"latestExecutionContext" type:"string" json:"latestExecutionContext,omitempty"`
-	OpenCounts                  *WorkflowExecutionOpenCounts    `locationName:"openCounts" type:"structure" json:"openCounts,omitempty"`
-
-	metadataWorkflowExecutionDetail `json:"-", xml:"-"`
-}
-
-type metadataWorkflowExecutionDetail struct {
-	SDKShapeTraits bool `type:"structure" required:"executionInfo,executionConfiguration,openCounts" json:",omitempty"`
-}
-
 type WorkflowExecutionFailedEventAttributes struct {
 	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" json:"decisionTaskCompletedEventId,omitempty"`
 	Details                      *string `locationName:"details" type:"string" json:"details,omitempty"`
@@ -2585,17 +2607,6 @@ type metadataWorkflowTypeConfiguration struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type WorkflowTypeDetail struct {
-	Configuration *WorkflowTypeConfiguration `locationName:"configuration" type:"structure" json:"configuration,omitempty"`
-	TypeInfo      *WorkflowTypeInfo          `locationName:"typeInfo" type:"structure" json:"typeInfo,omitempty"`
-
-	metadataWorkflowTypeDetail `json:"-", xml:"-"`
-}
-
-type metadataWorkflowTypeDetail struct {
-	SDKShapeTraits bool `type:"structure" required:"typeInfo,configuration" json:",omitempty"`
-}
-
 type WorkflowTypeFilter struct {
 	Name    *string `locationName:"name" type:"string" json:"name,omitempty"`
 	Version *string `locationName:"version" type:"string" json:"version,omitempty"`
@@ -2619,15 +2630,4 @@ type WorkflowTypeInfo struct {
 
 type metadataWorkflowTypeInfo struct {
 	SDKShapeTraits bool `type:"structure" required:"workflowType,status,creationDate" json:",omitempty"`
-}
-
-type WorkflowTypeInfos struct {
-	NextPageToken *string             `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	TypeInfos     []*WorkflowTypeInfo `locationName:"typeInfos" type:"list" json:"typeInfos,omitempty"`
-
-	metadataWorkflowTypeInfos `json:"-", xml:"-"`
-}
-
-type metadataWorkflowTypeInfos struct {
-	SDKShapeTraits bool `type:"structure" required:"typeInfos" json:",omitempty"`
 }

@@ -510,7 +510,7 @@ func (c *S3) GetBucketPolicy(input *GetBucketPolicyInput) (output *GetBucketPoli
 var opGetBucketPolicy *aws.Operation
 
 // GetBucketRequestPaymentRequest generates a request for the GetBucketRequestPayment operation.
-func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketInputPaymentInput) (req *aws.Request, output *GetBucketRequestPaymentOutput) {
+func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput) (req *aws.Request, output *GetBucketRequestPaymentOutput) {
 	if opGetBucketRequestPayment == nil {
 		opGetBucketRequestPayment = &aws.Operation{
 			Name:       "GetBucketRequestPayment",
@@ -525,7 +525,7 @@ func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketInputPaymentInput) (
 	return
 }
 
-func (c *S3) GetBucketRequestPayment(input *GetBucketInputPaymentInput) (output *GetBucketRequestPaymentOutput, err error) {
+func (c *S3) GetBucketRequestPayment(input *GetBucketRequestPaymentInput) (output *GetBucketRequestPaymentOutput, err error) {
 	req, out := c.GetBucketRequestPaymentRequest(input)
 	output = out
 	err = req.Send()
@@ -1010,7 +1010,7 @@ func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (output *PutBucketPoli
 var opPutBucketPolicy *aws.Operation
 
 // PutBucketRequestPaymentRequest generates a request for the PutBucketRequestPayment operation.
-func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketInputPaymentInput) (req *aws.Request, output *PutBucketRequestPaymentOutput) {
+func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput) (req *aws.Request, output *PutBucketRequestPaymentOutput) {
 	if opPutBucketRequestPayment == nil {
 		opPutBucketRequestPayment = &aws.Operation{
 			Name:       "PutBucketRequestPayment",
@@ -1025,7 +1025,7 @@ func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketInputPaymentInput) (
 	return
 }
 
-func (c *S3) PutBucketRequestPayment(input *PutBucketInputPaymentInput) (output *PutBucketRequestPaymentOutput, err error) {
+func (c *S3) PutBucketRequestPayment(input *PutBucketRequestPaymentInput) (output *PutBucketRequestPaymentOutput, err error) {
 	req, out := c.PutBucketRequestPaymentRequest(input)
 	output = out
 	err = req.Send()
@@ -1821,16 +1821,6 @@ type metadataGetBucketCORSOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type GetBucketInputPaymentInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-
-	metadataGetBucketInputPaymentInput `json:"-", xml:"-"`
-}
-
-type metadataGetBucketInputPaymentInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
-}
-
 type GetBucketLifecycleInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 
@@ -1931,6 +1921,16 @@ type GetBucketPolicyOutput struct {
 
 type metadataGetBucketPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Policy"`
+}
+
+type GetBucketRequestPaymentInput struct {
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+
+	metadataGetBucketRequestPaymentInput `json:"-", xml:"-"`
+}
+
+type metadataGetBucketRequestPaymentInput struct {
+	SDKShapeTraits bool `type:"structure" required:"Bucket"`
 }
 
 type GetBucketRequestPaymentOutput struct {
@@ -2618,18 +2618,6 @@ type metadataPutBucketCORSOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type PutBucketInputPaymentInput struct {
-	Bucket                      *string                      `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	ContentMD5                  *string                      `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	RequestPaymentConfiguration *RequestPaymentConfiguration `locationName:"RequestPaymentConfiguration" type:"structure"`
-
-	metadataPutBucketInputPaymentInput `json:"-", xml:"-"`
-}
-
-type metadataPutBucketInputPaymentInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"RequestPaymentConfiguration" required:"Bucket,RequestPaymentConfiguration"`
-}
-
 type PutBucketLifecycleInput struct {
 	Bucket                 *string                 `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
 	ContentMD5             *string                 `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
@@ -2708,6 +2696,18 @@ type PutBucketPolicyOutput struct {
 
 type metadataPutBucketPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+type PutBucketRequestPaymentInput struct {
+	Bucket                      *string                      `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	ContentMD5                  *string                      `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
+	RequestPaymentConfiguration *RequestPaymentConfiguration `locationName:"RequestPaymentConfiguration" type:"structure"`
+
+	metadataPutBucketRequestPaymentInput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketRequestPaymentInput struct {
+	SDKShapeTraits bool `type:"structure" payload:"RequestPaymentConfiguration" required:"Bucket,RequestPaymentConfiguration"`
 }
 
 type PutBucketRequestPaymentOutput struct {

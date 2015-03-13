@@ -9,7 +9,7 @@ import (
 )
 
 // AuthorizeClusterSecurityGroupIngressRequest generates a request for the AuthorizeClusterSecurityGroupIngress operation.
-func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeClusterSecurityGroupIngressMessage) (req *aws.Request, output *AuthorizeClusterSecurityGroupIngressOutput) {
+func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeClusterSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeClusterSecurityGroupIngressOutput) {
 	if opAuthorizeClusterSecurityGroupIngress == nil {
 		opAuthorizeClusterSecurityGroupIngress = &aws.Operation{
 			Name:       "AuthorizeClusterSecurityGroupIngress",
@@ -24,7 +24,7 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeC
 	return
 }
 
-func (c *Redshift) AuthorizeClusterSecurityGroupIngress(input *AuthorizeClusterSecurityGroupIngressMessage) (output *AuthorizeClusterSecurityGroupIngressOutput, err error) {
+func (c *Redshift) AuthorizeClusterSecurityGroupIngress(input *AuthorizeClusterSecurityGroupIngressInput) (output *AuthorizeClusterSecurityGroupIngressOutput, err error) {
 	req, out := c.AuthorizeClusterSecurityGroupIngressRequest(input)
 	output = out
 	err = req.Send()
@@ -34,7 +34,7 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngress(input *AuthorizeClusterS
 var opAuthorizeClusterSecurityGroupIngress *aws.Operation
 
 // AuthorizeSnapshotAccessRequest generates a request for the AuthorizeSnapshotAccess operation.
-func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccessMessage) (req *aws.Request, output *AuthorizeSnapshotAccessOutput) {
+func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccessInput) (req *aws.Request, output *AuthorizeSnapshotAccessOutput) {
 	if opAuthorizeSnapshotAccess == nil {
 		opAuthorizeSnapshotAccess = &aws.Operation{
 			Name:       "AuthorizeSnapshotAccess",
@@ -49,7 +49,7 @@ func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccess
 	return
 }
 
-func (c *Redshift) AuthorizeSnapshotAccess(input *AuthorizeSnapshotAccessMessage) (output *AuthorizeSnapshotAccessOutput, err error) {
+func (c *Redshift) AuthorizeSnapshotAccess(input *AuthorizeSnapshotAccessInput) (output *AuthorizeSnapshotAccessOutput, err error) {
 	req, out := c.AuthorizeSnapshotAccessRequest(input)
 	output = out
 	err = req.Send()
@@ -59,7 +59,7 @@ func (c *Redshift) AuthorizeSnapshotAccess(input *AuthorizeSnapshotAccessMessage
 var opAuthorizeSnapshotAccess *aws.Operation
 
 // CopyClusterSnapshotRequest generates a request for the CopyClusterSnapshot operation.
-func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotMessage) (req *aws.Request, output *CopyClusterSnapshotOutput) {
+func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (req *aws.Request, output *CopyClusterSnapshotOutput) {
 	if opCopyClusterSnapshot == nil {
 		opCopyClusterSnapshot = &aws.Operation{
 			Name:       "CopyClusterSnapshot",
@@ -74,7 +74,7 @@ func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotMessage)
 	return
 }
 
-func (c *Redshift) CopyClusterSnapshot(input *CopyClusterSnapshotMessage) (output *CopyClusterSnapshotOutput, err error) {
+func (c *Redshift) CopyClusterSnapshot(input *CopyClusterSnapshotInput) (output *CopyClusterSnapshotOutput, err error) {
 	req, out := c.CopyClusterSnapshotRequest(input)
 	output = out
 	err = req.Send()
@@ -84,7 +84,7 @@ func (c *Redshift) CopyClusterSnapshot(input *CopyClusterSnapshotMessage) (outpu
 var opCopyClusterSnapshot *aws.Operation
 
 // CreateClusterRequest generates a request for the CreateCluster operation.
-func (c *Redshift) CreateClusterRequest(input *CreateClusterMessage) (req *aws.Request, output *CreateClusterOutput) {
+func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request, output *CreateClusterOutput) {
 	if opCreateCluster == nil {
 		opCreateCluster = &aws.Operation{
 			Name:       "CreateCluster",
@@ -99,7 +99,7 @@ func (c *Redshift) CreateClusterRequest(input *CreateClusterMessage) (req *aws.R
 	return
 }
 
-func (c *Redshift) CreateCluster(input *CreateClusterMessage) (output *CreateClusterOutput, err error) {
+func (c *Redshift) CreateCluster(input *CreateClusterInput) (output *CreateClusterOutput, err error) {
 	req, out := c.CreateClusterRequest(input)
 	output = out
 	err = req.Send()
@@ -109,7 +109,7 @@ func (c *Redshift) CreateCluster(input *CreateClusterMessage) (output *CreateClu
 var opCreateCluster *aws.Operation
 
 // CreateClusterParameterGroupRequest generates a request for the CreateClusterParameterGroup operation.
-func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParameterGroupMessage) (req *aws.Request, output *CreateClusterParameterGroupOutput) {
+func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParameterGroupInput) (req *aws.Request, output *CreateClusterParameterGroupOutput) {
 	if opCreateClusterParameterGroup == nil {
 		opCreateClusterParameterGroup = &aws.Operation{
 			Name:       "CreateClusterParameterGroup",
@@ -124,7 +124,7 @@ func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParame
 	return
 }
 
-func (c *Redshift) CreateClusterParameterGroup(input *CreateClusterParameterGroupMessage) (output *CreateClusterParameterGroupOutput, err error) {
+func (c *Redshift) CreateClusterParameterGroup(input *CreateClusterParameterGroupInput) (output *CreateClusterParameterGroupOutput, err error) {
 	req, out := c.CreateClusterParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -134,7 +134,7 @@ func (c *Redshift) CreateClusterParameterGroup(input *CreateClusterParameterGrou
 var opCreateClusterParameterGroup *aws.Operation
 
 // CreateClusterSecurityGroupRequest generates a request for the CreateClusterSecurityGroup operation.
-func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurityGroupMessage) (req *aws.Request, output *CreateClusterSecurityGroupOutput) {
+func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurityGroupInput) (req *aws.Request, output *CreateClusterSecurityGroupOutput) {
 	if opCreateClusterSecurityGroup == nil {
 		opCreateClusterSecurityGroup = &aws.Operation{
 			Name:       "CreateClusterSecurityGroup",
@@ -149,7 +149,7 @@ func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurit
 	return
 }
 
-func (c *Redshift) CreateClusterSecurityGroup(input *CreateClusterSecurityGroupMessage) (output *CreateClusterSecurityGroupOutput, err error) {
+func (c *Redshift) CreateClusterSecurityGroup(input *CreateClusterSecurityGroupInput) (output *CreateClusterSecurityGroupOutput, err error) {
 	req, out := c.CreateClusterSecurityGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -159,7 +159,7 @@ func (c *Redshift) CreateClusterSecurityGroup(input *CreateClusterSecurityGroupM
 var opCreateClusterSecurityGroup *aws.Operation
 
 // CreateClusterSnapshotRequest generates a request for the CreateClusterSnapshot operation.
-func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotMessage) (req *aws.Request, output *CreateClusterSnapshotOutput) {
+func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInput) (req *aws.Request, output *CreateClusterSnapshotOutput) {
 	if opCreateClusterSnapshot == nil {
 		opCreateClusterSnapshot = &aws.Operation{
 			Name:       "CreateClusterSnapshot",
@@ -174,7 +174,7 @@ func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotMess
 	return
 }
 
-func (c *Redshift) CreateClusterSnapshot(input *CreateClusterSnapshotMessage) (output *CreateClusterSnapshotOutput, err error) {
+func (c *Redshift) CreateClusterSnapshot(input *CreateClusterSnapshotInput) (output *CreateClusterSnapshotOutput, err error) {
 	req, out := c.CreateClusterSnapshotRequest(input)
 	output = out
 	err = req.Send()
@@ -184,7 +184,7 @@ func (c *Redshift) CreateClusterSnapshot(input *CreateClusterSnapshotMessage) (o
 var opCreateClusterSnapshot *aws.Operation
 
 // CreateClusterSubnetGroupRequest generates a request for the CreateClusterSubnetGroup operation.
-func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGroupMessage) (req *aws.Request, output *CreateClusterSubnetGroupOutput) {
+func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGroupInput) (req *aws.Request, output *CreateClusterSubnetGroupOutput) {
 	if opCreateClusterSubnetGroup == nil {
 		opCreateClusterSubnetGroup = &aws.Operation{
 			Name:       "CreateClusterSubnetGroup",
@@ -199,7 +199,7 @@ func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGro
 	return
 }
 
-func (c *Redshift) CreateClusterSubnetGroup(input *CreateClusterSubnetGroupMessage) (output *CreateClusterSubnetGroupOutput, err error) {
+func (c *Redshift) CreateClusterSubnetGroup(input *CreateClusterSubnetGroupInput) (output *CreateClusterSubnetGroupOutput, err error) {
 	req, out := c.CreateClusterSubnetGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -209,7 +209,7 @@ func (c *Redshift) CreateClusterSubnetGroup(input *CreateClusterSubnetGroupMessa
 var opCreateClusterSubnetGroup *aws.Operation
 
 // CreateEventSubscriptionRequest generates a request for the CreateEventSubscription operation.
-func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscriptionMessage) (req *aws.Request, output *CreateEventSubscriptionOutput) {
+func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *aws.Request, output *CreateEventSubscriptionOutput) {
 	if opCreateEventSubscription == nil {
 		opCreateEventSubscription = &aws.Operation{
 			Name:       "CreateEventSubscription",
@@ -224,7 +224,7 @@ func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscription
 	return
 }
 
-func (c *Redshift) CreateEventSubscription(input *CreateEventSubscriptionMessage) (output *CreateEventSubscriptionOutput, err error) {
+func (c *Redshift) CreateEventSubscription(input *CreateEventSubscriptionInput) (output *CreateEventSubscriptionOutput, err error) {
 	req, out := c.CreateEventSubscriptionRequest(input)
 	output = out
 	err = req.Send()
@@ -234,7 +234,7 @@ func (c *Redshift) CreateEventSubscription(input *CreateEventSubscriptionMessage
 var opCreateEventSubscription *aws.Operation
 
 // CreateHSMClientCertificateRequest generates a request for the CreateHSMClientCertificate operation.
-func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCertificateMessage) (req *aws.Request, output *CreateHSMClientCertificateOutput) {
+func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCertificateInput) (req *aws.Request, output *CreateHSMClientCertificateOutput) {
 	if opCreateHSMClientCertificate == nil {
 		opCreateHSMClientCertificate = &aws.Operation{
 			Name:       "CreateHsmClientCertificate",
@@ -249,7 +249,7 @@ func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCerti
 	return
 }
 
-func (c *Redshift) CreateHSMClientCertificate(input *CreateHSMClientCertificateMessage) (output *CreateHSMClientCertificateOutput, err error) {
+func (c *Redshift) CreateHSMClientCertificate(input *CreateHSMClientCertificateInput) (output *CreateHSMClientCertificateOutput, err error) {
 	req, out := c.CreateHSMClientCertificateRequest(input)
 	output = out
 	err = req.Send()
@@ -259,7 +259,7 @@ func (c *Redshift) CreateHSMClientCertificate(input *CreateHSMClientCertificateM
 var opCreateHSMClientCertificate *aws.Operation
 
 // CreateHSMConfigurationRequest generates a request for the CreateHSMConfiguration operation.
-func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationMessage) (req *aws.Request, output *CreateHSMConfigurationOutput) {
+func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationInput) (req *aws.Request, output *CreateHSMConfigurationOutput) {
 	if opCreateHSMConfiguration == nil {
 		opCreateHSMConfiguration = &aws.Operation{
 			Name:       "CreateHsmConfiguration",
@@ -274,7 +274,7 @@ func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationMe
 	return
 }
 
-func (c *Redshift) CreateHSMConfiguration(input *CreateHSMConfigurationMessage) (output *CreateHSMConfigurationOutput, err error) {
+func (c *Redshift) CreateHSMConfiguration(input *CreateHSMConfigurationInput) (output *CreateHSMConfigurationOutput, err error) {
 	req, out := c.CreateHSMConfigurationRequest(input)
 	output = out
 	err = req.Send()
@@ -284,7 +284,7 @@ func (c *Redshift) CreateHSMConfiguration(input *CreateHSMConfigurationMessage) 
 var opCreateHSMConfiguration *aws.Operation
 
 // CreateTagsRequest generates a request for the CreateTags operation.
-func (c *Redshift) CreateTagsRequest(input *CreateTagsMessage) (req *aws.Request, output *CreateTagsOutput) {
+func (c *Redshift) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, output *CreateTagsOutput) {
 	if opCreateTags == nil {
 		opCreateTags = &aws.Operation{
 			Name:       "CreateTags",
@@ -299,7 +299,7 @@ func (c *Redshift) CreateTagsRequest(input *CreateTagsMessage) (req *aws.Request
 	return
 }
 
-func (c *Redshift) CreateTags(input *CreateTagsMessage) (output *CreateTagsOutput, err error) {
+func (c *Redshift) CreateTags(input *CreateTagsInput) (output *CreateTagsOutput, err error) {
 	req, out := c.CreateTagsRequest(input)
 	output = out
 	err = req.Send()
@@ -309,7 +309,7 @@ func (c *Redshift) CreateTags(input *CreateTagsMessage) (output *CreateTagsOutpu
 var opCreateTags *aws.Operation
 
 // DeleteClusterRequest generates a request for the DeleteCluster operation.
-func (c *Redshift) DeleteClusterRequest(input *DeleteClusterMessage) (req *aws.Request, output *DeleteClusterOutput) {
+func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request, output *DeleteClusterOutput) {
 	if opDeleteCluster == nil {
 		opDeleteCluster = &aws.Operation{
 			Name:       "DeleteCluster",
@@ -324,7 +324,7 @@ func (c *Redshift) DeleteClusterRequest(input *DeleteClusterMessage) (req *aws.R
 	return
 }
 
-func (c *Redshift) DeleteCluster(input *DeleteClusterMessage) (output *DeleteClusterOutput, err error) {
+func (c *Redshift) DeleteCluster(input *DeleteClusterInput) (output *DeleteClusterOutput, err error) {
 	req, out := c.DeleteClusterRequest(input)
 	output = out
 	err = req.Send()
@@ -334,7 +334,7 @@ func (c *Redshift) DeleteCluster(input *DeleteClusterMessage) (output *DeleteClu
 var opDeleteCluster *aws.Operation
 
 // DeleteClusterParameterGroupRequest generates a request for the DeleteClusterParameterGroup operation.
-func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParameterGroupMessage) (req *aws.Request, output *DeleteClusterParameterGroupOutput) {
+func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParameterGroupInput) (req *aws.Request, output *DeleteClusterParameterGroupOutput) {
 	if opDeleteClusterParameterGroup == nil {
 		opDeleteClusterParameterGroup = &aws.Operation{
 			Name:       "DeleteClusterParameterGroup",
@@ -349,7 +349,7 @@ func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParame
 	return
 }
 
-func (c *Redshift) DeleteClusterParameterGroup(input *DeleteClusterParameterGroupMessage) (output *DeleteClusterParameterGroupOutput, err error) {
+func (c *Redshift) DeleteClusterParameterGroup(input *DeleteClusterParameterGroupInput) (output *DeleteClusterParameterGroupOutput, err error) {
 	req, out := c.DeleteClusterParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -359,7 +359,7 @@ func (c *Redshift) DeleteClusterParameterGroup(input *DeleteClusterParameterGrou
 var opDeleteClusterParameterGroup *aws.Operation
 
 // DeleteClusterSecurityGroupRequest generates a request for the DeleteClusterSecurityGroup operation.
-func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurityGroupMessage) (req *aws.Request, output *DeleteClusterSecurityGroupOutput) {
+func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurityGroupInput) (req *aws.Request, output *DeleteClusterSecurityGroupOutput) {
 	if opDeleteClusterSecurityGroup == nil {
 		opDeleteClusterSecurityGroup = &aws.Operation{
 			Name:       "DeleteClusterSecurityGroup",
@@ -374,7 +374,7 @@ func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurit
 	return
 }
 
-func (c *Redshift) DeleteClusterSecurityGroup(input *DeleteClusterSecurityGroupMessage) (output *DeleteClusterSecurityGroupOutput, err error) {
+func (c *Redshift) DeleteClusterSecurityGroup(input *DeleteClusterSecurityGroupInput) (output *DeleteClusterSecurityGroupOutput, err error) {
 	req, out := c.DeleteClusterSecurityGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -384,7 +384,7 @@ func (c *Redshift) DeleteClusterSecurityGroup(input *DeleteClusterSecurityGroupM
 var opDeleteClusterSecurityGroup *aws.Operation
 
 // DeleteClusterSnapshotRequest generates a request for the DeleteClusterSnapshot operation.
-func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotMessage) (req *aws.Request, output *DeleteClusterSnapshotOutput) {
+func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotInput) (req *aws.Request, output *DeleteClusterSnapshotOutput) {
 	if opDeleteClusterSnapshot == nil {
 		opDeleteClusterSnapshot = &aws.Operation{
 			Name:       "DeleteClusterSnapshot",
@@ -399,7 +399,7 @@ func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotMess
 	return
 }
 
-func (c *Redshift) DeleteClusterSnapshot(input *DeleteClusterSnapshotMessage) (output *DeleteClusterSnapshotOutput, err error) {
+func (c *Redshift) DeleteClusterSnapshot(input *DeleteClusterSnapshotInput) (output *DeleteClusterSnapshotOutput, err error) {
 	req, out := c.DeleteClusterSnapshotRequest(input)
 	output = out
 	err = req.Send()
@@ -409,7 +409,7 @@ func (c *Redshift) DeleteClusterSnapshot(input *DeleteClusterSnapshotMessage) (o
 var opDeleteClusterSnapshot *aws.Operation
 
 // DeleteClusterSubnetGroupRequest generates a request for the DeleteClusterSubnetGroup operation.
-func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGroupMessage) (req *aws.Request, output *DeleteClusterSubnetGroupOutput) {
+func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGroupInput) (req *aws.Request, output *DeleteClusterSubnetGroupOutput) {
 	if opDeleteClusterSubnetGroup == nil {
 		opDeleteClusterSubnetGroup = &aws.Operation{
 			Name:       "DeleteClusterSubnetGroup",
@@ -424,7 +424,7 @@ func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGro
 	return
 }
 
-func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupMessage) (output *DeleteClusterSubnetGroupOutput, err error) {
+func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupInput) (output *DeleteClusterSubnetGroupOutput, err error) {
 	req, out := c.DeleteClusterSubnetGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -434,7 +434,7 @@ func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupMessa
 var opDeleteClusterSubnetGroup *aws.Operation
 
 // DeleteEventSubscriptionRequest generates a request for the DeleteEventSubscription operation.
-func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionMessage) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
+func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
 	if opDeleteEventSubscription == nil {
 		opDeleteEventSubscription = &aws.Operation{
 			Name:       "DeleteEventSubscription",
@@ -449,7 +449,7 @@ func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscription
 	return
 }
 
-func (c *Redshift) DeleteEventSubscription(input *DeleteEventSubscriptionMessage) (output *DeleteEventSubscriptionOutput, err error) {
+func (c *Redshift) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (output *DeleteEventSubscriptionOutput, err error) {
 	req, out := c.DeleteEventSubscriptionRequest(input)
 	output = out
 	err = req.Send()
@@ -459,7 +459,7 @@ func (c *Redshift) DeleteEventSubscription(input *DeleteEventSubscriptionMessage
 var opDeleteEventSubscription *aws.Operation
 
 // DeleteHSMClientCertificateRequest generates a request for the DeleteHSMClientCertificate operation.
-func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCertificateMessage) (req *aws.Request, output *DeleteHSMClientCertificateOutput) {
+func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCertificateInput) (req *aws.Request, output *DeleteHSMClientCertificateOutput) {
 	if opDeleteHSMClientCertificate == nil {
 		opDeleteHSMClientCertificate = &aws.Operation{
 			Name:       "DeleteHsmClientCertificate",
@@ -474,7 +474,7 @@ func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCerti
 	return
 }
 
-func (c *Redshift) DeleteHSMClientCertificate(input *DeleteHSMClientCertificateMessage) (output *DeleteHSMClientCertificateOutput, err error) {
+func (c *Redshift) DeleteHSMClientCertificate(input *DeleteHSMClientCertificateInput) (output *DeleteHSMClientCertificateOutput, err error) {
 	req, out := c.DeleteHSMClientCertificateRequest(input)
 	output = out
 	err = req.Send()
@@ -484,7 +484,7 @@ func (c *Redshift) DeleteHSMClientCertificate(input *DeleteHSMClientCertificateM
 var opDeleteHSMClientCertificate *aws.Operation
 
 // DeleteHSMConfigurationRequest generates a request for the DeleteHSMConfiguration operation.
-func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationMessage) (req *aws.Request, output *DeleteHSMConfigurationOutput) {
+func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationInput) (req *aws.Request, output *DeleteHSMConfigurationOutput) {
 	if opDeleteHSMConfiguration == nil {
 		opDeleteHSMConfiguration = &aws.Operation{
 			Name:       "DeleteHsmConfiguration",
@@ -499,7 +499,7 @@ func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationMe
 	return
 }
 
-func (c *Redshift) DeleteHSMConfiguration(input *DeleteHSMConfigurationMessage) (output *DeleteHSMConfigurationOutput, err error) {
+func (c *Redshift) DeleteHSMConfiguration(input *DeleteHSMConfigurationInput) (output *DeleteHSMConfigurationOutput, err error) {
 	req, out := c.DeleteHSMConfigurationRequest(input)
 	output = out
 	err = req.Send()
@@ -509,7 +509,7 @@ func (c *Redshift) DeleteHSMConfiguration(input *DeleteHSMConfigurationMessage) 
 var opDeleteHSMConfiguration *aws.Operation
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
-func (c *Redshift) DeleteTagsRequest(input *DeleteTagsMessage) (req *aws.Request, output *DeleteTagsOutput) {
+func (c *Redshift) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
 	if opDeleteTags == nil {
 		opDeleteTags = &aws.Operation{
 			Name:       "DeleteTags",
@@ -524,7 +524,7 @@ func (c *Redshift) DeleteTagsRequest(input *DeleteTagsMessage) (req *aws.Request
 	return
 }
 
-func (c *Redshift) DeleteTags(input *DeleteTagsMessage) (output *DeleteTagsOutput, err error) {
+func (c *Redshift) DeleteTags(input *DeleteTagsInput) (output *DeleteTagsOutput, err error) {
 	req, out := c.DeleteTagsRequest(input)
 	output = out
 	err = req.Send()
@@ -534,7 +534,7 @@ func (c *Redshift) DeleteTags(input *DeleteTagsMessage) (output *DeleteTagsOutpu
 var opDeleteTags *aws.Operation
 
 // DescribeClusterParameterGroupsRequest generates a request for the DescribeClusterParameterGroups operation.
-func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterParameterGroupsMessage) (req *aws.Request, output *ClusterParameterGroupsMessage) {
+func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterParameterGroupsInput) (req *aws.Request, output *DescribeClusterParameterGroupsOutput) {
 	if opDescribeClusterParameterGroups == nil {
 		opDescribeClusterParameterGroups = &aws.Operation{
 			Name:       "DescribeClusterParameterGroups",
@@ -544,12 +544,12 @@ func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterP
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeClusterParameterGroups, input, output)
-	output = &ClusterParameterGroupsMessage{}
+	output = &DescribeClusterParameterGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeClusterParameterGroups(input *DescribeClusterParameterGroupsMessage) (output *ClusterParameterGroupsMessage, err error) {
+func (c *Redshift) DescribeClusterParameterGroups(input *DescribeClusterParameterGroupsInput) (output *DescribeClusterParameterGroupsOutput, err error) {
 	req, out := c.DescribeClusterParameterGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -559,7 +559,7 @@ func (c *Redshift) DescribeClusterParameterGroups(input *DescribeClusterParamete
 var opDescribeClusterParameterGroups *aws.Operation
 
 // DescribeClusterParametersRequest generates a request for the DescribeClusterParameters operation.
-func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParametersMessage) (req *aws.Request, output *ClusterParameterGroupDetails) {
+func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParametersInput) (req *aws.Request, output *DescribeClusterParametersOutput) {
 	if opDescribeClusterParameters == nil {
 		opDescribeClusterParameters = &aws.Operation{
 			Name:       "DescribeClusterParameters",
@@ -569,12 +569,12 @@ func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParame
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeClusterParameters, input, output)
-	output = &ClusterParameterGroupDetails{}
+	output = &DescribeClusterParametersOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeClusterParameters(input *DescribeClusterParametersMessage) (output *ClusterParameterGroupDetails, err error) {
+func (c *Redshift) DescribeClusterParameters(input *DescribeClusterParametersInput) (output *DescribeClusterParametersOutput, err error) {
 	req, out := c.DescribeClusterParametersRequest(input)
 	output = out
 	err = req.Send()
@@ -584,7 +584,7 @@ func (c *Redshift) DescribeClusterParameters(input *DescribeClusterParametersMes
 var opDescribeClusterParameters *aws.Operation
 
 // DescribeClusterSecurityGroupsRequest generates a request for the DescribeClusterSecurityGroups operation.
-func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSecurityGroupsMessage) (req *aws.Request, output *ClusterSecurityGroupMessage) {
+func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSecurityGroupsInput) (req *aws.Request, output *DescribeClusterSecurityGroupsOutput) {
 	if opDescribeClusterSecurityGroups == nil {
 		opDescribeClusterSecurityGroups = &aws.Operation{
 			Name:       "DescribeClusterSecurityGroups",
@@ -594,12 +594,12 @@ func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSe
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeClusterSecurityGroups, input, output)
-	output = &ClusterSecurityGroupMessage{}
+	output = &DescribeClusterSecurityGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeClusterSecurityGroups(input *DescribeClusterSecurityGroupsMessage) (output *ClusterSecurityGroupMessage, err error) {
+func (c *Redshift) DescribeClusterSecurityGroups(input *DescribeClusterSecurityGroupsInput) (output *DescribeClusterSecurityGroupsOutput, err error) {
 	req, out := c.DescribeClusterSecurityGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -609,7 +609,7 @@ func (c *Redshift) DescribeClusterSecurityGroups(input *DescribeClusterSecurityG
 var opDescribeClusterSecurityGroups *aws.Operation
 
 // DescribeClusterSnapshotsRequest generates a request for the DescribeClusterSnapshots operation.
-func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapshotsMessage) (req *aws.Request, output *SnapshotMessage) {
+func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapshotsInput) (req *aws.Request, output *DescribeClusterSnapshotsOutput) {
 	if opDescribeClusterSnapshots == nil {
 		opDescribeClusterSnapshots = &aws.Operation{
 			Name:       "DescribeClusterSnapshots",
@@ -619,12 +619,12 @@ func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapsho
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeClusterSnapshots, input, output)
-	output = &SnapshotMessage{}
+	output = &DescribeClusterSnapshotsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeClusterSnapshots(input *DescribeClusterSnapshotsMessage) (output *SnapshotMessage, err error) {
+func (c *Redshift) DescribeClusterSnapshots(input *DescribeClusterSnapshotsInput) (output *DescribeClusterSnapshotsOutput, err error) {
 	req, out := c.DescribeClusterSnapshotsRequest(input)
 	output = out
 	err = req.Send()
@@ -634,7 +634,7 @@ func (c *Redshift) DescribeClusterSnapshots(input *DescribeClusterSnapshotsMessa
 var opDescribeClusterSnapshots *aws.Operation
 
 // DescribeClusterSubnetGroupsRequest generates a request for the DescribeClusterSubnetGroups operation.
-func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubnetGroupsMessage) (req *aws.Request, output *ClusterSubnetGroupMessage) {
+func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubnetGroupsInput) (req *aws.Request, output *DescribeClusterSubnetGroupsOutput) {
 	if opDescribeClusterSubnetGroups == nil {
 		opDescribeClusterSubnetGroups = &aws.Operation{
 			Name:       "DescribeClusterSubnetGroups",
@@ -644,12 +644,12 @@ func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubn
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeClusterSubnetGroups, input, output)
-	output = &ClusterSubnetGroupMessage{}
+	output = &DescribeClusterSubnetGroupsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeClusterSubnetGroups(input *DescribeClusterSubnetGroupsMessage) (output *ClusterSubnetGroupMessage, err error) {
+func (c *Redshift) DescribeClusterSubnetGroups(input *DescribeClusterSubnetGroupsInput) (output *DescribeClusterSubnetGroupsOutput, err error) {
 	req, out := c.DescribeClusterSubnetGroupsRequest(input)
 	output = out
 	err = req.Send()
@@ -659,7 +659,7 @@ func (c *Redshift) DescribeClusterSubnetGroups(input *DescribeClusterSubnetGroup
 var opDescribeClusterSubnetGroups *aws.Operation
 
 // DescribeClusterVersionsRequest generates a request for the DescribeClusterVersions operation.
-func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersionsMessage) (req *aws.Request, output *ClusterVersionsMessage) {
+func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersionsInput) (req *aws.Request, output *DescribeClusterVersionsOutput) {
 	if opDescribeClusterVersions == nil {
 		opDescribeClusterVersions = &aws.Operation{
 			Name:       "DescribeClusterVersions",
@@ -669,12 +669,12 @@ func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersions
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeClusterVersions, input, output)
-	output = &ClusterVersionsMessage{}
+	output = &DescribeClusterVersionsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeClusterVersions(input *DescribeClusterVersionsMessage) (output *ClusterVersionsMessage, err error) {
+func (c *Redshift) DescribeClusterVersions(input *DescribeClusterVersionsInput) (output *DescribeClusterVersionsOutput, err error) {
 	req, out := c.DescribeClusterVersionsRequest(input)
 	output = out
 	err = req.Send()
@@ -684,7 +684,7 @@ func (c *Redshift) DescribeClusterVersions(input *DescribeClusterVersionsMessage
 var opDescribeClusterVersions *aws.Operation
 
 // DescribeClustersRequest generates a request for the DescribeClusters operation.
-func (c *Redshift) DescribeClustersRequest(input *DescribeClustersMessage) (req *aws.Request, output *ClustersMessage) {
+func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Request, output *DescribeClustersOutput) {
 	if opDescribeClusters == nil {
 		opDescribeClusters = &aws.Operation{
 			Name:       "DescribeClusters",
@@ -694,12 +694,12 @@ func (c *Redshift) DescribeClustersRequest(input *DescribeClustersMessage) (req 
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeClusters, input, output)
-	output = &ClustersMessage{}
+	output = &DescribeClustersOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeClusters(input *DescribeClustersMessage) (output *ClustersMessage, err error) {
+func (c *Redshift) DescribeClusters(input *DescribeClustersInput) (output *DescribeClustersOutput, err error) {
 	req, out := c.DescribeClustersRequest(input)
 	output = out
 	err = req.Send()
@@ -709,7 +709,7 @@ func (c *Redshift) DescribeClusters(input *DescribeClustersMessage) (output *Clu
 var opDescribeClusters *aws.Operation
 
 // DescribeDefaultClusterParametersRequest generates a request for the DescribeDefaultClusterParameters operation.
-func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaultClusterParametersMessage) (req *aws.Request, output *DescribeDefaultClusterParametersOutput) {
+func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaultClusterParametersInput) (req *aws.Request, output *DescribeDefaultClusterParametersOutput) {
 	if opDescribeDefaultClusterParameters == nil {
 		opDescribeDefaultClusterParameters = &aws.Operation{
 			Name:       "DescribeDefaultClusterParameters",
@@ -724,7 +724,7 @@ func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaul
 	return
 }
 
-func (c *Redshift) DescribeDefaultClusterParameters(input *DescribeDefaultClusterParametersMessage) (output *DescribeDefaultClusterParametersOutput, err error) {
+func (c *Redshift) DescribeDefaultClusterParameters(input *DescribeDefaultClusterParametersInput) (output *DescribeDefaultClusterParametersOutput, err error) {
 	req, out := c.DescribeDefaultClusterParametersRequest(input)
 	output = out
 	err = req.Send()
@@ -734,7 +734,7 @@ func (c *Redshift) DescribeDefaultClusterParameters(input *DescribeDefaultCluste
 var opDescribeDefaultClusterParameters *aws.Operation
 
 // DescribeEventCategoriesRequest generates a request for the DescribeEventCategories operation.
-func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategoriesMessage) (req *aws.Request, output *EventCategoriesMessage) {
+func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *aws.Request, output *DescribeEventCategoriesOutput) {
 	if opDescribeEventCategories == nil {
 		opDescribeEventCategories = &aws.Operation{
 			Name:       "DescribeEventCategories",
@@ -744,12 +744,12 @@ func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategories
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeEventCategories, input, output)
-	output = &EventCategoriesMessage{}
+	output = &DescribeEventCategoriesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeEventCategories(input *DescribeEventCategoriesMessage) (output *EventCategoriesMessage, err error) {
+func (c *Redshift) DescribeEventCategories(input *DescribeEventCategoriesInput) (output *DescribeEventCategoriesOutput, err error) {
 	req, out := c.DescribeEventCategoriesRequest(input)
 	output = out
 	err = req.Send()
@@ -759,7 +759,7 @@ func (c *Redshift) DescribeEventCategories(input *DescribeEventCategoriesMessage
 var opDescribeEventCategories *aws.Operation
 
 // DescribeEventSubscriptionsRequest generates a request for the DescribeEventSubscriptions operation.
-func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsMessage) (req *aws.Request, output *EventSubscriptionsMessage) {
+func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *aws.Request, output *DescribeEventSubscriptionsOutput) {
 	if opDescribeEventSubscriptions == nil {
 		opDescribeEventSubscriptions = &aws.Operation{
 			Name:       "DescribeEventSubscriptions",
@@ -769,12 +769,12 @@ func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscri
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeEventSubscriptions, input, output)
-	output = &EventSubscriptionsMessage{}
+	output = &DescribeEventSubscriptionsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeEventSubscriptions(input *DescribeEventSubscriptionsMessage) (output *EventSubscriptionsMessage, err error) {
+func (c *Redshift) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (output *DescribeEventSubscriptionsOutput, err error) {
 	req, out := c.DescribeEventSubscriptionsRequest(input)
 	output = out
 	err = req.Send()
@@ -784,7 +784,7 @@ func (c *Redshift) DescribeEventSubscriptions(input *DescribeEventSubscriptionsM
 var opDescribeEventSubscriptions *aws.Operation
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
-func (c *Redshift) DescribeEventsRequest(input *DescribeEventsMessage) (req *aws.Request, output *EventsMessage) {
+func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
 			Name:       "DescribeEvents",
@@ -794,12 +794,12 @@ func (c *Redshift) DescribeEventsRequest(input *DescribeEventsMessage) (req *aws
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeEvents, input, output)
-	output = &EventsMessage{}
+	output = &DescribeEventsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeEvents(input *DescribeEventsMessage) (output *EventsMessage, err error) {
+func (c *Redshift) DescribeEvents(input *DescribeEventsInput) (output *DescribeEventsOutput, err error) {
 	req, out := c.DescribeEventsRequest(input)
 	output = out
 	err = req.Send()
@@ -809,7 +809,7 @@ func (c *Redshift) DescribeEvents(input *DescribeEventsMessage) (output *EventsM
 var opDescribeEvents *aws.Operation
 
 // DescribeHSMClientCertificatesRequest generates a request for the DescribeHSMClientCertificates operation.
-func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClientCertificatesMessage) (req *aws.Request, output *HSMClientCertificateMessage) {
+func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClientCertificatesInput) (req *aws.Request, output *DescribeHSMClientCertificatesOutput) {
 	if opDescribeHSMClientCertificates == nil {
 		opDescribeHSMClientCertificates = &aws.Operation{
 			Name:       "DescribeHsmClientCertificates",
@@ -819,12 +819,12 @@ func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClient
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeHSMClientCertificates, input, output)
-	output = &HSMClientCertificateMessage{}
+	output = &DescribeHSMClientCertificatesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeHSMClientCertificates(input *DescribeHSMClientCertificatesMessage) (output *HSMClientCertificateMessage, err error) {
+func (c *Redshift) DescribeHSMClientCertificates(input *DescribeHSMClientCertificatesInput) (output *DescribeHSMClientCertificatesOutput, err error) {
 	req, out := c.DescribeHSMClientCertificatesRequest(input)
 	output = out
 	err = req.Send()
@@ -834,7 +834,7 @@ func (c *Redshift) DescribeHSMClientCertificates(input *DescribeHSMClientCertifi
 var opDescribeHSMClientCertificates *aws.Operation
 
 // DescribeHSMConfigurationsRequest generates a request for the DescribeHSMConfigurations operation.
-func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurationsMessage) (req *aws.Request, output *HSMConfigurationMessage) {
+func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurationsInput) (req *aws.Request, output *DescribeHSMConfigurationsOutput) {
 	if opDescribeHSMConfigurations == nil {
 		opDescribeHSMConfigurations = &aws.Operation{
 			Name:       "DescribeHsmConfigurations",
@@ -844,12 +844,12 @@ func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurat
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeHSMConfigurations, input, output)
-	output = &HSMConfigurationMessage{}
+	output = &DescribeHSMConfigurationsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeHSMConfigurations(input *DescribeHSMConfigurationsMessage) (output *HSMConfigurationMessage, err error) {
+func (c *Redshift) DescribeHSMConfigurations(input *DescribeHSMConfigurationsInput) (output *DescribeHSMConfigurationsOutput, err error) {
 	req, out := c.DescribeHSMConfigurationsRequest(input)
 	output = out
 	err = req.Send()
@@ -859,7 +859,7 @@ func (c *Redshift) DescribeHSMConfigurations(input *DescribeHSMConfigurationsMes
 var opDescribeHSMConfigurations *aws.Operation
 
 // DescribeLoggingStatusRequest generates a request for the DescribeLoggingStatus operation.
-func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusMessage) (req *aws.Request, output *LoggingStatus) {
+func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInput) (req *aws.Request, output *LoggingStatus) {
 	if opDescribeLoggingStatus == nil {
 		opDescribeLoggingStatus = &aws.Operation{
 			Name:       "DescribeLoggingStatus",
@@ -874,7 +874,7 @@ func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusMess
 	return
 }
 
-func (c *Redshift) DescribeLoggingStatus(input *DescribeLoggingStatusMessage) (output *LoggingStatus, err error) {
+func (c *Redshift) DescribeLoggingStatus(input *DescribeLoggingStatusInput) (output *LoggingStatus, err error) {
 	req, out := c.DescribeLoggingStatusRequest(input)
 	output = out
 	err = req.Send()
@@ -884,7 +884,7 @@ func (c *Redshift) DescribeLoggingStatus(input *DescribeLoggingStatusMessage) (o
 var opDescribeLoggingStatus *aws.Operation
 
 // DescribeOrderableClusterOptionsRequest generates a request for the DescribeOrderableClusterOptions operation.
-func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderableClusterOptionsMessage) (req *aws.Request, output *OrderableClusterOptionsMessage) {
+func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderableClusterOptionsInput) (req *aws.Request, output *DescribeOrderableClusterOptionsOutput) {
 	if opDescribeOrderableClusterOptions == nil {
 		opDescribeOrderableClusterOptions = &aws.Operation{
 			Name:       "DescribeOrderableClusterOptions",
@@ -894,12 +894,12 @@ func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderab
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeOrderableClusterOptions, input, output)
-	output = &OrderableClusterOptionsMessage{}
+	output = &DescribeOrderableClusterOptionsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeOrderableClusterOptions(input *DescribeOrderableClusterOptionsMessage) (output *OrderableClusterOptionsMessage, err error) {
+func (c *Redshift) DescribeOrderableClusterOptions(input *DescribeOrderableClusterOptionsInput) (output *DescribeOrderableClusterOptionsOutput, err error) {
 	req, out := c.DescribeOrderableClusterOptionsRequest(input)
 	output = out
 	err = req.Send()
@@ -909,7 +909,7 @@ func (c *Redshift) DescribeOrderableClusterOptions(input *DescribeOrderableClust
 var opDescribeOrderableClusterOptions *aws.Operation
 
 // DescribeReservedNodeOfferingsRequest generates a request for the DescribeReservedNodeOfferings operation.
-func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedNodeOfferingsMessage) (req *aws.Request, output *ReservedNodeOfferingsMessage) {
+func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedNodeOfferingsInput) (req *aws.Request, output *DescribeReservedNodeOfferingsOutput) {
 	if opDescribeReservedNodeOfferings == nil {
 		opDescribeReservedNodeOfferings = &aws.Operation{
 			Name:       "DescribeReservedNodeOfferings",
@@ -919,12 +919,12 @@ func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedN
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeReservedNodeOfferings, input, output)
-	output = &ReservedNodeOfferingsMessage{}
+	output = &DescribeReservedNodeOfferingsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeReservedNodeOfferings(input *DescribeReservedNodeOfferingsMessage) (output *ReservedNodeOfferingsMessage, err error) {
+func (c *Redshift) DescribeReservedNodeOfferings(input *DescribeReservedNodeOfferingsInput) (output *DescribeReservedNodeOfferingsOutput, err error) {
 	req, out := c.DescribeReservedNodeOfferingsRequest(input)
 	output = out
 	err = req.Send()
@@ -934,7 +934,7 @@ func (c *Redshift) DescribeReservedNodeOfferings(input *DescribeReservedNodeOffe
 var opDescribeReservedNodeOfferings *aws.Operation
 
 // DescribeReservedNodesRequest generates a request for the DescribeReservedNodes operation.
-func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesMessage) (req *aws.Request, output *ReservedNodesMessage) {
+func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInput) (req *aws.Request, output *DescribeReservedNodesOutput) {
 	if opDescribeReservedNodes == nil {
 		opDescribeReservedNodes = &aws.Operation{
 			Name:       "DescribeReservedNodes",
@@ -944,12 +944,12 @@ func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesMess
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeReservedNodes, input, output)
-	output = &ReservedNodesMessage{}
+	output = &DescribeReservedNodesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeReservedNodes(input *DescribeReservedNodesMessage) (output *ReservedNodesMessage, err error) {
+func (c *Redshift) DescribeReservedNodes(input *DescribeReservedNodesInput) (output *DescribeReservedNodesOutput, err error) {
 	req, out := c.DescribeReservedNodesRequest(input)
 	output = out
 	err = req.Send()
@@ -959,7 +959,7 @@ func (c *Redshift) DescribeReservedNodes(input *DescribeReservedNodesMessage) (o
 var opDescribeReservedNodes *aws.Operation
 
 // DescribeResizeRequest generates a request for the DescribeResize operation.
-func (c *Redshift) DescribeResizeRequest(input *DescribeResizeMessage) (req *aws.Request, output *ResizeProgressMessage) {
+func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *aws.Request, output *DescribeResizeOutput) {
 	if opDescribeResize == nil {
 		opDescribeResize = &aws.Operation{
 			Name:       "DescribeResize",
@@ -969,12 +969,12 @@ func (c *Redshift) DescribeResizeRequest(input *DescribeResizeMessage) (req *aws
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeResize, input, output)
-	output = &ResizeProgressMessage{}
+	output = &DescribeResizeOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeResize(input *DescribeResizeMessage) (output *ResizeProgressMessage, err error) {
+func (c *Redshift) DescribeResize(input *DescribeResizeInput) (output *DescribeResizeOutput, err error) {
 	req, out := c.DescribeResizeRequest(input)
 	output = out
 	err = req.Send()
@@ -984,7 +984,7 @@ func (c *Redshift) DescribeResize(input *DescribeResizeMessage) (output *ResizeP
 var opDescribeResize *aws.Operation
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
-func (c *Redshift) DescribeTagsRequest(input *DescribeTagsMessage) (req *aws.Request, output *TaggedResourceListMessage) {
+func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
 			Name:       "DescribeTags",
@@ -994,12 +994,12 @@ func (c *Redshift) DescribeTagsRequest(input *DescribeTagsMessage) (req *aws.Req
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeTags, input, output)
-	output = &TaggedResourceListMessage{}
+	output = &DescribeTagsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *Redshift) DescribeTags(input *DescribeTagsMessage) (output *TaggedResourceListMessage, err error) {
+func (c *Redshift) DescribeTags(input *DescribeTagsInput) (output *DescribeTagsOutput, err error) {
 	req, out := c.DescribeTagsRequest(input)
 	output = out
 	err = req.Send()
@@ -1009,7 +1009,7 @@ func (c *Redshift) DescribeTags(input *DescribeTagsMessage) (output *TaggedResou
 var opDescribeTags *aws.Operation
 
 // DisableLoggingRequest generates a request for the DisableLogging operation.
-func (c *Redshift) DisableLoggingRequest(input *DisableLoggingMessage) (req *aws.Request, output *LoggingStatus) {
+func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *aws.Request, output *LoggingStatus) {
 	if opDisableLogging == nil {
 		opDisableLogging = &aws.Operation{
 			Name:       "DisableLogging",
@@ -1024,7 +1024,7 @@ func (c *Redshift) DisableLoggingRequest(input *DisableLoggingMessage) (req *aws
 	return
 }
 
-func (c *Redshift) DisableLogging(input *DisableLoggingMessage) (output *LoggingStatus, err error) {
+func (c *Redshift) DisableLogging(input *DisableLoggingInput) (output *LoggingStatus, err error) {
 	req, out := c.DisableLoggingRequest(input)
 	output = out
 	err = req.Send()
@@ -1034,7 +1034,7 @@ func (c *Redshift) DisableLogging(input *DisableLoggingMessage) (output *Logging
 var opDisableLogging *aws.Operation
 
 // DisableSnapshotCopyRequest generates a request for the DisableSnapshotCopy operation.
-func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyMessage) (req *aws.Request, output *DisableSnapshotCopyOutput) {
+func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (req *aws.Request, output *DisableSnapshotCopyOutput) {
 	if opDisableSnapshotCopy == nil {
 		opDisableSnapshotCopy = &aws.Operation{
 			Name:       "DisableSnapshotCopy",
@@ -1049,7 +1049,7 @@ func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyMessage)
 	return
 }
 
-func (c *Redshift) DisableSnapshotCopy(input *DisableSnapshotCopyMessage) (output *DisableSnapshotCopyOutput, err error) {
+func (c *Redshift) DisableSnapshotCopy(input *DisableSnapshotCopyInput) (output *DisableSnapshotCopyOutput, err error) {
 	req, out := c.DisableSnapshotCopyRequest(input)
 	output = out
 	err = req.Send()
@@ -1059,7 +1059,7 @@ func (c *Redshift) DisableSnapshotCopy(input *DisableSnapshotCopyMessage) (outpu
 var opDisableSnapshotCopy *aws.Operation
 
 // EnableLoggingRequest generates a request for the EnableLogging operation.
-func (c *Redshift) EnableLoggingRequest(input *EnableLoggingMessage) (req *aws.Request, output *LoggingStatus) {
+func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *aws.Request, output *LoggingStatus) {
 	if opEnableLogging == nil {
 		opEnableLogging = &aws.Operation{
 			Name:       "EnableLogging",
@@ -1074,7 +1074,7 @@ func (c *Redshift) EnableLoggingRequest(input *EnableLoggingMessage) (req *aws.R
 	return
 }
 
-func (c *Redshift) EnableLogging(input *EnableLoggingMessage) (output *LoggingStatus, err error) {
+func (c *Redshift) EnableLogging(input *EnableLoggingInput) (output *LoggingStatus, err error) {
 	req, out := c.EnableLoggingRequest(input)
 	output = out
 	err = req.Send()
@@ -1084,7 +1084,7 @@ func (c *Redshift) EnableLogging(input *EnableLoggingMessage) (output *LoggingSt
 var opEnableLogging *aws.Operation
 
 // EnableSnapshotCopyRequest generates a request for the EnableSnapshotCopy operation.
-func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyMessage) (req *aws.Request, output *EnableSnapshotCopyOutput) {
+func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyInput) (req *aws.Request, output *EnableSnapshotCopyOutput) {
 	if opEnableSnapshotCopy == nil {
 		opEnableSnapshotCopy = &aws.Operation{
 			Name:       "EnableSnapshotCopy",
@@ -1099,7 +1099,7 @@ func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyMessage) (
 	return
 }
 
-func (c *Redshift) EnableSnapshotCopy(input *EnableSnapshotCopyMessage) (output *EnableSnapshotCopyOutput, err error) {
+func (c *Redshift) EnableSnapshotCopy(input *EnableSnapshotCopyInput) (output *EnableSnapshotCopyOutput, err error) {
 	req, out := c.EnableSnapshotCopyRequest(input)
 	output = out
 	err = req.Send()
@@ -1109,7 +1109,7 @@ func (c *Redshift) EnableSnapshotCopy(input *EnableSnapshotCopyMessage) (output 
 var opEnableSnapshotCopy *aws.Operation
 
 // ModifyClusterRequest generates a request for the ModifyCluster operation.
-func (c *Redshift) ModifyClusterRequest(input *ModifyClusterMessage) (req *aws.Request, output *ModifyClusterOutput) {
+func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *aws.Request, output *ModifyClusterOutput) {
 	if opModifyCluster == nil {
 		opModifyCluster = &aws.Operation{
 			Name:       "ModifyCluster",
@@ -1124,7 +1124,7 @@ func (c *Redshift) ModifyClusterRequest(input *ModifyClusterMessage) (req *aws.R
 	return
 }
 
-func (c *Redshift) ModifyCluster(input *ModifyClusterMessage) (output *ModifyClusterOutput, err error) {
+func (c *Redshift) ModifyCluster(input *ModifyClusterInput) (output *ModifyClusterOutput, err error) {
 	req, out := c.ModifyClusterRequest(input)
 	output = out
 	err = req.Send()
@@ -1134,7 +1134,7 @@ func (c *Redshift) ModifyCluster(input *ModifyClusterMessage) (output *ModifyClu
 var opModifyCluster *aws.Operation
 
 // ModifyClusterParameterGroupRequest generates a request for the ModifyClusterParameterGroup operation.
-func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParameterGroupMessage) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
+func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
 	if opModifyClusterParameterGroup == nil {
 		opModifyClusterParameterGroup = &aws.Operation{
 			Name:       "ModifyClusterParameterGroup",
@@ -1149,7 +1149,7 @@ func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParame
 	return
 }
 
-func (c *Redshift) ModifyClusterParameterGroup(input *ModifyClusterParameterGroupMessage) (output *ClusterParameterGroupNameMessage, err error) {
+func (c *Redshift) ModifyClusterParameterGroup(input *ModifyClusterParameterGroupInput) (output *ClusterParameterGroupNameMessage, err error) {
 	req, out := c.ModifyClusterParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -1159,7 +1159,7 @@ func (c *Redshift) ModifyClusterParameterGroup(input *ModifyClusterParameterGrou
 var opModifyClusterParameterGroup *aws.Operation
 
 // ModifyClusterSubnetGroupRequest generates a request for the ModifyClusterSubnetGroup operation.
-func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGroupMessage) (req *aws.Request, output *ModifyClusterSubnetGroupOutput) {
+func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGroupInput) (req *aws.Request, output *ModifyClusterSubnetGroupOutput) {
 	if opModifyClusterSubnetGroup == nil {
 		opModifyClusterSubnetGroup = &aws.Operation{
 			Name:       "ModifyClusterSubnetGroup",
@@ -1174,7 +1174,7 @@ func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGro
 	return
 }
 
-func (c *Redshift) ModifyClusterSubnetGroup(input *ModifyClusterSubnetGroupMessage) (output *ModifyClusterSubnetGroupOutput, err error) {
+func (c *Redshift) ModifyClusterSubnetGroup(input *ModifyClusterSubnetGroupInput) (output *ModifyClusterSubnetGroupOutput, err error) {
 	req, out := c.ModifyClusterSubnetGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -1184,7 +1184,7 @@ func (c *Redshift) ModifyClusterSubnetGroup(input *ModifyClusterSubnetGroupMessa
 var opModifyClusterSubnetGroup *aws.Operation
 
 // ModifyEventSubscriptionRequest generates a request for the ModifyEventSubscription operation.
-func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionMessage) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
+func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
 	if opModifyEventSubscription == nil {
 		opModifyEventSubscription = &aws.Operation{
 			Name:       "ModifyEventSubscription",
@@ -1199,7 +1199,7 @@ func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscription
 	return
 }
 
-func (c *Redshift) ModifyEventSubscription(input *ModifyEventSubscriptionMessage) (output *ModifyEventSubscriptionOutput, err error) {
+func (c *Redshift) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (output *ModifyEventSubscriptionOutput, err error) {
 	req, out := c.ModifyEventSubscriptionRequest(input)
 	output = out
 	err = req.Send()
@@ -1209,7 +1209,7 @@ func (c *Redshift) ModifyEventSubscription(input *ModifyEventSubscriptionMessage
 var opModifyEventSubscription *aws.Operation
 
 // ModifySnapshotCopyRetentionPeriodRequest generates a request for the ModifySnapshotCopyRetentionPeriod operation.
-func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapshotCopyRetentionPeriodMessage) (req *aws.Request, output *ModifySnapshotCopyRetentionPeriodOutput) {
+func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapshotCopyRetentionPeriodInput) (req *aws.Request, output *ModifySnapshotCopyRetentionPeriodOutput) {
 	if opModifySnapshotCopyRetentionPeriod == nil {
 		opModifySnapshotCopyRetentionPeriod = &aws.Operation{
 			Name:       "ModifySnapshotCopyRetentionPeriod",
@@ -1224,7 +1224,7 @@ func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapsho
 	return
 }
 
-func (c *Redshift) ModifySnapshotCopyRetentionPeriod(input *ModifySnapshotCopyRetentionPeriodMessage) (output *ModifySnapshotCopyRetentionPeriodOutput, err error) {
+func (c *Redshift) ModifySnapshotCopyRetentionPeriod(input *ModifySnapshotCopyRetentionPeriodInput) (output *ModifySnapshotCopyRetentionPeriodOutput, err error) {
 	req, out := c.ModifySnapshotCopyRetentionPeriodRequest(input)
 	output = out
 	err = req.Send()
@@ -1234,7 +1234,7 @@ func (c *Redshift) ModifySnapshotCopyRetentionPeriod(input *ModifySnapshotCopyRe
 var opModifySnapshotCopyRetentionPeriod *aws.Operation
 
 // PurchaseReservedNodeOfferingRequest generates a request for the PurchaseReservedNodeOffering operation.
-func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNodeOfferingMessage) (req *aws.Request, output *PurchaseReservedNodeOfferingOutput) {
+func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNodeOfferingInput) (req *aws.Request, output *PurchaseReservedNodeOfferingOutput) {
 	if opPurchaseReservedNodeOffering == nil {
 		opPurchaseReservedNodeOffering = &aws.Operation{
 			Name:       "PurchaseReservedNodeOffering",
@@ -1249,7 +1249,7 @@ func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNo
 	return
 }
 
-func (c *Redshift) PurchaseReservedNodeOffering(input *PurchaseReservedNodeOfferingMessage) (output *PurchaseReservedNodeOfferingOutput, err error) {
+func (c *Redshift) PurchaseReservedNodeOffering(input *PurchaseReservedNodeOfferingInput) (output *PurchaseReservedNodeOfferingOutput, err error) {
 	req, out := c.PurchaseReservedNodeOfferingRequest(input)
 	output = out
 	err = req.Send()
@@ -1259,7 +1259,7 @@ func (c *Redshift) PurchaseReservedNodeOffering(input *PurchaseReservedNodeOffer
 var opPurchaseReservedNodeOffering *aws.Operation
 
 // RebootClusterRequest generates a request for the RebootCluster operation.
-func (c *Redshift) RebootClusterRequest(input *RebootClusterMessage) (req *aws.Request, output *RebootClusterOutput) {
+func (c *Redshift) RebootClusterRequest(input *RebootClusterInput) (req *aws.Request, output *RebootClusterOutput) {
 	if opRebootCluster == nil {
 		opRebootCluster = &aws.Operation{
 			Name:       "RebootCluster",
@@ -1274,7 +1274,7 @@ func (c *Redshift) RebootClusterRequest(input *RebootClusterMessage) (req *aws.R
 	return
 }
 
-func (c *Redshift) RebootCluster(input *RebootClusterMessage) (output *RebootClusterOutput, err error) {
+func (c *Redshift) RebootCluster(input *RebootClusterInput) (output *RebootClusterOutput, err error) {
 	req, out := c.RebootClusterRequest(input)
 	output = out
 	err = req.Send()
@@ -1284,7 +1284,7 @@ func (c *Redshift) RebootCluster(input *RebootClusterMessage) (output *RebootClu
 var opRebootCluster *aws.Operation
 
 // ResetClusterParameterGroupRequest generates a request for the ResetClusterParameterGroup operation.
-func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParameterGroupMessage) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
+func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
 	if opResetClusterParameterGroup == nil {
 		opResetClusterParameterGroup = &aws.Operation{
 			Name:       "ResetClusterParameterGroup",
@@ -1299,7 +1299,7 @@ func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParamete
 	return
 }
 
-func (c *Redshift) ResetClusterParameterGroup(input *ResetClusterParameterGroupMessage) (output *ClusterParameterGroupNameMessage, err error) {
+func (c *Redshift) ResetClusterParameterGroup(input *ResetClusterParameterGroupInput) (output *ClusterParameterGroupNameMessage, err error) {
 	req, out := c.ResetClusterParameterGroupRequest(input)
 	output = out
 	err = req.Send()
@@ -1309,7 +1309,7 @@ func (c *Redshift) ResetClusterParameterGroup(input *ResetClusterParameterGroupM
 var opResetClusterParameterGroup *aws.Operation
 
 // RestoreFromClusterSnapshotRequest generates a request for the RestoreFromClusterSnapshot operation.
-func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSnapshotMessage) (req *aws.Request, output *RestoreFromClusterSnapshotOutput) {
+func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSnapshotInput) (req *aws.Request, output *RestoreFromClusterSnapshotOutput) {
 	if opRestoreFromClusterSnapshot == nil {
 		opRestoreFromClusterSnapshot = &aws.Operation{
 			Name:       "RestoreFromClusterSnapshot",
@@ -1324,7 +1324,7 @@ func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSn
 	return
 }
 
-func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotMessage) (output *RestoreFromClusterSnapshotOutput, err error) {
+func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotInput) (output *RestoreFromClusterSnapshotOutput, err error) {
 	req, out := c.RestoreFromClusterSnapshotRequest(input)
 	output = out
 	err = req.Send()
@@ -1334,7 +1334,7 @@ func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotM
 var opRestoreFromClusterSnapshot *aws.Operation
 
 // RevokeClusterSecurityGroupIngressRequest generates a request for the RevokeClusterSecurityGroupIngress operation.
-func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeClusterSecurityGroupIngressMessage) (req *aws.Request, output *RevokeClusterSecurityGroupIngressOutput) {
+func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeClusterSecurityGroupIngressInput) (req *aws.Request, output *RevokeClusterSecurityGroupIngressOutput) {
 	if opRevokeClusterSecurityGroupIngress == nil {
 		opRevokeClusterSecurityGroupIngress = &aws.Operation{
 			Name:       "RevokeClusterSecurityGroupIngress",
@@ -1349,7 +1349,7 @@ func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeCluster
 	return
 }
 
-func (c *Redshift) RevokeClusterSecurityGroupIngress(input *RevokeClusterSecurityGroupIngressMessage) (output *RevokeClusterSecurityGroupIngressOutput, err error) {
+func (c *Redshift) RevokeClusterSecurityGroupIngress(input *RevokeClusterSecurityGroupIngressInput) (output *RevokeClusterSecurityGroupIngressOutput, err error) {
 	req, out := c.RevokeClusterSecurityGroupIngressRequest(input)
 	output = out
 	err = req.Send()
@@ -1359,7 +1359,7 @@ func (c *Redshift) RevokeClusterSecurityGroupIngress(input *RevokeClusterSecurit
 var opRevokeClusterSecurityGroupIngress *aws.Operation
 
 // RevokeSnapshotAccessRequest generates a request for the RevokeSnapshotAccess operation.
-func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessMessage) (req *aws.Request, output *RevokeSnapshotAccessOutput) {
+func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput) (req *aws.Request, output *RevokeSnapshotAccessOutput) {
 	if opRevokeSnapshotAccess == nil {
 		opRevokeSnapshotAccess = &aws.Operation{
 			Name:       "RevokeSnapshotAccess",
@@ -1374,7 +1374,7 @@ func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessMessag
 	return
 }
 
-func (c *Redshift) RevokeSnapshotAccess(input *RevokeSnapshotAccessMessage) (output *RevokeSnapshotAccessOutput, err error) {
+func (c *Redshift) RevokeSnapshotAccess(input *RevokeSnapshotAccessInput) (output *RevokeSnapshotAccessOutput, err error) {
 	req, out := c.RevokeSnapshotAccessRequest(input)
 	output = out
 	err = req.Send()
@@ -1384,7 +1384,7 @@ func (c *Redshift) RevokeSnapshotAccess(input *RevokeSnapshotAccessMessage) (out
 var opRevokeSnapshotAccess *aws.Operation
 
 // RotateEncryptionKeyRequest generates a request for the RotateEncryptionKey operation.
-func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyMessage) (req *aws.Request, output *RotateEncryptionKeyOutput) {
+func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (req *aws.Request, output *RotateEncryptionKeyOutput) {
 	if opRotateEncryptionKey == nil {
 		opRotateEncryptionKey = &aws.Operation{
 			Name:       "RotateEncryptionKey",
@@ -1399,7 +1399,7 @@ func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyMessage)
 	return
 }
 
-func (c *Redshift) RotateEncryptionKey(input *RotateEncryptionKeyMessage) (output *RotateEncryptionKeyOutput, err error) {
+func (c *Redshift) RotateEncryptionKey(input *RotateEncryptionKeyInput) (output *RotateEncryptionKeyOutput, err error) {
 	req, out := c.RotateEncryptionKeyRequest(input)
 	output = out
 	err = req.Send()
@@ -1450,16 +1450,16 @@ type metadataAuthorizationQuotaExceededFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type AuthorizeClusterSecurityGroupIngressMessage struct {
+type AuthorizeClusterSecurityGroupIngressInput struct {
 	CIDRIP                   *string `type:"string"`
 	ClusterSecurityGroupName *string `type:"string"`
 	EC2SecurityGroupName     *string `type:"string"`
 	EC2SecurityGroupOwnerID  *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
-	metadataAuthorizeClusterSecurityGroupIngressMessage `json:"-", xml:"-"`
+	metadataAuthorizeClusterSecurityGroupIngressInput `json:"-", xml:"-"`
 }
 
-type metadataAuthorizeClusterSecurityGroupIngressMessage struct {
+type metadataAuthorizeClusterSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterSecurityGroupName"`
 }
 
@@ -1473,15 +1473,15 @@ type metadataAuthorizeClusterSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"AuthorizeClusterSecurityGroupIngressResult"`
 }
 
-type AuthorizeSnapshotAccessMessage struct {
+type AuthorizeSnapshotAccessInput struct {
 	AccountWithRestoreAccess  *string `type:"string"`
 	SnapshotClusterIdentifier *string `type:"string"`
 	SnapshotIdentifier        *string `type:"string"`
 
-	metadataAuthorizeSnapshotAccessMessage `json:"-", xml:"-"`
+	metadataAuthorizeSnapshotAccessInput `json:"-", xml:"-"`
 }
 
-type metadataAuthorizeSnapshotAccessMessage struct {
+type metadataAuthorizeSnapshotAccessInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SnapshotIdentifier,AccountWithRestoreAccess"`
 }
 
@@ -1602,17 +1602,6 @@ type metadataClusterParameterGroupAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ClusterParameterGroupDetails struct {
-	Marker     *string      `type:"string"`
-	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
-
-	metadataClusterParameterGroupDetails `json:"-", xml:"-"`
-}
-
-type metadataClusterParameterGroupDetails struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterParametersResult"`
-}
-
 type ClusterParameterGroupNameMessage struct {
 	ParameterGroupName   *string `type:"string"`
 	ParameterGroupStatus *string `type:"string"`
@@ -1621,7 +1610,7 @@ type ClusterParameterGroupNameMessage struct {
 }
 
 type metadataClusterParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ResetClusterParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyClusterParameterGroupResult"`
 }
 
 type ClusterParameterGroupNotFoundFault struct {
@@ -1649,17 +1638,6 @@ type ClusterParameterGroupStatus struct {
 
 type metadataClusterParameterGroupStatus struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type ClusterParameterGroupsMessage struct {
-	Marker          *string                  `type:"string"`
-	ParameterGroups []*ClusterParameterGroup `locationNameList:"ClusterParameterGroup" type:"list"`
-
-	metadataClusterParameterGroupsMessage `json:"-", xml:"-"`
-}
-
-type metadataClusterParameterGroupsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterParameterGroupsResult"`
 }
 
 type ClusterQuotaExceededFault struct {
@@ -1701,17 +1679,6 @@ type ClusterSecurityGroupMembership struct {
 
 type metadataClusterSecurityGroupMembership struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type ClusterSecurityGroupMessage struct {
-	ClusterSecurityGroups []*ClusterSecurityGroup `locationNameList:"ClusterSecurityGroup" type:"list"`
-	Marker                *string                 `type:"string"`
-
-	metadataClusterSecurityGroupMessage `json:"-", xml:"-"`
-}
-
-type metadataClusterSecurityGroupMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterSecurityGroupsResult"`
 }
 
 type ClusterSecurityGroupNotFoundFault struct {
@@ -1788,17 +1755,6 @@ type metadataClusterSubnetGroupAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ClusterSubnetGroupMessage struct {
-	ClusterSubnetGroups []*ClusterSubnetGroup `locationNameList:"ClusterSubnetGroup" type:"list"`
-	Marker              *string               `type:"string"`
-
-	metadataClusterSubnetGroupMessage `json:"-", xml:"-"`
-}
-
-type metadataClusterSubnetGroupMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterSubnetGroupsResult"`
-}
-
 type ClusterSubnetGroupNotFoundFault struct {
 	metadataClusterSubnetGroupNotFoundFault `json:"-", xml:"-"`
 }
@@ -1835,37 +1791,15 @@ type metadataClusterVersion struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ClusterVersionsMessage struct {
-	ClusterVersions []*ClusterVersion `locationNameList:"ClusterVersion" type:"list"`
-	Marker          *string           `type:"string"`
-
-	metadataClusterVersionsMessage `json:"-", xml:"-"`
-}
-
-type metadataClusterVersionsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterVersionsResult"`
-}
-
-type ClustersMessage struct {
-	Clusters []*Cluster `locationNameList:"Cluster" type:"list"`
-	Marker   *string    `type:"string"`
-
-	metadataClustersMessage `json:"-", xml:"-"`
-}
-
-type metadataClustersMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClustersResult"`
-}
-
-type CopyClusterSnapshotMessage struct {
+type CopyClusterSnapshotInput struct {
 	SourceSnapshotClusterIdentifier *string `type:"string"`
 	SourceSnapshotIdentifier        *string `type:"string"`
 	TargetSnapshotIdentifier        *string `type:"string"`
 
-	metadataCopyClusterSnapshotMessage `json:"-", xml:"-"`
+	metadataCopyClusterSnapshotInput `json:"-", xml:"-"`
 }
 
-type metadataCopyClusterSnapshotMessage struct {
+type metadataCopyClusterSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SourceSnapshotIdentifier,TargetSnapshotIdentifier"`
 }
 
@@ -1887,7 +1821,7 @@ type metadataCopyToRegionDisabledFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type CreateClusterMessage struct {
+type CreateClusterInput struct {
 	AllowVersionUpgrade              *bool     `type:"boolean"`
 	AutomatedSnapshotRetentionPeriod *int      `type:"integer"`
 	AvailabilityZone                 *string   `type:"string"`
@@ -1913,10 +1847,10 @@ type CreateClusterMessage struct {
 	Tags                             []*Tag    `locationNameList:"Tag" type:"list"`
 	VPCSecurityGroupIDs              []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataCreateClusterMessage `json:"-", xml:"-"`
+	metadataCreateClusterInput `json:"-", xml:"-"`
 }
 
-type metadataCreateClusterMessage struct {
+type metadataCreateClusterInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier,NodeType,MasterUsername,MasterUserPassword"`
 }
 
@@ -1930,16 +1864,16 @@ type metadataCreateClusterOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateClusterResult"`
 }
 
-type CreateClusterParameterGroupMessage struct {
+type CreateClusterParameterGroupInput struct {
 	Description          *string `type:"string"`
 	ParameterGroupFamily *string `type:"string"`
 	ParameterGroupName   *string `type:"string"`
 	Tags                 []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterParameterGroupMessage `json:"-", xml:"-"`
+	metadataCreateClusterParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateClusterParameterGroupMessage struct {
+type metadataCreateClusterParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName,ParameterGroupFamily,Description"`
 }
 
@@ -1953,15 +1887,15 @@ type metadataCreateClusterParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateClusterParameterGroupResult"`
 }
 
-type CreateClusterSecurityGroupMessage struct {
+type CreateClusterSecurityGroupInput struct {
 	ClusterSecurityGroupName *string `type:"string"`
 	Description              *string `type:"string"`
 	Tags                     []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterSecurityGroupMessage `json:"-", xml:"-"`
+	metadataCreateClusterSecurityGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateClusterSecurityGroupMessage struct {
+type metadataCreateClusterSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterSecurityGroupName,Description"`
 }
 
@@ -1975,15 +1909,15 @@ type metadataCreateClusterSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateClusterSecurityGroupResult"`
 }
 
-type CreateClusterSnapshotMessage struct {
+type CreateClusterSnapshotInput struct {
 	ClusterIdentifier  *string `type:"string"`
 	SnapshotIdentifier *string `type:"string"`
 	Tags               []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterSnapshotMessage `json:"-", xml:"-"`
+	metadataCreateClusterSnapshotInput `json:"-", xml:"-"`
 }
 
-type metadataCreateClusterSnapshotMessage struct {
+type metadataCreateClusterSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SnapshotIdentifier,ClusterIdentifier"`
 }
 
@@ -1997,16 +1931,16 @@ type metadataCreateClusterSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateClusterSnapshotResult"`
 }
 
-type CreateClusterSubnetGroupMessage struct {
+type CreateClusterSubnetGroupInput struct {
 	ClusterSubnetGroupName *string   `type:"string"`
 	Description            *string   `type:"string"`
 	SubnetIDs              []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
 	Tags                   []*Tag    `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterSubnetGroupMessage `json:"-", xml:"-"`
+	metadataCreateClusterSubnetGroupInput `json:"-", xml:"-"`
 }
 
-type metadataCreateClusterSubnetGroupMessage struct {
+type metadataCreateClusterSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterSubnetGroupName,Description,SubnetIds"`
 }
 
@@ -2020,7 +1954,7 @@ type metadataCreateClusterSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateClusterSubnetGroupResult"`
 }
 
-type CreateEventSubscriptionMessage struct {
+type CreateEventSubscriptionInput struct {
 	Enabled          *bool     `type:"boolean"`
 	EventCategories  []*string `locationNameList:"EventCategory" type:"list"`
 	SNSTopicARN      *string   `locationName:"SnsTopicArn" type:"string"`
@@ -2030,10 +1964,10 @@ type CreateEventSubscriptionMessage struct {
 	SubscriptionName *string   `type:"string"`
 	Tags             []*Tag    `locationNameList:"Tag" type:"list"`
 
-	metadataCreateEventSubscriptionMessage `json:"-", xml:"-"`
+	metadataCreateEventSubscriptionInput `json:"-", xml:"-"`
 }
 
-type metadataCreateEventSubscriptionMessage struct {
+type metadataCreateEventSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubscriptionName,SnsTopicArn"`
 }
 
@@ -2047,14 +1981,14 @@ type metadataCreateEventSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateEventSubscriptionResult"`
 }
 
-type CreateHSMClientCertificateMessage struct {
+type CreateHSMClientCertificateInput struct {
 	HSMClientCertificateIdentifier *string `locationName:"HsmClientCertificateIdentifier" type:"string"`
 	Tags                           []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataCreateHSMClientCertificateMessage `json:"-", xml:"-"`
+	metadataCreateHSMClientCertificateInput `json:"-", xml:"-"`
 }
 
-type metadataCreateHSMClientCertificateMessage struct {
+type metadataCreateHSMClientCertificateInput struct {
 	SDKShapeTraits bool `type:"structure" required:"HsmClientCertificateIdentifier"`
 }
 
@@ -2068,7 +2002,7 @@ type metadataCreateHSMClientCertificateOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateHsmClientCertificateResult"`
 }
 
-type CreateHSMConfigurationMessage struct {
+type CreateHSMConfigurationInput struct {
 	Description                *string `type:"string"`
 	HSMConfigurationIdentifier *string `locationName:"HsmConfigurationIdentifier" type:"string"`
 	HSMIPAddress               *string `locationName:"HsmIpAddress" type:"string"`
@@ -2077,10 +2011,10 @@ type CreateHSMConfigurationMessage struct {
 	HSMServerPublicCertificate *string `locationName:"HsmServerPublicCertificate" type:"string"`
 	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataCreateHSMConfigurationMessage `json:"-", xml:"-"`
+	metadataCreateHSMConfigurationInput `json:"-", xml:"-"`
 }
 
-type metadataCreateHSMConfigurationMessage struct {
+type metadataCreateHSMConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure" required:"HsmConfigurationIdentifier,Description,HsmIpAddress,HsmPartitionName,HsmPartitionPassword,HsmServerPublicCertificate"`
 }
 
@@ -2094,14 +2028,14 @@ type metadataCreateHSMConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateHsmConfigurationResult"`
 }
 
-type CreateTagsMessage struct {
+type CreateTagsInput struct {
 	ResourceName *string `type:"string"`
 	Tags         []*Tag  `locationNameList:"Tag" type:"list"`
 
-	metadataCreateTagsMessage `json:"-", xml:"-"`
+	metadataCreateTagsInput `json:"-", xml:"-"`
 }
 
-type metadataCreateTagsMessage struct {
+type metadataCreateTagsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName,Tags"`
 }
 
@@ -2125,15 +2059,15 @@ type metadataDefaultClusterParameters struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteClusterMessage struct {
+type DeleteClusterInput struct {
 	ClusterIdentifier              *string `type:"string"`
 	FinalClusterSnapshotIdentifier *string `type:"string"`
 	SkipFinalClusterSnapshot       *bool   `type:"boolean"`
 
-	metadataDeleteClusterMessage `json:"-", xml:"-"`
+	metadataDeleteClusterInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteClusterMessage struct {
+type metadataDeleteClusterInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
 }
 
@@ -2147,13 +2081,13 @@ type metadataDeleteClusterOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteClusterResult"`
 }
 
-type DeleteClusterParameterGroupMessage struct {
+type DeleteClusterParameterGroupInput struct {
 	ParameterGroupName *string `type:"string"`
 
-	metadataDeleteClusterParameterGroupMessage `json:"-", xml:"-"`
+	metadataDeleteClusterParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteClusterParameterGroupMessage struct {
+type metadataDeleteClusterParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName"`
 }
 
@@ -2165,13 +2099,13 @@ type metadataDeleteClusterParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteClusterSecurityGroupMessage struct {
+type DeleteClusterSecurityGroupInput struct {
 	ClusterSecurityGroupName *string `type:"string"`
 
-	metadataDeleteClusterSecurityGroupMessage `json:"-", xml:"-"`
+	metadataDeleteClusterSecurityGroupInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteClusterSecurityGroupMessage struct {
+type metadataDeleteClusterSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterSecurityGroupName"`
 }
 
@@ -2183,14 +2117,14 @@ type metadataDeleteClusterSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteClusterSnapshotMessage struct {
+type DeleteClusterSnapshotInput struct {
 	SnapshotClusterIdentifier *string `type:"string"`
 	SnapshotIdentifier        *string `type:"string"`
 
-	metadataDeleteClusterSnapshotMessage `json:"-", xml:"-"`
+	metadataDeleteClusterSnapshotInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteClusterSnapshotMessage struct {
+type metadataDeleteClusterSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SnapshotIdentifier"`
 }
 
@@ -2204,13 +2138,13 @@ type metadataDeleteClusterSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteClusterSnapshotResult"`
 }
 
-type DeleteClusterSubnetGroupMessage struct {
+type DeleteClusterSubnetGroupInput struct {
 	ClusterSubnetGroupName *string `type:"string"`
 
-	metadataDeleteClusterSubnetGroupMessage `json:"-", xml:"-"`
+	metadataDeleteClusterSubnetGroupInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteClusterSubnetGroupMessage struct {
+type metadataDeleteClusterSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterSubnetGroupName"`
 }
 
@@ -2222,13 +2156,13 @@ type metadataDeleteClusterSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteEventSubscriptionMessage struct {
+type DeleteEventSubscriptionInput struct {
 	SubscriptionName *string `type:"string"`
 
-	metadataDeleteEventSubscriptionMessage `json:"-", xml:"-"`
+	metadataDeleteEventSubscriptionInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteEventSubscriptionMessage struct {
+type metadataDeleteEventSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubscriptionName"`
 }
 
@@ -2240,13 +2174,13 @@ type metadataDeleteEventSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteHSMClientCertificateMessage struct {
+type DeleteHSMClientCertificateInput struct {
 	HSMClientCertificateIdentifier *string `locationName:"HsmClientCertificateIdentifier" type:"string"`
 
-	metadataDeleteHSMClientCertificateMessage `json:"-", xml:"-"`
+	metadataDeleteHSMClientCertificateInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteHSMClientCertificateMessage struct {
+type metadataDeleteHSMClientCertificateInput struct {
 	SDKShapeTraits bool `type:"structure" required:"HsmClientCertificateIdentifier"`
 }
 
@@ -2258,13 +2192,13 @@ type metadataDeleteHSMClientCertificateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteHSMConfigurationMessage struct {
+type DeleteHSMConfigurationInput struct {
 	HSMConfigurationIdentifier *string `locationName:"HsmConfigurationIdentifier" type:"string"`
 
-	metadataDeleteHSMConfigurationMessage `json:"-", xml:"-"`
+	metadataDeleteHSMConfigurationInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteHSMConfigurationMessage struct {
+type metadataDeleteHSMConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure" required:"HsmConfigurationIdentifier"`
 }
 
@@ -2276,14 +2210,14 @@ type metadataDeleteHSMConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DeleteTagsMessage struct {
+type DeleteTagsInput struct {
 	ResourceName *string   `type:"string"`
 	TagKeys      []*string `locationNameList:"TagKey" type:"list"`
 
-	metadataDeleteTagsMessage `json:"-", xml:"-"`
+	metadataDeleteTagsInput `json:"-", xml:"-"`
 }
 
-type metadataDeleteTagsMessage struct {
+type metadataDeleteTagsInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName,TagKeys"`
 }
 
@@ -2295,48 +2229,81 @@ type metadataDeleteTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeClusterParameterGroupsMessage struct {
+type DescribeClusterParameterGroupsInput struct {
 	Marker             *string   `type:"string"`
 	MaxRecords         *int      `type:"integer"`
 	ParameterGroupName *string   `type:"string"`
 	TagKeys            []*string `locationNameList:"TagKey" type:"list"`
 	TagValues          []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterParameterGroupsMessage `json:"-", xml:"-"`
+	metadataDescribeClusterParameterGroupsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeClusterParameterGroupsMessage struct {
+type metadataDescribeClusterParameterGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeClusterParametersMessage struct {
+type DescribeClusterParameterGroupsOutput struct {
+	Marker          *string                  `type:"string"`
+	ParameterGroups []*ClusterParameterGroup `locationNameList:"ClusterParameterGroup" type:"list"`
+
+	metadataDescribeClusterParameterGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeClusterParameterGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterParameterGroupsResult"`
+}
+
+type DescribeClusterParametersInput struct {
 	Marker             *string `type:"string"`
 	MaxRecords         *int    `type:"integer"`
 	ParameterGroupName *string `type:"string"`
 	Source             *string `type:"string"`
 
-	metadataDescribeClusterParametersMessage `json:"-", xml:"-"`
+	metadataDescribeClusterParametersInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeClusterParametersMessage struct {
+type metadataDescribeClusterParametersInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName"`
 }
 
-type DescribeClusterSecurityGroupsMessage struct {
+type DescribeClusterParametersOutput struct {
+	Marker     *string      `type:"string"`
+	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
+
+	metadataDescribeClusterParametersOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeClusterParametersOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterParametersResult"`
+}
+
+type DescribeClusterSecurityGroupsInput struct {
 	ClusterSecurityGroupName *string   `type:"string"`
 	Marker                   *string   `type:"string"`
 	MaxRecords               *int      `type:"integer"`
 	TagKeys                  []*string `locationNameList:"TagKey" type:"list"`
 	TagValues                []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterSecurityGroupsMessage `json:"-", xml:"-"`
+	metadataDescribeClusterSecurityGroupsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeClusterSecurityGroupsMessage struct {
+type metadataDescribeClusterSecurityGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeClusterSnapshotsMessage struct {
+type DescribeClusterSecurityGroupsOutput struct {
+	ClusterSecurityGroups []*ClusterSecurityGroup `locationNameList:"ClusterSecurityGroup" type:"list"`
+	Marker                *string                 `type:"string"`
+
+	metadataDescribeClusterSecurityGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeClusterSecurityGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterSecurityGroupsResult"`
+}
+
+type DescribeClusterSnapshotsInput struct {
 	ClusterIdentifier  *string    `type:"string"`
 	EndTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	Marker             *string    `type:"string"`
@@ -2348,63 +2315,107 @@ type DescribeClusterSnapshotsMessage struct {
 	TagKeys            []*string  `locationNameList:"TagKey" type:"list"`
 	TagValues          []*string  `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterSnapshotsMessage `json:"-", xml:"-"`
+	metadataDescribeClusterSnapshotsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeClusterSnapshotsMessage struct {
+type metadataDescribeClusterSnapshotsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeClusterSubnetGroupsMessage struct {
+type DescribeClusterSnapshotsOutput struct {
+	Marker    *string     `type:"string"`
+	Snapshots []*Snapshot `locationNameList:"Snapshot" type:"list"`
+
+	metadataDescribeClusterSnapshotsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeClusterSnapshotsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterSnapshotsResult"`
+}
+
+type DescribeClusterSubnetGroupsInput struct {
 	ClusterSubnetGroupName *string   `type:"string"`
 	Marker                 *string   `type:"string"`
 	MaxRecords             *int      `type:"integer"`
 	TagKeys                []*string `locationNameList:"TagKey" type:"list"`
 	TagValues              []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterSubnetGroupsMessage `json:"-", xml:"-"`
+	metadataDescribeClusterSubnetGroupsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeClusterSubnetGroupsMessage struct {
+type metadataDescribeClusterSubnetGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeClusterVersionsMessage struct {
+type DescribeClusterSubnetGroupsOutput struct {
+	ClusterSubnetGroups []*ClusterSubnetGroup `locationNameList:"ClusterSubnetGroup" type:"list"`
+	Marker              *string               `type:"string"`
+
+	metadataDescribeClusterSubnetGroupsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeClusterSubnetGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterSubnetGroupsResult"`
+}
+
+type DescribeClusterVersionsInput struct {
 	ClusterParameterGroupFamily *string `type:"string"`
 	ClusterVersion              *string `type:"string"`
 	Marker                      *string `type:"string"`
 	MaxRecords                  *int    `type:"integer"`
 
-	metadataDescribeClusterVersionsMessage `json:"-", xml:"-"`
+	metadataDescribeClusterVersionsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeClusterVersionsMessage struct {
+type metadataDescribeClusterVersionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeClustersMessage struct {
+type DescribeClusterVersionsOutput struct {
+	ClusterVersions []*ClusterVersion `locationNameList:"ClusterVersion" type:"list"`
+	Marker          *string           `type:"string"`
+
+	metadataDescribeClusterVersionsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeClusterVersionsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterVersionsResult"`
+}
+
+type DescribeClustersInput struct {
 	ClusterIdentifier *string   `type:"string"`
 	Marker            *string   `type:"string"`
 	MaxRecords        *int      `type:"integer"`
 	TagKeys           []*string `locationNameList:"TagKey" type:"list"`
 	TagValues         []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClustersMessage `json:"-", xml:"-"`
+	metadataDescribeClustersInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeClustersMessage struct {
+type metadataDescribeClustersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeDefaultClusterParametersMessage struct {
+type DescribeClustersOutput struct {
+	Clusters []*Cluster `locationNameList:"Cluster" type:"list"`
+	Marker   *string    `type:"string"`
+
+	metadataDescribeClustersOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeClustersOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClustersResult"`
+}
+
+type DescribeDefaultClusterParametersInput struct {
 	Marker               *string `type:"string"`
 	MaxRecords           *int    `type:"integer"`
 	ParameterGroupFamily *string `type:"string"`
 
-	metadataDescribeDefaultClusterParametersMessage `json:"-", xml:"-"`
+	metadataDescribeDefaultClusterParametersInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeDefaultClusterParametersMessage struct {
+type metadataDescribeDefaultClusterParametersInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ParameterGroupFamily"`
 }
 
@@ -2418,29 +2429,50 @@ type metadataDescribeDefaultClusterParametersOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDefaultClusterParametersResult"`
 }
 
-type DescribeEventCategoriesMessage struct {
+type DescribeEventCategoriesInput struct {
 	SourceType *string `type:"string"`
 
-	metadataDescribeEventCategoriesMessage `json:"-", xml:"-"`
+	metadataDescribeEventCategoriesInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeEventCategoriesMessage struct {
+type metadataDescribeEventCategoriesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeEventSubscriptionsMessage struct {
+type DescribeEventCategoriesOutput struct {
+	EventCategoriesMapList []*EventCategoriesMap `locationNameList:"EventCategoriesMap" type:"list"`
+
+	metadataDescribeEventCategoriesOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeEventCategoriesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventCategoriesResult"`
+}
+
+type DescribeEventSubscriptionsInput struct {
 	Marker           *string `type:"string"`
 	MaxRecords       *int    `type:"integer"`
 	SubscriptionName *string `type:"string"`
 
-	metadataDescribeEventSubscriptionsMessage `json:"-", xml:"-"`
+	metadataDescribeEventSubscriptionsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeEventSubscriptionsMessage struct {
+type metadataDescribeEventSubscriptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeEventsMessage struct {
+type DescribeEventSubscriptionsOutput struct {
+	EventSubscriptionsList []*EventSubscription `locationNameList:"EventSubscription" type:"list"`
+	Marker                 *string              `type:"string"`
+
+	metadataDescribeEventSubscriptionsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeEventSubscriptionsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventSubscriptionsResult"`
+}
+
+type DescribeEventsInput struct {
 	Duration         *int       `type:"integer"`
 	EndTime          *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	Marker           *string    `type:"string"`
@@ -2449,99 +2481,201 @@ type DescribeEventsMessage struct {
 	SourceType       *string    `type:"string"`
 	StartTime        *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeEventsMessage `json:"-", xml:"-"`
+	metadataDescribeEventsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeEventsMessage struct {
+type metadataDescribeEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeHSMClientCertificatesMessage struct {
+type DescribeEventsOutput struct {
+	Events []*Event `locationNameList:"Event" type:"list"`
+	Marker *string  `type:"string"`
+
+	metadataDescribeEventsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeEventsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventsResult"`
+}
+
+type DescribeHSMClientCertificatesInput struct {
 	HSMClientCertificateIdentifier *string   `locationName:"HsmClientCertificateIdentifier" type:"string"`
 	Marker                         *string   `type:"string"`
 	MaxRecords                     *int      `type:"integer"`
 	TagKeys                        []*string `locationNameList:"TagKey" type:"list"`
 	TagValues                      []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeHSMClientCertificatesMessage `json:"-", xml:"-"`
+	metadataDescribeHSMClientCertificatesInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeHSMClientCertificatesMessage struct {
+type metadataDescribeHSMClientCertificatesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeHSMConfigurationsMessage struct {
+type DescribeHSMClientCertificatesOutput struct {
+	HSMClientCertificates []*HSMClientCertificate `locationName:"HsmClientCertificates" locationNameList:"HsmClientCertificate" type:"list"`
+	Marker                *string                 `type:"string"`
+
+	metadataDescribeHSMClientCertificatesOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeHSMClientCertificatesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeHsmClientCertificatesResult"`
+}
+
+type DescribeHSMConfigurationsInput struct {
 	HSMConfigurationIdentifier *string   `locationName:"HsmConfigurationIdentifier" type:"string"`
 	Marker                     *string   `type:"string"`
 	MaxRecords                 *int      `type:"integer"`
 	TagKeys                    []*string `locationNameList:"TagKey" type:"list"`
 	TagValues                  []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeHSMConfigurationsMessage `json:"-", xml:"-"`
+	metadataDescribeHSMConfigurationsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeHSMConfigurationsMessage struct {
+type metadataDescribeHSMConfigurationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeLoggingStatusMessage struct {
-	ClusterIdentifier *string `type:"string"`
+type DescribeHSMConfigurationsOutput struct {
+	HSMConfigurations []*HSMConfiguration `locationName:"HsmConfigurations" locationNameList:"HsmConfiguration" type:"list"`
+	Marker            *string             `type:"string"`
 
-	metadataDescribeLoggingStatusMessage `json:"-", xml:"-"`
+	metadataDescribeHSMConfigurationsOutput `json:"-", xml:"-"`
 }
 
-type metadataDescribeLoggingStatusMessage struct {
+type metadataDescribeHSMConfigurationsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeHsmConfigurationsResult"`
+}
+
+type DescribeLoggingStatusInput struct {
+	ClusterIdentifier *string `type:"string"`
+
+	metadataDescribeLoggingStatusInput `json:"-", xml:"-"`
+}
+
+type metadataDescribeLoggingStatusInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
 }
 
-type DescribeOrderableClusterOptionsMessage struct {
+type DescribeLoggingStatusOutput struct {
+	BucketName                 *string    `type:"string"`
+	LastFailureMessage         *string    `type:"string"`
+	LastFailureTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	LastSuccessfulDeliveryTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	LoggingEnabled             *bool      `type:"boolean"`
+	S3KeyPrefix                *string    `type:"string"`
+
+	metadataDescribeLoggingStatusOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeLoggingStatusOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeOrderableClusterOptionsInput struct {
 	ClusterVersion *string `type:"string"`
 	Marker         *string `type:"string"`
 	MaxRecords     *int    `type:"integer"`
 	NodeType       *string `type:"string"`
 
-	metadataDescribeOrderableClusterOptionsMessage `json:"-", xml:"-"`
+	metadataDescribeOrderableClusterOptionsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeOrderableClusterOptionsMessage struct {
+type metadataDescribeOrderableClusterOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeReservedNodeOfferingsMessage struct {
+type DescribeOrderableClusterOptionsOutput struct {
+	Marker                  *string                   `type:"string"`
+	OrderableClusterOptions []*OrderableClusterOption `locationNameList:"OrderableClusterOption" type:"list"`
+
+	metadataDescribeOrderableClusterOptionsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeOrderableClusterOptionsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOrderableClusterOptionsResult"`
+}
+
+type DescribeReservedNodeOfferingsInput struct {
 	Marker                 *string `type:"string"`
 	MaxRecords             *int    `type:"integer"`
 	ReservedNodeOfferingID *string `locationName:"ReservedNodeOfferingId" type:"string"`
 
-	metadataDescribeReservedNodeOfferingsMessage `json:"-", xml:"-"`
+	metadataDescribeReservedNodeOfferingsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeReservedNodeOfferingsMessage struct {
+type metadataDescribeReservedNodeOfferingsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeReservedNodesMessage struct {
+type DescribeReservedNodeOfferingsOutput struct {
+	Marker                *string                 `type:"string"`
+	ReservedNodeOfferings []*ReservedNodeOffering `locationNameList:"ReservedNodeOffering" type:"list"`
+
+	metadataDescribeReservedNodeOfferingsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeReservedNodeOfferingsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedNodeOfferingsResult"`
+}
+
+type DescribeReservedNodesInput struct {
 	Marker         *string `type:"string"`
 	MaxRecords     *int    `type:"integer"`
 	ReservedNodeID *string `locationName:"ReservedNodeId" type:"string"`
 
-	metadataDescribeReservedNodesMessage `json:"-", xml:"-"`
+	metadataDescribeReservedNodesInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeReservedNodesMessage struct {
+type metadataDescribeReservedNodesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DescribeResizeMessage struct {
-	ClusterIdentifier *string `type:"string"`
+type DescribeReservedNodesOutput struct {
+	Marker        *string         `type:"string"`
+	ReservedNodes []*ReservedNode `locationNameList:"ReservedNode" type:"list"`
 
-	metadataDescribeResizeMessage `json:"-", xml:"-"`
+	metadataDescribeReservedNodesOutput `json:"-", xml:"-"`
 }
 
-type metadataDescribeResizeMessage struct {
+type metadataDescribeReservedNodesOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedNodesResult"`
+}
+
+type DescribeResizeInput struct {
+	ClusterIdentifier *string `type:"string"`
+
+	metadataDescribeResizeInput `json:"-", xml:"-"`
+}
+
+type metadataDescribeResizeInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
 }
 
-type DescribeTagsMessage struct {
+type DescribeResizeOutput struct {
+	AvgResizeRateInMegaBytesPerSecond  *float64  `type:"double"`
+	ElapsedTimeInSeconds               *int64    `type:"long"`
+	EstimatedTimeToCompletionInSeconds *int64    `type:"long"`
+	ImportTablesCompleted              []*string `type:"list"`
+	ImportTablesInProgress             []*string `type:"list"`
+	ImportTablesNotStarted             []*string `type:"list"`
+	ProgressInMegaBytes                *int64    `type:"long"`
+	Status                             *string   `type:"string"`
+	TargetClusterType                  *string   `type:"string"`
+	TargetNodeType                     *string   `type:"string"`
+	TargetNumberOfNodes                *int      `type:"integer"`
+	TotalResizeDataInMegaBytes         *int64    `type:"long"`
+
+	metadataDescribeResizeOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeResizeOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeResizeResult"`
+}
+
+type DescribeTagsInput struct {
 	Marker       *string   `type:"string"`
 	MaxRecords   *int      `type:"integer"`
 	ResourceName *string   `type:"string"`
@@ -2549,30 +2683,56 @@ type DescribeTagsMessage struct {
 	TagKeys      []*string `locationNameList:"TagKey" type:"list"`
 	TagValues    []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeTagsMessage `json:"-", xml:"-"`
+	metadataDescribeTagsInput `json:"-", xml:"-"`
 }
 
-type metadataDescribeTagsMessage struct {
+type metadataDescribeTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DisableLoggingMessage struct {
-	ClusterIdentifier *string `type:"string"`
+type DescribeTagsOutput struct {
+	Marker          *string           `type:"string"`
+	TaggedResources []*TaggedResource `locationNameList:"TaggedResource" type:"list"`
 
-	metadataDisableLoggingMessage `json:"-", xml:"-"`
+	metadataDescribeTagsOutput `json:"-", xml:"-"`
 }
 
-type metadataDisableLoggingMessage struct {
+type metadataDescribeTagsOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeTagsResult"`
+}
+
+type DisableLoggingInput struct {
+	ClusterIdentifier *string `type:"string"`
+
+	metadataDisableLoggingInput `json:"-", xml:"-"`
+}
+
+type metadataDisableLoggingInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
 }
 
-type DisableSnapshotCopyMessage struct {
-	ClusterIdentifier *string `type:"string"`
+type DisableLoggingOutput struct {
+	BucketName                 *string    `type:"string"`
+	LastFailureMessage         *string    `type:"string"`
+	LastFailureTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	LastSuccessfulDeliveryTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	LoggingEnabled             *bool      `type:"boolean"`
+	S3KeyPrefix                *string    `type:"string"`
 
-	metadataDisableSnapshotCopyMessage `json:"-", xml:"-"`
+	metadataDisableLoggingOutput `json:"-", xml:"-"`
 }
 
-type metadataDisableSnapshotCopyMessage struct {
+type metadataDisableLoggingOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DisableSnapshotCopyInput struct {
+	ClusterIdentifier *string `type:"string"`
+
+	metadataDisableSnapshotCopyInput `json:"-", xml:"-"`
+}
+
+type metadataDisableSnapshotCopyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
 }
 
@@ -2610,27 +2770,42 @@ type metadataElasticIPStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type EnableLoggingMessage struct {
+type EnableLoggingInput struct {
 	BucketName        *string `type:"string"`
 	ClusterIdentifier *string `type:"string"`
 	S3KeyPrefix       *string `type:"string"`
 
-	metadataEnableLoggingMessage `json:"-", xml:"-"`
+	metadataEnableLoggingInput `json:"-", xml:"-"`
 }
 
-type metadataEnableLoggingMessage struct {
+type metadataEnableLoggingInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier,BucketName"`
 }
 
-type EnableSnapshotCopyMessage struct {
+type EnableLoggingOutput struct {
+	BucketName                 *string    `type:"string"`
+	LastFailureMessage         *string    `type:"string"`
+	LastFailureTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	LastSuccessfulDeliveryTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	LoggingEnabled             *bool      `type:"boolean"`
+	S3KeyPrefix                *string    `type:"string"`
+
+	metadataEnableLoggingOutput `json:"-", xml:"-"`
+}
+
+type metadataEnableLoggingOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type EnableSnapshotCopyInput struct {
 	ClusterIdentifier *string `type:"string"`
 	DestinationRegion *string `type:"string"`
 	RetentionPeriod   *int    `type:"integer"`
 
-	metadataEnableSnapshotCopyMessage `json:"-", xml:"-"`
+	metadataEnableSnapshotCopyInput `json:"-", xml:"-"`
 }
 
-type metadataEnableSnapshotCopyMessage struct {
+type metadataEnableSnapshotCopyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier,DestinationRegion"`
 }
 
@@ -2682,16 +2857,6 @@ type metadataEventCategoriesMap struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type EventCategoriesMessage struct {
-	EventCategoriesMapList []*EventCategoriesMap `locationNameList:"EventCategoriesMap" type:"list"`
-
-	metadataEventCategoriesMessage `json:"-", xml:"-"`
-}
-
-type metadataEventCategoriesMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventCategoriesResult"`
-}
-
 type EventInfoMap struct {
 	EventCategories  []*string `locationNameList:"EventCategory" type:"list"`
 	EventDescription *string   `type:"string"`
@@ -2733,28 +2898,6 @@ type metadataEventSubscriptionQuotaExceededFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type EventSubscriptionsMessage struct {
-	EventSubscriptionsList []*EventSubscription `locationNameList:"EventSubscription" type:"list"`
-	Marker                 *string              `type:"string"`
-
-	metadataEventSubscriptionsMessage `json:"-", xml:"-"`
-}
-
-type metadataEventSubscriptionsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventSubscriptionsResult"`
-}
-
-type EventsMessage struct {
-	Events []*Event `locationNameList:"Event" type:"list"`
-	Marker *string  `type:"string"`
-
-	metadataEventsMessage `json:"-", xml:"-"`
-}
-
-type metadataEventsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventsResult"`
-}
-
 type HSMClientCertificate struct {
 	HSMClientCertificateIdentifier *string `locationName:"HsmClientCertificateIdentifier" type:"string"`
 	HSMClientCertificatePublicKey  *string `locationName:"HsmClientCertificatePublicKey" type:"string"`
@@ -2773,17 +2916,6 @@ type HSMClientCertificateAlreadyExistsFault struct {
 
 type metadataHSMClientCertificateAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type HSMClientCertificateMessage struct {
-	HSMClientCertificates []*HSMClientCertificate `locationName:"HsmClientCertificates" locationNameList:"HsmClientCertificate" type:"list"`
-	Marker                *string                 `type:"string"`
-
-	metadataHSMClientCertificateMessage `json:"-", xml:"-"`
-}
-
-type metadataHSMClientCertificateMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeHsmClientCertificatesResult"`
 }
 
 type HSMClientCertificateNotFoundFault struct {
@@ -2822,17 +2954,6 @@ type HSMConfigurationAlreadyExistsFault struct {
 
 type metadataHSMConfigurationAlreadyExistsFault struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type HSMConfigurationMessage struct {
-	HSMConfigurations []*HSMConfiguration `locationName:"HsmConfigurations" locationNameList:"HsmConfiguration" type:"list"`
-	Marker            *string             `type:"string"`
-
-	metadataHSMConfigurationMessage `json:"-", xml:"-"`
-}
-
-type metadataHSMConfigurationMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeHsmConfigurationsResult"`
 }
 
 type HSMConfigurationNotFoundFault struct {
@@ -3042,7 +3163,7 @@ type metadataLoggingStatus struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DisableLoggingResult"`
 }
 
-type ModifyClusterMessage struct {
+type ModifyClusterInput struct {
 	AllowVersionUpgrade              *bool     `type:"boolean"`
 	AutomatedSnapshotRetentionPeriod *int      `type:"integer"`
 	ClusterIdentifier                *string   `type:"string"`
@@ -3059,10 +3180,10 @@ type ModifyClusterMessage struct {
 	PreferredMaintenanceWindow       *string   `type:"string"`
 	VPCSecurityGroupIDs              []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataModifyClusterMessage `json:"-", xml:"-"`
+	metadataModifyClusterInput `json:"-", xml:"-"`
 }
 
-type metadataModifyClusterMessage struct {
+type metadataModifyClusterInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
 }
 
@@ -3076,26 +3197,37 @@ type metadataModifyClusterOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyClusterResult"`
 }
 
-type ModifyClusterParameterGroupMessage struct {
+type ModifyClusterParameterGroupInput struct {
 	ParameterGroupName *string      `type:"string"`
 	Parameters         []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataModifyClusterParameterGroupMessage `json:"-", xml:"-"`
+	metadataModifyClusterParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataModifyClusterParameterGroupMessage struct {
+type metadataModifyClusterParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName,Parameters"`
 }
 
-type ModifyClusterSubnetGroupMessage struct {
+type ModifyClusterParameterGroupOutput struct {
+	ParameterGroupName   *string `type:"string"`
+	ParameterGroupStatus *string `type:"string"`
+
+	metadataModifyClusterParameterGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataModifyClusterParameterGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ModifyClusterSubnetGroupInput struct {
 	ClusterSubnetGroupName *string   `type:"string"`
 	Description            *string   `type:"string"`
 	SubnetIDs              []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
 
-	metadataModifyClusterSubnetGroupMessage `json:"-", xml:"-"`
+	metadataModifyClusterSubnetGroupInput `json:"-", xml:"-"`
 }
 
-type metadataModifyClusterSubnetGroupMessage struct {
+type metadataModifyClusterSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterSubnetGroupName,SubnetIds"`
 }
 
@@ -3109,7 +3241,7 @@ type metadataModifyClusterSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyClusterSubnetGroupResult"`
 }
 
-type ModifyEventSubscriptionMessage struct {
+type ModifyEventSubscriptionInput struct {
 	Enabled          *bool     `type:"boolean"`
 	EventCategories  []*string `locationNameList:"EventCategory" type:"list"`
 	SNSTopicARN      *string   `locationName:"SnsTopicArn" type:"string"`
@@ -3118,10 +3250,10 @@ type ModifyEventSubscriptionMessage struct {
 	SourceType       *string   `type:"string"`
 	SubscriptionName *string   `type:"string"`
 
-	metadataModifyEventSubscriptionMessage `json:"-", xml:"-"`
+	metadataModifyEventSubscriptionInput `json:"-", xml:"-"`
 }
 
-type metadataModifyEventSubscriptionMessage struct {
+type metadataModifyEventSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SubscriptionName"`
 }
 
@@ -3135,14 +3267,14 @@ type metadataModifyEventSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyEventSubscriptionResult"`
 }
 
-type ModifySnapshotCopyRetentionPeriodMessage struct {
+type ModifySnapshotCopyRetentionPeriodInput struct {
 	ClusterIdentifier *string `type:"string"`
 	RetentionPeriod   *int    `type:"integer"`
 
-	metadataModifySnapshotCopyRetentionPeriodMessage `json:"-", xml:"-"`
+	metadataModifySnapshotCopyRetentionPeriodInput `json:"-", xml:"-"`
 }
 
-type metadataModifySnapshotCopyRetentionPeriodMessage struct {
+type metadataModifySnapshotCopyRetentionPeriodInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier,RetentionPeriod"`
 }
 
@@ -3185,17 +3317,6 @@ type metadataOrderableClusterOption struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type OrderableClusterOptionsMessage struct {
-	Marker                  *string                   `type:"string"`
-	OrderableClusterOptions []*OrderableClusterOption `locationNameList:"OrderableClusterOption" type:"list"`
-
-	metadataOrderableClusterOptionsMessage `json:"-", xml:"-"`
-}
-
-type metadataOrderableClusterOptionsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOrderableClusterOptionsResult"`
-}
-
 type Parameter struct {
 	AllowedValues        *string `type:"string"`
 	DataType             *string `type:"string"`
@@ -3229,14 +3350,14 @@ type metadataPendingModifiedValues struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type PurchaseReservedNodeOfferingMessage struct {
+type PurchaseReservedNodeOfferingInput struct {
 	NodeCount              *int    `type:"integer"`
 	ReservedNodeOfferingID *string `locationName:"ReservedNodeOfferingId" type:"string"`
 
-	metadataPurchaseReservedNodeOfferingMessage `json:"-", xml:"-"`
+	metadataPurchaseReservedNodeOfferingInput `json:"-", xml:"-"`
 }
 
-type metadataPurchaseReservedNodeOfferingMessage struct {
+type metadataPurchaseReservedNodeOfferingInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ReservedNodeOfferingId"`
 }
 
@@ -3250,13 +3371,13 @@ type metadataPurchaseReservedNodeOfferingOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"PurchaseReservedNodeOfferingResult"`
 }
 
-type RebootClusterMessage struct {
+type RebootClusterInput struct {
 	ClusterIdentifier *string `type:"string"`
 
-	metadataRebootClusterMessage `json:"-", xml:"-"`
+	metadataRebootClusterInput `json:"-", xml:"-"`
 }
 
-type metadataRebootClusterMessage struct {
+type metadataRebootClusterInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
 }
 
@@ -3343,17 +3464,6 @@ type metadataReservedNodeOfferingNotFoundFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ReservedNodeOfferingsMessage struct {
-	Marker                *string                 `type:"string"`
-	ReservedNodeOfferings []*ReservedNodeOffering `locationNameList:"ReservedNodeOffering" type:"list"`
-
-	metadataReservedNodeOfferingsMessage `json:"-", xml:"-"`
-}
-
-type metadataReservedNodeOfferingsMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedNodeOfferingsResult"`
-}
-
 type ReservedNodeQuotaExceededFault struct {
 	metadataReservedNodeQuotaExceededFault `json:"-", xml:"-"`
 }
@@ -3362,27 +3472,27 @@ type metadataReservedNodeQuotaExceededFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ReservedNodesMessage struct {
-	Marker        *string         `type:"string"`
-	ReservedNodes []*ReservedNode `locationNameList:"ReservedNode" type:"list"`
-
-	metadataReservedNodesMessage `json:"-", xml:"-"`
-}
-
-type metadataReservedNodesMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedNodesResult"`
-}
-
-type ResetClusterParameterGroupMessage struct {
+type ResetClusterParameterGroupInput struct {
 	ParameterGroupName *string      `type:"string"`
 	Parameters         []*Parameter `locationNameList:"Parameter" type:"list"`
 	ResetAllParameters *bool        `type:"boolean"`
 
-	metadataResetClusterParameterGroupMessage `json:"-", xml:"-"`
+	metadataResetClusterParameterGroupInput `json:"-", xml:"-"`
 }
 
-type metadataResetClusterParameterGroupMessage struct {
+type metadataResetClusterParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName"`
+}
+
+type ResetClusterParameterGroupOutput struct {
+	ParameterGroupName   *string `type:"string"`
+	ParameterGroupStatus *string `type:"string"`
+
+	metadataResetClusterParameterGroupOutput `json:"-", xml:"-"`
+}
+
+type metadataResetClusterParameterGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResizeNotFoundFault struct {
@@ -3393,27 +3503,6 @@ type metadataResizeNotFoundFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ResizeProgressMessage struct {
-	AvgResizeRateInMegaBytesPerSecond  *float64  `type:"double"`
-	ElapsedTimeInSeconds               *int64    `type:"long"`
-	EstimatedTimeToCompletionInSeconds *int64    `type:"long"`
-	ImportTablesCompleted              []*string `type:"list"`
-	ImportTablesInProgress             []*string `type:"list"`
-	ImportTablesNotStarted             []*string `type:"list"`
-	ProgressInMegaBytes                *int64    `type:"long"`
-	Status                             *string   `type:"string"`
-	TargetClusterType                  *string   `type:"string"`
-	TargetNodeType                     *string   `type:"string"`
-	TargetNumberOfNodes                *int      `type:"integer"`
-	TotalResizeDataInMegaBytes         *int64    `type:"long"`
-
-	metadataResizeProgressMessage `json:"-", xml:"-"`
-}
-
-type metadataResizeProgressMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeResizeResult"`
-}
-
 type ResourceNotFoundFault struct {
 	metadataResourceNotFoundFault `json:"-", xml:"-"`
 }
@@ -3422,7 +3511,7 @@ type metadataResourceNotFoundFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type RestoreFromClusterSnapshotMessage struct {
+type RestoreFromClusterSnapshotInput struct {
 	AllowVersionUpgrade              *bool     `type:"boolean"`
 	AutomatedSnapshotRetentionPeriod *int      `type:"integer"`
 	AvailabilityZone                 *string   `type:"string"`
@@ -3442,10 +3531,10 @@ type RestoreFromClusterSnapshotMessage struct {
 	SnapshotIdentifier               *string   `type:"string"`
 	VPCSecurityGroupIDs              []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataRestoreFromClusterSnapshotMessage `json:"-", xml:"-"`
+	metadataRestoreFromClusterSnapshotInput `json:"-", xml:"-"`
 }
 
-type metadataRestoreFromClusterSnapshotMessage struct {
+type metadataRestoreFromClusterSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier,SnapshotIdentifier"`
 }
 
@@ -3474,16 +3563,16 @@ type metadataRestoreStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type RevokeClusterSecurityGroupIngressMessage struct {
+type RevokeClusterSecurityGroupIngressInput struct {
 	CIDRIP                   *string `type:"string"`
 	ClusterSecurityGroupName *string `type:"string"`
 	EC2SecurityGroupName     *string `type:"string"`
 	EC2SecurityGroupOwnerID  *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
-	metadataRevokeClusterSecurityGroupIngressMessage `json:"-", xml:"-"`
+	metadataRevokeClusterSecurityGroupIngressInput `json:"-", xml:"-"`
 }
 
-type metadataRevokeClusterSecurityGroupIngressMessage struct {
+type metadataRevokeClusterSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterSecurityGroupName"`
 }
 
@@ -3497,15 +3586,15 @@ type metadataRevokeClusterSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"RevokeClusterSecurityGroupIngressResult"`
 }
 
-type RevokeSnapshotAccessMessage struct {
+type RevokeSnapshotAccessInput struct {
 	AccountWithRestoreAccess  *string `type:"string"`
 	SnapshotClusterIdentifier *string `type:"string"`
 	SnapshotIdentifier        *string `type:"string"`
 
-	metadataRevokeSnapshotAccessMessage `json:"-", xml:"-"`
+	metadataRevokeSnapshotAccessInput `json:"-", xml:"-"`
 }
 
-type metadataRevokeSnapshotAccessMessage struct {
+type metadataRevokeSnapshotAccessInput struct {
 	SDKShapeTraits bool `type:"structure" required:"SnapshotIdentifier,AccountWithRestoreAccess"`
 }
 
@@ -3519,13 +3608,13 @@ type metadataRevokeSnapshotAccessOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"RevokeSnapshotAccessResult"`
 }
 
-type RotateEncryptionKeyMessage struct {
+type RotateEncryptionKeyInput struct {
 	ClusterIdentifier *string `type:"string"`
 
-	metadataRotateEncryptionKeyMessage `json:"-", xml:"-"`
+	metadataRotateEncryptionKeyInput `json:"-", xml:"-"`
 }
 
-type metadataRotateEncryptionKeyMessage struct {
+type metadataRotateEncryptionKeyInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
 }
 
@@ -3621,17 +3710,6 @@ type SnapshotCopyDisabledFault struct {
 
 type metadataSnapshotCopyDisabledFault struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type SnapshotMessage struct {
-	Marker    *string     `type:"string"`
-	Snapshots []*Snapshot `locationNameList:"Snapshot" type:"list"`
-
-	metadataSnapshotMessage `json:"-", xml:"-"`
-}
-
-type metadataSnapshotMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterSnapshotsResult"`
 }
 
 type SourceNotFoundFault struct {
@@ -3731,17 +3809,6 @@ type TaggedResource struct {
 
 type metadataTaggedResource struct {
 	SDKShapeTraits bool `type:"structure"`
-}
-
-type TaggedResourceListMessage struct {
-	Marker          *string           `type:"string"`
-	TaggedResources []*TaggedResource `locationNameList:"TaggedResource" type:"list"`
-
-	metadataTaggedResourceListMessage `json:"-", xml:"-"`
-}
-
-type metadataTaggedResourceListMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeTagsResult"`
 }
 
 type UnauthorizedOperation struct {

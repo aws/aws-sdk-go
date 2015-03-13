@@ -82,7 +82,7 @@ func (c *SNS) CreatePlatformApplication(input *CreatePlatformApplicationInput) (
 var opCreatePlatformApplication *aws.Operation
 
 // CreatePlatformEndpointRequest generates a request for the CreatePlatformEndpoint operation.
-func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) (req *aws.Request, output *CreateEndpointOutput) {
+func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) (req *aws.Request, output *CreatePlatformEndpointOutput) {
 	if opCreatePlatformEndpoint == nil {
 		opCreatePlatformEndpoint = &aws.Operation{
 			Name:       "CreatePlatformEndpoint",
@@ -92,12 +92,12 @@ func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) 
 	}
 
 	req = aws.NewRequest(c.Service, opCreatePlatformEndpoint, input, output)
-	output = &CreateEndpointOutput{}
+	output = &CreatePlatformEndpointOutput{}
 	req.Data = output
 	return
 }
 
-func (c *SNS) CreatePlatformEndpoint(input *CreatePlatformEndpointInput) (output *CreateEndpointOutput, err error) {
+func (c *SNS) CreatePlatformEndpoint(input *CreatePlatformEndpointInput) (output *CreatePlatformEndpointOutput, err error) {
 	req, out := c.CreatePlatformEndpointRequest(input)
 	output = out
 	err = req.Send()
@@ -684,16 +684,6 @@ type metadataConfirmSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ConfirmSubscriptionResult"`
 }
 
-type CreateEndpointOutput struct {
-	EndpointARN *string `locationName:"EndpointArn" type:"string"`
-
-	metadataCreateEndpointOutput `json:"-", xml:"-"`
-}
-
-type metadataCreateEndpointOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreatePlatformEndpointResult"`
-}
-
 type CreatePlatformApplicationInput struct {
 	Attributes *map[string]*string `type:"map"`
 	Name       *string             `type:"string"`
@@ -727,6 +717,16 @@ type CreatePlatformEndpointInput struct {
 
 type metadataCreatePlatformEndpointInput struct {
 	SDKShapeTraits bool `type:"structure" required:"PlatformApplicationArn,Token"`
+}
+
+type CreatePlatformEndpointOutput struct {
+	EndpointARN *string `locationName:"EndpointArn" type:"string"`
+
+	metadataCreatePlatformEndpointOutput `json:"-", xml:"-"`
+}
+
+type metadataCreatePlatformEndpointOutput struct {
+	SDKShapeTraits bool `type:"structure" resultWrapper:"CreatePlatformEndpointResult"`
 }
 
 type CreateTopicInput struct {

@@ -382,7 +382,7 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnect(input *DescribeConnect
 var opDescribeConnectionsOnInterconnect *aws.Operation
 
 // DescribeInterconnectsRequest generates a request for the DescribeInterconnects operation.
-func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnectsInput) (req *aws.Request, output *Interconnects) {
+func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnectsInput) (req *aws.Request, output *DescribeInterconnectsOutput) {
 	if opDescribeInterconnects == nil {
 		opDescribeInterconnects = &aws.Operation{
 			Name:       "DescribeInterconnects",
@@ -392,12 +392,12 @@ func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnect
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeInterconnects, input, output)
-	output = &Interconnects{}
+	output = &DescribeInterconnectsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *DirectConnect) DescribeInterconnects(input *DescribeInterconnectsInput) (output *Interconnects, err error) {
+func (c *DirectConnect) DescribeInterconnects(input *DescribeInterconnectsInput) (output *DescribeInterconnectsOutput, err error) {
 	req, out := c.DescribeInterconnectsRequest(input)
 	output = out
 	err = req.Send()
@@ -407,7 +407,7 @@ func (c *DirectConnect) DescribeInterconnects(input *DescribeInterconnectsInput)
 var opDescribeInterconnects *aws.Operation
 
 // DescribeLocationsRequest generates a request for the DescribeLocations operation.
-func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) (req *aws.Request, output *Locations) {
+func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) (req *aws.Request, output *DescribeLocationsOutput) {
 	if opDescribeLocations == nil {
 		opDescribeLocations = &aws.Operation{
 			Name:       "DescribeLocations",
@@ -417,12 +417,12 @@ func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) 
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeLocations, input, output)
-	output = &Locations{}
+	output = &DescribeLocationsOutput{}
 	req.Data = output
 	return
 }
 
-func (c *DirectConnect) DescribeLocations(input *DescribeLocationsInput) (output *Locations, err error) {
+func (c *DirectConnect) DescribeLocations(input *DescribeLocationsInput) (output *DescribeLocationsOutput, err error) {
 	req, out := c.DescribeLocationsRequest(input)
 	output = out
 	err = req.Send()
@@ -432,7 +432,7 @@ func (c *DirectConnect) DescribeLocations(input *DescribeLocationsInput) (output
 var opDescribeLocations *aws.Operation
 
 // DescribeVirtualGatewaysRequest generates a request for the DescribeVirtualGateways operation.
-func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGatewaysInput) (req *aws.Request, output *VirtualGateways) {
+func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGatewaysInput) (req *aws.Request, output *DescribeVirtualGatewaysOutput) {
 	if opDescribeVirtualGateways == nil {
 		opDescribeVirtualGateways = &aws.Operation{
 			Name:       "DescribeVirtualGateways",
@@ -442,12 +442,12 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGat
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeVirtualGateways, input, output)
-	output = &VirtualGateways{}
+	output = &DescribeVirtualGatewaysOutput{}
 	req.Data = output
 	return
 }
 
-func (c *DirectConnect) DescribeVirtualGateways(input *DescribeVirtualGatewaysInput) (output *VirtualGateways, err error) {
+func (c *DirectConnect) DescribeVirtualGateways(input *DescribeVirtualGatewaysInput) (output *DescribeVirtualGatewaysOutput, err error) {
 	req, out := c.DescribeVirtualGatewaysRequest(input)
 	output = out
 	err = req.Send()
@@ -457,7 +457,7 @@ func (c *DirectConnect) DescribeVirtualGateways(input *DescribeVirtualGatewaysIn
 var opDescribeVirtualGateways *aws.Operation
 
 // DescribeVirtualInterfacesRequest generates a request for the DescribeVirtualInterfaces operation.
-func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualInterfacesInput) (req *aws.Request, output *VirtualInterfaces) {
+func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualInterfacesInput) (req *aws.Request, output *DescribeVirtualInterfacesOutput) {
 	if opDescribeVirtualInterfaces == nil {
 		opDescribeVirtualInterfaces = &aws.Operation{
 			Name:       "DescribeVirtualInterfaces",
@@ -467,12 +467,12 @@ func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualI
 	}
 
 	req = aws.NewRequest(c.Service, opDescribeVirtualInterfaces, input, output)
-	output = &VirtualInterfaces{}
+	output = &DescribeVirtualInterfacesOutput{}
 	req.Data = output
 	return
 }
 
-func (c *DirectConnect) DescribeVirtualInterfaces(input *DescribeVirtualInterfacesInput) (output *VirtualInterfaces, err error) {
+func (c *DirectConnect) DescribeVirtualInterfaces(input *DescribeVirtualInterfacesInput) (output *DescribeVirtualInterfacesOutput, err error) {
 	req, out := c.DescribeVirtualInterfacesRequest(input)
 	output = out
 	err = req.Send()
@@ -734,11 +734,31 @@ type metadataDescribeInterconnectsInput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
+type DescribeInterconnectsOutput struct {
+	Interconnects []*Interconnect `locationName:"interconnects" type:"list" json:"interconnects,omitempty"`
+
+	metadataDescribeInterconnectsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeInterconnectsOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DescribeLocationsInput struct {
 	metadataDescribeLocationsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLocationsInput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type DescribeLocationsOutput struct {
+	Locations []*Location `locationName:"locations" type:"list" json:"locations,omitempty"`
+
+	metadataDescribeLocationsOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeLocationsOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -750,6 +770,16 @@ type metadataDescribeVirtualGatewaysInput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
+type DescribeVirtualGatewaysOutput struct {
+	VirtualGateways []*VirtualGateway `locationName:"virtualGateways" type:"list" json:"virtualGateways,omitempty"`
+
+	metadataDescribeVirtualGatewaysOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeVirtualGatewaysOutput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
 type DescribeVirtualInterfacesInput struct {
 	ConnectionID       *string `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
 	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:"virtualInterfaceId,omitempty"`
@@ -758,6 +788,16 @@ type DescribeVirtualInterfacesInput struct {
 }
 
 type metadataDescribeVirtualInterfacesInput struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type DescribeVirtualInterfacesOutput struct {
+	VirtualInterfaces []*VirtualInterface `locationName:"virtualInterfaces" type:"list" json:"virtualInterfaces,omitempty"`
+
+	metadataDescribeVirtualInterfacesOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeVirtualInterfacesOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -796,16 +836,6 @@ type metadataInterconnect struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type Interconnects struct {
-	Interconnects []*Interconnect `locationName:"interconnects" type:"list" json:"interconnects,omitempty"`
-
-	metadataInterconnects `json:"-", xml:"-"`
-}
-
-type metadataInterconnects struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type Location struct {
 	LocationCode *string `locationName:"locationCode" type:"string" json:"locationCode,omitempty"`
 	LocationName *string `locationName:"locationName" type:"string" json:"locationName,omitempty"`
@@ -814,16 +844,6 @@ type Location struct {
 }
 
 type metadataLocation struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type Locations struct {
-	Locations []*Location `locationName:"locations" type:"list" json:"locations,omitempty"`
-
-	metadataLocations `json:"-", xml:"-"`
-}
-
-type metadataLocations struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -911,16 +931,6 @@ type metadataVirtualGateway struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type VirtualGateways struct {
-	VirtualGateways []*VirtualGateway `locationName:"virtualGateways" type:"list" json:"virtualGateways,omitempty"`
-
-	metadataVirtualGateways `json:"-", xml:"-"`
-}
-
-type metadataVirtualGateways struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type VirtualInterface struct {
 	ASN                   *int                 `locationName:"asn" type:"integer" json:"asn,omitempty"`
 	AmazonAddress         *string              `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
@@ -942,15 +952,5 @@ type VirtualInterface struct {
 }
 
 type metadataVirtualInterface struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type VirtualInterfaces struct {
-	VirtualInterfaces []*VirtualInterface `locationName:"virtualInterfaces" type:"list" json:"virtualInterfaces,omitempty"`
-
-	metadataVirtualInterfaces `json:"-", xml:"-"`
-}
-
-type metadataVirtualInterfaces struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
