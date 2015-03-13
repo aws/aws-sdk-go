@@ -12,10 +12,9 @@ import (
 func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *aws.Request, output *BuildSuggestersOutput) {
 	if opBuildSuggesters == nil {
 		opBuildSuggesters = &aws.Operation{
-			Name:          "BuildSuggesters",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "BuildSuggestersResult",
+			Name:       "BuildSuggesters",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -38,10 +37,9 @@ var opBuildSuggesters *aws.Operation
 func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *aws.Request, output *CreateDomainOutput) {
 	if opCreateDomain == nil {
 		opCreateDomain = &aws.Operation{
-			Name:          "CreateDomain",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateDomainResult",
+			Name:       "CreateDomain",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -64,10 +62,9 @@ var opCreateDomain *aws.Operation
 func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInput) (req *aws.Request, output *DefineAnalysisSchemeOutput) {
 	if opDefineAnalysisScheme == nil {
 		opDefineAnalysisScheme = &aws.Operation{
-			Name:          "DefineAnalysisScheme",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DefineAnalysisSchemeResult",
+			Name:       "DefineAnalysisScheme",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -90,10 +87,9 @@ var opDefineAnalysisScheme *aws.Operation
 func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req *aws.Request, output *DefineExpressionOutput) {
 	if opDefineExpression == nil {
 		opDefineExpression = &aws.Operation{
-			Name:          "DefineExpression",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DefineExpressionResult",
+			Name:       "DefineExpression",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -116,10 +112,9 @@ var opDefineExpression *aws.Operation
 func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req *aws.Request, output *DefineIndexFieldOutput) {
 	if opDefineIndexField == nil {
 		opDefineIndexField = &aws.Operation{
-			Name:          "DefineIndexField",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DefineIndexFieldResult",
+			Name:       "DefineIndexField",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -142,10 +137,9 @@ var opDefineIndexField *aws.Operation
 func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *aws.Request, output *DefineSuggesterOutput) {
 	if opDefineSuggester == nil {
 		opDefineSuggester = &aws.Operation{
-			Name:          "DefineSuggester",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DefineSuggesterResult",
+			Name:       "DefineSuggester",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -168,10 +162,9 @@ var opDefineSuggester *aws.Operation
 func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInput) (req *aws.Request, output *DeleteAnalysisSchemeOutput) {
 	if opDeleteAnalysisScheme == nil {
 		opDeleteAnalysisScheme = &aws.Operation{
-			Name:          "DeleteAnalysisScheme",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteAnalysisSchemeResult",
+			Name:       "DeleteAnalysisScheme",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -194,10 +187,9 @@ var opDeleteAnalysisScheme *aws.Operation
 func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *aws.Request, output *DeleteDomainOutput) {
 	if opDeleteDomain == nil {
 		opDeleteDomain = &aws.Operation{
-			Name:          "DeleteDomain",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteDomainResult",
+			Name:       "DeleteDomain",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -220,10 +212,9 @@ var opDeleteDomain *aws.Operation
 func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req *aws.Request, output *DeleteExpressionOutput) {
 	if opDeleteExpression == nil {
 		opDeleteExpression = &aws.Operation{
-			Name:          "DeleteExpression",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteExpressionResult",
+			Name:       "DeleteExpression",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -246,10 +237,9 @@ var opDeleteExpression *aws.Operation
 func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req *aws.Request, output *DeleteIndexFieldOutput) {
 	if opDeleteIndexField == nil {
 		opDeleteIndexField = &aws.Operation{
-			Name:          "DeleteIndexField",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteIndexFieldResult",
+			Name:       "DeleteIndexField",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -272,10 +262,9 @@ var opDeleteIndexField *aws.Operation
 func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *aws.Request, output *DeleteSuggesterOutput) {
 	if opDeleteSuggester == nil {
 		opDeleteSuggester = &aws.Operation{
-			Name:          "DeleteSuggester",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteSuggesterResult",
+			Name:       "DeleteSuggester",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -298,10 +287,9 @@ var opDeleteSuggester *aws.Operation
 func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSchemesInput) (req *aws.Request, output *DescribeAnalysisSchemesOutput) {
 	if opDescribeAnalysisSchemes == nil {
 		opDescribeAnalysisSchemes = &aws.Operation{
-			Name:          "DescribeAnalysisSchemes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeAnalysisSchemesResult",
+			Name:       "DescribeAnalysisSchemes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -324,10 +312,9 @@ var opDescribeAnalysisSchemes *aws.Operation
 func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabilityOptionsInput) (req *aws.Request, output *DescribeAvailabilityOptionsOutput) {
 	if opDescribeAvailabilityOptions == nil {
 		opDescribeAvailabilityOptions = &aws.Operation{
-			Name:          "DescribeAvailabilityOptions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeAvailabilityOptionsResult",
+			Name:       "DescribeAvailabilityOptions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -350,10 +337,9 @@ var opDescribeAvailabilityOptions *aws.Operation
 func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *aws.Request, output *DescribeDomainsOutput) {
 	if opDescribeDomains == nil {
 		opDescribeDomains = &aws.Operation{
-			Name:          "DescribeDomains",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeDomainsResult",
+			Name:       "DescribeDomains",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -376,10 +362,9 @@ var opDescribeDomains *aws.Operation
 func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput) (req *aws.Request, output *DescribeExpressionsOutput) {
 	if opDescribeExpressions == nil {
 		opDescribeExpressions = &aws.Operation{
-			Name:          "DescribeExpressions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeExpressionsResult",
+			Name:       "DescribeExpressions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -402,10 +387,9 @@ var opDescribeExpressions *aws.Operation
 func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput) (req *aws.Request, output *DescribeIndexFieldsOutput) {
 	if opDescribeIndexFields == nil {
 		opDescribeIndexFields = &aws.Operation{
-			Name:          "DescribeIndexFields",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeIndexFieldsResult",
+			Name:       "DescribeIndexFields",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -428,10 +412,9 @@ var opDescribeIndexFields *aws.Operation
 func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingParametersInput) (req *aws.Request, output *DescribeScalingParametersOutput) {
 	if opDescribeScalingParameters == nil {
 		opDescribeScalingParameters = &aws.Operation{
-			Name:          "DescribeScalingParameters",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeScalingParametersResult",
+			Name:       "DescribeScalingParameters",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -454,10 +437,9 @@ var opDescribeScalingParameters *aws.Operation
 func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServiceAccessPoliciesInput) (req *aws.Request, output *DescribeServiceAccessPoliciesOutput) {
 	if opDescribeServiceAccessPolicies == nil {
 		opDescribeServiceAccessPolicies = &aws.Operation{
-			Name:          "DescribeServiceAccessPolicies",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeServiceAccessPoliciesResult",
+			Name:       "DescribeServiceAccessPolicies",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -480,10 +462,9 @@ var opDescribeServiceAccessPolicies *aws.Operation
 func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) (req *aws.Request, output *DescribeSuggestersOutput) {
 	if opDescribeSuggesters == nil {
 		opDescribeSuggesters = &aws.Operation{
-			Name:          "DescribeSuggesters",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeSuggestersResult",
+			Name:       "DescribeSuggesters",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -506,10 +487,9 @@ var opDescribeSuggesters *aws.Operation
 func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *aws.Request, output *IndexDocumentsOutput) {
 	if opIndexDocuments == nil {
 		opIndexDocuments = &aws.Operation{
-			Name:          "IndexDocuments",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "IndexDocumentsResult",
+			Name:       "IndexDocuments",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -532,10 +512,9 @@ var opIndexDocuments *aws.Operation
 func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *aws.Request, output *ListDomainNamesOutput) {
 	if opListDomainNames == nil {
 		opListDomainNames = &aws.Operation{
-			Name:          "ListDomainNames",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListDomainNamesResult",
+			Name:       "ListDomainNames",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -558,10 +537,9 @@ var opListDomainNames *aws.Operation
 func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailabilityOptionsInput) (req *aws.Request, output *UpdateAvailabilityOptionsOutput) {
 	if opUpdateAvailabilityOptions == nil {
 		opUpdateAvailabilityOptions = &aws.Operation{
-			Name:          "UpdateAvailabilityOptions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "UpdateAvailabilityOptionsResult",
+			Name:       "UpdateAvailabilityOptions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -584,10 +562,9 @@ var opUpdateAvailabilityOptions *aws.Operation
 func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParametersInput) (req *aws.Request, output *UpdateScalingParametersOutput) {
 	if opUpdateScalingParameters == nil {
 		opUpdateScalingParameters = &aws.Operation{
-			Name:          "UpdateScalingParameters",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "UpdateScalingParametersResult",
+			Name:       "UpdateScalingParameters",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -610,10 +587,9 @@ var opUpdateScalingParameters *aws.Operation
 func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAccessPoliciesInput) (req *aws.Request, output *UpdateServiceAccessPoliciesOutput) {
 	if opUpdateServiceAccessPolicies == nil {
 		opUpdateServiceAccessPolicies = &aws.Operation{
-			Name:          "UpdateServiceAccessPolicies",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "UpdateServiceAccessPoliciesResult",
+			Name:       "UpdateServiceAccessPolicies",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

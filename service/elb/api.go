@@ -12,10 +12,9 @@ import (
 func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *AddTagsOutput) {
 	if opAddTags == nil {
 		opAddTags = &aws.Operation{
-			Name:          "AddTags",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "AddTagsResult",
+			Name:       "AddTags",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -38,10 +37,9 @@ var opAddTags *aws.Operation
 func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroupsToLoadBalancerInput) (req *aws.Request, output *ApplySecurityGroupsToLoadBalancerOutput) {
 	if opApplySecurityGroupsToLoadBalancer == nil {
 		opApplySecurityGroupsToLoadBalancer = &aws.Operation{
-			Name:          "ApplySecurityGroupsToLoadBalancer",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ApplySecurityGroupsToLoadBalancerResult",
+			Name:       "ApplySecurityGroupsToLoadBalancer",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -64,10 +62,9 @@ var opApplySecurityGroupsToLoadBalancer *aws.Operation
 func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubnetsInput) (req *aws.Request, output *AttachLoadBalancerToSubnetsOutput) {
 	if opAttachLoadBalancerToSubnets == nil {
 		opAttachLoadBalancerToSubnets = &aws.Operation{
-			Name:          "AttachLoadBalancerToSubnets",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "AttachLoadBalancerToSubnetsResult",
+			Name:       "AttachLoadBalancerToSubnets",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -90,10 +87,9 @@ var opAttachLoadBalancerToSubnets *aws.Operation
 func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req *aws.Request, output *ConfigureHealthCheckOutput) {
 	if opConfigureHealthCheck == nil {
 		opConfigureHealthCheck = &aws.Operation{
-			Name:          "ConfigureHealthCheck",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ConfigureHealthCheckResult",
+			Name:       "ConfigureHealthCheck",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -116,10 +112,9 @@ var opConfigureHealthCheck *aws.Operation
 func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStickinessPolicyInput) (req *aws.Request, output *CreateAppCookieStickinessPolicyOutput) {
 	if opCreateAppCookieStickinessPolicy == nil {
 		opCreateAppCookieStickinessPolicy = &aws.Operation{
-			Name:          "CreateAppCookieStickinessPolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateAppCookieStickinessPolicyResult",
+			Name:       "CreateAppCookieStickinessPolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -142,10 +137,9 @@ var opCreateAppCookieStickinessPolicy *aws.Operation
 func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickinessPolicyInput) (req *aws.Request, output *CreateLBCookieStickinessPolicyOutput) {
 	if opCreateLBCookieStickinessPolicy == nil {
 		opCreateLBCookieStickinessPolicy = &aws.Operation{
-			Name:          "CreateLBCookieStickinessPolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateLBCookieStickinessPolicyResult",
+			Name:       "CreateLBCookieStickinessPolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -168,10 +162,9 @@ var opCreateLBCookieStickinessPolicy *aws.Operation
 func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *aws.Request, output *CreateLoadBalancerOutput) {
 	if opCreateLoadBalancer == nil {
 		opCreateLoadBalancer = &aws.Operation{
-			Name:          "CreateLoadBalancer",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateLoadBalancerResult",
+			Name:       "CreateLoadBalancer",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -194,10 +187,9 @@ var opCreateLoadBalancer *aws.Operation
 func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListenersInput) (req *aws.Request, output *CreateLoadBalancerListenersOutput) {
 	if opCreateLoadBalancerListeners == nil {
 		opCreateLoadBalancerListeners = &aws.Operation{
-			Name:          "CreateLoadBalancerListeners",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateLoadBalancerListenersResult",
+			Name:       "CreateLoadBalancerListeners",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -220,10 +212,9 @@ var opCreateLoadBalancerListeners *aws.Operation
 func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInput) (req *aws.Request, output *CreateLoadBalancerPolicyOutput) {
 	if opCreateLoadBalancerPolicy == nil {
 		opCreateLoadBalancerPolicy = &aws.Operation{
-			Name:          "CreateLoadBalancerPolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateLoadBalancerPolicyResult",
+			Name:       "CreateLoadBalancerPolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -246,10 +237,9 @@ var opCreateLoadBalancerPolicy *aws.Operation
 func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *aws.Request, output *DeleteLoadBalancerOutput) {
 	if opDeleteLoadBalancer == nil {
 		opDeleteLoadBalancer = &aws.Operation{
-			Name:          "DeleteLoadBalancer",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteLoadBalancerResult",
+			Name:       "DeleteLoadBalancer",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -272,10 +262,9 @@ var opDeleteLoadBalancer *aws.Operation
 func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListenersInput) (req *aws.Request, output *DeleteLoadBalancerListenersOutput) {
 	if opDeleteLoadBalancerListeners == nil {
 		opDeleteLoadBalancerListeners = &aws.Operation{
-			Name:          "DeleteLoadBalancerListeners",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteLoadBalancerListenersResult",
+			Name:       "DeleteLoadBalancerListeners",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -298,10 +287,9 @@ var opDeleteLoadBalancerListeners *aws.Operation
 func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInput) (req *aws.Request, output *DeleteLoadBalancerPolicyOutput) {
 	if opDeleteLoadBalancerPolicy == nil {
 		opDeleteLoadBalancerPolicy = &aws.Operation{
-			Name:          "DeleteLoadBalancerPolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteLoadBalancerPolicyResult",
+			Name:       "DeleteLoadBalancerPolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -324,10 +312,9 @@ var opDeleteLoadBalancerPolicy *aws.Operation
 func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstancesFromLoadBalancerInput) (req *aws.Request, output *DeregisterInstancesFromLoadBalancerOutput) {
 	if opDeregisterInstancesFromLoadBalancer == nil {
 		opDeregisterInstancesFromLoadBalancer = &aws.Operation{
-			Name:          "DeregisterInstancesFromLoadBalancer",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeregisterInstancesFromLoadBalancerResult",
+			Name:       "DeregisterInstancesFromLoadBalancer",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -350,10 +337,9 @@ var opDeregisterInstancesFromLoadBalancer *aws.Operation
 func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) (req *aws.Request, output *DescribeInstanceHealthOutput) {
 	if opDescribeInstanceHealth == nil {
 		opDescribeInstanceHealth = &aws.Operation{
-			Name:          "DescribeInstanceHealth",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeInstanceHealthResult",
+			Name:       "DescribeInstanceHealth",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -376,10 +362,9 @@ var opDescribeInstanceHealth *aws.Operation
 func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerAttributesInput) (req *aws.Request, output *DescribeLoadBalancerAttributesOutput) {
 	if opDescribeLoadBalancerAttributes == nil {
 		opDescribeLoadBalancerAttributes = &aws.Operation{
-			Name:          "DescribeLoadBalancerAttributes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeLoadBalancerAttributesResult",
+			Name:       "DescribeLoadBalancerAttributes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -402,10 +387,9 @@ var opDescribeLoadBalancerAttributes *aws.Operation
 func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPoliciesInput) (req *aws.Request, output *DescribeLoadBalancerPoliciesOutput) {
 	if opDescribeLoadBalancerPolicies == nil {
 		opDescribeLoadBalancerPolicies = &aws.Operation{
-			Name:          "DescribeLoadBalancerPolicies",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeLoadBalancerPoliciesResult",
+			Name:       "DescribeLoadBalancerPolicies",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -428,10 +412,9 @@ var opDescribeLoadBalancerPolicies *aws.Operation
 func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancerPolicyTypesInput) (req *aws.Request, output *DescribeLoadBalancerPolicyTypesOutput) {
 	if opDescribeLoadBalancerPolicyTypes == nil {
 		opDescribeLoadBalancerPolicyTypes = &aws.Operation{
-			Name:          "DescribeLoadBalancerPolicyTypes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeLoadBalancerPolicyTypesResult",
+			Name:       "DescribeLoadBalancerPolicyTypes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -454,10 +437,9 @@ var opDescribeLoadBalancerPolicyTypes *aws.Operation
 func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *aws.Request, output *DescribeLoadBalancersOutput) {
 	if opDescribeLoadBalancers == nil {
 		opDescribeLoadBalancers = &aws.Operation{
-			Name:          "DescribeLoadBalancers",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeLoadBalancersResult",
+			Name:       "DescribeLoadBalancers",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -480,10 +462,9 @@ var opDescribeLoadBalancers *aws.Operation
 func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
-			Name:          "DescribeTags",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeTagsResult",
+			Name:       "DescribeTags",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -506,10 +487,9 @@ var opDescribeTags *aws.Operation
 func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFromSubnetsInput) (req *aws.Request, output *DetachLoadBalancerFromSubnetsOutput) {
 	if opDetachLoadBalancerFromSubnets == nil {
 		opDetachLoadBalancerFromSubnets = &aws.Operation{
-			Name:          "DetachLoadBalancerFromSubnets",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DetachLoadBalancerFromSubnetsResult",
+			Name:       "DetachLoadBalancerFromSubnets",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -532,10 +512,9 @@ var opDetachLoadBalancerFromSubnets *aws.Operation
 func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvailabilityZonesForLoadBalancerInput) (req *aws.Request, output *DisableAvailabilityZonesForLoadBalancerOutput) {
 	if opDisableAvailabilityZonesForLoadBalancer == nil {
 		opDisableAvailabilityZonesForLoadBalancer = &aws.Operation{
-			Name:          "DisableAvailabilityZonesForLoadBalancer",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DisableAvailabilityZonesForLoadBalancerResult",
+			Name:       "DisableAvailabilityZonesForLoadBalancer",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -558,10 +537,9 @@ var opDisableAvailabilityZonesForLoadBalancer *aws.Operation
 func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailabilityZonesForLoadBalancerInput) (req *aws.Request, output *EnableAvailabilityZonesForLoadBalancerOutput) {
 	if opEnableAvailabilityZonesForLoadBalancer == nil {
 		opEnableAvailabilityZonesForLoadBalancer = &aws.Operation{
-			Name:          "EnableAvailabilityZonesForLoadBalancer",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "EnableAvailabilityZonesForLoadBalancerResult",
+			Name:       "EnableAvailabilityZonesForLoadBalancer",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -584,10 +562,9 @@ var opEnableAvailabilityZonesForLoadBalancer *aws.Operation
 func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttributesInput) (req *aws.Request, output *ModifyLoadBalancerAttributesOutput) {
 	if opModifyLoadBalancerAttributes == nil {
 		opModifyLoadBalancerAttributes = &aws.Operation{
-			Name:          "ModifyLoadBalancerAttributes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ModifyLoadBalancerAttributesResult",
+			Name:       "ModifyLoadBalancerAttributes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -610,10 +587,9 @@ var opModifyLoadBalancerAttributes *aws.Operation
 func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesWithLoadBalancerInput) (req *aws.Request, output *RegisterInstancesWithLoadBalancerOutput) {
 	if opRegisterInstancesWithLoadBalancer == nil {
 		opRegisterInstancesWithLoadBalancer = &aws.Operation{
-			Name:          "RegisterInstancesWithLoadBalancer",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RegisterInstancesWithLoadBalancerResult",
+			Name:       "RegisterInstancesWithLoadBalancer",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -636,10 +612,9 @@ var opRegisterInstancesWithLoadBalancer *aws.Operation
 func (c *ELB) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, output *RemoveTagsOutput) {
 	if opRemoveTags == nil {
 		opRemoveTags = &aws.Operation{
-			Name:          "RemoveTags",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RemoveTagsResult",
+			Name:       "RemoveTags",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -662,10 +637,9 @@ var opRemoveTags *aws.Operation
 func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalancerListenerSSLCertificateInput) (req *aws.Request, output *SetLoadBalancerListenerSSLCertificateOutput) {
 	if opSetLoadBalancerListenerSSLCertificate == nil {
 		opSetLoadBalancerListenerSSLCertificate = &aws.Operation{
-			Name:          "SetLoadBalancerListenerSSLCertificate",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "SetLoadBalancerListenerSSLCertificateResult",
+			Name:       "SetLoadBalancerListenerSSLCertificate",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -688,10 +662,9 @@ var opSetLoadBalancerListenerSSLCertificate *aws.Operation
 func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalancerPoliciesForBackendServerInput) (req *aws.Request, output *SetLoadBalancerPoliciesForBackendServerOutput) {
 	if opSetLoadBalancerPoliciesForBackendServer == nil {
 		opSetLoadBalancerPoliciesForBackendServer = &aws.Operation{
-			Name:          "SetLoadBalancerPoliciesForBackendServer",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "SetLoadBalancerPoliciesForBackendServerResult",
+			Name:       "SetLoadBalancerPoliciesForBackendServer",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -714,10 +687,9 @@ var opSetLoadBalancerPoliciesForBackendServer *aws.Operation
 func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPoliciesOfListenerInput) (req *aws.Request, output *SetLoadBalancerPoliciesOfListenerOutput) {
 	if opSetLoadBalancerPoliciesOfListener == nil {
 		opSetLoadBalancerPoliciesOfListener = &aws.Operation{
-			Name:          "SetLoadBalancerPoliciesOfListener",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "SetLoadBalancerPoliciesOfListenerResult",
+			Name:       "SetLoadBalancerPoliciesOfListener",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

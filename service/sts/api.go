@@ -12,10 +12,9 @@ import (
 func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *aws.Request, output *AssumeRoleOutput) {
 	if opAssumeRole == nil {
 		opAssumeRole = &aws.Operation{
-			Name:          "AssumeRole",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "AssumeRoleResult",
+			Name:       "AssumeRole",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -38,10 +37,9 @@ var opAssumeRole *aws.Operation
 func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *aws.Request, output *AssumeRoleWithSAMLOutput) {
 	if opAssumeRoleWithSAML == nil {
 		opAssumeRoleWithSAML = &aws.Operation{
-			Name:          "AssumeRoleWithSAML",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "AssumeRoleWithSAMLResult",
+			Name:       "AssumeRoleWithSAML",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -64,10 +62,9 @@ var opAssumeRoleWithSAML *aws.Operation
 func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityInput) (req *aws.Request, output *AssumeRoleWithWebIdentityOutput) {
 	if opAssumeRoleWithWebIdentity == nil {
 		opAssumeRoleWithWebIdentity = &aws.Operation{
-			Name:          "AssumeRoleWithWebIdentity",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "AssumeRoleWithWebIdentityResult",
+			Name:       "AssumeRoleWithWebIdentity",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -90,10 +87,9 @@ var opAssumeRoleWithWebIdentity *aws.Operation
 func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessageInput) (req *aws.Request, output *DecodeAuthorizationMessageOutput) {
 	if opDecodeAuthorizationMessage == nil {
 		opDecodeAuthorizationMessage = &aws.Operation{
-			Name:          "DecodeAuthorizationMessage",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DecodeAuthorizationMessageResult",
+			Name:       "DecodeAuthorizationMessage",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -116,10 +112,9 @@ var opDecodeAuthorizationMessage *aws.Operation
 func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *aws.Request, output *GetFederationTokenOutput) {
 	if opGetFederationToken == nil {
 		opGetFederationToken = &aws.Operation{
-			Name:          "GetFederationToken",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetFederationTokenResult",
+			Name:       "GetFederationToken",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -142,10 +137,9 @@ var opGetFederationToken *aws.Operation
 func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *aws.Request, output *GetSessionTokenOutput) {
 	if opGetSessionToken == nil {
 		opGetSessionToken = &aws.Operation{
-			Name:          "GetSessionToken",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetSessionTokenResult",
+			Name:       "GetSessionToken",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

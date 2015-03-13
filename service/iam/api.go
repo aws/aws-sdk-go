@@ -187,10 +187,9 @@ var opChangePassword *aws.Operation
 func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *aws.Request, output *CreateAccessKeyOutput) {
 	if opCreateAccessKey == nil {
 		opCreateAccessKey = &aws.Operation{
-			Name:          "CreateAccessKey",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateAccessKeyResult",
+			Name:       "CreateAccessKey",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -238,10 +237,9 @@ var opCreateAccountAlias *aws.Operation
 func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *aws.Request, output *CreateGroupOutput) {
 	if opCreateGroup == nil {
 		opCreateGroup = &aws.Operation{
-			Name:          "CreateGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateGroupResult",
+			Name:       "CreateGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -264,10 +262,9 @@ var opCreateGroup *aws.Operation
 func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (req *aws.Request, output *CreateInstanceProfileOutput) {
 	if opCreateInstanceProfile == nil {
 		opCreateInstanceProfile = &aws.Operation{
-			Name:          "CreateInstanceProfile",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateInstanceProfileResult",
+			Name:       "CreateInstanceProfile",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -290,10 +287,9 @@ var opCreateInstanceProfile *aws.Operation
 func (c *IAM) CreateLoginProfileRequest(input *CreateLoginProfileInput) (req *aws.Request, output *CreateLoginProfileOutput) {
 	if opCreateLoginProfile == nil {
 		opCreateLoginProfile = &aws.Operation{
-			Name:          "CreateLoginProfile",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateLoginProfileResult",
+			Name:       "CreateLoginProfile",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -316,10 +312,9 @@ var opCreateLoginProfile *aws.Operation
 func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProviderInput) (req *aws.Request, output *CreateOpenIDConnectProviderOutput) {
 	if opCreateOpenIDConnectProvider == nil {
 		opCreateOpenIDConnectProvider = &aws.Operation{
-			Name:          "CreateOpenIDConnectProvider",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateOpenIDConnectProviderResult",
+			Name:       "CreateOpenIDConnectProvider",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -342,10 +337,9 @@ var opCreateOpenIDConnectProvider *aws.Operation
 func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *aws.Request, output *CreatePolicyOutput) {
 	if opCreatePolicy == nil {
 		opCreatePolicy = &aws.Operation{
-			Name:          "CreatePolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreatePolicyResult",
+			Name:       "CreatePolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -368,10 +362,9 @@ var opCreatePolicy *aws.Operation
 func (c *IAM) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *aws.Request, output *CreatePolicyVersionOutput) {
 	if opCreatePolicyVersion == nil {
 		opCreatePolicyVersion = &aws.Operation{
-			Name:          "CreatePolicyVersion",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreatePolicyVersionResult",
+			Name:       "CreatePolicyVersion",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -394,10 +387,9 @@ var opCreatePolicyVersion *aws.Operation
 func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *aws.Request, output *CreateRoleOutput) {
 	if opCreateRole == nil {
 		opCreateRole = &aws.Operation{
-			Name:          "CreateRole",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateRoleResult",
+			Name:       "CreateRole",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -420,10 +412,9 @@ var opCreateRole *aws.Operation
 func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *aws.Request, output *CreateSAMLProviderOutput) {
 	if opCreateSAMLProvider == nil {
 		opCreateSAMLProvider = &aws.Operation{
-			Name:          "CreateSAMLProvider",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateSAMLProviderResult",
+			Name:       "CreateSAMLProvider",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -446,10 +437,9 @@ var opCreateSAMLProvider *aws.Operation
 func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *aws.Request, output *CreateUserOutput) {
 	if opCreateUser == nil {
 		opCreateUser = &aws.Operation{
-			Name:          "CreateUser",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateUserResult",
+			Name:       "CreateUser",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -472,10 +462,9 @@ var opCreateUser *aws.Operation
 func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) (req *aws.Request, output *CreateVirtualMFADeviceOutput) {
 	if opCreateVirtualMFADevice == nil {
 		opCreateVirtualMFADevice = &aws.Operation{
-			Name:          "CreateVirtualMFADevice",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateVirtualMFADeviceResult",
+			Name:       "CreateVirtualMFADevice",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1073,10 +1062,9 @@ var opEnableMFADevice *aws.Operation
 func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInput) (req *aws.Request, output *GenerateCredentialReportOutput) {
 	if opGenerateCredentialReport == nil {
 		opGenerateCredentialReport = &aws.Operation{
-			Name:          "GenerateCredentialReport",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GenerateCredentialReportResult",
+			Name:       "GenerateCredentialReport",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1099,10 +1087,9 @@ var opGenerateCredentialReport *aws.Operation
 func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizationDetailsInput) (req *aws.Request, output *GetAccountAuthorizationDetailsOutput) {
 	if opGetAccountAuthorizationDetails == nil {
 		opGetAccountAuthorizationDetails = &aws.Operation{
-			Name:          "GetAccountAuthorizationDetails",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetAccountAuthorizationDetailsResult",
+			Name:       "GetAccountAuthorizationDetails",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1125,10 +1112,9 @@ var opGetAccountAuthorizationDetails *aws.Operation
 func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInput) (req *aws.Request, output *GetAccountPasswordPolicyOutput) {
 	if opGetAccountPasswordPolicy == nil {
 		opGetAccountPasswordPolicy = &aws.Operation{
-			Name:          "GetAccountPasswordPolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetAccountPasswordPolicyResult",
+			Name:       "GetAccountPasswordPolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1151,10 +1137,9 @@ var opGetAccountPasswordPolicy *aws.Operation
 func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *aws.Request, output *GetAccountSummaryOutput) {
 	if opGetAccountSummary == nil {
 		opGetAccountSummary = &aws.Operation{
-			Name:          "GetAccountSummary",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetAccountSummaryResult",
+			Name:       "GetAccountSummary",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1177,10 +1162,9 @@ var opGetAccountSummary *aws.Operation
 func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *aws.Request, output *GetCredentialReportOutput) {
 	if opGetCredentialReport == nil {
 		opGetCredentialReport = &aws.Operation{
-			Name:          "GetCredentialReport",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetCredentialReportResult",
+			Name:       "GetCredentialReport",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1203,10 +1187,9 @@ var opGetCredentialReport *aws.Operation
 func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *aws.Request, output *GetGroupOutput) {
 	if opGetGroup == nil {
 		opGetGroup = &aws.Operation{
-			Name:          "GetGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetGroupResult",
+			Name:       "GetGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1229,10 +1212,9 @@ var opGetGroup *aws.Operation
 func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *aws.Request, output *GetGroupPolicyOutput) {
 	if opGetGroupPolicy == nil {
 		opGetGroupPolicy = &aws.Operation{
-			Name:          "GetGroupPolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetGroupPolicyResult",
+			Name:       "GetGroupPolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1255,10 +1237,9 @@ var opGetGroupPolicy *aws.Operation
 func (c *IAM) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *aws.Request, output *GetInstanceProfileOutput) {
 	if opGetInstanceProfile == nil {
 		opGetInstanceProfile = &aws.Operation{
-			Name:          "GetInstanceProfile",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetInstanceProfileResult",
+			Name:       "GetInstanceProfile",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1281,10 +1262,9 @@ var opGetInstanceProfile *aws.Operation
 func (c *IAM) GetLoginProfileRequest(input *GetLoginProfileInput) (req *aws.Request, output *GetLoginProfileOutput) {
 	if opGetLoginProfile == nil {
 		opGetLoginProfile = &aws.Operation{
-			Name:          "GetLoginProfile",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetLoginProfileResult",
+			Name:       "GetLoginProfile",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1307,10 +1287,9 @@ var opGetLoginProfile *aws.Operation
 func (c *IAM) GetOpenIDConnectProviderRequest(input *GetOpenIDConnectProviderInput) (req *aws.Request, output *GetOpenIDConnectProviderOutput) {
 	if opGetOpenIDConnectProvider == nil {
 		opGetOpenIDConnectProvider = &aws.Operation{
-			Name:          "GetOpenIDConnectProvider",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetOpenIDConnectProviderResult",
+			Name:       "GetOpenIDConnectProvider",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1333,10 +1312,9 @@ var opGetOpenIDConnectProvider *aws.Operation
 func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *aws.Request, output *GetPolicyOutput) {
 	if opGetPolicy == nil {
 		opGetPolicy = &aws.Operation{
-			Name:          "GetPolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetPolicyResult",
+			Name:       "GetPolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1359,10 +1337,9 @@ var opGetPolicy *aws.Operation
 func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *aws.Request, output *GetPolicyVersionOutput) {
 	if opGetPolicyVersion == nil {
 		opGetPolicyVersion = &aws.Operation{
-			Name:          "GetPolicyVersion",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetPolicyVersionResult",
+			Name:       "GetPolicyVersion",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1385,10 +1362,9 @@ var opGetPolicyVersion *aws.Operation
 func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *aws.Request, output *GetRoleOutput) {
 	if opGetRole == nil {
 		opGetRole = &aws.Operation{
-			Name:          "GetRole",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetRoleResult",
+			Name:       "GetRole",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1411,10 +1387,9 @@ var opGetRole *aws.Operation
 func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *aws.Request, output *GetRolePolicyOutput) {
 	if opGetRolePolicy == nil {
 		opGetRolePolicy = &aws.Operation{
-			Name:          "GetRolePolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetRolePolicyResult",
+			Name:       "GetRolePolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1437,10 +1412,9 @@ var opGetRolePolicy *aws.Operation
 func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *aws.Request, output *GetSAMLProviderOutput) {
 	if opGetSAMLProvider == nil {
 		opGetSAMLProvider = &aws.Operation{
-			Name:          "GetSAMLProvider",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetSAMLProviderResult",
+			Name:       "GetSAMLProvider",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1463,10 +1437,9 @@ var opGetSAMLProvider *aws.Operation
 func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req *aws.Request, output *GetServerCertificateOutput) {
 	if opGetServerCertificate == nil {
 		opGetServerCertificate = &aws.Operation{
-			Name:          "GetServerCertificate",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetServerCertificateResult",
+			Name:       "GetServerCertificate",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1489,10 +1462,9 @@ var opGetServerCertificate *aws.Operation
 func (c *IAM) GetUserRequest(input *GetUserInput) (req *aws.Request, output *GetUserOutput) {
 	if opGetUser == nil {
 		opGetUser = &aws.Operation{
-			Name:          "GetUser",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetUserResult",
+			Name:       "GetUser",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1515,10 +1487,9 @@ var opGetUser *aws.Operation
 func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *aws.Request, output *GetUserPolicyOutput) {
 	if opGetUserPolicy == nil {
 		opGetUserPolicy = &aws.Operation{
-			Name:          "GetUserPolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetUserPolicyResult",
+			Name:       "GetUserPolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1541,10 +1512,9 @@ var opGetUserPolicy *aws.Operation
 func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *aws.Request, output *ListAccessKeysOutput) {
 	if opListAccessKeys == nil {
 		opListAccessKeys = &aws.Operation{
-			Name:          "ListAccessKeys",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListAccessKeysResult",
+			Name:       "ListAccessKeys",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1567,10 +1537,9 @@ var opListAccessKeys *aws.Operation
 func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *aws.Request, output *ListAccountAliasesOutput) {
 	if opListAccountAliases == nil {
 		opListAccountAliases = &aws.Operation{
-			Name:          "ListAccountAliases",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListAccountAliasesResult",
+			Name:       "ListAccountAliases",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1593,10 +1562,9 @@ var opListAccountAliases *aws.Operation
 func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesInput) (req *aws.Request, output *ListAttachedGroupPoliciesOutput) {
 	if opListAttachedGroupPolicies == nil {
 		opListAttachedGroupPolicies = &aws.Operation{
-			Name:          "ListAttachedGroupPolicies",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListAttachedGroupPoliciesResult",
+			Name:       "ListAttachedGroupPolicies",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1619,10 +1587,9 @@ var opListAttachedGroupPolicies *aws.Operation
 func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInput) (req *aws.Request, output *ListAttachedRolePoliciesOutput) {
 	if opListAttachedRolePolicies == nil {
 		opListAttachedRolePolicies = &aws.Operation{
-			Name:          "ListAttachedRolePolicies",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListAttachedRolePoliciesResult",
+			Name:       "ListAttachedRolePolicies",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1645,10 +1612,9 @@ var opListAttachedRolePolicies *aws.Operation
 func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInput) (req *aws.Request, output *ListAttachedUserPoliciesOutput) {
 	if opListAttachedUserPolicies == nil {
 		opListAttachedUserPolicies = &aws.Operation{
-			Name:          "ListAttachedUserPolicies",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListAttachedUserPoliciesResult",
+			Name:       "ListAttachedUserPolicies",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1671,10 +1637,9 @@ var opListAttachedUserPolicies *aws.Operation
 func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (req *aws.Request, output *ListEntitiesForPolicyOutput) {
 	if opListEntitiesForPolicy == nil {
 		opListEntitiesForPolicy = &aws.Operation{
-			Name:          "ListEntitiesForPolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListEntitiesForPolicyResult",
+			Name:       "ListEntitiesForPolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1697,10 +1662,9 @@ var opListEntitiesForPolicy *aws.Operation
 func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *aws.Request, output *ListGroupPoliciesOutput) {
 	if opListGroupPolicies == nil {
 		opListGroupPolicies = &aws.Operation{
-			Name:          "ListGroupPolicies",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListGroupPoliciesResult",
+			Name:       "ListGroupPolicies",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1723,10 +1687,9 @@ var opListGroupPolicies *aws.Operation
 func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *aws.Request, output *ListGroupsOutput) {
 	if opListGroups == nil {
 		opListGroups = &aws.Operation{
-			Name:          "ListGroups",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListGroupsResult",
+			Name:       "ListGroups",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1749,10 +1712,9 @@ var opListGroups *aws.Operation
 func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *aws.Request, output *ListGroupsForUserOutput) {
 	if opListGroupsForUser == nil {
 		opListGroupsForUser = &aws.Operation{
-			Name:          "ListGroupsForUser",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListGroupsForUserResult",
+			Name:       "ListGroupsForUser",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1775,10 +1737,9 @@ var opListGroupsForUser *aws.Operation
 func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req *aws.Request, output *ListInstanceProfilesOutput) {
 	if opListInstanceProfiles == nil {
 		opListInstanceProfiles = &aws.Operation{
-			Name:          "ListInstanceProfiles",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListInstanceProfilesResult",
+			Name:       "ListInstanceProfiles",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1801,10 +1762,9 @@ var opListInstanceProfiles *aws.Operation
 func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForRoleInput) (req *aws.Request, output *ListInstanceProfilesForRoleOutput) {
 	if opListInstanceProfilesForRole == nil {
 		opListInstanceProfilesForRole = &aws.Operation{
-			Name:          "ListInstanceProfilesForRole",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListInstanceProfilesForRoleResult",
+			Name:       "ListInstanceProfilesForRole",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1827,10 +1787,9 @@ var opListInstanceProfilesForRole *aws.Operation
 func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *aws.Request, output *ListMFADevicesOutput) {
 	if opListMFADevices == nil {
 		opListMFADevices = &aws.Operation{
-			Name:          "ListMFADevices",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListMFADevicesResult",
+			Name:       "ListMFADevices",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1853,10 +1812,9 @@ var opListMFADevices *aws.Operation
 func (c *IAM) ListOpenIDConnectProvidersRequest(input *ListOpenIDConnectProvidersInput) (req *aws.Request, output *ListOpenIDConnectProvidersOutput) {
 	if opListOpenIDConnectProviders == nil {
 		opListOpenIDConnectProviders = &aws.Operation{
-			Name:          "ListOpenIDConnectProviders",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListOpenIDConnectProvidersResult",
+			Name:       "ListOpenIDConnectProviders",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1879,10 +1837,9 @@ var opListOpenIDConnectProviders *aws.Operation
 func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *aws.Request, output *ListPoliciesOutput) {
 	if opListPolicies == nil {
 		opListPolicies = &aws.Operation{
-			Name:          "ListPolicies",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListPoliciesResult",
+			Name:       "ListPolicies",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1905,10 +1862,9 @@ var opListPolicies *aws.Operation
 func (c *IAM) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *aws.Request, output *ListPolicyVersionsOutput) {
 	if opListPolicyVersions == nil {
 		opListPolicyVersions = &aws.Operation{
-			Name:          "ListPolicyVersions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListPolicyVersionsResult",
+			Name:       "ListPolicyVersions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1931,10 +1887,9 @@ var opListPolicyVersions *aws.Operation
 func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *aws.Request, output *ListRolePoliciesOutput) {
 	if opListRolePolicies == nil {
 		opListRolePolicies = &aws.Operation{
-			Name:          "ListRolePolicies",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListRolePoliciesResult",
+			Name:       "ListRolePolicies",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1957,10 +1912,9 @@ var opListRolePolicies *aws.Operation
 func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *aws.Request, output *ListRolesOutput) {
 	if opListRoles == nil {
 		opListRoles = &aws.Operation{
-			Name:          "ListRoles",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListRolesResult",
+			Name:       "ListRoles",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1983,10 +1937,9 @@ var opListRoles *aws.Operation
 func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *aws.Request, output *ListSAMLProvidersOutput) {
 	if opListSAMLProviders == nil {
 		opListSAMLProviders = &aws.Operation{
-			Name:          "ListSAMLProviders",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListSAMLProvidersResult",
+			Name:       "ListSAMLProviders",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -2009,10 +1962,9 @@ var opListSAMLProviders *aws.Operation
 func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) (req *aws.Request, output *ListServerCertificatesOutput) {
 	if opListServerCertificates == nil {
 		opListServerCertificates = &aws.Operation{
-			Name:          "ListServerCertificates",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListServerCertificatesResult",
+			Name:       "ListServerCertificates",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -2035,10 +1987,9 @@ var opListServerCertificates *aws.Operation
 func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput) (req *aws.Request, output *ListSigningCertificatesOutput) {
 	if opListSigningCertificates == nil {
 		opListSigningCertificates = &aws.Operation{
-			Name:          "ListSigningCertificates",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListSigningCertificatesResult",
+			Name:       "ListSigningCertificates",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -2061,10 +2012,9 @@ var opListSigningCertificates *aws.Operation
 func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *aws.Request, output *ListUserPoliciesOutput) {
 	if opListUserPolicies == nil {
 		opListUserPolicies = &aws.Operation{
-			Name:          "ListUserPolicies",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListUserPoliciesResult",
+			Name:       "ListUserPolicies",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -2087,10 +2037,9 @@ var opListUserPolicies *aws.Operation
 func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *aws.Request, output *ListUsersOutput) {
 	if opListUsers == nil {
 		opListUsers = &aws.Operation{
-			Name:          "ListUsers",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListUsersResult",
+			Name:       "ListUsers",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -2113,10 +2062,9 @@ var opListUsers *aws.Operation
 func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (req *aws.Request, output *ListVirtualMFADevicesOutput) {
 	if opListVirtualMFADevices == nil {
 		opListVirtualMFADevices = &aws.Operation{
-			Name:          "ListVirtualMFADevices",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListVirtualMFADevicesResult",
+			Name:       "ListVirtualMFADevices",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -2489,10 +2437,9 @@ var opUpdateOpenIDConnectProviderThumbprint *aws.Operation
 func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *aws.Request, output *UpdateSAMLProviderOutput) {
 	if opUpdateSAMLProvider == nil {
 		opUpdateSAMLProvider = &aws.Operation{
-			Name:          "UpdateSAMLProvider",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "UpdateSAMLProviderResult",
+			Name:       "UpdateSAMLProvider",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -2590,10 +2537,9 @@ var opUpdateUser *aws.Operation
 func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput) (req *aws.Request, output *UploadServerCertificateOutput) {
 	if opUploadServerCertificate == nil {
 		opUploadServerCertificate = &aws.Operation{
-			Name:          "UploadServerCertificate",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "UploadServerCertificateResult",
+			Name:       "UploadServerCertificate",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -2616,10 +2562,9 @@ var opUploadServerCertificate *aws.Operation
 func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInput) (req *aws.Request, output *UploadSigningCertificateOutput) {
 	if opUploadSigningCertificate == nil {
 		opUploadSigningCertificate = &aws.Operation{
-			Name:          "UploadSigningCertificate",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "UploadSigningCertificateResult",
+			Name:       "UploadSigningCertificate",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

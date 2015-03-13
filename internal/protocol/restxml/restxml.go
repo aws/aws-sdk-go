@@ -29,7 +29,7 @@ func Unmarshal(r *aws.Request) {
 	if t := rest.PayloadType(r.Data); t == "structure" || t == "" {
 		defer r.HTTPResponse.Body.Close()
 		decoder := xml.NewDecoder(r.HTTPResponse.Body)
-		err := xmlutil.UnmarshalXML(r.Data, decoder, r.Operation.ResultWrapper)
+		err := xmlutil.UnmarshalXML(r.Data, decoder, "")
 		if err != nil && err != io.EOF {
 			r.Error = err
 			return

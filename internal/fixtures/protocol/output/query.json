@@ -85,44 +85,6 @@
     ]
   },
   {
-    "description": "Custom result wrapper",
-    "metadata": {
-      "protocol": "query"
-    },
-    "shapes": {
-      "OutputShape": {
-        "type": "structure",
-        "members": {
-          "Str": {
-            "shape": "StringType"
-          }
-        }
-      },
-      "StringType": {
-        "type": "string"
-      }
-    },
-    "cases": [
-      {
-        "given": {
-          "output": {
-            "resultWrapper": "Wrapper",
-            "shape": "OutputShape"
-          },
-          "name": "OperationName"
-        },
-        "result": {
-          "Str": "myname"
-        },
-        "response": {
-          "status_code": 200,
-          "headers": {},
-          "body": "<OperationNameResponse><Wrapper><Str>myname</Str></Wrapper><ResponseMetadata><RequestId>request-id</RequestId></ResponseMetadata></OperationNameResponse>"
-        }
-      }
-    ]
-  },
-  {
     "description": "Blob",
     "metadata": {
       "protocol": "query"

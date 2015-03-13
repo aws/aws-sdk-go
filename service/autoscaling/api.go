@@ -37,10 +37,9 @@ var opAttachInstances *aws.Operation
 func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionInput) (req *aws.Request, output *CompleteLifecycleActionOutput) {
 	if opCompleteLifecycleAction == nil {
 		opCompleteLifecycleAction = &aws.Operation{
-			Name:          "CompleteLifecycleAction",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CompleteLifecycleActionResult",
+			Name:       "CompleteLifecycleAction",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -188,10 +187,9 @@ var opDeleteLaunchConfiguration *aws.Operation
 func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput) (req *aws.Request, output *DeleteLifecycleHookOutput) {
 	if opDeleteLifecycleHook == nil {
 		opDeleteLifecycleHook = &aws.Operation{
-			Name:          "DeleteLifecycleHook",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteLifecycleHookResult",
+			Name:       "DeleteLifecycleHook",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -314,10 +312,9 @@ var opDeleteTags *aws.Operation
 func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *aws.Request, output *DescribeAccountLimitsOutput) {
 	if opDescribeAccountLimits == nil {
 		opDescribeAccountLimits = &aws.Operation{
-			Name:          "DescribeAccountLimits",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeAccountLimitsResult",
+			Name:       "DescribeAccountLimits",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -340,10 +337,9 @@ var opDescribeAccountLimits *aws.Operation
 func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTypesInput) (req *aws.Request, output *DescribeAdjustmentTypesOutput) {
 	if opDescribeAdjustmentTypes == nil {
 		opDescribeAdjustmentTypes = &aws.Operation{
-			Name:          "DescribeAdjustmentTypes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeAdjustmentTypesResult",
+			Name:       "DescribeAdjustmentTypes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -366,10 +362,9 @@ var opDescribeAdjustmentTypes *aws.Operation
 func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalingGroupsInput) (req *aws.Request, output *DescribeAutoScalingGroupsOutput) {
 	if opDescribeAutoScalingGroups == nil {
 		opDescribeAutoScalingGroups = &aws.Operation{
-			Name:          "DescribeAutoScalingGroups",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeAutoScalingGroupsResult",
+			Name:       "DescribeAutoScalingGroups",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -392,10 +387,9 @@ var opDescribeAutoScalingGroups *aws.Operation
 func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoScalingInstancesInput) (req *aws.Request, output *DescribeAutoScalingInstancesOutput) {
 	if opDescribeAutoScalingInstances == nil {
 		opDescribeAutoScalingInstances = &aws.Operation{
-			Name:          "DescribeAutoScalingInstances",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeAutoScalingInstancesResult",
+			Name:       "DescribeAutoScalingInstances",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -418,10 +412,9 @@ var opDescribeAutoScalingInstances *aws.Operation
 func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *DescribeAutoScalingNotificationTypesInput) (req *aws.Request, output *DescribeAutoScalingNotificationTypesOutput) {
 	if opDescribeAutoScalingNotificationTypes == nil {
 		opDescribeAutoScalingNotificationTypes = &aws.Operation{
-			Name:          "DescribeAutoScalingNotificationTypes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeAutoScalingNotificationTypesResult",
+			Name:       "DescribeAutoScalingNotificationTypes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -444,10 +437,9 @@ var opDescribeAutoScalingNotificationTypes *aws.Operation
 func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchConfigurationsInput) (req *aws.Request, output *DescribeLaunchConfigurationsOutput) {
 	if opDescribeLaunchConfigurations == nil {
 		opDescribeLaunchConfigurations = &aws.Operation{
-			Name:          "DescribeLaunchConfigurations",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeLaunchConfigurationsResult",
+			Name:       "DescribeLaunchConfigurations",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -470,10 +462,9 @@ var opDescribeLaunchConfigurations *aws.Operation
 func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycleHookTypesInput) (req *aws.Request, output *DescribeLifecycleHookTypesOutput) {
 	if opDescribeLifecycleHookTypes == nil {
 		opDescribeLifecycleHookTypes = &aws.Operation{
-			Name:          "DescribeLifecycleHookTypes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeLifecycleHookTypesResult",
+			Name:       "DescribeLifecycleHookTypes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -496,10 +487,9 @@ var opDescribeLifecycleHookTypes *aws.Operation
 func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHooksInput) (req *aws.Request, output *DescribeLifecycleHooksOutput) {
 	if opDescribeLifecycleHooks == nil {
 		opDescribeLifecycleHooks = &aws.Operation{
-			Name:          "DescribeLifecycleHooks",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeLifecycleHooksResult",
+			Name:       "DescribeLifecycleHooks",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -522,10 +512,9 @@ var opDescribeLifecycleHooks *aws.Operation
 func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *aws.Request, output *DescribeMetricCollectionTypesOutput) {
 	if opDescribeMetricCollectionTypes == nil {
 		opDescribeMetricCollectionTypes = &aws.Operation{
-			Name:          "DescribeMetricCollectionTypes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeMetricCollectionTypesResult",
+			Name:       "DescribeMetricCollectionTypes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -548,10 +537,9 @@ var opDescribeMetricCollectionTypes *aws.Operation
 func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeNotificationConfigurationsInput) (req *aws.Request, output *DescribeNotificationConfigurationsOutput) {
 	if opDescribeNotificationConfigurations == nil {
 		opDescribeNotificationConfigurations = &aws.Operation{
-			Name:          "DescribeNotificationConfigurations",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeNotificationConfigurationsResult",
+			Name:       "DescribeNotificationConfigurations",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -574,10 +562,9 @@ var opDescribeNotificationConfigurations *aws.Operation
 func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req *aws.Request, output *DescribePoliciesOutput) {
 	if opDescribePolicies == nil {
 		opDescribePolicies = &aws.Operation{
-			Name:          "DescribePolicies",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribePoliciesResult",
+			Name:       "DescribePolicies",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -600,10 +587,9 @@ var opDescribePolicies *aws.Operation
 func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *aws.Request, output *DescribeScalingActivitiesOutput) {
 	if opDescribeScalingActivities == nil {
 		opDescribeScalingActivities = &aws.Operation{
-			Name:          "DescribeScalingActivities",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeScalingActivitiesResult",
+			Name:       "DescribeScalingActivities",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -626,10 +612,9 @@ var opDescribeScalingActivities *aws.Operation
 func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingProcessTypesInput) (req *aws.Request, output *DescribeScalingProcessTypesOutput) {
 	if opDescribeScalingProcessTypes == nil {
 		opDescribeScalingProcessTypes = &aws.Operation{
-			Name:          "DescribeScalingProcessTypes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeScalingProcessTypesResult",
+			Name:       "DescribeScalingProcessTypes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -652,10 +637,9 @@ var opDescribeScalingProcessTypes *aws.Operation
 func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsInput) (req *aws.Request, output *DescribeScheduledActionsOutput) {
 	if opDescribeScheduledActions == nil {
 		opDescribeScheduledActions = &aws.Operation{
-			Name:          "DescribeScheduledActions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeScheduledActionsResult",
+			Name:       "DescribeScheduledActions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -678,10 +662,9 @@ var opDescribeScheduledActions *aws.Operation
 func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
-			Name:          "DescribeTags",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeTagsResult",
+			Name:       "DescribeTags",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -704,10 +687,9 @@ var opDescribeTags *aws.Operation
 func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTerminationPolicyTypesInput) (req *aws.Request, output *DescribeTerminationPolicyTypesOutput) {
 	if opDescribeTerminationPolicyTypes == nil {
 		opDescribeTerminationPolicyTypes = &aws.Operation{
-			Name:          "DescribeTerminationPolicyTypes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeTerminationPolicyTypesResult",
+			Name:       "DescribeTerminationPolicyTypes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -730,10 +712,9 @@ var opDescribeTerminationPolicyTypes *aws.Operation
 func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *aws.Request, output *DetachInstancesOutput) {
 	if opDetachInstances == nil {
 		opDetachInstances = &aws.Operation{
-			Name:          "DetachInstances",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DetachInstancesResult",
+			Name:       "DetachInstances",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -806,10 +787,9 @@ var opEnableMetricsCollection *aws.Operation
 func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *aws.Request, output *EnterStandbyOutput) {
 	if opEnterStandby == nil {
 		opEnterStandby = &aws.Operation{
-			Name:          "EnterStandby",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "EnterStandbyResult",
+			Name:       "EnterStandby",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -857,10 +837,9 @@ var opExecutePolicy *aws.Operation
 func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *aws.Request, output *ExitStandbyOutput) {
 	if opExitStandby == nil {
 		opExitStandby = &aws.Operation{
-			Name:          "ExitStandby",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ExitStandbyResult",
+			Name:       "ExitStandby",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -883,10 +862,9 @@ var opExitStandby *aws.Operation
 func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req *aws.Request, output *PutLifecycleHookOutput) {
 	if opPutLifecycleHook == nil {
 		opPutLifecycleHook = &aws.Operation{
-			Name:          "PutLifecycleHook",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "PutLifecycleHookResult",
+			Name:       "PutLifecycleHook",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -934,10 +912,9 @@ var opPutNotificationConfiguration *aws.Operation
 func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *aws.Request, output *PutScalingPolicyOutput) {
 	if opPutScalingPolicy == nil {
 		opPutScalingPolicy = &aws.Operation{
-			Name:          "PutScalingPolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "PutScalingPolicyResult",
+			Name:       "PutScalingPolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -985,10 +962,9 @@ var opPutScheduledUpdateGroupAction *aws.Operation
 func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecycleActionHeartbeatInput) (req *aws.Request, output *RecordLifecycleActionHeartbeatOutput) {
 	if opRecordLifecycleActionHeartbeat == nil {
 		opRecordLifecycleActionHeartbeat = &aws.Operation{
-			Name:          "RecordLifecycleActionHeartbeat",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RecordLifecycleActionHeartbeatResult",
+			Name:       "RecordLifecycleActionHeartbeat",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1111,10 +1087,9 @@ var opSuspendProcesses *aws.Operation
 func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *TerminateInstanceInAutoScalingGroupInput) (req *aws.Request, output *TerminateInstanceInAutoScalingGroupOutput) {
 	if opTerminateInstanceInAutoScalingGroup == nil {
 		opTerminateInstanceInAutoScalingGroup = &aws.Operation{
-			Name:          "TerminateInstanceInAutoScalingGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "TerminateInstanceInAutoScalingGroupResult",
+			Name:       "TerminateInstanceInAutoScalingGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

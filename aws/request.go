@@ -29,10 +29,9 @@ type Request struct {
 }
 
 type Operation struct {
-	Name          string
-	HTTPMethod    string
-	HTTPPath      string
-	ResultWrapper string
+	Name       string
+	HTTPMethod string
+	HTTPPath   string
 }
 
 func NewRequest(service *Service, operation *Operation, params interface{}, data interface{}) *Request {

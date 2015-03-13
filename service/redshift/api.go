@@ -12,10 +12,9 @@ import (
 func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeClusterSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeClusterSecurityGroupIngressOutput) {
 	if opAuthorizeClusterSecurityGroupIngress == nil {
 		opAuthorizeClusterSecurityGroupIngress = &aws.Operation{
-			Name:          "AuthorizeClusterSecurityGroupIngress",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "AuthorizeClusterSecurityGroupIngressResult",
+			Name:       "AuthorizeClusterSecurityGroupIngress",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -38,10 +37,9 @@ var opAuthorizeClusterSecurityGroupIngress *aws.Operation
 func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccessInput) (req *aws.Request, output *AuthorizeSnapshotAccessOutput) {
 	if opAuthorizeSnapshotAccess == nil {
 		opAuthorizeSnapshotAccess = &aws.Operation{
-			Name:          "AuthorizeSnapshotAccess",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "AuthorizeSnapshotAccessResult",
+			Name:       "AuthorizeSnapshotAccess",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -64,10 +62,9 @@ var opAuthorizeSnapshotAccess *aws.Operation
 func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (req *aws.Request, output *CopyClusterSnapshotOutput) {
 	if opCopyClusterSnapshot == nil {
 		opCopyClusterSnapshot = &aws.Operation{
-			Name:          "CopyClusterSnapshot",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CopyClusterSnapshotResult",
+			Name:       "CopyClusterSnapshot",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -90,10 +87,9 @@ var opCopyClusterSnapshot *aws.Operation
 func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request, output *CreateClusterOutput) {
 	if opCreateCluster == nil {
 		opCreateCluster = &aws.Operation{
-			Name:          "CreateCluster",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateClusterResult",
+			Name:       "CreateCluster",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -116,10 +112,9 @@ var opCreateCluster *aws.Operation
 func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParameterGroupInput) (req *aws.Request, output *CreateClusterParameterGroupOutput) {
 	if opCreateClusterParameterGroup == nil {
 		opCreateClusterParameterGroup = &aws.Operation{
-			Name:          "CreateClusterParameterGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateClusterParameterGroupResult",
+			Name:       "CreateClusterParameterGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -142,10 +137,9 @@ var opCreateClusterParameterGroup *aws.Operation
 func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurityGroupInput) (req *aws.Request, output *CreateClusterSecurityGroupOutput) {
 	if opCreateClusterSecurityGroup == nil {
 		opCreateClusterSecurityGroup = &aws.Operation{
-			Name:          "CreateClusterSecurityGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateClusterSecurityGroupResult",
+			Name:       "CreateClusterSecurityGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -168,10 +162,9 @@ var opCreateClusterSecurityGroup *aws.Operation
 func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInput) (req *aws.Request, output *CreateClusterSnapshotOutput) {
 	if opCreateClusterSnapshot == nil {
 		opCreateClusterSnapshot = &aws.Operation{
-			Name:          "CreateClusterSnapshot",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateClusterSnapshotResult",
+			Name:       "CreateClusterSnapshot",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -194,10 +187,9 @@ var opCreateClusterSnapshot *aws.Operation
 func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGroupInput) (req *aws.Request, output *CreateClusterSubnetGroupOutput) {
 	if opCreateClusterSubnetGroup == nil {
 		opCreateClusterSubnetGroup = &aws.Operation{
-			Name:          "CreateClusterSubnetGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateClusterSubnetGroupResult",
+			Name:       "CreateClusterSubnetGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -220,10 +212,9 @@ var opCreateClusterSubnetGroup *aws.Operation
 func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *aws.Request, output *CreateEventSubscriptionOutput) {
 	if opCreateEventSubscription == nil {
 		opCreateEventSubscription = &aws.Operation{
-			Name:          "CreateEventSubscription",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateEventSubscriptionResult",
+			Name:       "CreateEventSubscription",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -246,10 +237,9 @@ var opCreateEventSubscription *aws.Operation
 func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCertificateInput) (req *aws.Request, output *CreateHSMClientCertificateOutput) {
 	if opCreateHSMClientCertificate == nil {
 		opCreateHSMClientCertificate = &aws.Operation{
-			Name:          "CreateHsmClientCertificate",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateHsmClientCertificateResult",
+			Name:       "CreateHsmClientCertificate",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -272,10 +262,9 @@ var opCreateHSMClientCertificate *aws.Operation
 func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationInput) (req *aws.Request, output *CreateHSMConfigurationOutput) {
 	if opCreateHSMConfiguration == nil {
 		opCreateHSMConfiguration = &aws.Operation{
-			Name:          "CreateHsmConfiguration",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateHsmConfigurationResult",
+			Name:       "CreateHsmConfiguration",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -323,10 +312,9 @@ var opCreateTags *aws.Operation
 func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request, output *DeleteClusterOutput) {
 	if opDeleteCluster == nil {
 		opDeleteCluster = &aws.Operation{
-			Name:          "DeleteCluster",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteClusterResult",
+			Name:       "DeleteCluster",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -399,10 +387,9 @@ var opDeleteClusterSecurityGroup *aws.Operation
 func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotInput) (req *aws.Request, output *DeleteClusterSnapshotOutput) {
 	if opDeleteClusterSnapshot == nil {
 		opDeleteClusterSnapshot = &aws.Operation{
-			Name:          "DeleteClusterSnapshot",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteClusterSnapshotResult",
+			Name:       "DeleteClusterSnapshot",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -550,10 +537,9 @@ var opDeleteTags *aws.Operation
 func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterParameterGroupsInput) (req *aws.Request, output *DescribeClusterParameterGroupsOutput) {
 	if opDescribeClusterParameterGroups == nil {
 		opDescribeClusterParameterGroups = &aws.Operation{
-			Name:          "DescribeClusterParameterGroups",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeClusterParameterGroupsResult",
+			Name:       "DescribeClusterParameterGroups",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -576,10 +562,9 @@ var opDescribeClusterParameterGroups *aws.Operation
 func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParametersInput) (req *aws.Request, output *DescribeClusterParametersOutput) {
 	if opDescribeClusterParameters == nil {
 		opDescribeClusterParameters = &aws.Operation{
-			Name:          "DescribeClusterParameters",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeClusterParametersResult",
+			Name:       "DescribeClusterParameters",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -602,10 +587,9 @@ var opDescribeClusterParameters *aws.Operation
 func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSecurityGroupsInput) (req *aws.Request, output *DescribeClusterSecurityGroupsOutput) {
 	if opDescribeClusterSecurityGroups == nil {
 		opDescribeClusterSecurityGroups = &aws.Operation{
-			Name:          "DescribeClusterSecurityGroups",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeClusterSecurityGroupsResult",
+			Name:       "DescribeClusterSecurityGroups",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -628,10 +612,9 @@ var opDescribeClusterSecurityGroups *aws.Operation
 func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapshotsInput) (req *aws.Request, output *DescribeClusterSnapshotsOutput) {
 	if opDescribeClusterSnapshots == nil {
 		opDescribeClusterSnapshots = &aws.Operation{
-			Name:          "DescribeClusterSnapshots",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeClusterSnapshotsResult",
+			Name:       "DescribeClusterSnapshots",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -654,10 +637,9 @@ var opDescribeClusterSnapshots *aws.Operation
 func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubnetGroupsInput) (req *aws.Request, output *DescribeClusterSubnetGroupsOutput) {
 	if opDescribeClusterSubnetGroups == nil {
 		opDescribeClusterSubnetGroups = &aws.Operation{
-			Name:          "DescribeClusterSubnetGroups",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeClusterSubnetGroupsResult",
+			Name:       "DescribeClusterSubnetGroups",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -680,10 +662,9 @@ var opDescribeClusterSubnetGroups *aws.Operation
 func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersionsInput) (req *aws.Request, output *DescribeClusterVersionsOutput) {
 	if opDescribeClusterVersions == nil {
 		opDescribeClusterVersions = &aws.Operation{
-			Name:          "DescribeClusterVersions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeClusterVersionsResult",
+			Name:       "DescribeClusterVersions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -706,10 +687,9 @@ var opDescribeClusterVersions *aws.Operation
 func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Request, output *DescribeClustersOutput) {
 	if opDescribeClusters == nil {
 		opDescribeClusters = &aws.Operation{
-			Name:          "DescribeClusters",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeClustersResult",
+			Name:       "DescribeClusters",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -732,10 +712,9 @@ var opDescribeClusters *aws.Operation
 func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaultClusterParametersInput) (req *aws.Request, output *DescribeDefaultClusterParametersOutput) {
 	if opDescribeDefaultClusterParameters == nil {
 		opDescribeDefaultClusterParameters = &aws.Operation{
-			Name:          "DescribeDefaultClusterParameters",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeDefaultClusterParametersResult",
+			Name:       "DescribeDefaultClusterParameters",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -758,10 +737,9 @@ var opDescribeDefaultClusterParameters *aws.Operation
 func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *aws.Request, output *DescribeEventCategoriesOutput) {
 	if opDescribeEventCategories == nil {
 		opDescribeEventCategories = &aws.Operation{
-			Name:          "DescribeEventCategories",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeEventCategoriesResult",
+			Name:       "DescribeEventCategories",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -784,10 +762,9 @@ var opDescribeEventCategories *aws.Operation
 func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *aws.Request, output *DescribeEventSubscriptionsOutput) {
 	if opDescribeEventSubscriptions == nil {
 		opDescribeEventSubscriptions = &aws.Operation{
-			Name:          "DescribeEventSubscriptions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeEventSubscriptionsResult",
+			Name:       "DescribeEventSubscriptions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -810,10 +787,9 @@ var opDescribeEventSubscriptions *aws.Operation
 func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
-			Name:          "DescribeEvents",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeEventsResult",
+			Name:       "DescribeEvents",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -836,10 +812,9 @@ var opDescribeEvents *aws.Operation
 func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClientCertificatesInput) (req *aws.Request, output *DescribeHSMClientCertificatesOutput) {
 	if opDescribeHSMClientCertificates == nil {
 		opDescribeHSMClientCertificates = &aws.Operation{
-			Name:          "DescribeHsmClientCertificates",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeHsmClientCertificatesResult",
+			Name:       "DescribeHsmClientCertificates",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -862,10 +837,9 @@ var opDescribeHSMClientCertificates *aws.Operation
 func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurationsInput) (req *aws.Request, output *DescribeHSMConfigurationsOutput) {
 	if opDescribeHSMConfigurations == nil {
 		opDescribeHSMConfigurations = &aws.Operation{
-			Name:          "DescribeHsmConfigurations",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeHsmConfigurationsResult",
+			Name:       "DescribeHsmConfigurations",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -888,10 +862,9 @@ var opDescribeHSMConfigurations *aws.Operation
 func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInput) (req *aws.Request, output *LoggingStatus) {
 	if opDescribeLoggingStatus == nil {
 		opDescribeLoggingStatus = &aws.Operation{
-			Name:          "DescribeLoggingStatus",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeLoggingStatusResult",
+			Name:       "DescribeLoggingStatus",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -914,10 +887,9 @@ var opDescribeLoggingStatus *aws.Operation
 func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderableClusterOptionsInput) (req *aws.Request, output *DescribeOrderableClusterOptionsOutput) {
 	if opDescribeOrderableClusterOptions == nil {
 		opDescribeOrderableClusterOptions = &aws.Operation{
-			Name:          "DescribeOrderableClusterOptions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeOrderableClusterOptionsResult",
+			Name:       "DescribeOrderableClusterOptions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -940,10 +912,9 @@ var opDescribeOrderableClusterOptions *aws.Operation
 func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedNodeOfferingsInput) (req *aws.Request, output *DescribeReservedNodeOfferingsOutput) {
 	if opDescribeReservedNodeOfferings == nil {
 		opDescribeReservedNodeOfferings = &aws.Operation{
-			Name:          "DescribeReservedNodeOfferings",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeReservedNodeOfferingsResult",
+			Name:       "DescribeReservedNodeOfferings",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -966,10 +937,9 @@ var opDescribeReservedNodeOfferings *aws.Operation
 func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInput) (req *aws.Request, output *DescribeReservedNodesOutput) {
 	if opDescribeReservedNodes == nil {
 		opDescribeReservedNodes = &aws.Operation{
-			Name:          "DescribeReservedNodes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeReservedNodesResult",
+			Name:       "DescribeReservedNodes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -992,10 +962,9 @@ var opDescribeReservedNodes *aws.Operation
 func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *aws.Request, output *DescribeResizeOutput) {
 	if opDescribeResize == nil {
 		opDescribeResize = &aws.Operation{
-			Name:          "DescribeResize",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeResizeResult",
+			Name:       "DescribeResize",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1018,10 +987,9 @@ var opDescribeResize *aws.Operation
 func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
-			Name:          "DescribeTags",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeTagsResult",
+			Name:       "DescribeTags",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1044,10 +1012,9 @@ var opDescribeTags *aws.Operation
 func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *aws.Request, output *LoggingStatus) {
 	if opDisableLogging == nil {
 		opDisableLogging = &aws.Operation{
-			Name:          "DisableLogging",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DisableLoggingResult",
+			Name:       "DisableLogging",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1070,10 +1037,9 @@ var opDisableLogging *aws.Operation
 func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (req *aws.Request, output *DisableSnapshotCopyOutput) {
 	if opDisableSnapshotCopy == nil {
 		opDisableSnapshotCopy = &aws.Operation{
-			Name:          "DisableSnapshotCopy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DisableSnapshotCopyResult",
+			Name:       "DisableSnapshotCopy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1096,10 +1062,9 @@ var opDisableSnapshotCopy *aws.Operation
 func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *aws.Request, output *LoggingStatus) {
 	if opEnableLogging == nil {
 		opEnableLogging = &aws.Operation{
-			Name:          "EnableLogging",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "EnableLoggingResult",
+			Name:       "EnableLogging",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1122,10 +1087,9 @@ var opEnableLogging *aws.Operation
 func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyInput) (req *aws.Request, output *EnableSnapshotCopyOutput) {
 	if opEnableSnapshotCopy == nil {
 		opEnableSnapshotCopy = &aws.Operation{
-			Name:          "EnableSnapshotCopy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "EnableSnapshotCopyResult",
+			Name:       "EnableSnapshotCopy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1148,10 +1112,9 @@ var opEnableSnapshotCopy *aws.Operation
 func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *aws.Request, output *ModifyClusterOutput) {
 	if opModifyCluster == nil {
 		opModifyCluster = &aws.Operation{
-			Name:          "ModifyCluster",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ModifyClusterResult",
+			Name:       "ModifyCluster",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1174,10 +1137,9 @@ var opModifyCluster *aws.Operation
 func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
 	if opModifyClusterParameterGroup == nil {
 		opModifyClusterParameterGroup = &aws.Operation{
-			Name:          "ModifyClusterParameterGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ModifyClusterParameterGroupResult",
+			Name:       "ModifyClusterParameterGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1200,10 +1162,9 @@ var opModifyClusterParameterGroup *aws.Operation
 func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGroupInput) (req *aws.Request, output *ModifyClusterSubnetGroupOutput) {
 	if opModifyClusterSubnetGroup == nil {
 		opModifyClusterSubnetGroup = &aws.Operation{
-			Name:          "ModifyClusterSubnetGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ModifyClusterSubnetGroupResult",
+			Name:       "ModifyClusterSubnetGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1226,10 +1187,9 @@ var opModifyClusterSubnetGroup *aws.Operation
 func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
 	if opModifyEventSubscription == nil {
 		opModifyEventSubscription = &aws.Operation{
-			Name:          "ModifyEventSubscription",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ModifyEventSubscriptionResult",
+			Name:       "ModifyEventSubscription",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1252,10 +1212,9 @@ var opModifyEventSubscription *aws.Operation
 func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapshotCopyRetentionPeriodInput) (req *aws.Request, output *ModifySnapshotCopyRetentionPeriodOutput) {
 	if opModifySnapshotCopyRetentionPeriod == nil {
 		opModifySnapshotCopyRetentionPeriod = &aws.Operation{
-			Name:          "ModifySnapshotCopyRetentionPeriod",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ModifySnapshotCopyRetentionPeriodResult",
+			Name:       "ModifySnapshotCopyRetentionPeriod",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1278,10 +1237,9 @@ var opModifySnapshotCopyRetentionPeriod *aws.Operation
 func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNodeOfferingInput) (req *aws.Request, output *PurchaseReservedNodeOfferingOutput) {
 	if opPurchaseReservedNodeOffering == nil {
 		opPurchaseReservedNodeOffering = &aws.Operation{
-			Name:          "PurchaseReservedNodeOffering",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "PurchaseReservedNodeOfferingResult",
+			Name:       "PurchaseReservedNodeOffering",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1304,10 +1262,9 @@ var opPurchaseReservedNodeOffering *aws.Operation
 func (c *Redshift) RebootClusterRequest(input *RebootClusterInput) (req *aws.Request, output *RebootClusterOutput) {
 	if opRebootCluster == nil {
 		opRebootCluster = &aws.Operation{
-			Name:          "RebootCluster",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RebootClusterResult",
+			Name:       "RebootCluster",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1330,10 +1287,9 @@ var opRebootCluster *aws.Operation
 func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
 	if opResetClusterParameterGroup == nil {
 		opResetClusterParameterGroup = &aws.Operation{
-			Name:          "ResetClusterParameterGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ResetClusterParameterGroupResult",
+			Name:       "ResetClusterParameterGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1356,10 +1312,9 @@ var opResetClusterParameterGroup *aws.Operation
 func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSnapshotInput) (req *aws.Request, output *RestoreFromClusterSnapshotOutput) {
 	if opRestoreFromClusterSnapshot == nil {
 		opRestoreFromClusterSnapshot = &aws.Operation{
-			Name:          "RestoreFromClusterSnapshot",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RestoreFromClusterSnapshotResult",
+			Name:       "RestoreFromClusterSnapshot",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1382,10 +1337,9 @@ var opRestoreFromClusterSnapshot *aws.Operation
 func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeClusterSecurityGroupIngressInput) (req *aws.Request, output *RevokeClusterSecurityGroupIngressOutput) {
 	if opRevokeClusterSecurityGroupIngress == nil {
 		opRevokeClusterSecurityGroupIngress = &aws.Operation{
-			Name:          "RevokeClusterSecurityGroupIngress",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RevokeClusterSecurityGroupIngressResult",
+			Name:       "RevokeClusterSecurityGroupIngress",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1408,10 +1362,9 @@ var opRevokeClusterSecurityGroupIngress *aws.Operation
 func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput) (req *aws.Request, output *RevokeSnapshotAccessOutput) {
 	if opRevokeSnapshotAccess == nil {
 		opRevokeSnapshotAccess = &aws.Operation{
-			Name:          "RevokeSnapshotAccess",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RevokeSnapshotAccessResult",
+			Name:       "RevokeSnapshotAccess",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1434,10 +1387,9 @@ var opRevokeSnapshotAccess *aws.Operation
 func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (req *aws.Request, output *RotateEncryptionKeyOutput) {
 	if opRotateEncryptionKey == nil {
 		opRotateEncryptionKey = &aws.Operation{
-			Name:          "RotateEncryptionKey",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RotateEncryptionKeyResult",
+			Name:       "RotateEncryptionKey",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

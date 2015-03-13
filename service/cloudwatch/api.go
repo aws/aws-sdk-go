@@ -37,10 +37,9 @@ var opDeleteAlarms *aws.Operation
 func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInput) (req *aws.Request, output *DescribeAlarmHistoryOutput) {
 	if opDescribeAlarmHistory == nil {
 		opDescribeAlarmHistory = &aws.Operation{
-			Name:          "DescribeAlarmHistory",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeAlarmHistoryResult",
+			Name:       "DescribeAlarmHistory",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -63,10 +62,9 @@ var opDescribeAlarmHistory *aws.Operation
 func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *aws.Request, output *DescribeAlarmsOutput) {
 	if opDescribeAlarms == nil {
 		opDescribeAlarms = &aws.Operation{
-			Name:          "DescribeAlarms",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeAlarmsResult",
+			Name:       "DescribeAlarms",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -89,10 +87,9 @@ var opDescribeAlarms *aws.Operation
 func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetricInput) (req *aws.Request, output *DescribeAlarmsForMetricOutput) {
 	if opDescribeAlarmsForMetric == nil {
 		opDescribeAlarmsForMetric = &aws.Operation{
-			Name:          "DescribeAlarmsForMetric",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeAlarmsForMetricResult",
+			Name:       "DescribeAlarmsForMetric",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -165,10 +162,9 @@ var opEnableAlarmActions *aws.Operation
 func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput) (req *aws.Request, output *GetMetricStatisticsOutput) {
 	if opGetMetricStatistics == nil {
 		opGetMetricStatistics = &aws.Operation{
-			Name:          "GetMetricStatistics",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetMetricStatisticsResult",
+			Name:       "GetMetricStatistics",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -191,10 +187,9 @@ var opGetMetricStatistics *aws.Operation
 func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *aws.Request, output *ListMetricsOutput) {
 	if opListMetrics == nil {
 		opListMetrics = &aws.Operation{
-			Name:          "ListMetrics",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListMetricsResult",
+			Name:       "ListMetrics",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

@@ -12,10 +12,9 @@ import (
 func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifierToSubscriptionInput) (req *aws.Request, output *AddSourceIdentifierToSubscriptionOutput) {
 	if opAddSourceIdentifierToSubscription == nil {
 		opAddSourceIdentifierToSubscription = &aws.Operation{
-			Name:          "AddSourceIdentifierToSubscription",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "AddSourceIdentifierToSubscriptionResult",
+			Name:       "AddSourceIdentifierToSubscription",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -63,10 +62,9 @@ var opAddTagsToResource *aws.Operation
 func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanceActionInput) (req *aws.Request, output *ApplyPendingMaintenanceActionOutput) {
 	if opApplyPendingMaintenanceAction == nil {
 		opApplyPendingMaintenanceAction = &aws.Operation{
-			Name:          "ApplyPendingMaintenanceAction",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ApplyPendingMaintenanceActionResult",
+			Name:       "ApplyPendingMaintenanceAction",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -89,10 +87,9 @@ var opApplyPendingMaintenanceAction *aws.Operation
 func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeDBSecurityGroupIngressOutput) {
 	if opAuthorizeDBSecurityGroupIngress == nil {
 		opAuthorizeDBSecurityGroupIngress = &aws.Operation{
-			Name:          "AuthorizeDBSecurityGroupIngress",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "AuthorizeDBSecurityGroupIngressResult",
+			Name:       "AuthorizeDBSecurityGroupIngress",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -115,10 +112,9 @@ var opAuthorizeDBSecurityGroupIngress *aws.Operation
 func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req *aws.Request, output *CopyDBParameterGroupOutput) {
 	if opCopyDBParameterGroup == nil {
 		opCopyDBParameterGroup = &aws.Operation{
-			Name:          "CopyDBParameterGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CopyDBParameterGroupResult",
+			Name:       "CopyDBParameterGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -141,10 +137,9 @@ var opCopyDBParameterGroup *aws.Operation
 func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *aws.Request, output *CopyDBSnapshotOutput) {
 	if opCopyDBSnapshot == nil {
 		opCopyDBSnapshot = &aws.Operation{
-			Name:          "CopyDBSnapshot",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CopyDBSnapshotResult",
+			Name:       "CopyDBSnapshot",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -167,10 +162,9 @@ var opCopyDBSnapshot *aws.Operation
 func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *aws.Request, output *CopyOptionGroupOutput) {
 	if opCopyOptionGroup == nil {
 		opCopyOptionGroup = &aws.Operation{
-			Name:          "CopyOptionGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CopyOptionGroupResult",
+			Name:       "CopyOptionGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -193,10 +187,9 @@ var opCopyOptionGroup *aws.Operation
 func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *aws.Request, output *CreateDBInstanceOutput) {
 	if opCreateDBInstance == nil {
 		opCreateDBInstance = &aws.Operation{
-			Name:          "CreateDBInstance",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateDBInstanceResult",
+			Name:       "CreateDBInstance",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -219,10 +212,9 @@ var opCreateDBInstance *aws.Operation
 func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadReplicaInput) (req *aws.Request, output *CreateDBInstanceReadReplicaOutput) {
 	if opCreateDBInstanceReadReplica == nil {
 		opCreateDBInstanceReadReplica = &aws.Operation{
-			Name:          "CreateDBInstanceReadReplica",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateDBInstanceReadReplicaResult",
+			Name:       "CreateDBInstanceReadReplica",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -245,10 +237,9 @@ var opCreateDBInstanceReadReplica *aws.Operation
 func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) (req *aws.Request, output *CreateDBParameterGroupOutput) {
 	if opCreateDBParameterGroup == nil {
 		opCreateDBParameterGroup = &aws.Operation{
-			Name:          "CreateDBParameterGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateDBParameterGroupResult",
+			Name:       "CreateDBParameterGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -271,10 +262,9 @@ var opCreateDBParameterGroup *aws.Operation
 func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (req *aws.Request, output *CreateDBSecurityGroupOutput) {
 	if opCreateDBSecurityGroup == nil {
 		opCreateDBSecurityGroup = &aws.Operation{
-			Name:          "CreateDBSecurityGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateDBSecurityGroupResult",
+			Name:       "CreateDBSecurityGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -297,10 +287,9 @@ var opCreateDBSecurityGroup *aws.Operation
 func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *aws.Request, output *CreateDBSnapshotOutput) {
 	if opCreateDBSnapshot == nil {
 		opCreateDBSnapshot = &aws.Operation{
-			Name:          "CreateDBSnapshot",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateDBSnapshotResult",
+			Name:       "CreateDBSnapshot",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -323,10 +312,9 @@ var opCreateDBSnapshot *aws.Operation
 func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *aws.Request, output *CreateDBSubnetGroupOutput) {
 	if opCreateDBSubnetGroup == nil {
 		opCreateDBSubnetGroup = &aws.Operation{
-			Name:          "CreateDBSubnetGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateDBSubnetGroupResult",
+			Name:       "CreateDBSubnetGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -349,10 +337,9 @@ var opCreateDBSubnetGroup *aws.Operation
 func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *aws.Request, output *CreateEventSubscriptionOutput) {
 	if opCreateEventSubscription == nil {
 		opCreateEventSubscription = &aws.Operation{
-			Name:          "CreateEventSubscription",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateEventSubscriptionResult",
+			Name:       "CreateEventSubscription",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -375,10 +362,9 @@ var opCreateEventSubscription *aws.Operation
 func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *aws.Request, output *CreateOptionGroupOutput) {
 	if opCreateOptionGroup == nil {
 		opCreateOptionGroup = &aws.Operation{
-			Name:          "CreateOptionGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateOptionGroupResult",
+			Name:       "CreateOptionGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -401,10 +387,9 @@ var opCreateOptionGroup *aws.Operation
 func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *aws.Request, output *DeleteDBInstanceOutput) {
 	if opDeleteDBInstance == nil {
 		opDeleteDBInstance = &aws.Operation{
-			Name:          "DeleteDBInstance",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteDBInstanceResult",
+			Name:       "DeleteDBInstance",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -477,10 +462,9 @@ var opDeleteDBSecurityGroup *aws.Operation
 func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *aws.Request, output *DeleteDBSnapshotOutput) {
 	if opDeleteDBSnapshot == nil {
 		opDeleteDBSnapshot = &aws.Operation{
-			Name:          "DeleteDBSnapshot",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteDBSnapshotResult",
+			Name:       "DeleteDBSnapshot",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -528,10 +512,9 @@ var opDeleteDBSubnetGroup *aws.Operation
 func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
 	if opDeleteEventSubscription == nil {
 		opDeleteEventSubscription = &aws.Operation{
-			Name:          "DeleteEventSubscription",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteEventSubscriptionResult",
+			Name:       "DeleteEventSubscription",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -579,10 +562,9 @@ var opDeleteOptionGroup *aws.Operation
 func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInput) (req *aws.Request, output *DescribeDBEngineVersionsOutput) {
 	if opDescribeDBEngineVersions == nil {
 		opDescribeDBEngineVersions = &aws.Operation{
-			Name:          "DescribeDBEngineVersions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeDBEngineVersionsResult",
+			Name:       "DescribeDBEngineVersions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -605,10 +587,9 @@ var opDescribeDBEngineVersions *aws.Operation
 func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *aws.Request, output *DescribeDBInstancesOutput) {
 	if opDescribeDBInstances == nil {
 		opDescribeDBInstances = &aws.Operation{
-			Name:          "DescribeDBInstances",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeDBInstancesResult",
+			Name:       "DescribeDBInstances",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -631,10 +612,9 @@ var opDescribeDBInstances *aws.Operation
 func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *aws.Request, output *DescribeDBLogFilesOutput) {
 	if opDescribeDBLogFiles == nil {
 		opDescribeDBLogFiles = &aws.Operation{
-			Name:          "DescribeDBLogFiles",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeDBLogFilesResult",
+			Name:       "DescribeDBLogFiles",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -657,10 +637,9 @@ var opDescribeDBLogFiles *aws.Operation
 func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsInput) (req *aws.Request, output *DescribeDBParameterGroupsOutput) {
 	if opDescribeDBParameterGroups == nil {
 		opDescribeDBParameterGroups = &aws.Operation{
-			Name:          "DescribeDBParameterGroups",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeDBParameterGroupsResult",
+			Name:       "DescribeDBParameterGroups",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -683,10 +662,9 @@ var opDescribeDBParameterGroups *aws.Operation
 func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req *aws.Request, output *DescribeDBParametersOutput) {
 	if opDescribeDBParameters == nil {
 		opDescribeDBParameters = &aws.Operation{
-			Name:          "DescribeDBParameters",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeDBParametersResult",
+			Name:       "DescribeDBParameters",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -709,10 +687,9 @@ var opDescribeDBParameters *aws.Operation
 func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInput) (req *aws.Request, output *DescribeDBSecurityGroupsOutput) {
 	if opDescribeDBSecurityGroups == nil {
 		opDescribeDBSecurityGroups = &aws.Operation{
-			Name:          "DescribeDBSecurityGroups",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeDBSecurityGroupsResult",
+			Name:       "DescribeDBSecurityGroups",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -735,10 +712,9 @@ var opDescribeDBSecurityGroups *aws.Operation
 func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *aws.Request, output *DescribeDBSnapshotsOutput) {
 	if opDescribeDBSnapshots == nil {
 		opDescribeDBSnapshots = &aws.Operation{
-			Name:          "DescribeDBSnapshots",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeDBSnapshotsResult",
+			Name:       "DescribeDBSnapshots",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -761,10 +737,9 @@ var opDescribeDBSnapshots *aws.Operation
 func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) (req *aws.Request, output *DescribeDBSubnetGroupsOutput) {
 	if opDescribeDBSubnetGroups == nil {
 		opDescribeDBSubnetGroups = &aws.Operation{
-			Name:          "DescribeDBSubnetGroups",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeDBSubnetGroupsResult",
+			Name:       "DescribeDBSubnetGroups",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -787,10 +762,9 @@ var opDescribeDBSubnetGroups *aws.Operation
 func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
 	if opDescribeEngineDefaultParameters == nil {
 		opDescribeEngineDefaultParameters = &aws.Operation{
-			Name:          "DescribeEngineDefaultParameters",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeEngineDefaultParametersResult",
+			Name:       "DescribeEngineDefaultParameters",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -813,10 +787,9 @@ var opDescribeEngineDefaultParameters *aws.Operation
 func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *aws.Request, output *DescribeEventCategoriesOutput) {
 	if opDescribeEventCategories == nil {
 		opDescribeEventCategories = &aws.Operation{
-			Name:          "DescribeEventCategories",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeEventCategoriesResult",
+			Name:       "DescribeEventCategories",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -839,10 +812,9 @@ var opDescribeEventCategories *aws.Operation
 func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *aws.Request, output *DescribeEventSubscriptionsOutput) {
 	if opDescribeEventSubscriptions == nil {
 		opDescribeEventSubscriptions = &aws.Operation{
-			Name:          "DescribeEventSubscriptions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeEventSubscriptionsResult",
+			Name:       "DescribeEventSubscriptions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -865,10 +837,9 @@ var opDescribeEventSubscriptions *aws.Operation
 func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
-			Name:          "DescribeEvents",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeEventsResult",
+			Name:       "DescribeEvents",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -891,10 +862,9 @@ var opDescribeEvents *aws.Operation
 func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOptionsInput) (req *aws.Request, output *DescribeOptionGroupOptionsOutput) {
 	if opDescribeOptionGroupOptions == nil {
 		opDescribeOptionGroupOptions = &aws.Operation{
-			Name:          "DescribeOptionGroupOptions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeOptionGroupOptionsResult",
+			Name:       "DescribeOptionGroupOptions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -917,10 +887,9 @@ var opDescribeOptionGroupOptions *aws.Operation
 func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req *aws.Request, output *DescribeOptionGroupsOutput) {
 	if opDescribeOptionGroups == nil {
 		opDescribeOptionGroups = &aws.Operation{
-			Name:          "DescribeOptionGroups",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeOptionGroupsResult",
+			Name:       "DescribeOptionGroups",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -943,10 +912,9 @@ var opDescribeOptionGroups *aws.Operation
 func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderableDBInstanceOptionsInput) (req *aws.Request, output *DescribeOrderableDBInstanceOptionsOutput) {
 	if opDescribeOrderableDBInstanceOptions == nil {
 		opDescribeOrderableDBInstanceOptions = &aws.Operation{
-			Name:          "DescribeOrderableDBInstanceOptions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeOrderableDBInstanceOptionsResult",
+			Name:       "DescribeOrderableDBInstanceOptions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -969,10 +937,9 @@ var opDescribeOrderableDBInstanceOptions *aws.Operation
 func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMaintenanceActionsInput) (req *aws.Request, output *DescribePendingMaintenanceActionsOutput) {
 	if opDescribePendingMaintenanceActions == nil {
 		opDescribePendingMaintenanceActions = &aws.Operation{
-			Name:          "DescribePendingMaintenanceActions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribePendingMaintenanceActionsResult",
+			Name:       "DescribePendingMaintenanceActions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -995,10 +962,9 @@ var opDescribePendingMaintenanceActions *aws.Operation
 func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstancesInput) (req *aws.Request, output *DescribeReservedDBInstancesOutput) {
 	if opDescribeReservedDBInstances == nil {
 		opDescribeReservedDBInstances = &aws.Operation{
-			Name:          "DescribeReservedDBInstances",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeReservedDBInstancesResult",
+			Name:       "DescribeReservedDBInstances",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1021,10 +987,9 @@ var opDescribeReservedDBInstances *aws.Operation
 func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReservedDBInstancesOfferingsInput) (req *aws.Request, output *DescribeReservedDBInstancesOfferingsOutput) {
 	if opDescribeReservedDBInstancesOfferings == nil {
 		opDescribeReservedDBInstancesOfferings = &aws.Operation{
-			Name:          "DescribeReservedDBInstancesOfferings",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeReservedDBInstancesOfferingsResult",
+			Name:       "DescribeReservedDBInstancesOfferings",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1047,10 +1012,9 @@ var opDescribeReservedDBInstancesOfferings *aws.Operation
 func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInput) (req *aws.Request, output *DownloadDBLogFilePortionOutput) {
 	if opDownloadDBLogFilePortion == nil {
 		opDownloadDBLogFilePortion = &aws.Operation{
-			Name:          "DownloadDBLogFilePortion",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DownloadDBLogFilePortionResult",
+			Name:       "DownloadDBLogFilePortion",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1073,10 +1037,9 @@ var opDownloadDBLogFilePortion *aws.Operation
 func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *ListTagsForResourceOutput) {
 	if opListTagsForResource == nil {
 		opListTagsForResource = &aws.Operation{
-			Name:          "ListTagsForResource",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListTagsForResourceResult",
+			Name:       "ListTagsForResource",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1099,10 +1062,9 @@ var opListTagsForResource *aws.Operation
 func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *aws.Request, output *ModifyDBInstanceOutput) {
 	if opModifyDBInstance == nil {
 		opModifyDBInstance = &aws.Operation{
-			Name:          "ModifyDBInstance",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ModifyDBInstanceResult",
+			Name:       "ModifyDBInstance",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1125,10 +1087,9 @@ var opModifyDBInstance *aws.Operation
 func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) (req *aws.Request, output *DBParameterGroupNameMessage) {
 	if opModifyDBParameterGroup == nil {
 		opModifyDBParameterGroup = &aws.Operation{
-			Name:          "ModifyDBParameterGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ModifyDBParameterGroupResult",
+			Name:       "ModifyDBParameterGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1151,10 +1112,9 @@ var opModifyDBParameterGroup *aws.Operation
 func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *aws.Request, output *ModifyDBSubnetGroupOutput) {
 	if opModifyDBSubnetGroup == nil {
 		opModifyDBSubnetGroup = &aws.Operation{
-			Name:          "ModifyDBSubnetGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ModifyDBSubnetGroupResult",
+			Name:       "ModifyDBSubnetGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1177,10 +1137,9 @@ var opModifyDBSubnetGroup *aws.Operation
 func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
 	if opModifyEventSubscription == nil {
 		opModifyEventSubscription = &aws.Operation{
-			Name:          "ModifyEventSubscription",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ModifyEventSubscriptionResult",
+			Name:       "ModifyEventSubscription",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1203,10 +1162,9 @@ var opModifyEventSubscription *aws.Operation
 func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *aws.Request, output *ModifyOptionGroupOutput) {
 	if opModifyOptionGroup == nil {
 		opModifyOptionGroup = &aws.Operation{
-			Name:          "ModifyOptionGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ModifyOptionGroupResult",
+			Name:       "ModifyOptionGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1229,10 +1187,9 @@ var opModifyOptionGroup *aws.Operation
 func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *aws.Request, output *PromoteReadReplicaOutput) {
 	if opPromoteReadReplica == nil {
 		opPromoteReadReplica = &aws.Operation{
-			Name:          "PromoteReadReplica",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "PromoteReadReplicaResult",
+			Name:       "PromoteReadReplica",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1255,10 +1212,9 @@ var opPromoteReadReplica *aws.Operation
 func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReservedDBInstancesOfferingInput) (req *aws.Request, output *PurchaseReservedDBInstancesOfferingOutput) {
 	if opPurchaseReservedDBInstancesOffering == nil {
 		opPurchaseReservedDBInstancesOffering = &aws.Operation{
-			Name:          "PurchaseReservedDBInstancesOffering",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "PurchaseReservedDBInstancesOfferingResult",
+			Name:       "PurchaseReservedDBInstancesOffering",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1281,10 +1237,9 @@ var opPurchaseReservedDBInstancesOffering *aws.Operation
 func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *aws.Request, output *RebootDBInstanceOutput) {
 	if opRebootDBInstance == nil {
 		opRebootDBInstance = &aws.Operation{
-			Name:          "RebootDBInstance",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RebootDBInstanceResult",
+			Name:       "RebootDBInstance",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1307,10 +1262,9 @@ var opRebootDBInstance *aws.Operation
 func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceIdentifierFromSubscriptionInput) (req *aws.Request, output *RemoveSourceIdentifierFromSubscriptionOutput) {
 	if opRemoveSourceIdentifierFromSubscription == nil {
 		opRemoveSourceIdentifierFromSubscription = &aws.Operation{
-			Name:          "RemoveSourceIdentifierFromSubscription",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RemoveSourceIdentifierFromSubscriptionResult",
+			Name:       "RemoveSourceIdentifierFromSubscription",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1358,10 +1312,9 @@ var opRemoveTagsFromResource *aws.Operation
 func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (req *aws.Request, output *DBParameterGroupNameMessage) {
 	if opResetDBParameterGroup == nil {
 		opResetDBParameterGroup = &aws.Operation{
-			Name:          "ResetDBParameterGroup",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ResetDBParameterGroupResult",
+			Name:       "ResetDBParameterGroup",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1384,10 +1337,9 @@ var opResetDBParameterGroup *aws.Operation
 func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFromDBSnapshotInput) (req *aws.Request, output *RestoreDBInstanceFromDBSnapshotOutput) {
 	if opRestoreDBInstanceFromDBSnapshot == nil {
 		opRestoreDBInstanceFromDBSnapshot = &aws.Operation{
-			Name:          "RestoreDBInstanceFromDBSnapshot",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RestoreDBInstanceFromDBSnapshotResult",
+			Name:       "RestoreDBInstanceFromDBSnapshot",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1410,10 +1362,9 @@ var opRestoreDBInstanceFromDBSnapshot *aws.Operation
 func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPointInTimeInput) (req *aws.Request, output *RestoreDBInstanceToPointInTimeOutput) {
 	if opRestoreDBInstanceToPointInTime == nil {
 		opRestoreDBInstanceToPointInTime = &aws.Operation{
-			Name:          "RestoreDBInstanceToPointInTime",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RestoreDBInstanceToPointInTimeResult",
+			Name:       "RestoreDBInstanceToPointInTime",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -1436,10 +1387,9 @@ var opRestoreDBInstanceToPointInTime *aws.Operation
 func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIngressInput) (req *aws.Request, output *RevokeDBSecurityGroupIngressOutput) {
 	if opRevokeDBSecurityGroupIngress == nil {
 		opRevokeDBSecurityGroupIngress = &aws.Operation{
-			Name:          "RevokeDBSecurityGroupIngress",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RevokeDBSecurityGroupIngressResult",
+			Name:       "RevokeDBSecurityGroupIngress",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

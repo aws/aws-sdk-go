@@ -12,10 +12,9 @@ import (
 func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *aws.Request, output *DeleteIdentityOutput) {
 	if opDeleteIdentity == nil {
 		opDeleteIdentity = &aws.Operation{
-			Name:          "DeleteIdentity",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteIdentityResult",
+			Name:       "DeleteIdentity",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -63,10 +62,9 @@ var opDeleteVerifiedEmailAddress *aws.Operation
 func (c *SES) GetIdentityDKIMAttributesRequest(input *GetIdentityDKIMAttributesInput) (req *aws.Request, output *GetIdentityDKIMAttributesOutput) {
 	if opGetIdentityDKIMAttributes == nil {
 		opGetIdentityDKIMAttributes = &aws.Operation{
-			Name:          "GetIdentityDkimAttributes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetIdentityDkimAttributesResult",
+			Name:       "GetIdentityDkimAttributes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -89,10 +87,9 @@ var opGetIdentityDKIMAttributes *aws.Operation
 func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotificationAttributesInput) (req *aws.Request, output *GetIdentityNotificationAttributesOutput) {
 	if opGetIdentityNotificationAttributes == nil {
 		opGetIdentityNotificationAttributes = &aws.Operation{
-			Name:          "GetIdentityNotificationAttributes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetIdentityNotificationAttributesResult",
+			Name:       "GetIdentityNotificationAttributes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -115,10 +112,9 @@ var opGetIdentityNotificationAttributes *aws.Operation
 func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerificationAttributesInput) (req *aws.Request, output *GetIdentityVerificationAttributesOutput) {
 	if opGetIdentityVerificationAttributes == nil {
 		opGetIdentityVerificationAttributes = &aws.Operation{
-			Name:          "GetIdentityVerificationAttributes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetIdentityVerificationAttributesResult",
+			Name:       "GetIdentityVerificationAttributes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -141,10 +137,9 @@ var opGetIdentityVerificationAttributes *aws.Operation
 func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *aws.Request, output *GetSendQuotaOutput) {
 	if opGetSendQuota == nil {
 		opGetSendQuota = &aws.Operation{
-			Name:          "GetSendQuota",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetSendQuotaResult",
+			Name:       "GetSendQuota",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -167,10 +162,9 @@ var opGetSendQuota *aws.Operation
 func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *aws.Request, output *GetSendStatisticsOutput) {
 	if opGetSendStatistics == nil {
 		opGetSendStatistics = &aws.Operation{
-			Name:          "GetSendStatistics",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetSendStatisticsResult",
+			Name:       "GetSendStatistics",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -193,10 +187,9 @@ var opGetSendStatistics *aws.Operation
 func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Request, output *ListIdentitiesOutput) {
 	if opListIdentities == nil {
 		opListIdentities = &aws.Operation{
-			Name:          "ListIdentities",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListIdentitiesResult",
+			Name:       "ListIdentities",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -219,10 +212,9 @@ var opListIdentities *aws.Operation
 func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddressesInput) (req *aws.Request, output *ListVerifiedEmailAddressesOutput) {
 	if opListVerifiedEmailAddresses == nil {
 		opListVerifiedEmailAddresses = &aws.Operation{
-			Name:          "ListVerifiedEmailAddresses",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListVerifiedEmailAddressesResult",
+			Name:       "ListVerifiedEmailAddresses",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -245,10 +237,9 @@ var opListVerifiedEmailAddresses *aws.Operation
 func (c *SES) SendEmailRequest(input *SendEmailInput) (req *aws.Request, output *SendEmailOutput) {
 	if opSendEmail == nil {
 		opSendEmail = &aws.Operation{
-			Name:          "SendEmail",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "SendEmailResult",
+			Name:       "SendEmail",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -271,10 +262,9 @@ var opSendEmail *aws.Operation
 func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *aws.Request, output *SendRawEmailOutput) {
 	if opSendRawEmail == nil {
 		opSendRawEmail = &aws.Operation{
-			Name:          "SendRawEmail",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "SendRawEmailResult",
+			Name:       "SendRawEmail",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -297,10 +287,9 @@ var opSendRawEmail *aws.Operation
 func (c *SES) SetIdentityDKIMEnabledRequest(input *SetIdentityDKIMEnabledInput) (req *aws.Request, output *SetIdentityDKIMEnabledOutput) {
 	if opSetIdentityDKIMEnabled == nil {
 		opSetIdentityDKIMEnabled = &aws.Operation{
-			Name:          "SetIdentityDkimEnabled",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "SetIdentityDkimEnabledResult",
+			Name:       "SetIdentityDkimEnabled",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -323,10 +312,9 @@ var opSetIdentityDKIMEnabled *aws.Operation
 func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeedbackForwardingEnabledInput) (req *aws.Request, output *SetIdentityFeedbackForwardingEnabledOutput) {
 	if opSetIdentityFeedbackForwardingEnabled == nil {
 		opSetIdentityFeedbackForwardingEnabled = &aws.Operation{
-			Name:          "SetIdentityFeedbackForwardingEnabled",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "SetIdentityFeedbackForwardingEnabledResult",
+			Name:       "SetIdentityFeedbackForwardingEnabled",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -349,10 +337,9 @@ var opSetIdentityFeedbackForwardingEnabled *aws.Operation
 func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotificationTopicInput) (req *aws.Request, output *SetIdentityNotificationTopicOutput) {
 	if opSetIdentityNotificationTopic == nil {
 		opSetIdentityNotificationTopic = &aws.Operation{
-			Name:          "SetIdentityNotificationTopic",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "SetIdentityNotificationTopicResult",
+			Name:       "SetIdentityNotificationTopic",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -375,10 +362,9 @@ var opSetIdentityNotificationTopic *aws.Operation
 func (c *SES) VerifyDomainDKIMRequest(input *VerifyDomainDKIMInput) (req *aws.Request, output *VerifyDomainDKIMOutput) {
 	if opVerifyDomainDKIM == nil {
 		opVerifyDomainDKIM = &aws.Operation{
-			Name:          "VerifyDomainDkim",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "VerifyDomainDkimResult",
+			Name:       "VerifyDomainDkim",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -401,10 +387,9 @@ var opVerifyDomainDKIM *aws.Operation
 func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req *aws.Request, output *VerifyDomainIdentityOutput) {
 	if opVerifyDomainIdentity == nil {
 		opVerifyDomainIdentity = &aws.Operation{
-			Name:          "VerifyDomainIdentity",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "VerifyDomainIdentityResult",
+			Name:       "VerifyDomainIdentity",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -452,10 +437,9 @@ var opVerifyEmailAddress *aws.Operation
 func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *aws.Request, output *VerifyEmailIdentityOutput) {
 	if opVerifyEmailIdentity == nil {
 		opVerifyEmailIdentity = &aws.Operation{
-			Name:          "VerifyEmailIdentity",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "VerifyEmailIdentityResult",
+			Name:       "VerifyEmailIdentity",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

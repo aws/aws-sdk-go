@@ -35,10 +35,9 @@ var opAddPermission *aws.Operation
 func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *aws.Request, output *ConfirmSubscriptionOutput) {
 	if opConfirmSubscription == nil {
 		opConfirmSubscription = &aws.Operation{
-			Name:          "ConfirmSubscription",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ConfirmSubscriptionResult",
+			Name:       "ConfirmSubscription",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -61,10 +60,9 @@ var opConfirmSubscription *aws.Operation
 func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationInput) (req *aws.Request, output *CreatePlatformApplicationOutput) {
 	if opCreatePlatformApplication == nil {
 		opCreatePlatformApplication = &aws.Operation{
-			Name:          "CreatePlatformApplication",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreatePlatformApplicationResult",
+			Name:       "CreatePlatformApplication",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -87,10 +85,9 @@ var opCreatePlatformApplication *aws.Operation
 func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) (req *aws.Request, output *CreatePlatformEndpointOutput) {
 	if opCreatePlatformEndpoint == nil {
 		opCreatePlatformEndpoint = &aws.Operation{
-			Name:          "CreatePlatformEndpoint",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreatePlatformEndpointResult",
+			Name:       "CreatePlatformEndpoint",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -113,10 +110,9 @@ var opCreatePlatformEndpoint *aws.Operation
 func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *aws.Request, output *CreateTopicOutput) {
 	if opCreateTopic == nil {
 		opCreateTopic = &aws.Operation{
-			Name:          "CreateTopic",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateTopicResult",
+			Name:       "CreateTopic",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -214,10 +210,9 @@ var opDeleteTopic *aws.Operation
 func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (req *aws.Request, output *GetEndpointAttributesOutput) {
 	if opGetEndpointAttributes == nil {
 		opGetEndpointAttributes = &aws.Operation{
-			Name:          "GetEndpointAttributes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetEndpointAttributesResult",
+			Name:       "GetEndpointAttributes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -240,10 +235,9 @@ var opGetEndpointAttributes *aws.Operation
 func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicationAttributesInput) (req *aws.Request, output *GetPlatformApplicationAttributesOutput) {
 	if opGetPlatformApplicationAttributes == nil {
 		opGetPlatformApplicationAttributes = &aws.Operation{
-			Name:          "GetPlatformApplicationAttributes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetPlatformApplicationAttributesResult",
+			Name:       "GetPlatformApplicationAttributes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -266,10 +260,9 @@ var opGetPlatformApplicationAttributes *aws.Operation
 func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesInput) (req *aws.Request, output *GetSubscriptionAttributesOutput) {
 	if opGetSubscriptionAttributes == nil {
 		opGetSubscriptionAttributes = &aws.Operation{
-			Name:          "GetSubscriptionAttributes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetSubscriptionAttributesResult",
+			Name:       "GetSubscriptionAttributes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -292,10 +285,9 @@ var opGetSubscriptionAttributes *aws.Operation
 func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *aws.Request, output *GetTopicAttributesOutput) {
 	if opGetTopicAttributes == nil {
 		opGetTopicAttributes = &aws.Operation{
-			Name:          "GetTopicAttributes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetTopicAttributesResult",
+			Name:       "GetTopicAttributes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -318,10 +310,9 @@ var opGetTopicAttributes *aws.Operation
 func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPlatformApplicationInput) (req *aws.Request, output *ListEndpointsByPlatformApplicationOutput) {
 	if opListEndpointsByPlatformApplication == nil {
 		opListEndpointsByPlatformApplication = &aws.Operation{
-			Name:          "ListEndpointsByPlatformApplication",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListEndpointsByPlatformApplicationResult",
+			Name:       "ListEndpointsByPlatformApplication",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -344,10 +335,9 @@ var opListEndpointsByPlatformApplication *aws.Operation
 func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInput) (req *aws.Request, output *ListPlatformApplicationsOutput) {
 	if opListPlatformApplications == nil {
 		opListPlatformApplications = &aws.Operation{
-			Name:          "ListPlatformApplications",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListPlatformApplicationsResult",
+			Name:       "ListPlatformApplications",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -370,10 +360,9 @@ var opListPlatformApplications *aws.Operation
 func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *aws.Request, output *ListSubscriptionsOutput) {
 	if opListSubscriptions == nil {
 		opListSubscriptions = &aws.Operation{
-			Name:          "ListSubscriptions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListSubscriptionsResult",
+			Name:       "ListSubscriptions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -396,10 +385,9 @@ var opListSubscriptions *aws.Operation
 func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInput) (req *aws.Request, output *ListSubscriptionsByTopicOutput) {
 	if opListSubscriptionsByTopic == nil {
 		opListSubscriptionsByTopic = &aws.Operation{
-			Name:          "ListSubscriptionsByTopic",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListSubscriptionsByTopicResult",
+			Name:       "ListSubscriptionsByTopic",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -422,10 +410,9 @@ var opListSubscriptionsByTopic *aws.Operation
 func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *aws.Request, output *ListTopicsOutput) {
 	if opListTopics == nil {
 		opListTopics = &aws.Operation{
-			Name:          "ListTopics",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListTopicsResult",
+			Name:       "ListTopics",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -448,10 +435,9 @@ var opListTopics *aws.Operation
 func (c *SNS) PublishRequest(input *PublishInput) (req *aws.Request, output *PublishOutput) {
 	if opPublish == nil {
 		opPublish = &aws.Operation{
-			Name:          "Publish",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "PublishResult",
+			Name:       "Publish",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -599,10 +585,9 @@ var opSetTopicAttributes *aws.Operation
 func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *aws.Request, output *SubscribeOutput) {
 	if opSubscribe == nil {
 		opSubscribe = &aws.Operation{
-			Name:          "Subscribe",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "SubscribeResult",
+			Name:       "Subscribe",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

@@ -41,7 +41,6 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 			Name:       "{{ .Name }}",
 			{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",
 			{{ end }}{{ if ne .HTTP.RequestURI "" }}HTTPPath:   "{{ .HTTP.RequestURI }}",
-			{{ end }}{{ if ne .OutputRef.ResultWrapper "" }}ResultWrapper: "{{ .OutputRef.ResultWrapper }}",
 			{{ end }}
 		}
 	}

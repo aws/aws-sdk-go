@@ -37,10 +37,9 @@ var opCancelUpdateStack *aws.Operation
 func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *aws.Request, output *CreateStackOutput) {
 	if opCreateStack == nil {
 		opCreateStack = &aws.Operation{
-			Name:          "CreateStack",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateStackResult",
+			Name:       "CreateStack",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -88,10 +87,9 @@ var opDeleteStack *aws.Operation
 func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsInput) (req *aws.Request, output *DescribeStackEventsOutput) {
 	if opDescribeStackEvents == nil {
 		opDescribeStackEvents = &aws.Operation{
-			Name:          "DescribeStackEvents",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeStackEventsResult",
+			Name:       "DescribeStackEvents",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -114,10 +112,9 @@ var opDescribeStackEvents *aws.Operation
 func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResourceInput) (req *aws.Request, output *DescribeStackResourceOutput) {
 	if opDescribeStackResource == nil {
 		opDescribeStackResource = &aws.Operation{
-			Name:          "DescribeStackResource",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeStackResourceResult",
+			Name:       "DescribeStackResource",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -140,10 +137,9 @@ var opDescribeStackResource *aws.Operation
 func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResourcesInput) (req *aws.Request, output *DescribeStackResourcesOutput) {
 	if opDescribeStackResources == nil {
 		opDescribeStackResources = &aws.Operation{
-			Name:          "DescribeStackResources",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeStackResourcesResult",
+			Name:       "DescribeStackResources",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -166,10 +162,9 @@ var opDescribeStackResources *aws.Operation
 func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req *aws.Request, output *DescribeStacksOutput) {
 	if opDescribeStacks == nil {
 		opDescribeStacks = &aws.Operation{
-			Name:          "DescribeStacks",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeStacksResult",
+			Name:       "DescribeStacks",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -192,10 +187,9 @@ var opDescribeStacks *aws.Operation
 func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCostInput) (req *aws.Request, output *EstimateTemplateCostOutput) {
 	if opEstimateTemplateCost == nil {
 		opEstimateTemplateCost = &aws.Operation{
-			Name:          "EstimateTemplateCost",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "EstimateTemplateCostResult",
+			Name:       "EstimateTemplateCost",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -218,10 +212,9 @@ var opEstimateTemplateCost *aws.Operation
 func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req *aws.Request, output *GetStackPolicyOutput) {
 	if opGetStackPolicy == nil {
 		opGetStackPolicy = &aws.Operation{
-			Name:          "GetStackPolicy",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetStackPolicyResult",
+			Name:       "GetStackPolicy",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -244,10 +237,9 @@ var opGetStackPolicy *aws.Operation
 func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *aws.Request, output *GetTemplateOutput) {
 	if opGetTemplate == nil {
 		opGetTemplate = &aws.Operation{
-			Name:          "GetTemplate",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetTemplateResult",
+			Name:       "GetTemplate",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -270,10 +262,9 @@ var opGetTemplate *aws.Operation
 func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInput) (req *aws.Request, output *GetTemplateSummaryOutput) {
 	if opGetTemplateSummary == nil {
 		opGetTemplateSummary = &aws.Operation{
-			Name:          "GetTemplateSummary",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetTemplateSummaryResult",
+			Name:       "GetTemplateSummary",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -296,10 +287,9 @@ var opGetTemplateSummary *aws.Operation
 func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInput) (req *aws.Request, output *ListStackResourcesOutput) {
 	if opListStackResources == nil {
 		opListStackResources = &aws.Operation{
-			Name:          "ListStackResources",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListStackResourcesResult",
+			Name:       "ListStackResources",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -322,10 +312,9 @@ var opListStackResources *aws.Operation
 func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *aws.Request, output *ListStacksOutput) {
 	if opListStacks == nil {
 		opListStacks = &aws.Operation{
-			Name:          "ListStacks",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListStacksResult",
+			Name:       "ListStacks",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -398,10 +387,9 @@ var opSignalResource *aws.Operation
 func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request, output *UpdateStackOutput) {
 	if opUpdateStack == nil {
 		opUpdateStack = &aws.Operation{
-			Name:          "UpdateStack",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "UpdateStackResult",
+			Name:       "UpdateStack",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -424,10 +412,9 @@ var opUpdateStack *aws.Operation
 func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (req *aws.Request, output *ValidateTemplateOutput) {
 	if opValidateTemplate == nil {
 		opValidateTemplate = &aws.Operation{
-			Name:          "ValidateTemplate",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ValidateTemplateResult",
+			Name:       "ValidateTemplate",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

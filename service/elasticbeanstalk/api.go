@@ -12,10 +12,9 @@ import (
 func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabilityInput) (req *aws.Request, output *CheckDNSAvailabilityOutput) {
 	if opCheckDNSAvailability == nil {
 		opCheckDNSAvailability = &aws.Operation{
-			Name:          "CheckDNSAvailability",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CheckDNSAvailabilityResult",
+			Name:       "CheckDNSAvailability",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -38,10 +37,9 @@ var opCheckDNSAvailability *aws.Operation
 func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInput) (req *aws.Request, output *ApplicationDescriptionMessage) {
 	if opCreateApplication == nil {
 		opCreateApplication = &aws.Operation{
-			Name:          "CreateApplication",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateApplicationResult",
+			Name:       "CreateApplication",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -64,10 +62,9 @@ var opCreateApplication *aws.Operation
 func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicationVersionInput) (req *aws.Request, output *ApplicationVersionDescriptionMessage) {
 	if opCreateApplicationVersion == nil {
 		opCreateApplicationVersion = &aws.Operation{
-			Name:          "CreateApplicationVersion",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateApplicationVersionResult",
+			Name:       "CreateApplicationVersion",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -90,10 +87,9 @@ var opCreateApplicationVersion *aws.Operation
 func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfigurationTemplateInput) (req *aws.Request, output *ConfigurationSettingsDescription) {
 	if opCreateConfigurationTemplate == nil {
 		opCreateConfigurationTemplate = &aws.Operation{
-			Name:          "CreateConfigurationTemplate",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateConfigurationTemplateResult",
+			Name:       "CreateConfigurationTemplate",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -116,10 +112,9 @@ var opCreateConfigurationTemplate *aws.Operation
 func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
 	if opCreateEnvironment == nil {
 		opCreateEnvironment = &aws.Operation{
-			Name:          "CreateEnvironment",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateEnvironmentResult",
+			Name:       "CreateEnvironment",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -142,10 +137,9 @@ var opCreateEnvironment *aws.Operation
 func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLocationInput) (req *aws.Request, output *CreateStorageLocationOutput) {
 	if opCreateStorageLocation == nil {
 		opCreateStorageLocation = &aws.Operation{
-			Name:          "CreateStorageLocation",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateStorageLocationResult",
+			Name:       "CreateStorageLocation",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -268,10 +262,9 @@ var opDeleteEnvironmentConfiguration *aws.Operation
 func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApplicationVersionsInput) (req *aws.Request, output *DescribeApplicationVersionsOutput) {
 	if opDescribeApplicationVersions == nil {
 		opDescribeApplicationVersions = &aws.Operation{
-			Name:          "DescribeApplicationVersions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeApplicationVersionsResult",
+			Name:       "DescribeApplicationVersions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -294,10 +287,9 @@ var opDescribeApplicationVersions *aws.Operation
 func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicationsInput) (req *aws.Request, output *DescribeApplicationsOutput) {
 	if opDescribeApplications == nil {
 		opDescribeApplications = &aws.Operation{
-			Name:          "DescribeApplications",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeApplicationsResult",
+			Name:       "DescribeApplications",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -320,10 +312,9 @@ var opDescribeApplications *aws.Operation
 func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeConfigurationOptionsInput) (req *aws.Request, output *DescribeConfigurationOptionsOutput) {
 	if opDescribeConfigurationOptions == nil {
 		opDescribeConfigurationOptions = &aws.Operation{
-			Name:          "DescribeConfigurationOptions",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeConfigurationOptionsResult",
+			Name:       "DescribeConfigurationOptions",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -346,10 +337,9 @@ var opDescribeConfigurationOptions *aws.Operation
 func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeConfigurationSettingsInput) (req *aws.Request, output *DescribeConfigurationSettingsOutput) {
 	if opDescribeConfigurationSettings == nil {
 		opDescribeConfigurationSettings = &aws.Operation{
-			Name:          "DescribeConfigurationSettings",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeConfigurationSettingsResult",
+			Name:       "DescribeConfigurationSettings",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -372,10 +362,9 @@ var opDescribeConfigurationSettings *aws.Operation
 func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEnvironmentResourcesInput) (req *aws.Request, output *DescribeEnvironmentResourcesOutput) {
 	if opDescribeEnvironmentResources == nil {
 		opDescribeEnvironmentResources = &aws.Operation{
-			Name:          "DescribeEnvironmentResources",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeEnvironmentResourcesResult",
+			Name:       "DescribeEnvironmentResources",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -398,10 +387,9 @@ var opDescribeEnvironmentResources *aws.Operation
 func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmentsInput) (req *aws.Request, output *DescribeEnvironmentsOutput) {
 	if opDescribeEnvironments == nil {
 		opDescribeEnvironments = &aws.Operation{
-			Name:          "DescribeEnvironments",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeEnvironmentsResult",
+			Name:       "DescribeEnvironments",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -424,10 +412,9 @@ var opDescribeEnvironments *aws.Operation
 func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
-			Name:          "DescribeEvents",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DescribeEventsResult",
+			Name:       "DescribeEvents",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -450,10 +437,9 @@ var opDescribeEvents *aws.Operation
 func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailableSolutionStacksInput) (req *aws.Request, output *ListAvailableSolutionStacksOutput) {
 	if opListAvailableSolutionStacks == nil {
 		opListAvailableSolutionStacks = &aws.Operation{
-			Name:          "ListAvailableSolutionStacks",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListAvailableSolutionStacksResult",
+			Name:       "ListAvailableSolutionStacks",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -551,10 +537,9 @@ var opRestartAppServer *aws.Operation
 func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnvironmentInfoInput) (req *aws.Request, output *RetrieveEnvironmentInfoOutput) {
 	if opRetrieveEnvironmentInfo == nil {
 		opRetrieveEnvironmentInfo = &aws.Operation{
-			Name:          "RetrieveEnvironmentInfo",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "RetrieveEnvironmentInfoResult",
+			Name:       "RetrieveEnvironmentInfo",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -602,10 +587,9 @@ var opSwapEnvironmentCNAMEs *aws.Operation
 func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
 	if opTerminateEnvironment == nil {
 		opTerminateEnvironment = &aws.Operation{
-			Name:          "TerminateEnvironment",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "TerminateEnvironmentResult",
+			Name:       "TerminateEnvironment",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -628,10 +612,9 @@ var opTerminateEnvironment *aws.Operation
 func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInput) (req *aws.Request, output *ApplicationDescriptionMessage) {
 	if opUpdateApplication == nil {
 		opUpdateApplication = &aws.Operation{
-			Name:          "UpdateApplication",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "UpdateApplicationResult",
+			Name:       "UpdateApplication",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -654,10 +637,9 @@ var opUpdateApplication *aws.Operation
 func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicationVersionInput) (req *aws.Request, output *ApplicationVersionDescriptionMessage) {
 	if opUpdateApplicationVersion == nil {
 		opUpdateApplicationVersion = &aws.Operation{
-			Name:          "UpdateApplicationVersion",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "UpdateApplicationVersionResult",
+			Name:       "UpdateApplicationVersion",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -680,10 +662,9 @@ var opUpdateApplicationVersion *aws.Operation
 func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfigurationTemplateInput) (req *aws.Request, output *ConfigurationSettingsDescription) {
 	if opUpdateConfigurationTemplate == nil {
 		opUpdateConfigurationTemplate = &aws.Operation{
-			Name:          "UpdateConfigurationTemplate",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "UpdateConfigurationTemplateResult",
+			Name:       "UpdateConfigurationTemplate",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -706,10 +687,9 @@ var opUpdateConfigurationTemplate *aws.Operation
 func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
 	if opUpdateEnvironment == nil {
 		opUpdateEnvironment = &aws.Operation{
-			Name:          "UpdateEnvironment",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "UpdateEnvironmentResult",
+			Name:       "UpdateEnvironment",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -732,10 +712,9 @@ var opUpdateEnvironment *aws.Operation
 func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateConfigurationSettingsInput) (req *aws.Request, output *ValidateConfigurationSettingsOutput) {
 	if opValidateConfigurationSettings == nil {
 		opValidateConfigurationSettings = &aws.Operation{
-			Name:          "ValidateConfigurationSettings",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ValidateConfigurationSettingsResult",
+			Name:       "ValidateConfigurationSettings",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

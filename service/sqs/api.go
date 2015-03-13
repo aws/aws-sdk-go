@@ -60,10 +60,9 @@ var opChangeMessageVisibility *aws.Operation
 func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibilityBatchInput) (req *aws.Request, output *ChangeMessageVisibilityBatchOutput) {
 	if opChangeMessageVisibilityBatch == nil {
 		opChangeMessageVisibilityBatch = &aws.Operation{
-			Name:          "ChangeMessageVisibilityBatch",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ChangeMessageVisibilityBatchResult",
+			Name:       "ChangeMessageVisibilityBatch",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -86,10 +85,9 @@ var opChangeMessageVisibilityBatch *aws.Operation
 func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *aws.Request, output *CreateQueueOutput) {
 	if opCreateQueue == nil {
 		opCreateQueue = &aws.Operation{
-			Name:          "CreateQueue",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "CreateQueueResult",
+			Name:       "CreateQueue",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -137,10 +135,9 @@ var opDeleteMessage *aws.Operation
 func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *aws.Request, output *DeleteMessageBatchOutput) {
 	if opDeleteMessageBatch == nil {
 		opDeleteMessageBatch = &aws.Operation{
-			Name:          "DeleteMessageBatch",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "DeleteMessageBatchResult",
+			Name:       "DeleteMessageBatch",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -188,10 +185,9 @@ var opDeleteQueue *aws.Operation
 func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *aws.Request, output *GetQueueAttributesOutput) {
 	if opGetQueueAttributes == nil {
 		opGetQueueAttributes = &aws.Operation{
-			Name:          "GetQueueAttributes",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetQueueAttributesResult",
+			Name:       "GetQueueAttributes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -214,10 +210,9 @@ var opGetQueueAttributes *aws.Operation
 func (c *SQS) GetQueueURLRequest(input *GetQueueURLInput) (req *aws.Request, output *GetQueueURLOutput) {
 	if opGetQueueURL == nil {
 		opGetQueueURL = &aws.Operation{
-			Name:          "GetQueueUrl",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "GetQueueUrlResult",
+			Name:       "GetQueueUrl",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -240,10 +235,9 @@ var opGetQueueURL *aws.Operation
 func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueuesInput) (req *aws.Request, output *ListDeadLetterSourceQueuesOutput) {
 	if opListDeadLetterSourceQueues == nil {
 		opListDeadLetterSourceQueues = &aws.Operation{
-			Name:          "ListDeadLetterSourceQueues",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListDeadLetterSourceQueuesResult",
+			Name:       "ListDeadLetterSourceQueues",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -266,10 +260,9 @@ var opListDeadLetterSourceQueues *aws.Operation
 func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *aws.Request, output *ListQueuesOutput) {
 	if opListQueues == nil {
 		opListQueues = &aws.Operation{
-			Name:          "ListQueues",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ListQueuesResult",
+			Name:       "ListQueues",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -317,10 +310,9 @@ var opPurgeQueue *aws.Operation
 func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *aws.Request, output *ReceiveMessageOutput) {
 	if opReceiveMessage == nil {
 		opReceiveMessage = &aws.Operation{
-			Name:          "ReceiveMessage",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "ReceiveMessageResult",
+			Name:       "ReceiveMessage",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -368,10 +360,9 @@ var opRemovePermission *aws.Operation
 func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *aws.Request, output *SendMessageOutput) {
 	if opSendMessage == nil {
 		opSendMessage = &aws.Operation{
-			Name:          "SendMessage",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "SendMessageResult",
+			Name:       "SendMessage",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 
@@ -394,10 +385,9 @@ var opSendMessage *aws.Operation
 func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *aws.Request, output *SendMessageBatchOutput) {
 	if opSendMessageBatch == nil {
 		opSendMessageBatch = &aws.Operation{
-			Name:          "SendMessageBatch",
-			HTTPMethod:    "POST",
-			HTTPPath:      "/",
-			ResultWrapper: "SendMessageBatchResult",
+			Name:       "SendMessageBatch",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
 		}
 	}
 

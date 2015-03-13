@@ -17,7 +17,6 @@ type ShapeRef struct {
 	LocationName  string
 	QueryName     string
 	Flattened     bool
-	ResultWrapper string
 	Streaming     bool
 	XMLAttribute  bool
 	XMLNamespace  XMLInfo

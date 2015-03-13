@@ -62,8 +62,7 @@ func NewOutputService1ProtocolTest(config *OutputService1ProtocolTestConfig) *Ou
 func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputService1TestCaseOperation1Output) {
 	if opOutputService1TestCaseOperation1 == nil {
 		opOutputService1TestCaseOperation1 = &aws.Operation{
-			Name:          "OperationName",
-			ResultWrapper: "OperationNameResult",
+			Name: "OperationName",
 		}
 	}
 
@@ -143,8 +142,7 @@ func NewOutputService2ProtocolTest(config *OutputService2ProtocolTestConfig) *Ou
 func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1Request(input *OutputService2TestShapeOutputService2TestCaseOperation1Input) (req *aws.Request, output *OutputService2TestShapeOutputService2TestCaseOperation1Output) {
 	if opOutputService2TestCaseOperation1 == nil {
 		opOutputService2TestCaseOperation1 = &aws.Operation{
-			Name:          "OperationName",
-			ResultWrapper: "Wrapper",
+			Name: "OperationName",
 		}
 	}
 
@@ -172,7 +170,7 @@ type metadataOutputService2TestShapeOutputService2TestCaseOperation1Input struct
 }
 
 type OutputService2TestShapeOutputService2TestCaseOperation1Output struct {
-	Str *string `type:"string"`
+	Blob []byte `type:"blob"`
 
 	metadataOutputService2TestShapeOutputService2TestCaseOperation1Output `json:"-", xml:"-"`
 }
@@ -217,8 +215,7 @@ func NewOutputService3ProtocolTest(config *OutputService3ProtocolTestConfig) *Ou
 func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1Request(input *OutputService3TestShapeOutputService3TestCaseOperation1Input) (req *aws.Request, output *OutputService3TestShapeOutputService3TestCaseOperation1Output) {
 	if opOutputService3TestCaseOperation1 == nil {
 		opOutputService3TestCaseOperation1 = &aws.Operation{
-			Name:          "OperationName",
-			ResultWrapper: "OperationNameResult",
+			Name: "OperationName",
 		}
 	}
 
@@ -246,7 +243,7 @@ type metadataOutputService3TestShapeOutputService3TestCaseOperation1Input struct
 }
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
-	Blob []byte `type:"blob"`
+	ListMember []*string `type:"list"`
 
 	metadataOutputService3TestShapeOutputService3TestCaseOperation1Output `json:"-", xml:"-"`
 }
@@ -291,8 +288,7 @@ func NewOutputService4ProtocolTest(config *OutputService4ProtocolTestConfig) *Ou
 func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1Request(input *OutputService4TestShapeOutputService4TestCaseOperation1Input) (req *aws.Request, output *OutputService4TestShapeOutputService4TestCaseOperation1Output) {
 	if opOutputService4TestCaseOperation1 == nil {
 		opOutputService4TestCaseOperation1 = &aws.Operation{
-			Name:          "OperationName",
-			ResultWrapper: "OperationNameResult",
+			Name: "OperationName",
 		}
 	}
 
@@ -320,7 +316,7 @@ type metadataOutputService4TestShapeOutputService4TestCaseOperation1Input struct
 }
 
 type OutputService4TestShapeOutputService4TestCaseOperation1Output struct {
-	ListMember []*string `type:"list"`
+	ListMember []*string `locationNameList:"item" type:"list"`
 
 	metadataOutputService4TestShapeOutputService4TestCaseOperation1Output `json:"-", xml:"-"`
 }
@@ -365,8 +361,7 @@ func NewOutputService5ProtocolTest(config *OutputService5ProtocolTestConfig) *Ou
 func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1Request(input *OutputService5TestShapeOutputService5TestCaseOperation1Input) (req *aws.Request, output *OutputService5TestShapeOutputService5TestCaseOperation1Output) {
 	if opOutputService5TestCaseOperation1 == nil {
 		opOutputService5TestCaseOperation1 = &aws.Operation{
-			Name:          "OperationName",
-			ResultWrapper: "OperationNameResult",
+			Name: "OperationName",
 		}
 	}
 
@@ -394,7 +389,7 @@ type metadataOutputService5TestShapeOutputService5TestCaseOperation1Input struct
 }
 
 type OutputService5TestShapeOutputService5TestCaseOperation1Output struct {
-	ListMember []*string `locationNameList:"item" type:"list"`
+	ListMember []*string `type:"list" flattened:"true"`
 
 	metadataOutputService5TestShapeOutputService5TestCaseOperation1Output `json:"-", xml:"-"`
 }
@@ -439,8 +434,7 @@ func NewOutputService6ProtocolTest(config *OutputService6ProtocolTestConfig) *Ou
 func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1Request(input *OutputService6TestShapeOutputService6TestCaseOperation1Input) (req *aws.Request, output *OutputService6TestShapeOutputService6TestCaseOperation1Output) {
 	if opOutputService6TestCaseOperation1 == nil {
 		opOutputService6TestCaseOperation1 = &aws.Operation{
-			Name:          "OperationName",
-			ResultWrapper: "OperationNameResult",
+			Name: "OperationName",
 		}
 	}
 
@@ -468,12 +462,22 @@ type metadataOutputService6TestShapeOutputService6TestCaseOperation1Input struct
 }
 
 type OutputService6TestShapeOutputService6TestCaseOperation1Output struct {
-	ListMember []*string `type:"list" flattened:"true"`
+	Map *map[string]*OutputService6TestShapeStructType `type:"map"`
 
 	metadataOutputService6TestShapeOutputService6TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService6TestShapeOutputService6TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type OutputService6TestShapeStructType struct {
+	Foo *string `locationName:"foo" type:"string"`
+
+	metadataOutputService6TestShapeStructType `json:"-", xml:"-"`
+}
+
+type metadataOutputService6TestShapeStructType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -513,8 +517,7 @@ func NewOutputService7ProtocolTest(config *OutputService7ProtocolTestConfig) *Ou
 func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1Request(input *OutputService7TestShapeOutputService7TestCaseOperation1Input) (req *aws.Request, output *OutputService7TestShapeOutputService7TestCaseOperation1Output) {
 	if opOutputService7TestCaseOperation1 == nil {
 		opOutputService7TestCaseOperation1 = &aws.Operation{
-			Name:          "OperationName",
-			ResultWrapper: "OperationNameResult",
+			Name: "OperationName",
 		}
 	}
 
@@ -542,22 +545,12 @@ type metadataOutputService7TestShapeOutputService7TestCaseOperation1Input struct
 }
 
 type OutputService7TestShapeOutputService7TestCaseOperation1Output struct {
-	Map *map[string]*OutputService7TestShapeStructType `type:"map"`
+	Map *map[string]*string `type:"map" flattened:"true"`
 
 	metadataOutputService7TestShapeOutputService7TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService7TestShapeOutputService7TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type OutputService7TestShapeStructType struct {
-	Foo *string `locationName:"foo" type:"string"`
-
-	metadataOutputService7TestShapeStructType `json:"-", xml:"-"`
-}
-
-type metadataOutputService7TestShapeStructType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -597,8 +590,7 @@ func NewOutputService8ProtocolTest(config *OutputService8ProtocolTestConfig) *Ou
 func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1Request(input *OutputService8TestShapeOutputService8TestCaseOperation1Input) (req *aws.Request, output *OutputService8TestShapeOutputService8TestCaseOperation1Output) {
 	if opOutputService8TestCaseOperation1 == nil {
 		opOutputService8TestCaseOperation1 = &aws.Operation{
-			Name:          "OperationName",
-			ResultWrapper: "OperationNameResult",
+			Name: "OperationName",
 		}
 	}
 
@@ -626,7 +618,7 @@ type metadataOutputService8TestShapeOutputService8TestCaseOperation1Input struct
 }
 
 type OutputService8TestShapeOutputService8TestCaseOperation1Output struct {
-	Map *map[string]*string `type:"map" flattened:"true"`
+	Map *map[string]*string `locationNameKey:"foo" locationNameValue:"bar" type:"map" flattened:"true"`
 
 	metadataOutputService8TestShapeOutputService8TestCaseOperation1Output `json:"-", xml:"-"`
 }
@@ -671,8 +663,7 @@ func NewOutputService9ProtocolTest(config *OutputService9ProtocolTestConfig) *Ou
 func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1Request(input *OutputService9TestShapeOutputService9TestCaseOperation1Input) (req *aws.Request, output *OutputService9TestShapeOutputService9TestCaseOperation1Output) {
 	if opOutputService9TestCaseOperation1 == nil {
 		opOutputService9TestCaseOperation1 = &aws.Operation{
-			Name:          "OperationName",
-			ResultWrapper: "OperationNameResult",
+			Name: "OperationName",
 		}
 	}
 
@@ -700,86 +691,12 @@ type metadataOutputService9TestShapeOutputService9TestCaseOperation1Input struct
 }
 
 type OutputService9TestShapeOutputService9TestCaseOperation1Output struct {
-	Map *map[string]*string `locationNameKey:"foo" locationNameValue:"bar" type:"map" flattened:"true"`
+	Name *string `type:"string"`
 
 	metadataOutputService9TestShapeOutputService9TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService9TestShapeOutputService9TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// OutputService10ProtocolTest is a client for OutputService10ProtocolTest.
-type OutputService10ProtocolTest struct {
-	*aws.Service
-}
-
-type OutputService10ProtocolTestConfig struct {
-	*aws.Config
-}
-
-// New returns a new OutputService10ProtocolTest client.
-func NewOutputService10ProtocolTest(config *OutputService10ProtocolTestConfig) *OutputService10ProtocolTest {
-	if config == nil {
-		config = &OutputService10ProtocolTestConfig{}
-	}
-
-	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
-		ServiceName: "outputservice10protocoltest",
-		APIVersion:  "",
-	}
-	service.Initialize()
-
-	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(query.Build)
-	service.Handlers.Unmarshal.PushBack(query.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(query.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(query.UnmarshalError)
-
-	return &OutputService10ProtocolTest{service}
-}
-
-// OutputService10TestCaseOperation1Request generates a request for the OutputService10TestCaseOperation1 operation.
-func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1Request(input *OutputService10TestShapeOutputService10TestCaseOperation1Input) (req *aws.Request, output *OutputService10TestShapeOutputService10TestCaseOperation1Output) {
-	if opOutputService10TestCaseOperation1 == nil {
-		opOutputService10TestCaseOperation1 = &aws.Operation{
-			Name:          "OperationName",
-			ResultWrapper: "OperationNameResult",
-		}
-	}
-
-	req = aws.NewRequest(c.Service, opOutputService10TestCaseOperation1, input, output)
-	output = &OutputService10TestShapeOutputService10TestCaseOperation1Output{}
-	req.Data = output
-	return
-}
-
-func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1(input *OutputService10TestShapeOutputService10TestCaseOperation1Input) (output *OutputService10TestShapeOutputService10TestCaseOperation1Output, err error) {
-	req, out := c.OutputService10TestCaseOperation1Request(input)
-	output = out
-	err = req.Send()
-	return
-}
-
-var opOutputService10TestCaseOperation1 *aws.Operation
-
-type OutputService10TestShapeOutputService10TestCaseOperation1Input struct {
-	metadataOutputService10TestShapeOutputService10TestCaseOperation1Input `json:"-", xml:"-"`
-}
-
-type metadataOutputService10TestShapeOutputService10TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type OutputService10TestShapeOutputService10TestCaseOperation1Output struct {
-	Name *string `type:"string"`
-
-	metadataOutputService10TestShapeOutputService10TestCaseOperation1Output `json:"-", xml:"-"`
-}
-
-type metadataOutputService10TestShapeOutputService10TestCaseOperation1Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -814,31 +731,11 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 
 }
 
-func TestOutputService2ProtocolTestCustomResultWrapperCase1(t *testing.T) {
+func TestOutputService2ProtocolTestBlobCase1(t *testing.T) {
 	svc := NewOutputService2ProtocolTest(nil)
 
-	buf := bytes.NewReader([]byte("<OperationNameResponse><Wrapper><Str>myname</Str></Wrapper><ResponseMetadata><RequestId>request-id</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, out := svc.OutputService2TestCaseOperation1Request(nil)
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
-
-	// set headers
-
-	// unmarshal response
-	query.UnmarshalMeta(req)
-	query.Unmarshal(req)
-	assert.NoError(t, req.Error)
-
-	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "myname", *out.Str)
-
-}
-
-func TestOutputService3ProtocolTestBlobCase1(t *testing.T) {
-	svc := NewOutputService3ProtocolTest(nil)
-
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><Blob>dmFsdWU=</Blob></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, out := svc.OutputService3TestCaseOperation1Request(nil)
+	req, out := svc.OutputService2TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -854,10 +751,31 @@ func TestOutputService3ProtocolTestBlobCase1(t *testing.T) {
 
 }
 
-func TestOutputService4ProtocolTestListsCase1(t *testing.T) {
-	svc := NewOutputService4ProtocolTest(nil)
+func TestOutputService3ProtocolTestListsCase1(t *testing.T) {
+	svc := NewOutputService3ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><ListMember><member>abc</member><member>123</member></ListMember></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
+	req, out := svc.OutputService3TestCaseOperation1Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+
+	// unmarshal response
+	query.UnmarshalMeta(req)
+	query.Unmarshal(req)
+	assert.NoError(t, req.Error)
+
+	// assert response
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "abc", *out.ListMember[0])
+	assert.Equal(t, "123", *out.ListMember[1])
+
+}
+
+func TestOutputService4ProtocolTestListWithCustomMemberNameCase1(t *testing.T) {
+	svc := NewOutputService4ProtocolTest(nil)
+
+	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><ListMember><item>abc</item><item>123</item></ListMember></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
 	req, out := svc.OutputService4TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
@@ -875,10 +793,10 @@ func TestOutputService4ProtocolTestListsCase1(t *testing.T) {
 
 }
 
-func TestOutputService5ProtocolTestListWithCustomMemberNameCase1(t *testing.T) {
+func TestOutputService5ProtocolTestFlattenedListCase1(t *testing.T) {
 	svc := NewOutputService5ProtocolTest(nil)
 
-	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><ListMember><item>abc</item><item>123</item></ListMember></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
+	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><ListMember>abc</ListMember><ListMember>123</ListMember></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
 	req, out := svc.OutputService5TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
@@ -896,32 +814,11 @@ func TestOutputService5ProtocolTestListWithCustomMemberNameCase1(t *testing.T) {
 
 }
 
-func TestOutputService6ProtocolTestFlattenedListCase1(t *testing.T) {
+func TestOutputService6ProtocolTestNormalMapCase1(t *testing.T) {
 	svc := NewOutputService6ProtocolTest(nil)
 
-	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><ListMember>abc</ListMember><ListMember>123</ListMember></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, out := svc.OutputService6TestCaseOperation1Request(nil)
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
-
-	// set headers
-
-	// unmarshal response
-	query.UnmarshalMeta(req)
-	query.Unmarshal(req)
-	assert.NoError(t, req.Error)
-
-	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "abc", *out.ListMember[0])
-	assert.Equal(t, "123", *out.ListMember[1])
-
-}
-
-func TestOutputService7ProtocolTestNormalMapCase1(t *testing.T) {
-	svc := NewOutputService7ProtocolTest(nil)
-
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><Map><entry><key>qux</key><value><foo>bar</foo></value></entry><entry><key>baz</key><value><foo>bam</foo></value></entry></Map></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, out := svc.OutputService7TestCaseOperation1Request(nil)
+	req, out := svc.OutputService6TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -938,10 +835,31 @@ func TestOutputService7ProtocolTestNormalMapCase1(t *testing.T) {
 
 }
 
-func TestOutputService8ProtocolTestFlattenedMapCase1(t *testing.T) {
-	svc := NewOutputService8ProtocolTest(nil)
+func TestOutputService7ProtocolTestFlattenedMapCase1(t *testing.T) {
+	svc := NewOutputService7ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><Map><key>qux</key><value>bar</value></Map><Map><key>baz</key><value>bam</value></Map></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
+	req, out := svc.OutputService7TestCaseOperation1Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+
+	// unmarshal response
+	query.UnmarshalMeta(req)
+	query.Unmarshal(req)
+	assert.NoError(t, req.Error)
+
+	// assert response
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "bam", *(*out.Map)["baz"])
+	assert.Equal(t, "bar", *(*out.Map)["qux"])
+
+}
+
+func TestOutputService8ProtocolTestNamedMapCase1(t *testing.T) {
+	svc := NewOutputService8ProtocolTest(nil)
+
+	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><Map><foo>qux</foo><bar>bar</bar></Map><Map><foo>baz</foo><bar>bam</bar></Map></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
 	req, out := svc.OutputService8TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
@@ -959,32 +877,11 @@ func TestOutputService8ProtocolTestFlattenedMapCase1(t *testing.T) {
 
 }
 
-func TestOutputService9ProtocolTestNamedMapCase1(t *testing.T) {
+func TestOutputService9ProtocolTestEmptyXMLResultElementCase1(t *testing.T) {
 	svc := NewOutputService9ProtocolTest(nil)
 
-	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult><Map><foo>qux</foo><bar>bar</bar></Map><Map><foo>baz</foo><bar>bam</bar></Map></OperationNameResult><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, out := svc.OutputService9TestCaseOperation1Request(nil)
-	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
-
-	// set headers
-
-	// unmarshal response
-	query.UnmarshalMeta(req)
-	query.Unmarshal(req)
-	assert.NoError(t, req.Error)
-
-	// assert response
-	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "bam", *(*out.Map)["baz"])
-	assert.Equal(t, "bar", *(*out.Map)["qux"])
-
-}
-
-func TestOutputService10ProtocolTestEmptyXMLResultElementCase1(t *testing.T) {
-	svc := NewOutputService10ProtocolTest(nil)
-
 	buf := bytes.NewReader([]byte("<OperationNameResponse><OperationNameResult/><ResponseMetadata><RequestId>requestid</RequestId></ResponseMetadata></OperationNameResponse>"))
-	req, out := svc.OutputService10TestCaseOperation1Request(nil)
+	req, out := svc.OutputService9TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
