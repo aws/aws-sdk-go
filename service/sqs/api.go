@@ -60,9 +60,10 @@ var opChangeMessageVisibility *aws.Operation
 func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibilityBatchInput) (req *aws.Request, output *ChangeMessageVisibilityBatchOutput) {
 	if opChangeMessageVisibilityBatch == nil {
 		opChangeMessageVisibilityBatch = &aws.Operation{
-			Name:       "ChangeMessageVisibilityBatch",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ChangeMessageVisibilityBatch",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ChangeMessageVisibilityBatchResult",
 		}
 	}
 
@@ -85,9 +86,10 @@ var opChangeMessageVisibilityBatch *aws.Operation
 func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *aws.Request, output *CreateQueueOutput) {
 	if opCreateQueue == nil {
 		opCreateQueue = &aws.Operation{
-			Name:       "CreateQueue",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateQueue",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateQueueResult",
 		}
 	}
 
@@ -135,9 +137,10 @@ var opDeleteMessage *aws.Operation
 func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *aws.Request, output *DeleteMessageBatchOutput) {
 	if opDeleteMessageBatch == nil {
 		opDeleteMessageBatch = &aws.Operation{
-			Name:       "DeleteMessageBatch",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteMessageBatch",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteMessageBatchResult",
 		}
 	}
 
@@ -185,9 +188,10 @@ var opDeleteQueue *aws.Operation
 func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *aws.Request, output *GetQueueAttributesOutput) {
 	if opGetQueueAttributes == nil {
 		opGetQueueAttributes = &aws.Operation{
-			Name:       "GetQueueAttributes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetQueueAttributes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetQueueAttributesResult",
 		}
 	}
 
@@ -210,9 +214,10 @@ var opGetQueueAttributes *aws.Operation
 func (c *SQS) GetQueueURLRequest(input *GetQueueURLInput) (req *aws.Request, output *GetQueueURLOutput) {
 	if opGetQueueURL == nil {
 		opGetQueueURL = &aws.Operation{
-			Name:       "GetQueueUrl",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetQueueUrl",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetQueueUrlResult",
 		}
 	}
 
@@ -235,9 +240,10 @@ var opGetQueueURL *aws.Operation
 func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueuesInput) (req *aws.Request, output *ListDeadLetterSourceQueuesOutput) {
 	if opListDeadLetterSourceQueues == nil {
 		opListDeadLetterSourceQueues = &aws.Operation{
-			Name:       "ListDeadLetterSourceQueues",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListDeadLetterSourceQueues",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListDeadLetterSourceQueuesResult",
 		}
 	}
 
@@ -260,9 +266,10 @@ var opListDeadLetterSourceQueues *aws.Operation
 func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *aws.Request, output *ListQueuesOutput) {
 	if opListQueues == nil {
 		opListQueues = &aws.Operation{
-			Name:       "ListQueues",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListQueues",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListQueuesResult",
 		}
 	}
 
@@ -310,9 +317,10 @@ var opPurgeQueue *aws.Operation
 func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *aws.Request, output *ReceiveMessageOutput) {
 	if opReceiveMessage == nil {
 		opReceiveMessage = &aws.Operation{
-			Name:       "ReceiveMessage",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ReceiveMessage",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ReceiveMessageResult",
 		}
 	}
 
@@ -360,9 +368,10 @@ var opRemovePermission *aws.Operation
 func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *aws.Request, output *SendMessageOutput) {
 	if opSendMessage == nil {
 		opSendMessage = &aws.Operation{
-			Name:       "SendMessage",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "SendMessage",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "SendMessageResult",
 		}
 	}
 
@@ -385,9 +394,10 @@ var opSendMessage *aws.Operation
 func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *aws.Request, output *SendMessageBatchOutput) {
 	if opSendMessageBatch == nil {
 		opSendMessageBatch = &aws.Operation{
-			Name:       "SendMessageBatch",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "SendMessageBatch",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "SendMessageBatchResult",
 		}
 	}
 
@@ -484,7 +494,7 @@ type ChangeMessageVisibilityBatchOutput struct {
 }
 
 type metadataChangeMessageVisibilityBatchOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ChangeMessageVisibilityBatchResult" required:"Successful,Failed"`
+	SDKShapeTraits bool `type:"structure" required:"Successful,Failed"`
 }
 
 type ChangeMessageVisibilityBatchRequestEntry struct {
@@ -547,7 +557,7 @@ type CreateQueueOutput struct {
 }
 
 type metadataCreateQueueOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateQueueResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteMessageBatchInput struct {
@@ -569,7 +579,7 @@ type DeleteMessageBatchOutput struct {
 }
 
 type metadataDeleteMessageBatchOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteMessageBatchResult" required:"Successful,Failed"`
+	SDKShapeTraits bool `type:"structure" required:"Successful,Failed"`
 }
 
 type DeleteMessageBatchRequestEntry struct {
@@ -648,7 +658,7 @@ type GetQueueAttributesOutput struct {
 }
 
 type metadataGetQueueAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetQueueAttributesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetQueueURLInput struct {
@@ -669,7 +679,7 @@ type GetQueueURLOutput struct {
 }
 
 type metadataGetQueueURLOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetQueueUrlResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListDeadLetterSourceQueuesInput struct {
@@ -689,7 +699,7 @@ type ListDeadLetterSourceQueuesOutput struct {
 }
 
 type metadataListDeadLetterSourceQueuesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListDeadLetterSourceQueuesResult" required:"queueUrls"`
+	SDKShapeTraits bool `type:"structure" required:"queueUrls"`
 }
 
 type ListQueuesInput struct {
@@ -709,7 +719,7 @@ type ListQueuesOutput struct {
 }
 
 type metadataListQueuesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListQueuesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Message struct {
@@ -782,7 +792,7 @@ type ReceiveMessageOutput struct {
 }
 
 type metadataReceiveMessageOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ReceiveMessageResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemovePermissionInput struct {
@@ -823,7 +833,7 @@ type SendMessageBatchOutput struct {
 }
 
 type metadataSendMessageBatchOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"SendMessageBatchResult" required:"Successful,Failed"`
+	SDKShapeTraits bool `type:"structure" required:"Successful,Failed"`
 }
 
 type SendMessageBatchRequestEntry struct {
@@ -874,7 +884,7 @@ type SendMessageOutput struct {
 }
 
 type metadataSendMessageOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"SendMessageResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetQueueAttributesInput struct {

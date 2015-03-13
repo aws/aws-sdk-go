@@ -59,7 +59,7 @@ func NewInputService1ProtocolTest(config *InputService1ProtocolTestConfig) *Inpu
 }
 
 // InputService1TestCaseOperation1Request generates a request for the InputService1TestCaseOperation1 operation.
-func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input *InputService1TestShapeInputShape) (req *aws.Request) {
+func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input *InputService1TestShapeInputService1TestCaseOperation1Input) (req *aws.Request, output *InputService1TestShapeInputService1TestCaseOperation1Output) {
 	if opInputService1TestCaseOperation1 == nil {
 		opInputService1TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
@@ -68,26 +68,36 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService1TestCaseOperation1, input, nil)
-
+	req = aws.NewRequest(c.Service, opInputService1TestCaseOperation1, input, output)
+	output = &InputService1TestShapeInputService1TestCaseOperation1Output{}
+	req.Data = output
 	return
 }
 
-func (c *InputService1ProtocolTest) InputService1TestCaseOperation1(input *InputService1TestShapeInputShape) (err error) {
-	req := c.InputService1TestCaseOperation1Request(input)
+func (c *InputService1ProtocolTest) InputService1TestCaseOperation1(input *InputService1TestShapeInputService1TestCaseOperation1Input) (output *InputService1TestShapeInputService1TestCaseOperation1Output, err error) {
+	req, out := c.InputService1TestCaseOperation1Request(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 var opInputService1TestCaseOperation1 *aws.Operation
 
-type InputService1TestShapeInputShape struct {
+type InputService1TestShapeInputService1TestCaseOperation1Input struct {
 	PipelineId *string `location:"uri" type:"string" json:"-" xml:"-"`
 
-	metadataInputService1TestShapeInputShape `json:"-", xml:"-"`
+	metadataInputService1TestShapeInputService1TestCaseOperation1Input `json:"-", xml:"-"`
 }
 
-type metadataInputService1TestShapeInputShape struct {
+type metadataInputService1TestShapeInputService1TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type InputService1TestShapeInputService1TestCaseOperation1Output struct {
+	metadataInputService1TestShapeInputService1TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService1TestShapeInputService1TestCaseOperation1Output struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -124,7 +134,7 @@ func NewInputService2ProtocolTest(config *InputService2ProtocolTestConfig) *Inpu
 }
 
 // InputService2TestCaseOperation1Request generates a request for the InputService2TestCaseOperation1 operation.
-func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input *InputService2TestShapeInputShape) (req *aws.Request) {
+func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input *InputService2TestShapeInputService2TestCaseOperation1Input) (req *aws.Request, output *InputService2TestShapeInputService2TestCaseOperation1Output) {
 	if opInputService2TestCaseOperation1 == nil {
 		opInputService2TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
@@ -133,26 +143,36 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService2TestCaseOperation1, input, nil)
-
+	req = aws.NewRequest(c.Service, opInputService2TestCaseOperation1, input, output)
+	output = &InputService2TestShapeInputService2TestCaseOperation1Output{}
+	req.Data = output
 	return
 }
 
-func (c *InputService2ProtocolTest) InputService2TestCaseOperation1(input *InputService2TestShapeInputShape) (err error) {
-	req := c.InputService2TestCaseOperation1Request(input)
+func (c *InputService2ProtocolTest) InputService2TestCaseOperation1(input *InputService2TestShapeInputService2TestCaseOperation1Input) (output *InputService2TestShapeInputService2TestCaseOperation1Output, err error) {
+	req, out := c.InputService2TestCaseOperation1Request(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 var opInputService2TestCaseOperation1 *aws.Operation
 
-type InputService2TestShapeInputShape struct {
+type InputService2TestShapeInputService2TestCaseOperation1Input struct {
 	Foo *string `location:"uri" locationName:"PipelineId" type:"string" json:"-" xml:"-"`
 
-	metadataInputService2TestShapeInputShape `json:"-", xml:"-"`
+	metadataInputService2TestShapeInputService2TestCaseOperation1Input `json:"-", xml:"-"`
 }
 
-type metadataInputService2TestShapeInputShape struct {
+type metadataInputService2TestShapeInputService2TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type InputService2TestShapeInputService2TestCaseOperation1Output struct {
+	metadataInputService2TestShapeInputService2TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService2TestShapeInputService2TestCaseOperation1Output struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -189,7 +209,7 @@ func NewInputService3ProtocolTest(config *InputService3ProtocolTestConfig) *Inpu
 }
 
 // InputService3TestCaseOperation1Request generates a request for the InputService3TestCaseOperation1 operation.
-func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input *InputService3TestShapeInputShape) (req *aws.Request) {
+func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input *InputService3TestShapeInputService3TestCaseOperation1Input) (req *aws.Request, output *InputService3TestShapeInputService3TestCaseOperation1Output) {
 	if opInputService3TestCaseOperation1 == nil {
 		opInputService3TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
@@ -198,28 +218,38 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService3TestCaseOperation1, input, nil)
-
+	req = aws.NewRequest(c.Service, opInputService3TestCaseOperation1, input, output)
+	output = &InputService3TestShapeInputService3TestCaseOperation1Output{}
+	req.Data = output
 	return
 }
 
-func (c *InputService3ProtocolTest) InputService3TestCaseOperation1(input *InputService3TestShapeInputShape) (err error) {
-	req := c.InputService3TestCaseOperation1Request(input)
+func (c *InputService3ProtocolTest) InputService3TestCaseOperation1(input *InputService3TestShapeInputService3TestCaseOperation1Input) (output *InputService3TestShapeInputService3TestCaseOperation1Output, err error) {
+	req, out := c.InputService3TestCaseOperation1Request(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 var opInputService3TestCaseOperation1 *aws.Operation
 
-type InputService3TestShapeInputShape struct {
+type InputService3TestShapeInputService3TestCaseOperation1Input struct {
 	Ascending  *string `location:"querystring" locationName:"Ascending" type:"string" json:"-" xml:"-"`
 	PageToken  *string `location:"querystring" locationName:"PageToken" type:"string" json:"-" xml:"-"`
 	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string" json:"-" xml:"-"`
 
-	metadataInputService3TestShapeInputShape `json:"-", xml:"-"`
+	metadataInputService3TestShapeInputService3TestCaseOperation1Input `json:"-", xml:"-"`
 }
 
-type metadataInputService3TestShapeInputShape struct {
+type metadataInputService3TestShapeInputService3TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type InputService3TestShapeInputService3TestCaseOperation1Output struct {
+	metadataInputService3TestShapeInputService3TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService3TestShapeInputService3TestCaseOperation1Output struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -256,7 +286,7 @@ func NewInputService4ProtocolTest(config *InputService4ProtocolTestConfig) *Inpu
 }
 
 // InputService4TestCaseOperation1Request generates a request for the InputService4TestCaseOperation1 operation.
-func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input *InputService4TestShapeInputShape) (req *aws.Request) {
+func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input *InputService4TestShapeInputService4TestCaseOperation1Input) (req *aws.Request, output *InputService4TestShapeInputService4TestCaseOperation1Output) {
 	if opInputService4TestCaseOperation1 == nil {
 		opInputService4TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
@@ -265,29 +295,39 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService4TestCaseOperation1, input, nil)
-
+	req = aws.NewRequest(c.Service, opInputService4TestCaseOperation1, input, output)
+	output = &InputService4TestShapeInputService4TestCaseOperation1Output{}
+	req.Data = output
 	return
 }
 
-func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *InputService4TestShapeInputShape) (err error) {
-	req := c.InputService4TestCaseOperation1Request(input)
+func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *InputService4TestShapeInputService4TestCaseOperation1Input) (output *InputService4TestShapeInputService4TestCaseOperation1Output, err error) {
+	req, out := c.InputService4TestCaseOperation1Request(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 var opInputService4TestCaseOperation1 *aws.Operation
 
-type InputService4TestShapeInputShape struct {
+type InputService4TestShapeInputService4TestCaseOperation1Input struct {
 	Ascending  *string                           `location:"querystring" locationName:"Ascending" type:"string" json:"-" xml:"-"`
 	Config     *InputService4TestShapeStructType `type:"structure" json:",omitempty"`
 	PageToken  *string                           `location:"querystring" locationName:"PageToken" type:"string" json:"-" xml:"-"`
 	PipelineId *string                           `location:"uri" locationName:"PipelineId" type:"string" json:"-" xml:"-"`
 
-	metadataInputService4TestShapeInputShape `json:"-", xml:"-"`
+	metadataInputService4TestShapeInputService4TestCaseOperation1Input `json:"-", xml:"-"`
 }
 
-type metadataInputService4TestShapeInputShape struct {
+type metadataInputService4TestShapeInputService4TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type InputService4TestShapeInputService4TestCaseOperation1Output struct {
+	metadataInputService4TestShapeInputService4TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService4TestShapeInputService4TestCaseOperation1Output struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -335,7 +375,7 @@ func NewInputService5ProtocolTest(config *InputService5ProtocolTestConfig) *Inpu
 }
 
 // InputService5TestCaseOperation1Request generates a request for the InputService5TestCaseOperation1 operation.
-func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input *InputService5TestShapeInputShape) (req *aws.Request) {
+func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input *InputService5TestShapeInputService5TestCaseOperation1Input) (req *aws.Request, output *InputService5TestShapeInputService5TestCaseOperation1Output) {
 	if opInputService5TestCaseOperation1 == nil {
 		opInputService5TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
@@ -344,30 +384,40 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService5TestCaseOperation1, input, nil)
-
+	req = aws.NewRequest(c.Service, opInputService5TestCaseOperation1, input, output)
+	output = &InputService5TestShapeInputService5TestCaseOperation1Output{}
+	req.Data = output
 	return
 }
 
-func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *InputService5TestShapeInputShape) (err error) {
-	req := c.InputService5TestCaseOperation1Request(input)
+func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *InputService5TestShapeInputService5TestCaseOperation1Input) (output *InputService5TestShapeInputService5TestCaseOperation1Output, err error) {
+	req, out := c.InputService5TestCaseOperation1Request(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 var opInputService5TestCaseOperation1 *aws.Operation
 
-type InputService5TestShapeInputShape struct {
+type InputService5TestShapeInputService5TestCaseOperation1Input struct {
 	Ascending  *string                           `location:"querystring" locationName:"Ascending" type:"string" json:"-" xml:"-"`
 	Checksum   *string                           `location:"header" locationName:"x-amz-checksum" type:"string" json:"-" xml:"-"`
 	Config     *InputService5TestShapeStructType `type:"structure" json:",omitempty"`
 	PageToken  *string                           `location:"querystring" locationName:"PageToken" type:"string" json:"-" xml:"-"`
 	PipelineId *string                           `location:"uri" locationName:"PipelineId" type:"string" json:"-" xml:"-"`
 
-	metadataInputService5TestShapeInputShape `json:"-", xml:"-"`
+	metadataInputService5TestShapeInputService5TestCaseOperation1Input `json:"-", xml:"-"`
 }
 
-type metadataInputService5TestShapeInputShape struct {
+type metadataInputService5TestShapeInputService5TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type InputService5TestShapeInputService5TestCaseOperation1Output struct {
+	metadataInputService5TestShapeInputService5TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService5TestShapeInputService5TestCaseOperation1Output struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -415,7 +465,7 @@ func NewInputService6ProtocolTest(config *InputService6ProtocolTestConfig) *Inpu
 }
 
 // InputService6TestCaseOperation1Request generates a request for the InputService6TestCaseOperation1 operation.
-func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input *InputService6TestShapeInputShape) (req *aws.Request) {
+func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input *InputService6TestShapeInputService6TestCaseOperation1Input) (req *aws.Request, output *InputService6TestShapeInputService6TestCaseOperation1Output) {
 	if opInputService6TestCaseOperation1 == nil {
 		opInputService6TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
@@ -424,29 +474,39 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService6TestCaseOperation1, input, nil)
-
+	req = aws.NewRequest(c.Service, opInputService6TestCaseOperation1, input, output)
+	output = &InputService6TestShapeInputService6TestCaseOperation1Output{}
+	req.Data = output
 	return
 }
 
-func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *InputService6TestShapeInputShape) (err error) {
-	req := c.InputService6TestCaseOperation1Request(input)
+func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *InputService6TestShapeInputService6TestCaseOperation1Input) (output *InputService6TestShapeInputService6TestCaseOperation1Output, err error) {
+	req, out := c.InputService6TestCaseOperation1Request(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 var opInputService6TestCaseOperation1 *aws.Operation
 
-type InputService6TestShapeInputShape struct {
+type InputService6TestShapeInputService6TestCaseOperation1Input struct {
 	Body      []byte  `locationName:"body" type:"blob" json:"body,omitempty"`
 	Checksum  *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string" json:"-" xml:"-"`
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" json:"-" xml:"-"`
 
-	metadataInputService6TestShapeInputShape `json:"-", xml:"-"`
+	metadataInputService6TestShapeInputService6TestCaseOperation1Input `json:"-", xml:"-"`
 }
 
-type metadataInputService6TestShapeInputShape struct {
+type metadataInputService6TestShapeInputService6TestCaseOperation1Input struct {
 	SDKShapeTraits bool `type:"structure" payload:"Body" required:"vaultName" json:",omitempty"`
+}
+
+type InputService6TestShapeInputService6TestCaseOperation1Output struct {
+	metadataInputService6TestShapeInputService6TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService6TestShapeInputService6TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 // InputService7ProtocolTest is a client for InputService7ProtocolTest.
@@ -482,7 +542,7 @@ func NewInputService7ProtocolTest(config *InputService7ProtocolTestConfig) *Inpu
 }
 
 // InputService7TestCaseOperation1Request generates a request for the InputService7TestCaseOperation1 operation.
-func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input *InputService7TestShapeInputShape) (req *aws.Request) {
+func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input *InputService7TestShapeInputShape) (req *aws.Request, output *InputService7TestShapeInputService7TestCaseOperation1Output) {
 	if opInputService7TestCaseOperation1 == nil {
 		opInputService7TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
@@ -491,13 +551,15 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService7TestCaseOperation1, input, nil)
-
+	req = aws.NewRequest(c.Service, opInputService7TestCaseOperation1, input, output)
+	output = &InputService7TestShapeInputService7TestCaseOperation1Output{}
+	req.Data = output
 	return
 }
 
-func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *InputService7TestShapeInputShape) (err error) {
-	req := c.InputService7TestCaseOperation1Request(input)
+func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *InputService7TestShapeInputShape) (output *InputService7TestShapeInputService7TestCaseOperation1Output, err error) {
+	req, out := c.InputService7TestCaseOperation1Request(input)
+	output = out
 	err = req.Send()
 	return
 }
@@ -505,7 +567,7 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *Input
 var opInputService7TestCaseOperation1 *aws.Operation
 
 // InputService7TestCaseOperation2Request generates a request for the InputService7TestCaseOperation2 operation.
-func (c *InputService7ProtocolTest) InputService7TestCaseOperation2Request(input *InputService7TestShapeInputShape) (req *aws.Request) {
+func (c *InputService7ProtocolTest) InputService7TestCaseOperation2Request(input *InputService7TestShapeInputShape) (req *aws.Request, output *InputService7TestShapeInputService7TestCaseOperation2Output) {
 	if opInputService7TestCaseOperation2 == nil {
 		opInputService7TestCaseOperation2 = &aws.Operation{
 			Name:       "OperationName",
@@ -514,18 +576,36 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation2Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService7TestCaseOperation2, input, nil)
-
+	req = aws.NewRequest(c.Service, opInputService7TestCaseOperation2, input, output)
+	output = &InputService7TestShapeInputService7TestCaseOperation2Output{}
+	req.Data = output
 	return
 }
 
-func (c *InputService7ProtocolTest) InputService7TestCaseOperation2(input *InputService7TestShapeInputShape) (err error) {
-	req := c.InputService7TestCaseOperation2Request(input)
+func (c *InputService7ProtocolTest) InputService7TestCaseOperation2(input *InputService7TestShapeInputShape) (output *InputService7TestShapeInputService7TestCaseOperation2Output, err error) {
+	req, out := c.InputService7TestCaseOperation2Request(input)
+	output = out
 	err = req.Send()
 	return
 }
 
 var opInputService7TestCaseOperation2 *aws.Operation
+
+type InputService7TestShapeInputService7TestCaseOperation1Output struct {
+	metadataInputService7TestShapeInputService7TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService7TestShapeInputService7TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type InputService7TestShapeInputService7TestCaseOperation2Output struct {
+	metadataInputService7TestShapeInputService7TestCaseOperation2Output `json:"-", xml:"-"`
+}
+
+type metadataInputService7TestShapeInputService7TestCaseOperation2Output struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
 
 type InputService7TestShapeInputShape struct {
 	Foo *string `location:"querystring" locationName:"param-name" type:"string" json:"-" xml:"-"`
@@ -545,10 +625,10 @@ func TestInputService1ProtocolTestURIParameterOnlyWithNoLocationNameCase1(t *tes
 	svc := NewInputService1ProtocolTest(nil)
 	svc.Endpoint = "https://test"
 
-	input := &InputService1TestShapeInputShape{
+	input := &InputService1TestShapeInputService1TestCaseOperation1Input{
 		PipelineId: aws.String("foo"),
 	}
-	req := svc.InputService1TestCaseOperation1Request(input)
+	req, _ := svc.InputService1TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -571,10 +651,10 @@ func TestInputService2ProtocolTestURIParameterOnlyWithLocationNameCase1(t *testi
 	svc := NewInputService2ProtocolTest(nil)
 	svc.Endpoint = "https://test"
 
-	input := &InputService2TestShapeInputShape{
+	input := &InputService2TestShapeInputService2TestCaseOperation1Input{
 		Foo: aws.String("bar"),
 	}
-	req := svc.InputService2TestCaseOperation1Request(input)
+	req, _ := svc.InputService2TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -597,12 +677,12 @@ func TestInputService3ProtocolTestURIParameterAndQuerystringParamsCase1(t *testi
 	svc := NewInputService3ProtocolTest(nil)
 	svc.Endpoint = "https://test"
 
-	input := &InputService3TestShapeInputShape{
+	input := &InputService3TestShapeInputService3TestCaseOperation1Input{
 		Ascending:  aws.String("true"),
 		PageToken:  aws.String("bar"),
 		PipelineId: aws.String("foo"),
 	}
-	req := svc.InputService3TestCaseOperation1Request(input)
+	req, _ := svc.InputService3TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -625,7 +705,7 @@ func TestInputService4ProtocolTestURIParameterQuerystringParamsAndJSONBodyCase1(
 	svc := NewInputService4ProtocolTest(nil)
 	svc.Endpoint = "https://test"
 
-	input := &InputService4TestShapeInputShape{
+	input := &InputService4TestShapeInputService4TestCaseOperation1Input{
 		Ascending: aws.String("true"),
 		Config: &InputService4TestShapeStructType{
 			A: aws.String("one"),
@@ -634,7 +714,7 @@ func TestInputService4ProtocolTestURIParameterQuerystringParamsAndJSONBodyCase1(
 		PageToken:  aws.String("bar"),
 		PipelineId: aws.String("foo"),
 	}
-	req := svc.InputService4TestCaseOperation1Request(input)
+	req, _ := svc.InputService4TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -657,7 +737,7 @@ func TestInputService5ProtocolTestURIParameterQuerystringParamsHeadersAndJSONBod
 	svc := NewInputService5ProtocolTest(nil)
 	svc.Endpoint = "https://test"
 
-	input := &InputService5TestShapeInputShape{
+	input := &InputService5TestShapeInputService5TestCaseOperation1Input{
 		Ascending: aws.String("true"),
 		Checksum:  aws.String("12345"),
 		Config: &InputService5TestShapeStructType{
@@ -667,7 +747,7 @@ func TestInputService5ProtocolTestURIParameterQuerystringParamsHeadersAndJSONBod
 		PageToken:  aws.String("bar"),
 		PipelineId: aws.String("foo"),
 	}
-	req := svc.InputService5TestCaseOperation1Request(input)
+	req, _ := svc.InputService5TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -691,12 +771,12 @@ func TestInputService6ProtocolTestStreamingPayloadCase1(t *testing.T) {
 	svc := NewInputService6ProtocolTest(nil)
 	svc.Endpoint = "https://test"
 
-	input := &InputService6TestShapeInputShape{
+	input := &InputService6TestShapeInputService6TestCaseOperation1Input{
 		Body:      []byte("contents"),
 		Checksum:  aws.String("foo"),
 		VaultName: aws.String("name"),
 	}
-	req := svc.InputService6TestCaseOperation1Request(input)
+	req, _ := svc.InputService6TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -721,7 +801,7 @@ func TestInputService7ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsC
 	svc.Endpoint = "https://test"
 
 	input := &InputService7TestShapeInputShape{}
-	req := svc.InputService7TestCaseOperation1Request(input)
+	req, _ := svc.InputService7TestCaseOperation1Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -747,7 +827,7 @@ func TestInputService7ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsC
 	input := &InputService7TestShapeInputShape{
 		Foo: aws.String(""),
 	}
-	req := svc.InputService7TestCaseOperation2Request(input)
+	req, _ := svc.InputService7TestCaseOperation2Request(input)
 	r := req.HTTPRequest
 
 	// build request

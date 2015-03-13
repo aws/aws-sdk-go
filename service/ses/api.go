@@ -12,9 +12,10 @@ import (
 func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *aws.Request, output *DeleteIdentityOutput) {
 	if opDeleteIdentity == nil {
 		opDeleteIdentity = &aws.Operation{
-			Name:       "DeleteIdentity",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteIdentity",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteIdentityResult",
 		}
 	}
 
@@ -62,9 +63,10 @@ var opDeleteVerifiedEmailAddress *aws.Operation
 func (c *SES) GetIdentityDKIMAttributesRequest(input *GetIdentityDKIMAttributesInput) (req *aws.Request, output *GetIdentityDKIMAttributesOutput) {
 	if opGetIdentityDKIMAttributes == nil {
 		opGetIdentityDKIMAttributes = &aws.Operation{
-			Name:       "GetIdentityDkimAttributes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetIdentityDkimAttributes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetIdentityDkimAttributesResult",
 		}
 	}
 
@@ -87,9 +89,10 @@ var opGetIdentityDKIMAttributes *aws.Operation
 func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotificationAttributesInput) (req *aws.Request, output *GetIdentityNotificationAttributesOutput) {
 	if opGetIdentityNotificationAttributes == nil {
 		opGetIdentityNotificationAttributes = &aws.Operation{
-			Name:       "GetIdentityNotificationAttributes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetIdentityNotificationAttributes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetIdentityNotificationAttributesResult",
 		}
 	}
 
@@ -112,9 +115,10 @@ var opGetIdentityNotificationAttributes *aws.Operation
 func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerificationAttributesInput) (req *aws.Request, output *GetIdentityVerificationAttributesOutput) {
 	if opGetIdentityVerificationAttributes == nil {
 		opGetIdentityVerificationAttributes = &aws.Operation{
-			Name:       "GetIdentityVerificationAttributes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetIdentityVerificationAttributes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetIdentityVerificationAttributesResult",
 		}
 	}
 
@@ -137,9 +141,10 @@ var opGetIdentityVerificationAttributes *aws.Operation
 func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *aws.Request, output *GetSendQuotaOutput) {
 	if opGetSendQuota == nil {
 		opGetSendQuota = &aws.Operation{
-			Name:       "GetSendQuota",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetSendQuota",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetSendQuotaResult",
 		}
 	}
 
@@ -162,9 +167,10 @@ var opGetSendQuota *aws.Operation
 func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *aws.Request, output *GetSendStatisticsOutput) {
 	if opGetSendStatistics == nil {
 		opGetSendStatistics = &aws.Operation{
-			Name:       "GetSendStatistics",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetSendStatistics",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetSendStatisticsResult",
 		}
 	}
 
@@ -187,9 +193,10 @@ var opGetSendStatistics *aws.Operation
 func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Request, output *ListIdentitiesOutput) {
 	if opListIdentities == nil {
 		opListIdentities = &aws.Operation{
-			Name:       "ListIdentities",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListIdentities",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListIdentitiesResult",
 		}
 	}
 
@@ -212,9 +219,10 @@ var opListIdentities *aws.Operation
 func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddressesInput) (req *aws.Request, output *ListVerifiedEmailAddressesOutput) {
 	if opListVerifiedEmailAddresses == nil {
 		opListVerifiedEmailAddresses = &aws.Operation{
-			Name:       "ListVerifiedEmailAddresses",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListVerifiedEmailAddresses",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListVerifiedEmailAddressesResult",
 		}
 	}
 
@@ -237,9 +245,10 @@ var opListVerifiedEmailAddresses *aws.Operation
 func (c *SES) SendEmailRequest(input *SendEmailInput) (req *aws.Request, output *SendEmailOutput) {
 	if opSendEmail == nil {
 		opSendEmail = &aws.Operation{
-			Name:       "SendEmail",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "SendEmail",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "SendEmailResult",
 		}
 	}
 
@@ -262,9 +271,10 @@ var opSendEmail *aws.Operation
 func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *aws.Request, output *SendRawEmailOutput) {
 	if opSendRawEmail == nil {
 		opSendRawEmail = &aws.Operation{
-			Name:       "SendRawEmail",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "SendRawEmail",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "SendRawEmailResult",
 		}
 	}
 
@@ -287,9 +297,10 @@ var opSendRawEmail *aws.Operation
 func (c *SES) SetIdentityDKIMEnabledRequest(input *SetIdentityDKIMEnabledInput) (req *aws.Request, output *SetIdentityDKIMEnabledOutput) {
 	if opSetIdentityDKIMEnabled == nil {
 		opSetIdentityDKIMEnabled = &aws.Operation{
-			Name:       "SetIdentityDkimEnabled",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "SetIdentityDkimEnabled",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "SetIdentityDkimEnabledResult",
 		}
 	}
 
@@ -312,9 +323,10 @@ var opSetIdentityDKIMEnabled *aws.Operation
 func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeedbackForwardingEnabledInput) (req *aws.Request, output *SetIdentityFeedbackForwardingEnabledOutput) {
 	if opSetIdentityFeedbackForwardingEnabled == nil {
 		opSetIdentityFeedbackForwardingEnabled = &aws.Operation{
-			Name:       "SetIdentityFeedbackForwardingEnabled",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "SetIdentityFeedbackForwardingEnabled",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "SetIdentityFeedbackForwardingEnabledResult",
 		}
 	}
 
@@ -337,9 +349,10 @@ var opSetIdentityFeedbackForwardingEnabled *aws.Operation
 func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotificationTopicInput) (req *aws.Request, output *SetIdentityNotificationTopicOutput) {
 	if opSetIdentityNotificationTopic == nil {
 		opSetIdentityNotificationTopic = &aws.Operation{
-			Name:       "SetIdentityNotificationTopic",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "SetIdentityNotificationTopic",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "SetIdentityNotificationTopicResult",
 		}
 	}
 
@@ -362,9 +375,10 @@ var opSetIdentityNotificationTopic *aws.Operation
 func (c *SES) VerifyDomainDKIMRequest(input *VerifyDomainDKIMInput) (req *aws.Request, output *VerifyDomainDKIMOutput) {
 	if opVerifyDomainDKIM == nil {
 		opVerifyDomainDKIM = &aws.Operation{
-			Name:       "VerifyDomainDkim",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "VerifyDomainDkim",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "VerifyDomainDkimResult",
 		}
 	}
 
@@ -387,9 +401,10 @@ var opVerifyDomainDKIM *aws.Operation
 func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req *aws.Request, output *VerifyDomainIdentityOutput) {
 	if opVerifyDomainIdentity == nil {
 		opVerifyDomainIdentity = &aws.Operation{
-			Name:       "VerifyDomainIdentity",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "VerifyDomainIdentity",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "VerifyDomainIdentityResult",
 		}
 	}
 
@@ -437,9 +452,10 @@ var opVerifyEmailAddress *aws.Operation
 func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *aws.Request, output *VerifyEmailIdentityOutput) {
 	if opVerifyEmailIdentity == nil {
 		opVerifyEmailIdentity = &aws.Operation{
-			Name:       "VerifyEmailIdentity",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "VerifyEmailIdentity",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "VerifyEmailIdentityResult",
 		}
 	}
 
@@ -495,7 +511,7 @@ type DeleteIdentityOutput struct {
 }
 
 type metadataDeleteIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteIdentityResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteVerifiedEmailAddressInput struct {
@@ -545,7 +561,7 @@ type GetIdentityDKIMAttributesOutput struct {
 }
 
 type metadataGetIdentityDKIMAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetIdentityDkimAttributesResult" required:"DkimAttributes"`
+	SDKShapeTraits bool `type:"structure" required:"DkimAttributes"`
 }
 
 type GetIdentityNotificationAttributesInput struct {
@@ -565,7 +581,7 @@ type GetIdentityNotificationAttributesOutput struct {
 }
 
 type metadataGetIdentityNotificationAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetIdentityNotificationAttributesResult" required:"NotificationAttributes"`
+	SDKShapeTraits bool `type:"structure" required:"NotificationAttributes"`
 }
 
 type GetIdentityVerificationAttributesInput struct {
@@ -585,7 +601,7 @@ type GetIdentityVerificationAttributesOutput struct {
 }
 
 type metadataGetIdentityVerificationAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetIdentityVerificationAttributesResult" required:"VerificationAttributes"`
+	SDKShapeTraits bool `type:"structure" required:"VerificationAttributes"`
 }
 
 type GetSendQuotaInput struct {
@@ -605,7 +621,7 @@ type GetSendQuotaOutput struct {
 }
 
 type metadataGetSendQuotaOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetSendQuotaResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetSendStatisticsInput struct {
@@ -623,7 +639,7 @@ type GetSendStatisticsOutput struct {
 }
 
 type metadataGetSendStatisticsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetSendStatisticsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type IdentityDKIMAttributes struct {
@@ -682,7 +698,7 @@ type ListIdentitiesOutput struct {
 }
 
 type metadataListIdentitiesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListIdentitiesResult" required:"Identities"`
+	SDKShapeTraits bool `type:"structure" required:"Identities"`
 }
 
 type ListVerifiedEmailAddressesInput struct {
@@ -700,7 +716,7 @@ type ListVerifiedEmailAddressesOutput struct {
 }
 
 type metadataListVerifiedEmailAddressesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListVerifiedEmailAddressesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Message struct {
@@ -759,7 +775,7 @@ type SendEmailOutput struct {
 }
 
 type metadataSendEmailOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"SendEmailResult" required:"MessageId"`
+	SDKShapeTraits bool `type:"structure" required:"MessageId"`
 }
 
 type SendRawEmailInput struct {
@@ -781,7 +797,7 @@ type SendRawEmailOutput struct {
 }
 
 type metadataSendRawEmailOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"SendRawEmailResult" required:"MessageId"`
+	SDKShapeTraits bool `type:"structure" required:"MessageId"`
 }
 
 type SetIdentityDKIMEnabledInput struct {
@@ -800,7 +816,7 @@ type SetIdentityDKIMEnabledOutput struct {
 }
 
 type metadataSetIdentityDKIMEnabledOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"SetIdentityDkimEnabledResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetIdentityFeedbackForwardingEnabledInput struct {
@@ -819,7 +835,7 @@ type SetIdentityFeedbackForwardingEnabledOutput struct {
 }
 
 type metadataSetIdentityFeedbackForwardingEnabledOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"SetIdentityFeedbackForwardingEnabledResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetIdentityNotificationTopicInput struct {
@@ -839,7 +855,7 @@ type SetIdentityNotificationTopicOutput struct {
 }
 
 type metadataSetIdentityNotificationTopicOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"SetIdentityNotificationTopicResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type VerifyDomainDKIMInput struct {
@@ -859,7 +875,7 @@ type VerifyDomainDKIMOutput struct {
 }
 
 type metadataVerifyDomainDKIMOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"VerifyDomainDkimResult" required:"DkimTokens"`
+	SDKShapeTraits bool `type:"structure" required:"DkimTokens"`
 }
 
 type VerifyDomainIdentityInput struct {
@@ -879,7 +895,7 @@ type VerifyDomainIdentityOutput struct {
 }
 
 type metadataVerifyDomainIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"VerifyDomainIdentityResult" required:"VerificationToken"`
+	SDKShapeTraits bool `type:"structure" required:"VerificationToken"`
 }
 
 type VerifyEmailAddressInput struct {
@@ -915,5 +931,5 @@ type VerifyEmailIdentityOutput struct {
 }
 
 type metadataVerifyEmailIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"VerifyEmailIdentityResult"`
+	SDKShapeTraits bool `type:"structure"`
 }

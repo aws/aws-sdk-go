@@ -12,9 +12,10 @@ import (
 func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *AddTagsOutput) {
 	if opAddTags == nil {
 		opAddTags = &aws.Operation{
-			Name:       "AddTags",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "AddTags",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "AddTagsResult",
 		}
 	}
 
@@ -37,9 +38,10 @@ var opAddTags *aws.Operation
 func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroupsToLoadBalancerInput) (req *aws.Request, output *ApplySecurityGroupsToLoadBalancerOutput) {
 	if opApplySecurityGroupsToLoadBalancer == nil {
 		opApplySecurityGroupsToLoadBalancer = &aws.Operation{
-			Name:       "ApplySecurityGroupsToLoadBalancer",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ApplySecurityGroupsToLoadBalancer",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ApplySecurityGroupsToLoadBalancerResult",
 		}
 	}
 
@@ -62,9 +64,10 @@ var opApplySecurityGroupsToLoadBalancer *aws.Operation
 func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubnetsInput) (req *aws.Request, output *AttachLoadBalancerToSubnetsOutput) {
 	if opAttachLoadBalancerToSubnets == nil {
 		opAttachLoadBalancerToSubnets = &aws.Operation{
-			Name:       "AttachLoadBalancerToSubnets",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "AttachLoadBalancerToSubnets",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "AttachLoadBalancerToSubnetsResult",
 		}
 	}
 
@@ -87,9 +90,10 @@ var opAttachLoadBalancerToSubnets *aws.Operation
 func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req *aws.Request, output *ConfigureHealthCheckOutput) {
 	if opConfigureHealthCheck == nil {
 		opConfigureHealthCheck = &aws.Operation{
-			Name:       "ConfigureHealthCheck",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ConfigureHealthCheck",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ConfigureHealthCheckResult",
 		}
 	}
 
@@ -112,9 +116,10 @@ var opConfigureHealthCheck *aws.Operation
 func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStickinessPolicyInput) (req *aws.Request, output *CreateAppCookieStickinessPolicyOutput) {
 	if opCreateAppCookieStickinessPolicy == nil {
 		opCreateAppCookieStickinessPolicy = &aws.Operation{
-			Name:       "CreateAppCookieStickinessPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateAppCookieStickinessPolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateAppCookieStickinessPolicyResult",
 		}
 	}
 
@@ -137,9 +142,10 @@ var opCreateAppCookieStickinessPolicy *aws.Operation
 func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickinessPolicyInput) (req *aws.Request, output *CreateLBCookieStickinessPolicyOutput) {
 	if opCreateLBCookieStickinessPolicy == nil {
 		opCreateLBCookieStickinessPolicy = &aws.Operation{
-			Name:       "CreateLBCookieStickinessPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateLBCookieStickinessPolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateLBCookieStickinessPolicyResult",
 		}
 	}
 
@@ -162,9 +168,10 @@ var opCreateLBCookieStickinessPolicy *aws.Operation
 func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *aws.Request, output *CreateLoadBalancerOutput) {
 	if opCreateLoadBalancer == nil {
 		opCreateLoadBalancer = &aws.Operation{
-			Name:       "CreateLoadBalancer",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateLoadBalancer",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateLoadBalancerResult",
 		}
 	}
 
@@ -187,9 +194,10 @@ var opCreateLoadBalancer *aws.Operation
 func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListenersInput) (req *aws.Request, output *CreateLoadBalancerListenersOutput) {
 	if opCreateLoadBalancerListeners == nil {
 		opCreateLoadBalancerListeners = &aws.Operation{
-			Name:       "CreateLoadBalancerListeners",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateLoadBalancerListeners",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateLoadBalancerListenersResult",
 		}
 	}
 
@@ -212,9 +220,10 @@ var opCreateLoadBalancerListeners *aws.Operation
 func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInput) (req *aws.Request, output *CreateLoadBalancerPolicyOutput) {
 	if opCreateLoadBalancerPolicy == nil {
 		opCreateLoadBalancerPolicy = &aws.Operation{
-			Name:       "CreateLoadBalancerPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateLoadBalancerPolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateLoadBalancerPolicyResult",
 		}
 	}
 
@@ -237,9 +246,10 @@ var opCreateLoadBalancerPolicy *aws.Operation
 func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *aws.Request, output *DeleteLoadBalancerOutput) {
 	if opDeleteLoadBalancer == nil {
 		opDeleteLoadBalancer = &aws.Operation{
-			Name:       "DeleteLoadBalancer",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteLoadBalancer",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteLoadBalancerResult",
 		}
 	}
 
@@ -262,9 +272,10 @@ var opDeleteLoadBalancer *aws.Operation
 func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListenersInput) (req *aws.Request, output *DeleteLoadBalancerListenersOutput) {
 	if opDeleteLoadBalancerListeners == nil {
 		opDeleteLoadBalancerListeners = &aws.Operation{
-			Name:       "DeleteLoadBalancerListeners",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteLoadBalancerListeners",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteLoadBalancerListenersResult",
 		}
 	}
 
@@ -287,9 +298,10 @@ var opDeleteLoadBalancerListeners *aws.Operation
 func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInput) (req *aws.Request, output *DeleteLoadBalancerPolicyOutput) {
 	if opDeleteLoadBalancerPolicy == nil {
 		opDeleteLoadBalancerPolicy = &aws.Operation{
-			Name:       "DeleteLoadBalancerPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteLoadBalancerPolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteLoadBalancerPolicyResult",
 		}
 	}
 
@@ -312,9 +324,10 @@ var opDeleteLoadBalancerPolicy *aws.Operation
 func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstancesFromLoadBalancerInput) (req *aws.Request, output *DeregisterInstancesFromLoadBalancerOutput) {
 	if opDeregisterInstancesFromLoadBalancer == nil {
 		opDeregisterInstancesFromLoadBalancer = &aws.Operation{
-			Name:       "DeregisterInstancesFromLoadBalancer",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeregisterInstancesFromLoadBalancer",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeregisterInstancesFromLoadBalancerResult",
 		}
 	}
 
@@ -337,9 +350,10 @@ var opDeregisterInstancesFromLoadBalancer *aws.Operation
 func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) (req *aws.Request, output *DescribeInstanceHealthOutput) {
 	if opDescribeInstanceHealth == nil {
 		opDescribeInstanceHealth = &aws.Operation{
-			Name:       "DescribeInstanceHealth",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeInstanceHealth",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeInstanceHealthResult",
 		}
 	}
 
@@ -362,9 +376,10 @@ var opDescribeInstanceHealth *aws.Operation
 func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerAttributesInput) (req *aws.Request, output *DescribeLoadBalancerAttributesOutput) {
 	if opDescribeLoadBalancerAttributes == nil {
 		opDescribeLoadBalancerAttributes = &aws.Operation{
-			Name:       "DescribeLoadBalancerAttributes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeLoadBalancerAttributes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeLoadBalancerAttributesResult",
 		}
 	}
 
@@ -387,9 +402,10 @@ var opDescribeLoadBalancerAttributes *aws.Operation
 func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPoliciesInput) (req *aws.Request, output *DescribeLoadBalancerPoliciesOutput) {
 	if opDescribeLoadBalancerPolicies == nil {
 		opDescribeLoadBalancerPolicies = &aws.Operation{
-			Name:       "DescribeLoadBalancerPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeLoadBalancerPolicies",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeLoadBalancerPoliciesResult",
 		}
 	}
 
@@ -412,9 +428,10 @@ var opDescribeLoadBalancerPolicies *aws.Operation
 func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancerPolicyTypesInput) (req *aws.Request, output *DescribeLoadBalancerPolicyTypesOutput) {
 	if opDescribeLoadBalancerPolicyTypes == nil {
 		opDescribeLoadBalancerPolicyTypes = &aws.Operation{
-			Name:       "DescribeLoadBalancerPolicyTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeLoadBalancerPolicyTypes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeLoadBalancerPolicyTypesResult",
 		}
 	}
 
@@ -437,9 +454,10 @@ var opDescribeLoadBalancerPolicyTypes *aws.Operation
 func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *aws.Request, output *DescribeLoadBalancersOutput) {
 	if opDescribeLoadBalancers == nil {
 		opDescribeLoadBalancers = &aws.Operation{
-			Name:       "DescribeLoadBalancers",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeLoadBalancers",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeLoadBalancersResult",
 		}
 	}
 
@@ -462,9 +480,10 @@ var opDescribeLoadBalancers *aws.Operation
 func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
-			Name:       "DescribeTags",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeTags",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeTagsResult",
 		}
 	}
 
@@ -487,9 +506,10 @@ var opDescribeTags *aws.Operation
 func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFromSubnetsInput) (req *aws.Request, output *DetachLoadBalancerFromSubnetsOutput) {
 	if opDetachLoadBalancerFromSubnets == nil {
 		opDetachLoadBalancerFromSubnets = &aws.Operation{
-			Name:       "DetachLoadBalancerFromSubnets",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DetachLoadBalancerFromSubnets",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DetachLoadBalancerFromSubnetsResult",
 		}
 	}
 
@@ -512,9 +532,10 @@ var opDetachLoadBalancerFromSubnets *aws.Operation
 func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvailabilityZonesForLoadBalancerInput) (req *aws.Request, output *DisableAvailabilityZonesForLoadBalancerOutput) {
 	if opDisableAvailabilityZonesForLoadBalancer == nil {
 		opDisableAvailabilityZonesForLoadBalancer = &aws.Operation{
-			Name:       "DisableAvailabilityZonesForLoadBalancer",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DisableAvailabilityZonesForLoadBalancer",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DisableAvailabilityZonesForLoadBalancerResult",
 		}
 	}
 
@@ -537,9 +558,10 @@ var opDisableAvailabilityZonesForLoadBalancer *aws.Operation
 func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailabilityZonesForLoadBalancerInput) (req *aws.Request, output *EnableAvailabilityZonesForLoadBalancerOutput) {
 	if opEnableAvailabilityZonesForLoadBalancer == nil {
 		opEnableAvailabilityZonesForLoadBalancer = &aws.Operation{
-			Name:       "EnableAvailabilityZonesForLoadBalancer",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "EnableAvailabilityZonesForLoadBalancer",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "EnableAvailabilityZonesForLoadBalancerResult",
 		}
 	}
 
@@ -562,9 +584,10 @@ var opEnableAvailabilityZonesForLoadBalancer *aws.Operation
 func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttributesInput) (req *aws.Request, output *ModifyLoadBalancerAttributesOutput) {
 	if opModifyLoadBalancerAttributes == nil {
 		opModifyLoadBalancerAttributes = &aws.Operation{
-			Name:       "ModifyLoadBalancerAttributes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyLoadBalancerAttributes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyLoadBalancerAttributesResult",
 		}
 	}
 
@@ -587,9 +610,10 @@ var opModifyLoadBalancerAttributes *aws.Operation
 func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesWithLoadBalancerInput) (req *aws.Request, output *RegisterInstancesWithLoadBalancerOutput) {
 	if opRegisterInstancesWithLoadBalancer == nil {
 		opRegisterInstancesWithLoadBalancer = &aws.Operation{
-			Name:       "RegisterInstancesWithLoadBalancer",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RegisterInstancesWithLoadBalancer",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RegisterInstancesWithLoadBalancerResult",
 		}
 	}
 
@@ -612,9 +636,10 @@ var opRegisterInstancesWithLoadBalancer *aws.Operation
 func (c *ELB) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, output *RemoveTagsOutput) {
 	if opRemoveTags == nil {
 		opRemoveTags = &aws.Operation{
-			Name:       "RemoveTags",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RemoveTags",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RemoveTagsResult",
 		}
 	}
 
@@ -637,9 +662,10 @@ var opRemoveTags *aws.Operation
 func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalancerListenerSSLCertificateInput) (req *aws.Request, output *SetLoadBalancerListenerSSLCertificateOutput) {
 	if opSetLoadBalancerListenerSSLCertificate == nil {
 		opSetLoadBalancerListenerSSLCertificate = &aws.Operation{
-			Name:       "SetLoadBalancerListenerSSLCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "SetLoadBalancerListenerSSLCertificate",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "SetLoadBalancerListenerSSLCertificateResult",
 		}
 	}
 
@@ -662,9 +688,10 @@ var opSetLoadBalancerListenerSSLCertificate *aws.Operation
 func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalancerPoliciesForBackendServerInput) (req *aws.Request, output *SetLoadBalancerPoliciesForBackendServerOutput) {
 	if opSetLoadBalancerPoliciesForBackendServer == nil {
 		opSetLoadBalancerPoliciesForBackendServer = &aws.Operation{
-			Name:       "SetLoadBalancerPoliciesForBackendServer",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "SetLoadBalancerPoliciesForBackendServer",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "SetLoadBalancerPoliciesForBackendServerResult",
 		}
 	}
 
@@ -687,9 +714,10 @@ var opSetLoadBalancerPoliciesForBackendServer *aws.Operation
 func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPoliciesOfListenerInput) (req *aws.Request, output *SetLoadBalancerPoliciesOfListenerOutput) {
 	if opSetLoadBalancerPoliciesOfListener == nil {
 		opSetLoadBalancerPoliciesOfListener = &aws.Operation{
-			Name:       "SetLoadBalancerPoliciesOfListener",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "SetLoadBalancerPoliciesOfListener",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "SetLoadBalancerPoliciesOfListenerResult",
 		}
 	}
 
@@ -737,7 +765,7 @@ type AddTagsOutput struct {
 }
 
 type metadataAddTagsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AddTagsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AdditionalAttribute struct {
@@ -780,7 +808,7 @@ type ApplySecurityGroupsToLoadBalancerOutput struct {
 }
 
 type metadataApplySecurityGroupsToLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ApplySecurityGroupsToLoadBalancerResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachLoadBalancerToSubnetsInput struct {
@@ -801,7 +829,7 @@ type AttachLoadBalancerToSubnetsOutput struct {
 }
 
 type metadataAttachLoadBalancerToSubnetsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AttachLoadBalancerToSubnetsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BackendServerDescription struct {
@@ -833,7 +861,7 @@ type ConfigureHealthCheckOutput struct {
 }
 
 type metadataConfigureHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ConfigureHealthCheckResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ConnectionDraining struct {
@@ -874,7 +902,7 @@ type CreateAppCookieStickinessPolicyOutput struct {
 }
 
 type metadataCreateAppCookieStickinessPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateAppCookieStickinessPolicyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLBCookieStickinessPolicyInput struct {
@@ -894,7 +922,7 @@ type CreateLBCookieStickinessPolicyOutput struct {
 }
 
 type metadataCreateLBCookieStickinessPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateLBCookieStickinessPolicyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLoadBalancerInput struct {
@@ -929,7 +957,7 @@ type CreateLoadBalancerListenersOutput struct {
 }
 
 type metadataCreateLoadBalancerListenersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateLoadBalancerListenersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLoadBalancerOutput struct {
@@ -939,7 +967,7 @@ type CreateLoadBalancerOutput struct {
 }
 
 type metadataCreateLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateLoadBalancerResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLoadBalancerPolicyInput struct {
@@ -960,7 +988,7 @@ type CreateLoadBalancerPolicyOutput struct {
 }
 
 type metadataCreateLoadBalancerPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateLoadBalancerPolicyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CrossZoneLoadBalancing struct {
@@ -999,7 +1027,7 @@ type DeleteLoadBalancerListenersOutput struct {
 }
 
 type metadataDeleteLoadBalancerListenersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteLoadBalancerListenersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLoadBalancerOutput struct {
@@ -1007,7 +1035,7 @@ type DeleteLoadBalancerOutput struct {
 }
 
 type metadataDeleteLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteLoadBalancerResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLoadBalancerPolicyInput struct {
@@ -1026,7 +1054,7 @@ type DeleteLoadBalancerPolicyOutput struct {
 }
 
 type metadataDeleteLoadBalancerPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteLoadBalancerPolicyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeregisterInstancesFromLoadBalancerInput struct {
@@ -1047,7 +1075,7 @@ type DeregisterInstancesFromLoadBalancerOutput struct {
 }
 
 type metadataDeregisterInstancesFromLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeregisterInstancesFromLoadBalancerResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeInstanceHealthInput struct {
@@ -1068,7 +1096,7 @@ type DescribeInstanceHealthOutput struct {
 }
 
 type metadataDescribeInstanceHealthOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeInstanceHealthResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLoadBalancerAttributesInput struct {
@@ -1088,7 +1116,7 @@ type DescribeLoadBalancerAttributesOutput struct {
 }
 
 type metadataDescribeLoadBalancerAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLoadBalancerAttributesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLoadBalancerPoliciesInput struct {
@@ -1109,7 +1137,7 @@ type DescribeLoadBalancerPoliciesOutput struct {
 }
 
 type metadataDescribeLoadBalancerPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLoadBalancerPoliciesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLoadBalancerPolicyTypesInput struct {
@@ -1129,7 +1157,7 @@ type DescribeLoadBalancerPolicyTypesOutput struct {
 }
 
 type metadataDescribeLoadBalancerPolicyTypesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLoadBalancerPolicyTypesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLoadBalancersInput struct {
@@ -1152,7 +1180,7 @@ type DescribeLoadBalancersOutput struct {
 }
 
 type metadataDescribeLoadBalancersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLoadBalancersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeTagsInput struct {
@@ -1172,7 +1200,7 @@ type DescribeTagsOutput struct {
 }
 
 type metadataDescribeTagsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeTagsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachLoadBalancerFromSubnetsInput struct {
@@ -1193,7 +1221,7 @@ type DetachLoadBalancerFromSubnetsOutput struct {
 }
 
 type metadataDetachLoadBalancerFromSubnetsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DetachLoadBalancerFromSubnetsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableAvailabilityZonesForLoadBalancerInput struct {
@@ -1214,7 +1242,7 @@ type DisableAvailabilityZonesForLoadBalancerOutput struct {
 }
 
 type metadataDisableAvailabilityZonesForLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DisableAvailabilityZonesForLoadBalancerResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableAvailabilityZonesForLoadBalancerInput struct {
@@ -1235,7 +1263,7 @@ type EnableAvailabilityZonesForLoadBalancerOutput struct {
 }
 
 type metadataEnableAvailabilityZonesForLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"EnableAvailabilityZonesForLoadBalancerResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type HealthCheck struct {
@@ -1369,7 +1397,7 @@ type ModifyLoadBalancerAttributesOutput struct {
 }
 
 type metadataModifyLoadBalancerAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyLoadBalancerAttributesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Policies struct {
@@ -1462,7 +1490,7 @@ type RegisterInstancesWithLoadBalancerOutput struct {
 }
 
 type metadataRegisterInstancesWithLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RegisterInstancesWithLoadBalancerResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveTagsInput struct {
@@ -1481,7 +1509,7 @@ type RemoveTagsOutput struct {
 }
 
 type metadataRemoveTagsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RemoveTagsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetLoadBalancerListenerSSLCertificateInput struct {
@@ -1501,7 +1529,7 @@ type SetLoadBalancerListenerSSLCertificateOutput struct {
 }
 
 type metadataSetLoadBalancerListenerSSLCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"SetLoadBalancerListenerSSLCertificateResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetLoadBalancerPoliciesForBackendServerInput struct {
@@ -1521,7 +1549,7 @@ type SetLoadBalancerPoliciesForBackendServerOutput struct {
 }
 
 type metadataSetLoadBalancerPoliciesForBackendServerOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"SetLoadBalancerPoliciesForBackendServerResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetLoadBalancerPoliciesOfListenerInput struct {
@@ -1541,7 +1569,7 @@ type SetLoadBalancerPoliciesOfListenerOutput struct {
 }
 
 type metadataSetLoadBalancerPoliciesOfListenerOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"SetLoadBalancerPoliciesOfListenerResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SourceSecurityGroup struct {

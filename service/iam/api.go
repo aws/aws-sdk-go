@@ -187,9 +187,10 @@ var opChangePassword *aws.Operation
 func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *aws.Request, output *CreateAccessKeyOutput) {
 	if opCreateAccessKey == nil {
 		opCreateAccessKey = &aws.Operation{
-			Name:       "CreateAccessKey",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateAccessKey",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateAccessKeyResult",
 		}
 	}
 
@@ -237,9 +238,10 @@ var opCreateAccountAlias *aws.Operation
 func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *aws.Request, output *CreateGroupOutput) {
 	if opCreateGroup == nil {
 		opCreateGroup = &aws.Operation{
-			Name:       "CreateGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateGroupResult",
 		}
 	}
 
@@ -262,9 +264,10 @@ var opCreateGroup *aws.Operation
 func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (req *aws.Request, output *CreateInstanceProfileOutput) {
 	if opCreateInstanceProfile == nil {
 		opCreateInstanceProfile = &aws.Operation{
-			Name:       "CreateInstanceProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateInstanceProfile",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateInstanceProfileResult",
 		}
 	}
 
@@ -287,9 +290,10 @@ var opCreateInstanceProfile *aws.Operation
 func (c *IAM) CreateLoginProfileRequest(input *CreateLoginProfileInput) (req *aws.Request, output *CreateLoginProfileOutput) {
 	if opCreateLoginProfile == nil {
 		opCreateLoginProfile = &aws.Operation{
-			Name:       "CreateLoginProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateLoginProfile",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateLoginProfileResult",
 		}
 	}
 
@@ -312,9 +316,10 @@ var opCreateLoginProfile *aws.Operation
 func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProviderInput) (req *aws.Request, output *CreateOpenIDConnectProviderOutput) {
 	if opCreateOpenIDConnectProvider == nil {
 		opCreateOpenIDConnectProvider = &aws.Operation{
-			Name:       "CreateOpenIDConnectProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateOpenIDConnectProvider",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateOpenIDConnectProviderResult",
 		}
 	}
 
@@ -337,9 +342,10 @@ var opCreateOpenIDConnectProvider *aws.Operation
 func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *aws.Request, output *CreatePolicyOutput) {
 	if opCreatePolicy == nil {
 		opCreatePolicy = &aws.Operation{
-			Name:       "CreatePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreatePolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreatePolicyResult",
 		}
 	}
 
@@ -362,9 +368,10 @@ var opCreatePolicy *aws.Operation
 func (c *IAM) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *aws.Request, output *CreatePolicyVersionOutput) {
 	if opCreatePolicyVersion == nil {
 		opCreatePolicyVersion = &aws.Operation{
-			Name:       "CreatePolicyVersion",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreatePolicyVersion",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreatePolicyVersionResult",
 		}
 	}
 
@@ -387,9 +394,10 @@ var opCreatePolicyVersion *aws.Operation
 func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *aws.Request, output *CreateRoleOutput) {
 	if opCreateRole == nil {
 		opCreateRole = &aws.Operation{
-			Name:       "CreateRole",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateRole",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateRoleResult",
 		}
 	}
 
@@ -412,9 +420,10 @@ var opCreateRole *aws.Operation
 func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *aws.Request, output *CreateSAMLProviderOutput) {
 	if opCreateSAMLProvider == nil {
 		opCreateSAMLProvider = &aws.Operation{
-			Name:       "CreateSAMLProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateSAMLProvider",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateSAMLProviderResult",
 		}
 	}
 
@@ -437,9 +446,10 @@ var opCreateSAMLProvider *aws.Operation
 func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *aws.Request, output *CreateUserOutput) {
 	if opCreateUser == nil {
 		opCreateUser = &aws.Operation{
-			Name:       "CreateUser",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateUser",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateUserResult",
 		}
 	}
 
@@ -462,9 +472,10 @@ var opCreateUser *aws.Operation
 func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) (req *aws.Request, output *CreateVirtualMFADeviceOutput) {
 	if opCreateVirtualMFADevice == nil {
 		opCreateVirtualMFADevice = &aws.Operation{
-			Name:       "CreateVirtualMFADevice",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateVirtualMFADevice",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateVirtualMFADeviceResult",
 		}
 	}
 
@@ -1062,9 +1073,10 @@ var opEnableMFADevice *aws.Operation
 func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInput) (req *aws.Request, output *GenerateCredentialReportOutput) {
 	if opGenerateCredentialReport == nil {
 		opGenerateCredentialReport = &aws.Operation{
-			Name:       "GenerateCredentialReport",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GenerateCredentialReport",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GenerateCredentialReportResult",
 		}
 	}
 
@@ -1087,9 +1099,10 @@ var opGenerateCredentialReport *aws.Operation
 func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizationDetailsInput) (req *aws.Request, output *GetAccountAuthorizationDetailsOutput) {
 	if opGetAccountAuthorizationDetails == nil {
 		opGetAccountAuthorizationDetails = &aws.Operation{
-			Name:       "GetAccountAuthorizationDetails",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetAccountAuthorizationDetails",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetAccountAuthorizationDetailsResult",
 		}
 	}
 
@@ -1112,9 +1125,10 @@ var opGetAccountAuthorizationDetails *aws.Operation
 func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInput) (req *aws.Request, output *GetAccountPasswordPolicyOutput) {
 	if opGetAccountPasswordPolicy == nil {
 		opGetAccountPasswordPolicy = &aws.Operation{
-			Name:       "GetAccountPasswordPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetAccountPasswordPolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetAccountPasswordPolicyResult",
 		}
 	}
 
@@ -1137,9 +1151,10 @@ var opGetAccountPasswordPolicy *aws.Operation
 func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *aws.Request, output *GetAccountSummaryOutput) {
 	if opGetAccountSummary == nil {
 		opGetAccountSummary = &aws.Operation{
-			Name:       "GetAccountSummary",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetAccountSummary",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetAccountSummaryResult",
 		}
 	}
 
@@ -1162,9 +1177,10 @@ var opGetAccountSummary *aws.Operation
 func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *aws.Request, output *GetCredentialReportOutput) {
 	if opGetCredentialReport == nil {
 		opGetCredentialReport = &aws.Operation{
-			Name:       "GetCredentialReport",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetCredentialReport",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetCredentialReportResult",
 		}
 	}
 
@@ -1187,9 +1203,10 @@ var opGetCredentialReport *aws.Operation
 func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *aws.Request, output *GetGroupOutput) {
 	if opGetGroup == nil {
 		opGetGroup = &aws.Operation{
-			Name:       "GetGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetGroupResult",
 		}
 	}
 
@@ -1212,9 +1229,10 @@ var opGetGroup *aws.Operation
 func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *aws.Request, output *GetGroupPolicyOutput) {
 	if opGetGroupPolicy == nil {
 		opGetGroupPolicy = &aws.Operation{
-			Name:       "GetGroupPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetGroupPolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetGroupPolicyResult",
 		}
 	}
 
@@ -1237,9 +1255,10 @@ var opGetGroupPolicy *aws.Operation
 func (c *IAM) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *aws.Request, output *GetInstanceProfileOutput) {
 	if opGetInstanceProfile == nil {
 		opGetInstanceProfile = &aws.Operation{
-			Name:       "GetInstanceProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetInstanceProfile",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetInstanceProfileResult",
 		}
 	}
 
@@ -1262,9 +1281,10 @@ var opGetInstanceProfile *aws.Operation
 func (c *IAM) GetLoginProfileRequest(input *GetLoginProfileInput) (req *aws.Request, output *GetLoginProfileOutput) {
 	if opGetLoginProfile == nil {
 		opGetLoginProfile = &aws.Operation{
-			Name:       "GetLoginProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetLoginProfile",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetLoginProfileResult",
 		}
 	}
 
@@ -1287,9 +1307,10 @@ var opGetLoginProfile *aws.Operation
 func (c *IAM) GetOpenIDConnectProviderRequest(input *GetOpenIDConnectProviderInput) (req *aws.Request, output *GetOpenIDConnectProviderOutput) {
 	if opGetOpenIDConnectProvider == nil {
 		opGetOpenIDConnectProvider = &aws.Operation{
-			Name:       "GetOpenIDConnectProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetOpenIDConnectProvider",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetOpenIDConnectProviderResult",
 		}
 	}
 
@@ -1312,9 +1333,10 @@ var opGetOpenIDConnectProvider *aws.Operation
 func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *aws.Request, output *GetPolicyOutput) {
 	if opGetPolicy == nil {
 		opGetPolicy = &aws.Operation{
-			Name:       "GetPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetPolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetPolicyResult",
 		}
 	}
 
@@ -1337,9 +1359,10 @@ var opGetPolicy *aws.Operation
 func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *aws.Request, output *GetPolicyVersionOutput) {
 	if opGetPolicyVersion == nil {
 		opGetPolicyVersion = &aws.Operation{
-			Name:       "GetPolicyVersion",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetPolicyVersion",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetPolicyVersionResult",
 		}
 	}
 
@@ -1362,9 +1385,10 @@ var opGetPolicyVersion *aws.Operation
 func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *aws.Request, output *GetRoleOutput) {
 	if opGetRole == nil {
 		opGetRole = &aws.Operation{
-			Name:       "GetRole",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetRole",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetRoleResult",
 		}
 	}
 
@@ -1387,9 +1411,10 @@ var opGetRole *aws.Operation
 func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *aws.Request, output *GetRolePolicyOutput) {
 	if opGetRolePolicy == nil {
 		opGetRolePolicy = &aws.Operation{
-			Name:       "GetRolePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetRolePolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetRolePolicyResult",
 		}
 	}
 
@@ -1412,9 +1437,10 @@ var opGetRolePolicy *aws.Operation
 func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *aws.Request, output *GetSAMLProviderOutput) {
 	if opGetSAMLProvider == nil {
 		opGetSAMLProvider = &aws.Operation{
-			Name:       "GetSAMLProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetSAMLProvider",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetSAMLProviderResult",
 		}
 	}
 
@@ -1437,9 +1463,10 @@ var opGetSAMLProvider *aws.Operation
 func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req *aws.Request, output *GetServerCertificateOutput) {
 	if opGetServerCertificate == nil {
 		opGetServerCertificate = &aws.Operation{
-			Name:       "GetServerCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetServerCertificate",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetServerCertificateResult",
 		}
 	}
 
@@ -1462,9 +1489,10 @@ var opGetServerCertificate *aws.Operation
 func (c *IAM) GetUserRequest(input *GetUserInput) (req *aws.Request, output *GetUserOutput) {
 	if opGetUser == nil {
 		opGetUser = &aws.Operation{
-			Name:       "GetUser",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetUser",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetUserResult",
 		}
 	}
 
@@ -1487,9 +1515,10 @@ var opGetUser *aws.Operation
 func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *aws.Request, output *GetUserPolicyOutput) {
 	if opGetUserPolicy == nil {
 		opGetUserPolicy = &aws.Operation{
-			Name:       "GetUserPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetUserPolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetUserPolicyResult",
 		}
 	}
 
@@ -1512,9 +1541,10 @@ var opGetUserPolicy *aws.Operation
 func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *aws.Request, output *ListAccessKeysOutput) {
 	if opListAccessKeys == nil {
 		opListAccessKeys = &aws.Operation{
-			Name:       "ListAccessKeys",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListAccessKeys",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListAccessKeysResult",
 		}
 	}
 
@@ -1537,9 +1567,10 @@ var opListAccessKeys *aws.Operation
 func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *aws.Request, output *ListAccountAliasesOutput) {
 	if opListAccountAliases == nil {
 		opListAccountAliases = &aws.Operation{
-			Name:       "ListAccountAliases",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListAccountAliases",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListAccountAliasesResult",
 		}
 	}
 
@@ -1562,9 +1593,10 @@ var opListAccountAliases *aws.Operation
 func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesInput) (req *aws.Request, output *ListAttachedGroupPoliciesOutput) {
 	if opListAttachedGroupPolicies == nil {
 		opListAttachedGroupPolicies = &aws.Operation{
-			Name:       "ListAttachedGroupPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListAttachedGroupPolicies",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListAttachedGroupPoliciesResult",
 		}
 	}
 
@@ -1587,9 +1619,10 @@ var opListAttachedGroupPolicies *aws.Operation
 func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInput) (req *aws.Request, output *ListAttachedRolePoliciesOutput) {
 	if opListAttachedRolePolicies == nil {
 		opListAttachedRolePolicies = &aws.Operation{
-			Name:       "ListAttachedRolePolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListAttachedRolePolicies",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListAttachedRolePoliciesResult",
 		}
 	}
 
@@ -1612,9 +1645,10 @@ var opListAttachedRolePolicies *aws.Operation
 func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInput) (req *aws.Request, output *ListAttachedUserPoliciesOutput) {
 	if opListAttachedUserPolicies == nil {
 		opListAttachedUserPolicies = &aws.Operation{
-			Name:       "ListAttachedUserPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListAttachedUserPolicies",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListAttachedUserPoliciesResult",
 		}
 	}
 
@@ -1637,9 +1671,10 @@ var opListAttachedUserPolicies *aws.Operation
 func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (req *aws.Request, output *ListEntitiesForPolicyOutput) {
 	if opListEntitiesForPolicy == nil {
 		opListEntitiesForPolicy = &aws.Operation{
-			Name:       "ListEntitiesForPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListEntitiesForPolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListEntitiesForPolicyResult",
 		}
 	}
 
@@ -1662,9 +1697,10 @@ var opListEntitiesForPolicy *aws.Operation
 func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *aws.Request, output *ListGroupPoliciesOutput) {
 	if opListGroupPolicies == nil {
 		opListGroupPolicies = &aws.Operation{
-			Name:       "ListGroupPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListGroupPolicies",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListGroupPoliciesResult",
 		}
 	}
 
@@ -1687,9 +1723,10 @@ var opListGroupPolicies *aws.Operation
 func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *aws.Request, output *ListGroupsOutput) {
 	if opListGroups == nil {
 		opListGroups = &aws.Operation{
-			Name:       "ListGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListGroupsResult",
 		}
 	}
 
@@ -1712,9 +1749,10 @@ var opListGroups *aws.Operation
 func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *aws.Request, output *ListGroupsForUserOutput) {
 	if opListGroupsForUser == nil {
 		opListGroupsForUser = &aws.Operation{
-			Name:       "ListGroupsForUser",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListGroupsForUser",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListGroupsForUserResult",
 		}
 	}
 
@@ -1737,9 +1775,10 @@ var opListGroupsForUser *aws.Operation
 func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req *aws.Request, output *ListInstanceProfilesOutput) {
 	if opListInstanceProfiles == nil {
 		opListInstanceProfiles = &aws.Operation{
-			Name:       "ListInstanceProfiles",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListInstanceProfiles",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListInstanceProfilesResult",
 		}
 	}
 
@@ -1762,9 +1801,10 @@ var opListInstanceProfiles *aws.Operation
 func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForRoleInput) (req *aws.Request, output *ListInstanceProfilesForRoleOutput) {
 	if opListInstanceProfilesForRole == nil {
 		opListInstanceProfilesForRole = &aws.Operation{
-			Name:       "ListInstanceProfilesForRole",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListInstanceProfilesForRole",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListInstanceProfilesForRoleResult",
 		}
 	}
 
@@ -1787,9 +1827,10 @@ var opListInstanceProfilesForRole *aws.Operation
 func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *aws.Request, output *ListMFADevicesOutput) {
 	if opListMFADevices == nil {
 		opListMFADevices = &aws.Operation{
-			Name:       "ListMFADevices",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListMFADevices",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListMFADevicesResult",
 		}
 	}
 
@@ -1812,9 +1853,10 @@ var opListMFADevices *aws.Operation
 func (c *IAM) ListOpenIDConnectProvidersRequest(input *ListOpenIDConnectProvidersInput) (req *aws.Request, output *ListOpenIDConnectProvidersOutput) {
 	if opListOpenIDConnectProviders == nil {
 		opListOpenIDConnectProviders = &aws.Operation{
-			Name:       "ListOpenIDConnectProviders",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListOpenIDConnectProviders",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListOpenIDConnectProvidersResult",
 		}
 	}
 
@@ -1837,9 +1879,10 @@ var opListOpenIDConnectProviders *aws.Operation
 func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *aws.Request, output *ListPoliciesOutput) {
 	if opListPolicies == nil {
 		opListPolicies = &aws.Operation{
-			Name:       "ListPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListPolicies",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListPoliciesResult",
 		}
 	}
 
@@ -1862,9 +1905,10 @@ var opListPolicies *aws.Operation
 func (c *IAM) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *aws.Request, output *ListPolicyVersionsOutput) {
 	if opListPolicyVersions == nil {
 		opListPolicyVersions = &aws.Operation{
-			Name:       "ListPolicyVersions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListPolicyVersions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListPolicyVersionsResult",
 		}
 	}
 
@@ -1887,9 +1931,10 @@ var opListPolicyVersions *aws.Operation
 func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *aws.Request, output *ListRolePoliciesOutput) {
 	if opListRolePolicies == nil {
 		opListRolePolicies = &aws.Operation{
-			Name:       "ListRolePolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListRolePolicies",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListRolePoliciesResult",
 		}
 	}
 
@@ -1912,9 +1957,10 @@ var opListRolePolicies *aws.Operation
 func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *aws.Request, output *ListRolesOutput) {
 	if opListRoles == nil {
 		opListRoles = &aws.Operation{
-			Name:       "ListRoles",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListRoles",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListRolesResult",
 		}
 	}
 
@@ -1937,9 +1983,10 @@ var opListRoles *aws.Operation
 func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *aws.Request, output *ListSAMLProvidersOutput) {
 	if opListSAMLProviders == nil {
 		opListSAMLProviders = &aws.Operation{
-			Name:       "ListSAMLProviders",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListSAMLProviders",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListSAMLProvidersResult",
 		}
 	}
 
@@ -1962,9 +2009,10 @@ var opListSAMLProviders *aws.Operation
 func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) (req *aws.Request, output *ListServerCertificatesOutput) {
 	if opListServerCertificates == nil {
 		opListServerCertificates = &aws.Operation{
-			Name:       "ListServerCertificates",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListServerCertificates",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListServerCertificatesResult",
 		}
 	}
 
@@ -1987,9 +2035,10 @@ var opListServerCertificates *aws.Operation
 func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput) (req *aws.Request, output *ListSigningCertificatesOutput) {
 	if opListSigningCertificates == nil {
 		opListSigningCertificates = &aws.Operation{
-			Name:       "ListSigningCertificates",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListSigningCertificates",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListSigningCertificatesResult",
 		}
 	}
 
@@ -2012,9 +2061,10 @@ var opListSigningCertificates *aws.Operation
 func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *aws.Request, output *ListUserPoliciesOutput) {
 	if opListUserPolicies == nil {
 		opListUserPolicies = &aws.Operation{
-			Name:       "ListUserPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListUserPolicies",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListUserPoliciesResult",
 		}
 	}
 
@@ -2037,9 +2087,10 @@ var opListUserPolicies *aws.Operation
 func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *aws.Request, output *ListUsersOutput) {
 	if opListUsers == nil {
 		opListUsers = &aws.Operation{
-			Name:       "ListUsers",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListUsers",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListUsersResult",
 		}
 	}
 
@@ -2062,9 +2113,10 @@ var opListUsers *aws.Operation
 func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (req *aws.Request, output *ListVirtualMFADevicesOutput) {
 	if opListVirtualMFADevices == nil {
 		opListVirtualMFADevices = &aws.Operation{
-			Name:       "ListVirtualMFADevices",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListVirtualMFADevices",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListVirtualMFADevicesResult",
 		}
 	}
 
@@ -2437,9 +2489,10 @@ var opUpdateOpenIDConnectProviderThumbprint *aws.Operation
 func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *aws.Request, output *UpdateSAMLProviderOutput) {
 	if opUpdateSAMLProvider == nil {
 		opUpdateSAMLProvider = &aws.Operation{
-			Name:       "UpdateSAMLProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "UpdateSAMLProvider",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "UpdateSAMLProviderResult",
 		}
 	}
 
@@ -2537,9 +2590,10 @@ var opUpdateUser *aws.Operation
 func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput) (req *aws.Request, output *UploadServerCertificateOutput) {
 	if opUploadServerCertificate == nil {
 		opUploadServerCertificate = &aws.Operation{
-			Name:       "UploadServerCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "UploadServerCertificate",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "UploadServerCertificateResult",
 		}
 	}
 
@@ -2562,9 +2616,10 @@ var opUploadServerCertificate *aws.Operation
 func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInput) (req *aws.Request, output *UploadSigningCertificateOutput) {
 	if opUploadSigningCertificate == nil {
 		opUploadSigningCertificate = &aws.Operation{
-			Name:       "UploadSigningCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "UploadSigningCertificate",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "UploadSigningCertificateResult",
 		}
 	}
 
@@ -2771,7 +2826,7 @@ type CreateAccessKeyOutput struct {
 }
 
 type metadataCreateAccessKeyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateAccessKeyResult" required:"AccessKey"`
+	SDKShapeTraits bool `type:"structure" required:"AccessKey"`
 }
 
 type CreateAccountAliasInput struct {
@@ -2810,7 +2865,7 @@ type CreateGroupOutput struct {
 }
 
 type metadataCreateGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateGroupResult" required:"Group"`
+	SDKShapeTraits bool `type:"structure" required:"Group"`
 }
 
 type CreateInstanceProfileInput struct {
@@ -2831,7 +2886,7 @@ type CreateInstanceProfileOutput struct {
 }
 
 type metadataCreateInstanceProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateInstanceProfileResult" required:"InstanceProfile"`
+	SDKShapeTraits bool `type:"structure" required:"InstanceProfile"`
 }
 
 type CreateLoginProfileInput struct {
@@ -2853,7 +2908,7 @@ type CreateLoginProfileOutput struct {
 }
 
 type metadataCreateLoginProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateLoginProfileResult" required:"LoginProfile"`
+	SDKShapeTraits bool `type:"structure" required:"LoginProfile"`
 }
 
 type CreateOpenIDConnectProviderInput struct {
@@ -2875,7 +2930,7 @@ type CreateOpenIDConnectProviderOutput struct {
 }
 
 type metadataCreateOpenIDConnectProviderOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateOpenIDConnectProviderResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreatePolicyInput struct {
@@ -2898,7 +2953,7 @@ type CreatePolicyOutput struct {
 }
 
 type metadataCreatePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreatePolicyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreatePolicyVersionInput struct {
@@ -2920,7 +2975,7 @@ type CreatePolicyVersionOutput struct {
 }
 
 type metadataCreatePolicyVersionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreatePolicyVersionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateRoleInput struct {
@@ -2942,7 +2997,7 @@ type CreateRoleOutput struct {
 }
 
 type metadataCreateRoleOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateRoleResult" required:"Role"`
+	SDKShapeTraits bool `type:"structure" required:"Role"`
 }
 
 type CreateSAMLProviderInput struct {
@@ -2963,7 +3018,7 @@ type CreateSAMLProviderOutput struct {
 }
 
 type metadataCreateSAMLProviderOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateSAMLProviderResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateUserInput struct {
@@ -2984,7 +3039,7 @@ type CreateUserOutput struct {
 }
 
 type metadataCreateUserOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateUserResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateVirtualMFADeviceInput struct {
@@ -3005,7 +3060,7 @@ type CreateVirtualMFADeviceOutput struct {
 }
 
 type metadataCreateVirtualMFADeviceOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateVirtualMFADeviceResult" required:"VirtualMFADevice"`
+	SDKShapeTraits bool `type:"structure" required:"VirtualMFADevice"`
 }
 
 type DeactivateMFADeviceInput struct {
@@ -3449,7 +3504,7 @@ type GenerateCredentialReportOutput struct {
 }
 
 type metadataGenerateCredentialReportOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GenerateCredentialReportResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetAccountAuthorizationDetailsInput struct {
@@ -3475,7 +3530,7 @@ type GetAccountAuthorizationDetailsOutput struct {
 }
 
 type metadataGetAccountAuthorizationDetailsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetAccountAuthorizationDetailsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetAccountPasswordPolicyInput struct {
@@ -3493,7 +3548,7 @@ type GetAccountPasswordPolicyOutput struct {
 }
 
 type metadataGetAccountPasswordPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetAccountPasswordPolicyResult" required:"PasswordPolicy"`
+	SDKShapeTraits bool `type:"structure" required:"PasswordPolicy"`
 }
 
 type GetAccountSummaryInput struct {
@@ -3511,7 +3566,7 @@ type GetAccountSummaryOutput struct {
 }
 
 type metadataGetAccountSummaryOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetAccountSummaryResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetCredentialReportInput struct {
@@ -3531,7 +3586,7 @@ type GetCredentialReportOutput struct {
 }
 
 type metadataGetCredentialReportOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetCredentialReportResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetGroupInput struct {
@@ -3556,7 +3611,7 @@ type GetGroupOutput struct {
 }
 
 type metadataGetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetGroupResult" required:"Group,Users"`
+	SDKShapeTraits bool `type:"structure" required:"Group,Users"`
 }
 
 type GetGroupPolicyInput struct {
@@ -3579,7 +3634,7 @@ type GetGroupPolicyOutput struct {
 }
 
 type metadataGetGroupPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetGroupPolicyResult" required:"GroupName,PolicyName,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure" required:"GroupName,PolicyName,PolicyDocument"`
 }
 
 type GetInstanceProfileInput struct {
@@ -3599,7 +3654,7 @@ type GetInstanceProfileOutput struct {
 }
 
 type metadataGetInstanceProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetInstanceProfileResult" required:"InstanceProfile"`
+	SDKShapeTraits bool `type:"structure" required:"InstanceProfile"`
 }
 
 type GetLoginProfileInput struct {
@@ -3619,7 +3674,7 @@ type GetLoginProfileOutput struct {
 }
 
 type metadataGetLoginProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetLoginProfileResult" required:"LoginProfile"`
+	SDKShapeTraits bool `type:"structure" required:"LoginProfile"`
 }
 
 type GetOpenIDConnectProviderInput struct {
@@ -3642,7 +3697,7 @@ type GetOpenIDConnectProviderOutput struct {
 }
 
 type metadataGetOpenIDConnectProviderOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetOpenIDConnectProviderResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetPolicyInput struct {
@@ -3662,7 +3717,7 @@ type GetPolicyOutput struct {
 }
 
 type metadataGetPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetPolicyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetPolicyVersionInput struct {
@@ -3683,7 +3738,7 @@ type GetPolicyVersionOutput struct {
 }
 
 type metadataGetPolicyVersionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetPolicyVersionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetRoleInput struct {
@@ -3703,7 +3758,7 @@ type GetRoleOutput struct {
 }
 
 type metadataGetRoleOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetRoleResult" required:"Role"`
+	SDKShapeTraits bool `type:"structure" required:"Role"`
 }
 
 type GetRolePolicyInput struct {
@@ -3726,7 +3781,7 @@ type GetRolePolicyOutput struct {
 }
 
 type metadataGetRolePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetRolePolicyResult" required:"RoleName,PolicyName,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyName,PolicyDocument"`
 }
 
 type GetSAMLProviderInput struct {
@@ -3748,7 +3803,7 @@ type GetSAMLProviderOutput struct {
 }
 
 type metadataGetSAMLProviderOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetSAMLProviderResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetServerCertificateInput struct {
@@ -3768,7 +3823,7 @@ type GetServerCertificateOutput struct {
 }
 
 type metadataGetServerCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetServerCertificateResult" required:"ServerCertificate"`
+	SDKShapeTraits bool `type:"structure" required:"ServerCertificate"`
 }
 
 type GetUserInput struct {
@@ -3788,7 +3843,7 @@ type GetUserOutput struct {
 }
 
 type metadataGetUserOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetUserResult" required:"User"`
+	SDKShapeTraits bool `type:"structure" required:"User"`
 }
 
 type GetUserPolicyInput struct {
@@ -3811,7 +3866,7 @@ type GetUserPolicyOutput struct {
 }
 
 type metadataGetUserPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetUserPolicyResult" required:"UserName,PolicyName,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure" required:"UserName,PolicyName,PolicyDocument"`
 }
 
 type Group struct {
@@ -3879,7 +3934,7 @@ type ListAccessKeysOutput struct {
 }
 
 type metadataListAccessKeysOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListAccessKeysResult" required:"AccessKeyMetadata"`
+	SDKShapeTraits bool `type:"structure" required:"AccessKeyMetadata"`
 }
 
 type ListAccountAliasesInput struct {
@@ -3902,7 +3957,7 @@ type ListAccountAliasesOutput struct {
 }
 
 type metadataListAccountAliasesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListAccountAliasesResult" required:"AccountAliases"`
+	SDKShapeTraits bool `type:"structure" required:"AccountAliases"`
 }
 
 type ListAttachedGroupPoliciesInput struct {
@@ -3927,7 +3982,7 @@ type ListAttachedGroupPoliciesOutput struct {
 }
 
 type metadataListAttachedGroupPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListAttachedGroupPoliciesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAttachedRolePoliciesInput struct {
@@ -3952,7 +4007,7 @@ type ListAttachedRolePoliciesOutput struct {
 }
 
 type metadataListAttachedRolePoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListAttachedRolePoliciesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAttachedUserPoliciesInput struct {
@@ -3977,7 +4032,7 @@ type ListAttachedUserPoliciesOutput struct {
 }
 
 type metadataListAttachedUserPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListAttachedUserPoliciesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListEntitiesForPolicyInput struct {
@@ -4005,7 +4060,7 @@ type ListEntitiesForPolicyOutput struct {
 }
 
 type metadataListEntitiesForPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListEntitiesForPolicyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListGroupPoliciesInput struct {
@@ -4029,7 +4084,7 @@ type ListGroupPoliciesOutput struct {
 }
 
 type metadataListGroupPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListGroupPoliciesResult" required:"PolicyNames"`
+	SDKShapeTraits bool `type:"structure" required:"PolicyNames"`
 }
 
 type ListGroupsForUserInput struct {
@@ -4053,7 +4108,7 @@ type ListGroupsForUserOutput struct {
 }
 
 type metadataListGroupsForUserOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListGroupsForUserResult" required:"Groups"`
+	SDKShapeTraits bool `type:"structure" required:"Groups"`
 }
 
 type ListGroupsInput struct {
@@ -4077,7 +4132,7 @@ type ListGroupsOutput struct {
 }
 
 type metadataListGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListGroupsResult" required:"Groups"`
+	SDKShapeTraits bool `type:"structure" required:"Groups"`
 }
 
 type ListInstanceProfilesForRoleInput struct {
@@ -4101,7 +4156,7 @@ type ListInstanceProfilesForRoleOutput struct {
 }
 
 type metadataListInstanceProfilesForRoleOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListInstanceProfilesForRoleResult" required:"InstanceProfiles"`
+	SDKShapeTraits bool `type:"structure" required:"InstanceProfiles"`
 }
 
 type ListInstanceProfilesInput struct {
@@ -4125,7 +4180,7 @@ type ListInstanceProfilesOutput struct {
 }
 
 type metadataListInstanceProfilesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListInstanceProfilesResult" required:"InstanceProfiles"`
+	SDKShapeTraits bool `type:"structure" required:"InstanceProfiles"`
 }
 
 type ListMFADevicesInput struct {
@@ -4149,7 +4204,7 @@ type ListMFADevicesOutput struct {
 }
 
 type metadataListMFADevicesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListMFADevicesResult" required:"MFADevices"`
+	SDKShapeTraits bool `type:"structure" required:"MFADevices"`
 }
 
 type ListOpenIDConnectProvidersInput struct {
@@ -4167,7 +4222,7 @@ type ListOpenIDConnectProvidersOutput struct {
 }
 
 type metadataListOpenIDConnectProvidersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListOpenIDConnectProvidersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListPoliciesInput struct {
@@ -4193,7 +4248,7 @@ type ListPoliciesOutput struct {
 }
 
 type metadataListPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListPoliciesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListPolicyVersionsInput struct {
@@ -4217,7 +4272,7 @@ type ListPolicyVersionsOutput struct {
 }
 
 type metadataListPolicyVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListPolicyVersionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListRolePoliciesInput struct {
@@ -4241,7 +4296,7 @@ type ListRolePoliciesOutput struct {
 }
 
 type metadataListRolePoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListRolePoliciesResult" required:"PolicyNames"`
+	SDKShapeTraits bool `type:"structure" required:"PolicyNames"`
 }
 
 type ListRolesInput struct {
@@ -4265,7 +4320,7 @@ type ListRolesOutput struct {
 }
 
 type metadataListRolesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListRolesResult" required:"Roles"`
+	SDKShapeTraits bool `type:"structure" required:"Roles"`
 }
 
 type ListSAMLProvidersInput struct {
@@ -4283,7 +4338,7 @@ type ListSAMLProvidersOutput struct {
 }
 
 type metadataListSAMLProvidersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListSAMLProvidersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListServerCertificatesInput struct {
@@ -4307,7 +4362,7 @@ type ListServerCertificatesOutput struct {
 }
 
 type metadataListServerCertificatesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListServerCertificatesResult" required:"ServerCertificateMetadataList"`
+	SDKShapeTraits bool `type:"structure" required:"ServerCertificateMetadataList"`
 }
 
 type ListSigningCertificatesInput struct {
@@ -4331,7 +4386,7 @@ type ListSigningCertificatesOutput struct {
 }
 
 type metadataListSigningCertificatesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListSigningCertificatesResult" required:"Certificates"`
+	SDKShapeTraits bool `type:"structure" required:"Certificates"`
 }
 
 type ListUserPoliciesInput struct {
@@ -4355,7 +4410,7 @@ type ListUserPoliciesOutput struct {
 }
 
 type metadataListUserPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListUserPoliciesResult" required:"PolicyNames"`
+	SDKShapeTraits bool `type:"structure" required:"PolicyNames"`
 }
 
 type ListUsersInput struct {
@@ -4379,7 +4434,7 @@ type ListUsersOutput struct {
 }
 
 type metadataListUsersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListUsersResult" required:"Users"`
+	SDKShapeTraits bool `type:"structure" required:"Users"`
 }
 
 type ListVirtualMFADevicesInput struct {
@@ -4403,7 +4458,7 @@ type ListVirtualMFADevicesOutput struct {
 }
 
 type metadataListVirtualMFADevicesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListVirtualMFADevicesResult" required:"VirtualMFADevices"`
+	SDKShapeTraits bool `type:"structure" required:"VirtualMFADevices"`
 }
 
 type LoginProfile struct {
@@ -4916,7 +4971,7 @@ type UpdateSAMLProviderOutput struct {
 }
 
 type metadataUpdateSAMLProviderOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"UpdateSAMLProviderResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateServerCertificateInput struct {
@@ -5000,7 +5055,7 @@ type UploadServerCertificateOutput struct {
 }
 
 type metadataUploadServerCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"UploadServerCertificateResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UploadSigningCertificateInput struct {
@@ -5021,7 +5076,7 @@ type UploadSigningCertificateOutput struct {
 }
 
 type metadataUploadSigningCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"UploadSigningCertificateResult" required:"Certificate"`
+	SDKShapeTraits bool `type:"structure" required:"Certificate"`
 }
 
 type User struct {

@@ -12,9 +12,10 @@ import (
 func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *aws.Request, output *BuildSuggestersOutput) {
 	if opBuildSuggesters == nil {
 		opBuildSuggesters = &aws.Operation{
-			Name:       "BuildSuggesters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "BuildSuggesters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "BuildSuggestersResult",
 		}
 	}
 
@@ -37,9 +38,10 @@ var opBuildSuggesters *aws.Operation
 func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *aws.Request, output *CreateDomainOutput) {
 	if opCreateDomain == nil {
 		opCreateDomain = &aws.Operation{
-			Name:       "CreateDomain",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateDomain",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateDomainResult",
 		}
 	}
 
@@ -62,9 +64,10 @@ var opCreateDomain *aws.Operation
 func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInput) (req *aws.Request, output *DefineAnalysisSchemeOutput) {
 	if opDefineAnalysisScheme == nil {
 		opDefineAnalysisScheme = &aws.Operation{
-			Name:       "DefineAnalysisScheme",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DefineAnalysisScheme",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DefineAnalysisSchemeResult",
 		}
 	}
 
@@ -87,9 +90,10 @@ var opDefineAnalysisScheme *aws.Operation
 func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req *aws.Request, output *DefineExpressionOutput) {
 	if opDefineExpression == nil {
 		opDefineExpression = &aws.Operation{
-			Name:       "DefineExpression",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DefineExpression",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DefineExpressionResult",
 		}
 	}
 
@@ -112,9 +116,10 @@ var opDefineExpression *aws.Operation
 func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req *aws.Request, output *DefineIndexFieldOutput) {
 	if opDefineIndexField == nil {
 		opDefineIndexField = &aws.Operation{
-			Name:       "DefineIndexField",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DefineIndexField",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DefineIndexFieldResult",
 		}
 	}
 
@@ -137,9 +142,10 @@ var opDefineIndexField *aws.Operation
 func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *aws.Request, output *DefineSuggesterOutput) {
 	if opDefineSuggester == nil {
 		opDefineSuggester = &aws.Operation{
-			Name:       "DefineSuggester",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DefineSuggester",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DefineSuggesterResult",
 		}
 	}
 
@@ -162,9 +168,10 @@ var opDefineSuggester *aws.Operation
 func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInput) (req *aws.Request, output *DeleteAnalysisSchemeOutput) {
 	if opDeleteAnalysisScheme == nil {
 		opDeleteAnalysisScheme = &aws.Operation{
-			Name:       "DeleteAnalysisScheme",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteAnalysisScheme",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteAnalysisSchemeResult",
 		}
 	}
 
@@ -187,9 +194,10 @@ var opDeleteAnalysisScheme *aws.Operation
 func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *aws.Request, output *DeleteDomainOutput) {
 	if opDeleteDomain == nil {
 		opDeleteDomain = &aws.Operation{
-			Name:       "DeleteDomain",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteDomain",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteDomainResult",
 		}
 	}
 
@@ -212,9 +220,10 @@ var opDeleteDomain *aws.Operation
 func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req *aws.Request, output *DeleteExpressionOutput) {
 	if opDeleteExpression == nil {
 		opDeleteExpression = &aws.Operation{
-			Name:       "DeleteExpression",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteExpression",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteExpressionResult",
 		}
 	}
 
@@ -237,9 +246,10 @@ var opDeleteExpression *aws.Operation
 func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req *aws.Request, output *DeleteIndexFieldOutput) {
 	if opDeleteIndexField == nil {
 		opDeleteIndexField = &aws.Operation{
-			Name:       "DeleteIndexField",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteIndexField",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteIndexFieldResult",
 		}
 	}
 
@@ -262,9 +272,10 @@ var opDeleteIndexField *aws.Operation
 func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *aws.Request, output *DeleteSuggesterOutput) {
 	if opDeleteSuggester == nil {
 		opDeleteSuggester = &aws.Operation{
-			Name:       "DeleteSuggester",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteSuggester",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteSuggesterResult",
 		}
 	}
 
@@ -287,9 +298,10 @@ var opDeleteSuggester *aws.Operation
 func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSchemesInput) (req *aws.Request, output *DescribeAnalysisSchemesOutput) {
 	if opDescribeAnalysisSchemes == nil {
 		opDescribeAnalysisSchemes = &aws.Operation{
-			Name:       "DescribeAnalysisSchemes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeAnalysisSchemes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeAnalysisSchemesResult",
 		}
 	}
 
@@ -312,9 +324,10 @@ var opDescribeAnalysisSchemes *aws.Operation
 func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabilityOptionsInput) (req *aws.Request, output *DescribeAvailabilityOptionsOutput) {
 	if opDescribeAvailabilityOptions == nil {
 		opDescribeAvailabilityOptions = &aws.Operation{
-			Name:       "DescribeAvailabilityOptions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeAvailabilityOptions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeAvailabilityOptionsResult",
 		}
 	}
 
@@ -337,9 +350,10 @@ var opDescribeAvailabilityOptions *aws.Operation
 func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *aws.Request, output *DescribeDomainsOutput) {
 	if opDescribeDomains == nil {
 		opDescribeDomains = &aws.Operation{
-			Name:       "DescribeDomains",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeDomains",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeDomainsResult",
 		}
 	}
 
@@ -362,9 +376,10 @@ var opDescribeDomains *aws.Operation
 func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput) (req *aws.Request, output *DescribeExpressionsOutput) {
 	if opDescribeExpressions == nil {
 		opDescribeExpressions = &aws.Operation{
-			Name:       "DescribeExpressions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeExpressions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeExpressionsResult",
 		}
 	}
 
@@ -387,9 +402,10 @@ var opDescribeExpressions *aws.Operation
 func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput) (req *aws.Request, output *DescribeIndexFieldsOutput) {
 	if opDescribeIndexFields == nil {
 		opDescribeIndexFields = &aws.Operation{
-			Name:       "DescribeIndexFields",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeIndexFields",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeIndexFieldsResult",
 		}
 	}
 
@@ -412,9 +428,10 @@ var opDescribeIndexFields *aws.Operation
 func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingParametersInput) (req *aws.Request, output *DescribeScalingParametersOutput) {
 	if opDescribeScalingParameters == nil {
 		opDescribeScalingParameters = &aws.Operation{
-			Name:       "DescribeScalingParameters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeScalingParameters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeScalingParametersResult",
 		}
 	}
 
@@ -437,9 +454,10 @@ var opDescribeScalingParameters *aws.Operation
 func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServiceAccessPoliciesInput) (req *aws.Request, output *DescribeServiceAccessPoliciesOutput) {
 	if opDescribeServiceAccessPolicies == nil {
 		opDescribeServiceAccessPolicies = &aws.Operation{
-			Name:       "DescribeServiceAccessPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeServiceAccessPolicies",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeServiceAccessPoliciesResult",
 		}
 	}
 
@@ -462,9 +480,10 @@ var opDescribeServiceAccessPolicies *aws.Operation
 func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) (req *aws.Request, output *DescribeSuggestersOutput) {
 	if opDescribeSuggesters == nil {
 		opDescribeSuggesters = &aws.Operation{
-			Name:       "DescribeSuggesters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeSuggesters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeSuggestersResult",
 		}
 	}
 
@@ -487,9 +506,10 @@ var opDescribeSuggesters *aws.Operation
 func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *aws.Request, output *IndexDocumentsOutput) {
 	if opIndexDocuments == nil {
 		opIndexDocuments = &aws.Operation{
-			Name:       "IndexDocuments",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "IndexDocuments",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "IndexDocumentsResult",
 		}
 	}
 
@@ -512,9 +532,10 @@ var opIndexDocuments *aws.Operation
 func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *aws.Request, output *ListDomainNamesOutput) {
 	if opListDomainNames == nil {
 		opListDomainNames = &aws.Operation{
-			Name:       "ListDomainNames",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListDomainNames",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListDomainNamesResult",
 		}
 	}
 
@@ -537,9 +558,10 @@ var opListDomainNames *aws.Operation
 func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailabilityOptionsInput) (req *aws.Request, output *UpdateAvailabilityOptionsOutput) {
 	if opUpdateAvailabilityOptions == nil {
 		opUpdateAvailabilityOptions = &aws.Operation{
-			Name:       "UpdateAvailabilityOptions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "UpdateAvailabilityOptions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "UpdateAvailabilityOptionsResult",
 		}
 	}
 
@@ -562,9 +584,10 @@ var opUpdateAvailabilityOptions *aws.Operation
 func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParametersInput) (req *aws.Request, output *UpdateScalingParametersOutput) {
 	if opUpdateScalingParameters == nil {
 		opUpdateScalingParameters = &aws.Operation{
-			Name:       "UpdateScalingParameters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "UpdateScalingParameters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "UpdateScalingParametersResult",
 		}
 	}
 
@@ -587,9 +610,10 @@ var opUpdateScalingParameters *aws.Operation
 func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAccessPoliciesInput) (req *aws.Request, output *UpdateServiceAccessPoliciesOutput) {
 	if opUpdateServiceAccessPolicies == nil {
 		opUpdateServiceAccessPolicies = &aws.Operation{
-			Name:       "UpdateServiceAccessPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "UpdateServiceAccessPolicies",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "UpdateServiceAccessPoliciesResult",
 		}
 	}
 
@@ -684,7 +708,7 @@ type BuildSuggestersOutput struct {
 }
 
 type metadataBuildSuggestersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"BuildSuggestersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDomainInput struct {
@@ -704,7 +728,7 @@ type CreateDomainOutput struct {
 }
 
 type metadataCreateDomainOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDomainResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DateArrayOptions struct {
@@ -754,7 +778,7 @@ type DefineAnalysisSchemeOutput struct {
 }
 
 type metadataDefineAnalysisSchemeOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DefineAnalysisSchemeResult" required:"AnalysisScheme"`
+	SDKShapeTraits bool `type:"structure" required:"AnalysisScheme"`
 }
 
 type DefineExpressionInput struct {
@@ -775,7 +799,7 @@ type DefineExpressionOutput struct {
 }
 
 type metadataDefineExpressionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DefineExpressionResult" required:"Expression"`
+	SDKShapeTraits bool `type:"structure" required:"Expression"`
 }
 
 type DefineIndexFieldInput struct {
@@ -796,7 +820,7 @@ type DefineIndexFieldOutput struct {
 }
 
 type metadataDefineIndexFieldOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DefineIndexFieldResult" required:"IndexField"`
+	SDKShapeTraits bool `type:"structure" required:"IndexField"`
 }
 
 type DefineSuggesterInput struct {
@@ -817,7 +841,7 @@ type DefineSuggesterOutput struct {
 }
 
 type metadataDefineSuggesterOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DefineSuggesterResult" required:"Suggester"`
+	SDKShapeTraits bool `type:"structure" required:"Suggester"`
 }
 
 type DeleteAnalysisSchemeInput struct {
@@ -838,7 +862,7 @@ type DeleteAnalysisSchemeOutput struct {
 }
 
 type metadataDeleteAnalysisSchemeOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteAnalysisSchemeResult" required:"AnalysisScheme"`
+	SDKShapeTraits bool `type:"structure" required:"AnalysisScheme"`
 }
 
 type DeleteDomainInput struct {
@@ -858,7 +882,7 @@ type DeleteDomainOutput struct {
 }
 
 type metadataDeleteDomainOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteDomainResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteExpressionInput struct {
@@ -879,7 +903,7 @@ type DeleteExpressionOutput struct {
 }
 
 type metadataDeleteExpressionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteExpressionResult" required:"Expression"`
+	SDKShapeTraits bool `type:"structure" required:"Expression"`
 }
 
 type DeleteIndexFieldInput struct {
@@ -900,7 +924,7 @@ type DeleteIndexFieldOutput struct {
 }
 
 type metadataDeleteIndexFieldOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteIndexFieldResult" required:"IndexField"`
+	SDKShapeTraits bool `type:"structure" required:"IndexField"`
 }
 
 type DeleteSuggesterInput struct {
@@ -921,7 +945,7 @@ type DeleteSuggesterOutput struct {
 }
 
 type metadataDeleteSuggesterOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteSuggesterResult" required:"Suggester"`
+	SDKShapeTraits bool `type:"structure" required:"Suggester"`
 }
 
 type DescribeAnalysisSchemesInput struct {
@@ -943,7 +967,7 @@ type DescribeAnalysisSchemesOutput struct {
 }
 
 type metadataDescribeAnalysisSchemesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAnalysisSchemesResult" required:"AnalysisSchemes"`
+	SDKShapeTraits bool `type:"structure" required:"AnalysisSchemes"`
 }
 
 type DescribeAvailabilityOptionsInput struct {
@@ -964,7 +988,7 @@ type DescribeAvailabilityOptionsOutput struct {
 }
 
 type metadataDescribeAvailabilityOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAvailabilityOptionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDomainsInput struct {
@@ -984,7 +1008,7 @@ type DescribeDomainsOutput struct {
 }
 
 type metadataDescribeDomainsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDomainsResult" required:"DomainStatusList"`
+	SDKShapeTraits bool `type:"structure" required:"DomainStatusList"`
 }
 
 type DescribeExpressionsInput struct {
@@ -1006,7 +1030,7 @@ type DescribeExpressionsOutput struct {
 }
 
 type metadataDescribeExpressionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeExpressionsResult" required:"Expressions"`
+	SDKShapeTraits bool `type:"structure" required:"Expressions"`
 }
 
 type DescribeIndexFieldsInput struct {
@@ -1028,7 +1052,7 @@ type DescribeIndexFieldsOutput struct {
 }
 
 type metadataDescribeIndexFieldsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeIndexFieldsResult" required:"IndexFields"`
+	SDKShapeTraits bool `type:"structure" required:"IndexFields"`
 }
 
 type DescribeScalingParametersInput struct {
@@ -1048,7 +1072,7 @@ type DescribeScalingParametersOutput struct {
 }
 
 type metadataDescribeScalingParametersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeScalingParametersResult" required:"ScalingParameters"`
+	SDKShapeTraits bool `type:"structure" required:"ScalingParameters"`
 }
 
 type DescribeServiceAccessPoliciesInput struct {
@@ -1069,7 +1093,7 @@ type DescribeServiceAccessPoliciesOutput struct {
 }
 
 type metadataDescribeServiceAccessPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeServiceAccessPoliciesResult" required:"AccessPolicies"`
+	SDKShapeTraits bool `type:"structure" required:"AccessPolicies"`
 }
 
 type DescribeSuggestersInput struct {
@@ -1091,7 +1115,7 @@ type DescribeSuggestersOutput struct {
 }
 
 type metadataDescribeSuggestersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeSuggestersResult" required:"Suggesters"`
+	SDKShapeTraits bool `type:"structure" required:"Suggesters"`
 }
 
 type DocumentSuggesterOptions struct {
@@ -1196,7 +1220,7 @@ type IndexDocumentsOutput struct {
 }
 
 type metadataIndexDocumentsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"IndexDocumentsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type IndexField struct {
@@ -1302,7 +1326,7 @@ type ListDomainNamesOutput struct {
 }
 
 type metadataListDomainNamesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListDomainNamesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type LiteralArrayOptions struct {
@@ -1450,7 +1474,7 @@ type UpdateAvailabilityOptionsOutput struct {
 }
 
 type metadataUpdateAvailabilityOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"UpdateAvailabilityOptionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateScalingParametersInput struct {
@@ -1471,7 +1495,7 @@ type UpdateScalingParametersOutput struct {
 }
 
 type metadataUpdateScalingParametersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"UpdateScalingParametersResult" required:"ScalingParameters"`
+	SDKShapeTraits bool `type:"structure" required:"ScalingParameters"`
 }
 
 type UpdateServiceAccessPoliciesInput struct {
@@ -1492,5 +1516,5 @@ type UpdateServiceAccessPoliciesOutput struct {
 }
 
 type metadataUpdateServiceAccessPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"UpdateServiceAccessPoliciesResult" required:"AccessPolicies"`
+	SDKShapeTraits bool `type:"structure" required:"AccessPolicies"`
 }

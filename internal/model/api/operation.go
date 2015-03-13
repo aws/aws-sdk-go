@@ -40,8 +40,10 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	if op{{ .ExportedName }} == nil {
 		op{{ .ExportedName }} = &aws.Operation{
 			Name:       "{{ .Name }}",
-			{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",{{ end }}
-			{{ if ne .HTTP.RequestURI "" }}HTTPPath:   "{{ .HTTP.RequestURI }}",{{ end }}
+			{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",
+			{{ end }}{{ if ne .HTTP.RequestURI "" }}HTTPPath:   "{{ .HTTP.RequestURI }}",
+			{{ end }}{{ if ne .OutputRef.ResultWrapper "" }}ResultWrapper: "{{ .OutputRef.ResultWrapper }}",
+			{{ end }}
 		}
 	}
 

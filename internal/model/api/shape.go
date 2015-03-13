@@ -43,7 +43,6 @@ type Shape struct {
 	Exception     bool
 	Enum          []string
 	Flattened     bool
-	ResultWrapper string
 	Streaming     bool
 	Location      string
 	LocationName  string
@@ -177,11 +176,6 @@ func (ref *ShapeRef) GoTags(toplevel bool) string {
 	}
 
 	if toplevel {
-		if ref.ResultWrapper != "" {
-			code += `resultWrapper:"` + ref.ResultWrapper + `" `
-		} else if ref.Shape.ResultWrapper != "" {
-			code += `resultWrapper:"` + ref.Shape.ResultWrapper + `" `
-		}
 		if ref.Shape.Payload != "" {
 			code += `payload:"` + ref.Shape.Payload + `" `
 		}

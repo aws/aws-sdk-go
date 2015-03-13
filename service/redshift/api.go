@@ -12,9 +12,10 @@ import (
 func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeClusterSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeClusterSecurityGroupIngressOutput) {
 	if opAuthorizeClusterSecurityGroupIngress == nil {
 		opAuthorizeClusterSecurityGroupIngress = &aws.Operation{
-			Name:       "AuthorizeClusterSecurityGroupIngress",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "AuthorizeClusterSecurityGroupIngress",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "AuthorizeClusterSecurityGroupIngressResult",
 		}
 	}
 
@@ -37,9 +38,10 @@ var opAuthorizeClusterSecurityGroupIngress *aws.Operation
 func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccessInput) (req *aws.Request, output *AuthorizeSnapshotAccessOutput) {
 	if opAuthorizeSnapshotAccess == nil {
 		opAuthorizeSnapshotAccess = &aws.Operation{
-			Name:       "AuthorizeSnapshotAccess",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "AuthorizeSnapshotAccess",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "AuthorizeSnapshotAccessResult",
 		}
 	}
 
@@ -62,9 +64,10 @@ var opAuthorizeSnapshotAccess *aws.Operation
 func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (req *aws.Request, output *CopyClusterSnapshotOutput) {
 	if opCopyClusterSnapshot == nil {
 		opCopyClusterSnapshot = &aws.Operation{
-			Name:       "CopyClusterSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CopyClusterSnapshot",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CopyClusterSnapshotResult",
 		}
 	}
 
@@ -87,9 +90,10 @@ var opCopyClusterSnapshot *aws.Operation
 func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request, output *CreateClusterOutput) {
 	if opCreateCluster == nil {
 		opCreateCluster = &aws.Operation{
-			Name:       "CreateCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateCluster",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateClusterResult",
 		}
 	}
 
@@ -112,9 +116,10 @@ var opCreateCluster *aws.Operation
 func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParameterGroupInput) (req *aws.Request, output *CreateClusterParameterGroupOutput) {
 	if opCreateClusterParameterGroup == nil {
 		opCreateClusterParameterGroup = &aws.Operation{
-			Name:       "CreateClusterParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateClusterParameterGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateClusterParameterGroupResult",
 		}
 	}
 
@@ -137,9 +142,10 @@ var opCreateClusterParameterGroup *aws.Operation
 func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurityGroupInput) (req *aws.Request, output *CreateClusterSecurityGroupOutput) {
 	if opCreateClusterSecurityGroup == nil {
 		opCreateClusterSecurityGroup = &aws.Operation{
-			Name:       "CreateClusterSecurityGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateClusterSecurityGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateClusterSecurityGroupResult",
 		}
 	}
 
@@ -162,9 +168,10 @@ var opCreateClusterSecurityGroup *aws.Operation
 func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInput) (req *aws.Request, output *CreateClusterSnapshotOutput) {
 	if opCreateClusterSnapshot == nil {
 		opCreateClusterSnapshot = &aws.Operation{
-			Name:       "CreateClusterSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateClusterSnapshot",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateClusterSnapshotResult",
 		}
 	}
 
@@ -187,9 +194,10 @@ var opCreateClusterSnapshot *aws.Operation
 func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGroupInput) (req *aws.Request, output *CreateClusterSubnetGroupOutput) {
 	if opCreateClusterSubnetGroup == nil {
 		opCreateClusterSubnetGroup = &aws.Operation{
-			Name:       "CreateClusterSubnetGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateClusterSubnetGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateClusterSubnetGroupResult",
 		}
 	}
 
@@ -212,9 +220,10 @@ var opCreateClusterSubnetGroup *aws.Operation
 func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *aws.Request, output *CreateEventSubscriptionOutput) {
 	if opCreateEventSubscription == nil {
 		opCreateEventSubscription = &aws.Operation{
-			Name:       "CreateEventSubscription",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateEventSubscription",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateEventSubscriptionResult",
 		}
 	}
 
@@ -237,9 +246,10 @@ var opCreateEventSubscription *aws.Operation
 func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCertificateInput) (req *aws.Request, output *CreateHSMClientCertificateOutput) {
 	if opCreateHSMClientCertificate == nil {
 		opCreateHSMClientCertificate = &aws.Operation{
-			Name:       "CreateHsmClientCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateHsmClientCertificate",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateHsmClientCertificateResult",
 		}
 	}
 
@@ -262,9 +272,10 @@ var opCreateHSMClientCertificate *aws.Operation
 func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationInput) (req *aws.Request, output *CreateHSMConfigurationOutput) {
 	if opCreateHSMConfiguration == nil {
 		opCreateHSMConfiguration = &aws.Operation{
-			Name:       "CreateHsmConfiguration",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateHsmConfiguration",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateHsmConfigurationResult",
 		}
 	}
 
@@ -312,9 +323,10 @@ var opCreateTags *aws.Operation
 func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request, output *DeleteClusterOutput) {
 	if opDeleteCluster == nil {
 		opDeleteCluster = &aws.Operation{
-			Name:       "DeleteCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteCluster",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteClusterResult",
 		}
 	}
 
@@ -387,9 +399,10 @@ var opDeleteClusterSecurityGroup *aws.Operation
 func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotInput) (req *aws.Request, output *DeleteClusterSnapshotOutput) {
 	if opDeleteClusterSnapshot == nil {
 		opDeleteClusterSnapshot = &aws.Operation{
-			Name:       "DeleteClusterSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteClusterSnapshot",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteClusterSnapshotResult",
 		}
 	}
 
@@ -537,9 +550,10 @@ var opDeleteTags *aws.Operation
 func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterParameterGroupsInput) (req *aws.Request, output *DescribeClusterParameterGroupsOutput) {
 	if opDescribeClusterParameterGroups == nil {
 		opDescribeClusterParameterGroups = &aws.Operation{
-			Name:       "DescribeClusterParameterGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeClusterParameterGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeClusterParameterGroupsResult",
 		}
 	}
 
@@ -562,9 +576,10 @@ var opDescribeClusterParameterGroups *aws.Operation
 func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParametersInput) (req *aws.Request, output *DescribeClusterParametersOutput) {
 	if opDescribeClusterParameters == nil {
 		opDescribeClusterParameters = &aws.Operation{
-			Name:       "DescribeClusterParameters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeClusterParameters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeClusterParametersResult",
 		}
 	}
 
@@ -587,9 +602,10 @@ var opDescribeClusterParameters *aws.Operation
 func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSecurityGroupsInput) (req *aws.Request, output *DescribeClusterSecurityGroupsOutput) {
 	if opDescribeClusterSecurityGroups == nil {
 		opDescribeClusterSecurityGroups = &aws.Operation{
-			Name:       "DescribeClusterSecurityGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeClusterSecurityGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeClusterSecurityGroupsResult",
 		}
 	}
 
@@ -612,9 +628,10 @@ var opDescribeClusterSecurityGroups *aws.Operation
 func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapshotsInput) (req *aws.Request, output *DescribeClusterSnapshotsOutput) {
 	if opDescribeClusterSnapshots == nil {
 		opDescribeClusterSnapshots = &aws.Operation{
-			Name:       "DescribeClusterSnapshots",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeClusterSnapshots",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeClusterSnapshotsResult",
 		}
 	}
 
@@ -637,9 +654,10 @@ var opDescribeClusterSnapshots *aws.Operation
 func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubnetGroupsInput) (req *aws.Request, output *DescribeClusterSubnetGroupsOutput) {
 	if opDescribeClusterSubnetGroups == nil {
 		opDescribeClusterSubnetGroups = &aws.Operation{
-			Name:       "DescribeClusterSubnetGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeClusterSubnetGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeClusterSubnetGroupsResult",
 		}
 	}
 
@@ -662,9 +680,10 @@ var opDescribeClusterSubnetGroups *aws.Operation
 func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersionsInput) (req *aws.Request, output *DescribeClusterVersionsOutput) {
 	if opDescribeClusterVersions == nil {
 		opDescribeClusterVersions = &aws.Operation{
-			Name:       "DescribeClusterVersions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeClusterVersions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeClusterVersionsResult",
 		}
 	}
 
@@ -687,9 +706,10 @@ var opDescribeClusterVersions *aws.Operation
 func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Request, output *DescribeClustersOutput) {
 	if opDescribeClusters == nil {
 		opDescribeClusters = &aws.Operation{
-			Name:       "DescribeClusters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeClusters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeClustersResult",
 		}
 	}
 
@@ -712,9 +732,10 @@ var opDescribeClusters *aws.Operation
 func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaultClusterParametersInput) (req *aws.Request, output *DescribeDefaultClusterParametersOutput) {
 	if opDescribeDefaultClusterParameters == nil {
 		opDescribeDefaultClusterParameters = &aws.Operation{
-			Name:       "DescribeDefaultClusterParameters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeDefaultClusterParameters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeDefaultClusterParametersResult",
 		}
 	}
 
@@ -737,9 +758,10 @@ var opDescribeDefaultClusterParameters *aws.Operation
 func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *aws.Request, output *DescribeEventCategoriesOutput) {
 	if opDescribeEventCategories == nil {
 		opDescribeEventCategories = &aws.Operation{
-			Name:       "DescribeEventCategories",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEventCategories",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEventCategoriesResult",
 		}
 	}
 
@@ -762,9 +784,10 @@ var opDescribeEventCategories *aws.Operation
 func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *aws.Request, output *DescribeEventSubscriptionsOutput) {
 	if opDescribeEventSubscriptions == nil {
 		opDescribeEventSubscriptions = &aws.Operation{
-			Name:       "DescribeEventSubscriptions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEventSubscriptions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEventSubscriptionsResult",
 		}
 	}
 
@@ -787,9 +810,10 @@ var opDescribeEventSubscriptions *aws.Operation
 func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
-			Name:       "DescribeEvents",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEvents",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEventsResult",
 		}
 	}
 
@@ -812,9 +836,10 @@ var opDescribeEvents *aws.Operation
 func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClientCertificatesInput) (req *aws.Request, output *DescribeHSMClientCertificatesOutput) {
 	if opDescribeHSMClientCertificates == nil {
 		opDescribeHSMClientCertificates = &aws.Operation{
-			Name:       "DescribeHsmClientCertificates",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeHsmClientCertificates",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeHsmClientCertificatesResult",
 		}
 	}
 
@@ -837,9 +862,10 @@ var opDescribeHSMClientCertificates *aws.Operation
 func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurationsInput) (req *aws.Request, output *DescribeHSMConfigurationsOutput) {
 	if opDescribeHSMConfigurations == nil {
 		opDescribeHSMConfigurations = &aws.Operation{
-			Name:       "DescribeHsmConfigurations",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeHsmConfigurations",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeHsmConfigurationsResult",
 		}
 	}
 
@@ -862,9 +888,10 @@ var opDescribeHSMConfigurations *aws.Operation
 func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInput) (req *aws.Request, output *LoggingStatus) {
 	if opDescribeLoggingStatus == nil {
 		opDescribeLoggingStatus = &aws.Operation{
-			Name:       "DescribeLoggingStatus",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeLoggingStatus",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeLoggingStatusResult",
 		}
 	}
 
@@ -887,9 +914,10 @@ var opDescribeLoggingStatus *aws.Operation
 func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderableClusterOptionsInput) (req *aws.Request, output *DescribeOrderableClusterOptionsOutput) {
 	if opDescribeOrderableClusterOptions == nil {
 		opDescribeOrderableClusterOptions = &aws.Operation{
-			Name:       "DescribeOrderableClusterOptions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeOrderableClusterOptions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeOrderableClusterOptionsResult",
 		}
 	}
 
@@ -912,9 +940,10 @@ var opDescribeOrderableClusterOptions *aws.Operation
 func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedNodeOfferingsInput) (req *aws.Request, output *DescribeReservedNodeOfferingsOutput) {
 	if opDescribeReservedNodeOfferings == nil {
 		opDescribeReservedNodeOfferings = &aws.Operation{
-			Name:       "DescribeReservedNodeOfferings",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeReservedNodeOfferings",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeReservedNodeOfferingsResult",
 		}
 	}
 
@@ -937,9 +966,10 @@ var opDescribeReservedNodeOfferings *aws.Operation
 func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInput) (req *aws.Request, output *DescribeReservedNodesOutput) {
 	if opDescribeReservedNodes == nil {
 		opDescribeReservedNodes = &aws.Operation{
-			Name:       "DescribeReservedNodes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeReservedNodes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeReservedNodesResult",
 		}
 	}
 
@@ -962,9 +992,10 @@ var opDescribeReservedNodes *aws.Operation
 func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *aws.Request, output *DescribeResizeOutput) {
 	if opDescribeResize == nil {
 		opDescribeResize = &aws.Operation{
-			Name:       "DescribeResize",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeResize",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeResizeResult",
 		}
 	}
 
@@ -987,9 +1018,10 @@ var opDescribeResize *aws.Operation
 func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
-			Name:       "DescribeTags",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeTags",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeTagsResult",
 		}
 	}
 
@@ -1012,9 +1044,10 @@ var opDescribeTags *aws.Operation
 func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *aws.Request, output *LoggingStatus) {
 	if opDisableLogging == nil {
 		opDisableLogging = &aws.Operation{
-			Name:       "DisableLogging",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DisableLogging",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DisableLoggingResult",
 		}
 	}
 
@@ -1037,9 +1070,10 @@ var opDisableLogging *aws.Operation
 func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (req *aws.Request, output *DisableSnapshotCopyOutput) {
 	if opDisableSnapshotCopy == nil {
 		opDisableSnapshotCopy = &aws.Operation{
-			Name:       "DisableSnapshotCopy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DisableSnapshotCopy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DisableSnapshotCopyResult",
 		}
 	}
 
@@ -1062,9 +1096,10 @@ var opDisableSnapshotCopy *aws.Operation
 func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *aws.Request, output *LoggingStatus) {
 	if opEnableLogging == nil {
 		opEnableLogging = &aws.Operation{
-			Name:       "EnableLogging",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "EnableLogging",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "EnableLoggingResult",
 		}
 	}
 
@@ -1087,9 +1122,10 @@ var opEnableLogging *aws.Operation
 func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyInput) (req *aws.Request, output *EnableSnapshotCopyOutput) {
 	if opEnableSnapshotCopy == nil {
 		opEnableSnapshotCopy = &aws.Operation{
-			Name:       "EnableSnapshotCopy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "EnableSnapshotCopy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "EnableSnapshotCopyResult",
 		}
 	}
 
@@ -1112,9 +1148,10 @@ var opEnableSnapshotCopy *aws.Operation
 func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *aws.Request, output *ModifyClusterOutput) {
 	if opModifyCluster == nil {
 		opModifyCluster = &aws.Operation{
-			Name:       "ModifyCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyCluster",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyClusterResult",
 		}
 	}
 
@@ -1137,9 +1174,10 @@ var opModifyCluster *aws.Operation
 func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
 	if opModifyClusterParameterGroup == nil {
 		opModifyClusterParameterGroup = &aws.Operation{
-			Name:       "ModifyClusterParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyClusterParameterGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyClusterParameterGroupResult",
 		}
 	}
 
@@ -1162,9 +1200,10 @@ var opModifyClusterParameterGroup *aws.Operation
 func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGroupInput) (req *aws.Request, output *ModifyClusterSubnetGroupOutput) {
 	if opModifyClusterSubnetGroup == nil {
 		opModifyClusterSubnetGroup = &aws.Operation{
-			Name:       "ModifyClusterSubnetGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyClusterSubnetGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyClusterSubnetGroupResult",
 		}
 	}
 
@@ -1187,9 +1226,10 @@ var opModifyClusterSubnetGroup *aws.Operation
 func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
 	if opModifyEventSubscription == nil {
 		opModifyEventSubscription = &aws.Operation{
-			Name:       "ModifyEventSubscription",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyEventSubscription",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyEventSubscriptionResult",
 		}
 	}
 
@@ -1212,9 +1252,10 @@ var opModifyEventSubscription *aws.Operation
 func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapshotCopyRetentionPeriodInput) (req *aws.Request, output *ModifySnapshotCopyRetentionPeriodOutput) {
 	if opModifySnapshotCopyRetentionPeriod == nil {
 		opModifySnapshotCopyRetentionPeriod = &aws.Operation{
-			Name:       "ModifySnapshotCopyRetentionPeriod",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifySnapshotCopyRetentionPeriod",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifySnapshotCopyRetentionPeriodResult",
 		}
 	}
 
@@ -1237,9 +1278,10 @@ var opModifySnapshotCopyRetentionPeriod *aws.Operation
 func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNodeOfferingInput) (req *aws.Request, output *PurchaseReservedNodeOfferingOutput) {
 	if opPurchaseReservedNodeOffering == nil {
 		opPurchaseReservedNodeOffering = &aws.Operation{
-			Name:       "PurchaseReservedNodeOffering",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "PurchaseReservedNodeOffering",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "PurchaseReservedNodeOfferingResult",
 		}
 	}
 
@@ -1262,9 +1304,10 @@ var opPurchaseReservedNodeOffering *aws.Operation
 func (c *Redshift) RebootClusterRequest(input *RebootClusterInput) (req *aws.Request, output *RebootClusterOutput) {
 	if opRebootCluster == nil {
 		opRebootCluster = &aws.Operation{
-			Name:       "RebootCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RebootCluster",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RebootClusterResult",
 		}
 	}
 
@@ -1287,9 +1330,10 @@ var opRebootCluster *aws.Operation
 func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
 	if opResetClusterParameterGroup == nil {
 		opResetClusterParameterGroup = &aws.Operation{
-			Name:       "ResetClusterParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ResetClusterParameterGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ResetClusterParameterGroupResult",
 		}
 	}
 
@@ -1312,9 +1356,10 @@ var opResetClusterParameterGroup *aws.Operation
 func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSnapshotInput) (req *aws.Request, output *RestoreFromClusterSnapshotOutput) {
 	if opRestoreFromClusterSnapshot == nil {
 		opRestoreFromClusterSnapshot = &aws.Operation{
-			Name:       "RestoreFromClusterSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RestoreFromClusterSnapshot",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RestoreFromClusterSnapshotResult",
 		}
 	}
 
@@ -1337,9 +1382,10 @@ var opRestoreFromClusterSnapshot *aws.Operation
 func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeClusterSecurityGroupIngressInput) (req *aws.Request, output *RevokeClusterSecurityGroupIngressOutput) {
 	if opRevokeClusterSecurityGroupIngress == nil {
 		opRevokeClusterSecurityGroupIngress = &aws.Operation{
-			Name:       "RevokeClusterSecurityGroupIngress",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RevokeClusterSecurityGroupIngress",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RevokeClusterSecurityGroupIngressResult",
 		}
 	}
 
@@ -1362,9 +1408,10 @@ var opRevokeClusterSecurityGroupIngress *aws.Operation
 func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput) (req *aws.Request, output *RevokeSnapshotAccessOutput) {
 	if opRevokeSnapshotAccess == nil {
 		opRevokeSnapshotAccess = &aws.Operation{
-			Name:       "RevokeSnapshotAccess",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RevokeSnapshotAccess",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RevokeSnapshotAccessResult",
 		}
 	}
 
@@ -1387,9 +1434,10 @@ var opRevokeSnapshotAccess *aws.Operation
 func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (req *aws.Request, output *RotateEncryptionKeyOutput) {
 	if opRotateEncryptionKey == nil {
 		opRotateEncryptionKey = &aws.Operation{
-			Name:       "RotateEncryptionKey",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RotateEncryptionKey",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RotateEncryptionKeyResult",
 		}
 	}
 
@@ -1438,7 +1486,7 @@ type AuthorizeClusterSecurityGroupIngressOutput struct {
 }
 
 type metadataAuthorizeClusterSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AuthorizeClusterSecurityGroupIngressResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AuthorizeSnapshotAccessInput struct {
@@ -1460,7 +1508,7 @@ type AuthorizeSnapshotAccessOutput struct {
 }
 
 type metadataAuthorizeSnapshotAccessOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AuthorizeSnapshotAccessResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AvailabilityZone struct {
@@ -1546,7 +1594,7 @@ type ClusterParameterGroupNameMessage struct {
 }
 
 type metadataClusterParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyClusterParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ClusterParameterGroupStatus struct {
@@ -1642,7 +1690,7 @@ type CopyClusterSnapshotOutput struct {
 }
 
 type metadataCopyClusterSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CopyClusterSnapshotResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateClusterInput struct {
@@ -1685,7 +1733,7 @@ type CreateClusterOutput struct {
 }
 
 type metadataCreateClusterOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateClusterResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateClusterParameterGroupInput struct {
@@ -1708,7 +1756,7 @@ type CreateClusterParameterGroupOutput struct {
 }
 
 type metadataCreateClusterParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateClusterParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateClusterSecurityGroupInput struct {
@@ -1730,7 +1778,7 @@ type CreateClusterSecurityGroupOutput struct {
 }
 
 type metadataCreateClusterSecurityGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateClusterSecurityGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateClusterSnapshotInput struct {
@@ -1752,7 +1800,7 @@ type CreateClusterSnapshotOutput struct {
 }
 
 type metadataCreateClusterSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateClusterSnapshotResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateClusterSubnetGroupInput struct {
@@ -1775,7 +1823,7 @@ type CreateClusterSubnetGroupOutput struct {
 }
 
 type metadataCreateClusterSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateClusterSubnetGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateEventSubscriptionInput struct {
@@ -1802,7 +1850,7 @@ type CreateEventSubscriptionOutput struct {
 }
 
 type metadataCreateEventSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateEventSubscriptionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateHSMClientCertificateInput struct {
@@ -1823,7 +1871,7 @@ type CreateHSMClientCertificateOutput struct {
 }
 
 type metadataCreateHSMClientCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateHsmClientCertificateResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateHSMConfigurationInput struct {
@@ -1849,7 +1897,7 @@ type CreateHSMConfigurationOutput struct {
 }
 
 type metadataCreateHSMConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateHsmConfigurationResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateTagsInput struct {
@@ -1902,7 +1950,7 @@ type DeleteClusterOutput struct {
 }
 
 type metadataDeleteClusterOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteClusterResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteClusterParameterGroupInput struct {
@@ -1959,7 +2007,7 @@ type DeleteClusterSnapshotOutput struct {
 }
 
 type metadataDeleteClusterSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteClusterSnapshotResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteClusterSubnetGroupInput struct {
@@ -2075,7 +2123,7 @@ type DescribeClusterParameterGroupsOutput struct {
 }
 
 type metadataDescribeClusterParameterGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterParameterGroupsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeClusterParametersInput struct {
@@ -2099,7 +2147,7 @@ type DescribeClusterParametersOutput struct {
 }
 
 type metadataDescribeClusterParametersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterParametersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeClusterSecurityGroupsInput struct {
@@ -2124,7 +2172,7 @@ type DescribeClusterSecurityGroupsOutput struct {
 }
 
 type metadataDescribeClusterSecurityGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterSecurityGroupsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeClusterSnapshotsInput struct {
@@ -2154,7 +2202,7 @@ type DescribeClusterSnapshotsOutput struct {
 }
 
 type metadataDescribeClusterSnapshotsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterSnapshotsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeClusterSubnetGroupsInput struct {
@@ -2179,7 +2227,7 @@ type DescribeClusterSubnetGroupsOutput struct {
 }
 
 type metadataDescribeClusterSubnetGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterSubnetGroupsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeClusterVersionsInput struct {
@@ -2203,7 +2251,7 @@ type DescribeClusterVersionsOutput struct {
 }
 
 type metadataDescribeClusterVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClusterVersionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeClustersInput struct {
@@ -2228,7 +2276,7 @@ type DescribeClustersOutput struct {
 }
 
 type metadataDescribeClustersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeClustersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDefaultClusterParametersInput struct {
@@ -2250,7 +2298,7 @@ type DescribeDefaultClusterParametersOutput struct {
 }
 
 type metadataDescribeDefaultClusterParametersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDefaultClusterParametersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEventCategoriesInput struct {
@@ -2270,7 +2318,7 @@ type DescribeEventCategoriesOutput struct {
 }
 
 type metadataDescribeEventCategoriesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventCategoriesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEventSubscriptionsInput struct {
@@ -2293,7 +2341,7 @@ type DescribeEventSubscriptionsOutput struct {
 }
 
 type metadataDescribeEventSubscriptionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventSubscriptionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEventsInput struct {
@@ -2320,7 +2368,7 @@ type DescribeEventsOutput struct {
 }
 
 type metadataDescribeEventsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeHSMClientCertificatesInput struct {
@@ -2345,7 +2393,7 @@ type DescribeHSMClientCertificatesOutput struct {
 }
 
 type metadataDescribeHSMClientCertificatesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeHsmClientCertificatesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeHSMConfigurationsInput struct {
@@ -2370,7 +2418,7 @@ type DescribeHSMConfigurationsOutput struct {
 }
 
 type metadataDescribeHSMConfigurationsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeHsmConfigurationsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLoggingStatusInput struct {
@@ -2381,21 +2429,6 @@ type DescribeLoggingStatusInput struct {
 
 type metadataDescribeLoggingStatusInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
-}
-
-type DescribeLoggingStatusOutput struct {
-	BucketName                 *string    `type:"string"`
-	LastFailureMessage         *string    `type:"string"`
-	LastFailureTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	LastSuccessfulDeliveryTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	LoggingEnabled             *bool      `type:"boolean"`
-	S3KeyPrefix                *string    `type:"string"`
-
-	metadataDescribeLoggingStatusOutput `json:"-", xml:"-"`
-}
-
-type metadataDescribeLoggingStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeOrderableClusterOptionsInput struct {
@@ -2419,7 +2452,7 @@ type DescribeOrderableClusterOptionsOutput struct {
 }
 
 type metadataDescribeOrderableClusterOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOrderableClusterOptionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeReservedNodeOfferingsInput struct {
@@ -2442,7 +2475,7 @@ type DescribeReservedNodeOfferingsOutput struct {
 }
 
 type metadataDescribeReservedNodeOfferingsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedNodeOfferingsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeReservedNodesInput struct {
@@ -2465,7 +2498,7 @@ type DescribeReservedNodesOutput struct {
 }
 
 type metadataDescribeReservedNodesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedNodesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeResizeInput struct {
@@ -2496,7 +2529,7 @@ type DescribeResizeOutput struct {
 }
 
 type metadataDescribeResizeOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeResizeResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeTagsInput struct {
@@ -2522,7 +2555,7 @@ type DescribeTagsOutput struct {
 }
 
 type metadataDescribeTagsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeTagsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableLoggingInput struct {
@@ -2533,21 +2566,6 @@ type DisableLoggingInput struct {
 
 type metadataDisableLoggingInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
-}
-
-type DisableLoggingOutput struct {
-	BucketName                 *string    `type:"string"`
-	LastFailureMessage         *string    `type:"string"`
-	LastFailureTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	LastSuccessfulDeliveryTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	LoggingEnabled             *bool      `type:"boolean"`
-	S3KeyPrefix                *string    `type:"string"`
-
-	metadataDisableLoggingOutput `json:"-", xml:"-"`
-}
-
-type metadataDisableLoggingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableSnapshotCopyInput struct {
@@ -2567,7 +2585,7 @@ type DisableSnapshotCopyOutput struct {
 }
 
 type metadataDisableSnapshotCopyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DisableSnapshotCopyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EC2SecurityGroup struct {
@@ -2606,21 +2624,6 @@ type metadataEnableLoggingInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier,BucketName"`
 }
 
-type EnableLoggingOutput struct {
-	BucketName                 *string    `type:"string"`
-	LastFailureMessage         *string    `type:"string"`
-	LastFailureTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	LastSuccessfulDeliveryTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	LoggingEnabled             *bool      `type:"boolean"`
-	S3KeyPrefix                *string    `type:"string"`
-
-	metadataEnableLoggingOutput `json:"-", xml:"-"`
-}
-
-type metadataEnableLoggingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type EnableSnapshotCopyInput struct {
 	ClusterIdentifier *string `type:"string"`
 	DestinationRegion *string `type:"string"`
@@ -2640,7 +2643,7 @@ type EnableSnapshotCopyOutput struct {
 }
 
 type metadataEnableSnapshotCopyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"EnableSnapshotCopyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Endpoint struct {
@@ -2776,7 +2779,7 @@ type LoggingStatus struct {
 }
 
 type metadataLoggingStatus struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLoggingStatusResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyClusterInput struct {
@@ -2810,7 +2813,7 @@ type ModifyClusterOutput struct {
 }
 
 type metadataModifyClusterOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyClusterResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyClusterParameterGroupInput struct {
@@ -2822,17 +2825,6 @@ type ModifyClusterParameterGroupInput struct {
 
 type metadataModifyClusterParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName,Parameters"`
-}
-
-type ModifyClusterParameterGroupOutput struct {
-	ParameterGroupName   *string `type:"string"`
-	ParameterGroupStatus *string `type:"string"`
-
-	metadataModifyClusterParameterGroupOutput `json:"-", xml:"-"`
-}
-
-type metadataModifyClusterParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyClusterSubnetGroupInput struct {
@@ -2854,7 +2846,7 @@ type ModifyClusterSubnetGroupOutput struct {
 }
 
 type metadataModifyClusterSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyClusterSubnetGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyEventSubscriptionInput struct {
@@ -2880,7 +2872,7 @@ type ModifyEventSubscriptionOutput struct {
 }
 
 type metadataModifyEventSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyEventSubscriptionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifySnapshotCopyRetentionPeriodInput struct {
@@ -2901,7 +2893,7 @@ type ModifySnapshotCopyRetentionPeriodOutput struct {
 }
 
 type metadataModifySnapshotCopyRetentionPeriodOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifySnapshotCopyRetentionPeriodResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OrderableClusterOption struct {
@@ -2968,7 +2960,7 @@ type PurchaseReservedNodeOfferingOutput struct {
 }
 
 type metadataPurchaseReservedNodeOfferingOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"PurchaseReservedNodeOfferingResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RebootClusterInput struct {
@@ -2988,7 +2980,7 @@ type RebootClusterOutput struct {
 }
 
 type metadataRebootClusterOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RebootClusterResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RecurringCharge struct {
@@ -3052,17 +3044,6 @@ type metadataResetClusterParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName"`
 }
 
-type ResetClusterParameterGroupOutput struct {
-	ParameterGroupName   *string `type:"string"`
-	ParameterGroupStatus *string `type:"string"`
-
-	metadataResetClusterParameterGroupOutput `json:"-", xml:"-"`
-}
-
-type metadataResetClusterParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type RestoreFromClusterSnapshotInput struct {
 	AllowVersionUpgrade              *bool     `type:"boolean"`
 	AutomatedSnapshotRetentionPeriod *int      `type:"integer"`
@@ -3097,7 +3078,7 @@ type RestoreFromClusterSnapshotOutput struct {
 }
 
 type metadataRestoreFromClusterSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RestoreFromClusterSnapshotResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RestoreStatus struct {
@@ -3135,7 +3116,7 @@ type RevokeClusterSecurityGroupIngressOutput struct {
 }
 
 type metadataRevokeClusterSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RevokeClusterSecurityGroupIngressResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RevokeSnapshotAccessInput struct {
@@ -3157,7 +3138,7 @@ type RevokeSnapshotAccessOutput struct {
 }
 
 type metadataRevokeSnapshotAccessOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RevokeSnapshotAccessResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RotateEncryptionKeyInput struct {
@@ -3177,7 +3158,7 @@ type RotateEncryptionKeyOutput struct {
 }
 
 type metadataRotateEncryptionKeyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RotateEncryptionKeyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Snapshot struct {

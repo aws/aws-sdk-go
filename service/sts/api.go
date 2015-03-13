@@ -12,9 +12,10 @@ import (
 func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *aws.Request, output *AssumeRoleOutput) {
 	if opAssumeRole == nil {
 		opAssumeRole = &aws.Operation{
-			Name:       "AssumeRole",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "AssumeRole",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "AssumeRoleResult",
 		}
 	}
 
@@ -37,9 +38,10 @@ var opAssumeRole *aws.Operation
 func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *aws.Request, output *AssumeRoleWithSAMLOutput) {
 	if opAssumeRoleWithSAML == nil {
 		opAssumeRoleWithSAML = &aws.Operation{
-			Name:       "AssumeRoleWithSAML",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "AssumeRoleWithSAML",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "AssumeRoleWithSAMLResult",
 		}
 	}
 
@@ -62,9 +64,10 @@ var opAssumeRoleWithSAML *aws.Operation
 func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityInput) (req *aws.Request, output *AssumeRoleWithWebIdentityOutput) {
 	if opAssumeRoleWithWebIdentity == nil {
 		opAssumeRoleWithWebIdentity = &aws.Operation{
-			Name:       "AssumeRoleWithWebIdentity",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "AssumeRoleWithWebIdentity",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "AssumeRoleWithWebIdentityResult",
 		}
 	}
 
@@ -87,9 +90,10 @@ var opAssumeRoleWithWebIdentity *aws.Operation
 func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessageInput) (req *aws.Request, output *DecodeAuthorizationMessageOutput) {
 	if opDecodeAuthorizationMessage == nil {
 		opDecodeAuthorizationMessage = &aws.Operation{
-			Name:       "DecodeAuthorizationMessage",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DecodeAuthorizationMessage",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DecodeAuthorizationMessageResult",
 		}
 	}
 
@@ -112,9 +116,10 @@ var opDecodeAuthorizationMessage *aws.Operation
 func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *aws.Request, output *GetFederationTokenOutput) {
 	if opGetFederationToken == nil {
 		opGetFederationToken = &aws.Operation{
-			Name:       "GetFederationToken",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetFederationToken",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetFederationTokenResult",
 		}
 	}
 
@@ -137,9 +142,10 @@ var opGetFederationToken *aws.Operation
 func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *aws.Request, output *GetSessionTokenOutput) {
 	if opGetSessionToken == nil {
 		opGetSessionToken = &aws.Operation{
-			Name:       "GetSessionToken",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetSessionToken",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetSessionTokenResult",
 		}
 	}
 
@@ -183,7 +189,7 @@ type AssumeRoleOutput struct {
 }
 
 type metadataAssumeRoleOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AssumeRoleResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssumeRoleWithSAMLInput struct {
@@ -214,7 +220,7 @@ type AssumeRoleWithSAMLOutput struct {
 }
 
 type metadataAssumeRoleWithSAMLOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AssumeRoleWithSAMLResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssumeRoleWithWebIdentityInput struct {
@@ -244,7 +250,7 @@ type AssumeRoleWithWebIdentityOutput struct {
 }
 
 type metadataAssumeRoleWithWebIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AssumeRoleWithWebIdentityResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssumedRoleUser struct {
@@ -288,7 +294,7 @@ type DecodeAuthorizationMessageOutput struct {
 }
 
 type metadataDecodeAuthorizationMessageOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DecodeAuthorizationMessageResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type FederatedUser struct {
@@ -323,7 +329,7 @@ type GetFederationTokenOutput struct {
 }
 
 type metadataGetFederationTokenOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetFederationTokenResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetSessionTokenInput struct {
@@ -345,5 +351,5 @@ type GetSessionTokenOutput struct {
 }
 
 type metadataGetSessionTokenOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetSessionTokenResult"`
+	SDKShapeTraits bool `type:"structure"`
 }

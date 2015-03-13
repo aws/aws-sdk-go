@@ -12,9 +12,10 @@ import (
 func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifierToSubscriptionInput) (req *aws.Request, output *AddSourceIdentifierToSubscriptionOutput) {
 	if opAddSourceIdentifierToSubscription == nil {
 		opAddSourceIdentifierToSubscription = &aws.Operation{
-			Name:       "AddSourceIdentifierToSubscription",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "AddSourceIdentifierToSubscription",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "AddSourceIdentifierToSubscriptionResult",
 		}
 	}
 
@@ -62,9 +63,10 @@ var opAddTagsToResource *aws.Operation
 func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanceActionInput) (req *aws.Request, output *ApplyPendingMaintenanceActionOutput) {
 	if opApplyPendingMaintenanceAction == nil {
 		opApplyPendingMaintenanceAction = &aws.Operation{
-			Name:       "ApplyPendingMaintenanceAction",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ApplyPendingMaintenanceAction",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ApplyPendingMaintenanceActionResult",
 		}
 	}
 
@@ -87,9 +89,10 @@ var opApplyPendingMaintenanceAction *aws.Operation
 func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeDBSecurityGroupIngressOutput) {
 	if opAuthorizeDBSecurityGroupIngress == nil {
 		opAuthorizeDBSecurityGroupIngress = &aws.Operation{
-			Name:       "AuthorizeDBSecurityGroupIngress",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "AuthorizeDBSecurityGroupIngress",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "AuthorizeDBSecurityGroupIngressResult",
 		}
 	}
 
@@ -112,9 +115,10 @@ var opAuthorizeDBSecurityGroupIngress *aws.Operation
 func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req *aws.Request, output *CopyDBParameterGroupOutput) {
 	if opCopyDBParameterGroup == nil {
 		opCopyDBParameterGroup = &aws.Operation{
-			Name:       "CopyDBParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CopyDBParameterGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CopyDBParameterGroupResult",
 		}
 	}
 
@@ -137,9 +141,10 @@ var opCopyDBParameterGroup *aws.Operation
 func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *aws.Request, output *CopyDBSnapshotOutput) {
 	if opCopyDBSnapshot == nil {
 		opCopyDBSnapshot = &aws.Operation{
-			Name:       "CopyDBSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CopyDBSnapshot",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CopyDBSnapshotResult",
 		}
 	}
 
@@ -162,9 +167,10 @@ var opCopyDBSnapshot *aws.Operation
 func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *aws.Request, output *CopyOptionGroupOutput) {
 	if opCopyOptionGroup == nil {
 		opCopyOptionGroup = &aws.Operation{
-			Name:       "CopyOptionGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CopyOptionGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CopyOptionGroupResult",
 		}
 	}
 
@@ -187,9 +193,10 @@ var opCopyOptionGroup *aws.Operation
 func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *aws.Request, output *CreateDBInstanceOutput) {
 	if opCreateDBInstance == nil {
 		opCreateDBInstance = &aws.Operation{
-			Name:       "CreateDBInstance",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateDBInstance",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateDBInstanceResult",
 		}
 	}
 
@@ -212,9 +219,10 @@ var opCreateDBInstance *aws.Operation
 func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadReplicaInput) (req *aws.Request, output *CreateDBInstanceReadReplicaOutput) {
 	if opCreateDBInstanceReadReplica == nil {
 		opCreateDBInstanceReadReplica = &aws.Operation{
-			Name:       "CreateDBInstanceReadReplica",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateDBInstanceReadReplica",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateDBInstanceReadReplicaResult",
 		}
 	}
 
@@ -237,9 +245,10 @@ var opCreateDBInstanceReadReplica *aws.Operation
 func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) (req *aws.Request, output *CreateDBParameterGroupOutput) {
 	if opCreateDBParameterGroup == nil {
 		opCreateDBParameterGroup = &aws.Operation{
-			Name:       "CreateDBParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateDBParameterGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateDBParameterGroupResult",
 		}
 	}
 
@@ -262,9 +271,10 @@ var opCreateDBParameterGroup *aws.Operation
 func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (req *aws.Request, output *CreateDBSecurityGroupOutput) {
 	if opCreateDBSecurityGroup == nil {
 		opCreateDBSecurityGroup = &aws.Operation{
-			Name:       "CreateDBSecurityGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateDBSecurityGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateDBSecurityGroupResult",
 		}
 	}
 
@@ -287,9 +297,10 @@ var opCreateDBSecurityGroup *aws.Operation
 func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *aws.Request, output *CreateDBSnapshotOutput) {
 	if opCreateDBSnapshot == nil {
 		opCreateDBSnapshot = &aws.Operation{
-			Name:       "CreateDBSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateDBSnapshot",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateDBSnapshotResult",
 		}
 	}
 
@@ -312,9 +323,10 @@ var opCreateDBSnapshot *aws.Operation
 func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *aws.Request, output *CreateDBSubnetGroupOutput) {
 	if opCreateDBSubnetGroup == nil {
 		opCreateDBSubnetGroup = &aws.Operation{
-			Name:       "CreateDBSubnetGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateDBSubnetGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateDBSubnetGroupResult",
 		}
 	}
 
@@ -337,9 +349,10 @@ var opCreateDBSubnetGroup *aws.Operation
 func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *aws.Request, output *CreateEventSubscriptionOutput) {
 	if opCreateEventSubscription == nil {
 		opCreateEventSubscription = &aws.Operation{
-			Name:       "CreateEventSubscription",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateEventSubscription",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateEventSubscriptionResult",
 		}
 	}
 
@@ -362,9 +375,10 @@ var opCreateEventSubscription *aws.Operation
 func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *aws.Request, output *CreateOptionGroupOutput) {
 	if opCreateOptionGroup == nil {
 		opCreateOptionGroup = &aws.Operation{
-			Name:       "CreateOptionGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateOptionGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateOptionGroupResult",
 		}
 	}
 
@@ -387,9 +401,10 @@ var opCreateOptionGroup *aws.Operation
 func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *aws.Request, output *DeleteDBInstanceOutput) {
 	if opDeleteDBInstance == nil {
 		opDeleteDBInstance = &aws.Operation{
-			Name:       "DeleteDBInstance",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteDBInstance",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteDBInstanceResult",
 		}
 	}
 
@@ -462,9 +477,10 @@ var opDeleteDBSecurityGroup *aws.Operation
 func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *aws.Request, output *DeleteDBSnapshotOutput) {
 	if opDeleteDBSnapshot == nil {
 		opDeleteDBSnapshot = &aws.Operation{
-			Name:       "DeleteDBSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteDBSnapshot",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteDBSnapshotResult",
 		}
 	}
 
@@ -512,9 +528,10 @@ var opDeleteDBSubnetGroup *aws.Operation
 func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
 	if opDeleteEventSubscription == nil {
 		opDeleteEventSubscription = &aws.Operation{
-			Name:       "DeleteEventSubscription",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteEventSubscription",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteEventSubscriptionResult",
 		}
 	}
 
@@ -562,9 +579,10 @@ var opDeleteOptionGroup *aws.Operation
 func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInput) (req *aws.Request, output *DescribeDBEngineVersionsOutput) {
 	if opDescribeDBEngineVersions == nil {
 		opDescribeDBEngineVersions = &aws.Operation{
-			Name:       "DescribeDBEngineVersions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeDBEngineVersions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeDBEngineVersionsResult",
 		}
 	}
 
@@ -587,9 +605,10 @@ var opDescribeDBEngineVersions *aws.Operation
 func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *aws.Request, output *DescribeDBInstancesOutput) {
 	if opDescribeDBInstances == nil {
 		opDescribeDBInstances = &aws.Operation{
-			Name:       "DescribeDBInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeDBInstances",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeDBInstancesResult",
 		}
 	}
 
@@ -612,9 +631,10 @@ var opDescribeDBInstances *aws.Operation
 func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *aws.Request, output *DescribeDBLogFilesOutput) {
 	if opDescribeDBLogFiles == nil {
 		opDescribeDBLogFiles = &aws.Operation{
-			Name:       "DescribeDBLogFiles",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeDBLogFiles",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeDBLogFilesResult",
 		}
 	}
 
@@ -637,9 +657,10 @@ var opDescribeDBLogFiles *aws.Operation
 func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsInput) (req *aws.Request, output *DescribeDBParameterGroupsOutput) {
 	if opDescribeDBParameterGroups == nil {
 		opDescribeDBParameterGroups = &aws.Operation{
-			Name:       "DescribeDBParameterGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeDBParameterGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeDBParameterGroupsResult",
 		}
 	}
 
@@ -662,9 +683,10 @@ var opDescribeDBParameterGroups *aws.Operation
 func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req *aws.Request, output *DescribeDBParametersOutput) {
 	if opDescribeDBParameters == nil {
 		opDescribeDBParameters = &aws.Operation{
-			Name:       "DescribeDBParameters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeDBParameters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeDBParametersResult",
 		}
 	}
 
@@ -687,9 +709,10 @@ var opDescribeDBParameters *aws.Operation
 func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInput) (req *aws.Request, output *DescribeDBSecurityGroupsOutput) {
 	if opDescribeDBSecurityGroups == nil {
 		opDescribeDBSecurityGroups = &aws.Operation{
-			Name:       "DescribeDBSecurityGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeDBSecurityGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeDBSecurityGroupsResult",
 		}
 	}
 
@@ -712,9 +735,10 @@ var opDescribeDBSecurityGroups *aws.Operation
 func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *aws.Request, output *DescribeDBSnapshotsOutput) {
 	if opDescribeDBSnapshots == nil {
 		opDescribeDBSnapshots = &aws.Operation{
-			Name:       "DescribeDBSnapshots",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeDBSnapshots",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeDBSnapshotsResult",
 		}
 	}
 
@@ -737,9 +761,10 @@ var opDescribeDBSnapshots *aws.Operation
 func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) (req *aws.Request, output *DescribeDBSubnetGroupsOutput) {
 	if opDescribeDBSubnetGroups == nil {
 		opDescribeDBSubnetGroups = &aws.Operation{
-			Name:       "DescribeDBSubnetGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeDBSubnetGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeDBSubnetGroupsResult",
 		}
 	}
 
@@ -762,9 +787,10 @@ var opDescribeDBSubnetGroups *aws.Operation
 func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
 	if opDescribeEngineDefaultParameters == nil {
 		opDescribeEngineDefaultParameters = &aws.Operation{
-			Name:       "DescribeEngineDefaultParameters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEngineDefaultParameters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEngineDefaultParametersResult",
 		}
 	}
 
@@ -787,9 +813,10 @@ var opDescribeEngineDefaultParameters *aws.Operation
 func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *aws.Request, output *DescribeEventCategoriesOutput) {
 	if opDescribeEventCategories == nil {
 		opDescribeEventCategories = &aws.Operation{
-			Name:       "DescribeEventCategories",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEventCategories",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEventCategoriesResult",
 		}
 	}
 
@@ -812,9 +839,10 @@ var opDescribeEventCategories *aws.Operation
 func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *aws.Request, output *DescribeEventSubscriptionsOutput) {
 	if opDescribeEventSubscriptions == nil {
 		opDescribeEventSubscriptions = &aws.Operation{
-			Name:       "DescribeEventSubscriptions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEventSubscriptions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEventSubscriptionsResult",
 		}
 	}
 
@@ -837,9 +865,10 @@ var opDescribeEventSubscriptions *aws.Operation
 func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
-			Name:       "DescribeEvents",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEvents",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEventsResult",
 		}
 	}
 
@@ -862,9 +891,10 @@ var opDescribeEvents *aws.Operation
 func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOptionsInput) (req *aws.Request, output *DescribeOptionGroupOptionsOutput) {
 	if opDescribeOptionGroupOptions == nil {
 		opDescribeOptionGroupOptions = &aws.Operation{
-			Name:       "DescribeOptionGroupOptions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeOptionGroupOptions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeOptionGroupOptionsResult",
 		}
 	}
 
@@ -887,9 +917,10 @@ var opDescribeOptionGroupOptions *aws.Operation
 func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req *aws.Request, output *DescribeOptionGroupsOutput) {
 	if opDescribeOptionGroups == nil {
 		opDescribeOptionGroups = &aws.Operation{
-			Name:       "DescribeOptionGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeOptionGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeOptionGroupsResult",
 		}
 	}
 
@@ -912,9 +943,10 @@ var opDescribeOptionGroups *aws.Operation
 func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderableDBInstanceOptionsInput) (req *aws.Request, output *DescribeOrderableDBInstanceOptionsOutput) {
 	if opDescribeOrderableDBInstanceOptions == nil {
 		opDescribeOrderableDBInstanceOptions = &aws.Operation{
-			Name:       "DescribeOrderableDBInstanceOptions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeOrderableDBInstanceOptions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeOrderableDBInstanceOptionsResult",
 		}
 	}
 
@@ -937,9 +969,10 @@ var opDescribeOrderableDBInstanceOptions *aws.Operation
 func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMaintenanceActionsInput) (req *aws.Request, output *DescribePendingMaintenanceActionsOutput) {
 	if opDescribePendingMaintenanceActions == nil {
 		opDescribePendingMaintenanceActions = &aws.Operation{
-			Name:       "DescribePendingMaintenanceActions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribePendingMaintenanceActions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribePendingMaintenanceActionsResult",
 		}
 	}
 
@@ -962,9 +995,10 @@ var opDescribePendingMaintenanceActions *aws.Operation
 func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstancesInput) (req *aws.Request, output *DescribeReservedDBInstancesOutput) {
 	if opDescribeReservedDBInstances == nil {
 		opDescribeReservedDBInstances = &aws.Operation{
-			Name:       "DescribeReservedDBInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeReservedDBInstances",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeReservedDBInstancesResult",
 		}
 	}
 
@@ -987,9 +1021,10 @@ var opDescribeReservedDBInstances *aws.Operation
 func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReservedDBInstancesOfferingsInput) (req *aws.Request, output *DescribeReservedDBInstancesOfferingsOutput) {
 	if opDescribeReservedDBInstancesOfferings == nil {
 		opDescribeReservedDBInstancesOfferings = &aws.Operation{
-			Name:       "DescribeReservedDBInstancesOfferings",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeReservedDBInstancesOfferings",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeReservedDBInstancesOfferingsResult",
 		}
 	}
 
@@ -1012,9 +1047,10 @@ var opDescribeReservedDBInstancesOfferings *aws.Operation
 func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInput) (req *aws.Request, output *DownloadDBLogFilePortionOutput) {
 	if opDownloadDBLogFilePortion == nil {
 		opDownloadDBLogFilePortion = &aws.Operation{
-			Name:       "DownloadDBLogFilePortion",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DownloadDBLogFilePortion",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DownloadDBLogFilePortionResult",
 		}
 	}
 
@@ -1037,9 +1073,10 @@ var opDownloadDBLogFilePortion *aws.Operation
 func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *ListTagsForResourceOutput) {
 	if opListTagsForResource == nil {
 		opListTagsForResource = &aws.Operation{
-			Name:       "ListTagsForResource",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListTagsForResource",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListTagsForResourceResult",
 		}
 	}
 
@@ -1062,9 +1099,10 @@ var opListTagsForResource *aws.Operation
 func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *aws.Request, output *ModifyDBInstanceOutput) {
 	if opModifyDBInstance == nil {
 		opModifyDBInstance = &aws.Operation{
-			Name:       "ModifyDBInstance",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyDBInstance",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyDBInstanceResult",
 		}
 	}
 
@@ -1087,9 +1125,10 @@ var opModifyDBInstance *aws.Operation
 func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) (req *aws.Request, output *DBParameterGroupNameMessage) {
 	if opModifyDBParameterGroup == nil {
 		opModifyDBParameterGroup = &aws.Operation{
-			Name:       "ModifyDBParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyDBParameterGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyDBParameterGroupResult",
 		}
 	}
 
@@ -1112,9 +1151,10 @@ var opModifyDBParameterGroup *aws.Operation
 func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *aws.Request, output *ModifyDBSubnetGroupOutput) {
 	if opModifyDBSubnetGroup == nil {
 		opModifyDBSubnetGroup = &aws.Operation{
-			Name:       "ModifyDBSubnetGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyDBSubnetGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyDBSubnetGroupResult",
 		}
 	}
 
@@ -1137,9 +1177,10 @@ var opModifyDBSubnetGroup *aws.Operation
 func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
 	if opModifyEventSubscription == nil {
 		opModifyEventSubscription = &aws.Operation{
-			Name:       "ModifyEventSubscription",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyEventSubscription",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyEventSubscriptionResult",
 		}
 	}
 
@@ -1162,9 +1203,10 @@ var opModifyEventSubscription *aws.Operation
 func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *aws.Request, output *ModifyOptionGroupOutput) {
 	if opModifyOptionGroup == nil {
 		opModifyOptionGroup = &aws.Operation{
-			Name:       "ModifyOptionGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyOptionGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyOptionGroupResult",
 		}
 	}
 
@@ -1187,9 +1229,10 @@ var opModifyOptionGroup *aws.Operation
 func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *aws.Request, output *PromoteReadReplicaOutput) {
 	if opPromoteReadReplica == nil {
 		opPromoteReadReplica = &aws.Operation{
-			Name:       "PromoteReadReplica",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "PromoteReadReplica",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "PromoteReadReplicaResult",
 		}
 	}
 
@@ -1212,9 +1255,10 @@ var opPromoteReadReplica *aws.Operation
 func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReservedDBInstancesOfferingInput) (req *aws.Request, output *PurchaseReservedDBInstancesOfferingOutput) {
 	if opPurchaseReservedDBInstancesOffering == nil {
 		opPurchaseReservedDBInstancesOffering = &aws.Operation{
-			Name:       "PurchaseReservedDBInstancesOffering",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "PurchaseReservedDBInstancesOffering",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "PurchaseReservedDBInstancesOfferingResult",
 		}
 	}
 
@@ -1237,9 +1281,10 @@ var opPurchaseReservedDBInstancesOffering *aws.Operation
 func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *aws.Request, output *RebootDBInstanceOutput) {
 	if opRebootDBInstance == nil {
 		opRebootDBInstance = &aws.Operation{
-			Name:       "RebootDBInstance",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RebootDBInstance",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RebootDBInstanceResult",
 		}
 	}
 
@@ -1262,9 +1307,10 @@ var opRebootDBInstance *aws.Operation
 func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceIdentifierFromSubscriptionInput) (req *aws.Request, output *RemoveSourceIdentifierFromSubscriptionOutput) {
 	if opRemoveSourceIdentifierFromSubscription == nil {
 		opRemoveSourceIdentifierFromSubscription = &aws.Operation{
-			Name:       "RemoveSourceIdentifierFromSubscription",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RemoveSourceIdentifierFromSubscription",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RemoveSourceIdentifierFromSubscriptionResult",
 		}
 	}
 
@@ -1312,9 +1358,10 @@ var opRemoveTagsFromResource *aws.Operation
 func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (req *aws.Request, output *DBParameterGroupNameMessage) {
 	if opResetDBParameterGroup == nil {
 		opResetDBParameterGroup = &aws.Operation{
-			Name:       "ResetDBParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ResetDBParameterGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ResetDBParameterGroupResult",
 		}
 	}
 
@@ -1337,9 +1384,10 @@ var opResetDBParameterGroup *aws.Operation
 func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFromDBSnapshotInput) (req *aws.Request, output *RestoreDBInstanceFromDBSnapshotOutput) {
 	if opRestoreDBInstanceFromDBSnapshot == nil {
 		opRestoreDBInstanceFromDBSnapshot = &aws.Operation{
-			Name:       "RestoreDBInstanceFromDBSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RestoreDBInstanceFromDBSnapshot",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RestoreDBInstanceFromDBSnapshotResult",
 		}
 	}
 
@@ -1362,9 +1410,10 @@ var opRestoreDBInstanceFromDBSnapshot *aws.Operation
 func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPointInTimeInput) (req *aws.Request, output *RestoreDBInstanceToPointInTimeOutput) {
 	if opRestoreDBInstanceToPointInTime == nil {
 		opRestoreDBInstanceToPointInTime = &aws.Operation{
-			Name:       "RestoreDBInstanceToPointInTime",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RestoreDBInstanceToPointInTime",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RestoreDBInstanceToPointInTimeResult",
 		}
 	}
 
@@ -1387,9 +1436,10 @@ var opRestoreDBInstanceToPointInTime *aws.Operation
 func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIngressInput) (req *aws.Request, output *RevokeDBSecurityGroupIngressOutput) {
 	if opRevokeDBSecurityGroupIngress == nil {
 		opRevokeDBSecurityGroupIngress = &aws.Operation{
-			Name:       "RevokeDBSecurityGroupIngress",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RevokeDBSecurityGroupIngress",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RevokeDBSecurityGroupIngressResult",
 		}
 	}
 
@@ -1426,7 +1476,7 @@ type AddSourceIdentifierToSubscriptionOutput struct {
 }
 
 type metadataAddSourceIdentifierToSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AddSourceIdentifierToSubscriptionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddTagsToResourceInput struct {
@@ -1467,7 +1517,7 @@ type ApplyPendingMaintenanceActionOutput struct {
 }
 
 type metadataApplyPendingMaintenanceActionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ApplyPendingMaintenanceActionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AuthorizeDBSecurityGroupIngressInput struct {
@@ -1491,7 +1541,7 @@ type AuthorizeDBSecurityGroupIngressOutput struct {
 }
 
 type metadataAuthorizeDBSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AuthorizeDBSecurityGroupIngressResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AvailabilityZone struct {
@@ -1535,7 +1585,7 @@ type CopyDBParameterGroupOutput struct {
 }
 
 type metadataCopyDBParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CopyDBParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CopyDBSnapshotInput struct {
@@ -1557,7 +1607,7 @@ type CopyDBSnapshotOutput struct {
 }
 
 type metadataCopyDBSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CopyDBSnapshotResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CopyOptionGroupInput struct {
@@ -1580,7 +1630,7 @@ type CopyOptionGroupOutput struct {
 }
 
 type metadataCopyOptionGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CopyOptionGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBInstanceInput struct {
@@ -1629,7 +1679,7 @@ type CreateDBInstanceOutput struct {
 }
 
 type metadataCreateDBInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBInstanceResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBInstanceReadReplicaInput struct {
@@ -1660,7 +1710,7 @@ type CreateDBInstanceReadReplicaOutput struct {
 }
 
 type metadataCreateDBInstanceReadReplicaOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBInstanceReadReplicaResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBParameterGroupInput struct {
@@ -1683,7 +1733,7 @@ type CreateDBParameterGroupOutput struct {
 }
 
 type metadataCreateDBParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBSecurityGroupInput struct {
@@ -1705,7 +1755,7 @@ type CreateDBSecurityGroupOutput struct {
 }
 
 type metadataCreateDBSecurityGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBSecurityGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBSnapshotInput struct {
@@ -1727,7 +1777,7 @@ type CreateDBSnapshotOutput struct {
 }
 
 type metadataCreateDBSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBSnapshotResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBSubnetGroupInput struct {
@@ -1750,7 +1800,7 @@ type CreateDBSubnetGroupOutput struct {
 }
 
 type metadataCreateDBSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateDBSubnetGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateEventSubscriptionInput struct {
@@ -1776,7 +1826,7 @@ type CreateEventSubscriptionOutput struct {
 }
 
 type metadataCreateEventSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateEventSubscriptionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateOptionGroupInput struct {
@@ -1800,7 +1850,7 @@ type CreateOptionGroupOutput struct {
 }
 
 type metadataCreateOptionGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateOptionGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DBEngineVersion struct {
@@ -1896,7 +1946,7 @@ type DBParameterGroupNameMessage struct {
 }
 
 type metadataDBParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ResetDBParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DBParameterGroupStatus struct {
@@ -2000,7 +2050,7 @@ type DeleteDBInstanceOutput struct {
 }
 
 type metadataDeleteDBInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteDBInstanceResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDBParameterGroupInput struct {
@@ -2056,7 +2106,7 @@ type DeleteDBSnapshotOutput struct {
 }
 
 type metadataDeleteDBSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteDBSnapshotResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDBSubnetGroupInput struct {
@@ -2094,7 +2144,7 @@ type DeleteEventSubscriptionOutput struct {
 }
 
 type metadataDeleteEventSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteEventSubscriptionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteOptionGroupInput struct {
@@ -2140,7 +2190,7 @@ type DescribeDBEngineVersionsOutput struct {
 }
 
 type metadataDescribeDBEngineVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBEngineVersionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDBInstancesInput struct {
@@ -2164,7 +2214,7 @@ type DescribeDBInstancesOutput struct {
 }
 
 type metadataDescribeDBInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBInstancesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDBLogFilesDetails struct {
@@ -2203,7 +2253,7 @@ type DescribeDBLogFilesOutput struct {
 }
 
 type metadataDescribeDBLogFilesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBLogFilesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDBParameterGroupsInput struct {
@@ -2227,7 +2277,7 @@ type DescribeDBParameterGroupsOutput struct {
 }
 
 type metadataDescribeDBParameterGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBParameterGroupsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDBParametersInput struct {
@@ -2252,7 +2302,7 @@ type DescribeDBParametersOutput struct {
 }
 
 type metadataDescribeDBParametersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBParametersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDBSecurityGroupsInput struct {
@@ -2276,7 +2326,7 @@ type DescribeDBSecurityGroupsOutput struct {
 }
 
 type metadataDescribeDBSecurityGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBSecurityGroupsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDBSnapshotsInput struct {
@@ -2302,7 +2352,7 @@ type DescribeDBSnapshotsOutput struct {
 }
 
 type metadataDescribeDBSnapshotsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBSnapshotsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDBSubnetGroupsInput struct {
@@ -2326,7 +2376,7 @@ type DescribeDBSubnetGroupsOutput struct {
 }
 
 type metadataDescribeDBSubnetGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeDBSubnetGroupsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEngineDefaultParametersInput struct {
@@ -2349,7 +2399,7 @@ type DescribeEngineDefaultParametersOutput struct {
 }
 
 type metadataDescribeEngineDefaultParametersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEngineDefaultParametersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEventCategoriesInput struct {
@@ -2370,7 +2420,7 @@ type DescribeEventCategoriesOutput struct {
 }
 
 type metadataDescribeEventCategoriesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventCategoriesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEventSubscriptionsInput struct {
@@ -2394,7 +2444,7 @@ type DescribeEventSubscriptionsOutput struct {
 }
 
 type metadataDescribeEventSubscriptionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventSubscriptionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEventsInput struct {
@@ -2423,7 +2473,7 @@ type DescribeEventsOutput struct {
 }
 
 type metadataDescribeEventsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeOptionGroupOptionsInput struct {
@@ -2448,7 +2498,7 @@ type DescribeOptionGroupOptionsOutput struct {
 }
 
 type metadataDescribeOptionGroupOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOptionGroupOptionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeOptionGroupsInput struct {
@@ -2474,7 +2524,7 @@ type DescribeOptionGroupsOutput struct {
 }
 
 type metadataDescribeOptionGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOptionGroupsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeOrderableDBInstanceOptionsInput struct {
@@ -2502,7 +2552,7 @@ type DescribeOrderableDBInstanceOptionsOutput struct {
 }
 
 type metadataDescribeOrderableDBInstanceOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeOrderableDBInstanceOptionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribePendingMaintenanceActionsInput struct {
@@ -2526,7 +2576,7 @@ type DescribePendingMaintenanceActionsOutput struct {
 }
 
 type metadataDescribePendingMaintenanceActionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribePendingMaintenanceActionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeReservedDBInstancesInput struct {
@@ -2574,7 +2624,7 @@ type DescribeReservedDBInstancesOfferingsOutput struct {
 }
 
 type metadataDescribeReservedDBInstancesOfferingsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedDBInstancesOfferingsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeReservedDBInstancesOutput struct {
@@ -2585,7 +2635,7 @@ type DescribeReservedDBInstancesOutput struct {
 }
 
 type metadataDescribeReservedDBInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedDBInstancesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DownloadDBLogFilePortionInput struct {
@@ -2610,7 +2660,7 @@ type DownloadDBLogFilePortionOutput struct {
 }
 
 type metadataDownloadDBLogFilePortionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DownloadDBLogFilePortionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EC2SecurityGroup struct {
@@ -2732,7 +2782,7 @@ type ListTagsForResourceOutput struct {
 }
 
 type metadataListTagsForResourceOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListTagsForResourceResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyDBInstanceInput struct {
@@ -2772,7 +2822,7 @@ type ModifyDBInstanceOutput struct {
 }
 
 type metadataModifyDBInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyDBInstanceResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyDBParameterGroupInput struct {
@@ -2784,16 +2834,6 @@ type ModifyDBParameterGroupInput struct {
 
 type metadataModifyDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName,Parameters"`
-}
-
-type ModifyDBParameterGroupOutput struct {
-	DBParameterGroupName *string `type:"string"`
-
-	metadataModifyDBParameterGroupOutput `json:"-", xml:"-"`
-}
-
-type metadataModifyDBParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyDBSubnetGroupInput struct {
@@ -2815,7 +2855,7 @@ type ModifyDBSubnetGroupOutput struct {
 }
 
 type metadataModifyDBSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyDBSubnetGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyEventSubscriptionInput struct {
@@ -2839,7 +2879,7 @@ type ModifyEventSubscriptionOutput struct {
 }
 
 type metadataModifyEventSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyEventSubscriptionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyOptionGroupInput struct {
@@ -2862,7 +2902,7 @@ type ModifyOptionGroupOutput struct {
 }
 
 type metadataModifyOptionGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyOptionGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Option struct {
@@ -3067,7 +3107,7 @@ type PromoteReadReplicaOutput struct {
 }
 
 type metadataPromoteReadReplicaOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"PromoteReadReplicaResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PurchaseReservedDBInstancesOfferingInput struct {
@@ -3090,7 +3130,7 @@ type PurchaseReservedDBInstancesOfferingOutput struct {
 }
 
 type metadataPurchaseReservedDBInstancesOfferingOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"PurchaseReservedDBInstancesOfferingResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RebootDBInstanceInput struct {
@@ -3111,7 +3151,7 @@ type RebootDBInstanceOutput struct {
 }
 
 type metadataRebootDBInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RebootDBInstanceResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RecurringCharge struct {
@@ -3143,7 +3183,7 @@ type RemoveSourceIdentifierFromSubscriptionOutput struct {
 }
 
 type metadataRemoveSourceIdentifierFromSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RemoveSourceIdentifierFromSubscriptionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveTagsFromResourceInput struct {
@@ -3219,16 +3259,6 @@ type metadataResetDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName"`
 }
 
-type ResetDBParameterGroupOutput struct {
-	DBParameterGroupName *string `type:"string"`
-
-	metadataResetDBParameterGroupOutput `json:"-", xml:"-"`
-}
-
-type metadataResetDBParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type ResourcePendingMaintenanceActions struct {
 	PendingMaintenanceActionDetails []*PendingMaintenanceAction `locationNameList:"PendingMaintenanceAction" type:"list"`
 	ResourceIdentifier              *string                     `type:"string"`
@@ -3274,7 +3304,7 @@ type RestoreDBInstanceFromDBSnapshotOutput struct {
 }
 
 type metadataRestoreDBInstanceFromDBSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RestoreDBInstanceFromDBSnapshotResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RestoreDBInstanceToPointInTimeInput struct {
@@ -3313,7 +3343,7 @@ type RestoreDBInstanceToPointInTimeOutput struct {
 }
 
 type metadataRestoreDBInstanceToPointInTimeOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RestoreDBInstanceToPointInTimeResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RevokeDBSecurityGroupIngressInput struct {
@@ -3337,7 +3367,7 @@ type RevokeDBSecurityGroupIngressOutput struct {
 }
 
 type metadataRevokeDBSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RevokeDBSecurityGroupIngressResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Subnet struct {

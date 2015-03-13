@@ -37,9 +37,10 @@ var opAttachInstances *aws.Operation
 func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionInput) (req *aws.Request, output *CompleteLifecycleActionOutput) {
 	if opCompleteLifecycleAction == nil {
 		opCompleteLifecycleAction = &aws.Operation{
-			Name:       "CompleteLifecycleAction",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CompleteLifecycleAction",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CompleteLifecycleActionResult",
 		}
 	}
 
@@ -187,9 +188,10 @@ var opDeleteLaunchConfiguration *aws.Operation
 func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput) (req *aws.Request, output *DeleteLifecycleHookOutput) {
 	if opDeleteLifecycleHook == nil {
 		opDeleteLifecycleHook = &aws.Operation{
-			Name:       "DeleteLifecycleHook",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteLifecycleHook",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteLifecycleHookResult",
 		}
 	}
 
@@ -312,9 +314,10 @@ var opDeleteTags *aws.Operation
 func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *aws.Request, output *DescribeAccountLimitsOutput) {
 	if opDescribeAccountLimits == nil {
 		opDescribeAccountLimits = &aws.Operation{
-			Name:       "DescribeAccountLimits",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeAccountLimits",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeAccountLimitsResult",
 		}
 	}
 
@@ -337,9 +340,10 @@ var opDescribeAccountLimits *aws.Operation
 func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTypesInput) (req *aws.Request, output *DescribeAdjustmentTypesOutput) {
 	if opDescribeAdjustmentTypes == nil {
 		opDescribeAdjustmentTypes = &aws.Operation{
-			Name:       "DescribeAdjustmentTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeAdjustmentTypes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeAdjustmentTypesResult",
 		}
 	}
 
@@ -362,9 +366,10 @@ var opDescribeAdjustmentTypes *aws.Operation
 func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalingGroupsInput) (req *aws.Request, output *DescribeAutoScalingGroupsOutput) {
 	if opDescribeAutoScalingGroups == nil {
 		opDescribeAutoScalingGroups = &aws.Operation{
-			Name:       "DescribeAutoScalingGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeAutoScalingGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeAutoScalingGroupsResult",
 		}
 	}
 
@@ -387,9 +392,10 @@ var opDescribeAutoScalingGroups *aws.Operation
 func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoScalingInstancesInput) (req *aws.Request, output *DescribeAutoScalingInstancesOutput) {
 	if opDescribeAutoScalingInstances == nil {
 		opDescribeAutoScalingInstances = &aws.Operation{
-			Name:       "DescribeAutoScalingInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeAutoScalingInstances",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeAutoScalingInstancesResult",
 		}
 	}
 
@@ -412,9 +418,10 @@ var opDescribeAutoScalingInstances *aws.Operation
 func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *DescribeAutoScalingNotificationTypesInput) (req *aws.Request, output *DescribeAutoScalingNotificationTypesOutput) {
 	if opDescribeAutoScalingNotificationTypes == nil {
 		opDescribeAutoScalingNotificationTypes = &aws.Operation{
-			Name:       "DescribeAutoScalingNotificationTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeAutoScalingNotificationTypes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeAutoScalingNotificationTypesResult",
 		}
 	}
 
@@ -437,9 +444,10 @@ var opDescribeAutoScalingNotificationTypes *aws.Operation
 func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchConfigurationsInput) (req *aws.Request, output *DescribeLaunchConfigurationsOutput) {
 	if opDescribeLaunchConfigurations == nil {
 		opDescribeLaunchConfigurations = &aws.Operation{
-			Name:       "DescribeLaunchConfigurations",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeLaunchConfigurations",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeLaunchConfigurationsResult",
 		}
 	}
 
@@ -462,9 +470,10 @@ var opDescribeLaunchConfigurations *aws.Operation
 func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycleHookTypesInput) (req *aws.Request, output *DescribeLifecycleHookTypesOutput) {
 	if opDescribeLifecycleHookTypes == nil {
 		opDescribeLifecycleHookTypes = &aws.Operation{
-			Name:       "DescribeLifecycleHookTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeLifecycleHookTypes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeLifecycleHookTypesResult",
 		}
 	}
 
@@ -487,9 +496,10 @@ var opDescribeLifecycleHookTypes *aws.Operation
 func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHooksInput) (req *aws.Request, output *DescribeLifecycleHooksOutput) {
 	if opDescribeLifecycleHooks == nil {
 		opDescribeLifecycleHooks = &aws.Operation{
-			Name:       "DescribeLifecycleHooks",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeLifecycleHooks",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeLifecycleHooksResult",
 		}
 	}
 
@@ -512,9 +522,10 @@ var opDescribeLifecycleHooks *aws.Operation
 func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *aws.Request, output *DescribeMetricCollectionTypesOutput) {
 	if opDescribeMetricCollectionTypes == nil {
 		opDescribeMetricCollectionTypes = &aws.Operation{
-			Name:       "DescribeMetricCollectionTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeMetricCollectionTypes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeMetricCollectionTypesResult",
 		}
 	}
 
@@ -537,9 +548,10 @@ var opDescribeMetricCollectionTypes *aws.Operation
 func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeNotificationConfigurationsInput) (req *aws.Request, output *DescribeNotificationConfigurationsOutput) {
 	if opDescribeNotificationConfigurations == nil {
 		opDescribeNotificationConfigurations = &aws.Operation{
-			Name:       "DescribeNotificationConfigurations",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeNotificationConfigurations",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeNotificationConfigurationsResult",
 		}
 	}
 
@@ -562,9 +574,10 @@ var opDescribeNotificationConfigurations *aws.Operation
 func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req *aws.Request, output *DescribePoliciesOutput) {
 	if opDescribePolicies == nil {
 		opDescribePolicies = &aws.Operation{
-			Name:       "DescribePolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribePolicies",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribePoliciesResult",
 		}
 	}
 
@@ -587,9 +600,10 @@ var opDescribePolicies *aws.Operation
 func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *aws.Request, output *DescribeScalingActivitiesOutput) {
 	if opDescribeScalingActivities == nil {
 		opDescribeScalingActivities = &aws.Operation{
-			Name:       "DescribeScalingActivities",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeScalingActivities",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeScalingActivitiesResult",
 		}
 	}
 
@@ -612,9 +626,10 @@ var opDescribeScalingActivities *aws.Operation
 func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingProcessTypesInput) (req *aws.Request, output *DescribeScalingProcessTypesOutput) {
 	if opDescribeScalingProcessTypes == nil {
 		opDescribeScalingProcessTypes = &aws.Operation{
-			Name:       "DescribeScalingProcessTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeScalingProcessTypes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeScalingProcessTypesResult",
 		}
 	}
 
@@ -637,9 +652,10 @@ var opDescribeScalingProcessTypes *aws.Operation
 func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsInput) (req *aws.Request, output *DescribeScheduledActionsOutput) {
 	if opDescribeScheduledActions == nil {
 		opDescribeScheduledActions = &aws.Operation{
-			Name:       "DescribeScheduledActions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeScheduledActions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeScheduledActionsResult",
 		}
 	}
 
@@ -662,9 +678,10 @@ var opDescribeScheduledActions *aws.Operation
 func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
-			Name:       "DescribeTags",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeTags",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeTagsResult",
 		}
 	}
 
@@ -687,9 +704,10 @@ var opDescribeTags *aws.Operation
 func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTerminationPolicyTypesInput) (req *aws.Request, output *DescribeTerminationPolicyTypesOutput) {
 	if opDescribeTerminationPolicyTypes == nil {
 		opDescribeTerminationPolicyTypes = &aws.Operation{
-			Name:       "DescribeTerminationPolicyTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeTerminationPolicyTypes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeTerminationPolicyTypesResult",
 		}
 	}
 
@@ -712,9 +730,10 @@ var opDescribeTerminationPolicyTypes *aws.Operation
 func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *aws.Request, output *DetachInstancesOutput) {
 	if opDetachInstances == nil {
 		opDetachInstances = &aws.Operation{
-			Name:       "DetachInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DetachInstances",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DetachInstancesResult",
 		}
 	}
 
@@ -787,9 +806,10 @@ var opEnableMetricsCollection *aws.Operation
 func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *aws.Request, output *EnterStandbyOutput) {
 	if opEnterStandby == nil {
 		opEnterStandby = &aws.Operation{
-			Name:       "EnterStandby",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "EnterStandby",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "EnterStandbyResult",
 		}
 	}
 
@@ -837,9 +857,10 @@ var opExecutePolicy *aws.Operation
 func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *aws.Request, output *ExitStandbyOutput) {
 	if opExitStandby == nil {
 		opExitStandby = &aws.Operation{
-			Name:       "ExitStandby",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ExitStandby",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ExitStandbyResult",
 		}
 	}
 
@@ -862,9 +883,10 @@ var opExitStandby *aws.Operation
 func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req *aws.Request, output *PutLifecycleHookOutput) {
 	if opPutLifecycleHook == nil {
 		opPutLifecycleHook = &aws.Operation{
-			Name:       "PutLifecycleHook",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "PutLifecycleHook",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "PutLifecycleHookResult",
 		}
 	}
 
@@ -912,9 +934,10 @@ var opPutNotificationConfiguration *aws.Operation
 func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *aws.Request, output *PutScalingPolicyOutput) {
 	if opPutScalingPolicy == nil {
 		opPutScalingPolicy = &aws.Operation{
-			Name:       "PutScalingPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "PutScalingPolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "PutScalingPolicyResult",
 		}
 	}
 
@@ -962,9 +985,10 @@ var opPutScheduledUpdateGroupAction *aws.Operation
 func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecycleActionHeartbeatInput) (req *aws.Request, output *RecordLifecycleActionHeartbeatOutput) {
 	if opRecordLifecycleActionHeartbeat == nil {
 		opRecordLifecycleActionHeartbeat = &aws.Operation{
-			Name:       "RecordLifecycleActionHeartbeat",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RecordLifecycleActionHeartbeat",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RecordLifecycleActionHeartbeatResult",
 		}
 	}
 
@@ -1087,9 +1111,10 @@ var opSuspendProcesses *aws.Operation
 func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *TerminateInstanceInAutoScalingGroupInput) (req *aws.Request, output *TerminateInstanceInAutoScalingGroupOutput) {
 	if opTerminateInstanceInAutoScalingGroup == nil {
 		opTerminateInstanceInAutoScalingGroup = &aws.Operation{
-			Name:       "TerminateInstanceInAutoScalingGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "TerminateInstanceInAutoScalingGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "TerminateInstanceInAutoScalingGroupResult",
 		}
 	}
 
@@ -1267,7 +1292,7 @@ type CompleteLifecycleActionOutput struct {
 }
 
 type metadataCompleteLifecycleActionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CompleteLifecycleActionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAutoScalingGroupInput struct {
@@ -1408,7 +1433,7 @@ type DeleteLifecycleHookOutput struct {
 }
 
 type metadataDeleteLifecycleHookOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteLifecycleHookResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteNotificationConfigurationInput struct {
@@ -1502,7 +1527,7 @@ type DescribeAccountLimitsOutput struct {
 }
 
 type metadataDescribeAccountLimitsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAccountLimitsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAdjustmentTypesInput struct {
@@ -1520,7 +1545,7 @@ type DescribeAdjustmentTypesOutput struct {
 }
 
 type metadataDescribeAdjustmentTypesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAdjustmentTypesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAutoScalingGroupsInput struct {
@@ -1543,7 +1568,7 @@ type DescribeAutoScalingGroupsOutput struct {
 }
 
 type metadataDescribeAutoScalingGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAutoScalingGroupsResult" required:"AutoScalingGroups"`
+	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroups"`
 }
 
 type DescribeAutoScalingInstancesInput struct {
@@ -1566,7 +1591,7 @@ type DescribeAutoScalingInstancesOutput struct {
 }
 
 type metadataDescribeAutoScalingInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAutoScalingInstancesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAutoScalingNotificationTypesInput struct {
@@ -1584,7 +1609,7 @@ type DescribeAutoScalingNotificationTypesOutput struct {
 }
 
 type metadataDescribeAutoScalingNotificationTypesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeAutoScalingNotificationTypesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLaunchConfigurationsInput struct {
@@ -1607,7 +1632,7 @@ type DescribeLaunchConfigurationsOutput struct {
 }
 
 type metadataDescribeLaunchConfigurationsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLaunchConfigurationsResult" required:"LaunchConfigurations"`
+	SDKShapeTraits bool `type:"structure" required:"LaunchConfigurations"`
 }
 
 type DescribeLifecycleHookTypesInput struct {
@@ -1625,7 +1650,7 @@ type DescribeLifecycleHookTypesOutput struct {
 }
 
 type metadataDescribeLifecycleHookTypesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLifecycleHookTypesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLifecycleHooksInput struct {
@@ -1646,7 +1671,7 @@ type DescribeLifecycleHooksOutput struct {
 }
 
 type metadataDescribeLifecycleHooksOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeLifecycleHooksResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeMetricCollectionTypesInput struct {
@@ -1665,7 +1690,7 @@ type DescribeMetricCollectionTypesOutput struct {
 }
 
 type metadataDescribeMetricCollectionTypesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeMetricCollectionTypesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeNotificationConfigurationsInput struct {
@@ -1688,7 +1713,7 @@ type DescribeNotificationConfigurationsOutput struct {
 }
 
 type metadataDescribeNotificationConfigurationsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeNotificationConfigurationsResult" required:"NotificationConfigurations"`
+	SDKShapeTraits bool `type:"structure" required:"NotificationConfigurations"`
 }
 
 type DescribePoliciesInput struct {
@@ -1712,7 +1737,7 @@ type DescribePoliciesOutput struct {
 }
 
 type metadataDescribePoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribePoliciesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeScalingActivitiesInput struct {
@@ -1736,7 +1761,7 @@ type DescribeScalingActivitiesOutput struct {
 }
 
 type metadataDescribeScalingActivitiesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeScalingActivitiesResult" required:"Activities"`
+	SDKShapeTraits bool `type:"structure" required:"Activities"`
 }
 
 type DescribeScalingProcessTypesInput struct {
@@ -1754,7 +1779,7 @@ type DescribeScalingProcessTypesOutput struct {
 }
 
 type metadataDescribeScalingProcessTypesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeScalingProcessTypesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeScheduledActionsInput struct {
@@ -1780,7 +1805,7 @@ type DescribeScheduledActionsOutput struct {
 }
 
 type metadataDescribeScheduledActionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeScheduledActionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeTagsInput struct {
@@ -1803,7 +1828,7 @@ type DescribeTagsOutput struct {
 }
 
 type metadataDescribeTagsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeTagsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeTerminationPolicyTypesInput struct {
@@ -1821,7 +1846,7 @@ type DescribeTerminationPolicyTypesOutput struct {
 }
 
 type metadataDescribeTerminationPolicyTypesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeTerminationPolicyTypesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachInstancesInput struct {
@@ -1843,7 +1868,7 @@ type DetachInstancesOutput struct {
 }
 
 type metadataDetachInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DetachInstancesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableMetricsCollectionInput struct {
@@ -1929,7 +1954,7 @@ type EnterStandbyOutput struct {
 }
 
 type metadataEnterStandbyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"EnterStandbyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ExecutePolicyInput struct {
@@ -1970,7 +1995,7 @@ type ExitStandbyOutput struct {
 }
 
 type metadataExitStandbyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ExitStandbyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Filter struct {
@@ -2118,7 +2143,7 @@ type PutLifecycleHookOutput struct {
 }
 
 type metadataPutLifecycleHookOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"PutLifecycleHookResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutNotificationConfigurationInput struct {
@@ -2163,7 +2188,7 @@ type PutScalingPolicyOutput struct {
 }
 
 type metadataPutScalingPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"PutScalingPolicyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutScheduledUpdateGroupActionInput struct {
@@ -2209,7 +2234,7 @@ type RecordLifecycleActionHeartbeatOutput struct {
 }
 
 type metadataRecordLifecycleActionHeartbeatOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RecordLifecycleActionHeartbeatResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResumeProcessesOutput struct {
@@ -2372,7 +2397,7 @@ type TerminateInstanceInAutoScalingGroupOutput struct {
 }
 
 type metadataTerminateInstanceInAutoScalingGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"TerminateInstanceInAutoScalingGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateAutoScalingGroupInput struct {

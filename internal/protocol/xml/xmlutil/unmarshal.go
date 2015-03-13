@@ -10,11 +10,15 @@ import (
 	"time"
 )
 
-func UnmarshalXML(v interface{}, d *xml.Decoder) error {
+func UnmarshalXML(v interface{}, d *xml.Decoder, wrapper string) error {
 	n, _ := XMLToStruct(d, nil)
 	if n.Children != nil {
 		for _, root := range n.Children {
 			for _, c := range root {
+				if wrappedChild, ok := c.Children[wrapper]; ok {
+					c = wrappedChild[0] // pull out wrapped element
+				}
+
 				err := parse(reflect.ValueOf(v), c, "")
 				if err != nil {
 					return err
@@ -62,19 +66,6 @@ func parseStruct(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 
 		r = r.Elem()
 		t = t.Elem()
-	}
-
-	// unwrap any wrappers
-	if wrapper := tag.Get("resultWrapper"); wrapper != "" {
-		if Children, ok := node.Children[wrapper]; ok {
-			for _, c := range Children {
-				err := parseStruct(r, c, "")
-				if err != nil {
-					return err
-				}
-			}
-			return nil
-		}
 	}
 
 	// unwrap any payloads

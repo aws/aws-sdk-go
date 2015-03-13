@@ -15,14 +15,6 @@ import (
 // shapes for easier code generation
 func (a *API) updateTopLevelShapeReferences() {
 	for _, o := range a.Operations {
-		// these are for Query services
-		if o.InputRef.ResultWrapper != "" {
-			o.InputRef.Shape.ResultWrapper = o.InputRef.ResultWrapper
-		}
-		if o.OutputRef.ResultWrapper != "" {
-			o.OutputRef.Shape.ResultWrapper = o.OutputRef.ResultWrapper
-		}
-
 		// these are for REST-XML services
 		if o.InputRef.LocationName != "" {
 			o.InputRef.Shape.LocationName = o.InputRef.LocationName
@@ -129,8 +121,6 @@ func (a *API) renameToplevelShapes() {
 			switch n := len(v.InputRef.Shape.refs); {
 			case n == 1:
 				v.InputRef.Shape.Rename(name)
-			case n > 1 && v.InputRef.ResultWrapper != "":
-				a.createShapeFromRef(&v.InputRef, name)
 			}
 		}
 		if v.HasOutput() {
@@ -138,8 +128,6 @@ func (a *API) renameToplevelShapes() {
 			switch n := len(v.OutputRef.Shape.refs); {
 			case n == 1:
 				v.OutputRef.Shape.Rename(name)
-			case n > 1 && v.OutputRef.ResultWrapper != "":
-				a.createShapeFromRef(&v.OutputRef, name)
 			}
 		}
 		v.InputRef.Payload = a.ExportableName(v.InputRef.Payload)
@@ -190,7 +178,6 @@ func (a *API) renameExportable() {
 		}
 
 		s.Payload = a.ExportableName(s.Payload)
-		s.ResultWrapper = a.ExportableName(s.ResultWrapper)
 	}
 }
 

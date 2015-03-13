@@ -37,9 +37,10 @@ var opCancelUpdateStack *aws.Operation
 func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *aws.Request, output *CreateStackOutput) {
 	if opCreateStack == nil {
 		opCreateStack = &aws.Operation{
-			Name:       "CreateStack",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateStack",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateStackResult",
 		}
 	}
 
@@ -87,9 +88,10 @@ var opDeleteStack *aws.Operation
 func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsInput) (req *aws.Request, output *DescribeStackEventsOutput) {
 	if opDescribeStackEvents == nil {
 		opDescribeStackEvents = &aws.Operation{
-			Name:       "DescribeStackEvents",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeStackEvents",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeStackEventsResult",
 		}
 	}
 
@@ -112,9 +114,10 @@ var opDescribeStackEvents *aws.Operation
 func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResourceInput) (req *aws.Request, output *DescribeStackResourceOutput) {
 	if opDescribeStackResource == nil {
 		opDescribeStackResource = &aws.Operation{
-			Name:       "DescribeStackResource",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeStackResource",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeStackResourceResult",
 		}
 	}
 
@@ -137,9 +140,10 @@ var opDescribeStackResource *aws.Operation
 func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResourcesInput) (req *aws.Request, output *DescribeStackResourcesOutput) {
 	if opDescribeStackResources == nil {
 		opDescribeStackResources = &aws.Operation{
-			Name:       "DescribeStackResources",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeStackResources",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeStackResourcesResult",
 		}
 	}
 
@@ -162,9 +166,10 @@ var opDescribeStackResources *aws.Operation
 func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req *aws.Request, output *DescribeStacksOutput) {
 	if opDescribeStacks == nil {
 		opDescribeStacks = &aws.Operation{
-			Name:       "DescribeStacks",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeStacks",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeStacksResult",
 		}
 	}
 
@@ -187,9 +192,10 @@ var opDescribeStacks *aws.Operation
 func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCostInput) (req *aws.Request, output *EstimateTemplateCostOutput) {
 	if opEstimateTemplateCost == nil {
 		opEstimateTemplateCost = &aws.Operation{
-			Name:       "EstimateTemplateCost",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "EstimateTemplateCost",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "EstimateTemplateCostResult",
 		}
 	}
 
@@ -212,9 +218,10 @@ var opEstimateTemplateCost *aws.Operation
 func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req *aws.Request, output *GetStackPolicyOutput) {
 	if opGetStackPolicy == nil {
 		opGetStackPolicy = &aws.Operation{
-			Name:       "GetStackPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetStackPolicy",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetStackPolicyResult",
 		}
 	}
 
@@ -237,9 +244,10 @@ var opGetStackPolicy *aws.Operation
 func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *aws.Request, output *GetTemplateOutput) {
 	if opGetTemplate == nil {
 		opGetTemplate = &aws.Operation{
-			Name:       "GetTemplate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetTemplate",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetTemplateResult",
 		}
 	}
 
@@ -262,9 +270,10 @@ var opGetTemplate *aws.Operation
 func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInput) (req *aws.Request, output *GetTemplateSummaryOutput) {
 	if opGetTemplateSummary == nil {
 		opGetTemplateSummary = &aws.Operation{
-			Name:       "GetTemplateSummary",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetTemplateSummary",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetTemplateSummaryResult",
 		}
 	}
 
@@ -287,9 +296,10 @@ var opGetTemplateSummary *aws.Operation
 func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInput) (req *aws.Request, output *ListStackResourcesOutput) {
 	if opListStackResources == nil {
 		opListStackResources = &aws.Operation{
-			Name:       "ListStackResources",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListStackResources",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListStackResourcesResult",
 		}
 	}
 
@@ -312,9 +322,10 @@ var opListStackResources *aws.Operation
 func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *aws.Request, output *ListStacksOutput) {
 	if opListStacks == nil {
 		opListStacks = &aws.Operation{
-			Name:       "ListStacks",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListStacks",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListStacksResult",
 		}
 	}
 
@@ -387,9 +398,10 @@ var opSignalResource *aws.Operation
 func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request, output *UpdateStackOutput) {
 	if opUpdateStack == nil {
 		opUpdateStack = &aws.Operation{
-			Name:       "UpdateStack",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "UpdateStack",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "UpdateStackResult",
 		}
 	}
 
@@ -412,9 +424,10 @@ var opUpdateStack *aws.Operation
 func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (req *aws.Request, output *ValidateTemplateOutput) {
 	if opValidateTemplate == nil {
 		opValidateTemplate = &aws.Operation{
-			Name:       "ValidateTemplate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ValidateTemplate",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ValidateTemplateResult",
 		}
 	}
 
@@ -479,7 +492,7 @@ type CreateStackOutput struct {
 }
 
 type metadataCreateStackOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateStackResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteStackInput struct {
@@ -519,7 +532,7 @@ type DescribeStackEventsOutput struct {
 }
 
 type metadataDescribeStackEventsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeStackEventsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStackResourceInput struct {
@@ -540,7 +553,7 @@ type DescribeStackResourceOutput struct {
 }
 
 type metadataDescribeStackResourceOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeStackResourceResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStackResourcesInput struct {
@@ -562,7 +575,7 @@ type DescribeStackResourcesOutput struct {
 }
 
 type metadataDescribeStackResourcesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeStackResourcesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStacksInput struct {
@@ -584,7 +597,7 @@ type DescribeStacksOutput struct {
 }
 
 type metadataDescribeStacksOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeStacksResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EstimateTemplateCostInput struct {
@@ -606,7 +619,7 @@ type EstimateTemplateCostOutput struct {
 }
 
 type metadataEstimateTemplateCostOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"EstimateTemplateCostResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetStackPolicyInput struct {
@@ -626,7 +639,7 @@ type GetStackPolicyOutput struct {
 }
 
 type metadataGetStackPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetStackPolicyResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetTemplateInput struct {
@@ -646,7 +659,7 @@ type GetTemplateOutput struct {
 }
 
 type metadataGetTemplateOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetTemplateResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetTemplateSummaryInput struct {
@@ -672,7 +685,7 @@ type GetTemplateSummaryOutput struct {
 }
 
 type metadataGetTemplateSummaryOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetTemplateSummaryResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListStackResourcesInput struct {
@@ -694,7 +707,7 @@ type ListStackResourcesOutput struct {
 }
 
 type metadataListStackResourcesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListStackResourcesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListStacksInput struct {
@@ -716,7 +729,7 @@ type ListStacksOutput struct {
 }
 
 type metadataListStacksOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListStacksResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Output struct {
@@ -960,7 +973,7 @@ type UpdateStackOutput struct {
 }
 
 type metadataUpdateStackOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"UpdateStackResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ValidateTemplateInput struct {
@@ -984,5 +997,5 @@ type ValidateTemplateOutput struct {
 }
 
 type metadataValidateTemplateOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ValidateTemplateResult"`
+	SDKShapeTraits bool `type:"structure"`
 }

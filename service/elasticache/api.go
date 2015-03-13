@@ -12,9 +12,10 @@ import (
 func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.Request, output *TagListMessage) {
 	if opAddTagsToResource == nil {
 		opAddTagsToResource = &aws.Operation{
-			Name:       "AddTagsToResource",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "AddTagsToResource",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "AddTagsToResourceResult",
 		}
 	}
 
@@ -37,9 +38,10 @@ var opAddTagsToResource *aws.Operation
 func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *AuthorizeCacheSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeCacheSecurityGroupIngressOutput) {
 	if opAuthorizeCacheSecurityGroupIngress == nil {
 		opAuthorizeCacheSecurityGroupIngress = &aws.Operation{
-			Name:       "AuthorizeCacheSecurityGroupIngress",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "AuthorizeCacheSecurityGroupIngress",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "AuthorizeCacheSecurityGroupIngressResult",
 		}
 	}
 
@@ -62,9 +64,10 @@ var opAuthorizeCacheSecurityGroupIngress *aws.Operation
 func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, output *CopySnapshotOutput) {
 	if opCopySnapshot == nil {
 		opCopySnapshot = &aws.Operation{
-			Name:       "CopySnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CopySnapshot",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CopySnapshotResult",
 		}
 	}
 
@@ -87,9 +90,10 @@ var opCopySnapshot *aws.Operation
 func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) (req *aws.Request, output *CreateCacheClusterOutput) {
 	if opCreateCacheCluster == nil {
 		opCreateCacheCluster = &aws.Operation{
-			Name:       "CreateCacheCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateCacheCluster",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateCacheClusterResult",
 		}
 	}
 
@@ -112,9 +116,10 @@ var opCreateCacheCluster *aws.Operation
 func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParameterGroupInput) (req *aws.Request, output *CreateCacheParameterGroupOutput) {
 	if opCreateCacheParameterGroup == nil {
 		opCreateCacheParameterGroup = &aws.Operation{
-			Name:       "CreateCacheParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateCacheParameterGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateCacheParameterGroupResult",
 		}
 	}
 
@@ -137,9 +142,10 @@ var opCreateCacheParameterGroup *aws.Operation
 func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurityGroupInput) (req *aws.Request, output *CreateCacheSecurityGroupOutput) {
 	if opCreateCacheSecurityGroup == nil {
 		opCreateCacheSecurityGroup = &aws.Operation{
-			Name:       "CreateCacheSecurityGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateCacheSecurityGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateCacheSecurityGroupResult",
 		}
 	}
 
@@ -162,9 +168,10 @@ var opCreateCacheSecurityGroup *aws.Operation
 func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGroupInput) (req *aws.Request, output *CreateCacheSubnetGroupOutput) {
 	if opCreateCacheSubnetGroup == nil {
 		opCreateCacheSubnetGroup = &aws.Operation{
-			Name:       "CreateCacheSubnetGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateCacheSubnetGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateCacheSubnetGroupResult",
 		}
 	}
 
@@ -187,9 +194,10 @@ var opCreateCacheSubnetGroup *aws.Operation
 func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGroupInput) (req *aws.Request, output *CreateReplicationGroupOutput) {
 	if opCreateReplicationGroup == nil {
 		opCreateReplicationGroup = &aws.Operation{
-			Name:       "CreateReplicationGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateReplicationGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateReplicationGroupResult",
 		}
 	}
 
@@ -212,9 +220,10 @@ var opCreateReplicationGroup *aws.Operation
 func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Request, output *CreateSnapshotOutput) {
 	if opCreateSnapshot == nil {
 		opCreateSnapshot = &aws.Operation{
-			Name:       "CreateSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateSnapshot",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateSnapshotResult",
 		}
 	}
 
@@ -237,9 +246,10 @@ var opCreateSnapshot *aws.Operation
 func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) (req *aws.Request, output *DeleteCacheClusterOutput) {
 	if opDeleteCacheCluster == nil {
 		opDeleteCacheCluster = &aws.Operation{
-			Name:       "DeleteCacheCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteCacheCluster",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteCacheClusterResult",
 		}
 	}
 
@@ -337,9 +347,10 @@ var opDeleteCacheSubnetGroup *aws.Operation
 func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGroupInput) (req *aws.Request, output *DeleteReplicationGroupOutput) {
 	if opDeleteReplicationGroup == nil {
 		opDeleteReplicationGroup = &aws.Operation{
-			Name:       "DeleteReplicationGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteReplicationGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteReplicationGroupResult",
 		}
 	}
 
@@ -362,9 +373,10 @@ var opDeleteReplicationGroup *aws.Operation
 func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Request, output *DeleteSnapshotOutput) {
 	if opDeleteSnapshot == nil {
 		opDeleteSnapshot = &aws.Operation{
-			Name:       "DeleteSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DeleteSnapshot",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DeleteSnapshotResult",
 		}
 	}
 
@@ -387,9 +399,10 @@ var opDeleteSnapshot *aws.Operation
 func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersInput) (req *aws.Request, output *DescribeCacheClustersOutput) {
 	if opDescribeCacheClusters == nil {
 		opDescribeCacheClusters = &aws.Operation{
-			Name:       "DescribeCacheClusters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeCacheClusters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeCacheClustersResult",
 		}
 	}
 
@@ -412,9 +425,10 @@ var opDescribeCacheClusters *aws.Operation
 func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEngineVersionsInput) (req *aws.Request, output *DescribeCacheEngineVersionsOutput) {
 	if opDescribeCacheEngineVersions == nil {
 		opDescribeCacheEngineVersions = &aws.Operation{
-			Name:       "DescribeCacheEngineVersions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeCacheEngineVersions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeCacheEngineVersionsResult",
 		}
 	}
 
@@ -437,9 +451,10 @@ var opDescribeCacheEngineVersions *aws.Operation
 func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCacheParameterGroupsInput) (req *aws.Request, output *DescribeCacheParameterGroupsOutput) {
 	if opDescribeCacheParameterGroups == nil {
 		opDescribeCacheParameterGroups = &aws.Operation{
-			Name:       "DescribeCacheParameterGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeCacheParameterGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeCacheParameterGroupsResult",
 		}
 	}
 
@@ -462,9 +477,10 @@ var opDescribeCacheParameterGroups *aws.Operation
 func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParametersInput) (req *aws.Request, output *DescribeCacheParametersOutput) {
 	if opDescribeCacheParameters == nil {
 		opDescribeCacheParameters = &aws.Operation{
-			Name:       "DescribeCacheParameters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeCacheParameters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeCacheParametersResult",
 		}
 	}
 
@@ -487,9 +503,10 @@ var opDescribeCacheParameters *aws.Operation
 func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSecurityGroupsInput) (req *aws.Request, output *DescribeCacheSecurityGroupsOutput) {
 	if opDescribeCacheSecurityGroups == nil {
 		opDescribeCacheSecurityGroups = &aws.Operation{
-			Name:       "DescribeCacheSecurityGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeCacheSecurityGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeCacheSecurityGroupsResult",
 		}
 	}
 
@@ -512,9 +529,10 @@ var opDescribeCacheSecurityGroups *aws.Operation
 func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubnetGroupsInput) (req *aws.Request, output *DescribeCacheSubnetGroupsOutput) {
 	if opDescribeCacheSubnetGroups == nil {
 		opDescribeCacheSubnetGroups = &aws.Operation{
-			Name:       "DescribeCacheSubnetGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeCacheSubnetGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeCacheSubnetGroupsResult",
 		}
 	}
 
@@ -537,9 +555,10 @@ var opDescribeCacheSubnetGroups *aws.Operation
 func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
 	if opDescribeEngineDefaultParameters == nil {
 		opDescribeEngineDefaultParameters = &aws.Operation{
-			Name:       "DescribeEngineDefaultParameters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEngineDefaultParameters",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEngineDefaultParametersResult",
 		}
 	}
 
@@ -562,9 +581,10 @@ var opDescribeEngineDefaultParameters *aws.Operation
 func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
-			Name:       "DescribeEvents",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEvents",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEventsResult",
 		}
 	}
 
@@ -587,9 +607,10 @@ var opDescribeEvents *aws.Operation
 func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicationGroupsInput) (req *aws.Request, output *DescribeReplicationGroupsOutput) {
 	if opDescribeReplicationGroups == nil {
 		opDescribeReplicationGroups = &aws.Operation{
-			Name:       "DescribeReplicationGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeReplicationGroups",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeReplicationGroupsResult",
 		}
 	}
 
@@ -612,9 +633,10 @@ var opDescribeReplicationGroups *aws.Operation
 func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedCacheNodesInput) (req *aws.Request, output *DescribeReservedCacheNodesOutput) {
 	if opDescribeReservedCacheNodes == nil {
 		opDescribeReservedCacheNodes = &aws.Operation{
-			Name:       "DescribeReservedCacheNodes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeReservedCacheNodes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeReservedCacheNodesResult",
 		}
 	}
 
@@ -637,9 +659,10 @@ var opDescribeReservedCacheNodes *aws.Operation
 func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *DescribeReservedCacheNodesOfferingsInput) (req *aws.Request, output *DescribeReservedCacheNodesOfferingsOutput) {
 	if opDescribeReservedCacheNodesOfferings == nil {
 		opDescribeReservedCacheNodesOfferings = &aws.Operation{
-			Name:       "DescribeReservedCacheNodesOfferings",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeReservedCacheNodesOfferings",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeReservedCacheNodesOfferingsResult",
 		}
 	}
 
@@ -662,9 +685,10 @@ var opDescribeReservedCacheNodesOfferings *aws.Operation
 func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.Request, output *DescribeSnapshotsOutput) {
 	if opDescribeSnapshots == nil {
 		opDescribeSnapshots = &aws.Operation{
-			Name:       "DescribeSnapshots",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeSnapshots",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeSnapshotsResult",
 		}
 	}
 
@@ -687,9 +711,10 @@ var opDescribeSnapshots *aws.Operation
 func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *TagListMessage) {
 	if opListTagsForResource == nil {
 		opListTagsForResource = &aws.Operation{
-			Name:       "ListTagsForResource",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListTagsForResource",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListTagsForResourceResult",
 		}
 	}
 
@@ -712,9 +737,10 @@ var opListTagsForResource *aws.Operation
 func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) (req *aws.Request, output *ModifyCacheClusterOutput) {
 	if opModifyCacheCluster == nil {
 		opModifyCacheCluster = &aws.Operation{
-			Name:       "ModifyCacheCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyCacheCluster",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyCacheClusterResult",
 		}
 	}
 
@@ -737,9 +763,10 @@ var opModifyCacheCluster *aws.Operation
 func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParameterGroupInput) (req *aws.Request, output *CacheParameterGroupNameMessage) {
 	if opModifyCacheParameterGroup == nil {
 		opModifyCacheParameterGroup = &aws.Operation{
-			Name:       "ModifyCacheParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyCacheParameterGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyCacheParameterGroupResult",
 		}
 	}
 
@@ -762,9 +789,10 @@ var opModifyCacheParameterGroup *aws.Operation
 func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGroupInput) (req *aws.Request, output *ModifyCacheSubnetGroupOutput) {
 	if opModifyCacheSubnetGroup == nil {
 		opModifyCacheSubnetGroup = &aws.Operation{
-			Name:       "ModifyCacheSubnetGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyCacheSubnetGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyCacheSubnetGroupResult",
 		}
 	}
 
@@ -787,9 +815,10 @@ var opModifyCacheSubnetGroup *aws.Operation
 func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGroupInput) (req *aws.Request, output *ModifyReplicationGroupOutput) {
 	if opModifyReplicationGroup == nil {
 		opModifyReplicationGroup = &aws.Operation{
-			Name:       "ModifyReplicationGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ModifyReplicationGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ModifyReplicationGroupResult",
 		}
 	}
 
@@ -812,9 +841,10 @@ var opModifyReplicationGroup *aws.Operation
 func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseReservedCacheNodesOfferingInput) (req *aws.Request, output *PurchaseReservedCacheNodesOfferingOutput) {
 	if opPurchaseReservedCacheNodesOffering == nil {
 		opPurchaseReservedCacheNodesOffering = &aws.Operation{
-			Name:       "PurchaseReservedCacheNodesOffering",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "PurchaseReservedCacheNodesOffering",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "PurchaseReservedCacheNodesOfferingResult",
 		}
 	}
 
@@ -837,9 +867,10 @@ var opPurchaseReservedCacheNodesOffering *aws.Operation
 func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) (req *aws.Request, output *RebootCacheClusterOutput) {
 	if opRebootCacheCluster == nil {
 		opRebootCacheCluster = &aws.Operation{
-			Name:       "RebootCacheCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RebootCacheCluster",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RebootCacheClusterResult",
 		}
 	}
 
@@ -862,9 +893,10 @@ var opRebootCacheCluster *aws.Operation
 func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *aws.Request, output *TagListMessage) {
 	if opRemoveTagsFromResource == nil {
 		opRemoveTagsFromResource = &aws.Operation{
-			Name:       "RemoveTagsFromResource",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RemoveTagsFromResource",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RemoveTagsFromResourceResult",
 		}
 	}
 
@@ -887,9 +919,10 @@ var opRemoveTagsFromResource *aws.Operation
 func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameterGroupInput) (req *aws.Request, output *CacheParameterGroupNameMessage) {
 	if opResetCacheParameterGroup == nil {
 		opResetCacheParameterGroup = &aws.Operation{
-			Name:       "ResetCacheParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ResetCacheParameterGroup",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ResetCacheParameterGroupResult",
 		}
 	}
 
@@ -912,9 +945,10 @@ var opResetCacheParameterGroup *aws.Operation
 func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheSecurityGroupIngressInput) (req *aws.Request, output *RevokeCacheSecurityGroupIngressOutput) {
 	if opRevokeCacheSecurityGroupIngress == nil {
 		opRevokeCacheSecurityGroupIngress = &aws.Operation{
-			Name:       "RevokeCacheSecurityGroupIngress",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RevokeCacheSecurityGroupIngress",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RevokeCacheSecurityGroupIngressResult",
 		}
 	}
 
@@ -944,16 +978,6 @@ type metadataAddTagsToResourceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName,Tags"`
 }
 
-type AddTagsToResourceOutput struct {
-	TagList []*Tag `locationNameList:"Tag" type:"list"`
-
-	metadataAddTagsToResourceOutput `json:"-", xml:"-"`
-}
-
-type metadataAddTagsToResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type AuthorizeCacheSecurityGroupIngressInput struct {
 	CacheSecurityGroupName  *string `type:"string"`
 	EC2SecurityGroupName    *string `type:"string"`
@@ -973,7 +997,7 @@ type AuthorizeCacheSecurityGroupIngressOutput struct {
 }
 
 type metadataAuthorizeCacheSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AuthorizeCacheSecurityGroupIngressResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AvailabilityZone struct {
@@ -1094,7 +1118,7 @@ type CacheParameterGroupNameMessage struct {
 }
 
 type metadataCacheParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ResetCacheParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CacheParameterGroupStatus struct {
@@ -1164,7 +1188,7 @@ type CopySnapshotOutput struct {
 }
 
 type metadataCopySnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CopySnapshotResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateCacheClusterInput struct {
@@ -1205,7 +1229,7 @@ type CreateCacheClusterOutput struct {
 }
 
 type metadataCreateCacheClusterOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateCacheClusterResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateCacheParameterGroupInput struct {
@@ -1227,7 +1251,7 @@ type CreateCacheParameterGroupOutput struct {
 }
 
 type metadataCreateCacheParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateCacheParameterGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateCacheSecurityGroupInput struct {
@@ -1248,7 +1272,7 @@ type CreateCacheSecurityGroupOutput struct {
 }
 
 type metadataCreateCacheSecurityGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateCacheSecurityGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateCacheSubnetGroupInput struct {
@@ -1270,7 +1294,7 @@ type CreateCacheSubnetGroupOutput struct {
 }
 
 type metadataCreateCacheSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateCacheSubnetGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateReplicationGroupInput struct {
@@ -1311,7 +1335,7 @@ type CreateReplicationGroupOutput struct {
 }
 
 type metadataCreateReplicationGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateReplicationGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateSnapshotInput struct {
@@ -1332,7 +1356,7 @@ type CreateSnapshotOutput struct {
 }
 
 type metadataCreateSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateSnapshotResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteCacheClusterInput struct {
@@ -1353,7 +1377,7 @@ type DeleteCacheClusterOutput struct {
 }
 
 type metadataDeleteCacheClusterOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteCacheClusterResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteCacheParameterGroupInput struct {
@@ -1429,7 +1453,7 @@ type DeleteReplicationGroupOutput struct {
 }
 
 type metadataDeleteReplicationGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteReplicationGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteSnapshotInput struct {
@@ -1449,7 +1473,7 @@ type DeleteSnapshotOutput struct {
 }
 
 type metadataDeleteSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DeleteSnapshotResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeCacheClustersInput struct {
@@ -1473,7 +1497,7 @@ type DescribeCacheClustersOutput struct {
 }
 
 type metadataDescribeCacheClustersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheClustersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeCacheEngineVersionsInput struct {
@@ -1499,7 +1523,7 @@ type DescribeCacheEngineVersionsOutput struct {
 }
 
 type metadataDescribeCacheEngineVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheEngineVersionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeCacheParameterGroupsInput struct {
@@ -1522,7 +1546,7 @@ type DescribeCacheParameterGroupsOutput struct {
 }
 
 type metadataDescribeCacheParameterGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheParameterGroupsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeCacheParametersInput struct {
@@ -1547,7 +1571,7 @@ type DescribeCacheParametersOutput struct {
 }
 
 type metadataDescribeCacheParametersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheParametersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeCacheSecurityGroupsInput struct {
@@ -1570,7 +1594,7 @@ type DescribeCacheSecurityGroupsOutput struct {
 }
 
 type metadataDescribeCacheSecurityGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheSecurityGroupsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeCacheSubnetGroupsInput struct {
@@ -1593,7 +1617,7 @@ type DescribeCacheSubnetGroupsOutput struct {
 }
 
 type metadataDescribeCacheSubnetGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeCacheSubnetGroupsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEngineDefaultParametersInput struct {
@@ -1615,7 +1639,7 @@ type DescribeEngineDefaultParametersOutput struct {
 }
 
 type metadataDescribeEngineDefaultParametersOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEngineDefaultParametersResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEventsInput struct {
@@ -1642,7 +1666,7 @@ type DescribeEventsOutput struct {
 }
 
 type metadataDescribeEventsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeReplicationGroupsInput struct {
@@ -1665,7 +1689,7 @@ type DescribeReplicationGroupsOutput struct {
 }
 
 type metadataDescribeReplicationGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReplicationGroupsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeReservedCacheNodesInput struct {
@@ -1709,7 +1733,7 @@ type DescribeReservedCacheNodesOfferingsOutput struct {
 }
 
 type metadataDescribeReservedCacheNodesOfferingsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedCacheNodesOfferingsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeReservedCacheNodesOutput struct {
@@ -1720,7 +1744,7 @@ type DescribeReservedCacheNodesOutput struct {
 }
 
 type metadataDescribeReservedCacheNodesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeReservedCacheNodesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeSnapshotsInput struct {
@@ -1745,7 +1769,7 @@ type DescribeSnapshotsOutput struct {
 }
 
 type metadataDescribeSnapshotsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeSnapshotsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EC2SecurityGroup struct {
@@ -1807,16 +1831,6 @@ type metadataListTagsForResourceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName"`
 }
 
-type ListTagsForResourceOutput struct {
-	TagList []*Tag `locationNameList:"Tag" type:"list"`
-
-	metadataListTagsForResourceOutput `json:"-", xml:"-"`
-}
-
-type metadataListTagsForResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type ModifyCacheClusterInput struct {
 	AZMode                     *string   `type:"string"`
 	ApplyImmediately           *bool     `type:"boolean"`
@@ -1849,7 +1863,7 @@ type ModifyCacheClusterOutput struct {
 }
 
 type metadataModifyCacheClusterOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyCacheClusterResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyCacheParameterGroupInput struct {
@@ -1861,16 +1875,6 @@ type ModifyCacheParameterGroupInput struct {
 
 type metadataModifyCacheParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName,ParameterNameValues"`
-}
-
-type ModifyCacheParameterGroupOutput struct {
-	CacheParameterGroupName *string `type:"string"`
-
-	metadataModifyCacheParameterGroupOutput `json:"-", xml:"-"`
-}
-
-type metadataModifyCacheParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyCacheSubnetGroupInput struct {
@@ -1892,7 +1896,7 @@ type ModifyCacheSubnetGroupOutput struct {
 }
 
 type metadataModifyCacheSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyCacheSubnetGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyReplicationGroupInput struct {
@@ -1927,7 +1931,7 @@ type ModifyReplicationGroupOutput struct {
 }
 
 type metadataModifyReplicationGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ModifyReplicationGroupResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type NodeGroup struct {
@@ -2040,7 +2044,7 @@ type PurchaseReservedCacheNodesOfferingOutput struct {
 }
 
 type metadataPurchaseReservedCacheNodesOfferingOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"PurchaseReservedCacheNodesOfferingResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RebootCacheClusterInput struct {
@@ -2061,7 +2065,7 @@ type RebootCacheClusterOutput struct {
 }
 
 type metadataRebootCacheClusterOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RebootCacheClusterResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RecurringCharge struct {
@@ -2084,16 +2088,6 @@ type RemoveTagsFromResourceInput struct {
 
 type metadataRemoveTagsFromResourceInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceName,TagKeys"`
-}
-
-type RemoveTagsFromResourceOutput struct {
-	TagList []*Tag `locationNameList:"Tag" type:"list"`
-
-	metadataRemoveTagsFromResourceOutput `json:"-", xml:"-"`
-}
-
-type metadataRemoveTagsFromResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReplicationGroup struct {
@@ -2174,16 +2168,6 @@ type metadataResetCacheParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName,ParameterNameValues"`
 }
 
-type ResetCacheParameterGroupOutput struct {
-	CacheParameterGroupName *string `type:"string"`
-
-	metadataResetCacheParameterGroupOutput `json:"-", xml:"-"`
-}
-
-type metadataResetCacheParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type RevokeCacheSecurityGroupIngressInput struct {
 	CacheSecurityGroupName  *string `type:"string"`
 	EC2SecurityGroupName    *string `type:"string"`
@@ -2203,7 +2187,7 @@ type RevokeCacheSecurityGroupIngressOutput struct {
 }
 
 type metadataRevokeCacheSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RevokeCacheSecurityGroupIngressResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SecurityGroupMembership struct {
@@ -2275,5 +2259,5 @@ type TagListMessage struct {
 }
 
 type metadataTagListMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"AddTagsToResourceResult"`
+	SDKShapeTraits bool `type:"structure"`
 }

@@ -35,9 +35,10 @@ var opAddPermission *aws.Operation
 func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *aws.Request, output *ConfirmSubscriptionOutput) {
 	if opConfirmSubscription == nil {
 		opConfirmSubscription = &aws.Operation{
-			Name:       "ConfirmSubscription",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ConfirmSubscription",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ConfirmSubscriptionResult",
 		}
 	}
 
@@ -60,9 +61,10 @@ var opConfirmSubscription *aws.Operation
 func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationInput) (req *aws.Request, output *CreatePlatformApplicationOutput) {
 	if opCreatePlatformApplication == nil {
 		opCreatePlatformApplication = &aws.Operation{
-			Name:       "CreatePlatformApplication",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreatePlatformApplication",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreatePlatformApplicationResult",
 		}
 	}
 
@@ -85,9 +87,10 @@ var opCreatePlatformApplication *aws.Operation
 func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) (req *aws.Request, output *CreatePlatformEndpointOutput) {
 	if opCreatePlatformEndpoint == nil {
 		opCreatePlatformEndpoint = &aws.Operation{
-			Name:       "CreatePlatformEndpoint",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreatePlatformEndpoint",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreatePlatformEndpointResult",
 		}
 	}
 
@@ -110,9 +113,10 @@ var opCreatePlatformEndpoint *aws.Operation
 func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *aws.Request, output *CreateTopicOutput) {
 	if opCreateTopic == nil {
 		opCreateTopic = &aws.Operation{
-			Name:       "CreateTopic",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateTopic",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateTopicResult",
 		}
 	}
 
@@ -210,9 +214,10 @@ var opDeleteTopic *aws.Operation
 func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (req *aws.Request, output *GetEndpointAttributesOutput) {
 	if opGetEndpointAttributes == nil {
 		opGetEndpointAttributes = &aws.Operation{
-			Name:       "GetEndpointAttributes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetEndpointAttributes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetEndpointAttributesResult",
 		}
 	}
 
@@ -235,9 +240,10 @@ var opGetEndpointAttributes *aws.Operation
 func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicationAttributesInput) (req *aws.Request, output *GetPlatformApplicationAttributesOutput) {
 	if opGetPlatformApplicationAttributes == nil {
 		opGetPlatformApplicationAttributes = &aws.Operation{
-			Name:       "GetPlatformApplicationAttributes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetPlatformApplicationAttributes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetPlatformApplicationAttributesResult",
 		}
 	}
 
@@ -260,9 +266,10 @@ var opGetPlatformApplicationAttributes *aws.Operation
 func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesInput) (req *aws.Request, output *GetSubscriptionAttributesOutput) {
 	if opGetSubscriptionAttributes == nil {
 		opGetSubscriptionAttributes = &aws.Operation{
-			Name:       "GetSubscriptionAttributes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetSubscriptionAttributes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetSubscriptionAttributesResult",
 		}
 	}
 
@@ -285,9 +292,10 @@ var opGetSubscriptionAttributes *aws.Operation
 func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *aws.Request, output *GetTopicAttributesOutput) {
 	if opGetTopicAttributes == nil {
 		opGetTopicAttributes = &aws.Operation{
-			Name:       "GetTopicAttributes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "GetTopicAttributes",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "GetTopicAttributesResult",
 		}
 	}
 
@@ -310,9 +318,10 @@ var opGetTopicAttributes *aws.Operation
 func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPlatformApplicationInput) (req *aws.Request, output *ListEndpointsByPlatformApplicationOutput) {
 	if opListEndpointsByPlatformApplication == nil {
 		opListEndpointsByPlatformApplication = &aws.Operation{
-			Name:       "ListEndpointsByPlatformApplication",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListEndpointsByPlatformApplication",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListEndpointsByPlatformApplicationResult",
 		}
 	}
 
@@ -335,9 +344,10 @@ var opListEndpointsByPlatformApplication *aws.Operation
 func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInput) (req *aws.Request, output *ListPlatformApplicationsOutput) {
 	if opListPlatformApplications == nil {
 		opListPlatformApplications = &aws.Operation{
-			Name:       "ListPlatformApplications",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListPlatformApplications",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListPlatformApplicationsResult",
 		}
 	}
 
@@ -360,9 +370,10 @@ var opListPlatformApplications *aws.Operation
 func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *aws.Request, output *ListSubscriptionsOutput) {
 	if opListSubscriptions == nil {
 		opListSubscriptions = &aws.Operation{
-			Name:       "ListSubscriptions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListSubscriptions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListSubscriptionsResult",
 		}
 	}
 
@@ -385,9 +396,10 @@ var opListSubscriptions *aws.Operation
 func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInput) (req *aws.Request, output *ListSubscriptionsByTopicOutput) {
 	if opListSubscriptionsByTopic == nil {
 		opListSubscriptionsByTopic = &aws.Operation{
-			Name:       "ListSubscriptionsByTopic",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListSubscriptionsByTopic",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListSubscriptionsByTopicResult",
 		}
 	}
 
@@ -410,9 +422,10 @@ var opListSubscriptionsByTopic *aws.Operation
 func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *aws.Request, output *ListTopicsOutput) {
 	if opListTopics == nil {
 		opListTopics = &aws.Operation{
-			Name:       "ListTopics",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListTopics",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListTopicsResult",
 		}
 	}
 
@@ -435,9 +448,10 @@ var opListTopics *aws.Operation
 func (c *SNS) PublishRequest(input *PublishInput) (req *aws.Request, output *PublishOutput) {
 	if opPublish == nil {
 		opPublish = &aws.Operation{
-			Name:       "Publish",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "Publish",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "PublishResult",
 		}
 	}
 
@@ -585,9 +599,10 @@ var opSetTopicAttributes *aws.Operation
 func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *aws.Request, output *SubscribeOutput) {
 	if opSubscribe == nil {
 		opSubscribe = &aws.Operation{
-			Name:       "Subscribe",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "Subscribe",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "SubscribeResult",
 		}
 	}
 
@@ -671,7 +686,7 @@ type ConfirmSubscriptionOutput struct {
 }
 
 type metadataConfirmSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ConfirmSubscriptionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreatePlatformApplicationInput struct {
@@ -693,7 +708,7 @@ type CreatePlatformApplicationOutput struct {
 }
 
 type metadataCreatePlatformApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreatePlatformApplicationResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreatePlatformEndpointInput struct {
@@ -716,7 +731,7 @@ type CreatePlatformEndpointOutput struct {
 }
 
 type metadataCreatePlatformEndpointOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreatePlatformEndpointResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateTopicInput struct {
@@ -736,7 +751,7 @@ type CreateTopicOutput struct {
 }
 
 type metadataCreateTopicOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateTopicResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteEndpointInput struct {
@@ -821,7 +836,7 @@ type GetEndpointAttributesOutput struct {
 }
 
 type metadataGetEndpointAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetEndpointAttributesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetPlatformApplicationAttributesInput struct {
@@ -841,7 +856,7 @@ type GetPlatformApplicationAttributesOutput struct {
 }
 
 type metadataGetPlatformApplicationAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetPlatformApplicationAttributesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetSubscriptionAttributesInput struct {
@@ -861,7 +876,7 @@ type GetSubscriptionAttributesOutput struct {
 }
 
 type metadataGetSubscriptionAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetSubscriptionAttributesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetTopicAttributesInput struct {
@@ -881,7 +896,7 @@ type GetTopicAttributesOutput struct {
 }
 
 type metadataGetTopicAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"GetTopicAttributesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListEndpointsByPlatformApplicationInput struct {
@@ -903,7 +918,7 @@ type ListEndpointsByPlatformApplicationOutput struct {
 }
 
 type metadataListEndpointsByPlatformApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListEndpointsByPlatformApplicationResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListPlatformApplicationsInput struct {
@@ -924,7 +939,7 @@ type ListPlatformApplicationsOutput struct {
 }
 
 type metadataListPlatformApplicationsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListPlatformApplicationsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListSubscriptionsByTopicInput struct {
@@ -946,7 +961,7 @@ type ListSubscriptionsByTopicOutput struct {
 }
 
 type metadataListSubscriptionsByTopicOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListSubscriptionsByTopicResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListSubscriptionsInput struct {
@@ -967,7 +982,7 @@ type ListSubscriptionsOutput struct {
 }
 
 type metadataListSubscriptionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListSubscriptionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListTopicsInput struct {
@@ -988,7 +1003,7 @@ type ListTopicsOutput struct {
 }
 
 type metadataListTopicsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListTopicsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type MessageAttributeValue struct {
@@ -1036,7 +1051,7 @@ type PublishOutput struct {
 }
 
 type metadataPublishOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"PublishResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemovePermissionInput struct {
@@ -1155,7 +1170,7 @@ type SubscribeOutput struct {
 }
 
 type metadataSubscribeOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"SubscribeResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Subscription struct {

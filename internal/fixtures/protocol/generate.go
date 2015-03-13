@@ -112,7 +112,7 @@ func Test{{ .OpName }}(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := {{ .ParamsString }}
-	req := svc.{{ .Given.ExportedName }}Request(input)
+	req, _ := svc.{{ .Given.ExportedName }}Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -143,7 +143,7 @@ func Test{{ .OpName }}(t *testing.T) {
 	svc := New{{ .TestCase.TestSuite.API.StructName }}(nil)
 
 	buf := bytes.NewReader([]byte({{ .Body }}))
-	req, out := svc.{{ .Given.ExportedName }}Request()
+	req, out := svc.{{ .Given.ExportedName }}Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -211,7 +211,7 @@ func (i *TestCase) TestCase(idx int) string {
 
 func GenerateTestSuite(filename string) string {
 	inout := "Input"
-	if strings.Contains(filename, "/output/") {
+	if strings.Contains(filename, "output/") {
 		inout = "Output"
 	}
 

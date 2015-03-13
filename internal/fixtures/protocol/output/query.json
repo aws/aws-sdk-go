@@ -7,7 +7,6 @@
     "shapes": {
       "OutputShape": {
         "type": "structure",
-        "resultWrapper": "OperationNameResult",
         "members": {
           "Str": {
             "shape": "StringType"
@@ -62,6 +61,7 @@
       {
         "given": {
           "output": {
+            "resultWrapper": "OperationNameResult",
             "shape": "OutputShape"
           },
           "name": "OperationName"
@@ -92,7 +92,6 @@
     "shapes": {
       "OutputShape": {
         "type": "structure",
-        "resultWrapper": "Wrapper",
         "members": {
           "Str": {
             "shape": "StringType"
@@ -107,6 +106,7 @@
       {
         "given": {
           "output": {
+            "resultWrapper": "Wrapper",
             "shape": "OutputShape"
           },
           "name": "OperationName"
@@ -129,7 +129,6 @@
     },
     "shapes": {
       "OutputShape": {
-        "resultWrapper": "OperationNameResult",
         "type": "structure",
         "members": {
           "Blob": {
@@ -145,6 +144,7 @@
       {
         "given": {
           "output": {
+            "resultWrapper": "OperationNameResult",
             "shape": "OutputShape"
           },
           "name": "OperationName"
@@ -168,7 +168,6 @@
     "shapes": {
       "OutputShape": {
         "type": "structure",
-        "resultWrapper": "OperationNameResult",
         "members": {
           "ListMember": {
             "shape": "ListShape"
@@ -189,6 +188,7 @@
       {
         "given": {
           "output": {
+            "resultWrapper": "OperationNameResult",
             "shape": "OutputShape"
           },
           "name": "OperationName"
@@ -212,7 +212,6 @@
     "shapes": {
       "OutputShape": {
         "type": "structure",
-        "resultWrapper": "OperationNameResult",
         "members": {
           "ListMember": {
             "shape": "ListShape"
@@ -234,6 +233,7 @@
       {
         "given": {
           "output": {
+            "resultWrapper": "OperationNameResult",
             "shape": "OutputShape"
           },
           "name": "OperationName"
@@ -257,7 +257,6 @@
     "shapes": {
       "OutputShape": {
         "type": "structure",
-        "resultWrapper": "OperationNameResult",
         "members": {
           "ListMember": {
             "shape": "ListType"
@@ -279,6 +278,7 @@
       {
         "given": {
           "output": {
+            "resultWrapper": "OperationNameResult",
             "shape": "OutputShape"
           },
           "name": "OperationName"
@@ -302,7 +302,6 @@
     "shapes": {
       "OutputShape": {
         "type": "structure",
-        "resultWrapper": "OperationNameResult",
         "members": {
           "Map": {
             "shape": "StringMap"
@@ -334,6 +333,7 @@
       {
         "given": {
           "output": {
+            "resultWrapper": "OperationNameResult",
             "shape": "OutputShape"
           },
           "name": "OperationName"
@@ -364,7 +364,6 @@
     "shapes": {
       "OutputShape": {
         "type": "structure",
-        "resultWrapper": "OperationNameResult",
         "members": {
           "Map": {
             "shape": "StringMap",
@@ -389,6 +388,7 @@
       {
         "given": {
           "output": {
+            "resultWrapper": "OperationNameResult",
             "shape": "OutputShape"
           },
           "name": "OperationName"
@@ -415,7 +415,6 @@
     "shapes": {
       "OutputShape": {
         "type": "structure",
-        "resultWrapper": "OperationNameResult",
         "members": {
           "Map": {
             "shape": "MapType"
@@ -442,6 +441,7 @@
       {
         "given": {
           "output": {
+            "resultWrapper": "OperationNameResult",
             "shape": "OutputShape"
           },
           "name": "OperationName"
@@ -468,7 +468,6 @@
     "shapes": {
       "OutputShape": {
         "type": "structure",
-        "resultWrapper": "OperationNameResult",
         "members": {
           "Name": {
             "shape": "StringType"
@@ -483,6 +482,7 @@
       {
         "given": {
           "output": {
+            "resultWrapper": "OperationNameResult",
             "shape": "OutputShape"
           },
           "name": "OperationName"

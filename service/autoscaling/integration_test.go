@@ -28,7 +28,7 @@ func TestMakingABasicRequest(t *testing.T) {
 
 func TestErrorHandling(t *testing.T) {
 	client := autoscaling.New(nil)
-	resp, e := client.CreateLaunchConfiguration(&autoscaling.CreateLaunchConfigurationType{
+	resp, e := client.CreateLaunchConfiguration(&autoscaling.CreateLaunchConfigurationInput{
 		ImageID:                 aws.String("ami-12345678"),
 		InstanceType:            aws.String("m1.small"),
 		LaunchConfigurationName: aws.String(""),

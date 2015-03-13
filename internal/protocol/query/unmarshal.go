@@ -11,7 +11,8 @@ import (
 func Unmarshal(r *aws.Request) {
 	defer r.HTTPResponse.Body.Close()
 	if r.DataFilled() {
-		err := xmlutil.UnmarshalXML(r.Data, xml.NewDecoder(r.HTTPResponse.Body))
+		decoder := xml.NewDecoder(r.HTTPResponse.Body)
+		err := xmlutil.UnmarshalXML(r.Data, decoder, r.Operation.ResultWrapper)
 		if err != nil && err != io.EOF {
 			r.Error = err
 			return

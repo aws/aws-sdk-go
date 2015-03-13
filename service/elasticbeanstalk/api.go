@@ -12,9 +12,10 @@ import (
 func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabilityInput) (req *aws.Request, output *CheckDNSAvailabilityOutput) {
 	if opCheckDNSAvailability == nil {
 		opCheckDNSAvailability = &aws.Operation{
-			Name:       "CheckDNSAvailability",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CheckDNSAvailability",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CheckDNSAvailabilityResult",
 		}
 	}
 
@@ -37,9 +38,10 @@ var opCheckDNSAvailability *aws.Operation
 func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInput) (req *aws.Request, output *ApplicationDescriptionMessage) {
 	if opCreateApplication == nil {
 		opCreateApplication = &aws.Operation{
-			Name:       "CreateApplication",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateApplication",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateApplicationResult",
 		}
 	}
 
@@ -62,9 +64,10 @@ var opCreateApplication *aws.Operation
 func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicationVersionInput) (req *aws.Request, output *ApplicationVersionDescriptionMessage) {
 	if opCreateApplicationVersion == nil {
 		opCreateApplicationVersion = &aws.Operation{
-			Name:       "CreateApplicationVersion",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateApplicationVersion",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateApplicationVersionResult",
 		}
 	}
 
@@ -87,9 +90,10 @@ var opCreateApplicationVersion *aws.Operation
 func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfigurationTemplateInput) (req *aws.Request, output *ConfigurationSettingsDescription) {
 	if opCreateConfigurationTemplate == nil {
 		opCreateConfigurationTemplate = &aws.Operation{
-			Name:       "CreateConfigurationTemplate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateConfigurationTemplate",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateConfigurationTemplateResult",
 		}
 	}
 
@@ -112,9 +116,10 @@ var opCreateConfigurationTemplate *aws.Operation
 func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
 	if opCreateEnvironment == nil {
 		opCreateEnvironment = &aws.Operation{
-			Name:       "CreateEnvironment",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateEnvironment",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateEnvironmentResult",
 		}
 	}
 
@@ -137,9 +142,10 @@ var opCreateEnvironment *aws.Operation
 func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLocationInput) (req *aws.Request, output *CreateStorageLocationOutput) {
 	if opCreateStorageLocation == nil {
 		opCreateStorageLocation = &aws.Operation{
-			Name:       "CreateStorageLocation",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "CreateStorageLocation",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "CreateStorageLocationResult",
 		}
 	}
 
@@ -262,9 +268,10 @@ var opDeleteEnvironmentConfiguration *aws.Operation
 func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApplicationVersionsInput) (req *aws.Request, output *DescribeApplicationVersionsOutput) {
 	if opDescribeApplicationVersions == nil {
 		opDescribeApplicationVersions = &aws.Operation{
-			Name:       "DescribeApplicationVersions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeApplicationVersions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeApplicationVersionsResult",
 		}
 	}
 
@@ -287,9 +294,10 @@ var opDescribeApplicationVersions *aws.Operation
 func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicationsInput) (req *aws.Request, output *DescribeApplicationsOutput) {
 	if opDescribeApplications == nil {
 		opDescribeApplications = &aws.Operation{
-			Name:       "DescribeApplications",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeApplications",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeApplicationsResult",
 		}
 	}
 
@@ -312,9 +320,10 @@ var opDescribeApplications *aws.Operation
 func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeConfigurationOptionsInput) (req *aws.Request, output *DescribeConfigurationOptionsOutput) {
 	if opDescribeConfigurationOptions == nil {
 		opDescribeConfigurationOptions = &aws.Operation{
-			Name:       "DescribeConfigurationOptions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeConfigurationOptions",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeConfigurationOptionsResult",
 		}
 	}
 
@@ -337,9 +346,10 @@ var opDescribeConfigurationOptions *aws.Operation
 func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeConfigurationSettingsInput) (req *aws.Request, output *DescribeConfigurationSettingsOutput) {
 	if opDescribeConfigurationSettings == nil {
 		opDescribeConfigurationSettings = &aws.Operation{
-			Name:       "DescribeConfigurationSettings",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeConfigurationSettings",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeConfigurationSettingsResult",
 		}
 	}
 
@@ -362,9 +372,10 @@ var opDescribeConfigurationSettings *aws.Operation
 func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEnvironmentResourcesInput) (req *aws.Request, output *DescribeEnvironmentResourcesOutput) {
 	if opDescribeEnvironmentResources == nil {
 		opDescribeEnvironmentResources = &aws.Operation{
-			Name:       "DescribeEnvironmentResources",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEnvironmentResources",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEnvironmentResourcesResult",
 		}
 	}
 
@@ -387,9 +398,10 @@ var opDescribeEnvironmentResources *aws.Operation
 func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmentsInput) (req *aws.Request, output *DescribeEnvironmentsOutput) {
 	if opDescribeEnvironments == nil {
 		opDescribeEnvironments = &aws.Operation{
-			Name:       "DescribeEnvironments",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEnvironments",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEnvironmentsResult",
 		}
 	}
 
@@ -412,9 +424,10 @@ var opDescribeEnvironments *aws.Operation
 func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
-			Name:       "DescribeEvents",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "DescribeEvents",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "DescribeEventsResult",
 		}
 	}
 
@@ -437,9 +450,10 @@ var opDescribeEvents *aws.Operation
 func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailableSolutionStacksInput) (req *aws.Request, output *ListAvailableSolutionStacksOutput) {
 	if opListAvailableSolutionStacks == nil {
 		opListAvailableSolutionStacks = &aws.Operation{
-			Name:       "ListAvailableSolutionStacks",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ListAvailableSolutionStacks",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ListAvailableSolutionStacksResult",
 		}
 	}
 
@@ -537,9 +551,10 @@ var opRestartAppServer *aws.Operation
 func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnvironmentInfoInput) (req *aws.Request, output *RetrieveEnvironmentInfoOutput) {
 	if opRetrieveEnvironmentInfo == nil {
 		opRetrieveEnvironmentInfo = &aws.Operation{
-			Name:       "RetrieveEnvironmentInfo",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "RetrieveEnvironmentInfo",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "RetrieveEnvironmentInfoResult",
 		}
 	}
 
@@ -587,9 +602,10 @@ var opSwapEnvironmentCNAMEs *aws.Operation
 func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
 	if opTerminateEnvironment == nil {
 		opTerminateEnvironment = &aws.Operation{
-			Name:       "TerminateEnvironment",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "TerminateEnvironment",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "TerminateEnvironmentResult",
 		}
 	}
 
@@ -612,9 +628,10 @@ var opTerminateEnvironment *aws.Operation
 func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInput) (req *aws.Request, output *ApplicationDescriptionMessage) {
 	if opUpdateApplication == nil {
 		opUpdateApplication = &aws.Operation{
-			Name:       "UpdateApplication",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "UpdateApplication",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "UpdateApplicationResult",
 		}
 	}
 
@@ -637,9 +654,10 @@ var opUpdateApplication *aws.Operation
 func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicationVersionInput) (req *aws.Request, output *ApplicationVersionDescriptionMessage) {
 	if opUpdateApplicationVersion == nil {
 		opUpdateApplicationVersion = &aws.Operation{
-			Name:       "UpdateApplicationVersion",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "UpdateApplicationVersion",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "UpdateApplicationVersionResult",
 		}
 	}
 
@@ -662,9 +680,10 @@ var opUpdateApplicationVersion *aws.Operation
 func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfigurationTemplateInput) (req *aws.Request, output *ConfigurationSettingsDescription) {
 	if opUpdateConfigurationTemplate == nil {
 		opUpdateConfigurationTemplate = &aws.Operation{
-			Name:       "UpdateConfigurationTemplate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "UpdateConfigurationTemplate",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "UpdateConfigurationTemplateResult",
 		}
 	}
 
@@ -687,9 +706,10 @@ var opUpdateConfigurationTemplate *aws.Operation
 func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
 	if opUpdateEnvironment == nil {
 		opUpdateEnvironment = &aws.Operation{
-			Name:       "UpdateEnvironment",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "UpdateEnvironment",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "UpdateEnvironmentResult",
 		}
 	}
 
@@ -712,9 +732,10 @@ var opUpdateEnvironment *aws.Operation
 func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateConfigurationSettingsInput) (req *aws.Request, output *ValidateConfigurationSettingsOutput) {
 	if opValidateConfigurationSettings == nil {
 		opValidateConfigurationSettings = &aws.Operation{
-			Name:       "ValidateConfigurationSettings",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
+			Name:          "ValidateConfigurationSettings",
+			HTTPMethod:    "POST",
+			HTTPPath:      "/",
+			ResultWrapper: "ValidateConfigurationSettingsResult",
 		}
 	}
 
@@ -755,7 +776,7 @@ type ApplicationDescriptionMessage struct {
 }
 
 type metadataApplicationDescriptionMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateApplicationResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ApplicationVersionDescription struct {
@@ -780,7 +801,7 @@ type ApplicationVersionDescriptionMessage struct {
 }
 
 type metadataApplicationVersionDescriptionMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateApplicationVersionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AutoScalingGroup struct {
@@ -811,7 +832,7 @@ type CheckDNSAvailabilityOutput struct {
 }
 
 type metadataCheckDNSAvailabilityOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CheckDNSAvailabilityResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ConfigurationOptionDescription struct {
@@ -861,7 +882,7 @@ type ConfigurationSettingsDescription struct {
 }
 
 type metadataConfigurationSettingsDescription struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateConfigurationTemplateResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateApplicationInput struct {
@@ -873,16 +894,6 @@ type CreateApplicationInput struct {
 
 type metadataCreateApplicationInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName"`
-}
-
-type CreateApplicationOutput struct {
-	Application *ApplicationDescription `type:"structure"`
-
-	metadataCreateApplicationOutput `json:"-", xml:"-"`
-}
-
-type metadataCreateApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateApplicationVersionInput struct {
@@ -899,16 +910,6 @@ type metadataCreateApplicationVersionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName,VersionLabel"`
 }
 
-type CreateApplicationVersionOutput struct {
-	ApplicationVersion *ApplicationVersionDescription `type:"structure"`
-
-	metadataCreateApplicationVersionOutput `json:"-", xml:"-"`
-}
-
-type metadataCreateApplicationVersionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type CreateConfigurationTemplateInput struct {
 	ApplicationName     *string                       `type:"string"`
 	Description         *string                       `type:"string"`
@@ -923,24 +924,6 @@ type CreateConfigurationTemplateInput struct {
 
 type metadataCreateConfigurationTemplateInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName,TemplateName"`
-}
-
-type CreateConfigurationTemplateOutput struct {
-	ApplicationName   *string                       `type:"string"`
-	DateCreated       *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
-	DateUpdated       *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
-	DeploymentStatus  *string                       `type:"string"`
-	Description       *string                       `type:"string"`
-	EnvironmentName   *string                       `type:"string"`
-	OptionSettings    []*ConfigurationOptionSetting `type:"list"`
-	SolutionStackName *string                       `type:"string"`
-	TemplateName      *string                       `type:"string"`
-
-	metadataCreateConfigurationTemplateOutput `json:"-", xml:"-"`
-}
-
-type metadataCreateConfigurationTemplateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateEnvironmentInput struct {
@@ -963,30 +946,6 @@ type metadataCreateEnvironmentInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName,EnvironmentName"`
 }
 
-type CreateEnvironmentOutput struct {
-	ApplicationName   *string                          `type:"string"`
-	CNAME             *string                          `type:"string"`
-	DateCreated       *time.Time                       `type:"timestamp" timestampFormat:"iso8601"`
-	DateUpdated       *time.Time                       `type:"timestamp" timestampFormat:"iso8601"`
-	Description       *string                          `type:"string"`
-	EndpointURL       *string                          `type:"string"`
-	EnvironmentID     *string                          `locationName:"EnvironmentId" type:"string"`
-	EnvironmentName   *string                          `type:"string"`
-	Health            *string                          `type:"string"`
-	Resources         *EnvironmentResourcesDescription `type:"structure"`
-	SolutionStackName *string                          `type:"string"`
-	Status            *string                          `type:"string"`
-	TemplateName      *string                          `type:"string"`
-	Tier              *EnvironmentTier                 `type:"structure"`
-	VersionLabel      *string                          `type:"string"`
-
-	metadataCreateEnvironmentOutput `json:"-", xml:"-"`
-}
-
-type metadataCreateEnvironmentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type CreateStorageLocationInput struct {
 	metadataCreateStorageLocationInput `json:"-", xml:"-"`
 }
@@ -1002,7 +961,7 @@ type CreateStorageLocationOutput struct {
 }
 
 type metadataCreateStorageLocationOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateStorageLocationResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteApplicationInput struct {
@@ -1100,7 +1059,7 @@ type DescribeApplicationVersionsOutput struct {
 }
 
 type metadataDescribeApplicationVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeApplicationVersionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeApplicationsInput struct {
@@ -1120,7 +1079,7 @@ type DescribeApplicationsOutput struct {
 }
 
 type metadataDescribeApplicationsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeApplicationsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeConfigurationOptionsInput struct {
@@ -1145,7 +1104,7 @@ type DescribeConfigurationOptionsOutput struct {
 }
 
 type metadataDescribeConfigurationOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeConfigurationOptionsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeConfigurationSettingsInput struct {
@@ -1167,7 +1126,7 @@ type DescribeConfigurationSettingsOutput struct {
 }
 
 type metadataDescribeConfigurationSettingsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeConfigurationSettingsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEnvironmentResourcesInput struct {
@@ -1188,7 +1147,7 @@ type DescribeEnvironmentResourcesOutput struct {
 }
 
 type metadataDescribeEnvironmentResourcesOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEnvironmentResourcesResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEnvironmentsInput struct {
@@ -1213,7 +1172,7 @@ type DescribeEnvironmentsOutput struct {
 }
 
 type metadataDescribeEnvironmentsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEnvironmentsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEventsInput struct {
@@ -1244,7 +1203,7 @@ type DescribeEventsOutput struct {
 }
 
 type metadataDescribeEventsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeEventsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnvironmentDescription struct {
@@ -1268,7 +1227,7 @@ type EnvironmentDescription struct {
 }
 
 type metadataEnvironmentDescription struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"TerminateEnvironmentResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnvironmentInfoDescription struct {
@@ -1375,7 +1334,7 @@ type ListAvailableSolutionStacksOutput struct {
 }
 
 type metadataListAvailableSolutionStacksOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ListAvailableSolutionStacksResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Listener struct {
@@ -1521,7 +1480,7 @@ type RetrieveEnvironmentInfoOutput struct {
 }
 
 type metadataRetrieveEnvironmentInfoOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"RetrieveEnvironmentInfoResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type S3Location struct {
@@ -1601,30 +1560,6 @@ type metadataTerminateEnvironmentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type TerminateEnvironmentOutput struct {
-	ApplicationName   *string                          `type:"string"`
-	CNAME             *string                          `type:"string"`
-	DateCreated       *time.Time                       `type:"timestamp" timestampFormat:"iso8601"`
-	DateUpdated       *time.Time                       `type:"timestamp" timestampFormat:"iso8601"`
-	Description       *string                          `type:"string"`
-	EndpointURL       *string                          `type:"string"`
-	EnvironmentID     *string                          `locationName:"EnvironmentId" type:"string"`
-	EnvironmentName   *string                          `type:"string"`
-	Health            *string                          `type:"string"`
-	Resources         *EnvironmentResourcesDescription `type:"structure"`
-	SolutionStackName *string                          `type:"string"`
-	Status            *string                          `type:"string"`
-	TemplateName      *string                          `type:"string"`
-	Tier              *EnvironmentTier                 `type:"structure"`
-	VersionLabel      *string                          `type:"string"`
-
-	metadataTerminateEnvironmentOutput `json:"-", xml:"-"`
-}
-
-type metadataTerminateEnvironmentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type Trigger struct {
 	Name *string `type:"string"`
 
@@ -1646,16 +1581,6 @@ type metadataUpdateApplicationInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName"`
 }
 
-type UpdateApplicationOutput struct {
-	Application *ApplicationDescription `type:"structure"`
-
-	metadataUpdateApplicationOutput `json:"-", xml:"-"`
-}
-
-type metadataUpdateApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type UpdateApplicationVersionInput struct {
 	ApplicationName *string `type:"string"`
 	Description     *string `type:"string"`
@@ -1666,16 +1591,6 @@ type UpdateApplicationVersionInput struct {
 
 type metadataUpdateApplicationVersionInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName,VersionLabel"`
-}
-
-type UpdateApplicationVersionOutput struct {
-	ApplicationVersion *ApplicationVersionDescription `type:"structure"`
-
-	metadataUpdateApplicationVersionOutput `json:"-", xml:"-"`
-}
-
-type metadataUpdateApplicationVersionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateConfigurationTemplateInput struct {
@@ -1692,24 +1607,6 @@ type metadataUpdateConfigurationTemplateInput struct {
 	SDKShapeTraits bool `type:"structure" required:"ApplicationName,TemplateName"`
 }
 
-type UpdateConfigurationTemplateOutput struct {
-	ApplicationName   *string                       `type:"string"`
-	DateCreated       *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
-	DateUpdated       *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
-	DeploymentStatus  *string                       `type:"string"`
-	Description       *string                       `type:"string"`
-	EnvironmentName   *string                       `type:"string"`
-	OptionSettings    []*ConfigurationOptionSetting `type:"list"`
-	SolutionStackName *string                       `type:"string"`
-	TemplateName      *string                       `type:"string"`
-
-	metadataUpdateConfigurationTemplateOutput `json:"-", xml:"-"`
-}
-
-type metadataUpdateConfigurationTemplateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type UpdateEnvironmentInput struct {
 	Description     *string                       `type:"string"`
 	EnvironmentID   *string                       `locationName:"EnvironmentId" type:"string"`
@@ -1724,30 +1621,6 @@ type UpdateEnvironmentInput struct {
 }
 
 type metadataUpdateEnvironmentInput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type UpdateEnvironmentOutput struct {
-	ApplicationName   *string                          `type:"string"`
-	CNAME             *string                          `type:"string"`
-	DateCreated       *time.Time                       `type:"timestamp" timestampFormat:"iso8601"`
-	DateUpdated       *time.Time                       `type:"timestamp" timestampFormat:"iso8601"`
-	Description       *string                          `type:"string"`
-	EndpointURL       *string                          `type:"string"`
-	EnvironmentID     *string                          `locationName:"EnvironmentId" type:"string"`
-	EnvironmentName   *string                          `type:"string"`
-	Health            *string                          `type:"string"`
-	Resources         *EnvironmentResourcesDescription `type:"structure"`
-	SolutionStackName *string                          `type:"string"`
-	Status            *string                          `type:"string"`
-	TemplateName      *string                          `type:"string"`
-	Tier              *EnvironmentTier                 `type:"structure"`
-	VersionLabel      *string                          `type:"string"`
-
-	metadataUpdateEnvironmentOutput `json:"-", xml:"-"`
-}
-
-type metadataUpdateEnvironmentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1771,7 +1644,7 @@ type ValidateConfigurationSettingsOutput struct {
 }
 
 type metadataValidateConfigurationSettingsOutput struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"ValidateConfigurationSettingsResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ValidationMessage struct {
