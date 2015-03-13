@@ -633,22 +633,6 @@ func (c *CodeDeploy) UpdateDeploymentGroup(input *UpdateDeploymentGroupInput) (o
 
 var opUpdateDeploymentGroup *aws.Operation
 
-type ApplicationAlreadyExistsException struct {
-	metadataApplicationAlreadyExistsException `json:"-", xml:"-"`
-}
-
-type metadataApplicationAlreadyExistsException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ApplicationDoesNotExistException struct {
-	metadataApplicationDoesNotExistException `json:"-", xml:"-"`
-}
-
-type metadataApplicationDoesNotExistException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type ApplicationInfo struct {
 	ApplicationID   *string    `locationName:"applicationId" type:"string" json:"applicationId,omitempty"`
 	ApplicationName *string    `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
@@ -659,22 +643,6 @@ type ApplicationInfo struct {
 }
 
 type metadataApplicationInfo struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ApplicationLimitExceededException struct {
-	metadataApplicationLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataApplicationLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ApplicationNameRequiredException struct {
-	metadataApplicationNameRequiredException `json:"-", xml:"-"`
-}
-
-type metadataApplicationNameRequiredException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -726,14 +694,6 @@ type BatchGetDeploymentsOutput struct {
 }
 
 type metadataBatchGetDeploymentsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type BucketNameFilterRequiredException struct {
-	metadataBucketNameFilterRequiredException `json:"-", xml:"-"`
-}
-
-type metadataBucketNameFilterRequiredException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -885,38 +845,6 @@ type metadataDeleteDeploymentGroupOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type DeploymentAlreadyCompletedException struct {
-	metadataDeploymentAlreadyCompletedException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentAlreadyCompletedException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentConfigAlreadyExistsException struct {
-	metadataDeploymentConfigAlreadyExistsException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentConfigAlreadyExistsException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentConfigDoesNotExistException struct {
-	metadataDeploymentConfigDoesNotExistException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentConfigDoesNotExistException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentConfigInUseException struct {
-	metadataDeploymentConfigInUseException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentConfigInUseException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type DeploymentConfigInfo struct {
 	CreateTime           *time.Time           `locationName:"createTime" type:"timestamp" timestampFormat:"unix" json:"createTime,omitempty"`
 	DeploymentConfigID   *string              `locationName:"deploymentConfigId" type:"string" json:"deploymentConfigId,omitempty"`
@@ -927,46 +855,6 @@ type DeploymentConfigInfo struct {
 }
 
 type metadataDeploymentConfigInfo struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentConfigLimitExceededException struct {
-	metadataDeploymentConfigLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentConfigLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentConfigNameRequiredException struct {
-	metadataDeploymentConfigNameRequiredException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentConfigNameRequiredException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentDoesNotExistException struct {
-	metadataDeploymentDoesNotExistException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentDoesNotExistException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentGroupAlreadyExistsException struct {
-	metadataDeploymentGroupAlreadyExistsException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentGroupAlreadyExistsException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentGroupDoesNotExistException struct {
-	metadataDeploymentGroupDoesNotExistException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentGroupDoesNotExistException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -984,30 +872,6 @@ type DeploymentGroupInfo struct {
 }
 
 type metadataDeploymentGroupInfo struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentGroupLimitExceededException struct {
-	metadataDeploymentGroupLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentGroupLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentGroupNameRequiredException struct {
-	metadataDeploymentGroupNameRequiredException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentGroupNameRequiredException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentIDRequiredException struct {
-	metadataDeploymentIDRequiredException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentIDRequiredException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -1034,22 +898,6 @@ type metadataDeploymentInfo struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type DeploymentLimitExceededException struct {
-	metadataDeploymentLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DeploymentNotStartedException struct {
-	metadataDeploymentNotStartedException `json:"-", xml:"-"`
-}
-
-type metadataDeploymentNotStartedException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type DeploymentOverview struct {
 	Failed     *int64 `type:"long" json:",omitempty"`
 	InProgress *int64 `type:"long" json:",omitempty"`
@@ -1061,14 +909,6 @@ type DeploymentOverview struct {
 }
 
 type metadataDeploymentOverview struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DescriptionTooLongException struct {
-	metadataDescriptionTooLongException `json:"-", xml:"-"`
-}
-
-type metadataDescriptionTooLongException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -1258,22 +1098,6 @@ type metadataGitHubLocation struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InstanceDoesNotExistException struct {
-	metadataInstanceDoesNotExistException `json:"-", xml:"-"`
-}
-
-type metadataInstanceDoesNotExistException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InstanceIDRequiredException struct {
-	metadataInstanceIDRequiredException `json:"-", xml:"-"`
-}
-
-type metadataInstanceIDRequiredException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type InstanceSummary struct {
 	DeploymentID    *string           `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
 	InstanceID      *string           `locationName:"instanceId" type:"string" json:"instanceId,omitempty"`
@@ -1285,158 +1109,6 @@ type InstanceSummary struct {
 }
 
 type metadataInstanceSummary struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidApplicationNameException struct {
-	metadataInvalidApplicationNameException `json:"-", xml:"-"`
-}
-
-type metadataInvalidApplicationNameException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidAutoScalingGroupException struct {
-	metadataInvalidAutoScalingGroupException `json:"-", xml:"-"`
-}
-
-type metadataInvalidAutoScalingGroupException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidBucketNameFilterException struct {
-	metadataInvalidBucketNameFilterException `json:"-", xml:"-"`
-}
-
-type metadataInvalidBucketNameFilterException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidDeployedStateFilterException struct {
-	metadataInvalidDeployedStateFilterException `json:"-", xml:"-"`
-}
-
-type metadataInvalidDeployedStateFilterException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidDeploymentConfigNameException struct {
-	metadataInvalidDeploymentConfigNameException `json:"-", xml:"-"`
-}
-
-type metadataInvalidDeploymentConfigNameException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidDeploymentGroupNameException struct {
-	metadataInvalidDeploymentGroupNameException `json:"-", xml:"-"`
-}
-
-type metadataInvalidDeploymentGroupNameException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidDeploymentIDException struct {
-	metadataInvalidDeploymentIDException `json:"-", xml:"-"`
-}
-
-type metadataInvalidDeploymentIDException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidDeploymentStatusException struct {
-	metadataInvalidDeploymentStatusException `json:"-", xml:"-"`
-}
-
-type metadataInvalidDeploymentStatusException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidEC2TagException struct {
-	metadataInvalidEC2TagException `json:"-", xml:"-"`
-}
-
-type metadataInvalidEC2TagException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidInstanceStatusException struct {
-	metadataInvalidInstanceStatusException `json:"-", xml:"-"`
-}
-
-type metadataInvalidInstanceStatusException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidKeyPrefixFilterException struct {
-	metadataInvalidKeyPrefixFilterException `json:"-", xml:"-"`
-}
-
-type metadataInvalidKeyPrefixFilterException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidMinimumHealthyHostValueException struct {
-	metadataInvalidMinimumHealthyHostValueException `json:"-", xml:"-"`
-}
-
-type metadataInvalidMinimumHealthyHostValueException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidNextTokenException struct {
-	metadataInvalidNextTokenException `json:"-", xml:"-"`
-}
-
-type metadataInvalidNextTokenException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidOperationException struct {
-	metadataInvalidOperationException `json:"-", xml:"-"`
-}
-
-type metadataInvalidOperationException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidRevisionException struct {
-	metadataInvalidRevisionException `json:"-", xml:"-"`
-}
-
-type metadataInvalidRevisionException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidRoleException struct {
-	metadataInvalidRoleException `json:"-", xml:"-"`
-}
-
-type metadataInvalidRoleException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidSortByException struct {
-	metadataInvalidSortByException `json:"-", xml:"-"`
-}
-
-type metadataInvalidSortByException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidSortOrderException struct {
-	metadataInvalidSortOrderException `json:"-", xml:"-"`
-}
-
-type metadataInvalidSortOrderException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidTimeRangeException struct {
-	metadataInvalidTimeRangeException `json:"-", xml:"-"`
-}
-
-type metadataInvalidTimeRangeException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -1625,14 +1297,6 @@ type metadataRegisterApplicationRevisionOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type RevisionDoesNotExistException struct {
-	metadataRevisionDoesNotExistException `json:"-", xml:"-"`
-}
-
-type metadataRevisionDoesNotExistException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type RevisionLocation struct {
 	GitHubLocation *GitHubLocation `locationName:"gitHubLocation" type:"structure" json:"gitHubLocation,omitempty"`
 	RevisionType   *string         `locationName:"revisionType" type:"string" json:"revisionType,omitempty"`
@@ -1642,22 +1306,6 @@ type RevisionLocation struct {
 }
 
 type metadataRevisionLocation struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type RevisionRequiredException struct {
-	metadataRevisionRequiredException `json:"-", xml:"-"`
-}
-
-type metadataRevisionRequiredException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type RoleRequiredException struct {
-	metadataRoleRequiredException `json:"-", xml:"-"`
-}
-
-type metadataRoleRequiredException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

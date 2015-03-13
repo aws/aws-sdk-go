@@ -442,16 +442,6 @@ type metadataCondition struct {
 	SDKShapeTraits bool `type:"structure" required:"ComparisonOperator" json:",omitempty"`
 }
 
-type ConditionalCheckFailedException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataConditionalCheckFailedException `json:"-", xml:"-"`
-}
-
-type metadataConditionalCheckFailedException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type ConsumedCapacity struct {
 	CapacityUnits          *float64              `type:"double" json:",omitempty"`
 	GlobalSecondaryIndexes *map[string]*Capacity `type:"map" json:",omitempty"`
@@ -677,16 +667,6 @@ type metadataGlobalSecondaryIndexUpdate struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InternalServerError struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInternalServerError `json:"-", xml:"-"`
-}
-
-type metadataInternalServerError struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type ItemCollectionMetrics struct {
 	ItemCollectionKey   *map[string]*AttributeValue `type:"map" json:",omitempty"`
 	SizeEstimateRangeGB []*float64                  `type:"list" json:",omitempty"`
@@ -695,16 +675,6 @@ type ItemCollectionMetrics struct {
 }
 
 type metadataItemCollectionMetrics struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ItemCollectionSizeLimitExceededException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataItemCollectionSizeLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataItemCollectionSizeLimitExceededException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -731,16 +701,6 @@ type KeysAndAttributes struct {
 
 type metadataKeysAndAttributes struct {
 	SDKShapeTraits bool `type:"structure" required:"Keys" json:",omitempty"`
-}
-
-type LimitExceededException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListTablesInput struct {
@@ -827,16 +787,6 @@ type metadataProvisionedThroughputDescription struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type ProvisionedThroughputExceededException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataProvisionedThroughputExceededException `json:"-", xml:"-"`
-}
-
-type metadataProvisionedThroughputExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type PutItemInput struct {
 	ConditionExpression         *string                             `type:"string" json:",omitempty"`
 	ConditionalOperator         *string                             `type:"string" json:",omitempty"`
@@ -914,26 +864,6 @@ type QueryOutput struct {
 }
 
 type metadataQueryOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ResourceInUseException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataResourceInUseException `json:"-", xml:"-"`
-}
-
-type metadataResourceInUseException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ResourceNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataResourceNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataResourceNotFoundException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

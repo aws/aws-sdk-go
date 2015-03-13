@@ -801,26 +801,6 @@ type metadataDescribeVirtualInterfacesOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type DirectConnectClientException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataDirectConnectClientException `json:"-", xml:"-"`
-}
-
-type metadataDirectConnectClientException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DirectConnectServerException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataDirectConnectServerException `json:"-", xml:"-"`
-}
-
-type metadataDirectConnectServerException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type Interconnect struct {
 	Bandwidth         *string `locationName:"bandwidth" type:"string" json:"bandwidth,omitempty"`
 	InterconnectID    *string `locationName:"interconnectId" type:"string" json:"interconnectId,omitempty"`

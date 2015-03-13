@@ -1276,14 +1276,6 @@ type metadataBucket struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type BucketAlreadyExists struct {
-	metadataBucketAlreadyExists `json:"-", xml:"-"`
-}
-
-type metadataBucketAlreadyExists struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type BucketLoggingStatus struct {
 	LoggingEnabled *LoggingEnabled `type:"structure"`
 
@@ -2432,30 +2424,6 @@ type metadataMultipartUpload struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type NoSuchBucket struct {
-	metadataNoSuchBucket `json:"-", xml:"-"`
-}
-
-type metadataNoSuchBucket struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchKey struct {
-	metadataNoSuchKey `json:"-", xml:"-"`
-}
-
-type metadataNoSuchKey struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchUpload struct {
-	metadataNoSuchUpload `json:"-", xml:"-"`
-}
-
-type metadataNoSuchUpload struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type NoncurrentVersionExpiration struct {
 	NoncurrentDays *int `type:"integer"`
 
@@ -2504,14 +2472,6 @@ type metadataObject struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ObjectAlreadyInActiveTierError struct {
-	metadataObjectAlreadyInActiveTierError `json:"-", xml:"-"`
-}
-
-type metadataObjectAlreadyInActiveTierError struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type ObjectIdentifier struct {
 	Key       *string `type:"string"`
 	VersionID *string `locationName:"VersionId" type:"string"`
@@ -2521,14 +2481,6 @@ type ObjectIdentifier struct {
 
 type metadataObjectIdentifier struct {
 	SDKShapeTraits bool `type:"structure" required:"Key"`
-}
-
-type ObjectNotInActiveTierError struct {
-	metadataObjectNotInActiveTierError `json:"-", xml:"-"`
-}
-
-type metadataObjectNotInActiveTierError struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type ObjectVersion struct {

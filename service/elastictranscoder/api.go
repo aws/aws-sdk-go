@@ -431,14 +431,6 @@ func (c *ElasticTranscoder) UpdatePipelineStatus(input *UpdatePipelineStatusInpu
 
 var opUpdatePipelineStatus *aws.Operation
 
-type AccessDeniedException struct {
-	metadataAccessDeniedException `json:"-", xml:"-"`
-}
-
-type metadataAccessDeniedException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type Artwork struct {
 	AlbumArtFormat *string     `type:"string" json:",omitempty"`
 	Encryption     *Encryption `type:"structure" json:",omitempty"`
@@ -702,22 +694,6 @@ type metadataHLSContentProtection struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type IncompatibleVersionException struct {
-	metadataIncompatibleVersionException `json:"-", xml:"-"`
-}
-
-type metadataIncompatibleVersionException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InternalServiceException struct {
-	metadataInternalServiceException `json:"-", xml:"-"`
-}
-
-type metadataInternalServiceException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type Job struct {
 	ARN             *string             `locationName:"Arn" type:"string" json:"Arn,omitempty"`
 	ID              *string             `locationName:"Id" type:"string" json:"Id,omitempty"`
@@ -799,14 +775,6 @@ type JobWatermark struct {
 }
 
 type metadataJobWatermark struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type LimitExceededException struct {
-	metadataLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -1070,22 +1038,6 @@ type metadataReadPresetOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type ResourceInUseException struct {
-	metadataResourceInUseException `json:"-", xml:"-"`
-}
-
-type metadataResourceInUseException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ResourceNotFoundException struct {
-	metadataResourceNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataResourceNotFoundException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type TestRoleInput struct {
 	InputBucket  *string   `type:"string" json:",omitempty"`
 	OutputBucket *string   `type:"string" json:",omitempty"`
@@ -1205,14 +1157,6 @@ type UpdatePipelineStatusOutput struct {
 }
 
 type metadataUpdatePipelineStatusOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ValidationException struct {
-	metadataValidationException `json:"-", xml:"-"`
-}
-
-type metadataValidationException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

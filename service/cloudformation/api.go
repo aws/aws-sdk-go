@@ -433,14 +433,6 @@ func (c *CloudFormation) ValidateTemplate(input *ValidateTemplateInput) (output 
 
 var opValidateTemplate *aws.Operation
 
-type AlreadyExistsException struct {
-	metadataAlreadyExistsException `json:"-", xml:"-"`
-}
-
-type metadataAlreadyExistsException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type CancelUpdateStackInput struct {
 	StackName *string `type:"string"`
 
@@ -681,22 +673,6 @@ type GetTemplateSummaryOutput struct {
 
 type metadataGetTemplateSummaryOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"GetTemplateSummaryResult"`
-}
-
-type InsufficientCapabilitiesException struct {
-	metadataInsufficientCapabilitiesException `json:"-", xml:"-"`
-}
-
-type metadataInsufficientCapabilitiesException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type LimitExceededException struct {
-	metadataLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListStackResourcesInput struct {

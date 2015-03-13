@@ -531,16 +531,6 @@ func (c *ECS) SubmitTaskStateChange(input *SubmitTaskStateChangeInput) (output *
 
 var opSubmitTaskStateChange *aws.Operation
 
-type ClientException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataClientException `json:"-", xml:"-"`
-}
-
-type metadataClientException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type Cluster struct {
 	ClusterARN  *string `locationName:"clusterArn" type:"string" json:"clusterArn,omitempty"`
 	ClusterName *string `locationName:"clusterName" type:"string" json:"clusterName,omitempty"`
@@ -1068,16 +1058,6 @@ type RunTaskOutput struct {
 }
 
 type metadataRunTaskOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ServerException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataServerException `json:"-", xml:"-"`
-}
-
-type metadataServerException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

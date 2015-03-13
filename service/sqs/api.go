@@ -452,22 +452,6 @@ type metadataAddPermissionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type BatchEntryIDsNotDistinct struct {
-	metadataBatchEntryIDsNotDistinct `json:"-", xml:"-"`
-}
-
-type metadataBatchEntryIDsNotDistinct struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type BatchRequestTooLong struct {
-	metadataBatchRequestTooLong `json:"-", xml:"-"`
-}
-
-type metadataBatchRequestTooLong struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type BatchResultErrorEntry struct {
 	Code        *string `type:"string"`
 	ID          *string `locationName:"Id" type:"string"`
@@ -646,14 +630,6 @@ type metadataDeleteQueueOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type EmptyBatchRequest struct {
-	metadataEmptyBatchRequest `json:"-", xml:"-"`
-}
-
-type metadataEmptyBatchRequest struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type GetQueueAttributesInput struct {
 	AttributeNames []*string `locationNameList:"AttributeName" type:"list" flattened:"true"`
 	QueueURL       *string   `locationName:"QueueUrl" type:"string"`
@@ -694,38 +670,6 @@ type GetQueueURLOutput struct {
 
 type metadataGetQueueURLOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"GetQueueUrlResult"`
-}
-
-type InvalidAttributeName struct {
-	metadataInvalidAttributeName `json:"-", xml:"-"`
-}
-
-type metadataInvalidAttributeName struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidBatchEntryID struct {
-	metadataInvalidBatchEntryID `json:"-", xml:"-"`
-}
-
-type metadataInvalidBatchEntryID struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidIDFormat struct {
-	metadataInvalidIDFormat `json:"-", xml:"-"`
-}
-
-type metadataInvalidIDFormat struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidMessageContents struct {
-	metadataInvalidMessageContents `json:"-", xml:"-"`
-}
-
-type metadataInvalidMessageContents struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListDeadLetterSourceQueuesInput struct {
@@ -798,30 +742,6 @@ type metadataMessageAttributeValue struct {
 	SDKShapeTraits bool `type:"structure" required:"DataType"`
 }
 
-type MessageNotInflight struct {
-	metadataMessageNotInflight `json:"-", xml:"-"`
-}
-
-type metadataMessageNotInflight struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type OverLimit struct {
-	metadataOverLimit `json:"-", xml:"-"`
-}
-
-type metadataOverLimit struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type PurgeQueueInProgress struct {
-	metadataPurgeQueueInProgress `json:"-", xml:"-"`
-}
-
-type metadataPurgeQueueInProgress struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type PurgeQueueInput struct {
 	QueueURL *string `locationName:"QueueUrl" type:"string"`
 
@@ -837,38 +757,6 @@ type PurgeQueueOutput struct {
 }
 
 type metadataPurgeQueueOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type QueueDeletedRecently struct {
-	metadataQueueDeletedRecently `json:"-", xml:"-"`
-}
-
-type metadataQueueDeletedRecently struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type QueueDoesNotExist struct {
-	metadataQueueDoesNotExist `json:"-", xml:"-"`
-}
-
-type metadataQueueDoesNotExist struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type QueueNameExists struct {
-	metadataQueueNameExists `json:"-", xml:"-"`
-}
-
-type metadataQueueNameExists struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type ReceiptHandleIsInvalid struct {
-	metadataReceiptHandleIsInvalid `json:"-", xml:"-"`
-}
-
-type metadataReceiptHandleIsInvalid struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1005,21 +893,5 @@ type SetQueueAttributesOutput struct {
 }
 
 type metadataSetQueueAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyEntriesInBatchRequest struct {
-	metadataTooManyEntriesInBatchRequest `json:"-", xml:"-"`
-}
-
-type metadataTooManyEntriesInBatchRequest struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type UnsupportedOperation struct {
-	metadataUnsupportedOperation `json:"-", xml:"-"`
-}
-
-type metadataUnsupportedOperation struct {
 	SDKShapeTraits bool `type:"structure"`
 }

@@ -482,46 +482,6 @@ type metadataIdentityUsage struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InternalErrorException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInternalErrorException `json:"-", xml:"-"`
-}
-
-type metadataInternalErrorException struct {
-	SDKShapeTraits bool `type:"structure" required:"message" json:",omitempty"`
-}
-
-type InvalidConfigurationException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidConfigurationException `json:"-", xml:"-"`
-}
-
-type metadataInvalidConfigurationException struct {
-	SDKShapeTraits bool `type:"structure" required:"message" json:",omitempty"`
-}
-
-type InvalidParameterException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidParameterException `json:"-", xml:"-"`
-}
-
-type metadataInvalidParameterException struct {
-	SDKShapeTraits bool `type:"structure" required:"message" json:",omitempty"`
-}
-
-type LimitExceededException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure" required:"message" json:",omitempty"`
-}
-
 type ListDatasetsInput struct {
 	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" json:"-" xml:"-"`
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
@@ -605,16 +565,6 @@ type metadataListRecordsOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type NotAuthorizedException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataNotAuthorizedException `json:"-", xml:"-"`
-}
-
-type metadataNotAuthorizedException struct {
-	SDKShapeTraits bool `type:"structure" required:"message" json:",omitempty"`
-}
-
 type PushSync struct {
 	ApplicationARNs []*string `locationName:"ApplicationArns" type:"list" json:"ApplicationArns,omitempty"`
 	RoleARN         *string   `locationName:"RoleArn" type:"string" json:"RoleArn,omitempty"`
@@ -678,26 +628,6 @@ type metadataRegisterDeviceOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type ResourceConflictException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataResourceConflictException `json:"-", xml:"-"`
-}
-
-type metadataResourceConflictException struct {
-	SDKShapeTraits bool `type:"structure" required:"message" json:",omitempty"`
-}
-
-type ResourceNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataResourceNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataResourceNotFoundException struct {
-	SDKShapeTraits bool `type:"structure" required:"message" json:",omitempty"`
-}
-
 type SetIdentityPoolConfigurationInput struct {
 	IdentityPoolID *string   `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
 	PushSync       *PushSync `type:"structure" json:",omitempty"`
@@ -739,16 +669,6 @@ type SubscribeToDatasetOutput struct {
 
 type metadataSubscribeToDatasetOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type TooManyRequestsException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataTooManyRequestsException `json:"-", xml:"-"`
-}
-
-type metadataTooManyRequestsException struct {
-	SDKShapeTraits bool `type:"structure" required:"message" json:",omitempty"`
 }
 
 type UnsubscribeFromDatasetInput struct {

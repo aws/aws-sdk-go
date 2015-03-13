@@ -533,16 +533,6 @@ func (c *CloudFront) UpdateStreamingDistribution(input *UpdateStreamingDistribut
 
 var opUpdateStreamingDistribution *aws.Operation
 
-type AccessDenied struct {
-	Message *string `type:"string"`
-
-	metadataAccessDenied `json:"-", xml:"-"`
-}
-
-type metadataAccessDenied struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type ActiveTrustedSigners struct {
 	Enabled  *bool     `type:"boolean"`
 	Items    []*Signer `locationNameList:"Signer" type:"list"`
@@ -576,26 +566,6 @@ type AllowedMethods struct {
 
 type metadataAllowedMethods struct {
 	SDKShapeTraits bool `type:"structure" required:"Quantity,Items"`
-}
-
-type BatchTooLarge struct {
-	Message *string `type:"string"`
-
-	metadataBatchTooLarge `json:"-", xml:"-"`
-}
-
-type metadataBatchTooLarge struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type CNAMEAlreadyExists struct {
-	Message *string `type:"string"`
-
-	metadataCNAMEAlreadyExists `json:"-", xml:"-"`
-}
-
-type metadataCNAMEAlreadyExists struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type CacheBehavior struct {
@@ -649,16 +619,6 @@ type metadataCloudFrontOriginAccessIdentity struct {
 	SDKShapeTraits bool `type:"structure" required:"Id,S3CanonicalUserId"`
 }
 
-type CloudFrontOriginAccessIdentityAlreadyExists struct {
-	Message *string `type:"string"`
-
-	metadataCloudFrontOriginAccessIdentityAlreadyExists `json:"-", xml:"-"`
-}
-
-type metadataCloudFrontOriginAccessIdentityAlreadyExists struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type CloudFrontOriginAccessIdentityConfig struct {
 	CallerReference *string `type:"string"`
 	Comment         *string `type:"string"`
@@ -668,16 +628,6 @@ type CloudFrontOriginAccessIdentityConfig struct {
 
 type metadataCloudFrontOriginAccessIdentityConfig struct {
 	SDKShapeTraits bool `type:"structure" required:"CallerReference,Comment"`
-}
-
-type CloudFrontOriginAccessIdentityInUse struct {
-	Message *string `type:"string"`
-
-	metadataCloudFrontOriginAccessIdentityInUse `json:"-", xml:"-"`
-}
-
-type metadataCloudFrontOriginAccessIdentityInUse struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type CloudFrontOriginAccessIdentityList struct {
@@ -942,16 +892,6 @@ type metadataDistribution struct {
 	SDKShapeTraits bool `type:"structure" required:"Id,Status,LastModifiedTime,InProgressInvalidationBatches,DomainName,ActiveTrustedSigners,DistributionConfig"`
 }
 
-type DistributionAlreadyExists struct {
-	Message *string `type:"string"`
-
-	metadataDistributionAlreadyExists `json:"-", xml:"-"`
-}
-
-type metadataDistributionAlreadyExists struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type DistributionConfig struct {
 	Aliases              *Aliases              `type:"structure"`
 	CacheBehaviors       *CacheBehaviors       `type:"structure"`
@@ -987,16 +927,6 @@ type DistributionList struct {
 
 type metadataDistributionList struct {
 	SDKShapeTraits bool `type:"structure" required:"Marker,MaxItems,IsTruncated,Quantity"`
-}
-
-type DistributionNotDisabled struct {
-	Message *string `type:"string"`
-
-	metadataDistributionNotDisabled `json:"-", xml:"-"`
-}
-
-type metadataDistributionNotDisabled struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type DistributionSummary struct {
@@ -1204,176 +1134,6 @@ type metadataHeaders struct {
 	SDKShapeTraits bool `type:"structure" required:"Quantity"`
 }
 
-type IllegalUpdate struct {
-	Message *string `type:"string"`
-
-	metadataIllegalUpdate `json:"-", xml:"-"`
-}
-
-type metadataIllegalUpdate struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InconsistentQuantities struct {
-	Message *string `type:"string"`
-
-	metadataInconsistentQuantities `json:"-", xml:"-"`
-}
-
-type metadataInconsistentQuantities struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidArgument struct {
-	Message *string `type:"string"`
-
-	metadataInvalidArgument `json:"-", xml:"-"`
-}
-
-type metadataInvalidArgument struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidDefaultRootObject struct {
-	Message *string `type:"string"`
-
-	metadataInvalidDefaultRootObject `json:"-", xml:"-"`
-}
-
-type metadataInvalidDefaultRootObject struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidErrorCode struct {
-	Message *string `type:"string"`
-
-	metadataInvalidErrorCode `json:"-", xml:"-"`
-}
-
-type metadataInvalidErrorCode struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidForwardCookies struct {
-	Message *string `type:"string"`
-
-	metadataInvalidForwardCookies `json:"-", xml:"-"`
-}
-
-type metadataInvalidForwardCookies struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidGeoRestrictionParameter struct {
-	Message *string `type:"string"`
-
-	metadataInvalidGeoRestrictionParameter `json:"-", xml:"-"`
-}
-
-type metadataInvalidGeoRestrictionParameter struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidHeadersForS3Origin struct {
-	Message *string `type:"string"`
-
-	metadataInvalidHeadersForS3Origin `json:"-", xml:"-"`
-}
-
-type metadataInvalidHeadersForS3Origin struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidIfMatchVersion struct {
-	Message *string `type:"string"`
-
-	metadataInvalidIfMatchVersion `json:"-", xml:"-"`
-}
-
-type metadataInvalidIfMatchVersion struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidLocationCode struct {
-	Message *string `type:"string"`
-
-	metadataInvalidLocationCode `json:"-", xml:"-"`
-}
-
-type metadataInvalidLocationCode struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidOrigin struct {
-	Message *string `type:"string"`
-
-	metadataInvalidOrigin `json:"-", xml:"-"`
-}
-
-type metadataInvalidOrigin struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidOriginAccessIdentity struct {
-	Message *string `type:"string"`
-
-	metadataInvalidOriginAccessIdentity `json:"-", xml:"-"`
-}
-
-type metadataInvalidOriginAccessIdentity struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidProtocolSettings struct {
-	Message *string `type:"string"`
-
-	metadataInvalidProtocolSettings `json:"-", xml:"-"`
-}
-
-type metadataInvalidProtocolSettings struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidRelativePath struct {
-	Message *string `type:"string"`
-
-	metadataInvalidRelativePath `json:"-", xml:"-"`
-}
-
-type metadataInvalidRelativePath struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidRequiredProtocol struct {
-	Message *string `type:"string"`
-
-	metadataInvalidRequiredProtocol `json:"-", xml:"-"`
-}
-
-type metadataInvalidRequiredProtocol struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidResponseCode struct {
-	Message *string `type:"string"`
-
-	metadataInvalidResponseCode `json:"-", xml:"-"`
-}
-
-type metadataInvalidResponseCode struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidViewerCertificate struct {
-	Message *string `type:"string"`
-
-	metadataInvalidViewerCertificate `json:"-", xml:"-"`
-}
-
-type metadataInvalidViewerCertificate struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type Invalidation struct {
 	CreateTime        *time.Time         `type:"timestamp" timestampFormat:"iso8601"`
 	ID                *string            `locationName:"Id" type:"string"`
@@ -1534,66 +1294,6 @@ type metadataLoggingConfig struct {
 	SDKShapeTraits bool `type:"structure" required:"Enabled,IncludeCookies,Bucket,Prefix"`
 }
 
-type MissingBody struct {
-	Message *string `type:"string"`
-
-	metadataMissingBody `json:"-", xml:"-"`
-}
-
-type metadataMissingBody struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchCloudFrontOriginAccessIdentity struct {
-	Message *string `type:"string"`
-
-	metadataNoSuchCloudFrontOriginAccessIdentity `json:"-", xml:"-"`
-}
-
-type metadataNoSuchCloudFrontOriginAccessIdentity struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchDistribution struct {
-	Message *string `type:"string"`
-
-	metadataNoSuchDistribution `json:"-", xml:"-"`
-}
-
-type metadataNoSuchDistribution struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchInvalidation struct {
-	Message *string `type:"string"`
-
-	metadataNoSuchInvalidation `json:"-", xml:"-"`
-}
-
-type metadataNoSuchInvalidation struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchOrigin struct {
-	Message *string `type:"string"`
-
-	metadataNoSuchOrigin `json:"-", xml:"-"`
-}
-
-type metadataNoSuchOrigin struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchStreamingDistribution struct {
-	Message *string `type:"string"`
-
-	metadataNoSuchStreamingDistribution `json:"-", xml:"-"`
-}
-
-type metadataNoSuchStreamingDistribution struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type Origin struct {
 	CustomOriginConfig *CustomOriginConfig `type:"structure"`
 	DomainName         *string             `type:"string"`
@@ -1628,16 +1328,6 @@ type Paths struct {
 
 type metadataPaths struct {
 	SDKShapeTraits bool `type:"structure" required:"Quantity"`
-}
-
-type PreconditionFailed struct {
-	Message *string `type:"string"`
-
-	metadataPreconditionFailed `json:"-", xml:"-"`
-}
-
-type metadataPreconditionFailed struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type Restrictions struct {
@@ -1697,16 +1387,6 @@ type metadataStreamingDistribution struct {
 	SDKShapeTraits bool `type:"structure" required:"Id,Status,DomainName,ActiveTrustedSigners,StreamingDistributionConfig"`
 }
 
-type StreamingDistributionAlreadyExists struct {
-	Message *string `type:"string"`
-
-	metadataStreamingDistributionAlreadyExists `json:"-", xml:"-"`
-}
-
-type metadataStreamingDistributionAlreadyExists struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type StreamingDistributionConfig struct {
 	Aliases         *Aliases                `type:"structure"`
 	CallerReference *string                 `type:"string"`
@@ -1739,16 +1419,6 @@ type metadataStreamingDistributionList struct {
 	SDKShapeTraits bool `type:"structure" required:"Marker,MaxItems,IsTruncated,Quantity"`
 }
 
-type StreamingDistributionNotDisabled struct {
-	Message *string `type:"string"`
-
-	metadataStreamingDistributionNotDisabled `json:"-", xml:"-"`
-}
-
-type metadataStreamingDistributionNotDisabled struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type StreamingDistributionSummary struct {
 	Aliases          *Aliases        `type:"structure"`
 	Comment          *string         `type:"string"`
@@ -1778,136 +1448,6 @@ type StreamingLoggingConfig struct {
 
 type metadataStreamingLoggingConfig struct {
 	SDKShapeTraits bool `type:"structure" required:"Enabled,Bucket,Prefix"`
-}
-
-type TooManyCacheBehaviors struct {
-	Message *string `type:"string"`
-
-	metadataTooManyCacheBehaviors `json:"-", xml:"-"`
-}
-
-type metadataTooManyCacheBehaviors struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyCertificates struct {
-	Message *string `type:"string"`
-
-	metadataTooManyCertificates `json:"-", xml:"-"`
-}
-
-type metadataTooManyCertificates struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyCloudFrontOriginAccessIdentities struct {
-	Message *string `type:"string"`
-
-	metadataTooManyCloudFrontOriginAccessIdentities `json:"-", xml:"-"`
-}
-
-type metadataTooManyCloudFrontOriginAccessIdentities struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyCookieNamesInWhiteList struct {
-	Message *string `type:"string"`
-
-	metadataTooManyCookieNamesInWhiteList `json:"-", xml:"-"`
-}
-
-type metadataTooManyCookieNamesInWhiteList struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyDistributionCNAMEs struct {
-	Message *string `type:"string"`
-
-	metadataTooManyDistributionCNAMEs `json:"-", xml:"-"`
-}
-
-type metadataTooManyDistributionCNAMEs struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyDistributions struct {
-	Message *string `type:"string"`
-
-	metadataTooManyDistributions `json:"-", xml:"-"`
-}
-
-type metadataTooManyDistributions struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyHeadersInForwardedValues struct {
-	Message *string `type:"string"`
-
-	metadataTooManyHeadersInForwardedValues `json:"-", xml:"-"`
-}
-
-type metadataTooManyHeadersInForwardedValues struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyInvalidationsInProgress struct {
-	Message *string `type:"string"`
-
-	metadataTooManyInvalidationsInProgress `json:"-", xml:"-"`
-}
-
-type metadataTooManyInvalidationsInProgress struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyOrigins struct {
-	Message *string `type:"string"`
-
-	metadataTooManyOrigins `json:"-", xml:"-"`
-}
-
-type metadataTooManyOrigins struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyStreamingDistributionCNAMEs struct {
-	Message *string `type:"string"`
-
-	metadataTooManyStreamingDistributionCNAMEs `json:"-", xml:"-"`
-}
-
-type metadataTooManyStreamingDistributionCNAMEs struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyStreamingDistributions struct {
-	Message *string `type:"string"`
-
-	metadataTooManyStreamingDistributions `json:"-", xml:"-"`
-}
-
-type metadataTooManyStreamingDistributions struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyTrustedSigners struct {
-	Message *string `type:"string"`
-
-	metadataTooManyTrustedSigners `json:"-", xml:"-"`
-}
-
-type metadataTooManyTrustedSigners struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TrustedSignerDoesNotExist struct {
-	Message *string `type:"string"`
-
-	metadataTrustedSignerDoesNotExist `json:"-", xml:"-"`
-}
-
-type metadataTrustedSignerDoesNotExist struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type TrustedSigners struct {

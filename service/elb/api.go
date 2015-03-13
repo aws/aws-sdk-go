@@ -721,14 +721,6 @@ type metadataAccessLog struct {
 	SDKShapeTraits bool `type:"structure" required:"Enabled"`
 }
 
-type AccessPointNotFoundException struct {
-	metadataAccessPointNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataAccessPointNotFoundException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type AddTagsInput struct {
 	LoadBalancerNames []*string `type:"list"`
 	Tags              []*Tag    `type:"list"`
@@ -820,14 +812,6 @@ type BackendServerDescription struct {
 }
 
 type metadataBackendServerDescription struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type CertificateNotFoundException struct {
-	metadataCertificateNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataCertificateNotFoundException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1233,38 +1217,6 @@ type metadataDisableAvailabilityZonesForLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DisableAvailabilityZonesForLoadBalancerResult"`
 }
 
-type DuplicateAccessPointNameException struct {
-	metadataDuplicateAccessPointNameException `json:"-", xml:"-"`
-}
-
-type metadataDuplicateAccessPointNameException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DuplicateListenerException struct {
-	metadataDuplicateListenerException `json:"-", xml:"-"`
-}
-
-type metadataDuplicateListenerException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DuplicatePolicyNameException struct {
-	metadataDuplicatePolicyNameException `json:"-", xml:"-"`
-}
-
-type metadataDuplicatePolicyNameException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DuplicateTagKeysException struct {
-	metadataDuplicateTagKeysException `json:"-", xml:"-"`
-}
-
-type metadataDuplicateTagKeysException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type EnableAvailabilityZonesForLoadBalancerInput struct {
 	AvailabilityZones []*string `type:"list"`
 	LoadBalancerName  *string   `type:"string"`
@@ -1323,46 +1275,6 @@ type metadataInstanceState struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InvalidConfigurationRequestException struct {
-	metadataInvalidConfigurationRequestException `json:"-", xml:"-"`
-}
-
-type metadataInvalidConfigurationRequestException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidEndPointException struct {
-	metadataInvalidEndPointException `json:"-", xml:"-"`
-}
-
-type metadataInvalidEndPointException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidSchemeException struct {
-	metadataInvalidSchemeException `json:"-", xml:"-"`
-}
-
-type metadataInvalidSchemeException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidSecurityGroupException struct {
-	metadataInvalidSecurityGroupException `json:"-", xml:"-"`
-}
-
-type metadataInvalidSecurityGroupException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidSubnetException struct {
-	metadataInvalidSubnetException `json:"-", xml:"-"`
-}
-
-type metadataInvalidSubnetException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type LBCookieStickinessPolicy struct {
 	CookieExpirationPeriod *int64  `type:"long"`
 	PolicyName             *string `type:"string"`
@@ -1396,22 +1308,6 @@ type ListenerDescription struct {
 }
 
 type metadataListenerDescription struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type ListenerNotFoundException struct {
-	metadataListenerNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataListenerNotFoundException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type LoadBalancerAttributeNotFoundException struct {
-	metadataLoadBalancerAttributeNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataLoadBalancerAttributeNotFoundException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1536,14 +1432,6 @@ type metadataPolicyDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type PolicyNotFoundException struct {
-	metadataPolicyNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataPolicyNotFoundException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type PolicyTypeDescription struct {
 	Description                     *string                           `type:"string"`
 	PolicyAttributeTypeDescriptions []*PolicyAttributeTypeDescription `type:"list"`
@@ -1553,14 +1441,6 @@ type PolicyTypeDescription struct {
 }
 
 type metadataPolicyTypeDescription struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type PolicyTypeNotFoundException struct {
-	metadataPolicyTypeNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataPolicyTypeNotFoundException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1675,14 +1555,6 @@ type metadataSourceSecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type SubnetNotFoundException struct {
-	metadataSubnetNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataSubnetNotFoundException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type Tag struct {
 	Key   *string `type:"string"`
 	Value *string `type:"string"`
@@ -1712,29 +1584,5 @@ type TagKeyOnly struct {
 }
 
 type metadataTagKeyOnly struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyAccessPointsException struct {
-	metadataTooManyAccessPointsException `json:"-", xml:"-"`
-}
-
-type metadataTooManyAccessPointsException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyPoliciesException struct {
-	metadataTooManyPoliciesException `json:"-", xml:"-"`
-}
-
-type metadataTooManyPoliciesException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyTagsException struct {
-	metadataTooManyTagsException `json:"-", xml:"-"`
-}
-
-type metadataTooManyTagsException struct {
 	SDKShapeTraits bool `type:"structure"`
 }

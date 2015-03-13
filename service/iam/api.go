@@ -3008,36 +3008,6 @@ type metadataCreateVirtualMFADeviceOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateVirtualMFADeviceResult" required:"VirtualMFADevice"`
 }
 
-type CredentialReportExpiredException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataCredentialReportExpiredException `json:"-", xml:"-"`
-}
-
-type metadataCredentialReportExpiredException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type CredentialReportNotPresentException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataCredentialReportNotPresentException `json:"-", xml:"-"`
-}
-
-type metadataCredentialReportNotPresentException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type CredentialReportNotReadyException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataCredentialReportNotReadyException `json:"-", xml:"-"`
-}
-
-type metadataCredentialReportNotReadyException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type DeactivateMFADeviceInput struct {
 	SerialNumber *string `type:"string"`
 	UserName     *string `type:"string"`
@@ -3107,16 +3077,6 @@ type DeleteAccountPasswordPolicyOutput struct {
 }
 
 type metadataDeleteAccountPasswordPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DeleteConflictException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataDeleteConflictException `json:"-", xml:"-"`
-}
-
-type metadataDeleteConflictException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -3452,16 +3412,6 @@ type metadataDetachUserPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DuplicateCertificateException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataDuplicateCertificateException `json:"-", xml:"-"`
-}
-
-type metadataDuplicateCertificateException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type EnableMFADeviceInput struct {
 	AuthenticationCode1 *string `type:"string"`
 	AuthenticationCode2 *string `type:"string"`
@@ -3480,26 +3430,6 @@ type EnableMFADeviceOutput struct {
 }
 
 type metadataEnableMFADeviceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type EntityAlreadyExistsException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataEntityAlreadyExistsException `json:"-", xml:"-"`
-}
-
-type metadataEntityAlreadyExistsException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type EntityTemporarilyUnmodifiableException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataEntityTemporarilyUnmodifiableException `json:"-", xml:"-"`
-}
-
-type metadataEntityTemporarilyUnmodifiableException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -3926,66 +3856,6 @@ type InstanceProfile struct {
 
 type metadataInstanceProfile struct {
 	SDKShapeTraits bool `type:"structure" required:"Path,InstanceProfileName,InstanceProfileId,Arn,CreateDate,Roles"`
-}
-
-type InvalidAuthenticationCodeException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidAuthenticationCodeException `json:"-", xml:"-"`
-}
-
-type metadataInvalidAuthenticationCodeException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidCertificateException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidCertificateException `json:"-", xml:"-"`
-}
-
-type metadataInvalidCertificateException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidInputException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidInputException `json:"-", xml:"-"`
-}
-
-type metadataInvalidInputException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidUserTypeException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidUserTypeException `json:"-", xml:"-"`
-}
-
-type metadataInvalidUserTypeException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type KeyPairMismatchException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataKeyPairMismatchException `json:"-", xml:"-"`
-}
-
-type metadataKeyPairMismatchException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type LimitExceededException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAccessKeysInput struct {
@@ -4560,36 +4430,6 @@ type metadataMFADevice struct {
 	SDKShapeTraits bool `type:"structure" required:"UserName,SerialNumber,EnableDate"`
 }
 
-type MalformedCertificateException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataMalformedCertificateException `json:"-", xml:"-"`
-}
-
-type metadataMalformedCertificateException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type MalformedPolicyDocumentException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataMalformedPolicyDocumentException `json:"-", xml:"-"`
-}
-
-type metadataMalformedPolicyDocumentException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchEntityException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataNoSuchEntityException `json:"-", xml:"-"`
-}
-
-type metadataNoSuchEntityException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type OpenIDConnectProviderListEntry struct {
 	ARN *string `locationName:"Arn" type:"string"`
 
@@ -4616,16 +4456,6 @@ type PasswordPolicy struct {
 }
 
 type metadataPasswordPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type PasswordPolicyViolationException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataPasswordPolicyViolationException `json:"-", xml:"-"`
-}
-
-type metadataPasswordPolicyViolationException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -4909,16 +4739,6 @@ type ServerCertificateMetadata struct {
 
 type metadataServerCertificateMetadata struct {
 	SDKShapeTraits bool `type:"structure" required:"Path,ServerCertificateName,ServerCertificateId,Arn"`
-}
-
-type ServiceFailureException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataServiceFailureException `json:"-", xml:"-"`
-}
-
-type metadataServiceFailureException struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetDefaultPolicyVersionInput struct {

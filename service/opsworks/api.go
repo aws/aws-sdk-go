@@ -3029,16 +3029,6 @@ type metadataReportedOs struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type ResourceNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataResourceNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataResourceNotFoundException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type SSLConfiguration struct {
 	Certificate *string `type:"string" json:",omitempty"`
 	Chain       *string `type:"string" json:",omitempty"`
@@ -3573,16 +3563,6 @@ type UserProfile struct {
 }
 
 type metadataUserProfile struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ValidationException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataValidationException `json:"-", xml:"-"`
-}
-
-type metadataValidationException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

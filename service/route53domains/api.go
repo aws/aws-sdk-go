@@ -559,16 +559,6 @@ type metadataDisableDomainTransferLockOutput struct {
 	SDKShapeTraits bool `type:"structure" required:"OperationId" json:",omitempty"`
 }
 
-type DomainLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataDomainLimitExceeded `json:"-", xml:"-"`
-}
-
-type metadataDomainLimitExceeded struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type DomainSummary struct {
 	AutoRenew    *bool      `type:"boolean" json:",omitempty"`
 	DomainName   *string    `type:"string" json:",omitempty"`
@@ -580,16 +570,6 @@ type DomainSummary struct {
 
 type metadataDomainSummary struct {
 	SDKShapeTraits bool `type:"structure" required:"DomainName" json:",omitempty"`
-}
-
-type DuplicateRequest struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataDuplicateRequest `json:"-", xml:"-"`
-}
-
-type metadataDuplicateRequest struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type EnableDomainAutoRenewInput struct {
@@ -706,16 +686,6 @@ type metadataGetOperationDetailOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InvalidInput struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidInput `json:"-", xml:"-"`
-}
-
-type metadataInvalidInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type ListDomainsInput struct {
 	Marker   *string `type:"string" json:",omitempty"`
 	MaxItems *int    `type:"integer" json:",omitempty"`
@@ -791,16 +761,6 @@ type metadataNameserver struct {
 	SDKShapeTraits bool `type:"structure" required:"Name" json:",omitempty"`
 }
 
-type OperationLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataOperationLimitExceeded `json:"-", xml:"-"`
-}
-
-type metadataOperationLimitExceeded struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type OperationSummary struct {
 	OperationID   *string    `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
 	Status        *string    `type:"string" json:",omitempty"`
@@ -863,16 +823,6 @@ type metadataRetrieveDomainAuthCodeOutput struct {
 	SDKShapeTraits bool `type:"structure" required:"AuthCode" json:",omitempty"`
 }
 
-type TLDRulesViolation struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataTLDRulesViolation `json:"-", xml:"-"`
-}
-
-type metadataTLDRulesViolation struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type Tag struct {
 	Key   *string `type:"string" json:",omitempty"`
 	Value *string `type:"string" json:",omitempty"`
@@ -913,16 +863,6 @@ type TransferDomainOutput struct {
 
 type metadataTransferDomainOutput struct {
 	SDKShapeTraits bool `type:"structure" required:"OperationId" json:",omitempty"`
-}
-
-type UnsupportedTLD struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataUnsupportedTLD `json:"-", xml:"-"`
-}
-
-type metadataUnsupportedTLD struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateDomainContactInput struct {

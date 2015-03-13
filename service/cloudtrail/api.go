@@ -183,14 +183,6 @@ func (c *CloudTrail) UpdateTrail(input *UpdateTrailInput) (output *UpdateTrailOu
 
 var opUpdateTrail *aws.Operation
 
-type CloudWatchLogsDeliveryUnavailableException struct {
-	metadataCloudWatchLogsDeliveryUnavailableException `json:"-", xml:"-"`
-}
-
-type metadataCloudWatchLogsDeliveryUnavailableException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type CreateTrailInput struct {
 	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string" json:"CloudWatchLogsLogGroupArn,omitempty"`
 	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string" json:"CloudWatchLogsRoleArn,omitempty"`
@@ -289,86 +281,6 @@ type metadataGetTrailStatusOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InsufficientS3BucketPolicyException struct {
-	metadataInsufficientS3BucketPolicyException `json:"-", xml:"-"`
-}
-
-type metadataInsufficientS3BucketPolicyException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InsufficientSNSTopicPolicyException struct {
-	metadataInsufficientSNSTopicPolicyException `json:"-", xml:"-"`
-}
-
-type metadataInsufficientSNSTopicPolicyException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidCloudWatchLogsLogGroupARNException struct {
-	metadataInvalidCloudWatchLogsLogGroupARNException `json:"-", xml:"-"`
-}
-
-type metadataInvalidCloudWatchLogsLogGroupARNException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidCloudWatchLogsRoleARNException struct {
-	metadataInvalidCloudWatchLogsRoleARNException `json:"-", xml:"-"`
-}
-
-type metadataInvalidCloudWatchLogsRoleARNException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidS3BucketNameException struct {
-	metadataInvalidS3BucketNameException `json:"-", xml:"-"`
-}
-
-type metadataInvalidS3BucketNameException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidS3PrefixException struct {
-	metadataInvalidS3PrefixException `json:"-", xml:"-"`
-}
-
-type metadataInvalidS3PrefixException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidSNSTopicNameException struct {
-	metadataInvalidSNSTopicNameException `json:"-", xml:"-"`
-}
-
-type metadataInvalidSNSTopicNameException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidTrailNameException struct {
-	metadataInvalidTrailNameException `json:"-", xml:"-"`
-}
-
-type metadataInvalidTrailNameException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type MaximumNumberOfTrailsExceededException struct {
-	metadataMaximumNumberOfTrailsExceededException `json:"-", xml:"-"`
-}
-
-type metadataMaximumNumberOfTrailsExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type S3BucketDoesNotExistException struct {
-	metadataS3BucketDoesNotExistException `json:"-", xml:"-"`
-}
-
-type metadataS3BucketDoesNotExistException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type StartLoggingInput struct {
 	Name *string `type:"string" json:",omitempty"`
 
@@ -418,22 +330,6 @@ type Trail struct {
 }
 
 type metadataTrail struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type TrailAlreadyExistsException struct {
-	metadataTrailAlreadyExistsException `json:"-", xml:"-"`
-}
-
-type metadataTrailAlreadyExistsException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type TrailNotFoundException struct {
-	metadataTrailNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataTrailNotFoundException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

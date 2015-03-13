@@ -2045,28 +2045,6 @@ type metadataGatewayInfo struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InternalServerError struct {
-	Error   *StorageGatewayError `locationName:"error" type:"structure" json:"error,omitempty"`
-	Message *string              `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInternalServerError `json:"-", xml:"-"`
-}
-
-type metadataInternalServerError struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidGatewayRequestException struct {
-	Error   *StorageGatewayError `locationName:"error" type:"structure" json:"error,omitempty"`
-	Message *string              `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidGatewayRequestException `json:"-", xml:"-"`
-}
-
-type metadataInvalidGatewayRequestException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type ListGatewaysInput struct {
 	Limit  *int    `type:"integer" json:",omitempty"`
 	Marker *string `type:"string" json:",omitempty"`

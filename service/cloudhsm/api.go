@@ -431,25 +431,6 @@ func (c *CloudHSM) ModifyLunaClient(input *ModifyLunaClientInput) (output *Modif
 
 var opModifyLunaClient *aws.Operation
 
-type CloudHSMInternalException struct {
-	metadataCloudHSMInternalException `json:"-", xml:"-"`
-}
-
-type metadataCloudHSMInternalException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type CloudHSMServiceException struct {
-	Message   *string `locationName:"message" type:"string" json:"message,omitempty"`
-	Retryable *bool   `locationName:"retryable" type:"boolean" json:"retryable,omitempty"`
-
-	metadataCloudHSMServiceException `json:"-", xml:"-"`
-}
-
-type metadataCloudHSMServiceException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type CreateHAPGInput struct {
 	Label *string `type:"string" json:",omitempty"`
 
@@ -693,14 +674,6 @@ type GetConfigOutput struct {
 }
 
 type metadataGetConfigOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidRequestException struct {
-	metadataInvalidRequestException `json:"-", xml:"-"`
-}
-
-type metadataInvalidRequestException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

@@ -498,16 +498,6 @@ type metadataDescribeIdentityPoolInput struct {
 	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId" json:",omitempty"`
 }
 
-type DeveloperUserAlreadyRegisteredException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataDeveloperUserAlreadyRegisteredException `json:"-", xml:"-"`
-}
-
-type metadataDeveloperUserAlreadyRegisteredException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type GetCredentialsForIdentityInput struct {
 	IdentityID *string             `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 	Logins     *map[string]*string `type:"map" json:",omitempty"`
@@ -658,46 +648,6 @@ type metadataIdentityPoolShortDescription struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InternalErrorException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInternalErrorException `json:"-", xml:"-"`
-}
-
-type metadataInternalErrorException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidIdentityPoolConfigurationException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidIdentityPoolConfigurationException `json:"-", xml:"-"`
-}
-
-type metadataInvalidIdentityPoolConfigurationException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidParameterException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidParameterException `json:"-", xml:"-"`
-}
-
-type metadataInvalidParameterException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type LimitExceededException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type ListIdentitiesInput struct {
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	MaxResults     *int    `type:"integer" json:",omitempty"`
@@ -793,36 +743,6 @@ type metadataMergeDeveloperIdentitiesOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type NotAuthorizedException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataNotAuthorizedException `json:"-", xml:"-"`
-}
-
-type metadataNotAuthorizedException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ResourceConflictException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataResourceConflictException `json:"-", xml:"-"`
-}
-
-type metadataResourceConflictException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ResourceNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataResourceNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataResourceNotFoundException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type SetIdentityPoolRolesInput struct {
 	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	Roles          *map[string]*string `type:"map" json:",omitempty"`
@@ -839,16 +759,6 @@ type SetIdentityPoolRolesOutput struct {
 }
 
 type metadataSetIdentityPoolRolesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type TooManyRequestsException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataTooManyRequestsException `json:"-", xml:"-"`
-}
-
-type metadataTooManyRequestsException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

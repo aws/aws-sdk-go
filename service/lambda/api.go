@@ -406,28 +406,6 @@ type metadataGetFunctionOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InvalidParameterValueException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-	Type    *string `type:"string" json:",omitempty"`
-
-	metadataInvalidParameterValueException `json:"-", xml:"-"`
-}
-
-type metadataInvalidParameterValueException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidRequestContentException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-	Type    *string `type:"string" json:",omitempty"`
-
-	metadataInvalidRequestContentException `json:"-", xml:"-"`
-}
-
-type metadataInvalidRequestContentException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type InvokeAsyncInput struct {
 	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" json:"-" xml:"-"`
 	InvokeArgs   []byte  `type:"blob" json:",omitempty"`
@@ -510,28 +488,6 @@ type RemoveEventSourceOutput struct {
 }
 
 type metadataRemoveEventSourceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ResourceNotFoundException struct {
-	Message *string `type:"string" json:",omitempty"`
-	Type    *string `type:"string" json:",omitempty"`
-
-	metadataResourceNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataResourceNotFoundException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ServiceException struct {
-	Message *string `type:"string" json:",omitempty"`
-	Type    *string `type:"string" json:",omitempty"`
-
-	metadataServiceException `json:"-", xml:"-"`
-}
-
-type metadataServiceException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

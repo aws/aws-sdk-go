@@ -780,7 +780,7 @@ type ApplicationVersionDescriptionMessage struct {
 }
 
 type metadataApplicationVersionDescriptionMessage struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"UpdateApplicationVersionResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateApplicationVersionResult"`
 }
 
 type AutoScalingGroup struct {
@@ -1268,7 +1268,7 @@ type EnvironmentDescription struct {
 }
 
 type metadataEnvironmentDescription struct {
-	SDKShapeTraits bool `type:"structure" resultWrapper:"CreateEnvironmentResult"`
+	SDKShapeTraits bool `type:"structure" resultWrapper:"TerminateEnvironmentResult"`
 }
 
 type EnvironmentInfoDescription struct {
@@ -1349,14 +1349,6 @@ type metadataInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InsufficientPrivilegesException struct {
-	metadataInsufficientPrivilegesException `json:"-", xml:"-"`
-}
-
-type metadataInsufficientPrivilegesException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type LaunchConfiguration struct {
 	Name *string `type:"string"`
 
@@ -1416,14 +1408,6 @@ type LoadBalancerDescription struct {
 }
 
 type metadataLoadBalancerDescription struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type OperationInProgressException struct {
-	metadataOperationInProgressException `json:"-", xml:"-"`
-}
-
-type metadataOperationInProgressException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1551,22 +1535,6 @@ type metadataS3Location struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type S3LocationNotInServiceRegionException struct {
-	metadataS3LocationNotInServiceRegionException `json:"-", xml:"-"`
-}
-
-type metadataS3LocationNotInServiceRegionException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type S3SubscriptionRequiredException struct {
-	metadataS3SubscriptionRequiredException `json:"-", xml:"-"`
-}
-
-type metadataS3SubscriptionRequiredException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type SolutionStackDescription struct {
 	PermittedFileTypes []*string `type:"list"`
 	SolutionStackName  *string   `type:"string"`
@@ -1575,14 +1543,6 @@ type SolutionStackDescription struct {
 }
 
 type metadataSolutionStackDescription struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type SourceBundleDeletionException struct {
-	metadataSourceBundleDeletionException `json:"-", xml:"-"`
-}
-
-type metadataSourceBundleDeletionException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1662,46 +1622,6 @@ type TerminateEnvironmentOutput struct {
 }
 
 type metadataTerminateEnvironmentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyApplicationVersionsException struct {
-	metadataTooManyApplicationVersionsException `json:"-", xml:"-"`
-}
-
-type metadataTooManyApplicationVersionsException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyApplicationsException struct {
-	metadataTooManyApplicationsException `json:"-", xml:"-"`
-}
-
-type metadataTooManyApplicationsException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyBucketsException struct {
-	metadataTooManyBucketsException `json:"-", xml:"-"`
-}
-
-type metadataTooManyBucketsException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyConfigurationTemplatesException struct {
-	metadataTooManyConfigurationTemplatesException `json:"-", xml:"-"`
-}
-
-type metadataTooManyConfigurationTemplatesException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyEnvironmentsException struct {
-	metadataTooManyEnvironmentsException `json:"-", xml:"-"`
-}
-
-type metadataTooManyEnvironmentsException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

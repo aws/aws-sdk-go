@@ -645,16 +645,6 @@ type metadataAliasListEntry struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type AlreadyExistsException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataAlreadyExistsException `json:"-", xml:"-"`
-}
-
-type metadataAlreadyExistsException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type CreateAliasInput struct {
 	AliasName   *string `type:"string" json:",omitempty"`
 	TargetKeyID *string `locationName:"TargetKeyId" type:"string" json:"TargetKeyId,omitempty"`
@@ -763,16 +753,6 @@ type metadataDeleteAliasOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type DependencyTimeoutException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataDependencyTimeoutException `json:"-", xml:"-"`
-}
-
-type metadataDependencyTimeoutException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type DescribeKeyInput struct {
 	KeyID *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 
@@ -826,16 +806,6 @@ type DisableKeyRotationOutput struct {
 }
 
 type metadataDisableKeyRotationOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DisabledException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataDisabledException `json:"-", xml:"-"`
-}
-
-type metadataDisabledException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -1037,76 +1007,6 @@ type metadataGrantListEntry struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InvalidARNException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidARNException `json:"-", xml:"-"`
-}
-
-type metadataInvalidARNException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidAliasNameException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidAliasNameException `json:"-", xml:"-"`
-}
-
-type metadataInvalidAliasNameException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidCiphertextException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidCiphertextException `json:"-", xml:"-"`
-}
-
-type metadataInvalidCiphertextException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidGrantTokenException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidGrantTokenException `json:"-", xml:"-"`
-}
-
-type metadataInvalidGrantTokenException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidKeyUsageException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidKeyUsageException `json:"-", xml:"-"`
-}
-
-type metadataInvalidKeyUsageException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidMarkerException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidMarkerException `json:"-", xml:"-"`
-}
-
-type metadataInvalidMarkerException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type KMSInternalException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataKMSInternalException `json:"-", xml:"-"`
-}
-
-type metadataKMSInternalException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type KeyListEntry struct {
 	KeyARN *string `locationName:"KeyArn" type:"string" json:"KeyArn,omitempty"`
 	KeyID  *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
@@ -1132,26 +1032,6 @@ type KeyMetadata struct {
 
 type metadataKeyMetadata struct {
 	SDKShapeTraits bool `type:"structure" required:"KeyId" json:",omitempty"`
-}
-
-type KeyUnavailableException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataKeyUnavailableException `json:"-", xml:"-"`
-}
-
-type metadataKeyUnavailableException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type LimitExceededException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListAliasesInput struct {
@@ -1248,26 +1128,6 @@ type metadataListKeysOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type MalformedPolicyDocumentException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataMalformedPolicyDocumentException `json:"-", xml:"-"`
-}
-
-type metadataMalformedPolicyDocumentException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type NotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataNotFoundException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type PutKeyPolicyInput struct {
 	KeyID      *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
 	Policy     *string `type:"string" json:",omitempty"`
@@ -1348,16 +1208,6 @@ type RevokeGrantOutput struct {
 }
 
 type metadataRevokeGrantOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type UnsupportedOperationException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataUnsupportedOperationException `json:"-", xml:"-"`
-}
-
-type metadataUnsupportedOperationException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

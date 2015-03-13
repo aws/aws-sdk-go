@@ -221,6 +221,14 @@ func (a *API) makeIOShape(name string) *Shape {
 	return shape
 }
 
+func (a *API) removeUnusedShapes() {
+	for n, s := range a.Shapes {
+		if len(s.refs) == 0 {
+			delete(a.Shapes, n)
+		}
+	}
+}
+
 func splitName(name string) []string {
 	out, buf := []string{}, ""
 

@@ -578,26 +578,6 @@ type metadataInstanceIdentity struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InternalServiceError struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInternalServiceError `json:"-", xml:"-"`
-}
-
-type metadataInternalServiceError struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidRequestException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidRequestException `json:"-", xml:"-"`
-}
-
-type metadataInvalidRequestException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type ListPipelinesInput struct {
 	Marker *string `locationName:"marker" type:"string" json:"marker,omitempty"`
 
@@ -664,16 +644,6 @@ type metadataParameterValue struct {
 	SDKShapeTraits bool `type:"structure" required:"id,stringValue" json:",omitempty"`
 }
 
-type PipelineDeletedException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataPipelineDeletedException `json:"-", xml:"-"`
-}
-
-type metadataPipelineDeletedException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type PipelineDescription struct {
 	Description *string  `locationName:"description" type:"string" json:"description,omitempty"`
 	Fields      []*Field `locationName:"fields" type:"list" json:"fields,omitempty"`
@@ -695,16 +665,6 @@ type PipelineIDName struct {
 }
 
 type metadataPipelineIDName struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type PipelineNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataPipelineNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataPipelineNotFoundException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -896,16 +856,6 @@ type SetTaskStatusOutput struct {
 }
 
 type metadataSetTaskStatusOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type TaskNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataTaskNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataTaskNotFoundException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

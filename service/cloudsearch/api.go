@@ -667,17 +667,6 @@ type metadataAvailabilityOptionsStatus struct {
 	SDKShapeTraits bool `type:"structure" required:"Options,Status"`
 }
 
-type BaseException struct {
-	Code    *string `type:"string"`
-	Message *string `type:"string"`
-
-	metadataBaseException `json:"-", xml:"-"`
-}
-
-type metadataBaseException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type BuildSuggestersInput struct {
 	DomainName *string `type:"string"`
 
@@ -1105,14 +1094,6 @@ type metadataDescribeSuggestersOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DescribeSuggestersResult" required:"Suggesters"`
 }
 
-type DisabledOperationException struct {
-	metadataDisabledOperationException `json:"-", xml:"-"`
-}
-
-type metadataDisabledOperationException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type DocumentSuggesterOptions struct {
 	FuzzyMatching  *string `type:"string"`
 	SortExpression *string `type:"string"`
@@ -1280,22 +1261,6 @@ type metadataIntOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InternalException struct {
-	metadataInternalException `json:"-", xml:"-"`
-}
-
-type metadataInternalException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidTypeException struct {
-	metadataInvalidTypeException `json:"-", xml:"-"`
-}
-
-type metadataInvalidTypeException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type LatLonOptions struct {
 	DefaultValue  *string `type:"string"`
 	FacetEnabled  *bool   `type:"boolean"`
@@ -1308,14 +1273,6 @@ type LatLonOptions struct {
 }
 
 type metadataLatLonOptions struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type LimitExceededException struct {
-	metadataLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1389,14 +1346,6 @@ type OptionStatus struct {
 
 type metadataOptionStatus struct {
 	SDKShapeTraits bool `type:"structure" required:"CreationDate,UpdateDate,State"`
-}
-
-type ResourceNotFoundException struct {
-	metadataResourceNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataResourceNotFoundException struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type ScalingParameters struct {

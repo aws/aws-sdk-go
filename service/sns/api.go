@@ -652,16 +652,6 @@ type metadataAddPermissionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type AuthorizationErrorException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataAuthorizationErrorException `json:"-", xml:"-"`
-}
-
-type metadataAuthorizationErrorException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type ConfirmSubscriptionInput struct {
 	AuthenticateOnUnsubscribe *string `type:"string"`
 	Token                     *string `type:"string"`
@@ -814,16 +804,6 @@ type metadataEndpoint struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type EndpointDisabledException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataEndpointDisabledException `json:"-", xml:"-"`
-}
-
-type metadataEndpointDisabledException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type GetEndpointAttributesInput struct {
 	EndpointARN *string `locationName:"EndpointArn" type:"string"`
 
@@ -902,36 +882,6 @@ type GetTopicAttributesOutput struct {
 
 type metadataGetTopicAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"GetTopicAttributesResult"`
-}
-
-type InternalErrorException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInternalErrorException `json:"-", xml:"-"`
-}
-
-type metadataInternalErrorException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidParameterException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidParameterException `json:"-", xml:"-"`
-}
-
-type metadataInvalidParameterException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidParameterValueException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidParameterValueException `json:"-", xml:"-"`
-}
-
-type metadataInvalidParameterValueException struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListEndpointsByPlatformApplicationInput struct {
@@ -1053,16 +1003,6 @@ type metadataMessageAttributeValue struct {
 	SDKShapeTraits bool `type:"structure" required:"DataType"`
 }
 
-type NotFoundException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataNotFoundException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type PlatformApplication struct {
 	Attributes             *map[string]*string `type:"map"`
 	PlatformApplicationARN *string             `locationName:"PlatformApplicationArn" type:"string"`
@@ -1071,16 +1011,6 @@ type PlatformApplication struct {
 }
 
 type metadataPlatformApplication struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type PlatformApplicationDisabledException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataPlatformApplicationDisabledException `json:"-", xml:"-"`
-}
-
-type metadataPlatformApplicationDisabledException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1242,16 +1172,6 @@ type metadataSubscription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type SubscriptionLimitExceededException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataSubscriptionLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataSubscriptionLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type Topic struct {
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
@@ -1259,16 +1179,6 @@ type Topic struct {
 }
 
 type metadataTopic struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TopicLimitExceededException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataTopicLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataTopicLimitExceededException struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

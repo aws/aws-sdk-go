@@ -283,14 +283,6 @@ func (c *SSM) UpdateAssociationStatus(input *UpdateAssociationStatusInput) (outp
 
 var opUpdateAssociationStatus *aws.Operation
 
-type AssociatedInstances struct {
-	metadataAssociatedInstances `json:"-", xml:"-"`
-}
-
-type metadataAssociatedInstances struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type Association struct {
 	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	Name       *string `type:"string" json:",omitempty"`
@@ -299,14 +291,6 @@ type Association struct {
 }
 
 type metadataAssociation struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type AssociationAlreadyExists struct {
-	metadataAssociationAlreadyExists `json:"-", xml:"-"`
-}
-
-type metadataAssociationAlreadyExists struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -323,14 +307,6 @@ type metadataAssociationDescription struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type AssociationDoesNotExist struct {
-	metadataAssociationDoesNotExist `json:"-", xml:"-"`
-}
-
-type metadataAssociationDoesNotExist struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type AssociationFilter struct {
 	Key   *string `locationName:"key" type:"string" json:"key,omitempty"`
 	Value *string `locationName:"value" type:"string" json:"value,omitempty"`
@@ -340,14 +316,6 @@ type AssociationFilter struct {
 
 type metadataAssociationFilter struct {
 	SDKShapeTraits bool `type:"structure" required:"key,value" json:",omitempty"`
-}
-
-type AssociationLimitExceeded struct {
-	metadataAssociationLimitExceeded `json:"-", xml:"-"`
-}
-
-type metadataAssociationLimitExceeded struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type AssociationStatus struct {
@@ -515,14 +483,6 @@ type metadataDescribeDocumentOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type DocumentAlreadyExists struct {
-	metadataDocumentAlreadyExists `json:"-", xml:"-"`
-}
-
-type metadataDocumentAlreadyExists struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type DocumentDescription struct {
 	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 	Name        *string    `type:"string" json:",omitempty"`
@@ -557,22 +517,6 @@ type metadataDocumentIdentifier struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type DocumentLimitExceeded struct {
-	metadataDocumentLimitExceeded `json:"-", xml:"-"`
-}
-
-type metadataDocumentLimitExceeded struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type DuplicateInstanceID struct {
-	metadataDuplicateInstanceID `json:"-", xml:"-"`
-}
-
-type metadataDuplicateInstanceID struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type FailedCreateAssociation struct {
 	Entry   *CreateAssociationBatchRequestEntry `type:"structure" json:",omitempty"`
 	Fault   *string                             `type:"string" json:",omitempty"`
@@ -603,48 +547,6 @@ type GetDocumentOutput struct {
 }
 
 type metadataGetDocumentOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InternalServerError struct {
-	metadataInternalServerError `json:"-", xml:"-"`
-}
-
-type metadataInternalServerError struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidDocument struct {
-	metadataInvalidDocument `json:"-", xml:"-"`
-}
-
-type metadataInvalidDocument struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidDocumentContent struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidDocumentContent `json:"-", xml:"-"`
-}
-
-type metadataInvalidDocumentContent struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidInstanceID struct {
-	metadataInvalidInstanceID `json:"-", xml:"-"`
-}
-
-type metadataInvalidInstanceID struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidNextToken struct {
-	metadataInvalidNextToken `json:"-", xml:"-"`
-}
-
-type metadataInvalidNextToken struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -691,30 +593,6 @@ type ListDocumentsOutput struct {
 }
 
 type metadataListDocumentsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type MaxDocumentSizeExceeded struct {
-	metadataMaxDocumentSizeExceeded `json:"-", xml:"-"`
-}
-
-type metadataMaxDocumentSizeExceeded struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type StatusUnchanged struct {
-	metadataStatusUnchanged `json:"-", xml:"-"`
-}
-
-type metadataStatusUnchanged struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type TooManyUpdates struct {
-	metadataTooManyUpdates `json:"-", xml:"-"`
-}
-
-type metadataTooManyUpdates struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

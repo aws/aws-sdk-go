@@ -819,16 +819,6 @@ type metadataChangeTagsForResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ConflictingDomainExists struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataConflictingDomainExists `json:"-", xml:"-"`
-}
-
-type metadataConflictingDomainExists struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type CreateHealthCheckInput struct {
 	CallerReference   *string            `type:"string"`
 	HealthCheckConfig *HealthCheckConfig `type:"structure"`
@@ -911,56 +901,6 @@ type DelegationSet struct {
 
 type metadataDelegationSet struct {
 	SDKShapeTraits bool `type:"structure" required:"NameServers"`
-}
-
-type DelegationSetAlreadyCreated struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataDelegationSetAlreadyCreated `json:"-", xml:"-"`
-}
-
-type metadataDelegationSetAlreadyCreated struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DelegationSetAlreadyReusable struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataDelegationSetAlreadyReusable `json:"-", xml:"-"`
-}
-
-type metadataDelegationSetAlreadyReusable struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DelegationSetInUse struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataDelegationSetInUse `json:"-", xml:"-"`
-}
-
-type metadataDelegationSetInUse struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DelegationSetNotAvailable struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataDelegationSetNotAvailable `json:"-", xml:"-"`
-}
-
-type metadataDelegationSetNotAvailable struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DelegationSetNotReusable struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataDelegationSetNotReusable `json:"-", xml:"-"`
-}
-
-type metadataDelegationSetNotReusable struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteHealthCheckInput struct {
@@ -1261,16 +1201,6 @@ type metadataHealthCheck struct {
 	SDKShapeTraits bool `type:"structure" required:"Id,CallerReference,HealthCheckConfig,HealthCheckVersion"`
 }
 
-type HealthCheckAlreadyExists struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataHealthCheckAlreadyExists `json:"-", xml:"-"`
-}
-
-type metadataHealthCheckAlreadyExists struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type HealthCheckConfig struct {
 	FailureThreshold         *int    `type:"integer"`
 	FullyQualifiedDomainName *string `type:"string"`
@@ -1288,16 +1218,6 @@ type metadataHealthCheckConfig struct {
 	SDKShapeTraits bool `type:"structure" required:"Type"`
 }
 
-type HealthCheckInUse struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataHealthCheckInUse `json:"-", xml:"-"`
-}
-
-type metadataHealthCheckInUse struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type HealthCheckObservation struct {
 	IPAddress    *string       `type:"string"`
 	StatusReport *StatusReport `type:"structure"`
@@ -1306,16 +1226,6 @@ type HealthCheckObservation struct {
 }
 
 type metadataHealthCheckObservation struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type HealthCheckVersionMismatch struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataHealthCheckVersionMismatch `json:"-", xml:"-"`
-}
-
-type metadataHealthCheckVersionMismatch struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1333,16 +1243,6 @@ type metadataHostedZone struct {
 	SDKShapeTraits bool `type:"structure" required:"Id,Name,CallerReference"`
 }
 
-type HostedZoneAlreadyExists struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataHostedZoneAlreadyExists `json:"-", xml:"-"`
-}
-
-type metadataHostedZoneAlreadyExists struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type HostedZoneConfig struct {
 	Comment     *string `type:"string"`
 	PrivateZone *bool   `type:"boolean"`
@@ -1351,106 +1251,6 @@ type HostedZoneConfig struct {
 }
 
 type metadataHostedZoneConfig struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type HostedZoneNotEmpty struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataHostedZoneNotEmpty `json:"-", xml:"-"`
-}
-
-type metadataHostedZoneNotEmpty struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type HostedZoneNotFound struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataHostedZoneNotFound `json:"-", xml:"-"`
-}
-
-type metadataHostedZoneNotFound struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type IncompatibleVersion struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataIncompatibleVersion `json:"-", xml:"-"`
-}
-
-type metadataIncompatibleVersion struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidArgument struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidArgument `json:"-", xml:"-"`
-}
-
-type metadataInvalidArgument struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidChangeBatch struct {
-	Messages []*string `locationName:"messages" locationNameList:"Message" type:"list"`
-
-	metadataInvalidChangeBatch `json:"-", xml:"-"`
-}
-
-type metadataInvalidChangeBatch struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidDomainName struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidDomainName `json:"-", xml:"-"`
-}
-
-type metadataInvalidDomainName struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidInput struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidInput `json:"-", xml:"-"`
-}
-
-type metadataInvalidInput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidVPCID struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidVPCID `json:"-", xml:"-"`
-}
-
-type metadataInvalidVPCID struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type LastVPCAssociation struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataLastVPCAssociation `json:"-", xml:"-"`
-}
-
-type metadataLastVPCAssociation struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type LimitsExceeded struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataLimitsExceeded `json:"-", xml:"-"`
-}
-
-type metadataLimitsExceeded struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1629,76 +1429,6 @@ type metadataListTagsForResourcesOutput struct {
 	SDKShapeTraits bool `type:"structure" required:"ResourceTagSets"`
 }
 
-type NoSuchChange struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataNoSuchChange `json:"-", xml:"-"`
-}
-
-type metadataNoSuchChange struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchDelegationSet struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataNoSuchDelegationSet `json:"-", xml:"-"`
-}
-
-type metadataNoSuchDelegationSet struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchGeoLocation struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataNoSuchGeoLocation `json:"-", xml:"-"`
-}
-
-type metadataNoSuchGeoLocation struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchHealthCheck struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataNoSuchHealthCheck `json:"-", xml:"-"`
-}
-
-type metadataNoSuchHealthCheck struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type NoSuchHostedZone struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataNoSuchHostedZone `json:"-", xml:"-"`
-}
-
-type metadataNoSuchHostedZone struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type PriorRequestNotComplete struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataPriorRequestNotComplete `json:"-", xml:"-"`
-}
-
-type metadataPriorRequestNotComplete struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type PublicZoneVPCAssociation struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataPublicZoneVPCAssociation `json:"-", xml:"-"`
-}
-
-type metadataPublicZoneVPCAssociation struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type ResourceRecord struct {
 	Value *string `type:"string"`
 
@@ -1763,36 +1493,6 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ThrottlingException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataThrottlingException `json:"-", xml:"-"`
-}
-
-type metadataThrottlingException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyHealthChecks struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataTooManyHealthChecks `json:"-", xml:"-"`
-}
-
-type metadataTooManyHealthChecks struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type TooManyHostedZones struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataTooManyHostedZones `json:"-", xml:"-"`
-}
-
-type metadataTooManyHostedZones struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type UpdateHealthCheckInput struct {
 	FailureThreshold         *int    `type:"integer"`
 	FullyQualifiedDomainName *string `type:"string"`
@@ -1849,15 +1549,5 @@ type VPC struct {
 }
 
 type metadataVPC struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type VPCAssociationNotFound struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataVPCAssociationNotFound `json:"-", xml:"-"`
-}
-
-type metadataVPCAssociationNotFound struct {
 	SDKShapeTraits bool `type:"structure"`
 }

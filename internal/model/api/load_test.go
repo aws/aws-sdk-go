@@ -57,14 +57,14 @@ func TestRenamedShapes(t *testing.T) {
 	a := API{}
 	a.AttachString(json)
 	assert.Nil(t, a.Shapes["TestRequest"])
-	assert.NotNil(t, a.Shapes["TestInput"])
-	assert.Nil(t, a.Shapes["TestInput"].MemberRefs["memberName1"])
-	assert.NotNil(t, a.Shapes["TestInput"].MemberRefs["MemberName1"])
-	assert.Nil(t, a.Shapes["TestInput"].MemberRefs["memberName2"])
-	assert.NotNil(t, a.Shapes["TestInput"].MemberRefs["MemberName2"])
+	assert.NotNil(t, a.Shapes["OperationNameInput"])
+	assert.Nil(t, a.Shapes["OperationNameInput"].MemberRefs["memberName1"])
+	assert.NotNil(t, a.Shapes["OperationNameInput"].MemberRefs["MemberName1"])
+	assert.Nil(t, a.Shapes["OperationNameInput"].MemberRefs["memberName2"])
+	assert.NotNil(t, a.Shapes["OperationNameInput"].MemberRefs["MemberName2"])
 
 	assert.Nil(t, a.Shapes["TestResult"])
-	assert.NotNil(t, a.Shapes["TestOutput"])
+	assert.NotNil(t, a.Shapes["OperationNameOutput"])
 
 	assert.Nil(t, a.Shapes["TestVpnIcmp"])
 	assert.NotNil(t, a.Shapes["TestVPNICMP"])

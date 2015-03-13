@@ -1173,16 +1173,6 @@ type metadataAlarm struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type AlreadyExistsFault struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataAlreadyExistsFault `json:"-", xml:"-"`
-}
-
-type metadataAlreadyExistsFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type AttachInstancesInput struct {
 	AutoScalingGroupName *string   `type:"string"`
 	InstanceIDs          []*string `locationName:"InstanceIds" type:"list"`
@@ -2018,16 +2008,6 @@ type metadataInstanceMonitoring struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InvalidNextToken struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidNextToken `json:"-", xml:"-"`
-}
-
-type metadataInvalidNextToken struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type LaunchConfiguration struct {
 	AssociatePublicIPAddress     *bool                 `locationName:"AssociatePublicIpAddress" type:"boolean"`
 	BlockDeviceMappings          []*BlockDeviceMapping `type:"list"`
@@ -2071,16 +2051,6 @@ type LifecycleHook struct {
 }
 
 type metadataLifecycleHook struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type LimitExceededFault struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataLimitExceededFault `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2242,31 +2212,11 @@ type metadataRecordLifecycleActionHeartbeatOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"RecordLifecycleActionHeartbeatResult"`
 }
 
-type ResourceInUseFault struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataResourceInUseFault `json:"-", xml:"-"`
-}
-
-type metadataResourceInUseFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type ResumeProcessesOutput struct {
 	metadataResumeProcessesOutput `json:"-", xml:"-"`
 }
 
 type metadataResumeProcessesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type ScalingActivityInProgressFault struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataScalingActivityInProgressFault `json:"-", xml:"-"`
-}
-
-type metadataScalingActivityInProgressFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

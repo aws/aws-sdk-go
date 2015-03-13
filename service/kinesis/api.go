@@ -409,16 +409,6 @@ type metadataDescribeStreamOutput struct {
 	SDKShapeTraits bool `type:"structure" required:"StreamDescription" json:",omitempty"`
 }
 
-type ExpiredIteratorException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataExpiredIteratorException `json:"-", xml:"-"`
-}
-
-type metadataExpiredIteratorException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type GetRecordsInput struct {
 	Limit         *int    `type:"integer" json:",omitempty"`
 	ShardIterator *string `type:"string" json:",omitempty"`
@@ -473,26 +463,6 @@ type HashKeyRange struct {
 
 type metadataHashKeyRange struct {
 	SDKShapeTraits bool `type:"structure" required:"StartingHashKey,EndingHashKey" json:",omitempty"`
-}
-
-type InvalidArgumentException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInvalidArgumentException `json:"-", xml:"-"`
-}
-
-type metadataInvalidArgumentException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type LimitExceededException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListStreamsInput struct {
@@ -557,16 +527,6 @@ type MergeShardsOutput struct {
 }
 
 type metadataMergeShardsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ProvisionedThroughputExceededException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataProvisionedThroughputExceededException `json:"-", xml:"-"`
-}
-
-type metadataProvisionedThroughputExceededException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -670,26 +630,6 @@ type RemoveTagsFromStreamOutput struct {
 }
 
 type metadataRemoveTagsFromStreamOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ResourceInUseException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataResourceInUseException `json:"-", xml:"-"`
-}
-
-type metadataResourceInUseException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ResourceNotFoundException struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataResourceNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataResourceNotFoundException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 

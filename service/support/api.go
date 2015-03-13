@@ -423,66 +423,6 @@ type metadataAttachmentDetails struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type AttachmentIDNotFound struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataAttachmentIDNotFound `json:"-", xml:"-"`
-}
-
-type metadataAttachmentIDNotFound struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type AttachmentLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataAttachmentLimitExceeded `json:"-", xml:"-"`
-}
-
-type metadataAttachmentLimitExceeded struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type AttachmentSetExpired struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataAttachmentSetExpired `json:"-", xml:"-"`
-}
-
-type metadataAttachmentSetExpired struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type AttachmentSetIDNotFound struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataAttachmentSetIDNotFound `json:"-", xml:"-"`
-}
-
-type metadataAttachmentSetIDNotFound struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type AttachmentSetSizeLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataAttachmentSetSizeLimitExceeded `json:"-", xml:"-"`
-}
-
-type metadataAttachmentSetSizeLimitExceeded struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type CaseCreationLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataCaseCreationLimitExceeded `json:"-", xml:"-"`
-}
-
-type metadataCaseCreationLimitExceeded struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type CaseDetails struct {
 	CCEmailAddresses     []*string                 `locationName:"ccEmailAddresses" type:"list" json:"ccEmailAddresses,omitempty"`
 	CaseID               *string                   `locationName:"caseId" type:"string" json:"caseId,omitempty"`
@@ -501,16 +441,6 @@ type CaseDetails struct {
 }
 
 type metadataCaseDetails struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type CaseIDNotFound struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataCaseIDNotFound `json:"-", xml:"-"`
-}
-
-type metadataCaseIDNotFound struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -575,16 +505,6 @@ type DescribeAttachmentInput struct {
 
 type metadataDescribeAttachmentInput struct {
 	SDKShapeTraits bool `type:"structure" required:"attachmentId" json:",omitempty"`
-}
-
-type DescribeAttachmentLimitExceeded struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataDescribeAttachmentLimitExceeded `json:"-", xml:"-"`
-}
-
-type metadataDescribeAttachmentLimitExceeded struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeAttachmentOutput struct {
@@ -771,16 +691,6 @@ type DescribeTrustedAdvisorChecksOutput struct {
 
 type metadataDescribeTrustedAdvisorChecksOutput struct {
 	SDKShapeTraits bool `type:"structure" required:"checks" json:",omitempty"`
-}
-
-type InternalServerError struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataInternalServerError `json:"-", xml:"-"`
-}
-
-type metadataInternalServerError struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RecentCaseCommunications struct {

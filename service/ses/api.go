@@ -714,14 +714,6 @@ type metadataMessage struct {
 	SDKShapeTraits bool `type:"structure" required:"Subject,Body"`
 }
 
-type MessageRejected struct {
-	metadataMessageRejected `json:"-", xml:"-"`
-}
-
-type metadataMessageRejected struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type RawMessage struct {
 	Data []byte `type:"blob"`
 

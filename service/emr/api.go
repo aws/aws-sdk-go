@@ -874,35 +874,6 @@ type metadataInstanceTimeline struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InternalServerError struct {
-	metadataInternalServerError `json:"-", xml:"-"`
-}
-
-type metadataInternalServerError struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InternalServerException struct {
-	Message *string `type:"string" json:",omitempty"`
-
-	metadataInternalServerException `json:"-", xml:"-"`
-}
-
-type metadataInternalServerException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidRequestException struct {
-	ErrorCode *string `type:"string" json:",omitempty"`
-	Message   *string `type:"string" json:",omitempty"`
-
-	metadataInvalidRequestException `json:"-", xml:"-"`
-}
-
-type metadataInvalidRequestException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type JobFlowDetail struct {
 	AMIVersion            *string                       `locationName:"AmiVersion" type:"string" json:"AmiVersion,omitempty"`
 	BootstrapActions      []*BootstrapActionDetail      `type:"list" json:",omitempty"`

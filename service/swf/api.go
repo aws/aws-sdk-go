@@ -1221,16 +1221,6 @@ type metadataDecisionTaskTimedOutEventAttributes struct {
 	SDKShapeTraits bool `type:"structure" required:"timeoutType,scheduledEventId,startedEventId" json:",omitempty"`
 }
 
-type DefaultUndefinedFault struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataDefaultUndefinedFault `json:"-", xml:"-"`
-}
-
-type metadataDefaultUndefinedFault struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type DeprecateActivityTypeInput struct {
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" json:"activityType,omitempty"`
 	Domain       *string       `locationName:"domain" type:"string" json:"domain,omitempty"`
@@ -1377,16 +1367,6 @@ type metadataDescribeWorkflowTypeOutput struct {
 	SDKShapeTraits bool `type:"structure" required:"typeInfo,configuration" json:",omitempty"`
 }
 
-type DomainAlreadyExistsFault struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataDomainAlreadyExistsFault `json:"-", xml:"-"`
-}
-
-type metadataDomainAlreadyExistsFault struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type DomainConfiguration struct {
 	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" type:"string" json:"workflowExecutionRetentionPeriodInDays,omitempty"`
 
@@ -1395,16 +1375,6 @@ type DomainConfiguration struct {
 
 type metadataDomainConfiguration struct {
 	SDKShapeTraits bool `type:"structure" required:"workflowExecutionRetentionPeriodInDays" json:",omitempty"`
-}
-
-type DomainDeprecatedFault struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataDomainDeprecatedFault `json:"-", xml:"-"`
-}
-
-type metadataDomainDeprecatedFault struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DomainInfo struct {
@@ -1558,16 +1528,6 @@ type metadataHistoryEvent struct {
 	SDKShapeTraits bool `type:"structure" required:"eventTimestamp,eventType,eventId" json:",omitempty"`
 }
 
-type LimitExceededFault struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataLimitExceededFault `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededFault struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type ListActivityTypesInput struct {
 	Domain             *string `locationName:"domain" type:"string" json:"domain,omitempty"`
 	MaximumPageSize    *int    `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
@@ -1690,16 +1650,6 @@ type MarkerRecordedEventAttributes struct {
 
 type metadataMarkerRecordedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure" required:"markerName,decisionTaskCompletedEventId" json:",omitempty"`
-}
-
-type OperationNotPermittedFault struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataOperationNotPermittedFault `json:"-", xml:"-"`
-}
-
-type metadataOperationNotPermittedFault struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type PendingTaskCount struct {
@@ -2332,36 +2282,6 @@ type metadataTimerStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure" required:"timerId,startToFireTimeout,decisionTaskCompletedEventId" json:",omitempty"`
 }
 
-type TypeAlreadyExistsFault struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataTypeAlreadyExistsFault `json:"-", xml:"-"`
-}
-
-type metadataTypeAlreadyExistsFault struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type TypeDeprecatedFault struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataTypeDeprecatedFault `json:"-", xml:"-"`
-}
-
-type metadataTypeDeprecatedFault struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type UnknownResourceFault struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataUnknownResourceFault `json:"-", xml:"-"`
-}
-
-type metadataUnknownResourceFault struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type WorkflowExecution struct {
 	RunID      *string `locationName:"runId" type:"string" json:"runId,omitempty"`
 	WorkflowID *string `locationName:"workflowId" type:"string" json:"workflowId,omitempty"`
@@ -2371,16 +2291,6 @@ type WorkflowExecution struct {
 
 type metadataWorkflowExecution struct {
 	SDKShapeTraits bool `type:"structure" required:"workflowId,runId" json:",omitempty"`
-}
-
-type WorkflowExecutionAlreadyStartedFault struct {
-	Message *string `locationName:"message" type:"string" json:"message,omitempty"`
-
-	metadataWorkflowExecutionAlreadyStartedFault `json:"-", xml:"-"`
-}
-
-type metadataWorkflowExecutionAlreadyStartedFault struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type WorkflowExecutionCancelRequestedEventAttributes struct {

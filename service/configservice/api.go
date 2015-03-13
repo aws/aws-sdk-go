@@ -533,150 +533,6 @@ type metadataGetResourceConfigHistoryOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type InsufficientDeliveryPolicyException struct {
-	metadataInsufficientDeliveryPolicyException `json:"-", xml:"-"`
-}
-
-type metadataInsufficientDeliveryPolicyException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidConfigurationRecorderNameException struct {
-	metadataInvalidConfigurationRecorderNameException `json:"-", xml:"-"`
-}
-
-type metadataInvalidConfigurationRecorderNameException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidDeliveryChannelNameException struct {
-	metadataInvalidDeliveryChannelNameException `json:"-", xml:"-"`
-}
-
-type metadataInvalidDeliveryChannelNameException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidLimitException struct {
-	metadataInvalidLimitException `json:"-", xml:"-"`
-}
-
-type metadataInvalidLimitException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidNextTokenException struct {
-	metadataInvalidNextTokenException `json:"-", xml:"-"`
-}
-
-type metadataInvalidNextTokenException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidRoleException struct {
-	metadataInvalidRoleException `json:"-", xml:"-"`
-}
-
-type metadataInvalidRoleException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidS3KeyPrefixException struct {
-	metadataInvalidS3KeyPrefixException `json:"-", xml:"-"`
-}
-
-type metadataInvalidS3KeyPrefixException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidSNSTopicARNException struct {
-	metadataInvalidSNSTopicARNException `json:"-", xml:"-"`
-}
-
-type metadataInvalidSNSTopicARNException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidTimeRangeException struct {
-	metadataInvalidTimeRangeException `json:"-", xml:"-"`
-}
-
-type metadataInvalidTimeRangeException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type LastDeliveryChannelDeleteFailedException struct {
-	metadataLastDeliveryChannelDeleteFailedException `json:"-", xml:"-"`
-}
-
-type metadataLastDeliveryChannelDeleteFailedException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type MaxNumberOfConfigurationRecordersExceededException struct {
-	metadataMaxNumberOfConfigurationRecordersExceededException `json:"-", xml:"-"`
-}
-
-type metadataMaxNumberOfConfigurationRecordersExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type MaxNumberOfDeliveryChannelsExceededException struct {
-	metadataMaxNumberOfDeliveryChannelsExceededException `json:"-", xml:"-"`
-}
-
-type metadataMaxNumberOfDeliveryChannelsExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type NoAvailableConfigurationRecorderException struct {
-	metadataNoAvailableConfigurationRecorderException `json:"-", xml:"-"`
-}
-
-type metadataNoAvailableConfigurationRecorderException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type NoAvailableDeliveryChannelException struct {
-	metadataNoAvailableDeliveryChannelException `json:"-", xml:"-"`
-}
-
-type metadataNoAvailableDeliveryChannelException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type NoRunningConfigurationRecorderException struct {
-	metadataNoRunningConfigurationRecorderException `json:"-", xml:"-"`
-}
-
-type metadataNoRunningConfigurationRecorderException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type NoSuchBucketException struct {
-	metadataNoSuchBucketException `json:"-", xml:"-"`
-}
-
-type metadataNoSuchBucketException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type NoSuchConfigurationRecorderException struct {
-	metadataNoSuchConfigurationRecorderException `json:"-", xml:"-"`
-}
-
-type metadataNoSuchConfigurationRecorderException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type NoSuchDeliveryChannelException struct {
-	metadataNoSuchDeliveryChannelException `json:"-", xml:"-"`
-}
-
-type metadataNoSuchDeliveryChannelException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type PutConfigurationRecorderInput struct {
 	ConfigurationRecorder *ConfigurationRecorder `type:"structure" json:",omitempty"`
 
@@ -725,14 +581,6 @@ type metadataRelationship struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type ResourceNotDiscoveredException struct {
-	metadataResourceNotDiscoveredException `json:"-", xml:"-"`
-}
-
-type metadataResourceNotDiscoveredException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type StartConfigurationRecorderInput struct {
 	ConfigurationRecorderName *string `type:"string" json:",omitempty"`
 
@@ -766,13 +614,5 @@ type StopConfigurationRecorderOutput struct {
 }
 
 type metadataStopConfigurationRecorderOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ValidationException struct {
-	metadataValidationException `json:"-", xml:"-"`
-}
-
-type metadataValidationException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }

@@ -291,16 +291,6 @@ type metadataDecodeAuthorizationMessageOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"DecodeAuthorizationMessageResult"`
 }
 
-type ExpiredTokenException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataExpiredTokenException `json:"-", xml:"-"`
-}
-
-type metadataExpiredTokenException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type FederatedUser struct {
 	ARN             *string `locationName:"Arn" type:"string"`
 	FederatedUserID *string `locationName:"FederatedUserId" type:"string"`
@@ -356,64 +346,4 @@ type GetSessionTokenOutput struct {
 
 type metadataGetSessionTokenOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"GetSessionTokenResult"`
-}
-
-type IDPCommunicationErrorException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataIDPCommunicationErrorException `json:"-", xml:"-"`
-}
-
-type metadataIDPCommunicationErrorException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type IDPRejectedClaimException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataIDPRejectedClaimException `json:"-", xml:"-"`
-}
-
-type metadataIDPRejectedClaimException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidAuthorizationMessageException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidAuthorizationMessageException `json:"-", xml:"-"`
-}
-
-type metadataInvalidAuthorizationMessageException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidIdentityTokenException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidIdentityTokenException `json:"-", xml:"-"`
-}
-
-type metadataInvalidIdentityTokenException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type MalformedPolicyDocumentException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataMalformedPolicyDocumentException `json:"-", xml:"-"`
-}
-
-type metadataMalformedPolicyDocumentException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type PackedPolicyTooLargeException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataPackedPolicyTooLargeException `json:"-", xml:"-"`
-}
-
-type metadataPackedPolicyTooLargeException struct {
-	SDKShapeTraits bool `type:"structure"`
 }

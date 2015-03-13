@@ -494,66 +494,6 @@ type metadataGetMetricStatisticsOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"GetMetricStatisticsResult"`
 }
 
-type InternalServiceFault struct {
-	Message *string `type:"string"`
-
-	metadataInternalServiceFault `json:"-", xml:"-"`
-}
-
-type metadataInternalServiceFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidFormatFault struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidFormatFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidFormatFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidNextToken struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidNextToken `json:"-", xml:"-"`
-}
-
-type metadataInvalidNextToken struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidParameterCombinationException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidParameterCombinationException `json:"-", xml:"-"`
-}
-
-type metadataInvalidParameterCombinationException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidParameterValueException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataInvalidParameterValueException `json:"-", xml:"-"`
-}
-
-type metadataInvalidParameterValueException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type LimitExceededFault struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataLimitExceededFault `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type ListMetricsInput struct {
 	Dimensions []*DimensionFilter `type:"list"`
 	MetricName *string            `type:"string"`
@@ -635,16 +575,6 @@ type metadataMetricDatum struct {
 	SDKShapeTraits bool `type:"structure" required:"MetricName"`
 }
 
-type MissingRequiredParameterException struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataMissingRequiredParameterException `json:"-", xml:"-"`
-}
-
-type metadataMissingRequiredParameterException struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type PutMetricAlarmInput struct {
 	ActionsEnabled          *bool        `type:"boolean"`
 	AlarmActions            []*string    `type:"list"`
@@ -693,16 +623,6 @@ type PutMetricDataOutput struct {
 }
 
 type metadataPutMetricDataOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type ResourceNotFound struct {
-	Message *string `locationName:"message" type:"string"`
-
-	metadataResourceNotFound `json:"-", xml:"-"`
-}
-
-type metadataResourceNotFound struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

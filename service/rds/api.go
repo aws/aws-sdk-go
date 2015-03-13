@@ -1470,30 +1470,6 @@ type metadataApplyPendingMaintenanceActionOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ApplyPendingMaintenanceActionResult"`
 }
 
-type AuthorizationAlreadyExistsFault struct {
-	metadataAuthorizationAlreadyExistsFault `json:"-", xml:"-"`
-}
-
-type metadataAuthorizationAlreadyExistsFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type AuthorizationNotFoundFault struct {
-	metadataAuthorizationNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataAuthorizationNotFoundFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type AuthorizationQuotaExceededFault struct {
-	metadataAuthorizationQuotaExceededFault `json:"-", xml:"-"`
-}
-
-type metadataAuthorizationQuotaExceededFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type AuthorizeDBSecurityGroupIngressInput struct {
 	CIDRIP                  *string `type:"string"`
 	DBSecurityGroupName     *string `type:"string"`
@@ -1888,22 +1864,6 @@ type metadataDBInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DBInstanceAlreadyExistsFault struct {
-	metadataDBInstanceAlreadyExistsFault `json:"-", xml:"-"`
-}
-
-type metadataDBInstanceAlreadyExistsFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBInstanceNotFoundFault struct {
-	metadataDBInstanceNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataDBInstanceNotFoundFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type DBInstanceStatusInfo struct {
 	Message    *string `type:"string"`
 	Normal     *bool   `type:"boolean"`
@@ -1929,14 +1889,6 @@ type metadataDBParameterGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DBParameterGroupAlreadyExistsFault struct {
-	metadataDBParameterGroupAlreadyExistsFault `json:"-", xml:"-"`
-}
-
-type metadataDBParameterGroupAlreadyExistsFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type DBParameterGroupNameMessage struct {
 	DBParameterGroupName *string `type:"string"`
 
@@ -1945,22 +1897,6 @@ type DBParameterGroupNameMessage struct {
 
 type metadataDBParameterGroupNameMessage struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"ResetDBParameterGroupResult"`
-}
-
-type DBParameterGroupNotFoundFault struct {
-	metadataDBParameterGroupNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataDBParameterGroupNotFoundFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBParameterGroupQuotaExceededFault struct {
-	metadataDBParameterGroupQuotaExceededFault `json:"-", xml:"-"`
-}
-
-type metadataDBParameterGroupQuotaExceededFault struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type DBParameterGroupStatus struct {
@@ -1989,14 +1925,6 @@ type metadataDBSecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DBSecurityGroupAlreadyExistsFault struct {
-	metadataDBSecurityGroupAlreadyExistsFault `json:"-", xml:"-"`
-}
-
-type metadataDBSecurityGroupAlreadyExistsFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type DBSecurityGroupMembership struct {
 	DBSecurityGroupName *string `type:"string"`
 	Status              *string `type:"string"`
@@ -2005,30 +1933,6 @@ type DBSecurityGroupMembership struct {
 }
 
 type metadataDBSecurityGroupMembership struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSecurityGroupNotFoundFault struct {
-	metadataDBSecurityGroupNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataDBSecurityGroupNotFoundFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSecurityGroupNotSupportedFault struct {
-	metadataDBSecurityGroupNotSupportedFault `json:"-", xml:"-"`
-}
-
-type metadataDBSecurityGroupNotSupportedFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSecurityGroupQuotaExceededFault struct {
-	metadataDBSecurityGroupQuotaExceededFault `json:"-", xml:"-"`
-}
-
-type metadataDBSecurityGroupQuotaExceededFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2063,22 +1967,6 @@ type metadataDBSnapshot struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type DBSnapshotAlreadyExistsFault struct {
-	metadataDBSnapshotAlreadyExistsFault `json:"-", xml:"-"`
-}
-
-type metadataDBSnapshotAlreadyExistsFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSnapshotNotFoundFault struct {
-	metadataDBSnapshotNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataDBSnapshotNotFoundFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type DBSubnetGroup struct {
 	DBSubnetGroupDescription *string   `type:"string"`
 	DBSubnetGroupName        *string   `type:"string"`
@@ -2090,62 +1978,6 @@ type DBSubnetGroup struct {
 }
 
 type metadataDBSubnetGroup struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSubnetGroupAlreadyExistsFault struct {
-	metadataDBSubnetGroupAlreadyExistsFault `json:"-", xml:"-"`
-}
-
-type metadataDBSubnetGroupAlreadyExistsFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSubnetGroupDoesNotCoverEnoughAZs struct {
-	metadataDBSubnetGroupDoesNotCoverEnoughAZs `json:"-", xml:"-"`
-}
-
-type metadataDBSubnetGroupDoesNotCoverEnoughAZs struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSubnetGroupNotAllowedFault struct {
-	metadataDBSubnetGroupNotAllowedFault `json:"-", xml:"-"`
-}
-
-type metadataDBSubnetGroupNotAllowedFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSubnetGroupNotFoundFault struct {
-	metadataDBSubnetGroupNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataDBSubnetGroupNotFoundFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSubnetGroupQuotaExceededFault struct {
-	metadataDBSubnetGroupQuotaExceededFault `json:"-", xml:"-"`
-}
-
-type metadataDBSubnetGroupQuotaExceededFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBSubnetQuotaExceededFault struct {
-	metadataDBSubnetQuotaExceededFault `json:"-", xml:"-"`
-}
-
-type metadataDBSubnetQuotaExceededFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type DBUpgradeDependencyFailureFault struct {
-	metadataDBUpgradeDependencyFailureFault `json:"-", xml:"-"`
-}
-
-type metadataDBUpgradeDependencyFailureFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2860,14 +2692,6 @@ type metadataEventSubscription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type EventSubscriptionQuotaExceededFault struct {
-	metadataEventSubscriptionQuotaExceededFault `json:"-", xml:"-"`
-}
-
-type metadataEventSubscriptionQuotaExceededFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type Filter struct {
 	Name   *string   `type:"string"`
 	Values []*string `locationNameList:"Value" type:"list"`
@@ -2887,126 +2711,6 @@ type IPRange struct {
 }
 
 type metadataIPRange struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InstanceQuotaExceededFault struct {
-	metadataInstanceQuotaExceededFault `json:"-", xml:"-"`
-}
-
-type metadataInstanceQuotaExceededFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InsufficientDBInstanceCapacityFault struct {
-	metadataInsufficientDBInstanceCapacityFault `json:"-", xml:"-"`
-}
-
-type metadataInsufficientDBInstanceCapacityFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidDBInstanceStateFault struct {
-	metadataInvalidDBInstanceStateFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidDBInstanceStateFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidDBParameterGroupStateFault struct {
-	metadataInvalidDBParameterGroupStateFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidDBParameterGroupStateFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidDBSecurityGroupStateFault struct {
-	metadataInvalidDBSecurityGroupStateFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidDBSecurityGroupStateFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidDBSnapshotStateFault struct {
-	metadataInvalidDBSnapshotStateFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidDBSnapshotStateFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidDBSubnetGroupFault struct {
-	metadataInvalidDBSubnetGroupFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidDBSubnetGroupFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidDBSubnetGroupStateFault struct {
-	metadataInvalidDBSubnetGroupStateFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidDBSubnetGroupStateFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidDBSubnetStateFault struct {
-	metadataInvalidDBSubnetStateFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidDBSubnetStateFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidEventSubscriptionStateFault struct {
-	metadataInvalidEventSubscriptionStateFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidEventSubscriptionStateFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidOptionGroupStateFault struct {
-	metadataInvalidOptionGroupStateFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidOptionGroupStateFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidRestoreFault struct {
-	metadataInvalidRestoreFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidRestoreFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidSubnet struct {
-	metadataInvalidSubnet `json:"-", xml:"-"`
-}
-
-type metadataInvalidSubnet struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InvalidVPCNetworkStateFault struct {
-	metadataInvalidVPCNetworkStateFault `json:"-", xml:"-"`
-}
-
-type metadataInvalidVPCNetworkStateFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type KMSKeyNotAccessibleFault struct {
-	metadataKMSKeyNotAccessibleFault `json:"-", xml:"-"`
-}
-
-type metadataKMSKeyNotAccessibleFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -3208,14 +2912,6 @@ type metadataOptionGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type OptionGroupAlreadyExistsFault struct {
-	metadataOptionGroupAlreadyExistsFault `json:"-", xml:"-"`
-}
-
-type metadataOptionGroupAlreadyExistsFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type OptionGroupMembership struct {
 	OptionGroupName *string `type:"string"`
 	Status          *string `type:"string"`
@@ -3224,14 +2920,6 @@ type OptionGroupMembership struct {
 }
 
 type metadataOptionGroupMembership struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type OptionGroupNotFoundFault struct {
-	metadataOptionGroupNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataOptionGroupNotFoundFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -3267,14 +2955,6 @@ type OptionGroupOptionSetting struct {
 }
 
 type metadataOptionGroupOptionSetting struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type OptionGroupQuotaExceededFault struct {
-	metadataOptionGroupQuotaExceededFault `json:"-", xml:"-"`
-}
-
-type metadataOptionGroupQuotaExceededFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -3368,14 +3048,6 @@ type metadataPendingModifiedValues struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type PointInTimeRestoreNotEnabledFault struct {
-	metadataPointInTimeRestoreNotEnabledFault `json:"-", xml:"-"`
-}
-
-type metadataPointInTimeRestoreNotEnabledFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type PromoteReadReplicaInput struct {
 	BackupRetentionPeriod *int    `type:"integer"`
 	DBInstanceIdentifier  *string `type:"string"`
@@ -3396,14 +3068,6 @@ type PromoteReadReplicaOutput struct {
 
 type metadataPromoteReadReplicaOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"PromoteReadReplicaResult"`
-}
-
-type ProvisionedIOPSNotAvailableInAZFault struct {
-	metadataProvisionedIOPSNotAvailableInAZFault `json:"-", xml:"-"`
-}
-
-type metadataProvisionedIOPSNotAvailableInAZFault struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 type PurchaseReservedDBInstancesOfferingInput struct {
@@ -3524,30 +3188,6 @@ type metadataReservedDBInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type ReservedDBInstanceAlreadyExistsFault struct {
-	metadataReservedDBInstanceAlreadyExistsFault `json:"-", xml:"-"`
-}
-
-type metadataReservedDBInstanceAlreadyExistsFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type ReservedDBInstanceNotFoundFault struct {
-	metadataReservedDBInstanceNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataReservedDBInstanceNotFoundFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type ReservedDBInstanceQuotaExceededFault struct {
-	metadataReservedDBInstanceQuotaExceededFault `json:"-", xml:"-"`
-}
-
-type metadataReservedDBInstanceQuotaExceededFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type ReservedDBInstancesOffering struct {
 	CurrencyCode                  *string            `type:"string"`
 	DBInstanceClass               *string            `type:"string"`
@@ -3564,14 +3204,6 @@ type ReservedDBInstancesOffering struct {
 }
 
 type metadataReservedDBInstancesOffering struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type ReservedDBInstancesOfferingNotFoundFault struct {
-	metadataReservedDBInstancesOfferingNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataReservedDBInstancesOfferingNotFoundFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -3594,14 +3226,6 @@ type ResetDBParameterGroupOutput struct {
 }
 
 type metadataResetDBParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type ResourceNotFoundFault struct {
-	metadataResourceNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataResourceNotFoundFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -3716,62 +3340,6 @@ type metadataRevokeDBSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure" resultWrapper:"RevokeDBSecurityGroupIngressResult"`
 }
 
-type SNSInvalidTopicFault struct {
-	metadataSNSInvalidTopicFault `json:"-", xml:"-"`
-}
-
-type metadataSNSInvalidTopicFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type SNSNoAuthorizationFault struct {
-	metadataSNSNoAuthorizationFault `json:"-", xml:"-"`
-}
-
-type metadataSNSNoAuthorizationFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type SNSTopicARNNotFoundFault struct {
-	metadataSNSTopicARNNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataSNSTopicARNNotFoundFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type SnapshotQuotaExceededFault struct {
-	metadataSnapshotQuotaExceededFault `json:"-", xml:"-"`
-}
-
-type metadataSnapshotQuotaExceededFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type SourceNotFoundFault struct {
-	metadataSourceNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataSourceNotFoundFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type StorageQuotaExceededFault struct {
-	metadataStorageQuotaExceededFault `json:"-", xml:"-"`
-}
-
-type metadataStorageQuotaExceededFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type StorageTypeNotSupportedFault struct {
-	metadataStorageTypeNotSupportedFault `json:"-", xml:"-"`
-}
-
-type metadataStorageTypeNotSupportedFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type Subnet struct {
 	SubnetAvailabilityZone *AvailabilityZone `type:"structure"`
 	SubnetIdentifier       *string           `type:"string"`
@@ -3781,38 +3349,6 @@ type Subnet struct {
 }
 
 type metadataSubnet struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type SubnetAlreadyInUse struct {
-	metadataSubnetAlreadyInUse `json:"-", xml:"-"`
-}
-
-type metadataSubnetAlreadyInUse struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type SubscriptionAlreadyExistFault struct {
-	metadataSubscriptionAlreadyExistFault `json:"-", xml:"-"`
-}
-
-type metadataSubscriptionAlreadyExistFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type SubscriptionCategoryNotFoundFault struct {
-	metadataSubscriptionCategoryNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataSubscriptionCategoryNotFoundFault struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type SubscriptionNotFoundFault struct {
-	metadataSubscriptionNotFoundFault `json:"-", xml:"-"`
-}
-
-type metadataSubscriptionNotFoundFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

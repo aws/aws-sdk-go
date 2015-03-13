@@ -393,16 +393,6 @@ type metadataCreateLogStreamOutput struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type DataAlreadyAcceptedException struct {
-	ExpectedSequenceToken *string `locationName:"expectedSequenceToken" type:"string" json:"expectedSequenceToken,omitempty"`
-
-	metadataDataAlreadyAcceptedException `json:"-", xml:"-"`
-}
-
-type metadataDataAlreadyAcceptedException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type DeleteLogGroupInput struct {
 	LogGroupName *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
 
@@ -587,32 +577,6 @@ type metadataInputLogEvent struct {
 	SDKShapeTraits bool `type:"structure" required:"timestamp,message" json:",omitempty"`
 }
 
-type InvalidParameterException struct {
-	metadataInvalidParameterException `json:"-", xml:"-"`
-}
-
-type metadataInvalidParameterException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InvalidSequenceTokenException struct {
-	ExpectedSequenceToken *string `locationName:"expectedSequenceToken" type:"string" json:"expectedSequenceToken,omitempty"`
-
-	metadataInvalidSequenceTokenException `json:"-", xml:"-"`
-}
-
-type metadataInvalidSequenceTokenException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type LimitExceededException struct {
-	metadataLimitExceededException `json:"-", xml:"-"`
-}
-
-type metadataLimitExceededException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type LogGroup struct {
 	ARN               *string `locationName:"arn" type:"string" json:"arn,omitempty"`
 	CreationTime      *int64  `locationName:"creationTime" type:"long" json:"creationTime,omitempty"`
@@ -680,14 +644,6 @@ type MetricTransformation struct {
 
 type metadataMetricTransformation struct {
 	SDKShapeTraits bool `type:"structure" required:"metricName,metricNamespace,metricValue" json:",omitempty"`
-}
-
-type OperationAbortedException struct {
-	metadataOperationAbortedException `json:"-", xml:"-"`
-}
-
-type metadataOperationAbortedException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type OutputLogEvent struct {
@@ -762,30 +718,6 @@ type PutRetentionPolicyOutput struct {
 }
 
 type metadataPutRetentionPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ResourceAlreadyExistsException struct {
-	metadataResourceAlreadyExistsException `json:"-", xml:"-"`
-}
-
-type metadataResourceAlreadyExistsException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ResourceNotFoundException struct {
-	metadataResourceNotFoundException `json:"-", xml:"-"`
-}
-
-type metadataResourceNotFoundException struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type ServiceUnavailableException struct {
-	metadataServiceUnavailableException `json:"-", xml:"-"`
-}
-
-type metadataServiceUnavailableException struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
