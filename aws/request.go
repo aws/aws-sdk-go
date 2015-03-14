@@ -94,6 +94,10 @@ func (r *Request) Presign(expireTime time.Duration) (string, error) {
 func (r *Request) Build() error {
 	if !r.built {
 		r.Error = nil
+		r.Handlers.Validate.Run(r)
+		if r.Error != nil {
+			return r.Error
+		}
 		r.Handlers.Build.Run(r)
 		r.built = true
 	}

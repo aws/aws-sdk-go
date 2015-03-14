@@ -934,26 +934,26 @@ func (c *ElastiCache) RevokeCacheSecurityGroupIngress(input *RevokeCacheSecurity
 var opRevokeCacheSecurityGroupIngress *aws.Operation
 
 type AddTagsToResourceInput struct {
-	ResourceName *string `type:"string"`
-	Tags         []*Tag  `locationNameList:"Tag" type:"list"`
+	ResourceName *string `type:"string" required:"true"`
+	Tags         []*Tag  `locationNameList:"Tag" type:"list" required:"true"`
 
 	metadataAddTagsToResourceInput `json:"-", xml:"-"`
 }
 
 type metadataAddTagsToResourceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceName,Tags"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AuthorizeCacheSecurityGroupIngressInput struct {
-	CacheSecurityGroupName  *string `type:"string"`
-	EC2SecurityGroupName    *string `type:"string"`
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
+	CacheSecurityGroupName  *string `type:"string" required:"true"`
+	EC2SecurityGroupName    *string `type:"string" required:"true"`
+	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string" required:"true"`
 
 	metadataAuthorizeCacheSecurityGroupIngressInput `json:"-", xml:"-"`
 }
 
 type metadataAuthorizeCacheSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheSecurityGroupName,EC2SecurityGroupName,EC2SecurityGroupOwnerId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AuthorizeCacheSecurityGroupIngressOutput struct {
@@ -1137,14 +1137,14 @@ type metadataCacheSubnetGroup struct {
 }
 
 type CopySnapshotInput struct {
-	SourceSnapshotName *string `type:"string"`
-	TargetSnapshotName *string `type:"string"`
+	SourceSnapshotName *string `type:"string" required:"true"`
+	TargetSnapshotName *string `type:"string" required:"true"`
 
 	metadataCopySnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataCopySnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SourceSnapshotName,TargetSnapshotName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CopySnapshotOutput struct {
@@ -1160,7 +1160,7 @@ type metadataCopySnapshotOutput struct {
 type CreateCacheClusterInput struct {
 	AZMode                     *string   `type:"string"`
 	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
-	CacheClusterID             *string   `locationName:"CacheClusterId" type:"string"`
+	CacheClusterID             *string   `locationName:"CacheClusterId" type:"string" required:"true"`
 	CacheNodeType              *string   `type:"string"`
 	CacheParameterGroupName    *string   `type:"string"`
 	CacheSecurityGroupNames    []*string `locationNameList:"CacheSecurityGroupName" type:"list"`
@@ -1185,7 +1185,7 @@ type CreateCacheClusterInput struct {
 }
 
 type metadataCreateCacheClusterInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheClusterId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateCacheClusterOutput struct {
@@ -1199,15 +1199,15 @@ type metadataCreateCacheClusterOutput struct {
 }
 
 type CreateCacheParameterGroupInput struct {
-	CacheParameterGroupFamily *string `type:"string"`
-	CacheParameterGroupName   *string `type:"string"`
-	Description               *string `type:"string"`
+	CacheParameterGroupFamily *string `type:"string" required:"true"`
+	CacheParameterGroupName   *string `type:"string" required:"true"`
+	Description               *string `type:"string" required:"true"`
 
 	metadataCreateCacheParameterGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateCacheParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName,CacheParameterGroupFamily,Description"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateCacheParameterGroupOutput struct {
@@ -1221,14 +1221,14 @@ type metadataCreateCacheParameterGroupOutput struct {
 }
 
 type CreateCacheSecurityGroupInput struct {
-	CacheSecurityGroupName *string `type:"string"`
-	Description            *string `type:"string"`
+	CacheSecurityGroupName *string `type:"string" required:"true"`
+	Description            *string `type:"string" required:"true"`
 
 	metadataCreateCacheSecurityGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateCacheSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheSecurityGroupName,Description"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateCacheSecurityGroupOutput struct {
@@ -1242,15 +1242,15 @@ type metadataCreateCacheSecurityGroupOutput struct {
 }
 
 type CreateCacheSubnetGroupInput struct {
-	CacheSubnetGroupDescription *string   `type:"string"`
-	CacheSubnetGroupName        *string   `type:"string"`
-	SubnetIDs                   []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
+	CacheSubnetGroupDescription *string   `type:"string" required:"true"`
+	CacheSubnetGroupName        *string   `type:"string" required:"true"`
+	SubnetIDs                   []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	metadataCreateCacheSubnetGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateCacheSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheSubnetGroupName,CacheSubnetGroupDescription,SubnetIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateCacheSubnetGroupOutput struct {
@@ -1278,8 +1278,8 @@ type CreateReplicationGroupInput struct {
 	PreferredCacheClusterAZs    []*string `locationNameList:"AvailabilityZone" type:"list"`
 	PreferredMaintenanceWindow  *string   `type:"string"`
 	PrimaryClusterID            *string   `locationName:"PrimaryClusterId" type:"string"`
-	ReplicationGroupDescription *string   `type:"string"`
-	ReplicationGroupID          *string   `locationName:"ReplicationGroupId" type:"string"`
+	ReplicationGroupDescription *string   `type:"string" required:"true"`
+	ReplicationGroupID          *string   `locationName:"ReplicationGroupId" type:"string" required:"true"`
 	SecurityGroupIDs            []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
 	SnapshotARNs                []*string `locationName:"SnapshotArns" locationNameList:"SnapshotArn" type:"list"`
 	SnapshotName                *string   `type:"string"`
@@ -1291,7 +1291,7 @@ type CreateReplicationGroupInput struct {
 }
 
 type metadataCreateReplicationGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ReplicationGroupId,ReplicationGroupDescription"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateReplicationGroupOutput struct {
@@ -1305,14 +1305,14 @@ type metadataCreateReplicationGroupOutput struct {
 }
 
 type CreateSnapshotInput struct {
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
-	SnapshotName   *string `type:"string"`
+	CacheClusterID *string `locationName:"CacheClusterId" type:"string" required:"true"`
+	SnapshotName   *string `type:"string" required:"true"`
 
 	metadataCreateSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataCreateSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheClusterId,SnapshotName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateSnapshotOutput struct {
@@ -1326,14 +1326,14 @@ type metadataCreateSnapshotOutput struct {
 }
 
 type DeleteCacheClusterInput struct {
-	CacheClusterID          *string `locationName:"CacheClusterId" type:"string"`
+	CacheClusterID          *string `locationName:"CacheClusterId" type:"string" required:"true"`
 	FinalSnapshotIdentifier *string `type:"string"`
 
 	metadataDeleteCacheClusterInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteCacheClusterInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheClusterId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteCacheClusterOutput struct {
@@ -1347,13 +1347,13 @@ type metadataDeleteCacheClusterOutput struct {
 }
 
 type DeleteCacheParameterGroupInput struct {
-	CacheParameterGroupName *string `type:"string"`
+	CacheParameterGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteCacheParameterGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteCacheParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteCacheParameterGroupOutput struct {
@@ -1365,13 +1365,13 @@ type metadataDeleteCacheParameterGroupOutput struct {
 }
 
 type DeleteCacheSecurityGroupInput struct {
-	CacheSecurityGroupName *string `type:"string"`
+	CacheSecurityGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteCacheSecurityGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteCacheSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheSecurityGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteCacheSecurityGroupOutput struct {
@@ -1383,13 +1383,13 @@ type metadataDeleteCacheSecurityGroupOutput struct {
 }
 
 type DeleteCacheSubnetGroupInput struct {
-	CacheSubnetGroupName *string `type:"string"`
+	CacheSubnetGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteCacheSubnetGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteCacheSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheSubnetGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteCacheSubnetGroupOutput struct {
@@ -1402,14 +1402,14 @@ type metadataDeleteCacheSubnetGroupOutput struct {
 
 type DeleteReplicationGroupInput struct {
 	FinalSnapshotIdentifier *string `type:"string"`
-	ReplicationGroupID      *string `locationName:"ReplicationGroupId" type:"string"`
+	ReplicationGroupID      *string `locationName:"ReplicationGroupId" type:"string" required:"true"`
 	RetainPrimaryCluster    *bool   `type:"boolean"`
 
 	metadataDeleteReplicationGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteReplicationGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ReplicationGroupId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteReplicationGroupOutput struct {
@@ -1423,13 +1423,13 @@ type metadataDeleteReplicationGroupOutput struct {
 }
 
 type DeleteSnapshotInput struct {
-	SnapshotName *string `type:"string"`
+	SnapshotName *string `type:"string" required:"true"`
 
 	metadataDeleteSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SnapshotName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteSnapshotOutput struct {
@@ -1516,7 +1516,7 @@ type metadataDescribeCacheParameterGroupsOutput struct {
 }
 
 type DescribeCacheParametersInput struct {
-	CacheParameterGroupName *string `type:"string"`
+	CacheParameterGroupName *string `type:"string" required:"true"`
 	Marker                  *string `type:"string"`
 	MaxRecords              *int    `type:"integer"`
 	Source                  *string `type:"string"`
@@ -1525,7 +1525,7 @@ type DescribeCacheParametersInput struct {
 }
 
 type metadataDescribeCacheParametersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeCacheParametersOutput struct {
@@ -1587,7 +1587,7 @@ type metadataDescribeCacheSubnetGroupsOutput struct {
 }
 
 type DescribeEngineDefaultParametersInput struct {
-	CacheParameterGroupFamily *string `type:"string"`
+	CacheParameterGroupFamily *string `type:"string" required:"true"`
 	Marker                    *string `type:"string"`
 	MaxRecords                *int    `type:"integer"`
 
@@ -1595,7 +1595,7 @@ type DescribeEngineDefaultParametersInput struct {
 }
 
 type metadataDescribeEngineDefaultParametersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupFamily"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEngineDefaultParametersOutput struct {
@@ -1788,20 +1788,20 @@ type metadataEvent struct {
 }
 
 type ListTagsForResourceInput struct {
-	ResourceName *string `type:"string"`
+	ResourceName *string `type:"string" required:"true"`
 
 	metadataListTagsForResourceInput `json:"-", xml:"-"`
 }
 
 type metadataListTagsForResourceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyCacheClusterInput struct {
 	AZMode                     *string   `type:"string"`
 	ApplyImmediately           *bool     `type:"boolean"`
 	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
-	CacheClusterID             *string   `locationName:"CacheClusterId" type:"string"`
+	CacheClusterID             *string   `locationName:"CacheClusterId" type:"string" required:"true"`
 	CacheNodeIDsToRemove       []*string `locationName:"CacheNodeIdsToRemove" locationNameList:"CacheNodeId" type:"list"`
 	CacheParameterGroupName    *string   `type:"string"`
 	CacheSecurityGroupNames    []*string `locationNameList:"CacheSecurityGroupName" type:"list"`
@@ -1819,7 +1819,7 @@ type ModifyCacheClusterInput struct {
 }
 
 type metadataModifyCacheClusterInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheClusterId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyCacheClusterOutput struct {
@@ -1833,26 +1833,26 @@ type metadataModifyCacheClusterOutput struct {
 }
 
 type ModifyCacheParameterGroupInput struct {
-	CacheParameterGroupName *string               `type:"string"`
-	ParameterNameValues     []*ParameterNameValue `locationNameList:"ParameterNameValue" type:"list"`
+	CacheParameterGroupName *string               `type:"string" required:"true"`
+	ParameterNameValues     []*ParameterNameValue `locationNameList:"ParameterNameValue" type:"list" required:"true"`
 
 	metadataModifyCacheParameterGroupInput `json:"-", xml:"-"`
 }
 
 type metadataModifyCacheParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName,ParameterNameValues"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyCacheSubnetGroupInput struct {
 	CacheSubnetGroupDescription *string   `type:"string"`
-	CacheSubnetGroupName        *string   `type:"string"`
+	CacheSubnetGroupName        *string   `type:"string" required:"true"`
 	SubnetIDs                   []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
 
 	metadataModifyCacheSubnetGroupInput `json:"-", xml:"-"`
 }
 
 type metadataModifyCacheSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheSubnetGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyCacheSubnetGroupOutput struct {
@@ -1877,7 +1877,7 @@ type ModifyReplicationGroupInput struct {
 	PreferredMaintenanceWindow  *string   `type:"string"`
 	PrimaryClusterID            *string   `locationName:"PrimaryClusterId" type:"string"`
 	ReplicationGroupDescription *string   `type:"string"`
-	ReplicationGroupID          *string   `locationName:"ReplicationGroupId" type:"string"`
+	ReplicationGroupID          *string   `locationName:"ReplicationGroupId" type:"string" required:"true"`
 	SecurityGroupIDs            []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
 	SnapshotRetentionLimit      *int      `type:"integer"`
 	SnapshotWindow              *string   `type:"string"`
@@ -1887,7 +1887,7 @@ type ModifyReplicationGroupInput struct {
 }
 
 type metadataModifyReplicationGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ReplicationGroupId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyReplicationGroupOutput struct {
@@ -1994,13 +1994,13 @@ type metadataPendingModifiedValues struct {
 type PurchaseReservedCacheNodesOfferingInput struct {
 	CacheNodeCount               *int    `type:"integer"`
 	ReservedCacheNodeID          *string `locationName:"ReservedCacheNodeId" type:"string"`
-	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
+	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string" required:"true"`
 
 	metadataPurchaseReservedCacheNodesOfferingInput `json:"-", xml:"-"`
 }
 
 type metadataPurchaseReservedCacheNodesOfferingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ReservedCacheNodesOfferingId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PurchaseReservedCacheNodesOfferingOutput struct {
@@ -2014,14 +2014,14 @@ type metadataPurchaseReservedCacheNodesOfferingOutput struct {
 }
 
 type RebootCacheClusterInput struct {
-	CacheClusterID       *string   `locationName:"CacheClusterId" type:"string"`
-	CacheNodeIDsToReboot []*string `locationName:"CacheNodeIdsToReboot" locationNameList:"CacheNodeId" type:"list"`
+	CacheClusterID       *string   `locationName:"CacheClusterId" type:"string" required:"true"`
+	CacheNodeIDsToReboot []*string `locationName:"CacheNodeIdsToReboot" locationNameList:"CacheNodeId" type:"list" required:"true"`
 
 	metadataRebootCacheClusterInput `json:"-", xml:"-"`
 }
 
 type metadataRebootCacheClusterInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheClusterId,CacheNodeIdsToReboot"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RebootCacheClusterOutput struct {
@@ -2046,14 +2046,14 @@ type metadataRecurringCharge struct {
 }
 
 type RemoveTagsFromResourceInput struct {
-	ResourceName *string   `type:"string"`
-	TagKeys      []*string `type:"list"`
+	ResourceName *string   `type:"string" required:"true"`
+	TagKeys      []*string `type:"list" required:"true"`
 
 	metadataRemoveTagsFromResourceInput `json:"-", xml:"-"`
 }
 
 type metadataRemoveTagsFromResourceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceName,TagKeys"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReplicationGroup struct {
@@ -2123,27 +2123,27 @@ type metadataReservedCacheNodesOffering struct {
 }
 
 type ResetCacheParameterGroupInput struct {
-	CacheParameterGroupName *string               `type:"string"`
-	ParameterNameValues     []*ParameterNameValue `locationNameList:"ParameterNameValue" type:"list"`
+	CacheParameterGroupName *string               `type:"string" required:"true"`
+	ParameterNameValues     []*ParameterNameValue `locationNameList:"ParameterNameValue" type:"list" required:"true"`
 	ResetAllParameters      *bool                 `type:"boolean"`
 
 	metadataResetCacheParameterGroupInput `json:"-", xml:"-"`
 }
 
 type metadataResetCacheParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheParameterGroupName,ParameterNameValues"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RevokeCacheSecurityGroupIngressInput struct {
-	CacheSecurityGroupName  *string `type:"string"`
-	EC2SecurityGroupName    *string `type:"string"`
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
+	CacheSecurityGroupName  *string `type:"string" required:"true"`
+	EC2SecurityGroupName    *string `type:"string" required:"true"`
+	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string" required:"true"`
 
 	metadataRevokeCacheSecurityGroupIngressInput `json:"-", xml:"-"`
 }
 
 type metadataRevokeCacheSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CacheSecurityGroupName,EC2SecurityGroupName,EC2SecurityGroupOwnerId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RevokeCacheSecurityGroupIngressOutput struct {

@@ -146,6 +146,11 @@ func (a *API) renameExportable() {
 		}
 
 		s.Payload = a.ExportableName(s.Payload)
+
+		// fix required trait names
+		for i, n := range s.Required {
+			s.Required[i] = a.ExportableName(n)
+		}
 	}
 }
 

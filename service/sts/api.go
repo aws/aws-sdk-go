@@ -162,8 +162,8 @@ type AssumeRoleInput struct {
 	DurationSeconds *int    `type:"integer"`
 	ExternalID      *string `locationName:"ExternalId" type:"string"`
 	Policy          *string `type:"string"`
-	RoleARN         *string `locationName:"RoleArn" type:"string"`
-	RoleSessionName *string `type:"string"`
+	RoleARN         *string `locationName:"RoleArn" type:"string" required:"true"`
+	RoleSessionName *string `type:"string" required:"true"`
 	SerialNumber    *string `type:"string"`
 	TokenCode       *string `type:"string"`
 
@@ -171,7 +171,7 @@ type AssumeRoleInput struct {
 }
 
 type metadataAssumeRoleInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleArn,RoleSessionName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssumeRoleOutput struct {
@@ -189,15 +189,15 @@ type metadataAssumeRoleOutput struct {
 type AssumeRoleWithSAMLInput struct {
 	DurationSeconds *int    `type:"integer"`
 	Policy          *string `type:"string"`
-	PrincipalARN    *string `locationName:"PrincipalArn" type:"string"`
-	RoleARN         *string `locationName:"RoleArn" type:"string"`
-	SAMLAssertion   *string `type:"string"`
+	PrincipalARN    *string `locationName:"PrincipalArn" type:"string" required:"true"`
+	RoleARN         *string `locationName:"RoleArn" type:"string" required:"true"`
+	SAMLAssertion   *string `type:"string" required:"true"`
 
 	metadataAssumeRoleWithSAMLInput `json:"-", xml:"-"`
 }
 
 type metadataAssumeRoleWithSAMLInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleArn,PrincipalArn,SAMLAssertion"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssumeRoleWithSAMLOutput struct {
@@ -221,15 +221,15 @@ type AssumeRoleWithWebIdentityInput struct {
 	DurationSeconds  *int    `type:"integer"`
 	Policy           *string `type:"string"`
 	ProviderID       *string `locationName:"ProviderId" type:"string"`
-	RoleARN          *string `locationName:"RoleArn" type:"string"`
-	RoleSessionName  *string `type:"string"`
-	WebIdentityToken *string `type:"string"`
+	RoleARN          *string `locationName:"RoleArn" type:"string" required:"true"`
+	RoleSessionName  *string `type:"string" required:"true"`
+	WebIdentityToken *string `type:"string" required:"true"`
 
 	metadataAssumeRoleWithWebIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataAssumeRoleWithWebIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleArn,RoleSessionName,WebIdentityToken"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssumeRoleWithWebIdentityOutput struct {
@@ -248,37 +248,37 @@ type metadataAssumeRoleWithWebIdentityOutput struct {
 }
 
 type AssumedRoleUser struct {
-	ARN           *string `locationName:"Arn" type:"string"`
-	AssumedRoleID *string `locationName:"AssumedRoleId" type:"string"`
+	ARN           *string `locationName:"Arn" type:"string" required:"true"`
+	AssumedRoleID *string `locationName:"AssumedRoleId" type:"string" required:"true"`
 
 	metadataAssumedRoleUser `json:"-", xml:"-"`
 }
 
 type metadataAssumedRoleUser struct {
-	SDKShapeTraits bool `type:"structure" required:"AssumedRoleId,Arn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Credentials struct {
-	AccessKeyID     *string    `locationName:"AccessKeyId" type:"string"`
-	Expiration      *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	SecretAccessKey *string    `type:"string"`
-	SessionToken    *string    `type:"string"`
+	AccessKeyID     *string    `locationName:"AccessKeyId" type:"string" required:"true"`
+	Expiration      *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	SecretAccessKey *string    `type:"string" required:"true"`
+	SessionToken    *string    `type:"string" required:"true"`
 
 	metadataCredentials `json:"-", xml:"-"`
 }
 
 type metadataCredentials struct {
-	SDKShapeTraits bool `type:"structure" required:"AccessKeyId,SecretAccessKey,SessionToken,Expiration"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DecodeAuthorizationMessageInput struct {
-	EncodedMessage *string `type:"string"`
+	EncodedMessage *string `type:"string" required:"true"`
 
 	metadataDecodeAuthorizationMessageInput `json:"-", xml:"-"`
 }
 
 type metadataDecodeAuthorizationMessageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"EncodedMessage"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DecodeAuthorizationMessageOutput struct {
@@ -292,26 +292,26 @@ type metadataDecodeAuthorizationMessageOutput struct {
 }
 
 type FederatedUser struct {
-	ARN             *string `locationName:"Arn" type:"string"`
-	FederatedUserID *string `locationName:"FederatedUserId" type:"string"`
+	ARN             *string `locationName:"Arn" type:"string" required:"true"`
+	FederatedUserID *string `locationName:"FederatedUserId" type:"string" required:"true"`
 
 	metadataFederatedUser `json:"-", xml:"-"`
 }
 
 type metadataFederatedUser struct {
-	SDKShapeTraits bool `type:"structure" required:"FederatedUserId,Arn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetFederationTokenInput struct {
 	DurationSeconds *int    `type:"integer"`
-	Name            *string `type:"string"`
+	Name            *string `type:"string" required:"true"`
 	Policy          *string `type:"string"`
 
 	metadataGetFederationTokenInput `json:"-", xml:"-"`
 }
 
 type metadataGetFederationTokenInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetFederationTokenOutput struct {

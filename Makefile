@@ -11,3 +11,6 @@ generate-test: generate-protocol-test generate-integration-test
 generate:
 	go generate ./aws
 	go generate ./service
+
+test: generate-test
+	go test ./... -tags=integration

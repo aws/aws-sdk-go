@@ -363,13 +363,13 @@ type metadataConfigurationRecorderStatus struct {
 }
 
 type DeleteDeliveryChannelInput struct {
-	DeliveryChannelName *string `type:"string" json:",omitempty"`
+	DeliveryChannelName *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDeleteDeliveryChannelInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDeliveryChannelInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DeliveryChannelName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteDeliveryChannelOutput struct {
@@ -381,13 +381,13 @@ type metadataDeleteDeliveryChannelOutput struct {
 }
 
 type DeliverConfigSnapshotInput struct {
-	DeliveryChannelName *string `locationName:"deliveryChannelName" type:"string" json:"deliveryChannelName,omitempty"`
+	DeliveryChannelName *string `locationName:"deliveryChannelName" type:"string" required:"true"json:"deliveryChannelName,omitempty"`
 
 	metadataDeliverConfigSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataDeliverConfigSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"deliveryChannelName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeliverConfigSnapshotOutput struct {
@@ -512,14 +512,14 @@ type GetResourceConfigHistoryInput struct {
 	LaterTime          *time.Time `locationName:"laterTime" type:"timestamp" timestampFormat:"unix" json:"laterTime,omitempty"`
 	Limit              *int       `locationName:"limit" type:"integer" json:"limit,omitempty"`
 	NextToken          *string    `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
-	ResourceID         *string    `locationName:"resourceId" type:"string" json:"resourceId,omitempty"`
-	ResourceType       *string    `locationName:"resourceType" type:"string" json:"resourceType,omitempty"`
+	ResourceID         *string    `locationName:"resourceId" type:"string" required:"true"json:"resourceId,omitempty"`
+	ResourceType       *string    `locationName:"resourceType" type:"string" required:"true"json:"resourceType,omitempty"`
 
 	metadataGetResourceConfigHistoryInput `json:"-", xml:"-"`
 }
 
 type metadataGetResourceConfigHistoryInput struct {
-	SDKShapeTraits bool `type:"structure" required:"resourceType,resourceId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetResourceConfigHistoryOutput struct {
@@ -534,13 +534,13 @@ type metadataGetResourceConfigHistoryOutput struct {
 }
 
 type PutConfigurationRecorderInput struct {
-	ConfigurationRecorder *ConfigurationRecorder `type:"structure" json:",omitempty"`
+	ConfigurationRecorder *ConfigurationRecorder `type:"structure" required:"true"json:",omitempty"`
 
 	metadataPutConfigurationRecorderInput `json:"-", xml:"-"`
 }
 
 type metadataPutConfigurationRecorderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ConfigurationRecorder" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type PutConfigurationRecorderOutput struct {
@@ -552,13 +552,13 @@ type metadataPutConfigurationRecorderOutput struct {
 }
 
 type PutDeliveryChannelInput struct {
-	DeliveryChannel *DeliveryChannel `type:"structure" json:",omitempty"`
+	DeliveryChannel *DeliveryChannel `type:"structure" required:"true"json:",omitempty"`
 
 	metadataPutDeliveryChannelInput `json:"-", xml:"-"`
 }
 
 type metadataPutDeliveryChannelInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DeliveryChannel" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type PutDeliveryChannelOutput struct {
@@ -582,13 +582,13 @@ type metadataRelationship struct {
 }
 
 type StartConfigurationRecorderInput struct {
-	ConfigurationRecorderName *string `type:"string" json:",omitempty"`
+	ConfigurationRecorderName *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataStartConfigurationRecorderInput `json:"-", xml:"-"`
 }
 
 type metadataStartConfigurationRecorderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ConfigurationRecorderName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type StartConfigurationRecorderOutput struct {
@@ -600,13 +600,13 @@ type metadataStartConfigurationRecorderOutput struct {
 }
 
 type StopConfigurationRecorderInput struct {
-	ConfigurationRecorderName *string `type:"string" json:",omitempty"`
+	ConfigurationRecorderName *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataStopConfigurationRecorderInput `json:"-", xml:"-"`
 }
 
 type metadataStopConfigurationRecorderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ConfigurationRecorderName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type StopConfigurationRecorderOutput struct {

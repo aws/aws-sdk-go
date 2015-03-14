@@ -57,6 +57,10 @@ func (s *Service) Initialize() {
 	s.Handlers.ValidateResponse.PushBack(ValidateResponseHandler)
 	s.AddDebugHandlers()
 	s.buildEndpoint()
+
+	if !s.Config.DisableParamValidation {
+		s.Handlers.Validate.PushBack(ValidateParameters)
+	}
 }
 
 func (s *Service) buildEndpoint() {

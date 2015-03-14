@@ -471,23 +471,23 @@ type metadataBody struct {
 
 type Content struct {
 	Charset *string `type:"string"`
-	Data    *string `type:"string"`
+	Data    *string `type:"string" required:"true"`
 
 	metadataContent `json:"-", xml:"-"`
 }
 
 type metadataContent struct {
-	SDKShapeTraits bool `type:"structure" required:"Data"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteIdentityInput struct {
-	Identity *string `type:"string"`
+	Identity *string `type:"string" required:"true"`
 
 	metadataDeleteIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Identity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteIdentityOutput struct {
@@ -499,13 +499,13 @@ type metadataDeleteIdentityOutput struct {
 }
 
 type DeleteVerifiedEmailAddressInput struct {
-	EmailAddress *string `type:"string"`
+	EmailAddress *string `type:"string" required:"true"`
 
 	metadataDeleteVerifiedEmailAddressInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteVerifiedEmailAddressInput struct {
-	SDKShapeTraits bool `type:"structure" required:"EmailAddress"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteVerifiedEmailAddressOutput struct {
@@ -529,63 +529,63 @@ type metadataDestination struct {
 }
 
 type GetIdentityDKIMAttributesInput struct {
-	Identities []*string `type:"list"`
+	Identities []*string `type:"list" required:"true"`
 
 	metadataGetIdentityDKIMAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataGetIdentityDKIMAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Identities"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetIdentityDKIMAttributesOutput struct {
-	DKIMAttributes *map[string]*IdentityDKIMAttributes `locationName:"DkimAttributes" type:"map"`
+	DKIMAttributes *map[string]*IdentityDKIMAttributes `locationName:"DkimAttributes" type:"map" required:"true"`
 
 	metadataGetIdentityDKIMAttributesOutput `json:"-", xml:"-"`
 }
 
 type metadataGetIdentityDKIMAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"DkimAttributes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetIdentityNotificationAttributesInput struct {
-	Identities []*string `type:"list"`
+	Identities []*string `type:"list" required:"true"`
 
 	metadataGetIdentityNotificationAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataGetIdentityNotificationAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Identities"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetIdentityNotificationAttributesOutput struct {
-	NotificationAttributes *map[string]*IdentityNotificationAttributes `type:"map"`
+	NotificationAttributes *map[string]*IdentityNotificationAttributes `type:"map" required:"true"`
 
 	metadataGetIdentityNotificationAttributesOutput `json:"-", xml:"-"`
 }
 
 type metadataGetIdentityNotificationAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"NotificationAttributes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetIdentityVerificationAttributesInput struct {
-	Identities []*string `type:"list"`
+	Identities []*string `type:"list" required:"true"`
 
 	metadataGetIdentityVerificationAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataGetIdentityVerificationAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Identities"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetIdentityVerificationAttributesOutput struct {
-	VerificationAttributes *map[string]*IdentityVerificationAttributes `type:"map"`
+	VerificationAttributes *map[string]*IdentityVerificationAttributes `type:"map" required:"true"`
 
 	metadataGetIdentityVerificationAttributesOutput `json:"-", xml:"-"`
 }
 
 type metadataGetIdentityVerificationAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"VerificationAttributes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetSendQuotaInput struct {
@@ -627,39 +627,39 @@ type metadataGetSendStatisticsOutput struct {
 }
 
 type IdentityDKIMAttributes struct {
-	DKIMEnabled            *bool     `locationName:"DkimEnabled" type:"boolean"`
+	DKIMEnabled            *bool     `locationName:"DkimEnabled" type:"boolean" required:"true"`
 	DKIMTokens             []*string `locationName:"DkimTokens" type:"list"`
-	DKIMVerificationStatus *string   `locationName:"DkimVerificationStatus" type:"string"`
+	DKIMVerificationStatus *string   `locationName:"DkimVerificationStatus" type:"string" required:"true"`
 
 	metadataIdentityDKIMAttributes `json:"-", xml:"-"`
 }
 
 type metadataIdentityDKIMAttributes struct {
-	SDKShapeTraits bool `type:"structure" required:"DkimEnabled,DkimVerificationStatus"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type IdentityNotificationAttributes struct {
-	BounceTopic       *string `type:"string"`
-	ComplaintTopic    *string `type:"string"`
-	DeliveryTopic     *string `type:"string"`
-	ForwardingEnabled *bool   `type:"boolean"`
+	BounceTopic       *string `type:"string" required:"true"`
+	ComplaintTopic    *string `type:"string" required:"true"`
+	DeliveryTopic     *string `type:"string" required:"true"`
+	ForwardingEnabled *bool   `type:"boolean" required:"true"`
 
 	metadataIdentityNotificationAttributes `json:"-", xml:"-"`
 }
 
 type metadataIdentityNotificationAttributes struct {
-	SDKShapeTraits bool `type:"structure" required:"BounceTopic,ComplaintTopic,DeliveryTopic,ForwardingEnabled"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type IdentityVerificationAttributes struct {
-	VerificationStatus *string `type:"string"`
+	VerificationStatus *string `type:"string" required:"true"`
 	VerificationToken  *string `type:"string"`
 
 	metadataIdentityVerificationAttributes `json:"-", xml:"-"`
 }
 
 type metadataIdentityVerificationAttributes struct {
-	SDKShapeTraits bool `type:"structure" required:"VerificationStatus"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListIdentitiesInput struct {
@@ -675,14 +675,14 @@ type metadataListIdentitiesInput struct {
 }
 
 type ListIdentitiesOutput struct {
-	Identities []*string `type:"list"`
+	Identities []*string `type:"list" required:"true"`
 	NextToken  *string   `type:"string"`
 
 	metadataListIdentitiesOutput `json:"-", xml:"-"`
 }
 
 type metadataListIdentitiesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Identities"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListVerifiedEmailAddressesInput struct {
@@ -704,24 +704,24 @@ type metadataListVerifiedEmailAddressesOutput struct {
 }
 
 type Message struct {
-	Body    *Body    `type:"structure"`
-	Subject *Content `type:"structure"`
+	Body    *Body    `type:"structure" required:"true"`
+	Subject *Content `type:"structure" required:"true"`
 
 	metadataMessage `json:"-", xml:"-"`
 }
 
 type metadataMessage struct {
-	SDKShapeTraits bool `type:"structure" required:"Subject,Body"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RawMessage struct {
-	Data []byte `type:"blob"`
+	Data []byte `type:"blob" required:"true"`
 
 	metadataRawMessage `json:"-", xml:"-"`
 }
 
 type metadataRawMessage struct {
-	SDKShapeTraits bool `type:"structure" required:"Data"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SendDataPoint struct {
@@ -739,60 +739,60 @@ type metadataSendDataPoint struct {
 }
 
 type SendEmailInput struct {
-	Destination      *Destination `type:"structure"`
-	Message          *Message     `type:"structure"`
+	Destination      *Destination `type:"structure" required:"true"`
+	Message          *Message     `type:"structure" required:"true"`
 	ReplyToAddresses []*string    `type:"list"`
 	ReturnPath       *string      `type:"string"`
-	Source           *string      `type:"string"`
+	Source           *string      `type:"string" required:"true"`
 
 	metadataSendEmailInput `json:"-", xml:"-"`
 }
 
 type metadataSendEmailInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Source,Destination,Message"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SendEmailOutput struct {
-	MessageID *string `locationName:"MessageId" type:"string"`
+	MessageID *string `locationName:"MessageId" type:"string" required:"true"`
 
 	metadataSendEmailOutput `json:"-", xml:"-"`
 }
 
 type metadataSendEmailOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"MessageId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SendRawEmailInput struct {
 	Destinations []*string   `type:"list"`
-	RawMessage   *RawMessage `type:"structure"`
+	RawMessage   *RawMessage `type:"structure" required:"true"`
 	Source       *string     `type:"string"`
 
 	metadataSendRawEmailInput `json:"-", xml:"-"`
 }
 
 type metadataSendRawEmailInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RawMessage"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SendRawEmailOutput struct {
-	MessageID *string `locationName:"MessageId" type:"string"`
+	MessageID *string `locationName:"MessageId" type:"string" required:"true"`
 
 	metadataSendRawEmailOutput `json:"-", xml:"-"`
 }
 
 type metadataSendRawEmailOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"MessageId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetIdentityDKIMEnabledInput struct {
-	DKIMEnabled *bool   `locationName:"DkimEnabled" type:"boolean"`
-	Identity    *string `type:"string"`
+	DKIMEnabled *bool   `locationName:"DkimEnabled" type:"boolean" required:"true"`
+	Identity    *string `type:"string" required:"true"`
 
 	metadataSetIdentityDKIMEnabledInput `json:"-", xml:"-"`
 }
 
 type metadataSetIdentityDKIMEnabledInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Identity,DkimEnabled"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetIdentityDKIMEnabledOutput struct {
@@ -804,14 +804,14 @@ type metadataSetIdentityDKIMEnabledOutput struct {
 }
 
 type SetIdentityFeedbackForwardingEnabledInput struct {
-	ForwardingEnabled *bool   `type:"boolean"`
-	Identity          *string `type:"string"`
+	ForwardingEnabled *bool   `type:"boolean" required:"true"`
+	Identity          *string `type:"string" required:"true"`
 
 	metadataSetIdentityFeedbackForwardingEnabledInput `json:"-", xml:"-"`
 }
 
 type metadataSetIdentityFeedbackForwardingEnabledInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Identity,ForwardingEnabled"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetIdentityFeedbackForwardingEnabledOutput struct {
@@ -823,15 +823,15 @@ type metadataSetIdentityFeedbackForwardingEnabledOutput struct {
 }
 
 type SetIdentityNotificationTopicInput struct {
-	Identity         *string `type:"string"`
-	NotificationType *string `type:"string"`
+	Identity         *string `type:"string" required:"true"`
+	NotificationType *string `type:"string" required:"true"`
 	SNSTopic         *string `locationName:"SnsTopic" type:"string"`
 
 	metadataSetIdentityNotificationTopicInput `json:"-", xml:"-"`
 }
 
 type metadataSetIdentityNotificationTopicInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Identity,NotificationType"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetIdentityNotificationTopicOutput struct {
@@ -843,53 +843,53 @@ type metadataSetIdentityNotificationTopicOutput struct {
 }
 
 type VerifyDomainDKIMInput struct {
-	Domain *string `type:"string"`
+	Domain *string `type:"string" required:"true"`
 
 	metadataVerifyDomainDKIMInput `json:"-", xml:"-"`
 }
 
 type metadataVerifyDomainDKIMInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Domain"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type VerifyDomainDKIMOutput struct {
-	DKIMTokens []*string `locationName:"DkimTokens" type:"list"`
+	DKIMTokens []*string `locationName:"DkimTokens" type:"list" required:"true"`
 
 	metadataVerifyDomainDKIMOutput `json:"-", xml:"-"`
 }
 
 type metadataVerifyDomainDKIMOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"DkimTokens"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type VerifyDomainIdentityInput struct {
-	Domain *string `type:"string"`
+	Domain *string `type:"string" required:"true"`
 
 	metadataVerifyDomainIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataVerifyDomainIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Domain"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type VerifyDomainIdentityOutput struct {
-	VerificationToken *string `type:"string"`
+	VerificationToken *string `type:"string" required:"true"`
 
 	metadataVerifyDomainIdentityOutput `json:"-", xml:"-"`
 }
 
 type metadataVerifyDomainIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"VerificationToken"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type VerifyEmailAddressInput struct {
-	EmailAddress *string `type:"string"`
+	EmailAddress *string `type:"string" required:"true"`
 
 	metadataVerifyEmailAddressInput `json:"-", xml:"-"`
 }
 
 type metadataVerifyEmailAddressInput struct {
-	SDKShapeTraits bool `type:"structure" required:"EmailAddress"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type VerifyEmailAddressOutput struct {
@@ -901,13 +901,13 @@ type metadataVerifyEmailAddressOutput struct {
 }
 
 type VerifyEmailIdentityInput struct {
-	EmailAddress *string `type:"string"`
+	EmailAddress *string `type:"string" required:"true"`
 
 	metadataVerifyEmailIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataVerifyEmailIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"EmailAddress"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type VerifyEmailIdentityOutput struct {

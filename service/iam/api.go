@@ -2584,17 +2584,17 @@ func (c *IAM) UploadSigningCertificate(input *UploadSigningCertificateInput) (ou
 var opUploadSigningCertificate *aws.Operation
 
 type AccessKey struct {
-	AccessKeyID     *string    `locationName:"AccessKeyId" type:"string"`
+	AccessKeyID     *string    `locationName:"AccessKeyId" type:"string" required:"true"`
 	CreateDate      *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	SecretAccessKey *string    `type:"string"`
-	Status          *string    `type:"string"`
-	UserName        *string    `type:"string"`
+	SecretAccessKey *string    `type:"string" required:"true"`
+	Status          *string    `type:"string" required:"true"`
+	UserName        *string    `type:"string" required:"true"`
 
 	metadataAccessKey `json:"-", xml:"-"`
 }
 
 type metadataAccessKey struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,AccessKeyId,Status,SecretAccessKey"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AccessKeyMetadata struct {
@@ -2611,14 +2611,14 @@ type metadataAccessKeyMetadata struct {
 }
 
 type AddClientIDToOpenIDConnectProviderInput struct {
-	ClientID                 *string `type:"string"`
-	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string"`
+	ClientID                 *string `type:"string" required:"true"`
+	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
 
 	metadataAddClientIDToOpenIDConnectProviderInput `json:"-", xml:"-"`
 }
 
 type metadataAddClientIDToOpenIDConnectProviderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"OpenIDConnectProviderArn,ClientID"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddClientIDToOpenIDConnectProviderOutput struct {
@@ -2630,14 +2630,14 @@ type metadataAddClientIDToOpenIDConnectProviderOutput struct {
 }
 
 type AddRoleToInstanceProfileInput struct {
-	InstanceProfileName *string `type:"string"`
-	RoleName            *string `type:"string"`
+	InstanceProfileName *string `type:"string" required:"true"`
+	RoleName            *string `type:"string" required:"true"`
 
 	metadataAddRoleToInstanceProfileInput `json:"-", xml:"-"`
 }
 
 type metadataAddRoleToInstanceProfileInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceProfileName,RoleName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddRoleToInstanceProfileOutput struct {
@@ -2649,14 +2649,14 @@ type metadataAddRoleToInstanceProfileOutput struct {
 }
 
 type AddUserToGroupInput struct {
-	GroupName *string `type:"string"`
-	UserName  *string `type:"string"`
+	GroupName *string `type:"string" required:"true"`
+	UserName  *string `type:"string" required:"true"`
 
 	metadataAddUserToGroupInput `json:"-", xml:"-"`
 }
 
 type metadataAddUserToGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName,UserName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddUserToGroupOutput struct {
@@ -2668,14 +2668,14 @@ type metadataAddUserToGroupOutput struct {
 }
 
 type AttachGroupPolicyInput struct {
-	GroupName *string `type:"string"`
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
+	GroupName *string `type:"string" required:"true"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
 	metadataAttachGroupPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataAttachGroupPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName,PolicyArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachGroupPolicyOutput struct {
@@ -2687,14 +2687,14 @@ type metadataAttachGroupPolicyOutput struct {
 }
 
 type AttachRolePolicyInput struct {
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
-	RoleName  *string `type:"string"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	RoleName  *string `type:"string" required:"true"`
 
 	metadataAttachRolePolicyInput `json:"-", xml:"-"`
 }
 
 type metadataAttachRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachRolePolicyOutput struct {
@@ -2706,14 +2706,14 @@ type metadataAttachRolePolicyOutput struct {
 }
 
 type AttachUserPolicyInput struct {
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
-	UserName  *string `type:"string"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	UserName  *string `type:"string" required:"true"`
 
 	metadataAttachUserPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataAttachUserPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,PolicyArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachUserPolicyOutput struct {
@@ -2736,14 +2736,14 @@ type metadataAttachedPolicy struct {
 }
 
 type ChangePasswordInput struct {
-	NewPassword *string `type:"string"`
-	OldPassword *string `type:"string"`
+	NewPassword *string `type:"string" required:"true"`
+	OldPassword *string `type:"string" required:"true"`
 
 	metadataChangePasswordInput `json:"-", xml:"-"`
 }
 
 type metadataChangePasswordInput struct {
-	SDKShapeTraits bool `type:"structure" required:"OldPassword,NewPassword"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChangePasswordOutput struct {
@@ -2765,23 +2765,23 @@ type metadataCreateAccessKeyInput struct {
 }
 
 type CreateAccessKeyOutput struct {
-	AccessKey *AccessKey `type:"structure"`
+	AccessKey *AccessKey `type:"structure" required:"true"`
 
 	metadataCreateAccessKeyOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateAccessKeyOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"AccessKey"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAccountAliasInput struct {
-	AccountAlias *string `type:"string"`
+	AccountAlias *string `type:"string" required:"true"`
 
 	metadataCreateAccountAliasInput `json:"-", xml:"-"`
 }
 
 type metadataCreateAccountAliasInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AccountAlias"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAccountAliasOutput struct {
@@ -2793,79 +2793,79 @@ type metadataCreateAccountAliasOutput struct {
 }
 
 type CreateGroupInput struct {
-	GroupName *string `type:"string"`
+	GroupName *string `type:"string" required:"true"`
 	Path      *string `type:"string"`
 
 	metadataCreateGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateGroupOutput struct {
-	Group *Group `type:"structure"`
+	Group *Group `type:"structure" required:"true"`
 
 	metadataCreateGroupOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Group"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateInstanceProfileInput struct {
-	InstanceProfileName *string `type:"string"`
+	InstanceProfileName *string `type:"string" required:"true"`
 	Path                *string `type:"string"`
 
 	metadataCreateInstanceProfileInput `json:"-", xml:"-"`
 }
 
 type metadataCreateInstanceProfileInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceProfileName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateInstanceProfileOutput struct {
-	InstanceProfile *InstanceProfile `type:"structure"`
+	InstanceProfile *InstanceProfile `type:"structure" required:"true"`
 
 	metadataCreateInstanceProfileOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateInstanceProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceProfile"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLoginProfileInput struct {
-	Password              *string `type:"string"`
+	Password              *string `type:"string" required:"true"`
 	PasswordResetRequired *bool   `type:"boolean"`
-	UserName              *string `type:"string"`
+	UserName              *string `type:"string" required:"true"`
 
 	metadataCreateLoginProfileInput `json:"-", xml:"-"`
 }
 
 type metadataCreateLoginProfileInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,Password"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLoginProfileOutput struct {
-	LoginProfile *LoginProfile `type:"structure"`
+	LoginProfile *LoginProfile `type:"structure" required:"true"`
 
 	metadataCreateLoginProfileOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateLoginProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoginProfile"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateOpenIDConnectProviderInput struct {
 	ClientIDList   []*string `type:"list"`
-	ThumbprintList []*string `type:"list"`
-	URL            *string   `locationName:"Url" type:"string"`
+	ThumbprintList []*string `type:"list" required:"true"`
+	URL            *string   `locationName:"Url" type:"string" required:"true"`
 
 	metadataCreateOpenIDConnectProviderInput `json:"-", xml:"-"`
 }
 
 type metadataCreateOpenIDConnectProviderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Url,ThumbprintList"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateOpenIDConnectProviderOutput struct {
@@ -2881,14 +2881,14 @@ type metadataCreateOpenIDConnectProviderOutput struct {
 type CreatePolicyInput struct {
 	Description    *string `type:"string"`
 	Path           *string `type:"string"`
-	PolicyDocument *string `type:"string"`
-	PolicyName     *string `type:"string"`
+	PolicyDocument *string `type:"string" required:"true"`
+	PolicyName     *string `type:"string" required:"true"`
 
 	metadataCreatePolicyInput `json:"-", xml:"-"`
 }
 
 type metadataCreatePolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyName,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreatePolicyOutput struct {
@@ -2902,15 +2902,15 @@ type metadataCreatePolicyOutput struct {
 }
 
 type CreatePolicyVersionInput struct {
-	PolicyARN      *string `locationName:"PolicyArn" type:"string"`
-	PolicyDocument *string `type:"string"`
+	PolicyARN      *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyDocument *string `type:"string" required:"true"`
 	SetAsDefault   *bool   `type:"boolean"`
 
 	metadataCreatePolicyVersionInput `json:"-", xml:"-"`
 }
 
 type metadataCreatePolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyArn,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreatePolicyVersionOutput struct {
@@ -2924,36 +2924,36 @@ type metadataCreatePolicyVersionOutput struct {
 }
 
 type CreateRoleInput struct {
-	AssumeRolePolicyDocument *string `type:"string"`
+	AssumeRolePolicyDocument *string `type:"string" required:"true"`
 	Path                     *string `type:"string"`
-	RoleName                 *string `type:"string"`
+	RoleName                 *string `type:"string" required:"true"`
 
 	metadataCreateRoleInput `json:"-", xml:"-"`
 }
 
 type metadataCreateRoleInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName,AssumeRolePolicyDocument"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateRoleOutput struct {
-	Role *Role `type:"structure"`
+	Role *Role `type:"structure" required:"true"`
 
 	metadataCreateRoleOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateRoleOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Role"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateSAMLProviderInput struct {
-	Name                 *string `type:"string"`
-	SAMLMetadataDocument *string `type:"string"`
+	Name                 *string `type:"string" required:"true"`
+	SAMLMetadataDocument *string `type:"string" required:"true"`
 
 	metadataCreateSAMLProviderInput `json:"-", xml:"-"`
 }
 
 type metadataCreateSAMLProviderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SAMLMetadataDocument,Name"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateSAMLProviderOutput struct {
@@ -2968,13 +2968,13 @@ type metadataCreateSAMLProviderOutput struct {
 
 type CreateUserInput struct {
 	Path     *string `type:"string"`
-	UserName *string `type:"string"`
+	UserName *string `type:"string" required:"true"`
 
 	metadataCreateUserInput `json:"-", xml:"-"`
 }
 
 type metadataCreateUserInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateUserOutput struct {
@@ -2989,34 +2989,34 @@ type metadataCreateUserOutput struct {
 
 type CreateVirtualMFADeviceInput struct {
 	Path                 *string `type:"string"`
-	VirtualMFADeviceName *string `type:"string"`
+	VirtualMFADeviceName *string `type:"string" required:"true"`
 
 	metadataCreateVirtualMFADeviceInput `json:"-", xml:"-"`
 }
 
 type metadataCreateVirtualMFADeviceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VirtualMFADeviceName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateVirtualMFADeviceOutput struct {
-	VirtualMFADevice *VirtualMFADevice `type:"structure"`
+	VirtualMFADevice *VirtualMFADevice `type:"structure" required:"true"`
 
 	metadataCreateVirtualMFADeviceOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateVirtualMFADeviceOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"VirtualMFADevice"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeactivateMFADeviceInput struct {
-	SerialNumber *string `type:"string"`
-	UserName     *string `type:"string"`
+	SerialNumber *string `type:"string" required:"true"`
+	UserName     *string `type:"string" required:"true"`
 
 	metadataDeactivateMFADeviceInput `json:"-", xml:"-"`
 }
 
 type metadataDeactivateMFADeviceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,SerialNumber"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeactivateMFADeviceOutput struct {
@@ -3028,14 +3028,14 @@ type metadataDeactivateMFADeviceOutput struct {
 }
 
 type DeleteAccessKeyInput struct {
-	AccessKeyID *string `locationName:"AccessKeyId" type:"string"`
+	AccessKeyID *string `locationName:"AccessKeyId" type:"string" required:"true"`
 	UserName    *string `type:"string"`
 
 	metadataDeleteAccessKeyInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteAccessKeyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AccessKeyId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAccessKeyOutput struct {
@@ -3047,13 +3047,13 @@ type metadataDeleteAccessKeyOutput struct {
 }
 
 type DeleteAccountAliasInput struct {
-	AccountAlias *string `type:"string"`
+	AccountAlias *string `type:"string" required:"true"`
 
 	metadataDeleteAccountAliasInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteAccountAliasInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AccountAlias"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAccountAliasOutput struct {
@@ -3081,13 +3081,13 @@ type metadataDeleteAccountPasswordPolicyOutput struct {
 }
 
 type DeleteGroupInput struct {
-	GroupName *string `type:"string"`
+	GroupName *string `type:"string" required:"true"`
 
 	metadataDeleteGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteGroupOutput struct {
@@ -3099,14 +3099,14 @@ type metadataDeleteGroupOutput struct {
 }
 
 type DeleteGroupPolicyInput struct {
-	GroupName  *string `type:"string"`
-	PolicyName *string `type:"string"`
+	GroupName  *string `type:"string" required:"true"`
+	PolicyName *string `type:"string" required:"true"`
 
 	metadataDeleteGroupPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteGroupPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName,PolicyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteGroupPolicyOutput struct {
@@ -3118,13 +3118,13 @@ type metadataDeleteGroupPolicyOutput struct {
 }
 
 type DeleteInstanceProfileInput struct {
-	InstanceProfileName *string `type:"string"`
+	InstanceProfileName *string `type:"string" required:"true"`
 
 	metadataDeleteInstanceProfileInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteInstanceProfileInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceProfileName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteInstanceProfileOutput struct {
@@ -3136,13 +3136,13 @@ type metadataDeleteInstanceProfileOutput struct {
 }
 
 type DeleteLoginProfileInput struct {
-	UserName *string `type:"string"`
+	UserName *string `type:"string" required:"true"`
 
 	metadataDeleteLoginProfileInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteLoginProfileInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLoginProfileOutput struct {
@@ -3154,13 +3154,13 @@ type metadataDeleteLoginProfileOutput struct {
 }
 
 type DeleteOpenIDConnectProviderInput struct {
-	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string"`
+	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
 
 	metadataDeleteOpenIDConnectProviderInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteOpenIDConnectProviderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"OpenIDConnectProviderArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteOpenIDConnectProviderOutput struct {
@@ -3172,13 +3172,13 @@ type metadataDeleteOpenIDConnectProviderOutput struct {
 }
 
 type DeletePolicyInput struct {
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
 	metadataDeletePolicyInput `json:"-", xml:"-"`
 }
 
 type metadataDeletePolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeletePolicyOutput struct {
@@ -3190,14 +3190,14 @@ type metadataDeletePolicyOutput struct {
 }
 
 type DeletePolicyVersionInput struct {
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
-	VersionID *string `locationName:"VersionId" type:"string"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	VersionID *string `locationName:"VersionId" type:"string" required:"true"`
 
 	metadataDeletePolicyVersionInput `json:"-", xml:"-"`
 }
 
 type metadataDeletePolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyArn,VersionId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeletePolicyVersionOutput struct {
@@ -3209,13 +3209,13 @@ type metadataDeletePolicyVersionOutput struct {
 }
 
 type DeleteRoleInput struct {
-	RoleName *string `type:"string"`
+	RoleName *string `type:"string" required:"true"`
 
 	metadataDeleteRoleInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteRoleInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteRoleOutput struct {
@@ -3227,14 +3227,14 @@ type metadataDeleteRoleOutput struct {
 }
 
 type DeleteRolePolicyInput struct {
-	PolicyName *string `type:"string"`
-	RoleName   *string `type:"string"`
+	PolicyName *string `type:"string" required:"true"`
+	RoleName   *string `type:"string" required:"true"`
 
 	metadataDeleteRolePolicyInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteRolePolicyOutput struct {
@@ -3246,13 +3246,13 @@ type metadataDeleteRolePolicyOutput struct {
 }
 
 type DeleteSAMLProviderInput struct {
-	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string"`
+	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string" required:"true"`
 
 	metadataDeleteSAMLProviderInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteSAMLProviderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SAMLProviderArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteSAMLProviderOutput struct {
@@ -3264,13 +3264,13 @@ type metadataDeleteSAMLProviderOutput struct {
 }
 
 type DeleteServerCertificateInput struct {
-	ServerCertificateName *string `type:"string"`
+	ServerCertificateName *string `type:"string" required:"true"`
 
 	metadataDeleteServerCertificateInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteServerCertificateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ServerCertificateName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteServerCertificateOutput struct {
@@ -3282,14 +3282,14 @@ type metadataDeleteServerCertificateOutput struct {
 }
 
 type DeleteSigningCertificateInput struct {
-	CertificateID *string `locationName:"CertificateId" type:"string"`
+	CertificateID *string `locationName:"CertificateId" type:"string" required:"true"`
 	UserName      *string `type:"string"`
 
 	metadataDeleteSigningCertificateInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteSigningCertificateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CertificateId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteSigningCertificateOutput struct {
@@ -3301,13 +3301,13 @@ type metadataDeleteSigningCertificateOutput struct {
 }
 
 type DeleteUserInput struct {
-	UserName *string `type:"string"`
+	UserName *string `type:"string" required:"true"`
 
 	metadataDeleteUserInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteUserInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteUserOutput struct {
@@ -3319,14 +3319,14 @@ type metadataDeleteUserOutput struct {
 }
 
 type DeleteUserPolicyInput struct {
-	PolicyName *string `type:"string"`
-	UserName   *string `type:"string"`
+	PolicyName *string `type:"string" required:"true"`
+	UserName   *string `type:"string" required:"true"`
 
 	metadataDeleteUserPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteUserPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,PolicyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteUserPolicyOutput struct {
@@ -3338,13 +3338,13 @@ type metadataDeleteUserPolicyOutput struct {
 }
 
 type DeleteVirtualMFADeviceInput struct {
-	SerialNumber *string `type:"string"`
+	SerialNumber *string `type:"string" required:"true"`
 
 	metadataDeleteVirtualMFADeviceInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteVirtualMFADeviceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SerialNumber"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteVirtualMFADeviceOutput struct {
@@ -3356,14 +3356,14 @@ type metadataDeleteVirtualMFADeviceOutput struct {
 }
 
 type DetachGroupPolicyInput struct {
-	GroupName *string `type:"string"`
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
+	GroupName *string `type:"string" required:"true"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
 	metadataDetachGroupPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataDetachGroupPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName,PolicyArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachGroupPolicyOutput struct {
@@ -3375,14 +3375,14 @@ type metadataDetachGroupPolicyOutput struct {
 }
 
 type DetachRolePolicyInput struct {
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
-	RoleName  *string `type:"string"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	RoleName  *string `type:"string" required:"true"`
 
 	metadataDetachRolePolicyInput `json:"-", xml:"-"`
 }
 
 type metadataDetachRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachRolePolicyOutput struct {
@@ -3394,14 +3394,14 @@ type metadataDetachRolePolicyOutput struct {
 }
 
 type DetachUserPolicyInput struct {
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
-	UserName  *string `type:"string"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	UserName  *string `type:"string" required:"true"`
 
 	metadataDetachUserPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataDetachUserPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,PolicyArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachUserPolicyOutput struct {
@@ -3413,16 +3413,16 @@ type metadataDetachUserPolicyOutput struct {
 }
 
 type EnableMFADeviceInput struct {
-	AuthenticationCode1 *string `type:"string"`
-	AuthenticationCode2 *string `type:"string"`
-	SerialNumber        *string `type:"string"`
-	UserName            *string `type:"string"`
+	AuthenticationCode1 *string `type:"string" required:"true"`
+	AuthenticationCode2 *string `type:"string" required:"true"`
+	SerialNumber        *string `type:"string" required:"true"`
+	UserName            *string `type:"string" required:"true"`
 
 	metadataEnableMFADeviceInput `json:"-", xml:"-"`
 }
 
 type metadataEnableMFADeviceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,SerialNumber,AuthenticationCode1,AuthenticationCode2"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableMFADeviceOutput struct {
@@ -3487,13 +3487,13 @@ type metadataGetAccountPasswordPolicyInput struct {
 }
 
 type GetAccountPasswordPolicyOutput struct {
-	PasswordPolicy *PasswordPolicy `type:"structure"`
+	PasswordPolicy *PasswordPolicy `type:"structure" required:"true"`
 
 	metadataGetAccountPasswordPolicyOutput `json:"-", xml:"-"`
 }
 
 type metadataGetAccountPasswordPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"PasswordPolicy"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetAccountSummaryInput struct {
@@ -3535,7 +3535,7 @@ type metadataGetCredentialReportOutput struct {
 }
 
 type GetGroupInput struct {
-	GroupName *string `type:"string"`
+	GroupName *string `type:"string" required:"true"`
 	Marker    *string `type:"string"`
 	MaxItems  *int    `type:"integer"`
 
@@ -3543,93 +3543,93 @@ type GetGroupInput struct {
 }
 
 type metadataGetGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetGroupOutput struct {
-	Group       *Group  `type:"structure"`
+	Group       *Group  `type:"structure" required:"true"`
 	IsTruncated *bool   `type:"boolean"`
 	Marker      *string `type:"string"`
-	Users       []*User `type:"list"`
+	Users       []*User `type:"list" required:"true"`
 
 	metadataGetGroupOutput `json:"-", xml:"-"`
 }
 
 type metadataGetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Group,Users"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetGroupPolicyInput struct {
-	GroupName  *string `type:"string"`
-	PolicyName *string `type:"string"`
+	GroupName  *string `type:"string" required:"true"`
+	PolicyName *string `type:"string" required:"true"`
 
 	metadataGetGroupPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataGetGroupPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName,PolicyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetGroupPolicyOutput struct {
-	GroupName      *string `type:"string"`
-	PolicyDocument *string `type:"string"`
-	PolicyName     *string `type:"string"`
+	GroupName      *string `type:"string" required:"true"`
+	PolicyDocument *string `type:"string" required:"true"`
+	PolicyName     *string `type:"string" required:"true"`
 
 	metadataGetGroupPolicyOutput `json:"-", xml:"-"`
 }
 
 type metadataGetGroupPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName,PolicyName,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetInstanceProfileInput struct {
-	InstanceProfileName *string `type:"string"`
+	InstanceProfileName *string `type:"string" required:"true"`
 
 	metadataGetInstanceProfileInput `json:"-", xml:"-"`
 }
 
 type metadataGetInstanceProfileInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceProfileName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetInstanceProfileOutput struct {
-	InstanceProfile *InstanceProfile `type:"structure"`
+	InstanceProfile *InstanceProfile `type:"structure" required:"true"`
 
 	metadataGetInstanceProfileOutput `json:"-", xml:"-"`
 }
 
 type metadataGetInstanceProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceProfile"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetLoginProfileInput struct {
-	UserName *string `type:"string"`
+	UserName *string `type:"string" required:"true"`
 
 	metadataGetLoginProfileInput `json:"-", xml:"-"`
 }
 
 type metadataGetLoginProfileInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetLoginProfileOutput struct {
-	LoginProfile *LoginProfile `type:"structure"`
+	LoginProfile *LoginProfile `type:"structure" required:"true"`
 
 	metadataGetLoginProfileOutput `json:"-", xml:"-"`
 }
 
 type metadataGetLoginProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoginProfile"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetOpenIDConnectProviderInput struct {
-	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string"`
+	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
 
 	metadataGetOpenIDConnectProviderInput `json:"-", xml:"-"`
 }
 
 type metadataGetOpenIDConnectProviderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"OpenIDConnectProviderArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetOpenIDConnectProviderOutput struct {
@@ -3646,13 +3646,13 @@ type metadataGetOpenIDConnectProviderOutput struct {
 }
 
 type GetPolicyInput struct {
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
 	metadataGetPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataGetPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetPolicyOutput struct {
@@ -3666,14 +3666,14 @@ type metadataGetPolicyOutput struct {
 }
 
 type GetPolicyVersionInput struct {
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
-	VersionID *string `locationName:"VersionId" type:"string"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	VersionID *string `locationName:"VersionId" type:"string" required:"true"`
 
 	metadataGetPolicyVersionInput `json:"-", xml:"-"`
 }
 
 type metadataGetPolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyArn,VersionId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetPolicyVersionOutput struct {
@@ -3687,56 +3687,56 @@ type metadataGetPolicyVersionOutput struct {
 }
 
 type GetRoleInput struct {
-	RoleName *string `type:"string"`
+	RoleName *string `type:"string" required:"true"`
 
 	metadataGetRoleInput `json:"-", xml:"-"`
 }
 
 type metadataGetRoleInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetRoleOutput struct {
-	Role *Role `type:"structure"`
+	Role *Role `type:"structure" required:"true"`
 
 	metadataGetRoleOutput `json:"-", xml:"-"`
 }
 
 type metadataGetRoleOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Role"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetRolePolicyInput struct {
-	PolicyName *string `type:"string"`
-	RoleName   *string `type:"string"`
+	PolicyName *string `type:"string" required:"true"`
+	RoleName   *string `type:"string" required:"true"`
 
 	metadataGetRolePolicyInput `json:"-", xml:"-"`
 }
 
 type metadataGetRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetRolePolicyOutput struct {
-	PolicyDocument *string `type:"string"`
-	PolicyName     *string `type:"string"`
-	RoleName       *string `type:"string"`
+	PolicyDocument *string `type:"string" required:"true"`
+	PolicyName     *string `type:"string" required:"true"`
+	RoleName       *string `type:"string" required:"true"`
 
 	metadataGetRolePolicyOutput `json:"-", xml:"-"`
 }
 
 type metadataGetRolePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyName,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetSAMLProviderInput struct {
-	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string"`
+	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string" required:"true"`
 
 	metadataGetSAMLProviderInput `json:"-", xml:"-"`
 }
 
 type metadataGetSAMLProviderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SAMLProviderArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetSAMLProviderOutput struct {
@@ -3752,23 +3752,23 @@ type metadataGetSAMLProviderOutput struct {
 }
 
 type GetServerCertificateInput struct {
-	ServerCertificateName *string `type:"string"`
+	ServerCertificateName *string `type:"string" required:"true"`
 
 	metadataGetServerCertificateInput `json:"-", xml:"-"`
 }
 
 type metadataGetServerCertificateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ServerCertificateName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetServerCertificateOutput struct {
-	ServerCertificate *ServerCertificate `type:"structure"`
+	ServerCertificate *ServerCertificate `type:"structure" required:"true"`
 
 	metadataGetServerCertificateOutput `json:"-", xml:"-"`
 }
 
 type metadataGetServerCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ServerCertificate"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetUserInput struct {
@@ -3782,50 +3782,50 @@ type metadataGetUserInput struct {
 }
 
 type GetUserOutput struct {
-	User *User `type:"structure"`
+	User *User `type:"structure" required:"true"`
 
 	metadataGetUserOutput `json:"-", xml:"-"`
 }
 
 type metadataGetUserOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"User"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetUserPolicyInput struct {
-	PolicyName *string `type:"string"`
-	UserName   *string `type:"string"`
+	PolicyName *string `type:"string" required:"true"`
+	UserName   *string `type:"string" required:"true"`
 
 	metadataGetUserPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataGetUserPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,PolicyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetUserPolicyOutput struct {
-	PolicyDocument *string `type:"string"`
-	PolicyName     *string `type:"string"`
-	UserName       *string `type:"string"`
+	PolicyDocument *string `type:"string" required:"true"`
+	PolicyName     *string `type:"string" required:"true"`
+	UserName       *string `type:"string" required:"true"`
 
 	metadataGetUserPolicyOutput `json:"-", xml:"-"`
 }
 
 type metadataGetUserPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,PolicyName,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Group struct {
-	ARN        *string    `locationName:"Arn" type:"string"`
-	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	GroupID    *string    `locationName:"GroupId" type:"string"`
-	GroupName  *string    `type:"string"`
-	Path       *string    `type:"string"`
+	ARN        *string    `locationName:"Arn" type:"string" required:"true"`
+	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	GroupID    *string    `locationName:"GroupId" type:"string" required:"true"`
+	GroupName  *string    `type:"string" required:"true"`
+	Path       *string    `type:"string" required:"true"`
 
 	metadataGroup `json:"-", xml:"-"`
 }
 
 type metadataGroup struct {
-	SDKShapeTraits bool `type:"structure" required:"Path,GroupName,GroupId,Arn,CreateDate"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GroupDetail struct {
@@ -3844,18 +3844,18 @@ type metadataGroupDetail struct {
 }
 
 type InstanceProfile struct {
-	ARN                 *string    `locationName:"Arn" type:"string"`
-	CreateDate          *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	InstanceProfileID   *string    `locationName:"InstanceProfileId" type:"string"`
-	InstanceProfileName *string    `type:"string"`
-	Path                *string    `type:"string"`
-	Roles               []*Role    `type:"list"`
+	ARN                 *string    `locationName:"Arn" type:"string" required:"true"`
+	CreateDate          *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	InstanceProfileID   *string    `locationName:"InstanceProfileId" type:"string" required:"true"`
+	InstanceProfileName *string    `type:"string" required:"true"`
+	Path                *string    `type:"string" required:"true"`
+	Roles               []*Role    `type:"list" required:"true"`
 
 	metadataInstanceProfile `json:"-", xml:"-"`
 }
 
 type metadataInstanceProfile struct {
-	SDKShapeTraits bool `type:"structure" required:"Path,InstanceProfileName,InstanceProfileId,Arn,CreateDate,Roles"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAccessKeysInput struct {
@@ -3871,7 +3871,7 @@ type metadataListAccessKeysInput struct {
 }
 
 type ListAccessKeysOutput struct {
-	AccessKeyMetadata []*AccessKeyMetadata `type:"list"`
+	AccessKeyMetadata []*AccessKeyMetadata `type:"list" required:"true"`
 	IsTruncated       *bool                `type:"boolean"`
 	Marker            *string              `type:"string"`
 
@@ -3879,7 +3879,7 @@ type ListAccessKeysOutput struct {
 }
 
 type metadataListAccessKeysOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"AccessKeyMetadata"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAccountAliasesInput struct {
@@ -3894,7 +3894,7 @@ type metadataListAccountAliasesInput struct {
 }
 
 type ListAccountAliasesOutput struct {
-	AccountAliases []*string `type:"list"`
+	AccountAliases []*string `type:"list" required:"true"`
 	IsTruncated    *bool     `type:"boolean"`
 	Marker         *string   `type:"string"`
 
@@ -3902,11 +3902,11 @@ type ListAccountAliasesOutput struct {
 }
 
 type metadataListAccountAliasesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"AccountAliases"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAttachedGroupPoliciesInput struct {
-	GroupName  *string `type:"string"`
+	GroupName  *string `type:"string" required:"true"`
 	Marker     *string `type:"string"`
 	MaxItems   *int    `type:"integer"`
 	PathPrefix *string `type:"string"`
@@ -3915,7 +3915,7 @@ type ListAttachedGroupPoliciesInput struct {
 }
 
 type metadataListAttachedGroupPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAttachedGroupPoliciesOutput struct {
@@ -3934,13 +3934,13 @@ type ListAttachedRolePoliciesInput struct {
 	Marker     *string `type:"string"`
 	MaxItems   *int    `type:"integer"`
 	PathPrefix *string `type:"string"`
-	RoleName   *string `type:"string"`
+	RoleName   *string `type:"string" required:"true"`
 
 	metadataListAttachedRolePoliciesInput `json:"-", xml:"-"`
 }
 
 type metadataListAttachedRolePoliciesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAttachedRolePoliciesOutput struct {
@@ -3959,13 +3959,13 @@ type ListAttachedUserPoliciesInput struct {
 	Marker     *string `type:"string"`
 	MaxItems   *int    `type:"integer"`
 	PathPrefix *string `type:"string"`
-	UserName   *string `type:"string"`
+	UserName   *string `type:"string" required:"true"`
 
 	metadataListAttachedUserPoliciesInput `json:"-", xml:"-"`
 }
 
 type metadataListAttachedUserPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAttachedUserPoliciesOutput struct {
@@ -3985,13 +3985,13 @@ type ListEntitiesForPolicyInput struct {
 	Marker       *string `type:"string"`
 	MaxItems     *int    `type:"integer"`
 	PathPrefix   *string `type:"string"`
-	PolicyARN    *string `locationName:"PolicyArn" type:"string"`
+	PolicyARN    *string `locationName:"PolicyArn" type:"string" required:"true"`
 
 	metadataListEntitiesForPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataListEntitiesForPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListEntitiesForPolicyOutput struct {
@@ -4009,7 +4009,7 @@ type metadataListEntitiesForPolicyOutput struct {
 }
 
 type ListGroupPoliciesInput struct {
-	GroupName *string `type:"string"`
+	GroupName *string `type:"string" required:"true"`
 	Marker    *string `type:"string"`
 	MaxItems  *int    `type:"integer"`
 
@@ -4017,35 +4017,35 @@ type ListGroupPoliciesInput struct {
 }
 
 type metadataListGroupPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListGroupPoliciesOutput struct {
 	IsTruncated *bool     `type:"boolean"`
 	Marker      *string   `type:"string"`
-	PolicyNames []*string `type:"list"`
+	PolicyNames []*string `type:"list" required:"true"`
 
 	metadataListGroupPoliciesOutput `json:"-", xml:"-"`
 }
 
 type metadataListGroupPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyNames"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListGroupsForUserInput struct {
 	Marker   *string `type:"string"`
 	MaxItems *int    `type:"integer"`
-	UserName *string `type:"string"`
+	UserName *string `type:"string" required:"true"`
 
 	metadataListGroupsForUserInput `json:"-", xml:"-"`
 }
 
 type metadataListGroupsForUserInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListGroupsForUserOutput struct {
-	Groups      []*Group `type:"list"`
+	Groups      []*Group `type:"list" required:"true"`
 	IsTruncated *bool    `type:"boolean"`
 	Marker      *string  `type:"string"`
 
@@ -4053,7 +4053,7 @@ type ListGroupsForUserOutput struct {
 }
 
 type metadataListGroupsForUserOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Groups"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListGroupsInput struct {
@@ -4069,7 +4069,7 @@ type metadataListGroupsInput struct {
 }
 
 type ListGroupsOutput struct {
-	Groups      []*Group `type:"list"`
+	Groups      []*Group `type:"list" required:"true"`
 	IsTruncated *bool    `type:"boolean"`
 	Marker      *string  `type:"string"`
 
@@ -4077,23 +4077,23 @@ type ListGroupsOutput struct {
 }
 
 type metadataListGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Groups"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListInstanceProfilesForRoleInput struct {
 	Marker   *string `type:"string"`
 	MaxItems *int    `type:"integer"`
-	RoleName *string `type:"string"`
+	RoleName *string `type:"string" required:"true"`
 
 	metadataListInstanceProfilesForRoleInput `json:"-", xml:"-"`
 }
 
 type metadataListInstanceProfilesForRoleInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListInstanceProfilesForRoleOutput struct {
-	InstanceProfiles []*InstanceProfile `type:"list"`
+	InstanceProfiles []*InstanceProfile `type:"list" required:"true"`
 	IsTruncated      *bool              `type:"boolean"`
 	Marker           *string            `type:"string"`
 
@@ -4101,7 +4101,7 @@ type ListInstanceProfilesForRoleOutput struct {
 }
 
 type metadataListInstanceProfilesForRoleOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceProfiles"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListInstanceProfilesInput struct {
@@ -4117,7 +4117,7 @@ type metadataListInstanceProfilesInput struct {
 }
 
 type ListInstanceProfilesOutput struct {
-	InstanceProfiles []*InstanceProfile `type:"list"`
+	InstanceProfiles []*InstanceProfile `type:"list" required:"true"`
 	IsTruncated      *bool              `type:"boolean"`
 	Marker           *string            `type:"string"`
 
@@ -4125,7 +4125,7 @@ type ListInstanceProfilesOutput struct {
 }
 
 type metadataListInstanceProfilesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceProfiles"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListMFADevicesInput struct {
@@ -4142,14 +4142,14 @@ type metadataListMFADevicesInput struct {
 
 type ListMFADevicesOutput struct {
 	IsTruncated *bool        `type:"boolean"`
-	MFADevices  []*MFADevice `type:"list"`
+	MFADevices  []*MFADevice `type:"list" required:"true"`
 	Marker      *string      `type:"string"`
 
 	metadataListMFADevicesOutput `json:"-", xml:"-"`
 }
 
 type metadataListMFADevicesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"MFADevices"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListOpenIDConnectProvidersInput struct {
@@ -4199,13 +4199,13 @@ type metadataListPoliciesOutput struct {
 type ListPolicyVersionsInput struct {
 	Marker    *string `type:"string"`
 	MaxItems  *int    `type:"integer"`
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
 	metadataListPolicyVersionsInput `json:"-", xml:"-"`
 }
 
 type metadataListPolicyVersionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListPolicyVersionsOutput struct {
@@ -4223,25 +4223,25 @@ type metadataListPolicyVersionsOutput struct {
 type ListRolePoliciesInput struct {
 	Marker   *string `type:"string"`
 	MaxItems *int    `type:"integer"`
-	RoleName *string `type:"string"`
+	RoleName *string `type:"string" required:"true"`
 
 	metadataListRolePoliciesInput `json:"-", xml:"-"`
 }
 
 type metadataListRolePoliciesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListRolePoliciesOutput struct {
 	IsTruncated *bool     `type:"boolean"`
 	Marker      *string   `type:"string"`
-	PolicyNames []*string `type:"list"`
+	PolicyNames []*string `type:"list" required:"true"`
 
 	metadataListRolePoliciesOutput `json:"-", xml:"-"`
 }
 
 type metadataListRolePoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyNames"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListRolesInput struct {
@@ -4259,13 +4259,13 @@ type metadataListRolesInput struct {
 type ListRolesOutput struct {
 	IsTruncated *bool   `type:"boolean"`
 	Marker      *string `type:"string"`
-	Roles       []*Role `type:"list"`
+	Roles       []*Role `type:"list" required:"true"`
 
 	metadataListRolesOutput `json:"-", xml:"-"`
 }
 
 type metadataListRolesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Roles"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListSAMLProvidersInput struct {
@@ -4301,13 +4301,13 @@ type metadataListServerCertificatesInput struct {
 type ListServerCertificatesOutput struct {
 	IsTruncated                   *bool                        `type:"boolean"`
 	Marker                        *string                      `type:"string"`
-	ServerCertificateMetadataList []*ServerCertificateMetadata `type:"list"`
+	ServerCertificateMetadataList []*ServerCertificateMetadata `type:"list" required:"true"`
 
 	metadataListServerCertificatesOutput `json:"-", xml:"-"`
 }
 
 type metadataListServerCertificatesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ServerCertificateMetadataList"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListSigningCertificatesInput struct {
@@ -4323,7 +4323,7 @@ type metadataListSigningCertificatesInput struct {
 }
 
 type ListSigningCertificatesOutput struct {
-	Certificates []*SigningCertificate `type:"list"`
+	Certificates []*SigningCertificate `type:"list" required:"true"`
 	IsTruncated  *bool                 `type:"boolean"`
 	Marker       *string               `type:"string"`
 
@@ -4331,31 +4331,31 @@ type ListSigningCertificatesOutput struct {
 }
 
 type metadataListSigningCertificatesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Certificates"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListUserPoliciesInput struct {
 	Marker   *string `type:"string"`
 	MaxItems *int    `type:"integer"`
-	UserName *string `type:"string"`
+	UserName *string `type:"string" required:"true"`
 
 	metadataListUserPoliciesInput `json:"-", xml:"-"`
 }
 
 type metadataListUserPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListUserPoliciesOutput struct {
 	IsTruncated *bool     `type:"boolean"`
 	Marker      *string   `type:"string"`
-	PolicyNames []*string `type:"list"`
+	PolicyNames []*string `type:"list" required:"true"`
 
 	metadataListUserPoliciesOutput `json:"-", xml:"-"`
 }
 
 type metadataListUserPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyNames"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListUsersInput struct {
@@ -4373,13 +4373,13 @@ type metadataListUsersInput struct {
 type ListUsersOutput struct {
 	IsTruncated *bool   `type:"boolean"`
 	Marker      *string `type:"string"`
-	Users       []*User `type:"list"`
+	Users       []*User `type:"list" required:"true"`
 
 	metadataListUsersOutput `json:"-", xml:"-"`
 }
 
 type metadataListUsersOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Users"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListVirtualMFADevicesInput struct {
@@ -4397,37 +4397,37 @@ type metadataListVirtualMFADevicesInput struct {
 type ListVirtualMFADevicesOutput struct {
 	IsTruncated       *bool               `type:"boolean"`
 	Marker            *string             `type:"string"`
-	VirtualMFADevices []*VirtualMFADevice `type:"list"`
+	VirtualMFADevices []*VirtualMFADevice `type:"list" required:"true"`
 
 	metadataListVirtualMFADevicesOutput `json:"-", xml:"-"`
 }
 
 type metadataListVirtualMFADevicesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"VirtualMFADevices"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type LoginProfile struct {
-	CreateDate            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	CreateDate            *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 	PasswordResetRequired *bool      `type:"boolean"`
-	UserName              *string    `type:"string"`
+	UserName              *string    `type:"string" required:"true"`
 
 	metadataLoginProfile `json:"-", xml:"-"`
 }
 
 type metadataLoginProfile struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,CreateDate"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type MFADevice struct {
-	EnableDate   *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	SerialNumber *string    `type:"string"`
-	UserName     *string    `type:"string"`
+	EnableDate   *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	SerialNumber *string    `type:"string" required:"true"`
+	UserName     *string    `type:"string" required:"true"`
 
 	metadataMFADevice `json:"-", xml:"-"`
 }
 
 type metadataMFADevice struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,SerialNumber,EnableDate"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OpenIDConnectProviderListEntry struct {
@@ -4533,15 +4533,15 @@ type metadataPolicyVersion struct {
 }
 
 type PutGroupPolicyInput struct {
-	GroupName      *string `type:"string"`
-	PolicyDocument *string `type:"string"`
-	PolicyName     *string `type:"string"`
+	GroupName      *string `type:"string" required:"true"`
+	PolicyDocument *string `type:"string" required:"true"`
+	PolicyName     *string `type:"string" required:"true"`
 
 	metadataPutGroupPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataPutGroupPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName,PolicyName,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutGroupPolicyOutput struct {
@@ -4553,15 +4553,15 @@ type metadataPutGroupPolicyOutput struct {
 }
 
 type PutRolePolicyInput struct {
-	PolicyDocument *string `type:"string"`
-	PolicyName     *string `type:"string"`
-	RoleName       *string `type:"string"`
+	PolicyDocument *string `type:"string" required:"true"`
+	PolicyName     *string `type:"string" required:"true"`
+	RoleName       *string `type:"string" required:"true"`
 
 	metadataPutRolePolicyInput `json:"-", xml:"-"`
 }
 
 type metadataPutRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyName,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutRolePolicyOutput struct {
@@ -4573,15 +4573,15 @@ type metadataPutRolePolicyOutput struct {
 }
 
 type PutUserPolicyInput struct {
-	PolicyDocument *string `type:"string"`
-	PolicyName     *string `type:"string"`
-	UserName       *string `type:"string"`
+	PolicyDocument *string `type:"string" required:"true"`
+	PolicyName     *string `type:"string" required:"true"`
+	UserName       *string `type:"string" required:"true"`
 
 	metadataPutUserPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataPutUserPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,PolicyName,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutUserPolicyOutput struct {
@@ -4593,14 +4593,14 @@ type metadataPutUserPolicyOutput struct {
 }
 
 type RemoveClientIDFromOpenIDConnectProviderInput struct {
-	ClientID                 *string `type:"string"`
-	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string"`
+	ClientID                 *string `type:"string" required:"true"`
+	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
 
 	metadataRemoveClientIDFromOpenIDConnectProviderInput `json:"-", xml:"-"`
 }
 
 type metadataRemoveClientIDFromOpenIDConnectProviderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"OpenIDConnectProviderArn,ClientID"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveClientIDFromOpenIDConnectProviderOutput struct {
@@ -4612,14 +4612,14 @@ type metadataRemoveClientIDFromOpenIDConnectProviderOutput struct {
 }
 
 type RemoveRoleFromInstanceProfileInput struct {
-	InstanceProfileName *string `type:"string"`
-	RoleName            *string `type:"string"`
+	InstanceProfileName *string `type:"string" required:"true"`
+	RoleName            *string `type:"string" required:"true"`
 
 	metadataRemoveRoleFromInstanceProfileInput `json:"-", xml:"-"`
 }
 
 type metadataRemoveRoleFromInstanceProfileInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceProfileName,RoleName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveRoleFromInstanceProfileOutput struct {
@@ -4631,14 +4631,14 @@ type metadataRemoveRoleFromInstanceProfileOutput struct {
 }
 
 type RemoveUserFromGroupInput struct {
-	GroupName *string `type:"string"`
-	UserName  *string `type:"string"`
+	GroupName *string `type:"string" required:"true"`
+	UserName  *string `type:"string" required:"true"`
 
 	metadataRemoveUserFromGroupInput `json:"-", xml:"-"`
 }
 
 type metadataRemoveUserFromGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName,UserName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveUserFromGroupOutput struct {
@@ -4650,16 +4650,16 @@ type metadataRemoveUserFromGroupOutput struct {
 }
 
 type ResyncMFADeviceInput struct {
-	AuthenticationCode1 *string `type:"string"`
-	AuthenticationCode2 *string `type:"string"`
-	SerialNumber        *string `type:"string"`
-	UserName            *string `type:"string"`
+	AuthenticationCode1 *string `type:"string" required:"true"`
+	AuthenticationCode2 *string `type:"string" required:"true"`
+	SerialNumber        *string `type:"string" required:"true"`
+	UserName            *string `type:"string" required:"true"`
 
 	metadataResyncMFADeviceInput `json:"-", xml:"-"`
 }
 
 type metadataResyncMFADeviceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,SerialNumber,AuthenticationCode1,AuthenticationCode2"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResyncMFADeviceOutput struct {
@@ -4671,18 +4671,18 @@ type metadataResyncMFADeviceOutput struct {
 }
 
 type Role struct {
-	ARN                      *string    `locationName:"Arn" type:"string"`
+	ARN                      *string    `locationName:"Arn" type:"string" required:"true"`
 	AssumeRolePolicyDocument *string    `type:"string"`
-	CreateDate               *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Path                     *string    `type:"string"`
-	RoleID                   *string    `locationName:"RoleId" type:"string"`
-	RoleName                 *string    `type:"string"`
+	CreateDate               *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	Path                     *string    `type:"string" required:"true"`
+	RoleID                   *string    `locationName:"RoleId" type:"string" required:"true"`
+	RoleName                 *string    `type:"string" required:"true"`
 
 	metadataRole `json:"-", xml:"-"`
 }
 
 type metadataRole struct {
-	SDKShapeTraits bool `type:"structure" required:"Path,RoleName,RoleId,Arn,CreateDate"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RoleDetail struct {
@@ -4715,41 +4715,41 @@ type metadataSAMLProviderListEntry struct {
 }
 
 type ServerCertificate struct {
-	CertificateBody           *string                    `type:"string"`
+	CertificateBody           *string                    `type:"string" required:"true"`
 	CertificateChain          *string                    `type:"string"`
-	ServerCertificateMetadata *ServerCertificateMetadata `type:"structure"`
+	ServerCertificateMetadata *ServerCertificateMetadata `type:"structure" required:"true"`
 
 	metadataServerCertificate `json:"-", xml:"-"`
 }
 
 type metadataServerCertificate struct {
-	SDKShapeTraits bool `type:"structure" required:"ServerCertificateMetadata,CertificateBody"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ServerCertificateMetadata struct {
-	ARN                   *string    `locationName:"Arn" type:"string"`
+	ARN                   *string    `locationName:"Arn" type:"string" required:"true"`
 	Expiration            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Path                  *string    `type:"string"`
-	ServerCertificateID   *string    `locationName:"ServerCertificateId" type:"string"`
-	ServerCertificateName *string    `type:"string"`
+	Path                  *string    `type:"string" required:"true"`
+	ServerCertificateID   *string    `locationName:"ServerCertificateId" type:"string" required:"true"`
+	ServerCertificateName *string    `type:"string" required:"true"`
 	UploadDate            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataServerCertificateMetadata `json:"-", xml:"-"`
 }
 
 type metadataServerCertificateMetadata struct {
-	SDKShapeTraits bool `type:"structure" required:"Path,ServerCertificateName,ServerCertificateId,Arn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetDefaultPolicyVersionInput struct {
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
-	VersionID *string `locationName:"VersionId" type:"string"`
+	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	VersionID *string `locationName:"VersionId" type:"string" required:"true"`
 
 	metadataSetDefaultPolicyVersionInput `json:"-", xml:"-"`
 }
 
 type metadataSetDefaultPolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyArn,VersionId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetDefaultPolicyVersionOutput struct {
@@ -4761,29 +4761,29 @@ type metadataSetDefaultPolicyVersionOutput struct {
 }
 
 type SigningCertificate struct {
-	CertificateBody *string    `type:"string"`
-	CertificateID   *string    `locationName:"CertificateId" type:"string"`
-	Status          *string    `type:"string"`
+	CertificateBody *string    `type:"string" required:"true"`
+	CertificateID   *string    `locationName:"CertificateId" type:"string" required:"true"`
+	Status          *string    `type:"string" required:"true"`
 	UploadDate      *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	UserName        *string    `type:"string"`
+	UserName        *string    `type:"string" required:"true"`
 
 	metadataSigningCertificate `json:"-", xml:"-"`
 }
 
 type metadataSigningCertificate struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName,CertificateId,CertificateBody,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateAccessKeyInput struct {
-	AccessKeyID *string `locationName:"AccessKeyId" type:"string"`
-	Status      *string `type:"string"`
+	AccessKeyID *string `locationName:"AccessKeyId" type:"string" required:"true"`
+	Status      *string `type:"string" required:"true"`
 	UserName    *string `type:"string"`
 
 	metadataUpdateAccessKeyInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateAccessKeyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AccessKeyId,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateAccessKeyOutput struct {
@@ -4821,14 +4821,14 @@ type metadataUpdateAccountPasswordPolicyOutput struct {
 }
 
 type UpdateAssumeRolePolicyInput struct {
-	PolicyDocument *string `type:"string"`
-	RoleName       *string `type:"string"`
+	PolicyDocument *string `type:"string" required:"true"`
+	RoleName       *string `type:"string" required:"true"`
 
 	metadataUpdateAssumeRolePolicyInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateAssumeRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RoleName,PolicyDocument"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateAssumeRolePolicyOutput struct {
@@ -4840,7 +4840,7 @@ type metadataUpdateAssumeRolePolicyOutput struct {
 }
 
 type UpdateGroupInput struct {
-	GroupName    *string `type:"string"`
+	GroupName    *string `type:"string" required:"true"`
 	NewGroupName *string `type:"string"`
 	NewPath      *string `type:"string"`
 
@@ -4848,7 +4848,7 @@ type UpdateGroupInput struct {
 }
 
 type metadataUpdateGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateGroupOutput struct {
@@ -4862,13 +4862,13 @@ type metadataUpdateGroupOutput struct {
 type UpdateLoginProfileInput struct {
 	Password              *string `type:"string"`
 	PasswordResetRequired *bool   `type:"boolean"`
-	UserName              *string `type:"string"`
+	UserName              *string `type:"string" required:"true"`
 
 	metadataUpdateLoginProfileInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateLoginProfileInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateLoginProfileOutput struct {
@@ -4880,14 +4880,14 @@ type metadataUpdateLoginProfileOutput struct {
 }
 
 type UpdateOpenIDConnectProviderThumbprintInput struct {
-	OpenIDConnectProviderARN *string   `locationName:"OpenIDConnectProviderArn" type:"string"`
-	ThumbprintList           []*string `type:"list"`
+	OpenIDConnectProviderARN *string   `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
+	ThumbprintList           []*string `type:"list" required:"true"`
 
 	metadataUpdateOpenIDConnectProviderThumbprintInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateOpenIDConnectProviderThumbprintInput struct {
-	SDKShapeTraits bool `type:"structure" required:"OpenIDConnectProviderArn,ThumbprintList"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateOpenIDConnectProviderThumbprintOutput struct {
@@ -4899,14 +4899,14 @@ type metadataUpdateOpenIDConnectProviderThumbprintOutput struct {
 }
 
 type UpdateSAMLProviderInput struct {
-	SAMLMetadataDocument *string `type:"string"`
-	SAMLProviderARN      *string `locationName:"SAMLProviderArn" type:"string"`
+	SAMLMetadataDocument *string `type:"string" required:"true"`
+	SAMLProviderARN      *string `locationName:"SAMLProviderArn" type:"string" required:"true"`
 
 	metadataUpdateSAMLProviderInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateSAMLProviderInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SAMLMetadataDocument,SAMLProviderArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateSAMLProviderOutput struct {
@@ -4922,13 +4922,13 @@ type metadataUpdateSAMLProviderOutput struct {
 type UpdateServerCertificateInput struct {
 	NewPath                  *string `type:"string"`
 	NewServerCertificateName *string `type:"string"`
-	ServerCertificateName    *string `type:"string"`
+	ServerCertificateName    *string `type:"string" required:"true"`
 
 	metadataUpdateServerCertificateInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateServerCertificateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ServerCertificateName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateServerCertificateOutput struct {
@@ -4940,15 +4940,15 @@ type metadataUpdateServerCertificateOutput struct {
 }
 
 type UpdateSigningCertificateInput struct {
-	CertificateID *string `locationName:"CertificateId" type:"string"`
-	Status        *string `type:"string"`
+	CertificateID *string `locationName:"CertificateId" type:"string" required:"true"`
+	Status        *string `type:"string" required:"true"`
 	UserName      *string `type:"string"`
 
 	metadataUpdateSigningCertificateInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateSigningCertificateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CertificateId,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateSigningCertificateOutput struct {
@@ -4962,13 +4962,13 @@ type metadataUpdateSigningCertificateOutput struct {
 type UpdateUserInput struct {
 	NewPath     *string `type:"string"`
 	NewUserName *string `type:"string"`
-	UserName    *string `type:"string"`
+	UserName    *string `type:"string" required:"true"`
 
 	metadataUpdateUserInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateUserInput struct {
-	SDKShapeTraits bool `type:"structure" required:"UserName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateUserOutput struct {
@@ -4980,17 +4980,17 @@ type metadataUpdateUserOutput struct {
 }
 
 type UploadServerCertificateInput struct {
-	CertificateBody       *string `type:"string"`
+	CertificateBody       *string `type:"string" required:"true"`
 	CertificateChain      *string `type:"string"`
 	Path                  *string `type:"string"`
-	PrivateKey            *string `type:"string"`
-	ServerCertificateName *string `type:"string"`
+	PrivateKey            *string `type:"string" required:"true"`
+	ServerCertificateName *string `type:"string" required:"true"`
 
 	metadataUploadServerCertificateInput `json:"-", xml:"-"`
 }
 
 type metadataUploadServerCertificateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ServerCertificateName,CertificateBody,PrivateKey"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UploadServerCertificateOutput struct {
@@ -5004,39 +5004,39 @@ type metadataUploadServerCertificateOutput struct {
 }
 
 type UploadSigningCertificateInput struct {
-	CertificateBody *string `type:"string"`
+	CertificateBody *string `type:"string" required:"true"`
 	UserName        *string `type:"string"`
 
 	metadataUploadSigningCertificateInput `json:"-", xml:"-"`
 }
 
 type metadataUploadSigningCertificateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CertificateBody"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UploadSigningCertificateOutput struct {
-	Certificate *SigningCertificate `type:"structure"`
+	Certificate *SigningCertificate `type:"structure" required:"true"`
 
 	metadataUploadSigningCertificateOutput `json:"-", xml:"-"`
 }
 
 type metadataUploadSigningCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Certificate"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type User struct {
-	ARN              *string    `locationName:"Arn" type:"string"`
-	CreateDate       *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	ARN              *string    `locationName:"Arn" type:"string" required:"true"`
+	CreateDate       *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 	PasswordLastUsed *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Path             *string    `type:"string"`
-	UserID           *string    `locationName:"UserId" type:"string"`
-	UserName         *string    `type:"string"`
+	Path             *string    `type:"string" required:"true"`
+	UserID           *string    `locationName:"UserId" type:"string" required:"true"`
+	UserName         *string    `type:"string" required:"true"`
 
 	metadataUser `json:"-", xml:"-"`
 }
 
 type metadataUser struct {
-	SDKShapeTraits bool `type:"structure" required:"Path,UserName,UserId,Arn,CreateDate"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UserDetail struct {
@@ -5059,12 +5059,12 @@ type VirtualMFADevice struct {
 	Base32StringSeed []byte     `type:"blob"`
 	EnableDate       *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	QRCodePNG        []byte     `type:"blob"`
-	SerialNumber     *string    `type:"string"`
+	SerialNumber     *string    `type:"string" required:"true"`
 	User             *User      `type:"structure"`
 
 	metadataVirtualMFADevice `json:"-", xml:"-"`
 }
 
 type metadataVirtualMFADevice struct {
-	SDKShapeTraits bool `type:"structure" required:"SerialNumber"`
+	SDKShapeTraits bool `type:"structure"`
 }

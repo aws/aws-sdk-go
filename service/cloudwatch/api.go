@@ -314,13 +314,13 @@ type metadataDatapoint struct {
 }
 
 type DeleteAlarmsInput struct {
-	AlarmNames []*string `type:"list"`
+	AlarmNames []*string `type:"list" required:"true"`
 
 	metadataDeleteAlarmsInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteAlarmsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AlarmNames"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAlarmsOutput struct {
@@ -359,8 +359,8 @@ type metadataDescribeAlarmHistoryOutput struct {
 
 type DescribeAlarmsForMetricInput struct {
 	Dimensions []*Dimension `type:"list"`
-	MetricName *string      `type:"string"`
-	Namespace  *string      `type:"string"`
+	MetricName *string      `type:"string" required:"true"`
+	Namespace  *string      `type:"string" required:"true"`
 	Period     *int         `type:"integer"`
 	Statistic  *string      `type:"string"`
 	Unit       *string      `type:"string"`
@@ -369,7 +369,7 @@ type DescribeAlarmsForMetricInput struct {
 }
 
 type metadataDescribeAlarmsForMetricInput struct {
-	SDKShapeTraits bool `type:"structure" required:"MetricName,Namespace"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAlarmsForMetricOutput struct {
@@ -409,35 +409,35 @@ type metadataDescribeAlarmsOutput struct {
 }
 
 type Dimension struct {
-	Name  *string `type:"string"`
-	Value *string `type:"string"`
+	Name  *string `type:"string" required:"true"`
+	Value *string `type:"string" required:"true"`
 
 	metadataDimension `json:"-", xml:"-"`
 }
 
 type metadataDimension struct {
-	SDKShapeTraits bool `type:"structure" required:"Name,Value"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DimensionFilter struct {
-	Name  *string `type:"string"`
+	Name  *string `type:"string" required:"true"`
 	Value *string `type:"string"`
 
 	metadataDimensionFilter `json:"-", xml:"-"`
 }
 
 type metadataDimensionFilter struct {
-	SDKShapeTraits bool `type:"structure" required:"Name"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableAlarmActionsInput struct {
-	AlarmNames []*string `type:"list"`
+	AlarmNames []*string `type:"list" required:"true"`
 
 	metadataDisableAlarmActionsInput `json:"-", xml:"-"`
 }
 
 type metadataDisableAlarmActionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AlarmNames"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableAlarmActionsOutput struct {
@@ -449,13 +449,13 @@ type metadataDisableAlarmActionsOutput struct {
 }
 
 type EnableAlarmActionsInput struct {
-	AlarmNames []*string `type:"list"`
+	AlarmNames []*string `type:"list" required:"true"`
 
 	metadataEnableAlarmActionsInput `json:"-", xml:"-"`
 }
 
 type metadataEnableAlarmActionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AlarmNames"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableAlarmActionsOutput struct {
@@ -468,19 +468,19 @@ type metadataEnableAlarmActionsOutput struct {
 
 type GetMetricStatisticsInput struct {
 	Dimensions []*Dimension `type:"list"`
-	EndTime    *time.Time   `type:"timestamp" timestampFormat:"iso8601"`
-	MetricName *string      `type:"string"`
-	Namespace  *string      `type:"string"`
-	Period     *int         `type:"integer"`
-	StartTime  *time.Time   `type:"timestamp" timestampFormat:"iso8601"`
-	Statistics []*string    `type:"list"`
+	EndTime    *time.Time   `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	MetricName *string      `type:"string" required:"true"`
+	Namespace  *string      `type:"string" required:"true"`
+	Period     *int         `type:"integer" required:"true"`
+	StartTime  *time.Time   `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	Statistics []*string    `type:"list" required:"true"`
 	Unit       *string      `type:"string"`
 
 	metadataGetMetricStatisticsInput `json:"-", xml:"-"`
 }
 
 type metadataGetMetricStatisticsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Namespace,MetricName,StartTime,EndTime,Period,Statistics"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetMetricStatisticsOutput struct {
@@ -562,7 +562,7 @@ type metadataMetricAlarm struct {
 
 type MetricDatum struct {
 	Dimensions      []*Dimension  `type:"list"`
-	MetricName      *string       `type:"string"`
+	MetricName      *string       `type:"string" required:"true"`
 	StatisticValues *StatisticSet `type:"structure"`
 	Timestamp       *time.Time    `type:"timestamp" timestampFormat:"iso8601"`
 	Unit            *string       `type:"string"`
@@ -572,31 +572,31 @@ type MetricDatum struct {
 }
 
 type metadataMetricDatum struct {
-	SDKShapeTraits bool `type:"structure" required:"MetricName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutMetricAlarmInput struct {
 	ActionsEnabled          *bool        `type:"boolean"`
 	AlarmActions            []*string    `type:"list"`
 	AlarmDescription        *string      `type:"string"`
-	AlarmName               *string      `type:"string"`
-	ComparisonOperator      *string      `type:"string"`
+	AlarmName               *string      `type:"string" required:"true"`
+	ComparisonOperator      *string      `type:"string" required:"true"`
 	Dimensions              []*Dimension `type:"list"`
-	EvaluationPeriods       *int         `type:"integer"`
+	EvaluationPeriods       *int         `type:"integer" required:"true"`
 	InsufficientDataActions []*string    `type:"list"`
-	MetricName              *string      `type:"string"`
-	Namespace               *string      `type:"string"`
+	MetricName              *string      `type:"string" required:"true"`
+	Namespace               *string      `type:"string" required:"true"`
 	OKActions               []*string    `type:"list"`
-	Period                  *int         `type:"integer"`
-	Statistic               *string      `type:"string"`
-	Threshold               *float64     `type:"double"`
+	Period                  *int         `type:"integer" required:"true"`
+	Statistic               *string      `type:"string" required:"true"`
+	Threshold               *float64     `type:"double" required:"true"`
 	Unit                    *string      `type:"string"`
 
 	metadataPutMetricAlarmInput `json:"-", xml:"-"`
 }
 
 type metadataPutMetricAlarmInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AlarmName,MetricName,Namespace,Statistic,Period,EvaluationPeriods,Threshold,ComparisonOperator"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutMetricAlarmOutput struct {
@@ -608,14 +608,14 @@ type metadataPutMetricAlarmOutput struct {
 }
 
 type PutMetricDataInput struct {
-	MetricData []*MetricDatum `type:"list"`
-	Namespace  *string        `type:"string"`
+	MetricData []*MetricDatum `type:"list" required:"true"`
+	Namespace  *string        `type:"string" required:"true"`
 
 	metadataPutMetricDataInput `json:"-", xml:"-"`
 }
 
 type metadataPutMetricDataInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Namespace,MetricData"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutMetricDataOutput struct {
@@ -627,16 +627,16 @@ type metadataPutMetricDataOutput struct {
 }
 
 type SetAlarmStateInput struct {
-	AlarmName       *string `type:"string"`
-	StateReason     *string `type:"string"`
+	AlarmName       *string `type:"string" required:"true"`
+	StateReason     *string `type:"string" required:"true"`
 	StateReasonData *string `type:"string"`
-	StateValue      *string `type:"string"`
+	StateValue      *string `type:"string" required:"true"`
 
 	metadataSetAlarmStateInput `json:"-", xml:"-"`
 }
 
 type metadataSetAlarmStateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AlarmName,StateValue,StateReason"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetAlarmStateOutput struct {
@@ -648,14 +648,14 @@ type metadataSetAlarmStateOutput struct {
 }
 
 type StatisticSet struct {
-	Maximum     *float64 `type:"double"`
-	Minimum     *float64 `type:"double"`
-	SampleCount *float64 `type:"double"`
-	Sum         *float64 `type:"double"`
+	Maximum     *float64 `type:"double" required:"true"`
+	Minimum     *float64 `type:"double" required:"true"`
+	SampleCount *float64 `type:"double" required:"true"`
+	Sum         *float64 `type:"double" required:"true"`
 
 	metadataStatisticSet `json:"-", xml:"-"`
 }
 
 type metadataStatisticSet struct {
-	SDKShapeTraits bool `type:"structure" required:"SampleCount,Sum,Minimum,Maximum"`
+	SDKShapeTraits bool `type:"structure"`
 }

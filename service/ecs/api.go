@@ -627,13 +627,13 @@ type metadataCreateClusterOutput struct {
 }
 
 type DeleteClusterInput struct {
-	Cluster *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
+	Cluster *string `locationName:"cluster" type:"string" required:"true"json:"cluster,omitempty"`
 
 	metadataDeleteClusterInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteClusterInput struct {
-	SDKShapeTraits bool `type:"structure" required:"cluster" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteClusterOutput struct {
@@ -648,14 +648,14 @@ type metadataDeleteClusterOutput struct {
 
 type DeregisterContainerInstanceInput struct {
 	Cluster           *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
-	ContainerInstance *string `locationName:"containerInstance" type:"string" json:"containerInstance,omitempty"`
+	ContainerInstance *string `locationName:"containerInstance" type:"string" required:"true"json:"containerInstance,omitempty"`
 	Force             *bool   `locationName:"force" type:"boolean" json:"force,omitempty"`
 
 	metadataDeregisterContainerInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataDeregisterContainerInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"containerInstance" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeregisterContainerInstanceOutput struct {
@@ -669,13 +669,13 @@ type metadataDeregisterContainerInstanceOutput struct {
 }
 
 type DeregisterTaskDefinitionInput struct {
-	TaskDefinition *string `locationName:"taskDefinition" type:"string" json:"taskDefinition,omitempty"`
+	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"json:"taskDefinition,omitempty"`
 
 	metadataDeregisterTaskDefinitionInput `json:"-", xml:"-"`
 }
 
 type metadataDeregisterTaskDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"taskDefinition" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeregisterTaskDefinitionOutput struct {
@@ -711,13 +711,13 @@ type metadataDescribeClustersOutput struct {
 
 type DescribeContainerInstancesInput struct {
 	Cluster            *string   `locationName:"cluster" type:"string" json:"cluster,omitempty"`
-	ContainerInstances []*string `locationName:"containerInstances" type:"list" json:"containerInstances,omitempty"`
+	ContainerInstances []*string `locationName:"containerInstances" type:"list" required:"true"json:"containerInstances,omitempty"`
 
 	metadataDescribeContainerInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeContainerInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"containerInstances" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeContainerInstancesOutput struct {
@@ -732,13 +732,13 @@ type metadataDescribeContainerInstancesOutput struct {
 }
 
 type DescribeTaskDefinitionInput struct {
-	TaskDefinition *string `locationName:"taskDefinition" type:"string" json:"taskDefinition,omitempty"`
+	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"json:"taskDefinition,omitempty"`
 
 	metadataDescribeTaskDefinitionInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTaskDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"taskDefinition" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeTaskDefinitionOutput struct {
@@ -753,13 +753,13 @@ type metadataDescribeTaskDefinitionOutput struct {
 
 type DescribeTasksInput struct {
 	Cluster *string   `locationName:"cluster" type:"string" json:"cluster,omitempty"`
-	Tasks   []*string `locationName:"tasks" type:"list" json:"tasks,omitempty"`
+	Tasks   []*string `locationName:"tasks" type:"list" required:"true"json:"tasks,omitempty"`
 
 	metadataDescribeTasksInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTasksInput struct {
-	SDKShapeTraits bool `type:"structure" required:"tasks" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeTasksOutput struct {
@@ -1001,15 +1001,15 @@ type metadataRegisterContainerInstanceOutput struct {
 }
 
 type RegisterTaskDefinitionInput struct {
-	ContainerDefinitions []*ContainerDefinition `locationName:"containerDefinitions" type:"list" json:"containerDefinitions,omitempty"`
-	Family               *string                `locationName:"family" type:"string" json:"family,omitempty"`
+	ContainerDefinitions []*ContainerDefinition `locationName:"containerDefinitions" type:"list" required:"true"json:"containerDefinitions,omitempty"`
+	Family               *string                `locationName:"family" type:"string" required:"true"json:"family,omitempty"`
 	Volumes              []*Volume              `locationName:"volumes" type:"list" json:"volumes,omitempty"`
 
 	metadataRegisterTaskDefinitionInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterTaskDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"family,containerDefinitions" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RegisterTaskDefinitionOutput struct {
@@ -1041,13 +1041,13 @@ type RunTaskInput struct {
 	Cluster        *string       `locationName:"cluster" type:"string" json:"cluster,omitempty"`
 	Count          *int          `locationName:"count" type:"integer" json:"count,omitempty"`
 	Overrides      *TaskOverride `locationName:"overrides" type:"structure" json:"overrides,omitempty"`
-	TaskDefinition *string       `locationName:"taskDefinition" type:"string" json:"taskDefinition,omitempty"`
+	TaskDefinition *string       `locationName:"taskDefinition" type:"string" required:"true"json:"taskDefinition,omitempty"`
 
 	metadataRunTaskInput `json:"-", xml:"-"`
 }
 
 type metadataRunTaskInput struct {
-	SDKShapeTraits bool `type:"structure" required:"taskDefinition" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RunTaskOutput struct {
@@ -1063,15 +1063,15 @@ type metadataRunTaskOutput struct {
 
 type StartTaskInput struct {
 	Cluster            *string       `locationName:"cluster" type:"string" json:"cluster,omitempty"`
-	ContainerInstances []*string     `locationName:"containerInstances" type:"list" json:"containerInstances,omitempty"`
+	ContainerInstances []*string     `locationName:"containerInstances" type:"list" required:"true"json:"containerInstances,omitempty"`
 	Overrides          *TaskOverride `locationName:"overrides" type:"structure" json:"overrides,omitempty"`
-	TaskDefinition     *string       `locationName:"taskDefinition" type:"string" json:"taskDefinition,omitempty"`
+	TaskDefinition     *string       `locationName:"taskDefinition" type:"string" required:"true"json:"taskDefinition,omitempty"`
 
 	metadataStartTaskInput `json:"-", xml:"-"`
 }
 
 type metadataStartTaskInput struct {
-	SDKShapeTraits bool `type:"structure" required:"taskDefinition,containerInstances" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type StartTaskOutput struct {
@@ -1087,13 +1087,13 @@ type metadataStartTaskOutput struct {
 
 type StopTaskInput struct {
 	Cluster *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
-	Task    *string `locationName:"task" type:"string" json:"task,omitempty"`
+	Task    *string `locationName:"task" type:"string" required:"true"json:"task,omitempty"`
 
 	metadataStopTaskInput `json:"-", xml:"-"`
 }
 
 type metadataStopTaskInput struct {
-	SDKShapeTraits bool `type:"structure" required:"task" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type StopTaskOutput struct {

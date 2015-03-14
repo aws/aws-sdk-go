@@ -1134,22 +1134,22 @@ func (c *AutoScaling) UpdateAutoScalingGroup(input *UpdateAutoScalingGroupInput)
 var opUpdateAutoScalingGroup *aws.Operation
 
 type Activity struct {
-	ActivityID           *string    `locationName:"ActivityId" type:"string"`
-	AutoScalingGroupName *string    `type:"string"`
-	Cause                *string    `type:"string"`
+	ActivityID           *string    `locationName:"ActivityId" type:"string" required:"true"`
+	AutoScalingGroupName *string    `type:"string" required:"true"`
+	Cause                *string    `type:"string" required:"true"`
 	Description          *string    `type:"string"`
 	Details              *string    `type:"string"`
 	EndTime              *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	Progress             *int       `type:"integer"`
-	StartTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	StatusCode           *string    `type:"string"`
+	StartTime            *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	StatusCode           *string    `type:"string" required:"true"`
 	StatusMessage        *string    `type:"string"`
 
 	metadataActivity `json:"-", xml:"-"`
 }
 
 type metadataActivity struct {
-	SDKShapeTraits bool `type:"structure" required:"ActivityId,AutoScalingGroupName,Cause,StartTime,StatusCode"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AdjustmentType struct {
@@ -1174,14 +1174,14 @@ type metadataAlarm struct {
 }
 
 type AttachInstancesInput struct {
-	AutoScalingGroupName *string   `type:"string"`
+	AutoScalingGroupName *string   `type:"string" required:"true"`
 	InstanceIDs          []*string `locationName:"InstanceIds" type:"list"`
 
 	metadataAttachInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataAttachInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachInstancesOutput struct {
@@ -1194,19 +1194,19 @@ type metadataAttachInstancesOutput struct {
 
 type AutoScalingGroup struct {
 	AutoScalingGroupARN     *string             `type:"string"`
-	AutoScalingGroupName    *string             `type:"string"`
-	AvailabilityZones       []*string           `type:"list"`
-	CreatedTime             *time.Time          `type:"timestamp" timestampFormat:"iso8601"`
-	DefaultCooldown         *int                `type:"integer"`
-	DesiredCapacity         *int                `type:"integer"`
+	AutoScalingGroupName    *string             `type:"string" required:"true"`
+	AvailabilityZones       []*string           `type:"list" required:"true"`
+	CreatedTime             *time.Time          `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	DefaultCooldown         *int                `type:"integer" required:"true"`
+	DesiredCapacity         *int                `type:"integer" required:"true"`
 	EnabledMetrics          []*EnabledMetric    `type:"list"`
 	HealthCheckGracePeriod  *int                `type:"integer"`
-	HealthCheckType         *string             `type:"string"`
+	HealthCheckType         *string             `type:"string" required:"true"`
 	Instances               []*Instance         `type:"list"`
-	LaunchConfigurationName *string             `type:"string"`
+	LaunchConfigurationName *string             `type:"string" required:"true"`
 	LoadBalancerNames       []*string           `type:"list"`
-	MaxSize                 *int                `type:"integer"`
-	MinSize                 *int                `type:"integer"`
+	MaxSize                 *int                `type:"integer" required:"true"`
+	MinSize                 *int                `type:"integer" required:"true"`
 	PlacementGroup          *string             `type:"string"`
 	Status                  *string             `type:"string"`
 	SuspendedProcesses      []*SuspendedProcess `type:"list"`
@@ -1218,26 +1218,26 @@ type AutoScalingGroup struct {
 }
 
 type metadataAutoScalingGroup struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,LaunchConfigurationName,MinSize,MaxSize,DesiredCapacity,DefaultCooldown,AvailabilityZones,HealthCheckType,CreatedTime"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AutoScalingInstanceDetails struct {
-	AutoScalingGroupName    *string `type:"string"`
-	AvailabilityZone        *string `type:"string"`
-	HealthStatus            *string `type:"string"`
-	InstanceID              *string `locationName:"InstanceId" type:"string"`
-	LaunchConfigurationName *string `type:"string"`
-	LifecycleState          *string `type:"string"`
+	AutoScalingGroupName    *string `type:"string" required:"true"`
+	AvailabilityZone        *string `type:"string" required:"true"`
+	HealthStatus            *string `type:"string" required:"true"`
+	InstanceID              *string `locationName:"InstanceId" type:"string" required:"true"`
+	LaunchConfigurationName *string `type:"string" required:"true"`
+	LifecycleState          *string `type:"string" required:"true"`
 
 	metadataAutoScalingInstanceDetails `json:"-", xml:"-"`
 }
 
 type metadataAutoScalingInstanceDetails struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId,AutoScalingGroupName,AvailabilityZone,LifecycleState,HealthStatus,LaunchConfigurationName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BlockDeviceMapping struct {
-	DeviceName  *string `type:"string"`
+	DeviceName  *string `type:"string" required:"true"`
 	EBS         *EBS    `locationName:"Ebs" type:"structure"`
 	NoDevice    *bool   `type:"boolean"`
 	VirtualName *string `type:"string"`
@@ -1246,20 +1246,20 @@ type BlockDeviceMapping struct {
 }
 
 type metadataBlockDeviceMapping struct {
-	SDKShapeTraits bool `type:"structure" required:"DeviceName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CompleteLifecycleActionInput struct {
-	AutoScalingGroupName  *string `type:"string"`
-	LifecycleActionResult *string `type:"string"`
-	LifecycleActionToken  *string `type:"string"`
-	LifecycleHookName     *string `type:"string"`
+	AutoScalingGroupName  *string `type:"string" required:"true"`
+	LifecycleActionResult *string `type:"string" required:"true"`
+	LifecycleActionToken  *string `type:"string" required:"true"`
+	LifecycleHookName     *string `type:"string" required:"true"`
 
 	metadataCompleteLifecycleActionInput `json:"-", xml:"-"`
 }
 
 type metadataCompleteLifecycleActionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LifecycleHookName,AutoScalingGroupName,LifecycleActionToken,LifecycleActionResult"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CompleteLifecycleActionOutput struct {
@@ -1271,7 +1271,7 @@ type metadataCompleteLifecycleActionOutput struct {
 }
 
 type CreateAutoScalingGroupInput struct {
-	AutoScalingGroupName    *string   `type:"string"`
+	AutoScalingGroupName    *string   `type:"string" required:"true"`
 	AvailabilityZones       []*string `type:"list"`
 	DefaultCooldown         *int      `type:"integer"`
 	DesiredCapacity         *int      `type:"integer"`
@@ -1280,8 +1280,8 @@ type CreateAutoScalingGroupInput struct {
 	InstanceID              *string   `locationName:"InstanceId" type:"string"`
 	LaunchConfigurationName *string   `type:"string"`
 	LoadBalancerNames       []*string `type:"list"`
-	MaxSize                 *int      `type:"integer"`
-	MinSize                 *int      `type:"integer"`
+	MaxSize                 *int      `type:"integer" required:"true"`
+	MinSize                 *int      `type:"integer" required:"true"`
 	PlacementGroup          *string   `type:"string"`
 	Tags                    []*Tag    `type:"list"`
 	TerminationPolicies     []*string `type:"list"`
@@ -1291,7 +1291,7 @@ type CreateAutoScalingGroupInput struct {
 }
 
 type metadataCreateAutoScalingGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,MinSize,MaxSize"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAutoScalingGroupOutput struct {
@@ -1315,7 +1315,7 @@ type CreateLaunchConfigurationInput struct {
 	InstanceType                 *string               `type:"string"`
 	KernelID                     *string               `locationName:"KernelId" type:"string"`
 	KeyName                      *string               `type:"string"`
-	LaunchConfigurationName      *string               `type:"string"`
+	LaunchConfigurationName      *string               `type:"string" required:"true"`
 	PlacementTenancy             *string               `type:"string"`
 	RAMDiskID                    *string               `locationName:"RamdiskId" type:"string"`
 	SecurityGroups               []*string             `type:"list"`
@@ -1326,7 +1326,7 @@ type CreateLaunchConfigurationInput struct {
 }
 
 type metadataCreateLaunchConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LaunchConfigurationName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLaunchConfigurationOutput struct {
@@ -1338,13 +1338,13 @@ type metadataCreateLaunchConfigurationOutput struct {
 }
 
 type CreateOrUpdateTagsInput struct {
-	Tags []*Tag `type:"list"`
+	Tags []*Tag `type:"list" required:"true"`
 
 	metadataCreateOrUpdateTagsInput `json:"-", xml:"-"`
 }
 
 type metadataCreateOrUpdateTagsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Tags"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateOrUpdateTagsOutput struct {
@@ -1356,14 +1356,14 @@ type metadataCreateOrUpdateTagsOutput struct {
 }
 
 type DeleteAutoScalingGroupInput struct {
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `type:"string" required:"true"`
 	ForceDelete          *bool   `type:"boolean"`
 
 	metadataDeleteAutoScalingGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteAutoScalingGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAutoScalingGroupOutput struct {
@@ -1375,13 +1375,13 @@ type metadataDeleteAutoScalingGroupOutput struct {
 }
 
 type DeleteLaunchConfigurationInput struct {
-	LaunchConfigurationName *string `type:"string"`
+	LaunchConfigurationName *string `type:"string" required:"true"`
 
 	metadataDeleteLaunchConfigurationInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteLaunchConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LaunchConfigurationName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLaunchConfigurationOutput struct {
@@ -1393,14 +1393,14 @@ type metadataDeleteLaunchConfigurationOutput struct {
 }
 
 type DeleteLifecycleHookInput struct {
-	AutoScalingGroupName *string `type:"string"`
-	LifecycleHookName    *string `type:"string"`
+	AutoScalingGroupName *string `type:"string" required:"true"`
+	LifecycleHookName    *string `type:"string" required:"true"`
 
 	metadataDeleteLifecycleHookInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteLifecycleHookInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LifecycleHookName,AutoScalingGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLifecycleHookOutput struct {
@@ -1412,14 +1412,14 @@ type metadataDeleteLifecycleHookOutput struct {
 }
 
 type DeleteNotificationConfigurationInput struct {
-	AutoScalingGroupName *string `type:"string"`
-	TopicARN             *string `type:"string"`
+	AutoScalingGroupName *string `type:"string" required:"true"`
+	TopicARN             *string `type:"string" required:"true"`
 
 	metadataDeleteNotificationConfigurationInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteNotificationConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,TopicARN"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteNotificationConfigurationOutput struct {
@@ -1432,13 +1432,13 @@ type metadataDeleteNotificationConfigurationOutput struct {
 
 type DeletePolicyInput struct {
 	AutoScalingGroupName *string `type:"string"`
-	PolicyName           *string `type:"string"`
+	PolicyName           *string `type:"string" required:"true"`
 
 	metadataDeletePolicyInput `json:"-", xml:"-"`
 }
 
 type metadataDeletePolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeletePolicyOutput struct {
@@ -1451,13 +1451,13 @@ type metadataDeletePolicyOutput struct {
 
 type DeleteScheduledActionInput struct {
 	AutoScalingGroupName *string `type:"string"`
-	ScheduledActionName  *string `type:"string"`
+	ScheduledActionName  *string `type:"string" required:"true"`
 
 	metadataDeleteScheduledActionInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteScheduledActionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ScheduledActionName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteScheduledActionOutput struct {
@@ -1469,13 +1469,13 @@ type metadataDeleteScheduledActionOutput struct {
 }
 
 type DeleteTagsInput struct {
-	Tags []*Tag `type:"list"`
+	Tags []*Tag `type:"list" required:"true"`
 
 	metadataDeleteTagsInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTagsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Tags"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteTagsOutput struct {
@@ -1536,14 +1536,14 @@ type metadataDescribeAutoScalingGroupsInput struct {
 }
 
 type DescribeAutoScalingGroupsOutput struct {
-	AutoScalingGroups []*AutoScalingGroup `type:"list"`
+	AutoScalingGroups []*AutoScalingGroup `type:"list" required:"true"`
 	NextToken         *string             `type:"string"`
 
 	metadataDescribeAutoScalingGroupsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeAutoScalingGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroups"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAutoScalingInstancesInput struct {
@@ -1600,14 +1600,14 @@ type metadataDescribeLaunchConfigurationsInput struct {
 }
 
 type DescribeLaunchConfigurationsOutput struct {
-	LaunchConfigurations []*LaunchConfiguration `type:"list"`
+	LaunchConfigurations []*LaunchConfiguration `type:"list" required:"true"`
 	NextToken            *string                `type:"string"`
 
 	metadataDescribeLaunchConfigurationsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLaunchConfigurationsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"LaunchConfigurations"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLifecycleHookTypesInput struct {
@@ -1629,14 +1629,14 @@ type metadataDescribeLifecycleHookTypesOutput struct {
 }
 
 type DescribeLifecycleHooksInput struct {
-	AutoScalingGroupName *string   `type:"string"`
+	AutoScalingGroupName *string   `type:"string" required:"true"`
 	LifecycleHookNames   []*string `type:"list"`
 
 	metadataDescribeLifecycleHooksInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLifecycleHooksInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLifecycleHooksOutput struct {
@@ -1682,13 +1682,13 @@ type metadataDescribeNotificationConfigurationsInput struct {
 
 type DescribeNotificationConfigurationsOutput struct {
 	NextToken                  *string                      `type:"string"`
-	NotificationConfigurations []*NotificationConfiguration `type:"list"`
+	NotificationConfigurations []*NotificationConfiguration `type:"list" required:"true"`
 
 	metadataDescribeNotificationConfigurationsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeNotificationConfigurationsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"NotificationConfigurations"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribePoliciesInput struct {
@@ -1729,14 +1729,14 @@ type metadataDescribeScalingActivitiesInput struct {
 }
 
 type DescribeScalingActivitiesOutput struct {
-	Activities []*Activity `type:"list"`
+	Activities []*Activity `type:"list" required:"true"`
 	NextToken  *string     `type:"string"`
 
 	metadataDescribeScalingActivitiesOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeScalingActivitiesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Activities"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeScalingProcessTypesInput struct {
@@ -1825,15 +1825,15 @@ type metadataDescribeTerminationPolicyTypesOutput struct {
 }
 
 type DetachInstancesInput struct {
-	AutoScalingGroupName           *string   `type:"string"`
+	AutoScalingGroupName           *string   `type:"string" required:"true"`
 	InstanceIDs                    []*string `locationName:"InstanceIds" type:"list"`
-	ShouldDecrementDesiredCapacity *bool     `type:"boolean"`
+	ShouldDecrementDesiredCapacity *bool     `type:"boolean" required:"true"`
 
 	metadataDetachInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataDetachInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,ShouldDecrementDesiredCapacity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachInstancesOutput struct {
@@ -1847,14 +1847,14 @@ type metadataDetachInstancesOutput struct {
 }
 
 type DisableMetricsCollectionInput struct {
-	AutoScalingGroupName *string   `type:"string"`
+	AutoScalingGroupName *string   `type:"string" required:"true"`
 	Metrics              []*string `type:"list"`
 
 	metadataDisableMetricsCollectionInput `json:"-", xml:"-"`
 }
 
 type metadataDisableMetricsCollectionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableMetricsCollectionOutput struct {
@@ -1880,15 +1880,15 @@ type metadataEBS struct {
 }
 
 type EnableMetricsCollectionInput struct {
-	AutoScalingGroupName *string   `type:"string"`
-	Granularity          *string   `type:"string"`
+	AutoScalingGroupName *string   `type:"string" required:"true"`
+	Granularity          *string   `type:"string" required:"true"`
 	Metrics              []*string `type:"list"`
 
 	metadataEnableMetricsCollectionInput `json:"-", xml:"-"`
 }
 
 type metadataEnableMetricsCollectionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,Granularity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableMetricsCollectionOutput struct {
@@ -1911,15 +1911,15 @@ type metadataEnabledMetric struct {
 }
 
 type EnterStandbyInput struct {
-	AutoScalingGroupName           *string   `type:"string"`
+	AutoScalingGroupName           *string   `type:"string" required:"true"`
 	InstanceIDs                    []*string `locationName:"InstanceIds" type:"list"`
-	ShouldDecrementDesiredCapacity *bool     `type:"boolean"`
+	ShouldDecrementDesiredCapacity *bool     `type:"boolean" required:"true"`
 
 	metadataEnterStandbyInput `json:"-", xml:"-"`
 }
 
 type metadataEnterStandbyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,ShouldDecrementDesiredCapacity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnterStandbyOutput struct {
@@ -1935,13 +1935,13 @@ type metadataEnterStandbyOutput struct {
 type ExecutePolicyInput struct {
 	AutoScalingGroupName *string `type:"string"`
 	HonorCooldown        *bool   `type:"boolean"`
-	PolicyName           *string `type:"string"`
+	PolicyName           *string `type:"string" required:"true"`
 
 	metadataExecutePolicyInput `json:"-", xml:"-"`
 }
 
 type metadataExecutePolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PolicyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ExecutePolicyOutput struct {
@@ -1953,14 +1953,14 @@ type metadataExecutePolicyOutput struct {
 }
 
 type ExitStandbyInput struct {
-	AutoScalingGroupName *string   `type:"string"`
+	AutoScalingGroupName *string   `type:"string" required:"true"`
 	InstanceIDs          []*string `locationName:"InstanceIds" type:"list"`
 
 	metadataExitStandbyInput `json:"-", xml:"-"`
 }
 
 type metadataExitStandbyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ExitStandbyOutput struct {
@@ -1985,17 +1985,17 @@ type metadataFilter struct {
 }
 
 type Instance struct {
-	AvailabilityZone        *string `type:"string"`
-	HealthStatus            *string `type:"string"`
-	InstanceID              *string `locationName:"InstanceId" type:"string"`
-	LaunchConfigurationName *string `type:"string"`
-	LifecycleState          *string `type:"string"`
+	AvailabilityZone        *string `type:"string" required:"true"`
+	HealthStatus            *string `type:"string" required:"true"`
+	InstanceID              *string `locationName:"InstanceId" type:"string" required:"true"`
+	LaunchConfigurationName *string `type:"string" required:"true"`
+	LifecycleState          *string `type:"string" required:"true"`
 
 	metadataInstance `json:"-", xml:"-"`
 }
 
 type metadataInstance struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId,AvailabilityZone,LifecycleState,HealthStatus,LaunchConfigurationName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceMonitoring struct {
@@ -2013,16 +2013,16 @@ type LaunchConfiguration struct {
 	BlockDeviceMappings          []*BlockDeviceMapping `type:"list"`
 	ClassicLinkVPCID             *string               `locationName:"ClassicLinkVPCId" type:"string"`
 	ClassicLinkVPCSecurityGroups []*string             `type:"list"`
-	CreatedTime                  *time.Time            `type:"timestamp" timestampFormat:"iso8601"`
+	CreatedTime                  *time.Time            `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 	EBSOptimized                 *bool                 `locationName:"EbsOptimized" type:"boolean"`
 	IAMInstanceProfile           *string               `locationName:"IamInstanceProfile" type:"string"`
-	ImageID                      *string               `locationName:"ImageId" type:"string"`
+	ImageID                      *string               `locationName:"ImageId" type:"string" required:"true"`
 	InstanceMonitoring           *InstanceMonitoring   `type:"structure"`
-	InstanceType                 *string               `type:"string"`
+	InstanceType                 *string               `type:"string" required:"true"`
 	KernelID                     *string               `locationName:"KernelId" type:"string"`
 	KeyName                      *string               `type:"string"`
 	LaunchConfigurationARN       *string               `type:"string"`
-	LaunchConfigurationName      *string               `type:"string"`
+	LaunchConfigurationName      *string               `type:"string" required:"true"`
 	PlacementTenancy             *string               `type:"string"`
 	RAMDiskID                    *string               `locationName:"RamdiskId" type:"string"`
 	SecurityGroups               []*string             `type:"list"`
@@ -2033,7 +2033,7 @@ type LaunchConfiguration struct {
 }
 
 type metadataLaunchConfiguration struct {
-	SDKShapeTraits bool `type:"structure" required:"LaunchConfigurationName,ImageId,InstanceType,CreatedTime"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type LifecycleHook struct {
@@ -2087,20 +2087,20 @@ type metadataNotificationConfiguration struct {
 }
 
 type ProcessType struct {
-	ProcessName *string `type:"string"`
+	ProcessName *string `type:"string" required:"true"`
 
 	metadataProcessType `json:"-", xml:"-"`
 }
 
 type metadataProcessType struct {
-	SDKShapeTraits bool `type:"structure" required:"ProcessName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutLifecycleHookInput struct {
-	AutoScalingGroupName  *string `type:"string"`
+	AutoScalingGroupName  *string `type:"string" required:"true"`
 	DefaultResult         *string `type:"string"`
 	HeartbeatTimeout      *int    `type:"integer"`
-	LifecycleHookName     *string `type:"string"`
+	LifecycleHookName     *string `type:"string" required:"true"`
 	LifecycleTransition   *string `type:"string"`
 	NotificationMetadata  *string `type:"string"`
 	NotificationTargetARN *string `type:"string"`
@@ -2110,7 +2110,7 @@ type PutLifecycleHookInput struct {
 }
 
 type metadataPutLifecycleHookInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LifecycleHookName,AutoScalingGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutLifecycleHookOutput struct {
@@ -2122,15 +2122,15 @@ type metadataPutLifecycleHookOutput struct {
 }
 
 type PutNotificationConfigurationInput struct {
-	AutoScalingGroupName *string   `type:"string"`
-	NotificationTypes    []*string `type:"list"`
-	TopicARN             *string   `type:"string"`
+	AutoScalingGroupName *string   `type:"string" required:"true"`
+	NotificationTypes    []*string `type:"list" required:"true"`
+	TopicARN             *string   `type:"string" required:"true"`
 
 	metadataPutNotificationConfigurationInput `json:"-", xml:"-"`
 }
 
 type metadataPutNotificationConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,TopicARN,NotificationTypes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutNotificationConfigurationOutput struct {
@@ -2142,18 +2142,18 @@ type metadataPutNotificationConfigurationOutput struct {
 }
 
 type PutScalingPolicyInput struct {
-	AdjustmentType       *string `type:"string"`
-	AutoScalingGroupName *string `type:"string"`
+	AdjustmentType       *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `type:"string" required:"true"`
 	Cooldown             *int    `type:"integer"`
 	MinAdjustmentStep    *int    `type:"integer"`
-	PolicyName           *string `type:"string"`
-	ScalingAdjustment    *int    `type:"integer"`
+	PolicyName           *string `type:"string" required:"true"`
+	ScalingAdjustment    *int    `type:"integer" required:"true"`
 
 	metadataPutScalingPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataPutScalingPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,PolicyName,ScalingAdjustment,AdjustmentType"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutScalingPolicyOutput struct {
@@ -2167,13 +2167,13 @@ type metadataPutScalingPolicyOutput struct {
 }
 
 type PutScheduledUpdateGroupActionInput struct {
-	AutoScalingGroupName *string    `type:"string"`
+	AutoScalingGroupName *string    `type:"string" required:"true"`
 	DesiredCapacity      *int       `type:"integer"`
 	EndTime              *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	MaxSize              *int       `type:"integer"`
 	MinSize              *int       `type:"integer"`
 	Recurrence           *string    `type:"string"`
-	ScheduledActionName  *string    `type:"string"`
+	ScheduledActionName  *string    `type:"string" required:"true"`
 	StartTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	Time                 *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -2181,7 +2181,7 @@ type PutScheduledUpdateGroupActionInput struct {
 }
 
 type metadataPutScheduledUpdateGroupActionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,ScheduledActionName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutScheduledUpdateGroupActionOutput struct {
@@ -2193,15 +2193,15 @@ type metadataPutScheduledUpdateGroupActionOutput struct {
 }
 
 type RecordLifecycleActionHeartbeatInput struct {
-	AutoScalingGroupName *string `type:"string"`
-	LifecycleActionToken *string `type:"string"`
-	LifecycleHookName    *string `type:"string"`
+	AutoScalingGroupName *string `type:"string" required:"true"`
+	LifecycleActionToken *string `type:"string" required:"true"`
+	LifecycleHookName    *string `type:"string" required:"true"`
 
 	metadataRecordLifecycleActionHeartbeatInput `json:"-", xml:"-"`
 }
 
 type metadataRecordLifecycleActionHeartbeatInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LifecycleHookName,AutoScalingGroupName,LifecycleActionToken"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RecordLifecycleActionHeartbeatOutput struct {
@@ -2238,14 +2238,14 @@ type metadataScalingPolicy struct {
 }
 
 type ScalingProcessQuery struct {
-	AutoScalingGroupName *string   `type:"string"`
+	AutoScalingGroupName *string   `type:"string" required:"true"`
 	ScalingProcesses     []*string `type:"list"`
 
 	metadataScalingProcessQuery `json:"-", xml:"-"`
 }
 
 type metadataScalingProcessQuery struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ScheduledUpdateGroupAction struct {
@@ -2268,15 +2268,15 @@ type metadataScheduledUpdateGroupAction struct {
 }
 
 type SetDesiredCapacityInput struct {
-	AutoScalingGroupName *string `type:"string"`
-	DesiredCapacity      *int    `type:"integer"`
+	AutoScalingGroupName *string `type:"string" required:"true"`
+	DesiredCapacity      *int    `type:"integer" required:"true"`
 	HonorCooldown        *bool   `type:"boolean"`
 
 	metadataSetDesiredCapacityInput `json:"-", xml:"-"`
 }
 
 type metadataSetDesiredCapacityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName,DesiredCapacity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetDesiredCapacityOutput struct {
@@ -2288,15 +2288,15 @@ type metadataSetDesiredCapacityOutput struct {
 }
 
 type SetInstanceHealthInput struct {
-	HealthStatus             *string `type:"string"`
-	InstanceID               *string `locationName:"InstanceId" type:"string"`
+	HealthStatus             *string `type:"string" required:"true"`
+	InstanceID               *string `locationName:"InstanceId" type:"string" required:"true"`
 	ShouldRespectGracePeriod *bool   `type:"boolean"`
 
 	metadataSetInstanceHealthInput `json:"-", xml:"-"`
 }
 
 type metadataSetInstanceHealthInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId,HealthStatus"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetInstanceHealthOutput struct {
@@ -2327,7 +2327,7 @@ type metadataSuspendedProcess struct {
 }
 
 type Tag struct {
-	Key               *string `type:"string"`
+	Key               *string `type:"string" required:"true"`
 	PropagateAtLaunch *bool   `type:"boolean"`
 	ResourceID        *string `locationName:"ResourceId" type:"string"`
 	ResourceType      *string `type:"string"`
@@ -2337,7 +2337,7 @@ type Tag struct {
 }
 
 type metadataTag struct {
-	SDKShapeTraits bool `type:"structure" required:"Key"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TagDescription struct {
@@ -2355,14 +2355,14 @@ type metadataTagDescription struct {
 }
 
 type TerminateInstanceInAutoScalingGroupInput struct {
-	InstanceID                     *string `locationName:"InstanceId" type:"string"`
-	ShouldDecrementDesiredCapacity *bool   `type:"boolean"`
+	InstanceID                     *string `locationName:"InstanceId" type:"string" required:"true"`
+	ShouldDecrementDesiredCapacity *bool   `type:"boolean" required:"true"`
 
 	metadataTerminateInstanceInAutoScalingGroupInput `json:"-", xml:"-"`
 }
 
 type metadataTerminateInstanceInAutoScalingGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId,ShouldDecrementDesiredCapacity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TerminateInstanceInAutoScalingGroupOutput struct {
@@ -2376,7 +2376,7 @@ type metadataTerminateInstanceInAutoScalingGroupOutput struct {
 }
 
 type UpdateAutoScalingGroupInput struct {
-	AutoScalingGroupName    *string   `type:"string"`
+	AutoScalingGroupName    *string   `type:"string" required:"true"`
 	AvailabilityZones       []*string `type:"list"`
 	DefaultCooldown         *int      `type:"integer"`
 	DesiredCapacity         *int      `type:"integer"`
@@ -2393,7 +2393,7 @@ type UpdateAutoScalingGroupInput struct {
 }
 
 type metadataUpdateAutoScalingGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AutoScalingGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateAutoScalingGroupOutput struct {

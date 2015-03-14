@@ -1235,15 +1235,15 @@ func (c *S3) UploadPartCopy(input *UploadPartCopyInput) (output *UploadPartCopyO
 var opUploadPartCopy *aws.Operation
 
 type AbortMultipartUploadInput struct {
-	Bucket   *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	Key      *string `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
-	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" json:"-" xml:"-"`
+	Bucket   *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Key      *string `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
+	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataAbortMultipartUploadInput `json:"-", xml:"-"`
 }
 
 type metadataAbortMultipartUploadInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket,Key,UploadId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AbortMultipartUploadOutput struct {
@@ -1335,16 +1335,16 @@ type metadataCommonPrefix struct {
 }
 
 type CompleteMultipartUploadInput struct {
-	Bucket          *string                   `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	Key             *string                   `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Bucket          *string                   `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Key             *string                   `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 	MultipartUpload *CompletedMultipartUpload `locationName:"CompleteMultipartUpload" type:"structure"`
-	UploadID        *string                   `location:"querystring" locationName:"uploadId" type:"string" json:"-" xml:"-"`
+	UploadID        *string                   `location:"querystring" locationName:"uploadId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataCompleteMultipartUploadInput `json:"-", xml:"-"`
 }
 
 type metadataCompleteMultipartUploadInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"MultipartUpload" required:"Bucket,Key,UploadId"`
+	SDKShapeTraits bool `type:"structure" payload:"MultipartUpload"`
 }
 
 type CompleteMultipartUploadOutput struct {
@@ -1398,13 +1398,13 @@ type metadataCondition struct {
 
 type CopyObjectInput struct {
 	ACL                            *string             `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
-	Bucket                         *string             `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket                         *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	CacheControl                   *string             `location:"header" locationName:"Cache-Control" type:"string" json:"-" xml:"-"`
 	ContentDisposition             *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
 	ContentEncoding                *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
 	ContentLanguage                *string             `location:"header" locationName:"Content-Language" type:"string" json:"-" xml:"-"`
 	ContentType                    *string             `location:"header" locationName:"Content-Type" type:"string" json:"-" xml:"-"`
-	CopySource                     *string             `location:"header" locationName:"x-amz-copy-source" type:"string" json:"-" xml:"-"`
+	CopySource                     *string             `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"json:"-" xml:"-"`
 	CopySourceIfMatch              *string             `location:"header" locationName:"x-amz-copy-source-if-match" type:"string" json:"-" xml:"-"`
 	CopySourceIfModifiedSince      *time.Time          `location:"header" locationName:"x-amz-copy-source-if-modified-since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
 	CopySourceIfNoneMatch          *string             `location:"header" locationName:"x-amz-copy-source-if-none-match" type:"string" json:"-" xml:"-"`
@@ -1417,7 +1417,7 @@ type CopyObjectInput struct {
 	GrantRead                      *string             `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
 	GrantReadACP                   *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string" json:"-" xml:"-"`
 	GrantWriteACP                  *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string" json:"-" xml:"-"`
-	Key                            *string             `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Key                            *string             `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 	Metadata                       *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map" json:"-" xml:"-"`
 	MetadataDirective              *string             `location:"header" locationName:"x-amz-metadata-directive" type:"string" json:"-" xml:"-"`
 	SSECustomerAlgorithm           *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
@@ -1432,7 +1432,7 @@ type CopyObjectInput struct {
 }
 
 type metadataCopyObjectInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket,CopySource,Key"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CopyObjectOutput struct {
@@ -1485,7 +1485,7 @@ type metadataCreateBucketConfiguration struct {
 
 type CreateBucketInput struct {
 	ACL                       *string                    `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
-	Bucket                    *string                    `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket                    *string                    `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	CreateBucketConfiguration *CreateBucketConfiguration `locationName:"CreateBucketConfiguration" type:"structure"`
 	GrantFullControl          *string                    `location:"header" locationName:"x-amz-grant-full-control" type:"string" json:"-" xml:"-"`
 	GrantRead                 *string                    `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
@@ -1497,7 +1497,7 @@ type CreateBucketInput struct {
 }
 
 type metadataCreateBucketInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CreateBucketConfiguration" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure" payload:"CreateBucketConfiguration"`
 }
 
 type CreateBucketOutput struct {
@@ -1512,7 +1512,7 @@ type metadataCreateBucketOutput struct {
 
 type CreateMultipartUploadInput struct {
 	ACL                     *string             `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
-	Bucket                  *string             `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket                  *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string" json:"-" xml:"-"`
 	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
 	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
@@ -1523,7 +1523,7 @@ type CreateMultipartUploadInput struct {
 	GrantRead               *string             `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
 	GrantReadACP            *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string" json:"-" xml:"-"`
 	GrantWriteACP           *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string" json:"-" xml:"-"`
-	Key                     *string             `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Key                     *string             `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map" json:"-" xml:"-"`
 	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
 	SSECustomerKey          *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
@@ -1537,7 +1537,7 @@ type CreateMultipartUploadInput struct {
 }
 
 type metadataCreateMultipartUploadInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket,Key"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateMultipartUploadOutput struct {
@@ -1557,24 +1557,24 @@ type metadataCreateMultipartUploadOutput struct {
 }
 
 type Delete struct {
-	Objects []*ObjectIdentifier `locationName:"Object" type:"list" flattened:"true"`
+	Objects []*ObjectIdentifier `locationName:"Object" type:"list" flattened:"true" required:"true"`
 	Quiet   *bool               `type:"boolean"`
 
 	metadataDelete `json:"-", xml:"-"`
 }
 
 type metadataDelete struct {
-	SDKShapeTraits bool `type:"structure" required:"Objects"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteBucketCORSInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeleteBucketCORSInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteBucketCORSInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteBucketCORSOutput struct {
@@ -1586,23 +1586,23 @@ type metadataDeleteBucketCORSOutput struct {
 }
 
 type DeleteBucketInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeleteBucketInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteBucketInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteBucketLifecycleInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeleteBucketLifecycleInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteBucketLifecycleInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteBucketLifecycleOutput struct {
@@ -1622,13 +1622,13 @@ type metadataDeleteBucketOutput struct {
 }
 
 type DeleteBucketPolicyInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeleteBucketPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteBucketPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteBucketPolicyOutput struct {
@@ -1640,13 +1640,13 @@ type metadataDeleteBucketPolicyOutput struct {
 }
 
 type DeleteBucketTaggingInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeleteBucketTaggingInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteBucketTaggingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteBucketTaggingOutput struct {
@@ -1658,13 +1658,13 @@ type metadataDeleteBucketTaggingOutput struct {
 }
 
 type DeleteBucketWebsiteInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeleteBucketWebsiteInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteBucketWebsiteInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteBucketWebsiteOutput struct {
@@ -1690,8 +1690,8 @@ type metadataDeleteMarkerEntry struct {
 }
 
 type DeleteObjectInput struct {
-	Bucket    *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	Key       *string `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Bucket    *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Key       *string `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 	MFA       *string `location:"header" locationName:"x-amz-mfa" type:"string" json:"-" xml:"-"`
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string" json:"-" xml:"-"`
 
@@ -1699,7 +1699,7 @@ type DeleteObjectInput struct {
 }
 
 type metadataDeleteObjectInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket,Key"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteObjectOutput struct {
@@ -1714,15 +1714,15 @@ type metadataDeleteObjectOutput struct {
 }
 
 type DeleteObjectsInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	Delete *Delete `locationName:"Delete" type:"structure"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Delete *Delete `locationName:"Delete" type:"structure" required:"true"`
 	MFA    *string `location:"header" locationName:"x-amz-mfa" type:"string" json:"-" xml:"-"`
 
 	metadataDeleteObjectsInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteObjectsInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Delete" required:"Bucket,Delete"`
+	SDKShapeTraits bool `type:"structure" payload:"Delete"`
 }
 
 type DeleteObjectsOutput struct {
@@ -1763,23 +1763,23 @@ type metadataError struct {
 }
 
 type ErrorDocument struct {
-	Key *string `type:"string"`
+	Key *string `type:"string" required:"true"`
 
 	metadataErrorDocument `json:"-", xml:"-"`
 }
 
 type metadataErrorDocument struct {
-	SDKShapeTraits bool `type:"structure" required:"Key"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketACLInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetBucketACLInput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketACLInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketACLOutput struct {
@@ -1794,13 +1794,13 @@ type metadataGetBucketACLOutput struct {
 }
 
 type GetBucketCORSInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetBucketCORSInput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketCORSInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketCORSOutput struct {
@@ -1814,13 +1814,13 @@ type metadataGetBucketCORSOutput struct {
 }
 
 type GetBucketLifecycleInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetBucketLifecycleInput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketLifecycleInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketLifecycleOutput struct {
@@ -1834,13 +1834,13 @@ type metadataGetBucketLifecycleOutput struct {
 }
 
 type GetBucketLocationInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetBucketLocationInput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketLocationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketLocationOutput struct {
@@ -1854,13 +1854,13 @@ type metadataGetBucketLocationOutput struct {
 }
 
 type GetBucketLoggingInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetBucketLoggingInput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketLoggingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketLoggingOutput struct {
@@ -1874,13 +1874,13 @@ type metadataGetBucketLoggingOutput struct {
 }
 
 type GetBucketNotificationInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetBucketNotificationInput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketNotificationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketNotificationOutput struct {
@@ -1896,13 +1896,13 @@ type metadataGetBucketNotificationOutput struct {
 }
 
 type GetBucketPolicyInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetBucketPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketPolicyOutput struct {
@@ -1916,13 +1916,13 @@ type metadataGetBucketPolicyOutput struct {
 }
 
 type GetBucketRequestPaymentInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetBucketRequestPaymentInput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketRequestPaymentInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketRequestPaymentOutput struct {
@@ -1936,33 +1936,33 @@ type metadataGetBucketRequestPaymentOutput struct {
 }
 
 type GetBucketTaggingInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetBucketTaggingInput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketTaggingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketTaggingOutput struct {
-	TagSet []*Tag `locationNameList:"Tag" type:"list"`
+	TagSet []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
 	metadataGetBucketTaggingOutput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketTaggingOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"TagSet"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketVersioningInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetBucketVersioningInput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketVersioningInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketVersioningOutput struct {
@@ -1977,13 +1977,13 @@ type metadataGetBucketVersioningOutput struct {
 }
 
 type GetBucketWebsiteInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetBucketWebsiteInput `json:"-", xml:"-"`
 }
 
 type metadataGetBucketWebsiteInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetBucketWebsiteOutput struct {
@@ -2000,15 +2000,15 @@ type metadataGetBucketWebsiteOutput struct {
 }
 
 type GetObjectACLInput struct {
-	Bucket    *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	Key       *string `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Bucket    *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Key       *string `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string" json:"-" xml:"-"`
 
 	metadataGetObjectACLInput `json:"-", xml:"-"`
 }
 
 type metadataGetObjectACLInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket,Key"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetObjectACLOutput struct {
@@ -2023,12 +2023,12 @@ type metadataGetObjectACLOutput struct {
 }
 
 type GetObjectInput struct {
-	Bucket                     *string    `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket                     *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	IfMatch                    *string    `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
 	IfModifiedSince            *time.Time `location:"header" locationName:"If-Modified-Since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
 	IfNoneMatch                *string    `location:"header" locationName:"If-None-Match" type:"string" json:"-" xml:"-"`
 	IfUnmodifiedSince          *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	Key                        *string    `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Key                        *string    `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 	Range                      *string    `location:"header" locationName:"Range" type:"string" json:"-" xml:"-"`
 	ResponseCacheControl       *string    `location:"querystring" locationName:"response-cache-control" type:"string" json:"-" xml:"-"`
 	ResponseContentDisposition *string    `location:"querystring" locationName:"response-content-disposition" type:"string" json:"-" xml:"-"`
@@ -2045,7 +2045,7 @@ type GetObjectInput struct {
 }
 
 type metadataGetObjectInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket,Key"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetObjectOutput struct {
@@ -2080,14 +2080,14 @@ type metadataGetObjectOutput struct {
 }
 
 type GetObjectTorrentInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	Key    *string `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Key    *string `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetObjectTorrentInput `json:"-", xml:"-"`
 }
 
 type metadataGetObjectTorrentInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket,Key"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetObjectTorrentOutput struct {
@@ -2115,24 +2115,24 @@ type Grantee struct {
 	DisplayName  *string `type:"string"`
 	EmailAddress *string `type:"string"`
 	ID           *string `type:"string"`
-	Type         *string `locationName:"xsi:type" type:"string"`
+	Type         *string `locationName:"xsi:type" type:"string" required:"true"`
 	URI          *string `type:"string"`
 
 	metadataGrantee `json:"-", xml:"-"`
 }
 
 type metadataGrantee struct {
-	SDKShapeTraits bool `type:"structure" required:"Type" xmlPrefix:"xsi" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
+	SDKShapeTraits bool `type:"structure" xmlPrefix:"xsi" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
 }
 
 type HeadBucketInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataHeadBucketInput `json:"-", xml:"-"`
 }
 
 type metadataHeadBucketInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type HeadBucketOutput struct {
@@ -2144,12 +2144,12 @@ type metadataHeadBucketOutput struct {
 }
 
 type HeadObjectInput struct {
-	Bucket               *string    `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket               *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	IfMatch              *string    `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
 	IfModifiedSince      *time.Time `location:"header" locationName:"If-Modified-Since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
 	IfNoneMatch          *string    `location:"header" locationName:"If-None-Match" type:"string" json:"-" xml:"-"`
 	IfUnmodifiedSince    *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	Key                  *string    `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Key                  *string    `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 	Range                *string    `location:"header" locationName:"Range" type:"string" json:"-" xml:"-"`
 	SSECustomerAlgorithm *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
 	SSECustomerKey       *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
@@ -2160,7 +2160,7 @@ type HeadObjectInput struct {
 }
 
 type metadataHeadObjectInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket,Key"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type HeadObjectOutput struct {
@@ -2194,13 +2194,13 @@ type metadataHeadObjectOutput struct {
 }
 
 type IndexDocument struct {
-	Suffix *string `type:"string"`
+	Suffix *string `type:"string" required:"true"`
 
 	metadataIndexDocument `json:"-", xml:"-"`
 }
 
 type metadataIndexDocument struct {
-	SDKShapeTraits bool `type:"structure" required:"Suffix"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Initiator struct {
@@ -2215,13 +2215,13 @@ type metadataInitiator struct {
 }
 
 type LifecycleConfiguration struct {
-	Rules []*Rule `locationName:"Rule" type:"list" flattened:"true"`
+	Rules []*Rule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
 
 	metadataLifecycleConfiguration `json:"-", xml:"-"`
 }
 
 type metadataLifecycleConfiguration struct {
-	SDKShapeTraits bool `type:"structure" required:"Rules"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type LifecycleExpiration struct {
@@ -2255,7 +2255,7 @@ type metadataListBucketsOutput struct {
 }
 
 type ListMultipartUploadsInput struct {
-	Bucket         *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket         *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	Delimiter      *string `location:"querystring" locationName:"delimiter" type:"string" json:"-" xml:"-"`
 	EncodingType   *string `location:"querystring" locationName:"encoding-type" type:"string" json:"-" xml:"-"`
 	KeyMarker      *string `location:"querystring" locationName:"key-marker" type:"string" json:"-" xml:"-"`
@@ -2267,7 +2267,7 @@ type ListMultipartUploadsInput struct {
 }
 
 type metadataListMultipartUploadsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListMultipartUploadsOutput struct {
@@ -2292,7 +2292,7 @@ type metadataListMultipartUploadsOutput struct {
 }
 
 type ListObjectVersionsInput struct {
-	Bucket          *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket          *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	Delimiter       *string `location:"querystring" locationName:"delimiter" type:"string" json:"-" xml:"-"`
 	EncodingType    *string `location:"querystring" locationName:"encoding-type" type:"string" json:"-" xml:"-"`
 	KeyMarker       *string `location:"querystring" locationName:"key-marker" type:"string" json:"-" xml:"-"`
@@ -2304,7 +2304,7 @@ type ListObjectVersionsInput struct {
 }
 
 type metadataListObjectVersionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListObjectVersionsOutput struct {
@@ -2330,7 +2330,7 @@ type metadataListObjectVersionsOutput struct {
 }
 
 type ListObjectsInput struct {
-	Bucket       *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket       *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	Delimiter    *string `location:"querystring" locationName:"delimiter" type:"string" json:"-" xml:"-"`
 	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string" json:"-" xml:"-"`
 	Marker       *string `location:"querystring" locationName:"marker" type:"string" json:"-" xml:"-"`
@@ -2341,7 +2341,7 @@ type ListObjectsInput struct {
 }
 
 type metadataListObjectsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListObjectsOutput struct {
@@ -2364,17 +2364,17 @@ type metadataListObjectsOutput struct {
 }
 
 type ListPartsInput struct {
-	Bucket           *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	Key              *string `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Bucket           *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Key              *string `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 	MaxParts         *int    `location:"querystring" locationName:"max-parts" type:"integer" json:"-" xml:"-"`
 	PartNumberMarker *int    `location:"querystring" locationName:"part-number-marker" type:"integer" json:"-" xml:"-"`
-	UploadID         *string `location:"querystring" locationName:"uploadId" type:"string" json:"-" xml:"-"`
+	UploadID         *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataListPartsInput `json:"-", xml:"-"`
 }
 
 type metadataListPartsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket,Key,UploadId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListPartsOutput struct {
@@ -2473,14 +2473,14 @@ type metadataObject struct {
 }
 
 type ObjectIdentifier struct {
-	Key       *string `type:"string"`
+	Key       *string `type:"string" required:"true"`
 	VersionID *string `locationName:"VersionId" type:"string"`
 
 	metadataObjectIdentifier `json:"-", xml:"-"`
 }
 
 type metadataObjectIdentifier struct {
-	SDKShapeTraits bool `type:"structure" required:"Key"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ObjectVersion struct {
@@ -2527,7 +2527,7 @@ type metadataPart struct {
 type PutBucketACLInput struct {
 	ACL                 *string              `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
 	AccessControlPolicy *AccessControlPolicy `locationName:"AccessControlPolicy" type:"structure"`
-	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
 	GrantFullControl    *string              `location:"header" locationName:"x-amz-grant-full-control" type:"string" json:"-" xml:"-"`
 	GrantRead           *string              `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
@@ -2539,7 +2539,7 @@ type PutBucketACLInput struct {
 }
 
 type metadataPutBucketACLInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"AccessControlPolicy" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure" payload:"AccessControlPolicy"`
 }
 
 type PutBucketACLOutput struct {
@@ -2551,7 +2551,7 @@ type metadataPutBucketACLOutput struct {
 }
 
 type PutBucketCORSInput struct {
-	Bucket            *string            `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket            *string            `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	CORSConfiguration *CORSConfiguration `locationName:"CORSConfiguration" type:"structure"`
 	ContentMD5        *string            `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
 
@@ -2559,7 +2559,7 @@ type PutBucketCORSInput struct {
 }
 
 type metadataPutBucketCORSInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CORSConfiguration" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure" payload:"CORSConfiguration"`
 }
 
 type PutBucketCORSOutput struct {
@@ -2571,7 +2571,7 @@ type metadataPutBucketCORSOutput struct {
 }
 
 type PutBucketLifecycleInput struct {
-	Bucket                 *string                 `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket                 *string                 `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	ContentMD5             *string                 `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
 	LifecycleConfiguration *LifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure"`
 
@@ -2579,7 +2579,7 @@ type PutBucketLifecycleInput struct {
 }
 
 type metadataPutBucketLifecycleInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"LifecycleConfiguration" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure" payload:"LifecycleConfiguration"`
 }
 
 type PutBucketLifecycleOutput struct {
@@ -2591,15 +2591,15 @@ type metadataPutBucketLifecycleOutput struct {
 }
 
 type PutBucketLoggingInput struct {
-	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	BucketLoggingStatus *BucketLoggingStatus `locationName:"BucketLoggingStatus" type:"structure"`
+	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	BucketLoggingStatus *BucketLoggingStatus `locationName:"BucketLoggingStatus" type:"structure" required:"true"`
 	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
 
 	metadataPutBucketLoggingInput `json:"-", xml:"-"`
 }
 
 type metadataPutBucketLoggingInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"BucketLoggingStatus" required:"Bucket,BucketLoggingStatus"`
+	SDKShapeTraits bool `type:"structure" payload:"BucketLoggingStatus"`
 }
 
 type PutBucketLoggingOutput struct {
@@ -2611,15 +2611,15 @@ type metadataPutBucketLoggingOutput struct {
 }
 
 type PutBucketNotificationInput struct {
-	Bucket                    *string                    `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket                    *string                    `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	ContentMD5                *string                    `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	NotificationConfiguration *NotificationConfiguration `locationName:"NotificationConfiguration" type:"structure"`
+	NotificationConfiguration *NotificationConfiguration `locationName:"NotificationConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketNotificationInput `json:"-", xml:"-"`
 }
 
 type metadataPutBucketNotificationInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"NotificationConfiguration" required:"Bucket,NotificationConfiguration"`
+	SDKShapeTraits bool `type:"structure" payload:"NotificationConfiguration"`
 }
 
 type PutBucketNotificationOutput struct {
@@ -2631,15 +2631,15 @@ type metadataPutBucketNotificationOutput struct {
 }
 
 type PutBucketPolicyInput struct {
-	Bucket     *string `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket     *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	Policy     *string `type:"string"`
+	Policy     *string `type:"string" required:"true"`
 
 	metadataPutBucketPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataPutBucketPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Policy" required:"Bucket,Policy"`
+	SDKShapeTraits bool `type:"structure" payload:"Policy"`
 }
 
 type PutBucketPolicyOutput struct {
@@ -2651,15 +2651,15 @@ type metadataPutBucketPolicyOutput struct {
 }
 
 type PutBucketRequestPaymentInput struct {
-	Bucket                      *string                      `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket                      *string                      `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	ContentMD5                  *string                      `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	RequestPaymentConfiguration *RequestPaymentConfiguration `locationName:"RequestPaymentConfiguration" type:"structure"`
+	RequestPaymentConfiguration *RequestPaymentConfiguration `locationName:"RequestPaymentConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketRequestPaymentInput `json:"-", xml:"-"`
 }
 
 type metadataPutBucketRequestPaymentInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"RequestPaymentConfiguration" required:"Bucket,RequestPaymentConfiguration"`
+	SDKShapeTraits bool `type:"structure" payload:"RequestPaymentConfiguration"`
 }
 
 type PutBucketRequestPaymentOutput struct {
@@ -2671,15 +2671,15 @@ type metadataPutBucketRequestPaymentOutput struct {
 }
 
 type PutBucketTaggingInput struct {
-	Bucket     *string  `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket     *string  `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	ContentMD5 *string  `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	Tagging    *Tagging `locationName:"Tagging" type:"structure"`
+	Tagging    *Tagging `locationName:"Tagging" type:"structure" required:"true"`
 
 	metadataPutBucketTaggingInput `json:"-", xml:"-"`
 }
 
 type metadataPutBucketTaggingInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Tagging" required:"Bucket,Tagging"`
+	SDKShapeTraits bool `type:"structure" payload:"Tagging"`
 }
 
 type PutBucketTaggingOutput struct {
@@ -2691,16 +2691,16 @@ type metadataPutBucketTaggingOutput struct {
 }
 
 type PutBucketVersioningInput struct {
-	Bucket                  *string                  `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket                  *string                  `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	ContentMD5              *string                  `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
 	MFA                     *string                  `location:"header" locationName:"x-amz-mfa" type:"string" json:"-" xml:"-"`
-	VersioningConfiguration *VersioningConfiguration `locationName:"VersioningConfiguration" type:"structure"`
+	VersioningConfiguration *VersioningConfiguration `locationName:"VersioningConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketVersioningInput `json:"-", xml:"-"`
 }
 
 type metadataPutBucketVersioningInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"VersioningConfiguration" required:"Bucket,VersioningConfiguration"`
+	SDKShapeTraits bool `type:"structure" payload:"VersioningConfiguration"`
 }
 
 type PutBucketVersioningOutput struct {
@@ -2712,15 +2712,15 @@ type metadataPutBucketVersioningOutput struct {
 }
 
 type PutBucketWebsiteInput struct {
-	Bucket               *string               `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket               *string               `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	ContentMD5           *string               `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	WebsiteConfiguration *WebsiteConfiguration `locationName:"WebsiteConfiguration" type:"structure"`
+	WebsiteConfiguration *WebsiteConfiguration `locationName:"WebsiteConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketWebsiteInput `json:"-", xml:"-"`
 }
 
 type metadataPutBucketWebsiteInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"WebsiteConfiguration" required:"Bucket,WebsiteConfiguration"`
+	SDKShapeTraits bool `type:"structure" payload:"WebsiteConfiguration"`
 }
 
 type PutBucketWebsiteOutput struct {
@@ -2734,20 +2734,20 @@ type metadataPutBucketWebsiteOutput struct {
 type PutObjectACLInput struct {
 	ACL                 *string              `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
 	AccessControlPolicy *AccessControlPolicy `locationName:"AccessControlPolicy" type:"structure"`
-	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
 	GrantFullControl    *string              `location:"header" locationName:"x-amz-grant-full-control" type:"string" json:"-" xml:"-"`
 	GrantRead           *string              `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
 	GrantReadACP        *string              `location:"header" locationName:"x-amz-grant-read-acp" type:"string" json:"-" xml:"-"`
 	GrantWrite          *string              `location:"header" locationName:"x-amz-grant-write" type:"string" json:"-" xml:"-"`
 	GrantWriteACP       *string              `location:"header" locationName:"x-amz-grant-write-acp" type:"string" json:"-" xml:"-"`
-	Key                 *string              `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Key                 *string              `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataPutObjectACLInput `json:"-", xml:"-"`
 }
 
 type metadataPutObjectACLInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"AccessControlPolicy" required:"Bucket,Key"`
+	SDKShapeTraits bool `type:"structure" payload:"AccessControlPolicy"`
 }
 
 type PutObjectACLOutput struct {
@@ -2761,7 +2761,7 @@ type metadataPutObjectACLOutput struct {
 type PutObjectInput struct {
 	ACL                     *string             `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
 	Body                    io.ReadSeeker       `type:"blob"`
-	Bucket                  *string             `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket                  *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string" json:"-" xml:"-"`
 	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
 	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
@@ -2774,7 +2774,7 @@ type PutObjectInput struct {
 	GrantRead               *string             `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
 	GrantReadACP            *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string" json:"-" xml:"-"`
 	GrantWriteACP           *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string" json:"-" xml:"-"`
-	Key                     *string             `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Key                     *string             `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map" json:"-" xml:"-"`
 	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
 	SSECustomerKey          *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
@@ -2788,7 +2788,7 @@ type PutObjectInput struct {
 }
 
 type metadataPutObjectInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Body" required:"Bucket,Key"`
+	SDKShapeTraits bool `type:"structure" payload:"Body"`
 }
 
 type PutObjectOutput struct {
@@ -2835,29 +2835,29 @@ type metadataRedirect struct {
 }
 
 type RedirectAllRequestsTo struct {
-	HostName *string `type:"string"`
+	HostName *string `type:"string" required:"true"`
 	Protocol *string `type:"string"`
 
 	metadataRedirectAllRequestsTo `json:"-", xml:"-"`
 }
 
 type metadataRedirectAllRequestsTo struct {
-	SDKShapeTraits bool `type:"structure" required:"HostName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RequestPaymentConfiguration struct {
-	Payer *string `type:"string"`
+	Payer *string `type:"string" required:"true"`
 
 	metadataRequestPaymentConfiguration `json:"-", xml:"-"`
 }
 
 type metadataRequestPaymentConfiguration struct {
-	SDKShapeTraits bool `type:"structure" required:"Payer"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RestoreObjectInput struct {
-	Bucket         *string         `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	Key            *string         `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
+	Bucket         *string         `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Key            *string         `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
 	RestoreRequest *RestoreRequest `locationName:"RestoreRequest" type:"structure"`
 	VersionID      *string         `location:"querystring" locationName:"versionId" type:"string" json:"-" xml:"-"`
 
@@ -2865,7 +2865,7 @@ type RestoreObjectInput struct {
 }
 
 type metadataRestoreObjectInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"RestoreRequest" required:"Bucket,Key"`
+	SDKShapeTraits bool `type:"structure" payload:"RestoreRequest"`
 }
 
 type RestoreObjectOutput struct {
@@ -2877,24 +2877,24 @@ type metadataRestoreObjectOutput struct {
 }
 
 type RestoreRequest struct {
-	Days *int `type:"integer"`
+	Days *int `type:"integer" required:"true"`
 
 	metadataRestoreRequest `json:"-", xml:"-"`
 }
 
 type metadataRestoreRequest struct {
-	SDKShapeTraits bool `type:"structure" required:"Days"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RoutingRule struct {
 	Condition *Condition `type:"structure"`
-	Redirect  *Redirect  `type:"structure"`
+	Redirect  *Redirect  `type:"structure" required:"true"`
 
 	metadataRoutingRule `json:"-", xml:"-"`
 }
 
 type metadataRoutingRule struct {
-	SDKShapeTraits bool `type:"structure" required:"Redirect"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Rule struct {
@@ -2902,36 +2902,36 @@ type Rule struct {
 	ID                          *string                      `type:"string"`
 	NoncurrentVersionExpiration *NoncurrentVersionExpiration `type:"structure"`
 	NoncurrentVersionTransition *NoncurrentVersionTransition `type:"structure"`
-	Prefix                      *string                      `type:"string"`
-	Status                      *string                      `type:"string"`
+	Prefix                      *string                      `type:"string" required:"true"`
+	Status                      *string                      `type:"string" required:"true"`
 	Transition                  *Transition                  `type:"structure"`
 
 	metadataRule `json:"-", xml:"-"`
 }
 
 type metadataRule struct {
-	SDKShapeTraits bool `type:"structure" required:"Prefix,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Tag struct {
-	Key   *string `type:"string"`
-	Value *string `type:"string"`
+	Key   *string `type:"string" required:"true"`
+	Value *string `type:"string" required:"true"`
 
 	metadataTag `json:"-", xml:"-"`
 }
 
 type metadataTag struct {
-	SDKShapeTraits bool `type:"structure" required:"Key,Value"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Tagging struct {
-	TagSet []*Tag `locationNameList:"Tag" type:"list"`
+	TagSet []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
 	metadataTagging `json:"-", xml:"-"`
 }
 
 type metadataTagging struct {
-	SDKShapeTraits bool `type:"structure" required:"TagSet"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TargetGrant struct {
@@ -2971,8 +2971,8 @@ type metadataTransition struct {
 }
 
 type UploadPartCopyInput struct {
-	Bucket                         *string    `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
-	CopySource                     *string    `location:"header" locationName:"x-amz-copy-source" type:"string" json:"-" xml:"-"`
+	Bucket                         *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	CopySource                     *string    `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"json:"-" xml:"-"`
 	CopySourceIfMatch              *string    `location:"header" locationName:"x-amz-copy-source-if-match" type:"string" json:"-" xml:"-"`
 	CopySourceIfModifiedSince      *time.Time `location:"header" locationName:"x-amz-copy-source-if-modified-since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
 	CopySourceIfNoneMatch          *string    `location:"header" locationName:"x-amz-copy-source-if-none-match" type:"string" json:"-" xml:"-"`
@@ -2981,18 +2981,18 @@ type UploadPartCopyInput struct {
 	CopySourceSSECustomerAlgorithm *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
 	CopySourceSSECustomerKey       *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
 	CopySourceSSECustomerKeyMD5    *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	Key                            *string    `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
-	PartNumber                     *int       `location:"querystring" locationName:"partNumber" type:"integer" json:"-" xml:"-"`
+	Key                            *string    `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
+	PartNumber                     *int       `location:"querystring" locationName:"partNumber" type:"integer" required:"true"json:"-" xml:"-"`
 	SSECustomerAlgorithm           *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
 	SSECustomerKey                 *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
 	SSECustomerKeyMD5              *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	UploadID                       *string    `location:"querystring" locationName:"uploadId" type:"string" json:"-" xml:"-"`
+	UploadID                       *string    `location:"querystring" locationName:"uploadId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataUploadPartCopyInput `json:"-", xml:"-"`
 }
 
 type metadataUploadPartCopyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket,CopySource,Key,PartNumber,UploadId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UploadPartCopyOutput struct {
@@ -3012,21 +3012,21 @@ type metadataUploadPartCopyOutput struct {
 
 type UploadPartInput struct {
 	Body                 io.ReadSeeker `type:"blob"`
-	Bucket               *string       `location:"uri" locationName:"Bucket" type:"string" json:"-" xml:"-"`
+	Bucket               *string       `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	ContentLength        *int          `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
 	ContentMD5           *string       `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	Key                  *string       `location:"uri" locationName:"Key" type:"string" json:"-" xml:"-"`
-	PartNumber           *int          `location:"querystring" locationName:"partNumber" type:"integer" json:"-" xml:"-"`
+	Key                  *string       `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
+	PartNumber           *int          `location:"querystring" locationName:"partNumber" type:"integer" required:"true"json:"-" xml:"-"`
 	SSECustomerAlgorithm *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
 	SSECustomerKey       *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
 	SSECustomerKeyMD5    *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	UploadID             *string       `location:"querystring" locationName:"uploadId" type:"string" json:"-" xml:"-"`
+	UploadID             *string       `location:"querystring" locationName:"uploadId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataUploadPartInput `json:"-", xml:"-"`
 }
 
 type metadataUploadPartInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Body" required:"Bucket,Key,PartNumber,UploadId"`
+	SDKShapeTraits bool `type:"structure" payload:"Body"`
 }
 
 type UploadPartOutput struct {

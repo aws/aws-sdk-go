@@ -434,13 +434,13 @@ func (c *CloudFormation) ValidateTemplate(input *ValidateTemplateInput) (output 
 var opValidateTemplate *aws.Operation
 
 type CancelUpdateStackInput struct {
-	StackName *string `type:"string"`
+	StackName *string `type:"string" required:"true"`
 
 	metadataCancelUpdateStackInput `json:"-", xml:"-"`
 }
 
 type metadataCancelUpdateStackInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CancelUpdateStackOutput struct {
@@ -457,7 +457,7 @@ type CreateStackInput struct {
 	NotificationARNs []*string    `type:"list"`
 	OnFailure        *string      `type:"string"`
 	Parameters       []*Parameter `type:"list"`
-	StackName        *string      `type:"string"`
+	StackName        *string      `type:"string" required:"true"`
 	StackPolicyBody  *string      `type:"string"`
 	StackPolicyURL   *string      `type:"string"`
 	Tags             []*Tag       `type:"list"`
@@ -469,7 +469,7 @@ type CreateStackInput struct {
 }
 
 type metadataCreateStackInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateStackOutput struct {
@@ -483,13 +483,13 @@ type metadataCreateStackOutput struct {
 }
 
 type DeleteStackInput struct {
-	StackName *string `type:"string"`
+	StackName *string `type:"string" required:"true"`
 
 	metadataDeleteStackInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteStackInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteStackOutput struct {
@@ -523,14 +523,14 @@ type metadataDescribeStackEventsOutput struct {
 }
 
 type DescribeStackResourceInput struct {
-	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string"`
-	StackName         *string `type:"string"`
+	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
+	StackName         *string `type:"string" required:"true"`
 
 	metadataDescribeStackResourceInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStackResourceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName,LogicalResourceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStackResourceOutput struct {
@@ -610,13 +610,13 @@ type metadataEstimateTemplateCostOutput struct {
 }
 
 type GetStackPolicyInput struct {
-	StackName *string `type:"string"`
+	StackName *string `type:"string" required:"true"`
 
 	metadataGetStackPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataGetStackPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetStackPolicyOutput struct {
@@ -630,13 +630,13 @@ type metadataGetStackPolicyOutput struct {
 }
 
 type GetTemplateInput struct {
-	StackName *string `type:"string"`
+	StackName *string `type:"string" required:"true"`
 
 	metadataGetTemplateInput `json:"-", xml:"-"`
 }
 
 type metadataGetTemplateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetTemplateOutput struct {
@@ -677,13 +677,13 @@ type metadataGetTemplateSummaryOutput struct {
 
 type ListStackResourcesInput struct {
 	NextToken *string `type:"string"`
-	StackName *string `type:"string"`
+	StackName *string `type:"string" required:"true"`
 
 	metadataListStackResourcesInput `json:"-", xml:"-"`
 }
 
 type metadataListStackResourcesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListStackResourcesOutput struct {
@@ -758,7 +758,7 @@ type metadataParameterDeclaration struct {
 }
 
 type SetStackPolicyInput struct {
-	StackName       *string `type:"string"`
+	StackName       *string `type:"string" required:"true"`
 	StackPolicyBody *string `type:"string"`
 	StackPolicyURL  *string `type:"string"`
 
@@ -766,7 +766,7 @@ type SetStackPolicyInput struct {
 }
 
 type metadataSetStackPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetStackPolicyOutput struct {
@@ -778,16 +778,16 @@ type metadataSetStackPolicyOutput struct {
 }
 
 type SignalResourceInput struct {
-	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string"`
-	StackName         *string `type:"string"`
-	Status            *string `type:"string"`
-	UniqueID          *string `locationName:"UniqueId" type:"string"`
+	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
+	StackName         *string `type:"string" required:"true"`
+	Status            *string `type:"string" required:"true"`
+	UniqueID          *string `locationName:"UniqueId" type:"string" required:"true"`
 
 	metadataSignalResourceInput `json:"-", xml:"-"`
 }
 
 type metadataSignalResourceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName,LogicalResourceId,UniqueId,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SignalResourceOutput struct {
@@ -800,7 +800,7 @@ type metadataSignalResourceOutput struct {
 
 type Stack struct {
 	Capabilities      []*string    `type:"list"`
-	CreationTime      *time.Time   `type:"timestamp" timestampFormat:"iso8601"`
+	CreationTime      *time.Time   `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 	Description       *string      `type:"string"`
 	DisableRollback   *bool        `type:"boolean"`
 	LastUpdatedTime   *time.Time   `type:"timestamp" timestampFormat:"iso8601"`
@@ -808,8 +808,8 @@ type Stack struct {
 	Outputs           []*Output    `type:"list"`
 	Parameters        []*Parameter `type:"list"`
 	StackID           *string      `locationName:"StackId" type:"string"`
-	StackName         *string      `type:"string"`
-	StackStatus       *string      `type:"string"`
+	StackName         *string      `type:"string" required:"true"`
+	StackStatus       *string      `type:"string" required:"true"`
 	StackStatusReason *string      `type:"string"`
 	Tags              []*Tag       `type:"list"`
 	TimeoutInMinutes  *int         `type:"integer"`
@@ -818,55 +818,55 @@ type Stack struct {
 }
 
 type metadataStack struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName,CreationTime,StackStatus"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StackEvent struct {
-	EventID              *string    `locationName:"EventId" type:"string"`
+	EventID              *string    `locationName:"EventId" type:"string" required:"true"`
 	LogicalResourceID    *string    `locationName:"LogicalResourceId" type:"string"`
 	PhysicalResourceID   *string    `locationName:"PhysicalResourceId" type:"string"`
 	ResourceProperties   *string    `type:"string"`
 	ResourceStatus       *string    `type:"string"`
 	ResourceStatusReason *string    `type:"string"`
 	ResourceType         *string    `type:"string"`
-	StackID              *string    `locationName:"StackId" type:"string"`
-	StackName            *string    `type:"string"`
-	Timestamp            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	StackID              *string    `locationName:"StackId" type:"string" required:"true"`
+	StackName            *string    `type:"string" required:"true"`
+	Timestamp            *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	metadataStackEvent `json:"-", xml:"-"`
 }
 
 type metadataStackEvent struct {
-	SDKShapeTraits bool `type:"structure" required:"StackId,EventId,StackName,Timestamp"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StackResource struct {
 	Description          *string    `type:"string"`
-	LogicalResourceID    *string    `locationName:"LogicalResourceId" type:"string"`
+	LogicalResourceID    *string    `locationName:"LogicalResourceId" type:"string" required:"true"`
 	PhysicalResourceID   *string    `locationName:"PhysicalResourceId" type:"string"`
-	ResourceStatus       *string    `type:"string"`
+	ResourceStatus       *string    `type:"string" required:"true"`
 	ResourceStatusReason *string    `type:"string"`
-	ResourceType         *string    `type:"string"`
+	ResourceType         *string    `type:"string" required:"true"`
 	StackID              *string    `locationName:"StackId" type:"string"`
 	StackName            *string    `type:"string"`
-	Timestamp            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	Timestamp            *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	metadataStackResource `json:"-", xml:"-"`
 }
 
 type metadataStackResource struct {
-	SDKShapeTraits bool `type:"structure" required:"LogicalResourceId,ResourceType,Timestamp,ResourceStatus"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StackResourceDetail struct {
 	Description          *string    `type:"string"`
-	LastUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	LogicalResourceID    *string    `locationName:"LogicalResourceId" type:"string"`
+	LastUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	LogicalResourceID    *string    `locationName:"LogicalResourceId" type:"string" required:"true"`
 	Metadata             *string    `type:"string"`
 	PhysicalResourceID   *string    `locationName:"PhysicalResourceId" type:"string"`
-	ResourceStatus       *string    `type:"string"`
+	ResourceStatus       *string    `type:"string" required:"true"`
 	ResourceStatusReason *string    `type:"string"`
-	ResourceType         *string    `type:"string"`
+	ResourceType         *string    `type:"string" required:"true"`
 	StackID              *string    `locationName:"StackId" type:"string"`
 	StackName            *string    `type:"string"`
 
@@ -874,31 +874,31 @@ type StackResourceDetail struct {
 }
 
 type metadataStackResourceDetail struct {
-	SDKShapeTraits bool `type:"structure" required:"LogicalResourceId,ResourceType,LastUpdatedTimestamp,ResourceStatus"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StackResourceSummary struct {
-	LastUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	LogicalResourceID    *string    `locationName:"LogicalResourceId" type:"string"`
+	LastUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	LogicalResourceID    *string    `locationName:"LogicalResourceId" type:"string" required:"true"`
 	PhysicalResourceID   *string    `locationName:"PhysicalResourceId" type:"string"`
-	ResourceStatus       *string    `type:"string"`
+	ResourceStatus       *string    `type:"string" required:"true"`
 	ResourceStatusReason *string    `type:"string"`
-	ResourceType         *string    `type:"string"`
+	ResourceType         *string    `type:"string" required:"true"`
 
 	metadataStackResourceSummary `json:"-", xml:"-"`
 }
 
 type metadataStackResourceSummary struct {
-	SDKShapeTraits bool `type:"structure" required:"LogicalResourceId,ResourceType,LastUpdatedTimestamp,ResourceStatus"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StackSummary struct {
-	CreationTime        *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	CreationTime        *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 	DeletionTime        *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	LastUpdatedTime     *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	StackID             *string    `locationName:"StackId" type:"string"`
-	StackName           *string    `type:"string"`
-	StackStatus         *string    `type:"string"`
+	StackName           *string    `type:"string" required:"true"`
+	StackStatus         *string    `type:"string" required:"true"`
 	StackStatusReason   *string    `type:"string"`
 	TemplateDescription *string    `type:"string"`
 
@@ -906,7 +906,7 @@ type StackSummary struct {
 }
 
 type metadataStackSummary struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName,CreationTime,StackStatus"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Tag struct {
@@ -937,7 +937,7 @@ type UpdateStackInput struct {
 	Capabilities                []*string    `type:"list"`
 	NotificationARNs            []*string    `type:"list"`
 	Parameters                  []*Parameter `type:"list"`
-	StackName                   *string      `type:"string"`
+	StackName                   *string      `type:"string" required:"true"`
 	StackPolicyBody             *string      `type:"string"`
 	StackPolicyDuringUpdateBody *string      `type:"string"`
 	StackPolicyDuringUpdateURL  *string      `type:"string"`
@@ -950,7 +950,7 @@ type UpdateStackInput struct {
 }
 
 type metadataUpdateStackInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StackName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateStackOutput struct {

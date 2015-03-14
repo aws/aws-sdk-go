@@ -492,13 +492,13 @@ var opInputService6TestCaseOperation1 *aws.Operation
 type InputService6TestShapeInputService6TestCaseOperation1Input struct {
 	Body      []byte  `locationName:"body" type:"blob" json:"body,omitempty"`
 	Checksum  *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string" json:"-" xml:"-"`
-	VaultName *string `location:"uri" locationName:"vaultName" type:"string" json:"-" xml:"-"`
+	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataInputService6TestShapeInputService6TestCaseOperation1Input `json:"-", xml:"-"`
 }
 
 type metadataInputService6TestShapeInputService6TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" payload:"Body" required:"vaultName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" payload:"Body" json:",omitempty"`
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Output struct {

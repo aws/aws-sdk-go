@@ -358,13 +358,13 @@ var opResolveCase *aws.Operation
 
 type AddAttachmentsToSetInput struct {
 	AttachmentSetID *string       `locationName:"attachmentSetId" type:"string" json:"attachmentSetId,omitempty"`
-	Attachments     []*Attachment `locationName:"attachments" type:"list" json:"attachments,omitempty"`
+	Attachments     []*Attachment `locationName:"attachments" type:"list" required:"true"json:"attachments,omitempty"`
 
 	metadataAddAttachmentsToSetInput `json:"-", xml:"-"`
 }
 
 type metadataAddAttachmentsToSetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"attachments" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type AddAttachmentsToSetOutput struct {
@@ -382,13 +382,13 @@ type AddCommunicationToCaseInput struct {
 	AttachmentSetID   *string   `locationName:"attachmentSetId" type:"string" json:"attachmentSetId,omitempty"`
 	CCEmailAddresses  []*string `locationName:"ccEmailAddresses" type:"list" json:"ccEmailAddresses,omitempty"`
 	CaseID            *string   `locationName:"caseId" type:"string" json:"caseId,omitempty"`
-	CommunicationBody *string   `locationName:"communicationBody" type:"string" json:"communicationBody,omitempty"`
+	CommunicationBody *string   `locationName:"communicationBody" type:"string" required:"true"json:"communicationBody,omitempty"`
 
 	metadataAddCommunicationToCaseInput `json:"-", xml:"-"`
 }
 
 type metadataAddCommunicationToCaseInput struct {
-	SDKShapeTraits bool `type:"structure" required:"communicationBody" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type AddCommunicationToCaseOutput struct {
@@ -473,18 +473,18 @@ type CreateCaseInput struct {
 	AttachmentSetID   *string   `locationName:"attachmentSetId" type:"string" json:"attachmentSetId,omitempty"`
 	CCEmailAddresses  []*string `locationName:"ccEmailAddresses" type:"list" json:"ccEmailAddresses,omitempty"`
 	CategoryCode      *string   `locationName:"categoryCode" type:"string" json:"categoryCode,omitempty"`
-	CommunicationBody *string   `locationName:"communicationBody" type:"string" json:"communicationBody,omitempty"`
+	CommunicationBody *string   `locationName:"communicationBody" type:"string" required:"true"json:"communicationBody,omitempty"`
 	IssueType         *string   `locationName:"issueType" type:"string" json:"issueType,omitempty"`
 	Language          *string   `locationName:"language" type:"string" json:"language,omitempty"`
 	ServiceCode       *string   `locationName:"serviceCode" type:"string" json:"serviceCode,omitempty"`
 	SeverityCode      *string   `locationName:"severityCode" type:"string" json:"severityCode,omitempty"`
-	Subject           *string   `locationName:"subject" type:"string" json:"subject,omitempty"`
+	Subject           *string   `locationName:"subject" type:"string" required:"true"json:"subject,omitempty"`
 
 	metadataCreateCaseInput `json:"-", xml:"-"`
 }
 
 type metadataCreateCaseInput struct {
-	SDKShapeTraits bool `type:"structure" required:"subject,communicationBody" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateCaseOutput struct {
@@ -498,13 +498,13 @@ type metadataCreateCaseOutput struct {
 }
 
 type DescribeAttachmentInput struct {
-	AttachmentID *string `locationName:"attachmentId" type:"string" json:"attachmentId,omitempty"`
+	AttachmentID *string `locationName:"attachmentId" type:"string" required:"true"json:"attachmentId,omitempty"`
 
 	metadataDescribeAttachmentInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeAttachmentInput struct {
-	SDKShapeTraits bool `type:"structure" required:"attachmentId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeAttachmentOutput struct {
@@ -549,7 +549,7 @@ type metadataDescribeCasesOutput struct {
 type DescribeCommunicationsInput struct {
 	AfterTime  *string `locationName:"afterTime" type:"string" json:"afterTime,omitempty"`
 	BeforeTime *string `locationName:"beforeTime" type:"string" json:"beforeTime,omitempty"`
-	CaseID     *string `locationName:"caseId" type:"string" json:"caseId,omitempty"`
+	CaseID     *string `locationName:"caseId" type:"string" required:"true"json:"caseId,omitempty"`
 	MaxResults *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
 	NextToken  *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
@@ -557,7 +557,7 @@ type DescribeCommunicationsInput struct {
 }
 
 type metadataDescribeCommunicationsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"caseId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeCommunicationsOutput struct {
@@ -613,34 +613,34 @@ type metadataDescribeSeverityLevelsOutput struct {
 }
 
 type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
-	CheckIDs []*string `locationName:"checkIds" type:"list" json:"checkIds,omitempty"`
+	CheckIDs []*string `locationName:"checkIds" type:"list" required:"true"json:"checkIds,omitempty"`
 
 	metadataDescribeTrustedAdvisorCheckRefreshStatusesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorCheckRefreshStatusesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"checkIds" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
-	Statuses []*TrustedAdvisorCheckRefreshStatus `locationName:"statuses" type:"list" json:"statuses,omitempty"`
+	Statuses []*TrustedAdvisorCheckRefreshStatus `locationName:"statuses" type:"list" required:"true"json:"statuses,omitempty"`
 
 	metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"statuses" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeTrustedAdvisorCheckResultInput struct {
-	CheckID  *string `locationName:"checkId" type:"string" json:"checkId,omitempty"`
+	CheckID  *string `locationName:"checkId" type:"string" required:"true"json:"checkId,omitempty"`
 	Language *string `locationName:"language" type:"string" json:"language,omitempty"`
 
 	metadataDescribeTrustedAdvisorCheckResultInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorCheckResultInput struct {
-	SDKShapeTraits bool `type:"structure" required:"checkId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeTrustedAdvisorCheckResultOutput struct {
@@ -654,43 +654,43 @@ type metadataDescribeTrustedAdvisorCheckResultOutput struct {
 }
 
 type DescribeTrustedAdvisorCheckSummariesInput struct {
-	CheckIDs []*string `locationName:"checkIds" type:"list" json:"checkIds,omitempty"`
+	CheckIDs []*string `locationName:"checkIds" type:"list" required:"true"json:"checkIds,omitempty"`
 
 	metadataDescribeTrustedAdvisorCheckSummariesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorCheckSummariesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"checkIds" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeTrustedAdvisorCheckSummariesOutput struct {
-	Summaries []*TrustedAdvisorCheckSummary `locationName:"summaries" type:"list" json:"summaries,omitempty"`
+	Summaries []*TrustedAdvisorCheckSummary `locationName:"summaries" type:"list" required:"true"json:"summaries,omitempty"`
 
 	metadataDescribeTrustedAdvisorCheckSummariesOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorCheckSummariesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"summaries" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeTrustedAdvisorChecksInput struct {
-	Language *string `locationName:"language" type:"string" json:"language,omitempty"`
+	Language *string `locationName:"language" type:"string" required:"true"json:"language,omitempty"`
 
 	metadataDescribeTrustedAdvisorChecksInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorChecksInput struct {
-	SDKShapeTraits bool `type:"structure" required:"language" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeTrustedAdvisorChecksOutput struct {
-	Checks []*TrustedAdvisorCheckDescription `locationName:"checks" type:"list" json:"checks,omitempty"`
+	Checks []*TrustedAdvisorCheckDescription `locationName:"checks" type:"list" required:"true"json:"checks,omitempty"`
 
 	metadataDescribeTrustedAdvisorChecksOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorChecksOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"checks" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RecentCaseCommunications struct {
@@ -705,23 +705,23 @@ type metadataRecentCaseCommunications struct {
 }
 
 type RefreshTrustedAdvisorCheckInput struct {
-	CheckID *string `locationName:"checkId" type:"string" json:"checkId,omitempty"`
+	CheckID *string `locationName:"checkId" type:"string" required:"true"json:"checkId,omitempty"`
 
 	metadataRefreshTrustedAdvisorCheckInput `json:"-", xml:"-"`
 }
 
 type metadataRefreshTrustedAdvisorCheckInput struct {
-	SDKShapeTraits bool `type:"structure" required:"checkId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RefreshTrustedAdvisorCheckOutput struct {
-	Status *TrustedAdvisorCheckRefreshStatus `locationName:"status" type:"structure" json:"status,omitempty"`
+	Status *TrustedAdvisorCheckRefreshStatus `locationName:"status" type:"structure" required:"true"json:"status,omitempty"`
 
 	metadataRefreshTrustedAdvisorCheckOutput `json:"-", xml:"-"`
 }
 
 type metadataRefreshTrustedAdvisorCheckOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"status" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ResolveCaseInput struct {
@@ -779,95 +779,95 @@ type metadataTrustedAdvisorCategorySpecificSummary struct {
 }
 
 type TrustedAdvisorCheckDescription struct {
-	Category    *string   `locationName:"category" type:"string" json:"category,omitempty"`
-	Description *string   `locationName:"description" type:"string" json:"description,omitempty"`
-	ID          *string   `locationName:"id" type:"string" json:"id,omitempty"`
-	Metadata    []*string `locationName:"metadata" type:"list" json:"metadata,omitempty"`
-	Name        *string   `locationName:"name" type:"string" json:"name,omitempty"`
+	Category    *string   `locationName:"category" type:"string" required:"true"json:"category,omitempty"`
+	Description *string   `locationName:"description" type:"string" required:"true"json:"description,omitempty"`
+	ID          *string   `locationName:"id" type:"string" required:"true"json:"id,omitempty"`
+	Metadata    []*string `locationName:"metadata" type:"list" required:"true"json:"metadata,omitempty"`
+	Name        *string   `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
 
 	metadataTrustedAdvisorCheckDescription `json:"-", xml:"-"`
 }
 
 type metadataTrustedAdvisorCheckDescription struct {
-	SDKShapeTraits bool `type:"structure" required:"id,name,description,category,metadata" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type TrustedAdvisorCheckRefreshStatus struct {
-	CheckID                    *string `locationName:"checkId" type:"string" json:"checkId,omitempty"`
-	MillisUntilNextRefreshable *int64  `locationName:"millisUntilNextRefreshable" type:"long" json:"millisUntilNextRefreshable,omitempty"`
-	Status                     *string `locationName:"status" type:"string" json:"status,omitempty"`
+	CheckID                    *string `locationName:"checkId" type:"string" required:"true"json:"checkId,omitempty"`
+	MillisUntilNextRefreshable *int64  `locationName:"millisUntilNextRefreshable" type:"long" required:"true"json:"millisUntilNextRefreshable,omitempty"`
+	Status                     *string `locationName:"status" type:"string" required:"true"json:"status,omitempty"`
 
 	metadataTrustedAdvisorCheckRefreshStatus `json:"-", xml:"-"`
 }
 
 type metadataTrustedAdvisorCheckRefreshStatus struct {
-	SDKShapeTraits bool `type:"structure" required:"checkId,status,millisUntilNextRefreshable" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type TrustedAdvisorCheckResult struct {
-	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" json:"categorySpecificSummary,omitempty"`
-	CheckID                 *string                                `locationName:"checkId" type:"string" json:"checkId,omitempty"`
-	FlaggedResources        []*TrustedAdvisorResourceDetail        `locationName:"flaggedResources" type:"list" json:"flaggedResources,omitempty"`
-	ResourcesSummary        *TrustedAdvisorResourcesSummary        `locationName:"resourcesSummary" type:"structure" json:"resourcesSummary,omitempty"`
-	Status                  *string                                `locationName:"status" type:"string" json:"status,omitempty"`
-	Timestamp               *string                                `locationName:"timestamp" type:"string" json:"timestamp,omitempty"`
+	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" required:"true"json:"categorySpecificSummary,omitempty"`
+	CheckID                 *string                                `locationName:"checkId" type:"string" required:"true"json:"checkId,omitempty"`
+	FlaggedResources        []*TrustedAdvisorResourceDetail        `locationName:"flaggedResources" type:"list" required:"true"json:"flaggedResources,omitempty"`
+	ResourcesSummary        *TrustedAdvisorResourcesSummary        `locationName:"resourcesSummary" type:"structure" required:"true"json:"resourcesSummary,omitempty"`
+	Status                  *string                                `locationName:"status" type:"string" required:"true"json:"status,omitempty"`
+	Timestamp               *string                                `locationName:"timestamp" type:"string" required:"true"json:"timestamp,omitempty"`
 
 	metadataTrustedAdvisorCheckResult `json:"-", xml:"-"`
 }
 
 type metadataTrustedAdvisorCheckResult struct {
-	SDKShapeTraits bool `type:"structure" required:"checkId,timestamp,status,resourcesSummary,categorySpecificSummary,flaggedResources" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type TrustedAdvisorCheckSummary struct {
-	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" json:"categorySpecificSummary,omitempty"`
-	CheckID                 *string                                `locationName:"checkId" type:"string" json:"checkId,omitempty"`
+	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" required:"true"json:"categorySpecificSummary,omitempty"`
+	CheckID                 *string                                `locationName:"checkId" type:"string" required:"true"json:"checkId,omitempty"`
 	HasFlaggedResources     *bool                                  `locationName:"hasFlaggedResources" type:"boolean" json:"hasFlaggedResources,omitempty"`
-	ResourcesSummary        *TrustedAdvisorResourcesSummary        `locationName:"resourcesSummary" type:"structure" json:"resourcesSummary,omitempty"`
-	Status                  *string                                `locationName:"status" type:"string" json:"status,omitempty"`
-	Timestamp               *string                                `locationName:"timestamp" type:"string" json:"timestamp,omitempty"`
+	ResourcesSummary        *TrustedAdvisorResourcesSummary        `locationName:"resourcesSummary" type:"structure" required:"true"json:"resourcesSummary,omitempty"`
+	Status                  *string                                `locationName:"status" type:"string" required:"true"json:"status,omitempty"`
+	Timestamp               *string                                `locationName:"timestamp" type:"string" required:"true"json:"timestamp,omitempty"`
 
 	metadataTrustedAdvisorCheckSummary `json:"-", xml:"-"`
 }
 
 type metadataTrustedAdvisorCheckSummary struct {
-	SDKShapeTraits bool `type:"structure" required:"checkId,timestamp,status,resourcesSummary,categorySpecificSummary" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type TrustedAdvisorCostOptimizingSummary struct {
-	EstimatedMonthlySavings        *float64 `locationName:"estimatedMonthlySavings" type:"double" json:"estimatedMonthlySavings,omitempty"`
-	EstimatedPercentMonthlySavings *float64 `locationName:"estimatedPercentMonthlySavings" type:"double" json:"estimatedPercentMonthlySavings,omitempty"`
+	EstimatedMonthlySavings        *float64 `locationName:"estimatedMonthlySavings" type:"double" required:"true"json:"estimatedMonthlySavings,omitempty"`
+	EstimatedPercentMonthlySavings *float64 `locationName:"estimatedPercentMonthlySavings" type:"double" required:"true"json:"estimatedPercentMonthlySavings,omitempty"`
 
 	metadataTrustedAdvisorCostOptimizingSummary `json:"-", xml:"-"`
 }
 
 type metadataTrustedAdvisorCostOptimizingSummary struct {
-	SDKShapeTraits bool `type:"structure" required:"estimatedMonthlySavings,estimatedPercentMonthlySavings" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type TrustedAdvisorResourceDetail struct {
 	IsSuppressed *bool     `locationName:"isSuppressed" type:"boolean" json:"isSuppressed,omitempty"`
-	Metadata     []*string `locationName:"metadata" type:"list" json:"metadata,omitempty"`
-	Region       *string   `locationName:"region" type:"string" json:"region,omitempty"`
-	ResourceID   *string   `locationName:"resourceId" type:"string" json:"resourceId,omitempty"`
-	Status       *string   `locationName:"status" type:"string" json:"status,omitempty"`
+	Metadata     []*string `locationName:"metadata" type:"list" required:"true"json:"metadata,omitempty"`
+	Region       *string   `locationName:"region" type:"string" required:"true"json:"region,omitempty"`
+	ResourceID   *string   `locationName:"resourceId" type:"string" required:"true"json:"resourceId,omitempty"`
+	Status       *string   `locationName:"status" type:"string" required:"true"json:"status,omitempty"`
 
 	metadataTrustedAdvisorResourceDetail `json:"-", xml:"-"`
 }
 
 type metadataTrustedAdvisorResourceDetail struct {
-	SDKShapeTraits bool `type:"structure" required:"status,region,resourceId,metadata" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type TrustedAdvisorResourcesSummary struct {
-	ResourcesFlagged    *int64 `locationName:"resourcesFlagged" type:"long" json:"resourcesFlagged,omitempty"`
-	ResourcesIgnored    *int64 `locationName:"resourcesIgnored" type:"long" json:"resourcesIgnored,omitempty"`
-	ResourcesProcessed  *int64 `locationName:"resourcesProcessed" type:"long" json:"resourcesProcessed,omitempty"`
-	ResourcesSuppressed *int64 `locationName:"resourcesSuppressed" type:"long" json:"resourcesSuppressed,omitempty"`
+	ResourcesFlagged    *int64 `locationName:"resourcesFlagged" type:"long" required:"true"json:"resourcesFlagged,omitempty"`
+	ResourcesIgnored    *int64 `locationName:"resourcesIgnored" type:"long" required:"true"json:"resourcesIgnored,omitempty"`
+	ResourcesProcessed  *int64 `locationName:"resourcesProcessed" type:"long" required:"true"json:"resourcesProcessed,omitempty"`
+	ResourcesSuppressed *int64 `locationName:"resourcesSuppressed" type:"long" required:"true"json:"resourcesSuppressed,omitempty"`
 
 	metadataTrustedAdvisorResourcesSummary `json:"-", xml:"-"`
 }
 
 type metadataTrustedAdvisorResourcesSummary struct {
-	SDKShapeTraits bool `type:"structure" required:"resourcesProcessed,resourcesFlagged,resourcesIgnored,resourcesSuppressed" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }

@@ -1420,7 +1420,7 @@ type metadataAccountWithRestoreAccess struct {
 
 type AuthorizeClusterSecurityGroupIngressInput struct {
 	CIDRIP                   *string `type:"string"`
-	ClusterSecurityGroupName *string `type:"string"`
+	ClusterSecurityGroupName *string `type:"string" required:"true"`
 	EC2SecurityGroupName     *string `type:"string"`
 	EC2SecurityGroupOwnerID  *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
@@ -1428,7 +1428,7 @@ type AuthorizeClusterSecurityGroupIngressInput struct {
 }
 
 type metadataAuthorizeClusterSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterSecurityGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AuthorizeClusterSecurityGroupIngressOutput struct {
@@ -1442,15 +1442,15 @@ type metadataAuthorizeClusterSecurityGroupIngressOutput struct {
 }
 
 type AuthorizeSnapshotAccessInput struct {
-	AccountWithRestoreAccess  *string `type:"string"`
+	AccountWithRestoreAccess  *string `type:"string" required:"true"`
 	SnapshotClusterIdentifier *string `type:"string"`
-	SnapshotIdentifier        *string `type:"string"`
+	SnapshotIdentifier        *string `type:"string" required:"true"`
 
 	metadataAuthorizeSnapshotAccessInput `json:"-", xml:"-"`
 }
 
 type metadataAuthorizeSnapshotAccessInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SnapshotIdentifier,AccountWithRestoreAccess"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AuthorizeSnapshotAccessOutput struct {
@@ -1625,14 +1625,14 @@ type metadataClusterVersion struct {
 
 type CopyClusterSnapshotInput struct {
 	SourceSnapshotClusterIdentifier *string `type:"string"`
-	SourceSnapshotIdentifier        *string `type:"string"`
-	TargetSnapshotIdentifier        *string `type:"string"`
+	SourceSnapshotIdentifier        *string `type:"string" required:"true"`
+	TargetSnapshotIdentifier        *string `type:"string" required:"true"`
 
 	metadataCopyClusterSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataCopyClusterSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SourceSnapshotIdentifier,TargetSnapshotIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CopyClusterSnapshotOutput struct {
@@ -1649,7 +1649,7 @@ type CreateClusterInput struct {
 	AllowVersionUpgrade              *bool     `type:"boolean"`
 	AutomatedSnapshotRetentionPeriod *int      `type:"integer"`
 	AvailabilityZone                 *string   `type:"string"`
-	ClusterIdentifier                *string   `type:"string"`
+	ClusterIdentifier                *string   `type:"string" required:"true"`
 	ClusterParameterGroupName        *string   `type:"string"`
 	ClusterSecurityGroups            []*string `locationNameList:"ClusterSecurityGroupName" type:"list"`
 	ClusterSubnetGroupName           *string   `type:"string"`
@@ -1661,9 +1661,9 @@ type CreateClusterInput struct {
 	HSMClientCertificateIdentifier   *string   `locationName:"HsmClientCertificateIdentifier" type:"string"`
 	HSMConfigurationIdentifier       *string   `locationName:"HsmConfigurationIdentifier" type:"string"`
 	KMSKeyID                         *string   `locationName:"KmsKeyId" type:"string"`
-	MasterUserPassword               *string   `type:"string"`
-	MasterUsername                   *string   `type:"string"`
-	NodeType                         *string   `type:"string"`
+	MasterUserPassword               *string   `type:"string" required:"true"`
+	MasterUsername                   *string   `type:"string" required:"true"`
+	NodeType                         *string   `type:"string" required:"true"`
 	NumberOfNodes                    *int      `type:"integer"`
 	Port                             *int      `type:"integer"`
 	PreferredMaintenanceWindow       *string   `type:"string"`
@@ -1675,7 +1675,7 @@ type CreateClusterInput struct {
 }
 
 type metadataCreateClusterInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier,NodeType,MasterUsername,MasterUserPassword"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateClusterOutput struct {
@@ -1689,16 +1689,16 @@ type metadataCreateClusterOutput struct {
 }
 
 type CreateClusterParameterGroupInput struct {
-	Description          *string `type:"string"`
-	ParameterGroupFamily *string `type:"string"`
-	ParameterGroupName   *string `type:"string"`
+	Description          *string `type:"string" required:"true"`
+	ParameterGroupFamily *string `type:"string" required:"true"`
+	ParameterGroupName   *string `type:"string" required:"true"`
 	Tags                 []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataCreateClusterParameterGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName,ParameterGroupFamily,Description"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateClusterParameterGroupOutput struct {
@@ -1712,15 +1712,15 @@ type metadataCreateClusterParameterGroupOutput struct {
 }
 
 type CreateClusterSecurityGroupInput struct {
-	ClusterSecurityGroupName *string `type:"string"`
-	Description              *string `type:"string"`
+	ClusterSecurityGroupName *string `type:"string" required:"true"`
+	Description              *string `type:"string" required:"true"`
 	Tags                     []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataCreateClusterSecurityGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateClusterSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterSecurityGroupName,Description"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateClusterSecurityGroupOutput struct {
@@ -1734,15 +1734,15 @@ type metadataCreateClusterSecurityGroupOutput struct {
 }
 
 type CreateClusterSnapshotInput struct {
-	ClusterIdentifier  *string `type:"string"`
-	SnapshotIdentifier *string `type:"string"`
+	ClusterIdentifier  *string `type:"string" required:"true"`
+	SnapshotIdentifier *string `type:"string" required:"true"`
 	Tags               []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataCreateClusterSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataCreateClusterSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SnapshotIdentifier,ClusterIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateClusterSnapshotOutput struct {
@@ -1756,16 +1756,16 @@ type metadataCreateClusterSnapshotOutput struct {
 }
 
 type CreateClusterSubnetGroupInput struct {
-	ClusterSubnetGroupName *string   `type:"string"`
-	Description            *string   `type:"string"`
-	SubnetIDs              []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
+	ClusterSubnetGroupName *string   `type:"string" required:"true"`
+	Description            *string   `type:"string" required:"true"`
+	SubnetIDs              []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 	Tags                   []*Tag    `locationNameList:"Tag" type:"list"`
 
 	metadataCreateClusterSubnetGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateClusterSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterSubnetGroupName,Description,SubnetIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateClusterSubnetGroupOutput struct {
@@ -1781,18 +1781,18 @@ type metadataCreateClusterSubnetGroupOutput struct {
 type CreateEventSubscriptionInput struct {
 	Enabled          *bool     `type:"boolean"`
 	EventCategories  []*string `locationNameList:"EventCategory" type:"list"`
-	SNSTopicARN      *string   `locationName:"SnsTopicArn" type:"string"`
+	SNSTopicARN      *string   `locationName:"SnsTopicArn" type:"string" required:"true"`
 	Severity         *string   `type:"string"`
 	SourceIDs        []*string `locationName:"SourceIds" locationNameList:"SourceId" type:"list"`
 	SourceType       *string   `type:"string"`
-	SubscriptionName *string   `type:"string"`
+	SubscriptionName *string   `type:"string" required:"true"`
 	Tags             []*Tag    `locationNameList:"Tag" type:"list"`
 
 	metadataCreateEventSubscriptionInput `json:"-", xml:"-"`
 }
 
 type metadataCreateEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubscriptionName,SnsTopicArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateEventSubscriptionOutput struct {
@@ -1806,14 +1806,14 @@ type metadataCreateEventSubscriptionOutput struct {
 }
 
 type CreateHSMClientCertificateInput struct {
-	HSMClientCertificateIdentifier *string `locationName:"HsmClientCertificateIdentifier" type:"string"`
+	HSMClientCertificateIdentifier *string `locationName:"HsmClientCertificateIdentifier" type:"string" required:"true"`
 	Tags                           []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataCreateHSMClientCertificateInput `json:"-", xml:"-"`
 }
 
 type metadataCreateHSMClientCertificateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"HsmClientCertificateIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateHSMClientCertificateOutput struct {
@@ -1827,19 +1827,19 @@ type metadataCreateHSMClientCertificateOutput struct {
 }
 
 type CreateHSMConfigurationInput struct {
-	Description                *string `type:"string"`
-	HSMConfigurationIdentifier *string `locationName:"HsmConfigurationIdentifier" type:"string"`
-	HSMIPAddress               *string `locationName:"HsmIpAddress" type:"string"`
-	HSMPartitionName           *string `locationName:"HsmPartitionName" type:"string"`
-	HSMPartitionPassword       *string `locationName:"HsmPartitionPassword" type:"string"`
-	HSMServerPublicCertificate *string `locationName:"HsmServerPublicCertificate" type:"string"`
+	Description                *string `type:"string" required:"true"`
+	HSMConfigurationIdentifier *string `locationName:"HsmConfigurationIdentifier" type:"string" required:"true"`
+	HSMIPAddress               *string `locationName:"HsmIpAddress" type:"string" required:"true"`
+	HSMPartitionName           *string `locationName:"HsmPartitionName" type:"string" required:"true"`
+	HSMPartitionPassword       *string `locationName:"HsmPartitionPassword" type:"string" required:"true"`
+	HSMServerPublicCertificate *string `locationName:"HsmServerPublicCertificate" type:"string" required:"true"`
 	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataCreateHSMConfigurationInput `json:"-", xml:"-"`
 }
 
 type metadataCreateHSMConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"HsmConfigurationIdentifier,Description,HsmIpAddress,HsmPartitionName,HsmPartitionPassword,HsmServerPublicCertificate"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateHSMConfigurationOutput struct {
@@ -1853,14 +1853,14 @@ type metadataCreateHSMConfigurationOutput struct {
 }
 
 type CreateTagsInput struct {
-	ResourceName *string `type:"string"`
-	Tags         []*Tag  `locationNameList:"Tag" type:"list"`
+	ResourceName *string `type:"string" required:"true"`
+	Tags         []*Tag  `locationNameList:"Tag" type:"list" required:"true"`
 
 	metadataCreateTagsInput `json:"-", xml:"-"`
 }
 
 type metadataCreateTagsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceName,Tags"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateTagsOutput struct {
@@ -1884,7 +1884,7 @@ type metadataDefaultClusterParameters struct {
 }
 
 type DeleteClusterInput struct {
-	ClusterIdentifier              *string `type:"string"`
+	ClusterIdentifier              *string `type:"string" required:"true"`
 	FinalClusterSnapshotIdentifier *string `type:"string"`
 	SkipFinalClusterSnapshot       *bool   `type:"boolean"`
 
@@ -1892,7 +1892,7 @@ type DeleteClusterInput struct {
 }
 
 type metadataDeleteClusterInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteClusterOutput struct {
@@ -1906,13 +1906,13 @@ type metadataDeleteClusterOutput struct {
 }
 
 type DeleteClusterParameterGroupInput struct {
-	ParameterGroupName *string `type:"string"`
+	ParameterGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteClusterParameterGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteClusterParameterGroupOutput struct {
@@ -1924,13 +1924,13 @@ type metadataDeleteClusterParameterGroupOutput struct {
 }
 
 type DeleteClusterSecurityGroupInput struct {
-	ClusterSecurityGroupName *string `type:"string"`
+	ClusterSecurityGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteClusterSecurityGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteClusterSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterSecurityGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteClusterSecurityGroupOutput struct {
@@ -1943,13 +1943,13 @@ type metadataDeleteClusterSecurityGroupOutput struct {
 
 type DeleteClusterSnapshotInput struct {
 	SnapshotClusterIdentifier *string `type:"string"`
-	SnapshotIdentifier        *string `type:"string"`
+	SnapshotIdentifier        *string `type:"string" required:"true"`
 
 	metadataDeleteClusterSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteClusterSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SnapshotIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteClusterSnapshotOutput struct {
@@ -1963,13 +1963,13 @@ type metadataDeleteClusterSnapshotOutput struct {
 }
 
 type DeleteClusterSubnetGroupInput struct {
-	ClusterSubnetGroupName *string `type:"string"`
+	ClusterSubnetGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteClusterSubnetGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteClusterSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterSubnetGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteClusterSubnetGroupOutput struct {
@@ -1981,13 +1981,13 @@ type metadataDeleteClusterSubnetGroupOutput struct {
 }
 
 type DeleteEventSubscriptionInput struct {
-	SubscriptionName *string `type:"string"`
+	SubscriptionName *string `type:"string" required:"true"`
 
 	metadataDeleteEventSubscriptionInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubscriptionName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteEventSubscriptionOutput struct {
@@ -1999,13 +1999,13 @@ type metadataDeleteEventSubscriptionOutput struct {
 }
 
 type DeleteHSMClientCertificateInput struct {
-	HSMClientCertificateIdentifier *string `locationName:"HsmClientCertificateIdentifier" type:"string"`
+	HSMClientCertificateIdentifier *string `locationName:"HsmClientCertificateIdentifier" type:"string" required:"true"`
 
 	metadataDeleteHSMClientCertificateInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteHSMClientCertificateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"HsmClientCertificateIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteHSMClientCertificateOutput struct {
@@ -2017,13 +2017,13 @@ type metadataDeleteHSMClientCertificateOutput struct {
 }
 
 type DeleteHSMConfigurationInput struct {
-	HSMConfigurationIdentifier *string `locationName:"HsmConfigurationIdentifier" type:"string"`
+	HSMConfigurationIdentifier *string `locationName:"HsmConfigurationIdentifier" type:"string" required:"true"`
 
 	metadataDeleteHSMConfigurationInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteHSMConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"HsmConfigurationIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteHSMConfigurationOutput struct {
@@ -2035,14 +2035,14 @@ type metadataDeleteHSMConfigurationOutput struct {
 }
 
 type DeleteTagsInput struct {
-	ResourceName *string   `type:"string"`
-	TagKeys      []*string `locationNameList:"TagKey" type:"list"`
+	ResourceName *string   `type:"string" required:"true"`
+	TagKeys      []*string `locationNameList:"TagKey" type:"list" required:"true"`
 
 	metadataDeleteTagsInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTagsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceName,TagKeys"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteTagsOutput struct {
@@ -2081,14 +2081,14 @@ type metadataDescribeClusterParameterGroupsOutput struct {
 type DescribeClusterParametersInput struct {
 	Marker             *string `type:"string"`
 	MaxRecords         *int    `type:"integer"`
-	ParameterGroupName *string `type:"string"`
+	ParameterGroupName *string `type:"string" required:"true"`
 	Source             *string `type:"string"`
 
 	metadataDescribeClusterParametersInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeClusterParametersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeClusterParametersOutput struct {
@@ -2234,13 +2234,13 @@ type metadataDescribeClustersOutput struct {
 type DescribeDefaultClusterParametersInput struct {
 	Marker               *string `type:"string"`
 	MaxRecords           *int    `type:"integer"`
-	ParameterGroupFamily *string `type:"string"`
+	ParameterGroupFamily *string `type:"string" required:"true"`
 
 	metadataDescribeDefaultClusterParametersInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDefaultClusterParametersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ParameterGroupFamily"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDefaultClusterParametersOutput struct {
@@ -2374,13 +2374,13 @@ type metadataDescribeHSMConfigurationsOutput struct {
 }
 
 type DescribeLoggingStatusInput struct {
-	ClusterIdentifier *string `type:"string"`
+	ClusterIdentifier *string `type:"string" required:"true"`
 
 	metadataDescribeLoggingStatusInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLoggingStatusInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeOrderableClusterOptionsInput struct {
@@ -2454,13 +2454,13 @@ type metadataDescribeReservedNodesOutput struct {
 }
 
 type DescribeResizeInput struct {
-	ClusterIdentifier *string `type:"string"`
+	ClusterIdentifier *string `type:"string" required:"true"`
 
 	metadataDescribeResizeInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeResizeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeResizeOutput struct {
@@ -2511,23 +2511,23 @@ type metadataDescribeTagsOutput struct {
 }
 
 type DisableLoggingInput struct {
-	ClusterIdentifier *string `type:"string"`
+	ClusterIdentifier *string `type:"string" required:"true"`
 
 	metadataDisableLoggingInput `json:"-", xml:"-"`
 }
 
 type metadataDisableLoggingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableSnapshotCopyInput struct {
-	ClusterIdentifier *string `type:"string"`
+	ClusterIdentifier *string `type:"string" required:"true"`
 
 	metadataDisableSnapshotCopyInput `json:"-", xml:"-"`
 }
 
 type metadataDisableSnapshotCopyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableSnapshotCopyOutput struct {
@@ -2565,27 +2565,27 @@ type metadataElasticIPStatus struct {
 }
 
 type EnableLoggingInput struct {
-	BucketName        *string `type:"string"`
-	ClusterIdentifier *string `type:"string"`
+	BucketName        *string `type:"string" required:"true"`
+	ClusterIdentifier *string `type:"string" required:"true"`
 	S3KeyPrefix       *string `type:"string"`
 
 	metadataEnableLoggingInput `json:"-", xml:"-"`
 }
 
 type metadataEnableLoggingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier,BucketName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableSnapshotCopyInput struct {
-	ClusterIdentifier *string `type:"string"`
-	DestinationRegion *string `type:"string"`
+	ClusterIdentifier *string `type:"string" required:"true"`
+	DestinationRegion *string `type:"string" required:"true"`
 	RetentionPeriod   *int    `type:"integer"`
 
 	metadataEnableSnapshotCopyInput `json:"-", xml:"-"`
 }
 
 type metadataEnableSnapshotCopyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier,DestinationRegion"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableSnapshotCopyOutput struct {
@@ -2737,7 +2737,7 @@ type metadataLoggingStatus struct {
 type ModifyClusterInput struct {
 	AllowVersionUpgrade              *bool     `type:"boolean"`
 	AutomatedSnapshotRetentionPeriod *int      `type:"integer"`
-	ClusterIdentifier                *string   `type:"string"`
+	ClusterIdentifier                *string   `type:"string" required:"true"`
 	ClusterParameterGroupName        *string   `type:"string"`
 	ClusterSecurityGroups            []*string `locationNameList:"ClusterSecurityGroupName" type:"list"`
 	ClusterType                      *string   `type:"string"`
@@ -2755,7 +2755,7 @@ type ModifyClusterInput struct {
 }
 
 type metadataModifyClusterInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyClusterOutput struct {
@@ -2769,26 +2769,26 @@ type metadataModifyClusterOutput struct {
 }
 
 type ModifyClusterParameterGroupInput struct {
-	ParameterGroupName *string      `type:"string"`
-	Parameters         []*Parameter `locationNameList:"Parameter" type:"list"`
+	ParameterGroupName *string      `type:"string" required:"true"`
+	Parameters         []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
 
 	metadataModifyClusterParameterGroupInput `json:"-", xml:"-"`
 }
 
 type metadataModifyClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName,Parameters"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyClusterSubnetGroupInput struct {
-	ClusterSubnetGroupName *string   `type:"string"`
+	ClusterSubnetGroupName *string   `type:"string" required:"true"`
 	Description            *string   `type:"string"`
-	SubnetIDs              []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
+	SubnetIDs              []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	metadataModifyClusterSubnetGroupInput `json:"-", xml:"-"`
 }
 
 type metadataModifyClusterSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterSubnetGroupName,SubnetIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyClusterSubnetGroupOutput struct {
@@ -2808,13 +2808,13 @@ type ModifyEventSubscriptionInput struct {
 	Severity         *string   `type:"string"`
 	SourceIDs        []*string `locationName:"SourceIds" locationNameList:"SourceId" type:"list"`
 	SourceType       *string   `type:"string"`
-	SubscriptionName *string   `type:"string"`
+	SubscriptionName *string   `type:"string" required:"true"`
 
 	metadataModifyEventSubscriptionInput `json:"-", xml:"-"`
 }
 
 type metadataModifyEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubscriptionName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyEventSubscriptionOutput struct {
@@ -2828,14 +2828,14 @@ type metadataModifyEventSubscriptionOutput struct {
 }
 
 type ModifySnapshotCopyRetentionPeriodInput struct {
-	ClusterIdentifier *string `type:"string"`
-	RetentionPeriod   *int    `type:"integer"`
+	ClusterIdentifier *string `type:"string" required:"true"`
+	RetentionPeriod   *int    `type:"integer" required:"true"`
 
 	metadataModifySnapshotCopyRetentionPeriodInput `json:"-", xml:"-"`
 }
 
 type metadataModifySnapshotCopyRetentionPeriodInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier,RetentionPeriod"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifySnapshotCopyRetentionPeriodOutput struct {
@@ -2896,13 +2896,13 @@ type metadataPendingModifiedValues struct {
 
 type PurchaseReservedNodeOfferingInput struct {
 	NodeCount              *int    `type:"integer"`
-	ReservedNodeOfferingID *string `locationName:"ReservedNodeOfferingId" type:"string"`
+	ReservedNodeOfferingID *string `locationName:"ReservedNodeOfferingId" type:"string" required:"true"`
 
 	metadataPurchaseReservedNodeOfferingInput `json:"-", xml:"-"`
 }
 
 type metadataPurchaseReservedNodeOfferingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ReservedNodeOfferingId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PurchaseReservedNodeOfferingOutput struct {
@@ -2916,13 +2916,13 @@ type metadataPurchaseReservedNodeOfferingOutput struct {
 }
 
 type RebootClusterInput struct {
-	ClusterIdentifier *string `type:"string"`
+	ClusterIdentifier *string `type:"string" required:"true"`
 
 	metadataRebootClusterInput `json:"-", xml:"-"`
 }
 
 type metadataRebootClusterInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RebootClusterOutput struct {
@@ -2985,7 +2985,7 @@ type metadataReservedNodeOffering struct {
 }
 
 type ResetClusterParameterGroupInput struct {
-	ParameterGroupName *string      `type:"string"`
+	ParameterGroupName *string      `type:"string" required:"true"`
 	Parameters         []*Parameter `locationNameList:"Parameter" type:"list"`
 	ResetAllParameters *bool        `type:"boolean"`
 
@@ -2993,14 +2993,14 @@ type ResetClusterParameterGroupInput struct {
 }
 
 type metadataResetClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ParameterGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RestoreFromClusterSnapshotInput struct {
 	AllowVersionUpgrade              *bool     `type:"boolean"`
 	AutomatedSnapshotRetentionPeriod *int      `type:"integer"`
 	AvailabilityZone                 *string   `type:"string"`
-	ClusterIdentifier                *string   `type:"string"`
+	ClusterIdentifier                *string   `type:"string" required:"true"`
 	ClusterParameterGroupName        *string   `type:"string"`
 	ClusterSecurityGroups            []*string `locationNameList:"ClusterSecurityGroupName" type:"list"`
 	ClusterSubnetGroupName           *string   `type:"string"`
@@ -3013,14 +3013,14 @@ type RestoreFromClusterSnapshotInput struct {
 	PreferredMaintenanceWindow       *string   `type:"string"`
 	PubliclyAccessible               *bool     `type:"boolean"`
 	SnapshotClusterIdentifier        *string   `type:"string"`
-	SnapshotIdentifier               *string   `type:"string"`
+	SnapshotIdentifier               *string   `type:"string" required:"true"`
 	VPCSecurityGroupIDs              []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataRestoreFromClusterSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataRestoreFromClusterSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier,SnapshotIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RestoreFromClusterSnapshotOutput struct {
@@ -3050,7 +3050,7 @@ type metadataRestoreStatus struct {
 
 type RevokeClusterSecurityGroupIngressInput struct {
 	CIDRIP                   *string `type:"string"`
-	ClusterSecurityGroupName *string `type:"string"`
+	ClusterSecurityGroupName *string `type:"string" required:"true"`
 	EC2SecurityGroupName     *string `type:"string"`
 	EC2SecurityGroupOwnerID  *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
@@ -3058,7 +3058,7 @@ type RevokeClusterSecurityGroupIngressInput struct {
 }
 
 type metadataRevokeClusterSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterSecurityGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RevokeClusterSecurityGroupIngressOutput struct {
@@ -3072,15 +3072,15 @@ type metadataRevokeClusterSecurityGroupIngressOutput struct {
 }
 
 type RevokeSnapshotAccessInput struct {
-	AccountWithRestoreAccess  *string `type:"string"`
+	AccountWithRestoreAccess  *string `type:"string" required:"true"`
 	SnapshotClusterIdentifier *string `type:"string"`
-	SnapshotIdentifier        *string `type:"string"`
+	SnapshotIdentifier        *string `type:"string" required:"true"`
 
 	metadataRevokeSnapshotAccessInput `json:"-", xml:"-"`
 }
 
 type metadataRevokeSnapshotAccessInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SnapshotIdentifier,AccountWithRestoreAccess"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RevokeSnapshotAccessOutput struct {
@@ -3094,13 +3094,13 @@ type metadataRevokeSnapshotAccessOutput struct {
 }
 
 type RotateEncryptionKeyInput struct {
-	ClusterIdentifier *string `type:"string"`
+	ClusterIdentifier *string `type:"string" required:"true"`
 
 	metadataRotateEncryptionKeyInput `json:"-", xml:"-"`
 }
 
 type metadataRotateEncryptionKeyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ClusterIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RotateEncryptionKeyOutput struct {

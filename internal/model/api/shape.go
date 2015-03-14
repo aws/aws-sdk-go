@@ -124,7 +124,7 @@ func (ref *ShapeRef) GoType() string {
 	return ref.Shape.GoType()
 }
 
-func (ref *ShapeRef) GoTags(toplevel bool) string {
+func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	code := "`"
 	if ref.Location != "" {
 		code += `location:"` + ref.Location + `" `
@@ -174,12 +174,13 @@ func (ref *ShapeRef) GoTags(toplevel bool) string {
 		code += `xmlAttribute:"true" `
 	}
 
+	if isRequired {
+		code += `required:"true"`
+	}
+
 	if toplevel {
 		if ref.Shape.Payload != "" {
 			code += `payload:"` + ref.Shape.Payload + `" `
-		}
-		if len(ref.Shape.Required) > 0 {
-			code += `required:"` + strings.Join(ref.Shape.Required, ",") + `" `
 		}
 		if ref.XMLNamespace.Prefix != "" {
 			code += `xmlPrefix:"` + ref.XMLNamespace.Prefix + `" `
@@ -212,9 +213,9 @@ func (s *Shape) GoCode() string {
 			m := s.MemberRefs[n]
 			if (m.Streaming || s.Streaming) && s.Payload == n {
 				s.API.imports["io"] = true
-				code += n + " io.ReadSeeker " + m.GoTags(false) + "\n"
+				code += n + " io.ReadSeeker " + m.GoTags(false, s.IsRequired(n)) + "\n"
 			} else {
-				code += n + " " + m.GoType() + " " + m.GoTags(false) + "\n"
+				code += n + " " + m.GoType() + " " + m.GoTags(false, s.IsRequired(n)) + "\n"
 			}
 		}
 		metaStruct := "metadata" + s.ShapeName
@@ -222,11 +223,20 @@ func (s *Shape) GoCode() string {
 		code += "\n" + metaStruct + "  `json:\"-\", xml:\"-\"`\n"
 		code += "}\n\n"
 		code += "type " + metaStruct + " struct {\n"
-		code += "SDKShapeTraits bool " + ref.GoTags(true)
+		code += "SDKShapeTraits bool " + ref.GoTags(true, false)
 		code += "}"
 	default:
 		panic("Cannot generate toplevel shape for " + s.Type)
 	}
 
 	return util.GoFmt(code)
+}
+
+func (s *Shape) IsRequired(member string) bool {
+	for _, n := range s.Required {
+		if n == member {
+			return true
+		}
+	}
+	return false
 }

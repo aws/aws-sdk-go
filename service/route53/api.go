@@ -709,106 +709,106 @@ func (c *Route53) UpdateHostedZoneComment(input *UpdateHostedZoneCommentInput) (
 var opUpdateHostedZoneComment *aws.Operation
 
 type AliasTarget struct {
-	DNSName              *string `type:"string"`
-	EvaluateTargetHealth *bool   `type:"boolean"`
-	HostedZoneID         *string `locationName:"HostedZoneId" type:"string"`
+	DNSName              *string `type:"string" required:"true"`
+	EvaluateTargetHealth *bool   `type:"boolean" required:"true"`
+	HostedZoneID         *string `locationName:"HostedZoneId" type:"string" required:"true"`
 
 	metadataAliasTarget `json:"-", xml:"-"`
 }
 
 type metadataAliasTarget struct {
-	SDKShapeTraits bool `type:"structure" required:"HostedZoneId,DNSName,EvaluateTargetHealth"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssociateVPCWithHostedZoneInput struct {
 	Comment      *string `type:"string"`
-	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
-	VPC          *VPC    `type:"structure"`
+	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	VPC          *VPC    `type:"structure" required:"true"`
 
 	metadataAssociateVPCWithHostedZoneInput `json:"-", xml:"-"`
 }
 
 type metadataAssociateVPCWithHostedZoneInput struct {
-	SDKShapeTraits bool `locationName:"AssociateVPCWithHostedZoneRequest" type:"structure" required:"HostedZoneId,VPC" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	SDKShapeTraits bool `locationName:"AssociateVPCWithHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 type AssociateVPCWithHostedZoneOutput struct {
-	ChangeInfo *ChangeInfo `type:"structure"`
+	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 
 	metadataAssociateVPCWithHostedZoneOutput `json:"-", xml:"-"`
 }
 
 type metadataAssociateVPCWithHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ChangeInfo"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Change struct {
-	Action            *string            `type:"string"`
-	ResourceRecordSet *ResourceRecordSet `type:"structure"`
+	Action            *string            `type:"string" required:"true"`
+	ResourceRecordSet *ResourceRecordSet `type:"structure" required:"true"`
 
 	metadataChange `json:"-", xml:"-"`
 }
 
 type metadataChange struct {
-	SDKShapeTraits bool `type:"structure" required:"Action,ResourceRecordSet"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChangeBatch struct {
-	Changes []*Change `locationNameList:"Change" type:"list"`
+	Changes []*Change `locationNameList:"Change" type:"list" required:"true"`
 	Comment *string   `type:"string"`
 
 	metadataChangeBatch `json:"-", xml:"-"`
 }
 
 type metadataChangeBatch struct {
-	SDKShapeTraits bool `type:"structure" required:"Changes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChangeInfo struct {
 	Comment     *string    `type:"string"`
-	ID          *string    `locationName:"Id" type:"string"`
-	Status      *string    `type:"string"`
-	SubmittedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	ID          *string    `locationName:"Id" type:"string" required:"true"`
+	Status      *string    `type:"string" required:"true"`
+	SubmittedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	metadataChangeInfo `json:"-", xml:"-"`
 }
 
 type metadataChangeInfo struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,Status,SubmittedAt"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChangeResourceRecordSetsInput struct {
-	ChangeBatch  *ChangeBatch `type:"structure"`
-	HostedZoneID *string      `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ChangeBatch  *ChangeBatch `type:"structure" required:"true"`
+	HostedZoneID *string      `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataChangeResourceRecordSetsInput `json:"-", xml:"-"`
 }
 
 type metadataChangeResourceRecordSetsInput struct {
-	SDKShapeTraits bool `locationName:"ChangeResourceRecordSetsRequest" type:"structure" required:"HostedZoneId,ChangeBatch" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	SDKShapeTraits bool `locationName:"ChangeResourceRecordSetsRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 type ChangeResourceRecordSetsOutput struct {
-	ChangeInfo *ChangeInfo `type:"structure"`
+	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 
 	metadataChangeResourceRecordSetsOutput `json:"-", xml:"-"`
 }
 
 type metadataChangeResourceRecordSetsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ChangeInfo"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChangeTagsForResourceInput struct {
 	AddTags       []*Tag    `locationNameList:"Tag" type:"list"`
 	RemoveTagKeys []*string `locationNameList:"Key" type:"list"`
-	ResourceID    *string   `location:"uri" locationName:"ResourceId" type:"string" json:"-" xml:"-"`
-	ResourceType  *string   `location:"uri" locationName:"ResourceType" type:"string" json:"-" xml:"-"`
+	ResourceID    *string   `location:"uri" locationName:"ResourceId" type:"string" required:"true"json:"-" xml:"-"`
+	ResourceType  *string   `location:"uri" locationName:"ResourceType" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataChangeTagsForResourceInput `json:"-", xml:"-"`
 }
 
 type metadataChangeTagsForResourceInput struct {
-	SDKShapeTraits bool `locationName:"ChangeTagsForResourceRequest" type:"structure" required:"ResourceType,ResourceId" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	SDKShapeTraits bool `locationName:"ChangeTagsForResourceRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 type ChangeTagsForResourceOutput struct {
@@ -820,97 +820,97 @@ type metadataChangeTagsForResourceOutput struct {
 }
 
 type CreateHealthCheckInput struct {
-	CallerReference   *string            `type:"string"`
-	HealthCheckConfig *HealthCheckConfig `type:"structure"`
+	CallerReference   *string            `type:"string" required:"true"`
+	HealthCheckConfig *HealthCheckConfig `type:"structure" required:"true"`
 
 	metadataCreateHealthCheckInput `json:"-", xml:"-"`
 }
 
 type metadataCreateHealthCheckInput struct {
-	SDKShapeTraits bool `locationName:"CreateHealthCheckRequest" type:"structure" required:"CallerReference,HealthCheckConfig" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	SDKShapeTraits bool `locationName:"CreateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 type CreateHealthCheckOutput struct {
-	HealthCheck *HealthCheck `type:"structure"`
-	Location    *string      `location:"header" locationName:"Location" type:"string" json:"-" xml:"-"`
+	HealthCheck *HealthCheck `type:"structure" required:"true"`
+	Location    *string      `location:"header" locationName:"Location" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataCreateHealthCheckOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"HealthCheck,Location"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateHostedZoneInput struct {
-	CallerReference  *string           `type:"string"`
+	CallerReference  *string           `type:"string" required:"true"`
 	DelegationSetID  *string           `locationName:"DelegationSetId" type:"string"`
 	HostedZoneConfig *HostedZoneConfig `type:"structure"`
-	Name             *string           `type:"string"`
+	Name             *string           `type:"string" required:"true"`
 	VPC              *VPC              `type:"structure"`
 
 	metadataCreateHostedZoneInput `json:"-", xml:"-"`
 }
 
 type metadataCreateHostedZoneInput struct {
-	SDKShapeTraits bool `locationName:"CreateHostedZoneRequest" type:"structure" required:"Name,CallerReference" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	SDKShapeTraits bool `locationName:"CreateHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 type CreateHostedZoneOutput struct {
-	ChangeInfo    *ChangeInfo    `type:"structure"`
-	DelegationSet *DelegationSet `type:"structure"`
-	HostedZone    *HostedZone    `type:"structure"`
-	Location      *string        `location:"header" locationName:"Location" type:"string" json:"-" xml:"-"`
+	ChangeInfo    *ChangeInfo    `type:"structure" required:"true"`
+	DelegationSet *DelegationSet `type:"structure" required:"true"`
+	HostedZone    *HostedZone    `type:"structure" required:"true"`
+	Location      *string        `location:"header" locationName:"Location" type:"string" required:"true"json:"-" xml:"-"`
 	VPC           *VPC           `type:"structure"`
 
 	metadataCreateHostedZoneOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"HostedZone,ChangeInfo,DelegationSet,Location"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateReusableDelegationSetInput struct {
-	CallerReference *string `type:"string"`
+	CallerReference *string `type:"string" required:"true"`
 	HostedZoneID    *string `locationName:"HostedZoneId" type:"string"`
 
 	metadataCreateReusableDelegationSetInput `json:"-", xml:"-"`
 }
 
 type metadataCreateReusableDelegationSetInput struct {
-	SDKShapeTraits bool `locationName:"CreateReusableDelegationSetRequest" type:"structure" required:"CallerReference" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	SDKShapeTraits bool `locationName:"CreateReusableDelegationSetRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 type CreateReusableDelegationSetOutput struct {
-	DelegationSet *DelegationSet `type:"structure"`
-	Location      *string        `location:"header" locationName:"Location" type:"string" json:"-" xml:"-"`
+	DelegationSet *DelegationSet `type:"structure" required:"true"`
+	Location      *string        `location:"header" locationName:"Location" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataCreateReusableDelegationSetOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateReusableDelegationSetOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"DelegationSet,Location"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DelegationSet struct {
 	CallerReference *string   `type:"string"`
 	ID              *string   `locationName:"Id" type:"string"`
-	NameServers     []*string `locationNameList:"NameServer" type:"list"`
+	NameServers     []*string `locationNameList:"NameServer" type:"list" required:"true"`
 
 	metadataDelegationSet `json:"-", xml:"-"`
 }
 
 type metadataDelegationSet struct {
-	SDKShapeTraits bool `type:"structure" required:"NameServers"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteHealthCheckInput struct {
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" json:"-" xml:"-"`
+	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeleteHealthCheckInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteHealthCheckInput struct {
-	SDKShapeTraits bool `type:"structure" required:"HealthCheckId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteHealthCheckOutput struct {
@@ -922,33 +922,33 @@ type metadataDeleteHealthCheckOutput struct {
 }
 
 type DeleteHostedZoneInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeleteHostedZoneInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteHostedZoneInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteHostedZoneOutput struct {
-	ChangeInfo *ChangeInfo `type:"structure"`
+	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 
 	metadataDeleteHostedZoneOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ChangeInfo"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteReusableDelegationSetInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeleteReusableDelegationSetInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteReusableDelegationSetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteReusableDelegationSetOutput struct {
@@ -961,24 +961,24 @@ type metadataDeleteReusableDelegationSetOutput struct {
 
 type DisassociateVPCFromHostedZoneInput struct {
 	Comment      *string `type:"string"`
-	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
-	VPC          *VPC    `type:"structure"`
+	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	VPC          *VPC    `type:"structure" required:"true"`
 
 	metadataDisassociateVPCFromHostedZoneInput `json:"-", xml:"-"`
 }
 
 type metadataDisassociateVPCFromHostedZoneInput struct {
-	SDKShapeTraits bool `locationName:"DisassociateVPCFromHostedZoneRequest" type:"structure" required:"HostedZoneId,VPC" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	SDKShapeTraits bool `locationName:"DisassociateVPCFromHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 type DisassociateVPCFromHostedZoneOutput struct {
-	ChangeInfo *ChangeInfo `type:"structure"`
+	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 
 	metadataDisassociateVPCFromHostedZoneOutput `json:"-", xml:"-"`
 }
 
 type metadataDisassociateVPCFromHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ChangeInfo"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GeoLocation struct {
@@ -1009,23 +1009,23 @@ type metadataGeoLocationDetails struct {
 }
 
 type GetChangeInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetChangeInput `json:"-", xml:"-"`
 }
 
 type metadataGetChangeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetChangeOutput struct {
-	ChangeInfo *ChangeInfo `type:"structure"`
+	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 
 	metadataGetChangeOutput `json:"-", xml:"-"`
 }
 
 type metadataGetChangeOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ChangeInfo"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetCheckerIPRangesInput struct {
@@ -1037,13 +1037,13 @@ type metadataGetCheckerIPRangesInput struct {
 }
 
 type GetCheckerIPRangesOutput struct {
-	CheckerIPRanges []*string `locationName:"CheckerIpRanges" type:"list"`
+	CheckerIPRanges []*string `locationName:"CheckerIpRanges" type:"list" required:"true"`
 
 	metadataGetCheckerIPRangesOutput `json:"-", xml:"-"`
 }
 
 type metadataGetCheckerIPRangesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"CheckerIpRanges"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetGeoLocationInput struct {
@@ -1059,13 +1059,13 @@ type metadataGetGeoLocationInput struct {
 }
 
 type GetGeoLocationOutput struct {
-	GeoLocationDetails *GeoLocationDetails `type:"structure"`
+	GeoLocationDetails *GeoLocationDetails `type:"structure" required:"true"`
 
 	metadataGetGeoLocationOutput `json:"-", xml:"-"`
 }
 
 type metadataGetGeoLocationOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"GeoLocationDetails"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetHealthCheckCountInput struct {
@@ -1077,128 +1077,128 @@ type metadataGetHealthCheckCountInput struct {
 }
 
 type GetHealthCheckCountOutput struct {
-	HealthCheckCount *int64 `type:"long"`
+	HealthCheckCount *int64 `type:"long" required:"true"`
 
 	metadataGetHealthCheckCountOutput `json:"-", xml:"-"`
 }
 
 type metadataGetHealthCheckCountOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"HealthCheckCount"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetHealthCheckInput struct {
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" json:"-" xml:"-"`
+	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetHealthCheckInput `json:"-", xml:"-"`
 }
 
 type metadataGetHealthCheckInput struct {
-	SDKShapeTraits bool `type:"structure" required:"HealthCheckId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetHealthCheckLastFailureReasonInput struct {
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" json:"-" xml:"-"`
+	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetHealthCheckLastFailureReasonInput `json:"-", xml:"-"`
 }
 
 type metadataGetHealthCheckLastFailureReasonInput struct {
-	SDKShapeTraits bool `type:"structure" required:"HealthCheckId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetHealthCheckLastFailureReasonOutput struct {
-	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list"`
+	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list" required:"true"`
 
 	metadataGetHealthCheckLastFailureReasonOutput `json:"-", xml:"-"`
 }
 
 type metadataGetHealthCheckLastFailureReasonOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"HealthCheckObservations"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetHealthCheckOutput struct {
-	HealthCheck *HealthCheck `type:"structure"`
+	HealthCheck *HealthCheck `type:"structure" required:"true"`
 
 	metadataGetHealthCheckOutput `json:"-", xml:"-"`
 }
 
 type metadataGetHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"HealthCheck"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetHealthCheckStatusInput struct {
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" json:"-" xml:"-"`
+	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetHealthCheckStatusInput `json:"-", xml:"-"`
 }
 
 type metadataGetHealthCheckStatusInput struct {
-	SDKShapeTraits bool `type:"structure" required:"HealthCheckId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetHealthCheckStatusOutput struct {
-	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list"`
+	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list" required:"true"`
 
 	metadataGetHealthCheckStatusOutput `json:"-", xml:"-"`
 }
 
 type metadataGetHealthCheckStatusOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"HealthCheckObservations"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetHostedZoneInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetHostedZoneInput `json:"-", xml:"-"`
 }
 
 type metadataGetHostedZoneInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetHostedZoneOutput struct {
 	DelegationSet *DelegationSet `type:"structure"`
-	HostedZone    *HostedZone    `type:"structure"`
+	HostedZone    *HostedZone    `type:"structure" required:"true"`
 	VPCs          []*VPC         `locationNameList:"VPC" type:"list"`
 
 	metadataGetHostedZoneOutput `json:"-", xml:"-"`
 }
 
 type metadataGetHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"HostedZone"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetReusableDelegationSetInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetReusableDelegationSetInput `json:"-", xml:"-"`
 }
 
 type metadataGetReusableDelegationSetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetReusableDelegationSetOutput struct {
-	DelegationSet *DelegationSet `type:"structure"`
+	DelegationSet *DelegationSet `type:"structure" required:"true"`
 
 	metadataGetReusableDelegationSetOutput `json:"-", xml:"-"`
 }
 
 type metadataGetReusableDelegationSetOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"DelegationSet"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type HealthCheck struct {
-	CallerReference    *string            `type:"string"`
-	HealthCheckConfig  *HealthCheckConfig `type:"structure"`
-	HealthCheckVersion *int64             `type:"long"`
-	ID                 *string            `locationName:"Id" type:"string"`
+	CallerReference    *string            `type:"string" required:"true"`
+	HealthCheckConfig  *HealthCheckConfig `type:"structure" required:"true"`
+	HealthCheckVersion *int64             `type:"long" required:"true"`
+	ID                 *string            `locationName:"Id" type:"string" required:"true"`
 
 	metadataHealthCheck `json:"-", xml:"-"`
 }
 
 type metadataHealthCheck struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,CallerReference,HealthCheckConfig,HealthCheckVersion"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type HealthCheckConfig struct {
@@ -1209,13 +1209,13 @@ type HealthCheckConfig struct {
 	RequestInterval          *int    `type:"integer"`
 	ResourcePath             *string `type:"string"`
 	SearchString             *string `type:"string"`
-	Type                     *string `type:"string"`
+	Type                     *string `type:"string" required:"true"`
 
 	metadataHealthCheckConfig `json:"-", xml:"-"`
 }
 
 type metadataHealthCheckConfig struct {
-	SDKShapeTraits bool `type:"structure" required:"Type"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type HealthCheckObservation struct {
@@ -1230,17 +1230,17 @@ type metadataHealthCheckObservation struct {
 }
 
 type HostedZone struct {
-	CallerReference        *string           `type:"string"`
+	CallerReference        *string           `type:"string" required:"true"`
 	Config                 *HostedZoneConfig `type:"structure"`
-	ID                     *string           `locationName:"Id" type:"string"`
-	Name                   *string           `type:"string"`
+	ID                     *string           `locationName:"Id" type:"string" required:"true"`
+	Name                   *string           `type:"string" required:"true"`
 	ResourceRecordSetCount *int64            `type:"long"`
 
 	metadataHostedZone `json:"-", xml:"-"`
 }
 
 type metadataHostedZone struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,Name,CallerReference"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type HostedZoneConfig struct {
@@ -1268,9 +1268,9 @@ type metadataListGeoLocationsInput struct {
 }
 
 type ListGeoLocationsOutput struct {
-	GeoLocationDetailsList []*GeoLocationDetails `locationNameList:"GeoLocationDetails" type:"list"`
-	IsTruncated            *bool                 `type:"boolean"`
-	MaxItems               *string               `type:"string"`
+	GeoLocationDetailsList []*GeoLocationDetails `locationNameList:"GeoLocationDetails" type:"list" required:"true"`
+	IsTruncated            *bool                 `type:"boolean" required:"true"`
+	MaxItems               *string               `type:"string" required:"true"`
 	NextContinentCode      *string               `type:"string"`
 	NextCountryCode        *string               `type:"string"`
 	NextSubdivisionCode    *string               `type:"string"`
@@ -1279,7 +1279,7 @@ type ListGeoLocationsOutput struct {
 }
 
 type metadataListGeoLocationsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"GeoLocationDetailsList,IsTruncated,MaxItems"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListHealthChecksInput struct {
@@ -1294,17 +1294,17 @@ type metadataListHealthChecksInput struct {
 }
 
 type ListHealthChecksOutput struct {
-	HealthChecks []*HealthCheck `locationNameList:"HealthCheck" type:"list"`
-	IsTruncated  *bool          `type:"boolean"`
-	Marker       *string        `type:"string"`
-	MaxItems     *string        `type:"string"`
+	HealthChecks []*HealthCheck `locationNameList:"HealthCheck" type:"list" required:"true"`
+	IsTruncated  *bool          `type:"boolean" required:"true"`
+	Marker       *string        `type:"string" required:"true"`
+	MaxItems     *string        `type:"string" required:"true"`
 	NextMarker   *string        `type:"string"`
 
 	metadataListHealthChecksOutput `json:"-", xml:"-"`
 }
 
 type metadataListHealthChecksOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"HealthChecks,Marker,IsTruncated,MaxItems"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListHostedZonesInput struct {
@@ -1320,21 +1320,21 @@ type metadataListHostedZonesInput struct {
 }
 
 type ListHostedZonesOutput struct {
-	HostedZones []*HostedZone `locationNameList:"HostedZone" type:"list"`
-	IsTruncated *bool         `type:"boolean"`
-	Marker      *string       `type:"string"`
-	MaxItems    *string       `type:"string"`
+	HostedZones []*HostedZone `locationNameList:"HostedZone" type:"list" required:"true"`
+	IsTruncated *bool         `type:"boolean" required:"true"`
+	Marker      *string       `type:"string" required:"true"`
+	MaxItems    *string       `type:"string" required:"true"`
 	NextMarker  *string       `type:"string"`
 
 	metadataListHostedZonesOutput `json:"-", xml:"-"`
 }
 
 type metadataListHostedZonesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"HostedZones,Marker,IsTruncated,MaxItems"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListResourceRecordSetsInput struct {
-	HostedZoneID          *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	HostedZoneID          *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 	MaxItems              *string `location:"querystring" locationName:"maxitems" type:"string" json:"-" xml:"-"`
 	StartRecordIdentifier *string `location:"querystring" locationName:"identifier" type:"string" json:"-" xml:"-"`
 	StartRecordName       *string `location:"querystring" locationName:"name" type:"string" json:"-" xml:"-"`
@@ -1344,22 +1344,22 @@ type ListResourceRecordSetsInput struct {
 }
 
 type metadataListResourceRecordSetsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"HostedZoneId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListResourceRecordSetsOutput struct {
-	IsTruncated          *bool                `type:"boolean"`
-	MaxItems             *string              `type:"string"`
+	IsTruncated          *bool                `type:"boolean" required:"true"`
+	MaxItems             *string              `type:"string" required:"true"`
 	NextRecordIdentifier *string              `type:"string"`
 	NextRecordName       *string              `type:"string"`
 	NextRecordType       *string              `type:"string"`
-	ResourceRecordSets   []*ResourceRecordSet `locationNameList:"ResourceRecordSet" type:"list"`
+	ResourceRecordSets   []*ResourceRecordSet `locationNameList:"ResourceRecordSet" type:"list" required:"true"`
 
 	metadataListResourceRecordSetsOutput `json:"-", xml:"-"`
 }
 
 type metadataListResourceRecordSetsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceRecordSets,IsTruncated,MaxItems"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListReusableDelegationSetsInput struct {
@@ -1374,69 +1374,69 @@ type metadataListReusableDelegationSetsInput struct {
 }
 
 type ListReusableDelegationSetsOutput struct {
-	DelegationSets []*DelegationSet `locationNameList:"DelegationSet" type:"list"`
-	IsTruncated    *bool            `type:"boolean"`
-	Marker         *string          `type:"string"`
-	MaxItems       *string          `type:"string"`
+	DelegationSets []*DelegationSet `locationNameList:"DelegationSet" type:"list" required:"true"`
+	IsTruncated    *bool            `type:"boolean" required:"true"`
+	Marker         *string          `type:"string" required:"true"`
+	MaxItems       *string          `type:"string" required:"true"`
 	NextMarker     *string          `type:"string"`
 
 	metadataListReusableDelegationSetsOutput `json:"-", xml:"-"`
 }
 
 type metadataListReusableDelegationSetsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"DelegationSets,Marker,IsTruncated,MaxItems"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListTagsForResourceInput struct {
-	ResourceID   *string `location:"uri" locationName:"ResourceId" type:"string" json:"-" xml:"-"`
-	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" json:"-" xml:"-"`
+	ResourceID   *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"json:"-" xml:"-"`
+	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataListTagsForResourceInput `json:"-", xml:"-"`
 }
 
 type metadataListTagsForResourceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceType,ResourceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListTagsForResourceOutput struct {
-	ResourceTagSet *ResourceTagSet `type:"structure"`
+	ResourceTagSet *ResourceTagSet `type:"structure" required:"true"`
 
 	metadataListTagsForResourceOutput `json:"-", xml:"-"`
 }
 
 type metadataListTagsForResourceOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceTagSet"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListTagsForResourcesInput struct {
-	ResourceIDs  []*string `locationName:"ResourceIds" locationNameList:"ResourceId" type:"list"`
-	ResourceType *string   `location:"uri" locationName:"ResourceType" type:"string" json:"-" xml:"-"`
+	ResourceIDs  []*string `locationName:"ResourceIds" locationNameList:"ResourceId" type:"list" required:"true"`
+	ResourceType *string   `location:"uri" locationName:"ResourceType" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataListTagsForResourcesInput `json:"-", xml:"-"`
 }
 
 type metadataListTagsForResourcesInput struct {
-	SDKShapeTraits bool `locationName:"ListTagsForResourcesRequest" type:"structure" required:"ResourceType,ResourceIds" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	SDKShapeTraits bool `locationName:"ListTagsForResourcesRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 type ListTagsForResourcesOutput struct {
-	ResourceTagSets []*ResourceTagSet `locationNameList:"ResourceTagSet" type:"list"`
+	ResourceTagSets []*ResourceTagSet `locationNameList:"ResourceTagSet" type:"list" required:"true"`
 
 	metadataListTagsForResourcesOutput `json:"-", xml:"-"`
 }
 
 type metadataListTagsForResourcesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceTagSets"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResourceRecord struct {
-	Value *string `type:"string"`
+	Value *string `type:"string" required:"true"`
 
 	metadataResourceRecord `json:"-", xml:"-"`
 }
 
 type metadataResourceRecord struct {
-	SDKShapeTraits bool `type:"structure" required:"Value"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResourceRecordSet struct {
@@ -1444,19 +1444,19 @@ type ResourceRecordSet struct {
 	Failover        *string           `type:"string"`
 	GeoLocation     *GeoLocation      `type:"structure"`
 	HealthCheckID   *string           `locationName:"HealthCheckId" type:"string"`
-	Name            *string           `type:"string"`
+	Name            *string           `type:"string" required:"true"`
 	Region          *string           `type:"string"`
 	ResourceRecords []*ResourceRecord `locationNameList:"ResourceRecord" type:"list"`
 	SetIdentifier   *string           `type:"string"`
 	TTL             *int64            `type:"long"`
-	Type            *string           `type:"string"`
+	Type            *string           `type:"string" required:"true"`
 	Weight          *int64            `type:"long"`
 
 	metadataResourceRecordSet `json:"-", xml:"-"`
 }
 
 type metadataResourceRecordSet struct {
-	SDKShapeTraits bool `type:"structure" required:"Name,Type"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResourceTagSet struct {
@@ -1496,7 +1496,7 @@ type metadataTag struct {
 type UpdateHealthCheckInput struct {
 	FailureThreshold         *int    `type:"integer"`
 	FullyQualifiedDomainName *string `type:"string"`
-	HealthCheckID            *string `location:"uri" locationName:"HealthCheckId" type:"string" json:"-" xml:"-"`
+	HealthCheckID            *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"json:"-" xml:"-"`
 	HealthCheckVersion       *int64  `type:"long"`
 	IPAddress                *string `type:"string"`
 	Port                     *int    `type:"integer"`
@@ -1507,38 +1507,38 @@ type UpdateHealthCheckInput struct {
 }
 
 type metadataUpdateHealthCheckInput struct {
-	SDKShapeTraits bool `locationName:"UpdateHealthCheckRequest" type:"structure" required:"HealthCheckId" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	SDKShapeTraits bool `locationName:"UpdateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 type UpdateHealthCheckOutput struct {
-	HealthCheck *HealthCheck `type:"structure"`
+	HealthCheck *HealthCheck `type:"structure" required:"true"`
 
 	metadataUpdateHealthCheckOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"HealthCheck"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateHostedZoneCommentInput struct {
 	Comment *string `type:"string"`
-	ID      *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataUpdateHostedZoneCommentInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateHostedZoneCommentInput struct {
-	SDKShapeTraits bool `locationName:"UpdateHostedZoneCommentRequest" type:"structure" required:"Id" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	SDKShapeTraits bool `locationName:"UpdateHostedZoneCommentRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 type UpdateHostedZoneCommentOutput struct {
-	HostedZone *HostedZone `type:"structure"`
+	HostedZone *HostedZone `type:"structure" required:"true"`
 
 	metadataUpdateHostedZoneCommentOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateHostedZoneCommentOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"HostedZone"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type VPC struct {

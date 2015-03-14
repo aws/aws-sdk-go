@@ -710,7 +710,7 @@ var opSetLoadBalancerPoliciesOfListener *aws.Operation
 
 type AccessLog struct {
 	EmitInterval   *int    `type:"integer"`
-	Enabled        *bool   `type:"boolean"`
+	Enabled        *bool   `type:"boolean" required:"true"`
 	S3BucketName   *string `type:"string"`
 	S3BucketPrefix *string `type:"string"`
 
@@ -718,18 +718,18 @@ type AccessLog struct {
 }
 
 type metadataAccessLog struct {
-	SDKShapeTraits bool `type:"structure" required:"Enabled"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddTagsInput struct {
-	LoadBalancerNames []*string `type:"list"`
-	Tags              []*Tag    `type:"list"`
+	LoadBalancerNames []*string `type:"list" required:"true"`
+	Tags              []*Tag    `type:"list" required:"true"`
 
 	metadataAddTagsInput `json:"-", xml:"-"`
 }
 
 type metadataAddTagsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerNames,Tags"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddTagsOutput struct {
@@ -763,14 +763,14 @@ type metadataAppCookieStickinessPolicy struct {
 }
 
 type ApplySecurityGroupsToLoadBalancerInput struct {
-	LoadBalancerName *string   `type:"string"`
-	SecurityGroups   []*string `type:"list"`
+	LoadBalancerName *string   `type:"string" required:"true"`
+	SecurityGroups   []*string `type:"list" required:"true"`
 
 	metadataApplySecurityGroupsToLoadBalancerInput `json:"-", xml:"-"`
 }
 
 type metadataApplySecurityGroupsToLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,SecurityGroups"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ApplySecurityGroupsToLoadBalancerOutput struct {
@@ -784,14 +784,14 @@ type metadataApplySecurityGroupsToLoadBalancerOutput struct {
 }
 
 type AttachLoadBalancerToSubnetsInput struct {
-	LoadBalancerName *string   `type:"string"`
-	Subnets          []*string `type:"list"`
+	LoadBalancerName *string   `type:"string" required:"true"`
+	Subnets          []*string `type:"list" required:"true"`
 
 	metadataAttachLoadBalancerToSubnetsInput `json:"-", xml:"-"`
 }
 
 type metadataAttachLoadBalancerToSubnetsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,Subnets"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachLoadBalancerToSubnetsOutput struct {
@@ -816,14 +816,14 @@ type metadataBackendServerDescription struct {
 }
 
 type ConfigureHealthCheckInput struct {
-	HealthCheck      *HealthCheck `type:"structure"`
-	LoadBalancerName *string      `type:"string"`
+	HealthCheck      *HealthCheck `type:"structure" required:"true"`
+	LoadBalancerName *string      `type:"string" required:"true"`
 
 	metadataConfigureHealthCheckInput `json:"-", xml:"-"`
 }
 
 type metadataConfigureHealthCheckInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,HealthCheck"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ConfigureHealthCheckOutput struct {
@@ -837,36 +837,36 @@ type metadataConfigureHealthCheckOutput struct {
 }
 
 type ConnectionDraining struct {
-	Enabled *bool `type:"boolean"`
+	Enabled *bool `type:"boolean" required:"true"`
 	Timeout *int  `type:"integer"`
 
 	metadataConnectionDraining `json:"-", xml:"-"`
 }
 
 type metadataConnectionDraining struct {
-	SDKShapeTraits bool `type:"structure" required:"Enabled"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ConnectionSettings struct {
-	IdleTimeout *int `type:"integer"`
+	IdleTimeout *int `type:"integer" required:"true"`
 
 	metadataConnectionSettings `json:"-", xml:"-"`
 }
 
 type metadataConnectionSettings struct {
-	SDKShapeTraits bool `type:"structure" required:"IdleTimeout"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAppCookieStickinessPolicyInput struct {
-	CookieName       *string `type:"string"`
-	LoadBalancerName *string `type:"string"`
-	PolicyName       *string `type:"string"`
+	CookieName       *string `type:"string" required:"true"`
+	LoadBalancerName *string `type:"string" required:"true"`
+	PolicyName       *string `type:"string" required:"true"`
 
 	metadataCreateAppCookieStickinessPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataCreateAppCookieStickinessPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,PolicyName,CookieName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAppCookieStickinessPolicyOutput struct {
@@ -879,14 +879,14 @@ type metadataCreateAppCookieStickinessPolicyOutput struct {
 
 type CreateLBCookieStickinessPolicyInput struct {
 	CookieExpirationPeriod *int64  `type:"long"`
-	LoadBalancerName       *string `type:"string"`
-	PolicyName             *string `type:"string"`
+	LoadBalancerName       *string `type:"string" required:"true"`
+	PolicyName             *string `type:"string" required:"true"`
 
 	metadataCreateLBCookieStickinessPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataCreateLBCookieStickinessPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,PolicyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLBCookieStickinessPolicyOutput struct {
@@ -899,8 +899,8 @@ type metadataCreateLBCookieStickinessPolicyOutput struct {
 
 type CreateLoadBalancerInput struct {
 	AvailabilityZones []*string   `type:"list"`
-	Listeners         []*Listener `type:"list"`
-	LoadBalancerName  *string     `type:"string"`
+	Listeners         []*Listener `type:"list" required:"true"`
+	LoadBalancerName  *string     `type:"string" required:"true"`
 	Scheme            *string     `type:"string"`
 	SecurityGroups    []*string   `type:"list"`
 	Subnets           []*string   `type:"list"`
@@ -910,18 +910,18 @@ type CreateLoadBalancerInput struct {
 }
 
 type metadataCreateLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,Listeners"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLoadBalancerListenersInput struct {
-	Listeners        []*Listener `type:"list"`
-	LoadBalancerName *string     `type:"string"`
+	Listeners        []*Listener `type:"list" required:"true"`
+	LoadBalancerName *string     `type:"string" required:"true"`
 
 	metadataCreateLoadBalancerListenersInput `json:"-", xml:"-"`
 }
 
 type metadataCreateLoadBalancerListenersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,Listeners"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLoadBalancerListenersOutput struct {
@@ -943,16 +943,16 @@ type metadataCreateLoadBalancerOutput struct {
 }
 
 type CreateLoadBalancerPolicyInput struct {
-	LoadBalancerName *string            `type:"string"`
+	LoadBalancerName *string            `type:"string" required:"true"`
 	PolicyAttributes []*PolicyAttribute `type:"list"`
-	PolicyName       *string            `type:"string"`
-	PolicyTypeName   *string            `type:"string"`
+	PolicyName       *string            `type:"string" required:"true"`
+	PolicyTypeName   *string            `type:"string" required:"true"`
 
 	metadataCreateLoadBalancerPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataCreateLoadBalancerPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,PolicyName,PolicyTypeName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLoadBalancerPolicyOutput struct {
@@ -964,34 +964,34 @@ type metadataCreateLoadBalancerPolicyOutput struct {
 }
 
 type CrossZoneLoadBalancing struct {
-	Enabled *bool `type:"boolean"`
+	Enabled *bool `type:"boolean" required:"true"`
 
 	metadataCrossZoneLoadBalancing `json:"-", xml:"-"`
 }
 
 type metadataCrossZoneLoadBalancing struct {
-	SDKShapeTraits bool `type:"structure" required:"Enabled"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLoadBalancerInput struct {
-	LoadBalancerName *string `type:"string"`
+	LoadBalancerName *string `type:"string" required:"true"`
 
 	metadataDeleteLoadBalancerInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLoadBalancerListenersInput struct {
-	LoadBalancerName  *string `type:"string"`
-	LoadBalancerPorts []*int  `type:"list"`
+	LoadBalancerName  *string `type:"string" required:"true"`
+	LoadBalancerPorts []*int  `type:"list" required:"true"`
 
 	metadataDeleteLoadBalancerListenersInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteLoadBalancerListenersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,LoadBalancerPorts"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLoadBalancerListenersOutput struct {
@@ -1011,14 +1011,14 @@ type metadataDeleteLoadBalancerOutput struct {
 }
 
 type DeleteLoadBalancerPolicyInput struct {
-	LoadBalancerName *string `type:"string"`
-	PolicyName       *string `type:"string"`
+	LoadBalancerName *string `type:"string" required:"true"`
+	PolicyName       *string `type:"string" required:"true"`
 
 	metadataDeleteLoadBalancerPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteLoadBalancerPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,PolicyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLoadBalancerPolicyOutput struct {
@@ -1030,14 +1030,14 @@ type metadataDeleteLoadBalancerPolicyOutput struct {
 }
 
 type DeregisterInstancesFromLoadBalancerInput struct {
-	Instances        []*Instance `type:"list"`
-	LoadBalancerName *string     `type:"string"`
+	Instances        []*Instance `type:"list" required:"true"`
+	LoadBalancerName *string     `type:"string" required:"true"`
 
 	metadataDeregisterInstancesFromLoadBalancerInput `json:"-", xml:"-"`
 }
 
 type metadataDeregisterInstancesFromLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,Instances"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeregisterInstancesFromLoadBalancerOutput struct {
@@ -1052,13 +1052,13 @@ type metadataDeregisterInstancesFromLoadBalancerOutput struct {
 
 type DescribeInstanceHealthInput struct {
 	Instances        []*Instance `type:"list"`
-	LoadBalancerName *string     `type:"string"`
+	LoadBalancerName *string     `type:"string" required:"true"`
 
 	metadataDescribeInstanceHealthInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeInstanceHealthInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeInstanceHealthOutput struct {
@@ -1072,13 +1072,13 @@ type metadataDescribeInstanceHealthOutput struct {
 }
 
 type DescribeLoadBalancerAttributesInput struct {
-	LoadBalancerName *string `type:"string"`
+	LoadBalancerName *string `type:"string" required:"true"`
 
 	metadataDescribeLoadBalancerAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLoadBalancerAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLoadBalancerAttributesOutput struct {
@@ -1156,13 +1156,13 @@ type metadataDescribeLoadBalancersOutput struct {
 }
 
 type DescribeTagsInput struct {
-	LoadBalancerNames []*string `type:"list"`
+	LoadBalancerNames []*string `type:"list" required:"true"`
 
 	metadataDescribeTagsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTagsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerNames"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeTagsOutput struct {
@@ -1176,14 +1176,14 @@ type metadataDescribeTagsOutput struct {
 }
 
 type DetachLoadBalancerFromSubnetsInput struct {
-	LoadBalancerName *string   `type:"string"`
-	Subnets          []*string `type:"list"`
+	LoadBalancerName *string   `type:"string" required:"true"`
+	Subnets          []*string `type:"list" required:"true"`
 
 	metadataDetachLoadBalancerFromSubnetsInput `json:"-", xml:"-"`
 }
 
 type metadataDetachLoadBalancerFromSubnetsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,Subnets"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachLoadBalancerFromSubnetsOutput struct {
@@ -1197,14 +1197,14 @@ type metadataDetachLoadBalancerFromSubnetsOutput struct {
 }
 
 type DisableAvailabilityZonesForLoadBalancerInput struct {
-	AvailabilityZones []*string `type:"list"`
-	LoadBalancerName  *string   `type:"string"`
+	AvailabilityZones []*string `type:"list" required:"true"`
+	LoadBalancerName  *string   `type:"string" required:"true"`
 
 	metadataDisableAvailabilityZonesForLoadBalancerInput `json:"-", xml:"-"`
 }
 
 type metadataDisableAvailabilityZonesForLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,AvailabilityZones"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableAvailabilityZonesForLoadBalancerOutput struct {
@@ -1218,14 +1218,14 @@ type metadataDisableAvailabilityZonesForLoadBalancerOutput struct {
 }
 
 type EnableAvailabilityZonesForLoadBalancerInput struct {
-	AvailabilityZones []*string `type:"list"`
-	LoadBalancerName  *string   `type:"string"`
+	AvailabilityZones []*string `type:"list" required:"true"`
+	LoadBalancerName  *string   `type:"string" required:"true"`
 
 	metadataEnableAvailabilityZonesForLoadBalancerInput `json:"-", xml:"-"`
 }
 
 type metadataEnableAvailabilityZonesForLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,AvailabilityZones"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableAvailabilityZonesForLoadBalancerOutput struct {
@@ -1239,17 +1239,17 @@ type metadataEnableAvailabilityZonesForLoadBalancerOutput struct {
 }
 
 type HealthCheck struct {
-	HealthyThreshold   *int    `type:"integer"`
-	Interval           *int    `type:"integer"`
-	Target             *string `type:"string"`
-	Timeout            *int    `type:"integer"`
-	UnhealthyThreshold *int    `type:"integer"`
+	HealthyThreshold   *int    `type:"integer" required:"true"`
+	Interval           *int    `type:"integer" required:"true"`
+	Target             *string `type:"string" required:"true"`
+	Timeout            *int    `type:"integer" required:"true"`
+	UnhealthyThreshold *int    `type:"integer" required:"true"`
 
 	metadataHealthCheck `json:"-", xml:"-"`
 }
 
 type metadataHealthCheck struct {
-	SDKShapeTraits bool `type:"structure" required:"Target,Interval,Timeout,UnhealthyThreshold,HealthyThreshold"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Instance struct {
@@ -1287,17 +1287,17 @@ type metadataLBCookieStickinessPolicy struct {
 }
 
 type Listener struct {
-	InstancePort     *int    `type:"integer"`
+	InstancePort     *int    `type:"integer" required:"true"`
 	InstanceProtocol *string `type:"string"`
-	LoadBalancerPort *int    `type:"integer"`
-	Protocol         *string `type:"string"`
+	LoadBalancerPort *int    `type:"integer" required:"true"`
+	Protocol         *string `type:"string" required:"true"`
 	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string"`
 
 	metadataListener `json:"-", xml:"-"`
 }
 
 type metadataListener struct {
-	SDKShapeTraits bool `type:"structure" required:"Protocol,LoadBalancerPort,InstancePort"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListenerDescription struct {
@@ -1351,14 +1351,14 @@ type metadataLoadBalancerDescription struct {
 }
 
 type ModifyLoadBalancerAttributesInput struct {
-	LoadBalancerAttributes *LoadBalancerAttributes `type:"structure"`
-	LoadBalancerName       *string                 `type:"string"`
+	LoadBalancerAttributes *LoadBalancerAttributes `type:"structure" required:"true"`
+	LoadBalancerName       *string                 `type:"string" required:"true"`
 
 	metadataModifyLoadBalancerAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataModifyLoadBalancerAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,LoadBalancerAttributes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyLoadBalancerAttributesOutput struct {
@@ -1445,14 +1445,14 @@ type metadataPolicyTypeDescription struct {
 }
 
 type RegisterInstancesWithLoadBalancerInput struct {
-	Instances        []*Instance `type:"list"`
-	LoadBalancerName *string     `type:"string"`
+	Instances        []*Instance `type:"list" required:"true"`
+	LoadBalancerName *string     `type:"string" required:"true"`
 
 	metadataRegisterInstancesWithLoadBalancerInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterInstancesWithLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,Instances"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterInstancesWithLoadBalancerOutput struct {
@@ -1466,14 +1466,14 @@ type metadataRegisterInstancesWithLoadBalancerOutput struct {
 }
 
 type RemoveTagsInput struct {
-	LoadBalancerNames []*string     `type:"list"`
-	Tags              []*TagKeyOnly `type:"list"`
+	LoadBalancerNames []*string     `type:"list" required:"true"`
+	Tags              []*TagKeyOnly `type:"list" required:"true"`
 
 	metadataRemoveTagsInput `json:"-", xml:"-"`
 }
 
 type metadataRemoveTagsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerNames,Tags"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveTagsOutput struct {
@@ -1485,15 +1485,15 @@ type metadataRemoveTagsOutput struct {
 }
 
 type SetLoadBalancerListenerSSLCertificateInput struct {
-	LoadBalancerName *string `type:"string"`
-	LoadBalancerPort *int    `type:"integer"`
-	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string"`
+	LoadBalancerName *string `type:"string" required:"true"`
+	LoadBalancerPort *int    `type:"integer" required:"true"`
+	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string" required:"true"`
 
 	metadataSetLoadBalancerListenerSSLCertificateInput `json:"-", xml:"-"`
 }
 
 type metadataSetLoadBalancerListenerSSLCertificateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,LoadBalancerPort,SSLCertificateId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetLoadBalancerListenerSSLCertificateOutput struct {
@@ -1505,15 +1505,15 @@ type metadataSetLoadBalancerListenerSSLCertificateOutput struct {
 }
 
 type SetLoadBalancerPoliciesForBackendServerInput struct {
-	InstancePort     *int      `type:"integer"`
-	LoadBalancerName *string   `type:"string"`
-	PolicyNames      []*string `type:"list"`
+	InstancePort     *int      `type:"integer" required:"true"`
+	LoadBalancerName *string   `type:"string" required:"true"`
+	PolicyNames      []*string `type:"list" required:"true"`
 
 	metadataSetLoadBalancerPoliciesForBackendServerInput `json:"-", xml:"-"`
 }
 
 type metadataSetLoadBalancerPoliciesForBackendServerInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,InstancePort,PolicyNames"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetLoadBalancerPoliciesForBackendServerOutput struct {
@@ -1525,15 +1525,15 @@ type metadataSetLoadBalancerPoliciesForBackendServerOutput struct {
 }
 
 type SetLoadBalancerPoliciesOfListenerInput struct {
-	LoadBalancerName *string   `type:"string"`
-	LoadBalancerPort *int      `type:"integer"`
-	PolicyNames      []*string `type:"list"`
+	LoadBalancerName *string   `type:"string" required:"true"`
+	LoadBalancerPort *int      `type:"integer" required:"true"`
+	PolicyNames      []*string `type:"list" required:"true"`
 
 	metadataSetLoadBalancerPoliciesOfListenerInput `json:"-", xml:"-"`
 }
 
 type metadataSetLoadBalancerPoliciesOfListenerInput struct {
-	SDKShapeTraits bool `type:"structure" required:"LoadBalancerName,LoadBalancerPort,PolicyNames"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetLoadBalancerPoliciesOfListenerOutput struct {
@@ -1556,14 +1556,14 @@ type metadataSourceSecurityGroup struct {
 }
 
 type Tag struct {
-	Key   *string `type:"string"`
+	Key   *string `type:"string" required:"true"`
 	Value *string `type:"string"`
 
 	metadataTag `json:"-", xml:"-"`
 }
 
 type metadataTag struct {
-	SDKShapeTraits bool `type:"structure" required:"Key"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TagDescription struct {

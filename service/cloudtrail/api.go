@@ -187,8 +187,8 @@ type CreateTrailInput struct {
 	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string" json:"CloudWatchLogsLogGroupArn,omitempty"`
 	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string" json:"CloudWatchLogsRoleArn,omitempty"`
 	IncludeGlobalServiceEvents *bool   `type:"boolean" json:",omitempty"`
-	Name                       *string `type:"string" json:",omitempty"`
-	S3BucketName               *string `type:"string" json:",omitempty"`
+	Name                       *string `type:"string" required:"true"json:",omitempty"`
+	S3BucketName               *string `type:"string" required:"true"json:",omitempty"`
 	S3KeyPrefix                *string `type:"string" json:",omitempty"`
 	SNSTopicName               *string `locationName:"SnsTopicName" type:"string" json:"SnsTopicName,omitempty"`
 
@@ -196,7 +196,7 @@ type CreateTrailInput struct {
 }
 
 type metadataCreateTrailInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name,S3BucketName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateTrailOutput struct {
@@ -216,13 +216,13 @@ type metadataCreateTrailOutput struct {
 }
 
 type DeleteTrailInput struct {
-	Name *string `type:"string" json:",omitempty"`
+	Name *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDeleteTrailInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTrailInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteTrailOutput struct {
@@ -254,13 +254,13 @@ type metadataDescribeTrailsOutput struct {
 }
 
 type GetTrailStatusInput struct {
-	Name *string `type:"string" json:",omitempty"`
+	Name *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataGetTrailStatusInput `json:"-", xml:"-"`
 }
 
 type metadataGetTrailStatusInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetTrailStatusOutput struct {
@@ -282,13 +282,13 @@ type metadataGetTrailStatusOutput struct {
 }
 
 type StartLoggingInput struct {
-	Name *string `type:"string" json:",omitempty"`
+	Name *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataStartLoggingInput `json:"-", xml:"-"`
 }
 
 type metadataStartLoggingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type StartLoggingOutput struct {
@@ -300,13 +300,13 @@ type metadataStartLoggingOutput struct {
 }
 
 type StopLoggingInput struct {
-	Name *string `type:"string" json:",omitempty"`
+	Name *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataStopLoggingInput `json:"-", xml:"-"`
 }
 
 type metadataStopLoggingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type StopLoggingOutput struct {
@@ -337,7 +337,7 @@ type UpdateTrailInput struct {
 	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string" json:"CloudWatchLogsLogGroupArn,omitempty"`
 	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string" json:"CloudWatchLogsRoleArn,omitempty"`
 	IncludeGlobalServiceEvents *bool   `type:"boolean" json:",omitempty"`
-	Name                       *string `type:"string" json:",omitempty"`
+	Name                       *string `type:"string" required:"true"json:",omitempty"`
 	S3BucketName               *string `type:"string" json:",omitempty"`
 	S3KeyPrefix                *string `type:"string" json:",omitempty"`
 	SNSTopicName               *string `locationName:"SnsTopicName" type:"string" json:"SnsTopicName,omitempty"`
@@ -346,7 +346,7 @@ type UpdateTrailInput struct {
 }
 
 type metadataUpdateTrailInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateTrailOutput struct {

@@ -472,13 +472,13 @@ type metadataAudioParameters struct {
 }
 
 type CancelJobInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataCancelJobInput `json:"-", xml:"-"`
 }
 
 type metadataCancelJobInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CancelJobOutput struct {
@@ -538,11 +538,11 @@ type metadataClip struct {
 }
 
 type CreateJobInput struct {
-	Input           *JobInput            `type:"structure" json:",omitempty"`
+	Input           *JobInput            `type:"structure" required:"true"json:",omitempty"`
 	Output          *CreateJobOutput     `type:"structure" json:",omitempty"`
 	OutputKeyPrefix *string              `type:"string" json:",omitempty"`
 	Outputs         []*CreateJobOutput   `type:"list" json:",omitempty"`
-	PipelineID      *string              `locationName:"PipelineId" type:"string" json:"PipelineId,omitempty"`
+	PipelineID      *string              `locationName:"PipelineId" type:"string" required:"true"json:"PipelineId,omitempty"`
 	Playlists       []*CreateJobPlaylist `type:"list" json:",omitempty"`
 	UserMetadata    *map[string]*string  `type:"map" json:",omitempty"`
 
@@ -550,7 +550,7 @@ type CreateJobInput struct {
 }
 
 type metadataCreateJobInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PipelineId,Input" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateJobOutput struct {
@@ -579,18 +579,18 @@ type metadataCreateJobPlaylist struct {
 type CreatePipelineInput struct {
 	AWSKMSKeyARN    *string               `locationName:"AwsKmsKeyArn" type:"string" json:"AwsKmsKeyArn,omitempty"`
 	ContentConfig   *PipelineOutputConfig `type:"structure" json:",omitempty"`
-	InputBucket     *string               `type:"string" json:",omitempty"`
-	Name            *string               `type:"string" json:",omitempty"`
+	InputBucket     *string               `type:"string" required:"true"json:",omitempty"`
+	Name            *string               `type:"string" required:"true"json:",omitempty"`
 	Notifications   *Notifications        `type:"structure" json:",omitempty"`
 	OutputBucket    *string               `type:"string" json:",omitempty"`
-	Role            *string               `type:"string" json:",omitempty"`
+	Role            *string               `type:"string" required:"true"json:",omitempty"`
 	ThumbnailConfig *PipelineOutputConfig `type:"structure" json:",omitempty"`
 
 	metadataCreatePipelineInput `json:"-", xml:"-"`
 }
 
 type metadataCreatePipelineInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name,InputBucket,Role" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreatePipelineOutput struct {
@@ -606,9 +606,9 @@ type metadataCreatePipelineOutput struct {
 
 type CreatePresetInput struct {
 	Audio       *AudioParameters `type:"structure" json:",omitempty"`
-	Container   *string          `type:"string" json:",omitempty"`
+	Container   *string          `type:"string" required:"true"json:",omitempty"`
 	Description *string          `type:"string" json:",omitempty"`
-	Name        *string          `type:"string" json:",omitempty"`
+	Name        *string          `type:"string" required:"true"json:",omitempty"`
 	Thumbnails  *Thumbnails      `type:"structure" json:",omitempty"`
 	Video       *VideoParameters `type:"structure" json:",omitempty"`
 
@@ -616,7 +616,7 @@ type CreatePresetInput struct {
 }
 
 type metadataCreatePresetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name,Container" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreatePresetOutput struct {
@@ -631,13 +631,13 @@ type metadataCreatePresetOutput struct {
 }
 
 type DeletePipelineInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeletePipelineInput `json:"-", xml:"-"`
 }
 
 type metadataDeletePipelineInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeletePipelineOutput struct {
@@ -649,13 +649,13 @@ type metadataDeletePipelineOutput struct {
 }
 
 type DeletePresetInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeletePresetInput `json:"-", xml:"-"`
 }
 
 type metadataDeletePresetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeletePresetOutput struct {
@@ -781,13 +781,13 @@ type metadataJobWatermark struct {
 type ListJobsByPipelineInput struct {
 	Ascending  *string `location:"querystring" locationName:"Ascending" type:"string" json:"-" xml:"-"`
 	PageToken  *string `location:"querystring" locationName:"PageToken" type:"string" json:"-" xml:"-"`
-	PipelineID *string `location:"uri" locationName:"PipelineId" type:"string" json:"-" xml:"-"`
+	PipelineID *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataListJobsByPipelineInput `json:"-", xml:"-"`
 }
 
 type metadataListJobsByPipelineInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PipelineId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListJobsByPipelineOutput struct {
@@ -804,13 +804,13 @@ type metadataListJobsByPipelineOutput struct {
 type ListJobsByStatusInput struct {
 	Ascending *string `location:"querystring" locationName:"Ascending" type:"string" json:"-" xml:"-"`
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string" json:"-" xml:"-"`
-	Status    *string `location:"uri" locationName:"Status" type:"string" json:"-" xml:"-"`
+	Status    *string `location:"uri" locationName:"Status" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataListJobsByStatusInput `json:"-", xml:"-"`
 }
 
 type metadataListJobsByStatusInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Status" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListJobsByStatusOutput struct {
@@ -978,13 +978,13 @@ type metadataPresetWatermark struct {
 }
 
 type ReadJobInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataReadJobInput `json:"-", xml:"-"`
 }
 
 type metadataReadJobInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ReadJobOutput struct {
@@ -998,13 +998,13 @@ type metadataReadJobOutput struct {
 }
 
 type ReadPipelineInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataReadPipelineInput `json:"-", xml:"-"`
 }
 
 type metadataReadPipelineInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ReadPipelineOutput struct {
@@ -1019,13 +1019,13 @@ type metadataReadPipelineOutput struct {
 }
 
 type ReadPresetInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataReadPresetInput `json:"-", xml:"-"`
 }
 
 type metadataReadPresetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ReadPresetOutput struct {
@@ -1039,16 +1039,16 @@ type metadataReadPresetOutput struct {
 }
 
 type TestRoleInput struct {
-	InputBucket  *string   `type:"string" json:",omitempty"`
-	OutputBucket *string   `type:"string" json:",omitempty"`
-	Role         *string   `type:"string" json:",omitempty"`
-	Topics       []*string `type:"list" json:",omitempty"`
+	InputBucket  *string   `type:"string" required:"true"json:",omitempty"`
+	OutputBucket *string   `type:"string" required:"true"json:",omitempty"`
+	Role         *string   `type:"string" required:"true"json:",omitempty"`
+	Topics       []*string `type:"list" required:"true"json:",omitempty"`
 
 	metadataTestRoleInput `json:"-", xml:"-"`
 }
 
 type metadataTestRoleInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Role,InputBucket,OutputBucket,Topics" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type TestRoleOutput struct {
@@ -1093,7 +1093,7 @@ type metadataTimeSpan struct {
 type UpdatePipelineInput struct {
 	AWSKMSKeyARN    *string               `locationName:"AwsKmsKeyArn" type:"string" json:"AwsKmsKeyArn,omitempty"`
 	ContentConfig   *PipelineOutputConfig `type:"structure" json:",omitempty"`
-	ID              *string               `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID              *string               `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 	InputBucket     *string               `type:"string" json:",omitempty"`
 	Name            *string               `type:"string" json:",omitempty"`
 	Notifications   *Notifications        `type:"structure" json:",omitempty"`
@@ -1104,18 +1104,18 @@ type UpdatePipelineInput struct {
 }
 
 type metadataUpdatePipelineInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdatePipelineNotificationsInput struct {
-	ID            *string        `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
-	Notifications *Notifications `type:"structure" json:",omitempty"`
+	ID            *string        `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	Notifications *Notifications `type:"structure" required:"true"json:",omitempty"`
 
 	metadataUpdatePipelineNotificationsInput `json:"-", xml:"-"`
 }
 
 type metadataUpdatePipelineNotificationsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,Notifications" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdatePipelineNotificationsOutput struct {
@@ -1140,14 +1140,14 @@ type metadataUpdatePipelineOutput struct {
 }
 
 type UpdatePipelineStatusInput struct {
-	ID     *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
-	Status *string `type:"string" json:",omitempty"`
+	ID     *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	Status *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataUpdatePipelineStatusInput `json:"-", xml:"-"`
 }
 
 type metadataUpdatePipelineStatusInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,Status" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdatePipelineStatusOutput struct {

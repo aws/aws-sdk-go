@@ -332,14 +332,14 @@ func (c *Kinesis) SplitShard(input *SplitShardInput) (output *SplitShardOutput, 
 var opSplitShard *aws.Operation
 
 type AddTagsToStreamInput struct {
-	StreamName *string             `type:"string" json:",omitempty"`
-	Tags       *map[string]*string `type:"map" json:",omitempty"`
+	StreamName *string             `type:"string" required:"true"json:",omitempty"`
+	Tags       *map[string]*string `type:"map" required:"true"json:",omitempty"`
 
 	metadataAddTagsToStreamInput `json:"-", xml:"-"`
 }
 
 type metadataAddTagsToStreamInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamName,Tags" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type AddTagsToStreamOutput struct {
@@ -351,14 +351,14 @@ type metadataAddTagsToStreamOutput struct {
 }
 
 type CreateStreamInput struct {
-	ShardCount *int    `type:"integer" json:",omitempty"`
-	StreamName *string `type:"string" json:",omitempty"`
+	ShardCount *int    `type:"integer" required:"true"json:",omitempty"`
+	StreamName *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataCreateStreamInput `json:"-", xml:"-"`
 }
 
 type metadataCreateStreamInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamName,ShardCount" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateStreamOutput struct {
@@ -370,13 +370,13 @@ type metadataCreateStreamOutput struct {
 }
 
 type DeleteStreamInput struct {
-	StreamName *string `type:"string" json:",omitempty"`
+	StreamName *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDeleteStreamInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteStreamInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteStreamOutput struct {
@@ -390,58 +390,58 @@ type metadataDeleteStreamOutput struct {
 type DescribeStreamInput struct {
 	ExclusiveStartShardID *string `locationName:"ExclusiveStartShardId" type:"string" json:"ExclusiveStartShardId,omitempty"`
 	Limit                 *int    `type:"integer" json:",omitempty"`
-	StreamName            *string `type:"string" json:",omitempty"`
+	StreamName            *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDescribeStreamInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStreamInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeStreamOutput struct {
-	StreamDescription *StreamDescription `type:"structure" json:",omitempty"`
+	StreamDescription *StreamDescription `type:"structure" required:"true"json:",omitempty"`
 
 	metadataDescribeStreamOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStreamOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamDescription" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetRecordsInput struct {
 	Limit         *int    `type:"integer" json:",omitempty"`
-	ShardIterator *string `type:"string" json:",omitempty"`
+	ShardIterator *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataGetRecordsInput `json:"-", xml:"-"`
 }
 
 type metadataGetRecordsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ShardIterator" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetRecordsOutput struct {
 	NextShardIterator *string   `type:"string" json:",omitempty"`
-	Records           []*Record `type:"list" json:",omitempty"`
+	Records           []*Record `type:"list" required:"true"json:",omitempty"`
 
 	metadataGetRecordsOutput `json:"-", xml:"-"`
 }
 
 type metadataGetRecordsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Records" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetShardIteratorInput struct {
-	ShardID                *string `locationName:"ShardId" type:"string" json:"ShardId,omitempty"`
-	ShardIteratorType      *string `type:"string" json:",omitempty"`
+	ShardID                *string `locationName:"ShardId" type:"string" required:"true"json:"ShardId,omitempty"`
+	ShardIteratorType      *string `type:"string" required:"true"json:",omitempty"`
 	StartingSequenceNumber *string `type:"string" json:",omitempty"`
-	StreamName             *string `type:"string" json:",omitempty"`
+	StreamName             *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataGetShardIteratorInput `json:"-", xml:"-"`
 }
 
 type metadataGetShardIteratorInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamName,ShardId,ShardIteratorType" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetShardIteratorOutput struct {
@@ -455,14 +455,14 @@ type metadataGetShardIteratorOutput struct {
 }
 
 type HashKeyRange struct {
-	EndingHashKey   *string `type:"string" json:",omitempty"`
-	StartingHashKey *string `type:"string" json:",omitempty"`
+	EndingHashKey   *string `type:"string" required:"true"json:",omitempty"`
+	StartingHashKey *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataHashKeyRange `json:"-", xml:"-"`
 }
 
 type metadataHashKeyRange struct {
-	SDKShapeTraits bool `type:"structure" required:"StartingHashKey,EndingHashKey" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListStreamsInput struct {
@@ -477,49 +477,49 @@ type metadataListStreamsInput struct {
 }
 
 type ListStreamsOutput struct {
-	HasMoreStreams *bool     `type:"boolean" json:",omitempty"`
-	StreamNames    []*string `type:"list" json:",omitempty"`
+	HasMoreStreams *bool     `type:"boolean" required:"true"json:",omitempty"`
+	StreamNames    []*string `type:"list" required:"true"json:",omitempty"`
 
 	metadataListStreamsOutput `json:"-", xml:"-"`
 }
 
 type metadataListStreamsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamNames,HasMoreStreams" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListTagsForStreamInput struct {
 	ExclusiveStartTagKey *string `type:"string" json:",omitempty"`
 	Limit                *int    `type:"integer" json:",omitempty"`
-	StreamName           *string `type:"string" json:",omitempty"`
+	StreamName           *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataListTagsForStreamInput `json:"-", xml:"-"`
 }
 
 type metadataListTagsForStreamInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListTagsForStreamOutput struct {
-	HasMoreTags *bool  `type:"boolean" json:",omitempty"`
-	Tags        []*Tag `type:"list" json:",omitempty"`
+	HasMoreTags *bool  `type:"boolean" required:"true"json:",omitempty"`
+	Tags        []*Tag `type:"list" required:"true"json:",omitempty"`
 
 	metadataListTagsForStreamOutput `json:"-", xml:"-"`
 }
 
 type metadataListTagsForStreamOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Tags,HasMoreTags" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type MergeShardsInput struct {
-	AdjacentShardToMerge *string `type:"string" json:",omitempty"`
-	ShardToMerge         *string `type:"string" json:",omitempty"`
-	StreamName           *string `type:"string" json:",omitempty"`
+	AdjacentShardToMerge *string `type:"string" required:"true"json:",omitempty"`
+	ShardToMerge         *string `type:"string" required:"true"json:",omitempty"`
+	StreamName           *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataMergeShardsInput `json:"-", xml:"-"`
 }
 
 type metadataMergeShardsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamName,ShardToMerge,AdjacentShardToMerge" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type MergeShardsOutput struct {
@@ -531,62 +531,62 @@ type metadataMergeShardsOutput struct {
 }
 
 type PutRecordInput struct {
-	Data                      []byte  `type:"blob" json:",omitempty"`
+	Data                      []byte  `type:"blob" required:"true"json:",omitempty"`
 	ExplicitHashKey           *string `type:"string" json:",omitempty"`
-	PartitionKey              *string `type:"string" json:",omitempty"`
+	PartitionKey              *string `type:"string" required:"true"json:",omitempty"`
 	SequenceNumberForOrdering *string `type:"string" json:",omitempty"`
-	StreamName                *string `type:"string" json:",omitempty"`
+	StreamName                *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataPutRecordInput `json:"-", xml:"-"`
 }
 
 type metadataPutRecordInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamName,Data,PartitionKey" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type PutRecordOutput struct {
-	SequenceNumber *string `type:"string" json:",omitempty"`
-	ShardID        *string `locationName:"ShardId" type:"string" json:"ShardId,omitempty"`
+	SequenceNumber *string `type:"string" required:"true"json:",omitempty"`
+	ShardID        *string `locationName:"ShardId" type:"string" required:"true"json:"ShardId,omitempty"`
 
 	metadataPutRecordOutput `json:"-", xml:"-"`
 }
 
 type metadataPutRecordOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ShardId,SequenceNumber" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type PutRecordsInput struct {
-	Records    []*PutRecordsRequestEntry `type:"list" json:",omitempty"`
-	StreamName *string                   `type:"string" json:",omitempty"`
+	Records    []*PutRecordsRequestEntry `type:"list" required:"true"json:",omitempty"`
+	StreamName *string                   `type:"string" required:"true"json:",omitempty"`
 
 	metadataPutRecordsInput `json:"-", xml:"-"`
 }
 
 type metadataPutRecordsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Records,StreamName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type PutRecordsOutput struct {
 	FailedRecordCount *int                     `type:"integer" json:",omitempty"`
-	Records           []*PutRecordsResultEntry `type:"list" json:",omitempty"`
+	Records           []*PutRecordsResultEntry `type:"list" required:"true"json:",omitempty"`
 
 	metadataPutRecordsOutput `json:"-", xml:"-"`
 }
 
 type metadataPutRecordsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Records" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type PutRecordsRequestEntry struct {
-	Data            []byte  `type:"blob" json:",omitempty"`
+	Data            []byte  `type:"blob" required:"true"json:",omitempty"`
 	ExplicitHashKey *string `type:"string" json:",omitempty"`
-	PartitionKey    *string `type:"string" json:",omitempty"`
+	PartitionKey    *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataPutRecordsRequestEntry `json:"-", xml:"-"`
 }
 
 type metadataPutRecordsRequestEntry struct {
-	SDKShapeTraits bool `type:"structure" required:"Data,PartitionKey" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type PutRecordsResultEntry struct {
@@ -603,26 +603,26 @@ type metadataPutRecordsResultEntry struct {
 }
 
 type Record struct {
-	Data           []byte  `type:"blob" json:",omitempty"`
-	PartitionKey   *string `type:"string" json:",omitempty"`
-	SequenceNumber *string `type:"string" json:",omitempty"`
+	Data           []byte  `type:"blob" required:"true"json:",omitempty"`
+	PartitionKey   *string `type:"string" required:"true"json:",omitempty"`
+	SequenceNumber *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataRecord `json:"-", xml:"-"`
 }
 
 type metadataRecord struct {
-	SDKShapeTraits bool `type:"structure" required:"SequenceNumber,Data,PartitionKey" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RemoveTagsFromStreamInput struct {
-	StreamName *string   `type:"string" json:",omitempty"`
-	TagKeys    []*string `type:"list" json:",omitempty"`
+	StreamName *string   `type:"string" required:"true"json:",omitempty"`
+	TagKeys    []*string `type:"list" required:"true"json:",omitempty"`
 
 	metadataRemoveTagsFromStreamInput `json:"-", xml:"-"`
 }
 
 type metadataRemoveTagsFromStreamInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamName,TagKeys" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RemoveTagsFromStreamOutput struct {
@@ -635,39 +635,39 @@ type metadataRemoveTagsFromStreamOutput struct {
 
 type SequenceNumberRange struct {
 	EndingSequenceNumber   *string `type:"string" json:",omitempty"`
-	StartingSequenceNumber *string `type:"string" json:",omitempty"`
+	StartingSequenceNumber *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataSequenceNumberRange `json:"-", xml:"-"`
 }
 
 type metadataSequenceNumberRange struct {
-	SDKShapeTraits bool `type:"structure" required:"StartingSequenceNumber" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type Shard struct {
 	AdjacentParentShardID *string              `locationName:"AdjacentParentShardId" type:"string" json:"AdjacentParentShardId,omitempty"`
-	HashKeyRange          *HashKeyRange        `type:"structure" json:",omitempty"`
+	HashKeyRange          *HashKeyRange        `type:"structure" required:"true"json:",omitempty"`
 	ParentShardID         *string              `locationName:"ParentShardId" type:"string" json:"ParentShardId,omitempty"`
-	SequenceNumberRange   *SequenceNumberRange `type:"structure" json:",omitempty"`
-	ShardID               *string              `locationName:"ShardId" type:"string" json:"ShardId,omitempty"`
+	SequenceNumberRange   *SequenceNumberRange `type:"structure" required:"true"json:",omitempty"`
+	ShardID               *string              `locationName:"ShardId" type:"string" required:"true"json:"ShardId,omitempty"`
 
 	metadataShard `json:"-", xml:"-"`
 }
 
 type metadataShard struct {
-	SDKShapeTraits bool `type:"structure" required:"ShardId,HashKeyRange,SequenceNumberRange" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type SplitShardInput struct {
-	NewStartingHashKey *string `type:"string" json:",omitempty"`
-	ShardToSplit       *string `type:"string" json:",omitempty"`
-	StreamName         *string `type:"string" json:",omitempty"`
+	NewStartingHashKey *string `type:"string" required:"true"json:",omitempty"`
+	ShardToSplit       *string `type:"string" required:"true"json:",omitempty"`
+	StreamName         *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataSplitShardInput `json:"-", xml:"-"`
 }
 
 type metadataSplitShardInput struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamName,ShardToSplit,NewStartingHashKey" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type SplitShardOutput struct {
@@ -679,26 +679,26 @@ type metadataSplitShardOutput struct {
 }
 
 type StreamDescription struct {
-	HasMoreShards *bool    `type:"boolean" json:",omitempty"`
-	Shards        []*Shard `type:"list" json:",omitempty"`
-	StreamARN     *string  `type:"string" json:",omitempty"`
-	StreamName    *string  `type:"string" json:",omitempty"`
-	StreamStatus  *string  `type:"string" json:",omitempty"`
+	HasMoreShards *bool    `type:"boolean" required:"true"json:",omitempty"`
+	Shards        []*Shard `type:"list" required:"true"json:",omitempty"`
+	StreamARN     *string  `type:"string" required:"true"json:",omitempty"`
+	StreamName    *string  `type:"string" required:"true"json:",omitempty"`
+	StreamStatus  *string  `type:"string" required:"true"json:",omitempty"`
 
 	metadataStreamDescription `json:"-", xml:"-"`
 }
 
 type metadataStreamDescription struct {
-	SDKShapeTraits bool `type:"structure" required:"StreamName,StreamARN,StreamStatus,Shards,HasMoreShards" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type Tag struct {
-	Key   *string `type:"string" json:",omitempty"`
+	Key   *string `type:"string" required:"true"json:",omitempty"`
 	Value *string `type:"string" json:",omitempty"`
 
 	metadataTag `json:"-", xml:"-"`
 }
 
 type metadataTag struct {
-	SDKShapeTraits bool `type:"structure" required:"Key" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }

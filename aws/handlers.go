@@ -3,6 +3,7 @@ package aws
 import "container/list"
 
 type Handlers struct {
+	Validate         HandlerList
 	Build            HandlerList
 	Sign             HandlerList
 	Send             HandlerList
@@ -16,6 +17,7 @@ type Handlers struct {
 
 func (h *Handlers) copy() Handlers {
 	return Handlers{
+		Validate:         h.Validate.copy(),
 		Build:            h.Build.copy(),
 		Sign:             h.Sign.copy(),
 		Send:             h.Send.copy(),
@@ -30,6 +32,7 @@ func (h *Handlers) copy() Handlers {
 
 // Clear removes callback functions for all handlers
 func (h *Handlers) Clear() {
+	h.Validate.Init()
 	h.Build.Init()
 	h.Send.Init()
 	h.Sign.Init()

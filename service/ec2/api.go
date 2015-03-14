@@ -4092,7 +4092,7 @@ type metadataAllocateAddressOutput struct {
 
 type AssignPrivateIPAddressesInput struct {
 	AllowReassignment              *bool     `locationName:"allowReassignment" type:"boolean"`
-	NetworkInterfaceID             *string   `locationName:"networkInterfaceId" type:"string"`
+	NetworkInterfaceID             *string   `locationName:"networkInterfaceId" type:"string" required:"true"`
 	PrivateIPAddresses             []*string `locationName:"privateIpAddress" locationNameList:"PrivateIpAddress" type:"list"`
 	SecondaryPrivateIPAddressCount *int      `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
 
@@ -4100,7 +4100,7 @@ type AssignPrivateIPAddressesInput struct {
 }
 
 type metadataAssignPrivateIPAddressesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssignPrivateIPAddressesOutput struct {
@@ -4138,15 +4138,15 @@ type metadataAssociateAddressOutput struct {
 }
 
 type AssociateDHCPOptionsInput struct {
-	DHCPOptionsID *string `locationName:"DhcpOptionsId" type:"string"`
+	DHCPOptionsID *string `locationName:"DhcpOptionsId" type:"string" required:"true"`
 	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID         *string `locationName:"VpcId" type:"string"`
+	VPCID         *string `locationName:"VpcId" type:"string" required:"true"`
 
 	metadataAssociateDHCPOptionsInput `json:"-", xml:"-"`
 }
 
 type metadataAssociateDHCPOptionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DhcpOptionsId,VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssociateDHCPOptionsOutput struct {
@@ -4159,14 +4159,14 @@ type metadataAssociateDHCPOptionsOutput struct {
 
 type AssociateRouteTableInput struct {
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	RouteTableID *string `locationName:"routeTableId" type:"string"`
-	SubnetID     *string `locationName:"subnetId" type:"string"`
+	RouteTableID *string `locationName:"routeTableId" type:"string" required:"true"`
+	SubnetID     *string `locationName:"subnetId" type:"string" required:"true"`
 
 	metadataAssociateRouteTableInput `json:"-", xml:"-"`
 }
 
 type metadataAssociateRouteTableInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubnetId,RouteTableId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssociateRouteTableOutput struct {
@@ -4181,15 +4181,15 @@ type metadataAssociateRouteTableOutput struct {
 
 type AttachClassicLinkVPCInput struct {
 	DryRun     *bool     `locationName:"dryRun" type:"boolean"`
-	Groups     []*string `locationName:"SecurityGroupId" locationNameList:"groupId" type:"list"`
-	InstanceID *string   `locationName:"instanceId" type:"string"`
-	VPCID      *string   `locationName:"vpcId" type:"string"`
+	Groups     []*string `locationName:"SecurityGroupId" locationNameList:"groupId" type:"list" required:"true"`
+	InstanceID *string   `locationName:"instanceId" type:"string" required:"true"`
+	VPCID      *string   `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataAttachClassicLinkVPCInput `json:"-", xml:"-"`
 }
 
 type metadataAttachClassicLinkVPCInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId,VpcId,Groups"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachClassicLinkVPCOutput struct {
@@ -4204,14 +4204,14 @@ type metadataAttachClassicLinkVPCOutput struct {
 
 type AttachInternetGatewayInput struct {
 	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
-	InternetGatewayID *string `locationName:"internetGatewayId" type:"string"`
-	VPCID             *string `locationName:"vpcId" type:"string"`
+	InternetGatewayID *string `locationName:"internetGatewayId" type:"string" required:"true"`
+	VPCID             *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataAttachInternetGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataAttachInternetGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InternetGatewayId,VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachInternetGatewayOutput struct {
@@ -4223,16 +4223,16 @@ type metadataAttachInternetGatewayOutput struct {
 }
 
 type AttachNetworkInterfaceInput struct {
-	DeviceIndex        *int    `locationName:"deviceIndex" type:"integer"`
+	DeviceIndex        *int    `locationName:"deviceIndex" type:"integer" required:"true"`
 	DryRun             *bool   `locationName:"dryRun" type:"boolean"`
-	InstanceID         *string `locationName:"instanceId" type:"string"`
-	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+	InstanceID         *string `locationName:"instanceId" type:"string" required:"true"`
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
 	metadataAttachNetworkInterfaceInput `json:"-", xml:"-"`
 }
 
 type metadataAttachNetworkInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId,InstanceId,DeviceIndex"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachNetworkInterfaceOutput struct {
@@ -4247,14 +4247,14 @@ type metadataAttachNetworkInterfaceOutput struct {
 
 type AttachVPNGatewayInput struct {
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID        *string `locationName:"VpcId" type:"string"`
-	VPNGatewayID *string `locationName:"VpnGatewayId" type:"string"`
+	VPCID        *string `locationName:"VpcId" type:"string" required:"true"`
+	VPNGatewayID *string `locationName:"VpnGatewayId" type:"string" required:"true"`
 
 	metadataAttachVPNGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataAttachVPNGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpnGatewayId,VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachVPNGatewayOutput struct {
@@ -4268,16 +4268,16 @@ type metadataAttachVPNGatewayOutput struct {
 }
 
 type AttachVolumeInput struct {
-	Device     *string `type:"string"`
+	Device     *string `type:"string" required:"true"`
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
-	InstanceID *string `locationName:"InstanceId" type:"string"`
-	VolumeID   *string `locationName:"VolumeId" type:"string"`
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	VolumeID   *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataAttachVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataAttachVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeId,InstanceId,Device"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttributeBooleanValue struct {
@@ -4304,7 +4304,7 @@ type AuthorizeSecurityGroupEgressInput struct {
 	CIDRIP                     *string         `locationName:"cidrIp" type:"string"`
 	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
 	FromPort                   *int            `locationName:"fromPort" type:"integer"`
-	GroupID                    *string         `locationName:"groupId" type:"string"`
+	GroupID                    *string         `locationName:"groupId" type:"string" required:"true"`
 	IPPermissions              []*IPPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
 	IPProtocol                 *string         `locationName:"ipProtocol" type:"string"`
 	SourceSecurityGroupName    *string         `locationName:"sourceSecurityGroupName" type:"string"`
@@ -4315,7 +4315,7 @@ type AuthorizeSecurityGroupEgressInput struct {
 }
 
 type metadataAuthorizeSecurityGroupEgressInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AuthorizeSecurityGroupEgressOutput struct {
@@ -4401,14 +4401,14 @@ type metadataBlockDeviceMapping struct {
 
 type BundleInstanceInput struct {
 	DryRun     *bool    `locationName:"dryRun" type:"boolean"`
-	InstanceID *string  `locationName:"InstanceId" type:"string"`
-	Storage    *Storage `type:"structure"`
+	InstanceID *string  `locationName:"InstanceId" type:"string" required:"true"`
+	Storage    *Storage `type:"structure" required:"true"`
 
 	metadataBundleInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataBundleInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId,Storage"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BundleInstanceOutput struct {
@@ -4450,14 +4450,14 @@ type metadataBundleTaskError struct {
 }
 
 type CancelBundleTaskInput struct {
-	BundleID *string `locationName:"BundleId" type:"string"`
+	BundleID *string `locationName:"BundleId" type:"string" required:"true"`
 	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
 
 	metadataCancelBundleTaskInput `json:"-", xml:"-"`
 }
 
 type metadataCancelBundleTaskInput struct {
-	SDKShapeTraits bool `type:"structure" required:"BundleId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CancelBundleTaskOutput struct {
@@ -4471,7 +4471,7 @@ type metadataCancelBundleTaskOutput struct {
 }
 
 type CancelConversionTaskInput struct {
-	ConversionTaskID *string `locationName:"conversionTaskId" type:"string"`
+	ConversionTaskID *string `locationName:"conversionTaskId" type:"string" required:"true"`
 	DryRun           *bool   `locationName:"dryRun" type:"boolean"`
 	ReasonMessage    *string `locationName:"reasonMessage" type:"string"`
 
@@ -4479,7 +4479,7 @@ type CancelConversionTaskInput struct {
 }
 
 type metadataCancelConversionTaskInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ConversionTaskId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CancelConversionTaskOutput struct {
@@ -4491,13 +4491,13 @@ type metadataCancelConversionTaskOutput struct {
 }
 
 type CancelExportTaskInput struct {
-	ExportTaskID *string `locationName:"exportTaskId" type:"string"`
+	ExportTaskID *string `locationName:"exportTaskId" type:"string" required:"true"`
 
 	metadataCancelExportTaskInput `json:"-", xml:"-"`
 }
 
 type metadataCancelExportTaskInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ExportTaskId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CancelExportTaskOutput struct {
@@ -4509,13 +4509,13 @@ type metadataCancelExportTaskOutput struct {
 }
 
 type CancelReservedInstancesListingInput struct {
-	ReservedInstancesListingID *string `locationName:"reservedInstancesListingId" type:"string"`
+	ReservedInstancesListingID *string `locationName:"reservedInstancesListingId" type:"string" required:"true"`
 
 	metadataCancelReservedInstancesListingInput `json:"-", xml:"-"`
 }
 
 type metadataCancelReservedInstancesListingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ReservedInstancesListingId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CancelReservedInstancesListingOutput struct {
@@ -4530,13 +4530,13 @@ type metadataCancelReservedInstancesListingOutput struct {
 
 type CancelSpotInstanceRequestsInput struct {
 	DryRun                 *bool     `locationName:"dryRun" type:"boolean"`
-	SpotInstanceRequestIDs []*string `locationName:"SpotInstanceRequestId" locationNameList:"SpotInstanceRequestId" type:"list"`
+	SpotInstanceRequestIDs []*string `locationName:"SpotInstanceRequestId" locationNameList:"SpotInstanceRequestId" type:"list" required:"true"`
 
 	metadataCancelSpotInstanceRequestsInput `json:"-", xml:"-"`
 }
 
 type metadataCancelSpotInstanceRequestsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SpotInstanceRequestIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CancelSpotInstanceRequestsOutput struct {
@@ -4575,14 +4575,14 @@ type metadataClassicLinkInstance struct {
 
 type ConfirmProductInstanceInput struct {
 	DryRun      *bool   `locationName:"dryRun" type:"boolean"`
-	InstanceID  *string `locationName:"InstanceId" type:"string"`
-	ProductCode *string `type:"string"`
+	InstanceID  *string `locationName:"InstanceId" type:"string" required:"true"`
+	ProductCode *string `type:"string" required:"true"`
 
 	metadataConfirmProductInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataConfirmProductInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ProductCode,InstanceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ConfirmProductInstanceOutput struct {
@@ -4596,11 +4596,11 @@ type metadataConfirmProductInstanceOutput struct {
 }
 
 type ConversionTask struct {
-	ConversionTaskID *string                    `locationName:"conversionTaskId" type:"string"`
+	ConversionTaskID *string                    `locationName:"conversionTaskId" type:"string" required:"true"`
 	ExpirationTime   *string                    `locationName:"expirationTime" type:"string"`
 	ImportInstance   *ImportInstanceTaskDetails `locationName:"importInstance" type:"structure"`
 	ImportVolume     *ImportVolumeTaskDetails   `locationName:"importVolume" type:"structure"`
-	State            *string                    `locationName:"state" type:"string"`
+	State            *string                    `locationName:"state" type:"string" required:"true"`
 	StatusMessage    *string                    `locationName:"statusMessage" type:"string"`
 	Tags             []*Tag                     `locationName:"tagSet" locationNameList:"item" type:"list"`
 
@@ -4608,22 +4608,22 @@ type ConversionTask struct {
 }
 
 type metadataConversionTask struct {
-	SDKShapeTraits bool `type:"structure" required:"ConversionTaskId,State"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CopyImageInput struct {
 	ClientToken   *string `type:"string"`
 	Description   *string `type:"string"`
 	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
-	Name          *string `type:"string"`
-	SourceImageID *string `locationName:"SourceImageId" type:"string"`
-	SourceRegion  *string `type:"string"`
+	Name          *string `type:"string" required:"true"`
+	SourceImageID *string `locationName:"SourceImageId" type:"string" required:"true"`
+	SourceRegion  *string `type:"string" required:"true"`
 
 	metadataCopyImageInput `json:"-", xml:"-"`
 }
 
 type metadataCopyImageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SourceRegion,SourceImageId,Name"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CopyImageOutput struct {
@@ -4641,14 +4641,14 @@ type CopySnapshotInput struct {
 	DestinationRegion *string `locationName:"destinationRegion" type:"string"`
 	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
 	PresignedURL      *string `locationName:"presignedUrl" type:"string"`
-	SourceRegion      *string `type:"string"`
-	SourceSnapshotID  *string `locationName:"SourceSnapshotId" type:"string"`
+	SourceRegion      *string `type:"string" required:"true"`
+	SourceSnapshotID  *string `locationName:"SourceSnapshotId" type:"string" required:"true"`
 
 	metadataCopySnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataCopySnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SourceRegion,SourceSnapshotId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CopySnapshotOutput struct {
@@ -4662,16 +4662,16 @@ type metadataCopySnapshotOutput struct {
 }
 
 type CreateCustomerGatewayInput struct {
-	BGPASN   *int    `locationName:"BgpAsn" type:"integer"`
+	BGPASN   *int    `locationName:"BgpAsn" type:"integer" required:"true"`
 	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
-	PublicIP *string `locationName:"IpAddress" type:"string"`
-	Type     *string `type:"string"`
+	PublicIP *string `locationName:"IpAddress" type:"string" required:"true"`
+	Type     *string `type:"string" required:"true"`
 
 	metadataCreateCustomerGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataCreateCustomerGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Type,PublicIp,BgpAsn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateCustomerGatewayOutput struct {
@@ -4685,14 +4685,14 @@ type metadataCreateCustomerGatewayOutput struct {
 }
 
 type CreateDHCPOptionsInput struct {
-	DHCPConfigurations []*NewDHCPConfiguration `locationName:"dhcpConfiguration" locationNameList:"item" type:"list"`
+	DHCPConfigurations []*NewDHCPConfiguration `locationName:"dhcpConfiguration" locationNameList:"item" type:"list" required:"true"`
 	DryRun             *bool                   `locationName:"dryRun" type:"boolean"`
 
 	metadataCreateDHCPOptionsInput `json:"-", xml:"-"`
 }
 
 type metadataCreateDHCPOptionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DhcpConfigurations"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDHCPOptionsOutput struct {
@@ -4709,15 +4709,15 @@ type CreateImageInput struct {
 	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"BlockDeviceMapping" type:"list"`
 	Description         *string               `locationName:"description" type:"string"`
 	DryRun              *bool                 `locationName:"dryRun" type:"boolean"`
-	InstanceID          *string               `locationName:"instanceId" type:"string"`
-	Name                *string               `locationName:"name" type:"string"`
+	InstanceID          *string               `locationName:"instanceId" type:"string" required:"true"`
+	Name                *string               `locationName:"name" type:"string" required:"true"`
 	NoReboot            *bool                 `locationName:"noReboot" type:"boolean"`
 
 	metadataCreateImageInput `json:"-", xml:"-"`
 }
 
 type metadataCreateImageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId,Name"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateImageOutput struct {
@@ -4733,14 +4733,14 @@ type metadataCreateImageOutput struct {
 type CreateInstanceExportTaskInput struct {
 	Description       *string                      `locationName:"description" type:"string"`
 	ExportToS3Task    *ExportToS3TaskSpecification `locationName:"exportToS3" type:"structure"`
-	InstanceID        *string                      `locationName:"instanceId" type:"string"`
+	InstanceID        *string                      `locationName:"instanceId" type:"string" required:"true"`
 	TargetEnvironment *string                      `locationName:"targetEnvironment" type:"string"`
 
 	metadataCreateInstanceExportTaskInput `json:"-", xml:"-"`
 }
 
 type metadataCreateInstanceExportTaskInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateInstanceExportTaskOutput struct {
@@ -4775,13 +4775,13 @@ type metadataCreateInternetGatewayOutput struct {
 
 type CreateKeyPairInput struct {
 	DryRun  *bool   `locationName:"dryRun" type:"boolean"`
-	KeyName *string `type:"string"`
+	KeyName *string `type:"string" required:"true"`
 
 	metadataCreateKeyPairInput `json:"-", xml:"-"`
 }
 
 type metadataCreateKeyPairInput struct {
-	SDKShapeTraits bool `type:"structure" required:"KeyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateKeyPairOutput struct {
@@ -4797,21 +4797,21 @@ type metadataCreateKeyPairOutput struct {
 }
 
 type CreateNetworkACLEntryInput struct {
-	CIDRBlock    *string       `locationName:"cidrBlock" type:"string"`
+	CIDRBlock    *string       `locationName:"cidrBlock" type:"string" required:"true"`
 	DryRun       *bool         `locationName:"dryRun" type:"boolean"`
-	Egress       *bool         `locationName:"egress" type:"boolean"`
+	Egress       *bool         `locationName:"egress" type:"boolean" required:"true"`
 	ICMPTypeCode *ICMPTypeCode `locationName:"Icmp" type:"structure"`
-	NetworkACLID *string       `locationName:"networkAclId" type:"string"`
+	NetworkACLID *string       `locationName:"networkAclId" type:"string" required:"true"`
 	PortRange    *PortRange    `locationName:"portRange" type:"structure"`
-	Protocol     *string       `locationName:"protocol" type:"string"`
-	RuleAction   *string       `locationName:"ruleAction" type:"string"`
-	RuleNumber   *int          `locationName:"ruleNumber" type:"integer"`
+	Protocol     *string       `locationName:"protocol" type:"string" required:"true"`
+	RuleAction   *string       `locationName:"ruleAction" type:"string" required:"true"`
+	RuleNumber   *int          `locationName:"ruleNumber" type:"integer" required:"true"`
 
 	metadataCreateNetworkACLEntryInput `json:"-", xml:"-"`
 }
 
 type metadataCreateNetworkACLEntryInput struct {
-	SDKShapeTraits bool `type:"structure" required:"NetworkAclId,RuleNumber,Protocol,RuleAction,Egress,CidrBlock"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateNetworkACLEntryOutput struct {
@@ -4824,13 +4824,13 @@ type metadataCreateNetworkACLEntryOutput struct {
 
 type CreateNetworkACLInput struct {
 	DryRun *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID  *string `locationName:"vpcId" type:"string"`
+	VPCID  *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataCreateNetworkACLInput `json:"-", xml:"-"`
 }
 
 type metadataCreateNetworkACLInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateNetworkACLOutput struct {
@@ -4850,13 +4850,13 @@ type CreateNetworkInterfaceInput struct {
 	PrivateIPAddress               *string                          `locationName:"privateIpAddress" type:"string"`
 	PrivateIPAddresses             []*PrivateIPAddressSpecification `locationName:"privateIpAddresses" locationNameList:"item" type:"list"`
 	SecondaryPrivateIPAddressCount *int                             `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
-	SubnetID                       *string                          `locationName:"subnetId" type:"string"`
+	SubnetID                       *string                          `locationName:"subnetId" type:"string" required:"true"`
 
 	metadataCreateNetworkInterfaceInput `json:"-", xml:"-"`
 }
 
 type metadataCreateNetworkInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubnetId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateNetworkInterfaceOutput struct {
@@ -4871,14 +4871,14 @@ type metadataCreateNetworkInterfaceOutput struct {
 
 type CreatePlacementGroupInput struct {
 	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
-	GroupName *string `locationName:"groupName" type:"string"`
-	Strategy  *string `locationName:"strategy" type:"string"`
+	GroupName *string `locationName:"groupName" type:"string" required:"true"`
+	Strategy  *string `locationName:"strategy" type:"string" required:"true"`
 
 	metadataCreatePlacementGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreatePlacementGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName,Strategy"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreatePlacementGroupOutput struct {
@@ -4890,16 +4890,16 @@ type metadataCreatePlacementGroupOutput struct {
 }
 
 type CreateReservedInstancesListingInput struct {
-	ClientToken         *string                       `locationName:"clientToken" type:"string"`
-	InstanceCount       *int                          `locationName:"instanceCount" type:"integer"`
-	PriceSchedules      []*PriceScheduleSpecification `locationName:"priceSchedules" locationNameList:"item" type:"list"`
-	ReservedInstancesID *string                       `locationName:"reservedInstancesId" type:"string"`
+	ClientToken         *string                       `locationName:"clientToken" type:"string" required:"true"`
+	InstanceCount       *int                          `locationName:"instanceCount" type:"integer" required:"true"`
+	PriceSchedules      []*PriceScheduleSpecification `locationName:"priceSchedules" locationNameList:"item" type:"list" required:"true"`
+	ReservedInstancesID *string                       `locationName:"reservedInstancesId" type:"string" required:"true"`
 
 	metadataCreateReservedInstancesListingInput `json:"-", xml:"-"`
 }
 
 type metadataCreateReservedInstancesListingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ReservedInstancesId,InstanceCount,PriceSchedules,ClientToken"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateReservedInstancesListingOutput struct {
@@ -4913,19 +4913,19 @@ type metadataCreateReservedInstancesListingOutput struct {
 }
 
 type CreateRouteInput struct {
-	DestinationCIDRBlock   *string `locationName:"destinationCidrBlock" type:"string"`
+	DestinationCIDRBlock   *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
 	DryRun                 *bool   `locationName:"dryRun" type:"boolean"`
 	GatewayID              *string `locationName:"gatewayId" type:"string"`
 	InstanceID             *string `locationName:"instanceId" type:"string"`
 	NetworkInterfaceID     *string `locationName:"networkInterfaceId" type:"string"`
-	RouteTableID           *string `locationName:"routeTableId" type:"string"`
+	RouteTableID           *string `locationName:"routeTableId" type:"string" required:"true"`
 	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
 	metadataCreateRouteInput `json:"-", xml:"-"`
 }
 
 type metadataCreateRouteInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RouteTableId,DestinationCidrBlock"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateRouteOutput struct {
@@ -4938,13 +4938,13 @@ type metadataCreateRouteOutput struct {
 
 type CreateRouteTableInput struct {
 	DryRun *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID  *string `locationName:"vpcId" type:"string"`
+	VPCID  *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataCreateRouteTableInput `json:"-", xml:"-"`
 }
 
 type metadataCreateRouteTableInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateRouteTableOutput struct {
@@ -4958,16 +4958,16 @@ type metadataCreateRouteTableOutput struct {
 }
 
 type CreateSecurityGroupInput struct {
-	Description *string `locationName:"GroupDescription" type:"string"`
+	Description *string `locationName:"GroupDescription" type:"string" required:"true"`
 	DryRun      *bool   `locationName:"dryRun" type:"boolean"`
-	GroupName   *string `type:"string"`
+	GroupName   *string `type:"string" required:"true"`
 	VPCID       *string `locationName:"VpcId" type:"string"`
 
 	metadataCreateSecurityGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName,Description"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateSecurityGroupOutput struct {
@@ -4983,17 +4983,17 @@ type metadataCreateSecurityGroupOutput struct {
 type CreateSnapshotInput struct {
 	Description *string `type:"string"`
 	DryRun      *bool   `locationName:"dryRun" type:"boolean"`
-	VolumeID    *string `locationName:"VolumeId" type:"string"`
+	VolumeID    *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataCreateSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataCreateSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateSpotDatafeedSubscriptionInput struct {
-	Bucket *string `locationName:"bucket" type:"string"`
+	Bucket *string `locationName:"bucket" type:"string" required:"true"`
 	DryRun *bool   `locationName:"dryRun" type:"boolean"`
 	Prefix *string `locationName:"prefix" type:"string"`
 
@@ -5001,7 +5001,7 @@ type CreateSpotDatafeedSubscriptionInput struct {
 }
 
 type metadataCreateSpotDatafeedSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Bucket"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateSpotDatafeedSubscriptionOutput struct {
@@ -5016,15 +5016,15 @@ type metadataCreateSpotDatafeedSubscriptionOutput struct {
 
 type CreateSubnetInput struct {
 	AvailabilityZone *string `type:"string"`
-	CIDRBlock        *string `locationName:"CidrBlock" type:"string"`
+	CIDRBlock        *string `locationName:"CidrBlock" type:"string" required:"true"`
 	DryRun           *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID            *string `locationName:"VpcId" type:"string"`
+	VPCID            *string `locationName:"VpcId" type:"string" required:"true"`
 
 	metadataCreateSubnetInput `json:"-", xml:"-"`
 }
 
 type metadataCreateSubnetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpcId,CidrBlock"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateSubnetOutput struct {
@@ -5039,14 +5039,14 @@ type metadataCreateSubnetOutput struct {
 
 type CreateTagsInput struct {
 	DryRun    *bool     `locationName:"dryRun" type:"boolean"`
-	Resources []*string `locationName:"ResourceId" type:"list"`
-	Tags      []*Tag    `locationName:"Tag" locationNameList:"item" type:"list"`
+	Resources []*string `locationName:"ResourceId" type:"list" required:"true"`
+	Tags      []*Tag    `locationName:"Tag" locationNameList:"item" type:"list" required:"true"`
 
 	metadataCreateTagsInput `json:"-", xml:"-"`
 }
 
 type metadataCreateTagsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Resources,Tags"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateTagsOutput struct {
@@ -5058,7 +5058,7 @@ type metadataCreateTagsOutput struct {
 }
 
 type CreateVPCInput struct {
-	CIDRBlock       *string `locationName:"CidrBlock" type:"string"`
+	CIDRBlock       *string `locationName:"CidrBlock" type:"string" required:"true"`
 	DryRun          *bool   `locationName:"dryRun" type:"boolean"`
 	InstanceTenancy *string `locationName:"instanceTenancy" type:"string"`
 
@@ -5066,7 +5066,7 @@ type CreateVPCInput struct {
 }
 
 type metadataCreateVPCInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CidrBlock"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateVPCOutput struct {
@@ -5103,17 +5103,17 @@ type metadataCreateVPCPeeringConnectionOutput struct {
 }
 
 type CreateVPNConnectionInput struct {
-	CustomerGatewayID *string                            `locationName:"CustomerGatewayId" type:"string"`
+	CustomerGatewayID *string                            `locationName:"CustomerGatewayId" type:"string" required:"true"`
 	DryRun            *bool                              `locationName:"dryRun" type:"boolean"`
 	Options           *VPNConnectionOptionsSpecification `locationName:"options" type:"structure"`
-	Type              *string                            `type:"string"`
-	VPNGatewayID      *string                            `locationName:"VpnGatewayId" type:"string"`
+	Type              *string                            `type:"string" required:"true"`
+	VPNGatewayID      *string                            `locationName:"VpnGatewayId" type:"string" required:"true"`
 
 	metadataCreateVPNConnectionInput `json:"-", xml:"-"`
 }
 
 type metadataCreateVPNConnectionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Type,CustomerGatewayId,VpnGatewayId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateVPNConnectionOutput struct {
@@ -5127,14 +5127,14 @@ type metadataCreateVPNConnectionOutput struct {
 }
 
 type CreateVPNConnectionRouteInput struct {
-	DestinationCIDRBlock *string `locationName:"DestinationCidrBlock" type:"string"`
-	VPNConnectionID      *string `locationName:"VpnConnectionId" type:"string"`
+	DestinationCIDRBlock *string `locationName:"DestinationCidrBlock" type:"string" required:"true"`
+	VPNConnectionID      *string `locationName:"VpnConnectionId" type:"string" required:"true"`
 
 	metadataCreateVPNConnectionRouteInput `json:"-", xml:"-"`
 }
 
 type metadataCreateVPNConnectionRouteInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpnConnectionId,DestinationCidrBlock"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateVPNConnectionRouteOutput struct {
@@ -5148,13 +5148,13 @@ type metadataCreateVPNConnectionRouteOutput struct {
 type CreateVPNGatewayInput struct {
 	AvailabilityZone *string `type:"string"`
 	DryRun           *bool   `locationName:"dryRun" type:"boolean"`
-	Type             *string `type:"string"`
+	Type             *string `type:"string" required:"true"`
 
 	metadataCreateVPNGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataCreateVPNGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Type"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateVPNGatewayOutput struct {
@@ -5168,7 +5168,7 @@ type metadataCreateVPNGatewayOutput struct {
 }
 
 type CreateVolumeInput struct {
-	AvailabilityZone *string `type:"string"`
+	AvailabilityZone *string `type:"string" required:"true"`
 	DryRun           *bool   `locationName:"dryRun" type:"boolean"`
 	Encrypted        *bool   `locationName:"encrypted" type:"boolean"`
 	IOPS             *int    `locationName:"Iops" type:"integer"`
@@ -5181,7 +5181,7 @@ type CreateVolumeInput struct {
 }
 
 type metadataCreateVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AvailabilityZone"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateVolumePermission struct {
@@ -5245,14 +5245,14 @@ type metadataDHCPOptions struct {
 }
 
 type DeleteCustomerGatewayInput struct {
-	CustomerGatewayID *string `locationName:"CustomerGatewayId" type:"string"`
+	CustomerGatewayID *string `locationName:"CustomerGatewayId" type:"string" required:"true"`
 	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
 
 	metadataDeleteCustomerGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteCustomerGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CustomerGatewayId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteCustomerGatewayOutput struct {
@@ -5264,14 +5264,14 @@ type metadataDeleteCustomerGatewayOutput struct {
 }
 
 type DeleteDHCPOptionsInput struct {
-	DHCPOptionsID *string `locationName:"DhcpOptionsId" type:"string"`
+	DHCPOptionsID *string `locationName:"DhcpOptionsId" type:"string" required:"true"`
 	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
 
 	metadataDeleteDHCPOptionsInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDHCPOptionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DhcpOptionsId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDHCPOptionsOutput struct {
@@ -5284,13 +5284,13 @@ type metadataDeleteDHCPOptionsOutput struct {
 
 type DeleteInternetGatewayInput struct {
 	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
-	InternetGatewayID *string `locationName:"internetGatewayId" type:"string"`
+	InternetGatewayID *string `locationName:"internetGatewayId" type:"string" required:"true"`
 
 	metadataDeleteInternetGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteInternetGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InternetGatewayId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteInternetGatewayOutput struct {
@@ -5303,13 +5303,13 @@ type metadataDeleteInternetGatewayOutput struct {
 
 type DeleteKeyPairInput struct {
 	DryRun  *bool   `locationName:"dryRun" type:"boolean"`
-	KeyName *string `type:"string"`
+	KeyName *string `type:"string" required:"true"`
 
 	metadataDeleteKeyPairInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteKeyPairInput struct {
-	SDKShapeTraits bool `type:"structure" required:"KeyName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteKeyPairOutput struct {
@@ -5322,15 +5322,15 @@ type metadataDeleteKeyPairOutput struct {
 
 type DeleteNetworkACLEntryInput struct {
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	Egress       *bool   `locationName:"egress" type:"boolean"`
-	NetworkACLID *string `locationName:"networkAclId" type:"string"`
-	RuleNumber   *int    `locationName:"ruleNumber" type:"integer"`
+	Egress       *bool   `locationName:"egress" type:"boolean" required:"true"`
+	NetworkACLID *string `locationName:"networkAclId" type:"string" required:"true"`
+	RuleNumber   *int    `locationName:"ruleNumber" type:"integer" required:"true"`
 
 	metadataDeleteNetworkACLEntryInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteNetworkACLEntryInput struct {
-	SDKShapeTraits bool `type:"structure" required:"NetworkAclId,RuleNumber,Egress"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteNetworkACLEntryOutput struct {
@@ -5343,13 +5343,13 @@ type metadataDeleteNetworkACLEntryOutput struct {
 
 type DeleteNetworkACLInput struct {
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	NetworkACLID *string `locationName:"networkAclId" type:"string"`
+	NetworkACLID *string `locationName:"networkAclId" type:"string" required:"true"`
 
 	metadataDeleteNetworkACLInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteNetworkACLInput struct {
-	SDKShapeTraits bool `type:"structure" required:"NetworkAclId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteNetworkACLOutput struct {
@@ -5362,13 +5362,13 @@ type metadataDeleteNetworkACLOutput struct {
 
 type DeleteNetworkInterfaceInput struct {
 	DryRun             *bool   `locationName:"dryRun" type:"boolean"`
-	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
 	metadataDeleteNetworkInterfaceInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteNetworkInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteNetworkInterfaceOutput struct {
@@ -5381,13 +5381,13 @@ type metadataDeleteNetworkInterfaceOutput struct {
 
 type DeletePlacementGroupInput struct {
 	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
-	GroupName *string `locationName:"groupName" type:"string"`
+	GroupName *string `locationName:"groupName" type:"string" required:"true"`
 
 	metadataDeletePlacementGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeletePlacementGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeletePlacementGroupOutput struct {
@@ -5399,15 +5399,15 @@ type metadataDeletePlacementGroupOutput struct {
 }
 
 type DeleteRouteInput struct {
-	DestinationCIDRBlock *string `locationName:"destinationCidrBlock" type:"string"`
+	DestinationCIDRBlock *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
 	DryRun               *bool   `locationName:"dryRun" type:"boolean"`
-	RouteTableID         *string `locationName:"routeTableId" type:"string"`
+	RouteTableID         *string `locationName:"routeTableId" type:"string" required:"true"`
 
 	metadataDeleteRouteInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteRouteInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RouteTableId,DestinationCidrBlock"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteRouteOutput struct {
@@ -5420,13 +5420,13 @@ type metadataDeleteRouteOutput struct {
 
 type DeleteRouteTableInput struct {
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	RouteTableID *string `locationName:"routeTableId" type:"string"`
+	RouteTableID *string `locationName:"routeTableId" type:"string" required:"true"`
 
 	metadataDeleteRouteTableInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteRouteTableInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RouteTableId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteRouteTableOutput struct {
@@ -5459,13 +5459,13 @@ type metadataDeleteSecurityGroupOutput struct {
 
 type DeleteSnapshotInput struct {
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotID *string `locationName:"SnapshotId" type:"string" required:"true"`
 
 	metadataDeleteSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SnapshotId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteSnapshotOutput struct {
@@ -5496,13 +5496,13 @@ type metadataDeleteSpotDatafeedSubscriptionOutput struct {
 
 type DeleteSubnetInput struct {
 	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
-	SubnetID *string `locationName:"SubnetId" type:"string"`
+	SubnetID *string `locationName:"SubnetId" type:"string" required:"true"`
 
 	metadataDeleteSubnetInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteSubnetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubnetId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteSubnetOutput struct {
@@ -5515,14 +5515,14 @@ type metadataDeleteSubnetOutput struct {
 
 type DeleteTagsInput struct {
 	DryRun    *bool     `locationName:"dryRun" type:"boolean"`
-	Resources []*string `locationName:"resourceId" type:"list"`
+	Resources []*string `locationName:"resourceId" type:"list" required:"true"`
 	Tags      []*Tag    `locationName:"tag" locationNameList:"item" type:"list"`
 
 	metadataDeleteTagsInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTagsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Resources"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteTagsOutput struct {
@@ -5535,13 +5535,13 @@ type metadataDeleteTagsOutput struct {
 
 type DeleteVPCInput struct {
 	DryRun *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID  *string `locationName:"VpcId" type:"string"`
+	VPCID  *string `locationName:"VpcId" type:"string" required:"true"`
 
 	metadataDeleteVPCInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteVPCInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteVPCOutput struct {
@@ -5554,13 +5554,13 @@ type metadataDeleteVPCOutput struct {
 
 type DeleteVPCPeeringConnectionInput struct {
 	DryRun                 *bool   `locationName:"dryRun" type:"boolean"`
-	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string"`
+	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string" required:"true"`
 
 	metadataDeleteVPCPeeringConnectionInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteVPCPeeringConnectionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpcPeeringConnectionId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteVPCPeeringConnectionOutput struct {
@@ -5575,13 +5575,13 @@ type metadataDeleteVPCPeeringConnectionOutput struct {
 
 type DeleteVPNConnectionInput struct {
 	DryRun          *bool   `locationName:"dryRun" type:"boolean"`
-	VPNConnectionID *string `locationName:"VpnConnectionId" type:"string"`
+	VPNConnectionID *string `locationName:"VpnConnectionId" type:"string" required:"true"`
 
 	metadataDeleteVPNConnectionInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteVPNConnectionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpnConnectionId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteVPNConnectionOutput struct {
@@ -5593,14 +5593,14 @@ type metadataDeleteVPNConnectionOutput struct {
 }
 
 type DeleteVPNConnectionRouteInput struct {
-	DestinationCIDRBlock *string `locationName:"DestinationCidrBlock" type:"string"`
-	VPNConnectionID      *string `locationName:"VpnConnectionId" type:"string"`
+	DestinationCIDRBlock *string `locationName:"DestinationCidrBlock" type:"string" required:"true"`
+	VPNConnectionID      *string `locationName:"VpnConnectionId" type:"string" required:"true"`
 
 	metadataDeleteVPNConnectionRouteInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteVPNConnectionRouteInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpnConnectionId,DestinationCidrBlock"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteVPNConnectionRouteOutput struct {
@@ -5613,13 +5613,13 @@ type metadataDeleteVPNConnectionRouteOutput struct {
 
 type DeleteVPNGatewayInput struct {
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	VPNGatewayID *string `locationName:"VpnGatewayId" type:"string"`
+	VPNGatewayID *string `locationName:"VpnGatewayId" type:"string" required:"true"`
 
 	metadataDeleteVPNGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteVPNGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpnGatewayId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteVPNGatewayOutput struct {
@@ -5632,13 +5632,13 @@ type metadataDeleteVPNGatewayOutput struct {
 
 type DeleteVolumeInput struct {
 	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
-	VolumeID *string `locationName:"VolumeId" type:"string"`
+	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataDeleteVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteVolumeOutput struct {
@@ -5651,13 +5651,13 @@ type metadataDeleteVolumeOutput struct {
 
 type DeregisterImageInput struct {
 	DryRun  *bool   `locationName:"dryRun" type:"boolean"`
-	ImageID *string `locationName:"ImageId" type:"string"`
+	ImageID *string `locationName:"ImageId" type:"string" required:"true"`
 
 	metadataDeregisterImageInput `json:"-", xml:"-"`
 }
 
 type metadataDeregisterImageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ImageId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeregisterImageOutput struct {
@@ -5868,15 +5868,15 @@ type metadataDescribeExportTasksOutput struct {
 }
 
 type DescribeImageAttributeInput struct {
-	Attribute *string `type:"string"`
+	Attribute *string `type:"string" required:"true"`
 	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
-	ImageID   *string `locationName:"ImageId" type:"string"`
+	ImageID   *string `locationName:"ImageId" type:"string" required:"true"`
 
 	metadataDescribeImageAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeImageAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ImageId,Attribute"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeImageAttributeOutput struct {
@@ -5921,15 +5921,15 @@ type metadataDescribeImagesOutput struct {
 }
 
 type DescribeInstanceAttributeInput struct {
-	Attribute  *string `locationName:"attribute" type:"string"`
+	Attribute  *string `locationName:"attribute" type:"string" required:"true"`
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
-	InstanceID *string `locationName:"instanceId" type:"string"`
+	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
 
 	metadataDescribeInstanceAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeInstanceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId,Attribute"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeInstanceAttributeOutput struct {
@@ -6075,13 +6075,13 @@ type metadataDescribeNetworkACLsOutput struct {
 type DescribeNetworkInterfaceAttributeInput struct {
 	Attribute          *string `locationName:"attribute" type:"string"`
 	DryRun             *bool   `locationName:"dryRun" type:"boolean"`
-	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
 	metadataDescribeNetworkInterfaceAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeNetworkInterfaceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeNetworkInterfaceAttributeOutput struct {
@@ -6312,15 +6312,15 @@ type metadataDescribeSecurityGroupsOutput struct {
 }
 
 type DescribeSnapshotAttributeInput struct {
-	Attribute  *string `type:"string"`
+	Attribute  *string `type:"string" required:"true"`
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotID *string `locationName:"SnapshotId" type:"string" required:"true"`
 
 	metadataDescribeSnapshotAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeSnapshotAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SnapshotId,Attribute"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeSnapshotAttributeOutput struct {
@@ -6479,13 +6479,13 @@ type metadataDescribeTagsOutput struct {
 type DescribeVPCAttributeInput struct {
 	Attribute *string `type:"string"`
 	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID     *string `locationName:"VpcId" type:"string"`
+	VPCID     *string `locationName:"VpcId" type:"string" required:"true"`
 
 	metadataDescribeVPCAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeVPCAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeVPCAttributeOutput struct {
@@ -6613,13 +6613,13 @@ type metadataDescribeVPNGatewaysOutput struct {
 type DescribeVolumeAttributeInput struct {
 	Attribute *string `type:"string"`
 	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
-	VolumeID  *string `locationName:"VolumeId" type:"string"`
+	VolumeID  *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataDescribeVolumeAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeVolumeAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeVolumeAttributeOutput struct {
@@ -6686,14 +6686,14 @@ type metadataDescribeVolumesOutput struct {
 
 type DetachClassicLinkVPCInput struct {
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
-	InstanceID *string `locationName:"instanceId" type:"string"`
-	VPCID      *string `locationName:"vpcId" type:"string"`
+	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
+	VPCID      *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataDetachClassicLinkVPCInput `json:"-", xml:"-"`
 }
 
 type metadataDetachClassicLinkVPCInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId,VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachClassicLinkVPCOutput struct {
@@ -6708,14 +6708,14 @@ type metadataDetachClassicLinkVPCOutput struct {
 
 type DetachInternetGatewayInput struct {
 	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
-	InternetGatewayID *string `locationName:"internetGatewayId" type:"string"`
-	VPCID             *string `locationName:"vpcId" type:"string"`
+	InternetGatewayID *string `locationName:"internetGatewayId" type:"string" required:"true"`
+	VPCID             *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataDetachInternetGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataDetachInternetGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InternetGatewayId,VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachInternetGatewayOutput struct {
@@ -6727,7 +6727,7 @@ type metadataDetachInternetGatewayOutput struct {
 }
 
 type DetachNetworkInterfaceInput struct {
-	AttachmentID *string `locationName:"attachmentId" type:"string"`
+	AttachmentID *string `locationName:"attachmentId" type:"string" required:"true"`
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
 	Force        *bool   `locationName:"force" type:"boolean"`
 
@@ -6735,7 +6735,7 @@ type DetachNetworkInterfaceInput struct {
 }
 
 type metadataDetachNetworkInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AttachmentId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachNetworkInterfaceOutput struct {
@@ -6748,14 +6748,14 @@ type metadataDetachNetworkInterfaceOutput struct {
 
 type DetachVPNGatewayInput struct {
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID        *string `locationName:"VpcId" type:"string"`
-	VPNGatewayID *string `locationName:"VpnGatewayId" type:"string"`
+	VPCID        *string `locationName:"VpcId" type:"string" required:"true"`
+	VPNGatewayID *string `locationName:"VpnGatewayId" type:"string" required:"true"`
 
 	metadataDetachVPNGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataDetachVPNGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpnGatewayId,VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachVPNGatewayOutput struct {
@@ -6771,24 +6771,24 @@ type DetachVolumeInput struct {
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
 	Force      *bool   `type:"boolean"`
 	InstanceID *string `locationName:"InstanceId" type:"string"`
-	VolumeID   *string `locationName:"VolumeId" type:"string"`
+	VolumeID   *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataDetachVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataDetachVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableVGWRoutePropagationInput struct {
-	GatewayID    *string `locationName:"GatewayId" type:"string"`
-	RouteTableID *string `locationName:"RouteTableId" type:"string"`
+	GatewayID    *string `locationName:"GatewayId" type:"string" required:"true"`
+	RouteTableID *string `locationName:"RouteTableId" type:"string" required:"true"`
 
 	metadataDisableVGWRoutePropagationInput `json:"-", xml:"-"`
 }
 
 type metadataDisableVGWRoutePropagationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RouteTableId,GatewayId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableVGWRoutePropagationOutput struct {
@@ -6801,13 +6801,13 @@ type metadataDisableVGWRoutePropagationOutput struct {
 
 type DisableVPCClassicLinkInput struct {
 	DryRun *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID  *string `locationName:"vpcId" type:"string"`
+	VPCID  *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataDisableVPCClassicLinkInput `json:"-", xml:"-"`
 }
 
 type metadataDisableVPCClassicLinkInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableVPCClassicLinkOutput struct {
@@ -6841,14 +6841,14 @@ type metadataDisassociateAddressOutput struct {
 }
 
 type DisassociateRouteTableInput struct {
-	AssociationID *string `locationName:"associationId" type:"string"`
+	AssociationID *string `locationName:"associationId" type:"string" required:"true"`
 	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
 
 	metadataDisassociateRouteTableInput `json:"-", xml:"-"`
 }
 
 type metadataDisassociateRouteTableInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AssociationId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisassociateRouteTableOutput struct {
@@ -6873,38 +6873,38 @@ type metadataDiskImage struct {
 
 type DiskImageDescription struct {
 	Checksum          *string `locationName:"checksum" type:"string"`
-	Format            *string `locationName:"format" type:"string"`
-	ImportManifestURL *string `locationName:"importManifestUrl" type:"string"`
-	Size              *int64  `locationName:"size" type:"long"`
+	Format            *string `locationName:"format" type:"string" required:"true"`
+	ImportManifestURL *string `locationName:"importManifestUrl" type:"string" required:"true"`
+	Size              *int64  `locationName:"size" type:"long" required:"true"`
 
 	metadataDiskImageDescription `json:"-", xml:"-"`
 }
 
 type metadataDiskImageDescription struct {
-	SDKShapeTraits bool `type:"structure" required:"Format,Size,ImportManifestUrl"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DiskImageDetail struct {
-	Bytes             *int64  `locationName:"bytes" type:"long"`
-	Format            *string `locationName:"format" type:"string"`
-	ImportManifestURL *string `locationName:"importManifestUrl" type:"string"`
+	Bytes             *int64  `locationName:"bytes" type:"long" required:"true"`
+	Format            *string `locationName:"format" type:"string" required:"true"`
+	ImportManifestURL *string `locationName:"importManifestUrl" type:"string" required:"true"`
 
 	metadataDiskImageDetail `json:"-", xml:"-"`
 }
 
 type metadataDiskImageDetail struct {
-	SDKShapeTraits bool `type:"structure" required:"Format,Bytes,ImportManifestUrl"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DiskImageVolumeDescription struct {
-	ID   *string `locationName:"id" type:"string"`
+	ID   *string `locationName:"id" type:"string" required:"true"`
 	Size *int64  `locationName:"size" type:"long"`
 
 	metadataDiskImageVolumeDescription `json:"-", xml:"-"`
 }
 
 type metadataDiskImageVolumeDescription struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EBSBlockDevice struct {
@@ -6947,14 +6947,14 @@ type metadataEBSInstanceBlockDeviceSpecification struct {
 }
 
 type EnableVGWRoutePropagationInput struct {
-	GatewayID    *string `locationName:"GatewayId" type:"string"`
-	RouteTableID *string `locationName:"RouteTableId" type:"string"`
+	GatewayID    *string `locationName:"GatewayId" type:"string" required:"true"`
+	RouteTableID *string `locationName:"RouteTableId" type:"string" required:"true"`
 
 	metadataEnableVGWRoutePropagationInput `json:"-", xml:"-"`
 }
 
 type metadataEnableVGWRoutePropagationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RouteTableId,GatewayId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableVGWRoutePropagationOutput struct {
@@ -6967,13 +6967,13 @@ type metadataEnableVGWRoutePropagationOutput struct {
 
 type EnableVPCClassicLinkInput struct {
 	DryRun *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID  *string `locationName:"vpcId" type:"string"`
+	VPCID  *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataEnableVPCClassicLinkInput `json:"-", xml:"-"`
 }
 
 type metadataEnableVPCClassicLinkInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableVPCClassicLinkOutput struct {
@@ -6988,13 +6988,13 @@ type metadataEnableVPCClassicLinkOutput struct {
 
 type EnableVolumeIOInput struct {
 	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
-	VolumeID *string `locationName:"volumeId" type:"string"`
+	VolumeID *string `locationName:"volumeId" type:"string" required:"true"`
 
 	metadataEnableVolumeIOInput `json:"-", xml:"-"`
 }
 
 type metadataEnableVolumeIOInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableVolumeIOOutput struct {
@@ -7059,13 +7059,13 @@ type metadataFilter struct {
 
 type GetConsoleOutputInput struct {
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataGetConsoleOutputInput `json:"-", xml:"-"`
 }
 
 type metadataGetConsoleOutputInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetConsoleOutputOutput struct {
@@ -7082,13 +7082,13 @@ type metadataGetConsoleOutputOutput struct {
 
 type GetPasswordDataInput struct {
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataGetPasswordDataInput `json:"-", xml:"-"`
 }
 
 type metadataGetPasswordDataInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetPasswordDataOutput struct {
@@ -7208,13 +7208,13 @@ type ImportInstanceInput struct {
 	DiskImages          []*DiskImage                       `locationName:"diskImage" type:"list"`
 	DryRun              *bool                              `locationName:"dryRun" type:"boolean"`
 	LaunchSpecification *ImportInstanceLaunchSpecification `locationName:"launchSpecification" type:"structure"`
-	Platform            *string                            `locationName:"platform" type:"string"`
+	Platform            *string                            `locationName:"platform" type:"string" required:"true"`
 
 	metadataImportInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataImportInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Platform"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ImportInstanceLaunchSpecification struct {
@@ -7251,41 +7251,41 @@ type ImportInstanceTaskDetails struct {
 	Description *string                           `locationName:"description" type:"string"`
 	InstanceID  *string                           `locationName:"instanceId" type:"string"`
 	Platform    *string                           `locationName:"platform" type:"string"`
-	Volumes     []*ImportInstanceVolumeDetailItem `locationName:"volumes" locationNameList:"item" type:"list"`
+	Volumes     []*ImportInstanceVolumeDetailItem `locationName:"volumes" locationNameList:"item" type:"list" required:"true"`
 
 	metadataImportInstanceTaskDetails `json:"-", xml:"-"`
 }
 
 type metadataImportInstanceTaskDetails struct {
-	SDKShapeTraits bool `type:"structure" required:"Volumes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ImportInstanceVolumeDetailItem struct {
-	AvailabilityZone *string                     `locationName:"availabilityZone" type:"string"`
-	BytesConverted   *int64                      `locationName:"bytesConverted" type:"long"`
+	AvailabilityZone *string                     `locationName:"availabilityZone" type:"string" required:"true"`
+	BytesConverted   *int64                      `locationName:"bytesConverted" type:"long" required:"true"`
 	Description      *string                     `locationName:"description" type:"string"`
-	Image            *DiskImageDescription       `locationName:"image" type:"structure"`
-	Status           *string                     `locationName:"status" type:"string"`
+	Image            *DiskImageDescription       `locationName:"image" type:"structure" required:"true"`
+	Status           *string                     `locationName:"status" type:"string" required:"true"`
 	StatusMessage    *string                     `locationName:"statusMessage" type:"string"`
-	Volume           *DiskImageVolumeDescription `locationName:"volume" type:"structure"`
+	Volume           *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
 
 	metadataImportInstanceVolumeDetailItem `json:"-", xml:"-"`
 }
 
 type metadataImportInstanceVolumeDetailItem struct {
-	SDKShapeTraits bool `type:"structure" required:"BytesConverted,AvailabilityZone,Image,Volume,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ImportKeyPairInput struct {
 	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
-	KeyName           *string `locationName:"keyName" type:"string"`
-	PublicKeyMaterial []byte  `locationName:"publicKeyMaterial" type:"blob"`
+	KeyName           *string `locationName:"keyName" type:"string" required:"true"`
+	PublicKeyMaterial []byte  `locationName:"publicKeyMaterial" type:"blob" required:"true"`
 
 	metadataImportKeyPairInput `json:"-", xml:"-"`
 }
 
 type metadataImportKeyPairInput struct {
-	SDKShapeTraits bool `type:"structure" required:"KeyName,PublicKeyMaterial"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ImportKeyPairOutput struct {
@@ -7300,17 +7300,17 @@ type metadataImportKeyPairOutput struct {
 }
 
 type ImportVolumeInput struct {
-	AvailabilityZone *string          `locationName:"availabilityZone" type:"string"`
+	AvailabilityZone *string          `locationName:"availabilityZone" type:"string" required:"true"`
 	Description      *string          `locationName:"description" type:"string"`
 	DryRun           *bool            `locationName:"dryRun" type:"boolean"`
-	Image            *DiskImageDetail `locationName:"image" type:"structure"`
-	Volume           *VolumeDetail    `locationName:"volume" type:"structure"`
+	Image            *DiskImageDetail `locationName:"image" type:"structure" required:"true"`
+	Volume           *VolumeDetail    `locationName:"volume" type:"structure" required:"true"`
 
 	metadataImportVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataImportVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AvailabilityZone,Image,Volume"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ImportVolumeOutput struct {
@@ -7324,17 +7324,17 @@ type metadataImportVolumeOutput struct {
 }
 
 type ImportVolumeTaskDetails struct {
-	AvailabilityZone *string                     `locationName:"availabilityZone" type:"string"`
-	BytesConverted   *int64                      `locationName:"bytesConverted" type:"long"`
+	AvailabilityZone *string                     `locationName:"availabilityZone" type:"string" required:"true"`
+	BytesConverted   *int64                      `locationName:"bytesConverted" type:"long" required:"true"`
 	Description      *string                     `locationName:"description" type:"string"`
-	Image            *DiskImageDescription       `locationName:"image" type:"structure"`
-	Volume           *DiskImageVolumeDescription `locationName:"volume" type:"structure"`
+	Image            *DiskImageDescription       `locationName:"image" type:"structure" required:"true"`
+	Volume           *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
 
 	metadataImportVolumeTaskDetails `json:"-", xml:"-"`
 }
 
 type metadataImportVolumeTaskDetails struct {
-	SDKShapeTraits bool `type:"structure" required:"BytesConverted,AvailabilityZone,Image,Volume"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Instance struct {
@@ -7679,7 +7679,7 @@ type ModifyImageAttributeInput struct {
 	Attribute        *string                        `type:"string"`
 	Description      *AttributeValue                `type:"structure"`
 	DryRun           *bool                          `locationName:"dryRun" type:"boolean"`
-	ImageID          *string                        `locationName:"ImageId" type:"string"`
+	ImageID          *string                        `locationName:"ImageId" type:"string" required:"true"`
 	LaunchPermission *LaunchPermissionModifications `type:"structure"`
 	OperationType    *string                        `type:"string"`
 	ProductCodes     []*string                      `locationName:"ProductCode" locationNameList:"ProductCode" type:"list"`
@@ -7691,7 +7691,7 @@ type ModifyImageAttributeInput struct {
 }
 
 type metadataModifyImageAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ImageId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyImageAttributeOutput struct {
@@ -7709,7 +7709,7 @@ type ModifyInstanceAttributeInput struct {
 	DryRun                            *bool                                      `locationName:"dryRun" type:"boolean"`
 	EBSOptimized                      *AttributeBooleanValue                     `locationName:"ebsOptimized" type:"structure"`
 	Groups                            []*string                                  `locationName:"GroupId" locationNameList:"groupId" type:"list"`
-	InstanceID                        *string                                    `locationName:"instanceId" type:"string"`
+	InstanceID                        *string                                    `locationName:"instanceId" type:"string" required:"true"`
 	InstanceInitiatedShutdownBehavior *AttributeValue                            `locationName:"instanceInitiatedShutdownBehavior" type:"structure"`
 	InstanceType                      *AttributeValue                            `locationName:"instanceType" type:"structure"`
 	Kernel                            *AttributeValue                            `locationName:"kernel" type:"structure"`
@@ -7723,7 +7723,7 @@ type ModifyInstanceAttributeInput struct {
 }
 
 type metadataModifyInstanceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyInstanceAttributeOutput struct {
@@ -7739,14 +7739,14 @@ type ModifyNetworkInterfaceAttributeInput struct {
 	Description        *AttributeValue                    `locationName:"description" type:"structure"`
 	DryRun             *bool                              `locationName:"dryRun" type:"boolean"`
 	Groups             []*string                          `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
-	NetworkInterfaceID *string                            `locationName:"networkInterfaceId" type:"string"`
+	NetworkInterfaceID *string                            `locationName:"networkInterfaceId" type:"string" required:"true"`
 	SourceDestCheck    *AttributeBooleanValue             `locationName:"sourceDestCheck" type:"structure"`
 
 	metadataModifyNetworkInterfaceAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataModifyNetworkInterfaceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyNetworkInterfaceAttributeOutput struct {
@@ -7759,14 +7759,14 @@ type metadataModifyNetworkInterfaceAttributeOutput struct {
 
 type ModifyReservedInstancesInput struct {
 	ClientToken          *string                           `locationName:"clientToken" type:"string"`
-	ReservedInstancesIDs []*string                         `locationName:"ReservedInstancesId" locationNameList:"ReservedInstancesId" type:"list"`
-	TargetConfigurations []*ReservedInstancesConfiguration `locationName:"ReservedInstancesConfigurationSetItemType" locationNameList:"item" type:"list"`
+	ReservedInstancesIDs []*string                         `locationName:"ReservedInstancesId" locationNameList:"ReservedInstancesId" type:"list" required:"true"`
+	TargetConfigurations []*ReservedInstancesConfiguration `locationName:"ReservedInstancesConfigurationSetItemType" locationNameList:"item" type:"list" required:"true"`
 
 	metadataModifyReservedInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataModifyReservedInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ReservedInstancesIds,TargetConfigurations"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyReservedInstancesOutput struct {
@@ -7785,14 +7785,14 @@ type ModifySnapshotAttributeInput struct {
 	DryRun                 *bool                                `locationName:"dryRun" type:"boolean"`
 	GroupNames             []*string                            `locationName:"UserGroup" locationNameList:"GroupName" type:"list"`
 	OperationType          *string                              `type:"string"`
-	SnapshotID             *string                              `locationName:"SnapshotId" type:"string"`
+	SnapshotID             *string                              `locationName:"SnapshotId" type:"string" required:"true"`
 	UserIDs                []*string                            `locationName:"UserId" locationNameList:"UserId" type:"list"`
 
 	metadataModifySnapshotAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataModifySnapshotAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SnapshotId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifySnapshotAttributeOutput struct {
@@ -7805,13 +7805,13 @@ type metadataModifySnapshotAttributeOutput struct {
 
 type ModifySubnetAttributeInput struct {
 	MapPublicIPOnLaunch *AttributeBooleanValue `locationName:"MapPublicIpOnLaunch" type:"structure"`
-	SubnetID            *string                `locationName:"subnetId" type:"string"`
+	SubnetID            *string                `locationName:"subnetId" type:"string" required:"true"`
 
 	metadataModifySubnetAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataModifySubnetAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubnetId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifySubnetAttributeOutput struct {
@@ -7825,13 +7825,13 @@ type metadataModifySubnetAttributeOutput struct {
 type ModifyVPCAttributeInput struct {
 	EnableDNSHostnames *AttributeBooleanValue `locationName:"EnableDnsHostnames" type:"structure"`
 	EnableDNSSupport   *AttributeBooleanValue `locationName:"EnableDnsSupport" type:"structure"`
-	VPCID              *string                `locationName:"vpcId" type:"string"`
+	VPCID              *string                `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataModifyVPCAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataModifyVPCAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpcId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyVPCAttributeOutput struct {
@@ -7845,13 +7845,13 @@ type metadataModifyVPCAttributeOutput struct {
 type ModifyVolumeAttributeInput struct {
 	AutoEnableIO *AttributeBooleanValue `type:"structure"`
 	DryRun       *bool                  `locationName:"dryRun" type:"boolean"`
-	VolumeID     *string                `locationName:"VolumeId" type:"string"`
+	VolumeID     *string                `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataModifyVolumeAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataModifyVolumeAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyVolumeAttributeOutput struct {
@@ -7864,13 +7864,13 @@ type metadataModifyVolumeAttributeOutput struct {
 
 type MonitorInstancesInput struct {
 	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
-	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
+	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataMonitorInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataMonitorInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type MonitorInstancesOutput struct {
@@ -8101,13 +8101,13 @@ type metadataPricingDetail struct {
 
 type PrivateIPAddressSpecification struct {
 	Primary          *bool   `locationName:"primary" type:"boolean"`
-	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string" required:"true"`
 
 	metadataPrivateIPAddressSpecification `json:"-", xml:"-"`
 }
 
 type metadataPrivateIPAddressSpecification struct {
-	SDKShapeTraits bool `type:"structure" required:"PrivateIpAddress"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ProductCode struct {
@@ -8133,15 +8133,15 @@ type metadataPropagatingVGW struct {
 
 type PurchaseReservedInstancesOfferingInput struct {
 	DryRun                      *bool                       `locationName:"dryRun" type:"boolean"`
-	InstanceCount               *int                        `type:"integer"`
+	InstanceCount               *int                        `type:"integer" required:"true"`
 	LimitPrice                  *ReservedInstanceLimitPrice `locationName:"limitPrice" type:"structure"`
-	ReservedInstancesOfferingID *string                     `locationName:"ReservedInstancesOfferingId" type:"string"`
+	ReservedInstancesOfferingID *string                     `locationName:"ReservedInstancesOfferingId" type:"string" required:"true"`
 
 	metadataPurchaseReservedInstancesOfferingInput `json:"-", xml:"-"`
 }
 
 type metadataPurchaseReservedInstancesOfferingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ReservedInstancesOfferingId,InstanceCount"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PurchaseReservedInstancesOfferingOutput struct {
@@ -8156,13 +8156,13 @@ type metadataPurchaseReservedInstancesOfferingOutput struct {
 
 type RebootInstancesInput struct {
 	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
-	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
+	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataRebootInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataRebootInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RebootInstancesOutput struct {
@@ -8202,7 +8202,7 @@ type RegisterImageInput struct {
 	DryRun              *bool                 `locationName:"dryRun" type:"boolean"`
 	ImageLocation       *string               `type:"string"`
 	KernelID            *string               `locationName:"kernelId" type:"string"`
-	Name                *string               `locationName:"name" type:"string"`
+	Name                *string               `locationName:"name" type:"string" required:"true"`
 	RAMDiskID           *string               `locationName:"ramdiskId" type:"string"`
 	RootDeviceName      *string               `locationName:"rootDeviceName" type:"string"`
 	SRIOVNetSupport     *string               `locationName:"sriovNetSupport" type:"string"`
@@ -8212,7 +8212,7 @@ type RegisterImageInput struct {
 }
 
 type metadataRegisterImageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterImageOutput struct {
@@ -8227,13 +8227,13 @@ type metadataRegisterImageOutput struct {
 
 type RejectVPCPeeringConnectionInput struct {
 	DryRun                 *bool   `locationName:"dryRun" type:"boolean"`
-	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string"`
+	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string" required:"true"`
 
 	metadataRejectVPCPeeringConnectionInput `json:"-", xml:"-"`
 }
 
 type metadataRejectVPCPeeringConnectionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VpcPeeringConnectionId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RejectVPCPeeringConnectionOutput struct {
@@ -8267,15 +8267,15 @@ type metadataReleaseAddressOutput struct {
 }
 
 type ReplaceNetworkACLAssociationInput struct {
-	AssociationID *string `locationName:"associationId" type:"string"`
+	AssociationID *string `locationName:"associationId" type:"string" required:"true"`
 	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
-	NetworkACLID  *string `locationName:"networkAclId" type:"string"`
+	NetworkACLID  *string `locationName:"networkAclId" type:"string" required:"true"`
 
 	metadataReplaceNetworkACLAssociationInput `json:"-", xml:"-"`
 }
 
 type metadataReplaceNetworkACLAssociationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AssociationId,NetworkAclId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReplaceNetworkACLAssociationOutput struct {
@@ -8289,21 +8289,21 @@ type metadataReplaceNetworkACLAssociationOutput struct {
 }
 
 type ReplaceNetworkACLEntryInput struct {
-	CIDRBlock    *string       `locationName:"cidrBlock" type:"string"`
+	CIDRBlock    *string       `locationName:"cidrBlock" type:"string" required:"true"`
 	DryRun       *bool         `locationName:"dryRun" type:"boolean"`
-	Egress       *bool         `locationName:"egress" type:"boolean"`
+	Egress       *bool         `locationName:"egress" type:"boolean" required:"true"`
 	ICMPTypeCode *ICMPTypeCode `locationName:"Icmp" type:"structure"`
-	NetworkACLID *string       `locationName:"networkAclId" type:"string"`
+	NetworkACLID *string       `locationName:"networkAclId" type:"string" required:"true"`
 	PortRange    *PortRange    `locationName:"portRange" type:"structure"`
-	Protocol     *string       `locationName:"protocol" type:"string"`
-	RuleAction   *string       `locationName:"ruleAction" type:"string"`
-	RuleNumber   *int          `locationName:"ruleNumber" type:"integer"`
+	Protocol     *string       `locationName:"protocol" type:"string" required:"true"`
+	RuleAction   *string       `locationName:"ruleAction" type:"string" required:"true"`
+	RuleNumber   *int          `locationName:"ruleNumber" type:"integer" required:"true"`
 
 	metadataReplaceNetworkACLEntryInput `json:"-", xml:"-"`
 }
 
 type metadataReplaceNetworkACLEntryInput struct {
-	SDKShapeTraits bool `type:"structure" required:"NetworkAclId,RuleNumber,Protocol,RuleAction,Egress,CidrBlock"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReplaceNetworkACLEntryOutput struct {
@@ -8315,19 +8315,19 @@ type metadataReplaceNetworkACLEntryOutput struct {
 }
 
 type ReplaceRouteInput struct {
-	DestinationCIDRBlock   *string `locationName:"destinationCidrBlock" type:"string"`
+	DestinationCIDRBlock   *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
 	DryRun                 *bool   `locationName:"dryRun" type:"boolean"`
 	GatewayID              *string `locationName:"gatewayId" type:"string"`
 	InstanceID             *string `locationName:"instanceId" type:"string"`
 	NetworkInterfaceID     *string `locationName:"networkInterfaceId" type:"string"`
-	RouteTableID           *string `locationName:"routeTableId" type:"string"`
+	RouteTableID           *string `locationName:"routeTableId" type:"string" required:"true"`
 	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
 	metadataReplaceRouteInput `json:"-", xml:"-"`
 }
 
 type metadataReplaceRouteInput struct {
-	SDKShapeTraits bool `type:"structure" required:"RouteTableId,DestinationCidrBlock"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReplaceRouteOutput struct {
@@ -8339,15 +8339,15 @@ type metadataReplaceRouteOutput struct {
 }
 
 type ReplaceRouteTableAssociationInput struct {
-	AssociationID *string `locationName:"associationId" type:"string"`
+	AssociationID *string `locationName:"associationId" type:"string" required:"true"`
 	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
-	RouteTableID  *string `locationName:"routeTableId" type:"string"`
+	RouteTableID  *string `locationName:"routeTableId" type:"string" required:"true"`
 
 	metadataReplaceRouteTableAssociationInput `json:"-", xml:"-"`
 }
 
 type metadataReplaceRouteTableAssociationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"AssociationId,RouteTableId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReplaceRouteTableAssociationOutput struct {
@@ -8364,16 +8364,16 @@ type ReportInstanceStatusInput struct {
 	Description *string    `locationName:"description" type:"string"`
 	DryRun      *bool      `locationName:"dryRun" type:"boolean"`
 	EndTime     *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
-	Instances   []*string  `locationName:"instanceId" locationNameList:"InstanceId" type:"list"`
-	ReasonCodes []*string  `locationName:"reasonCode" locationNameList:"item" type:"list"`
+	Instances   []*string  `locationName:"instanceId" locationNameList:"InstanceId" type:"list" required:"true"`
+	ReasonCodes []*string  `locationName:"reasonCode" locationNameList:"item" type:"list" required:"true"`
 	StartTime   *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
-	Status      *string    `locationName:"status" type:"string"`
+	Status      *string    `locationName:"status" type:"string" required:"true"`
 
 	metadataReportInstanceStatusInput `json:"-", xml:"-"`
 }
 
 type metadataReportInstanceStatusInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Instances,Status,ReasonCodes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReportInstanceStatusOutput struct {
@@ -8390,7 +8390,7 @@ type RequestSpotInstancesInput struct {
 	InstanceCount         *int                            `locationName:"instanceCount" type:"integer"`
 	LaunchGroup           *string                         `locationName:"launchGroup" type:"string"`
 	LaunchSpecification   *RequestSpotLaunchSpecification `type:"structure"`
-	SpotPrice             *string                         `locationName:"spotPrice" type:"string"`
+	SpotPrice             *string                         `locationName:"spotPrice" type:"string" required:"true"`
 	Type                  *string                         `locationName:"type" type:"string"`
 	ValidFrom             *time.Time                      `locationName:"validFrom" type:"timestamp" timestampFormat:"iso8601"`
 	ValidUntil            *time.Time                      `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
@@ -8399,7 +8399,7 @@ type RequestSpotInstancesInput struct {
 }
 
 type metadataRequestSpotInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SpotPrice"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RequestSpotInstancesOutput struct {
@@ -8581,15 +8581,15 @@ type metadataReservedInstancesOffering struct {
 }
 
 type ResetImageAttributeInput struct {
-	Attribute *string `type:"string"`
+	Attribute *string `type:"string" required:"true"`
 	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
-	ImageID   *string `locationName:"ImageId" type:"string"`
+	ImageID   *string `locationName:"ImageId" type:"string" required:"true"`
 
 	metadataResetImageAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataResetImageAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ImageId,Attribute"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResetImageAttributeOutput struct {
@@ -8601,15 +8601,15 @@ type metadataResetImageAttributeOutput struct {
 }
 
 type ResetInstanceAttributeInput struct {
-	Attribute  *string `locationName:"attribute" type:"string"`
+	Attribute  *string `locationName:"attribute" type:"string" required:"true"`
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
-	InstanceID *string `locationName:"instanceId" type:"string"`
+	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
 
 	metadataResetInstanceAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataResetInstanceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceId,Attribute"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResetInstanceAttributeOutput struct {
@@ -8622,14 +8622,14 @@ type metadataResetInstanceAttributeOutput struct {
 
 type ResetNetworkInterfaceAttributeInput struct {
 	DryRun             *bool   `locationName:"dryRun" type:"boolean"`
-	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 	SourceDestCheck    *string `locationName:"sourceDestCheck" type:"string"`
 
 	metadataResetNetworkInterfaceAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataResetNetworkInterfaceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResetNetworkInterfaceAttributeOutput struct {
@@ -8641,15 +8641,15 @@ type metadataResetNetworkInterfaceAttributeOutput struct {
 }
 
 type ResetSnapshotAttributeInput struct {
-	Attribute  *string `type:"string"`
+	Attribute  *string `type:"string" required:"true"`
 	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotID *string `locationName:"SnapshotId" type:"string" required:"true"`
 
 	metadataResetSnapshotAttributeInput `json:"-", xml:"-"`
 }
 
 type metadataResetSnapshotAttributeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SnapshotId,Attribute"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResetSnapshotAttributeOutput struct {
@@ -8664,7 +8664,7 @@ type RevokeSecurityGroupEgressInput struct {
 	CIDRIP                     *string         `locationName:"cidrIp" type:"string"`
 	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
 	FromPort                   *int            `locationName:"fromPort" type:"integer"`
-	GroupID                    *string         `locationName:"groupId" type:"string"`
+	GroupID                    *string         `locationName:"groupId" type:"string" required:"true"`
 	IPPermissions              []*IPPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
 	IPProtocol                 *string         `locationName:"ipProtocol" type:"string"`
 	SourceSecurityGroupName    *string         `locationName:"sourceSecurityGroupName" type:"string"`
@@ -8675,7 +8675,7 @@ type RevokeSecurityGroupEgressInput struct {
 }
 
 type metadataRevokeSecurityGroupEgressInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GroupId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RevokeSecurityGroupEgressOutput struct {
@@ -8766,13 +8766,13 @@ type RunInstancesInput struct {
 	DryRun                            *bool                                    `locationName:"dryRun" type:"boolean"`
 	EBSOptimized                      *bool                                    `locationName:"ebsOptimized" type:"boolean"`
 	IAMInstanceProfile                *IAMInstanceProfileSpecification         `locationName:"iamInstanceProfile" type:"structure"`
-	ImageID                           *string                                  `locationName:"ImageId" type:"string"`
+	ImageID                           *string                                  `locationName:"ImageId" type:"string" required:"true"`
 	InstanceInitiatedShutdownBehavior *string                                  `locationName:"instanceInitiatedShutdownBehavior" type:"string"`
 	InstanceType                      *string                                  `type:"string"`
 	KernelID                          *string                                  `locationName:"KernelId" type:"string"`
 	KeyName                           *string                                  `type:"string"`
-	MaxCount                          *int                                     `type:"integer"`
-	MinCount                          *int                                     `type:"integer"`
+	MaxCount                          *int                                     `type:"integer" required:"true"`
+	MinCount                          *int                                     `type:"integer" required:"true"`
 	Monitoring                        *RunInstancesMonitoringEnabled           `type:"structure"`
 	NetworkInterfaces                 []*InstanceNetworkInterfaceSpecification `locationName:"networkInterface" locationNameList:"item" type:"list"`
 	Placement                         *Placement                               `type:"structure"`
@@ -8787,17 +8787,17 @@ type RunInstancesInput struct {
 }
 
 type metadataRunInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ImageId,MinCount,MaxCount"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RunInstancesMonitoringEnabled struct {
-	Enabled *bool `locationName:"enabled" type:"boolean"`
+	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
 
 	metadataRunInstancesMonitoringEnabled `json:"-", xml:"-"`
 }
 
 type metadataRunInstancesMonitoringEnabled struct {
-	SDKShapeTraits bool `type:"structure" required:"Enabled"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type S3Storage struct {
@@ -8942,13 +8942,13 @@ type metadataSpotPrice struct {
 type StartInstancesInput struct {
 	AdditionalInfo *string   `locationName:"additionalInfo" type:"string"`
 	DryRun         *bool     `locationName:"dryRun" type:"boolean"`
-	InstanceIDs    []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
+	InstanceIDs    []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataStartInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataStartInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartInstancesOutput struct {
@@ -8975,13 +8975,13 @@ type metadataStateReason struct {
 type StopInstancesInput struct {
 	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
 	Force       *bool     `locationName:"force" type:"boolean"`
-	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
+	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataStopInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataStopInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StopInstancesOutput struct {
@@ -9048,13 +9048,13 @@ type metadataTagDescription struct {
 
 type TerminateInstancesInput struct {
 	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
-	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
+	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataTerminateInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataTerminateInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TerminateInstancesOutput struct {
@@ -9068,14 +9068,14 @@ type metadataTerminateInstancesOutput struct {
 }
 
 type UnassignPrivateIPAddressesInput struct {
-	NetworkInterfaceID *string   `locationName:"networkInterfaceId" type:"string"`
-	PrivateIPAddresses []*string `locationName:"privateIpAddress" locationNameList:"PrivateIpAddress" type:"list"`
+	NetworkInterfaceID *string   `locationName:"networkInterfaceId" type:"string" required:"true"`
+	PrivateIPAddresses []*string `locationName:"privateIpAddress" locationNameList:"PrivateIpAddress" type:"list" required:"true"`
 
 	metadataUnassignPrivateIPAddressesInput `json:"-", xml:"-"`
 }
 
 type metadataUnassignPrivateIPAddressesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"NetworkInterfaceId,PrivateIpAddresses"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UnassignPrivateIPAddressesOutput struct {
@@ -9088,13 +9088,13 @@ type metadataUnassignPrivateIPAddressesOutput struct {
 
 type UnmonitorInstancesInput struct {
 	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
-	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
+	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataUnmonitorInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataUnmonitorInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InstanceIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UnmonitorInstancesOutput struct {
@@ -9323,13 +9323,13 @@ type metadataVolumeAttachment struct {
 }
 
 type VolumeDetail struct {
-	Size *int64 `locationName:"size" type:"long"`
+	Size *int64 `locationName:"size" type:"long" required:"true"`
 
 	metadataVolumeDetail `json:"-", xml:"-"`
 }
 
 type metadataVolumeDetail struct {
-	SDKShapeTraits bool `type:"structure" required:"Size"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type VolumeStatusAction struct {

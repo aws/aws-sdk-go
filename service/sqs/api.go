@@ -432,16 +432,16 @@ func (c *SQS) SetQueueAttributes(input *SetQueueAttributesInput) (output *SetQue
 var opSetQueueAttributes *aws.Operation
 
 type AddPermissionInput struct {
-	AWSAccountIDs []*string `locationName:"AWSAccountIds" locationNameList:"AWSAccountId" type:"list" flattened:"true"`
-	Actions       []*string `locationNameList:"ActionName" type:"list" flattened:"true"`
-	Label         *string   `type:"string"`
-	QueueURL      *string   `locationName:"QueueUrl" type:"string"`
+	AWSAccountIDs []*string `locationName:"AWSAccountIds" locationNameList:"AWSAccountId" type:"list" flattened:"true" required:"true"`
+	Actions       []*string `locationNameList:"ActionName" type:"list" flattened:"true" required:"true"`
+	Label         *string   `type:"string" required:"true"`
+	QueueURL      *string   `locationName:"QueueUrl" type:"string" required:"true"`
 
 	metadataAddPermissionInput `json:"-", xml:"-"`
 }
 
 type metadataAddPermissionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl,Label,AWSAccountIds,Actions"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddPermissionOutput struct {
@@ -453,72 +453,72 @@ type metadataAddPermissionOutput struct {
 }
 
 type BatchResultErrorEntry struct {
-	Code        *string `type:"string"`
-	ID          *string `locationName:"Id" type:"string"`
+	Code        *string `type:"string" required:"true"`
+	ID          *string `locationName:"Id" type:"string" required:"true"`
 	Message     *string `type:"string"`
-	SenderFault *bool   `type:"boolean"`
+	SenderFault *bool   `type:"boolean" required:"true"`
 
 	metadataBatchResultErrorEntry `json:"-", xml:"-"`
 }
 
 type metadataBatchResultErrorEntry struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,SenderFault,Code"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChangeMessageVisibilityBatchInput struct {
-	Entries  []*ChangeMessageVisibilityBatchRequestEntry `locationNameList:"ChangeMessageVisibilityBatchRequestEntry" type:"list" flattened:"true"`
-	QueueURL *string                                     `locationName:"QueueUrl" type:"string"`
+	Entries  []*ChangeMessageVisibilityBatchRequestEntry `locationNameList:"ChangeMessageVisibilityBatchRequestEntry" type:"list" flattened:"true" required:"true"`
+	QueueURL *string                                     `locationName:"QueueUrl" type:"string" required:"true"`
 
 	metadataChangeMessageVisibilityBatchInput `json:"-", xml:"-"`
 }
 
 type metadataChangeMessageVisibilityBatchInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl,Entries"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChangeMessageVisibilityBatchOutput struct {
-	Failed     []*BatchResultErrorEntry                   `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true"`
-	Successful []*ChangeMessageVisibilityBatchResultEntry `locationNameList:"ChangeMessageVisibilityBatchResultEntry" type:"list" flattened:"true"`
+	Failed     []*BatchResultErrorEntry                   `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
+	Successful []*ChangeMessageVisibilityBatchResultEntry `locationNameList:"ChangeMessageVisibilityBatchResultEntry" type:"list" flattened:"true" required:"true"`
 
 	metadataChangeMessageVisibilityBatchOutput `json:"-", xml:"-"`
 }
 
 type metadataChangeMessageVisibilityBatchOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Successful,Failed"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChangeMessageVisibilityBatchRequestEntry struct {
-	ID                *string `locationName:"Id" type:"string"`
-	ReceiptHandle     *string `type:"string"`
+	ID                *string `locationName:"Id" type:"string" required:"true"`
+	ReceiptHandle     *string `type:"string" required:"true"`
 	VisibilityTimeout *int    `type:"integer"`
 
 	metadataChangeMessageVisibilityBatchRequestEntry `json:"-", xml:"-"`
 }
 
 type metadataChangeMessageVisibilityBatchRequestEntry struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,ReceiptHandle"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChangeMessageVisibilityBatchResultEntry struct {
-	ID *string `locationName:"Id" type:"string"`
+	ID *string `locationName:"Id" type:"string" required:"true"`
 
 	metadataChangeMessageVisibilityBatchResultEntry `json:"-", xml:"-"`
 }
 
 type metadataChangeMessageVisibilityBatchResultEntry struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChangeMessageVisibilityInput struct {
-	QueueURL          *string `locationName:"QueueUrl" type:"string"`
-	ReceiptHandle     *string `type:"string"`
-	VisibilityTimeout *int    `type:"integer"`
+	QueueURL          *string `locationName:"QueueUrl" type:"string" required:"true"`
+	ReceiptHandle     *string `type:"string" required:"true"`
+	VisibilityTimeout *int    `type:"integer" required:"true"`
 
 	metadataChangeMessageVisibilityInput `json:"-", xml:"-"`
 }
 
 type metadataChangeMessageVisibilityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl,ReceiptHandle,VisibilityTimeout"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChangeMessageVisibilityOutput struct {
@@ -531,13 +531,13 @@ type metadataChangeMessageVisibilityOutput struct {
 
 type CreateQueueInput struct {
 	Attributes *map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
-	QueueName  *string             `type:"string"`
+	QueueName  *string             `type:"string" required:"true"`
 
 	metadataCreateQueueInput `json:"-", xml:"-"`
 }
 
 type metadataCreateQueueInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateQueueOutput struct {
@@ -551,57 +551,57 @@ type metadataCreateQueueOutput struct {
 }
 
 type DeleteMessageBatchInput struct {
-	Entries  []*DeleteMessageBatchRequestEntry `locationNameList:"DeleteMessageBatchRequestEntry" type:"list" flattened:"true"`
-	QueueURL *string                           `locationName:"QueueUrl" type:"string"`
+	Entries  []*DeleteMessageBatchRequestEntry `locationNameList:"DeleteMessageBatchRequestEntry" type:"list" flattened:"true" required:"true"`
+	QueueURL *string                           `locationName:"QueueUrl" type:"string" required:"true"`
 
 	metadataDeleteMessageBatchInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteMessageBatchInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl,Entries"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteMessageBatchOutput struct {
-	Failed     []*BatchResultErrorEntry         `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true"`
-	Successful []*DeleteMessageBatchResultEntry `locationNameList:"DeleteMessageBatchResultEntry" type:"list" flattened:"true"`
+	Failed     []*BatchResultErrorEntry         `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
+	Successful []*DeleteMessageBatchResultEntry `locationNameList:"DeleteMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
 
 	metadataDeleteMessageBatchOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteMessageBatchOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Successful,Failed"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteMessageBatchRequestEntry struct {
-	ID            *string `locationName:"Id" type:"string"`
-	ReceiptHandle *string `type:"string"`
+	ID            *string `locationName:"Id" type:"string" required:"true"`
+	ReceiptHandle *string `type:"string" required:"true"`
 
 	metadataDeleteMessageBatchRequestEntry `json:"-", xml:"-"`
 }
 
 type metadataDeleteMessageBatchRequestEntry struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,ReceiptHandle"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteMessageBatchResultEntry struct {
-	ID *string `locationName:"Id" type:"string"`
+	ID *string `locationName:"Id" type:"string" required:"true"`
 
 	metadataDeleteMessageBatchResultEntry `json:"-", xml:"-"`
 }
 
 type metadataDeleteMessageBatchResultEntry struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteMessageInput struct {
-	QueueURL      *string `locationName:"QueueUrl" type:"string"`
-	ReceiptHandle *string `type:"string"`
+	QueueURL      *string `locationName:"QueueUrl" type:"string" required:"true"`
+	ReceiptHandle *string `type:"string" required:"true"`
 
 	metadataDeleteMessageInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteMessageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl,ReceiptHandle"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteMessageOutput struct {
@@ -613,13 +613,13 @@ type metadataDeleteMessageOutput struct {
 }
 
 type DeleteQueueInput struct {
-	QueueURL *string `locationName:"QueueUrl" type:"string"`
+	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
 	metadataDeleteQueueInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteQueueInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteQueueOutput struct {
@@ -632,13 +632,13 @@ type metadataDeleteQueueOutput struct {
 
 type GetQueueAttributesInput struct {
 	AttributeNames []*string `locationNameList:"AttributeName" type:"list" flattened:"true"`
-	QueueURL       *string   `locationName:"QueueUrl" type:"string"`
+	QueueURL       *string   `locationName:"QueueUrl" type:"string" required:"true"`
 
 	metadataGetQueueAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataGetQueueAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetQueueAttributesOutput struct {
@@ -652,14 +652,14 @@ type metadataGetQueueAttributesOutput struct {
 }
 
 type GetQueueURLInput struct {
-	QueueName              *string `type:"string"`
+	QueueName              *string `type:"string" required:"true"`
 	QueueOwnerAWSAccountID *string `locationName:"QueueOwnerAWSAccountId" type:"string"`
 
 	metadataGetQueueURLInput `json:"-", xml:"-"`
 }
 
 type metadataGetQueueURLInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetQueueURLOutput struct {
@@ -673,23 +673,23 @@ type metadataGetQueueURLOutput struct {
 }
 
 type ListDeadLetterSourceQueuesInput struct {
-	QueueURL *string `locationName:"QueueUrl" type:"string"`
+	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
 	metadataListDeadLetterSourceQueuesInput `json:"-", xml:"-"`
 }
 
 type metadataListDeadLetterSourceQueuesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListDeadLetterSourceQueuesOutput struct {
-	QueueURLs []*string `locationName:"queueUrls" locationNameList:"QueueUrl" type:"list" flattened:"true"`
+	QueueURLs []*string `locationName:"queueUrls" locationNameList:"QueueUrl" type:"list" flattened:"true" required:"true"`
 
 	metadataListDeadLetterSourceQueuesOutput `json:"-", xml:"-"`
 }
 
 type metadataListDeadLetterSourceQueuesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"queueUrls"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListQueuesInput struct {
@@ -731,7 +731,7 @@ type metadataMessage struct {
 type MessageAttributeValue struct {
 	BinaryListValues [][]byte  `locationName:"BinaryListValue" locationNameList:"BinaryListValue" type:"list" flattened:"true"`
 	BinaryValue      []byte    `type:"blob"`
-	DataType         *string   `type:"string"`
+	DataType         *string   `type:"string" required:"true"`
 	StringListValues []*string `locationName:"StringListValue" locationNameList:"StringListValue" type:"list" flattened:"true"`
 	StringValue      *string   `type:"string"`
 
@@ -739,17 +739,17 @@ type MessageAttributeValue struct {
 }
 
 type metadataMessageAttributeValue struct {
-	SDKShapeTraits bool `type:"structure" required:"DataType"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PurgeQueueInput struct {
-	QueueURL *string `locationName:"QueueUrl" type:"string"`
+	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
 	metadataPurgeQueueInput `json:"-", xml:"-"`
 }
 
 type metadataPurgeQueueInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PurgeQueueOutput struct {
@@ -764,7 +764,7 @@ type ReceiveMessageInput struct {
 	AttributeNames        []*string `locationNameList:"AttributeName" type:"list" flattened:"true"`
 	MaxNumberOfMessages   *int      `type:"integer"`
 	MessageAttributeNames []*string `locationNameList:"MessageAttributeName" type:"list" flattened:"true"`
-	QueueURL              *string   `locationName:"QueueUrl" type:"string"`
+	QueueURL              *string   `locationName:"QueueUrl" type:"string" required:"true"`
 	VisibilityTimeout     *int      `type:"integer"`
 	WaitTimeSeconds       *int      `type:"integer"`
 
@@ -772,7 +772,7 @@ type ReceiveMessageInput struct {
 }
 
 type metadataReceiveMessageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReceiveMessageOutput struct {
@@ -786,14 +786,14 @@ type metadataReceiveMessageOutput struct {
 }
 
 type RemovePermissionInput struct {
-	Label    *string `type:"string"`
-	QueueURL *string `locationName:"QueueUrl" type:"string"`
+	Label    *string `type:"string" required:"true"`
+	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
 	metadataRemovePermissionInput `json:"-", xml:"-"`
 }
 
 type metadataRemovePermissionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl,Label"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemovePermissionOutput struct {
@@ -805,64 +805,64 @@ type metadataRemovePermissionOutput struct {
 }
 
 type SendMessageBatchInput struct {
-	Entries  []*SendMessageBatchRequestEntry `locationNameList:"SendMessageBatchRequestEntry" type:"list" flattened:"true"`
-	QueueURL *string                         `locationName:"QueueUrl" type:"string"`
+	Entries  []*SendMessageBatchRequestEntry `locationNameList:"SendMessageBatchRequestEntry" type:"list" flattened:"true" required:"true"`
+	QueueURL *string                         `locationName:"QueueUrl" type:"string" required:"true"`
 
 	metadataSendMessageBatchInput `json:"-", xml:"-"`
 }
 
 type metadataSendMessageBatchInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl,Entries"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SendMessageBatchOutput struct {
-	Failed     []*BatchResultErrorEntry       `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true"`
-	Successful []*SendMessageBatchResultEntry `locationNameList:"SendMessageBatchResultEntry" type:"list" flattened:"true"`
+	Failed     []*BatchResultErrorEntry       `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
+	Successful []*SendMessageBatchResultEntry `locationNameList:"SendMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
 
 	metadataSendMessageBatchOutput `json:"-", xml:"-"`
 }
 
 type metadataSendMessageBatchOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Successful,Failed"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SendMessageBatchRequestEntry struct {
 	DelaySeconds      *int                               `type:"integer"`
-	ID                *string                            `locationName:"Id" type:"string"`
+	ID                *string                            `locationName:"Id" type:"string" required:"true"`
 	MessageAttributes *map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
-	MessageBody       *string                            `type:"string"`
+	MessageBody       *string                            `type:"string" required:"true"`
 
 	metadataSendMessageBatchRequestEntry `json:"-", xml:"-"`
 }
 
 type metadataSendMessageBatchRequestEntry struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,MessageBody"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SendMessageBatchResultEntry struct {
-	ID                     *string `locationName:"Id" type:"string"`
+	ID                     *string `locationName:"Id" type:"string" required:"true"`
 	MD5OfMessageAttributes *string `type:"string"`
-	MD5OfMessageBody       *string `type:"string"`
-	MessageID              *string `locationName:"MessageId" type:"string"`
+	MD5OfMessageBody       *string `type:"string" required:"true"`
+	MessageID              *string `locationName:"MessageId" type:"string" required:"true"`
 
 	metadataSendMessageBatchResultEntry `json:"-", xml:"-"`
 }
 
 type metadataSendMessageBatchResultEntry struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,MessageId,MD5OfMessageBody"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SendMessageInput struct {
 	DelaySeconds      *int                               `type:"integer"`
 	MessageAttributes *map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
-	MessageBody       *string                            `type:"string"`
-	QueueURL          *string                            `locationName:"QueueUrl" type:"string"`
+	MessageBody       *string                            `type:"string" required:"true"`
+	QueueURL          *string                            `locationName:"QueueUrl" type:"string" required:"true"`
 
 	metadataSendMessageInput `json:"-", xml:"-"`
 }
 
 type metadataSendMessageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl,MessageBody"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SendMessageOutput struct {
@@ -878,14 +878,14 @@ type metadataSendMessageOutput struct {
 }
 
 type SetQueueAttributesInput struct {
-	Attributes *map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
-	QueueURL   *string             `locationName:"QueueUrl" type:"string"`
+	Attributes *map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true" required:"true"`
+	QueueURL   *string             `locationName:"QueueUrl" type:"string" required:"true"`
 
 	metadataSetQueueAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataSetQueueAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"QueueUrl,Attributes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetQueueAttributesOutput struct {

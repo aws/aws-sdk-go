@@ -632,16 +632,16 @@ func (c *SNS) Unsubscribe(input *UnsubscribeInput) (output *UnsubscribeOutput, e
 var opUnsubscribe *aws.Operation
 
 type AddPermissionInput struct {
-	AWSAccountID []*string `locationName:"AWSAccountId" type:"list"`
-	ActionName   []*string `type:"list"`
-	Label        *string   `type:"string"`
-	TopicARN     *string   `locationName:"TopicArn" type:"string"`
+	AWSAccountID []*string `locationName:"AWSAccountId" type:"list" required:"true"`
+	ActionName   []*string `type:"list" required:"true"`
+	Label        *string   `type:"string" required:"true"`
+	TopicARN     *string   `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataAddPermissionInput `json:"-", xml:"-"`
 }
 
 type metadataAddPermissionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TopicArn,Label,AWSAccountId,ActionName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddPermissionOutput struct {
@@ -654,14 +654,14 @@ type metadataAddPermissionOutput struct {
 
 type ConfirmSubscriptionInput struct {
 	AuthenticateOnUnsubscribe *string `type:"string"`
-	Token                     *string `type:"string"`
-	TopicARN                  *string `locationName:"TopicArn" type:"string"`
+	Token                     *string `type:"string" required:"true"`
+	TopicARN                  *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataConfirmSubscriptionInput `json:"-", xml:"-"`
 }
 
 type metadataConfirmSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TopicArn,Token"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ConfirmSubscriptionOutput struct {
@@ -675,15 +675,15 @@ type metadataConfirmSubscriptionOutput struct {
 }
 
 type CreatePlatformApplicationInput struct {
-	Attributes *map[string]*string `type:"map"`
-	Name       *string             `type:"string"`
-	Platform   *string             `type:"string"`
+	Attributes *map[string]*string `type:"map" required:"true"`
+	Name       *string             `type:"string" required:"true"`
+	Platform   *string             `type:"string" required:"true"`
 
 	metadataCreatePlatformApplicationInput `json:"-", xml:"-"`
 }
 
 type metadataCreatePlatformApplicationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name,Platform,Attributes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreatePlatformApplicationOutput struct {
@@ -699,14 +699,14 @@ type metadataCreatePlatformApplicationOutput struct {
 type CreatePlatformEndpointInput struct {
 	Attributes             *map[string]*string `type:"map"`
 	CustomUserData         *string             `type:"string"`
-	PlatformApplicationARN *string             `locationName:"PlatformApplicationArn" type:"string"`
-	Token                  *string             `type:"string"`
+	PlatformApplicationARN *string             `locationName:"PlatformApplicationArn" type:"string" required:"true"`
+	Token                  *string             `type:"string" required:"true"`
 
 	metadataCreatePlatformEndpointInput `json:"-", xml:"-"`
 }
 
 type metadataCreatePlatformEndpointInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PlatformApplicationArn,Token"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreatePlatformEndpointOutput struct {
@@ -720,13 +720,13 @@ type metadataCreatePlatformEndpointOutput struct {
 }
 
 type CreateTopicInput struct {
-	Name *string `type:"string"`
+	Name *string `type:"string" required:"true"`
 
 	metadataCreateTopicInput `json:"-", xml:"-"`
 }
 
 type metadataCreateTopicInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Name"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateTopicOutput struct {
@@ -740,13 +740,13 @@ type metadataCreateTopicOutput struct {
 }
 
 type DeleteEndpointInput struct {
-	EndpointARN *string `locationName:"EndpointArn" type:"string"`
+	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
 
 	metadataDeleteEndpointInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteEndpointInput struct {
-	SDKShapeTraits bool `type:"structure" required:"EndpointArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteEndpointOutput struct {
@@ -758,13 +758,13 @@ type metadataDeleteEndpointOutput struct {
 }
 
 type DeletePlatformApplicationInput struct {
-	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
+	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
 	metadataDeletePlatformApplicationInput `json:"-", xml:"-"`
 }
 
 type metadataDeletePlatformApplicationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PlatformApplicationArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeletePlatformApplicationOutput struct {
@@ -776,13 +776,13 @@ type metadataDeletePlatformApplicationOutput struct {
 }
 
 type DeleteTopicInput struct {
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataDeleteTopicInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTopicInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TopicArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteTopicOutput struct {
@@ -805,13 +805,13 @@ type metadataEndpoint struct {
 }
 
 type GetEndpointAttributesInput struct {
-	EndpointARN *string `locationName:"EndpointArn" type:"string"`
+	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
 
 	metadataGetEndpointAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataGetEndpointAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"EndpointArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetEndpointAttributesOutput struct {
@@ -825,13 +825,13 @@ type metadataGetEndpointAttributesOutput struct {
 }
 
 type GetPlatformApplicationAttributesInput struct {
-	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
+	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
 	metadataGetPlatformApplicationAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataGetPlatformApplicationAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PlatformApplicationArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetPlatformApplicationAttributesOutput struct {
@@ -845,13 +845,13 @@ type metadataGetPlatformApplicationAttributesOutput struct {
 }
 
 type GetSubscriptionAttributesInput struct {
-	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
+	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
 	metadataGetSubscriptionAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataGetSubscriptionAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubscriptionArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetSubscriptionAttributesOutput struct {
@@ -865,13 +865,13 @@ type metadataGetSubscriptionAttributesOutput struct {
 }
 
 type GetTopicAttributesInput struct {
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataGetTopicAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataGetTopicAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TopicArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetTopicAttributesOutput struct {
@@ -886,13 +886,13 @@ type metadataGetTopicAttributesOutput struct {
 
 type ListEndpointsByPlatformApplicationInput struct {
 	NextToken              *string `type:"string"`
-	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
+	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
 	metadataListEndpointsByPlatformApplicationInput `json:"-", xml:"-"`
 }
 
 type metadataListEndpointsByPlatformApplicationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PlatformApplicationArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListEndpointsByPlatformApplicationOutput struct {
@@ -929,13 +929,13 @@ type metadataListPlatformApplicationsOutput struct {
 
 type ListSubscriptionsByTopicInput struct {
 	NextToken *string `type:"string"`
-	TopicARN  *string `locationName:"TopicArn" type:"string"`
+	TopicARN  *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataListSubscriptionsByTopicInput `json:"-", xml:"-"`
 }
 
 type metadataListSubscriptionsByTopicInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TopicArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListSubscriptionsByTopicOutput struct {
@@ -993,14 +993,14 @@ type metadataListTopicsOutput struct {
 
 type MessageAttributeValue struct {
 	BinaryValue []byte  `type:"blob"`
-	DataType    *string `type:"string"`
+	DataType    *string `type:"string" required:"true"`
 	StringValue *string `type:"string"`
 
 	metadataMessageAttributeValue `json:"-", xml:"-"`
 }
 
 type metadataMessageAttributeValue struct {
-	SDKShapeTraits bool `type:"structure" required:"DataType"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PlatformApplication struct {
@@ -1015,7 +1015,7 @@ type metadataPlatformApplication struct {
 }
 
 type PublishInput struct {
-	Message           *string                            `type:"string"`
+	Message           *string                            `type:"string" required:"true"`
 	MessageAttributes *map[string]*MessageAttributeValue `locationNameKey:"Name" locationNameValue:"Value" type:"map"`
 	MessageStructure  *string                            `type:"string"`
 	Subject           *string                            `type:"string"`
@@ -1026,7 +1026,7 @@ type PublishInput struct {
 }
 
 type metadataPublishInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Message"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PublishOutput struct {
@@ -1040,14 +1040,14 @@ type metadataPublishOutput struct {
 }
 
 type RemovePermissionInput struct {
-	Label    *string `type:"string"`
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	Label    *string `type:"string" required:"true"`
+	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataRemovePermissionInput `json:"-", xml:"-"`
 }
 
 type metadataRemovePermissionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TopicArn,Label"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemovePermissionOutput struct {
@@ -1059,14 +1059,14 @@ type metadataRemovePermissionOutput struct {
 }
 
 type SetEndpointAttributesInput struct {
-	Attributes  *map[string]*string `type:"map"`
-	EndpointARN *string             `locationName:"EndpointArn" type:"string"`
+	Attributes  *map[string]*string `type:"map" required:"true"`
+	EndpointARN *string             `locationName:"EndpointArn" type:"string" required:"true"`
 
 	metadataSetEndpointAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataSetEndpointAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"EndpointArn,Attributes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetEndpointAttributesOutput struct {
@@ -1078,14 +1078,14 @@ type metadataSetEndpointAttributesOutput struct {
 }
 
 type SetPlatformApplicationAttributesInput struct {
-	Attributes             *map[string]*string `type:"map"`
-	PlatformApplicationARN *string             `locationName:"PlatformApplicationArn" type:"string"`
+	Attributes             *map[string]*string `type:"map" required:"true"`
+	PlatformApplicationARN *string             `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
 	metadataSetPlatformApplicationAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataSetPlatformApplicationAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"PlatformApplicationArn,Attributes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetPlatformApplicationAttributesOutput struct {
@@ -1097,15 +1097,15 @@ type metadataSetPlatformApplicationAttributesOutput struct {
 }
 
 type SetSubscriptionAttributesInput struct {
-	AttributeName   *string `type:"string"`
+	AttributeName   *string `type:"string" required:"true"`
 	AttributeValue  *string `type:"string"`
-	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
+	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
 	metadataSetSubscriptionAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataSetSubscriptionAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubscriptionArn,AttributeName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetSubscriptionAttributesOutput struct {
@@ -1117,15 +1117,15 @@ type metadataSetSubscriptionAttributesOutput struct {
 }
 
 type SetTopicAttributesInput struct {
-	AttributeName  *string `type:"string"`
+	AttributeName  *string `type:"string" required:"true"`
 	AttributeValue *string `type:"string"`
-	TopicARN       *string `locationName:"TopicArn" type:"string"`
+	TopicARN       *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataSetTopicAttributesInput `json:"-", xml:"-"`
 }
 
 type metadataSetTopicAttributesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TopicArn,AttributeName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetTopicAttributesOutput struct {
@@ -1138,14 +1138,14 @@ type metadataSetTopicAttributesOutput struct {
 
 type SubscribeInput struct {
 	Endpoint *string `type:"string"`
-	Protocol *string `type:"string"`
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	Protocol *string `type:"string" required:"true"`
+	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataSubscribeInput `json:"-", xml:"-"`
 }
 
 type metadataSubscribeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TopicArn,Protocol"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SubscribeOutput struct {
@@ -1183,13 +1183,13 @@ type metadataTopic struct {
 }
 
 type UnsubscribeInput struct {
-	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
+	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
 	metadataUnsubscribeInput `json:"-", xml:"-"`
 }
 
 type metadataUnsubscribeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubscriptionArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UnsubscribeOutput struct {

@@ -794,13 +794,13 @@ type metadataAutoScalingGroup struct {
 }
 
 type CheckDNSAvailabilityInput struct {
-	CNAMEPrefix *string `type:"string"`
+	CNAMEPrefix *string `type:"string" required:"true"`
 
 	metadataCheckDNSAvailabilityInput `json:"-", xml:"-"`
 }
 
 type metadataCheckDNSAvailabilityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"CNAMEPrefix"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CheckDNSAvailabilityOutput struct {
@@ -865,51 +865,51 @@ type metadataConfigurationSettingsDescription struct {
 }
 
 type CreateApplicationInput struct {
-	ApplicationName *string `type:"string"`
+	ApplicationName *string `type:"string" required:"true"`
 	Description     *string `type:"string"`
 
 	metadataCreateApplicationInput `json:"-", xml:"-"`
 }
 
 type metadataCreateApplicationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateApplicationVersionInput struct {
-	ApplicationName       *string     `type:"string"`
+	ApplicationName       *string     `type:"string" required:"true"`
 	AutoCreateApplication *bool       `type:"boolean"`
 	Description           *string     `type:"string"`
 	SourceBundle          *S3Location `type:"structure"`
-	VersionLabel          *string     `type:"string"`
+	VersionLabel          *string     `type:"string" required:"true"`
 
 	metadataCreateApplicationVersionInput `json:"-", xml:"-"`
 }
 
 type metadataCreateApplicationVersionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName,VersionLabel"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateConfigurationTemplateInput struct {
-	ApplicationName     *string                       `type:"string"`
+	ApplicationName     *string                       `type:"string" required:"true"`
 	Description         *string                       `type:"string"`
 	EnvironmentID       *string                       `locationName:"EnvironmentId" type:"string"`
 	OptionSettings      []*ConfigurationOptionSetting `type:"list"`
 	SolutionStackName   *string                       `type:"string"`
 	SourceConfiguration *SourceConfiguration          `type:"structure"`
-	TemplateName        *string                       `type:"string"`
+	TemplateName        *string                       `type:"string" required:"true"`
 
 	metadataCreateConfigurationTemplateInput `json:"-", xml:"-"`
 }
 
 type metadataCreateConfigurationTemplateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName,TemplateName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateEnvironmentInput struct {
-	ApplicationName   *string                       `type:"string"`
+	ApplicationName   *string                       `type:"string" required:"true"`
 	CNAMEPrefix       *string                       `type:"string"`
 	Description       *string                       `type:"string"`
-	EnvironmentName   *string                       `type:"string"`
+	EnvironmentName   *string                       `type:"string" required:"true"`
 	OptionSettings    []*ConfigurationOptionSetting `type:"list"`
 	OptionsToRemove   []*OptionSpecification        `type:"list"`
 	SolutionStackName *string                       `type:"string"`
@@ -922,7 +922,7 @@ type CreateEnvironmentInput struct {
 }
 
 type metadataCreateEnvironmentInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName,EnvironmentName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateStorageLocationInput struct {
@@ -944,14 +944,14 @@ type metadataCreateStorageLocationOutput struct {
 }
 
 type DeleteApplicationInput struct {
-	ApplicationName     *string `type:"string"`
+	ApplicationName     *string `type:"string" required:"true"`
 	TerminateEnvByForce *bool   `type:"boolean"`
 
 	metadataDeleteApplicationInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteApplicationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteApplicationOutput struct {
@@ -963,15 +963,15 @@ type metadataDeleteApplicationOutput struct {
 }
 
 type DeleteApplicationVersionInput struct {
-	ApplicationName    *string `type:"string"`
+	ApplicationName    *string `type:"string" required:"true"`
 	DeleteSourceBundle *bool   `type:"boolean"`
-	VersionLabel       *string `type:"string"`
+	VersionLabel       *string `type:"string" required:"true"`
 
 	metadataDeleteApplicationVersionInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteApplicationVersionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName,VersionLabel"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteApplicationVersionOutput struct {
@@ -983,14 +983,14 @@ type metadataDeleteApplicationVersionOutput struct {
 }
 
 type DeleteConfigurationTemplateInput struct {
-	ApplicationName *string `type:"string"`
-	TemplateName    *string `type:"string"`
+	ApplicationName *string `type:"string" required:"true"`
+	TemplateName    *string `type:"string" required:"true"`
 
 	metadataDeleteConfigurationTemplateInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteConfigurationTemplateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName,TemplateName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteConfigurationTemplateOutput struct {
@@ -1002,14 +1002,14 @@ type metadataDeleteConfigurationTemplateOutput struct {
 }
 
 type DeleteEnvironmentConfigurationInput struct {
-	ApplicationName *string `type:"string"`
-	EnvironmentName *string `type:"string"`
+	ApplicationName *string `type:"string" required:"true"`
+	EnvironmentName *string `type:"string" required:"true"`
 
 	metadataDeleteEnvironmentConfigurationInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteEnvironmentConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName,EnvironmentName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteEnvironmentConfigurationOutput struct {
@@ -1087,7 +1087,7 @@ type metadataDescribeConfigurationOptionsOutput struct {
 }
 
 type DescribeConfigurationSettingsInput struct {
-	ApplicationName *string `type:"string"`
+	ApplicationName *string `type:"string" required:"true"`
 	EnvironmentName *string `type:"string"`
 	TemplateName    *string `type:"string"`
 
@@ -1095,7 +1095,7 @@ type DescribeConfigurationSettingsInput struct {
 }
 
 type metadataDescribeConfigurationSettingsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeConfigurationSettingsOutput struct {
@@ -1404,13 +1404,13 @@ type metadataRebuildEnvironmentOutput struct {
 type RequestEnvironmentInfoInput struct {
 	EnvironmentID   *string `locationName:"EnvironmentId" type:"string"`
 	EnvironmentName *string `type:"string"`
-	InfoType        *string `type:"string"`
+	InfoType        *string `type:"string" required:"true"`
 
 	metadataRequestEnvironmentInfoInput `json:"-", xml:"-"`
 }
 
 type metadataRequestEnvironmentInfoInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InfoType"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RequestEnvironmentInfoOutput struct {
@@ -1443,13 +1443,13 @@ type metadataRestartAppServerOutput struct {
 type RetrieveEnvironmentInfoInput struct {
 	EnvironmentID   *string `locationName:"EnvironmentId" type:"string"`
 	EnvironmentName *string `type:"string"`
-	InfoType        *string `type:"string"`
+	InfoType        *string `type:"string" required:"true"`
 
 	metadataRetrieveEnvironmentInfoInput `json:"-", xml:"-"`
 }
 
 type metadataRetrieveEnvironmentInfoInput struct {
-	SDKShapeTraits bool `type:"structure" required:"InfoType"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RetrieveEnvironmentInfoOutput struct {
@@ -1550,40 +1550,40 @@ type metadataTrigger struct {
 }
 
 type UpdateApplicationInput struct {
-	ApplicationName *string `type:"string"`
+	ApplicationName *string `type:"string" required:"true"`
 	Description     *string `type:"string"`
 
 	metadataUpdateApplicationInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateApplicationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateApplicationVersionInput struct {
-	ApplicationName *string `type:"string"`
+	ApplicationName *string `type:"string" required:"true"`
 	Description     *string `type:"string"`
-	VersionLabel    *string `type:"string"`
+	VersionLabel    *string `type:"string" required:"true"`
 
 	metadataUpdateApplicationVersionInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateApplicationVersionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName,VersionLabel"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateConfigurationTemplateInput struct {
-	ApplicationName *string                       `type:"string"`
+	ApplicationName *string                       `type:"string" required:"true"`
 	Description     *string                       `type:"string"`
 	OptionSettings  []*ConfigurationOptionSetting `type:"list"`
 	OptionsToRemove []*OptionSpecification        `type:"list"`
-	TemplateName    *string                       `type:"string"`
+	TemplateName    *string                       `type:"string" required:"true"`
 
 	metadataUpdateConfigurationTemplateInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateConfigurationTemplateInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName,TemplateName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateEnvironmentInput struct {
@@ -1604,16 +1604,16 @@ type metadataUpdateEnvironmentInput struct {
 }
 
 type ValidateConfigurationSettingsInput struct {
-	ApplicationName *string                       `type:"string"`
+	ApplicationName *string                       `type:"string" required:"true"`
 	EnvironmentName *string                       `type:"string"`
-	OptionSettings  []*ConfigurationOptionSetting `type:"list"`
+	OptionSettings  []*ConfigurationOptionSetting `type:"list" required:"true"`
 	TemplateName    *string                       `type:"string"`
 
 	metadataValidateConfigurationSettingsInput `json:"-", xml:"-"`
 }
 
 type metadataValidateConfigurationSettingsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ApplicationName,OptionSettings"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ValidateConfigurationSettingsOutput struct {

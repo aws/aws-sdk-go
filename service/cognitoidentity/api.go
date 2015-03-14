@@ -434,9 +434,9 @@ func (c *CognitoIdentity) UpdateIdentityPool(input *IdentityPool) (output *Ident
 var opUpdateIdentityPool *aws.Operation
 
 type CreateIdentityPoolInput struct {
-	AllowUnauthenticatedIdentities *bool               `type:"boolean" json:",omitempty"`
+	AllowUnauthenticatedIdentities *bool               `type:"boolean" required:"true"json:",omitempty"`
 	DeveloperProviderName          *string             `type:"string" json:",omitempty"`
-	IdentityPoolName               *string             `type:"string" json:",omitempty"`
+	IdentityPoolName               *string             `type:"string" required:"true"json:",omitempty"`
 	OpenIDConnectProviderARNs      []*string           `locationName:"OpenIdConnectProviderARNs" type:"list" json:"OpenIdConnectProviderARNs,omitempty"`
 	SupportedLoginProviders        *map[string]*string `type:"map" json:",omitempty"`
 
@@ -444,7 +444,7 @@ type CreateIdentityPoolInput struct {
 }
 
 type metadataCreateIdentityPoolInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolName,AllowUnauthenticatedIdentities" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type Credentials struct {
@@ -461,13 +461,13 @@ type metadataCredentials struct {
 }
 
 type DeleteIdentityPoolInput struct {
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
 
 	metadataDeleteIdentityPoolInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteIdentityPoolInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteIdentityPoolOutput struct {
@@ -479,34 +479,34 @@ type metadataDeleteIdentityPoolOutput struct {
 }
 
 type DescribeIdentityInput struct {
-	IdentityID *string `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
+	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"json:"IdentityId,omitempty"`
 
 	metadataDescribeIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeIdentityPoolInput struct {
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
 
 	metadataDescribeIdentityPoolInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeIdentityPoolInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetCredentialsForIdentityInput struct {
-	IdentityID *string             `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
+	IdentityID *string             `locationName:"IdentityId" type:"string" required:"true"json:"IdentityId,omitempty"`
 	Logins     *map[string]*string `type:"map" json:",omitempty"`
 
 	metadataGetCredentialsForIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataGetCredentialsForIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetCredentialsForIdentityOutput struct {
@@ -522,14 +522,14 @@ type metadataGetCredentialsForIdentityOutput struct {
 
 type GetIDInput struct {
 	AccountID      *string             `locationName:"AccountId" type:"string" json:"AccountId,omitempty"`
-	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
+	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
 	Logins         *map[string]*string `type:"map" json:",omitempty"`
 
 	metadataGetIDInput `json:"-", xml:"-"`
 }
 
 type metadataGetIDInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetIDOutput struct {
@@ -565,15 +565,15 @@ type metadataGetIdentityPoolRolesOutput struct {
 
 type GetOpenIDTokenForDeveloperIdentityInput struct {
 	IdentityID     *string             `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
-	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
-	Logins         *map[string]*string `type:"map" json:",omitempty"`
+	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
+	Logins         *map[string]*string `type:"map" required:"true"json:",omitempty"`
 	TokenDuration  *int64              `type:"long" json:",omitempty"`
 
 	metadataGetOpenIDTokenForDeveloperIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataGetOpenIDTokenForDeveloperIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,Logins" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetOpenIDTokenForDeveloperIdentityOutput struct {
@@ -588,14 +588,14 @@ type metadataGetOpenIDTokenForDeveloperIdentityOutput struct {
 }
 
 type GetOpenIDTokenInput struct {
-	IdentityID *string             `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
+	IdentityID *string             `locationName:"IdentityId" type:"string" required:"true"json:"IdentityId,omitempty"`
 	Logins     *map[string]*string `type:"map" json:",omitempty"`
 
 	metadataGetOpenIDTokenInput `json:"-", xml:"-"`
 }
 
 type metadataGetOpenIDTokenInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetOpenIDTokenOutput struct {
@@ -623,10 +623,10 @@ type metadataIdentityDescription struct {
 }
 
 type IdentityPool struct {
-	AllowUnauthenticatedIdentities *bool               `type:"boolean" json:",omitempty"`
+	AllowUnauthenticatedIdentities *bool               `type:"boolean" required:"true"json:",omitempty"`
 	DeveloperProviderName          *string             `type:"string" json:",omitempty"`
-	IdentityPoolID                 *string             `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
-	IdentityPoolName               *string             `type:"string" json:",omitempty"`
+	IdentityPoolID                 *string             `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
+	IdentityPoolName               *string             `type:"string" required:"true"json:",omitempty"`
 	OpenIDConnectProviderARNs      []*string           `locationName:"OpenIdConnectProviderARNs" type:"list" json:"OpenIdConnectProviderARNs,omitempty"`
 	SupportedLoginProviders        *map[string]*string `type:"map" json:",omitempty"`
 
@@ -634,7 +634,7 @@ type IdentityPool struct {
 }
 
 type metadataIdentityPool struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,IdentityPoolName,AllowUnauthenticatedIdentities" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type IdentityPoolShortDescription struct {
@@ -649,15 +649,15 @@ type metadataIdentityPoolShortDescription struct {
 }
 
 type ListIdentitiesInput struct {
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
-	MaxResults     *int    `type:"integer" json:",omitempty"`
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
+	MaxResults     *int    `type:"integer" required:"true"json:",omitempty"`
 	NextToken      *string `type:"string" json:",omitempty"`
 
 	metadataListIdentitiesInput `json:"-", xml:"-"`
 }
 
 type metadataListIdentitiesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,MaxResults" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListIdentitiesOutput struct {
@@ -673,14 +673,14 @@ type metadataListIdentitiesOutput struct {
 }
 
 type ListIdentityPoolsInput struct {
-	MaxResults *int    `type:"integer" json:",omitempty"`
+	MaxResults *int    `type:"integer" required:"true"json:",omitempty"`
 	NextToken  *string `type:"string" json:",omitempty"`
 
 	metadataListIdentityPoolsInput `json:"-", xml:"-"`
 }
 
 type metadataListIdentityPoolsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"MaxResults" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListIdentityPoolsOutput struct {
@@ -697,7 +697,7 @@ type metadataListIdentityPoolsOutput struct {
 type LookupDeveloperIdentityInput struct {
 	DeveloperUserIdentifier *string `type:"string" json:",omitempty"`
 	IdentityID              *string `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
-	IdentityPoolID          *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
+	IdentityPoolID          *string `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
 	MaxResults              *int    `type:"integer" json:",omitempty"`
 	NextToken               *string `type:"string" json:",omitempty"`
 
@@ -705,7 +705,7 @@ type LookupDeveloperIdentityInput struct {
 }
 
 type metadataLookupDeveloperIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type LookupDeveloperIdentityOutput struct {
@@ -721,16 +721,16 @@ type metadataLookupDeveloperIdentityOutput struct {
 }
 
 type MergeDeveloperIdentitiesInput struct {
-	DestinationUserIdentifier *string `type:"string" json:",omitempty"`
-	DeveloperProviderName     *string `type:"string" json:",omitempty"`
-	IdentityPoolID            *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
-	SourceUserIdentifier      *string `type:"string" json:",omitempty"`
+	DestinationUserIdentifier *string `type:"string" required:"true"json:",omitempty"`
+	DeveloperProviderName     *string `type:"string" required:"true"json:",omitempty"`
+	IdentityPoolID            *string `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
+	SourceUserIdentifier      *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataMergeDeveloperIdentitiesInput `json:"-", xml:"-"`
 }
 
 type metadataMergeDeveloperIdentitiesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SourceUserIdentifier,DestinationUserIdentifier,DeveloperProviderName,IdentityPoolId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type MergeDeveloperIdentitiesOutput struct {
@@ -744,14 +744,14 @@ type metadataMergeDeveloperIdentitiesOutput struct {
 }
 
 type SetIdentityPoolRolesInput struct {
-	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
-	Roles          *map[string]*string `type:"map" json:",omitempty"`
+	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
+	Roles          *map[string]*string `type:"map" required:"true"json:",omitempty"`
 
 	metadataSetIdentityPoolRolesInput `json:"-", xml:"-"`
 }
 
 type metadataSetIdentityPoolRolesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,Roles" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type SetIdentityPoolRolesOutput struct {
@@ -763,16 +763,16 @@ type metadataSetIdentityPoolRolesOutput struct {
 }
 
 type UnlinkDeveloperIdentityInput struct {
-	DeveloperProviderName   *string `type:"string" json:",omitempty"`
-	DeveloperUserIdentifier *string `type:"string" json:",omitempty"`
-	IdentityID              *string `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
-	IdentityPoolID          *string `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
+	DeveloperProviderName   *string `type:"string" required:"true"json:",omitempty"`
+	DeveloperUserIdentifier *string `type:"string" required:"true"json:",omitempty"`
+	IdentityID              *string `locationName:"IdentityId" type:"string" required:"true"json:"IdentityId,omitempty"`
+	IdentityPoolID          *string `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
 
 	metadataUnlinkDeveloperIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataUnlinkDeveloperIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityId,IdentityPoolId,DeveloperProviderName,DeveloperUserIdentifier" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UnlinkDeveloperIdentityOutput struct {
@@ -784,15 +784,15 @@ type metadataUnlinkDeveloperIdentityOutput struct {
 }
 
 type UnlinkIdentityInput struct {
-	IdentityID     *string             `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
-	Logins         *map[string]*string `type:"map" json:",omitempty"`
-	LoginsToRemove []*string           `type:"list" json:",omitempty"`
+	IdentityID     *string             `locationName:"IdentityId" type:"string" required:"true"json:"IdentityId,omitempty"`
+	Logins         *map[string]*string `type:"map" required:"true"json:",omitempty"`
+	LoginsToRemove []*string           `type:"list" required:"true"json:",omitempty"`
 
 	metadataUnlinkIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataUnlinkIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityId,Logins,LoginsToRemove" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UnlinkIdentityOutput struct {

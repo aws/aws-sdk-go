@@ -698,13 +698,13 @@ type metadataBatchGetDeploymentsOutput struct {
 }
 
 type CreateApplicationInput struct {
-	ApplicationName *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
 
 	metadataCreateApplicationInput `json:"-", xml:"-"`
 }
 
 type metadataCreateApplicationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateApplicationOutput struct {
@@ -718,14 +718,14 @@ type metadataCreateApplicationOutput struct {
 }
 
 type CreateDeploymentConfigInput struct {
-	DeploymentConfigName *string              `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
+	DeploymentConfigName *string              `locationName:"deploymentConfigName" type:"string" required:"true"json:"deploymentConfigName,omitempty"`
 	MinimumHealthyHosts  *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure" json:"minimumHealthyHosts,omitempty"`
 
 	metadataCreateDeploymentConfigInput `json:"-", xml:"-"`
 }
 
 type metadataCreateDeploymentConfigInput struct {
-	SDKShapeTraits bool `type:"structure" required:"deploymentConfigName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateDeploymentConfigOutput struct {
@@ -739,10 +739,10 @@ type metadataCreateDeploymentConfigOutput struct {
 }
 
 type CreateDeploymentGroupInput struct {
-	ApplicationName      *string         `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	ApplicationName      *string         `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
 	AutoScalingGroups    []*string       `locationName:"autoScalingGroups" type:"list" json:"autoScalingGroups,omitempty"`
 	DeploymentConfigName *string         `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
-	DeploymentGroupName  *string         `locationName:"deploymentGroupName" type:"string" json:"deploymentGroupName,omitempty"`
+	DeploymentGroupName  *string         `locationName:"deploymentGroupName" type:"string" required:"true"json:"deploymentGroupName,omitempty"`
 	EC2TagFilters        []*EC2TagFilter `locationName:"ec2TagFilters" type:"list" json:"ec2TagFilters,omitempty"`
 	ServiceRoleARN       *string         `locationName:"serviceRoleArn" type:"string" json:"serviceRoleArn,omitempty"`
 
@@ -750,7 +750,7 @@ type CreateDeploymentGroupInput struct {
 }
 
 type metadataCreateDeploymentGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName,deploymentGroupName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateDeploymentGroupOutput struct {
@@ -764,7 +764,7 @@ type metadataCreateDeploymentGroupOutput struct {
 }
 
 type CreateDeploymentInput struct {
-	ApplicationName               *string           `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	ApplicationName               *string           `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
 	DeploymentConfigName          *string           `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
 	DeploymentGroupName           *string           `locationName:"deploymentGroupName" type:"string" json:"deploymentGroupName,omitempty"`
 	Description                   *string           `locationName:"description" type:"string" json:"description,omitempty"`
@@ -775,7 +775,7 @@ type CreateDeploymentInput struct {
 }
 
 type metadataCreateDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateDeploymentOutput struct {
@@ -789,13 +789,13 @@ type metadataCreateDeploymentOutput struct {
 }
 
 type DeleteApplicationInput struct {
-	ApplicationName *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
 
 	metadataDeleteApplicationInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteApplicationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteApplicationOutput struct {
@@ -807,13 +807,13 @@ type metadataDeleteApplicationOutput struct {
 }
 
 type DeleteDeploymentConfigInput struct {
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"json:"deploymentConfigName,omitempty"`
 
 	metadataDeleteDeploymentConfigInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDeploymentConfigInput struct {
-	SDKShapeTraits bool `type:"structure" required:"deploymentConfigName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteDeploymentConfigOutput struct {
@@ -825,14 +825,14 @@ type metadataDeleteDeploymentConfigOutput struct {
 }
 
 type DeleteDeploymentGroupInput struct {
-	ApplicationName     *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" json:"deploymentGroupName,omitempty"`
+	ApplicationName     *string `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"json:"deploymentGroupName,omitempty"`
 
 	metadataDeleteDeploymentGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDeploymentGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName,deploymentGroupName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteDeploymentGroupOutput struct {
@@ -963,13 +963,13 @@ type metadataGenericRevisionInfo struct {
 }
 
 type GetApplicationInput struct {
-	ApplicationName *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
 
 	metadataGetApplicationInput `json:"-", xml:"-"`
 }
 
 type metadataGetApplicationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetApplicationOutput struct {
@@ -983,14 +983,14 @@ type metadataGetApplicationOutput struct {
 }
 
 type GetApplicationRevisionInput struct {
-	ApplicationName *string           `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
-	Revision        *RevisionLocation `locationName:"revision" type:"structure" json:"revision,omitempty"`
+	ApplicationName *string           `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
+	Revision        *RevisionLocation `locationName:"revision" type:"structure" required:"true"json:"revision,omitempty"`
 
 	metadataGetApplicationRevisionInput `json:"-", xml:"-"`
 }
 
 type metadataGetApplicationRevisionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName,revision" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetApplicationRevisionOutput struct {
@@ -1006,13 +1006,13 @@ type metadataGetApplicationRevisionOutput struct {
 }
 
 type GetDeploymentConfigInput struct {
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"json:"deploymentConfigName,omitempty"`
 
 	metadataGetDeploymentConfigInput `json:"-", xml:"-"`
 }
 
 type metadataGetDeploymentConfigInput struct {
-	SDKShapeTraits bool `type:"structure" required:"deploymentConfigName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetDeploymentConfigOutput struct {
@@ -1026,14 +1026,14 @@ type metadataGetDeploymentConfigOutput struct {
 }
 
 type GetDeploymentGroupInput struct {
-	ApplicationName     *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" json:"deploymentGroupName,omitempty"`
+	ApplicationName     *string `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"json:"deploymentGroupName,omitempty"`
 
 	metadataGetDeploymentGroupInput `json:"-", xml:"-"`
 }
 
 type metadataGetDeploymentGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName,deploymentGroupName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetDeploymentGroupOutput struct {
@@ -1047,24 +1047,24 @@ type metadataGetDeploymentGroupOutput struct {
 }
 
 type GetDeploymentInput struct {
-	DeploymentID *string `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
+	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"json:"deploymentId,omitempty"`
 
 	metadataGetDeploymentInput `json:"-", xml:"-"`
 }
 
 type metadataGetDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure" required:"deploymentId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetDeploymentInstanceInput struct {
-	DeploymentID *string `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
-	InstanceID   *string `locationName:"instanceId" type:"string" json:"instanceId,omitempty"`
+	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"json:"deploymentId,omitempty"`
+	InstanceID   *string `locationName:"instanceId" type:"string" required:"true"json:"instanceId,omitempty"`
 
 	metadataGetDeploymentInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataGetDeploymentInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"deploymentId,instanceId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetDeploymentInstanceOutput struct {
@@ -1127,7 +1127,7 @@ type metadataLifecycleEvent struct {
 }
 
 type ListApplicationRevisionsInput struct {
-	ApplicationName *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
 	Deployed        *string `locationName:"deployed" type:"string" json:"deployed,omitempty"`
 	NextToken       *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 	S3Bucket        *string `locationName:"s3Bucket" type:"string" json:"s3Bucket,omitempty"`
@@ -1139,7 +1139,7 @@ type ListApplicationRevisionsInput struct {
 }
 
 type metadataListApplicationRevisionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListApplicationRevisionsOutput struct {
@@ -1196,14 +1196,14 @@ type metadataListDeploymentConfigsOutput struct {
 }
 
 type ListDeploymentGroupsInput struct {
-	ApplicationName *string `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
 	NextToken       *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListDeploymentGroupsInput `json:"-", xml:"-"`
 }
 
 type metadataListDeploymentGroupsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListDeploymentGroupsOutput struct {
@@ -1219,7 +1219,7 @@ type metadataListDeploymentGroupsOutput struct {
 }
 
 type ListDeploymentInstancesInput struct {
-	DeploymentID         *string   `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
+	DeploymentID         *string   `locationName:"deploymentId" type:"string" required:"true"json:"deploymentId,omitempty"`
 	InstanceStatusFilter []*string `locationName:"instanceStatusFilter" type:"list" json:"instanceStatusFilter,omitempty"`
 	NextToken            *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
@@ -1227,7 +1227,7 @@ type ListDeploymentInstancesInput struct {
 }
 
 type metadataListDeploymentInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"deploymentId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListDeploymentInstancesOutput struct {
@@ -1278,15 +1278,15 @@ type metadataMinimumHealthyHosts struct {
 }
 
 type RegisterApplicationRevisionInput struct {
-	ApplicationName *string           `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	ApplicationName *string           `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
 	Description     *string           `locationName:"description" type:"string" json:"description,omitempty"`
-	Revision        *RevisionLocation `locationName:"revision" type:"structure" json:"revision,omitempty"`
+	Revision        *RevisionLocation `locationName:"revision" type:"structure" required:"true"json:"revision,omitempty"`
 
 	metadataRegisterApplicationRevisionInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterApplicationRevisionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName,revision" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RegisterApplicationRevisionOutput struct {
@@ -1324,13 +1324,13 @@ type metadataS3Location struct {
 }
 
 type StopDeploymentInput struct {
-	DeploymentID *string `locationName:"deploymentId" type:"string" json:"deploymentId,omitempty"`
+	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"json:"deploymentId,omitempty"`
 
 	metadataStopDeploymentInput `json:"-", xml:"-"`
 }
 
 type metadataStopDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure" required:"deploymentId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type StopDeploymentOutput struct {
@@ -1375,9 +1375,9 @@ type metadataUpdateApplicationOutput struct {
 }
 
 type UpdateDeploymentGroupInput struct {
-	ApplicationName            *string         `locationName:"applicationName" type:"string" json:"applicationName,omitempty"`
+	ApplicationName            *string         `locationName:"applicationName" type:"string" required:"true"json:"applicationName,omitempty"`
 	AutoScalingGroups          []*string       `locationName:"autoScalingGroups" type:"list" json:"autoScalingGroups,omitempty"`
-	CurrentDeploymentGroupName *string         `locationName:"currentDeploymentGroupName" type:"string" json:"currentDeploymentGroupName,omitempty"`
+	CurrentDeploymentGroupName *string         `locationName:"currentDeploymentGroupName" type:"string" required:"true"json:"currentDeploymentGroupName,omitempty"`
 	DeploymentConfigName       *string         `locationName:"deploymentConfigName" type:"string" json:"deploymentConfigName,omitempty"`
 	EC2TagFilters              []*EC2TagFilter `locationName:"ec2TagFilters" type:"list" json:"ec2TagFilters,omitempty"`
 	NewDeploymentGroupName     *string         `locationName:"newDeploymentGroupName" type:"string" json:"newDeploymentGroupName,omitempty"`
@@ -1387,7 +1387,7 @@ type UpdateDeploymentGroupInput struct {
 }
 
 type metadataUpdateDeploymentGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"applicationName,currentDeploymentGroupName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateDeploymentGroupOutput struct {

@@ -482,51 +482,51 @@ func (c *DirectConnect) DescribeVirtualInterfaces(input *DescribeVirtualInterfac
 var opDescribeVirtualInterfaces *aws.Operation
 
 type AllocateConnectionOnInterconnectInput struct {
-	Bandwidth      *string `locationName:"bandwidth" type:"string" json:"bandwidth,omitempty"`
-	ConnectionName *string `locationName:"connectionName" type:"string" json:"connectionName,omitempty"`
-	InterconnectID *string `locationName:"interconnectId" type:"string" json:"interconnectId,omitempty"`
-	OwnerAccount   *string `locationName:"ownerAccount" type:"string" json:"ownerAccount,omitempty"`
-	VLAN           *int    `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
+	Bandwidth      *string `locationName:"bandwidth" type:"string" required:"true"json:"bandwidth,omitempty"`
+	ConnectionName *string `locationName:"connectionName" type:"string" required:"true"json:"connectionName,omitempty"`
+	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"json:"interconnectId,omitempty"`
+	OwnerAccount   *string `locationName:"ownerAccount" type:"string" required:"true"json:"ownerAccount,omitempty"`
+	VLAN           *int    `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
 
 	metadataAllocateConnectionOnInterconnectInput `json:"-", xml:"-"`
 }
 
 type metadataAllocateConnectionOnInterconnectInput struct {
-	SDKShapeTraits bool `type:"structure" required:"bandwidth,connectionName,ownerAccount,interconnectId,vlan" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type AllocatePrivateVirtualInterfaceInput struct {
-	ConnectionID                         *string                               `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
-	NewPrivateVirtualInterfaceAllocation *NewPrivateVirtualInterfaceAllocation `locationName:"newPrivateVirtualInterfaceAllocation" type:"structure" json:"newPrivateVirtualInterfaceAllocation,omitempty"`
-	OwnerAccount                         *string                               `locationName:"ownerAccount" type:"string" json:"ownerAccount,omitempty"`
+	ConnectionID                         *string                               `locationName:"connectionId" type:"string" required:"true"json:"connectionId,omitempty"`
+	NewPrivateVirtualInterfaceAllocation *NewPrivateVirtualInterfaceAllocation `locationName:"newPrivateVirtualInterfaceAllocation" type:"structure" required:"true"json:"newPrivateVirtualInterfaceAllocation,omitempty"`
+	OwnerAccount                         *string                               `locationName:"ownerAccount" type:"string" required:"true"json:"ownerAccount,omitempty"`
 
 	metadataAllocatePrivateVirtualInterfaceInput `json:"-", xml:"-"`
 }
 
 type metadataAllocatePrivateVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"connectionId,ownerAccount,newPrivateVirtualInterfaceAllocation" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type AllocatePublicVirtualInterfaceInput struct {
-	ConnectionID                        *string                              `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
-	NewPublicVirtualInterfaceAllocation *NewPublicVirtualInterfaceAllocation `locationName:"newPublicVirtualInterfaceAllocation" type:"structure" json:"newPublicVirtualInterfaceAllocation,omitempty"`
-	OwnerAccount                        *string                              `locationName:"ownerAccount" type:"string" json:"ownerAccount,omitempty"`
+	ConnectionID                        *string                              `locationName:"connectionId" type:"string" required:"true"json:"connectionId,omitempty"`
+	NewPublicVirtualInterfaceAllocation *NewPublicVirtualInterfaceAllocation `locationName:"newPublicVirtualInterfaceAllocation" type:"structure" required:"true"json:"newPublicVirtualInterfaceAllocation,omitempty"`
+	OwnerAccount                        *string                              `locationName:"ownerAccount" type:"string" required:"true"json:"ownerAccount,omitempty"`
 
 	metadataAllocatePublicVirtualInterfaceInput `json:"-", xml:"-"`
 }
 
 type metadataAllocatePublicVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"connectionId,ownerAccount,newPublicVirtualInterfaceAllocation" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ConfirmConnectionInput struct {
-	ConnectionID *string `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
+	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"json:"connectionId,omitempty"`
 
 	metadataConfirmConnectionInput `json:"-", xml:"-"`
 }
 
 type metadataConfirmConnectionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"connectionId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ConfirmConnectionOutput struct {
@@ -540,14 +540,14 @@ type metadataConfirmConnectionOutput struct {
 }
 
 type ConfirmPrivateVirtualInterfaceInput struct {
-	VirtualGatewayID   *string `locationName:"virtualGatewayId" type:"string" json:"virtualGatewayId,omitempty"`
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:"virtualInterfaceId,omitempty"`
+	VirtualGatewayID   *string `locationName:"virtualGatewayId" type:"string" required:"true"json:"virtualGatewayId,omitempty"`
+	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"json:"virtualInterfaceId,omitempty"`
 
 	metadataConfirmPrivateVirtualInterfaceInput `json:"-", xml:"-"`
 }
 
 type metadataConfirmPrivateVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"virtualInterfaceId,virtualGatewayId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ConfirmPrivateVirtualInterfaceOutput struct {
@@ -561,13 +561,13 @@ type metadataConfirmPrivateVirtualInterfaceOutput struct {
 }
 
 type ConfirmPublicVirtualInterfaceInput struct {
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:"virtualInterfaceId,omitempty"`
+	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"json:"virtualInterfaceId,omitempty"`
 
 	metadataConfirmPublicVirtualInterfaceInput `json:"-", xml:"-"`
 }
 
 type metadataConfirmPublicVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"virtualInterfaceId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ConfirmPublicVirtualInterfaceOutput struct {
@@ -609,69 +609,69 @@ type metadataConnections struct {
 }
 
 type CreateConnectionInput struct {
-	Bandwidth      *string `locationName:"bandwidth" type:"string" json:"bandwidth,omitempty"`
-	ConnectionName *string `locationName:"connectionName" type:"string" json:"connectionName,omitempty"`
-	Location       *string `locationName:"location" type:"string" json:"location,omitempty"`
+	Bandwidth      *string `locationName:"bandwidth" type:"string" required:"true"json:"bandwidth,omitempty"`
+	ConnectionName *string `locationName:"connectionName" type:"string" required:"true"json:"connectionName,omitempty"`
+	Location       *string `locationName:"location" type:"string" required:"true"json:"location,omitempty"`
 
 	metadataCreateConnectionInput `json:"-", xml:"-"`
 }
 
 type metadataCreateConnectionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"location,bandwidth,connectionName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateInterconnectInput struct {
-	Bandwidth        *string `locationName:"bandwidth" type:"string" json:"bandwidth,omitempty"`
-	InterconnectName *string `locationName:"interconnectName" type:"string" json:"interconnectName,omitempty"`
-	Location         *string `locationName:"location" type:"string" json:"location,omitempty"`
+	Bandwidth        *string `locationName:"bandwidth" type:"string" required:"true"json:"bandwidth,omitempty"`
+	InterconnectName *string `locationName:"interconnectName" type:"string" required:"true"json:"interconnectName,omitempty"`
+	Location         *string `locationName:"location" type:"string" required:"true"json:"location,omitempty"`
 
 	metadataCreateInterconnectInput `json:"-", xml:"-"`
 }
 
 type metadataCreateInterconnectInput struct {
-	SDKShapeTraits bool `type:"structure" required:"interconnectName,bandwidth,location" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreatePrivateVirtualInterfaceInput struct {
-	ConnectionID               *string                     `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
-	NewPrivateVirtualInterface *NewPrivateVirtualInterface `locationName:"newPrivateVirtualInterface" type:"structure" json:"newPrivateVirtualInterface,omitempty"`
+	ConnectionID               *string                     `locationName:"connectionId" type:"string" required:"true"json:"connectionId,omitempty"`
+	NewPrivateVirtualInterface *NewPrivateVirtualInterface `locationName:"newPrivateVirtualInterface" type:"structure" required:"true"json:"newPrivateVirtualInterface,omitempty"`
 
 	metadataCreatePrivateVirtualInterfaceInput `json:"-", xml:"-"`
 }
 
 type metadataCreatePrivateVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"connectionId,newPrivateVirtualInterface" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreatePublicVirtualInterfaceInput struct {
-	ConnectionID              *string                    `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
-	NewPublicVirtualInterface *NewPublicVirtualInterface `locationName:"newPublicVirtualInterface" type:"structure" json:"newPublicVirtualInterface,omitempty"`
+	ConnectionID              *string                    `locationName:"connectionId" type:"string" required:"true"json:"connectionId,omitempty"`
+	NewPublicVirtualInterface *NewPublicVirtualInterface `locationName:"newPublicVirtualInterface" type:"structure" required:"true"json:"newPublicVirtualInterface,omitempty"`
 
 	metadataCreatePublicVirtualInterfaceInput `json:"-", xml:"-"`
 }
 
 type metadataCreatePublicVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"connectionId,newPublicVirtualInterface" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteConnectionInput struct {
-	ConnectionID *string `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
+	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"json:"connectionId,omitempty"`
 
 	metadataDeleteConnectionInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteConnectionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"connectionId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteInterconnectInput struct {
-	InterconnectID *string `locationName:"interconnectId" type:"string" json:"interconnectId,omitempty"`
+	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"json:"interconnectId,omitempty"`
 
 	metadataDeleteInterconnectInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteInterconnectInput struct {
-	SDKShapeTraits bool `type:"structure" required:"interconnectId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteInterconnectOutput struct {
@@ -685,13 +685,13 @@ type metadataDeleteInterconnectOutput struct {
 }
 
 type DeleteVirtualInterfaceInput struct {
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" json:"virtualInterfaceId,omitempty"`
+	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"json:"virtualInterfaceId,omitempty"`
 
 	metadataDeleteVirtualInterfaceInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"virtualInterfaceId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteVirtualInterfaceOutput struct {
@@ -715,13 +715,13 @@ type metadataDescribeConnectionsInput struct {
 }
 
 type DescribeConnectionsOnInterconnectInput struct {
-	InterconnectID *string `locationName:"interconnectId" type:"string" json:"interconnectId,omitempty"`
+	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"json:"interconnectId,omitempty"`
 
 	metadataDescribeConnectionsOnInterconnectInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeConnectionsOnInterconnectInput struct {
-	SDKShapeTraits bool `type:"structure" required:"interconnectId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeInterconnectsInput struct {
@@ -828,66 +828,66 @@ type metadataLocation struct {
 }
 
 type NewPrivateVirtualInterface struct {
-	ASN                  *int    `locationName:"asn" type:"integer" json:"asn,omitempty"`
+	ASN                  *int    `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
 	AmazonAddress        *string `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
 	AuthKey              *string `locationName:"authKey" type:"string" json:"authKey,omitempty"`
 	CustomerAddress      *string `locationName:"customerAddress" type:"string" json:"customerAddress,omitempty"`
-	VLAN                 *int    `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
-	VirtualGatewayID     *string `locationName:"virtualGatewayId" type:"string" json:"virtualGatewayId,omitempty"`
-	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" json:"virtualInterfaceName,omitempty"`
+	VLAN                 *int    `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
+	VirtualGatewayID     *string `locationName:"virtualGatewayId" type:"string" required:"true"json:"virtualGatewayId,omitempty"`
+	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"json:"virtualInterfaceName,omitempty"`
 
 	metadataNewPrivateVirtualInterface `json:"-", xml:"-"`
 }
 
 type metadataNewPrivateVirtualInterface struct {
-	SDKShapeTraits bool `type:"structure" required:"virtualInterfaceName,vlan,asn,virtualGatewayId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type NewPrivateVirtualInterfaceAllocation struct {
-	ASN                  *int    `locationName:"asn" type:"integer" json:"asn,omitempty"`
+	ASN                  *int    `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
 	AmazonAddress        *string `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
 	AuthKey              *string `locationName:"authKey" type:"string" json:"authKey,omitempty"`
 	CustomerAddress      *string `locationName:"customerAddress" type:"string" json:"customerAddress,omitempty"`
-	VLAN                 *int    `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
-	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" json:"virtualInterfaceName,omitempty"`
+	VLAN                 *int    `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
+	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"json:"virtualInterfaceName,omitempty"`
 
 	metadataNewPrivateVirtualInterfaceAllocation `json:"-", xml:"-"`
 }
 
 type metadataNewPrivateVirtualInterfaceAllocation struct {
-	SDKShapeTraits bool `type:"structure" required:"virtualInterfaceName,vlan,asn" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type NewPublicVirtualInterface struct {
-	ASN                  *int                 `locationName:"asn" type:"integer" json:"asn,omitempty"`
-	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
+	ASN                  *int                 `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
+	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" required:"true"json:"amazonAddress,omitempty"`
 	AuthKey              *string              `locationName:"authKey" type:"string" json:"authKey,omitempty"`
-	CustomerAddress      *string              `locationName:"customerAddress" type:"string" json:"customerAddress,omitempty"`
-	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" json:"routeFilterPrefixes,omitempty"`
-	VLAN                 *int                 `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
-	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" json:"virtualInterfaceName,omitempty"`
+	CustomerAddress      *string              `locationName:"customerAddress" type:"string" required:"true"json:"customerAddress,omitempty"`
+	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"json:"routeFilterPrefixes,omitempty"`
+	VLAN                 *int                 `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
+	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" required:"true"json:"virtualInterfaceName,omitempty"`
 
 	metadataNewPublicVirtualInterface `json:"-", xml:"-"`
 }
 
 type metadataNewPublicVirtualInterface struct {
-	SDKShapeTraits bool `type:"structure" required:"virtualInterfaceName,vlan,asn,amazonAddress,customerAddress,routeFilterPrefixes" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type NewPublicVirtualInterfaceAllocation struct {
-	ASN                  *int                 `locationName:"asn" type:"integer" json:"asn,omitempty"`
-	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
+	ASN                  *int                 `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
+	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" required:"true"json:"amazonAddress,omitempty"`
 	AuthKey              *string              `locationName:"authKey" type:"string" json:"authKey,omitempty"`
-	CustomerAddress      *string              `locationName:"customerAddress" type:"string" json:"customerAddress,omitempty"`
-	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" json:"routeFilterPrefixes,omitempty"`
-	VLAN                 *int                 `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
-	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" json:"virtualInterfaceName,omitempty"`
+	CustomerAddress      *string              `locationName:"customerAddress" type:"string" required:"true"json:"customerAddress,omitempty"`
+	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"json:"routeFilterPrefixes,omitempty"`
+	VLAN                 *int                 `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
+	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" required:"true"json:"virtualInterfaceName,omitempty"`
 
 	metadataNewPublicVirtualInterfaceAllocation `json:"-", xml:"-"`
 }
 
 type metadataNewPublicVirtualInterfaceAllocation struct {
-	SDKShapeTraits bool `type:"structure" required:"virtualInterfaceName,vlan,asn,amazonAddress,customerAddress,routeFilterPrefixes" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RouteFilterPrefix struct {

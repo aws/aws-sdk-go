@@ -350,15 +350,15 @@ type metadataDataset struct {
 }
 
 type DeleteDatasetInput struct {
-	DatasetName    *string `location:"uri" locationName:"DatasetName" type:"string" json:"-" xml:"-"`
-	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" json:"-" xml:"-"`
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
+	DatasetName    *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDeleteDatasetInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDatasetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,IdentityId,DatasetName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteDatasetOutput struct {
@@ -372,15 +372,15 @@ type metadataDeleteDatasetOutput struct {
 }
 
 type DescribeDatasetInput struct {
-	DatasetName    *string `location:"uri" locationName:"DatasetName" type:"string" json:"-" xml:"-"`
-	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" json:"-" xml:"-"`
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
+	DatasetName    *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDescribeDatasetInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDatasetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,IdentityId,DatasetName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeDatasetOutput struct {
@@ -394,13 +394,13 @@ type metadataDescribeDatasetOutput struct {
 }
 
 type DescribeIdentityPoolUsageInput struct {
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDescribeIdentityPoolUsageInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeIdentityPoolUsageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeIdentityPoolUsageOutput struct {
@@ -414,14 +414,14 @@ type metadataDescribeIdentityPoolUsageOutput struct {
 }
 
 type DescribeIdentityUsageInput struct {
-	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" json:"-" xml:"-"`
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
+	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataDescribeIdentityUsageInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeIdentityUsageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,IdentityId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeIdentityUsageOutput struct {
@@ -435,13 +435,13 @@ type metadataDescribeIdentityUsageOutput struct {
 }
 
 type GetIdentityPoolConfigurationInput struct {
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetIdentityPoolConfigurationInput `json:"-", xml:"-"`
 }
 
 type metadataGetIdentityPoolConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type GetIdentityPoolConfigurationOutput struct {
@@ -483,8 +483,8 @@ type metadataIdentityUsage struct {
 }
 
 type ListDatasetsInput struct {
-	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" json:"-" xml:"-"`
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
+	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 	MaxResults     *int    `location:"querystring" locationName:"maxResults" type:"integer" json:"-" xml:"-"`
 	NextToken      *string `location:"querystring" locationName:"nextToken" type:"string" json:"-" xml:"-"`
 
@@ -492,7 +492,7 @@ type ListDatasetsInput struct {
 }
 
 type metadataListDatasetsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityId,IdentityPoolId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListDatasetsOutput struct {
@@ -532,9 +532,9 @@ type metadataListIdentityPoolUsageOutput struct {
 }
 
 type ListRecordsInput struct {
-	DatasetName      *string `location:"uri" locationName:"DatasetName" type:"string" json:"-" xml:"-"`
-	IdentityID       *string `location:"uri" locationName:"IdentityId" type:"string" json:"-" xml:"-"`
-	IdentityPoolID   *string `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
+	DatasetName      *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityID       *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityPoolID   *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 	LastSyncCount    *int64  `location:"querystring" locationName:"lastSyncCount" type:"long" json:"-" xml:"-"`
 	MaxResults       *int    `location:"querystring" locationName:"maxResults" type:"integer" json:"-" xml:"-"`
 	NextToken        *string `location:"querystring" locationName:"nextToken" type:"string" json:"-" xml:"-"`
@@ -544,7 +544,7 @@ type ListRecordsInput struct {
 }
 
 type metadataListRecordsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,IdentityId,DatasetName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListRecordsOutput struct {
@@ -593,29 +593,29 @@ type metadataRecord struct {
 
 type RecordPatch struct {
 	DeviceLastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Key                    *string    `type:"string" json:",omitempty"`
-	Op                     *string    `type:"string" json:",omitempty"`
-	SyncCount              *int64     `type:"long" json:",omitempty"`
+	Key                    *string    `type:"string" required:"true"json:",omitempty"`
+	Op                     *string    `type:"string" required:"true"json:",omitempty"`
+	SyncCount              *int64     `type:"long" required:"true"json:",omitempty"`
 	Value                  *string    `type:"string" json:",omitempty"`
 
 	metadataRecordPatch `json:"-", xml:"-"`
 }
 
 type metadataRecordPatch struct {
-	SDKShapeTraits bool `type:"structure" required:"Op,Key,SyncCount" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RegisterDeviceInput struct {
-	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" json:"-" xml:"-"`
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
-	Platform       *string `type:"string" json:",omitempty"`
-	Token          *string `type:"string" json:",omitempty"`
+	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
+	Platform       *string `type:"string" required:"true"json:",omitempty"`
+	Token          *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataRegisterDeviceInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterDeviceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,IdentityId,Platform,Token" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RegisterDeviceOutput struct {
@@ -629,14 +629,14 @@ type metadataRegisterDeviceOutput struct {
 }
 
 type SetIdentityPoolConfigurationInput struct {
-	IdentityPoolID *string   `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
+	IdentityPoolID *string   `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 	PushSync       *PushSync `type:"structure" json:",omitempty"`
 
 	metadataSetIdentityPoolConfigurationInput `json:"-", xml:"-"`
 }
 
 type metadataSetIdentityPoolConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type SetIdentityPoolConfigurationOutput struct {
@@ -651,16 +651,16 @@ type metadataSetIdentityPoolConfigurationOutput struct {
 }
 
 type SubscribeToDatasetInput struct {
-	DatasetName    *string `location:"uri" locationName:"DatasetName" type:"string" json:"-" xml:"-"`
-	DeviceID       *string `location:"uri" locationName:"DeviceId" type:"string" json:"-" xml:"-"`
-	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" json:"-" xml:"-"`
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
+	DatasetName    *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"json:"-" xml:"-"`
+	DeviceID       *string `location:"uri" locationName:"DeviceId" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataSubscribeToDatasetInput `json:"-", xml:"-"`
 }
 
 type metadataSubscribeToDatasetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,IdentityId,DatasetName,DeviceId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type SubscribeToDatasetOutput struct {
@@ -672,16 +672,16 @@ type metadataSubscribeToDatasetOutput struct {
 }
 
 type UnsubscribeFromDatasetInput struct {
-	DatasetName    *string `location:"uri" locationName:"DatasetName" type:"string" json:"-" xml:"-"`
-	DeviceID       *string `location:"uri" locationName:"DeviceId" type:"string" json:"-" xml:"-"`
-	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" json:"-" xml:"-"`
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
+	DatasetName    *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"json:"-" xml:"-"`
+	DeviceID       *string `location:"uri" locationName:"DeviceId" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataUnsubscribeFromDatasetInput `json:"-", xml:"-"`
 }
 
 type metadataUnsubscribeFromDatasetInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,IdentityId,DatasetName,DeviceId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UnsubscribeFromDatasetOutput struct {
@@ -694,18 +694,18 @@ type metadataUnsubscribeFromDatasetOutput struct {
 
 type UpdateRecordsInput struct {
 	ClientContext    *string        `location:"header" locationName:"x-amz-Client-Context" type:"string" json:"-" xml:"-"`
-	DatasetName      *string        `location:"uri" locationName:"DatasetName" type:"string" json:"-" xml:"-"`
+	DatasetName      *string        `location:"uri" locationName:"DatasetName" type:"string" required:"true"json:"-" xml:"-"`
 	DeviceID         *string        `locationName:"DeviceId" type:"string" json:"DeviceId,omitempty"`
-	IdentityID       *string        `location:"uri" locationName:"IdentityId" type:"string" json:"-" xml:"-"`
-	IdentityPoolID   *string        `location:"uri" locationName:"IdentityPoolId" type:"string" json:"-" xml:"-"`
+	IdentityID       *string        `location:"uri" locationName:"IdentityId" type:"string" required:"true"json:"-" xml:"-"`
+	IdentityPoolID   *string        `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 	RecordPatches    []*RecordPatch `type:"list" json:",omitempty"`
-	SyncSessionToken *string        `type:"string" json:",omitempty"`
+	SyncSessionToken *string        `type:"string" required:"true"json:",omitempty"`
 
 	metadataUpdateRecordsInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateRecordsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"IdentityPoolId,IdentityId,DatasetName,SyncSessionToken" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateRecordsOutput struct {

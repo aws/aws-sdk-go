@@ -609,14 +609,14 @@ func (c *CloudSearch) UpdateServiceAccessPolicies(input *UpdateServiceAccessPoli
 var opUpdateServiceAccessPolicies *aws.Operation
 
 type AccessPoliciesStatus struct {
-	Options *string       `type:"string"`
-	Status  *OptionStatus `type:"structure"`
+	Options *string       `type:"string" required:"true"`
+	Status  *OptionStatus `type:"structure" required:"true"`
 
 	metadataAccessPoliciesStatus `json:"-", xml:"-"`
 }
 
 type metadataAccessPoliciesStatus struct {
-	SDKShapeTraits bool `type:"structure" required:"Options,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AnalysisOptions struct {
@@ -635,46 +635,46 @@ type metadataAnalysisOptions struct {
 
 type AnalysisScheme struct {
 	AnalysisOptions        *AnalysisOptions `type:"structure"`
-	AnalysisSchemeLanguage *string          `type:"string"`
-	AnalysisSchemeName     *string          `type:"string"`
+	AnalysisSchemeLanguage *string          `type:"string" required:"true"`
+	AnalysisSchemeName     *string          `type:"string" required:"true"`
 
 	metadataAnalysisScheme `json:"-", xml:"-"`
 }
 
 type metadataAnalysisScheme struct {
-	SDKShapeTraits bool `type:"structure" required:"AnalysisSchemeName,AnalysisSchemeLanguage"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AnalysisSchemeStatus struct {
-	Options *AnalysisScheme `type:"structure"`
-	Status  *OptionStatus   `type:"structure"`
+	Options *AnalysisScheme `type:"structure" required:"true"`
+	Status  *OptionStatus   `type:"structure" required:"true"`
 
 	metadataAnalysisSchemeStatus `json:"-", xml:"-"`
 }
 
 type metadataAnalysisSchemeStatus struct {
-	SDKShapeTraits bool `type:"structure" required:"Options,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AvailabilityOptionsStatus struct {
-	Options *bool         `type:"boolean"`
-	Status  *OptionStatus `type:"structure"`
+	Options *bool         `type:"boolean" required:"true"`
+	Status  *OptionStatus `type:"structure" required:"true"`
 
 	metadataAvailabilityOptionsStatus `json:"-", xml:"-"`
 }
 
 type metadataAvailabilityOptionsStatus struct {
-	SDKShapeTraits bool `type:"structure" required:"Options,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BuildSuggestersInput struct {
-	DomainName *string `type:"string"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataBuildSuggestersInput `json:"-", xml:"-"`
 }
 
 type metadataBuildSuggestersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BuildSuggestersOutput struct {
@@ -688,13 +688,13 @@ type metadataBuildSuggestersOutput struct {
 }
 
 type CreateDomainInput struct {
-	DomainName *string `type:"string"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataCreateDomainInput `json:"-", xml:"-"`
 }
 
 type metadataCreateDomainInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDomainOutput struct {
@@ -737,118 +737,118 @@ type metadataDateOptions struct {
 }
 
 type DefineAnalysisSchemeInput struct {
-	AnalysisScheme *AnalysisScheme `type:"structure"`
-	DomainName     *string         `type:"string"`
+	AnalysisScheme *AnalysisScheme `type:"structure" required:"true"`
+	DomainName     *string         `type:"string" required:"true"`
 
 	metadataDefineAnalysisSchemeInput `json:"-", xml:"-"`
 }
 
 type metadataDefineAnalysisSchemeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,AnalysisScheme"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DefineAnalysisSchemeOutput struct {
-	AnalysisScheme *AnalysisSchemeStatus `type:"structure"`
+	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 
 	metadataDefineAnalysisSchemeOutput `json:"-", xml:"-"`
 }
 
 type metadataDefineAnalysisSchemeOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"AnalysisScheme"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DefineExpressionInput struct {
-	DomainName *string     `type:"string"`
-	Expression *Expression `type:"structure"`
+	DomainName *string     `type:"string" required:"true"`
+	Expression *Expression `type:"structure" required:"true"`
 
 	metadataDefineExpressionInput `json:"-", xml:"-"`
 }
 
 type metadataDefineExpressionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,Expression"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DefineExpressionOutput struct {
-	Expression *ExpressionStatus `type:"structure"`
+	Expression *ExpressionStatus `type:"structure" required:"true"`
 
 	metadataDefineExpressionOutput `json:"-", xml:"-"`
 }
 
 type metadataDefineExpressionOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Expression"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DefineIndexFieldInput struct {
-	DomainName *string     `type:"string"`
-	IndexField *IndexField `type:"structure"`
+	DomainName *string     `type:"string" required:"true"`
+	IndexField *IndexField `type:"structure" required:"true"`
 
 	metadataDefineIndexFieldInput `json:"-", xml:"-"`
 }
 
 type metadataDefineIndexFieldInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,IndexField"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DefineIndexFieldOutput struct {
-	IndexField *IndexFieldStatus `type:"structure"`
+	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 
 	metadataDefineIndexFieldOutput `json:"-", xml:"-"`
 }
 
 type metadataDefineIndexFieldOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"IndexField"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DefineSuggesterInput struct {
-	DomainName *string    `type:"string"`
-	Suggester  *Suggester `type:"structure"`
+	DomainName *string    `type:"string" required:"true"`
+	Suggester  *Suggester `type:"structure" required:"true"`
 
 	metadataDefineSuggesterInput `json:"-", xml:"-"`
 }
 
 type metadataDefineSuggesterInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,Suggester"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DefineSuggesterOutput struct {
-	Suggester *SuggesterStatus `type:"structure"`
+	Suggester *SuggesterStatus `type:"structure" required:"true"`
 
 	metadataDefineSuggesterOutput `json:"-", xml:"-"`
 }
 
 type metadataDefineSuggesterOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Suggester"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAnalysisSchemeInput struct {
-	AnalysisSchemeName *string `type:"string"`
-	DomainName         *string `type:"string"`
+	AnalysisSchemeName *string `type:"string" required:"true"`
+	DomainName         *string `type:"string" required:"true"`
 
 	metadataDeleteAnalysisSchemeInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteAnalysisSchemeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,AnalysisSchemeName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAnalysisSchemeOutput struct {
-	AnalysisScheme *AnalysisSchemeStatus `type:"structure"`
+	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 
 	metadataDeleteAnalysisSchemeOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteAnalysisSchemeOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"AnalysisScheme"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDomainInput struct {
-	DomainName *string `type:"string"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataDeleteDomainInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDomainInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDomainOutput struct {
@@ -862,99 +862,99 @@ type metadataDeleteDomainOutput struct {
 }
 
 type DeleteExpressionInput struct {
-	DomainName     *string `type:"string"`
-	ExpressionName *string `type:"string"`
+	DomainName     *string `type:"string" required:"true"`
+	ExpressionName *string `type:"string" required:"true"`
 
 	metadataDeleteExpressionInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteExpressionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,ExpressionName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteExpressionOutput struct {
-	Expression *ExpressionStatus `type:"structure"`
+	Expression *ExpressionStatus `type:"structure" required:"true"`
 
 	metadataDeleteExpressionOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteExpressionOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Expression"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteIndexFieldInput struct {
-	DomainName     *string `type:"string"`
-	IndexFieldName *string `type:"string"`
+	DomainName     *string `type:"string" required:"true"`
+	IndexFieldName *string `type:"string" required:"true"`
 
 	metadataDeleteIndexFieldInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteIndexFieldInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,IndexFieldName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteIndexFieldOutput struct {
-	IndexField *IndexFieldStatus `type:"structure"`
+	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 
 	metadataDeleteIndexFieldOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteIndexFieldOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"IndexField"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteSuggesterInput struct {
-	DomainName    *string `type:"string"`
-	SuggesterName *string `type:"string"`
+	DomainName    *string `type:"string" required:"true"`
+	SuggesterName *string `type:"string" required:"true"`
 
 	metadataDeleteSuggesterInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteSuggesterInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,SuggesterName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteSuggesterOutput struct {
-	Suggester *SuggesterStatus `type:"structure"`
+	Suggester *SuggesterStatus `type:"structure" required:"true"`
 
 	metadataDeleteSuggesterOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteSuggesterOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Suggester"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAnalysisSchemesInput struct {
 	AnalysisSchemeNames []*string `type:"list"`
 	Deployed            *bool     `type:"boolean"`
-	DomainName          *string   `type:"string"`
+	DomainName          *string   `type:"string" required:"true"`
 
 	metadataDescribeAnalysisSchemesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeAnalysisSchemesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAnalysisSchemesOutput struct {
-	AnalysisSchemes []*AnalysisSchemeStatus `type:"list"`
+	AnalysisSchemes []*AnalysisSchemeStatus `type:"list" required:"true"`
 
 	metadataDescribeAnalysisSchemesOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeAnalysisSchemesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"AnalysisSchemes"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAvailabilityOptionsInput struct {
 	Deployed   *bool   `type:"boolean"`
-	DomainName *string `type:"string"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataDescribeAvailabilityOptionsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeAvailabilityOptionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAvailabilityOptionsOutput struct {
@@ -978,132 +978,132 @@ type metadataDescribeDomainsInput struct {
 }
 
 type DescribeDomainsOutput struct {
-	DomainStatusList []*DomainStatus `type:"list"`
+	DomainStatusList []*DomainStatus `type:"list" required:"true"`
 
 	metadataDescribeDomainsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDomainsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainStatusList"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeExpressionsInput struct {
 	Deployed        *bool     `type:"boolean"`
-	DomainName      *string   `type:"string"`
+	DomainName      *string   `type:"string" required:"true"`
 	ExpressionNames []*string `type:"list"`
 
 	metadataDescribeExpressionsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeExpressionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeExpressionsOutput struct {
-	Expressions []*ExpressionStatus `type:"list"`
+	Expressions []*ExpressionStatus `type:"list" required:"true"`
 
 	metadataDescribeExpressionsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeExpressionsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Expressions"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeIndexFieldsInput struct {
 	Deployed   *bool     `type:"boolean"`
-	DomainName *string   `type:"string"`
+	DomainName *string   `type:"string" required:"true"`
 	FieldNames []*string `type:"list"`
 
 	metadataDescribeIndexFieldsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeIndexFieldsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeIndexFieldsOutput struct {
-	IndexFields []*IndexFieldStatus `type:"list"`
+	IndexFields []*IndexFieldStatus `type:"list" required:"true"`
 
 	metadataDescribeIndexFieldsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeIndexFieldsOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"IndexFields"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeScalingParametersInput struct {
-	DomainName *string `type:"string"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataDescribeScalingParametersInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeScalingParametersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeScalingParametersOutput struct {
-	ScalingParameters *ScalingParametersStatus `type:"structure"`
+	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 
 	metadataDescribeScalingParametersOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeScalingParametersOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ScalingParameters"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeServiceAccessPoliciesInput struct {
 	Deployed   *bool   `type:"boolean"`
-	DomainName *string `type:"string"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataDescribeServiceAccessPoliciesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeServiceAccessPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeServiceAccessPoliciesOutput struct {
-	AccessPolicies *AccessPoliciesStatus `type:"structure"`
+	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 
 	metadataDescribeServiceAccessPoliciesOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeServiceAccessPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"AccessPolicies"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeSuggestersInput struct {
 	Deployed       *bool     `type:"boolean"`
-	DomainName     *string   `type:"string"`
+	DomainName     *string   `type:"string" required:"true"`
 	SuggesterNames []*string `type:"list"`
 
 	metadataDescribeSuggestersInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeSuggestersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeSuggestersOutput struct {
-	Suggesters []*SuggesterStatus `type:"list"`
+	Suggesters []*SuggesterStatus `type:"list" required:"true"`
 
 	metadataDescribeSuggestersOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeSuggestersOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"Suggesters"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DocumentSuggesterOptions struct {
 	FuzzyMatching  *string `type:"string"`
 	SortExpression *string `type:"string"`
-	SourceField    *string `type:"string"`
+	SourceField    *string `type:"string" required:"true"`
 
 	metadataDocumentSuggesterOptions `json:"-", xml:"-"`
 }
 
 type metadataDocumentSuggesterOptions struct {
-	SDKShapeTraits bool `type:"structure" required:"SourceField"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DomainStatus struct {
@@ -1111,11 +1111,11 @@ type DomainStatus struct {
 	Created                *bool            `type:"boolean"`
 	Deleted                *bool            `type:"boolean"`
 	DocService             *ServiceEndpoint `type:"structure"`
-	DomainID               *string          `locationName:"DomainId" type:"string"`
-	DomainName             *string          `type:"string"`
+	DomainID               *string          `locationName:"DomainId" type:"string" required:"true"`
+	DomainName             *string          `type:"string" required:"true"`
 	Limits                 *Limits          `type:"structure"`
 	Processing             *bool            `type:"boolean"`
-	RequiresIndexDocuments *bool            `type:"boolean"`
+	RequiresIndexDocuments *bool            `type:"boolean" required:"true"`
 	SearchInstanceCount    *int             `type:"integer"`
 	SearchInstanceType     *string          `type:"string"`
 	SearchPartitionCount   *int             `type:"integer"`
@@ -1125,7 +1125,7 @@ type DomainStatus struct {
 }
 
 type metadataDomainStatus struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainId,DomainName,RequiresIndexDocuments"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DoubleArrayOptions struct {
@@ -1158,35 +1158,35 @@ type metadataDoubleOptions struct {
 }
 
 type Expression struct {
-	ExpressionName  *string `type:"string"`
-	ExpressionValue *string `type:"string"`
+	ExpressionName  *string `type:"string" required:"true"`
+	ExpressionValue *string `type:"string" required:"true"`
 
 	metadataExpression `json:"-", xml:"-"`
 }
 
 type metadataExpression struct {
-	SDKShapeTraits bool `type:"structure" required:"ExpressionName,ExpressionValue"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ExpressionStatus struct {
-	Options *Expression   `type:"structure"`
-	Status  *OptionStatus `type:"structure"`
+	Options *Expression   `type:"structure" required:"true"`
+	Status  *OptionStatus `type:"structure" required:"true"`
 
 	metadataExpressionStatus `json:"-", xml:"-"`
 }
 
 type metadataExpressionStatus struct {
-	SDKShapeTraits bool `type:"structure" required:"Options,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type IndexDocumentsInput struct {
-	DomainName *string `type:"string"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataIndexDocumentsInput `json:"-", xml:"-"`
 }
 
 type metadataIndexDocumentsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type IndexDocumentsOutput struct {
@@ -1204,8 +1204,8 @@ type IndexField struct {
 	DateOptions         *DateOptions         `type:"structure"`
 	DoubleArrayOptions  *DoubleArrayOptions  `type:"structure"`
 	DoubleOptions       *DoubleOptions       `type:"structure"`
-	IndexFieldName      *string              `type:"string"`
-	IndexFieldType      *string              `type:"string"`
+	IndexFieldName      *string              `type:"string" required:"true"`
+	IndexFieldType      *string              `type:"string" required:"true"`
 	IntArrayOptions     *IntArrayOptions     `type:"structure"`
 	IntOptions          *IntOptions          `type:"structure"`
 	LatLonOptions       *LatLonOptions       `type:"structure"`
@@ -1218,18 +1218,18 @@ type IndexField struct {
 }
 
 type metadataIndexField struct {
-	SDKShapeTraits bool `type:"structure" required:"IndexFieldName,IndexFieldType"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type IndexFieldStatus struct {
-	Options *IndexField   `type:"structure"`
-	Status  *OptionStatus `type:"structure"`
+	Options *IndexField   `type:"structure" required:"true"`
+	Status  *OptionStatus `type:"structure" required:"true"`
 
 	metadataIndexFieldStatus `json:"-", xml:"-"`
 }
 
 type metadataIndexFieldStatus struct {
-	SDKShapeTraits bool `type:"structure" required:"Options,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type IntArrayOptions struct {
@@ -1277,14 +1277,14 @@ type metadataLatLonOptions struct {
 }
 
 type Limits struct {
-	MaximumPartitionCount   *int `type:"integer"`
-	MaximumReplicationCount *int `type:"integer"`
+	MaximumPartitionCount   *int `type:"integer" required:"true"`
+	MaximumReplicationCount *int `type:"integer" required:"true"`
 
 	metadataLimits `json:"-", xml:"-"`
 }
 
 type metadataLimits struct {
-	SDKShapeTraits bool `type:"structure" required:"MaximumReplicationCount,MaximumPartitionCount"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListDomainNamesInput struct {
@@ -1335,17 +1335,17 @@ type metadataLiteralOptions struct {
 }
 
 type OptionStatus struct {
-	CreationDate    *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	CreationDate    *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 	PendingDeletion *bool      `type:"boolean"`
-	State           *string    `type:"string"`
-	UpdateDate      *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	State           *string    `type:"string" required:"true"`
+	UpdateDate      *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 	UpdateVersion   *int       `type:"integer"`
 
 	metadataOptionStatus `json:"-", xml:"-"`
 }
 
 type metadataOptionStatus struct {
-	SDKShapeTraits bool `type:"structure" required:"CreationDate,UpdateDate,State"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ScalingParameters struct {
@@ -1361,14 +1361,14 @@ type metadataScalingParameters struct {
 }
 
 type ScalingParametersStatus struct {
-	Options *ScalingParameters `type:"structure"`
-	Status  *OptionStatus      `type:"structure"`
+	Options *ScalingParameters `type:"structure" required:"true"`
+	Status  *OptionStatus      `type:"structure" required:"true"`
 
 	metadataScalingParametersStatus `json:"-", xml:"-"`
 }
 
 type metadataScalingParametersStatus struct {
-	SDKShapeTraits bool `type:"structure" required:"Options,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ServiceEndpoint struct {
@@ -1382,25 +1382,25 @@ type metadataServiceEndpoint struct {
 }
 
 type Suggester struct {
-	DocumentSuggesterOptions *DocumentSuggesterOptions `type:"structure"`
-	SuggesterName            *string                   `type:"string"`
+	DocumentSuggesterOptions *DocumentSuggesterOptions `type:"structure" required:"true"`
+	SuggesterName            *string                   `type:"string" required:"true"`
 
 	metadataSuggester `json:"-", xml:"-"`
 }
 
 type metadataSuggester struct {
-	SDKShapeTraits bool `type:"structure" required:"SuggesterName,DocumentSuggesterOptions"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SuggesterStatus struct {
-	Options *Suggester    `type:"structure"`
-	Status  *OptionStatus `type:"structure"`
+	Options *Suggester    `type:"structure" required:"true"`
+	Status  *OptionStatus `type:"structure" required:"true"`
 
 	metadataSuggesterStatus `json:"-", xml:"-"`
 }
 
 type metadataSuggesterStatus struct {
-	SDKShapeTraits bool `type:"structure" required:"Options,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TextArrayOptions struct {
@@ -1433,14 +1433,14 @@ type metadataTextOptions struct {
 }
 
 type UpdateAvailabilityOptionsInput struct {
-	DomainName *string `type:"string"`
-	MultiAZ    *bool   `type:"boolean"`
+	DomainName *string `type:"string" required:"true"`
+	MultiAZ    *bool   `type:"boolean" required:"true"`
 
 	metadataUpdateAvailabilityOptionsInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateAvailabilityOptionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,MultiAZ"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateAvailabilityOptionsOutput struct {
@@ -1454,43 +1454,43 @@ type metadataUpdateAvailabilityOptionsOutput struct {
 }
 
 type UpdateScalingParametersInput struct {
-	DomainName        *string            `type:"string"`
-	ScalingParameters *ScalingParameters `type:"structure"`
+	DomainName        *string            `type:"string" required:"true"`
+	ScalingParameters *ScalingParameters `type:"structure" required:"true"`
 
 	metadataUpdateScalingParametersInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateScalingParametersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,ScalingParameters"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateScalingParametersOutput struct {
-	ScalingParameters *ScalingParametersStatus `type:"structure"`
+	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 
 	metadataUpdateScalingParametersOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateScalingParametersOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"ScalingParameters"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateServiceAccessPoliciesInput struct {
-	AccessPolicies *string `type:"string"`
-	DomainName     *string `type:"string"`
+	AccessPolicies *string `type:"string" required:"true"`
+	DomainName     *string `type:"string" required:"true"`
 
 	metadataUpdateServiceAccessPoliciesInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateServiceAccessPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,AccessPolicies"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateServiceAccessPoliciesOutput struct {
-	AccessPolicies *AccessPoliciesStatus `type:"structure"`
+	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 
 	metadataUpdateServiceAccessPoliciesOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateServiceAccessPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" required:"AccessPolicies"`
+	SDKShapeTraits bool `type:"structure"`
 }

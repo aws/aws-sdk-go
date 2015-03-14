@@ -1234,10 +1234,10 @@ func (c *StorageGateway) UpdateVTLDeviceType(input *UpdateVTLDeviceTypeInput) (o
 var opUpdateVTLDeviceType *aws.Operation
 
 type ActivateGatewayInput struct {
-	ActivationKey     *string `type:"string" json:",omitempty"`
-	GatewayName       *string `type:"string" json:",omitempty"`
-	GatewayRegion     *string `type:"string" json:",omitempty"`
-	GatewayTimezone   *string `type:"string" json:",omitempty"`
+	ActivationKey     *string `type:"string" required:"true"json:",omitempty"`
+	GatewayName       *string `type:"string" required:"true"json:",omitempty"`
+	GatewayRegion     *string `type:"string" required:"true"json:",omitempty"`
+	GatewayTimezone   *string `type:"string" required:"true"json:",omitempty"`
 	GatewayType       *string `type:"string" json:",omitempty"`
 	MediumChangerType *string `type:"string" json:",omitempty"`
 	TapeDriveType     *string `type:"string" json:",omitempty"`
@@ -1246,7 +1246,7 @@ type ActivateGatewayInput struct {
 }
 
 type metadataActivateGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ActivationKey,GatewayName,GatewayTimezone,GatewayRegion" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ActivateGatewayOutput struct {
@@ -1260,14 +1260,14 @@ type metadataActivateGatewayOutput struct {
 }
 
 type AddCacheInput struct {
-	DiskIDs    []*string `locationName:"DiskIds" type:"list" json:"DiskIds,omitempty"`
-	GatewayARN *string   `type:"string" json:",omitempty"`
+	DiskIDs    []*string `locationName:"DiskIds" type:"list" required:"true"json:"DiskIds,omitempty"`
+	GatewayARN *string   `type:"string" required:"true"json:",omitempty"`
 
 	metadataAddCacheInput `json:"-", xml:"-"`
 }
 
 type metadataAddCacheInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN,DiskIds" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type AddCacheOutput struct {
@@ -1281,14 +1281,14 @@ type metadataAddCacheOutput struct {
 }
 
 type AddUploadBufferInput struct {
-	DiskIDs    []*string `locationName:"DiskIds" type:"list" json:"DiskIds,omitempty"`
-	GatewayARN *string   `type:"string" json:",omitempty"`
+	DiskIDs    []*string `locationName:"DiskIds" type:"list" required:"true"json:"DiskIds,omitempty"`
+	GatewayARN *string   `type:"string" required:"true"json:",omitempty"`
 
 	metadataAddUploadBufferInput `json:"-", xml:"-"`
 }
 
 type metadataAddUploadBufferInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN,DiskIds" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type AddUploadBufferOutput struct {
@@ -1302,14 +1302,14 @@ type metadataAddUploadBufferOutput struct {
 }
 
 type AddWorkingStorageInput struct {
-	DiskIDs    []*string `locationName:"DiskIds" type:"list" json:"DiskIds,omitempty"`
-	GatewayARN *string   `type:"string" json:",omitempty"`
+	DiskIDs    []*string `locationName:"DiskIds" type:"list" required:"true"json:"DiskIds,omitempty"`
+	GatewayARN *string   `type:"string" required:"true"json:",omitempty"`
 
 	metadataAddWorkingStorageInput `json:"-", xml:"-"`
 }
 
 type metadataAddWorkingStorageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN,DiskIds" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type AddWorkingStorageOutput struct {
@@ -1340,14 +1340,14 @@ type metadataCachediSCSIVolume struct {
 }
 
 type CancelArchivalInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
-	TapeARN    *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
+	TapeARN    *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataCancelArchivalInput `json:"-", xml:"-"`
 }
 
 type metadataCancelArchivalInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN,TapeARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CancelArchivalOutput struct {
@@ -1361,14 +1361,14 @@ type metadataCancelArchivalOutput struct {
 }
 
 type CancelRetrievalInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
-	TapeARN    *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
+	TapeARN    *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataCancelRetrievalInput `json:"-", xml:"-"`
 }
 
 type metadataCancelRetrievalInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN,TapeARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CancelRetrievalOutput struct {
@@ -1395,18 +1395,18 @@ type metadataChapInfo struct {
 }
 
 type CreateCachediSCSIVolumeInput struct {
-	ClientToken        *string `type:"string" json:",omitempty"`
-	GatewayARN         *string `type:"string" json:",omitempty"`
-	NetworkInterfaceID *string `locationName:"NetworkInterfaceId" type:"string" json:"NetworkInterfaceId,omitempty"`
+	ClientToken        *string `type:"string" required:"true"json:",omitempty"`
+	GatewayARN         *string `type:"string" required:"true"json:",omitempty"`
+	NetworkInterfaceID *string `locationName:"NetworkInterfaceId" type:"string" required:"true"json:"NetworkInterfaceId,omitempty"`
 	SnapshotID         *string `locationName:"SnapshotId" type:"string" json:"SnapshotId,omitempty"`
-	TargetName         *string `type:"string" json:",omitempty"`
-	VolumeSizeInBytes  *int64  `type:"long" json:",omitempty"`
+	TargetName         *string `type:"string" required:"true"json:",omitempty"`
+	VolumeSizeInBytes  *int64  `type:"long" required:"true"json:",omitempty"`
 
 	metadataCreateCachediSCSIVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataCreateCachediSCSIVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN,VolumeSizeInBytes,TargetName,NetworkInterfaceId,ClientToken" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateCachediSCSIVolumeOutput struct {
@@ -1421,14 +1421,14 @@ type metadataCreateCachediSCSIVolumeOutput struct {
 }
 
 type CreateSnapshotFromVolumeRecoveryPointInput struct {
-	SnapshotDescription *string `type:"string" json:",omitempty"`
-	VolumeARN           *string `type:"string" json:",omitempty"`
+	SnapshotDescription *string `type:"string" required:"true"json:",omitempty"`
+	VolumeARN           *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataCreateSnapshotFromVolumeRecoveryPointInput `json:"-", xml:"-"`
 }
 
 type metadataCreateSnapshotFromVolumeRecoveryPointInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeARN,SnapshotDescription" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateSnapshotFromVolumeRecoveryPointOutput struct {
@@ -1444,14 +1444,14 @@ type metadataCreateSnapshotFromVolumeRecoveryPointOutput struct {
 }
 
 type CreateSnapshotInput struct {
-	SnapshotDescription *string `type:"string" json:",omitempty"`
-	VolumeARN           *string `type:"string" json:",omitempty"`
+	SnapshotDescription *string `type:"string" required:"true"json:",omitempty"`
+	VolumeARN           *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataCreateSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataCreateSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeARN,SnapshotDescription" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateSnapshotOutput struct {
@@ -1466,18 +1466,18 @@ type metadataCreateSnapshotOutput struct {
 }
 
 type CreateStorediSCSIVolumeInput struct {
-	DiskID               *string `locationName:"DiskId" type:"string" json:"DiskId,omitempty"`
-	GatewayARN           *string `type:"string" json:",omitempty"`
-	NetworkInterfaceID   *string `locationName:"NetworkInterfaceId" type:"string" json:"NetworkInterfaceId,omitempty"`
-	PreserveExistingData *bool   `type:"boolean" json:",omitempty"`
+	DiskID               *string `locationName:"DiskId" type:"string" required:"true"json:"DiskId,omitempty"`
+	GatewayARN           *string `type:"string" required:"true"json:",omitempty"`
+	NetworkInterfaceID   *string `locationName:"NetworkInterfaceId" type:"string" required:"true"json:"NetworkInterfaceId,omitempty"`
+	PreserveExistingData *bool   `type:"boolean" required:"true"json:",omitempty"`
 	SnapshotID           *string `locationName:"SnapshotId" type:"string" json:"SnapshotId,omitempty"`
-	TargetName           *string `type:"string" json:",omitempty"`
+	TargetName           *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataCreateStorediSCSIVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataCreateStorediSCSIVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN,DiskId,PreserveExistingData,TargetName,NetworkInterfaceId" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateStorediSCSIVolumeOutput struct {
@@ -1493,17 +1493,17 @@ type metadataCreateStorediSCSIVolumeOutput struct {
 }
 
 type CreateTapesInput struct {
-	ClientToken       *string `type:"string" json:",omitempty"`
-	GatewayARN        *string `type:"string" json:",omitempty"`
-	NumTapesToCreate  *int    `type:"integer" json:",omitempty"`
-	TapeBarcodePrefix *string `type:"string" json:",omitempty"`
-	TapeSizeInBytes   *int64  `type:"long" json:",omitempty"`
+	ClientToken       *string `type:"string" required:"true"json:",omitempty"`
+	GatewayARN        *string `type:"string" required:"true"json:",omitempty"`
+	NumTapesToCreate  *int    `type:"integer" required:"true"json:",omitempty"`
+	TapeBarcodePrefix *string `type:"string" required:"true"json:",omitempty"`
+	TapeSizeInBytes   *int64  `type:"long" required:"true"json:",omitempty"`
 
 	metadataCreateTapesInput `json:"-", xml:"-"`
 }
 
 type metadataCreateTapesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN,TapeSizeInBytes,ClientToken,NumTapesToCreate,TapeBarcodePrefix" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type CreateTapesOutput struct {
@@ -1517,14 +1517,14 @@ type metadataCreateTapesOutput struct {
 }
 
 type DeleteBandwidthRateLimitInput struct {
-	BandwidthType *string `type:"string" json:",omitempty"`
-	GatewayARN    *string `type:"string" json:",omitempty"`
+	BandwidthType *string `type:"string" required:"true"json:",omitempty"`
+	GatewayARN    *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDeleteBandwidthRateLimitInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteBandwidthRateLimitInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN,BandwidthType" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteBandwidthRateLimitOutput struct {
@@ -1538,14 +1538,14 @@ type metadataDeleteBandwidthRateLimitOutput struct {
 }
 
 type DeleteChapCredentialsInput struct {
-	InitiatorName *string `type:"string" json:",omitempty"`
-	TargetARN     *string `type:"string" json:",omitempty"`
+	InitiatorName *string `type:"string" required:"true"json:",omitempty"`
+	TargetARN     *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDeleteChapCredentialsInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteChapCredentialsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TargetARN,InitiatorName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteChapCredentialsOutput struct {
@@ -1560,13 +1560,13 @@ type metadataDeleteChapCredentialsOutput struct {
 }
 
 type DeleteGatewayInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDeleteGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteGatewayOutput struct {
@@ -1580,13 +1580,13 @@ type metadataDeleteGatewayOutput struct {
 }
 
 type DeleteSnapshotScheduleInput struct {
-	VolumeARN *string `type:"string" json:",omitempty"`
+	VolumeARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDeleteSnapshotScheduleInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteSnapshotScheduleInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteSnapshotScheduleOutput struct {
@@ -1600,13 +1600,13 @@ type metadataDeleteSnapshotScheduleOutput struct {
 }
 
 type DeleteTapeArchiveInput struct {
-	TapeARN *string `type:"string" json:",omitempty"`
+	TapeARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDeleteTapeArchiveInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTapeArchiveInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TapeARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteTapeArchiveOutput struct {
@@ -1620,14 +1620,14 @@ type metadataDeleteTapeArchiveOutput struct {
 }
 
 type DeleteTapeInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
-	TapeARN    *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
+	TapeARN    *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDeleteTapeInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTapeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN,TapeARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteTapeOutput struct {
@@ -1641,13 +1641,13 @@ type metadataDeleteTapeOutput struct {
 }
 
 type DeleteVolumeInput struct {
-	VolumeARN *string `type:"string" json:",omitempty"`
+	VolumeARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDeleteVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DeleteVolumeOutput struct {
@@ -1661,13 +1661,13 @@ type metadataDeleteVolumeOutput struct {
 }
 
 type DescribeBandwidthRateLimitInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDescribeBandwidthRateLimitInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeBandwidthRateLimitInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeBandwidthRateLimitOutput struct {
@@ -1683,13 +1683,13 @@ type metadataDescribeBandwidthRateLimitOutput struct {
 }
 
 type DescribeCacheInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDescribeCacheInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeCacheInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeCacheOutput struct {
@@ -1709,13 +1709,13 @@ type metadataDescribeCacheOutput struct {
 }
 
 type DescribeCachediSCSIVolumesInput struct {
-	VolumeARNs []*string `type:"list" json:",omitempty"`
+	VolumeARNs []*string `type:"list" required:"true"json:",omitempty"`
 
 	metadataDescribeCachediSCSIVolumesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeCachediSCSIVolumesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeARNs" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeCachediSCSIVolumesOutput struct {
@@ -1729,13 +1729,13 @@ type metadataDescribeCachediSCSIVolumesOutput struct {
 }
 
 type DescribeChapCredentialsInput struct {
-	TargetARN *string `type:"string" json:",omitempty"`
+	TargetARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDescribeChapCredentialsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeChapCredentialsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TargetARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeChapCredentialsOutput struct {
@@ -1749,13 +1749,13 @@ type metadataDescribeChapCredentialsOutput struct {
 }
 
 type DescribeGatewayInformationInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDescribeGatewayInformationInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeGatewayInformationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeGatewayInformationOutput struct {
@@ -1775,13 +1775,13 @@ type metadataDescribeGatewayInformationOutput struct {
 }
 
 type DescribeMaintenanceStartTimeInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDescribeMaintenanceStartTimeInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeMaintenanceStartTimeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeMaintenanceStartTimeOutput struct {
@@ -1799,13 +1799,13 @@ type metadataDescribeMaintenanceStartTimeOutput struct {
 }
 
 type DescribeSnapshotScheduleInput struct {
-	VolumeARN *string `type:"string" json:",omitempty"`
+	VolumeARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDescribeSnapshotScheduleInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeSnapshotScheduleInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeSnapshotScheduleOutput struct {
@@ -1823,13 +1823,13 @@ type metadataDescribeSnapshotScheduleOutput struct {
 }
 
 type DescribeStorediSCSIVolumesInput struct {
-	VolumeARNs []*string `type:"list" json:",omitempty"`
+	VolumeARNs []*string `type:"list" required:"true"json:",omitempty"`
 
 	metadataDescribeStorediSCSIVolumesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStorediSCSIVolumesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeARNs" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeStorediSCSIVolumesOutput struct {
@@ -1866,7 +1866,7 @@ type metadataDescribeTapeArchivesOutput struct {
 }
 
 type DescribeTapeRecoveryPointsInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 	Limit      *int    `type:"integer" json:",omitempty"`
 	Marker     *string `type:"string" json:",omitempty"`
 
@@ -1874,7 +1874,7 @@ type DescribeTapeRecoveryPointsInput struct {
 }
 
 type metadataDescribeTapeRecoveryPointsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeTapeRecoveryPointsOutput struct {
@@ -1890,7 +1890,7 @@ type metadataDescribeTapeRecoveryPointsOutput struct {
 }
 
 type DescribeTapesInput struct {
-	GatewayARN *string   `type:"string" json:",omitempty"`
+	GatewayARN *string   `type:"string" required:"true"json:",omitempty"`
 	Limit      *int      `type:"integer" json:",omitempty"`
 	Marker     *string   `type:"string" json:",omitempty"`
 	TapeARNs   []*string `type:"list" json:",omitempty"`
@@ -1899,7 +1899,7 @@ type DescribeTapesInput struct {
 }
 
 type metadataDescribeTapesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeTapesOutput struct {
@@ -1914,13 +1914,13 @@ type metadataDescribeTapesOutput struct {
 }
 
 type DescribeUploadBufferInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDescribeUploadBufferInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeUploadBufferInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeUploadBufferOutput struct {
@@ -1937,7 +1937,7 @@ type metadataDescribeUploadBufferOutput struct {
 }
 
 type DescribeVTLDevicesInput struct {
-	GatewayARN    *string   `type:"string" json:",omitempty"`
+	GatewayARN    *string   `type:"string" required:"true"json:",omitempty"`
 	Limit         *int      `type:"integer" json:",omitempty"`
 	Marker        *string   `type:"string" json:",omitempty"`
 	VTLDeviceARNs []*string `type:"list" json:",omitempty"`
@@ -1946,7 +1946,7 @@ type DescribeVTLDevicesInput struct {
 }
 
 type metadataDescribeVTLDevicesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeVTLDevicesOutput struct {
@@ -1962,13 +1962,13 @@ type metadataDescribeVTLDevicesOutput struct {
 }
 
 type DescribeWorkingStorageInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDescribeWorkingStorageInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeWorkingStorageInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DescribeWorkingStorageOutput struct {
@@ -1998,13 +1998,13 @@ type metadataDeviceiSCSIAttributes struct {
 }
 
 type DisableGatewayInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDisableGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataDisableGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type DisableGatewayOutput struct {
@@ -2068,13 +2068,13 @@ type metadataListGatewaysOutput struct {
 }
 
 type ListLocalDisksInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataListLocalDisksInput `json:"-", xml:"-"`
 }
 
 type metadataListLocalDisksInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListLocalDisksOutput struct {
@@ -2089,13 +2089,13 @@ type metadataListLocalDisksOutput struct {
 }
 
 type ListVolumeRecoveryPointsInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataListVolumeRecoveryPointsInput `json:"-", xml:"-"`
 }
 
 type metadataListVolumeRecoveryPointsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListVolumeRecoveryPointsOutput struct {
@@ -2110,7 +2110,7 @@ type metadataListVolumeRecoveryPointsOutput struct {
 }
 
 type ListVolumesInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 	Limit      *int    `type:"integer" json:",omitempty"`
 	Marker     *string `type:"string" json:",omitempty"`
 
@@ -2118,7 +2118,7 @@ type ListVolumesInput struct {
 }
 
 type metadataListVolumesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ListVolumesOutput struct {
@@ -2146,13 +2146,13 @@ type metadataNetworkInterface struct {
 }
 
 type ResetCacheInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataResetCacheInput `json:"-", xml:"-"`
 }
 
 type metadataResetCacheInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ResetCacheOutput struct {
@@ -2166,14 +2166,14 @@ type metadataResetCacheOutput struct {
 }
 
 type RetrieveTapeArchiveInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
-	TapeARN    *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
+	TapeARN    *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataRetrieveTapeArchiveInput `json:"-", xml:"-"`
 }
 
 type metadataRetrieveTapeArchiveInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TapeARN,GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RetrieveTapeArchiveOutput struct {
@@ -2187,14 +2187,14 @@ type metadataRetrieveTapeArchiveOutput struct {
 }
 
 type RetrieveTapeRecoveryPointInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
-	TapeARN    *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
+	TapeARN    *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataRetrieveTapeRecoveryPointInput `json:"-", xml:"-"`
 }
 
 type metadataRetrieveTapeRecoveryPointInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TapeARN,GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type RetrieveTapeRecoveryPointOutput struct {
@@ -2208,13 +2208,13 @@ type metadataRetrieveTapeRecoveryPointOutput struct {
 }
 
 type ShutdownGatewayInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataShutdownGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataShutdownGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type ShutdownGatewayOutput struct {
@@ -2228,13 +2228,13 @@ type metadataShutdownGatewayOutput struct {
 }
 
 type StartGatewayInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataStartGatewayInput `json:"-", xml:"-"`
 }
 
 type metadataStartGatewayInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type StartGatewayOutput struct {
@@ -2323,13 +2323,13 @@ type metadataTapeRecoveryPointInfo struct {
 type UpdateBandwidthRateLimitInput struct {
 	AverageDownloadRateLimitInBitsPerSec *int64  `type:"long" json:",omitempty"`
 	AverageUploadRateLimitInBitsPerSec   *int64  `type:"long" json:",omitempty"`
-	GatewayARN                           *string `type:"string" json:",omitempty"`
+	GatewayARN                           *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataUpdateBandwidthRateLimitInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateBandwidthRateLimitInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateBandwidthRateLimitOutput struct {
@@ -2343,16 +2343,16 @@ type metadataUpdateBandwidthRateLimitOutput struct {
 }
 
 type UpdateChapCredentialsInput struct {
-	InitiatorName                 *string `type:"string" json:",omitempty"`
-	SecretToAuthenticateInitiator *string `type:"string" json:",omitempty"`
+	InitiatorName                 *string `type:"string" required:"true"json:",omitempty"`
+	SecretToAuthenticateInitiator *string `type:"string" required:"true"json:",omitempty"`
 	SecretToAuthenticateTarget    *string `type:"string" json:",omitempty"`
-	TargetARN                     *string `type:"string" json:",omitempty"`
+	TargetARN                     *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataUpdateChapCredentialsInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateChapCredentialsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"TargetARN,SecretToAuthenticateInitiator,InitiatorName" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateChapCredentialsOutput struct {
@@ -2367,7 +2367,7 @@ type metadataUpdateChapCredentialsOutput struct {
 }
 
 type UpdateGatewayInformationInput struct {
-	GatewayARN      *string `type:"string" json:",omitempty"`
+	GatewayARN      *string `type:"string" required:"true"json:",omitempty"`
 	GatewayName     *string `type:"string" json:",omitempty"`
 	GatewayTimezone *string `type:"string" json:",omitempty"`
 
@@ -2375,7 +2375,7 @@ type UpdateGatewayInformationInput struct {
 }
 
 type metadataUpdateGatewayInformationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateGatewayInformationOutput struct {
@@ -2389,13 +2389,13 @@ type metadataUpdateGatewayInformationOutput struct {
 }
 
 type UpdateGatewaySoftwareNowInput struct {
-	GatewayARN *string `type:"string" json:",omitempty"`
+	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataUpdateGatewaySoftwareNowInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateGatewaySoftwareNowInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateGatewaySoftwareNowOutput struct {
@@ -2409,16 +2409,16 @@ type metadataUpdateGatewaySoftwareNowOutput struct {
 }
 
 type UpdateMaintenanceStartTimeInput struct {
-	DayOfWeek    *int    `type:"integer" json:",omitempty"`
-	GatewayARN   *string `type:"string" json:",omitempty"`
-	HourOfDay    *int    `type:"integer" json:",omitempty"`
-	MinuteOfHour *int    `type:"integer" json:",omitempty"`
+	DayOfWeek    *int    `type:"integer" required:"true"json:",omitempty"`
+	GatewayARN   *string `type:"string" required:"true"json:",omitempty"`
+	HourOfDay    *int    `type:"integer" required:"true"json:",omitempty"`
+	MinuteOfHour *int    `type:"integer" required:"true"json:",omitempty"`
 
 	metadataUpdateMaintenanceStartTimeInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateMaintenanceStartTimeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"GatewayARN,HourOfDay,MinuteOfHour,DayOfWeek" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateMaintenanceStartTimeOutput struct {
@@ -2433,15 +2433,15 @@ type metadataUpdateMaintenanceStartTimeOutput struct {
 
 type UpdateSnapshotScheduleInput struct {
 	Description       *string `type:"string" json:",omitempty"`
-	RecurrenceInHours *int    `type:"integer" json:",omitempty"`
-	StartAt           *int    `type:"integer" json:",omitempty"`
-	VolumeARN         *string `type:"string" json:",omitempty"`
+	RecurrenceInHours *int    `type:"integer" required:"true"json:",omitempty"`
+	StartAt           *int    `type:"integer" required:"true"json:",omitempty"`
+	VolumeARN         *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataUpdateSnapshotScheduleInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateSnapshotScheduleInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VolumeARN,StartAt,RecurrenceInHours" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateSnapshotScheduleOutput struct {
@@ -2455,14 +2455,14 @@ type metadataUpdateSnapshotScheduleOutput struct {
 }
 
 type UpdateVTLDeviceTypeInput struct {
-	DeviceType   *string `type:"string" json:",omitempty"`
-	VTLDeviceARN *string `type:"string" json:",omitempty"`
+	DeviceType   *string `type:"string" required:"true"json:",omitempty"`
+	VTLDeviceARN *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataUpdateVTLDeviceTypeInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateVTLDeviceTypeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"VTLDeviceARN,DeviceType" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
 type UpdateVTLDeviceTypeOutput struct {

@@ -33,11 +33,24 @@ func TestCreateDistribution(t *testing.T) {
 			Enabled:         aws.True(),
 			Comment:         aws.String("A comment"),
 			Origins:         &cloudfront.Origins{Quantity: aws.Integer(0)},
+			DefaultCacheBehavior: &cloudfront.DefaultCacheBehavior{
+				ForwardedValues: &cloudfront.ForwardedValues{
+					Cookies:     &cloudfront.CookiePreference{Forward: aws.String("cookie")},
+					QueryString: aws.Boolean(true),
+				},
+				TargetOriginID: aws.String("origin"),
+				TrustedSigners: &cloudfront.TrustedSigners{
+					Enabled:  aws.Boolean(true),
+					Quantity: aws.Integer(0),
+				},
+				ViewerProtocolPolicy: aws.String("policy"),
+				MinTTL:               aws.Long(0),
+			},
 		},
 	})
 
 	err := aws.Error(serr)
 	assert.NotNil(t, err)
 	assert.Equal(t, "MalformedXML", err.Code)
-	assertMatches(t, "2 validation errors detected", err.Message)
+	assertMatches(t, "3 validation errors detected", err.Message)
 }

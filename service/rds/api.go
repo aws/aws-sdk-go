@@ -1409,14 +1409,14 @@ func (c *RDS) RevokeDBSecurityGroupIngress(input *RevokeDBSecurityGroupIngressIn
 var opRevokeDBSecurityGroupIngress *aws.Operation
 
 type AddSourceIdentifierToSubscriptionInput struct {
-	SourceIdentifier *string `type:"string"`
-	SubscriptionName *string `type:"string"`
+	SourceIdentifier *string `type:"string" required:"true"`
+	SubscriptionName *string `type:"string" required:"true"`
 
 	metadataAddSourceIdentifierToSubscriptionInput `json:"-", xml:"-"`
 }
 
 type metadataAddSourceIdentifierToSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubscriptionName,SourceIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddSourceIdentifierToSubscriptionOutput struct {
@@ -1430,14 +1430,14 @@ type metadataAddSourceIdentifierToSubscriptionOutput struct {
 }
 
 type AddTagsToResourceInput struct {
-	ResourceName *string `type:"string"`
-	Tags         []*Tag  `locationNameList:"Tag" type:"list"`
+	ResourceName *string `type:"string" required:"true"`
+	Tags         []*Tag  `locationNameList:"Tag" type:"list" required:"true"`
 
 	metadataAddTagsToResourceInput `json:"-", xml:"-"`
 }
 
 type metadataAddTagsToResourceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceName,Tags"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddTagsToResourceOutput struct {
@@ -1449,15 +1449,15 @@ type metadataAddTagsToResourceOutput struct {
 }
 
 type ApplyPendingMaintenanceActionInput struct {
-	ApplyAction        *string `type:"string"`
-	OptInType          *string `type:"string"`
-	ResourceIdentifier *string `type:"string"`
+	ApplyAction        *string `type:"string" required:"true"`
+	OptInType          *string `type:"string" required:"true"`
+	ResourceIdentifier *string `type:"string" required:"true"`
 
 	metadataApplyPendingMaintenanceActionInput `json:"-", xml:"-"`
 }
 
 type metadataApplyPendingMaintenanceActionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceIdentifier,ApplyAction,OptInType"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ApplyPendingMaintenanceActionOutput struct {
@@ -1472,7 +1472,7 @@ type metadataApplyPendingMaintenanceActionOutput struct {
 
 type AuthorizeDBSecurityGroupIngressInput struct {
 	CIDRIP                  *string `type:"string"`
-	DBSecurityGroupName     *string `type:"string"`
+	DBSecurityGroupName     *string `type:"string" required:"true"`
 	EC2SecurityGroupID      *string `locationName:"EC2SecurityGroupId" type:"string"`
 	EC2SecurityGroupName    *string `type:"string"`
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
@@ -1481,7 +1481,7 @@ type AuthorizeDBSecurityGroupIngressInput struct {
 }
 
 type metadataAuthorizeDBSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBSecurityGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AuthorizeDBSecurityGroupIngressOutput struct {
@@ -1516,16 +1516,16 @@ type metadataCharacterSet struct {
 }
 
 type CopyDBParameterGroupInput struct {
-	SourceDBParameterGroupIdentifier  *string `type:"string"`
+	SourceDBParameterGroupIdentifier  *string `type:"string" required:"true"`
 	Tags                              []*Tag  `locationNameList:"Tag" type:"list"`
-	TargetDBParameterGroupDescription *string `type:"string"`
-	TargetDBParameterGroupIdentifier  *string `type:"string"`
+	TargetDBParameterGroupDescription *string `type:"string" required:"true"`
+	TargetDBParameterGroupIdentifier  *string `type:"string" required:"true"`
 
 	metadataCopyDBParameterGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCopyDBParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SourceDBParameterGroupIdentifier,TargetDBParameterGroupIdentifier,TargetDBParameterGroupDescription"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CopyDBParameterGroupOutput struct {
@@ -1539,15 +1539,15 @@ type metadataCopyDBParameterGroupOutput struct {
 }
 
 type CopyDBSnapshotInput struct {
-	SourceDBSnapshotIdentifier *string `type:"string"`
+	SourceDBSnapshotIdentifier *string `type:"string" required:"true"`
 	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
-	TargetDBSnapshotIdentifier *string `type:"string"`
+	TargetDBSnapshotIdentifier *string `type:"string" required:"true"`
 
 	metadataCopyDBSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataCopyDBSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SourceDBSnapshotIdentifier,TargetDBSnapshotIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CopyDBSnapshotOutput struct {
@@ -1561,16 +1561,16 @@ type metadataCopyDBSnapshotOutput struct {
 }
 
 type CopyOptionGroupInput struct {
-	SourceOptionGroupIdentifier  *string `type:"string"`
+	SourceOptionGroupIdentifier  *string `type:"string" required:"true"`
 	Tags                         []*Tag  `locationNameList:"Tag" type:"list"`
-	TargetOptionGroupDescription *string `type:"string"`
-	TargetOptionGroupIdentifier  *string `type:"string"`
+	TargetOptionGroupDescription *string `type:"string" required:"true"`
+	TargetOptionGroupIdentifier  *string `type:"string" required:"true"`
 
 	metadataCopyOptionGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCopyOptionGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SourceOptionGroupIdentifier,TargetOptionGroupIdentifier,TargetOptionGroupDescription"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CopyOptionGroupOutput struct {
@@ -1584,24 +1584,24 @@ type metadataCopyOptionGroupOutput struct {
 }
 
 type CreateDBInstanceInput struct {
-	AllocatedStorage           *int      `type:"integer"`
+	AllocatedStorage           *int      `type:"integer" required:"true"`
 	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
 	AvailabilityZone           *string   `type:"string"`
 	BackupRetentionPeriod      *int      `type:"integer"`
 	CharacterSetName           *string   `type:"string"`
-	DBInstanceClass            *string   `type:"string"`
-	DBInstanceIdentifier       *string   `type:"string"`
+	DBInstanceClass            *string   `type:"string" required:"true"`
+	DBInstanceIdentifier       *string   `type:"string" required:"true"`
 	DBName                     *string   `type:"string"`
 	DBParameterGroupName       *string   `type:"string"`
 	DBSecurityGroups           []*string `locationNameList:"DBSecurityGroupName" type:"list"`
 	DBSubnetGroupName          *string   `type:"string"`
-	Engine                     *string   `type:"string"`
+	Engine                     *string   `type:"string" required:"true"`
 	EngineVersion              *string   `type:"string"`
 	IOPS                       *int      `locationName:"Iops" type:"integer"`
 	KMSKeyID                   *string   `locationName:"KmsKeyId" type:"string"`
 	LicenseModel               *string   `type:"string"`
-	MasterUserPassword         *string   `type:"string"`
-	MasterUsername             *string   `type:"string"`
+	MasterUserPassword         *string   `type:"string" required:"true"`
+	MasterUsername             *string   `type:"string" required:"true"`
 	MultiAZ                    *bool     `type:"boolean"`
 	OptionGroupName            *string   `type:"string"`
 	Port                       *int      `type:"integer"`
@@ -1619,7 +1619,7 @@ type CreateDBInstanceInput struct {
 }
 
 type metadataCreateDBInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier,AllocatedStorage,DBInstanceClass,Engine,MasterUsername,MasterUserPassword"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBInstanceOutput struct {
@@ -1636,13 +1636,13 @@ type CreateDBInstanceReadReplicaInput struct {
 	AutoMinorVersionUpgrade    *bool   `type:"boolean"`
 	AvailabilityZone           *string `type:"string"`
 	DBInstanceClass            *string `type:"string"`
-	DBInstanceIdentifier       *string `type:"string"`
+	DBInstanceIdentifier       *string `type:"string" required:"true"`
 	DBSubnetGroupName          *string `type:"string"`
 	IOPS                       *int    `locationName:"Iops" type:"integer"`
 	OptionGroupName            *string `type:"string"`
 	Port                       *int    `type:"integer"`
 	PubliclyAccessible         *bool   `type:"boolean"`
-	SourceDBInstanceIdentifier *string `type:"string"`
+	SourceDBInstanceIdentifier *string `type:"string" required:"true"`
 	StorageType                *string `type:"string"`
 	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
 
@@ -1650,7 +1650,7 @@ type CreateDBInstanceReadReplicaInput struct {
 }
 
 type metadataCreateDBInstanceReadReplicaInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier,SourceDBInstanceIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBInstanceReadReplicaOutput struct {
@@ -1664,16 +1664,16 @@ type metadataCreateDBInstanceReadReplicaOutput struct {
 }
 
 type CreateDBParameterGroupInput struct {
-	DBParameterGroupFamily *string `type:"string"`
-	DBParameterGroupName   *string `type:"string"`
-	Description            *string `type:"string"`
+	DBParameterGroupFamily *string `type:"string" required:"true"`
+	DBParameterGroupName   *string `type:"string" required:"true"`
+	Description            *string `type:"string" required:"true"`
 	Tags                   []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataCreateDBParameterGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateDBParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName,DBParameterGroupFamily,Description"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBParameterGroupOutput struct {
@@ -1687,15 +1687,15 @@ type metadataCreateDBParameterGroupOutput struct {
 }
 
 type CreateDBSecurityGroupInput struct {
-	DBSecurityGroupDescription *string `type:"string"`
-	DBSecurityGroupName        *string `type:"string"`
+	DBSecurityGroupDescription *string `type:"string" required:"true"`
+	DBSecurityGroupName        *string `type:"string" required:"true"`
 	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataCreateDBSecurityGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateDBSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBSecurityGroupName,DBSecurityGroupDescription"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBSecurityGroupOutput struct {
@@ -1709,15 +1709,15 @@ type metadataCreateDBSecurityGroupOutput struct {
 }
 
 type CreateDBSnapshotInput struct {
-	DBInstanceIdentifier *string `type:"string"`
-	DBSnapshotIdentifier *string `type:"string"`
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+	DBSnapshotIdentifier *string `type:"string" required:"true"`
 	Tags                 []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataCreateDBSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataCreateDBSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBSnapshotIdentifier,DBInstanceIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBSnapshotOutput struct {
@@ -1731,16 +1731,16 @@ type metadataCreateDBSnapshotOutput struct {
 }
 
 type CreateDBSubnetGroupInput struct {
-	DBSubnetGroupDescription *string   `type:"string"`
-	DBSubnetGroupName        *string   `type:"string"`
-	SubnetIDs                []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
+	DBSubnetGroupDescription *string   `type:"string" required:"true"`
+	DBSubnetGroupName        *string   `type:"string" required:"true"`
+	SubnetIDs                []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 	Tags                     []*Tag    `locationNameList:"Tag" type:"list"`
 
 	metadataCreateDBSubnetGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateDBSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBSubnetGroupName,DBSubnetGroupDescription,SubnetIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDBSubnetGroupOutput struct {
@@ -1756,17 +1756,17 @@ type metadataCreateDBSubnetGroupOutput struct {
 type CreateEventSubscriptionInput struct {
 	Enabled          *bool     `type:"boolean"`
 	EventCategories  []*string `locationNameList:"EventCategory" type:"list"`
-	SNSTopicARN      *string   `locationName:"SnsTopicArn" type:"string"`
+	SNSTopicARN      *string   `locationName:"SnsTopicArn" type:"string" required:"true"`
 	SourceIDs        []*string `locationName:"SourceIds" locationNameList:"SourceId" type:"list"`
 	SourceType       *string   `type:"string"`
-	SubscriptionName *string   `type:"string"`
+	SubscriptionName *string   `type:"string" required:"true"`
 	Tags             []*Tag    `locationNameList:"Tag" type:"list"`
 
 	metadataCreateEventSubscriptionInput `json:"-", xml:"-"`
 }
 
 type metadataCreateEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubscriptionName,SnsTopicArn"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateEventSubscriptionOutput struct {
@@ -1780,17 +1780,17 @@ type metadataCreateEventSubscriptionOutput struct {
 }
 
 type CreateOptionGroupInput struct {
-	EngineName             *string `type:"string"`
-	MajorEngineVersion     *string `type:"string"`
-	OptionGroupDescription *string `type:"string"`
-	OptionGroupName        *string `type:"string"`
+	EngineName             *string `type:"string" required:"true"`
+	MajorEngineVersion     *string `type:"string" required:"true"`
+	OptionGroupDescription *string `type:"string" required:"true"`
+	OptionGroupName        *string `type:"string" required:"true"`
 	Tags                   []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataCreateOptionGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateOptionGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"OptionGroupName,EngineName,MajorEngineVersion,OptionGroupDescription"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateOptionGroupOutput struct {
@@ -1982,7 +1982,7 @@ type metadataDBSubnetGroup struct {
 }
 
 type DeleteDBInstanceInput struct {
-	DBInstanceIdentifier      *string `type:"string"`
+	DBInstanceIdentifier      *string `type:"string" required:"true"`
 	FinalDBSnapshotIdentifier *string `type:"string"`
 	SkipFinalSnapshot         *bool   `type:"boolean"`
 
@@ -1990,7 +1990,7 @@ type DeleteDBInstanceInput struct {
 }
 
 type metadataDeleteDBInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDBInstanceOutput struct {
@@ -2004,13 +2004,13 @@ type metadataDeleteDBInstanceOutput struct {
 }
 
 type DeleteDBParameterGroupInput struct {
-	DBParameterGroupName *string `type:"string"`
+	DBParameterGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteDBParameterGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDBParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDBParameterGroupOutput struct {
@@ -2022,13 +2022,13 @@ type metadataDeleteDBParameterGroupOutput struct {
 }
 
 type DeleteDBSecurityGroupInput struct {
-	DBSecurityGroupName *string `type:"string"`
+	DBSecurityGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteDBSecurityGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDBSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBSecurityGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDBSecurityGroupOutput struct {
@@ -2040,13 +2040,13 @@ type metadataDeleteDBSecurityGroupOutput struct {
 }
 
 type DeleteDBSnapshotInput struct {
-	DBSnapshotIdentifier *string `type:"string"`
+	DBSnapshotIdentifier *string `type:"string" required:"true"`
 
 	metadataDeleteDBSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDBSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBSnapshotIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDBSnapshotOutput struct {
@@ -2060,13 +2060,13 @@ type metadataDeleteDBSnapshotOutput struct {
 }
 
 type DeleteDBSubnetGroupInput struct {
-	DBSubnetGroupName *string `type:"string"`
+	DBSubnetGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteDBSubnetGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDBSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBSubnetGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDBSubnetGroupOutput struct {
@@ -2078,13 +2078,13 @@ type metadataDeleteDBSubnetGroupOutput struct {
 }
 
 type DeleteEventSubscriptionInput struct {
-	SubscriptionName *string `type:"string"`
+	SubscriptionName *string `type:"string" required:"true"`
 
 	metadataDeleteEventSubscriptionInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubscriptionName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteEventSubscriptionOutput struct {
@@ -2098,13 +2098,13 @@ type metadataDeleteEventSubscriptionOutput struct {
 }
 
 type DeleteOptionGroupInput struct {
-	OptionGroupName *string `type:"string"`
+	OptionGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteOptionGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteOptionGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"OptionGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteOptionGroupOutput struct {
@@ -2180,7 +2180,7 @@ type metadataDescribeDBLogFilesDetails struct {
 }
 
 type DescribeDBLogFilesInput struct {
-	DBInstanceIdentifier *string   `type:"string"`
+	DBInstanceIdentifier *string   `type:"string" required:"true"`
 	FileLastWritten      *int64    `type:"long"`
 	FileSize             *int64    `type:"long"`
 	FilenameContains     *string   `type:"string"`
@@ -2192,7 +2192,7 @@ type DescribeDBLogFilesInput struct {
 }
 
 type metadataDescribeDBLogFilesInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDBLogFilesOutput struct {
@@ -2231,7 +2231,7 @@ type metadataDescribeDBParameterGroupsOutput struct {
 }
 
 type DescribeDBParametersInput struct {
-	DBParameterGroupName *string   `type:"string"`
+	DBParameterGroupName *string   `type:"string" required:"true"`
 	Filters              []*Filter `locationNameList:"Filter" type:"list"`
 	Marker               *string   `type:"string"`
 	MaxRecords           *int      `type:"integer"`
@@ -2241,7 +2241,7 @@ type DescribeDBParametersInput struct {
 }
 
 type metadataDescribeDBParametersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDBParametersOutput struct {
@@ -2330,7 +2330,7 @@ type metadataDescribeDBSubnetGroupsOutput struct {
 }
 
 type DescribeEngineDefaultParametersInput struct {
-	DBParameterGroupFamily *string   `type:"string"`
+	DBParameterGroupFamily *string   `type:"string" required:"true"`
 	Filters                []*Filter `locationNameList:"Filter" type:"list"`
 	Marker                 *string   `type:"string"`
 	MaxRecords             *int      `type:"integer"`
@@ -2339,7 +2339,7 @@ type DescribeEngineDefaultParametersInput struct {
 }
 
 type metadataDescribeEngineDefaultParametersInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupFamily"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeEngineDefaultParametersOutput struct {
@@ -2427,7 +2427,7 @@ type metadataDescribeEventsOutput struct {
 }
 
 type DescribeOptionGroupOptionsInput struct {
-	EngineName         *string   `type:"string"`
+	EngineName         *string   `type:"string" required:"true"`
 	Filters            []*Filter `locationNameList:"Filter" type:"list"`
 	MajorEngineVersion *string   `type:"string"`
 	Marker             *string   `type:"string"`
@@ -2437,7 +2437,7 @@ type DescribeOptionGroupOptionsInput struct {
 }
 
 type metadataDescribeOptionGroupOptionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"EngineName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeOptionGroupOptionsOutput struct {
@@ -2479,7 +2479,7 @@ type metadataDescribeOptionGroupsOutput struct {
 
 type DescribeOrderableDBInstanceOptionsInput struct {
 	DBInstanceClass *string   `type:"string"`
-	Engine          *string   `type:"string"`
+	Engine          *string   `type:"string" required:"true"`
 	EngineVersion   *string   `type:"string"`
 	Filters         []*Filter `locationNameList:"Filter" type:"list"`
 	LicenseModel    *string   `type:"string"`
@@ -2491,7 +2491,7 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 }
 
 type metadataDescribeOrderableDBInstanceOptionsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Engine"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeOrderableDBInstanceOptionsOutput struct {
@@ -2589,8 +2589,8 @@ type metadataDescribeReservedDBInstancesOutput struct {
 }
 
 type DownloadDBLogFilePortionInput struct {
-	DBInstanceIdentifier *string `type:"string"`
-	LogFileName          *string `type:"string"`
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+	LogFileName          *string `type:"string" required:"true"`
 	Marker               *string `type:"string"`
 	NumberOfLines        *int    `type:"integer"`
 
@@ -2598,7 +2598,7 @@ type DownloadDBLogFilePortionInput struct {
 }
 
 type metadataDownloadDBLogFilePortionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier,LogFileName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DownloadDBLogFilePortionOutput struct {
@@ -2693,14 +2693,14 @@ type metadataEventSubscription struct {
 }
 
 type Filter struct {
-	Name   *string   `type:"string"`
-	Values []*string `locationNameList:"Value" type:"list"`
+	Name   *string   `type:"string" required:"true"`
+	Values []*string `locationNameList:"Value" type:"list" required:"true"`
 
 	metadataFilter `json:"-", xml:"-"`
 }
 
 type metadataFilter struct {
-	SDKShapeTraits bool `type:"structure" required:"Name,Values"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type IPRange struct {
@@ -2716,13 +2716,13 @@ type metadataIPRange struct {
 
 type ListTagsForResourceInput struct {
 	Filters      []*Filter `locationNameList:"Filter" type:"list"`
-	ResourceName *string   `type:"string"`
+	ResourceName *string   `type:"string" required:"true"`
 
 	metadataListTagsForResourceInput `json:"-", xml:"-"`
 }
 
 type metadataListTagsForResourceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListTagsForResourceOutput struct {
@@ -2742,7 +2742,7 @@ type ModifyDBInstanceInput struct {
 	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
 	BackupRetentionPeriod      *int      `type:"integer"`
 	DBInstanceClass            *string   `type:"string"`
-	DBInstanceIdentifier       *string   `type:"string"`
+	DBInstanceIdentifier       *string   `type:"string" required:"true"`
 	DBParameterGroupName       *string   `type:"string"`
 	DBSecurityGroups           []*string `locationNameList:"DBSecurityGroupName" type:"list"`
 	EngineVersion              *string   `type:"string"`
@@ -2762,7 +2762,7 @@ type ModifyDBInstanceInput struct {
 }
 
 type metadataModifyDBInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyDBInstanceOutput struct {
@@ -2776,26 +2776,26 @@ type metadataModifyDBInstanceOutput struct {
 }
 
 type ModifyDBParameterGroupInput struct {
-	DBParameterGroupName *string      `type:"string"`
-	Parameters           []*Parameter `locationNameList:"Parameter" type:"list"`
+	DBParameterGroupName *string      `type:"string" required:"true"`
+	Parameters           []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
 
 	metadataModifyDBParameterGroupInput `json:"-", xml:"-"`
 }
 
 type metadataModifyDBParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName,Parameters"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyDBSubnetGroupInput struct {
 	DBSubnetGroupDescription *string   `type:"string"`
-	DBSubnetGroupName        *string   `type:"string"`
-	SubnetIDs                []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
+	DBSubnetGroupName        *string   `type:"string" required:"true"`
+	SubnetIDs                []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	metadataModifyDBSubnetGroupInput `json:"-", xml:"-"`
 }
 
 type metadataModifyDBSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBSubnetGroupName,SubnetIds"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyDBSubnetGroupOutput struct {
@@ -2813,13 +2813,13 @@ type ModifyEventSubscriptionInput struct {
 	EventCategories  []*string `locationNameList:"EventCategory" type:"list"`
 	SNSTopicARN      *string   `locationName:"SnsTopicArn" type:"string"`
 	SourceType       *string   `type:"string"`
-	SubscriptionName *string   `type:"string"`
+	SubscriptionName *string   `type:"string" required:"true"`
 
 	metadataModifyEventSubscriptionInput `json:"-", xml:"-"`
 }
 
 type metadataModifyEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubscriptionName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyEventSubscriptionOutput struct {
@@ -2834,7 +2834,7 @@ type metadataModifyEventSubscriptionOutput struct {
 
 type ModifyOptionGroupInput struct {
 	ApplyImmediately *bool                  `type:"boolean"`
-	OptionGroupName  *string                `type:"string"`
+	OptionGroupName  *string                `type:"string" required:"true"`
 	OptionsToInclude []*OptionConfiguration `locationNameList:"OptionConfiguration" type:"list"`
 	OptionsToRemove  []*string              `type:"list"`
 
@@ -2842,7 +2842,7 @@ type ModifyOptionGroupInput struct {
 }
 
 type metadataModifyOptionGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"OptionGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyOptionGroupOutput struct {
@@ -2874,7 +2874,7 @@ type metadataOption struct {
 
 type OptionConfiguration struct {
 	DBSecurityGroupMemberships  []*string        `locationNameList:"DBSecurityGroupName" type:"list"`
-	OptionName                  *string          `type:"string"`
+	OptionName                  *string          `type:"string" required:"true"`
 	OptionSettings              []*OptionSetting `locationNameList:"OptionSetting" type:"list"`
 	Port                        *int             `type:"integer"`
 	VPCSecurityGroupMemberships []*string        `locationName:"VpcSecurityGroupMemberships" locationNameList:"VpcSecurityGroupId" type:"list"`
@@ -2883,7 +2883,7 @@ type OptionConfiguration struct {
 }
 
 type metadataOptionConfiguration struct {
-	SDKShapeTraits bool `type:"structure" required:"OptionName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OptionGroup struct {
@@ -3040,14 +3040,14 @@ type metadataPendingModifiedValues struct {
 
 type PromoteReadReplicaInput struct {
 	BackupRetentionPeriod *int    `type:"integer"`
-	DBInstanceIdentifier  *string `type:"string"`
+	DBInstanceIdentifier  *string `type:"string" required:"true"`
 	PreferredBackupWindow *string `type:"string"`
 
 	metadataPromoteReadReplicaInput `json:"-", xml:"-"`
 }
 
 type metadataPromoteReadReplicaInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PromoteReadReplicaOutput struct {
@@ -3063,14 +3063,14 @@ type metadataPromoteReadReplicaOutput struct {
 type PurchaseReservedDBInstancesOfferingInput struct {
 	DBInstanceCount               *int    `type:"integer"`
 	ReservedDBInstanceID          *string `locationName:"ReservedDBInstanceId" type:"string"`
-	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string" required:"true"`
 	Tags                          []*Tag  `locationNameList:"Tag" type:"list"`
 
 	metadataPurchaseReservedDBInstancesOfferingInput `json:"-", xml:"-"`
 }
 
 type metadataPurchaseReservedDBInstancesOfferingInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ReservedDBInstancesOfferingId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PurchaseReservedDBInstancesOfferingOutput struct {
@@ -3084,14 +3084,14 @@ type metadataPurchaseReservedDBInstancesOfferingOutput struct {
 }
 
 type RebootDBInstanceInput struct {
-	DBInstanceIdentifier *string `type:"string"`
+	DBInstanceIdentifier *string `type:"string" required:"true"`
 	ForceFailover        *bool   `type:"boolean"`
 
 	metadataRebootDBInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataRebootDBInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RebootDBInstanceOutput struct {
@@ -3116,14 +3116,14 @@ type metadataRecurringCharge struct {
 }
 
 type RemoveSourceIdentifierFromSubscriptionInput struct {
-	SourceIdentifier *string `type:"string"`
-	SubscriptionName *string `type:"string"`
+	SourceIdentifier *string `type:"string" required:"true"`
+	SubscriptionName *string `type:"string" required:"true"`
 
 	metadataRemoveSourceIdentifierFromSubscriptionInput `json:"-", xml:"-"`
 }
 
 type metadataRemoveSourceIdentifierFromSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SubscriptionName,SourceIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveSourceIdentifierFromSubscriptionOutput struct {
@@ -3137,14 +3137,14 @@ type metadataRemoveSourceIdentifierFromSubscriptionOutput struct {
 }
 
 type RemoveTagsFromResourceInput struct {
-	ResourceName *string   `type:"string"`
-	TagKeys      []*string `type:"list"`
+	ResourceName *string   `type:"string" required:"true"`
+	TagKeys      []*string `type:"list" required:"true"`
 
 	metadataRemoveTagsFromResourceInput `json:"-", xml:"-"`
 }
 
 type metadataRemoveTagsFromResourceInput struct {
-	SDKShapeTraits bool `type:"structure" required:"ResourceName,TagKeys"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveTagsFromResourceOutput struct {
@@ -3198,7 +3198,7 @@ type metadataReservedDBInstancesOffering struct {
 }
 
 type ResetDBParameterGroupInput struct {
-	DBParameterGroupName *string      `type:"string"`
+	DBParameterGroupName *string      `type:"string" required:"true"`
 	Parameters           []*Parameter `locationNameList:"Parameter" type:"list"`
 	ResetAllParameters   *bool        `type:"boolean"`
 
@@ -3206,7 +3206,7 @@ type ResetDBParameterGroupInput struct {
 }
 
 type metadataResetDBParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBParameterGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ResourcePendingMaintenanceActions struct {
@@ -3224,9 +3224,9 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	AutoMinorVersionUpgrade *bool   `type:"boolean"`
 	AvailabilityZone        *string `type:"string"`
 	DBInstanceClass         *string `type:"string"`
-	DBInstanceIdentifier    *string `type:"string"`
+	DBInstanceIdentifier    *string `type:"string" required:"true"`
 	DBName                  *string `type:"string"`
-	DBSnapshotIdentifier    *string `type:"string"`
+	DBSnapshotIdentifier    *string `type:"string" required:"true"`
 	DBSubnetGroupName       *string `type:"string"`
 	Engine                  *string `type:"string"`
 	IOPS                    *int    `locationName:"Iops" type:"integer"`
@@ -3244,7 +3244,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 }
 
 type metadataRestoreDBInstanceFromDBSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBInstanceIdentifier,DBSnapshotIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RestoreDBInstanceFromDBSnapshotOutput struct {
@@ -3271,19 +3271,19 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	Port                       *int       `type:"integer"`
 	PubliclyAccessible         *bool      `type:"boolean"`
 	RestoreTime                *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	SourceDBInstanceIdentifier *string    `type:"string"`
+	SourceDBInstanceIdentifier *string    `type:"string" required:"true"`
 	StorageType                *string    `type:"string"`
 	TDECredentialARN           *string    `locationName:"TdeCredentialArn" type:"string"`
 	TDECredentialPassword      *string    `locationName:"TdeCredentialPassword" type:"string"`
 	Tags                       []*Tag     `locationNameList:"Tag" type:"list"`
-	TargetDBInstanceIdentifier *string    `type:"string"`
+	TargetDBInstanceIdentifier *string    `type:"string" required:"true"`
 	UseLatestRestorableTime    *bool      `type:"boolean"`
 
 	metadataRestoreDBInstanceToPointInTimeInput `json:"-", xml:"-"`
 }
 
 type metadataRestoreDBInstanceToPointInTimeInput struct {
-	SDKShapeTraits bool `type:"structure" required:"SourceDBInstanceIdentifier,TargetDBInstanceIdentifier"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RestoreDBInstanceToPointInTimeOutput struct {
@@ -3298,7 +3298,7 @@ type metadataRestoreDBInstanceToPointInTimeOutput struct {
 
 type RevokeDBSecurityGroupIngressInput struct {
 	CIDRIP                  *string `type:"string"`
-	DBSecurityGroupName     *string `type:"string"`
+	DBSecurityGroupName     *string `type:"string" required:"true"`
 	EC2SecurityGroupID      *string `locationName:"EC2SecurityGroupId" type:"string"`
 	EC2SecurityGroupName    *string `type:"string"`
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
@@ -3307,7 +3307,7 @@ type RevokeDBSecurityGroupIngressInput struct {
 }
 
 type metadataRevokeDBSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DBSecurityGroupName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RevokeDBSecurityGroupIngressOutput struct {

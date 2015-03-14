@@ -534,159 +534,159 @@ func (c *CloudFront) UpdateStreamingDistribution(input *UpdateStreamingDistribut
 var opUpdateStreamingDistribution *aws.Operation
 
 type ActiveTrustedSigners struct {
-	Enabled  *bool     `type:"boolean"`
+	Enabled  *bool     `type:"boolean" required:"true"`
 	Items    []*Signer `locationNameList:"Signer" type:"list"`
-	Quantity *int      `type:"integer"`
+	Quantity *int      `type:"integer" required:"true"`
 
 	metadataActiveTrustedSigners `json:"-", xml:"-"`
 }
 
 type metadataActiveTrustedSigners struct {
-	SDKShapeTraits bool `type:"structure" required:"Enabled,Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Aliases struct {
 	Items    []*string `locationNameList:"CNAME" type:"list"`
-	Quantity *int      `type:"integer"`
+	Quantity *int      `type:"integer" required:"true"`
 
 	metadataAliases `json:"-", xml:"-"`
 }
 
 type metadataAliases struct {
-	SDKShapeTraits bool `type:"structure" required:"Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AllowedMethods struct {
 	CachedMethods *CachedMethods `type:"structure"`
-	Items         []*string      `locationNameList:"Method" type:"list"`
-	Quantity      *int           `type:"integer"`
+	Items         []*string      `locationNameList:"Method" type:"list" required:"true"`
+	Quantity      *int           `type:"integer" required:"true"`
 
 	metadataAllowedMethods `json:"-", xml:"-"`
 }
 
 type metadataAllowedMethods struct {
-	SDKShapeTraits bool `type:"structure" required:"Quantity,Items"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CacheBehavior struct {
 	AllowedMethods       *AllowedMethods  `type:"structure"`
-	ForwardedValues      *ForwardedValues `type:"structure"`
-	MinTTL               *int64           `type:"long"`
-	PathPattern          *string          `type:"string"`
+	ForwardedValues      *ForwardedValues `type:"structure" required:"true"`
+	MinTTL               *int64           `type:"long" required:"true"`
+	PathPattern          *string          `type:"string" required:"true"`
 	SmoothStreaming      *bool            `type:"boolean"`
-	TargetOriginID       *string          `locationName:"TargetOriginId" type:"string"`
-	TrustedSigners       *TrustedSigners  `type:"structure"`
-	ViewerProtocolPolicy *string          `type:"string"`
+	TargetOriginID       *string          `locationName:"TargetOriginId" type:"string" required:"true"`
+	TrustedSigners       *TrustedSigners  `type:"structure" required:"true"`
+	ViewerProtocolPolicy *string          `type:"string" required:"true"`
 
 	metadataCacheBehavior `json:"-", xml:"-"`
 }
 
 type metadataCacheBehavior struct {
-	SDKShapeTraits bool `type:"structure" required:"PathPattern,TargetOriginId,ForwardedValues,TrustedSigners,ViewerProtocolPolicy,MinTTL"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CacheBehaviors struct {
 	Items    []*CacheBehavior `locationNameList:"CacheBehavior" type:"list"`
-	Quantity *int             `type:"integer"`
+	Quantity *int             `type:"integer" required:"true"`
 
 	metadataCacheBehaviors `json:"-", xml:"-"`
 }
 
 type metadataCacheBehaviors struct {
-	SDKShapeTraits bool `type:"structure" required:"Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CachedMethods struct {
-	Items    []*string `locationNameList:"Method" type:"list"`
-	Quantity *int      `type:"integer"`
+	Items    []*string `locationNameList:"Method" type:"list" required:"true"`
+	Quantity *int      `type:"integer" required:"true"`
 
 	metadataCachedMethods `json:"-", xml:"-"`
 }
 
 type metadataCachedMethods struct {
-	SDKShapeTraits bool `type:"structure" required:"Quantity,Items"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CloudFrontOriginAccessIdentity struct {
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `type:"structure"`
-	ID                                   *string                               `locationName:"Id" type:"string"`
-	S3CanonicalUserID                    *string                               `locationName:"S3CanonicalUserId" type:"string"`
+	ID                                   *string                               `locationName:"Id" type:"string" required:"true"`
+	S3CanonicalUserID                    *string                               `locationName:"S3CanonicalUserId" type:"string" required:"true"`
 
 	metadataCloudFrontOriginAccessIdentity `json:"-", xml:"-"`
 }
 
 type metadataCloudFrontOriginAccessIdentity struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,S3CanonicalUserId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CloudFrontOriginAccessIdentityConfig struct {
-	CallerReference *string `type:"string"`
-	Comment         *string `type:"string"`
+	CallerReference *string `type:"string" required:"true"`
+	Comment         *string `type:"string" required:"true"`
 
 	metadataCloudFrontOriginAccessIdentityConfig `json:"-", xml:"-"`
 }
 
 type metadataCloudFrontOriginAccessIdentityConfig struct {
-	SDKShapeTraits bool `type:"structure" required:"CallerReference,Comment"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CloudFrontOriginAccessIdentityList struct {
-	IsTruncated *bool                                    `type:"boolean"`
+	IsTruncated *bool                                    `type:"boolean" required:"true"`
 	Items       []*CloudFrontOriginAccessIdentitySummary `locationNameList:"CloudFrontOriginAccessIdentitySummary" type:"list"`
-	Marker      *string                                  `type:"string"`
-	MaxItems    *int                                     `type:"integer"`
+	Marker      *string                                  `type:"string" required:"true"`
+	MaxItems    *int                                     `type:"integer" required:"true"`
 	NextMarker  *string                                  `type:"string"`
-	Quantity    *int                                     `type:"integer"`
+	Quantity    *int                                     `type:"integer" required:"true"`
 
 	metadataCloudFrontOriginAccessIdentityList `json:"-", xml:"-"`
 }
 
 type metadataCloudFrontOriginAccessIdentityList struct {
-	SDKShapeTraits bool `type:"structure" required:"Marker,MaxItems,IsTruncated,Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CloudFrontOriginAccessIdentitySummary struct {
-	Comment           *string `type:"string"`
-	ID                *string `locationName:"Id" type:"string"`
-	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string"`
+	Comment           *string `type:"string" required:"true"`
+	ID                *string `locationName:"Id" type:"string" required:"true"`
+	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
 
 	metadataCloudFrontOriginAccessIdentitySummary `json:"-", xml:"-"`
 }
 
 type metadataCloudFrontOriginAccessIdentitySummary struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,S3CanonicalUserId,Comment"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CookieNames struct {
 	Items    []*string `locationNameList:"Name" type:"list"`
-	Quantity *int      `type:"integer"`
+	Quantity *int      `type:"integer" required:"true"`
 
 	metadataCookieNames `json:"-", xml:"-"`
 }
 
 type metadataCookieNames struct {
-	SDKShapeTraits bool `type:"structure" required:"Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CookiePreference struct {
-	Forward          *string      `type:"string"`
+	Forward          *string      `type:"string" required:"true"`
 	WhitelistedNames *CookieNames `type:"structure"`
 
 	metadataCookiePreference `json:"-", xml:"-"`
 }
 
 type metadataCookiePreference struct {
-	SDKShapeTraits bool `type:"structure" required:"Forward"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateCloudFrontOriginAccessIdentityInput struct {
-	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure"`
+	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
 
 	metadataCreateCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataCreateCloudFrontOriginAccessIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig" required:"CloudFrontOriginAccessIdentityConfig"`
+	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
 }
 
 type CreateCloudFrontOriginAccessIdentityOutput struct {
@@ -702,13 +702,13 @@ type metadataCreateCloudFrontOriginAccessIdentityOutput struct {
 }
 
 type CreateDistributionInput struct {
-	DistributionConfig *DistributionConfig `locationName:"DistributionConfig" type:"structure"`
+	DistributionConfig *DistributionConfig `locationName:"DistributionConfig" type:"structure" required:"true"`
 
 	metadataCreateDistributionInput `json:"-", xml:"-"`
 }
 
 type metadataCreateDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig" required:"DistributionConfig"`
+	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig"`
 }
 
 type CreateDistributionOutput struct {
@@ -724,14 +724,14 @@ type metadataCreateDistributionOutput struct {
 }
 
 type CreateInvalidationInput struct {
-	DistributionID    *string            `location:"uri" locationName:"DistributionId" type:"string" json:"-" xml:"-"`
-	InvalidationBatch *InvalidationBatch `locationName:"InvalidationBatch" type:"structure"`
+	DistributionID    *string            `location:"uri" locationName:"DistributionId" type:"string" required:"true"json:"-" xml:"-"`
+	InvalidationBatch *InvalidationBatch `locationName:"InvalidationBatch" type:"structure" required:"true"`
 
 	metadataCreateInvalidationInput `json:"-", xml:"-"`
 }
 
 type metadataCreateInvalidationInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"InvalidationBatch" required:"DistributionId,InvalidationBatch"`
+	SDKShapeTraits bool `type:"structure" payload:"InvalidationBatch"`
 }
 
 type CreateInvalidationOutput struct {
@@ -746,13 +746,13 @@ type metadataCreateInvalidationOutput struct {
 }
 
 type CreateStreamingDistributionInput struct {
-	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure"`
+	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure" required:"true"`
 
 	metadataCreateStreamingDistributionInput `json:"-", xml:"-"`
 }
 
 type metadataCreateStreamingDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig" required:"StreamingDistributionConfig"`
+	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig"`
 }
 
 type CreateStreamingDistributionOutput struct {
@@ -769,7 +769,7 @@ type metadataCreateStreamingDistributionOutput struct {
 
 type CustomErrorResponse struct {
 	ErrorCachingMinTTL *int64  `type:"long"`
-	ErrorCode          *int    `type:"integer"`
+	ErrorCode          *int    `type:"integer" required:"true"`
 	ResponseCode       *string `type:"string"`
 	ResponsePagePath   *string `type:"string"`
 
@@ -777,57 +777,57 @@ type CustomErrorResponse struct {
 }
 
 type metadataCustomErrorResponse struct {
-	SDKShapeTraits bool `type:"structure" required:"ErrorCode"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CustomErrorResponses struct {
 	Items    []*CustomErrorResponse `locationNameList:"CustomErrorResponse" type:"list"`
-	Quantity *int                   `type:"integer"`
+	Quantity *int                   `type:"integer" required:"true"`
 
 	metadataCustomErrorResponses `json:"-", xml:"-"`
 }
 
 type metadataCustomErrorResponses struct {
-	SDKShapeTraits bool `type:"structure" required:"Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CustomOriginConfig struct {
-	HTTPPort             *int    `type:"integer"`
-	HTTPSPort            *int    `type:"integer"`
-	OriginProtocolPolicy *string `type:"string"`
+	HTTPPort             *int    `type:"integer" required:"true"`
+	HTTPSPort            *int    `type:"integer" required:"true"`
+	OriginProtocolPolicy *string `type:"string" required:"true"`
 
 	metadataCustomOriginConfig `json:"-", xml:"-"`
 }
 
 type metadataCustomOriginConfig struct {
-	SDKShapeTraits bool `type:"structure" required:"HTTPPort,HTTPSPort,OriginProtocolPolicy"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DefaultCacheBehavior struct {
 	AllowedMethods       *AllowedMethods  `type:"structure"`
-	ForwardedValues      *ForwardedValues `type:"structure"`
-	MinTTL               *int64           `type:"long"`
+	ForwardedValues      *ForwardedValues `type:"structure" required:"true"`
+	MinTTL               *int64           `type:"long" required:"true"`
 	SmoothStreaming      *bool            `type:"boolean"`
-	TargetOriginID       *string          `locationName:"TargetOriginId" type:"string"`
-	TrustedSigners       *TrustedSigners  `type:"structure"`
-	ViewerProtocolPolicy *string          `type:"string"`
+	TargetOriginID       *string          `locationName:"TargetOriginId" type:"string" required:"true"`
+	TrustedSigners       *TrustedSigners  `type:"structure" required:"true"`
+	ViewerProtocolPolicy *string          `type:"string" required:"true"`
 
 	metadataDefaultCacheBehavior `json:"-", xml:"-"`
 }
 
 type metadataDefaultCacheBehavior struct {
-	SDKShapeTraits bool `type:"structure" required:"TargetOriginId,ForwardedValues,TrustedSigners,ViewerProtocolPolicy,MinTTL"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteCloudFrontOriginAccessIdentityInput struct {
-	ID      *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
 
 	metadataDeleteCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteCloudFrontOriginAccessIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteCloudFrontOriginAccessIdentityOutput struct {
@@ -839,14 +839,14 @@ type metadataDeleteCloudFrontOriginAccessIdentityOutput struct {
 }
 
 type DeleteDistributionInput struct {
-	ID      *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
 
 	metadataDeleteDistributionInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDistributionOutput struct {
@@ -858,14 +858,14 @@ type metadataDeleteDistributionOutput struct {
 }
 
 type DeleteStreamingDistributionInput struct {
-	ID      *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
 
 	metadataDeleteStreamingDistributionInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteStreamingDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteStreamingDistributionOutput struct {
@@ -877,32 +877,32 @@ type metadataDeleteStreamingDistributionOutput struct {
 }
 
 type Distribution struct {
-	ActiveTrustedSigners          *ActiveTrustedSigners `type:"structure"`
-	DistributionConfig            *DistributionConfig   `type:"structure"`
-	DomainName                    *string               `type:"string"`
-	ID                            *string               `locationName:"Id" type:"string"`
-	InProgressInvalidationBatches *int                  `type:"integer"`
-	LastModifiedTime              *time.Time            `type:"timestamp" timestampFormat:"iso8601"`
-	Status                        *string               `type:"string"`
+	ActiveTrustedSigners          *ActiveTrustedSigners `type:"structure" required:"true"`
+	DistributionConfig            *DistributionConfig   `type:"structure" required:"true"`
+	DomainName                    *string               `type:"string" required:"true"`
+	ID                            *string               `locationName:"Id" type:"string" required:"true"`
+	InProgressInvalidationBatches *int                  `type:"integer" required:"true"`
+	LastModifiedTime              *time.Time            `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	Status                        *string               `type:"string" required:"true"`
 
 	metadataDistribution `json:"-", xml:"-"`
 }
 
 type metadataDistribution struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,Status,LastModifiedTime,InProgressInvalidationBatches,DomainName,ActiveTrustedSigners,DistributionConfig"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DistributionConfig struct {
 	Aliases              *Aliases              `type:"structure"`
 	CacheBehaviors       *CacheBehaviors       `type:"structure"`
-	CallerReference      *string               `type:"string"`
-	Comment              *string               `type:"string"`
+	CallerReference      *string               `type:"string" required:"true"`
+	Comment              *string               `type:"string" required:"true"`
 	CustomErrorResponses *CustomErrorResponses `type:"structure"`
-	DefaultCacheBehavior *DefaultCacheBehavior `type:"structure"`
+	DefaultCacheBehavior *DefaultCacheBehavior `type:"structure" required:"true"`
 	DefaultRootObject    *string               `type:"string"`
-	Enabled              *bool                 `type:"boolean"`
+	Enabled              *bool                 `type:"boolean" required:"true"`
 	Logging              *LoggingConfig        `type:"structure"`
-	Origins              *Origins              `type:"structure"`
+	Origins              *Origins              `type:"structure" required:"true"`
 	PriceClass           *string               `type:"string"`
 	Restrictions         *Restrictions         `type:"structure"`
 	ViewerCertificate    *ViewerCertificate    `type:"structure"`
@@ -911,79 +911,79 @@ type DistributionConfig struct {
 }
 
 type metadataDistributionConfig struct {
-	SDKShapeTraits bool `type:"structure" required:"CallerReference,Origins,DefaultCacheBehavior,Comment,Enabled"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DistributionList struct {
-	IsTruncated *bool                  `type:"boolean"`
+	IsTruncated *bool                  `type:"boolean" required:"true"`
 	Items       []*DistributionSummary `locationNameList:"DistributionSummary" type:"list"`
-	Marker      *string                `type:"string"`
-	MaxItems    *int                   `type:"integer"`
+	Marker      *string                `type:"string" required:"true"`
+	MaxItems    *int                   `type:"integer" required:"true"`
 	NextMarker  *string                `type:"string"`
-	Quantity    *int                   `type:"integer"`
+	Quantity    *int                   `type:"integer" required:"true"`
 
 	metadataDistributionList `json:"-", xml:"-"`
 }
 
 type metadataDistributionList struct {
-	SDKShapeTraits bool `type:"structure" required:"Marker,MaxItems,IsTruncated,Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DistributionSummary struct {
-	Aliases              *Aliases              `type:"structure"`
-	CacheBehaviors       *CacheBehaviors       `type:"structure"`
-	Comment              *string               `type:"string"`
-	CustomErrorResponses *CustomErrorResponses `type:"structure"`
-	DefaultCacheBehavior *DefaultCacheBehavior `type:"structure"`
-	DomainName           *string               `type:"string"`
-	Enabled              *bool                 `type:"boolean"`
-	ID                   *string               `locationName:"Id" type:"string"`
-	LastModifiedTime     *time.Time            `type:"timestamp" timestampFormat:"iso8601"`
-	Origins              *Origins              `type:"structure"`
-	PriceClass           *string               `type:"string"`
-	Restrictions         *Restrictions         `type:"structure"`
-	Status               *string               `type:"string"`
-	ViewerCertificate    *ViewerCertificate    `type:"structure"`
+	Aliases              *Aliases              `type:"structure" required:"true"`
+	CacheBehaviors       *CacheBehaviors       `type:"structure" required:"true"`
+	Comment              *string               `type:"string" required:"true"`
+	CustomErrorResponses *CustomErrorResponses `type:"structure" required:"true"`
+	DefaultCacheBehavior *DefaultCacheBehavior `type:"structure" required:"true"`
+	DomainName           *string               `type:"string" required:"true"`
+	Enabled              *bool                 `type:"boolean" required:"true"`
+	ID                   *string               `locationName:"Id" type:"string" required:"true"`
+	LastModifiedTime     *time.Time            `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	Origins              *Origins              `type:"structure" required:"true"`
+	PriceClass           *string               `type:"string" required:"true"`
+	Restrictions         *Restrictions         `type:"structure" required:"true"`
+	Status               *string               `type:"string" required:"true"`
+	ViewerCertificate    *ViewerCertificate    `type:"structure" required:"true"`
 
 	metadataDistributionSummary `json:"-", xml:"-"`
 }
 
 type metadataDistributionSummary struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,Status,LastModifiedTime,DomainName,Aliases,Origins,DefaultCacheBehavior,CacheBehaviors,CustomErrorResponses,Comment,PriceClass,Enabled,ViewerCertificate,Restrictions"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ForwardedValues struct {
-	Cookies     *CookiePreference `type:"structure"`
+	Cookies     *CookiePreference `type:"structure" required:"true"`
 	Headers     *Headers          `type:"structure"`
-	QueryString *bool             `type:"boolean"`
+	QueryString *bool             `type:"boolean" required:"true"`
 
 	metadataForwardedValues `json:"-", xml:"-"`
 }
 
 type metadataForwardedValues struct {
-	SDKShapeTraits bool `type:"structure" required:"QueryString,Cookies"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GeoRestriction struct {
 	Items           []*string `locationNameList:"Location" type:"list"`
-	Quantity        *int      `type:"integer"`
-	RestrictionType *string   `type:"string"`
+	Quantity        *int      `type:"integer" required:"true"`
+	RestrictionType *string   `type:"string" required:"true"`
 
 	metadataGeoRestriction `json:"-", xml:"-"`
 }
 
 type metadataGeoRestriction struct {
-	SDKShapeTraits bool `type:"structure" required:"RestrictionType,Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetCloudFrontOriginAccessIdentityConfigInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetCloudFrontOriginAccessIdentityConfigInput `json:"-", xml:"-"`
 }
 
 type metadataGetCloudFrontOriginAccessIdentityConfigInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetCloudFrontOriginAccessIdentityConfigOutput struct {
@@ -998,13 +998,13 @@ type metadataGetCloudFrontOriginAccessIdentityConfigOutput struct {
 }
 
 type GetCloudFrontOriginAccessIdentityInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataGetCloudFrontOriginAccessIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetCloudFrontOriginAccessIdentityOutput struct {
@@ -1019,13 +1019,13 @@ type metadataGetCloudFrontOriginAccessIdentityOutput struct {
 }
 
 type GetDistributionConfigInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetDistributionConfigInput `json:"-", xml:"-"`
 }
 
 type metadataGetDistributionConfigInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetDistributionConfigOutput struct {
@@ -1040,13 +1040,13 @@ type metadataGetDistributionConfigOutput struct {
 }
 
 type GetDistributionInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetDistributionInput `json:"-", xml:"-"`
 }
 
 type metadataGetDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetDistributionOutput struct {
@@ -1061,14 +1061,14 @@ type metadataGetDistributionOutput struct {
 }
 
 type GetInvalidationInput struct {
-	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" json:"-" xml:"-"`
-	ID             *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"json:"-" xml:"-"`
+	ID             *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetInvalidationInput `json:"-", xml:"-"`
 }
 
 type metadataGetInvalidationInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DistributionId,Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetInvalidationOutput struct {
@@ -1082,13 +1082,13 @@ type metadataGetInvalidationOutput struct {
 }
 
 type GetStreamingDistributionConfigInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetStreamingDistributionConfigInput `json:"-", xml:"-"`
 }
 
 type metadataGetStreamingDistributionConfigInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetStreamingDistributionConfigOutput struct {
@@ -1103,13 +1103,13 @@ type metadataGetStreamingDistributionConfigOutput struct {
 }
 
 type GetStreamingDistributionInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataGetStreamingDistributionInput `json:"-", xml:"-"`
 }
 
 type metadataGetStreamingDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" required:"Id"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetStreamingDistributionOutput struct {
@@ -1125,75 +1125,75 @@ type metadataGetStreamingDistributionOutput struct {
 
 type Headers struct {
 	Items    []*string `locationNameList:"Name" type:"list"`
-	Quantity *int      `type:"integer"`
+	Quantity *int      `type:"integer" required:"true"`
 
 	metadataHeaders `json:"-", xml:"-"`
 }
 
 type metadataHeaders struct {
-	SDKShapeTraits bool `type:"structure" required:"Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Invalidation struct {
-	CreateTime        *time.Time         `type:"timestamp" timestampFormat:"iso8601"`
-	ID                *string            `locationName:"Id" type:"string"`
-	InvalidationBatch *InvalidationBatch `type:"structure"`
-	Status            *string            `type:"string"`
+	CreateTime        *time.Time         `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	ID                *string            `locationName:"Id" type:"string" required:"true"`
+	InvalidationBatch *InvalidationBatch `type:"structure" required:"true"`
+	Status            *string            `type:"string" required:"true"`
 
 	metadataInvalidation `json:"-", xml:"-"`
 }
 
 type metadataInvalidation struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,Status,CreateTime,InvalidationBatch"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InvalidationBatch struct {
-	CallerReference *string `type:"string"`
-	Paths           *Paths  `type:"structure"`
+	CallerReference *string `type:"string" required:"true"`
+	Paths           *Paths  `type:"structure" required:"true"`
 
 	metadataInvalidationBatch `json:"-", xml:"-"`
 }
 
 type metadataInvalidationBatch struct {
-	SDKShapeTraits bool `type:"structure" required:"Paths,CallerReference"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InvalidationList struct {
-	IsTruncated *bool                  `type:"boolean"`
+	IsTruncated *bool                  `type:"boolean" required:"true"`
 	Items       []*InvalidationSummary `locationNameList:"InvalidationSummary" type:"list"`
-	Marker      *string                `type:"string"`
-	MaxItems    *int                   `type:"integer"`
+	Marker      *string                `type:"string" required:"true"`
+	MaxItems    *int                   `type:"integer" required:"true"`
 	NextMarker  *string                `type:"string"`
-	Quantity    *int                   `type:"integer"`
+	Quantity    *int                   `type:"integer" required:"true"`
 
 	metadataInvalidationList `json:"-", xml:"-"`
 }
 
 type metadataInvalidationList struct {
-	SDKShapeTraits bool `type:"structure" required:"Marker,MaxItems,IsTruncated,Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InvalidationSummary struct {
-	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	ID         *string    `locationName:"Id" type:"string"`
-	Status     *string    `type:"string"`
+	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	ID         *string    `locationName:"Id" type:"string" required:"true"`
+	Status     *string    `type:"string" required:"true"`
 
 	metadataInvalidationSummary `json:"-", xml:"-"`
 }
 
 type metadataInvalidationSummary struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,CreateTime,Status"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type KeyPairIDs struct {
 	Items    []*string `locationNameList:"KeyPairId" type:"list"`
-	Quantity *int      `type:"integer"`
+	Quantity *int      `type:"integer" required:"true"`
 
 	metadataKeyPairIDs `json:"-", xml:"-"`
 }
 
 type metadataKeyPairIDs struct {
-	SDKShapeTraits bool `type:"structure" required:"Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListCloudFrontOriginAccessIdentitiesInput struct {
@@ -1239,7 +1239,7 @@ type metadataListDistributionsOutput struct {
 }
 
 type ListInvalidationsInput struct {
-	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" json:"-" xml:"-"`
+	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"json:"-" xml:"-"`
 	Marker         *string `location:"querystring" locationName:"Marker" type:"string" json:"-" xml:"-"`
 	MaxItems       *string `location:"querystring" locationName:"MaxItems" type:"string" json:"-" xml:"-"`
 
@@ -1247,7 +1247,7 @@ type ListInvalidationsInput struct {
 }
 
 type metadataListInvalidationsInput struct {
-	SDKShapeTraits bool `type:"structure" required:"DistributionId"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListInvalidationsOutput struct {
@@ -1282,22 +1282,22 @@ type metadataListStreamingDistributionsOutput struct {
 }
 
 type LoggingConfig struct {
-	Bucket         *string `type:"string"`
-	Enabled        *bool   `type:"boolean"`
-	IncludeCookies *bool   `type:"boolean"`
-	Prefix         *string `type:"string"`
+	Bucket         *string `type:"string" required:"true"`
+	Enabled        *bool   `type:"boolean" required:"true"`
+	IncludeCookies *bool   `type:"boolean" required:"true"`
+	Prefix         *string `type:"string" required:"true"`
 
 	metadataLoggingConfig `json:"-", xml:"-"`
 }
 
 type metadataLoggingConfig struct {
-	SDKShapeTraits bool `type:"structure" required:"Enabled,IncludeCookies,Bucket,Prefix"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Origin struct {
 	CustomOriginConfig *CustomOriginConfig `type:"structure"`
-	DomainName         *string             `type:"string"`
-	ID                 *string             `locationName:"Id" type:"string"`
+	DomainName         *string             `type:"string" required:"true"`
+	ID                 *string             `locationName:"Id" type:"string" required:"true"`
 	OriginPath         *string             `type:"string"`
 	S3OriginConfig     *S3OriginConfig     `type:"structure"`
 
@@ -1305,60 +1305,60 @@ type Origin struct {
 }
 
 type metadataOrigin struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,DomainName"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Origins struct {
 	Items    []*Origin `locationNameList:"Origin" type:"list"`
-	Quantity *int      `type:"integer"`
+	Quantity *int      `type:"integer" required:"true"`
 
 	metadataOrigins `json:"-", xml:"-"`
 }
 
 type metadataOrigins struct {
-	SDKShapeTraits bool `type:"structure" required:"Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Paths struct {
 	Items    []*string `locationNameList:"Path" type:"list"`
-	Quantity *int      `type:"integer"`
+	Quantity *int      `type:"integer" required:"true"`
 
 	metadataPaths `json:"-", xml:"-"`
 }
 
 type metadataPaths struct {
-	SDKShapeTraits bool `type:"structure" required:"Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Restrictions struct {
-	GeoRestriction *GeoRestriction `type:"structure"`
+	GeoRestriction *GeoRestriction `type:"structure" required:"true"`
 
 	metadataRestrictions `json:"-", xml:"-"`
 }
 
 type metadataRestrictions struct {
-	SDKShapeTraits bool `type:"structure" required:"GeoRestriction"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type S3Origin struct {
-	DomainName           *string `type:"string"`
-	OriginAccessIdentity *string `type:"string"`
+	DomainName           *string `type:"string" required:"true"`
+	OriginAccessIdentity *string `type:"string" required:"true"`
 
 	metadataS3Origin `json:"-", xml:"-"`
 }
 
 type metadataS3Origin struct {
-	SDKShapeTraits bool `type:"structure" required:"DomainName,OriginAccessIdentity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type S3OriginConfig struct {
-	OriginAccessIdentity *string `type:"string"`
+	OriginAccessIdentity *string `type:"string" required:"true"`
 
 	metadataS3OriginConfig `json:"-", xml:"-"`
 }
 
 type metadataS3OriginConfig struct {
-	SDKShapeTraits bool `type:"structure" required:"OriginAccessIdentity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Signer struct {
@@ -1373,105 +1373,105 @@ type metadataSigner struct {
 }
 
 type StreamingDistribution struct {
-	ActiveTrustedSigners        *ActiveTrustedSigners        `type:"structure"`
-	DomainName                  *string                      `type:"string"`
-	ID                          *string                      `locationName:"Id" type:"string"`
+	ActiveTrustedSigners        *ActiveTrustedSigners        `type:"structure" required:"true"`
+	DomainName                  *string                      `type:"string" required:"true"`
+	ID                          *string                      `locationName:"Id" type:"string" required:"true"`
 	LastModifiedTime            *time.Time                   `type:"timestamp" timestampFormat:"iso8601"`
-	Status                      *string                      `type:"string"`
-	StreamingDistributionConfig *StreamingDistributionConfig `type:"structure"`
+	Status                      *string                      `type:"string" required:"true"`
+	StreamingDistributionConfig *StreamingDistributionConfig `type:"structure" required:"true"`
 
 	metadataStreamingDistribution `json:"-", xml:"-"`
 }
 
 type metadataStreamingDistribution struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,Status,DomainName,ActiveTrustedSigners,StreamingDistributionConfig"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StreamingDistributionConfig struct {
 	Aliases         *Aliases                `type:"structure"`
-	CallerReference *string                 `type:"string"`
-	Comment         *string                 `type:"string"`
-	Enabled         *bool                   `type:"boolean"`
+	CallerReference *string                 `type:"string" required:"true"`
+	Comment         *string                 `type:"string" required:"true"`
+	Enabled         *bool                   `type:"boolean" required:"true"`
 	Logging         *StreamingLoggingConfig `type:"structure"`
 	PriceClass      *string                 `type:"string"`
-	S3Origin        *S3Origin               `type:"structure"`
-	TrustedSigners  *TrustedSigners         `type:"structure"`
+	S3Origin        *S3Origin               `type:"structure" required:"true"`
+	TrustedSigners  *TrustedSigners         `type:"structure" required:"true"`
 
 	metadataStreamingDistributionConfig `json:"-", xml:"-"`
 }
 
 type metadataStreamingDistributionConfig struct {
-	SDKShapeTraits bool `type:"structure" required:"CallerReference,S3Origin,Comment,TrustedSigners,Enabled"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StreamingDistributionList struct {
-	IsTruncated *bool                           `type:"boolean"`
+	IsTruncated *bool                           `type:"boolean" required:"true"`
 	Items       []*StreamingDistributionSummary `locationNameList:"StreamingDistributionSummary" type:"list"`
-	Marker      *string                         `type:"string"`
-	MaxItems    *int                            `type:"integer"`
+	Marker      *string                         `type:"string" required:"true"`
+	MaxItems    *int                            `type:"integer" required:"true"`
 	NextMarker  *string                         `type:"string"`
-	Quantity    *int                            `type:"integer"`
+	Quantity    *int                            `type:"integer" required:"true"`
 
 	metadataStreamingDistributionList `json:"-", xml:"-"`
 }
 
 type metadataStreamingDistributionList struct {
-	SDKShapeTraits bool `type:"structure" required:"Marker,MaxItems,IsTruncated,Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StreamingDistributionSummary struct {
-	Aliases          *Aliases        `type:"structure"`
-	Comment          *string         `type:"string"`
-	DomainName       *string         `type:"string"`
-	Enabled          *bool           `type:"boolean"`
-	ID               *string         `locationName:"Id" type:"string"`
-	LastModifiedTime *time.Time      `type:"timestamp" timestampFormat:"iso8601"`
-	PriceClass       *string         `type:"string"`
-	S3Origin         *S3Origin       `type:"structure"`
-	Status           *string         `type:"string"`
-	TrustedSigners   *TrustedSigners `type:"structure"`
+	Aliases          *Aliases        `type:"structure" required:"true"`
+	Comment          *string         `type:"string" required:"true"`
+	DomainName       *string         `type:"string" required:"true"`
+	Enabled          *bool           `type:"boolean" required:"true"`
+	ID               *string         `locationName:"Id" type:"string" required:"true"`
+	LastModifiedTime *time.Time      `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	PriceClass       *string         `type:"string" required:"true"`
+	S3Origin         *S3Origin       `type:"structure" required:"true"`
+	Status           *string         `type:"string" required:"true"`
+	TrustedSigners   *TrustedSigners `type:"structure" required:"true"`
 
 	metadataStreamingDistributionSummary `json:"-", xml:"-"`
 }
 
 type metadataStreamingDistributionSummary struct {
-	SDKShapeTraits bool `type:"structure" required:"Id,Status,LastModifiedTime,DomainName,S3Origin,Aliases,TrustedSigners,Comment,PriceClass,Enabled"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StreamingLoggingConfig struct {
-	Bucket  *string `type:"string"`
-	Enabled *bool   `type:"boolean"`
-	Prefix  *string `type:"string"`
+	Bucket  *string `type:"string" required:"true"`
+	Enabled *bool   `type:"boolean" required:"true"`
+	Prefix  *string `type:"string" required:"true"`
 
 	metadataStreamingLoggingConfig `json:"-", xml:"-"`
 }
 
 type metadataStreamingLoggingConfig struct {
-	SDKShapeTraits bool `type:"structure" required:"Enabled,Bucket,Prefix"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TrustedSigners struct {
-	Enabled  *bool     `type:"boolean"`
+	Enabled  *bool     `type:"boolean" required:"true"`
 	Items    []*string `locationNameList:"AwsAccountNumber" type:"list"`
-	Quantity *int      `type:"integer"`
+	Quantity *int      `type:"integer" required:"true"`
 
 	metadataTrustedSigners `json:"-", xml:"-"`
 }
 
 type metadataTrustedSigners struct {
-	SDKShapeTraits bool `type:"structure" required:"Enabled,Quantity"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateCloudFrontOriginAccessIdentityInput struct {
-	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure"`
-	ID                                   *string                               `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
+	ID                                   *string                               `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 	IfMatch                              *string                               `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
 
 	metadataUpdateCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateCloudFrontOriginAccessIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig" required:"CloudFrontOriginAccessIdentityConfig,Id"`
+	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
 }
 
 type UpdateCloudFrontOriginAccessIdentityOutput struct {
@@ -1486,15 +1486,15 @@ type metadataUpdateCloudFrontOriginAccessIdentityOutput struct {
 }
 
 type UpdateDistributionInput struct {
-	DistributionConfig *DistributionConfig `locationName:"DistributionConfig" type:"structure"`
-	ID                 *string             `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	DistributionConfig *DistributionConfig `locationName:"DistributionConfig" type:"structure" required:"true"`
+	ID                 *string             `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 	IfMatch            *string             `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
 
 	metadataUpdateDistributionInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig" required:"DistributionConfig,Id"`
+	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig"`
 }
 
 type UpdateDistributionOutput struct {
@@ -1509,15 +1509,15 @@ type metadataUpdateDistributionOutput struct {
 }
 
 type UpdateStreamingDistributionInput struct {
-	ID                          *string                      `location:"uri" locationName:"Id" type:"string" json:"-" xml:"-"`
+	ID                          *string                      `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
 	IfMatch                     *string                      `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
-	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure"`
+	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure" required:"true"`
 
 	metadataUpdateStreamingDistributionInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateStreamingDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig" required:"StreamingDistributionConfig,Id"`
+	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig"`
 }
 
 type UpdateStreamingDistributionOutput struct {
