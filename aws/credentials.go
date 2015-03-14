@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"path"
+	"path/filepath"
 	"sync"
 	"time"
 
@@ -152,7 +152,7 @@ func ProfileCreds(filename, profile string, expiry time.Duration) (CredentialsPr
 			return nil, errors.New("User home directory not found.")
 		}
 
-		filename = path.Join(homeDir, ".aws", "credentials")
+		filename = filepath.Join(homeDir, ".aws", "credentials")
 	}
 
 	if profile == "" {
