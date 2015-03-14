@@ -3,11 +3,11 @@ package aws
 import (
 	"bufio"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
-	"os/user"
-	"path"
+	"path/filepath"
 	"sync"
 	"time"
 
@@ -144,12 +144,15 @@ func IAMCreds() CredentialsProvider {
 // configuration file.
 func ProfileCreds(filename, profile string, expiry time.Duration) (CredentialsProvider, error) {
 	if filename == "" {
-		u, err := user.Current()
-		if err != nil {
-			return nil, err
+		homeDir := os.Getenv("HOME") // *nix
+		if homeDir == "" {           // Windows
+			homeDir = os.Getenv("USERPROFILE")
+		}
+		if homeDir == "" {
+			return nil, errors.New("User home directory not found.")
 		}
 
-		filename = path.Join(u.HomeDir, ".aws", "credentials")
+		filename = filepath.Join(homeDir, ".aws", "credentials")
 	}
 
 	if profile == "" {
