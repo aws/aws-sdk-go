@@ -27,7 +27,7 @@ func UnmarshalXML(v interface{}, d *xml.Decoder, wrapper string) error {
 		}
 		return nil
 	}
-	return fmt.Errorf("Missing root XML node")
+	return nil
 }
 
 func parse(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
