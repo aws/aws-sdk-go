@@ -2,7 +2,7 @@ package aws
 
 import (
 	"fmt"
-	"strconv"
+	"io"
 	"time"
 )
 
@@ -10,21 +10,28 @@ var sleepDelay = func(delay time.Duration) {
 	time.Sleep(delay)
 }
 
+type lener interface {
+	Len() int
+}
+
 func BuildContentLength(r *Request) {
-	var length int64
-	strlen := r.HTTPRequest.Header.Get("Content-Length")
-	if strlen == "" && r.Body != nil {
-		body, ok := r.Body.(interface {
-			Len() int
-		})
-		if ok {
-			length = int64(body.Len())
-		} else {
-			panic("Cannot get length of body, must provide `ContentLength`")
-		}
-	} else {
-		length, _ = strconv.ParseInt(strlen, 10, 64)
+	if r.HTTPRequest.Header.Get("Content-Length") != "" {
+		return
 	}
+
+	var length int64
+	switch body := r.Body.(type) {
+	case lener:
+		length = int64(body.Len())
+	case io.Seeker:
+		cur, _ := body.Seek(0, 1)
+		end, _ := body.Seek(0, 2)
+		body.Seek(cur, 0) // make sure to seek back to original location
+		length = end - cur
+	default:
+		panic("Cannot get length of body, must provide `ContentLength`")
+	}
+
 	r.HTTPRequest.ContentLength = length
 	r.HTTPRequest.Header.Set("Content-Length", fmt.Sprintf("%d", length))
 }
