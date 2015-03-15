@@ -1,6 +1,7 @@
 package aws
 
 import (
+	"io"
 	"net/http"
 	"os"
 )
@@ -15,6 +16,7 @@ var DefaultConfig = &Config{
 	ManualSend:             false,
 	HTTPClient:             http.DefaultClient,
 	LogLevel:               0,
+	Logger:                 os.Stdout,
 	MaxRetries:             DEFAULT_RETRIES,
 	DisableParamValidation: false,
 }
@@ -27,6 +29,7 @@ type Config struct {
 	ManualSend             bool
 	HTTPClient             *http.Client
 	LogLevel               uint
+	Logger                 io.Writer
 	MaxRetries             int
 	DisableParamValidation bool
 }
@@ -74,6 +77,12 @@ func (c Config) Merge(newcfg *Config) *Config {
 		cfg.LogLevel = newcfg.LogLevel
 	} else {
 		cfg.LogLevel = c.LogLevel
+	}
+
+	if newcfg != nil && newcfg.Logger != nil {
+		cfg.Logger = newcfg.Logger
+	} else {
+		cfg.Logger = c.Logger
 	}
 
 	if newcfg != nil && newcfg.MaxRetries != DEFAULT_RETRIES {

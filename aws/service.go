@@ -80,6 +80,7 @@ func (s *Service) buildEndpoint() {
 }
 
 func (s *Service) AddDebugHandlers() {
+	out := s.Config.Logger
 	if s.Config.LogLevel == 0 {
 		return
 	}
@@ -87,32 +88,28 @@ func (s *Service) AddDebugHandlers() {
 	s.Handlers.Sign.PushBack(func(r *Request) {
 		dumpedBody, _ := httputil.DumpRequest(r.HTTPRequest, true)
 
-		fmt.Printf("=> [%s] %s.%s(%+v)\n", r.Time,
+		fmt.Fprintf(out, "=> [%s] %s.%s(%+v)\n", r.Time,
 			r.Service.ServiceName, r.Operation.Name, r.Params)
-		fmt.Printf("---[ REQUEST PRE-SIGN ]------------------------------\n")
-		fmt.Printf("%s\n", string(dumpedBody))
-		fmt.Printf("-----------------------------------------------------\n")
+		fmt.Fprintf(out, "---[ REQUEST PRE-SIGN ]------------------------------\n")
+		fmt.Fprintf(out, "%s\n", string(dumpedBody))
+		fmt.Fprintf(out, "-----------------------------------------------------\n")
 	})
 	s.Handlers.Send.PushFront(func(r *Request) {
 		dumpedBody, _ := httputil.DumpRequest(r.HTTPRequest, true)
 
-		fmt.Printf("---[ REQUEST POST-SIGN ]-----------------------------\n")
-		fmt.Printf("%s\n", string(dumpedBody))
-		fmt.Printf("-----------------------------------------------------\n")
+		fmt.Fprintf(out, "---[ REQUEST POST-SIGN ]-----------------------------\n")
+		fmt.Fprintf(out, "%s\n", string(dumpedBody))
+		fmt.Fprintf(out, "-----------------------------------------------------\n")
 	})
 	s.Handlers.Send.PushBack(func(r *Request) {
-		fmt.Printf("---[ RESPONSE ]--------------------------------------\n")
+		fmt.Fprintf(out, "---[ RESPONSE ]--------------------------------------\n")
 		if r.HTTPResponse != nil {
-			if r.HTTPResponse.Body != nil {
-				defer r.HTTPResponse.Body.Close()
-			}
 			dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, true)
-
-			fmt.Printf("%s\n", string(dumpedBody))
+			fmt.Fprintf(out, "%s\n", string(dumpedBody))
 		} else if r.Error != nil {
-			fmt.Printf("%s\n", r.Error)
+			fmt.Fprintf(out, "%s\n", r.Error)
 		}
-		fmt.Printf("-----------------------------------------------------\n")
+		fmt.Fprintf(out, "-----------------------------------------------------\n")
 	})
 }
 

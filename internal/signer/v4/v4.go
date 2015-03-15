@@ -41,6 +41,7 @@ type signer struct {
 	Query           url.Values
 	Body            io.ReadSeeker
 	Debug           uint
+	Logger          io.Writer
 
 	isPresign          bool
 	formattedTime      string
@@ -75,6 +76,7 @@ func Sign(req *aws.Request) {
 		SecretAccessKey: creds.SecretAccessKey,
 		SessionToken:    creds.SessionToken,
 		Debug:           req.Service.Config.LogLevel,
+		Logger:          req.Service.Config.Logger,
 	}
 	s.sign()
 	return
@@ -98,15 +100,15 @@ func (v4 *signer) sign() {
 
 	v4.build()
 
-	//v4.Debug = true
 	if v4.Debug > 0 {
-		fmt.Printf("---[ CANONICAL STRING  ]-----------------------------\n")
-		fmt.Println(v4.canonicalString)
-		fmt.Printf("---[ STRING TO SIGN ]--------------------------------\n")
-		fmt.Println(v4.stringToSign)
-		fmt.Printf("---[ SIGNED URL ]--------------------------------\n")
-		fmt.Println(v4.Request.URL)
-		fmt.Printf("-----------------------------------------------------\n")
+		out := v4.Logger
+		fmt.Fprintf(out, "---[ CANONICAL STRING  ]-----------------------------\n")
+		fmt.Fprintln(out, v4.canonicalString)
+		fmt.Fprintf(out, "---[ STRING TO SIGN ]--------------------------------\n")
+		fmt.Fprintln(out, v4.stringToSign)
+		fmt.Fprintf(out, "---[ SIGNED URL ]--------------------------------\n")
+		fmt.Fprintln(out, v4.Request.URL)
+		fmt.Fprintf(out, "-----------------------------------------------------\n")
 	}
 }
 
