@@ -194,9 +194,9 @@ var opInputService2TestCaseOperation1 *aws.Operation
 
 type InputService2TestShapeInputService2TestCaseOperation1Input struct {
 	First  *bool    `type:"boolean"`
-	Fourth *int     `type:"integer"`
+	Fourth *int64   `type:"integer"`
 	Second *bool    `type:"boolean"`
-	Third  *float32 `type:"float"`
+	Third  *float64 `type:"float"`
 
 	metadataInputService2TestShapeInputService2TestCaseOperation1Input `json:"-", xml:"-"`
 }
@@ -1545,9 +1545,9 @@ func TestInputService2ProtocolTestSerializeOtherScalarTypesCase1(t *testing.T) {
 
 	input := &InputService2TestShapeInputService2TestCaseOperation1Input{
 		First:  aws.Boolean(true),
-		Fourth: aws.Integer(3),
+		Fourth: aws.Long(3),
 		Second: aws.Boolean(false),
-		Third:  aws.Float(1.2),
+		Third:  aws.Double(1.2),
 	}
 	req, _ := svc.InputService2TestCaseOperation1Request(input)
 	r := req.HTTPRequest

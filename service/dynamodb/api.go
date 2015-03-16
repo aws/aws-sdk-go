@@ -705,7 +705,7 @@ type metadataKeysAndAttributes struct {
 
 type ListTablesInput struct {
 	ExclusiveStartTableName *string `type:"string" json:",omitempty"`
-	Limit                   *int    `type:"integer" json:",omitempty"`
+	Limit                   *int64  `type:"integer" json:",omitempty"`
 
 	metadataListTablesInput `json:"-", xml:"-"`
 }
@@ -838,7 +838,7 @@ type QueryInput struct {
 	FilterExpression          *string                     `type:"string" json:",omitempty"`
 	IndexName                 *string                     `type:"string" json:",omitempty"`
 	KeyConditions             *map[string]*Condition      `type:"map" required:"true"json:",omitempty"`
-	Limit                     *int                        `type:"integer" json:",omitempty"`
+	Limit                     *int64                      `type:"integer" json:",omitempty"`
 	ProjectionExpression      *string                     `type:"string" json:",omitempty"`
 	QueryFilter               *map[string]*Condition      `type:"map" json:",omitempty"`
 	ReturnConsumedCapacity    *string                     `type:"string" json:",omitempty"`
@@ -855,10 +855,10 @@ type metadataQueryInput struct {
 
 type QueryOutput struct {
 	ConsumedCapacity *ConsumedCapacity             `type:"structure" json:",omitempty"`
-	Count            *int                          `type:"integer" json:",omitempty"`
+	Count            *int64                        `type:"integer" json:",omitempty"`
 	Items            []*map[string]*AttributeValue `type:"list" json:",omitempty"`
 	LastEvaluatedKey *map[string]*AttributeValue   `type:"map" json:",omitempty"`
-	ScannedCount     *int                          `type:"integer" json:",omitempty"`
+	ScannedCount     *int64                        `type:"integer" json:",omitempty"`
 
 	metadataQueryOutput `json:"-", xml:"-"`
 }
@@ -875,14 +875,14 @@ type ScanInput struct {
 	ExpressionAttributeValues *map[string]*AttributeValue `type:"map" json:",omitempty"`
 	FilterExpression          *string                     `type:"string" json:",omitempty"`
 	IndexName                 *string                     `type:"string" json:",omitempty"`
-	Limit                     *int                        `type:"integer" json:",omitempty"`
+	Limit                     *int64                      `type:"integer" json:",omitempty"`
 	ProjectionExpression      *string                     `type:"string" json:",omitempty"`
 	ReturnConsumedCapacity    *string                     `type:"string" json:",omitempty"`
 	ScanFilter                *map[string]*Condition      `type:"map" json:",omitempty"`
-	Segment                   *int                        `type:"integer" json:",omitempty"`
+	Segment                   *int64                      `type:"integer" json:",omitempty"`
 	Select                    *string                     `type:"string" json:",omitempty"`
 	TableName                 *string                     `type:"string" required:"true"json:",omitempty"`
-	TotalSegments             *int                        `type:"integer" json:",omitempty"`
+	TotalSegments             *int64                      `type:"integer" json:",omitempty"`
 
 	metadataScanInput `json:"-", xml:"-"`
 }
@@ -893,10 +893,10 @@ type metadataScanInput struct {
 
 type ScanOutput struct {
 	ConsumedCapacity *ConsumedCapacity             `type:"structure" json:",omitempty"`
-	Count            *int                          `type:"integer" json:",omitempty"`
+	Count            *int64                        `type:"integer" json:",omitempty"`
 	Items            []*map[string]*AttributeValue `type:"list" json:",omitempty"`
 	LastEvaluatedKey *map[string]*AttributeValue   `type:"map" json:",omitempty"`
-	ScannedCount     *int                          `type:"integer" json:",omitempty"`
+	ScannedCount     *int64                        `type:"integer" json:",omitempty"`
 
 	metadataScanOutput `json:"-", xml:"-"`
 }

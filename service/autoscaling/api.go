@@ -1140,7 +1140,7 @@ type Activity struct {
 	Description          *string    `type:"string"`
 	Details              *string    `type:"string"`
 	EndTime              *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Progress             *int       `type:"integer"`
+	Progress             *int64     `type:"integer"`
 	StartTime            *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 	StatusCode           *string    `type:"string" required:"true"`
 	StatusMessage        *string    `type:"string"`
@@ -1197,16 +1197,16 @@ type AutoScalingGroup struct {
 	AutoScalingGroupName    *string             `type:"string" required:"true"`
 	AvailabilityZones       []*string           `type:"list" required:"true"`
 	CreatedTime             *time.Time          `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	DefaultCooldown         *int                `type:"integer" required:"true"`
-	DesiredCapacity         *int                `type:"integer" required:"true"`
+	DefaultCooldown         *int64              `type:"integer" required:"true"`
+	DesiredCapacity         *int64              `type:"integer" required:"true"`
 	EnabledMetrics          []*EnabledMetric    `type:"list"`
-	HealthCheckGracePeriod  *int                `type:"integer"`
+	HealthCheckGracePeriod  *int64              `type:"integer"`
 	HealthCheckType         *string             `type:"string" required:"true"`
 	Instances               []*Instance         `type:"list"`
 	LaunchConfigurationName *string             `type:"string" required:"true"`
 	LoadBalancerNames       []*string           `type:"list"`
-	MaxSize                 *int                `type:"integer" required:"true"`
-	MinSize                 *int                `type:"integer" required:"true"`
+	MaxSize                 *int64              `type:"integer" required:"true"`
+	MinSize                 *int64              `type:"integer" required:"true"`
 	PlacementGroup          *string             `type:"string"`
 	Status                  *string             `type:"string"`
 	SuspendedProcesses      []*SuspendedProcess `type:"list"`
@@ -1273,15 +1273,15 @@ type metadataCompleteLifecycleActionOutput struct {
 type CreateAutoScalingGroupInput struct {
 	AutoScalingGroupName    *string   `type:"string" required:"true"`
 	AvailabilityZones       []*string `type:"list"`
-	DefaultCooldown         *int      `type:"integer"`
-	DesiredCapacity         *int      `type:"integer"`
-	HealthCheckGracePeriod  *int      `type:"integer"`
+	DefaultCooldown         *int64    `type:"integer"`
+	DesiredCapacity         *int64    `type:"integer"`
+	HealthCheckGracePeriod  *int64    `type:"integer"`
 	HealthCheckType         *string   `type:"string"`
 	InstanceID              *string   `locationName:"InstanceId" type:"string"`
 	LaunchConfigurationName *string   `type:"string"`
 	LoadBalancerNames       []*string `type:"list"`
-	MaxSize                 *int      `type:"integer" required:"true"`
-	MinSize                 *int      `type:"integer" required:"true"`
+	MaxSize                 *int64    `type:"integer" required:"true"`
+	MinSize                 *int64    `type:"integer" required:"true"`
 	PlacementGroup          *string   `type:"string"`
 	Tags                    []*Tag    `type:"list"`
 	TerminationPolicies     []*string `type:"list"`
@@ -1495,8 +1495,8 @@ type metadataDescribeAccountLimitsInput struct {
 }
 
 type DescribeAccountLimitsOutput struct {
-	MaxNumberOfAutoScalingGroups    *int `type:"integer"`
-	MaxNumberOfLaunchConfigurations *int `type:"integer"`
+	MaxNumberOfAutoScalingGroups    *int64 `type:"integer"`
+	MaxNumberOfLaunchConfigurations *int64 `type:"integer"`
 
 	metadataDescribeAccountLimitsOutput `json:"-", xml:"-"`
 }
@@ -1525,7 +1525,7 @@ type metadataDescribeAdjustmentTypesOutput struct {
 
 type DescribeAutoScalingGroupsInput struct {
 	AutoScalingGroupNames []*string `type:"list"`
-	MaxRecords            *int      `type:"integer"`
+	MaxRecords            *int64    `type:"integer"`
 	NextToken             *string   `type:"string"`
 
 	metadataDescribeAutoScalingGroupsInput `json:"-", xml:"-"`
@@ -1548,7 +1548,7 @@ type metadataDescribeAutoScalingGroupsOutput struct {
 
 type DescribeAutoScalingInstancesInput struct {
 	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
-	MaxRecords  *int      `type:"integer"`
+	MaxRecords  *int64    `type:"integer"`
 	NextToken   *string   `type:"string"`
 
 	metadataDescribeAutoScalingInstancesInput `json:"-", xml:"-"`
@@ -1589,7 +1589,7 @@ type metadataDescribeAutoScalingNotificationTypesOutput struct {
 
 type DescribeLaunchConfigurationsInput struct {
 	LaunchConfigurationNames []*string `type:"list"`
-	MaxRecords               *int      `type:"integer"`
+	MaxRecords               *int64    `type:"integer"`
 	NextToken                *string   `type:"string"`
 
 	metadataDescribeLaunchConfigurationsInput `json:"-", xml:"-"`
@@ -1670,7 +1670,7 @@ type metadataDescribeMetricCollectionTypesOutput struct {
 
 type DescribeNotificationConfigurationsInput struct {
 	AutoScalingGroupNames []*string `type:"list"`
-	MaxRecords            *int      `type:"integer"`
+	MaxRecords            *int64    `type:"integer"`
 	NextToken             *string   `type:"string"`
 
 	metadataDescribeNotificationConfigurationsInput `json:"-", xml:"-"`
@@ -1693,7 +1693,7 @@ type metadataDescribeNotificationConfigurationsOutput struct {
 
 type DescribePoliciesInput struct {
 	AutoScalingGroupName *string   `type:"string"`
-	MaxRecords           *int      `type:"integer"`
+	MaxRecords           *int64    `type:"integer"`
 	NextToken            *string   `type:"string"`
 	PolicyNames          []*string `type:"list"`
 
@@ -1718,7 +1718,7 @@ type metadataDescribePoliciesOutput struct {
 type DescribeScalingActivitiesInput struct {
 	ActivityIDs          []*string `locationName:"ActivityIds" type:"list"`
 	AutoScalingGroupName *string   `type:"string"`
-	MaxRecords           *int      `type:"integer"`
+	MaxRecords           *int64    `type:"integer"`
 	NextToken            *string   `type:"string"`
 
 	metadataDescribeScalingActivitiesInput `json:"-", xml:"-"`
@@ -1760,7 +1760,7 @@ type metadataDescribeScalingProcessTypesOutput struct {
 type DescribeScheduledActionsInput struct {
 	AutoScalingGroupName *string    `type:"string"`
 	EndTime              *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	MaxRecords           *int       `type:"integer"`
+	MaxRecords           *int64     `type:"integer"`
 	NextToken            *string    `type:"string"`
 	ScheduledActionNames []*string  `type:"list"`
 	StartTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -1785,7 +1785,7 @@ type metadataDescribeScheduledActionsOutput struct {
 
 type DescribeTagsInput struct {
 	Filters    []*Filter `type:"list"`
-	MaxRecords *int      `type:"integer"`
+	MaxRecords *int64    `type:"integer"`
 	NextToken  *string   `type:"string"`
 
 	metadataDescribeTagsInput `json:"-", xml:"-"`
@@ -1867,9 +1867,9 @@ type metadataDisableMetricsCollectionOutput struct {
 
 type EBS struct {
 	DeleteOnTermination *bool   `type:"boolean"`
-	IOPS                *int    `locationName:"Iops" type:"integer"`
+	IOPS                *int64  `locationName:"Iops" type:"integer"`
 	SnapshotID          *string `locationName:"SnapshotId" type:"string"`
-	VolumeSize          *int    `type:"integer"`
+	VolumeSize          *int64  `type:"integer"`
 	VolumeType          *string `type:"string"`
 
 	metadataEBS `json:"-", xml:"-"`
@@ -2039,8 +2039,8 @@ type metadataLaunchConfiguration struct {
 type LifecycleHook struct {
 	AutoScalingGroupName  *string `type:"string"`
 	DefaultResult         *string `type:"string"`
-	GlobalTimeout         *int    `type:"integer"`
-	HeartbeatTimeout      *int    `type:"integer"`
+	GlobalTimeout         *int64  `type:"integer"`
+	HeartbeatTimeout      *int64  `type:"integer"`
 	LifecycleHookName     *string `type:"string"`
 	LifecycleTransition   *string `type:"string"`
 	NotificationMetadata  *string `type:"string"`
@@ -2099,7 +2099,7 @@ type metadataProcessType struct {
 type PutLifecycleHookInput struct {
 	AutoScalingGroupName  *string `type:"string" required:"true"`
 	DefaultResult         *string `type:"string"`
-	HeartbeatTimeout      *int    `type:"integer"`
+	HeartbeatTimeout      *int64  `type:"integer"`
 	LifecycleHookName     *string `type:"string" required:"true"`
 	LifecycleTransition   *string `type:"string"`
 	NotificationMetadata  *string `type:"string"`
@@ -2144,10 +2144,10 @@ type metadataPutNotificationConfigurationOutput struct {
 type PutScalingPolicyInput struct {
 	AdjustmentType       *string `type:"string" required:"true"`
 	AutoScalingGroupName *string `type:"string" required:"true"`
-	Cooldown             *int    `type:"integer"`
-	MinAdjustmentStep    *int    `type:"integer"`
+	Cooldown             *int64  `type:"integer"`
+	MinAdjustmentStep    *int64  `type:"integer"`
 	PolicyName           *string `type:"string" required:"true"`
-	ScalingAdjustment    *int    `type:"integer" required:"true"`
+	ScalingAdjustment    *int64  `type:"integer" required:"true"`
 
 	metadataPutScalingPolicyInput `json:"-", xml:"-"`
 }
@@ -2168,10 +2168,10 @@ type metadataPutScalingPolicyOutput struct {
 
 type PutScheduledUpdateGroupActionInput struct {
 	AutoScalingGroupName *string    `type:"string" required:"true"`
-	DesiredCapacity      *int       `type:"integer"`
+	DesiredCapacity      *int64     `type:"integer"`
 	EndTime              *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	MaxSize              *int       `type:"integer"`
-	MinSize              *int       `type:"integer"`
+	MaxSize              *int64     `type:"integer"`
+	MinSize              *int64     `type:"integer"`
 	Recurrence           *string    `type:"string"`
 	ScheduledActionName  *string    `type:"string" required:"true"`
 	StartTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -2224,11 +2224,11 @@ type ScalingPolicy struct {
 	AdjustmentType       *string  `type:"string"`
 	Alarms               []*Alarm `type:"list"`
 	AutoScalingGroupName *string  `type:"string"`
-	Cooldown             *int     `type:"integer"`
-	MinAdjustmentStep    *int     `type:"integer"`
+	Cooldown             *int64   `type:"integer"`
+	MinAdjustmentStep    *int64   `type:"integer"`
 	PolicyARN            *string  `type:"string"`
 	PolicyName           *string  `type:"string"`
-	ScalingAdjustment    *int     `type:"integer"`
+	ScalingAdjustment    *int64   `type:"integer"`
 
 	metadataScalingPolicy `json:"-", xml:"-"`
 }
@@ -2250,10 +2250,10 @@ type metadataScalingProcessQuery struct {
 
 type ScheduledUpdateGroupAction struct {
 	AutoScalingGroupName *string    `type:"string"`
-	DesiredCapacity      *int       `type:"integer"`
+	DesiredCapacity      *int64     `type:"integer"`
 	EndTime              *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	MaxSize              *int       `type:"integer"`
-	MinSize              *int       `type:"integer"`
+	MaxSize              *int64     `type:"integer"`
+	MinSize              *int64     `type:"integer"`
 	Recurrence           *string    `type:"string"`
 	ScheduledActionARN   *string    `type:"string"`
 	ScheduledActionName  *string    `type:"string"`
@@ -2269,7 +2269,7 @@ type metadataScheduledUpdateGroupAction struct {
 
 type SetDesiredCapacityInput struct {
 	AutoScalingGroupName *string `type:"string" required:"true"`
-	DesiredCapacity      *int    `type:"integer" required:"true"`
+	DesiredCapacity      *int64  `type:"integer" required:"true"`
 	HonorCooldown        *bool   `type:"boolean"`
 
 	metadataSetDesiredCapacityInput `json:"-", xml:"-"`
@@ -2378,13 +2378,13 @@ type metadataTerminateInstanceInAutoScalingGroupOutput struct {
 type UpdateAutoScalingGroupInput struct {
 	AutoScalingGroupName    *string   `type:"string" required:"true"`
 	AvailabilityZones       []*string `type:"list"`
-	DefaultCooldown         *int      `type:"integer"`
-	DesiredCapacity         *int      `type:"integer"`
-	HealthCheckGracePeriod  *int      `type:"integer"`
+	DefaultCooldown         *int64    `type:"integer"`
+	DesiredCapacity         *int64    `type:"integer"`
+	HealthCheckGracePeriod  *int64    `type:"integer"`
 	HealthCheckType         *string   `type:"string"`
 	LaunchConfigurationName *string   `type:"string"`
-	MaxSize                 *int      `type:"integer"`
-	MinSize                 *int      `type:"integer"`
+	MaxSize                 *int64    `type:"integer"`
+	MinSize                 *int64    `type:"integer"`
 	PlacementGroup          *string   `type:"string"`
 	TerminationPolicies     []*string `type:"list"`
 	VPCZoneIdentifier       *string   `type:"string"`

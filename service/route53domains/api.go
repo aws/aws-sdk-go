@@ -688,7 +688,7 @@ type metadataGetOperationDetailOutput struct {
 
 type ListDomainsInput struct {
 	Marker   *string `type:"string" json:",omitempty"`
-	MaxItems *int    `type:"integer" json:",omitempty"`
+	MaxItems *int64  `type:"integer" json:",omitempty"`
 
 	metadataListDomainsInput `json:"-", xml:"-"`
 }
@@ -710,7 +710,7 @@ type metadataListDomainsOutput struct {
 
 type ListOperationsInput struct {
 	Marker   *string `type:"string" json:",omitempty"`
-	MaxItems *int    `type:"integer" json:",omitempty"`
+	MaxItems *int64  `type:"integer" json:",omitempty"`
 
 	metadataListOperationsInput `json:"-", xml:"-"`
 }
@@ -778,7 +778,7 @@ type RegisterDomainInput struct {
 	AdminContact                    *ContactDetail `type:"structure" required:"true"json:",omitempty"`
 	AutoRenew                       *bool          `type:"boolean" json:",omitempty"`
 	DomainName                      *string        `type:"string" required:"true"json:",omitempty"`
-	DurationInYears                 *int           `type:"integer" required:"true"json:",omitempty"`
+	DurationInYears                 *int64         `type:"integer" required:"true"json:",omitempty"`
 	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string" json:"IdnLangCode,omitempty"`
 	PrivacyProtectAdminContact      *bool          `type:"boolean" json:",omitempty"`
 	PrivacyProtectRegistrantContact *bool          `type:"boolean" json:",omitempty"`
@@ -839,7 +839,7 @@ type TransferDomainInput struct {
 	AuthCode                        *string        `type:"string" json:",omitempty"`
 	AutoRenew                       *bool          `type:"boolean" json:",omitempty"`
 	DomainName                      *string        `type:"string" required:"true"json:",omitempty"`
-	DurationInYears                 *int           `type:"integer" required:"true"json:",omitempty"`
+	DurationInYears                 *int64         `type:"integer" required:"true"json:",omitempty"`
 	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string" json:"IdnLangCode,omitempty"`
 	Nameservers                     []*Nameserver  `type:"list" json:",omitempty"`
 	PrivacyProtectAdminContact      *bool          `type:"boolean" json:",omitempty"`

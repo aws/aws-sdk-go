@@ -180,7 +180,7 @@ func (q *queryParser) parseScalar(v url.Values, r reflect.Value, name string, ta
 		const ISO8601UTC = "2006-01-02T15:04:05Z"
 		v.Set(name, value.UTC().Format(ISO8601UTC))
 	default:
-		return fmt.Errorf("Unsupported value for param %s: %v (%s)", name, r.Interface(), r.Type().Name())
+		return fmt.Errorf("unsupported value for param %s: %v (%s)", name, r.Interface(), r.Type().Name())
 	}
 	return nil
 }

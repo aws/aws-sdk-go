@@ -1475,7 +1475,7 @@ type metadataAvailabilityZone struct {
 
 type Cluster struct {
 	AllowVersionUpgrade              *bool                             `type:"boolean"`
-	AutomatedSnapshotRetentionPeriod *int                              `type:"integer"`
+	AutomatedSnapshotRetentionPeriod *int64                            `type:"integer"`
 	AvailabilityZone                 *string                           `type:"string"`
 	ClusterCreateTime                *time.Time                        `type:"timestamp" timestampFormat:"iso8601"`
 	ClusterIdentifier                *string                           `type:"string"`
@@ -1497,7 +1497,7 @@ type Cluster struct {
 	MasterUsername                   *string                           `type:"string"`
 	ModifyStatus                     *string                           `type:"string"`
 	NodeType                         *string                           `type:"string"`
-	NumberOfNodes                    *int                              `type:"integer"`
+	NumberOfNodes                    *int64                            `type:"integer"`
 	PendingModifiedValues            *PendingModifiedValues            `type:"structure"`
 	PreferredMaintenanceWindow       *string                           `type:"string"`
 	PubliclyAccessible               *bool                             `type:"boolean"`
@@ -1647,7 +1647,7 @@ type metadataCopyClusterSnapshotOutput struct {
 
 type CreateClusterInput struct {
 	AllowVersionUpgrade              *bool     `type:"boolean"`
-	AutomatedSnapshotRetentionPeriod *int      `type:"integer"`
+	AutomatedSnapshotRetentionPeriod *int64    `type:"integer"`
 	AvailabilityZone                 *string   `type:"string"`
 	ClusterIdentifier                *string   `type:"string" required:"true"`
 	ClusterParameterGroupName        *string   `type:"string"`
@@ -1664,8 +1664,8 @@ type CreateClusterInput struct {
 	MasterUserPassword               *string   `type:"string" required:"true"`
 	MasterUsername                   *string   `type:"string" required:"true"`
 	NodeType                         *string   `type:"string" required:"true"`
-	NumberOfNodes                    *int      `type:"integer"`
-	Port                             *int      `type:"integer"`
+	NumberOfNodes                    *int64    `type:"integer"`
+	Port                             *int64    `type:"integer"`
 	PreferredMaintenanceWindow       *string   `type:"string"`
 	PubliclyAccessible               *bool     `type:"boolean"`
 	Tags                             []*Tag    `locationNameList:"Tag" type:"list"`
@@ -2055,7 +2055,7 @@ type metadataDeleteTagsOutput struct {
 
 type DescribeClusterParameterGroupsInput struct {
 	Marker             *string   `type:"string"`
-	MaxRecords         *int      `type:"integer"`
+	MaxRecords         *int64    `type:"integer"`
 	ParameterGroupName *string   `type:"string"`
 	TagKeys            []*string `locationNameList:"TagKey" type:"list"`
 	TagValues          []*string `locationNameList:"TagValue" type:"list"`
@@ -2080,7 +2080,7 @@ type metadataDescribeClusterParameterGroupsOutput struct {
 
 type DescribeClusterParametersInput struct {
 	Marker             *string `type:"string"`
-	MaxRecords         *int    `type:"integer"`
+	MaxRecords         *int64  `type:"integer"`
 	ParameterGroupName *string `type:"string" required:"true"`
 	Source             *string `type:"string"`
 
@@ -2105,7 +2105,7 @@ type metadataDescribeClusterParametersOutput struct {
 type DescribeClusterSecurityGroupsInput struct {
 	ClusterSecurityGroupName *string   `type:"string"`
 	Marker                   *string   `type:"string"`
-	MaxRecords               *int      `type:"integer"`
+	MaxRecords               *int64    `type:"integer"`
 	TagKeys                  []*string `locationNameList:"TagKey" type:"list"`
 	TagValues                []*string `locationNameList:"TagValue" type:"list"`
 
@@ -2131,7 +2131,7 @@ type DescribeClusterSnapshotsInput struct {
 	ClusterIdentifier  *string    `type:"string"`
 	EndTime            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	Marker             *string    `type:"string"`
-	MaxRecords         *int       `type:"integer"`
+	MaxRecords         *int64     `type:"integer"`
 	OwnerAccount       *string    `type:"string"`
 	SnapshotIdentifier *string    `type:"string"`
 	SnapshotType       *string    `type:"string"`
@@ -2160,7 +2160,7 @@ type metadataDescribeClusterSnapshotsOutput struct {
 type DescribeClusterSubnetGroupsInput struct {
 	ClusterSubnetGroupName *string   `type:"string"`
 	Marker                 *string   `type:"string"`
-	MaxRecords             *int      `type:"integer"`
+	MaxRecords             *int64    `type:"integer"`
 	TagKeys                []*string `locationNameList:"TagKey" type:"list"`
 	TagValues              []*string `locationNameList:"TagValue" type:"list"`
 
@@ -2186,7 +2186,7 @@ type DescribeClusterVersionsInput struct {
 	ClusterParameterGroupFamily *string `type:"string"`
 	ClusterVersion              *string `type:"string"`
 	Marker                      *string `type:"string"`
-	MaxRecords                  *int    `type:"integer"`
+	MaxRecords                  *int64  `type:"integer"`
 
 	metadataDescribeClusterVersionsInput `json:"-", xml:"-"`
 }
@@ -2209,7 +2209,7 @@ type metadataDescribeClusterVersionsOutput struct {
 type DescribeClustersInput struct {
 	ClusterIdentifier *string   `type:"string"`
 	Marker            *string   `type:"string"`
-	MaxRecords        *int      `type:"integer"`
+	MaxRecords        *int64    `type:"integer"`
 	TagKeys           []*string `locationNameList:"TagKey" type:"list"`
 	TagValues         []*string `locationNameList:"TagValue" type:"list"`
 
@@ -2233,7 +2233,7 @@ type metadataDescribeClustersOutput struct {
 
 type DescribeDefaultClusterParametersInput struct {
 	Marker               *string `type:"string"`
-	MaxRecords           *int    `type:"integer"`
+	MaxRecords           *int64  `type:"integer"`
 	ParameterGroupFamily *string `type:"string" required:"true"`
 
 	metadataDescribeDefaultClusterParametersInput `json:"-", xml:"-"`
@@ -2275,7 +2275,7 @@ type metadataDescribeEventCategoriesOutput struct {
 
 type DescribeEventSubscriptionsInput struct {
 	Marker           *string `type:"string"`
-	MaxRecords       *int    `type:"integer"`
+	MaxRecords       *int64  `type:"integer"`
 	SubscriptionName *string `type:"string"`
 
 	metadataDescribeEventSubscriptionsInput `json:"-", xml:"-"`
@@ -2297,10 +2297,10 @@ type metadataDescribeEventSubscriptionsOutput struct {
 }
 
 type DescribeEventsInput struct {
-	Duration         *int       `type:"integer"`
+	Duration         *int64     `type:"integer"`
 	EndTime          *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	Marker           *string    `type:"string"`
-	MaxRecords       *int       `type:"integer"`
+	MaxRecords       *int64     `type:"integer"`
 	SourceIdentifier *string    `type:"string"`
 	SourceType       *string    `type:"string"`
 	StartTime        *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -2326,7 +2326,7 @@ type metadataDescribeEventsOutput struct {
 type DescribeHSMClientCertificatesInput struct {
 	HSMClientCertificateIdentifier *string   `locationName:"HsmClientCertificateIdentifier" type:"string"`
 	Marker                         *string   `type:"string"`
-	MaxRecords                     *int      `type:"integer"`
+	MaxRecords                     *int64    `type:"integer"`
 	TagKeys                        []*string `locationNameList:"TagKey" type:"list"`
 	TagValues                      []*string `locationNameList:"TagValue" type:"list"`
 
@@ -2351,7 +2351,7 @@ type metadataDescribeHSMClientCertificatesOutput struct {
 type DescribeHSMConfigurationsInput struct {
 	HSMConfigurationIdentifier *string   `locationName:"HsmConfigurationIdentifier" type:"string"`
 	Marker                     *string   `type:"string"`
-	MaxRecords                 *int      `type:"integer"`
+	MaxRecords                 *int64    `type:"integer"`
 	TagKeys                    []*string `locationNameList:"TagKey" type:"list"`
 	TagValues                  []*string `locationNameList:"TagValue" type:"list"`
 
@@ -2386,7 +2386,7 @@ type metadataDescribeLoggingStatusInput struct {
 type DescribeOrderableClusterOptionsInput struct {
 	ClusterVersion *string `type:"string"`
 	Marker         *string `type:"string"`
-	MaxRecords     *int    `type:"integer"`
+	MaxRecords     *int64  `type:"integer"`
 	NodeType       *string `type:"string"`
 
 	metadataDescribeOrderableClusterOptionsInput `json:"-", xml:"-"`
@@ -2409,7 +2409,7 @@ type metadataDescribeOrderableClusterOptionsOutput struct {
 
 type DescribeReservedNodeOfferingsInput struct {
 	Marker                 *string `type:"string"`
-	MaxRecords             *int    `type:"integer"`
+	MaxRecords             *int64  `type:"integer"`
 	ReservedNodeOfferingID *string `locationName:"ReservedNodeOfferingId" type:"string"`
 
 	metadataDescribeReservedNodeOfferingsInput `json:"-", xml:"-"`
@@ -2432,7 +2432,7 @@ type metadataDescribeReservedNodeOfferingsOutput struct {
 
 type DescribeReservedNodesInput struct {
 	Marker         *string `type:"string"`
-	MaxRecords     *int    `type:"integer"`
+	MaxRecords     *int64  `type:"integer"`
 	ReservedNodeID *string `locationName:"ReservedNodeId" type:"string"`
 
 	metadataDescribeReservedNodesInput `json:"-", xml:"-"`
@@ -2474,7 +2474,7 @@ type DescribeResizeOutput struct {
 	Status                             *string   `type:"string"`
 	TargetClusterType                  *string   `type:"string"`
 	TargetNodeType                     *string   `type:"string"`
-	TargetNumberOfNodes                *int      `type:"integer"`
+	TargetNumberOfNodes                *int64    `type:"integer"`
 	TotalResizeDataInMegaBytes         *int64    `type:"long"`
 
 	metadataDescribeResizeOutput `json:"-", xml:"-"`
@@ -2486,7 +2486,7 @@ type metadataDescribeResizeOutput struct {
 
 type DescribeTagsInput struct {
 	Marker       *string   `type:"string"`
-	MaxRecords   *int      `type:"integer"`
+	MaxRecords   *int64    `type:"integer"`
 	ResourceName *string   `type:"string"`
 	ResourceType *string   `type:"string"`
 	TagKeys      []*string `locationNameList:"TagKey" type:"list"`
@@ -2579,7 +2579,7 @@ type metadataEnableLoggingInput struct {
 type EnableSnapshotCopyInput struct {
 	ClusterIdentifier *string `type:"string" required:"true"`
 	DestinationRegion *string `type:"string" required:"true"`
-	RetentionPeriod   *int    `type:"integer"`
+	RetentionPeriod   *int64  `type:"integer"`
 
 	metadataEnableSnapshotCopyInput `json:"-", xml:"-"`
 }
@@ -2600,7 +2600,7 @@ type metadataEnableSnapshotCopyOutput struct {
 
 type Endpoint struct {
 	Address *string `type:"string"`
-	Port    *int    `type:"integer"`
+	Port    *int64  `type:"integer"`
 
 	metadataEndpoint `json:"-", xml:"-"`
 }
@@ -2736,7 +2736,7 @@ type metadataLoggingStatus struct {
 
 type ModifyClusterInput struct {
 	AllowVersionUpgrade              *bool     `type:"boolean"`
-	AutomatedSnapshotRetentionPeriod *int      `type:"integer"`
+	AutomatedSnapshotRetentionPeriod *int64    `type:"integer"`
 	ClusterIdentifier                *string   `type:"string" required:"true"`
 	ClusterParameterGroupName        *string   `type:"string"`
 	ClusterSecurityGroups            []*string `locationNameList:"ClusterSecurityGroupName" type:"list"`
@@ -2747,7 +2747,7 @@ type ModifyClusterInput struct {
 	MasterUserPassword               *string   `type:"string"`
 	NewClusterIdentifier             *string   `type:"string"`
 	NodeType                         *string   `type:"string"`
-	NumberOfNodes                    *int      `type:"integer"`
+	NumberOfNodes                    *int64    `type:"integer"`
 	PreferredMaintenanceWindow       *string   `type:"string"`
 	VPCSecurityGroupIDs              []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
@@ -2829,7 +2829,7 @@ type metadataModifyEventSubscriptionOutput struct {
 
 type ModifySnapshotCopyRetentionPeriodInput struct {
 	ClusterIdentifier *string `type:"string" required:"true"`
-	RetentionPeriod   *int    `type:"integer" required:"true"`
+	RetentionPeriod   *int64  `type:"integer" required:"true"`
 
 	metadataModifySnapshotCopyRetentionPeriodInput `json:"-", xml:"-"`
 }
@@ -2879,13 +2879,13 @@ type metadataParameter struct {
 }
 
 type PendingModifiedValues struct {
-	AutomatedSnapshotRetentionPeriod *int    `type:"integer"`
+	AutomatedSnapshotRetentionPeriod *int64  `type:"integer"`
 	ClusterIdentifier                *string `type:"string"`
 	ClusterType                      *string `type:"string"`
 	ClusterVersion                   *string `type:"string"`
 	MasterUserPassword               *string `type:"string"`
 	NodeType                         *string `type:"string"`
-	NumberOfNodes                    *int    `type:"integer"`
+	NumberOfNodes                    *int64  `type:"integer"`
 
 	metadataPendingModifiedValues `json:"-", xml:"-"`
 }
@@ -2895,7 +2895,7 @@ type metadataPendingModifiedValues struct {
 }
 
 type PurchaseReservedNodeOfferingInput struct {
-	NodeCount              *int    `type:"integer"`
+	NodeCount              *int64  `type:"integer"`
 	ReservedNodeOfferingID *string `locationName:"ReservedNodeOfferingId" type:"string" required:"true"`
 
 	metadataPurchaseReservedNodeOfferingInput `json:"-", xml:"-"`
@@ -2948,9 +2948,9 @@ type metadataRecurringCharge struct {
 
 type ReservedNode struct {
 	CurrencyCode           *string            `type:"string"`
-	Duration               *int               `type:"integer"`
+	Duration               *int64             `type:"integer"`
 	FixedPrice             *float64           `type:"double"`
-	NodeCount              *int               `type:"integer"`
+	NodeCount              *int64             `type:"integer"`
 	NodeType               *string            `type:"string"`
 	OfferingType           *string            `type:"string"`
 	RecurringCharges       []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
@@ -2969,7 +2969,7 @@ type metadataReservedNode struct {
 
 type ReservedNodeOffering struct {
 	CurrencyCode           *string            `type:"string"`
-	Duration               *int               `type:"integer"`
+	Duration               *int64             `type:"integer"`
 	FixedPrice             *float64           `type:"double"`
 	NodeType               *string            `type:"string"`
 	OfferingType           *string            `type:"string"`
@@ -2998,7 +2998,7 @@ type metadataResetClusterParameterGroupInput struct {
 
 type RestoreFromClusterSnapshotInput struct {
 	AllowVersionUpgrade              *bool     `type:"boolean"`
-	AutomatedSnapshotRetentionPeriod *int      `type:"integer"`
+	AutomatedSnapshotRetentionPeriod *int64    `type:"integer"`
 	AvailabilityZone                 *string   `type:"string"`
 	ClusterIdentifier                *string   `type:"string" required:"true"`
 	ClusterParameterGroupName        *string   `type:"string"`
@@ -3009,7 +3009,7 @@ type RestoreFromClusterSnapshotInput struct {
 	HSMConfigurationIdentifier       *string   `locationName:"HsmConfigurationIdentifier" type:"string"`
 	KMSKeyID                         *string   `locationName:"KmsKeyId" type:"string"`
 	OwnerAccount                     *string   `type:"string"`
-	Port                             *int      `type:"integer"`
+	Port                             *int64    `type:"integer"`
 	PreferredMaintenanceWindow       *string   `type:"string"`
 	PubliclyAccessible               *bool     `type:"boolean"`
 	SnapshotClusterIdentifier        *string   `type:"string"`
@@ -3130,9 +3130,9 @@ type Snapshot struct {
 	KMSKeyID                               *string                     `locationName:"KmsKeyId" type:"string"`
 	MasterUsername                         *string                     `type:"string"`
 	NodeType                               *string                     `type:"string"`
-	NumberOfNodes                          *int                        `type:"integer"`
+	NumberOfNodes                          *int64                      `type:"integer"`
 	OwnerAccount                           *string                     `type:"string"`
-	Port                                   *int                        `type:"integer"`
+	Port                                   *int64                      `type:"integer"`
 	SnapshotCreateTime                     *time.Time                  `type:"timestamp" timestampFormat:"iso8601"`
 	SnapshotIdentifier                     *string                     `type:"string"`
 	SnapshotType                           *string                     `type:"string"`

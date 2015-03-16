@@ -216,26 +216,12 @@ func parseScalar(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 			return err
 		}
 		r.Set(reflect.ValueOf(&v))
-	case *int:
-		v, err := strconv.ParseInt(node.Text, 10, 32)
-		if err != nil {
-			return err
-		}
-		i := int(v)
-		r.Set(reflect.ValueOf(&i))
 	case *float64:
 		v, err := strconv.ParseFloat(node.Text, 64)
 		if err != nil {
 			return err
 		}
 		r.Set(reflect.ValueOf(&v))
-	case *float32:
-		v, err := strconv.ParseFloat(node.Text, 32)
-		if err != nil {
-			return err
-		}
-		f := float32(v)
-		r.Set(reflect.ValueOf(&f))
 	case *time.Time:
 		const ISO8601UTC = "2006-01-02T15:04:05Z"
 		t, err := time.Parse(ISO8601UTC, node.Text)
@@ -245,7 +231,7 @@ func parseScalar(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 			r.Set(reflect.ValueOf(&t))
 		}
 	default:
-		return fmt.Errorf("Unsupported value: %v (%s)", r.Interface(), r.Type())
+		return fmt.Errorf("unsupported value: %v (%s)", r.Interface(), r.Type())
 	}
 	return nil
 }

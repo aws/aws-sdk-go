@@ -1301,7 +1301,7 @@ type CORSRule struct {
 	AllowedMethods []*string `locationName:"AllowedMethod" type:"list" flattened:"true"`
 	AllowedOrigins []*string `locationName:"AllowedOrigin" type:"list" flattened:"true"`
 	ExposeHeaders  []*string `locationName:"ExposeHeader" type:"list" flattened:"true"`
-	MaxAgeSeconds  *int      `type:"integer"`
+	MaxAgeSeconds  *int64    `type:"integer"`
 
 	metadataCORSRule `json:"-", xml:"-"`
 }
@@ -1376,7 +1376,7 @@ type metadataCompletedMultipartUpload struct {
 
 type CompletedPart struct {
 	ETag       *string `type:"string"`
-	PartNumber *int    `type:"integer"`
+	PartNumber *int64  `type:"integer"`
 
 	metadataCompletedPart `json:"-", xml:"-"`
 }
@@ -2055,7 +2055,7 @@ type GetObjectOutput struct {
 	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
 	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
 	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string" json:"-" xml:"-"`
-	ContentLength           *int                `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
+	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
 	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string" json:"-" xml:"-"`
 	DeleteMarker            *bool               `location:"header" locationName:"x-amz-delete-marker" type:"boolean" json:"-" xml:"-"`
 	ETag                    *string             `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
@@ -2063,7 +2063,7 @@ type GetObjectOutput struct {
 	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
 	LastModified            *time.Time          `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
 	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map" json:"-" xml:"-"`
-	MissingMeta             *int                `location:"header" locationName:"x-amz-missing-meta" type:"integer" json:"-" xml:"-"`
+	MissingMeta             *int64              `location:"header" locationName:"x-amz-missing-meta" type:"integer" json:"-" xml:"-"`
 	Restore                 *string             `location:"header" locationName:"x-amz-restore" type:"string" json:"-" xml:"-"`
 	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
 	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
@@ -2169,7 +2169,7 @@ type HeadObjectOutput struct {
 	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
 	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
 	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string" json:"-" xml:"-"`
-	ContentLength           *int                `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
+	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
 	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string" json:"-" xml:"-"`
 	DeleteMarker            *bool               `location:"header" locationName:"x-amz-delete-marker" type:"boolean" json:"-" xml:"-"`
 	ETag                    *string             `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
@@ -2177,7 +2177,7 @@ type HeadObjectOutput struct {
 	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
 	LastModified            *time.Time          `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
 	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map" json:"-" xml:"-"`
-	MissingMeta             *int                `location:"header" locationName:"x-amz-missing-meta" type:"integer" json:"-" xml:"-"`
+	MissingMeta             *int64              `location:"header" locationName:"x-amz-missing-meta" type:"integer" json:"-" xml:"-"`
 	Restore                 *string             `location:"header" locationName:"x-amz-restore" type:"string" json:"-" xml:"-"`
 	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
 	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
@@ -2226,7 +2226,7 @@ type metadataLifecycleConfiguration struct {
 
 type LifecycleExpiration struct {
 	Date *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Days *int       `type:"integer"`
+	Days *int64     `type:"integer"`
 
 	metadataLifecycleExpiration `json:"-", xml:"-"`
 }
@@ -2259,7 +2259,7 @@ type ListMultipartUploadsInput struct {
 	Delimiter      *string `location:"querystring" locationName:"delimiter" type:"string" json:"-" xml:"-"`
 	EncodingType   *string `location:"querystring" locationName:"encoding-type" type:"string" json:"-" xml:"-"`
 	KeyMarker      *string `location:"querystring" locationName:"key-marker" type:"string" json:"-" xml:"-"`
-	MaxUploads     *int    `location:"querystring" locationName:"max-uploads" type:"integer" json:"-" xml:"-"`
+	MaxUploads     *int64  `location:"querystring" locationName:"max-uploads" type:"integer" json:"-" xml:"-"`
 	Prefix         *string `location:"querystring" locationName:"prefix" type:"string" json:"-" xml:"-"`
 	UploadIDMarker *string `location:"querystring" locationName:"upload-id-marker" type:"string" json:"-" xml:"-"`
 
@@ -2277,7 +2277,7 @@ type ListMultipartUploadsOutput struct {
 	EncodingType       *string            `type:"string"`
 	IsTruncated        *bool              `type:"boolean"`
 	KeyMarker          *string            `type:"string"`
-	MaxUploads         *int               `type:"integer"`
+	MaxUploads         *int64             `type:"integer"`
 	NextKeyMarker      *string            `type:"string"`
 	NextUploadIDMarker *string            `locationName:"NextUploadIdMarker" type:"string"`
 	Prefix             *string            `type:"string"`
@@ -2296,7 +2296,7 @@ type ListObjectVersionsInput struct {
 	Delimiter       *string `location:"querystring" locationName:"delimiter" type:"string" json:"-" xml:"-"`
 	EncodingType    *string `location:"querystring" locationName:"encoding-type" type:"string" json:"-" xml:"-"`
 	KeyMarker       *string `location:"querystring" locationName:"key-marker" type:"string" json:"-" xml:"-"`
-	MaxKeys         *int    `location:"querystring" locationName:"max-keys" type:"integer" json:"-" xml:"-"`
+	MaxKeys         *int64  `location:"querystring" locationName:"max-keys" type:"integer" json:"-" xml:"-"`
 	Prefix          *string `location:"querystring" locationName:"prefix" type:"string" json:"-" xml:"-"`
 	VersionIDMarker *string `location:"querystring" locationName:"version-id-marker" type:"string" json:"-" xml:"-"`
 
@@ -2314,7 +2314,7 @@ type ListObjectVersionsOutput struct {
 	EncodingType        *string              `type:"string"`
 	IsTruncated         *bool                `type:"boolean"`
 	KeyMarker           *string              `type:"string"`
-	MaxKeys             *int                 `type:"integer"`
+	MaxKeys             *int64               `type:"integer"`
 	Name                *string              `type:"string"`
 	NextKeyMarker       *string              `type:"string"`
 	NextVersionIDMarker *string              `locationName:"NextVersionIdMarker" type:"string"`
@@ -2334,7 +2334,7 @@ type ListObjectsInput struct {
 	Delimiter    *string `location:"querystring" locationName:"delimiter" type:"string" json:"-" xml:"-"`
 	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string" json:"-" xml:"-"`
 	Marker       *string `location:"querystring" locationName:"marker" type:"string" json:"-" xml:"-"`
-	MaxKeys      *int    `location:"querystring" locationName:"max-keys" type:"integer" json:"-" xml:"-"`
+	MaxKeys      *int64  `location:"querystring" locationName:"max-keys" type:"integer" json:"-" xml:"-"`
 	Prefix       *string `location:"querystring" locationName:"prefix" type:"string" json:"-" xml:"-"`
 
 	metadataListObjectsInput `json:"-", xml:"-"`
@@ -2351,7 +2351,7 @@ type ListObjectsOutput struct {
 	EncodingType   *string         `type:"string"`
 	IsTruncated    *bool           `type:"boolean"`
 	Marker         *string         `type:"string"`
-	MaxKeys        *int            `type:"integer"`
+	MaxKeys        *int64          `type:"integer"`
 	Name           *string         `type:"string"`
 	NextMarker     *string         `type:"string"`
 	Prefix         *string         `type:"string"`
@@ -2366,8 +2366,8 @@ type metadataListObjectsOutput struct {
 type ListPartsInput struct {
 	Bucket           *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
 	Key              *string `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	MaxParts         *int    `location:"querystring" locationName:"max-parts" type:"integer" json:"-" xml:"-"`
-	PartNumberMarker *int    `location:"querystring" locationName:"part-number-marker" type:"integer" json:"-" xml:"-"`
+	MaxParts         *int64  `location:"querystring" locationName:"max-parts" type:"integer" json:"-" xml:"-"`
+	PartNumberMarker *int64  `location:"querystring" locationName:"part-number-marker" type:"integer" json:"-" xml:"-"`
 	UploadID         *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"json:"-" xml:"-"`
 
 	metadataListPartsInput `json:"-", xml:"-"`
@@ -2382,10 +2382,10 @@ type ListPartsOutput struct {
 	Initiator            *Initiator `type:"structure"`
 	IsTruncated          *bool      `type:"boolean"`
 	Key                  *string    `type:"string"`
-	MaxParts             *int       `type:"integer"`
-	NextPartNumberMarker *int       `type:"integer"`
+	MaxParts             *int64     `type:"integer"`
+	NextPartNumberMarker *int64     `type:"integer"`
 	Owner                *Owner     `type:"structure"`
-	PartNumberMarker     *int       `type:"integer"`
+	PartNumberMarker     *int64     `type:"integer"`
 	Parts                []*Part    `locationName:"Part" type:"list" flattened:"true"`
 	StorageClass         *string    `type:"string"`
 	UploadID             *string    `locationName:"UploadId" type:"string"`
@@ -2425,7 +2425,7 @@ type metadataMultipartUpload struct {
 }
 
 type NoncurrentVersionExpiration struct {
-	NoncurrentDays *int `type:"integer"`
+	NoncurrentDays *int64 `type:"integer"`
 
 	metadataNoncurrentVersionExpiration `json:"-", xml:"-"`
 }
@@ -2435,7 +2435,7 @@ type metadataNoncurrentVersionExpiration struct {
 }
 
 type NoncurrentVersionTransition struct {
-	NoncurrentDays *int    `type:"integer"`
+	NoncurrentDays *int64  `type:"integer"`
 	StorageClass   *string `type:"string"`
 
 	metadataNoncurrentVersionTransition `json:"-", xml:"-"`
@@ -2462,7 +2462,7 @@ type Object struct {
 	Key          *string    `type:"string"`
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	Owner        *Owner     `type:"structure"`
-	Size         *int       `type:"integer"`
+	Size         *int64     `type:"integer"`
 	StorageClass *string    `type:"string"`
 
 	metadataObject `json:"-", xml:"-"`
@@ -2489,7 +2489,7 @@ type ObjectVersion struct {
 	Key          *string    `type:"string"`
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	Owner        *Owner     `type:"structure"`
-	Size         *int       `type:"integer"`
+	Size         *int64     `type:"integer"`
 	StorageClass *string    `type:"string"`
 	VersionID    *string    `locationName:"VersionId" type:"string"`
 
@@ -2514,8 +2514,8 @@ type metadataOwner struct {
 type Part struct {
 	ETag         *string    `type:"string"`
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	PartNumber   *int       `type:"integer"`
-	Size         *int       `type:"integer"`
+	PartNumber   *int64     `type:"integer"`
+	Size         *int64     `type:"integer"`
 
 	metadataPart `json:"-", xml:"-"`
 }
@@ -2766,7 +2766,7 @@ type PutObjectInput struct {
 	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
 	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
 	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string" json:"-" xml:"-"`
-	ContentLength           *int                `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
+	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
 	ContentMD5              *string             `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
 	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string" json:"-" xml:"-"`
 	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
@@ -2877,7 +2877,7 @@ type metadataRestoreObjectOutput struct {
 }
 
 type RestoreRequest struct {
-	Days *int `type:"integer" required:"true"`
+	Days *int64 `type:"integer" required:"true"`
 
 	metadataRestoreRequest `json:"-", xml:"-"`
 }
@@ -2960,7 +2960,7 @@ type metadataTopicConfiguration struct {
 
 type Transition struct {
 	Date         *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Days         *int       `type:"integer"`
+	Days         *int64     `type:"integer"`
 	StorageClass *string    `type:"string"`
 
 	metadataTransition `json:"-", xml:"-"`
@@ -2982,7 +2982,7 @@ type UploadPartCopyInput struct {
 	CopySourceSSECustomerKey       *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
 	CopySourceSSECustomerKeyMD5    *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
 	Key                            *string    `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	PartNumber                     *int       `location:"querystring" locationName:"partNumber" type:"integer" required:"true"json:"-" xml:"-"`
+	PartNumber                     *int64     `location:"querystring" locationName:"partNumber" type:"integer" required:"true"json:"-" xml:"-"`
 	SSECustomerAlgorithm           *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
 	SSECustomerKey                 *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
 	SSECustomerKeyMD5              *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
@@ -3013,10 +3013,10 @@ type metadataUploadPartCopyOutput struct {
 type UploadPartInput struct {
 	Body                 io.ReadSeeker `type:"blob"`
 	Bucket               *string       `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	ContentLength        *int          `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
+	ContentLength        *int64        `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
 	ContentMD5           *string       `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
 	Key                  *string       `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	PartNumber           *int          `location:"querystring" locationName:"partNumber" type:"integer" required:"true"json:"-" xml:"-"`
+	PartNumber           *int64        `location:"querystring" locationName:"partNumber" type:"integer" required:"true"json:"-" xml:"-"`
 	SSECustomerAlgorithm *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
 	SSECustomerKey       *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
 	SSECustomerKeyMD5    *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`

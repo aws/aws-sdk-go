@@ -32,7 +32,7 @@ func TestCreateDistribution(t *testing.T) {
 			CallerReference: aws.String("ID1"),
 			Enabled:         aws.True(),
 			Comment:         aws.String("A comment"),
-			Origins:         &cloudfront.Origins{Quantity: aws.Integer(0)},
+			Origins:         &cloudfront.Origins{Quantity: aws.Long(0)},
 			DefaultCacheBehavior: &cloudfront.DefaultCacheBehavior{
 				ForwardedValues: &cloudfront.ForwardedValues{
 					Cookies:     &cloudfront.CookiePreference{Forward: aws.String("cookie")},
@@ -41,7 +41,7 @@ func TestCreateDistribution(t *testing.T) {
 				TargetOriginID: aws.String("origin"),
 				TrustedSigners: &cloudfront.TrustedSigners{
 					Enabled:  aws.Boolean(true),
-					Quantity: aws.Integer(0),
+					Quantity: aws.Long(0),
 				},
 				ViewerProtocolPolicy: aws.String("policy"),
 				MinTTL:               aws.Long(0),

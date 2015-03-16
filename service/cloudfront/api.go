@@ -536,7 +536,7 @@ var opUpdateStreamingDistribution *aws.Operation
 type ActiveTrustedSigners struct {
 	Enabled  *bool     `type:"boolean" required:"true"`
 	Items    []*Signer `locationNameList:"Signer" type:"list"`
-	Quantity *int      `type:"integer" required:"true"`
+	Quantity *int64    `type:"integer" required:"true"`
 
 	metadataActiveTrustedSigners `json:"-", xml:"-"`
 }
@@ -547,7 +547,7 @@ type metadataActiveTrustedSigners struct {
 
 type Aliases struct {
 	Items    []*string `locationNameList:"CNAME" type:"list"`
-	Quantity *int      `type:"integer" required:"true"`
+	Quantity *int64    `type:"integer" required:"true"`
 
 	metadataAliases `json:"-", xml:"-"`
 }
@@ -559,7 +559,7 @@ type metadataAliases struct {
 type AllowedMethods struct {
 	CachedMethods *CachedMethods `type:"structure"`
 	Items         []*string      `locationNameList:"Method" type:"list" required:"true"`
-	Quantity      *int           `type:"integer" required:"true"`
+	Quantity      *int64         `type:"integer" required:"true"`
 
 	metadataAllowedMethods `json:"-", xml:"-"`
 }
@@ -587,7 +587,7 @@ type metadataCacheBehavior struct {
 
 type CacheBehaviors struct {
 	Items    []*CacheBehavior `locationNameList:"CacheBehavior" type:"list"`
-	Quantity *int             `type:"integer" required:"true"`
+	Quantity *int64           `type:"integer" required:"true"`
 
 	metadataCacheBehaviors `json:"-", xml:"-"`
 }
@@ -598,7 +598,7 @@ type metadataCacheBehaviors struct {
 
 type CachedMethods struct {
 	Items    []*string `locationNameList:"Method" type:"list" required:"true"`
-	Quantity *int      `type:"integer" required:"true"`
+	Quantity *int64    `type:"integer" required:"true"`
 
 	metadataCachedMethods `json:"-", xml:"-"`
 }
@@ -634,9 +634,9 @@ type CloudFrontOriginAccessIdentityList struct {
 	IsTruncated *bool                                    `type:"boolean" required:"true"`
 	Items       []*CloudFrontOriginAccessIdentitySummary `locationNameList:"CloudFrontOriginAccessIdentitySummary" type:"list"`
 	Marker      *string                                  `type:"string" required:"true"`
-	MaxItems    *int                                     `type:"integer" required:"true"`
+	MaxItems    *int64                                   `type:"integer" required:"true"`
 	NextMarker  *string                                  `type:"string"`
-	Quantity    *int                                     `type:"integer" required:"true"`
+	Quantity    *int64                                   `type:"integer" required:"true"`
 
 	metadataCloudFrontOriginAccessIdentityList `json:"-", xml:"-"`
 }
@@ -659,7 +659,7 @@ type metadataCloudFrontOriginAccessIdentitySummary struct {
 
 type CookieNames struct {
 	Items    []*string `locationNameList:"Name" type:"list"`
-	Quantity *int      `type:"integer" required:"true"`
+	Quantity *int64    `type:"integer" required:"true"`
 
 	metadataCookieNames `json:"-", xml:"-"`
 }
@@ -769,7 +769,7 @@ type metadataCreateStreamingDistributionOutput struct {
 
 type CustomErrorResponse struct {
 	ErrorCachingMinTTL *int64  `type:"long"`
-	ErrorCode          *int    `type:"integer" required:"true"`
+	ErrorCode          *int64  `type:"integer" required:"true"`
 	ResponseCode       *string `type:"string"`
 	ResponsePagePath   *string `type:"string"`
 
@@ -782,7 +782,7 @@ type metadataCustomErrorResponse struct {
 
 type CustomErrorResponses struct {
 	Items    []*CustomErrorResponse `locationNameList:"CustomErrorResponse" type:"list"`
-	Quantity *int                   `type:"integer" required:"true"`
+	Quantity *int64                 `type:"integer" required:"true"`
 
 	metadataCustomErrorResponses `json:"-", xml:"-"`
 }
@@ -792,8 +792,8 @@ type metadataCustomErrorResponses struct {
 }
 
 type CustomOriginConfig struct {
-	HTTPPort             *int    `type:"integer" required:"true"`
-	HTTPSPort            *int    `type:"integer" required:"true"`
+	HTTPPort             *int64  `type:"integer" required:"true"`
+	HTTPSPort            *int64  `type:"integer" required:"true"`
 	OriginProtocolPolicy *string `type:"string" required:"true"`
 
 	metadataCustomOriginConfig `json:"-", xml:"-"`
@@ -881,7 +881,7 @@ type Distribution struct {
 	DistributionConfig            *DistributionConfig   `type:"structure" required:"true"`
 	DomainName                    *string               `type:"string" required:"true"`
 	ID                            *string               `locationName:"Id" type:"string" required:"true"`
-	InProgressInvalidationBatches *int                  `type:"integer" required:"true"`
+	InProgressInvalidationBatches *int64                `type:"integer" required:"true"`
 	LastModifiedTime              *time.Time            `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 	Status                        *string               `type:"string" required:"true"`
 
@@ -918,9 +918,9 @@ type DistributionList struct {
 	IsTruncated *bool                  `type:"boolean" required:"true"`
 	Items       []*DistributionSummary `locationNameList:"DistributionSummary" type:"list"`
 	Marker      *string                `type:"string" required:"true"`
-	MaxItems    *int                   `type:"integer" required:"true"`
+	MaxItems    *int64                 `type:"integer" required:"true"`
 	NextMarker  *string                `type:"string"`
-	Quantity    *int                   `type:"integer" required:"true"`
+	Quantity    *int64                 `type:"integer" required:"true"`
 
 	metadataDistributionList `json:"-", xml:"-"`
 }
@@ -966,7 +966,7 @@ type metadataForwardedValues struct {
 
 type GeoRestriction struct {
 	Items           []*string `locationNameList:"Location" type:"list"`
-	Quantity        *int      `type:"integer" required:"true"`
+	Quantity        *int64    `type:"integer" required:"true"`
 	RestrictionType *string   `type:"string" required:"true"`
 
 	metadataGeoRestriction `json:"-", xml:"-"`
@@ -1125,7 +1125,7 @@ type metadataGetStreamingDistributionOutput struct {
 
 type Headers struct {
 	Items    []*string `locationNameList:"Name" type:"list"`
-	Quantity *int      `type:"integer" required:"true"`
+	Quantity *int64    `type:"integer" required:"true"`
 
 	metadataHeaders `json:"-", xml:"-"`
 }
@@ -1162,9 +1162,9 @@ type InvalidationList struct {
 	IsTruncated *bool                  `type:"boolean" required:"true"`
 	Items       []*InvalidationSummary `locationNameList:"InvalidationSummary" type:"list"`
 	Marker      *string                `type:"string" required:"true"`
-	MaxItems    *int                   `type:"integer" required:"true"`
+	MaxItems    *int64                 `type:"integer" required:"true"`
 	NextMarker  *string                `type:"string"`
-	Quantity    *int                   `type:"integer" required:"true"`
+	Quantity    *int64                 `type:"integer" required:"true"`
 
 	metadataInvalidationList `json:"-", xml:"-"`
 }
@@ -1187,7 +1187,7 @@ type metadataInvalidationSummary struct {
 
 type KeyPairIDs struct {
 	Items    []*string `locationNameList:"KeyPairId" type:"list"`
-	Quantity *int      `type:"integer" required:"true"`
+	Quantity *int64    `type:"integer" required:"true"`
 
 	metadataKeyPairIDs `json:"-", xml:"-"`
 }
@@ -1310,7 +1310,7 @@ type metadataOrigin struct {
 
 type Origins struct {
 	Items    []*Origin `locationNameList:"Origin" type:"list"`
-	Quantity *int      `type:"integer" required:"true"`
+	Quantity *int64    `type:"integer" required:"true"`
 
 	metadataOrigins `json:"-", xml:"-"`
 }
@@ -1321,7 +1321,7 @@ type metadataOrigins struct {
 
 type Paths struct {
 	Items    []*string `locationNameList:"Path" type:"list"`
-	Quantity *int      `type:"integer" required:"true"`
+	Quantity *int64    `type:"integer" required:"true"`
 
 	metadataPaths `json:"-", xml:"-"`
 }
@@ -1408,9 +1408,9 @@ type StreamingDistributionList struct {
 	IsTruncated *bool                           `type:"boolean" required:"true"`
 	Items       []*StreamingDistributionSummary `locationNameList:"StreamingDistributionSummary" type:"list"`
 	Marker      *string                         `type:"string" required:"true"`
-	MaxItems    *int                            `type:"integer" required:"true"`
+	MaxItems    *int64                          `type:"integer" required:"true"`
 	NextMarker  *string                         `type:"string"`
-	Quantity    *int                            `type:"integer" required:"true"`
+	Quantity    *int64                          `type:"integer" required:"true"`
 
 	metadataStreamingDistributionList `json:"-", xml:"-"`
 }
@@ -1453,7 +1453,7 @@ type metadataStreamingLoggingConfig struct {
 type TrustedSigners struct {
 	Enabled  *bool     `type:"boolean" required:"true"`
 	Items    []*string `locationNameList:"AwsAccountNumber" type:"list"`
-	Quantity *int      `type:"integer" required:"true"`
+	Quantity *int64    `type:"integer" required:"true"`
 
 	metadataTrustedSigners `json:"-", xml:"-"`
 }

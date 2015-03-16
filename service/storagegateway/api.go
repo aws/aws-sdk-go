@@ -1495,7 +1495,7 @@ type metadataCreateStorediSCSIVolumeOutput struct {
 type CreateTapesInput struct {
 	ClientToken       *string `type:"string" required:"true"json:",omitempty"`
 	GatewayARN        *string `type:"string" required:"true"json:",omitempty"`
-	NumTapesToCreate  *int    `type:"integer" required:"true"json:",omitempty"`
+	NumTapesToCreate  *int64  `type:"integer" required:"true"json:",omitempty"`
 	TapeBarcodePrefix *string `type:"string" required:"true"json:",omitempty"`
 	TapeSizeInBytes   *int64  `type:"long" required:"true"json:",omitempty"`
 
@@ -1785,10 +1785,10 @@ type metadataDescribeMaintenanceStartTimeInput struct {
 }
 
 type DescribeMaintenanceStartTimeOutput struct {
-	DayOfWeek    *int    `type:"integer" json:",omitempty"`
+	DayOfWeek    *int64  `type:"integer" json:",omitempty"`
 	GatewayARN   *string `type:"string" json:",omitempty"`
-	HourOfDay    *int    `type:"integer" json:",omitempty"`
-	MinuteOfHour *int    `type:"integer" json:",omitempty"`
+	HourOfDay    *int64  `type:"integer" json:",omitempty"`
+	MinuteOfHour *int64  `type:"integer" json:",omitempty"`
 	Timezone     *string `type:"string" json:",omitempty"`
 
 	metadataDescribeMaintenanceStartTimeOutput `json:"-", xml:"-"`
@@ -1810,8 +1810,8 @@ type metadataDescribeSnapshotScheduleInput struct {
 
 type DescribeSnapshotScheduleOutput struct {
 	Description       *string `type:"string" json:",omitempty"`
-	RecurrenceInHours *int    `type:"integer" json:",omitempty"`
-	StartAt           *int    `type:"integer" json:",omitempty"`
+	RecurrenceInHours *int64  `type:"integer" json:",omitempty"`
+	StartAt           *int64  `type:"integer" json:",omitempty"`
 	Timezone          *string `type:"string" json:",omitempty"`
 	VolumeARN         *string `type:"string" json:",omitempty"`
 
@@ -1843,7 +1843,7 @@ type metadataDescribeStorediSCSIVolumesOutput struct {
 }
 
 type DescribeTapeArchivesInput struct {
-	Limit    *int      `type:"integer" json:",omitempty"`
+	Limit    *int64    `type:"integer" json:",omitempty"`
 	Marker   *string   `type:"string" json:",omitempty"`
 	TapeARNs []*string `type:"list" json:",omitempty"`
 
@@ -1867,7 +1867,7 @@ type metadataDescribeTapeArchivesOutput struct {
 
 type DescribeTapeRecoveryPointsInput struct {
 	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
-	Limit      *int    `type:"integer" json:",omitempty"`
+	Limit      *int64  `type:"integer" json:",omitempty"`
 	Marker     *string `type:"string" json:",omitempty"`
 
 	metadataDescribeTapeRecoveryPointsInput `json:"-", xml:"-"`
@@ -1891,7 +1891,7 @@ type metadataDescribeTapeRecoveryPointsOutput struct {
 
 type DescribeTapesInput struct {
 	GatewayARN *string   `type:"string" required:"true"json:",omitempty"`
-	Limit      *int      `type:"integer" json:",omitempty"`
+	Limit      *int64    `type:"integer" json:",omitempty"`
 	Marker     *string   `type:"string" json:",omitempty"`
 	TapeARNs   []*string `type:"list" json:",omitempty"`
 
@@ -1938,7 +1938,7 @@ type metadataDescribeUploadBufferOutput struct {
 
 type DescribeVTLDevicesInput struct {
 	GatewayARN    *string   `type:"string" required:"true"json:",omitempty"`
-	Limit         *int      `type:"integer" json:",omitempty"`
+	Limit         *int64    `type:"integer" json:",omitempty"`
 	Marker        *string   `type:"string" json:",omitempty"`
 	VTLDeviceARNs []*string `type:"list" json:",omitempty"`
 
@@ -1987,7 +1987,7 @@ type metadataDescribeWorkingStorageOutput struct {
 type DeviceiSCSIAttributes struct {
 	ChapEnabled          *bool   `type:"boolean" json:",omitempty"`
 	NetworkInterfaceID   *string `locationName:"NetworkInterfaceId" type:"string" json:"NetworkInterfaceId,omitempty"`
-	NetworkInterfacePort *int    `type:"integer" json:",omitempty"`
+	NetworkInterfacePort *int64  `type:"integer" json:",omitempty"`
 	TargetARN            *string `type:"string" json:",omitempty"`
 
 	metadataDeviceiSCSIAttributes `json:"-", xml:"-"`
@@ -2046,7 +2046,7 @@ type metadataGatewayInfo struct {
 }
 
 type ListGatewaysInput struct {
-	Limit  *int    `type:"integer" json:",omitempty"`
+	Limit  *int64  `type:"integer" json:",omitempty"`
 	Marker *string `type:"string" json:",omitempty"`
 
 	metadataListGatewaysInput `json:"-", xml:"-"`
@@ -2111,7 +2111,7 @@ type metadataListVolumeRecoveryPointsOutput struct {
 
 type ListVolumesInput struct {
 	GatewayARN *string `type:"string" required:"true"json:",omitempty"`
-	Limit      *int    `type:"integer" json:",omitempty"`
+	Limit      *int64  `type:"integer" json:",omitempty"`
 	Marker     *string `type:"string" json:",omitempty"`
 
 	metadataListVolumesInput `json:"-", xml:"-"`
@@ -2409,10 +2409,10 @@ type metadataUpdateGatewaySoftwareNowOutput struct {
 }
 
 type UpdateMaintenanceStartTimeInput struct {
-	DayOfWeek    *int    `type:"integer" required:"true"json:",omitempty"`
+	DayOfWeek    *int64  `type:"integer" required:"true"json:",omitempty"`
 	GatewayARN   *string `type:"string" required:"true"json:",omitempty"`
-	HourOfDay    *int    `type:"integer" required:"true"json:",omitempty"`
-	MinuteOfHour *int    `type:"integer" required:"true"json:",omitempty"`
+	HourOfDay    *int64  `type:"integer" required:"true"json:",omitempty"`
+	MinuteOfHour *int64  `type:"integer" required:"true"json:",omitempty"`
 
 	metadataUpdateMaintenanceStartTimeInput `json:"-", xml:"-"`
 }
@@ -2433,8 +2433,8 @@ type metadataUpdateMaintenanceStartTimeOutput struct {
 
 type UpdateSnapshotScheduleInput struct {
 	Description       *string `type:"string" json:",omitempty"`
-	RecurrenceInHours *int    `type:"integer" required:"true"json:",omitempty"`
-	StartAt           *int    `type:"integer" required:"true"json:",omitempty"`
+	RecurrenceInHours *int64  `type:"integer" required:"true"json:",omitempty"`
+	StartAt           *int64  `type:"integer" required:"true"json:",omitempty"`
 	VolumeARN         *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataUpdateSnapshotScheduleInput `json:"-", xml:"-"`
@@ -2515,9 +2515,9 @@ type metadataVolumeRecoveryPointInfo struct {
 
 type VolumeiSCSIAttributes struct {
 	ChapEnabled          *bool   `type:"boolean" json:",omitempty"`
-	LunNumber            *int    `type:"integer" json:",omitempty"`
+	LunNumber            *int64  `type:"integer" json:",omitempty"`
 	NetworkInterfaceID   *string `locationName:"NetworkInterfaceId" type:"string" json:"NetworkInterfaceId,omitempty"`
-	NetworkInterfacePort *int    `type:"integer" json:",omitempty"`
+	NetworkInterfacePort *int64  `type:"integer" json:",omitempty"`
 	TargetARN            *string `type:"string" json:",omitempty"`
 
 	metadataVolumeiSCSIAttributes `json:"-", xml:"-"`

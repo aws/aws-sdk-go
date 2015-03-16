@@ -61,7 +61,7 @@ func NewOutputService1ProtocolTest(config *OutputService1ProtocolTestConfig) *Ou
 }
 
 // OutputService1TestCaseOperation1Request generates a request for the OutputService1TestCaseOperation1 operation.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputService1TestCaseOperation1Output) {
 	if opOutputService1TestCaseOperation1 == nil {
 		opOutputService1TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
@@ -69,12 +69,12 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(inp
 	}
 
 	req = aws.NewRequest(c.Service, opOutputService1TestCaseOperation1, input, output)
-	output = &OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output{}
+	output = &OutputService1TestShapeOutputService1TestCaseOperation1Output{}
 	req.Data = output
 	return
 }
 
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output, err error) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputService1TestCaseOperation1Output, err error) {
 	req, out := c.OutputService1TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -91,20 +91,20 @@ type metadataOutputService1TestShapeOutputService1TestCaseOperation1Input struct
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
-type OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output struct {
+type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
 	Char      *string  `type:"character" json:",omitempty"`
 	Double    *float64 `type:"double" json:",omitempty"`
 	FalseBool *bool    `type:"boolean" json:",omitempty"`
-	Float     *float32 `type:"float" json:",omitempty"`
+	Float     *float64 `type:"float" json:",omitempty"`
 	Long      *int64   `type:"long" json:",omitempty"`
-	Num       *int     `type:"integer" json:",omitempty"`
+	Num       *int64   `type:"integer" json:",omitempty"`
 	Str       *string  `type:"string" json:",omitempty"`
 	TrueBool  *bool    `type:"boolean" json:",omitempty"`
 
-	metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output `json:"-", xml:"-"`
+	metadataOutputService1TestShapeOutputService1TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
-type metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output struct {
+type metadataOutputService1TestShapeOutputService1TestCaseOperation1Output struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -335,7 +335,7 @@ type metadataOutputService4TestShapeOutputService4TestCaseOperation1Input struct
 }
 
 type OutputService4TestShapeOutputService4TestCaseOperation1Output struct {
-	MapMember *map[string][]*int `type:"map" json:",omitempty"`
+	MapMember *map[string][]*int64 `type:"map" json:",omitempty"`
 
 	metadataOutputService4TestShapeOutputService4TestCaseOperation1Output `json:"-", xml:"-"`
 }

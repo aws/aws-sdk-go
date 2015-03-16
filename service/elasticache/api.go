@@ -991,13 +991,13 @@ type CacheCluster struct {
 	Engine                     *string                         `type:"string"`
 	EngineVersion              *string                         `type:"string"`
 	NotificationConfiguration  *NotificationConfiguration      `type:"structure"`
-	NumCacheNodes              *int                            `type:"integer"`
+	NumCacheNodes              *int64                          `type:"integer"`
 	PendingModifiedValues      *PendingModifiedValues          `type:"structure"`
 	PreferredAvailabilityZone  *string                         `type:"string"`
 	PreferredMaintenanceWindow *string                         `type:"string"`
 	ReplicationGroupID         *string                         `locationName:"ReplicationGroupId" type:"string"`
 	SecurityGroups             []*SecurityGroupMembership      `type:"list"`
-	SnapshotRetentionLimit     *int                            `type:"integer"`
+	SnapshotRetentionLimit     *int64                          `type:"integer"`
 	SnapshotWindow             *string                         `type:"string"`
 
 	metadataCacheCluster `json:"-", xml:"-"`
@@ -1168,8 +1168,8 @@ type CreateCacheClusterInput struct {
 	Engine                     *string   `type:"string"`
 	EngineVersion              *string   `type:"string"`
 	NotificationTopicARN       *string   `locationName:"NotificationTopicArn" type:"string"`
-	NumCacheNodes              *int      `type:"integer"`
-	Port                       *int      `type:"integer"`
+	NumCacheNodes              *int64    `type:"integer"`
+	Port                       *int64    `type:"integer"`
 	PreferredAvailabilityZone  *string   `type:"string"`
 	PreferredAvailabilityZones []*string `locationNameList:"PreferredAvailabilityZone" type:"list"`
 	PreferredMaintenanceWindow *string   `type:"string"`
@@ -1177,7 +1177,7 @@ type CreateCacheClusterInput struct {
 	SecurityGroupIDs           []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
 	SnapshotARNs               []*string `locationName:"SnapshotArns" locationNameList:"SnapshotArn" type:"list"`
 	SnapshotName               *string   `type:"string"`
-	SnapshotRetentionLimit     *int      `type:"integer"`
+	SnapshotRetentionLimit     *int64    `type:"integer"`
 	SnapshotWindow             *string   `type:"string"`
 	Tags                       []*Tag    `locationNameList:"Tag" type:"list"`
 
@@ -1273,8 +1273,8 @@ type CreateReplicationGroupInput struct {
 	Engine                      *string   `type:"string"`
 	EngineVersion               *string   `type:"string"`
 	NotificationTopicARN        *string   `locationName:"NotificationTopicArn" type:"string"`
-	NumCacheClusters            *int      `type:"integer"`
-	Port                        *int      `type:"integer"`
+	NumCacheClusters            *int64    `type:"integer"`
+	Port                        *int64    `type:"integer"`
 	PreferredCacheClusterAZs    []*string `locationNameList:"AvailabilityZone" type:"list"`
 	PreferredMaintenanceWindow  *string   `type:"string"`
 	PrimaryClusterID            *string   `locationName:"PrimaryClusterId" type:"string"`
@@ -1283,7 +1283,7 @@ type CreateReplicationGroupInput struct {
 	SecurityGroupIDs            []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
 	SnapshotARNs                []*string `locationName:"SnapshotArns" locationNameList:"SnapshotArn" type:"list"`
 	SnapshotName                *string   `type:"string"`
-	SnapshotRetentionLimit      *int      `type:"integer"`
+	SnapshotRetentionLimit      *int64    `type:"integer"`
 	SnapshotWindow              *string   `type:"string"`
 	Tags                        []*Tag    `locationNameList:"Tag" type:"list"`
 
@@ -1445,7 +1445,7 @@ type metadataDeleteSnapshotOutput struct {
 type DescribeCacheClustersInput struct {
 	CacheClusterID    *string `locationName:"CacheClusterId" type:"string"`
 	Marker            *string `type:"string"`
-	MaxRecords        *int    `type:"integer"`
+	MaxRecords        *int64  `type:"integer"`
 	ShowCacheNodeInfo *bool   `type:"boolean"`
 
 	metadataDescribeCacheClustersInput `json:"-", xml:"-"`
@@ -1472,7 +1472,7 @@ type DescribeCacheEngineVersionsInput struct {
 	Engine                    *string `type:"string"`
 	EngineVersion             *string `type:"string"`
 	Marker                    *string `type:"string"`
-	MaxRecords                *int    `type:"integer"`
+	MaxRecords                *int64  `type:"integer"`
 
 	metadataDescribeCacheEngineVersionsInput `json:"-", xml:"-"`
 }
@@ -1495,7 +1495,7 @@ type metadataDescribeCacheEngineVersionsOutput struct {
 type DescribeCacheParameterGroupsInput struct {
 	CacheParameterGroupName *string `type:"string"`
 	Marker                  *string `type:"string"`
-	MaxRecords              *int    `type:"integer"`
+	MaxRecords              *int64  `type:"integer"`
 
 	metadataDescribeCacheParameterGroupsInput `json:"-", xml:"-"`
 }
@@ -1518,7 +1518,7 @@ type metadataDescribeCacheParameterGroupsOutput struct {
 type DescribeCacheParametersInput struct {
 	CacheParameterGroupName *string `type:"string" required:"true"`
 	Marker                  *string `type:"string"`
-	MaxRecords              *int    `type:"integer"`
+	MaxRecords              *int64  `type:"integer"`
 	Source                  *string `type:"string"`
 
 	metadataDescribeCacheParametersInput `json:"-", xml:"-"`
@@ -1543,7 +1543,7 @@ type metadataDescribeCacheParametersOutput struct {
 type DescribeCacheSecurityGroupsInput struct {
 	CacheSecurityGroupName *string `type:"string"`
 	Marker                 *string `type:"string"`
-	MaxRecords             *int    `type:"integer"`
+	MaxRecords             *int64  `type:"integer"`
 
 	metadataDescribeCacheSecurityGroupsInput `json:"-", xml:"-"`
 }
@@ -1566,7 +1566,7 @@ type metadataDescribeCacheSecurityGroupsOutput struct {
 type DescribeCacheSubnetGroupsInput struct {
 	CacheSubnetGroupName *string `type:"string"`
 	Marker               *string `type:"string"`
-	MaxRecords           *int    `type:"integer"`
+	MaxRecords           *int64  `type:"integer"`
 
 	metadataDescribeCacheSubnetGroupsInput `json:"-", xml:"-"`
 }
@@ -1589,7 +1589,7 @@ type metadataDescribeCacheSubnetGroupsOutput struct {
 type DescribeEngineDefaultParametersInput struct {
 	CacheParameterGroupFamily *string `type:"string" required:"true"`
 	Marker                    *string `type:"string"`
-	MaxRecords                *int    `type:"integer"`
+	MaxRecords                *int64  `type:"integer"`
 
 	metadataDescribeEngineDefaultParametersInput `json:"-", xml:"-"`
 }
@@ -1609,10 +1609,10 @@ type metadataDescribeEngineDefaultParametersOutput struct {
 }
 
 type DescribeEventsInput struct {
-	Duration         *int       `type:"integer"`
+	Duration         *int64     `type:"integer"`
 	EndTime          *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	Marker           *string    `type:"string"`
-	MaxRecords       *int       `type:"integer"`
+	MaxRecords       *int64     `type:"integer"`
 	SourceIdentifier *string    `type:"string"`
 	SourceType       *string    `type:"string"`
 	StartTime        *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -1637,7 +1637,7 @@ type metadataDescribeEventsOutput struct {
 
 type DescribeReplicationGroupsInput struct {
 	Marker             *string `type:"string"`
-	MaxRecords         *int    `type:"integer"`
+	MaxRecords         *int64  `type:"integer"`
 	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string"`
 
 	metadataDescribeReplicationGroupsInput `json:"-", xml:"-"`
@@ -1662,7 +1662,7 @@ type DescribeReservedCacheNodesInput struct {
 	CacheNodeType                *string `type:"string"`
 	Duration                     *string `type:"string"`
 	Marker                       *string `type:"string"`
-	MaxRecords                   *int    `type:"integer"`
+	MaxRecords                   *int64  `type:"integer"`
 	OfferingType                 *string `type:"string"`
 	ProductDescription           *string `type:"string"`
 	ReservedCacheNodeID          *string `locationName:"ReservedCacheNodeId" type:"string"`
@@ -1679,7 +1679,7 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	CacheNodeType                *string `type:"string"`
 	Duration                     *string `type:"string"`
 	Marker                       *string `type:"string"`
-	MaxRecords                   *int    `type:"integer"`
+	MaxRecords                   *int64  `type:"integer"`
 	OfferingType                 *string `type:"string"`
 	ProductDescription           *string `type:"string"`
 	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
@@ -1716,7 +1716,7 @@ type metadataDescribeReservedCacheNodesOutput struct {
 type DescribeSnapshotsInput struct {
 	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
 	Marker         *string `type:"string"`
-	MaxRecords     *int    `type:"integer"`
+	MaxRecords     *int64  `type:"integer"`
 	SnapshotName   *string `type:"string"`
 	SnapshotSource *string `type:"string"`
 
@@ -1752,7 +1752,7 @@ type metadataEC2SecurityGroup struct {
 
 type Endpoint struct {
 	Address *string `type:"string"`
-	Port    *int    `type:"integer"`
+	Port    *int64  `type:"integer"`
 
 	metadataEndpoint `json:"-", xml:"-"`
 }
@@ -1809,10 +1809,10 @@ type ModifyCacheClusterInput struct {
 	NewAvailabilityZones       []*string `locationNameList:"PreferredAvailabilityZone" type:"list"`
 	NotificationTopicARN       *string   `locationName:"NotificationTopicArn" type:"string"`
 	NotificationTopicStatus    *string   `type:"string"`
-	NumCacheNodes              *int      `type:"integer"`
+	NumCacheNodes              *int64    `type:"integer"`
 	PreferredMaintenanceWindow *string   `type:"string"`
 	SecurityGroupIDs           []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
-	SnapshotRetentionLimit     *int      `type:"integer"`
+	SnapshotRetentionLimit     *int64    `type:"integer"`
 	SnapshotWindow             *string   `type:"string"`
 
 	metadataModifyCacheClusterInput `json:"-", xml:"-"`
@@ -1879,7 +1879,7 @@ type ModifyReplicationGroupInput struct {
 	ReplicationGroupDescription *string   `type:"string"`
 	ReplicationGroupID          *string   `locationName:"ReplicationGroupId" type:"string" required:"true"`
 	SecurityGroupIDs            []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
-	SnapshotRetentionLimit      *int      `type:"integer"`
+	SnapshotRetentionLimit      *int64    `type:"integer"`
 	SnapshotWindow              *string   `type:"string"`
 	SnapshottingClusterID       *string   `locationName:"SnapshottingClusterId" type:"string"`
 
@@ -1982,7 +1982,7 @@ type metadataParameterNameValue struct {
 type PendingModifiedValues struct {
 	CacheNodeIDsToRemove []*string `locationName:"CacheNodeIdsToRemove" locationNameList:"CacheNodeId" type:"list"`
 	EngineVersion        *string   `type:"string"`
-	NumCacheNodes        *int      `type:"integer"`
+	NumCacheNodes        *int64    `type:"integer"`
 
 	metadataPendingModifiedValues `json:"-", xml:"-"`
 }
@@ -1992,7 +1992,7 @@ type metadataPendingModifiedValues struct {
 }
 
 type PurchaseReservedCacheNodesOfferingInput struct {
-	CacheNodeCount               *int    `type:"integer"`
+	CacheNodeCount               *int64  `type:"integer"`
 	ReservedCacheNodeID          *string `locationName:"ReservedCacheNodeId" type:"string"`
 	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string" required:"true"`
 
@@ -2085,9 +2085,9 @@ type metadataReplicationGroupPendingModifiedValues struct {
 }
 
 type ReservedCacheNode struct {
-	CacheNodeCount               *int               `type:"integer"`
+	CacheNodeCount               *int64             `type:"integer"`
 	CacheNodeType                *string            `type:"string"`
-	Duration                     *int               `type:"integer"`
+	Duration                     *int64             `type:"integer"`
 	FixedPrice                   *float64           `type:"double"`
 	OfferingType                 *string            `type:"string"`
 	ProductDescription           *string            `type:"string"`
@@ -2107,7 +2107,7 @@ type metadataReservedCacheNode struct {
 
 type ReservedCacheNodesOffering struct {
 	CacheNodeType                *string            `type:"string"`
-	Duration                     *int               `type:"integer"`
+	Duration                     *int64             `type:"integer"`
 	FixedPrice                   *float64           `type:"double"`
 	OfferingType                 *string            `type:"string"`
 	ProductDescription           *string            `type:"string"`
@@ -2177,12 +2177,12 @@ type Snapshot struct {
 	Engine                     *string         `type:"string"`
 	EngineVersion              *string         `type:"string"`
 	NodeSnapshots              []*NodeSnapshot `locationNameList:"NodeSnapshot" type:"list"`
-	NumCacheNodes              *int            `type:"integer"`
-	Port                       *int            `type:"integer"`
+	NumCacheNodes              *int64          `type:"integer"`
+	Port                       *int64          `type:"integer"`
 	PreferredAvailabilityZone  *string         `type:"string"`
 	PreferredMaintenanceWindow *string         `type:"string"`
 	SnapshotName               *string         `type:"string"`
-	SnapshotRetentionLimit     *int            `type:"integer"`
+	SnapshotRetentionLimit     *int64          `type:"integer"`
 	SnapshotSource             *string         `type:"string"`
 	SnapshotStatus             *string         `type:"string"`
 	SnapshotWindow             *string         `type:"string"`

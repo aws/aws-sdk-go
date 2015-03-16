@@ -525,7 +525,7 @@ type DescribeCasesInput struct {
 	IncludeCommunications *bool     `locationName:"includeCommunications" type:"boolean" json:"includeCommunications,omitempty"`
 	IncludeResolvedCases  *bool     `locationName:"includeResolvedCases" type:"boolean" json:"includeResolvedCases,omitempty"`
 	Language              *string   `locationName:"language" type:"string" json:"language,omitempty"`
-	MaxResults            *int      `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	MaxResults            *int64    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
 	NextToken             *string   `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeCasesInput `json:"-", xml:"-"`
@@ -550,7 +550,7 @@ type DescribeCommunicationsInput struct {
 	AfterTime  *string `locationName:"afterTime" type:"string" json:"afterTime,omitempty"`
 	BeforeTime *string `locationName:"beforeTime" type:"string" json:"beforeTime,omitempty"`
 	CaseID     *string `locationName:"caseId" type:"string" required:"true"json:"caseId,omitempty"`
-	MaxResults *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	MaxResults *int64  `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
 	NextToken  *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataDescribeCommunicationsInput `json:"-", xml:"-"`

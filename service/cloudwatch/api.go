@@ -335,7 +335,7 @@ type DescribeAlarmHistoryInput struct {
 	AlarmName       *string    `type:"string"`
 	EndDate         *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	HistoryItemType *string    `type:"string"`
-	MaxRecords      *int       `type:"integer"`
+	MaxRecords      *int64     `type:"integer"`
 	NextToken       *string    `type:"string"`
 	StartDate       *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -361,7 +361,7 @@ type DescribeAlarmsForMetricInput struct {
 	Dimensions []*Dimension `type:"list"`
 	MetricName *string      `type:"string" required:"true"`
 	Namespace  *string      `type:"string" required:"true"`
-	Period     *int         `type:"integer"`
+	Period     *int64       `type:"integer"`
 	Statistic  *string      `type:"string"`
 	Unit       *string      `type:"string"`
 
@@ -386,7 +386,7 @@ type DescribeAlarmsInput struct {
 	ActionPrefix    *string   `type:"string"`
 	AlarmNamePrefix *string   `type:"string"`
 	AlarmNames      []*string `type:"list"`
-	MaxRecords      *int      `type:"integer"`
+	MaxRecords      *int64    `type:"integer"`
 	NextToken       *string   `type:"string"`
 	StateValue      *string   `type:"string"`
 
@@ -471,7 +471,7 @@ type GetMetricStatisticsInput struct {
 	EndTime    *time.Time   `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 	MetricName *string      `type:"string" required:"true"`
 	Namespace  *string      `type:"string" required:"true"`
-	Period     *int         `type:"integer" required:"true"`
+	Period     *int64       `type:"integer" required:"true"`
 	StartTime  *time.Time   `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 	Statistics []*string    `type:"list" required:"true"`
 	Unit       *string      `type:"string"`
@@ -539,12 +539,12 @@ type MetricAlarm struct {
 	AlarmName                          *string      `type:"string"`
 	ComparisonOperator                 *string      `type:"string"`
 	Dimensions                         []*Dimension `type:"list"`
-	EvaluationPeriods                  *int         `type:"integer"`
+	EvaluationPeriods                  *int64       `type:"integer"`
 	InsufficientDataActions            []*string    `type:"list"`
 	MetricName                         *string      `type:"string"`
 	Namespace                          *string      `type:"string"`
 	OKActions                          []*string    `type:"list"`
-	Period                             *int         `type:"integer"`
+	Period                             *int64       `type:"integer"`
 	StateReason                        *string      `type:"string"`
 	StateReasonData                    *string      `type:"string"`
 	StateUpdatedTimestamp              *time.Time   `type:"timestamp" timestampFormat:"iso8601"`
@@ -582,12 +582,12 @@ type PutMetricAlarmInput struct {
 	AlarmName               *string      `type:"string" required:"true"`
 	ComparisonOperator      *string      `type:"string" required:"true"`
 	Dimensions              []*Dimension `type:"list"`
-	EvaluationPeriods       *int         `type:"integer" required:"true"`
+	EvaluationPeriods       *int64       `type:"integer" required:"true"`
 	InsufficientDataActions []*string    `type:"list"`
 	MetricName              *string      `type:"string" required:"true"`
 	Namespace               *string      `type:"string" required:"true"`
 	OKActions               []*string    `type:"list"`
-	Period                  *int         `type:"integer" required:"true"`
+	Period                  *int64       `type:"integer" required:"true"`
 	Statistic               *string      `type:"string" required:"true"`
 	Threshold               *float64     `type:"double" required:"true"`
 	Unit                    *string      `type:"string"`

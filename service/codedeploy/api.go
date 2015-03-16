@@ -1268,7 +1268,7 @@ type metadataListDeploymentsOutput struct {
 
 type MinimumHealthyHosts struct {
 	Type  *string `locationName:"type" type:"string" json:"type,omitempty"`
-	Value *int    `locationName:"value" type:"integer" json:"value,omitempty"`
+	Value *int64  `locationName:"value" type:"integer" json:"value,omitempty"`
 
 	metadataMinimumHealthyHosts `json:"-", xml:"-"`
 }

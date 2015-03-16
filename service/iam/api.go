@@ -3455,7 +3455,7 @@ type metadataGenerateCredentialReportOutput struct {
 type GetAccountAuthorizationDetailsInput struct {
 	Filter   []*string `type:"list"`
 	Marker   *string   `type:"string"`
-	MaxItems *int      `type:"integer"`
+	MaxItems *int64    `type:"integer"`
 
 	metadataGetAccountAuthorizationDetailsInput `json:"-", xml:"-"`
 }
@@ -3505,7 +3505,7 @@ type metadataGetAccountSummaryInput struct {
 }
 
 type GetAccountSummaryOutput struct {
-	SummaryMap *map[string]*int `type:"map"`
+	SummaryMap *map[string]*int64 `type:"map"`
 
 	metadataGetAccountSummaryOutput `json:"-", xml:"-"`
 }
@@ -3537,7 +3537,7 @@ type metadataGetCredentialReportOutput struct {
 type GetGroupInput struct {
 	GroupName *string `type:"string" required:"true"`
 	Marker    *string `type:"string"`
-	MaxItems  *int    `type:"integer"`
+	MaxItems  *int64  `type:"integer"`
 
 	metadataGetGroupInput `json:"-", xml:"-"`
 }
@@ -3860,7 +3860,7 @@ type metadataInstanceProfile struct {
 
 type ListAccessKeysInput struct {
 	Marker   *string `type:"string"`
-	MaxItems *int    `type:"integer"`
+	MaxItems *int64  `type:"integer"`
 	UserName *string `type:"string"`
 
 	metadataListAccessKeysInput `json:"-", xml:"-"`
@@ -3884,7 +3884,7 @@ type metadataListAccessKeysOutput struct {
 
 type ListAccountAliasesInput struct {
 	Marker   *string `type:"string"`
-	MaxItems *int    `type:"integer"`
+	MaxItems *int64  `type:"integer"`
 
 	metadataListAccountAliasesInput `json:"-", xml:"-"`
 }
@@ -3908,7 +3908,7 @@ type metadataListAccountAliasesOutput struct {
 type ListAttachedGroupPoliciesInput struct {
 	GroupName  *string `type:"string" required:"true"`
 	Marker     *string `type:"string"`
-	MaxItems   *int    `type:"integer"`
+	MaxItems   *int64  `type:"integer"`
 	PathPrefix *string `type:"string"`
 
 	metadataListAttachedGroupPoliciesInput `json:"-", xml:"-"`
@@ -3932,7 +3932,7 @@ type metadataListAttachedGroupPoliciesOutput struct {
 
 type ListAttachedRolePoliciesInput struct {
 	Marker     *string `type:"string"`
-	MaxItems   *int    `type:"integer"`
+	MaxItems   *int64  `type:"integer"`
 	PathPrefix *string `type:"string"`
 	RoleName   *string `type:"string" required:"true"`
 
@@ -3957,7 +3957,7 @@ type metadataListAttachedRolePoliciesOutput struct {
 
 type ListAttachedUserPoliciesInput struct {
 	Marker     *string `type:"string"`
-	MaxItems   *int    `type:"integer"`
+	MaxItems   *int64  `type:"integer"`
 	PathPrefix *string `type:"string"`
 	UserName   *string `type:"string" required:"true"`
 
@@ -3983,7 +3983,7 @@ type metadataListAttachedUserPoliciesOutput struct {
 type ListEntitiesForPolicyInput struct {
 	EntityFilter *string `type:"string"`
 	Marker       *string `type:"string"`
-	MaxItems     *int    `type:"integer"`
+	MaxItems     *int64  `type:"integer"`
 	PathPrefix   *string `type:"string"`
 	PolicyARN    *string `locationName:"PolicyArn" type:"string" required:"true"`
 
@@ -4011,7 +4011,7 @@ type metadataListEntitiesForPolicyOutput struct {
 type ListGroupPoliciesInput struct {
 	GroupName *string `type:"string" required:"true"`
 	Marker    *string `type:"string"`
-	MaxItems  *int    `type:"integer"`
+	MaxItems  *int64  `type:"integer"`
 
 	metadataListGroupPoliciesInput `json:"-", xml:"-"`
 }
@@ -4034,7 +4034,7 @@ type metadataListGroupPoliciesOutput struct {
 
 type ListGroupsForUserInput struct {
 	Marker   *string `type:"string"`
-	MaxItems *int    `type:"integer"`
+	MaxItems *int64  `type:"integer"`
 	UserName *string `type:"string" required:"true"`
 
 	metadataListGroupsForUserInput `json:"-", xml:"-"`
@@ -4058,7 +4058,7 @@ type metadataListGroupsForUserOutput struct {
 
 type ListGroupsInput struct {
 	Marker     *string `type:"string"`
-	MaxItems   *int    `type:"integer"`
+	MaxItems   *int64  `type:"integer"`
 	PathPrefix *string `type:"string"`
 
 	metadataListGroupsInput `json:"-", xml:"-"`
@@ -4082,7 +4082,7 @@ type metadataListGroupsOutput struct {
 
 type ListInstanceProfilesForRoleInput struct {
 	Marker   *string `type:"string"`
-	MaxItems *int    `type:"integer"`
+	MaxItems *int64  `type:"integer"`
 	RoleName *string `type:"string" required:"true"`
 
 	metadataListInstanceProfilesForRoleInput `json:"-", xml:"-"`
@@ -4106,7 +4106,7 @@ type metadataListInstanceProfilesForRoleOutput struct {
 
 type ListInstanceProfilesInput struct {
 	Marker     *string `type:"string"`
-	MaxItems   *int    `type:"integer"`
+	MaxItems   *int64  `type:"integer"`
 	PathPrefix *string `type:"string"`
 
 	metadataListInstanceProfilesInput `json:"-", xml:"-"`
@@ -4130,7 +4130,7 @@ type metadataListInstanceProfilesOutput struct {
 
 type ListMFADevicesInput struct {
 	Marker   *string `type:"string"`
-	MaxItems *int    `type:"integer"`
+	MaxItems *int64  `type:"integer"`
 	UserName *string `type:"string"`
 
 	metadataListMFADevicesInput `json:"-", xml:"-"`
@@ -4172,7 +4172,7 @@ type metadataListOpenIDConnectProvidersOutput struct {
 
 type ListPoliciesInput struct {
 	Marker       *string `type:"string"`
-	MaxItems     *int    `type:"integer"`
+	MaxItems     *int64  `type:"integer"`
 	OnlyAttached *bool   `type:"boolean"`
 	PathPrefix   *string `type:"string"`
 	Scope        *string `type:"string"`
@@ -4198,7 +4198,7 @@ type metadataListPoliciesOutput struct {
 
 type ListPolicyVersionsInput struct {
 	Marker    *string `type:"string"`
-	MaxItems  *int    `type:"integer"`
+	MaxItems  *int64  `type:"integer"`
 	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
 	metadataListPolicyVersionsInput `json:"-", xml:"-"`
@@ -4222,7 +4222,7 @@ type metadataListPolicyVersionsOutput struct {
 
 type ListRolePoliciesInput struct {
 	Marker   *string `type:"string"`
-	MaxItems *int    `type:"integer"`
+	MaxItems *int64  `type:"integer"`
 	RoleName *string `type:"string" required:"true"`
 
 	metadataListRolePoliciesInput `json:"-", xml:"-"`
@@ -4246,7 +4246,7 @@ type metadataListRolePoliciesOutput struct {
 
 type ListRolesInput struct {
 	Marker     *string `type:"string"`
-	MaxItems   *int    `type:"integer"`
+	MaxItems   *int64  `type:"integer"`
 	PathPrefix *string `type:"string"`
 
 	metadataListRolesInput `json:"-", xml:"-"`
@@ -4288,7 +4288,7 @@ type metadataListSAMLProvidersOutput struct {
 
 type ListServerCertificatesInput struct {
 	Marker     *string `type:"string"`
-	MaxItems   *int    `type:"integer"`
+	MaxItems   *int64  `type:"integer"`
 	PathPrefix *string `type:"string"`
 
 	metadataListServerCertificatesInput `json:"-", xml:"-"`
@@ -4312,7 +4312,7 @@ type metadataListServerCertificatesOutput struct {
 
 type ListSigningCertificatesInput struct {
 	Marker   *string `type:"string"`
-	MaxItems *int    `type:"integer"`
+	MaxItems *int64  `type:"integer"`
 	UserName *string `type:"string"`
 
 	metadataListSigningCertificatesInput `json:"-", xml:"-"`
@@ -4336,7 +4336,7 @@ type metadataListSigningCertificatesOutput struct {
 
 type ListUserPoliciesInput struct {
 	Marker   *string `type:"string"`
-	MaxItems *int    `type:"integer"`
+	MaxItems *int64  `type:"integer"`
 	UserName *string `type:"string" required:"true"`
 
 	metadataListUserPoliciesInput `json:"-", xml:"-"`
@@ -4360,7 +4360,7 @@ type metadataListUserPoliciesOutput struct {
 
 type ListUsersInput struct {
 	Marker     *string `type:"string"`
-	MaxItems   *int    `type:"integer"`
+	MaxItems   *int64  `type:"integer"`
 	PathPrefix *string `type:"string"`
 
 	metadataListUsersInput `json:"-", xml:"-"`
@@ -4385,7 +4385,7 @@ type metadataListUsersOutput struct {
 type ListVirtualMFADevicesInput struct {
 	AssignmentStatus *string `type:"string"`
 	Marker           *string `type:"string"`
-	MaxItems         *int    `type:"integer"`
+	MaxItems         *int64  `type:"integer"`
 
 	metadataListVirtualMFADevicesInput `json:"-", xml:"-"`
 }
@@ -4441,16 +4441,16 @@ type metadataOpenIDConnectProviderListEntry struct {
 }
 
 type PasswordPolicy struct {
-	AllowUsersToChangePassword *bool `type:"boolean"`
-	ExpirePasswords            *bool `type:"boolean"`
-	HardExpiry                 *bool `type:"boolean"`
-	MaxPasswordAge             *int  `type:"integer"`
-	MinimumPasswordLength      *int  `type:"integer"`
-	PasswordReusePrevention    *int  `type:"integer"`
-	RequireLowercaseCharacters *bool `type:"boolean"`
-	RequireNumbers             *bool `type:"boolean"`
-	RequireSymbols             *bool `type:"boolean"`
-	RequireUppercaseCharacters *bool `type:"boolean"`
+	AllowUsersToChangePassword *bool  `type:"boolean"`
+	ExpirePasswords            *bool  `type:"boolean"`
+	HardExpiry                 *bool  `type:"boolean"`
+	MaxPasswordAge             *int64 `type:"integer"`
+	MinimumPasswordLength      *int64 `type:"integer"`
+	PasswordReusePrevention    *int64 `type:"integer"`
+	RequireLowercaseCharacters *bool  `type:"boolean"`
+	RequireNumbers             *bool  `type:"boolean"`
+	RequireSymbols             *bool  `type:"boolean"`
+	RequireUppercaseCharacters *bool  `type:"boolean"`
 
 	metadataPasswordPolicy `json:"-", xml:"-"`
 }
@@ -4461,7 +4461,7 @@ type metadataPasswordPolicy struct {
 
 type Policy struct {
 	ARN              *string    `locationName:"Arn" type:"string"`
-	AttachmentCount  *int       `type:"integer"`
+	AttachmentCount  *int64     `type:"integer"`
 	CreateDate       *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	DefaultVersionID *string    `locationName:"DefaultVersionId" type:"string"`
 	Description      *string    `type:"string"`
@@ -4795,15 +4795,15 @@ type metadataUpdateAccessKeyOutput struct {
 }
 
 type UpdateAccountPasswordPolicyInput struct {
-	AllowUsersToChangePassword *bool `type:"boolean"`
-	HardExpiry                 *bool `type:"boolean"`
-	MaxPasswordAge             *int  `type:"integer"`
-	MinimumPasswordLength      *int  `type:"integer"`
-	PasswordReusePrevention    *int  `type:"integer"`
-	RequireLowercaseCharacters *bool `type:"boolean"`
-	RequireNumbers             *bool `type:"boolean"`
-	RequireSymbols             *bool `type:"boolean"`
-	RequireUppercaseCharacters *bool `type:"boolean"`
+	AllowUsersToChangePassword *bool  `type:"boolean"`
+	HardExpiry                 *bool  `type:"boolean"`
+	MaxPasswordAge             *int64 `type:"integer"`
+	MinimumPasswordLength      *int64 `type:"integer"`
+	PasswordReusePrevention    *int64 `type:"integer"`
+	RequireLowercaseCharacters *bool  `type:"boolean"`
+	RequireNumbers             *bool  `type:"boolean"`
+	RequireSymbols             *bool  `type:"boolean"`
+	RequireUppercaseCharacters *bool  `type:"boolean"`
 
 	metadataUpdateAccountPasswordPolicyInput `json:"-", xml:"-"`
 }

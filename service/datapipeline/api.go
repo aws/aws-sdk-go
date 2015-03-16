@@ -738,7 +738,7 @@ type metadataQuery struct {
 }
 
 type QueryObjectsInput struct {
-	Limit      *int    `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	Limit      *int64  `locationName:"limit" type:"integer" json:"limit,omitempty"`
 	Marker     *string `locationName:"marker" type:"string" json:"marker,omitempty"`
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
 	Query      *Query  `locationName:"query" type:"structure" json:"query,omitempty"`

@@ -709,7 +709,7 @@ func (c *ELB) SetLoadBalancerPoliciesOfListener(input *SetLoadBalancerPoliciesOf
 var opSetLoadBalancerPoliciesOfListener *aws.Operation
 
 type AccessLog struct {
-	EmitInterval   *int    `type:"integer"`
+	EmitInterval   *int64  `type:"integer"`
 	Enabled        *bool   `type:"boolean" required:"true"`
 	S3BucketName   *string `type:"string"`
 	S3BucketPrefix *string `type:"string"`
@@ -805,7 +805,7 @@ type metadataAttachLoadBalancerToSubnetsOutput struct {
 }
 
 type BackendServerDescription struct {
-	InstancePort *int      `type:"integer"`
+	InstancePort *int64    `type:"integer"`
 	PolicyNames  []*string `type:"list"`
 
 	metadataBackendServerDescription `json:"-", xml:"-"`
@@ -837,8 +837,8 @@ type metadataConfigureHealthCheckOutput struct {
 }
 
 type ConnectionDraining struct {
-	Enabled *bool `type:"boolean" required:"true"`
-	Timeout *int  `type:"integer"`
+	Enabled *bool  `type:"boolean" required:"true"`
+	Timeout *int64 `type:"integer"`
 
 	metadataConnectionDraining `json:"-", xml:"-"`
 }
@@ -848,7 +848,7 @@ type metadataConnectionDraining struct {
 }
 
 type ConnectionSettings struct {
-	IdleTimeout *int `type:"integer" required:"true"`
+	IdleTimeout *int64 `type:"integer" required:"true"`
 
 	metadataConnectionSettings `json:"-", xml:"-"`
 }
@@ -984,8 +984,8 @@ type metadataDeleteLoadBalancerInput struct {
 }
 
 type DeleteLoadBalancerListenersInput struct {
-	LoadBalancerName  *string `type:"string" required:"true"`
-	LoadBalancerPorts []*int  `type:"list" required:"true"`
+	LoadBalancerName  *string  `type:"string" required:"true"`
+	LoadBalancerPorts []*int64 `type:"list" required:"true"`
 
 	metadataDeleteLoadBalancerListenersInput `json:"-", xml:"-"`
 }
@@ -1135,7 +1135,7 @@ type metadataDescribeLoadBalancerPolicyTypesOutput struct {
 type DescribeLoadBalancersInput struct {
 	LoadBalancerNames []*string `type:"list"`
 	Marker            *string   `type:"string"`
-	PageSize          *int      `type:"integer"`
+	PageSize          *int64    `type:"integer"`
 
 	metadataDescribeLoadBalancersInput `json:"-", xml:"-"`
 }
@@ -1239,11 +1239,11 @@ type metadataEnableAvailabilityZonesForLoadBalancerOutput struct {
 }
 
 type HealthCheck struct {
-	HealthyThreshold   *int    `type:"integer" required:"true"`
-	Interval           *int    `type:"integer" required:"true"`
+	HealthyThreshold   *int64  `type:"integer" required:"true"`
+	Interval           *int64  `type:"integer" required:"true"`
 	Target             *string `type:"string" required:"true"`
-	Timeout            *int    `type:"integer" required:"true"`
-	UnhealthyThreshold *int    `type:"integer" required:"true"`
+	Timeout            *int64  `type:"integer" required:"true"`
+	UnhealthyThreshold *int64  `type:"integer" required:"true"`
 
 	metadataHealthCheck `json:"-", xml:"-"`
 }
@@ -1287,9 +1287,9 @@ type metadataLBCookieStickinessPolicy struct {
 }
 
 type Listener struct {
-	InstancePort     *int    `type:"integer" required:"true"`
+	InstancePort     *int64  `type:"integer" required:"true"`
 	InstanceProtocol *string `type:"string"`
-	LoadBalancerPort *int    `type:"integer" required:"true"`
+	LoadBalancerPort *int64  `type:"integer" required:"true"`
 	Protocol         *string `type:"string" required:"true"`
 	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string"`
 
@@ -1486,7 +1486,7 @@ type metadataRemoveTagsOutput struct {
 
 type SetLoadBalancerListenerSSLCertificateInput struct {
 	LoadBalancerName *string `type:"string" required:"true"`
-	LoadBalancerPort *int    `type:"integer" required:"true"`
+	LoadBalancerPort *int64  `type:"integer" required:"true"`
 	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string" required:"true"`
 
 	metadataSetLoadBalancerListenerSSLCertificateInput `json:"-", xml:"-"`
@@ -1505,7 +1505,7 @@ type metadataSetLoadBalancerListenerSSLCertificateOutput struct {
 }
 
 type SetLoadBalancerPoliciesForBackendServerInput struct {
-	InstancePort     *int      `type:"integer" required:"true"`
+	InstancePort     *int64    `type:"integer" required:"true"`
 	LoadBalancerName *string   `type:"string" required:"true"`
 	PolicyNames      []*string `type:"list" required:"true"`
 
@@ -1526,7 +1526,7 @@ type metadataSetLoadBalancerPoliciesForBackendServerOutput struct {
 
 type SetLoadBalancerPoliciesOfListenerInput struct {
 	LoadBalancerName *string   `type:"string" required:"true"`
-	LoadBalancerPort *int      `type:"integer" required:"true"`
+	LoadBalancerPort *int64    `type:"integer" required:"true"`
 	PolicyNames      []*string `type:"list" required:"true"`
 
 	metadataSetLoadBalancerPoliciesOfListenerInput `json:"-", xml:"-"`

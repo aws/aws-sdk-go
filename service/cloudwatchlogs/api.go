@@ -468,7 +468,7 @@ type metadataDeleteRetentionPolicyOutput struct {
 }
 
 type DescribeLogGroupsInput struct {
-	Limit              *int    `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	Limit              *int64  `locationName:"limit" type:"integer" json:"limit,omitempty"`
 	LogGroupNamePrefix *string `locationName:"logGroupNamePrefix" type:"string" json:"logGroupNamePrefix,omitempty"`
 	NextToken          *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
@@ -491,7 +491,7 @@ type metadataDescribeLogGroupsOutput struct {
 }
 
 type DescribeLogStreamsInput struct {
-	Limit               *int    `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	Limit               *int64  `locationName:"limit" type:"integer" json:"limit,omitempty"`
 	LogGroupName        *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
 	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" type:"string" json:"logStreamNamePrefix,omitempty"`
 	NextToken           *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
@@ -516,7 +516,7 @@ type metadataDescribeLogStreamsOutput struct {
 
 type DescribeMetricFiltersInput struct {
 	FilterNamePrefix *string `locationName:"filterNamePrefix" type:"string" json:"filterNamePrefix,omitempty"`
-	Limit            *int    `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	Limit            *int64  `locationName:"limit" type:"integer" json:"limit,omitempty"`
 	LogGroupName     *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
 	NextToken        *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
@@ -540,7 +540,7 @@ type metadataDescribeMetricFiltersOutput struct {
 
 type GetLogEventsInput struct {
 	EndTime       *int64  `locationName:"endTime" type:"long" json:"endTime,omitempty"`
-	Limit         *int    `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	Limit         *int64  `locationName:"limit" type:"integer" json:"limit,omitempty"`
 	LogGroupName  *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
 	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"json:"logStreamName,omitempty"`
 	NextToken     *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
@@ -581,8 +581,8 @@ type LogGroup struct {
 	ARN               *string `locationName:"arn" type:"string" json:"arn,omitempty"`
 	CreationTime      *int64  `locationName:"creationTime" type:"long" json:"creationTime,omitempty"`
 	LogGroupName      *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
-	MetricFilterCount *int    `locationName:"metricFilterCount" type:"integer" json:"metricFilterCount,omitempty"`
-	RetentionInDays   *int    `locationName:"retentionInDays" type:"integer" json:"retentionInDays,omitempty"`
+	MetricFilterCount *int64  `locationName:"metricFilterCount" type:"integer" json:"metricFilterCount,omitempty"`
+	RetentionInDays   *int64  `locationName:"retentionInDays" type:"integer" json:"retentionInDays,omitempty"`
 	StoredBytes       *int64  `locationName:"storedBytes" type:"long" json:"storedBytes,omitempty"`
 
 	metadataLogGroup `json:"-", xml:"-"`
@@ -704,7 +704,7 @@ type metadataPutMetricFilterOutput struct {
 
 type PutRetentionPolicyInput struct {
 	LogGroupName    *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
-	RetentionInDays *int    `locationName:"retentionInDays" type:"integer" required:"true"json:"retentionInDays,omitempty"`
+	RetentionInDays *int64  `locationName:"retentionInDays" type:"integer" required:"true"json:"retentionInDays,omitempty"`
 
 	metadataPutRetentionPolicyInput `json:"-", xml:"-"`
 }

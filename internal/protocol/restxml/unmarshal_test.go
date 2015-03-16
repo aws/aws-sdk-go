@@ -93,11 +93,11 @@ type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
 	Char              *string  `type:"character"`
 	Double            *float64 `type:"double"`
 	FalseBool         *bool    `type:"boolean"`
-	Float             *float32 `type:"float"`
+	Float             *float64 `type:"float"`
 	ImaHeader         *string  `location:"header" type:"string"`
 	ImaHeaderLocation *string  `location:"header" locationName:"X-Foo" type:"string"`
 	Long              *int64   `type:"long"`
-	Num               *int     `locationName:"FooNum" type:"integer"`
+	Num               *int64   `locationName:"FooNum" type:"integer"`
 	Str               *string  `type:"string"`
 	TrueBool          *bool    `type:"boolean"`
 

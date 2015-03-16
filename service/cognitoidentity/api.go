@@ -650,7 +650,7 @@ type metadataIdentityPoolShortDescription struct {
 
 type ListIdentitiesInput struct {
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
-	MaxResults     *int    `type:"integer" required:"true"json:",omitempty"`
+	MaxResults     *int64  `type:"integer" required:"true"json:",omitempty"`
 	NextToken      *string `type:"string" json:",omitempty"`
 
 	metadataListIdentitiesInput `json:"-", xml:"-"`
@@ -673,7 +673,7 @@ type metadataListIdentitiesOutput struct {
 }
 
 type ListIdentityPoolsInput struct {
-	MaxResults *int    `type:"integer" required:"true"json:",omitempty"`
+	MaxResults *int64  `type:"integer" required:"true"json:",omitempty"`
 	NextToken  *string `type:"string" json:",omitempty"`
 
 	metadataListIdentityPoolsInput `json:"-", xml:"-"`
@@ -698,7 +698,7 @@ type LookupDeveloperIdentityInput struct {
 	DeveloperUserIdentifier *string `type:"string" json:",omitempty"`
 	IdentityID              *string `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 	IdentityPoolID          *string `locationName:"IdentityPoolId" type:"string" required:"true"json:"IdentityPoolId,omitempty"`
-	MaxResults              *int    `type:"integer" json:",omitempty"`
+	MaxResults              *int64  `type:"integer" json:",omitempty"`
 	NextToken               *string `type:"string" json:",omitempty"`
 
 	metadataLookupDeveloperIdentityInput `json:"-", xml:"-"`

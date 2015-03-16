@@ -1447,7 +1447,7 @@ type metadataFailWorkflowExecutionFailedEventAttributes struct {
 type GetWorkflowExecutionHistoryInput struct {
 	Domain          *string            `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
 	Execution       *WorkflowExecution `locationName:"execution" type:"structure" required:"true"json:"execution,omitempty"`
-	MaximumPageSize *int               `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
+	MaximumPageSize *int64             `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
 	NextPageToken   *string            `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
 	ReverseOrder    *bool              `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
 
@@ -1530,7 +1530,7 @@ type metadataHistoryEvent struct {
 
 type ListActivityTypesInput struct {
 	Domain             *string `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	MaximumPageSize    *int    `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
+	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
 	Name               *string `locationName:"name" type:"string" json:"name,omitempty"`
 	NextPageToken      *string `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
 	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"json:"registrationStatus,omitempty"`
@@ -1559,7 +1559,7 @@ type ListClosedWorkflowExecutionsInput struct {
 	CloseTimeFilter   *ExecutionTimeFilter     `locationName:"closeTimeFilter" type:"structure" json:"closeTimeFilter,omitempty"`
 	Domain            *string                  `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
 	ExecutionFilter   *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure" json:"executionFilter,omitempty"`
-	MaximumPageSize   *int                     `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
+	MaximumPageSize   *int64                   `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
 	NextPageToken     *string                  `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
 	ReverseOrder      *bool                    `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
 	StartTimeFilter   *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure" json:"startTimeFilter,omitempty"`
@@ -1574,7 +1574,7 @@ type metadataListClosedWorkflowExecutionsInput struct {
 }
 
 type ListDomainsInput struct {
-	MaximumPageSize    *int    `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
+	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
 	NextPageToken      *string `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
 	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"json:"registrationStatus,omitempty"`
 	ReverseOrder       *bool   `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
@@ -1600,7 +1600,7 @@ type metadataListDomainsOutput struct {
 type ListOpenWorkflowExecutionsInput struct {
 	Domain          *string                  `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
 	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure" json:"executionFilter,omitempty"`
-	MaximumPageSize *int                     `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
+	MaximumPageSize *int64                   `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
 	NextPageToken   *string                  `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
 	ReverseOrder    *bool                    `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
 	StartTimeFilter *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure" required:"true"json:"startTimeFilter,omitempty"`
@@ -1616,7 +1616,7 @@ type metadataListOpenWorkflowExecutionsInput struct {
 
 type ListWorkflowTypesInput struct {
 	Domain             *string `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	MaximumPageSize    *int    `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
+	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
 	Name               *string `locationName:"name" type:"string" json:"name,omitempty"`
 	NextPageToken      *string `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
 	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"json:"registrationStatus,omitempty"`
@@ -1653,8 +1653,8 @@ type metadataMarkerRecordedEventAttributes struct {
 }
 
 type PendingTaskCount struct {
-	Count     *int  `locationName:"count" type:"integer" required:"true"json:"count,omitempty"`
-	Truncated *bool `locationName:"truncated" type:"boolean" json:"truncated,omitempty"`
+	Count     *int64 `locationName:"count" type:"integer" required:"true"json:"count,omitempty"`
+	Truncated *bool  `locationName:"truncated" type:"boolean" json:"truncated,omitempty"`
 
 	metadataPendingTaskCount `json:"-", xml:"-"`
 }
@@ -1693,7 +1693,7 @@ type metadataPollForActivityTaskOutput struct {
 type PollForDecisionTaskInput struct {
 	Domain          *string   `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
 	Identity        *string   `locationName:"identity" type:"string" json:"identity,omitempty"`
-	MaximumPageSize *int      `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
+	MaximumPageSize *int64    `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
 	NextPageToken   *string   `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
 	ReverseOrder    *bool     `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
 	TaskList        *TaskList `locationName:"taskList" type:"structure" required:"true"json:"taskList,omitempty"`
@@ -2361,8 +2361,8 @@ type metadataWorkflowExecutionContinuedAsNewEventAttributes struct {
 }
 
 type WorkflowExecutionCount struct {
-	Count     *int  `locationName:"count" type:"integer" required:"true"json:"count,omitempty"`
-	Truncated *bool `locationName:"truncated" type:"boolean" json:"truncated,omitempty"`
+	Count     *int64 `locationName:"count" type:"integer" required:"true"json:"count,omitempty"`
+	Truncated *bool  `locationName:"truncated" type:"boolean" json:"truncated,omitempty"`
 
 	metadataWorkflowExecutionCount `json:"-", xml:"-"`
 }
@@ -2423,10 +2423,10 @@ type metadataWorkflowExecutionInfos struct {
 }
 
 type WorkflowExecutionOpenCounts struct {
-	OpenActivityTasks           *int `locationName:"openActivityTasks" type:"integer" required:"true"json:"openActivityTasks,omitempty"`
-	OpenChildWorkflowExecutions *int `locationName:"openChildWorkflowExecutions" type:"integer" required:"true"json:"openChildWorkflowExecutions,omitempty"`
-	OpenDecisionTasks           *int `locationName:"openDecisionTasks" type:"integer" required:"true"json:"openDecisionTasks,omitempty"`
-	OpenTimers                  *int `locationName:"openTimers" type:"integer" required:"true"json:"openTimers,omitempty"`
+	OpenActivityTasks           *int64 `locationName:"openActivityTasks" type:"integer" required:"true"json:"openActivityTasks,omitempty"`
+	OpenChildWorkflowExecutions *int64 `locationName:"openChildWorkflowExecutions" type:"integer" required:"true"json:"openChildWorkflowExecutions,omitempty"`
+	OpenDecisionTasks           *int64 `locationName:"openDecisionTasks" type:"integer" required:"true"json:"openDecisionTasks,omitempty"`
+	OpenTimers                  *int64 `locationName:"openTimers" type:"integer" required:"true"json:"openTimers,omitempty"`
 
 	metadataWorkflowExecutionOpenCounts `json:"-", xml:"-"`
 }

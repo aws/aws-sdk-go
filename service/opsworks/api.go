@@ -1732,11 +1732,11 @@ type metadataAttachElasticLoadBalancerOutput struct {
 
 type AutoScalingThresholds struct {
 	CPUThreshold       *float64 `locationName:"CpuThreshold" type:"double" json:"CpuThreshold,omitempty"`
-	IgnoreMetricsTime  *int     `type:"integer" json:",omitempty"`
-	InstanceCount      *int     `type:"integer" json:",omitempty"`
+	IgnoreMetricsTime  *int64   `type:"integer" json:",omitempty"`
+	InstanceCount      *int64   `type:"integer" json:",omitempty"`
 	LoadThreshold      *float64 `type:"double" json:",omitempty"`
 	MemoryThreshold    *float64 `type:"double" json:",omitempty"`
-	ThresholdsWaitTime *int     `type:"integer" json:",omitempty"`
+	ThresholdsWaitTime *int64   `type:"integer" json:",omitempty"`
 
 	metadataAutoScalingThresholds `json:"-", xml:"-"`
 }
@@ -1802,7 +1802,7 @@ type Command struct {
 	CompletedAt    *string `type:"string" json:",omitempty"`
 	CreatedAt      *string `type:"string" json:",omitempty"`
 	DeploymentID   *string `locationName:"DeploymentId" type:"string" json:"DeploymentId,omitempty"`
-	ExitCode       *int    `type:"integer" json:",omitempty"`
+	ExitCode       *int64  `type:"integer" json:",omitempty"`
 	InstanceID     *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	LogURL         *string `locationName:"LogUrl" type:"string" json:"LogUrl,omitempty"`
 	Status         *string `type:"string" json:",omitempty"`
@@ -2112,7 +2112,7 @@ type Deployment struct {
 	CreatedAt    *string            `type:"string" json:",omitempty"`
 	CustomJSON   *string            `locationName:"CustomJson" type:"string" json:"CustomJson,omitempty"`
 	DeploymentID *string            `locationName:"DeploymentId" type:"string" json:"DeploymentId,omitempty"`
-	Duration     *int               `type:"integer" json:",omitempty"`
+	Duration     *int64             `type:"integer" json:",omitempty"`
 	IAMUserARN   *string            `locationName:"IamUserArn" type:"string" json:"IamUserArn,omitempty"`
 	InstanceIDs  []*string          `locationName:"InstanceIds" type:"list" json:"InstanceIds,omitempty"`
 	StackID      *string            `locationName:"StackId" type:"string" json:"StackId,omitempty"`
@@ -2763,25 +2763,25 @@ type metadataInstanceIdentity struct {
 }
 
 type InstancesCount struct {
-	Assigning      *int `type:"integer" json:",omitempty"`
-	Booting        *int `type:"integer" json:",omitempty"`
-	ConnectionLost *int `type:"integer" json:",omitempty"`
-	Deregistering  *int `type:"integer" json:",omitempty"`
-	Online         *int `type:"integer" json:",omitempty"`
-	Pending        *int `type:"integer" json:",omitempty"`
-	Rebooting      *int `type:"integer" json:",omitempty"`
-	Registered     *int `type:"integer" json:",omitempty"`
-	Registering    *int `type:"integer" json:",omitempty"`
-	Requested      *int `type:"integer" json:",omitempty"`
-	RunningSetup   *int `type:"integer" json:",omitempty"`
-	SetupFailed    *int `type:"integer" json:",omitempty"`
-	ShuttingDown   *int `type:"integer" json:",omitempty"`
-	StartFailed    *int `type:"integer" json:",omitempty"`
-	Stopped        *int `type:"integer" json:",omitempty"`
-	Stopping       *int `type:"integer" json:",omitempty"`
-	Terminated     *int `type:"integer" json:",omitempty"`
-	Terminating    *int `type:"integer" json:",omitempty"`
-	Unassigning    *int `type:"integer" json:",omitempty"`
+	Assigning      *int64 `type:"integer" json:",omitempty"`
+	Booting        *int64 `type:"integer" json:",omitempty"`
+	ConnectionLost *int64 `type:"integer" json:",omitempty"`
+	Deregistering  *int64 `type:"integer" json:",omitempty"`
+	Online         *int64 `type:"integer" json:",omitempty"`
+	Pending        *int64 `type:"integer" json:",omitempty"`
+	Rebooting      *int64 `type:"integer" json:",omitempty"`
+	Registered     *int64 `type:"integer" json:",omitempty"`
+	Registering    *int64 `type:"integer" json:",omitempty"`
+	Requested      *int64 `type:"integer" json:",omitempty"`
+	RunningSetup   *int64 `type:"integer" json:",omitempty"`
+	SetupFailed    *int64 `type:"integer" json:",omitempty"`
+	ShuttingDown   *int64 `type:"integer" json:",omitempty"`
+	StartFailed    *int64 `type:"integer" json:",omitempty"`
+	Stopped        *int64 `type:"integer" json:",omitempty"`
+	Stopping       *int64 `type:"integer" json:",omitempty"`
+	Terminated     *int64 `type:"integer" json:",omitempty"`
+	Terminating    *int64 `type:"integer" json:",omitempty"`
+	Unassigning    *int64 `type:"integer" json:",omitempty"`
 
 	metadataInstancesCount `json:"-", xml:"-"`
 }
@@ -2860,14 +2860,14 @@ type RAIDArray struct {
 	AvailabilityZone *string `type:"string" json:",omitempty"`
 	CreatedAt        *string `type:"string" json:",omitempty"`
 	Device           *string `type:"string" json:",omitempty"`
-	IOPS             *int    `locationName:"Iops" type:"integer" json:"Iops,omitempty"`
+	IOPS             *int64  `locationName:"Iops" type:"integer" json:"Iops,omitempty"`
 	InstanceID       *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	MountPoint       *string `type:"string" json:",omitempty"`
 	Name             *string `type:"string" json:",omitempty"`
-	NumberOfDisks    *int    `type:"integer" json:",omitempty"`
+	NumberOfDisks    *int64  `type:"integer" json:",omitempty"`
 	RAIDArrayID      *string `locationName:"RaidArrayId" type:"string" json:"RaidArrayId,omitempty"`
-	RAIDLevel        *int    `locationName:"RaidLevel" type:"integer" json:"RaidLevel,omitempty"`
-	Size             *int    `type:"integer" json:",omitempty"`
+	RAIDLevel        *int64  `locationName:"RaidLevel" type:"integer" json:"RaidLevel,omitempty"`
+	Size             *int64  `type:"integer" json:",omitempty"`
 	StackID          *string `locationName:"StackId" type:"string" json:"StackId,omitempty"`
 	VolumeType       *string `type:"string" json:",omitempty"`
 
@@ -3132,8 +3132,8 @@ type metadataSetTimeBasedAutoScalingOutput struct {
 }
 
 type ShutdownEventConfiguration struct {
-	DelayUntilELBConnectionsDrained *bool `locationName:"DelayUntilElbConnectionsDrained" type:"boolean" json:"DelayUntilElbConnectionsDrained,omitempty"`
-	ExecutionTimeout                *int  `type:"integer" json:",omitempty"`
+	DelayUntilELBConnectionsDrained *bool  `locationName:"DelayUntilElbConnectionsDrained" type:"boolean" json:"DelayUntilElbConnectionsDrained,omitempty"`
+	ExecutionTimeout                *int64 `type:"integer" json:",omitempty"`
 
 	metadataShutdownEventConfiguration `json:"-", xml:"-"`
 }
@@ -3200,9 +3200,9 @@ type metadataStackConfigurationManager struct {
 
 type StackSummary struct {
 	ARN            *string         `locationName:"Arn" type:"string" json:"Arn,omitempty"`
-	AppsCount      *int            `type:"integer" json:",omitempty"`
+	AppsCount      *int64          `type:"integer" json:",omitempty"`
 	InstancesCount *InstancesCount `type:"structure" json:",omitempty"`
-	LayersCount    *int            `type:"integer" json:",omitempty"`
+	LayersCount    *int64          `type:"integer" json:",omitempty"`
 	Name           *string         `type:"string" json:",omitempty"`
 	StackID        *string         `locationName:"StackId" type:"string" json:"StackId,omitempty"`
 
@@ -3570,13 +3570,13 @@ type Volume struct {
 	AvailabilityZone *string `type:"string" json:",omitempty"`
 	Device           *string `type:"string" json:",omitempty"`
 	EC2VolumeID      *string `locationName:"Ec2VolumeId" type:"string" json:"Ec2VolumeId,omitempty"`
-	IOPS             *int    `locationName:"Iops" type:"integer" json:"Iops,omitempty"`
+	IOPS             *int64  `locationName:"Iops" type:"integer" json:"Iops,omitempty"`
 	InstanceID       *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
 	MountPoint       *string `type:"string" json:",omitempty"`
 	Name             *string `type:"string" json:",omitempty"`
 	RAIDArrayID      *string `locationName:"RaidArrayId" type:"string" json:"RaidArrayId,omitempty"`
 	Region           *string `type:"string" json:",omitempty"`
-	Size             *int    `type:"integer" json:",omitempty"`
+	Size             *int64  `type:"integer" json:",omitempty"`
 	Status           *string `type:"string" json:",omitempty"`
 	VolumeID         *string `locationName:"VolumeId" type:"string" json:"VolumeId,omitempty"`
 	VolumeType       *string `type:"string" json:",omitempty"`
@@ -3589,11 +3589,11 @@ type metadataVolume struct {
 }
 
 type VolumeConfiguration struct {
-	IOPS          *int    `locationName:"Iops" type:"integer" json:"Iops,omitempty"`
+	IOPS          *int64  `locationName:"Iops" type:"integer" json:"Iops,omitempty"`
 	MountPoint    *string `type:"string" required:"true"json:",omitempty"`
-	NumberOfDisks *int    `type:"integer" required:"true"json:",omitempty"`
-	RAIDLevel     *int    `locationName:"RaidLevel" type:"integer" json:"RaidLevel,omitempty"`
-	Size          *int    `type:"integer" required:"true"json:",omitempty"`
+	NumberOfDisks *int64  `type:"integer" required:"true"json:",omitempty"`
+	RAIDLevel     *int64  `locationName:"RaidLevel" type:"integer" json:"RaidLevel,omitempty"`
+	Size          *int64  `type:"integer" required:"true"json:",omitempty"`
 	VolumeType    *string `type:"string" json:",omitempty"`
 
 	metadataVolumeConfiguration `json:"-", xml:"-"`

@@ -19,7 +19,7 @@ var (
 func TestMakingABasicRequest(t *testing.T) {
 	client := dynamodb.New(nil)
 	resp, e := client.ListTables(&dynamodb.ListTablesInput{
-		Limit: aws.Integer(1),
+		Limit: aws.Long(1),
 	})
 	err := aws.Error(e)
 	_, _, _ = resp, e, err // avoid unused warnings

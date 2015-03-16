@@ -664,7 +664,7 @@ type metadataIdentityVerificationAttributes struct {
 
 type ListIdentitiesInput struct {
 	IdentityType *string `type:"string"`
-	MaxItems     *int    `type:"integer"`
+	MaxItems     *int64  `type:"integer"`
 	NextToken    *string `type:"string"`
 
 	metadataListIdentitiesInput `json:"-", xml:"-"`

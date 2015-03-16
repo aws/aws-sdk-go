@@ -817,9 +817,9 @@ type metadataCheckDNSAvailabilityOutput struct {
 type ConfigurationOptionDescription struct {
 	ChangeSeverity *string                 `type:"string"`
 	DefaultValue   *string                 `type:"string"`
-	MaxLength      *int                    `type:"integer"`
-	MaxValue       *int                    `type:"integer"`
-	MinValue       *int                    `type:"integer"`
+	MaxLength      *int64                  `type:"integer"`
+	MaxValue       *int64                  `type:"integer"`
+	MinValue       *int64                  `type:"integer"`
 	Name           *string                 `type:"string"`
 	Namespace      *string                 `type:"string"`
 	Regex          *OptionRestrictionRegex `type:"structure"`
@@ -1159,7 +1159,7 @@ type DescribeEventsInput struct {
 	EndTime         *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	EnvironmentID   *string    `locationName:"EnvironmentId" type:"string"`
 	EnvironmentName *string    `type:"string"`
-	MaxRecords      *int       `type:"integer"`
+	MaxRecords      *int64     `type:"integer"`
 	NextToken       *string    `type:"string"`
 	RequestID       *string    `locationName:"RequestId" type:"string"`
 	Severity        *string    `type:"string"`
@@ -1317,7 +1317,7 @@ type metadataListAvailableSolutionStacksOutput struct {
 }
 
 type Listener struct {
-	Port     *int    `type:"integer"`
+	Port     *int64  `type:"integer"`
 	Protocol *string `type:"string"`
 
 	metadataListener `json:"-", xml:"-"`

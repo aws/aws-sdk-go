@@ -1584,10 +1584,10 @@ type metadataCopyOptionGroupOutput struct {
 }
 
 type CreateDBInstanceInput struct {
-	AllocatedStorage           *int      `type:"integer" required:"true"`
+	AllocatedStorage           *int64    `type:"integer" required:"true"`
 	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
 	AvailabilityZone           *string   `type:"string"`
-	BackupRetentionPeriod      *int      `type:"integer"`
+	BackupRetentionPeriod      *int64    `type:"integer"`
 	CharacterSetName           *string   `type:"string"`
 	DBInstanceClass            *string   `type:"string" required:"true"`
 	DBInstanceIdentifier       *string   `type:"string" required:"true"`
@@ -1597,14 +1597,14 @@ type CreateDBInstanceInput struct {
 	DBSubnetGroupName          *string   `type:"string"`
 	Engine                     *string   `type:"string" required:"true"`
 	EngineVersion              *string   `type:"string"`
-	IOPS                       *int      `locationName:"Iops" type:"integer"`
+	IOPS                       *int64    `locationName:"Iops" type:"integer"`
 	KMSKeyID                   *string   `locationName:"KmsKeyId" type:"string"`
 	LicenseModel               *string   `type:"string"`
 	MasterUserPassword         *string   `type:"string" required:"true"`
 	MasterUsername             *string   `type:"string" required:"true"`
 	MultiAZ                    *bool     `type:"boolean"`
 	OptionGroupName            *string   `type:"string"`
-	Port                       *int      `type:"integer"`
+	Port                       *int64    `type:"integer"`
 	PreferredBackupWindow      *string   `type:"string"`
 	PreferredMaintenanceWindow *string   `type:"string"`
 	PubliclyAccessible         *bool     `type:"boolean"`
@@ -1638,9 +1638,9 @@ type CreateDBInstanceReadReplicaInput struct {
 	DBInstanceClass            *string `type:"string"`
 	DBInstanceIdentifier       *string `type:"string" required:"true"`
 	DBSubnetGroupName          *string `type:"string"`
-	IOPS                       *int    `locationName:"Iops" type:"integer"`
+	IOPS                       *int64  `locationName:"Iops" type:"integer"`
 	OptionGroupName            *string `type:"string"`
-	Port                       *int    `type:"integer"`
+	Port                       *int64  `type:"integer"`
 	PubliclyAccessible         *bool   `type:"boolean"`
 	SourceDBInstanceIdentifier *string `type:"string" required:"true"`
 	StorageType                *string `type:"string"`
@@ -1820,10 +1820,10 @@ type metadataDBEngineVersion struct {
 }
 
 type DBInstance struct {
-	AllocatedStorage                      *int                          `type:"integer"`
+	AllocatedStorage                      *int64                        `type:"integer"`
 	AutoMinorVersionUpgrade               *bool                         `type:"boolean"`
 	AvailabilityZone                      *string                       `type:"string"`
-	BackupRetentionPeriod                 *int                          `type:"integer"`
+	BackupRetentionPeriod                 *int64                        `type:"integer"`
 	CharacterSetName                      *string                       `type:"string"`
 	DBInstanceClass                       *string                       `type:"string"`
 	DBInstanceIdentifier                  *string                       `type:"string"`
@@ -1836,7 +1836,7 @@ type DBInstance struct {
 	Endpoint                              *Endpoint                     `type:"structure"`
 	Engine                                *string                       `type:"string"`
 	EngineVersion                         *string                       `type:"string"`
-	IOPS                                  *int                          `locationName:"Iops" type:"integer"`
+	IOPS                                  *int64                        `locationName:"Iops" type:"integer"`
 	InstanceCreateTime                    *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
 	KMSKeyID                              *string                       `locationName:"KmsKeyId" type:"string"`
 	LatestRestorableTime                  *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
@@ -1937,21 +1937,21 @@ type metadataDBSecurityGroupMembership struct {
 }
 
 type DBSnapshot struct {
-	AllocatedStorage     *int       `type:"integer"`
+	AllocatedStorage     *int64     `type:"integer"`
 	AvailabilityZone     *string    `type:"string"`
 	DBInstanceIdentifier *string    `type:"string"`
 	DBSnapshotIdentifier *string    `type:"string"`
 	Encrypted            *bool      `type:"boolean"`
 	Engine               *string    `type:"string"`
 	EngineVersion        *string    `type:"string"`
-	IOPS                 *int       `locationName:"Iops" type:"integer"`
+	IOPS                 *int64     `locationName:"Iops" type:"integer"`
 	InstanceCreateTime   *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	KMSKeyID             *string    `locationName:"KmsKeyId" type:"string"`
 	LicenseModel         *string    `type:"string"`
 	MasterUsername       *string    `type:"string"`
 	OptionGroupName      *string    `type:"string"`
-	PercentProgress      *int       `type:"integer"`
-	Port                 *int       `type:"integer"`
+	PercentProgress      *int64     `type:"integer"`
+	Port                 *int64     `type:"integer"`
 	SnapshotCreateTime   *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	SnapshotType         *string    `type:"string"`
 	SourceRegion         *string    `type:"string"`
@@ -2123,7 +2123,7 @@ type DescribeDBEngineVersionsInput struct {
 	Filters                    []*Filter `locationNameList:"Filter" type:"list"`
 	ListSupportedCharacterSets *bool     `type:"boolean"`
 	Marker                     *string   `type:"string"`
-	MaxRecords                 *int      `type:"integer"`
+	MaxRecords                 *int64    `type:"integer"`
 
 	metadataDescribeDBEngineVersionsInput `json:"-", xml:"-"`
 }
@@ -2147,7 +2147,7 @@ type DescribeDBInstancesInput struct {
 	DBInstanceIdentifier *string   `type:"string"`
 	Filters              []*Filter `locationNameList:"Filter" type:"list"`
 	Marker               *string   `type:"string"`
-	MaxRecords           *int      `type:"integer"`
+	MaxRecords           *int64    `type:"integer"`
 
 	metadataDescribeDBInstancesInput `json:"-", xml:"-"`
 }
@@ -2186,7 +2186,7 @@ type DescribeDBLogFilesInput struct {
 	FilenameContains     *string   `type:"string"`
 	Filters              []*Filter `locationNameList:"Filter" type:"list"`
 	Marker               *string   `type:"string"`
-	MaxRecords           *int      `type:"integer"`
+	MaxRecords           *int64    `type:"integer"`
 
 	metadataDescribeDBLogFilesInput `json:"-", xml:"-"`
 }
@@ -2210,7 +2210,7 @@ type DescribeDBParameterGroupsInput struct {
 	DBParameterGroupName *string   `type:"string"`
 	Filters              []*Filter `locationNameList:"Filter" type:"list"`
 	Marker               *string   `type:"string"`
-	MaxRecords           *int      `type:"integer"`
+	MaxRecords           *int64    `type:"integer"`
 
 	metadataDescribeDBParameterGroupsInput `json:"-", xml:"-"`
 }
@@ -2234,7 +2234,7 @@ type DescribeDBParametersInput struct {
 	DBParameterGroupName *string   `type:"string" required:"true"`
 	Filters              []*Filter `locationNameList:"Filter" type:"list"`
 	Marker               *string   `type:"string"`
-	MaxRecords           *int      `type:"integer"`
+	MaxRecords           *int64    `type:"integer"`
 	Source               *string   `type:"string"`
 
 	metadataDescribeDBParametersInput `json:"-", xml:"-"`
@@ -2259,7 +2259,7 @@ type DescribeDBSecurityGroupsInput struct {
 	DBSecurityGroupName *string   `type:"string"`
 	Filters             []*Filter `locationNameList:"Filter" type:"list"`
 	Marker              *string   `type:"string"`
-	MaxRecords          *int      `type:"integer"`
+	MaxRecords          *int64    `type:"integer"`
 
 	metadataDescribeDBSecurityGroupsInput `json:"-", xml:"-"`
 }
@@ -2284,7 +2284,7 @@ type DescribeDBSnapshotsInput struct {
 	DBSnapshotIdentifier *string   `type:"string"`
 	Filters              []*Filter `locationNameList:"Filter" type:"list"`
 	Marker               *string   `type:"string"`
-	MaxRecords           *int      `type:"integer"`
+	MaxRecords           *int64    `type:"integer"`
 	SnapshotType         *string   `type:"string"`
 
 	metadataDescribeDBSnapshotsInput `json:"-", xml:"-"`
@@ -2309,7 +2309,7 @@ type DescribeDBSubnetGroupsInput struct {
 	DBSubnetGroupName *string   `type:"string"`
 	Filters           []*Filter `locationNameList:"Filter" type:"list"`
 	Marker            *string   `type:"string"`
-	MaxRecords        *int      `type:"integer"`
+	MaxRecords        *int64    `type:"integer"`
 
 	metadataDescribeDBSubnetGroupsInput `json:"-", xml:"-"`
 }
@@ -2333,7 +2333,7 @@ type DescribeEngineDefaultParametersInput struct {
 	DBParameterGroupFamily *string   `type:"string" required:"true"`
 	Filters                []*Filter `locationNameList:"Filter" type:"list"`
 	Marker                 *string   `type:"string"`
-	MaxRecords             *int      `type:"integer"`
+	MaxRecords             *int64    `type:"integer"`
 
 	metadataDescribeEngineDefaultParametersInput `json:"-", xml:"-"`
 }
@@ -2376,7 +2376,7 @@ type metadataDescribeEventCategoriesOutput struct {
 type DescribeEventSubscriptionsInput struct {
 	Filters          []*Filter `locationNameList:"Filter" type:"list"`
 	Marker           *string   `type:"string"`
-	MaxRecords       *int      `type:"integer"`
+	MaxRecords       *int64    `type:"integer"`
 	SubscriptionName *string   `type:"string"`
 
 	metadataDescribeEventSubscriptionsInput `json:"-", xml:"-"`
@@ -2398,12 +2398,12 @@ type metadataDescribeEventSubscriptionsOutput struct {
 }
 
 type DescribeEventsInput struct {
-	Duration         *int       `type:"integer"`
+	Duration         *int64     `type:"integer"`
 	EndTime          *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	EventCategories  []*string  `locationNameList:"EventCategory" type:"list"`
 	Filters          []*Filter  `locationNameList:"Filter" type:"list"`
 	Marker           *string    `type:"string"`
-	MaxRecords       *int       `type:"integer"`
+	MaxRecords       *int64     `type:"integer"`
 	SourceIdentifier *string    `type:"string"`
 	SourceType       *string    `type:"string"`
 	StartTime        *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -2431,7 +2431,7 @@ type DescribeOptionGroupOptionsInput struct {
 	Filters            []*Filter `locationNameList:"Filter" type:"list"`
 	MajorEngineVersion *string   `type:"string"`
 	Marker             *string   `type:"string"`
-	MaxRecords         *int      `type:"integer"`
+	MaxRecords         *int64    `type:"integer"`
 
 	metadataDescribeOptionGroupOptionsInput `json:"-", xml:"-"`
 }
@@ -2456,7 +2456,7 @@ type DescribeOptionGroupsInput struct {
 	Filters            []*Filter `locationNameList:"Filter" type:"list"`
 	MajorEngineVersion *string   `type:"string"`
 	Marker             *string   `type:"string"`
-	MaxRecords         *int      `type:"integer"`
+	MaxRecords         *int64    `type:"integer"`
 	OptionGroupName    *string   `type:"string"`
 
 	metadataDescribeOptionGroupsInput `json:"-", xml:"-"`
@@ -2484,7 +2484,7 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	Filters         []*Filter `locationNameList:"Filter" type:"list"`
 	LicenseModel    *string   `type:"string"`
 	Marker          *string   `type:"string"`
-	MaxRecords      *int      `type:"integer"`
+	MaxRecords      *int64    `type:"integer"`
 	VPC             *bool     `locationName:"Vpc" type:"boolean"`
 
 	metadataDescribeOrderableDBInstanceOptionsInput `json:"-", xml:"-"`
@@ -2508,7 +2508,7 @@ type metadataDescribeOrderableDBInstanceOptionsOutput struct {
 type DescribePendingMaintenanceActionsInput struct {
 	Filters            []*Filter `locationNameList:"Filter" type:"list"`
 	Marker             *string   `type:"string"`
-	MaxRecords         *int      `type:"integer"`
+	MaxRecords         *int64    `type:"integer"`
 	ResourceIdentifier *string   `type:"string"`
 
 	metadataDescribePendingMaintenanceActionsInput `json:"-", xml:"-"`
@@ -2534,7 +2534,7 @@ type DescribeReservedDBInstancesInput struct {
 	Duration                      *string   `type:"string"`
 	Filters                       []*Filter `locationNameList:"Filter" type:"list"`
 	Marker                        *string   `type:"string"`
-	MaxRecords                    *int      `type:"integer"`
+	MaxRecords                    *int64    `type:"integer"`
 	MultiAZ                       *bool     `type:"boolean"`
 	OfferingType                  *string   `type:"string"`
 	ProductDescription            *string   `type:"string"`
@@ -2553,7 +2553,7 @@ type DescribeReservedDBInstancesOfferingsInput struct {
 	Duration                      *string   `type:"string"`
 	Filters                       []*Filter `locationNameList:"Filter" type:"list"`
 	Marker                        *string   `type:"string"`
-	MaxRecords                    *int      `type:"integer"`
+	MaxRecords                    *int64    `type:"integer"`
 	MultiAZ                       *bool     `type:"boolean"`
 	OfferingType                  *string   `type:"string"`
 	ProductDescription            *string   `type:"string"`
@@ -2592,7 +2592,7 @@ type DownloadDBLogFilePortionInput struct {
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 	LogFileName          *string `type:"string" required:"true"`
 	Marker               *string `type:"string"`
-	NumberOfLines        *int    `type:"integer"`
+	NumberOfLines        *int64  `type:"integer"`
 
 	metadataDownloadDBLogFilePortionInput `json:"-", xml:"-"`
 }
@@ -2628,7 +2628,7 @@ type metadataEC2SecurityGroup struct {
 
 type Endpoint struct {
 	Address *string `type:"string"`
-	Port    *int    `type:"integer"`
+	Port    *int64  `type:"integer"`
 
 	metadataEndpoint `json:"-", xml:"-"`
 }
@@ -2736,17 +2736,17 @@ type metadataListTagsForResourceOutput struct {
 }
 
 type ModifyDBInstanceInput struct {
-	AllocatedStorage           *int      `type:"integer"`
+	AllocatedStorage           *int64    `type:"integer"`
 	AllowMajorVersionUpgrade   *bool     `type:"boolean"`
 	ApplyImmediately           *bool     `type:"boolean"`
 	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
-	BackupRetentionPeriod      *int      `type:"integer"`
+	BackupRetentionPeriod      *int64    `type:"integer"`
 	DBInstanceClass            *string   `type:"string"`
 	DBInstanceIdentifier       *string   `type:"string" required:"true"`
 	DBParameterGroupName       *string   `type:"string"`
 	DBSecurityGroups           []*string `locationNameList:"DBSecurityGroupName" type:"list"`
 	EngineVersion              *string   `type:"string"`
-	IOPS                       *int      `locationName:"Iops" type:"integer"`
+	IOPS                       *int64    `locationName:"Iops" type:"integer"`
 	MasterUserPassword         *string   `type:"string"`
 	MultiAZ                    *bool     `type:"boolean"`
 	NewDBInstanceIdentifier    *string   `type:"string"`
@@ -2862,7 +2862,7 @@ type Option struct {
 	OptionSettings              []*OptionSetting              `locationNameList:"OptionSetting" type:"list"`
 	Permanent                   *bool                         `type:"boolean"`
 	Persistent                  *bool                         `type:"boolean"`
-	Port                        *int                          `type:"integer"`
+	Port                        *int64                        `type:"integer"`
 	VPCSecurityGroupMemberships []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroupMemberships" locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
 	metadataOption `json:"-", xml:"-"`
@@ -2876,7 +2876,7 @@ type OptionConfiguration struct {
 	DBSecurityGroupMemberships  []*string        `locationNameList:"DBSecurityGroupName" type:"list"`
 	OptionName                  *string          `type:"string" required:"true"`
 	OptionSettings              []*OptionSetting `locationNameList:"OptionSetting" type:"list"`
-	Port                        *int             `type:"integer"`
+	Port                        *int64           `type:"integer"`
 	VPCSecurityGroupMemberships []*string        `locationName:"VpcSecurityGroupMemberships" locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataOptionConfiguration `json:"-", xml:"-"`
@@ -2914,7 +2914,7 @@ type metadataOptionGroupMembership struct {
 }
 
 type OptionGroupOption struct {
-	DefaultPort                       *int                        `type:"integer"`
+	DefaultPort                       *int64                      `type:"integer"`
 	Description                       *string                     `type:"string"`
 	EngineName                        *string                     `type:"string"`
 	MajorEngineVersion                *string                     `type:"string"`
@@ -3020,15 +3020,15 @@ type metadataPendingMaintenanceAction struct {
 }
 
 type PendingModifiedValues struct {
-	AllocatedStorage      *int    `type:"integer"`
-	BackupRetentionPeriod *int    `type:"integer"`
+	AllocatedStorage      *int64  `type:"integer"`
+	BackupRetentionPeriod *int64  `type:"integer"`
 	DBInstanceClass       *string `type:"string"`
 	DBInstanceIdentifier  *string `type:"string"`
 	EngineVersion         *string `type:"string"`
-	IOPS                  *int    `locationName:"Iops" type:"integer"`
+	IOPS                  *int64  `locationName:"Iops" type:"integer"`
 	MasterUserPassword    *string `type:"string"`
 	MultiAZ               *bool   `type:"boolean"`
-	Port                  *int    `type:"integer"`
+	Port                  *int64  `type:"integer"`
 	StorageType           *string `type:"string"`
 
 	metadataPendingModifiedValues `json:"-", xml:"-"`
@@ -3039,7 +3039,7 @@ type metadataPendingModifiedValues struct {
 }
 
 type PromoteReadReplicaInput struct {
-	BackupRetentionPeriod *int    `type:"integer"`
+	BackupRetentionPeriod *int64  `type:"integer"`
 	DBInstanceIdentifier  *string `type:"string" required:"true"`
 	PreferredBackupWindow *string `type:"string"`
 
@@ -3061,7 +3061,7 @@ type metadataPromoteReadReplicaOutput struct {
 }
 
 type PurchaseReservedDBInstancesOfferingInput struct {
-	DBInstanceCount               *int    `type:"integer"`
+	DBInstanceCount               *int64  `type:"integer"`
 	ReservedDBInstanceID          *string `locationName:"ReservedDBInstanceId" type:"string"`
 	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string" required:"true"`
 	Tags                          []*Tag  `locationNameList:"Tag" type:"list"`
@@ -3158,8 +3158,8 @@ type metadataRemoveTagsFromResourceOutput struct {
 type ReservedDBInstance struct {
 	CurrencyCode                  *string            `type:"string"`
 	DBInstanceClass               *string            `type:"string"`
-	DBInstanceCount               *int               `type:"integer"`
-	Duration                      *int               `type:"integer"`
+	DBInstanceCount               *int64             `type:"integer"`
+	Duration                      *int64             `type:"integer"`
 	FixedPrice                    *float64           `type:"double"`
 	MultiAZ                       *bool              `type:"boolean"`
 	OfferingType                  *string            `type:"string"`
@@ -3181,7 +3181,7 @@ type metadataReservedDBInstance struct {
 type ReservedDBInstancesOffering struct {
 	CurrencyCode                  *string            `type:"string"`
 	DBInstanceClass               *string            `type:"string"`
-	Duration                      *int               `type:"integer"`
+	Duration                      *int64             `type:"integer"`
 	FixedPrice                    *float64           `type:"double"`
 	MultiAZ                       *bool              `type:"boolean"`
 	OfferingType                  *string            `type:"string"`
@@ -3229,11 +3229,11 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	DBSnapshotIdentifier    *string `type:"string" required:"true"`
 	DBSubnetGroupName       *string `type:"string"`
 	Engine                  *string `type:"string"`
-	IOPS                    *int    `locationName:"Iops" type:"integer"`
+	IOPS                    *int64  `locationName:"Iops" type:"integer"`
 	LicenseModel            *string `type:"string"`
 	MultiAZ                 *bool   `type:"boolean"`
 	OptionGroupName         *string `type:"string"`
-	Port                    *int    `type:"integer"`
+	Port                    *int64  `type:"integer"`
 	PubliclyAccessible      *bool   `type:"boolean"`
 	StorageType             *string `type:"string"`
 	TDECredentialARN        *string `locationName:"TdeCredentialArn" type:"string"`
@@ -3264,11 +3264,11 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	DBName                     *string    `type:"string"`
 	DBSubnetGroupName          *string    `type:"string"`
 	Engine                     *string    `type:"string"`
-	IOPS                       *int       `locationName:"Iops" type:"integer"`
+	IOPS                       *int64     `locationName:"Iops" type:"integer"`
 	LicenseModel               *string    `type:"string"`
 	MultiAZ                    *bool      `type:"boolean"`
 	OptionGroupName            *string    `type:"string"`
-	Port                       *int       `type:"integer"`
+	Port                       *int64     `type:"integer"`
 	PubliclyAccessible         *bool      `type:"boolean"`
 	RestoreTime                *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 	SourceDBInstanceIdentifier *string    `type:"string" required:"true"`

@@ -545,7 +545,7 @@ type metadataCluster struct {
 
 type Container struct {
 	ContainerARN    *string           `locationName:"containerArn" type:"string" json:"containerArn,omitempty"`
-	ExitCode        *int              `locationName:"exitCode" type:"integer" json:"exitCode,omitempty"`
+	ExitCode        *int64            `locationName:"exitCode" type:"integer" json:"exitCode,omitempty"`
 	LastStatus      *string           `locationName:"lastStatus" type:"string" json:"lastStatus,omitempty"`
 	Name            *string           `locationName:"name" type:"string" json:"name,omitempty"`
 	NetworkBindings []*NetworkBinding `locationName:"networkBindings" type:"list" json:"networkBindings,omitempty"`
@@ -560,14 +560,14 @@ type metadataContainer struct {
 }
 
 type ContainerDefinition struct {
-	CPU          *int            `locationName:"cpu" type:"integer" json:"cpu,omitempty"`
+	CPU          *int64          `locationName:"cpu" type:"integer" json:"cpu,omitempty"`
 	Command      []*string       `locationName:"command" type:"list" json:"command,omitempty"`
 	EntryPoint   []*string       `locationName:"entryPoint" type:"list" json:"entryPoint,omitempty"`
 	Environment  []*KeyValuePair `locationName:"environment" type:"list" json:"environment,omitempty"`
 	Essential    *bool           `locationName:"essential" type:"boolean" json:"essential,omitempty"`
 	Image        *string         `locationName:"image" type:"string" json:"image,omitempty"`
 	Links        []*string       `locationName:"links" type:"list" json:"links,omitempty"`
-	Memory       *int            `locationName:"memory" type:"integer" json:"memory,omitempty"`
+	Memory       *int64          `locationName:"memory" type:"integer" json:"memory,omitempty"`
 	MountPoints  []*MountPoint   `locationName:"mountPoints" type:"list" json:"mountPoints,omitempty"`
 	Name         *string         `locationName:"name" type:"string" json:"name,omitempty"`
 	PortMappings []*PortMapping  `locationName:"portMappings" type:"list" json:"portMappings,omitempty"`
@@ -827,7 +827,7 @@ type metadataKeyValuePair struct {
 }
 
 type ListClustersInput struct {
-	MaxResults *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	MaxResults *int64  `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
 	NextToken  *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListClustersInput `json:"-", xml:"-"`
@@ -850,7 +850,7 @@ type metadataListClustersOutput struct {
 
 type ListContainerInstancesInput struct {
 	Cluster    *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
-	MaxResults *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	MaxResults *int64  `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
 	NextToken  *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListContainerInstancesInput `json:"-", xml:"-"`
@@ -873,7 +873,7 @@ type metadataListContainerInstancesOutput struct {
 
 type ListTaskDefinitionFamiliesInput struct {
 	FamilyPrefix *string `locationName:"familyPrefix" type:"string" json:"familyPrefix,omitempty"`
-	MaxResults   *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	MaxResults   *int64  `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
 	NextToken    *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListTaskDefinitionFamiliesInput `json:"-", xml:"-"`
@@ -896,7 +896,7 @@ type metadataListTaskDefinitionFamiliesOutput struct {
 
 type ListTaskDefinitionsInput struct {
 	FamilyPrefix *string `locationName:"familyPrefix" type:"string" json:"familyPrefix,omitempty"`
-	MaxResults   *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	MaxResults   *int64  `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
 	NextToken    *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListTaskDefinitionsInput `json:"-", xml:"-"`
@@ -921,7 +921,7 @@ type ListTasksInput struct {
 	Cluster           *string `locationName:"cluster" type:"string" json:"cluster,omitempty"`
 	ContainerInstance *string `locationName:"containerInstance" type:"string" json:"containerInstance,omitempty"`
 	Family            *string `locationName:"family" type:"string" json:"family,omitempty"`
-	MaxResults        *int    `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
+	MaxResults        *int64  `locationName:"maxResults" type:"integer" json:"maxResults,omitempty"`
 	NextToken         *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 
 	metadataListTasksInput `json:"-", xml:"-"`
@@ -956,8 +956,8 @@ type metadataMountPoint struct {
 
 type NetworkBinding struct {
 	BindIP        *string `locationName:"bindIP" type:"string" json:"bindIP,omitempty"`
-	ContainerPort *int    `locationName:"containerPort" type:"integer" json:"containerPort,omitempty"`
-	HostPort      *int    `locationName:"hostPort" type:"integer" json:"hostPort,omitempty"`
+	ContainerPort *int64  `locationName:"containerPort" type:"integer" json:"containerPort,omitempty"`
+	HostPort      *int64  `locationName:"hostPort" type:"integer" json:"hostPort,omitempty"`
 
 	metadataNetworkBinding `json:"-", xml:"-"`
 }
@@ -967,8 +967,8 @@ type metadataNetworkBinding struct {
 }
 
 type PortMapping struct {
-	ContainerPort *int `locationName:"containerPort" type:"integer" json:"containerPort,omitempty"`
-	HostPort      *int `locationName:"hostPort" type:"integer" json:"hostPort,omitempty"`
+	ContainerPort *int64 `locationName:"containerPort" type:"integer" json:"containerPort,omitempty"`
+	HostPort      *int64 `locationName:"hostPort" type:"integer" json:"hostPort,omitempty"`
 
 	metadataPortMapping `json:"-", xml:"-"`
 }
@@ -1024,7 +1024,7 @@ type metadataRegisterTaskDefinitionOutput struct {
 
 type Resource struct {
 	DoubleValue    *float64  `locationName:"doubleValue" type:"double" json:"doubleValue,omitempty"`
-	IntegerValue   *int      `locationName:"integerValue" type:"integer" json:"integerValue,omitempty"`
+	IntegerValue   *int64    `locationName:"integerValue" type:"integer" json:"integerValue,omitempty"`
 	LongValue      *int64    `locationName:"longValue" type:"long" json:"longValue,omitempty"`
 	Name           *string   `locationName:"name" type:"string" json:"name,omitempty"`
 	StringSetValue []*string `locationName:"stringSetValue" type:"list" json:"stringSetValue,omitempty"`
@@ -1039,7 +1039,7 @@ type metadataResource struct {
 
 type RunTaskInput struct {
 	Cluster        *string       `locationName:"cluster" type:"string" json:"cluster,omitempty"`
-	Count          *int          `locationName:"count" type:"integer" json:"count,omitempty"`
+	Count          *int64        `locationName:"count" type:"integer" json:"count,omitempty"`
 	Overrides      *TaskOverride `locationName:"overrides" type:"structure" json:"overrides,omitempty"`
 	TaskDefinition *string       `locationName:"taskDefinition" type:"string" required:"true"json:"taskDefinition,omitempty"`
 
@@ -1109,7 +1109,7 @@ type metadataStopTaskOutput struct {
 type SubmitContainerStateChangeInput struct {
 	Cluster         *string           `locationName:"cluster" type:"string" json:"cluster,omitempty"`
 	ContainerName   *string           `locationName:"containerName" type:"string" json:"containerName,omitempty"`
-	ExitCode        *int              `locationName:"exitCode" type:"integer" json:"exitCode,omitempty"`
+	ExitCode        *int64            `locationName:"exitCode" type:"integer" json:"exitCode,omitempty"`
 	NetworkBindings []*NetworkBinding `locationName:"networkBindings" type:"list" json:"networkBindings,omitempty"`
 	Reason          *string           `locationName:"reason" type:"string" json:"reason,omitempty"`
 	Status          *string           `locationName:"status" type:"string" json:"status,omitempty"`
@@ -1175,7 +1175,7 @@ type metadataTask struct {
 type TaskDefinition struct {
 	ContainerDefinitions []*ContainerDefinition `locationName:"containerDefinitions" type:"list" json:"containerDefinitions,omitempty"`
 	Family               *string                `locationName:"family" type:"string" json:"family,omitempty"`
-	Revision             *int                   `locationName:"revision" type:"integer" json:"revision,omitempty"`
+	Revision             *int64                 `locationName:"revision" type:"integer" json:"revision,omitempty"`
 	TaskDefinitionARN    *string                `locationName:"taskDefinitionArn" type:"string" json:"taskDefinitionArn,omitempty"`
 	Volumes              []*Volume              `locationName:"volumes" type:"list" json:"volumes,omitempty"`
 

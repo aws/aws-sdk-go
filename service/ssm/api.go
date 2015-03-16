@@ -552,7 +552,7 @@ type metadataGetDocumentOutput struct {
 
 type ListAssociationsInput struct {
 	AssociationFilterList []*AssociationFilter `locationNameList:"AssociationFilter" type:"list" required:"true"json:",omitempty"`
-	MaxResults            *int                 `type:"integer" json:",omitempty"`
+	MaxResults            *int64               `type:"integer" json:",omitempty"`
 	NextToken             *string              `type:"string" json:",omitempty"`
 
 	metadataListAssociationsInput `json:"-", xml:"-"`
@@ -575,7 +575,7 @@ type metadataListAssociationsOutput struct {
 
 type ListDocumentsInput struct {
 	DocumentFilterList []*DocumentFilter `locationNameList:"DocumentFilter" type:"list" json:",omitempty"`
-	MaxResults         *int              `type:"integer" json:",omitempty"`
+	MaxResults         *int64            `type:"integer" json:",omitempty"`
 	NextToken          *string           `type:"string" json:",omitempty"`
 
 	metadataListDocumentsInput `json:"-", xml:"-"`

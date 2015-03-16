@@ -510,7 +510,7 @@ type GetResourceConfigHistoryInput struct {
 	ChronologicalOrder *string    `locationName:"chronologicalOrder" type:"string" json:"chronologicalOrder,omitempty"`
 	EarlierTime        *time.Time `locationName:"earlierTime" type:"timestamp" timestampFormat:"unix" json:"earlierTime,omitempty"`
 	LaterTime          *time.Time `locationName:"laterTime" type:"timestamp" timestampFormat:"unix" json:"laterTime,omitempty"`
-	Limit              *int       `locationName:"limit" type:"integer" json:"limit,omitempty"`
+	Limit              *int64     `locationName:"limit" type:"integer" json:"limit,omitempty"`
 	NextToken          *string    `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
 	ResourceID         *string    `locationName:"resourceId" type:"string" required:"true"json:"resourceId,omitempty"`
 	ResourceType       *string    `locationName:"resourceType" type:"string" required:"true"json:"resourceType,omitempty"`

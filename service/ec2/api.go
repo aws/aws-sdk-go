@@ -4094,7 +4094,7 @@ type AssignPrivateIPAddressesInput struct {
 	AllowReassignment              *bool     `locationName:"allowReassignment" type:"boolean"`
 	NetworkInterfaceID             *string   `locationName:"networkInterfaceId" type:"string" required:"true"`
 	PrivateIPAddresses             []*string `locationName:"privateIpAddress" locationNameList:"PrivateIpAddress" type:"list"`
-	SecondaryPrivateIPAddressCount *int      `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
+	SecondaryPrivateIPAddressCount *int64    `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
 
 	metadataAssignPrivateIPAddressesInput `json:"-", xml:"-"`
 }
@@ -4223,7 +4223,7 @@ type metadataAttachInternetGatewayOutput struct {
 }
 
 type AttachNetworkInterfaceInput struct {
-	DeviceIndex        *int    `locationName:"deviceIndex" type:"integer" required:"true"`
+	DeviceIndex        *int64  `locationName:"deviceIndex" type:"integer" required:"true"`
 	DryRun             *bool   `locationName:"dryRun" type:"boolean"`
 	InstanceID         *string `locationName:"instanceId" type:"string" required:"true"`
 	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
@@ -4303,13 +4303,13 @@ type metadataAttributeValue struct {
 type AuthorizeSecurityGroupEgressInput struct {
 	CIDRIP                     *string         `locationName:"cidrIp" type:"string"`
 	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
-	FromPort                   *int            `locationName:"fromPort" type:"integer"`
+	FromPort                   *int64          `locationName:"fromPort" type:"integer"`
 	GroupID                    *string         `locationName:"groupId" type:"string" required:"true"`
 	IPPermissions              []*IPPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
 	IPProtocol                 *string         `locationName:"ipProtocol" type:"string"`
 	SourceSecurityGroupName    *string         `locationName:"sourceSecurityGroupName" type:"string"`
 	SourceSecurityGroupOwnerID *string         `locationName:"sourceSecurityGroupOwnerId" type:"string"`
-	ToPort                     *int            `locationName:"toPort" type:"integer"`
+	ToPort                     *int64          `locationName:"toPort" type:"integer"`
 
 	metadataAuthorizeSecurityGroupEgressInput `json:"-", xml:"-"`
 }
@@ -4329,14 +4329,14 @@ type metadataAuthorizeSecurityGroupEgressOutput struct {
 type AuthorizeSecurityGroupIngressInput struct {
 	CIDRIP                     *string         `locationName:"CidrIp" type:"string"`
 	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
-	FromPort                   *int            `type:"integer"`
+	FromPort                   *int64          `type:"integer"`
 	GroupID                    *string         `locationName:"GroupId" type:"string"`
 	GroupName                  *string         `type:"string"`
 	IPPermissions              []*IPPermission `locationName:"IpPermissions" locationNameList:"item" type:"list"`
 	IPProtocol                 *string         `locationName:"IpProtocol" type:"string"`
 	SourceSecurityGroupName    *string         `type:"string"`
 	SourceSecurityGroupOwnerID *string         `locationName:"SourceSecurityGroupOwnerId" type:"string"`
-	ToPort                     *int            `type:"integer"`
+	ToPort                     *int64          `type:"integer"`
 
 	metadataAuthorizeSecurityGroupIngressInput `json:"-", xml:"-"`
 }
@@ -4662,7 +4662,7 @@ type metadataCopySnapshotOutput struct {
 }
 
 type CreateCustomerGatewayInput struct {
-	BGPASN   *int    `locationName:"BgpAsn" type:"integer" required:"true"`
+	BGPASN   *int64  `locationName:"BgpAsn" type:"integer" required:"true"`
 	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
 	PublicIP *string `locationName:"IpAddress" type:"string" required:"true"`
 	Type     *string `type:"string" required:"true"`
@@ -4805,7 +4805,7 @@ type CreateNetworkACLEntryInput struct {
 	PortRange    *PortRange    `locationName:"portRange" type:"structure"`
 	Protocol     *string       `locationName:"protocol" type:"string" required:"true"`
 	RuleAction   *string       `locationName:"ruleAction" type:"string" required:"true"`
-	RuleNumber   *int          `locationName:"ruleNumber" type:"integer" required:"true"`
+	RuleNumber   *int64        `locationName:"ruleNumber" type:"integer" required:"true"`
 
 	metadataCreateNetworkACLEntryInput `json:"-", xml:"-"`
 }
@@ -4849,7 +4849,7 @@ type CreateNetworkInterfaceInput struct {
 	Groups                         []*string                        `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
 	PrivateIPAddress               *string                          `locationName:"privateIpAddress" type:"string"`
 	PrivateIPAddresses             []*PrivateIPAddressSpecification `locationName:"privateIpAddresses" locationNameList:"item" type:"list"`
-	SecondaryPrivateIPAddressCount *int                             `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
+	SecondaryPrivateIPAddressCount *int64                           `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
 	SubnetID                       *string                          `locationName:"subnetId" type:"string" required:"true"`
 
 	metadataCreateNetworkInterfaceInput `json:"-", xml:"-"`
@@ -4891,7 +4891,7 @@ type metadataCreatePlacementGroupOutput struct {
 
 type CreateReservedInstancesListingInput struct {
 	ClientToken         *string                       `locationName:"clientToken" type:"string" required:"true"`
-	InstanceCount       *int                          `locationName:"instanceCount" type:"integer" required:"true"`
+	InstanceCount       *int64                        `locationName:"instanceCount" type:"integer" required:"true"`
 	PriceSchedules      []*PriceScheduleSpecification `locationName:"priceSchedules" locationNameList:"item" type:"list" required:"true"`
 	ReservedInstancesID *string                       `locationName:"reservedInstancesId" type:"string" required:"true"`
 
@@ -5171,9 +5171,9 @@ type CreateVolumeInput struct {
 	AvailabilityZone *string `type:"string" required:"true"`
 	DryRun           *bool   `locationName:"dryRun" type:"boolean"`
 	Encrypted        *bool   `locationName:"encrypted" type:"boolean"`
-	IOPS             *int    `locationName:"Iops" type:"integer"`
+	IOPS             *int64  `locationName:"Iops" type:"integer"`
 	KMSKeyID         *string `locationName:"KmsKeyId" type:"string"`
-	Size             *int    `type:"integer"`
+	Size             *int64  `type:"integer"`
 	SnapshotID       *string `locationName:"SnapshotId" type:"string"`
 	VolumeType       *string `type:"string"`
 
@@ -5324,7 +5324,7 @@ type DeleteNetworkACLEntryInput struct {
 	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
 	Egress       *bool   `locationName:"egress" type:"boolean" required:"true"`
 	NetworkACLID *string `locationName:"networkAclId" type:"string" required:"true"`
-	RuleNumber   *int    `locationName:"ruleNumber" type:"integer" required:"true"`
+	RuleNumber   *int64  `locationName:"ruleNumber" type:"integer" required:"true"`
 
 	metadataDeleteNetworkACLEntryInput `json:"-", xml:"-"`
 }
@@ -5760,7 +5760,7 @@ type DescribeClassicLinkInstancesInput struct {
 	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
 	Filters     []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
-	MaxResults  *int      `locationName:"maxResults" type:"integer"`
+	MaxResults  *int64    `locationName:"maxResults" type:"integer"`
 	NextToken   *string   `locationName:"nextToken" type:"string"`
 
 	metadataDescribeClassicLinkInstancesInput `json:"-", xml:"-"`
@@ -5960,7 +5960,7 @@ type DescribeInstanceStatusInput struct {
 	Filters             []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 	IncludeAllInstances *bool     `locationName:"includeAllInstances" type:"boolean"`
 	InstanceIDs         []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
-	MaxResults          *int      `type:"integer"`
+	MaxResults          *int64    `type:"integer"`
 	NextToken           *string   `type:"string"`
 
 	metadataDescribeInstanceStatusInput `json:"-", xml:"-"`
@@ -5985,7 +5985,7 @@ type DescribeInstancesInput struct {
 	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
 	Filters     []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
-	MaxResults  *int      `locationName:"maxResults" type:"integer"`
+	MaxResults  *int64    `locationName:"maxResults" type:"integer"`
 	NextToken   *string   `locationName:"nextToken" type:"string"`
 
 	metadataDescribeInstancesInput `json:"-", xml:"-"`
@@ -6230,8 +6230,8 @@ type DescribeReservedInstancesOfferingsInput struct {
 	InstanceTenancy              *string   `locationName:"instanceTenancy" type:"string"`
 	InstanceType                 *string   `type:"string"`
 	MaxDuration                  *int64    `type:"long"`
-	MaxInstanceCount             *int      `type:"integer"`
-	MaxResults                   *int      `locationName:"maxResults" type:"integer"`
+	MaxInstanceCount             *int64    `type:"integer"`
+	MaxResults                   *int64    `locationName:"maxResults" type:"integer"`
 	MinDuration                  *int64    `type:"long"`
 	NextToken                    *string   `locationName:"nextToken" type:"string"`
 	OfferingType                 *string   `locationName:"offeringType" type:"string"`
@@ -6407,7 +6407,7 @@ type DescribeSpotPriceHistoryInput struct {
 	EndTime             *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
 	Filters             []*Filter  `locationName:"Filter" locationNameList:"Filter" type:"list"`
 	InstanceTypes       []*string  `locationName:"InstanceType" type:"list"`
-	MaxResults          *int       `locationName:"maxResults" type:"integer"`
+	MaxResults          *int64     `locationName:"maxResults" type:"integer"`
 	NextToken           *string    `locationName:"nextToken" type:"string"`
 	ProductDescriptions []*string  `locationName:"ProductDescription" type:"list"`
 	StartTime           *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
@@ -6455,7 +6455,7 @@ type metadataDescribeSubnetsOutput struct {
 type DescribeTagsInput struct {
 	DryRun     *bool     `locationName:"dryRun" type:"boolean"`
 	Filters    []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	MaxResults *int      `locationName:"maxResults" type:"integer"`
+	MaxResults *int64    `locationName:"maxResults" type:"integer"`
 	NextToken  *string   `locationName:"nextToken" type:"string"`
 
 	metadataDescribeTagsInput `json:"-", xml:"-"`
@@ -6637,7 +6637,7 @@ type metadataDescribeVolumeAttributeOutput struct {
 type DescribeVolumeStatusInput struct {
 	DryRun     *bool     `locationName:"dryRun" type:"boolean"`
 	Filters    []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	MaxResults *int      `type:"integer"`
+	MaxResults *int64    `type:"integer"`
 	NextToken  *string   `type:"string"`
 	VolumeIDs  []*string `locationName:"VolumeId" locationNameList:"VolumeId" type:"list"`
 
@@ -6662,7 +6662,7 @@ type metadataDescribeVolumeStatusOutput struct {
 type DescribeVolumesInput struct {
 	DryRun     *bool     `locationName:"dryRun" type:"boolean"`
 	Filters    []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	MaxResults *int      `locationName:"maxResults" type:"integer"`
+	MaxResults *int64    `locationName:"maxResults" type:"integer"`
 	NextToken  *string   `locationName:"nextToken" type:"string"`
 	VolumeIDs  []*string `locationName:"VolumeId" locationNameList:"VolumeId" type:"list"`
 
@@ -6910,9 +6910,9 @@ type metadataDiskImageVolumeDescription struct {
 type EBSBlockDevice struct {
 	DeleteOnTermination *bool   `locationName:"deleteOnTermination" type:"boolean"`
 	Encrypted           *bool   `locationName:"encrypted" type:"boolean"`
-	IOPS                *int    `locationName:"iops" type:"integer"`
+	IOPS                *int64  `locationName:"iops" type:"integer"`
 	SnapshotID          *string `locationName:"snapshotId" type:"string"`
-	VolumeSize          *int    `locationName:"volumeSize" type:"integer"`
+	VolumeSize          *int64  `locationName:"volumeSize" type:"integer"`
 	VolumeType          *string `locationName:"volumeType" type:"string"`
 
 	metadataEBSBlockDevice `json:"-", xml:"-"`
@@ -7137,8 +7137,8 @@ type metadataIAMInstanceProfileSpecification struct {
 }
 
 type ICMPTypeCode struct {
-	Code *int `locationName:"code" type:"integer"`
-	Type *int `locationName:"type" type:"integer"`
+	Code *int64 `locationName:"code" type:"integer"`
+	Type *int64 `locationName:"type" type:"integer"`
 
 	metadataICMPTypeCode `json:"-", xml:"-"`
 }
@@ -7148,10 +7148,10 @@ type metadataICMPTypeCode struct {
 }
 
 type IPPermission struct {
-	FromPort         *int               `locationName:"fromPort" type:"integer"`
+	FromPort         *int64             `locationName:"fromPort" type:"integer"`
 	IPProtocol       *string            `locationName:"ipProtocol" type:"string"`
 	IPRanges         []*IPRange         `locationName:"ipRanges" locationNameList:"item" type:"list"`
-	ToPort           *int               `locationName:"toPort" type:"integer"`
+	ToPort           *int64             `locationName:"toPort" type:"integer"`
 	UserIDGroupPairs []*UserIDGroupPair `locationName:"groups" locationNameList:"item" type:"list"`
 
 	metadataIPPermission `json:"-", xml:"-"`
@@ -7338,7 +7338,7 @@ type metadataImportVolumeTaskDetails struct {
 }
 
 type Instance struct {
-	AMILaunchIndex        *int                          `locationName:"amiLaunchIndex" type:"integer"`
+	AMILaunchIndex        *int64                        `locationName:"amiLaunchIndex" type:"integer"`
 	Architecture          *string                       `locationName:"architecture" type:"string"`
 	BlockDeviceMappings   []*InstanceBlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
 	ClientToken           *string                       `locationName:"clientToken" type:"string"`
@@ -7408,7 +7408,7 @@ type metadataInstanceBlockDeviceMappingSpecification struct {
 }
 
 type InstanceCount struct {
-	InstanceCount *int    `locationName:"instanceCount" type:"integer"`
+	InstanceCount *int64  `locationName:"instanceCount" type:"integer"`
 	State         *string `locationName:"state" type:"string"`
 
 	metadataInstanceCount `json:"-", xml:"-"`
@@ -7479,7 +7479,7 @@ type InstanceNetworkInterfaceAttachment struct {
 	AttachTime          *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
 	AttachmentID        *string    `locationName:"attachmentId" type:"string"`
 	DeleteOnTermination *bool      `locationName:"deleteOnTermination" type:"boolean"`
-	DeviceIndex         *int       `locationName:"deviceIndex" type:"integer"`
+	DeviceIndex         *int64     `locationName:"deviceIndex" type:"integer"`
 	Status              *string    `locationName:"status" type:"string"`
 
 	metadataInstanceNetworkInterfaceAttachment `json:"-", xml:"-"`
@@ -7493,12 +7493,12 @@ type InstanceNetworkInterfaceSpecification struct {
 	AssociatePublicIPAddress       *bool                            `locationName:"associatePublicIpAddress" type:"boolean"`
 	DeleteOnTermination            *bool                            `locationName:"deleteOnTermination" type:"boolean"`
 	Description                    *string                          `locationName:"description" type:"string"`
-	DeviceIndex                    *int                             `locationName:"deviceIndex" type:"integer"`
+	DeviceIndex                    *int64                           `locationName:"deviceIndex" type:"integer"`
 	Groups                         []*string                        `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
 	NetworkInterfaceID             *string                          `locationName:"networkInterfaceId" type:"string"`
 	PrivateIPAddress               *string                          `locationName:"privateIpAddress" type:"string"`
 	PrivateIPAddresses             []*PrivateIPAddressSpecification `locationName:"privateIpAddressesSet" queryName:"PrivateIpAddresses" locationNameList:"item" type:"list"`
-	SecondaryPrivateIPAddressCount *int                             `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
+	SecondaryPrivateIPAddressCount *int64                           `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
 	SubnetID                       *string                          `locationName:"subnetId" type:"string"`
 
 	metadataInstanceNetworkInterfaceSpecification `json:"-", xml:"-"`
@@ -7522,7 +7522,7 @@ type metadataInstancePrivateIPAddress struct {
 }
 
 type InstanceState struct {
-	Code *int    `locationName:"code" type:"integer"`
+	Code *int64  `locationName:"code" type:"integer"`
 	Name *string `locationName:"name" type:"string"`
 
 	metadataInstanceState `json:"-", xml:"-"`
@@ -7927,7 +7927,7 @@ type NetworkACLEntry struct {
 	PortRange    *PortRange    `locationName:"portRange" type:"structure"`
 	Protocol     *string       `locationName:"protocol" type:"string"`
 	RuleAction   *string       `locationName:"ruleAction" type:"string"`
-	RuleNumber   *int          `locationName:"ruleNumber" type:"integer"`
+	RuleNumber   *int64        `locationName:"ruleNumber" type:"integer"`
 
 	metadataNetworkACLEntry `json:"-", xml:"-"`
 }
@@ -7981,7 +7981,7 @@ type NetworkInterfaceAttachment struct {
 	AttachTime          *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
 	AttachmentID        *string    `locationName:"attachmentId" type:"string"`
 	DeleteOnTermination *bool      `locationName:"deleteOnTermination" type:"boolean"`
-	DeviceIndex         *int       `locationName:"deviceIndex" type:"integer"`
+	DeviceIndex         *int64     `locationName:"deviceIndex" type:"integer"`
 	InstanceID          *string    `locationName:"instanceId" type:"string"`
 	InstanceOwnerID     *string    `locationName:"instanceOwnerId" type:"string"`
 	Status              *string    `locationName:"status" type:"string"`
@@ -8053,8 +8053,8 @@ type metadataPlacementGroup struct {
 }
 
 type PortRange struct {
-	From *int `locationName:"from" type:"integer"`
-	To   *int `locationName:"to" type:"integer"`
+	From *int64 `locationName:"from" type:"integer"`
+	To   *int64 `locationName:"to" type:"integer"`
 
 	metadataPortRange `json:"-", xml:"-"`
 }
@@ -8089,7 +8089,7 @@ type metadataPriceScheduleSpecification struct {
 }
 
 type PricingDetail struct {
-	Count *int     `locationName:"count" type:"integer"`
+	Count *int64   `locationName:"count" type:"integer"`
 	Price *float64 `locationName:"price" type:"double"`
 
 	metadataPricingDetail `json:"-", xml:"-"`
@@ -8133,7 +8133,7 @@ type metadataPropagatingVGW struct {
 
 type PurchaseReservedInstancesOfferingInput struct {
 	DryRun                      *bool                       `locationName:"dryRun" type:"boolean"`
-	InstanceCount               *int                        `type:"integer" required:"true"`
+	InstanceCount               *int64                      `type:"integer" required:"true"`
 	LimitPrice                  *ReservedInstanceLimitPrice `locationName:"limitPrice" type:"structure"`
 	ReservedInstancesOfferingID *string                     `locationName:"ReservedInstancesOfferingId" type:"string" required:"true"`
 
@@ -8297,7 +8297,7 @@ type ReplaceNetworkACLEntryInput struct {
 	PortRange    *PortRange    `locationName:"portRange" type:"structure"`
 	Protocol     *string       `locationName:"protocol" type:"string" required:"true"`
 	RuleAction   *string       `locationName:"ruleAction" type:"string" required:"true"`
-	RuleNumber   *int          `locationName:"ruleNumber" type:"integer" required:"true"`
+	RuleNumber   *int64        `locationName:"ruleNumber" type:"integer" required:"true"`
 
 	metadataReplaceNetworkACLEntryInput `json:"-", xml:"-"`
 }
@@ -8387,7 +8387,7 @@ type metadataReportInstanceStatusOutput struct {
 type RequestSpotInstancesInput struct {
 	AvailabilityZoneGroup *string                         `locationName:"availabilityZoneGroup" type:"string"`
 	DryRun                *bool                           `locationName:"dryRun" type:"boolean"`
-	InstanceCount         *int                            `locationName:"instanceCount" type:"integer"`
+	InstanceCount         *int64                          `locationName:"instanceCount" type:"integer"`
 	LaunchGroup           *string                         `locationName:"launchGroup" type:"string"`
 	LaunchSpecification   *RequestSpotLaunchSpecification `type:"structure"`
 	SpotPrice             *string                         `locationName:"spotPrice" type:"string" required:"true"`
@@ -8467,8 +8467,8 @@ type ReservedInstances struct {
 	CurrencyCode        *string            `locationName:"currencyCode" type:"string"`
 	Duration            *int64             `locationName:"duration" type:"long"`
 	End                 *time.Time         `locationName:"end" type:"timestamp" timestampFormat:"iso8601"`
-	FixedPrice          *float32           `locationName:"fixedPrice" type:"float"`
-	InstanceCount       *int               `locationName:"instanceCount" type:"integer"`
+	FixedPrice          *float64           `locationName:"fixedPrice" type:"float"`
+	InstanceCount       *int64             `locationName:"instanceCount" type:"integer"`
 	InstanceTenancy     *string            `locationName:"instanceTenancy" type:"string"`
 	InstanceType        *string            `locationName:"instanceType" type:"string"`
 	OfferingType        *string            `locationName:"offeringType" type:"string"`
@@ -8478,7 +8478,7 @@ type ReservedInstances struct {
 	Start               *time.Time         `locationName:"start" type:"timestamp" timestampFormat:"iso8601"`
 	State               *string            `locationName:"state" type:"string"`
 	Tags                []*Tag             `locationName:"tagSet" locationNameList:"item" type:"list"`
-	UsagePrice          *float32           `locationName:"usagePrice" type:"float"`
+	UsagePrice          *float64           `locationName:"usagePrice" type:"float"`
 
 	metadataReservedInstances `json:"-", xml:"-"`
 }
@@ -8489,7 +8489,7 @@ type metadataReservedInstances struct {
 
 type ReservedInstancesConfiguration struct {
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
-	InstanceCount    *int    `locationName:"instanceCount" type:"integer"`
+	InstanceCount    *int64  `locationName:"instanceCount" type:"integer"`
 	InstanceType     *string `locationName:"instanceType" type:"string"`
 	Platform         *string `locationName:"platform" type:"string"`
 
@@ -8562,7 +8562,7 @@ type ReservedInstancesOffering struct {
 	AvailabilityZone            *string            `locationName:"availabilityZone" type:"string"`
 	CurrencyCode                *string            `locationName:"currencyCode" type:"string"`
 	Duration                    *int64             `locationName:"duration" type:"long"`
-	FixedPrice                  *float32           `locationName:"fixedPrice" type:"float"`
+	FixedPrice                  *float64           `locationName:"fixedPrice" type:"float"`
 	InstanceTenancy             *string            `locationName:"instanceTenancy" type:"string"`
 	InstanceType                *string            `locationName:"instanceType" type:"string"`
 	Marketplace                 *bool              `locationName:"marketplace" type:"boolean"`
@@ -8571,7 +8571,7 @@ type ReservedInstancesOffering struct {
 	ProductDescription          *string            `locationName:"productDescription" type:"string"`
 	RecurringCharges            []*RecurringCharge `locationName:"recurringCharges" locationNameList:"item" type:"list"`
 	ReservedInstancesOfferingID *string            `locationName:"reservedInstancesOfferingId" type:"string"`
-	UsagePrice                  *float32           `locationName:"usagePrice" type:"float"`
+	UsagePrice                  *float64           `locationName:"usagePrice" type:"float"`
 
 	metadataReservedInstancesOffering `json:"-", xml:"-"`
 }
@@ -8663,13 +8663,13 @@ type metadataResetSnapshotAttributeOutput struct {
 type RevokeSecurityGroupEgressInput struct {
 	CIDRIP                     *string         `locationName:"cidrIp" type:"string"`
 	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
-	FromPort                   *int            `locationName:"fromPort" type:"integer"`
+	FromPort                   *int64          `locationName:"fromPort" type:"integer"`
 	GroupID                    *string         `locationName:"groupId" type:"string" required:"true"`
 	IPPermissions              []*IPPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
 	IPProtocol                 *string         `locationName:"ipProtocol" type:"string"`
 	SourceSecurityGroupName    *string         `locationName:"sourceSecurityGroupName" type:"string"`
 	SourceSecurityGroupOwnerID *string         `locationName:"sourceSecurityGroupOwnerId" type:"string"`
-	ToPort                     *int            `locationName:"toPort" type:"integer"`
+	ToPort                     *int64          `locationName:"toPort" type:"integer"`
 
 	metadataRevokeSecurityGroupEgressInput `json:"-", xml:"-"`
 }
@@ -8689,14 +8689,14 @@ type metadataRevokeSecurityGroupEgressOutput struct {
 type RevokeSecurityGroupIngressInput struct {
 	CIDRIP                     *string         `locationName:"CidrIp" type:"string"`
 	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
-	FromPort                   *int            `type:"integer"`
+	FromPort                   *int64          `type:"integer"`
 	GroupID                    *string         `locationName:"GroupId" type:"string"`
 	GroupName                  *string         `type:"string"`
 	IPPermissions              []*IPPermission `locationName:"IpPermissions" locationNameList:"item" type:"list"`
 	IPProtocol                 *string         `locationName:"IpProtocol" type:"string"`
 	SourceSecurityGroupName    *string         `type:"string"`
 	SourceSecurityGroupOwnerID *string         `locationName:"SourceSecurityGroupOwnerId" type:"string"`
-	ToPort                     *int            `type:"integer"`
+	ToPort                     *int64          `type:"integer"`
 
 	metadataRevokeSecurityGroupIngressInput `json:"-", xml:"-"`
 }
@@ -8771,8 +8771,8 @@ type RunInstancesInput struct {
 	InstanceType                      *string                                  `type:"string"`
 	KernelID                          *string                                  `locationName:"KernelId" type:"string"`
 	KeyName                           *string                                  `type:"string"`
-	MaxCount                          *int                                     `type:"integer" required:"true"`
-	MinCount                          *int                                     `type:"integer" required:"true"`
+	MaxCount                          *int64                                   `type:"integer" required:"true"`
+	MinCount                          *int64                                   `type:"integer" required:"true"`
 	Monitoring                        *RunInstancesMonitoringEnabled           `type:"structure"`
 	NetworkInterfaces                 []*InstanceNetworkInterfaceSpecification `locationName:"networkInterface" locationNameList:"item" type:"list"`
 	Placement                         *Placement                               `type:"structure"`
@@ -8843,7 +8843,7 @@ type Snapshot struct {
 	State       *string    `locationName:"status" type:"string"`
 	Tags        []*Tag     `locationName:"tagSet" locationNameList:"item" type:"list"`
 	VolumeID    *string    `locationName:"volumeId" type:"string"`
-	VolumeSize  *int       `locationName:"volumeSize" type:"integer"`
+	VolumeSize  *int64     `locationName:"volumeSize" type:"integer"`
 
 	metadataSnapshot `json:"-", xml:"-"`
 }
@@ -9006,7 +9006,7 @@ type metadataStorage struct {
 
 type Subnet struct {
 	AvailabilityZone        *string `locationName:"availabilityZone" type:"string"`
-	AvailableIPAddressCount *int    `locationName:"availableIpAddressCount" type:"integer"`
+	AvailableIPAddressCount *int64  `locationName:"availableIpAddressCount" type:"integer"`
 	CIDRBlock               *string `locationName:"cidrBlock" type:"string"`
 	DefaultForAZ            *bool   `locationName:"defaultForAz" type:"boolean"`
 	MapPublicIPOnLaunch     *bool   `locationName:"mapPublicIpOnLaunch" type:"boolean"`
@@ -9130,7 +9130,7 @@ type metadataUserIDGroupPair struct {
 }
 
 type VGWTelemetry struct {
-	AcceptedRouteCount *int       `locationName:"acceptedRouteCount" type:"integer"`
+	AcceptedRouteCount *int64     `locationName:"acceptedRouteCount" type:"integer"`
 	LastStatusChange   *time.Time `locationName:"lastStatusChange" type:"timestamp" timestampFormat:"iso8601"`
 	OutsideIPAddress   *string    `locationName:"outsideIpAddress" type:"string"`
 	Status             *string    `locationName:"status" type:"string"`
@@ -9291,9 +9291,9 @@ type Volume struct {
 	AvailabilityZone *string             `locationName:"availabilityZone" type:"string"`
 	CreateTime       *time.Time          `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
 	Encrypted        *bool               `locationName:"encrypted" type:"boolean"`
-	IOPS             *int                `locationName:"iops" type:"integer"`
+	IOPS             *int64              `locationName:"iops" type:"integer"`
 	KMSKeyID         *string             `locationName:"kmsKeyId" type:"string"`
-	Size             *int                `locationName:"size" type:"integer"`
+	Size             *int64              `locationName:"size" type:"integer"`
 	SnapshotID       *string             `locationName:"snapshotId" type:"string"`
 	State            *string             `locationName:"status" type:"string"`
 	Tags             []*Tag              `locationName:"tagSet" locationNameList:"item" type:"list"`

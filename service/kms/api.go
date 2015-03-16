@@ -874,7 +874,7 @@ type GenerateDataKeyInput struct {
 	GrantTokens       []*string           `type:"list" json:",omitempty"`
 	KeyID             *string             `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
 	KeySpec           *string             `type:"string" json:",omitempty"`
-	NumberOfBytes     *int                `type:"integer" json:",omitempty"`
+	NumberOfBytes     *int64              `type:"integer" json:",omitempty"`
 
 	metadataGenerateDataKeyInput `json:"-", xml:"-"`
 }
@@ -900,7 +900,7 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	GrantTokens       []*string           `type:"list" json:",omitempty"`
 	KeyID             *string             `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
 	KeySpec           *string             `type:"string" json:",omitempty"`
-	NumberOfBytes     *int                `type:"integer" json:",omitempty"`
+	NumberOfBytes     *int64              `type:"integer" json:",omitempty"`
 
 	metadataGenerateDataKeyWithoutPlaintextInput `json:"-", xml:"-"`
 }
@@ -921,7 +921,7 @@ type metadataGenerateDataKeyWithoutPlaintextOutput struct {
 }
 
 type GenerateRandomInput struct {
-	NumberOfBytes *int `type:"integer" json:",omitempty"`
+	NumberOfBytes *int64 `type:"integer" json:",omitempty"`
 
 	metadataGenerateRandomInput `json:"-", xml:"-"`
 }
@@ -1035,7 +1035,7 @@ type metadataKeyMetadata struct {
 }
 
 type ListAliasesInput struct {
-	Limit  *int    `type:"integer" json:",omitempty"`
+	Limit  *int64  `type:"integer" json:",omitempty"`
 	Marker *string `type:"string" json:",omitempty"`
 
 	metadataListAliasesInput `json:"-", xml:"-"`
@@ -1059,7 +1059,7 @@ type metadataListAliasesOutput struct {
 
 type ListGrantsInput struct {
 	KeyID  *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
-	Limit  *int    `type:"integer" json:",omitempty"`
+	Limit  *int64  `type:"integer" json:",omitempty"`
 	Marker *string `type:"string" json:",omitempty"`
 
 	metadataListGrantsInput `json:"-", xml:"-"`
@@ -1083,7 +1083,7 @@ type metadataListGrantsOutput struct {
 
 type ListKeyPoliciesInput struct {
 	KeyID  *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
-	Limit  *int    `type:"integer" json:",omitempty"`
+	Limit  *int64  `type:"integer" json:",omitempty"`
 	Marker *string `type:"string" json:",omitempty"`
 
 	metadataListKeyPoliciesInput `json:"-", xml:"-"`
@@ -1106,7 +1106,7 @@ type metadataListKeyPoliciesOutput struct {
 }
 
 type ListKeysInput struct {
-	Limit  *int    `type:"integer" json:",omitempty"`
+	Limit  *int64  `type:"integer" json:",omitempty"`
 	Marker *string `type:"string" json:",omitempty"`
 
 	metadataListKeysInput `json:"-", xml:"-"`

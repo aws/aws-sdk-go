@@ -537,7 +537,7 @@ type Cluster struct {
 	LogURI                  *string                `locationName:"LogUri" type:"string" json:"LogUri,omitempty"`
 	MasterPublicDNSName     *string                `locationName:"MasterPublicDnsName" type:"string" json:"MasterPublicDnsName,omitempty"`
 	Name                    *string                `type:"string" json:",omitempty"`
-	NormalizedInstanceHours *int                   `type:"integer" json:",omitempty"`
+	NormalizedInstanceHours *int64                 `type:"integer" json:",omitempty"`
 	RequestedAMIVersion     *string                `locationName:"RequestedAmiVersion" type:"string" json:"RequestedAmiVersion,omitempty"`
 	RunningAMIVersion       *string                `locationName:"RunningAmiVersion" type:"string" json:"RunningAmiVersion,omitempty"`
 	ServiceRole             *string                `type:"string" json:",omitempty"`
@@ -579,7 +579,7 @@ type metadataClusterStatus struct {
 type ClusterSummary struct {
 	ID                      *string        `locationName:"Id" type:"string" json:"Id,omitempty"`
 	Name                    *string        `type:"string" json:",omitempty"`
-	NormalizedInstanceHours *int           `type:"integer" json:",omitempty"`
+	NormalizedInstanceHours *int64         `type:"integer" json:",omitempty"`
 	Status                  *ClusterStatus `type:"structure" json:",omitempty"`
 
 	metadataClusterSummary `json:"-", xml:"-"`
@@ -743,8 +743,8 @@ type InstanceGroup struct {
 	InstanceType           *string              `type:"string" json:",omitempty"`
 	Market                 *string              `type:"string" json:",omitempty"`
 	Name                   *string              `type:"string" json:",omitempty"`
-	RequestedInstanceCount *int                 `type:"integer" json:",omitempty"`
-	RunningInstanceCount   *int                 `type:"integer" json:",omitempty"`
+	RequestedInstanceCount *int64               `type:"integer" json:",omitempty"`
+	RunningInstanceCount   *int64               `type:"integer" json:",omitempty"`
 	Status                 *InstanceGroupStatus `type:"structure" json:",omitempty"`
 
 	metadataInstanceGroup `json:"-", xml:"-"`
@@ -756,7 +756,7 @@ type metadataInstanceGroup struct {
 
 type InstanceGroupConfig struct {
 	BidPrice      *string `type:"string" json:",omitempty"`
-	InstanceCount *int    `type:"integer" required:"true"json:",omitempty"`
+	InstanceCount *int64  `type:"integer" required:"true"json:",omitempty"`
 	InstanceRole  *string `type:"string" required:"true"json:",omitempty"`
 	InstanceType  *string `type:"string" required:"true"json:",omitempty"`
 	Market        *string `type:"string" json:",omitempty"`
@@ -774,9 +774,9 @@ type InstanceGroupDetail struct {
 	CreationDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"json:",omitempty"`
 	EndDateTime           *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 	InstanceGroupID       *string    `locationName:"InstanceGroupId" type:"string" json:"InstanceGroupId,omitempty"`
-	InstanceRequestCount  *int       `type:"integer" required:"true"json:",omitempty"`
+	InstanceRequestCount  *int64     `type:"integer" required:"true"json:",omitempty"`
 	InstanceRole          *string    `type:"string" required:"true"json:",omitempty"`
-	InstanceRunningCount  *int       `type:"integer" required:"true"json:",omitempty"`
+	InstanceRunningCount  *int64     `type:"integer" required:"true"json:",omitempty"`
 	InstanceType          *string    `type:"string" required:"true"json:",omitempty"`
 	LastStateChangeReason *string    `type:"string" json:",omitempty"`
 	Market                *string    `type:"string" required:"true"json:",omitempty"`
@@ -794,7 +794,7 @@ type metadataInstanceGroupDetail struct {
 
 type InstanceGroupModifyConfig struct {
 	EC2InstanceIDsToTerminate []*string `locationName:"EC2InstanceIdsToTerminate" type:"list" json:"EC2InstanceIdsToTerminate,omitempty"`
-	InstanceCount             *int      `type:"integer" json:",omitempty"`
+	InstanceCount             *int64    `type:"integer" json:",omitempty"`
 	InstanceGroupID           *string   `locationName:"InstanceGroupId" type:"string" required:"true"json:"InstanceGroupId,omitempty"`
 
 	metadataInstanceGroupModifyConfig `json:"-", xml:"-"`
@@ -918,7 +918,7 @@ type JobFlowInstancesConfig struct {
 	EMRManagedMasterSecurityGroup  *string                `locationName:"EmrManagedMasterSecurityGroup" type:"string" json:"EmrManagedMasterSecurityGroup,omitempty"`
 	EMRManagedSlaveSecurityGroup   *string                `locationName:"EmrManagedSlaveSecurityGroup" type:"string" json:"EmrManagedSlaveSecurityGroup,omitempty"`
 	HadoopVersion                  *string                `type:"string" json:",omitempty"`
-	InstanceCount                  *int                   `type:"integer" json:",omitempty"`
+	InstanceCount                  *int64                 `type:"integer" json:",omitempty"`
 	InstanceGroups                 []*InstanceGroupConfig `type:"list" json:",omitempty"`
 	KeepJobFlowAliveWhenNoSteps    *bool                  `type:"boolean" json:",omitempty"`
 	MasterInstanceType             *string                `type:"string" json:",omitempty"`
@@ -937,13 +937,13 @@ type JobFlowInstancesDetail struct {
 	EC2KeyName                  *string                `locationName:"Ec2KeyName" type:"string" json:"Ec2KeyName,omitempty"`
 	EC2SubnetID                 *string                `locationName:"Ec2SubnetId" type:"string" json:"Ec2SubnetId,omitempty"`
 	HadoopVersion               *string                `type:"string" json:",omitempty"`
-	InstanceCount               *int                   `type:"integer" required:"true"json:",omitempty"`
+	InstanceCount               *int64                 `type:"integer" required:"true"json:",omitempty"`
 	InstanceGroups              []*InstanceGroupDetail `type:"list" json:",omitempty"`
 	KeepJobFlowAliveWhenNoSteps *bool                  `type:"boolean" json:",omitempty"`
 	MasterInstanceID            *string                `locationName:"MasterInstanceId" type:"string" json:"MasterInstanceId,omitempty"`
 	MasterInstanceType          *string                `type:"string" required:"true"json:",omitempty"`
 	MasterPublicDNSName         *string                `locationName:"MasterPublicDnsName" type:"string" json:"MasterPublicDnsName,omitempty"`
-	NormalizedInstanceHours     *int                   `type:"integer" json:",omitempty"`
+	NormalizedInstanceHours     *int64                 `type:"integer" json:",omitempty"`
 	Placement                   *PlacementType         `type:"structure" json:",omitempty"`
 	SlaveInstanceType           *string                `type:"string" required:"true"json:",omitempty"`
 	TerminationProtected        *bool                  `type:"boolean" json:",omitempty"`

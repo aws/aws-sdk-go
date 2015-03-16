@@ -486,7 +486,7 @@ type AllocateConnectionOnInterconnectInput struct {
 	ConnectionName *string `locationName:"connectionName" type:"string" required:"true"json:"connectionName,omitempty"`
 	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"json:"interconnectId,omitempty"`
 	OwnerAccount   *string `locationName:"ownerAccount" type:"string" required:"true"json:"ownerAccount,omitempty"`
-	VLAN           *int    `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
+	VLAN           *int64  `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
 
 	metadataAllocateConnectionOnInterconnectInput `json:"-", xml:"-"`
 }
@@ -589,7 +589,7 @@ type Connection struct {
 	OwnerAccount    *string `locationName:"ownerAccount" type:"string" json:"ownerAccount,omitempty"`
 	PartnerName     *string `locationName:"partnerName" type:"string" json:"partnerName,omitempty"`
 	Region          *string `locationName:"region" type:"string" json:"region,omitempty"`
-	VLAN            *int    `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
+	VLAN            *int64  `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
 
 	metadataConnection `json:"-", xml:"-"`
 }
@@ -828,11 +828,11 @@ type metadataLocation struct {
 }
 
 type NewPrivateVirtualInterface struct {
-	ASN                  *int    `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
+	ASN                  *int64  `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
 	AmazonAddress        *string `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
 	AuthKey              *string `locationName:"authKey" type:"string" json:"authKey,omitempty"`
 	CustomerAddress      *string `locationName:"customerAddress" type:"string" json:"customerAddress,omitempty"`
-	VLAN                 *int    `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
+	VLAN                 *int64  `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
 	VirtualGatewayID     *string `locationName:"virtualGatewayId" type:"string" required:"true"json:"virtualGatewayId,omitempty"`
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"json:"virtualInterfaceName,omitempty"`
 
@@ -844,11 +844,11 @@ type metadataNewPrivateVirtualInterface struct {
 }
 
 type NewPrivateVirtualInterfaceAllocation struct {
-	ASN                  *int    `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
+	ASN                  *int64  `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
 	AmazonAddress        *string `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
 	AuthKey              *string `locationName:"authKey" type:"string" json:"authKey,omitempty"`
 	CustomerAddress      *string `locationName:"customerAddress" type:"string" json:"customerAddress,omitempty"`
-	VLAN                 *int    `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
+	VLAN                 *int64  `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"json:"virtualInterfaceName,omitempty"`
 
 	metadataNewPrivateVirtualInterfaceAllocation `json:"-", xml:"-"`
@@ -859,12 +859,12 @@ type metadataNewPrivateVirtualInterfaceAllocation struct {
 }
 
 type NewPublicVirtualInterface struct {
-	ASN                  *int                 `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
+	ASN                  *int64               `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
 	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" required:"true"json:"amazonAddress,omitempty"`
 	AuthKey              *string              `locationName:"authKey" type:"string" json:"authKey,omitempty"`
 	CustomerAddress      *string              `locationName:"customerAddress" type:"string" required:"true"json:"customerAddress,omitempty"`
 	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"json:"routeFilterPrefixes,omitempty"`
-	VLAN                 *int                 `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
+	VLAN                 *int64               `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
 	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" required:"true"json:"virtualInterfaceName,omitempty"`
 
 	metadataNewPublicVirtualInterface `json:"-", xml:"-"`
@@ -875,12 +875,12 @@ type metadataNewPublicVirtualInterface struct {
 }
 
 type NewPublicVirtualInterfaceAllocation struct {
-	ASN                  *int                 `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
+	ASN                  *int64               `locationName:"asn" type:"integer" required:"true"json:"asn,omitempty"`
 	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" required:"true"json:"amazonAddress,omitempty"`
 	AuthKey              *string              `locationName:"authKey" type:"string" json:"authKey,omitempty"`
 	CustomerAddress      *string              `locationName:"customerAddress" type:"string" required:"true"json:"customerAddress,omitempty"`
 	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"json:"routeFilterPrefixes,omitempty"`
-	VLAN                 *int                 `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
+	VLAN                 *int64               `locationName:"vlan" type:"integer" required:"true"json:"vlan,omitempty"`
 	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" required:"true"json:"virtualInterfaceName,omitempty"`
 
 	metadataNewPublicVirtualInterfaceAllocation `json:"-", xml:"-"`
@@ -912,7 +912,7 @@ type metadataVirtualGateway struct {
 }
 
 type VirtualInterface struct {
-	ASN                   *int                 `locationName:"asn" type:"integer" json:"asn,omitempty"`
+	ASN                   *int64               `locationName:"asn" type:"integer" json:"asn,omitempty"`
 	AmazonAddress         *string              `locationName:"amazonAddress" type:"string" json:"amazonAddress,omitempty"`
 	AuthKey               *string              `locationName:"authKey" type:"string" json:"authKey,omitempty"`
 	ConnectionID          *string              `locationName:"connectionId" type:"string" json:"connectionId,omitempty"`
@@ -921,7 +921,7 @@ type VirtualInterface struct {
 	Location              *string              `locationName:"location" type:"string" json:"location,omitempty"`
 	OwnerAccount          *string              `locationName:"ownerAccount" type:"string" json:"ownerAccount,omitempty"`
 	RouteFilterPrefixes   []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" json:"routeFilterPrefixes,omitempty"`
-	VLAN                  *int                 `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
+	VLAN                  *int64               `locationName:"vlan" type:"integer" json:"vlan,omitempty"`
 	VirtualGatewayID      *string              `locationName:"virtualGatewayId" type:"string" json:"virtualGatewayId,omitempty"`
 	VirtualInterfaceID    *string              `locationName:"virtualInterfaceId" type:"string" json:"virtualInterfaceId,omitempty"`
 	VirtualInterfaceName  *string              `locationName:"virtualInterfaceName" type:"string" json:"virtualInterfaceName,omitempty"`

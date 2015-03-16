@@ -1116,9 +1116,9 @@ type DomainStatus struct {
 	Limits                 *Limits          `type:"structure"`
 	Processing             *bool            `type:"boolean"`
 	RequiresIndexDocuments *bool            `type:"boolean" required:"true"`
-	SearchInstanceCount    *int             `type:"integer"`
+	SearchInstanceCount    *int64           `type:"integer"`
 	SearchInstanceType     *string          `type:"string"`
-	SearchPartitionCount   *int             `type:"integer"`
+	SearchPartitionCount   *int64           `type:"integer"`
 	SearchService          *ServiceEndpoint `type:"structure"`
 
 	metadataDomainStatus `json:"-", xml:"-"`
@@ -1277,8 +1277,8 @@ type metadataLatLonOptions struct {
 }
 
 type Limits struct {
-	MaximumPartitionCount   *int `type:"integer" required:"true"`
-	MaximumReplicationCount *int `type:"integer" required:"true"`
+	MaximumPartitionCount   *int64 `type:"integer" required:"true"`
+	MaximumReplicationCount *int64 `type:"integer" required:"true"`
 
 	metadataLimits `json:"-", xml:"-"`
 }
@@ -1339,7 +1339,7 @@ type OptionStatus struct {
 	PendingDeletion *bool      `type:"boolean"`
 	State           *string    `type:"string" required:"true"`
 	UpdateDate      *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	UpdateVersion   *int       `type:"integer"`
+	UpdateVersion   *int64     `type:"integer"`
 
 	metadataOptionStatus `json:"-", xml:"-"`
 }
@@ -1350,8 +1350,8 @@ type metadataOptionStatus struct {
 
 type ScalingParameters struct {
 	DesiredInstanceType     *string `type:"string"`
-	DesiredPartitionCount   *int    `type:"integer"`
-	DesiredReplicationCount *int    `type:"integer"`
+	DesiredPartitionCount   *int64  `type:"integer"`
+	DesiredReplicationCount *int64  `type:"integer"`
 
 	metadataScalingParameters `json:"-", xml:"-"`
 }

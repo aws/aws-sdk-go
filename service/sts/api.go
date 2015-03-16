@@ -159,7 +159,7 @@ func (c *STS) GetSessionToken(input *GetSessionTokenInput) (output *GetSessionTo
 var opGetSessionToken *aws.Operation
 
 type AssumeRoleInput struct {
-	DurationSeconds *int    `type:"integer"`
+	DurationSeconds *int64  `type:"integer"`
 	ExternalID      *string `locationName:"ExternalId" type:"string"`
 	Policy          *string `type:"string"`
 	RoleARN         *string `locationName:"RoleArn" type:"string" required:"true"`
@@ -177,7 +177,7 @@ type metadataAssumeRoleInput struct {
 type AssumeRoleOutput struct {
 	AssumedRoleUser  *AssumedRoleUser `type:"structure"`
 	Credentials      *Credentials     `type:"structure"`
-	PackedPolicySize *int             `type:"integer"`
+	PackedPolicySize *int64           `type:"integer"`
 
 	metadataAssumeRoleOutput `json:"-", xml:"-"`
 }
@@ -187,7 +187,7 @@ type metadataAssumeRoleOutput struct {
 }
 
 type AssumeRoleWithSAMLInput struct {
-	DurationSeconds *int    `type:"integer"`
+	DurationSeconds *int64  `type:"integer"`
 	Policy          *string `type:"string"`
 	PrincipalARN    *string `locationName:"PrincipalArn" type:"string" required:"true"`
 	RoleARN         *string `locationName:"RoleArn" type:"string" required:"true"`
@@ -206,7 +206,7 @@ type AssumeRoleWithSAMLOutput struct {
 	Credentials      *Credentials     `type:"structure"`
 	Issuer           *string          `type:"string"`
 	NameQualifier    *string          `type:"string"`
-	PackedPolicySize *int             `type:"integer"`
+	PackedPolicySize *int64           `type:"integer"`
 	Subject          *string          `type:"string"`
 	SubjectType      *string          `type:"string"`
 
@@ -218,7 +218,7 @@ type metadataAssumeRoleWithSAMLOutput struct {
 }
 
 type AssumeRoleWithWebIdentityInput struct {
-	DurationSeconds  *int    `type:"integer"`
+	DurationSeconds  *int64  `type:"integer"`
 	Policy           *string `type:"string"`
 	ProviderID       *string `locationName:"ProviderId" type:"string"`
 	RoleARN          *string `locationName:"RoleArn" type:"string" required:"true"`
@@ -236,7 +236,7 @@ type AssumeRoleWithWebIdentityOutput struct {
 	AssumedRoleUser             *AssumedRoleUser `type:"structure"`
 	Audience                    *string          `type:"string"`
 	Credentials                 *Credentials     `type:"structure"`
-	PackedPolicySize            *int             `type:"integer"`
+	PackedPolicySize            *int64           `type:"integer"`
 	Provider                    *string          `type:"string"`
 	SubjectFromWebIdentityToken *string          `type:"string"`
 
@@ -303,7 +303,7 @@ type metadataFederatedUser struct {
 }
 
 type GetFederationTokenInput struct {
-	DurationSeconds *int    `type:"integer"`
+	DurationSeconds *int64  `type:"integer"`
 	Name            *string `type:"string" required:"true"`
 	Policy          *string `type:"string"`
 
@@ -317,7 +317,7 @@ type metadataGetFederationTokenInput struct {
 type GetFederationTokenOutput struct {
 	Credentials      *Credentials   `type:"structure"`
 	FederatedUser    *FederatedUser `type:"structure"`
-	PackedPolicySize *int           `type:"integer"`
+	PackedPolicySize *int64         `type:"integer"`
 
 	metadataGetFederationTokenOutput `json:"-", xml:"-"`
 }
@@ -327,7 +327,7 @@ type metadataGetFederationTokenOutput struct {
 }
 
 type GetSessionTokenInput struct {
-	DurationSeconds *int    `type:"integer"`
+	DurationSeconds *int64  `type:"integer"`
 	SerialNumber    *string `type:"string"`
 	TokenCode       *string `type:"string"`
 

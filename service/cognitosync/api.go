@@ -470,7 +470,7 @@ type metadataIdentityPoolUsage struct {
 
 type IdentityUsage struct {
 	DataStorage      *int64     `type:"long" json:",omitempty"`
-	DatasetCount     *int       `type:"integer" json:",omitempty"`
+	DatasetCount     *int64     `type:"integer" json:",omitempty"`
 	IdentityID       *string    `locationName:"IdentityId" type:"string" json:"IdentityId,omitempty"`
 	IdentityPoolID   *string    `locationName:"IdentityPoolId" type:"string" json:"IdentityPoolId,omitempty"`
 	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
@@ -485,7 +485,7 @@ type metadataIdentityUsage struct {
 type ListDatasetsInput struct {
 	IdentityID     *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"json:"-" xml:"-"`
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
-	MaxResults     *int    `location:"querystring" locationName:"maxResults" type:"integer" json:"-" xml:"-"`
+	MaxResults     *int64  `location:"querystring" locationName:"maxResults" type:"integer" json:"-" xml:"-"`
 	NextToken      *string `location:"querystring" locationName:"nextToken" type:"string" json:"-" xml:"-"`
 
 	metadataListDatasetsInput `json:"-", xml:"-"`
@@ -496,7 +496,7 @@ type metadataListDatasetsInput struct {
 }
 
 type ListDatasetsOutput struct {
-	Count     *int       `type:"integer" json:",omitempty"`
+	Count     *int64     `type:"integer" json:",omitempty"`
 	Datasets  []*Dataset `type:"list" json:",omitempty"`
 	NextToken *string    `type:"string" json:",omitempty"`
 
@@ -508,7 +508,7 @@ type metadataListDatasetsOutput struct {
 }
 
 type ListIdentityPoolUsageInput struct {
-	MaxResults *int    `location:"querystring" locationName:"maxResults" type:"integer" json:"-" xml:"-"`
+	MaxResults *int64  `location:"querystring" locationName:"maxResults" type:"integer" json:"-" xml:"-"`
 	NextToken  *string `location:"querystring" locationName:"nextToken" type:"string" json:"-" xml:"-"`
 
 	metadataListIdentityPoolUsageInput `json:"-", xml:"-"`
@@ -519,9 +519,9 @@ type metadataListIdentityPoolUsageInput struct {
 }
 
 type ListIdentityPoolUsageOutput struct {
-	Count              *int                 `type:"integer" json:",omitempty"`
+	Count              *int64               `type:"integer" json:",omitempty"`
 	IdentityPoolUsages []*IdentityPoolUsage `type:"list" json:",omitempty"`
-	MaxResults         *int                 `type:"integer" json:",omitempty"`
+	MaxResults         *int64               `type:"integer" json:",omitempty"`
 	NextToken          *string              `type:"string" json:",omitempty"`
 
 	metadataListIdentityPoolUsageOutput `json:"-", xml:"-"`
@@ -536,7 +536,7 @@ type ListRecordsInput struct {
 	IdentityID       *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"json:"-" xml:"-"`
 	IdentityPoolID   *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"json:"-" xml:"-"`
 	LastSyncCount    *int64  `location:"querystring" locationName:"lastSyncCount" type:"long" json:"-" xml:"-"`
-	MaxResults       *int    `location:"querystring" locationName:"maxResults" type:"integer" json:"-" xml:"-"`
+	MaxResults       *int64  `location:"querystring" locationName:"maxResults" type:"integer" json:"-" xml:"-"`
 	NextToken        *string `location:"querystring" locationName:"nextToken" type:"string" json:"-" xml:"-"`
 	SyncSessionToken *string `location:"querystring" locationName:"syncSessionToken" type:"string" json:"-" xml:"-"`
 
@@ -548,7 +548,7 @@ type metadataListRecordsInput struct {
 }
 
 type ListRecordsOutput struct {
-	Count                                 *int      `type:"integer" json:",omitempty"`
+	Count                                 *int64    `type:"integer" json:",omitempty"`
 	DatasetDeletedAfterRequestedSyncCount *bool     `type:"boolean" json:",omitempty"`
 	DatasetExists                         *bool     `type:"boolean" json:",omitempty"`
 	DatasetSyncCount                      *int64    `type:"long" json:",omitempty"`

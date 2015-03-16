@@ -463,7 +463,7 @@ type CreateStackInput struct {
 	Tags             []*Tag       `type:"list"`
 	TemplateBody     *string      `type:"string"`
 	TemplateURL      *string      `type:"string"`
-	TimeoutInMinutes *int         `type:"integer"`
+	TimeoutInMinutes *int64       `type:"integer"`
 
 	metadataCreateStackInput `json:"-", xml:"-"`
 }
@@ -812,7 +812,7 @@ type Stack struct {
 	StackStatus       *string      `type:"string" required:"true"`
 	StackStatusReason *string      `type:"string"`
 	Tags              []*Tag       `type:"list"`
-	TimeoutInMinutes  *int         `type:"integer"`
+	TimeoutInMinutes  *int64       `type:"integer"`
 
 	metadataStack `json:"-", xml:"-"`
 }

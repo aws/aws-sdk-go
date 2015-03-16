@@ -1202,11 +1202,11 @@ type metadataHealthCheck struct {
 }
 
 type HealthCheckConfig struct {
-	FailureThreshold         *int    `type:"integer"`
+	FailureThreshold         *int64  `type:"integer"`
 	FullyQualifiedDomainName *string `type:"string"`
 	IPAddress                *string `type:"string"`
-	Port                     *int    `type:"integer"`
-	RequestInterval          *int    `type:"integer"`
+	Port                     *int64  `type:"integer"`
+	RequestInterval          *int64  `type:"integer"`
 	ResourcePath             *string `type:"string"`
 	SearchString             *string `type:"string"`
 	Type                     *string `type:"string" required:"true"`
@@ -1494,12 +1494,12 @@ type metadataTag struct {
 }
 
 type UpdateHealthCheckInput struct {
-	FailureThreshold         *int    `type:"integer"`
+	FailureThreshold         *int64  `type:"integer"`
 	FullyQualifiedDomainName *string `type:"string"`
 	HealthCheckID            *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"json:"-" xml:"-"`
 	HealthCheckVersion       *int64  `type:"long"`
 	IPAddress                *string `type:"string"`
-	Port                     *int    `type:"integer"`
+	Port                     *int64  `type:"integer"`
 	ResourcePath             *string `type:"string"`
 	SearchString             *string `type:"string"`
 

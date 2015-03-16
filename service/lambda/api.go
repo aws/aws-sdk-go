@@ -284,7 +284,7 @@ func (c *Lambda) UploadFunction(input *UploadFunctionInput) (output *FunctionCon
 var opUploadFunction *aws.Operation
 
 type AddEventSourceInput struct {
-	BatchSize    *int                `type:"integer" json:",omitempty"`
+	BatchSize    *int64              `type:"integer" json:",omitempty"`
 	EventSource  *string             `type:"string" required:"true"json:",omitempty"`
 	FunctionName *string             `type:"string" required:"true"json:",omitempty"`
 	Parameters   *map[string]*string `type:"map" json:",omitempty"`
@@ -316,7 +316,7 @@ type metadataDeleteFunctionOutput struct {
 }
 
 type EventSourceConfiguration struct {
-	BatchSize    *int                `type:"integer" json:",omitempty"`
+	BatchSize    *int64              `type:"integer" json:",omitempty"`
 	EventSource  *string             `type:"string" json:",omitempty"`
 	FunctionName *string             `type:"string" json:",omitempty"`
 	IsActive     *bool               `type:"boolean" json:",omitempty"`
@@ -352,11 +352,11 @@ type FunctionConfiguration struct {
 	FunctionName    *string    `type:"string" json:",omitempty"`
 	Handler         *string    `type:"string" json:",omitempty"`
 	LastModified    *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	MemorySize      *int       `type:"integer" json:",omitempty"`
+	MemorySize      *int64     `type:"integer" json:",omitempty"`
 	Mode            *string    `type:"string" json:",omitempty"`
 	Role            *string    `type:"string" json:",omitempty"`
 	Runtime         *string    `type:"string" json:",omitempty"`
-	Timeout         *int       `type:"integer" json:",omitempty"`
+	Timeout         *int64     `type:"integer" json:",omitempty"`
 
 	metadataFunctionConfiguration `json:"-", xml:"-"`
 }
@@ -418,7 +418,7 @@ type metadataInvokeAsyncInput struct {
 }
 
 type InvokeAsyncOutput struct {
-	Status *int `location:"statusCode" type:"integer" json:"-" xml:"-"`
+	Status *int64 `location:"statusCode" type:"integer" json:"-" xml:"-"`
 
 	metadataInvokeAsyncOutput `json:"-", xml:"-"`
 }
@@ -431,7 +431,7 @@ type ListEventSourcesInput struct {
 	EventSourceARN *string `location:"querystring" locationName:"EventSource" type:"string" json:"-" xml:"-"`
 	FunctionName   *string `location:"querystring" locationName:"FunctionName" type:"string" json:"-" xml:"-"`
 	Marker         *string `location:"querystring" locationName:"Marker" type:"string" json:"-" xml:"-"`
-	MaxItems       *int    `location:"querystring" locationName:"MaxItems" type:"integer" json:"-" xml:"-"`
+	MaxItems       *int64  `location:"querystring" locationName:"MaxItems" type:"integer" json:"-" xml:"-"`
 
 	metadataListEventSourcesInput `json:"-", xml:"-"`
 }
@@ -453,7 +453,7 @@ type metadataListEventSourcesOutput struct {
 
 type ListFunctionsInput struct {
 	Marker   *string `location:"querystring" locationName:"Marker" type:"string" json:"-" xml:"-"`
-	MaxItems *int    `location:"querystring" locationName:"MaxItems" type:"integer" json:"-" xml:"-"`
+	MaxItems *int64  `location:"querystring" locationName:"MaxItems" type:"integer" json:"-" xml:"-"`
 
 	metadataListFunctionsInput `json:"-", xml:"-"`
 }
@@ -495,9 +495,9 @@ type UpdateFunctionConfigurationInput struct {
 	Description  *string `location:"querystring" locationName:"Description" type:"string" json:"-" xml:"-"`
 	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"json:"-" xml:"-"`
 	Handler      *string `location:"querystring" locationName:"Handler" type:"string" json:"-" xml:"-"`
-	MemorySize   *int    `location:"querystring" locationName:"MemorySize" type:"integer" json:"-" xml:"-"`
+	MemorySize   *int64  `location:"querystring" locationName:"MemorySize" type:"integer" json:"-" xml:"-"`
 	Role         *string `location:"querystring" locationName:"Role" type:"string" json:"-" xml:"-"`
-	Timeout      *int    `location:"querystring" locationName:"Timeout" type:"integer" json:"-" xml:"-"`
+	Timeout      *int64  `location:"querystring" locationName:"Timeout" type:"integer" json:"-" xml:"-"`
 
 	metadataUpdateFunctionConfigurationInput `json:"-", xml:"-"`
 }
@@ -511,11 +511,11 @@ type UploadFunctionInput struct {
 	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"json:"-" xml:"-"`
 	FunctionZip  []byte  `type:"blob" required:"true"json:",omitempty"`
 	Handler      *string `location:"querystring" locationName:"Handler" type:"string" required:"true"json:"-" xml:"-"`
-	MemorySize   *int    `location:"querystring" locationName:"MemorySize" type:"integer" json:"-" xml:"-"`
+	MemorySize   *int64  `location:"querystring" locationName:"MemorySize" type:"integer" json:"-" xml:"-"`
 	Mode         *string `location:"querystring" locationName:"Mode" type:"string" required:"true"json:"-" xml:"-"`
 	Role         *string `location:"querystring" locationName:"Role" type:"string" required:"true"json:"-" xml:"-"`
 	Runtime      *string `location:"querystring" locationName:"Runtime" type:"string" required:"true"json:"-" xml:"-"`
-	Timeout      *int    `location:"querystring" locationName:"Timeout" type:"integer" json:"-" xml:"-"`
+	Timeout      *int64  `location:"querystring" locationName:"Timeout" type:"integer" json:"-" xml:"-"`
 
 	metadataUploadFunctionInput `json:"-", xml:"-"`
 }

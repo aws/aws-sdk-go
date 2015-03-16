@@ -746,7 +746,7 @@ type JobOutput struct {
 	Composition         []*Clip         `type:"list" json:",omitempty"`
 	Duration            *int64          `type:"long" json:",omitempty"`
 	Encryption          *Encryption     `type:"structure" json:",omitempty"`
-	Height              *int            `type:"integer" json:",omitempty"`
+	Height              *int64          `type:"integer" json:",omitempty"`
 	ID                  *string         `locationName:"Id" type:"string" json:"Id,omitempty"`
 	Key                 *string         `type:"string" json:",omitempty"`
 	PresetID            *string         `locationName:"PresetId" type:"string" json:"PresetId,omitempty"`
@@ -757,7 +757,7 @@ type JobOutput struct {
 	ThumbnailEncryption *Encryption     `type:"structure" json:",omitempty"`
 	ThumbnailPattern    *string         `type:"string" json:",omitempty"`
 	Watermarks          []*JobWatermark `type:"list" json:",omitempty"`
-	Width               *int            `type:"integer" json:",omitempty"`
+	Width               *int64          `type:"integer" json:",omitempty"`
 
 	metadataJobOutput `json:"-", xml:"-"`
 }

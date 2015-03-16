@@ -351,7 +351,7 @@ type metadataAddTagsToStreamOutput struct {
 }
 
 type CreateStreamInput struct {
-	ShardCount *int    `type:"integer" required:"true"json:",omitempty"`
+	ShardCount *int64  `type:"integer" required:"true"json:",omitempty"`
 	StreamName *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataCreateStreamInput `json:"-", xml:"-"`
@@ -389,7 +389,7 @@ type metadataDeleteStreamOutput struct {
 
 type DescribeStreamInput struct {
 	ExclusiveStartShardID *string `locationName:"ExclusiveStartShardId" type:"string" json:"ExclusiveStartShardId,omitempty"`
-	Limit                 *int    `type:"integer" json:",omitempty"`
+	Limit                 *int64  `type:"integer" json:",omitempty"`
 	StreamName            *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataDescribeStreamInput `json:"-", xml:"-"`
@@ -410,7 +410,7 @@ type metadataDescribeStreamOutput struct {
 }
 
 type GetRecordsInput struct {
-	Limit         *int    `type:"integer" json:",omitempty"`
+	Limit         *int64  `type:"integer" json:",omitempty"`
 	ShardIterator *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataGetRecordsInput `json:"-", xml:"-"`
@@ -467,7 +467,7 @@ type metadataHashKeyRange struct {
 
 type ListStreamsInput struct {
 	ExclusiveStartStreamName *string `type:"string" json:",omitempty"`
-	Limit                    *int    `type:"integer" json:",omitempty"`
+	Limit                    *int64  `type:"integer" json:",omitempty"`
 
 	metadataListStreamsInput `json:"-", xml:"-"`
 }
@@ -489,7 +489,7 @@ type metadataListStreamsOutput struct {
 
 type ListTagsForStreamInput struct {
 	ExclusiveStartTagKey *string `type:"string" json:",omitempty"`
-	Limit                *int    `type:"integer" json:",omitempty"`
+	Limit                *int64  `type:"integer" json:",omitempty"`
 	StreamName           *string `type:"string" required:"true"json:",omitempty"`
 
 	metadataListTagsForStreamInput `json:"-", xml:"-"`
@@ -567,7 +567,7 @@ type metadataPutRecordsInput struct {
 }
 
 type PutRecordsOutput struct {
-	FailedRecordCount *int                     `type:"integer" json:",omitempty"`
+	FailedRecordCount *int64                   `type:"integer" json:",omitempty"`
 	Records           []*PutRecordsResultEntry `type:"list" required:"true"json:",omitempty"`
 
 	metadataPutRecordsOutput `json:"-", xml:"-"`

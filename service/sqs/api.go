@@ -490,7 +490,7 @@ type metadataChangeMessageVisibilityBatchOutput struct {
 type ChangeMessageVisibilityBatchRequestEntry struct {
 	ID                *string `locationName:"Id" type:"string" required:"true"`
 	ReceiptHandle     *string `type:"string" required:"true"`
-	VisibilityTimeout *int    `type:"integer"`
+	VisibilityTimeout *int64  `type:"integer"`
 
 	metadataChangeMessageVisibilityBatchRequestEntry `json:"-", xml:"-"`
 }
@@ -512,7 +512,7 @@ type metadataChangeMessageVisibilityBatchResultEntry struct {
 type ChangeMessageVisibilityInput struct {
 	QueueURL          *string `locationName:"QueueUrl" type:"string" required:"true"`
 	ReceiptHandle     *string `type:"string" required:"true"`
-	VisibilityTimeout *int    `type:"integer" required:"true"`
+	VisibilityTimeout *int64  `type:"integer" required:"true"`
 
 	metadataChangeMessageVisibilityInput `json:"-", xml:"-"`
 }
@@ -762,11 +762,11 @@ type metadataPurgeQueueOutput struct {
 
 type ReceiveMessageInput struct {
 	AttributeNames        []*string `locationNameList:"AttributeName" type:"list" flattened:"true"`
-	MaxNumberOfMessages   *int      `type:"integer"`
+	MaxNumberOfMessages   *int64    `type:"integer"`
 	MessageAttributeNames []*string `locationNameList:"MessageAttributeName" type:"list" flattened:"true"`
 	QueueURL              *string   `locationName:"QueueUrl" type:"string" required:"true"`
-	VisibilityTimeout     *int      `type:"integer"`
-	WaitTimeSeconds       *int      `type:"integer"`
+	VisibilityTimeout     *int64    `type:"integer"`
+	WaitTimeSeconds       *int64    `type:"integer"`
 
 	metadataReceiveMessageInput `json:"-", xml:"-"`
 }
@@ -827,7 +827,7 @@ type metadataSendMessageBatchOutput struct {
 }
 
 type SendMessageBatchRequestEntry struct {
-	DelaySeconds      *int                               `type:"integer"`
+	DelaySeconds      *int64                             `type:"integer"`
 	ID                *string                            `locationName:"Id" type:"string" required:"true"`
 	MessageAttributes *map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 	MessageBody       *string                            `type:"string" required:"true"`
@@ -853,7 +853,7 @@ type metadataSendMessageBatchResultEntry struct {
 }
 
 type SendMessageInput struct {
-	DelaySeconds      *int                               `type:"integer"`
+	DelaySeconds      *int64                             `type:"integer"`
 	MessageAttributes *map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 	MessageBody       *string                            `type:"string" required:"true"`
 	QueueURL          *string                            `locationName:"QueueUrl" type:"string" required:"true"`
