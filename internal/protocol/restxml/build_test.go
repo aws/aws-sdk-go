@@ -848,8 +848,8 @@ type metadataInputService10TestShapeInputService10TestCaseOperation1Output struc
 }
 
 type InputService10TestShapeStructureShape struct {
-	B []byte     `locationName:"b" type:"blob"`
-	T *time.Time `locationName:"t" type:"timestamp" timestampFormat:"iso8601"`
+	B []byte    `locationName:"b" type:"blob"`
+	T *aws.Time `locationName:"t" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataInputService10TestShapeStructureShape `json:"-", xml:"-"`
 }
@@ -1788,7 +1788,7 @@ func TestInputService10ProtocolTestBlobAndTimestampShapesCase1(t *testing.T) {
 	input := &InputService10TestShapeInputService10TestCaseOperation1Input{
 		StructureParam: &InputService10TestShapeStructureShape{
 			B: []byte("foo"),
-			T: aws.Time(time.Unix(1422172800, 0)),
+			T: aws.NewTime(time.Unix(1422172800, 0)),
 		},
 	}
 	req, _ := svc.InputService10TestCaseOperation1Request(input)

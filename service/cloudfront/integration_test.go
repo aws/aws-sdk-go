@@ -30,7 +30,7 @@ func TestCreateDistribution(t *testing.T) {
 	_, serr := client.CreateDistribution(&cloudfront.CreateDistributionInput{
 		DistributionConfig: &cloudfront.DistributionConfig{
 			CallerReference: aws.String("ID1"),
-			Enabled:         aws.True(),
+			Enabled:         aws.Boolean(true),
 			Comment:         aws.String("A comment"),
 			Origins:         &cloudfront.Origins{Quantity: aws.Long(0)},
 			DefaultCacheBehavior: &cloudfront.DefaultCacheBehavior{

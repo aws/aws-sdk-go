@@ -7,7 +7,8 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
-	"time"
+
+	"github.com/awslabs/aws-sdk-go/aws"
 )
 
 func BuildXML(params interface{}, e *xml.Encoder) error {
@@ -194,7 +195,7 @@ func (b *xmlBuilder) buildScalar(value reflect.Value, current *XMLNode, tag refl
 		str = strconv.FormatFloat(converted, 'f', -1, 64)
 	case float32:
 		str = strconv.FormatFloat(float64(converted), 'f', -1, 32)
-	case time.Time:
+	case aws.Time:
 		const ISO8601UTC = "2006-01-02T15:04:05Z"
 		str = converted.UTC().Format(ISO8601UTC)
 	default:
