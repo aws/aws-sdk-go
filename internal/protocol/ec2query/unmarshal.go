@@ -1,5 +1,7 @@
 package ec2query
 
+//go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/output/ec2.json unmarshal_test.go
+
 import (
 	"encoding/xml"
 	"io"

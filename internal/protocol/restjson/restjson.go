@@ -1,5 +1,8 @@
 package restjson
 
+//go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/rest-json.json build_test.go
+//go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/output/rest-json.json unmarshal_test.go
+
 import (
 	"encoding/json"
 	"io/ioutil"

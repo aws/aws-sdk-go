@@ -1,5 +1,7 @@
 package query
 
+//go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/query.json build_test.go
+
 import (
 	"net/url"
 

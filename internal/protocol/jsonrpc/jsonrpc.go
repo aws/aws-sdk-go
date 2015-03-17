@@ -1,5 +1,8 @@
 package jsonrpc
 
+//go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/json.json build_test.go
+//go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/output/json.json unmarshal_test.go
+
 import (
 	"encoding/json"
 	"io/ioutil"

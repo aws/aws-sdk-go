@@ -1,5 +1,7 @@
 package query
 
+//go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/output/query.json unmarshal_test.go
+
 import (
 	"encoding/xml"
 	"io"

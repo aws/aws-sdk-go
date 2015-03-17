@@ -1,5 +1,8 @@
 package restxml
 
+//go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/rest-xml.json build_test.go
+//go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/output/rest-xml.json unmarshal_test.go
+
 import (
 	"bytes"
 	"encoding/xml"

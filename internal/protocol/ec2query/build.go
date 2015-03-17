@@ -1,5 +1,7 @@
 package ec2query
 
+//go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/ec2.json build_test.go
+
 import (
 	"net/url"
 
