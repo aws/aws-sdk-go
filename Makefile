@@ -1,7 +1,7 @@
 default: generate
 
 generate-protocol-test:
-	go generate ./internal/fixtures/protocol
+	go generate ./internal/protocol/...
 
 generate-integration-test:
 	go generate ./internal/fixtures/integration
