@@ -18,7 +18,7 @@ func Build(req *aws.Request) {
 	var buf []byte
 	var err error
 	if req.ParamsFilled() {
-		buf, err = json.Marshal(req.Params)
+		buf, err = jsonutil.BuildJSON(req.Params)
 		if err != nil {
 			req.Error = err
 			return

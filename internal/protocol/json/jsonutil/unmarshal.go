@@ -43,7 +43,10 @@ func unmarshalAny(value reflect.Value, data interface{}, tag reflect.StructTag) 
 				t = "structure"
 			}
 		case reflect.Slice:
-			t = "list"
+			// also it can't be a byte slice
+			if _, ok := value.Interface().([]byte); !ok {
+				t = "list"
+			}
 		case reflect.Map:
 			t = "map"
 		}
