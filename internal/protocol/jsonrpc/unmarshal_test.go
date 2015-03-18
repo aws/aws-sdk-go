@@ -263,7 +263,7 @@ type metadataOutputService3TestShapeOutputService3TestCaseOperation1Input struct
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
 	StructMember *OutputService3TestShapeTimeContainer `type:"structure" json:",omitempty"`
-	TimeMember   *aws.Time                             `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	TimeMember   *time.Time                            `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 
 	metadataOutputService3TestShapeOutputService3TestCaseOperation1Output `json:"-", xml:"-"`
 }
@@ -273,7 +273,7 @@ type metadataOutputService3TestShapeOutputService3TestCaseOperation1Output struc
 }
 
 type OutputService3TestShapeTimeContainer struct {
-	Foo *aws.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix" json:"foo,omitempty"`
+	Foo *time.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix" json:"foo,omitempty"`
 
 	metadataOutputService3TestShapeTimeContainer `json:"-", xml:"-"`
 }
@@ -575,8 +575,8 @@ func TestOutputService3ProtocolTestTimestampMembersCase1(t *testing.T) {
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), out.StructMember.Foo.Time.String())
-	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), out.TimeMember.Time.String())
+	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), out.StructMember.Foo.String())
+	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), out.TimeMember.String())
 
 }
 

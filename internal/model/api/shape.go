@@ -90,7 +90,7 @@ func (s *Shape) GoType() string {
 		return "*float64"
 	case "timestamp":
 		s.API.imports["time"] = true
-		return "*aws.Time"
+		return "*time.Time"
 	default:
 		panic("Unsupported shape type: " + s.Type)
 	}

@@ -608,7 +608,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1(input *Input
 var opInputService8TestCaseOperation1 *aws.Operation
 
 type InputService8TestShapeInputService8TestCaseOperation1Input struct {
-	TimeArg *aws.Time `type:"timestamp" timestampFormat:"iso8601"`
+	TimeArg *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataInputService8TestShapeInputService8TestCaseOperation1Input `json:"-", xml:"-"`
 }
@@ -833,7 +833,7 @@ func TestInputService8ProtocolTestTimestampValuesCase1(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService8TestShapeInputService8TestCaseOperation1Input{
-		TimeArg: aws.NewTime(time.Unix(1422172800, 0)),
+		TimeArg: aws.Time(time.Unix(1422172800, 0)),
 	}
 	req, _ := svc.InputService8TestCaseOperation1Request(input)
 	r := req.HTTPRequest

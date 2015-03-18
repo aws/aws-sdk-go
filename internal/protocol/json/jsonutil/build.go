@@ -8,8 +8,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-
-	"github.com/awslabs/aws-sdk-go/aws"
+	"time"
 )
 
 func BuildJSON(v interface{}) ([]byte, error) {
@@ -32,7 +31,7 @@ func buildAny(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) err
 		switch vtype.Kind() {
 		case reflect.Struct:
 			// also it can't be a time object
-			if _, ok := value.Interface().(aws.Time); !ok {
+			if _, ok := value.Interface().(time.Time); !ok {
 				t = "structure"
 			}
 		case reflect.Slice:
@@ -161,8 +160,8 @@ func buildScalar(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) 
 		buf.WriteString(strconv.FormatInt(converted, 10))
 	case float64:
 		buf.WriteString(strconv.FormatFloat(converted, 'f', -1, 64))
-	case aws.Time:
-		buf.WriteString(strconv.FormatInt(converted.Time.UTC().Unix(), 10))
+	case time.Time:
+		buf.WriteString(strconv.FormatInt(converted.UTC().Unix(), 10))
 	default:
 		return fmt.Errorf("unsupported JSON value %v (%s)", value.Interface(), value.Type())
 	}

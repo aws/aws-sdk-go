@@ -10,6 +10,7 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
@@ -206,7 +207,7 @@ func convertType(v reflect.Value) (*string, error) {
 		str = strconv.FormatInt(value, 10)
 	case float64:
 		str = strconv.FormatFloat(value, 'f', -1, 64)
-	case aws.Time:
+	case time.Time:
 		str = value.UTC().Format(RFC822)
 	default:
 		err := fmt.Errorf("Unsupported value for param %v (%s)", v.Interface(), v.Type())

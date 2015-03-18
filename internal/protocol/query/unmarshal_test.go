@@ -92,15 +92,15 @@ type metadataOutputService1TestShapeOutputService1TestCaseOperation1Input struct
 }
 
 type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
-	Char      *string   `type:"character"`
-	Double    *float64  `type:"double"`
-	FalseBool *bool     `type:"boolean"`
-	Float     *float64  `type:"float"`
-	Long      *int64    `type:"long"`
-	Num       *int64    `locationName:"FooNum" type:"integer"`
-	Str       *string   `type:"string"`
-	Timestamp *aws.Time `type:"timestamp" timestampFormat:"iso8601"`
-	TrueBool  *bool     `type:"boolean"`
+	Char      *string    `type:"character"`
+	Double    *float64   `type:"double"`
+	FalseBool *bool      `type:"boolean"`
+	Float     *float64   `type:"float"`
+	Long      *int64     `type:"long"`
+	Num       *int64     `locationName:"FooNum" type:"integer"`
+	Str       *string    `type:"string"`
+	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	TrueBool  *bool      `type:"boolean"`
 
 	metadataOutputService1TestShapeOutputService1TestCaseOperation1Output `json:"-", xml:"-"`
 }
@@ -1120,7 +1120,7 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	assert.Equal(t, 200, *out.Long)
 	assert.Equal(t, 123, *out.Num)
 	assert.Equal(t, "myname", *out.Str)
-	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.Time.String())
+	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String())
 	assert.Equal(t, true, *out.TrueBool)
 
 }

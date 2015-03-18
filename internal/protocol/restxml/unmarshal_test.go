@@ -61,7 +61,7 @@ func NewOutputService1ProtocolTest(config *OutputService1ProtocolTestConfig) *Ou
 }
 
 // OutputService1TestCaseOperation1Request generates a request for the OutputService1TestCaseOperation1 operation.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputShape) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputShape) {
 	if opOutputService1TestCaseOperation1 == nil {
 		opOutputService1TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
@@ -74,7 +74,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(inp
 	return
 }
 
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputShape, err error) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputShape, err error) {
 	req, out := c.OutputService1TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -106,11 +106,11 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2(input *Out
 
 var opOutputService1TestCaseOperation2 *aws.Operation
 
-type OutputService1TestShapeOutputService1TestCaseOperation1Input struct {
-	metadataOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-", xml:"-"`
+type OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
+	metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-", xml:"-"`
 }
 
-type metadataOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
+type metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -123,17 +123,17 @@ type metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCas
 }
 
 type OutputService1TestShapeOutputShape struct {
-	Char              *string   `type:"character"`
-	Double            *float64  `type:"double"`
-	FalseBool         *bool     `type:"boolean"`
-	Float             *float64  `type:"float"`
-	ImaHeader         *string   `location:"header" type:"string"`
-	ImaHeaderLocation *string   `location:"header" locationName:"X-Foo" type:"string"`
-	Long              *int64    `type:"long"`
-	Num               *int64    `locationName:"FooNum" type:"integer"`
-	Str               *string   `type:"string"`
-	Timestamp         *aws.Time `type:"timestamp" timestampFormat:"iso8601"`
-	TrueBool          *bool     `type:"boolean"`
+	Char              *string    `type:"character"`
+	Double            *float64   `type:"double"`
+	FalseBool         *bool      `type:"boolean"`
+	Float             *float64   `type:"float"`
+	ImaHeader         *string    `location:"header" type:"string"`
+	ImaHeaderLocation *string    `location:"header" locationName:"X-Foo" type:"string"`
+	Long              *int64     `type:"long"`
+	Num               *int64     `locationName:"FooNum" type:"integer"`
+	Str               *string    `type:"string"`
+	Timestamp         *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	TrueBool          *bool      `type:"boolean"`
 
 	metadataOutputService1TestShapeOutputShape `json:"-", xml:"-"`
 }
@@ -884,15 +884,15 @@ type metadataOutputService11TestShapeOutputService11TestCaseOperation1Input stru
 }
 
 type OutputService11TestShapeOutputService11TestCaseOperation1Output struct {
-	Char      *string   `location:"header" locationName:"x-char" type:"character"`
-	Double    *float64  `location:"header" locationName:"x-double" type:"double"`
-	FalseBool *bool     `location:"header" locationName:"x-false-bool" type:"boolean"`
-	Float     *float64  `location:"header" locationName:"x-float" type:"float"`
-	Integer   *int64    `location:"header" locationName:"x-int" type:"integer"`
-	Long      *int64    `location:"header" locationName:"x-long" type:"long"`
-	Str       *string   `location:"header" locationName:"x-str" type:"string"`
-	Timestamp *aws.Time `location:"header" locationName:"x-timestamp" type:"timestamp" timestampFormat:"iso8601"`
-	TrueBool  *bool     `location:"header" locationName:"x-true-bool" type:"boolean"`
+	Char      *string    `location:"header" locationName:"x-char" type:"character"`
+	Double    *float64   `location:"header" locationName:"x-double" type:"double"`
+	FalseBool *bool      `location:"header" locationName:"x-false-bool" type:"boolean"`
+	Float     *float64   `location:"header" locationName:"x-float" type:"float"`
+	Integer   *int64     `location:"header" locationName:"x-int" type:"integer"`
+	Long      *int64     `location:"header" locationName:"x-long" type:"long"`
+	Str       *string    `location:"header" locationName:"x-str" type:"string"`
+	Timestamp *time.Time `location:"header" locationName:"x-timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	TrueBool  *bool      `location:"header" locationName:"x-true-bool" type:"boolean"`
 
 	metadataOutputService11TestShapeOutputService11TestCaseOperation1Output `json:"-", xml:"-"`
 }
@@ -932,7 +932,7 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	assert.Equal(t, 200, *out.Long)
 	assert.Equal(t, 123, *out.Num)
 	assert.Equal(t, "myname", *out.Str)
-	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.Time.String())
+	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String())
 	assert.Equal(t, true, *out.TrueBool)
 
 }
@@ -964,7 +964,7 @@ func TestOutputService1ProtocolTestScalarMembersCase2(t *testing.T) {
 	assert.Equal(t, 200, *out.Long)
 	assert.Equal(t, 123, *out.Num)
 	assert.Equal(t, "", *out.Str)
-	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.Time.String())
+	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String())
 	assert.Equal(t, true, *out.TrueBool)
 
 }
@@ -1189,7 +1189,7 @@ func TestOutputService11ProtocolTestScalarMembersInHeadersCase1(t *testing.T) {
 	assert.Equal(t, 1, *out.Integer)
 	assert.Equal(t, 100, *out.Long)
 	assert.Equal(t, "string", *out.Str)
-	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.Time.String())
+	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String())
 	assert.Equal(t, true, *out.TrueBool)
 
 }

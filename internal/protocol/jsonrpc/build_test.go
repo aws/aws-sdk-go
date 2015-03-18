@@ -162,7 +162,7 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1(input *Input
 var opInputService2TestCaseOperation1 *aws.Operation
 
 type InputService2TestShapeInputService2TestCaseOperation1Input struct {
-	TimeArg *aws.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	TimeArg *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 
 	metadataInputService2TestShapeInputService2TestCaseOperation1Input `json:"-", xml:"-"`
 }
@@ -397,7 +397,7 @@ func NewInputService5ProtocolTest(config *InputService5ProtocolTestConfig) *Inpu
 }
 
 // InputService5TestCaseOperation1Request generates a request for the InputService5TestCaseOperation1 operation.
-func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestCaseOperation1Output) {
+func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation1Output) {
 	if opInputService5TestCaseOperation1 == nil {
 		opInputService5TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
@@ -405,12 +405,12 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input
 	}
 
 	req = aws.NewRequest(c.Service, opInputService5TestCaseOperation1, input, output)
-	output = &InputService5TestShapeInputService5TestCaseOperation1Output{}
+	output = &InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation1Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *InputService5TestShapeInputShape) (output *InputService5TestShapeInputService5TestCaseOperation1Output, err error) {
+func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *InputService5TestShapeInputShape) (output *InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation1Output, err error) {
 	req, out := c.InputService5TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -420,7 +420,7 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *Input
 var opInputService5TestCaseOperation1 *aws.Operation
 
 // InputService5TestCaseOperation2Request generates a request for the InputService5TestCaseOperation2 operation.
-func (c *InputService5ProtocolTest) InputService5TestCaseOperation2Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestCaseOperation2Output) {
+func (c *InputService5ProtocolTest) InputService5TestCaseOperation2Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation2Output) {
 	if opInputService5TestCaseOperation2 == nil {
 		opInputService5TestCaseOperation2 = &aws.Operation{
 			Name: "OperationName",
@@ -428,12 +428,12 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation2Request(input
 	}
 
 	req = aws.NewRequest(c.Service, opInputService5TestCaseOperation2, input, output)
-	output = &InputService5TestShapeInputService5TestCaseOperation2Output{}
+	output = &InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation2Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService5ProtocolTest) InputService5TestCaseOperation2(input *InputService5TestShapeInputShape) (output *InputService5TestShapeInputService5TestCaseOperation2Output, err error) {
+func (c *InputService5ProtocolTest) InputService5TestCaseOperation2(input *InputService5TestShapeInputShape) (output *InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation2Output, err error) {
 	req, out := c.InputService5TestCaseOperation2Request(input)
 	output = out
 	err = req.Send()
@@ -466,7 +466,7 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation3(input *Input
 var opInputService5TestCaseOperation3 *aws.Operation
 
 // InputService5TestCaseOperation4Request generates a request for the InputService5TestCaseOperation4 operation.
-func (c *InputService5ProtocolTest) InputService5TestCaseOperation4Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestCaseOperation4Output) {
+func (c *InputService5ProtocolTest) InputService5TestCaseOperation4Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation4Output) {
 	if opInputService5TestCaseOperation4 == nil {
 		opInputService5TestCaseOperation4 = &aws.Operation{
 			Name: "OperationName",
@@ -474,12 +474,12 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation4Request(input
 	}
 
 	req = aws.NewRequest(c.Service, opInputService5TestCaseOperation4, input, output)
-	output = &InputService5TestShapeInputService5TestCaseOperation4Output{}
+	output = &InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation4Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService5ProtocolTest) InputService5TestCaseOperation4(input *InputService5TestShapeInputShape) (output *InputService5TestShapeInputService5TestCaseOperation4Output, err error) {
+func (c *InputService5ProtocolTest) InputService5TestCaseOperation4(input *InputService5TestShapeInputShape) (output *InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation4Output, err error) {
 	req, out := c.InputService5TestCaseOperation4Request(input)
 	output = out
 	err = req.Send()
@@ -534,35 +534,11 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation6(input *Input
 
 var opInputService5TestCaseOperation6 *aws.Operation
 
-type InputService5TestShapeInputService5TestCaseOperation1Output struct {
-	metadataInputService5TestShapeInputService5TestCaseOperation1Output `json:"-", xml:"-"`
-}
-
-type metadataInputService5TestShapeInputService5TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InputService5TestShapeInputService5TestCaseOperation2Output struct {
-	metadataInputService5TestShapeInputService5TestCaseOperation2Output `json:"-", xml:"-"`
-}
-
-type metadataInputService5TestShapeInputService5TestCaseOperation2Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type InputService5TestShapeInputService5TestCaseOperation3Output struct {
 	metadataInputService5TestShapeInputService5TestCaseOperation3Output `json:"-", xml:"-"`
 }
 
 type metadataInputService5TestShapeInputService5TestCaseOperation3Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
-type InputService5TestShapeInputService5TestCaseOperation4Output struct {
-	metadataInputService5TestShapeInputService5TestCaseOperation4Output `json:"-", xml:"-"`
-}
-
-type metadataInputService5TestShapeInputService5TestCaseOperation4Output struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -579,6 +555,30 @@ type InputService5TestShapeInputService5TestCaseOperation6Output struct {
 }
 
 type metadataInputService5TestShapeInputService5TestCaseOperation6Output struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation1Output struct {
+	metadataInputService5TestShapeInputService5TestShapeInputService5TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService5TestShapeInputService5TestShapeInputService5TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation2Output struct {
+	metadataInputService5TestShapeInputService5TestShapeInputService5TestCaseOperation2Output `json:"-", xml:"-"`
+}
+
+type metadataInputService5TestShapeInputService5TestShapeInputService5TestCaseOperation2Output struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation4Output struct {
+	metadataInputService5TestShapeInputService5TestShapeInputService5TestCaseOperation4Output `json:"-", xml:"-"`
+}
+
+type metadataInputService5TestShapeInputService5TestShapeInputService5TestCaseOperation4Output struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -642,7 +642,7 @@ func TestInputService2ProtocolTestTimestampValuesCase1(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService2TestShapeInputService2TestCaseOperation1Input{
-		TimeArg: aws.NewTime(time.Unix(1422172800, 0)),
+		TimeArg: aws.Time(time.Unix(1422172800, 0)),
 	}
 	req, _ := svc.InputService2TestCaseOperation1Request(input)
 	r := req.HTTPRequest

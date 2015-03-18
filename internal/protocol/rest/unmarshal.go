@@ -155,12 +155,12 @@ func unmarshalHeader(v reflect.Value, header string) error {
 		} else {
 			v.Set(reflect.ValueOf(&f))
 		}
-	case *aws.Time:
+	case *time.Time:
 		t, err := time.Parse(RFC822, header)
 		if err != nil {
 			return err
 		} else {
-			v.Set(reflect.ValueOf(aws.NewTime(t)))
+			v.Set(reflect.ValueOf(&t))
 		}
 	default:
 		err := fmt.Errorf("Unsupported value for param %v (%s)", v.Interface(), v.Type())

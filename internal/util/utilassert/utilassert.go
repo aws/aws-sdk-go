@@ -51,7 +51,7 @@ func GenerateAssertions(out interface{}, shape *api.Shape, prefix string) string
 	default:
 		switch shape.Type {
 		case "timestamp":
-			return fmt.Sprintf("assert.Equal(t, time.Unix(%#v, 0).UTC().String(), %s.Time.String())\n", out, prefix)
+			return fmt.Sprintf("assert.Equal(t, time.Unix(%#v, 0).UTC().String(), %s.String())\n", out, prefix)
 		case "blob":
 			return fmt.Sprintf("assert.Equal(t, %#v, string(%s))\n", out, prefix)
 		default:

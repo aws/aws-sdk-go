@@ -72,7 +72,7 @@ func (f paramFiller) paramsStructAny(value interface{}, shape *api.Shape) string
 	case "timestamp":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.NewTime(time.Unix(%d, 0))", int(v.Float()))
+			return fmt.Sprintf("aws.Time(time.Unix(%d, 0))", int(v.Float()))
 		}
 	default:
 		panic("Unhandled type " + shape.Type)

@@ -9,8 +9,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/awslabs/aws-sdk-go/aws"
 )
 
 func UnmarshalXML(v interface{}, d *xml.Decoder, wrapper string) error {
@@ -240,13 +238,13 @@ func parseScalar(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 			return err
 		}
 		r.Set(reflect.ValueOf(&v))
-	case *aws.Time:
+	case *time.Time:
 		const ISO8601UTC = "2006-01-02T15:04:05Z"
 		t, err := time.Parse(ISO8601UTC, node.Text)
 		if err != nil {
 			return err
 		} else {
-			r.Set(reflect.ValueOf(aws.NewTime(t)))
+			r.Set(reflect.ValueOf(&t))
 		}
 	default:
 		return fmt.Errorf("unsupported value: %v (%s)", r.Interface(), r.Type())

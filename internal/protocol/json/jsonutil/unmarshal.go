@@ -9,8 +9,6 @@ import (
 	"reflect"
 	"strings"
 	"time"
-
-	"github.com/awslabs/aws-sdk-go/aws"
 )
 
 func UnmarshalJSON(v interface{}, stream io.Reader) error {
@@ -39,7 +37,7 @@ func unmarshalAny(value reflect.Value, data interface{}, tag reflect.StructTag) 
 		switch vtype.Kind() {
 		case reflect.Struct:
 			// also it can't be a time object
-			if _, ok := value.Interface().(*aws.Time); !ok {
+			if _, ok := value.Interface().(*time.Time); !ok {
 				t = "structure"
 			}
 		case reflect.Slice:
@@ -198,9 +196,9 @@ func unmarshalScalar(value reflect.Value, data interface{}, tag reflect.StructTa
 			value.Set(reflect.ValueOf(&di))
 		case *float64:
 			value.Set(reflect.ValueOf(&d))
-		case *aws.Time:
+		case *time.Time:
 			t := time.Unix(int64(d), 0).UTC()
-			value.Set(reflect.ValueOf(aws.NewTime(t)))
+			value.Set(reflect.ValueOf(&t))
 		default:
 			return errf()
 		}

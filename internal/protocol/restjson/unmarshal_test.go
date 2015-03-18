@@ -260,7 +260,7 @@ type metadataOutputService3TestShapeOutputService3TestCaseOperation1Input struct
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
 	StructMember *OutputService3TestShapeTimeContainer `type:"structure" json:",omitempty"`
-	TimeMember   *aws.Time                             `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	TimeMember   *time.Time                            `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 
 	metadataOutputService3TestShapeOutputService3TestCaseOperation1Output `json:"-", xml:"-"`
 }
@@ -270,7 +270,7 @@ type metadataOutputService3TestShapeOutputService3TestCaseOperation1Output struc
 }
 
 type OutputService3TestShapeTimeContainer struct {
-	Foo *aws.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix" json:"foo,omitempty"`
+	Foo *time.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix" json:"foo,omitempty"`
 
 	metadataOutputService3TestShapeTimeContainer `json:"-", xml:"-"`
 }
@@ -572,7 +572,7 @@ type metadataOutputService7TestShapeOutputService7TestCaseOperation1Input struct
 }
 
 type OutputService7TestShapeOutputService7TestCaseOperation1Output struct {
-	MapMember *map[string]*aws.Time `type:"map" json:",omitempty"`
+	MapMember *map[string]*time.Time `type:"map" json:",omitempty"`
 
 	metadataOutputService7TestShapeOutputService7TestCaseOperation1Output `json:"-", xml:"-"`
 }
@@ -958,8 +958,8 @@ func TestOutputService3ProtocolTestTimestampMembersCase1(t *testing.T) {
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), out.StructMember.Foo.Time.String())
-	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), out.TimeMember.Time.String())
+	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), out.StructMember.Foo.String())
+	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), out.TimeMember.String())
 
 }
 
@@ -1044,8 +1044,8 @@ func TestOutputService7ProtocolTestComplexMapValuesCase1(t *testing.T) {
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), (*out.MapMember)["a"].Time.String())
-	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), (*out.MapMember)["b"].Time.String())
+	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), (*out.MapMember)["a"].String())
+	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), (*out.MapMember)["b"].String())
 
 }
 
