@@ -52,5 +52,5 @@ func TestCreateDistribution(t *testing.T) {
 	err := aws.Error(serr)
 	assert.NotNil(t, err)
 	assert.Equal(t, "MalformedXML", err.Code)
-	assertMatches(t, "3 validation errors detected", err.Message)
+	assertMatches(t, "validation errors detected", err.Message)
 }
