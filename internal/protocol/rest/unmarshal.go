@@ -114,7 +114,6 @@ func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string) err
 				out[k[len(prefix):]] = &v[0]
 			}
 		}
-		fmt.Println(out)
 		r.Set(reflect.ValueOf(&out))
 	}
 	return nil
