@@ -432,249 +432,249 @@ func (c *CloudHSM) ModifyLunaClient(input *ModifyLunaClientInput) (output *Modif
 var opModifyLunaClient *aws.Operation
 
 type CreateHAPGInput struct {
-	Label *string `type:"string" required:"true"json:",omitempty"`
+	Label *string `type:"string" required:"true"`
 
 	metadataCreateHAPGInput `json:"-", xml:"-"`
 }
 
 type metadataCreateHAPGInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateHAPGOutput struct {
-	HAPGARN *string `locationName:"HapgArn" type:"string" json:"HapgArn,omitempty"`
+	HAPGARN *string `locationName:"HapgArn" type:"string"`
 
 	metadataCreateHAPGOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateHAPGOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateHSMInput struct {
-	ClientToken      *string `locationName:"ClientToken" type:"string" json:"ClientToken,omitempty"`
-	ENIIP            *string `locationName:"EniIp" type:"string" json:"EniIp,omitempty"`
-	ExternalID       *string `locationName:"ExternalId" type:"string" json:"ExternalId,omitempty"`
-	IAMRoleARN       *string `locationName:"IamRoleArn" type:"string" required:"true"json:"IamRoleArn,omitempty"`
-	SSHKey           *string `locationName:"SshKey" type:"string" required:"true"json:"SshKey,omitempty"`
-	SubnetID         *string `locationName:"SubnetId" type:"string" required:"true"json:"SubnetId,omitempty"`
-	SubscriptionType *string `locationName:"SubscriptionType" type:"string" required:"true"json:"SubscriptionType,omitempty"`
-	SyslogIP         *string `locationName:"SyslogIp" type:"string" json:"SyslogIp,omitempty"`
+	ClientToken      *string `locationName:"ClientToken" type:"string"`
+	ENIIP            *string `locationName:"EniIp" type:"string"`
+	ExternalID       *string `locationName:"ExternalId" type:"string"`
+	IAMRoleARN       *string `locationName:"IamRoleArn" type:"string" required:"true"`
+	SSHKey           *string `locationName:"SshKey" type:"string" required:"true"`
+	SubnetID         *string `locationName:"SubnetId" type:"string" required:"true"`
+	SubscriptionType *string `locationName:"SubscriptionType" type:"string" required:"true"`
+	SyslogIP         *string `locationName:"SyslogIp" type:"string"`
 
 	metadataCreateHSMInput `json:"-", xml:"-"`
 }
 
 type metadataCreateHSMInput struct {
-	SDKShapeTraits bool `locationName:"CreateHsmRequest" type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `locationName:"CreateHsmRequest" type:"structure"`
 }
 
 type CreateHSMOutput struct {
-	HSMARN *string `locationName:"HsmArn" type:"string" json:"HsmArn,omitempty"`
+	HSMARN *string `locationName:"HsmArn" type:"string"`
 
 	metadataCreateHSMOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateHSMOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLunaClientInput struct {
-	Certificate *string `type:"string" required:"true"json:",omitempty"`
-	Label       *string `type:"string" json:",omitempty"`
+	Certificate *string `type:"string" required:"true"`
+	Label       *string `type:"string"`
 
 	metadataCreateLunaClientInput `json:"-", xml:"-"`
 }
 
 type metadataCreateLunaClientInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLunaClientOutput struct {
-	ClientARN *string `locationName:"ClientArn" type:"string" json:"ClientArn,omitempty"`
+	ClientARN *string `locationName:"ClientArn" type:"string"`
 
 	metadataCreateLunaClientOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateLunaClientOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteHAPGInput struct {
-	HAPGARN *string `locationName:"HapgArn" type:"string" required:"true"json:"HapgArn,omitempty"`
+	HAPGARN *string `locationName:"HapgArn" type:"string" required:"true"`
 
 	metadataDeleteHAPGInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteHAPGInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteHAPGOutput struct {
-	Status *string `type:"string" required:"true"json:",omitempty"`
+	Status *string `type:"string" required:"true"`
 
 	metadataDeleteHAPGOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteHAPGOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteHSMInput struct {
-	HSMARN *string `locationName:"HsmArn" type:"string" required:"true"json:"HsmArn,omitempty"`
+	HSMARN *string `locationName:"HsmArn" type:"string" required:"true"`
 
 	metadataDeleteHSMInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteHSMInput struct {
-	SDKShapeTraits bool `locationName:"DeleteHsmRequest" type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `locationName:"DeleteHsmRequest" type:"structure"`
 }
 
 type DeleteHSMOutput struct {
-	Status *string `type:"string" required:"true"json:",omitempty"`
+	Status *string `type:"string" required:"true"`
 
 	metadataDeleteHSMOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteHSMOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLunaClientInput struct {
-	ClientARN *string `locationName:"ClientArn" type:"string" required:"true"json:"ClientArn,omitempty"`
+	ClientARN *string `locationName:"ClientArn" type:"string" required:"true"`
 
 	metadataDeleteLunaClientInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteLunaClientInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLunaClientOutput struct {
-	Status *string `type:"string" required:"true"json:",omitempty"`
+	Status *string `type:"string" required:"true"`
 
 	metadataDeleteLunaClientOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteLunaClientOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeHAPGInput struct {
-	HAPGARN *string `locationName:"HapgArn" type:"string" required:"true"json:"HapgArn,omitempty"`
+	HAPGARN *string `locationName:"HapgArn" type:"string" required:"true"`
 
 	metadataDescribeHAPGInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeHAPGInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeHAPGOutput struct {
-	HAPGARN                 *string   `locationName:"HapgArn" type:"string" json:"HapgArn,omitempty"`
-	HAPGSerial              *string   `locationName:"HapgSerial" type:"string" json:"HapgSerial,omitempty"`
-	HSMsLastActionFailed    []*string `locationName:"HsmsLastActionFailed" type:"list" json:"HsmsLastActionFailed,omitempty"`
-	HSMsPendingDeletion     []*string `locationName:"HsmsPendingDeletion" type:"list" json:"HsmsPendingDeletion,omitempty"`
-	HSMsPendingRegistration []*string `locationName:"HsmsPendingRegistration" type:"list" json:"HsmsPendingRegistration,omitempty"`
-	Label                   *string   `type:"string" json:",omitempty"`
-	LastModifiedTimestamp   *string   `type:"string" json:",omitempty"`
-	PartitionSerialList     []*string `type:"list" json:",omitempty"`
-	State                   *string   `type:"string" json:",omitempty"`
+	HAPGARN                 *string   `locationName:"HapgArn" type:"string"`
+	HAPGSerial              *string   `locationName:"HapgSerial" type:"string"`
+	HSMsLastActionFailed    []*string `locationName:"HsmsLastActionFailed" type:"list"`
+	HSMsPendingDeletion     []*string `locationName:"HsmsPendingDeletion" type:"list"`
+	HSMsPendingRegistration []*string `locationName:"HsmsPendingRegistration" type:"list"`
+	Label                   *string   `type:"string"`
+	LastModifiedTimestamp   *string   `type:"string"`
+	PartitionSerialList     []*string `type:"list"`
+	State                   *string   `type:"string"`
 
 	metadataDescribeHAPGOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeHAPGOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeHSMInput struct {
-	HSMARN          *string `locationName:"HsmArn" type:"string" json:"HsmArn,omitempty"`
-	HSMSerialNumber *string `locationName:"HsmSerialNumber" type:"string" json:"HsmSerialNumber,omitempty"`
+	HSMARN          *string `locationName:"HsmArn" type:"string"`
+	HSMSerialNumber *string `locationName:"HsmSerialNumber" type:"string"`
 
 	metadataDescribeHSMInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeHSMInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeHSMOutput struct {
-	AvailabilityZone      *string   `type:"string" json:",omitempty"`
-	ENIID                 *string   `locationName:"EniId" type:"string" json:"EniId,omitempty"`
-	ENIIP                 *string   `locationName:"EniIp" type:"string" json:"EniIp,omitempty"`
-	HSMARN                *string   `locationName:"HsmArn" type:"string" json:"HsmArn,omitempty"`
-	HSMType               *string   `locationName:"HsmType" type:"string" json:"HsmType,omitempty"`
-	IAMRoleARN            *string   `locationName:"IamRoleArn" type:"string" json:"IamRoleArn,omitempty"`
-	Partitions            []*string `type:"list" json:",omitempty"`
-	SSHKeyLastUpdated     *string   `locationName:"SshKeyLastUpdated" type:"string" json:"SshKeyLastUpdated,omitempty"`
-	SSHPublicKey          *string   `locationName:"SshPublicKey" type:"string" json:"SshPublicKey,omitempty"`
-	SerialNumber          *string   `type:"string" json:",omitempty"`
-	ServerCertLastUpdated *string   `type:"string" json:",omitempty"`
-	ServerCertURI         *string   `locationName:"ServerCertUri" type:"string" json:"ServerCertUri,omitempty"`
-	SoftwareVersion       *string   `type:"string" json:",omitempty"`
-	Status                *string   `type:"string" json:",omitempty"`
-	StatusDetails         *string   `type:"string" json:",omitempty"`
-	SubnetID              *string   `locationName:"SubnetId" type:"string" json:"SubnetId,omitempty"`
-	SubscriptionEndDate   *string   `type:"string" json:",omitempty"`
-	SubscriptionStartDate *string   `type:"string" json:",omitempty"`
-	SubscriptionType      *string   `type:"string" json:",omitempty"`
-	VPCID                 *string   `locationName:"VpcId" type:"string" json:"VpcId,omitempty"`
-	VendorName            *string   `type:"string" json:",omitempty"`
+	AvailabilityZone      *string   `type:"string"`
+	ENIID                 *string   `locationName:"EniId" type:"string"`
+	ENIIP                 *string   `locationName:"EniIp" type:"string"`
+	HSMARN                *string   `locationName:"HsmArn" type:"string"`
+	HSMType               *string   `locationName:"HsmType" type:"string"`
+	IAMRoleARN            *string   `locationName:"IamRoleArn" type:"string"`
+	Partitions            []*string `type:"list"`
+	SSHKeyLastUpdated     *string   `locationName:"SshKeyLastUpdated" type:"string"`
+	SSHPublicKey          *string   `locationName:"SshPublicKey" type:"string"`
+	SerialNumber          *string   `type:"string"`
+	ServerCertLastUpdated *string   `type:"string"`
+	ServerCertURI         *string   `locationName:"ServerCertUri" type:"string"`
+	SoftwareVersion       *string   `type:"string"`
+	Status                *string   `type:"string"`
+	StatusDetails         *string   `type:"string"`
+	SubnetID              *string   `locationName:"SubnetId" type:"string"`
+	SubscriptionEndDate   *string   `type:"string"`
+	SubscriptionStartDate *string   `type:"string"`
+	SubscriptionType      *string   `type:"string"`
+	VPCID                 *string   `locationName:"VpcId" type:"string"`
+	VendorName            *string   `type:"string"`
 
 	metadataDescribeHSMOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeHSMOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLunaClientInput struct {
-	CertificateFingerprint *string `type:"string" json:",omitempty"`
-	ClientARN              *string `locationName:"ClientArn" type:"string" json:"ClientArn,omitempty"`
+	CertificateFingerprint *string `type:"string"`
+	ClientARN              *string `locationName:"ClientArn" type:"string"`
 
 	metadataDescribeLunaClientInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLunaClientInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLunaClientOutput struct {
-	Certificate            *string `type:"string" json:",omitempty"`
-	CertificateFingerprint *string `type:"string" json:",omitempty"`
-	ClientARN              *string `locationName:"ClientArn" type:"string" json:"ClientArn,omitempty"`
-	Label                  *string `type:"string" json:",omitempty"`
-	LastModifiedTimestamp  *string `type:"string" json:",omitempty"`
+	Certificate            *string `type:"string"`
+	CertificateFingerprint *string `type:"string"`
+	ClientARN              *string `locationName:"ClientArn" type:"string"`
+	Label                  *string `type:"string"`
+	LastModifiedTimestamp  *string `type:"string"`
 
 	metadataDescribeLunaClientOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLunaClientOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetConfigInput struct {
-	ClientARN     *string   `locationName:"ClientArn" type:"string" required:"true"json:"ClientArn,omitempty"`
-	ClientVersion *string   `type:"string" required:"true"json:",omitempty"`
-	HAPGList      []*string `locationName:"HapgList" type:"list" required:"true"json:"HapgList,omitempty"`
+	ClientARN     *string   `locationName:"ClientArn" type:"string" required:"true"`
+	ClientVersion *string   `type:"string" required:"true"`
+	HAPGList      []*string `locationName:"HapgList" type:"list" required:"true"`
 
 	metadataGetConfigInput `json:"-", xml:"-"`
 }
 
 type metadataGetConfigInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetConfigOutput struct {
-	ConfigCred *string `type:"string" json:",omitempty"`
-	ConfigFile *string `type:"string" json:",omitempty"`
-	ConfigType *string `type:"string" json:",omitempty"`
+	ConfigCred *string `type:"string"`
+	ConfigFile *string `type:"string"`
+	ConfigType *string `type:"string"`
 
 	metadataGetConfigOutput `json:"-", xml:"-"`
 }
 
 type metadataGetConfigOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAvailableZonesInput struct {
@@ -682,146 +682,146 @@ type ListAvailableZonesInput struct {
 }
 
 type metadataListAvailableZonesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAvailableZonesOutput struct {
-	AZList []*string `type:"list" json:",omitempty"`
+	AZList []*string `type:"list"`
 
 	metadataListAvailableZonesOutput `json:"-", xml:"-"`
 }
 
 type metadataListAvailableZonesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListHSMsInput struct {
-	NextToken *string `type:"string" json:",omitempty"`
+	NextToken *string `type:"string"`
 
 	metadataListHSMsInput `json:"-", xml:"-"`
 }
 
 type metadataListHSMsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListHSMsOutput struct {
-	HSMList   []*string `locationName:"HsmList" type:"list" json:"HsmList,omitempty"`
-	NextToken *string   `type:"string" json:",omitempty"`
+	HSMList   []*string `locationName:"HsmList" type:"list"`
+	NextToken *string   `type:"string"`
 
 	metadataListHSMsOutput `json:"-", xml:"-"`
 }
 
 type metadataListHSMsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListHapgsInput struct {
-	NextToken *string `type:"string" json:",omitempty"`
+	NextToken *string `type:"string"`
 
 	metadataListHapgsInput `json:"-", xml:"-"`
 }
 
 type metadataListHapgsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListHapgsOutput struct {
-	HAPGList  []*string `locationName:"HapgList" type:"list" required:"true"json:"HapgList,omitempty"`
-	NextToken *string   `type:"string" json:",omitempty"`
+	HAPGList  []*string `locationName:"HapgList" type:"list" required:"true"`
+	NextToken *string   `type:"string"`
 
 	metadataListHapgsOutput `json:"-", xml:"-"`
 }
 
 type metadataListHapgsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListLunaClientsInput struct {
-	NextToken *string `type:"string" json:",omitempty"`
+	NextToken *string `type:"string"`
 
 	metadataListLunaClientsInput `json:"-", xml:"-"`
 }
 
 type metadataListLunaClientsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListLunaClientsOutput struct {
-	ClientList []*string `type:"list" required:"true"json:",omitempty"`
-	NextToken  *string   `type:"string" json:",omitempty"`
+	ClientList []*string `type:"list" required:"true"`
+	NextToken  *string   `type:"string"`
 
 	metadataListLunaClientsOutput `json:"-", xml:"-"`
 }
 
 type metadataListLunaClientsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyHAPGInput struct {
-	HAPGARN             *string   `locationName:"HapgArn" type:"string" required:"true"json:"HapgArn,omitempty"`
-	Label               *string   `type:"string" json:",omitempty"`
-	PartitionSerialList []*string `type:"list" json:",omitempty"`
+	HAPGARN             *string   `locationName:"HapgArn" type:"string" required:"true"`
+	Label               *string   `type:"string"`
+	PartitionSerialList []*string `type:"list"`
 
 	metadataModifyHAPGInput `json:"-", xml:"-"`
 }
 
 type metadataModifyHAPGInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyHAPGOutput struct {
-	HAPGARN *string `locationName:"HapgArn" type:"string" json:"HapgArn,omitempty"`
+	HAPGARN *string `locationName:"HapgArn" type:"string"`
 
 	metadataModifyHAPGOutput `json:"-", xml:"-"`
 }
 
 type metadataModifyHAPGOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyHSMInput struct {
-	ENIIP      *string `locationName:"EniIp" type:"string" json:"EniIp,omitempty"`
-	ExternalID *string `locationName:"ExternalId" type:"string" json:"ExternalId,omitempty"`
-	HSMARN     *string `locationName:"HsmArn" type:"string" required:"true"json:"HsmArn,omitempty"`
-	IAMRoleARN *string `locationName:"IamRoleArn" type:"string" json:"IamRoleArn,omitempty"`
-	SubnetID   *string `locationName:"SubnetId" type:"string" json:"SubnetId,omitempty"`
-	SyslogIP   *string `locationName:"SyslogIp" type:"string" json:"SyslogIp,omitempty"`
+	ENIIP      *string `locationName:"EniIp" type:"string"`
+	ExternalID *string `locationName:"ExternalId" type:"string"`
+	HSMARN     *string `locationName:"HsmArn" type:"string" required:"true"`
+	IAMRoleARN *string `locationName:"IamRoleArn" type:"string"`
+	SubnetID   *string `locationName:"SubnetId" type:"string"`
+	SyslogIP   *string `locationName:"SyslogIp" type:"string"`
 
 	metadataModifyHSMInput `json:"-", xml:"-"`
 }
 
 type metadataModifyHSMInput struct {
-	SDKShapeTraits bool `locationName:"ModifyHsmRequest" type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `locationName:"ModifyHsmRequest" type:"structure"`
 }
 
 type ModifyHSMOutput struct {
-	HSMARN *string `locationName:"HsmArn" type:"string" json:"HsmArn,omitempty"`
+	HSMARN *string `locationName:"HsmArn" type:"string"`
 
 	metadataModifyHSMOutput `json:"-", xml:"-"`
 }
 
 type metadataModifyHSMOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyLunaClientInput struct {
-	Certificate *string `type:"string" required:"true"json:",omitempty"`
-	ClientARN   *string `locationName:"ClientArn" type:"string" required:"true"json:"ClientArn,omitempty"`
+	Certificate *string `type:"string" required:"true"`
+	ClientARN   *string `locationName:"ClientArn" type:"string" required:"true"`
 
 	metadataModifyLunaClientInput `json:"-", xml:"-"`
 }
 
 type metadataModifyLunaClientInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyLunaClientOutput struct {
-	ClientARN *string `locationName:"ClientArn" type:"string" json:"ClientArn,omitempty"`
+	ClientARN *string `locationName:"ClientArn" type:"string"`
 
 	metadataModifyLunaClientOutput `json:"-", xml:"-"`
 }
 
 type metadataModifyLunaClientOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

@@ -357,13 +357,13 @@ func (c *CloudWatchLogs) TestMetricFilter(input *TestMetricFilterInput) (output 
 var opTestMetricFilter *aws.Operation
 
 type CreateLogGroupInput struct {
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
 	metadataCreateLogGroupInput `json:"-", xml:"-"`
 }
 
 type metadataCreateLogGroupInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLogGroupOutput struct {
@@ -371,18 +371,18 @@ type CreateLogGroupOutput struct {
 }
 
 type metadataCreateLogGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLogStreamInput struct {
-	LogGroupName  *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
-	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"json:"logStreamName,omitempty"`
+	LogGroupName  *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
 
 	metadataCreateLogStreamInput `json:"-", xml:"-"`
 }
 
 type metadataCreateLogStreamInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLogStreamOutput struct {
@@ -390,17 +390,17 @@ type CreateLogStreamOutput struct {
 }
 
 type metadataCreateLogStreamOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLogGroupInput struct {
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
 	metadataDeleteLogGroupInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteLogGroupInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLogGroupOutput struct {
@@ -408,18 +408,18 @@ type DeleteLogGroupOutput struct {
 }
 
 type metadataDeleteLogGroupOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLogStreamInput struct {
-	LogGroupName  *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
-	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"json:"logStreamName,omitempty"`
+	LogGroupName  *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
 
 	metadataDeleteLogStreamInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteLogStreamInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLogStreamOutput struct {
@@ -427,18 +427,18 @@ type DeleteLogStreamOutput struct {
 }
 
 type metadataDeleteLogStreamOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteMetricFilterInput struct {
-	FilterName   *string `locationName:"filterName" type:"string" required:"true"json:"filterName,omitempty"`
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
+	FilterName   *string `locationName:"filterName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
 	metadataDeleteMetricFilterInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteMetricFilterInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteMetricFilterOutput struct {
@@ -446,17 +446,17 @@ type DeleteMetricFilterOutput struct {
 }
 
 type metadataDeleteMetricFilterOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteRetentionPolicyInput struct {
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
 	metadataDeleteRetentionPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteRetentionPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteRetentionPolicyOutput struct {
@@ -464,234 +464,234 @@ type DeleteRetentionPolicyOutput struct {
 }
 
 type metadataDeleteRetentionPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLogGroupsInput struct {
-	Limit              *int64  `locationName:"limit" type:"integer" json:"limit,omitempty"`
-	LogGroupNamePrefix *string `locationName:"logGroupNamePrefix" type:"string" json:"logGroupNamePrefix,omitempty"`
-	NextToken          *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	Limit              *int64  `locationName:"limit" type:"integer"`
+	LogGroupNamePrefix *string `locationName:"logGroupNamePrefix" type:"string"`
+	NextToken          *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeLogGroupsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLogGroupsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLogGroupsOutput struct {
-	LogGroups []*LogGroup `locationName:"logGroups" type:"list" json:"logGroups,omitempty"`
-	NextToken *string     `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	LogGroups []*LogGroup `locationName:"logGroups" type:"list"`
+	NextToken *string     `locationName:"nextToken" type:"string"`
 
 	metadataDescribeLogGroupsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLogGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLogStreamsInput struct {
-	Limit               *int64  `locationName:"limit" type:"integer" json:"limit,omitempty"`
-	LogGroupName        *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
-	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" type:"string" json:"logStreamNamePrefix,omitempty"`
-	NextToken           *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	Limit               *int64  `locationName:"limit" type:"integer"`
+	LogGroupName        *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" type:"string"`
+	NextToken           *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeLogStreamsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLogStreamsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLogStreamsOutput struct {
-	LogStreams []*LogStream `locationName:"logStreams" type:"list" json:"logStreams,omitempty"`
-	NextToken  *string      `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	LogStreams []*LogStream `locationName:"logStreams" type:"list"`
+	NextToken  *string      `locationName:"nextToken" type:"string"`
 
 	metadataDescribeLogStreamsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLogStreamsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeMetricFiltersInput struct {
-	FilterNamePrefix *string `locationName:"filterNamePrefix" type:"string" json:"filterNamePrefix,omitempty"`
-	Limit            *int64  `locationName:"limit" type:"integer" json:"limit,omitempty"`
-	LogGroupName     *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
-	NextToken        *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	FilterNamePrefix *string `locationName:"filterNamePrefix" type:"string"`
+	Limit            *int64  `locationName:"limit" type:"integer"`
+	LogGroupName     *string `locationName:"logGroupName" type:"string" required:"true"`
+	NextToken        *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeMetricFiltersInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeMetricFiltersInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeMetricFiltersOutput struct {
-	MetricFilters []*MetricFilter `locationName:"metricFilters" type:"list" json:"metricFilters,omitempty"`
-	NextToken     *string         `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	MetricFilters []*MetricFilter `locationName:"metricFilters" type:"list"`
+	NextToken     *string         `locationName:"nextToken" type:"string"`
 
 	metadataDescribeMetricFiltersOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeMetricFiltersOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetLogEventsInput struct {
-	EndTime       *int64  `locationName:"endTime" type:"long" json:"endTime,omitempty"`
-	Limit         *int64  `locationName:"limit" type:"integer" json:"limit,omitempty"`
-	LogGroupName  *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
-	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"json:"logStreamName,omitempty"`
-	NextToken     *string `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
-	StartFromHead *bool   `locationName:"startFromHead" type:"boolean" json:"startFromHead,omitempty"`
-	StartTime     *int64  `locationName:"startTime" type:"long" json:"startTime,omitempty"`
+	EndTime       *int64  `locationName:"endTime" type:"long"`
+	Limit         *int64  `locationName:"limit" type:"integer"`
+	LogGroupName  *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
+	NextToken     *string `locationName:"nextToken" type:"string"`
+	StartFromHead *bool   `locationName:"startFromHead" type:"boolean"`
+	StartTime     *int64  `locationName:"startTime" type:"long"`
 
 	metadataGetLogEventsInput `json:"-", xml:"-"`
 }
 
 type metadataGetLogEventsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetLogEventsOutput struct {
-	Events            []*OutputLogEvent `locationName:"events" type:"list" json:"events,omitempty"`
-	NextBackwardToken *string           `locationName:"nextBackwardToken" type:"string" json:"nextBackwardToken,omitempty"`
-	NextForwardToken  *string           `locationName:"nextForwardToken" type:"string" json:"nextForwardToken,omitempty"`
+	Events            []*OutputLogEvent `locationName:"events" type:"list"`
+	NextBackwardToken *string           `locationName:"nextBackwardToken" type:"string"`
+	NextForwardToken  *string           `locationName:"nextForwardToken" type:"string"`
 
 	metadataGetLogEventsOutput `json:"-", xml:"-"`
 }
 
 type metadataGetLogEventsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InputLogEvent struct {
-	Message   *string `locationName:"message" type:"string" required:"true"json:"message,omitempty"`
-	Timestamp *int64  `locationName:"timestamp" type:"long" required:"true"json:"timestamp,omitempty"`
+	Message   *string `locationName:"message" type:"string" required:"true"`
+	Timestamp *int64  `locationName:"timestamp" type:"long" required:"true"`
 
 	metadataInputLogEvent `json:"-", xml:"-"`
 }
 
 type metadataInputLogEvent struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type LogGroup struct {
-	ARN               *string `locationName:"arn" type:"string" json:"arn,omitempty"`
-	CreationTime      *int64  `locationName:"creationTime" type:"long" json:"creationTime,omitempty"`
-	LogGroupName      *string `locationName:"logGroupName" type:"string" json:"logGroupName,omitempty"`
-	MetricFilterCount *int64  `locationName:"metricFilterCount" type:"integer" json:"metricFilterCount,omitempty"`
-	RetentionInDays   *int64  `locationName:"retentionInDays" type:"integer" json:"retentionInDays,omitempty"`
-	StoredBytes       *int64  `locationName:"storedBytes" type:"long" json:"storedBytes,omitempty"`
+	ARN               *string `locationName:"arn" type:"string"`
+	CreationTime      *int64  `locationName:"creationTime" type:"long"`
+	LogGroupName      *string `locationName:"logGroupName" type:"string"`
+	MetricFilterCount *int64  `locationName:"metricFilterCount" type:"integer"`
+	RetentionInDays   *int64  `locationName:"retentionInDays" type:"integer"`
+	StoredBytes       *int64  `locationName:"storedBytes" type:"long"`
 
 	metadataLogGroup `json:"-", xml:"-"`
 }
 
 type metadataLogGroup struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type LogStream struct {
-	ARN                 *string `locationName:"arn" type:"string" json:"arn,omitempty"`
-	CreationTime        *int64  `locationName:"creationTime" type:"long" json:"creationTime,omitempty"`
-	FirstEventTimestamp *int64  `locationName:"firstEventTimestamp" type:"long" json:"firstEventTimestamp,omitempty"`
-	LastEventTimestamp  *int64  `locationName:"lastEventTimestamp" type:"long" json:"lastEventTimestamp,omitempty"`
-	LastIngestionTime   *int64  `locationName:"lastIngestionTime" type:"long" json:"lastIngestionTime,omitempty"`
-	LogStreamName       *string `locationName:"logStreamName" type:"string" json:"logStreamName,omitempty"`
-	StoredBytes         *int64  `locationName:"storedBytes" type:"long" json:"storedBytes,omitempty"`
-	UploadSequenceToken *string `locationName:"uploadSequenceToken" type:"string" json:"uploadSequenceToken,omitempty"`
+	ARN                 *string `locationName:"arn" type:"string"`
+	CreationTime        *int64  `locationName:"creationTime" type:"long"`
+	FirstEventTimestamp *int64  `locationName:"firstEventTimestamp" type:"long"`
+	LastEventTimestamp  *int64  `locationName:"lastEventTimestamp" type:"long"`
+	LastIngestionTime   *int64  `locationName:"lastIngestionTime" type:"long"`
+	LogStreamName       *string `locationName:"logStreamName" type:"string"`
+	StoredBytes         *int64  `locationName:"storedBytes" type:"long"`
+	UploadSequenceToken *string `locationName:"uploadSequenceToken" type:"string"`
 
 	metadataLogStream `json:"-", xml:"-"`
 }
 
 type metadataLogStream struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type MetricFilter struct {
-	CreationTime          *int64                  `locationName:"creationTime" type:"long" json:"creationTime,omitempty"`
-	FilterName            *string                 `locationName:"filterName" type:"string" json:"filterName,omitempty"`
-	FilterPattern         *string                 `locationName:"filterPattern" type:"string" json:"filterPattern,omitempty"`
-	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list" json:"metricTransformations,omitempty"`
+	CreationTime          *int64                  `locationName:"creationTime" type:"long"`
+	FilterName            *string                 `locationName:"filterName" type:"string"`
+	FilterPattern         *string                 `locationName:"filterPattern" type:"string"`
+	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list"`
 
 	metadataMetricFilter `json:"-", xml:"-"`
 }
 
 type metadataMetricFilter struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type MetricFilterMatchRecord struct {
-	EventMessage    *string             `locationName:"eventMessage" type:"string" json:"eventMessage,omitempty"`
-	EventNumber     *int64              `locationName:"eventNumber" type:"long" json:"eventNumber,omitempty"`
-	ExtractedValues *map[string]*string `locationName:"extractedValues" type:"map" json:"extractedValues,omitempty"`
+	EventMessage    *string             `locationName:"eventMessage" type:"string"`
+	EventNumber     *int64              `locationName:"eventNumber" type:"long"`
+	ExtractedValues *map[string]*string `locationName:"extractedValues" type:"map"`
 
 	metadataMetricFilterMatchRecord `json:"-", xml:"-"`
 }
 
 type metadataMetricFilterMatchRecord struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type MetricTransformation struct {
-	MetricName      *string `locationName:"metricName" type:"string" required:"true"json:"metricName,omitempty"`
-	MetricNamespace *string `locationName:"metricNamespace" type:"string" required:"true"json:"metricNamespace,omitempty"`
-	MetricValue     *string `locationName:"metricValue" type:"string" required:"true"json:"metricValue,omitempty"`
+	MetricName      *string `locationName:"metricName" type:"string" required:"true"`
+	MetricNamespace *string `locationName:"metricNamespace" type:"string" required:"true"`
+	MetricValue     *string `locationName:"metricValue" type:"string" required:"true"`
 
 	metadataMetricTransformation `json:"-", xml:"-"`
 }
 
 type metadataMetricTransformation struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputLogEvent struct {
-	IngestionTime *int64  `locationName:"ingestionTime" type:"long" json:"ingestionTime,omitempty"`
-	Message       *string `locationName:"message" type:"string" json:"message,omitempty"`
-	Timestamp     *int64  `locationName:"timestamp" type:"long" json:"timestamp,omitempty"`
+	IngestionTime *int64  `locationName:"ingestionTime" type:"long"`
+	Message       *string `locationName:"message" type:"string"`
+	Timestamp     *int64  `locationName:"timestamp" type:"long"`
 
 	metadataOutputLogEvent `json:"-", xml:"-"`
 }
 
 type metadataOutputLogEvent struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutLogEventsInput struct {
-	LogEvents     []*InputLogEvent `locationName:"logEvents" type:"list" required:"true"json:"logEvents,omitempty"`
-	LogGroupName  *string          `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
-	LogStreamName *string          `locationName:"logStreamName" type:"string" required:"true"json:"logStreamName,omitempty"`
-	SequenceToken *string          `locationName:"sequenceToken" type:"string" json:"sequenceToken,omitempty"`
+	LogEvents     []*InputLogEvent `locationName:"logEvents" type:"list" required:"true"`
+	LogGroupName  *string          `locationName:"logGroupName" type:"string" required:"true"`
+	LogStreamName *string          `locationName:"logStreamName" type:"string" required:"true"`
+	SequenceToken *string          `locationName:"sequenceToken" type:"string"`
 
 	metadataPutLogEventsInput `json:"-", xml:"-"`
 }
 
 type metadataPutLogEventsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutLogEventsOutput struct {
-	NextSequenceToken *string `locationName:"nextSequenceToken" type:"string" json:"nextSequenceToken,omitempty"`
+	NextSequenceToken *string `locationName:"nextSequenceToken" type:"string"`
 
 	metadataPutLogEventsOutput `json:"-", xml:"-"`
 }
 
 type metadataPutLogEventsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutMetricFilterInput struct {
-	FilterName            *string                 `locationName:"filterName" type:"string" required:"true"json:"filterName,omitempty"`
-	FilterPattern         *string                 `locationName:"filterPattern" type:"string" required:"true"json:"filterPattern,omitempty"`
-	LogGroupName          *string                 `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
-	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list" required:"true"json:"metricTransformations,omitempty"`
+	FilterName            *string                 `locationName:"filterName" type:"string" required:"true"`
+	FilterPattern         *string                 `locationName:"filterPattern" type:"string" required:"true"`
+	LogGroupName          *string                 `locationName:"logGroupName" type:"string" required:"true"`
+	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list" required:"true"`
 
 	metadataPutMetricFilterInput `json:"-", xml:"-"`
 }
 
 type metadataPutMetricFilterInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutMetricFilterOutput struct {
@@ -699,18 +699,18 @@ type PutMetricFilterOutput struct {
 }
 
 type metadataPutMetricFilterOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutRetentionPolicyInput struct {
-	LogGroupName    *string `locationName:"logGroupName" type:"string" required:"true"json:"logGroupName,omitempty"`
-	RetentionInDays *int64  `locationName:"retentionInDays" type:"integer" required:"true"json:"retentionInDays,omitempty"`
+	LogGroupName    *string `locationName:"logGroupName" type:"string" required:"true"`
+	RetentionInDays *int64  `locationName:"retentionInDays" type:"integer" required:"true"`
 
 	metadataPutRetentionPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataPutRetentionPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutRetentionPolicyOutput struct {
@@ -718,26 +718,26 @@ type PutRetentionPolicyOutput struct {
 }
 
 type metadataPutRetentionPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TestMetricFilterInput struct {
-	FilterPattern    *string   `locationName:"filterPattern" type:"string" required:"true"json:"filterPattern,omitempty"`
-	LogEventMessages []*string `locationName:"logEventMessages" type:"list" required:"true"json:"logEventMessages,omitempty"`
+	FilterPattern    *string   `locationName:"filterPattern" type:"string" required:"true"`
+	LogEventMessages []*string `locationName:"logEventMessages" type:"list" required:"true"`
 
 	metadataTestMetricFilterInput `json:"-", xml:"-"`
 }
 
 type metadataTestMetricFilterInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TestMetricFilterOutput struct {
-	Matches []*MetricFilterMatchRecord `locationName:"matches" type:"list" json:"matches,omitempty"`
+	Matches []*MetricFilterMatchRecord `locationName:"matches" type:"list"`
 
 	metadataTestMetricFilterOutput `json:"-", xml:"-"`
 }
 
 type metadataTestMetricFilterOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

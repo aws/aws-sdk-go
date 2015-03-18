@@ -459,58 +459,58 @@ func (c *Route53Domains) UpdateTagsForDomain(input *UpdateTagsForDomainInput) (o
 var opUpdateTagsForDomain *aws.Operation
 
 type CheckDomainAvailabilityInput struct {
-	DomainName  *string `type:"string" required:"true"json:",omitempty"`
-	IDNLangCode *string `locationName:"IdnLangCode" type:"string" json:"IdnLangCode,omitempty"`
+	DomainName  *string `type:"string" required:"true"`
+	IDNLangCode *string `locationName:"IdnLangCode" type:"string"`
 
 	metadataCheckDomainAvailabilityInput `json:"-", xml:"-"`
 }
 
 type metadataCheckDomainAvailabilityInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CheckDomainAvailabilityOutput struct {
-	Availability *string `type:"string" required:"true"json:",omitempty"`
+	Availability *string `type:"string" required:"true"`
 
 	metadataCheckDomainAvailabilityOutput `json:"-", xml:"-"`
 }
 
 type metadataCheckDomainAvailabilityOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ContactDetail struct {
-	AddressLine1     *string       `type:"string" json:",omitempty"`
-	AddressLine2     *string       `type:"string" json:",omitempty"`
-	City             *string       `type:"string" json:",omitempty"`
-	ContactType      *string       `type:"string" json:",omitempty"`
-	CountryCode      *string       `type:"string" json:",omitempty"`
-	Email            *string       `type:"string" json:",omitempty"`
-	ExtraParams      []*ExtraParam `type:"list" json:",omitempty"`
-	Fax              *string       `type:"string" json:",omitempty"`
-	FirstName        *string       `type:"string" json:",omitempty"`
-	LastName         *string       `type:"string" json:",omitempty"`
-	OrganizationName *string       `type:"string" json:",omitempty"`
-	PhoneNumber      *string       `type:"string" json:",omitempty"`
-	State            *string       `type:"string" json:",omitempty"`
-	ZipCode          *string       `type:"string" json:",omitempty"`
+	AddressLine1     *string       `type:"string"`
+	AddressLine2     *string       `type:"string"`
+	City             *string       `type:"string"`
+	ContactType      *string       `type:"string"`
+	CountryCode      *string       `type:"string"`
+	Email            *string       `type:"string"`
+	ExtraParams      []*ExtraParam `type:"list"`
+	Fax              *string       `type:"string"`
+	FirstName        *string       `type:"string"`
+	LastName         *string       `type:"string"`
+	OrganizationName *string       `type:"string"`
+	PhoneNumber      *string       `type:"string"`
+	State            *string       `type:"string"`
+	ZipCode          *string       `type:"string"`
 
 	metadataContactDetail `json:"-", xml:"-"`
 }
 
 type metadataContactDetail struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteTagsForDomainInput struct {
-	DomainName   *string   `type:"string" required:"true"json:",omitempty"`
-	TagsToDelete []*string `type:"list" required:"true"json:",omitempty"`
+	DomainName   *string   `type:"string" required:"true"`
+	TagsToDelete []*string `type:"list" required:"true"`
 
 	metadataDeleteTagsForDomainInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTagsForDomainInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteTagsForDomainOutput struct {
@@ -518,17 +518,17 @@ type DeleteTagsForDomainOutput struct {
 }
 
 type metadataDeleteTagsForDomainOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableDomainAutoRenewInput struct {
-	DomainName *string `type:"string" required:"true"json:",omitempty"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataDisableDomainAutoRenewInput `json:"-", xml:"-"`
 }
 
 type metadataDisableDomainAutoRenewInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableDomainAutoRenewOutput struct {
@@ -536,50 +536,50 @@ type DisableDomainAutoRenewOutput struct {
 }
 
 type metadataDisableDomainAutoRenewOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableDomainTransferLockInput struct {
-	DomainName *string `type:"string" required:"true"json:",omitempty"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataDisableDomainTransferLockInput `json:"-", xml:"-"`
 }
 
 type metadataDisableDomainTransferLockInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableDomainTransferLockOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" required:"true"json:"OperationId,omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataDisableDomainTransferLockOutput `json:"-", xml:"-"`
 }
 
 type metadataDisableDomainTransferLockOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DomainSummary struct {
-	AutoRenew    *bool      `type:"boolean" json:",omitempty"`
-	DomainName   *string    `type:"string" required:"true"json:",omitempty"`
-	Expiry       *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	TransferLock *bool      `type:"boolean" json:",omitempty"`
+	AutoRenew    *bool      `type:"boolean"`
+	DomainName   *string    `type:"string" required:"true"`
+	Expiry       *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TransferLock *bool      `type:"boolean"`
 
 	metadataDomainSummary `json:"-", xml:"-"`
 }
 
 type metadataDomainSummary struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableDomainAutoRenewInput struct {
-	DomainName *string `type:"string" required:"true"json:",omitempty"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataEnableDomainAutoRenewInput `json:"-", xml:"-"`
 }
 
 type metadataEnableDomainAutoRenewInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableDomainAutoRenewOutput struct {
@@ -587,361 +587,361 @@ type EnableDomainAutoRenewOutput struct {
 }
 
 type metadataEnableDomainAutoRenewOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableDomainTransferLockInput struct {
-	DomainName *string `type:"string" required:"true"json:",omitempty"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataEnableDomainTransferLockInput `json:"-", xml:"-"`
 }
 
 type metadataEnableDomainTransferLockInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableDomainTransferLockOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" required:"true"json:"OperationId,omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataEnableDomainTransferLockOutput `json:"-", xml:"-"`
 }
 
 type metadataEnableDomainTransferLockOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ExtraParam struct {
-	Name  *string `type:"string" required:"true"json:",omitempty"`
-	Value *string `type:"string" required:"true"json:",omitempty"`
+	Name  *string `type:"string" required:"true"`
+	Value *string `type:"string" required:"true"`
 
 	metadataExtraParam `json:"-", xml:"-"`
 }
 
 type metadataExtraParam struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetDomainDetailInput struct {
-	DomainName *string `type:"string" required:"true"json:",omitempty"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataGetDomainDetailInput `json:"-", xml:"-"`
 }
 
 type metadataGetDomainDetailInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetDomainDetailOutput struct {
-	AbuseContactEmail *string        `type:"string" json:",omitempty"`
-	AbuseContactPhone *string        `type:"string" json:",omitempty"`
-	AdminContact      *ContactDetail `type:"structure" required:"true"json:",omitempty"`
-	AdminPrivacy      *bool          `type:"boolean" json:",omitempty"`
-	AutoRenew         *bool          `type:"boolean" json:",omitempty"`
-	CreationDate      *time.Time     `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	DNSSec            *string        `locationName:"DnsSec" type:"string" json:"DnsSec,omitempty"`
-	DomainName        *string        `type:"string" required:"true"json:",omitempty"`
-	ExpirationDate    *time.Time     `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Nameservers       []*Nameserver  `type:"list" required:"true"json:",omitempty"`
-	RegistrantContact *ContactDetail `type:"structure" required:"true"json:",omitempty"`
-	RegistrantPrivacy *bool          `type:"boolean" json:",omitempty"`
-	RegistrarName     *string        `type:"string" json:",omitempty"`
-	RegistrarURL      *string        `locationName:"RegistrarUrl" type:"string" json:"RegistrarUrl,omitempty"`
-	RegistryDomainID  *string        `locationName:"RegistryDomainId" type:"string" json:"RegistryDomainId,omitempty"`
-	Reseller          *string        `type:"string" json:",omitempty"`
-	StatusList        []*string      `type:"list" json:",omitempty"`
-	TechContact       *ContactDetail `type:"structure" required:"true"json:",omitempty"`
-	TechPrivacy       *bool          `type:"boolean" json:",omitempty"`
-	UpdatedDate       *time.Time     `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	WhoIsServer       *string        `type:"string" json:",omitempty"`
+	AbuseContactEmail *string        `type:"string"`
+	AbuseContactPhone *string        `type:"string"`
+	AdminContact      *ContactDetail `type:"structure" required:"true"`
+	AdminPrivacy      *bool          `type:"boolean"`
+	AutoRenew         *bool          `type:"boolean"`
+	CreationDate      *time.Time     `type:"timestamp" timestampFormat:"unix"`
+	DNSSec            *string        `locationName:"DnsSec" type:"string"`
+	DomainName        *string        `type:"string" required:"true"`
+	ExpirationDate    *time.Time     `type:"timestamp" timestampFormat:"unix"`
+	Nameservers       []*Nameserver  `type:"list" required:"true"`
+	RegistrantContact *ContactDetail `type:"structure" required:"true"`
+	RegistrantPrivacy *bool          `type:"boolean"`
+	RegistrarName     *string        `type:"string"`
+	RegistrarURL      *string        `locationName:"RegistrarUrl" type:"string"`
+	RegistryDomainID  *string        `locationName:"RegistryDomainId" type:"string"`
+	Reseller          *string        `type:"string"`
+	StatusList        []*string      `type:"list"`
+	TechContact       *ContactDetail `type:"structure" required:"true"`
+	TechPrivacy       *bool          `type:"boolean"`
+	UpdatedDate       *time.Time     `type:"timestamp" timestampFormat:"unix"`
+	WhoIsServer       *string        `type:"string"`
 
 	metadataGetDomainDetailOutput `json:"-", xml:"-"`
 }
 
 type metadataGetDomainDetailOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetOperationDetailInput struct {
-	OperationID *string `locationName:"OperationId" type:"string" required:"true"json:"OperationId,omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataGetOperationDetailInput `json:"-", xml:"-"`
 }
 
 type metadataGetOperationDetailInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetOperationDetailOutput struct {
-	DomainName    *string    `type:"string" json:",omitempty"`
-	Message       *string    `type:"string" json:",omitempty"`
-	OperationID   *string    `locationName:"OperationId" type:"string" json:"OperationId,omitempty"`
-	Status        *string    `type:"string" json:",omitempty"`
-	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Type          *string    `type:"string" json:",omitempty"`
+	DomainName    *string    `type:"string"`
+	Message       *string    `type:"string"`
+	OperationID   *string    `locationName:"OperationId" type:"string"`
+	Status        *string    `type:"string"`
+	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Type          *string    `type:"string"`
 
 	metadataGetOperationDetailOutput `json:"-", xml:"-"`
 }
 
 type metadataGetOperationDetailOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListDomainsInput struct {
-	Marker   *string `type:"string" json:",omitempty"`
-	MaxItems *int64  `type:"integer" json:",omitempty"`
+	Marker   *string `type:"string"`
+	MaxItems *int64  `type:"integer"`
 
 	metadataListDomainsInput `json:"-", xml:"-"`
 }
 
 type metadataListDomainsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListDomainsOutput struct {
-	Domains        []*DomainSummary `type:"list" required:"true"json:",omitempty"`
-	NextPageMarker *string          `type:"string" json:",omitempty"`
+	Domains        []*DomainSummary `type:"list" required:"true"`
+	NextPageMarker *string          `type:"string"`
 
 	metadataListDomainsOutput `json:"-", xml:"-"`
 }
 
 type metadataListDomainsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListOperationsInput struct {
-	Marker   *string `type:"string" json:",omitempty"`
-	MaxItems *int64  `type:"integer" json:",omitempty"`
+	Marker   *string `type:"string"`
+	MaxItems *int64  `type:"integer"`
 
 	metadataListOperationsInput `json:"-", xml:"-"`
 }
 
 type metadataListOperationsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListOperationsOutput struct {
-	NextPageMarker *string             `type:"string" json:",omitempty"`
-	Operations     []*OperationSummary `type:"list" required:"true"json:",omitempty"`
+	NextPageMarker *string             `type:"string"`
+	Operations     []*OperationSummary `type:"list" required:"true"`
 
 	metadataListOperationsOutput `json:"-", xml:"-"`
 }
 
 type metadataListOperationsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListTagsForDomainInput struct {
-	DomainName *string `type:"string" required:"true"json:",omitempty"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataListTagsForDomainInput `json:"-", xml:"-"`
 }
 
 type metadataListTagsForDomainInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListTagsForDomainOutput struct {
-	TagList []*Tag `type:"list" required:"true"json:",omitempty"`
+	TagList []*Tag `type:"list" required:"true"`
 
 	metadataListTagsForDomainOutput `json:"-", xml:"-"`
 }
 
 type metadataListTagsForDomainOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Nameserver struct {
-	GlueIPs []*string `locationName:"GlueIps" type:"list" json:"GlueIps,omitempty"`
-	Name    *string   `type:"string" required:"true"json:",omitempty"`
+	GlueIPs []*string `locationName:"GlueIps" type:"list"`
+	Name    *string   `type:"string" required:"true"`
 
 	metadataNameserver `json:"-", xml:"-"`
 }
 
 type metadataNameserver struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OperationSummary struct {
-	OperationID   *string    `locationName:"OperationId" type:"string" required:"true"json:"OperationId,omitempty"`
-	Status        *string    `type:"string" required:"true"json:",omitempty"`
-	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"json:",omitempty"`
-	Type          *string    `type:"string" required:"true"json:",omitempty"`
+	OperationID   *string    `locationName:"OperationId" type:"string" required:"true"`
+	Status        *string    `type:"string" required:"true"`
+	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	Type          *string    `type:"string" required:"true"`
 
 	metadataOperationSummary `json:"-", xml:"-"`
 }
 
 type metadataOperationSummary struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterDomainInput struct {
-	AdminContact                    *ContactDetail `type:"structure" required:"true"json:",omitempty"`
-	AutoRenew                       *bool          `type:"boolean" json:",omitempty"`
-	DomainName                      *string        `type:"string" required:"true"json:",omitempty"`
-	DurationInYears                 *int64         `type:"integer" required:"true"json:",omitempty"`
-	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string" json:"IdnLangCode,omitempty"`
-	PrivacyProtectAdminContact      *bool          `type:"boolean" json:",omitempty"`
-	PrivacyProtectRegistrantContact *bool          `type:"boolean" json:",omitempty"`
-	PrivacyProtectTechContact       *bool          `type:"boolean" json:",omitempty"`
-	RegistrantContact               *ContactDetail `type:"structure" required:"true"json:",omitempty"`
-	TechContact                     *ContactDetail `type:"structure" required:"true"json:",omitempty"`
+	AdminContact                    *ContactDetail `type:"structure" required:"true"`
+	AutoRenew                       *bool          `type:"boolean"`
+	DomainName                      *string        `type:"string" required:"true"`
+	DurationInYears                 *int64         `type:"integer" required:"true"`
+	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string"`
+	PrivacyProtectAdminContact      *bool          `type:"boolean"`
+	PrivacyProtectRegistrantContact *bool          `type:"boolean"`
+	PrivacyProtectTechContact       *bool          `type:"boolean"`
+	RegistrantContact               *ContactDetail `type:"structure" required:"true"`
+	TechContact                     *ContactDetail `type:"structure" required:"true"`
 
 	metadataRegisterDomainInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterDomainInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterDomainOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" required:"true"json:"OperationId,omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataRegisterDomainOutput `json:"-", xml:"-"`
 }
 
 type metadataRegisterDomainOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RetrieveDomainAuthCodeInput struct {
-	DomainName *string `type:"string" required:"true"json:",omitempty"`
+	DomainName *string `type:"string" required:"true"`
 
 	metadataRetrieveDomainAuthCodeInput `json:"-", xml:"-"`
 }
 
 type metadataRetrieveDomainAuthCodeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RetrieveDomainAuthCodeOutput struct {
-	AuthCode *string `type:"string" required:"true"json:",omitempty"`
+	AuthCode *string `type:"string" required:"true"`
 
 	metadataRetrieveDomainAuthCodeOutput `json:"-", xml:"-"`
 }
 
 type metadataRetrieveDomainAuthCodeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Tag struct {
-	Key   *string `type:"string" json:",omitempty"`
-	Value *string `type:"string" json:",omitempty"`
+	Key   *string `type:"string"`
+	Value *string `type:"string"`
 
 	metadataTag `json:"-", xml:"-"`
 }
 
 type metadataTag struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TransferDomainInput struct {
-	AdminContact                    *ContactDetail `type:"structure" required:"true"json:",omitempty"`
-	AuthCode                        *string        `type:"string" json:",omitempty"`
-	AutoRenew                       *bool          `type:"boolean" json:",omitempty"`
-	DomainName                      *string        `type:"string" required:"true"json:",omitempty"`
-	DurationInYears                 *int64         `type:"integer" required:"true"json:",omitempty"`
-	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string" json:"IdnLangCode,omitempty"`
-	Nameservers                     []*Nameserver  `type:"list" json:",omitempty"`
-	PrivacyProtectAdminContact      *bool          `type:"boolean" json:",omitempty"`
-	PrivacyProtectRegistrantContact *bool          `type:"boolean" json:",omitempty"`
-	PrivacyProtectTechContact       *bool          `type:"boolean" json:",omitempty"`
-	RegistrantContact               *ContactDetail `type:"structure" required:"true"json:",omitempty"`
-	TechContact                     *ContactDetail `type:"structure" required:"true"json:",omitempty"`
+	AdminContact                    *ContactDetail `type:"structure" required:"true"`
+	AuthCode                        *string        `type:"string"`
+	AutoRenew                       *bool          `type:"boolean"`
+	DomainName                      *string        `type:"string" required:"true"`
+	DurationInYears                 *int64         `type:"integer" required:"true"`
+	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string"`
+	Nameservers                     []*Nameserver  `type:"list"`
+	PrivacyProtectAdminContact      *bool          `type:"boolean"`
+	PrivacyProtectRegistrantContact *bool          `type:"boolean"`
+	PrivacyProtectTechContact       *bool          `type:"boolean"`
+	RegistrantContact               *ContactDetail `type:"structure" required:"true"`
+	TechContact                     *ContactDetail `type:"structure" required:"true"`
 
 	metadataTransferDomainInput `json:"-", xml:"-"`
 }
 
 type metadataTransferDomainInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TransferDomainOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" required:"true"json:"OperationId,omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataTransferDomainOutput `json:"-", xml:"-"`
 }
 
 type metadataTransferDomainOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateDomainContactInput struct {
-	AdminContact      *ContactDetail `type:"structure" json:",omitempty"`
-	DomainName        *string        `type:"string" required:"true"json:",omitempty"`
-	RegistrantContact *ContactDetail `type:"structure" json:",omitempty"`
-	TechContact       *ContactDetail `type:"structure" json:",omitempty"`
+	AdminContact      *ContactDetail `type:"structure"`
+	DomainName        *string        `type:"string" required:"true"`
+	RegistrantContact *ContactDetail `type:"structure"`
+	TechContact       *ContactDetail `type:"structure"`
 
 	metadataUpdateDomainContactInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateDomainContactInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateDomainContactOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" required:"true"json:"OperationId,omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataUpdateDomainContactOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateDomainContactOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateDomainContactPrivacyInput struct {
-	AdminPrivacy      *bool   `type:"boolean" json:",omitempty"`
-	DomainName        *string `type:"string" required:"true"json:",omitempty"`
-	RegistrantPrivacy *bool   `type:"boolean" json:",omitempty"`
-	TechPrivacy       *bool   `type:"boolean" json:",omitempty"`
+	AdminPrivacy      *bool   `type:"boolean"`
+	DomainName        *string `type:"string" required:"true"`
+	RegistrantPrivacy *bool   `type:"boolean"`
+	TechPrivacy       *bool   `type:"boolean"`
 
 	metadataUpdateDomainContactPrivacyInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateDomainContactPrivacyInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateDomainContactPrivacyOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" required:"true"json:"OperationId,omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataUpdateDomainContactPrivacyOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateDomainContactPrivacyOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateDomainNameserversInput struct {
-	DomainName  *string       `type:"string" required:"true"json:",omitempty"`
-	FIAuthKey   *string       `type:"string" json:",omitempty"`
-	Nameservers []*Nameserver `type:"list" required:"true"json:",omitempty"`
+	DomainName  *string       `type:"string" required:"true"`
+	FIAuthKey   *string       `type:"string"`
+	Nameservers []*Nameserver `type:"list" required:"true"`
 
 	metadataUpdateDomainNameserversInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateDomainNameserversInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateDomainNameserversOutput struct {
-	OperationID *string `locationName:"OperationId" type:"string" required:"true"json:"OperationId,omitempty"`
+	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataUpdateDomainNameserversOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateDomainNameserversOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateTagsForDomainInput struct {
-	DomainName   *string `type:"string" required:"true"json:",omitempty"`
-	TagsToUpdate []*Tag  `type:"list" json:",omitempty"`
+	DomainName   *string `type:"string" required:"true"`
+	TagsToUpdate []*Tag  `type:"list"`
 
 	metadataUpdateTagsForDomainInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateTagsForDomainInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateTagsForDomainOutput struct {
@@ -949,5 +949,5 @@ type UpdateTagsForDomainOutput struct {
 }
 
 type metadataUpdateTagsForDomainOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

@@ -61,7 +61,7 @@ func NewOutputService1ProtocolTest(config *OutputService1ProtocolTestConfig) *Ou
 }
 
 // OutputService1TestCaseOperation1Request generates a request for the OutputService1TestCaseOperation1 operation.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputService1TestCaseOperation1Output) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputService1TestCaseOperation1Output) {
 	if opOutputService1TestCaseOperation1 == nil {
 		opOutputService1TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
@@ -74,7 +74,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(inp
 	return
 }
 
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputService1TestCaseOperation1Output, err error) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputService1TestCaseOperation1Output, err error) {
 	req, out := c.OutputService1TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -83,32 +83,32 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *Out
 
 var opOutputService1TestCaseOperation1 *aws.Operation
 
-type OutputService1TestShapeOutputService1TestCaseOperation1Input struct {
-	metadataOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-", xml:"-"`
-}
-
-type metadataOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
-}
-
 type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
-	Char              *string  `type:"character" json:",omitempty"`
-	Double            *float64 `type:"double" json:",omitempty"`
-	FalseBool         *bool    `type:"boolean" json:",omitempty"`
-	Float             *float64 `type:"float" json:",omitempty"`
-	ImaHeader         *string  `location:"header" type:"string" json:",omitempty"`
-	ImaHeaderLocation *string  `location:"header" locationName:"X-Foo" type:"string" json:"X-Foo,omitempty"`
-	Long              *int64   `type:"long" json:",omitempty"`
-	Num               *int64   `type:"integer" json:",omitempty"`
-	Status            *int64   `location:"statusCode" type:"integer" json:"-" xml:"-"`
-	Str               *string  `type:"string" json:",omitempty"`
-	TrueBool          *bool    `type:"boolean" json:",omitempty"`
+	Char              *string  `type:"character"`
+	Double            *float64 `type:"double"`
+	FalseBool         *bool    `type:"boolean"`
+	Float             *float64 `type:"float"`
+	ImaHeader         *string  `location:"header" type:"string"`
+	ImaHeaderLocation *string  `location:"header" locationName:"X-Foo" type:"string"`
+	Long              *int64   `type:"long"`
+	Num               *int64   `type:"integer"`
+	Status            *int64   `location:"statusCode" type:"integer"`
+	Str               *string  `type:"string"`
+	TrueBool          *bool    `type:"boolean"`
 
 	metadataOutputService1TestShapeOutputService1TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService1TestShapeOutputService1TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
+	metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-", xml:"-"`
+}
+
+type metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 // OutputService2ProtocolTest is a client for OutputService2ProtocolTest.
@@ -167,13 +167,13 @@ func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1(input *Out
 var opOutputService2TestCaseOperation1 *aws.Operation
 
 type OutputService2TestShapeBlobContainer struct {
-	Foo []byte `locationName:"foo" type:"blob" json:"foo,omitempty"`
+	Foo []byte `locationName:"foo" type:"blob"`
 
 	metadataOutputService2TestShapeBlobContainer `json:"-", xml:"-"`
 }
 
 type metadataOutputService2TestShapeBlobContainer struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
@@ -181,18 +181,18 @@ type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
 }
 
 type metadataOutputService2TestShapeOutputService2TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService2TestShapeOutputService2TestCaseOperation1Output struct {
-	BlobMember   []byte                                `type:"blob" json:",omitempty"`
-	StructMember *OutputService2TestShapeBlobContainer `type:"structure" json:",omitempty"`
+	BlobMember   []byte                                `type:"blob"`
+	StructMember *OutputService2TestShapeBlobContainer `type:"structure"`
 
 	metadataOutputService2TestShapeOutputService2TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService2TestShapeOutputService2TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 // OutputService3ProtocolTest is a client for OutputService3ProtocolTest.
@@ -255,28 +255,28 @@ type OutputService3TestShapeOutputService3TestCaseOperation1Input struct {
 }
 
 type metadataOutputService3TestShapeOutputService3TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
-	StructMember *OutputService3TestShapeTimeContainer `type:"structure" json:",omitempty"`
-	TimeMember   *time.Time                            `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	StructMember *OutputService3TestShapeTimeContainer `type:"structure"`
+	TimeMember   *time.Time                            `type:"timestamp" timestampFormat:"unix"`
 
 	metadataOutputService3TestShapeOutputService3TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService3TestShapeOutputService3TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService3TestShapeTimeContainer struct {
-	Foo *time.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix" json:"foo,omitempty"`
+	Foo *time.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix"`
 
 	metadataOutputService3TestShapeTimeContainer `json:"-", xml:"-"`
 }
 
 type metadataOutputService3TestShapeTimeContainer struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 // OutputService4ProtocolTest is a client for OutputService4ProtocolTest.
@@ -339,17 +339,17 @@ type OutputService4TestShapeOutputService4TestCaseOperation1Input struct {
 }
 
 type metadataOutputService4TestShapeOutputService4TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService4TestShapeOutputService4TestCaseOperation1Output struct {
-	ListMember []*string `type:"list" json:",omitempty"`
+	ListMember []*string `type:"list"`
 
 	metadataOutputService4TestShapeOutputService4TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService4TestShapeOutputService4TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 // OutputService5ProtocolTest is a client for OutputService5ProtocolTest.
@@ -412,27 +412,27 @@ type OutputService5TestShapeOutputService5TestCaseOperation1Input struct {
 }
 
 type metadataOutputService5TestShapeOutputService5TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService5TestShapeOutputService5TestCaseOperation1Output struct {
-	ListMember []*OutputService5TestShapeSingleStruct `type:"list" json:",omitempty"`
+	ListMember []*OutputService5TestShapeSingleStruct `type:"list"`
 
 	metadataOutputService5TestShapeOutputService5TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService5TestShapeOutputService5TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService5TestShapeSingleStruct struct {
-	Foo *string `type:"string" json:",omitempty"`
+	Foo *string `type:"string"`
 
 	metadataOutputService5TestShapeSingleStruct `json:"-", xml:"-"`
 }
 
 type metadataOutputService5TestShapeSingleStruct struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 // OutputService6ProtocolTest is a client for OutputService6ProtocolTest.
@@ -495,17 +495,17 @@ type OutputService6TestShapeOutputService6TestCaseOperation1Input struct {
 }
 
 type metadataOutputService6TestShapeOutputService6TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService6TestShapeOutputService6TestCaseOperation1Output struct {
-	MapMember *map[string][]*int64 `type:"map" json:",omitempty"`
+	MapMember *map[string][]*int64 `type:"map"`
 
 	metadataOutputService6TestShapeOutputService6TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService6TestShapeOutputService6TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 // OutputService7ProtocolTest is a client for OutputService7ProtocolTest.
@@ -568,17 +568,17 @@ type OutputService7TestShapeOutputService7TestCaseOperation1Input struct {
 }
 
 type metadataOutputService7TestShapeOutputService7TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService7TestShapeOutputService7TestCaseOperation1Output struct {
-	MapMember *map[string]*time.Time `type:"map" json:",omitempty"`
+	MapMember *map[string]*time.Time `type:"map"`
 
 	metadataOutputService7TestShapeOutputService7TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService7TestShapeOutputService7TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 // OutputService8ProtocolTest is a client for OutputService8ProtocolTest.
@@ -641,17 +641,17 @@ type OutputService8TestShapeOutputService8TestCaseOperation1Input struct {
 }
 
 type metadataOutputService8TestShapeOutputService8TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService8TestShapeOutputService8TestCaseOperation1Output struct {
-	StrType *string `type:"string" json:",omitempty"`
+	StrType *string `type:"string"`
 
 	metadataOutputService8TestShapeOutputService8TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService8TestShapeOutputService8TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 // OutputService9ProtocolTest is a client for OutputService9ProtocolTest.
@@ -714,18 +714,18 @@ type OutputService9TestShapeOutputService9TestCaseOperation1Input struct {
 }
 
 type metadataOutputService9TestShapeOutputService9TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService9TestShapeOutputService9TestCaseOperation1Output struct {
-	AllHeaders      *map[string]*string `location:"headers" type:"map" json:"-" xml:"-"`
-	PrefixedHeaders *map[string]*string `location:"headers" locationName:"X-" type:"map" json:"-" xml:"-"`
+	AllHeaders      *map[string]*string `location:"headers" type:"map"`
+	PrefixedHeaders *map[string]*string `location:"headers" locationName:"X-" type:"map"`
 
 	metadataOutputService9TestShapeOutputService9TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService9TestShapeOutputService9TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 // OutputService10ProtocolTest is a client for OutputService10ProtocolTest.
@@ -784,13 +784,13 @@ func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1(input *O
 var opOutputService10TestCaseOperation1 *aws.Operation
 
 type OutputService10TestShapeBodyStructure struct {
-	Foo *string `type:"string" json:",omitempty"`
+	Foo *string `type:"string"`
 
 	metadataOutputService10TestShapeBodyStructure `json:"-", xml:"-"`
 }
 
 type metadataOutputService10TestShapeBodyStructure struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService10TestShapeOutputService10TestCaseOperation1Input struct {
@@ -798,18 +798,18 @@ type OutputService10TestShapeOutputService10TestCaseOperation1Input struct {
 }
 
 type metadataOutputService10TestShapeOutputService10TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService10TestShapeOutputService10TestCaseOperation1Output struct {
-	Data   *OutputService10TestShapeBodyStructure `type:"structure" json:",omitempty"`
-	Header *string                                `location:"header" locationName:"X-Foo" type:"string" json:"-" xml:"-"`
+	Data   *OutputService10TestShapeBodyStructure `type:"structure"`
+	Header *string                                `location:"header" locationName:"X-Foo" type:"string"`
 
 	metadataOutputService10TestShapeOutputService10TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService10TestShapeOutputService10TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" payload:"Data" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" payload:"Data"`
 }
 
 // OutputService11ProtocolTest is a client for OutputService11ProtocolTest.
@@ -872,17 +872,17 @@ type OutputService11TestShapeOutputService11TestCaseOperation1Input struct {
 }
 
 type metadataOutputService11TestShapeOutputService11TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService11TestShapeOutputService11TestCaseOperation1Output struct {
-	Stream []byte `type:"blob" json:",omitempty"`
+	Stream []byte `type:"blob"`
 
 	metadataOutputService11TestShapeOutputService11TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService11TestShapeOutputService11TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure" payload:"Stream" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" payload:"Stream"`
 }
 
 //

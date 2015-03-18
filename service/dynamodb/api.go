@@ -334,670 +334,670 @@ func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (output *UpdateTableOutp
 var opUpdateTable *aws.Operation
 
 type AttributeDefinition struct {
-	AttributeName *string `type:"string" required:"true"json:",omitempty"`
-	AttributeType *string `type:"string" required:"true"json:",omitempty"`
+	AttributeName *string `type:"string" required:"true"`
+	AttributeType *string `type:"string" required:"true"`
 
 	metadataAttributeDefinition `json:"-", xml:"-"`
 }
 
 type metadataAttributeDefinition struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttributeValue struct {
-	B    []byte                      `type:"blob" json:",omitempty"`
-	BOOL *bool                       `type:"boolean" json:",omitempty"`
-	BS   [][]byte                    `type:"list" json:",omitempty"`
-	L    []*AttributeValue           `type:"list" json:",omitempty"`
-	M    *map[string]*AttributeValue `type:"map" json:",omitempty"`
-	N    *string                     `type:"string" json:",omitempty"`
-	NS   []*string                   `type:"list" json:",omitempty"`
-	NULL *bool                       `type:"boolean" json:",omitempty"`
-	S    *string                     `type:"string" json:",omitempty"`
-	SS   []*string                   `type:"list" json:",omitempty"`
+	B    []byte                      `type:"blob"`
+	BOOL *bool                       `type:"boolean"`
+	BS   [][]byte                    `type:"list"`
+	L    []*AttributeValue           `type:"list"`
+	M    *map[string]*AttributeValue `type:"map"`
+	N    *string                     `type:"string"`
+	NS   []*string                   `type:"list"`
+	NULL *bool                       `type:"boolean"`
+	S    *string                     `type:"string"`
+	SS   []*string                   `type:"list"`
 
 	metadataAttributeValue `json:"-", xml:"-"`
 }
 
 type metadataAttributeValue struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttributeValueUpdate struct {
-	Action *string         `type:"string" json:",omitempty"`
-	Value  *AttributeValue `type:"structure" json:",omitempty"`
+	Action *string         `type:"string"`
+	Value  *AttributeValue `type:"structure"`
 
 	metadataAttributeValueUpdate `json:"-", xml:"-"`
 }
 
 type metadataAttributeValueUpdate struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BatchGetItemInput struct {
-	RequestItems           *map[string]*KeysAndAttributes `type:"map" required:"true"json:",omitempty"`
-	ReturnConsumedCapacity *string                        `type:"string" json:",omitempty"`
+	RequestItems           *map[string]*KeysAndAttributes `type:"map" required:"true"`
+	ReturnConsumedCapacity *string                        `type:"string"`
 
 	metadataBatchGetItemInput `json:"-", xml:"-"`
 }
 
 type metadataBatchGetItemInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BatchGetItemOutput struct {
-	ConsumedCapacity []*ConsumedCapacity                       `type:"list" json:",omitempty"`
-	Responses        *map[string][]*map[string]*AttributeValue `type:"map" json:",omitempty"`
-	UnprocessedKeys  *map[string]*KeysAndAttributes            `type:"map" json:",omitempty"`
+	ConsumedCapacity []*ConsumedCapacity                       `type:"list"`
+	Responses        *map[string][]*map[string]*AttributeValue `type:"map"`
+	UnprocessedKeys  *map[string]*KeysAndAttributes            `type:"map"`
 
 	metadataBatchGetItemOutput `json:"-", xml:"-"`
 }
 
 type metadataBatchGetItemOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BatchWriteItemInput struct {
-	RequestItems                *map[string][]*WriteRequest `type:"map" required:"true"json:",omitempty"`
-	ReturnConsumedCapacity      *string                     `type:"string" json:",omitempty"`
-	ReturnItemCollectionMetrics *string                     `type:"string" json:",omitempty"`
+	RequestItems                *map[string][]*WriteRequest `type:"map" required:"true"`
+	ReturnConsumedCapacity      *string                     `type:"string"`
+	ReturnItemCollectionMetrics *string                     `type:"string"`
 
 	metadataBatchWriteItemInput `json:"-", xml:"-"`
 }
 
 type metadataBatchWriteItemInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BatchWriteItemOutput struct {
-	ConsumedCapacity      []*ConsumedCapacity                  `type:"list" json:",omitempty"`
-	ItemCollectionMetrics *map[string][]*ItemCollectionMetrics `type:"map" json:",omitempty"`
-	UnprocessedItems      *map[string][]*WriteRequest          `type:"map" json:",omitempty"`
+	ConsumedCapacity      []*ConsumedCapacity                  `type:"list"`
+	ItemCollectionMetrics *map[string][]*ItemCollectionMetrics `type:"map"`
+	UnprocessedItems      *map[string][]*WriteRequest          `type:"map"`
 
 	metadataBatchWriteItemOutput `json:"-", xml:"-"`
 }
 
 type metadataBatchWriteItemOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Capacity struct {
-	CapacityUnits *float64 `type:"double" json:",omitempty"`
+	CapacityUnits *float64 `type:"double"`
 
 	metadataCapacity `json:"-", xml:"-"`
 }
 
 type metadataCapacity struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Condition struct {
-	AttributeValueList []*AttributeValue `type:"list" json:",omitempty"`
-	ComparisonOperator *string           `type:"string" required:"true"json:",omitempty"`
+	AttributeValueList []*AttributeValue `type:"list"`
+	ComparisonOperator *string           `type:"string" required:"true"`
 
 	metadataCondition `json:"-", xml:"-"`
 }
 
 type metadataCondition struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ConsumedCapacity struct {
-	CapacityUnits          *float64              `type:"double" json:",omitempty"`
-	GlobalSecondaryIndexes *map[string]*Capacity `type:"map" json:",omitempty"`
-	LocalSecondaryIndexes  *map[string]*Capacity `type:"map" json:",omitempty"`
-	Table                  *Capacity             `type:"structure" json:",omitempty"`
-	TableName              *string               `type:"string" json:",omitempty"`
+	CapacityUnits          *float64              `type:"double"`
+	GlobalSecondaryIndexes *map[string]*Capacity `type:"map"`
+	LocalSecondaryIndexes  *map[string]*Capacity `type:"map"`
+	Table                  *Capacity             `type:"structure"`
+	TableName              *string               `type:"string"`
 
 	metadataConsumedCapacity `json:"-", xml:"-"`
 }
 
 type metadataConsumedCapacity struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateGlobalSecondaryIndexAction struct {
-	IndexName             *string                `type:"string" required:"true"json:",omitempty"`
-	KeySchema             []*KeySchemaElement    `type:"list" required:"true"json:",omitempty"`
-	Projection            *Projection            `type:"structure" required:"true"json:",omitempty"`
-	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"json:",omitempty"`
+	IndexName             *string                `type:"string" required:"true"`
+	KeySchema             []*KeySchemaElement    `type:"list" required:"true"`
+	Projection            *Projection            `type:"structure" required:"true"`
+	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 
 	metadataCreateGlobalSecondaryIndexAction `json:"-", xml:"-"`
 }
 
 type metadataCreateGlobalSecondaryIndexAction struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateTableInput struct {
-	AttributeDefinitions   []*AttributeDefinition  `type:"list" required:"true"json:",omitempty"`
-	GlobalSecondaryIndexes []*GlobalSecondaryIndex `type:"list" json:",omitempty"`
-	KeySchema              []*KeySchemaElement     `type:"list" required:"true"json:",omitempty"`
-	LocalSecondaryIndexes  []*LocalSecondaryIndex  `type:"list" json:",omitempty"`
-	ProvisionedThroughput  *ProvisionedThroughput  `type:"structure" required:"true"json:",omitempty"`
-	TableName              *string                 `type:"string" required:"true"json:",omitempty"`
+	AttributeDefinitions   []*AttributeDefinition  `type:"list" required:"true"`
+	GlobalSecondaryIndexes []*GlobalSecondaryIndex `type:"list"`
+	KeySchema              []*KeySchemaElement     `type:"list" required:"true"`
+	LocalSecondaryIndexes  []*LocalSecondaryIndex  `type:"list"`
+	ProvisionedThroughput  *ProvisionedThroughput  `type:"structure" required:"true"`
+	TableName              *string                 `type:"string" required:"true"`
 
 	metadataCreateTableInput `json:"-", xml:"-"`
 }
 
 type metadataCreateTableInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateTableOutput struct {
-	TableDescription *TableDescription `type:"structure" json:",omitempty"`
+	TableDescription *TableDescription `type:"structure"`
 
 	metadataCreateTableOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateTableOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteGlobalSecondaryIndexAction struct {
-	IndexName *string `type:"string" required:"true"json:",omitempty"`
+	IndexName *string `type:"string" required:"true"`
 
 	metadataDeleteGlobalSecondaryIndexAction `json:"-", xml:"-"`
 }
 
 type metadataDeleteGlobalSecondaryIndexAction struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteItemInput struct {
-	ConditionExpression         *string                             `type:"string" json:",omitempty"`
-	ConditionalOperator         *string                             `type:"string" json:",omitempty"`
-	Expected                    *map[string]*ExpectedAttributeValue `type:"map" json:",omitempty"`
-	ExpressionAttributeNames    *map[string]*string                 `type:"map" json:",omitempty"`
-	ExpressionAttributeValues   *map[string]*AttributeValue         `type:"map" json:",omitempty"`
-	Key                         *map[string]*AttributeValue         `type:"map" required:"true"json:",omitempty"`
-	ReturnConsumedCapacity      *string                             `type:"string" json:",omitempty"`
-	ReturnItemCollectionMetrics *string                             `type:"string" json:",omitempty"`
-	ReturnValues                *string                             `type:"string" json:",omitempty"`
-	TableName                   *string                             `type:"string" required:"true"json:",omitempty"`
+	ConditionExpression         *string                             `type:"string"`
+	ConditionalOperator         *string                             `type:"string"`
+	Expected                    *map[string]*ExpectedAttributeValue `type:"map"`
+	ExpressionAttributeNames    *map[string]*string                 `type:"map"`
+	ExpressionAttributeValues   *map[string]*AttributeValue         `type:"map"`
+	Key                         *map[string]*AttributeValue         `type:"map" required:"true"`
+	ReturnConsumedCapacity      *string                             `type:"string"`
+	ReturnItemCollectionMetrics *string                             `type:"string"`
+	ReturnValues                *string                             `type:"string"`
+	TableName                   *string                             `type:"string" required:"true"`
 
 	metadataDeleteItemInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteItemInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteItemOutput struct {
-	Attributes            *map[string]*AttributeValue `type:"map" json:",omitempty"`
-	ConsumedCapacity      *ConsumedCapacity           `type:"structure" json:",omitempty"`
-	ItemCollectionMetrics *ItemCollectionMetrics      `type:"structure" json:",omitempty"`
+	Attributes            *map[string]*AttributeValue `type:"map"`
+	ConsumedCapacity      *ConsumedCapacity           `type:"structure"`
+	ItemCollectionMetrics *ItemCollectionMetrics      `type:"structure"`
 
 	metadataDeleteItemOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteItemOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteRequest struct {
-	Key *map[string]*AttributeValue `type:"map" required:"true"json:",omitempty"`
+	Key *map[string]*AttributeValue `type:"map" required:"true"`
 
 	metadataDeleteRequest `json:"-", xml:"-"`
 }
 
 type metadataDeleteRequest struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteTableInput struct {
-	TableName *string `type:"string" required:"true"json:",omitempty"`
+	TableName *string `type:"string" required:"true"`
 
 	metadataDeleteTableInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTableInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteTableOutput struct {
-	TableDescription *TableDescription `type:"structure" json:",omitempty"`
+	TableDescription *TableDescription `type:"structure"`
 
 	metadataDeleteTableOutput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTableOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeTableInput struct {
-	TableName *string `type:"string" required:"true"json:",omitempty"`
+	TableName *string `type:"string" required:"true"`
 
 	metadataDescribeTableInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTableInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeTableOutput struct {
-	Table *TableDescription `type:"structure" json:",omitempty"`
+	Table *TableDescription `type:"structure"`
 
 	metadataDescribeTableOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTableOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ExpectedAttributeValue struct {
-	AttributeValueList []*AttributeValue `type:"list" json:",omitempty"`
-	ComparisonOperator *string           `type:"string" json:",omitempty"`
-	Exists             *bool             `type:"boolean" json:",omitempty"`
-	Value              *AttributeValue   `type:"structure" json:",omitempty"`
+	AttributeValueList []*AttributeValue `type:"list"`
+	ComparisonOperator *string           `type:"string"`
+	Exists             *bool             `type:"boolean"`
+	Value              *AttributeValue   `type:"structure"`
 
 	metadataExpectedAttributeValue `json:"-", xml:"-"`
 }
 
 type metadataExpectedAttributeValue struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetItemInput struct {
-	AttributesToGet          []*string                   `type:"list" json:",omitempty"`
-	ConsistentRead           *bool                       `type:"boolean" json:",omitempty"`
-	ExpressionAttributeNames *map[string]*string         `type:"map" json:",omitempty"`
-	Key                      *map[string]*AttributeValue `type:"map" required:"true"json:",omitempty"`
-	ProjectionExpression     *string                     `type:"string" json:",omitempty"`
-	ReturnConsumedCapacity   *string                     `type:"string" json:",omitempty"`
-	TableName                *string                     `type:"string" required:"true"json:",omitempty"`
+	AttributesToGet          []*string                   `type:"list"`
+	ConsistentRead           *bool                       `type:"boolean"`
+	ExpressionAttributeNames *map[string]*string         `type:"map"`
+	Key                      *map[string]*AttributeValue `type:"map" required:"true"`
+	ProjectionExpression     *string                     `type:"string"`
+	ReturnConsumedCapacity   *string                     `type:"string"`
+	TableName                *string                     `type:"string" required:"true"`
 
 	metadataGetItemInput `json:"-", xml:"-"`
 }
 
 type metadataGetItemInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetItemOutput struct {
-	ConsumedCapacity *ConsumedCapacity           `type:"structure" json:",omitempty"`
-	Item             *map[string]*AttributeValue `type:"map" json:",omitempty"`
+	ConsumedCapacity *ConsumedCapacity           `type:"structure"`
+	Item             *map[string]*AttributeValue `type:"map"`
 
 	metadataGetItemOutput `json:"-", xml:"-"`
 }
 
 type metadataGetItemOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GlobalSecondaryIndex struct {
-	IndexName             *string                `type:"string" required:"true"json:",omitempty"`
-	KeySchema             []*KeySchemaElement    `type:"list" required:"true"json:",omitempty"`
-	Projection            *Projection            `type:"structure" required:"true"json:",omitempty"`
-	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"json:",omitempty"`
+	IndexName             *string                `type:"string" required:"true"`
+	KeySchema             []*KeySchemaElement    `type:"list" required:"true"`
+	Projection            *Projection            `type:"structure" required:"true"`
+	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 
 	metadataGlobalSecondaryIndex `json:"-", xml:"-"`
 }
 
 type metadataGlobalSecondaryIndex struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GlobalSecondaryIndexDescription struct {
-	Backfilling           *bool                             `type:"boolean" json:",omitempty"`
-	IndexName             *string                           `type:"string" json:",omitempty"`
-	IndexSizeBytes        *int64                            `type:"long" json:",omitempty"`
-	IndexStatus           *string                           `type:"string" json:",omitempty"`
-	ItemCount             *int64                            `type:"long" json:",omitempty"`
-	KeySchema             []*KeySchemaElement               `type:"list" json:",omitempty"`
-	Projection            *Projection                       `type:"structure" json:",omitempty"`
-	ProvisionedThroughput *ProvisionedThroughputDescription `type:"structure" json:",omitempty"`
+	Backfilling           *bool                             `type:"boolean"`
+	IndexName             *string                           `type:"string"`
+	IndexSizeBytes        *int64                            `type:"long"`
+	IndexStatus           *string                           `type:"string"`
+	ItemCount             *int64                            `type:"long"`
+	KeySchema             []*KeySchemaElement               `type:"list"`
+	Projection            *Projection                       `type:"structure"`
+	ProvisionedThroughput *ProvisionedThroughputDescription `type:"structure"`
 
 	metadataGlobalSecondaryIndexDescription `json:"-", xml:"-"`
 }
 
 type metadataGlobalSecondaryIndexDescription struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GlobalSecondaryIndexUpdate struct {
-	Create *CreateGlobalSecondaryIndexAction `type:"structure" json:",omitempty"`
-	Delete *DeleteGlobalSecondaryIndexAction `type:"structure" json:",omitempty"`
-	Update *UpdateGlobalSecondaryIndexAction `type:"structure" json:",omitempty"`
+	Create *CreateGlobalSecondaryIndexAction `type:"structure"`
+	Delete *DeleteGlobalSecondaryIndexAction `type:"structure"`
+	Update *UpdateGlobalSecondaryIndexAction `type:"structure"`
 
 	metadataGlobalSecondaryIndexUpdate `json:"-", xml:"-"`
 }
 
 type metadataGlobalSecondaryIndexUpdate struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ItemCollectionMetrics struct {
-	ItemCollectionKey   *map[string]*AttributeValue `type:"map" json:",omitempty"`
-	SizeEstimateRangeGB []*float64                  `type:"list" json:",omitempty"`
+	ItemCollectionKey   *map[string]*AttributeValue `type:"map"`
+	SizeEstimateRangeGB []*float64                  `type:"list"`
 
 	metadataItemCollectionMetrics `json:"-", xml:"-"`
 }
 
 type metadataItemCollectionMetrics struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type KeySchemaElement struct {
-	AttributeName *string `type:"string" required:"true"json:",omitempty"`
-	KeyType       *string `type:"string" required:"true"json:",omitempty"`
+	AttributeName *string `type:"string" required:"true"`
+	KeyType       *string `type:"string" required:"true"`
 
 	metadataKeySchemaElement `json:"-", xml:"-"`
 }
 
 type metadataKeySchemaElement struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type KeysAndAttributes struct {
-	AttributesToGet          []*string                     `type:"list" json:",omitempty"`
-	ConsistentRead           *bool                         `type:"boolean" json:",omitempty"`
-	ExpressionAttributeNames *map[string]*string           `type:"map" json:",omitempty"`
-	Keys                     []*map[string]*AttributeValue `type:"list" required:"true"json:",omitempty"`
-	ProjectionExpression     *string                       `type:"string" json:",omitempty"`
+	AttributesToGet          []*string                     `type:"list"`
+	ConsistentRead           *bool                         `type:"boolean"`
+	ExpressionAttributeNames *map[string]*string           `type:"map"`
+	Keys                     []*map[string]*AttributeValue `type:"list" required:"true"`
+	ProjectionExpression     *string                       `type:"string"`
 
 	metadataKeysAndAttributes `json:"-", xml:"-"`
 }
 
 type metadataKeysAndAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListTablesInput struct {
-	ExclusiveStartTableName *string `type:"string" json:",omitempty"`
-	Limit                   *int64  `type:"integer" json:",omitempty"`
+	ExclusiveStartTableName *string `type:"string"`
+	Limit                   *int64  `type:"integer"`
 
 	metadataListTablesInput `json:"-", xml:"-"`
 }
 
 type metadataListTablesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListTablesOutput struct {
-	LastEvaluatedTableName *string   `type:"string" json:",omitempty"`
-	TableNames             []*string `type:"list" json:",omitempty"`
+	LastEvaluatedTableName *string   `type:"string"`
+	TableNames             []*string `type:"list"`
 
 	metadataListTablesOutput `json:"-", xml:"-"`
 }
 
 type metadataListTablesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type LocalSecondaryIndex struct {
-	IndexName  *string             `type:"string" required:"true"json:",omitempty"`
-	KeySchema  []*KeySchemaElement `type:"list" required:"true"json:",omitempty"`
-	Projection *Projection         `type:"structure" required:"true"json:",omitempty"`
+	IndexName  *string             `type:"string" required:"true"`
+	KeySchema  []*KeySchemaElement `type:"list" required:"true"`
+	Projection *Projection         `type:"structure" required:"true"`
 
 	metadataLocalSecondaryIndex `json:"-", xml:"-"`
 }
 
 type metadataLocalSecondaryIndex struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type LocalSecondaryIndexDescription struct {
-	IndexName      *string             `type:"string" json:",omitempty"`
-	IndexSizeBytes *int64              `type:"long" json:",omitempty"`
-	ItemCount      *int64              `type:"long" json:",omitempty"`
-	KeySchema      []*KeySchemaElement `type:"list" json:",omitempty"`
-	Projection     *Projection         `type:"structure" json:",omitempty"`
+	IndexName      *string             `type:"string"`
+	IndexSizeBytes *int64              `type:"long"`
+	ItemCount      *int64              `type:"long"`
+	KeySchema      []*KeySchemaElement `type:"list"`
+	Projection     *Projection         `type:"structure"`
 
 	metadataLocalSecondaryIndexDescription `json:"-", xml:"-"`
 }
 
 type metadataLocalSecondaryIndexDescription struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Projection struct {
-	NonKeyAttributes []*string `type:"list" json:",omitempty"`
-	ProjectionType   *string   `type:"string" json:",omitempty"`
+	NonKeyAttributes []*string `type:"list"`
+	ProjectionType   *string   `type:"string"`
 
 	metadataProjection `json:"-", xml:"-"`
 }
 
 type metadataProjection struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ProvisionedThroughput struct {
-	ReadCapacityUnits  *int64 `type:"long" required:"true"json:",omitempty"`
-	WriteCapacityUnits *int64 `type:"long" required:"true"json:",omitempty"`
+	ReadCapacityUnits  *int64 `type:"long" required:"true"`
+	WriteCapacityUnits *int64 `type:"long" required:"true"`
 
 	metadataProvisionedThroughput `json:"-", xml:"-"`
 }
 
 type metadataProvisionedThroughput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ProvisionedThroughputDescription struct {
-	LastDecreaseDateTime   *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LastIncreaseDateTime   *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	NumberOfDecreasesToday *int64     `type:"long" json:",omitempty"`
-	ReadCapacityUnits      *int64     `type:"long" json:",omitempty"`
-	WriteCapacityUnits     *int64     `type:"long" json:",omitempty"`
+	LastDecreaseDateTime   *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastIncreaseDateTime   *time.Time `type:"timestamp" timestampFormat:"unix"`
+	NumberOfDecreasesToday *int64     `type:"long"`
+	ReadCapacityUnits      *int64     `type:"long"`
+	WriteCapacityUnits     *int64     `type:"long"`
 
 	metadataProvisionedThroughputDescription `json:"-", xml:"-"`
 }
 
 type metadataProvisionedThroughputDescription struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutItemInput struct {
-	ConditionExpression         *string                             `type:"string" json:",omitempty"`
-	ConditionalOperator         *string                             `type:"string" json:",omitempty"`
-	Expected                    *map[string]*ExpectedAttributeValue `type:"map" json:",omitempty"`
-	ExpressionAttributeNames    *map[string]*string                 `type:"map" json:",omitempty"`
-	ExpressionAttributeValues   *map[string]*AttributeValue         `type:"map" json:",omitempty"`
-	Item                        *map[string]*AttributeValue         `type:"map" required:"true"json:",omitempty"`
-	ReturnConsumedCapacity      *string                             `type:"string" json:",omitempty"`
-	ReturnItemCollectionMetrics *string                             `type:"string" json:",omitempty"`
-	ReturnValues                *string                             `type:"string" json:",omitempty"`
-	TableName                   *string                             `type:"string" required:"true"json:",omitempty"`
+	ConditionExpression         *string                             `type:"string"`
+	ConditionalOperator         *string                             `type:"string"`
+	Expected                    *map[string]*ExpectedAttributeValue `type:"map"`
+	ExpressionAttributeNames    *map[string]*string                 `type:"map"`
+	ExpressionAttributeValues   *map[string]*AttributeValue         `type:"map"`
+	Item                        *map[string]*AttributeValue         `type:"map" required:"true"`
+	ReturnConsumedCapacity      *string                             `type:"string"`
+	ReturnItemCollectionMetrics *string                             `type:"string"`
+	ReturnValues                *string                             `type:"string"`
+	TableName                   *string                             `type:"string" required:"true"`
 
 	metadataPutItemInput `json:"-", xml:"-"`
 }
 
 type metadataPutItemInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutItemOutput struct {
-	Attributes            *map[string]*AttributeValue `type:"map" json:",omitempty"`
-	ConsumedCapacity      *ConsumedCapacity           `type:"structure" json:",omitempty"`
-	ItemCollectionMetrics *ItemCollectionMetrics      `type:"structure" json:",omitempty"`
+	Attributes            *map[string]*AttributeValue `type:"map"`
+	ConsumedCapacity      *ConsumedCapacity           `type:"structure"`
+	ItemCollectionMetrics *ItemCollectionMetrics      `type:"structure"`
 
 	metadataPutItemOutput `json:"-", xml:"-"`
 }
 
 type metadataPutItemOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutRequest struct {
-	Item *map[string]*AttributeValue `type:"map" required:"true"json:",omitempty"`
+	Item *map[string]*AttributeValue `type:"map" required:"true"`
 
 	metadataPutRequest `json:"-", xml:"-"`
 }
 
 type metadataPutRequest struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type QueryInput struct {
-	AttributesToGet           []*string                   `type:"list" json:",omitempty"`
-	ConditionalOperator       *string                     `type:"string" json:",omitempty"`
-	ConsistentRead            *bool                       `type:"boolean" json:",omitempty"`
-	ExclusiveStartKey         *map[string]*AttributeValue `type:"map" json:",omitempty"`
-	ExpressionAttributeNames  *map[string]*string         `type:"map" json:",omitempty"`
-	ExpressionAttributeValues *map[string]*AttributeValue `type:"map" json:",omitempty"`
-	FilterExpression          *string                     `type:"string" json:",omitempty"`
-	IndexName                 *string                     `type:"string" json:",omitempty"`
-	KeyConditions             *map[string]*Condition      `type:"map" required:"true"json:",omitempty"`
-	Limit                     *int64                      `type:"integer" json:",omitempty"`
-	ProjectionExpression      *string                     `type:"string" json:",omitempty"`
-	QueryFilter               *map[string]*Condition      `type:"map" json:",omitempty"`
-	ReturnConsumedCapacity    *string                     `type:"string" json:",omitempty"`
-	ScanIndexForward          *bool                       `type:"boolean" json:",omitempty"`
-	Select                    *string                     `type:"string" json:",omitempty"`
-	TableName                 *string                     `type:"string" required:"true"json:",omitempty"`
+	AttributesToGet           []*string                   `type:"list"`
+	ConditionalOperator       *string                     `type:"string"`
+	ConsistentRead            *bool                       `type:"boolean"`
+	ExclusiveStartKey         *map[string]*AttributeValue `type:"map"`
+	ExpressionAttributeNames  *map[string]*string         `type:"map"`
+	ExpressionAttributeValues *map[string]*AttributeValue `type:"map"`
+	FilterExpression          *string                     `type:"string"`
+	IndexName                 *string                     `type:"string"`
+	KeyConditions             *map[string]*Condition      `type:"map" required:"true"`
+	Limit                     *int64                      `type:"integer"`
+	ProjectionExpression      *string                     `type:"string"`
+	QueryFilter               *map[string]*Condition      `type:"map"`
+	ReturnConsumedCapacity    *string                     `type:"string"`
+	ScanIndexForward          *bool                       `type:"boolean"`
+	Select                    *string                     `type:"string"`
+	TableName                 *string                     `type:"string" required:"true"`
 
 	metadataQueryInput `json:"-", xml:"-"`
 }
 
 type metadataQueryInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type QueryOutput struct {
-	ConsumedCapacity *ConsumedCapacity             `type:"structure" json:",omitempty"`
-	Count            *int64                        `type:"integer" json:",omitempty"`
-	Items            []*map[string]*AttributeValue `type:"list" json:",omitempty"`
-	LastEvaluatedKey *map[string]*AttributeValue   `type:"map" json:",omitempty"`
-	ScannedCount     *int64                        `type:"integer" json:",omitempty"`
+	ConsumedCapacity *ConsumedCapacity             `type:"structure"`
+	Count            *int64                        `type:"integer"`
+	Items            []*map[string]*AttributeValue `type:"list"`
+	LastEvaluatedKey *map[string]*AttributeValue   `type:"map"`
+	ScannedCount     *int64                        `type:"integer"`
 
 	metadataQueryOutput `json:"-", xml:"-"`
 }
 
 type metadataQueryOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ScanInput struct {
-	AttributesToGet           []*string                   `type:"list" json:",omitempty"`
-	ConditionalOperator       *string                     `type:"string" json:",omitempty"`
-	ExclusiveStartKey         *map[string]*AttributeValue `type:"map" json:",omitempty"`
-	ExpressionAttributeNames  *map[string]*string         `type:"map" json:",omitempty"`
-	ExpressionAttributeValues *map[string]*AttributeValue `type:"map" json:",omitempty"`
-	FilterExpression          *string                     `type:"string" json:",omitempty"`
-	IndexName                 *string                     `type:"string" json:",omitempty"`
-	Limit                     *int64                      `type:"integer" json:",omitempty"`
-	ProjectionExpression      *string                     `type:"string" json:",omitempty"`
-	ReturnConsumedCapacity    *string                     `type:"string" json:",omitempty"`
-	ScanFilter                *map[string]*Condition      `type:"map" json:",omitempty"`
-	Segment                   *int64                      `type:"integer" json:",omitempty"`
-	Select                    *string                     `type:"string" json:",omitempty"`
-	TableName                 *string                     `type:"string" required:"true"json:",omitempty"`
-	TotalSegments             *int64                      `type:"integer" json:",omitempty"`
+	AttributesToGet           []*string                   `type:"list"`
+	ConditionalOperator       *string                     `type:"string"`
+	ExclusiveStartKey         *map[string]*AttributeValue `type:"map"`
+	ExpressionAttributeNames  *map[string]*string         `type:"map"`
+	ExpressionAttributeValues *map[string]*AttributeValue `type:"map"`
+	FilterExpression          *string                     `type:"string"`
+	IndexName                 *string                     `type:"string"`
+	Limit                     *int64                      `type:"integer"`
+	ProjectionExpression      *string                     `type:"string"`
+	ReturnConsumedCapacity    *string                     `type:"string"`
+	ScanFilter                *map[string]*Condition      `type:"map"`
+	Segment                   *int64                      `type:"integer"`
+	Select                    *string                     `type:"string"`
+	TableName                 *string                     `type:"string" required:"true"`
+	TotalSegments             *int64                      `type:"integer"`
 
 	metadataScanInput `json:"-", xml:"-"`
 }
 
 type metadataScanInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ScanOutput struct {
-	ConsumedCapacity *ConsumedCapacity             `type:"structure" json:",omitempty"`
-	Count            *int64                        `type:"integer" json:",omitempty"`
-	Items            []*map[string]*AttributeValue `type:"list" json:",omitempty"`
-	LastEvaluatedKey *map[string]*AttributeValue   `type:"map" json:",omitempty"`
-	ScannedCount     *int64                        `type:"integer" json:",omitempty"`
+	ConsumedCapacity *ConsumedCapacity             `type:"structure"`
+	Count            *int64                        `type:"integer"`
+	Items            []*map[string]*AttributeValue `type:"list"`
+	LastEvaluatedKey *map[string]*AttributeValue   `type:"map"`
+	ScannedCount     *int64                        `type:"integer"`
 
 	metadataScanOutput `json:"-", xml:"-"`
 }
 
 type metadataScanOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TableDescription struct {
-	AttributeDefinitions   []*AttributeDefinition             `type:"list" json:",omitempty"`
-	CreationDateTime       *time.Time                         `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	GlobalSecondaryIndexes []*GlobalSecondaryIndexDescription `type:"list" json:",omitempty"`
-	ItemCount              *int64                             `type:"long" json:",omitempty"`
-	KeySchema              []*KeySchemaElement                `type:"list" json:",omitempty"`
-	LocalSecondaryIndexes  []*LocalSecondaryIndexDescription  `type:"list" json:",omitempty"`
-	ProvisionedThroughput  *ProvisionedThroughputDescription  `type:"structure" json:",omitempty"`
-	TableName              *string                            `type:"string" json:",omitempty"`
-	TableSizeBytes         *int64                             `type:"long" json:",omitempty"`
-	TableStatus            *string                            `type:"string" json:",omitempty"`
+	AttributeDefinitions   []*AttributeDefinition             `type:"list"`
+	CreationDateTime       *time.Time                         `type:"timestamp" timestampFormat:"unix"`
+	GlobalSecondaryIndexes []*GlobalSecondaryIndexDescription `type:"list"`
+	ItemCount              *int64                             `type:"long"`
+	KeySchema              []*KeySchemaElement                `type:"list"`
+	LocalSecondaryIndexes  []*LocalSecondaryIndexDescription  `type:"list"`
+	ProvisionedThroughput  *ProvisionedThroughputDescription  `type:"structure"`
+	TableName              *string                            `type:"string"`
+	TableSizeBytes         *int64                             `type:"long"`
+	TableStatus            *string                            `type:"string"`
 
 	metadataTableDescription `json:"-", xml:"-"`
 }
 
 type metadataTableDescription struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateGlobalSecondaryIndexAction struct {
-	IndexName             *string                `type:"string" required:"true"json:",omitempty"`
-	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"json:",omitempty"`
+	IndexName             *string                `type:"string" required:"true"`
+	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 
 	metadataUpdateGlobalSecondaryIndexAction `json:"-", xml:"-"`
 }
 
 type metadataUpdateGlobalSecondaryIndexAction struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateItemInput struct {
-	AttributeUpdates            *map[string]*AttributeValueUpdate   `type:"map" json:",omitempty"`
-	ConditionExpression         *string                             `type:"string" json:",omitempty"`
-	ConditionalOperator         *string                             `type:"string" json:",omitempty"`
-	Expected                    *map[string]*ExpectedAttributeValue `type:"map" json:",omitempty"`
-	ExpressionAttributeNames    *map[string]*string                 `type:"map" json:",omitempty"`
-	ExpressionAttributeValues   *map[string]*AttributeValue         `type:"map" json:",omitempty"`
-	Key                         *map[string]*AttributeValue         `type:"map" required:"true"json:",omitempty"`
-	ReturnConsumedCapacity      *string                             `type:"string" json:",omitempty"`
-	ReturnItemCollectionMetrics *string                             `type:"string" json:",omitempty"`
-	ReturnValues                *string                             `type:"string" json:",omitempty"`
-	TableName                   *string                             `type:"string" required:"true"json:",omitempty"`
-	UpdateExpression            *string                             `type:"string" json:",omitempty"`
+	AttributeUpdates            *map[string]*AttributeValueUpdate   `type:"map"`
+	ConditionExpression         *string                             `type:"string"`
+	ConditionalOperator         *string                             `type:"string"`
+	Expected                    *map[string]*ExpectedAttributeValue `type:"map"`
+	ExpressionAttributeNames    *map[string]*string                 `type:"map"`
+	ExpressionAttributeValues   *map[string]*AttributeValue         `type:"map"`
+	Key                         *map[string]*AttributeValue         `type:"map" required:"true"`
+	ReturnConsumedCapacity      *string                             `type:"string"`
+	ReturnItemCollectionMetrics *string                             `type:"string"`
+	ReturnValues                *string                             `type:"string"`
+	TableName                   *string                             `type:"string" required:"true"`
+	UpdateExpression            *string                             `type:"string"`
 
 	metadataUpdateItemInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateItemInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateItemOutput struct {
-	Attributes            *map[string]*AttributeValue `type:"map" json:",omitempty"`
-	ConsumedCapacity      *ConsumedCapacity           `type:"structure" json:",omitempty"`
-	ItemCollectionMetrics *ItemCollectionMetrics      `type:"structure" json:",omitempty"`
+	Attributes            *map[string]*AttributeValue `type:"map"`
+	ConsumedCapacity      *ConsumedCapacity           `type:"structure"`
+	ItemCollectionMetrics *ItemCollectionMetrics      `type:"structure"`
 
 	metadataUpdateItemOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateItemOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateTableInput struct {
-	AttributeDefinitions        []*AttributeDefinition        `type:"list" json:",omitempty"`
-	GlobalSecondaryIndexUpdates []*GlobalSecondaryIndexUpdate `type:"list" json:",omitempty"`
-	ProvisionedThroughput       *ProvisionedThroughput        `type:"structure" json:",omitempty"`
-	TableName                   *string                       `type:"string" required:"true"json:",omitempty"`
+	AttributeDefinitions        []*AttributeDefinition        `type:"list"`
+	GlobalSecondaryIndexUpdates []*GlobalSecondaryIndexUpdate `type:"list"`
+	ProvisionedThroughput       *ProvisionedThroughput        `type:"structure"`
+	TableName                   *string                       `type:"string" required:"true"`
 
 	metadataUpdateTableInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateTableInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateTableOutput struct {
-	TableDescription *TableDescription `type:"structure" json:",omitempty"`
+	TableDescription *TableDescription `type:"structure"`
 
 	metadataUpdateTableOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateTableOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WriteRequest struct {
-	DeleteRequest *DeleteRequest `type:"structure" json:",omitempty"`
-	PutRequest    *PutRequest    `type:"structure" json:",omitempty"`
+	DeleteRequest *DeleteRequest `type:"structure"`
+	PutRequest    *PutRequest    `type:"structure"`
 
 	metadataWriteRequest `json:"-", xml:"-"`
 }
 
 type metadataWriteRequest struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

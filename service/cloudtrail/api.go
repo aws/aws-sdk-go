@@ -184,45 +184,45 @@ func (c *CloudTrail) UpdateTrail(input *UpdateTrailInput) (output *UpdateTrailOu
 var opUpdateTrail *aws.Operation
 
 type CreateTrailInput struct {
-	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string" json:"CloudWatchLogsLogGroupArn,omitempty"`
-	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string" json:"CloudWatchLogsRoleArn,omitempty"`
-	IncludeGlobalServiceEvents *bool   `type:"boolean" json:",omitempty"`
-	Name                       *string `type:"string" required:"true"json:",omitempty"`
-	S3BucketName               *string `type:"string" required:"true"json:",omitempty"`
-	S3KeyPrefix                *string `type:"string" json:",omitempty"`
-	SNSTopicName               *string `locationName:"SnsTopicName" type:"string" json:"SnsTopicName,omitempty"`
+	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	IncludeGlobalServiceEvents *bool   `type:"boolean"`
+	Name                       *string `type:"string" required:"true"`
+	S3BucketName               *string `type:"string" required:"true"`
+	S3KeyPrefix                *string `type:"string"`
+	SNSTopicName               *string `locationName:"SnsTopicName" type:"string"`
 
 	metadataCreateTrailInput `json:"-", xml:"-"`
 }
 
 type metadataCreateTrailInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateTrailOutput struct {
-	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string" json:"CloudWatchLogsLogGroupArn,omitempty"`
-	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string" json:"CloudWatchLogsRoleArn,omitempty"`
-	IncludeGlobalServiceEvents *bool   `type:"boolean" json:",omitempty"`
-	Name                       *string `type:"string" json:",omitempty"`
-	S3BucketName               *string `type:"string" json:",omitempty"`
-	S3KeyPrefix                *string `type:"string" json:",omitempty"`
-	SNSTopicName               *string `locationName:"SnsTopicName" type:"string" json:"SnsTopicName,omitempty"`
+	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	IncludeGlobalServiceEvents *bool   `type:"boolean"`
+	Name                       *string `type:"string"`
+	S3BucketName               *string `type:"string"`
+	S3KeyPrefix                *string `type:"string"`
+	SNSTopicName               *string `locationName:"SnsTopicName" type:"string"`
 
 	metadataCreateTrailOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateTrailOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteTrailInput struct {
-	Name *string `type:"string" required:"true"json:",omitempty"`
+	Name *string `type:"string" required:"true"`
 
 	metadataDeleteTrailInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteTrailInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteTrailOutput struct {
@@ -230,65 +230,65 @@ type DeleteTrailOutput struct {
 }
 
 type metadataDeleteTrailOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeTrailsInput struct {
-	TrailNameList []*string `locationName:"trailNameList" type:"list" json:"trailNameList,omitempty"`
+	TrailNameList []*string `locationName:"trailNameList" type:"list"`
 
 	metadataDescribeTrailsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTrailsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeTrailsOutput struct {
-	TrailList []*Trail `locationName:"trailList" type:"list" json:"trailList,omitempty"`
+	TrailList []*Trail `locationName:"trailList" type:"list"`
 
 	metadataDescribeTrailsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTrailsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetTrailStatusInput struct {
-	Name *string `type:"string" required:"true"json:",omitempty"`
+	Name *string `type:"string" required:"true"`
 
 	metadataGetTrailStatusInput `json:"-", xml:"-"`
 }
 
 type metadataGetTrailStatusInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetTrailStatusOutput struct {
-	IsLogging                         *bool      `type:"boolean" json:",omitempty"`
-	LatestCloudWatchLogsDeliveryError *string    `type:"string" json:",omitempty"`
-	LatestCloudWatchLogsDeliveryTime  *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LatestDeliveryError               *string    `type:"string" json:",omitempty"`
-	LatestDeliveryTime                *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LatestNotificationError           *string    `type:"string" json:",omitempty"`
-	LatestNotificationTime            *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	StartLoggingTime                  *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	StopLoggingTime                   *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	IsLogging                         *bool      `type:"boolean"`
+	LatestCloudWatchLogsDeliveryError *string    `type:"string"`
+	LatestCloudWatchLogsDeliveryTime  *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LatestDeliveryError               *string    `type:"string"`
+	LatestDeliveryTime                *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LatestNotificationError           *string    `type:"string"`
+	LatestNotificationTime            *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartLoggingTime                  *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StopLoggingTime                   *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	metadataGetTrailStatusOutput `json:"-", xml:"-"`
 }
 
 type metadataGetTrailStatusOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartLoggingInput struct {
-	Name *string `type:"string" required:"true"json:",omitempty"`
+	Name *string `type:"string" required:"true"`
 
 	metadataStartLoggingInput `json:"-", xml:"-"`
 }
 
 type metadataStartLoggingInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartLoggingOutput struct {
@@ -296,17 +296,17 @@ type StartLoggingOutput struct {
 }
 
 type metadataStartLoggingOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StopLoggingInput struct {
-	Name *string `type:"string" required:"true"json:",omitempty"`
+	Name *string `type:"string" required:"true"`
 
 	metadataStopLoggingInput `json:"-", xml:"-"`
 }
 
 type metadataStopLoggingInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StopLoggingOutput struct {
@@ -314,53 +314,53 @@ type StopLoggingOutput struct {
 }
 
 type metadataStopLoggingOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Trail struct {
-	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string" json:"CloudWatchLogsLogGroupArn,omitempty"`
-	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string" json:"CloudWatchLogsRoleArn,omitempty"`
-	IncludeGlobalServiceEvents *bool   `type:"boolean" json:",omitempty"`
-	Name                       *string `type:"string" json:",omitempty"`
-	S3BucketName               *string `type:"string" json:",omitempty"`
-	S3KeyPrefix                *string `type:"string" json:",omitempty"`
-	SNSTopicName               *string `locationName:"SnsTopicName" type:"string" json:"SnsTopicName,omitempty"`
+	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	IncludeGlobalServiceEvents *bool   `type:"boolean"`
+	Name                       *string `type:"string"`
+	S3BucketName               *string `type:"string"`
+	S3KeyPrefix                *string `type:"string"`
+	SNSTopicName               *string `locationName:"SnsTopicName" type:"string"`
 
 	metadataTrail `json:"-", xml:"-"`
 }
 
 type metadataTrail struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateTrailInput struct {
-	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string" json:"CloudWatchLogsLogGroupArn,omitempty"`
-	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string" json:"CloudWatchLogsRoleArn,omitempty"`
-	IncludeGlobalServiceEvents *bool   `type:"boolean" json:",omitempty"`
-	Name                       *string `type:"string" required:"true"json:",omitempty"`
-	S3BucketName               *string `type:"string" json:",omitempty"`
-	S3KeyPrefix                *string `type:"string" json:",omitempty"`
-	SNSTopicName               *string `locationName:"SnsTopicName" type:"string" json:"SnsTopicName,omitempty"`
+	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	IncludeGlobalServiceEvents *bool   `type:"boolean"`
+	Name                       *string `type:"string" required:"true"`
+	S3BucketName               *string `type:"string"`
+	S3KeyPrefix                *string `type:"string"`
+	SNSTopicName               *string `locationName:"SnsTopicName" type:"string"`
 
 	metadataUpdateTrailInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateTrailInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateTrailOutput struct {
-	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string" json:"CloudWatchLogsLogGroupArn,omitempty"`
-	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string" json:"CloudWatchLogsRoleArn,omitempty"`
-	IncludeGlobalServiceEvents *bool   `type:"boolean" json:",omitempty"`
-	Name                       *string `type:"string" json:",omitempty"`
-	S3BucketName               *string `type:"string" json:",omitempty"`
-	S3KeyPrefix                *string `type:"string" json:",omitempty"`
-	SNSTopicName               *string `locationName:"SnsTopicName" type:"string" json:"SnsTopicName,omitempty"`
+	CloudWatchLogsLogGroupARN  *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsRoleARN      *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	IncludeGlobalServiceEvents *bool   `type:"boolean"`
+	Name                       *string `type:"string"`
+	S3BucketName               *string `type:"string"`
+	S3KeyPrefix                *string `type:"string"`
+	SNSTopicName               *string `locationName:"SnsTopicName" type:"string"`
 
 	metadataUpdateTrailOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateTrailOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

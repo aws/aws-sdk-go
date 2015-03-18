@@ -284,136 +284,136 @@ func (c *SSM) UpdateAssociationStatus(input *UpdateAssociationStatusInput) (outp
 var opUpdateAssociationStatus *aws.Operation
 
 type Association struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	Name       *string `type:"string" json:",omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+	Name       *string `type:"string"`
 
 	metadataAssociation `json:"-", xml:"-"`
 }
 
 type metadataAssociation struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssociationDescription struct {
-	Date       *time.Time         `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	InstanceID *string            `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	Name       *string            `type:"string" json:",omitempty"`
-	Status     *AssociationStatus `type:"structure" json:",omitempty"`
+	Date       *time.Time         `type:"timestamp" timestampFormat:"unix"`
+	InstanceID *string            `locationName:"InstanceId" type:"string"`
+	Name       *string            `type:"string"`
+	Status     *AssociationStatus `type:"structure"`
 
 	metadataAssociationDescription `json:"-", xml:"-"`
 }
 
 type metadataAssociationDescription struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssociationFilter struct {
-	Key   *string `locationName:"key" type:"string" required:"true"json:"key,omitempty"`
-	Value *string `locationName:"value" type:"string" required:"true"json:"value,omitempty"`
+	Key   *string `locationName:"key" type:"string" required:"true"`
+	Value *string `locationName:"value" type:"string" required:"true"`
 
 	metadataAssociationFilter `json:"-", xml:"-"`
 }
 
 type metadataAssociationFilter struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssociationStatus struct {
-	AdditionalInfo *string    `type:"string" json:",omitempty"`
-	Date           *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"json:",omitempty"`
-	Message        *string    `type:"string" required:"true"json:",omitempty"`
-	Name           *string    `type:"string" required:"true"json:",omitempty"`
+	AdditionalInfo *string    `type:"string"`
+	Date           *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	Message        *string    `type:"string" required:"true"`
+	Name           *string    `type:"string" required:"true"`
 
 	metadataAssociationStatus `json:"-", xml:"-"`
 }
 
 type metadataAssociationStatus struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAssociationBatchInput struct {
-	Entries []*CreateAssociationBatchRequestEntry `locationNameList:"entries" type:"list" required:"true"json:",omitempty"`
+	Entries []*CreateAssociationBatchRequestEntry `locationNameList:"entries" type:"list" required:"true"`
 
 	metadataCreateAssociationBatchInput `json:"-", xml:"-"`
 }
 
 type metadataCreateAssociationBatchInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAssociationBatchOutput struct {
-	Failed     []*FailedCreateAssociation `locationNameList:"FailedCreateAssociationEntry" type:"list" json:",omitempty"`
-	Successful []*AssociationDescription  `locationNameList:"AssociationDescription" type:"list" json:",omitempty"`
+	Failed     []*FailedCreateAssociation `locationNameList:"FailedCreateAssociationEntry" type:"list"`
+	Successful []*AssociationDescription  `locationNameList:"AssociationDescription" type:"list"`
 
 	metadataCreateAssociationBatchOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateAssociationBatchOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAssociationBatchRequestEntry struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	Name       *string `type:"string" json:",omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+	Name       *string `type:"string"`
 
 	metadataCreateAssociationBatchRequestEntry `json:"-", xml:"-"`
 }
 
 type metadataCreateAssociationBatchRequestEntry struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAssociationInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
-	Name       *string `type:"string" required:"true"json:",omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	Name       *string `type:"string" required:"true"`
 
 	metadataCreateAssociationInput `json:"-", xml:"-"`
 }
 
 type metadataCreateAssociationInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAssociationOutput struct {
-	AssociationDescription *AssociationDescription `type:"structure" json:",omitempty"`
+	AssociationDescription *AssociationDescription `type:"structure"`
 
 	metadataCreateAssociationOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateAssociationOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDocumentInput struct {
-	Content *string `type:"string" required:"true"json:",omitempty"`
-	Name    *string `type:"string" required:"true"json:",omitempty"`
+	Content *string `type:"string" required:"true"`
+	Name    *string `type:"string" required:"true"`
 
 	metadataCreateDocumentInput `json:"-", xml:"-"`
 }
 
 type metadataCreateDocumentInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDocumentOutput struct {
-	DocumentDescription *DocumentDescription `type:"structure" json:",omitempty"`
+	DocumentDescription *DocumentDescription `type:"structure"`
 
 	metadataCreateDocumentOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateDocumentOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAssociationInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
-	Name       *string `type:"string" required:"true"json:",omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	Name       *string `type:"string" required:"true"`
 
 	metadataDeleteAssociationInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteAssociationInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAssociationOutput struct {
@@ -421,17 +421,17 @@ type DeleteAssociationOutput struct {
 }
 
 type metadataDeleteAssociationOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDocumentInput struct {
-	Name *string `type:"string" required:"true"json:",omitempty"`
+	Name *string `type:"string" required:"true"`
 
 	metadataDeleteDocumentInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDocumentInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDocumentOutput struct {
@@ -439,181 +439,181 @@ type DeleteDocumentOutput struct {
 }
 
 type metadataDeleteDocumentOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAssociationInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
-	Name       *string `type:"string" required:"true"json:",omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	Name       *string `type:"string" required:"true"`
 
 	metadataDescribeAssociationInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeAssociationInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAssociationOutput struct {
-	AssociationDescription *AssociationDescription `type:"structure" json:",omitempty"`
+	AssociationDescription *AssociationDescription `type:"structure"`
 
 	metadataDescribeAssociationOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeAssociationOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDocumentInput struct {
-	Name *string `type:"string" required:"true"json:",omitempty"`
+	Name *string `type:"string" required:"true"`
 
 	metadataDescribeDocumentInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDocumentInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDocumentOutput struct {
-	Document *DocumentDescription `type:"structure" json:",omitempty"`
+	Document *DocumentDescription `type:"structure"`
 
 	metadataDescribeDocumentOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDocumentOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DocumentDescription struct {
-	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Name        *string    `type:"string" json:",omitempty"`
-	SHA1        *string    `locationName:"Sha1" type:"string" json:"Sha1,omitempty"`
-	Status      *string    `type:"string" json:",omitempty"`
+	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Name        *string    `type:"string"`
+	SHA1        *string    `locationName:"Sha1" type:"string"`
+	Status      *string    `type:"string"`
 
 	metadataDocumentDescription `json:"-", xml:"-"`
 }
 
 type metadataDocumentDescription struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DocumentFilter struct {
-	Key   *string `locationName:"key" type:"string" required:"true"json:"key,omitempty"`
-	Value *string `locationName:"value" type:"string" required:"true"json:"value,omitempty"`
+	Key   *string `locationName:"key" type:"string" required:"true"`
+	Value *string `locationName:"value" type:"string" required:"true"`
 
 	metadataDocumentFilter `json:"-", xml:"-"`
 }
 
 type metadataDocumentFilter struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DocumentIdentifier struct {
-	Name *string `type:"string" json:",omitempty"`
+	Name *string `type:"string"`
 
 	metadataDocumentIdentifier `json:"-", xml:"-"`
 }
 
 type metadataDocumentIdentifier struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type FailedCreateAssociation struct {
-	Entry   *CreateAssociationBatchRequestEntry `type:"structure" json:",omitempty"`
-	Fault   *string                             `type:"string" json:",omitempty"`
-	Message *string                             `type:"string" json:",omitempty"`
+	Entry   *CreateAssociationBatchRequestEntry `type:"structure"`
+	Fault   *string                             `type:"string"`
+	Message *string                             `type:"string"`
 
 	metadataFailedCreateAssociation `json:"-", xml:"-"`
 }
 
 type metadataFailedCreateAssociation struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetDocumentInput struct {
-	Name *string `type:"string" required:"true"json:",omitempty"`
+	Name *string `type:"string" required:"true"`
 
 	metadataGetDocumentInput `json:"-", xml:"-"`
 }
 
 type metadataGetDocumentInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetDocumentOutput struct {
-	Content *string `type:"string" json:",omitempty"`
-	Name    *string `type:"string" json:",omitempty"`
+	Content *string `type:"string"`
+	Name    *string `type:"string"`
 
 	metadataGetDocumentOutput `json:"-", xml:"-"`
 }
 
 type metadataGetDocumentOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAssociationsInput struct {
-	AssociationFilterList []*AssociationFilter `locationNameList:"AssociationFilter" type:"list" required:"true"json:",omitempty"`
-	MaxResults            *int64               `type:"integer" json:",omitempty"`
-	NextToken             *string              `type:"string" json:",omitempty"`
+	AssociationFilterList []*AssociationFilter `locationNameList:"AssociationFilter" type:"list" required:"true"`
+	MaxResults            *int64               `type:"integer"`
+	NextToken             *string              `type:"string"`
 
 	metadataListAssociationsInput `json:"-", xml:"-"`
 }
 
 type metadataListAssociationsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAssociationsOutput struct {
-	Associations []*Association `locationNameList:"Association" type:"list" json:",omitempty"`
-	NextToken    *string        `type:"string" json:",omitempty"`
+	Associations []*Association `locationNameList:"Association" type:"list"`
+	NextToken    *string        `type:"string"`
 
 	metadataListAssociationsOutput `json:"-", xml:"-"`
 }
 
 type metadataListAssociationsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListDocumentsInput struct {
-	DocumentFilterList []*DocumentFilter `locationNameList:"DocumentFilter" type:"list" json:",omitempty"`
-	MaxResults         *int64            `type:"integer" json:",omitempty"`
-	NextToken          *string           `type:"string" json:",omitempty"`
+	DocumentFilterList []*DocumentFilter `locationNameList:"DocumentFilter" type:"list"`
+	MaxResults         *int64            `type:"integer"`
+	NextToken          *string           `type:"string"`
 
 	metadataListDocumentsInput `json:"-", xml:"-"`
 }
 
 type metadataListDocumentsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListDocumentsOutput struct {
-	DocumentIdentifiers []*DocumentIdentifier `locationNameList:"DocumentIdentifier" type:"list" json:",omitempty"`
-	NextToken           *string               `type:"string" json:",omitempty"`
+	DocumentIdentifiers []*DocumentIdentifier `locationNameList:"DocumentIdentifier" type:"list"`
+	NextToken           *string               `type:"string"`
 
 	metadataListDocumentsOutput `json:"-", xml:"-"`
 }
 
 type metadataListDocumentsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateAssociationStatusInput struct {
-	AssociationStatus *AssociationStatus `type:"structure" required:"true"json:",omitempty"`
-	InstanceID        *string            `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
-	Name              *string            `type:"string" required:"true"json:",omitempty"`
+	AssociationStatus *AssociationStatus `type:"structure" required:"true"`
+	InstanceID        *string            `locationName:"InstanceId" type:"string" required:"true"`
+	Name              *string            `type:"string" required:"true"`
 
 	metadataUpdateAssociationStatusInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateAssociationStatusInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateAssociationStatusOutput struct {
-	AssociationDescription *AssociationDescription `type:"structure" json:",omitempty"`
+	AssociationDescription *AssociationDescription `type:"structure"`
 
 	metadataUpdateAssociationStatusOutput `json:"-", xml:"-"`
 }
 
 type metadataUpdateAssociationStatusOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

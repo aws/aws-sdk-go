@@ -634,26 +634,26 @@ func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (output *Up
 var opUpdateKeyDescription *aws.Operation
 
 type AliasListEntry struct {
-	AliasARN    *string `locationName:"AliasArn" type:"string" json:"AliasArn,omitempty"`
-	AliasName   *string `type:"string" json:",omitempty"`
-	TargetKeyID *string `locationName:"TargetKeyId" type:"string" json:"TargetKeyId,omitempty"`
+	AliasARN    *string `locationName:"AliasArn" type:"string"`
+	AliasName   *string `type:"string"`
+	TargetKeyID *string `locationName:"TargetKeyId" type:"string"`
 
 	metadataAliasListEntry `json:"-", xml:"-"`
 }
 
 type metadataAliasListEntry struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAliasInput struct {
-	AliasName   *string `type:"string" required:"true"json:",omitempty"`
-	TargetKeyID *string `locationName:"TargetKeyId" type:"string" required:"true"json:"TargetKeyId,omitempty"`
+	AliasName   *string `type:"string" required:"true"`
+	TargetKeyID *string `locationName:"TargetKeyId" type:"string" required:"true"`
 
 	metadataCreateAliasInput `json:"-", xml:"-"`
 }
 
 type metadataCreateAliasInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAliasOutput struct {
@@ -661,88 +661,88 @@ type CreateAliasOutput struct {
 }
 
 type metadataCreateAliasOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateGrantInput struct {
-	Constraints       *GrantConstraints `type:"structure" json:",omitempty"`
-	GrantTokens       []*string         `type:"list" json:",omitempty"`
-	GranteePrincipal  *string           `type:"string" required:"true"json:",omitempty"`
-	KeyID             *string           `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
-	Operations        []*string         `type:"list" json:",omitempty"`
-	RetiringPrincipal *string           `type:"string" json:",omitempty"`
+	Constraints       *GrantConstraints `type:"structure"`
+	GrantTokens       []*string         `type:"list"`
+	GranteePrincipal  *string           `type:"string" required:"true"`
+	KeyID             *string           `locationName:"KeyId" type:"string" required:"true"`
+	Operations        []*string         `type:"list"`
+	RetiringPrincipal *string           `type:"string"`
 
 	metadataCreateGrantInput `json:"-", xml:"-"`
 }
 
 type metadataCreateGrantInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateGrantOutput struct {
-	GrantID    *string `locationName:"GrantId" type:"string" json:"GrantId,omitempty"`
-	GrantToken *string `type:"string" json:",omitempty"`
+	GrantID    *string `locationName:"GrantId" type:"string"`
+	GrantToken *string `type:"string"`
 
 	metadataCreateGrantOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateGrantOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateKeyInput struct {
-	Description *string `type:"string" json:",omitempty"`
-	KeyUsage    *string `type:"string" json:",omitempty"`
-	Policy      *string `type:"string" json:",omitempty"`
+	Description *string `type:"string"`
+	KeyUsage    *string `type:"string"`
+	Policy      *string `type:"string"`
 
 	metadataCreateKeyInput `json:"-", xml:"-"`
 }
 
 type metadataCreateKeyInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateKeyOutput struct {
-	KeyMetadata *KeyMetadata `type:"structure" json:",omitempty"`
+	KeyMetadata *KeyMetadata `type:"structure"`
 
 	metadataCreateKeyOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateKeyOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DecryptInput struct {
-	CiphertextBlob    []byte              `type:"blob" required:"true"json:",omitempty"`
-	EncryptionContext *map[string]*string `type:"map" json:",omitempty"`
-	GrantTokens       []*string           `type:"list" json:",omitempty"`
+	CiphertextBlob    []byte              `type:"blob" required:"true"`
+	EncryptionContext *map[string]*string `type:"map"`
+	GrantTokens       []*string           `type:"list"`
 
 	metadataDecryptInput `json:"-", xml:"-"`
 }
 
 type metadataDecryptInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DecryptOutput struct {
-	KeyID     *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
-	Plaintext []byte  `type:"blob" json:",omitempty"`
+	KeyID     *string `locationName:"KeyId" type:"string"`
+	Plaintext []byte  `type:"blob"`
 
 	metadataDecryptOutput `json:"-", xml:"-"`
 }
 
 type metadataDecryptOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAliasInput struct {
-	AliasName *string `type:"string" required:"true"json:",omitempty"`
+	AliasName *string `type:"string" required:"true"`
 
 	metadataDeleteAliasInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteAliasInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAliasOutput struct {
@@ -750,37 +750,37 @@ type DeleteAliasOutput struct {
 }
 
 type metadataDeleteAliasOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeKeyInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDescribeKeyInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeKeyInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeKeyOutput struct {
-	KeyMetadata *KeyMetadata `type:"structure" json:",omitempty"`
+	KeyMetadata *KeyMetadata `type:"structure"`
 
 	metadataDescribeKeyOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeKeyOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableKeyInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDisableKeyInput `json:"-", xml:"-"`
 }
 
 type metadataDisableKeyInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableKeyOutput struct {
@@ -788,17 +788,17 @@ type DisableKeyOutput struct {
 }
 
 type metadataDisableKeyOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableKeyRotationInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDisableKeyRotationInput `json:"-", xml:"-"`
 }
 
 type metadataDisableKeyRotationInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisableKeyRotationOutput struct {
@@ -806,17 +806,17 @@ type DisableKeyRotationOutput struct {
 }
 
 type metadataDisableKeyRotationOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableKeyInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataEnableKeyInput `json:"-", xml:"-"`
 }
 
 type metadataEnableKeyInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableKeyOutput struct {
@@ -824,17 +824,17 @@ type EnableKeyOutput struct {
 }
 
 type metadataEnableKeyOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableKeyRotationInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataEnableKeyRotationInput `json:"-", xml:"-"`
 }
 
 type metadataEnableKeyRotationInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnableKeyRotationOutput struct {
@@ -842,302 +842,302 @@ type EnableKeyRotationOutput struct {
 }
 
 type metadataEnableKeyRotationOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EncryptInput struct {
-	EncryptionContext *map[string]*string `type:"map" json:",omitempty"`
-	GrantTokens       []*string           `type:"list" json:",omitempty"`
-	KeyID             *string             `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
-	Plaintext         []byte              `type:"blob" required:"true"json:",omitempty"`
+	EncryptionContext *map[string]*string `type:"map"`
+	GrantTokens       []*string           `type:"list"`
+	KeyID             *string             `locationName:"KeyId" type:"string" required:"true"`
+	Plaintext         []byte              `type:"blob" required:"true"`
 
 	metadataEncryptInput `json:"-", xml:"-"`
 }
 
 type metadataEncryptInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EncryptOutput struct {
-	CiphertextBlob []byte  `type:"blob" json:",omitempty"`
-	KeyID          *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
+	CiphertextBlob []byte  `type:"blob"`
+	KeyID          *string `locationName:"KeyId" type:"string"`
 
 	metadataEncryptOutput `json:"-", xml:"-"`
 }
 
 type metadataEncryptOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GenerateDataKeyInput struct {
-	EncryptionContext *map[string]*string `type:"map" json:",omitempty"`
-	GrantTokens       []*string           `type:"list" json:",omitempty"`
-	KeyID             *string             `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
-	KeySpec           *string             `type:"string" json:",omitempty"`
-	NumberOfBytes     *int64              `type:"integer" json:",omitempty"`
+	EncryptionContext *map[string]*string `type:"map"`
+	GrantTokens       []*string           `type:"list"`
+	KeyID             *string             `locationName:"KeyId" type:"string" required:"true"`
+	KeySpec           *string             `type:"string"`
+	NumberOfBytes     *int64              `type:"integer"`
 
 	metadataGenerateDataKeyInput `json:"-", xml:"-"`
 }
 
 type metadataGenerateDataKeyInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GenerateDataKeyOutput struct {
-	CiphertextBlob []byte  `type:"blob" json:",omitempty"`
-	KeyID          *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
-	Plaintext      []byte  `type:"blob" json:",omitempty"`
+	CiphertextBlob []byte  `type:"blob"`
+	KeyID          *string `locationName:"KeyId" type:"string"`
+	Plaintext      []byte  `type:"blob"`
 
 	metadataGenerateDataKeyOutput `json:"-", xml:"-"`
 }
 
 type metadataGenerateDataKeyOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GenerateDataKeyWithoutPlaintextInput struct {
-	EncryptionContext *map[string]*string `type:"map" json:",omitempty"`
-	GrantTokens       []*string           `type:"list" json:",omitempty"`
-	KeyID             *string             `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
-	KeySpec           *string             `type:"string" json:",omitempty"`
-	NumberOfBytes     *int64              `type:"integer" json:",omitempty"`
+	EncryptionContext *map[string]*string `type:"map"`
+	GrantTokens       []*string           `type:"list"`
+	KeyID             *string             `locationName:"KeyId" type:"string" required:"true"`
+	KeySpec           *string             `type:"string"`
+	NumberOfBytes     *int64              `type:"integer"`
 
 	metadataGenerateDataKeyWithoutPlaintextInput `json:"-", xml:"-"`
 }
 
 type metadataGenerateDataKeyWithoutPlaintextInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GenerateDataKeyWithoutPlaintextOutput struct {
-	CiphertextBlob []byte  `type:"blob" json:",omitempty"`
-	KeyID          *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
+	CiphertextBlob []byte  `type:"blob"`
+	KeyID          *string `locationName:"KeyId" type:"string"`
 
 	metadataGenerateDataKeyWithoutPlaintextOutput `json:"-", xml:"-"`
 }
 
 type metadataGenerateDataKeyWithoutPlaintextOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GenerateRandomInput struct {
-	NumberOfBytes *int64 `type:"integer" json:",omitempty"`
+	NumberOfBytes *int64 `type:"integer"`
 
 	metadataGenerateRandomInput `json:"-", xml:"-"`
 }
 
 type metadataGenerateRandomInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GenerateRandomOutput struct {
-	Plaintext []byte `type:"blob" json:",omitempty"`
+	Plaintext []byte `type:"blob"`
 
 	metadataGenerateRandomOutput `json:"-", xml:"-"`
 }
 
 type metadataGenerateRandomOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetKeyPolicyInput struct {
-	KeyID      *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
-	PolicyName *string `type:"string" required:"true"json:",omitempty"`
+	KeyID      *string `locationName:"KeyId" type:"string" required:"true"`
+	PolicyName *string `type:"string" required:"true"`
 
 	metadataGetKeyPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataGetKeyPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetKeyPolicyOutput struct {
-	Policy *string `type:"string" json:",omitempty"`
+	Policy *string `type:"string"`
 
 	metadataGetKeyPolicyOutput `json:"-", xml:"-"`
 }
 
 type metadataGetKeyPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetKeyRotationStatusInput struct {
-	KeyID *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataGetKeyRotationStatusInput `json:"-", xml:"-"`
 }
 
 type metadataGetKeyRotationStatusInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetKeyRotationStatusOutput struct {
-	KeyRotationEnabled *bool `type:"boolean" json:",omitempty"`
+	KeyRotationEnabled *bool `type:"boolean"`
 
 	metadataGetKeyRotationStatusOutput `json:"-", xml:"-"`
 }
 
 type metadataGetKeyRotationStatusOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GrantConstraints struct {
-	EncryptionContextEquals *map[string]*string `type:"map" json:",omitempty"`
-	EncryptionContextSubset *map[string]*string `type:"map" json:",omitempty"`
+	EncryptionContextEquals *map[string]*string `type:"map"`
+	EncryptionContextSubset *map[string]*string `type:"map"`
 
 	metadataGrantConstraints `json:"-", xml:"-"`
 }
 
 type metadataGrantConstraints struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GrantListEntry struct {
-	Constraints       *GrantConstraints `type:"structure" json:",omitempty"`
-	GrantID           *string           `locationName:"GrantId" type:"string" json:"GrantId,omitempty"`
-	GranteePrincipal  *string           `type:"string" json:",omitempty"`
-	IssuingAccount    *string           `type:"string" json:",omitempty"`
-	Operations        []*string         `type:"list" json:",omitempty"`
-	RetiringPrincipal *string           `type:"string" json:",omitempty"`
+	Constraints       *GrantConstraints `type:"structure"`
+	GrantID           *string           `locationName:"GrantId" type:"string"`
+	GranteePrincipal  *string           `type:"string"`
+	IssuingAccount    *string           `type:"string"`
+	Operations        []*string         `type:"list"`
+	RetiringPrincipal *string           `type:"string"`
 
 	metadataGrantListEntry `json:"-", xml:"-"`
 }
 
 type metadataGrantListEntry struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type KeyListEntry struct {
-	KeyARN *string `locationName:"KeyArn" type:"string" json:"KeyArn,omitempty"`
-	KeyID  *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
+	KeyARN *string `locationName:"KeyArn" type:"string"`
+	KeyID  *string `locationName:"KeyId" type:"string"`
 
 	metadataKeyListEntry `json:"-", xml:"-"`
 }
 
 type metadataKeyListEntry struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type KeyMetadata struct {
-	ARN          *string    `locationName:"Arn" type:"string" json:"Arn,omitempty"`
-	AWSAccountID *string    `locationName:"AWSAccountId" type:"string" json:"AWSAccountId,omitempty"`
-	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Description  *string    `type:"string" json:",omitempty"`
-	Enabled      *bool      `type:"boolean" json:",omitempty"`
-	KeyID        *string    `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
-	KeyUsage     *string    `type:"string" json:",omitempty"`
+	ARN          *string    `locationName:"Arn" type:"string"`
+	AWSAccountID *string    `locationName:"AWSAccountId" type:"string"`
+	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Description  *string    `type:"string"`
+	Enabled      *bool      `type:"boolean"`
+	KeyID        *string    `locationName:"KeyId" type:"string" required:"true"`
+	KeyUsage     *string    `type:"string"`
 
 	metadataKeyMetadata `json:"-", xml:"-"`
 }
 
 type metadataKeyMetadata struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAliasesInput struct {
-	Limit  *int64  `type:"integer" json:",omitempty"`
-	Marker *string `type:"string" json:",omitempty"`
+	Limit  *int64  `type:"integer"`
+	Marker *string `type:"string"`
 
 	metadataListAliasesInput `json:"-", xml:"-"`
 }
 
 type metadataListAliasesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListAliasesOutput struct {
-	Aliases    []*AliasListEntry `type:"list" json:",omitempty"`
-	NextMarker *string           `type:"string" json:",omitempty"`
-	Truncated  *bool             `type:"boolean" json:",omitempty"`
+	Aliases    []*AliasListEntry `type:"list"`
+	NextMarker *string           `type:"string"`
+	Truncated  *bool             `type:"boolean"`
 
 	metadataListAliasesOutput `json:"-", xml:"-"`
 }
 
 type metadataListAliasesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListGrantsInput struct {
-	KeyID  *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
-	Limit  *int64  `type:"integer" json:",omitempty"`
-	Marker *string `type:"string" json:",omitempty"`
+	KeyID  *string `locationName:"KeyId" type:"string" required:"true"`
+	Limit  *int64  `type:"integer"`
+	Marker *string `type:"string"`
 
 	metadataListGrantsInput `json:"-", xml:"-"`
 }
 
 type metadataListGrantsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListGrantsOutput struct {
-	Grants     []*GrantListEntry `type:"list" json:",omitempty"`
-	NextMarker *string           `type:"string" json:",omitempty"`
-	Truncated  *bool             `type:"boolean" json:",omitempty"`
+	Grants     []*GrantListEntry `type:"list"`
+	NextMarker *string           `type:"string"`
+	Truncated  *bool             `type:"boolean"`
 
 	metadataListGrantsOutput `json:"-", xml:"-"`
 }
 
 type metadataListGrantsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListKeyPoliciesInput struct {
-	KeyID  *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
-	Limit  *int64  `type:"integer" json:",omitempty"`
-	Marker *string `type:"string" json:",omitempty"`
+	KeyID  *string `locationName:"KeyId" type:"string" required:"true"`
+	Limit  *int64  `type:"integer"`
+	Marker *string `type:"string"`
 
 	metadataListKeyPoliciesInput `json:"-", xml:"-"`
 }
 
 type metadataListKeyPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListKeyPoliciesOutput struct {
-	NextMarker  *string   `type:"string" json:",omitempty"`
-	PolicyNames []*string `type:"list" json:",omitempty"`
-	Truncated   *bool     `type:"boolean" json:",omitempty"`
+	NextMarker  *string   `type:"string"`
+	PolicyNames []*string `type:"list"`
+	Truncated   *bool     `type:"boolean"`
 
 	metadataListKeyPoliciesOutput `json:"-", xml:"-"`
 }
 
 type metadataListKeyPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListKeysInput struct {
-	Limit  *int64  `type:"integer" json:",omitempty"`
-	Marker *string `type:"string" json:",omitempty"`
+	Limit  *int64  `type:"integer"`
+	Marker *string `type:"string"`
 
 	metadataListKeysInput `json:"-", xml:"-"`
 }
 
 type metadataListKeysInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListKeysOutput struct {
-	Keys       []*KeyListEntry `type:"list" json:",omitempty"`
-	NextMarker *string         `type:"string" json:",omitempty"`
-	Truncated  *bool           `type:"boolean" json:",omitempty"`
+	Keys       []*KeyListEntry `type:"list"`
+	NextMarker *string         `type:"string"`
+	Truncated  *bool           `type:"boolean"`
 
 	metadataListKeysOutput `json:"-", xml:"-"`
 }
 
 type metadataListKeysOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutKeyPolicyInput struct {
-	KeyID      *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
-	Policy     *string `type:"string" required:"true"json:",omitempty"`
-	PolicyName *string `type:"string" required:"true"json:",omitempty"`
+	KeyID      *string `locationName:"KeyId" type:"string" required:"true"`
+	Policy     *string `type:"string" required:"true"`
+	PolicyName *string `type:"string" required:"true"`
 
 	metadataPutKeyPolicyInput `json:"-", xml:"-"`
 }
 
 type metadataPutKeyPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutKeyPolicyOutput struct {
@@ -1145,43 +1145,43 @@ type PutKeyPolicyOutput struct {
 }
 
 type metadataPutKeyPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReEncryptInput struct {
-	CiphertextBlob               []byte              `type:"blob" required:"true"json:",omitempty"`
-	DestinationEncryptionContext *map[string]*string `type:"map" json:",omitempty"`
-	DestinationKeyID             *string             `locationName:"DestinationKeyId" type:"string" required:"true"json:"DestinationKeyId,omitempty"`
-	GrantTokens                  []*string           `type:"list" json:",omitempty"`
-	SourceEncryptionContext      *map[string]*string `type:"map" json:",omitempty"`
+	CiphertextBlob               []byte              `type:"blob" required:"true"`
+	DestinationEncryptionContext *map[string]*string `type:"map"`
+	DestinationKeyID             *string             `locationName:"DestinationKeyId" type:"string" required:"true"`
+	GrantTokens                  []*string           `type:"list"`
+	SourceEncryptionContext      *map[string]*string `type:"map"`
 
 	metadataReEncryptInput `json:"-", xml:"-"`
 }
 
 type metadataReEncryptInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReEncryptOutput struct {
-	CiphertextBlob []byte  `type:"blob" json:",omitempty"`
-	KeyID          *string `locationName:"KeyId" type:"string" json:"KeyId,omitempty"`
-	SourceKeyID    *string `locationName:"SourceKeyId" type:"string" json:"SourceKeyId,omitempty"`
+	CiphertextBlob []byte  `type:"blob"`
+	KeyID          *string `locationName:"KeyId" type:"string"`
+	SourceKeyID    *string `locationName:"SourceKeyId" type:"string"`
 
 	metadataReEncryptOutput `json:"-", xml:"-"`
 }
 
 type metadataReEncryptOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RetireGrantInput struct {
-	GrantToken *string `type:"string" required:"true"json:",omitempty"`
+	GrantToken *string `type:"string" required:"true"`
 
 	metadataRetireGrantInput `json:"-", xml:"-"`
 }
 
 type metadataRetireGrantInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RetireGrantOutput struct {
@@ -1189,18 +1189,18 @@ type RetireGrantOutput struct {
 }
 
 type metadataRetireGrantOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RevokeGrantInput struct {
-	GrantID *string `locationName:"GrantId" type:"string" required:"true"json:"GrantId,omitempty"`
-	KeyID   *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
+	GrantID *string `locationName:"GrantId" type:"string" required:"true"`
+	KeyID   *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataRevokeGrantInput `json:"-", xml:"-"`
 }
 
 type metadataRevokeGrantInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RevokeGrantOutput struct {
@@ -1208,18 +1208,18 @@ type RevokeGrantOutput struct {
 }
 
 type metadataRevokeGrantOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateKeyDescriptionInput struct {
-	Description *string `type:"string" required:"true"json:",omitempty"`
-	KeyID       *string `locationName:"KeyId" type:"string" required:"true"json:"KeyId,omitempty"`
+	Description *string `type:"string" required:"true"`
+	KeyID       *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataUpdateKeyDescriptionInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateKeyDescriptionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateKeyDescriptionOutput struct {
@@ -1227,5 +1227,5 @@ type UpdateKeyDescriptionOutput struct {
 }
 
 type metadataUpdateKeyDescriptionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

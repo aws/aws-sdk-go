@@ -407,14 +407,14 @@ func (c *DataPipeline) ValidatePipelineDefinition(input *ValidatePipelineDefinit
 var opValidatePipelineDefinition *aws.Operation
 
 type ActivatePipelineInput struct {
-	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list" json:"parameterValues,omitempty"`
-	PipelineID      *string           `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
+	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
+	PipelineID      *string           `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataActivatePipelineInput `json:"-", xml:"-"`
 }
 
 type metadataActivatePipelineInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ActivatePipelineOutput struct {
@@ -422,39 +422,39 @@ type ActivatePipelineOutput struct {
 }
 
 type metadataActivatePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreatePipelineInput struct {
-	Description *string `locationName:"description" type:"string" json:"description,omitempty"`
-	Name        *string `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
-	UniqueID    *string `locationName:"uniqueId" type:"string" required:"true"json:"uniqueId,omitempty"`
+	Description *string `locationName:"description" type:"string"`
+	Name        *string `locationName:"name" type:"string" required:"true"`
+	UniqueID    *string `locationName:"uniqueId" type:"string" required:"true"`
 
 	metadataCreatePipelineInput `json:"-", xml:"-"`
 }
 
 type metadataCreatePipelineInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreatePipelineOutput struct {
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataCreatePipelineOutput `json:"-", xml:"-"`
 }
 
 type metadataCreatePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeletePipelineInput struct {
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataDeletePipelineInput `json:"-", xml:"-"`
 }
 
 type metadataDeletePipelineInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeletePipelineOutput struct {
@@ -462,371 +462,371 @@ type DeletePipelineOutput struct {
 }
 
 type metadataDeletePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeObjectsInput struct {
-	EvaluateExpressions *bool     `locationName:"evaluateExpressions" type:"boolean" json:"evaluateExpressions,omitempty"`
-	Marker              *string   `locationName:"marker" type:"string" json:"marker,omitempty"`
-	ObjectIDs           []*string `locationName:"objectIds" type:"list" required:"true"json:"objectIds,omitempty"`
-	PipelineID          *string   `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
+	EvaluateExpressions *bool     `locationName:"evaluateExpressions" type:"boolean"`
+	Marker              *string   `locationName:"marker" type:"string"`
+	ObjectIDs           []*string `locationName:"objectIds" type:"list" required:"true"`
+	PipelineID          *string   `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataDescribeObjectsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeObjectsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeObjectsOutput struct {
-	HasMoreResults  *bool             `locationName:"hasMoreResults" type:"boolean" json:"hasMoreResults,omitempty"`
-	Marker          *string           `locationName:"marker" type:"string" json:"marker,omitempty"`
-	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"json:"pipelineObjects,omitempty"`
+	HasMoreResults  *bool             `locationName:"hasMoreResults" type:"boolean"`
+	Marker          *string           `locationName:"marker" type:"string"`
+	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 
 	metadataDescribeObjectsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeObjectsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribePipelinesInput struct {
-	PipelineIDs []*string `locationName:"pipelineIds" type:"list" required:"true"json:"pipelineIds,omitempty"`
+	PipelineIDs []*string `locationName:"pipelineIds" type:"list" required:"true"`
 
 	metadataDescribePipelinesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribePipelinesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribePipelinesOutput struct {
-	PipelineDescriptionList []*PipelineDescription `locationName:"pipelineDescriptionList" type:"list" required:"true"json:"pipelineDescriptionList,omitempty"`
+	PipelineDescriptionList []*PipelineDescription `locationName:"pipelineDescriptionList" type:"list" required:"true"`
 
 	metadataDescribePipelinesOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribePipelinesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EvaluateExpressionInput struct {
-	Expression *string `locationName:"expression" type:"string" required:"true"json:"expression,omitempty"`
-	ObjectID   *string `locationName:"objectId" type:"string" required:"true"json:"objectId,omitempty"`
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
+	Expression *string `locationName:"expression" type:"string" required:"true"`
+	ObjectID   *string `locationName:"objectId" type:"string" required:"true"`
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataEvaluateExpressionInput `json:"-", xml:"-"`
 }
 
 type metadataEvaluateExpressionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EvaluateExpressionOutput struct {
-	EvaluatedExpression *string `locationName:"evaluatedExpression" type:"string" required:"true"json:"evaluatedExpression,omitempty"`
+	EvaluatedExpression *string `locationName:"evaluatedExpression" type:"string" required:"true"`
 
 	metadataEvaluateExpressionOutput `json:"-", xml:"-"`
 }
 
 type metadataEvaluateExpressionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Field struct {
-	Key         *string `locationName:"key" type:"string" required:"true"json:"key,omitempty"`
-	RefValue    *string `locationName:"refValue" type:"string" json:"refValue,omitempty"`
-	StringValue *string `locationName:"stringValue" type:"string" json:"stringValue,omitempty"`
+	Key         *string `locationName:"key" type:"string" required:"true"`
+	RefValue    *string `locationName:"refValue" type:"string"`
+	StringValue *string `locationName:"stringValue" type:"string"`
 
 	metadataField `json:"-", xml:"-"`
 }
 
 type metadataField struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetPipelineDefinitionInput struct {
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
-	Version    *string `locationName:"version" type:"string" json:"version,omitempty"`
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	Version    *string `locationName:"version" type:"string"`
 
 	metadataGetPipelineDefinitionInput `json:"-", xml:"-"`
 }
 
 type metadataGetPipelineDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetPipelineDefinitionOutput struct {
-	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list" json:"parameterObjects,omitempty"`
-	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list" json:"parameterValues,omitempty"`
-	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" json:"pipelineObjects,omitempty"`
+	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list"`
+	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list"`
+	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list"`
 
 	metadataGetPipelineDefinitionOutput `json:"-", xml:"-"`
 }
 
 type metadataGetPipelineDefinitionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceIdentity struct {
-	Document  *string `locationName:"document" type:"string" json:"document,omitempty"`
-	Signature *string `locationName:"signature" type:"string" json:"signature,omitempty"`
+	Document  *string `locationName:"document" type:"string"`
+	Signature *string `locationName:"signature" type:"string"`
 
 	metadataInstanceIdentity `json:"-", xml:"-"`
 }
 
 type metadataInstanceIdentity struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListPipelinesInput struct {
-	Marker *string `locationName:"marker" type:"string" json:"marker,omitempty"`
+	Marker *string `locationName:"marker" type:"string"`
 
 	metadataListPipelinesInput `json:"-", xml:"-"`
 }
 
 type metadataListPipelinesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListPipelinesOutput struct {
-	HasMoreResults *bool             `locationName:"hasMoreResults" type:"boolean" json:"hasMoreResults,omitempty"`
-	Marker         *string           `locationName:"marker" type:"string" json:"marker,omitempty"`
-	PipelineIDList []*PipelineIDName `locationName:"pipelineIdList" type:"list" required:"true"json:"pipelineIdList,omitempty"`
+	HasMoreResults *bool             `locationName:"hasMoreResults" type:"boolean"`
+	Marker         *string           `locationName:"marker" type:"string"`
+	PipelineIDList []*PipelineIDName `locationName:"pipelineIdList" type:"list" required:"true"`
 
 	metadataListPipelinesOutput `json:"-", xml:"-"`
 }
 
 type metadataListPipelinesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Operator struct {
-	Type   *string   `locationName:"type" type:"string" json:"type,omitempty"`
-	Values []*string `locationName:"values" type:"list" json:"values,omitempty"`
+	Type   *string   `locationName:"type" type:"string"`
+	Values []*string `locationName:"values" type:"list"`
 
 	metadataOperator `json:"-", xml:"-"`
 }
 
 type metadataOperator struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ParameterAttribute struct {
-	Key         *string `locationName:"key" type:"string" required:"true"json:"key,omitempty"`
-	StringValue *string `locationName:"stringValue" type:"string" required:"true"json:"stringValue,omitempty"`
+	Key         *string `locationName:"key" type:"string" required:"true"`
+	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
 
 	metadataParameterAttribute `json:"-", xml:"-"`
 }
 
 type metadataParameterAttribute struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ParameterObject struct {
-	Attributes []*ParameterAttribute `locationName:"attributes" type:"list" required:"true"json:"attributes,omitempty"`
-	ID         *string               `locationName:"id" type:"string" required:"true"json:"id,omitempty"`
+	Attributes []*ParameterAttribute `locationName:"attributes" type:"list" required:"true"`
+	ID         *string               `locationName:"id" type:"string" required:"true"`
 
 	metadataParameterObject `json:"-", xml:"-"`
 }
 
 type metadataParameterObject struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ParameterValue struct {
-	ID          *string `locationName:"id" type:"string" required:"true"json:"id,omitempty"`
-	StringValue *string `locationName:"stringValue" type:"string" required:"true"json:"stringValue,omitempty"`
+	ID          *string `locationName:"id" type:"string" required:"true"`
+	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
 
 	metadataParameterValue `json:"-", xml:"-"`
 }
 
 type metadataParameterValue struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PipelineDescription struct {
-	Description *string  `locationName:"description" type:"string" json:"description,omitempty"`
-	Fields      []*Field `locationName:"fields" type:"list" required:"true"json:"fields,omitempty"`
-	Name        *string  `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
-	PipelineID  *string  `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
+	Description *string  `locationName:"description" type:"string"`
+	Fields      []*Field `locationName:"fields" type:"list" required:"true"`
+	Name        *string  `locationName:"name" type:"string" required:"true"`
+	PipelineID  *string  `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataPipelineDescription `json:"-", xml:"-"`
 }
 
 type metadataPipelineDescription struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PipelineIDName struct {
-	ID   *string `locationName:"id" type:"string" json:"id,omitempty"`
-	Name *string `locationName:"name" type:"string" json:"name,omitempty"`
+	ID   *string `locationName:"id" type:"string"`
+	Name *string `locationName:"name" type:"string"`
 
 	metadataPipelineIDName `json:"-", xml:"-"`
 }
 
 type metadataPipelineIDName struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PipelineObject struct {
-	Fields []*Field `locationName:"fields" type:"list" required:"true"json:"fields,omitempty"`
-	ID     *string  `locationName:"id" type:"string" required:"true"json:"id,omitempty"`
-	Name   *string  `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
+	Fields []*Field `locationName:"fields" type:"list" required:"true"`
+	ID     *string  `locationName:"id" type:"string" required:"true"`
+	Name   *string  `locationName:"name" type:"string" required:"true"`
 
 	metadataPipelineObject `json:"-", xml:"-"`
 }
 
 type metadataPipelineObject struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PollForTaskInput struct {
-	Hostname         *string           `locationName:"hostname" type:"string" json:"hostname,omitempty"`
-	InstanceIdentity *InstanceIdentity `locationName:"instanceIdentity" type:"structure" json:"instanceIdentity,omitempty"`
-	WorkerGroup      *string           `locationName:"workerGroup" type:"string" required:"true"json:"workerGroup,omitempty"`
+	Hostname         *string           `locationName:"hostname" type:"string"`
+	InstanceIdentity *InstanceIdentity `locationName:"instanceIdentity" type:"structure"`
+	WorkerGroup      *string           `locationName:"workerGroup" type:"string" required:"true"`
 
 	metadataPollForTaskInput `json:"-", xml:"-"`
 }
 
 type metadataPollForTaskInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PollForTaskOutput struct {
-	TaskObject *TaskObject `locationName:"taskObject" type:"structure" json:"taskObject,omitempty"`
+	TaskObject *TaskObject `locationName:"taskObject" type:"structure"`
 
 	metadataPollForTaskOutput `json:"-", xml:"-"`
 }
 
 type metadataPollForTaskOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutPipelineDefinitionInput struct {
-	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list" json:"parameterObjects,omitempty"`
-	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list" json:"parameterValues,omitempty"`
-	PipelineID       *string            `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
-	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" required:"true"json:"pipelineObjects,omitempty"`
+	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list"`
+	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list"`
+	PipelineID       *string            `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" required:"true"`
 
 	metadataPutPipelineDefinitionInput `json:"-", xml:"-"`
 }
 
 type metadataPutPipelineDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutPipelineDefinitionOutput struct {
-	Errored            *bool                `locationName:"errored" type:"boolean" required:"true"json:"errored,omitempty"`
-	ValidationErrors   []*ValidationError   `locationName:"validationErrors" type:"list" json:"validationErrors,omitempty"`
-	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list" json:"validationWarnings,omitempty"`
+	Errored            *bool                `locationName:"errored" type:"boolean" required:"true"`
+	ValidationErrors   []*ValidationError   `locationName:"validationErrors" type:"list"`
+	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list"`
 
 	metadataPutPipelineDefinitionOutput `json:"-", xml:"-"`
 }
 
 type metadataPutPipelineDefinitionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Query struct {
-	Selectors []*Selector `locationName:"selectors" type:"list" json:"selectors,omitempty"`
+	Selectors []*Selector `locationName:"selectors" type:"list"`
 
 	metadataQuery `json:"-", xml:"-"`
 }
 
 type metadataQuery struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type QueryObjectsInput struct {
-	Limit      *int64  `locationName:"limit" type:"integer" json:"limit,omitempty"`
-	Marker     *string `locationName:"marker" type:"string" json:"marker,omitempty"`
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
-	Query      *Query  `locationName:"query" type:"structure" json:"query,omitempty"`
-	Sphere     *string `locationName:"sphere" type:"string" required:"true"json:"sphere,omitempty"`
+	Limit      *int64  `locationName:"limit" type:"integer"`
+	Marker     *string `locationName:"marker" type:"string"`
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	Query      *Query  `locationName:"query" type:"structure"`
+	Sphere     *string `locationName:"sphere" type:"string" required:"true"`
 
 	metadataQueryObjectsInput `json:"-", xml:"-"`
 }
 
 type metadataQueryObjectsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type QueryObjectsOutput struct {
-	HasMoreResults *bool     `locationName:"hasMoreResults" type:"boolean" json:"hasMoreResults,omitempty"`
-	IDs            []*string `locationName:"ids" type:"list" json:"ids,omitempty"`
-	Marker         *string   `locationName:"marker" type:"string" json:"marker,omitempty"`
+	HasMoreResults *bool     `locationName:"hasMoreResults" type:"boolean"`
+	IDs            []*string `locationName:"ids" type:"list"`
+	Marker         *string   `locationName:"marker" type:"string"`
 
 	metadataQueryObjectsOutput `json:"-", xml:"-"`
 }
 
 type metadataQueryObjectsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReportTaskProgressInput struct {
-	Fields []*Field `locationName:"fields" type:"list" json:"fields,omitempty"`
-	TaskID *string  `locationName:"taskId" type:"string" required:"true"json:"taskId,omitempty"`
+	Fields []*Field `locationName:"fields" type:"list"`
+	TaskID *string  `locationName:"taskId" type:"string" required:"true"`
 
 	metadataReportTaskProgressInput `json:"-", xml:"-"`
 }
 
 type metadataReportTaskProgressInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReportTaskProgressOutput struct {
-	Canceled *bool `locationName:"canceled" type:"boolean" required:"true"json:"canceled,omitempty"`
+	Canceled *bool `locationName:"canceled" type:"boolean" required:"true"`
 
 	metadataReportTaskProgressOutput `json:"-", xml:"-"`
 }
 
 type metadataReportTaskProgressOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReportTaskRunnerHeartbeatInput struct {
-	Hostname     *string `locationName:"hostname" type:"string" json:"hostname,omitempty"`
-	TaskRunnerID *string `locationName:"taskrunnerId" type:"string" required:"true"json:"taskrunnerId,omitempty"`
-	WorkerGroup  *string `locationName:"workerGroup" type:"string" json:"workerGroup,omitempty"`
+	Hostname     *string `locationName:"hostname" type:"string"`
+	TaskRunnerID *string `locationName:"taskrunnerId" type:"string" required:"true"`
+	WorkerGroup  *string `locationName:"workerGroup" type:"string"`
 
 	metadataReportTaskRunnerHeartbeatInput `json:"-", xml:"-"`
 }
 
 type metadataReportTaskRunnerHeartbeatInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReportTaskRunnerHeartbeatOutput struct {
-	Terminate *bool `locationName:"terminate" type:"boolean" required:"true"json:"terminate,omitempty"`
+	Terminate *bool `locationName:"terminate" type:"boolean" required:"true"`
 
 	metadataReportTaskRunnerHeartbeatOutput `json:"-", xml:"-"`
 }
 
 type metadataReportTaskRunnerHeartbeatOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Selector struct {
-	FieldName *string   `locationName:"fieldName" type:"string" json:"fieldName,omitempty"`
-	Operator  *Operator `locationName:"operator" type:"structure" json:"operator,omitempty"`
+	FieldName *string   `locationName:"fieldName" type:"string"`
+	Operator  *Operator `locationName:"operator" type:"structure"`
 
 	metadataSelector `json:"-", xml:"-"`
 }
 
 type metadataSelector struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetStatusInput struct {
-	ObjectIDs  []*string `locationName:"objectIds" type:"list" required:"true"json:"objectIds,omitempty"`
-	PipelineID *string   `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
-	Status     *string   `locationName:"status" type:"string" required:"true"json:"status,omitempty"`
+	ObjectIDs  []*string `locationName:"objectIds" type:"list" required:"true"`
+	PipelineID *string   `locationName:"pipelineId" type:"string" required:"true"`
+	Status     *string   `locationName:"status" type:"string" required:"true"`
 
 	metadataSetStatusInput `json:"-", xml:"-"`
 }
 
 type metadataSetStatusInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetStatusOutput struct {
@@ -834,21 +834,21 @@ type SetStatusOutput struct {
 }
 
 type metadataSetStatusOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetTaskStatusInput struct {
-	ErrorID         *string `locationName:"errorId" type:"string" json:"errorId,omitempty"`
-	ErrorMessage    *string `locationName:"errorMessage" type:"string" json:"errorMessage,omitempty"`
-	ErrorStackTrace *string `locationName:"errorStackTrace" type:"string" json:"errorStackTrace,omitempty"`
-	TaskID          *string `locationName:"taskId" type:"string" required:"true"json:"taskId,omitempty"`
-	TaskStatus      *string `locationName:"taskStatus" type:"string" required:"true"json:"taskStatus,omitempty"`
+	ErrorID         *string `locationName:"errorId" type:"string"`
+	ErrorMessage    *string `locationName:"errorMessage" type:"string"`
+	ErrorStackTrace *string `locationName:"errorStackTrace" type:"string"`
+	TaskID          *string `locationName:"taskId" type:"string" required:"true"`
+	TaskStatus      *string `locationName:"taskStatus" type:"string" required:"true"`
 
 	metadataSetTaskStatusInput `json:"-", xml:"-"`
 }
 
 type metadataSetTaskStatusInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetTaskStatusOutput struct {
@@ -856,65 +856,65 @@ type SetTaskStatusOutput struct {
 }
 
 type metadataSetTaskStatusOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TaskObject struct {
-	AttemptID  *string                     `locationName:"attemptId" type:"string" json:"attemptId,omitempty"`
-	Objects    *map[string]*PipelineObject `locationName:"objects" type:"map" json:"objects,omitempty"`
-	PipelineID *string                     `locationName:"pipelineId" type:"string" json:"pipelineId,omitempty"`
-	TaskID     *string                     `locationName:"taskId" type:"string" json:"taskId,omitempty"`
+	AttemptID  *string                     `locationName:"attemptId" type:"string"`
+	Objects    *map[string]*PipelineObject `locationName:"objects" type:"map"`
+	PipelineID *string                     `locationName:"pipelineId" type:"string"`
+	TaskID     *string                     `locationName:"taskId" type:"string"`
 
 	metadataTaskObject `json:"-", xml:"-"`
 }
 
 type metadataTaskObject struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ValidatePipelineDefinitionInput struct {
-	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list" json:"parameterObjects,omitempty"`
-	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list" json:"parameterValues,omitempty"`
-	PipelineID       *string            `locationName:"pipelineId" type:"string" required:"true"json:"pipelineId,omitempty"`
-	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" required:"true"json:"pipelineObjects,omitempty"`
+	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list"`
+	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list"`
+	PipelineID       *string            `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" required:"true"`
 
 	metadataValidatePipelineDefinitionInput `json:"-", xml:"-"`
 }
 
 type metadataValidatePipelineDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ValidatePipelineDefinitionOutput struct {
-	Errored            *bool                `locationName:"errored" type:"boolean" required:"true"json:"errored,omitempty"`
-	ValidationErrors   []*ValidationError   `locationName:"validationErrors" type:"list" json:"validationErrors,omitempty"`
-	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list" json:"validationWarnings,omitempty"`
+	Errored            *bool                `locationName:"errored" type:"boolean" required:"true"`
+	ValidationErrors   []*ValidationError   `locationName:"validationErrors" type:"list"`
+	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list"`
 
 	metadataValidatePipelineDefinitionOutput `json:"-", xml:"-"`
 }
 
 type metadataValidatePipelineDefinitionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ValidationError struct {
-	Errors []*string `locationName:"errors" type:"list" json:"errors,omitempty"`
-	ID     *string   `locationName:"id" type:"string" json:"id,omitempty"`
+	Errors []*string `locationName:"errors" type:"list"`
+	ID     *string   `locationName:"id" type:"string"`
 
 	metadataValidationError `json:"-", xml:"-"`
 }
 
 type metadataValidationError struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ValidationWarning struct {
-	ID       *string   `locationName:"id" type:"string" json:"id,omitempty"`
-	Warnings []*string `locationName:"warnings" type:"list" json:"warnings,omitempty"`
+	ID       *string   `locationName:"id" type:"string"`
+	Warnings []*string `locationName:"warnings" type:"list"`
 
 	metadataValidationWarning `json:"-", xml:"-"`
 }
 
 type metadataValidationWarning struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

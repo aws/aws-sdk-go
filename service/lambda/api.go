@@ -284,27 +284,27 @@ func (c *Lambda) UploadFunction(input *UploadFunctionInput) (output *FunctionCon
 var opUploadFunction *aws.Operation
 
 type AddEventSourceInput struct {
-	BatchSize    *int64              `type:"integer" json:",omitempty"`
-	EventSource  *string             `type:"string" required:"true"json:",omitempty"`
-	FunctionName *string             `type:"string" required:"true"json:",omitempty"`
-	Parameters   *map[string]*string `type:"map" json:",omitempty"`
-	Role         *string             `type:"string" required:"true"json:",omitempty"`
+	BatchSize    *int64              `type:"integer"`
+	EventSource  *string             `type:"string" required:"true"`
+	FunctionName *string             `type:"string" required:"true"`
+	Parameters   *map[string]*string `type:"map"`
+	Role         *string             `type:"string" required:"true"`
 
 	metadataAddEventSourceInput `json:"-", xml:"-"`
 }
 
 type metadataAddEventSourceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteFunctionInput struct {
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"json:"-" xml:"-"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
 
 	metadataDeleteFunctionInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteFunctionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteFunctionOutput struct {
@@ -312,175 +312,175 @@ type DeleteFunctionOutput struct {
 }
 
 type metadataDeleteFunctionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EventSourceConfiguration struct {
-	BatchSize    *int64              `type:"integer" json:",omitempty"`
-	EventSource  *string             `type:"string" json:",omitempty"`
-	FunctionName *string             `type:"string" json:",omitempty"`
-	IsActive     *bool               `type:"boolean" json:",omitempty"`
-	LastModified *time.Time          `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Parameters   *map[string]*string `type:"map" json:",omitempty"`
-	Role         *string             `type:"string" json:",omitempty"`
-	Status       *string             `type:"string" json:",omitempty"`
-	UUID         *string             `type:"string" json:",omitempty"`
+	BatchSize    *int64              `type:"integer"`
+	EventSource  *string             `type:"string"`
+	FunctionName *string             `type:"string"`
+	IsActive     *bool               `type:"boolean"`
+	LastModified *time.Time          `type:"timestamp" timestampFormat:"unix"`
+	Parameters   *map[string]*string `type:"map"`
+	Role         *string             `type:"string"`
+	Status       *string             `type:"string"`
+	UUID         *string             `type:"string"`
 
 	metadataEventSourceConfiguration `json:"-", xml:"-"`
 }
 
 type metadataEventSourceConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type FunctionCodeLocation struct {
-	Location       *string `type:"string" json:",omitempty"`
-	RepositoryType *string `type:"string" json:",omitempty"`
+	Location       *string `type:"string"`
+	RepositoryType *string `type:"string"`
 
 	metadataFunctionCodeLocation `json:"-", xml:"-"`
 }
 
 type metadataFunctionCodeLocation struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type FunctionConfiguration struct {
-	CodeSize        *int64     `type:"long" json:",omitempty"`
-	ConfigurationID *string    `locationName:"ConfigurationId" type:"string" json:"ConfigurationId,omitempty"`
-	Description     *string    `type:"string" json:",omitempty"`
-	FunctionARN     *string    `type:"string" json:",omitempty"`
-	FunctionName    *string    `type:"string" json:",omitempty"`
-	Handler         *string    `type:"string" json:",omitempty"`
-	LastModified    *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	MemorySize      *int64     `type:"integer" json:",omitempty"`
-	Mode            *string    `type:"string" json:",omitempty"`
-	Role            *string    `type:"string" json:",omitempty"`
-	Runtime         *string    `type:"string" json:",omitempty"`
-	Timeout         *int64     `type:"integer" json:",omitempty"`
+	CodeSize        *int64     `type:"long"`
+	ConfigurationID *string    `locationName:"ConfigurationId" type:"string"`
+	Description     *string    `type:"string"`
+	FunctionARN     *string    `type:"string"`
+	FunctionName    *string    `type:"string"`
+	Handler         *string    `type:"string"`
+	LastModified    *time.Time `type:"timestamp" timestampFormat:"unix"`
+	MemorySize      *int64     `type:"integer"`
+	Mode            *string    `type:"string"`
+	Role            *string    `type:"string"`
+	Runtime         *string    `type:"string"`
+	Timeout         *int64     `type:"integer"`
 
 	metadataFunctionConfiguration `json:"-", xml:"-"`
 }
 
 type metadataFunctionConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetEventSourceInput struct {
-	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"json:"-" xml:"-"`
+	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
 
 	metadataGetEventSourceInput `json:"-", xml:"-"`
 }
 
 type metadataGetEventSourceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetFunctionConfigurationInput struct {
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"json:"-" xml:"-"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
 
 	metadataGetFunctionConfigurationInput `json:"-", xml:"-"`
 }
 
 type metadataGetFunctionConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetFunctionInput struct {
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"json:"-" xml:"-"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
 
 	metadataGetFunctionInput `json:"-", xml:"-"`
 }
 
 type metadataGetFunctionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetFunctionOutput struct {
-	Code          *FunctionCodeLocation  `type:"structure" json:",omitempty"`
-	Configuration *FunctionConfiguration `type:"structure" json:",omitempty"`
+	Code          *FunctionCodeLocation  `type:"structure"`
+	Configuration *FunctionConfiguration `type:"structure"`
 
 	metadataGetFunctionOutput `json:"-", xml:"-"`
 }
 
 type metadataGetFunctionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InvokeAsyncInput struct {
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"json:"-" xml:"-"`
-	InvokeArgs   []byte  `type:"blob" required:"true"json:",omitempty"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	InvokeArgs   []byte  `type:"blob" required:"true"`
 
 	metadataInvokeAsyncInput `json:"-", xml:"-"`
 }
 
 type metadataInvokeAsyncInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"InvokeArgs" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" payload:"InvokeArgs"`
 }
 
 type InvokeAsyncOutput struct {
-	Status *int64 `location:"statusCode" type:"integer" json:"-" xml:"-"`
+	Status *int64 `location:"statusCode" type:"integer"`
 
 	metadataInvokeAsyncOutput `json:"-", xml:"-"`
 }
 
 type metadataInvokeAsyncOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListEventSourcesInput struct {
-	EventSourceARN *string `location:"querystring" locationName:"EventSource" type:"string" json:"-" xml:"-"`
-	FunctionName   *string `location:"querystring" locationName:"FunctionName" type:"string" json:"-" xml:"-"`
-	Marker         *string `location:"querystring" locationName:"Marker" type:"string" json:"-" xml:"-"`
-	MaxItems       *int64  `location:"querystring" locationName:"MaxItems" type:"integer" json:"-" xml:"-"`
+	EventSourceARN *string `location:"querystring" locationName:"EventSource" type:"string"`
+	FunctionName   *string `location:"querystring" locationName:"FunctionName" type:"string"`
+	Marker         *string `location:"querystring" locationName:"Marker" type:"string"`
+	MaxItems       *int64  `location:"querystring" locationName:"MaxItems" type:"integer"`
 
 	metadataListEventSourcesInput `json:"-", xml:"-"`
 }
 
 type metadataListEventSourcesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListEventSourcesOutput struct {
-	EventSources []*EventSourceConfiguration `type:"list" json:",omitempty"`
-	NextMarker   *string                     `type:"string" json:",omitempty"`
+	EventSources []*EventSourceConfiguration `type:"list"`
+	NextMarker   *string                     `type:"string"`
 
 	metadataListEventSourcesOutput `json:"-", xml:"-"`
 }
 
 type metadataListEventSourcesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListFunctionsInput struct {
-	Marker   *string `location:"querystring" locationName:"Marker" type:"string" json:"-" xml:"-"`
-	MaxItems *int64  `location:"querystring" locationName:"MaxItems" type:"integer" json:"-" xml:"-"`
+	Marker   *string `location:"querystring" locationName:"Marker" type:"string"`
+	MaxItems *int64  `location:"querystring" locationName:"MaxItems" type:"integer"`
 
 	metadataListFunctionsInput `json:"-", xml:"-"`
 }
 
 type metadataListFunctionsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListFunctionsOutput struct {
-	Functions  []*FunctionConfiguration `type:"list" json:",omitempty"`
-	NextMarker *string                  `type:"string" json:",omitempty"`
+	Functions  []*FunctionConfiguration `type:"list"`
+	NextMarker *string                  `type:"string"`
 
 	metadataListFunctionsOutput `json:"-", xml:"-"`
 }
 
 type metadataListFunctionsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveEventSourceInput struct {
-	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"json:"-" xml:"-"`
+	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
 
 	metadataRemoveEventSourceInput `json:"-", xml:"-"`
 }
 
 type metadataRemoveEventSourceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveEventSourceOutput struct {
@@ -488,38 +488,38 @@ type RemoveEventSourceOutput struct {
 }
 
 type metadataRemoveEventSourceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateFunctionConfigurationInput struct {
-	Description  *string `location:"querystring" locationName:"Description" type:"string" json:"-" xml:"-"`
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"json:"-" xml:"-"`
-	Handler      *string `location:"querystring" locationName:"Handler" type:"string" json:"-" xml:"-"`
-	MemorySize   *int64  `location:"querystring" locationName:"MemorySize" type:"integer" json:"-" xml:"-"`
-	Role         *string `location:"querystring" locationName:"Role" type:"string" json:"-" xml:"-"`
-	Timeout      *int64  `location:"querystring" locationName:"Timeout" type:"integer" json:"-" xml:"-"`
+	Description  *string `location:"querystring" locationName:"Description" type:"string"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	Handler      *string `location:"querystring" locationName:"Handler" type:"string"`
+	MemorySize   *int64  `location:"querystring" locationName:"MemorySize" type:"integer"`
+	Role         *string `location:"querystring" locationName:"Role" type:"string"`
+	Timeout      *int64  `location:"querystring" locationName:"Timeout" type:"integer"`
 
 	metadataUpdateFunctionConfigurationInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateFunctionConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UploadFunctionInput struct {
-	Description  *string `location:"querystring" locationName:"Description" type:"string" json:"-" xml:"-"`
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"json:"-" xml:"-"`
-	FunctionZip  []byte  `type:"blob" required:"true"json:",omitempty"`
-	Handler      *string `location:"querystring" locationName:"Handler" type:"string" required:"true"json:"-" xml:"-"`
-	MemorySize   *int64  `location:"querystring" locationName:"MemorySize" type:"integer" json:"-" xml:"-"`
-	Mode         *string `location:"querystring" locationName:"Mode" type:"string" required:"true"json:"-" xml:"-"`
-	Role         *string `location:"querystring" locationName:"Role" type:"string" required:"true"json:"-" xml:"-"`
-	Runtime      *string `location:"querystring" locationName:"Runtime" type:"string" required:"true"json:"-" xml:"-"`
-	Timeout      *int64  `location:"querystring" locationName:"Timeout" type:"integer" json:"-" xml:"-"`
+	Description  *string `location:"querystring" locationName:"Description" type:"string"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	FunctionZip  []byte  `type:"blob" required:"true"`
+	Handler      *string `location:"querystring" locationName:"Handler" type:"string" required:"true"`
+	MemorySize   *int64  `location:"querystring" locationName:"MemorySize" type:"integer"`
+	Mode         *string `location:"querystring" locationName:"Mode" type:"string" required:"true"`
+	Role         *string `location:"querystring" locationName:"Role" type:"string" required:"true"`
+	Runtime      *string `location:"querystring" locationName:"Runtime" type:"string" required:"true"`
+	Timeout      *int64  `location:"querystring" locationName:"Timeout" type:"integer"`
 
 	metadataUploadFunctionInput `json:"-", xml:"-"`
 }
 
 type metadataUploadFunctionInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"FunctionZip" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure" payload:"FunctionZip"`
 }

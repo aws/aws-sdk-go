@@ -191,12 +191,6 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 
 	}
 
-	if ref.Location != "" { // omit non-body location elements from JSON/XML
-		code += `json:"-" xml:"-" `
-	} else if strings.Contains(ref.API.Metadata.Protocol, "json") {
-		code += `json:"` + ref.LocationName + `,omitempty"`
-	}
-
 	return strings.TrimSpace(code) + "`"
 }
 

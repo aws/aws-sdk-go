@@ -284,92 +284,92 @@ func (c *ConfigService) StopConfigurationRecorder(input *StopConfigurationRecord
 var opStopConfigurationRecorder *aws.Operation
 
 type ConfigExportDeliveryInfo struct {
-	LastAttemptTime    *time.Time `locationName:"lastAttemptTime" type:"timestamp" timestampFormat:"unix" json:"lastAttemptTime,omitempty"`
-	LastErrorCode      *string    `locationName:"lastErrorCode" type:"string" json:"lastErrorCode,omitempty"`
-	LastErrorMessage   *string    `locationName:"lastErrorMessage" type:"string" json:"lastErrorMessage,omitempty"`
-	LastStatus         *string    `locationName:"lastStatus" type:"string" json:"lastStatus,omitempty"`
-	LastSuccessfulTime *time.Time `locationName:"lastSuccessfulTime" type:"timestamp" timestampFormat:"unix" json:"lastSuccessfulTime,omitempty"`
+	LastAttemptTime    *time.Time `locationName:"lastAttemptTime" type:"timestamp" timestampFormat:"unix"`
+	LastErrorCode      *string    `locationName:"lastErrorCode" type:"string"`
+	LastErrorMessage   *string    `locationName:"lastErrorMessage" type:"string"`
+	LastStatus         *string    `locationName:"lastStatus" type:"string"`
+	LastSuccessfulTime *time.Time `locationName:"lastSuccessfulTime" type:"timestamp" timestampFormat:"unix"`
 
 	metadataConfigExportDeliveryInfo `json:"-", xml:"-"`
 }
 
 type metadataConfigExportDeliveryInfo struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ConfigStreamDeliveryInfo struct {
-	LastErrorCode        *string    `locationName:"lastErrorCode" type:"string" json:"lastErrorCode,omitempty"`
-	LastErrorMessage     *string    `locationName:"lastErrorMessage" type:"string" json:"lastErrorMessage,omitempty"`
-	LastStatus           *string    `locationName:"lastStatus" type:"string" json:"lastStatus,omitempty"`
-	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix" json:"lastStatusChangeTime,omitempty"`
+	LastErrorCode        *string    `locationName:"lastErrorCode" type:"string"`
+	LastErrorMessage     *string    `locationName:"lastErrorMessage" type:"string"`
+	LastStatus           *string    `locationName:"lastStatus" type:"string"`
+	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix"`
 
 	metadataConfigStreamDeliveryInfo `json:"-", xml:"-"`
 }
 
 type metadataConfigStreamDeliveryInfo struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ConfigurationItem struct {
-	ARN                          *string             `locationName:"arn" type:"string" json:"arn,omitempty"`
-	AccountID                    *string             `locationName:"accountId" type:"string" json:"accountId,omitempty"`
-	AvailabilityZone             *string             `locationName:"availabilityZone" type:"string" json:"availabilityZone,omitempty"`
-	Configuration                *string             `locationName:"configuration" type:"string" json:"configuration,omitempty"`
-	ConfigurationItemCaptureTime *time.Time          `locationName:"configurationItemCaptureTime" type:"timestamp" timestampFormat:"unix" json:"configurationItemCaptureTime,omitempty"`
-	ConfigurationItemMD5Hash     *string             `locationName:"configurationItemMD5Hash" type:"string" json:"configurationItemMD5Hash,omitempty"`
-	ConfigurationItemStatus      *string             `locationName:"configurationItemStatus" type:"string" json:"configurationItemStatus,omitempty"`
-	ConfigurationStateID         *string             `locationName:"configurationStateId" type:"string" json:"configurationStateId,omitempty"`
-	RelatedEvents                []*string           `locationName:"relatedEvents" type:"list" json:"relatedEvents,omitempty"`
-	Relationships                []*Relationship     `locationName:"relationships" type:"list" json:"relationships,omitempty"`
-	ResourceCreationTime         *time.Time          `locationName:"resourceCreationTime" type:"timestamp" timestampFormat:"unix" json:"resourceCreationTime,omitempty"`
-	ResourceID                   *string             `locationName:"resourceId" type:"string" json:"resourceId,omitempty"`
-	ResourceType                 *string             `locationName:"resourceType" type:"string" json:"resourceType,omitempty"`
-	Tags                         *map[string]*string `locationName:"tags" type:"map" json:"tags,omitempty"`
-	Version                      *string             `locationName:"version" type:"string" json:"version,omitempty"`
+	ARN                          *string             `locationName:"arn" type:"string"`
+	AccountID                    *string             `locationName:"accountId" type:"string"`
+	AvailabilityZone             *string             `locationName:"availabilityZone" type:"string"`
+	Configuration                *string             `locationName:"configuration" type:"string"`
+	ConfigurationItemCaptureTime *time.Time          `locationName:"configurationItemCaptureTime" type:"timestamp" timestampFormat:"unix"`
+	ConfigurationItemMD5Hash     *string             `locationName:"configurationItemMD5Hash" type:"string"`
+	ConfigurationItemStatus      *string             `locationName:"configurationItemStatus" type:"string"`
+	ConfigurationStateID         *string             `locationName:"configurationStateId" type:"string"`
+	RelatedEvents                []*string           `locationName:"relatedEvents" type:"list"`
+	Relationships                []*Relationship     `locationName:"relationships" type:"list"`
+	ResourceCreationTime         *time.Time          `locationName:"resourceCreationTime" type:"timestamp" timestampFormat:"unix"`
+	ResourceID                   *string             `locationName:"resourceId" type:"string"`
+	ResourceType                 *string             `locationName:"resourceType" type:"string"`
+	Tags                         *map[string]*string `locationName:"tags" type:"map"`
+	Version                      *string             `locationName:"version" type:"string"`
 
 	metadataConfigurationItem `json:"-", xml:"-"`
 }
 
 type metadataConfigurationItem struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ConfigurationRecorder struct {
-	Name    *string `locationName:"name" type:"string" json:"name,omitempty"`
-	RoleARN *string `locationName:"roleARN" type:"string" json:"roleARN,omitempty"`
+	Name    *string `locationName:"name" type:"string"`
+	RoleARN *string `locationName:"roleARN" type:"string"`
 
 	metadataConfigurationRecorder `json:"-", xml:"-"`
 }
 
 type metadataConfigurationRecorder struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ConfigurationRecorderStatus struct {
-	LastErrorCode        *string    `locationName:"lastErrorCode" type:"string" json:"lastErrorCode,omitempty"`
-	LastErrorMessage     *string    `locationName:"lastErrorMessage" type:"string" json:"lastErrorMessage,omitempty"`
-	LastStartTime        *time.Time `locationName:"lastStartTime" type:"timestamp" timestampFormat:"unix" json:"lastStartTime,omitempty"`
-	LastStatus           *string    `locationName:"lastStatus" type:"string" json:"lastStatus,omitempty"`
-	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix" json:"lastStatusChangeTime,omitempty"`
-	LastStopTime         *time.Time `locationName:"lastStopTime" type:"timestamp" timestampFormat:"unix" json:"lastStopTime,omitempty"`
-	Name                 *string    `locationName:"name" type:"string" json:"name,omitempty"`
-	Recording            *bool      `locationName:"recording" type:"boolean" json:"recording,omitempty"`
+	LastErrorCode        *string    `locationName:"lastErrorCode" type:"string"`
+	LastErrorMessage     *string    `locationName:"lastErrorMessage" type:"string"`
+	LastStartTime        *time.Time `locationName:"lastStartTime" type:"timestamp" timestampFormat:"unix"`
+	LastStatus           *string    `locationName:"lastStatus" type:"string"`
+	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix"`
+	LastStopTime         *time.Time `locationName:"lastStopTime" type:"timestamp" timestampFormat:"unix"`
+	Name                 *string    `locationName:"name" type:"string"`
+	Recording            *bool      `locationName:"recording" type:"boolean"`
 
 	metadataConfigurationRecorderStatus `json:"-", xml:"-"`
 }
 
 type metadataConfigurationRecorderStatus struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDeliveryChannelInput struct {
-	DeliveryChannelName *string `type:"string" required:"true"json:",omitempty"`
+	DeliveryChannelName *string `type:"string" required:"true"`
 
 	metadataDeleteDeliveryChannelInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteDeliveryChannelInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteDeliveryChannelOutput struct {
@@ -377,170 +377,170 @@ type DeleteDeliveryChannelOutput struct {
 }
 
 type metadataDeleteDeliveryChannelOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeliverConfigSnapshotInput struct {
-	DeliveryChannelName *string `locationName:"deliveryChannelName" type:"string" required:"true"json:"deliveryChannelName,omitempty"`
+	DeliveryChannelName *string `locationName:"deliveryChannelName" type:"string" required:"true"`
 
 	metadataDeliverConfigSnapshotInput `json:"-", xml:"-"`
 }
 
 type metadataDeliverConfigSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeliverConfigSnapshotOutput struct {
-	ConfigSnapshotID *string `locationName:"configSnapshotId" type:"string" json:"configSnapshotId,omitempty"`
+	ConfigSnapshotID *string `locationName:"configSnapshotId" type:"string"`
 
 	metadataDeliverConfigSnapshotOutput `json:"-", xml:"-"`
 }
 
 type metadataDeliverConfigSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeliveryChannel struct {
-	Name         *string `locationName:"name" type:"string" json:"name,omitempty"`
-	S3BucketName *string `locationName:"s3BucketName" type:"string" json:"s3BucketName,omitempty"`
-	S3KeyPrefix  *string `locationName:"s3KeyPrefix" type:"string" json:"s3KeyPrefix,omitempty"`
-	SNSTopicARN  *string `locationName:"snsTopicARN" type:"string" json:"snsTopicARN,omitempty"`
+	Name         *string `locationName:"name" type:"string"`
+	S3BucketName *string `locationName:"s3BucketName" type:"string"`
+	S3KeyPrefix  *string `locationName:"s3KeyPrefix" type:"string"`
+	SNSTopicARN  *string `locationName:"snsTopicARN" type:"string"`
 
 	metadataDeliveryChannel `json:"-", xml:"-"`
 }
 
 type metadataDeliveryChannel struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeliveryChannelStatus struct {
-	ConfigHistoryDeliveryInfo  *ConfigExportDeliveryInfo `locationName:"configHistoryDeliveryInfo" type:"structure" json:"configHistoryDeliveryInfo,omitempty"`
-	ConfigSnapshotDeliveryInfo *ConfigExportDeliveryInfo `locationName:"configSnapshotDeliveryInfo" type:"structure" json:"configSnapshotDeliveryInfo,omitempty"`
-	ConfigStreamDeliveryInfo   *ConfigStreamDeliveryInfo `locationName:"configStreamDeliveryInfo" type:"structure" json:"configStreamDeliveryInfo,omitempty"`
-	Name                       *string                   `locationName:"name" type:"string" json:"name,omitempty"`
+	ConfigHistoryDeliveryInfo  *ConfigExportDeliveryInfo `locationName:"configHistoryDeliveryInfo" type:"structure"`
+	ConfigSnapshotDeliveryInfo *ConfigExportDeliveryInfo `locationName:"configSnapshotDeliveryInfo" type:"structure"`
+	ConfigStreamDeliveryInfo   *ConfigStreamDeliveryInfo `locationName:"configStreamDeliveryInfo" type:"structure"`
+	Name                       *string                   `locationName:"name" type:"string"`
 
 	metadataDeliveryChannelStatus `json:"-", xml:"-"`
 }
 
 type metadataDeliveryChannelStatus struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeConfigurationRecorderStatusInput struct {
-	ConfigurationRecorderNames []*string `type:"list" json:",omitempty"`
+	ConfigurationRecorderNames []*string `type:"list"`
 
 	metadataDescribeConfigurationRecorderStatusInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeConfigurationRecorderStatusInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeConfigurationRecorderStatusOutput struct {
-	ConfigurationRecordersStatus []*ConfigurationRecorderStatus `type:"list" json:",omitempty"`
+	ConfigurationRecordersStatus []*ConfigurationRecorderStatus `type:"list"`
 
 	metadataDescribeConfigurationRecorderStatusOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeConfigurationRecorderStatusOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeConfigurationRecordersInput struct {
-	ConfigurationRecorderNames []*string `type:"list" json:",omitempty"`
+	ConfigurationRecorderNames []*string `type:"list"`
 
 	metadataDescribeConfigurationRecordersInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeConfigurationRecordersInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeConfigurationRecordersOutput struct {
-	ConfigurationRecorders []*ConfigurationRecorder `type:"list" json:",omitempty"`
+	ConfigurationRecorders []*ConfigurationRecorder `type:"list"`
 
 	metadataDescribeConfigurationRecordersOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeConfigurationRecordersOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDeliveryChannelStatusInput struct {
-	DeliveryChannelNames []*string `type:"list" json:",omitempty"`
+	DeliveryChannelNames []*string `type:"list"`
 
 	metadataDescribeDeliveryChannelStatusInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDeliveryChannelStatusInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDeliveryChannelStatusOutput struct {
-	DeliveryChannelsStatus []*DeliveryChannelStatus `type:"list" json:",omitempty"`
+	DeliveryChannelsStatus []*DeliveryChannelStatus `type:"list"`
 
 	metadataDescribeDeliveryChannelStatusOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDeliveryChannelStatusOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDeliveryChannelsInput struct {
-	DeliveryChannelNames []*string `type:"list" json:",omitempty"`
+	DeliveryChannelNames []*string `type:"list"`
 
 	metadataDescribeDeliveryChannelsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDeliveryChannelsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDeliveryChannelsOutput struct {
-	DeliveryChannels []*DeliveryChannel `type:"list" json:",omitempty"`
+	DeliveryChannels []*DeliveryChannel `type:"list"`
 
 	metadataDescribeDeliveryChannelsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDeliveryChannelsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetResourceConfigHistoryInput struct {
-	ChronologicalOrder *string    `locationName:"chronologicalOrder" type:"string" json:"chronologicalOrder,omitempty"`
-	EarlierTime        *time.Time `locationName:"earlierTime" type:"timestamp" timestampFormat:"unix" json:"earlierTime,omitempty"`
-	LaterTime          *time.Time `locationName:"laterTime" type:"timestamp" timestampFormat:"unix" json:"laterTime,omitempty"`
-	Limit              *int64     `locationName:"limit" type:"integer" json:"limit,omitempty"`
-	NextToken          *string    `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
-	ResourceID         *string    `locationName:"resourceId" type:"string" required:"true"json:"resourceId,omitempty"`
-	ResourceType       *string    `locationName:"resourceType" type:"string" required:"true"json:"resourceType,omitempty"`
+	ChronologicalOrder *string    `locationName:"chronologicalOrder" type:"string"`
+	EarlierTime        *time.Time `locationName:"earlierTime" type:"timestamp" timestampFormat:"unix"`
+	LaterTime          *time.Time `locationName:"laterTime" type:"timestamp" timestampFormat:"unix"`
+	Limit              *int64     `locationName:"limit" type:"integer"`
+	NextToken          *string    `locationName:"nextToken" type:"string"`
+	ResourceID         *string    `locationName:"resourceId" type:"string" required:"true"`
+	ResourceType       *string    `locationName:"resourceType" type:"string" required:"true"`
 
 	metadataGetResourceConfigHistoryInput `json:"-", xml:"-"`
 }
 
 type metadataGetResourceConfigHistoryInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetResourceConfigHistoryOutput struct {
-	ConfigurationItems []*ConfigurationItem `locationName:"configurationItems" type:"list" json:"configurationItems,omitempty"`
-	NextToken          *string              `locationName:"nextToken" type:"string" json:"nextToken,omitempty"`
+	ConfigurationItems []*ConfigurationItem `locationName:"configurationItems" type:"list"`
+	NextToken          *string              `locationName:"nextToken" type:"string"`
 
 	metadataGetResourceConfigHistoryOutput `json:"-", xml:"-"`
 }
 
 type metadataGetResourceConfigHistoryOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutConfigurationRecorderInput struct {
-	ConfigurationRecorder *ConfigurationRecorder `type:"structure" required:"true"json:",omitempty"`
+	ConfigurationRecorder *ConfigurationRecorder `type:"structure" required:"true"`
 
 	metadataPutConfigurationRecorderInput `json:"-", xml:"-"`
 }
 
 type metadataPutConfigurationRecorderInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutConfigurationRecorderOutput struct {
@@ -548,17 +548,17 @@ type PutConfigurationRecorderOutput struct {
 }
 
 type metadataPutConfigurationRecorderOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutDeliveryChannelInput struct {
-	DeliveryChannel *DeliveryChannel `type:"structure" required:"true"json:",omitempty"`
+	DeliveryChannel *DeliveryChannel `type:"structure" required:"true"`
 
 	metadataPutDeliveryChannelInput `json:"-", xml:"-"`
 }
 
 type metadataPutDeliveryChannelInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PutDeliveryChannelOutput struct {
@@ -566,29 +566,29 @@ type PutDeliveryChannelOutput struct {
 }
 
 type metadataPutDeliveryChannelOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Relationship struct {
-	RelationshipName *string `locationName:"relationshipName" type:"string" json:"relationshipName,omitempty"`
-	ResourceID       *string `locationName:"resourceId" type:"string" json:"resourceId,omitempty"`
-	ResourceType     *string `locationName:"resourceType" type:"string" json:"resourceType,omitempty"`
+	RelationshipName *string `locationName:"relationshipName" type:"string"`
+	ResourceID       *string `locationName:"resourceId" type:"string"`
+	ResourceType     *string `locationName:"resourceType" type:"string"`
 
 	metadataRelationship `json:"-", xml:"-"`
 }
 
 type metadataRelationship struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartConfigurationRecorderInput struct {
-	ConfigurationRecorderName *string `type:"string" required:"true"json:",omitempty"`
+	ConfigurationRecorderName *string `type:"string" required:"true"`
 
 	metadataStartConfigurationRecorderInput `json:"-", xml:"-"`
 }
 
 type metadataStartConfigurationRecorderInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartConfigurationRecorderOutput struct {
@@ -596,17 +596,17 @@ type StartConfigurationRecorderOutput struct {
 }
 
 type metadataStartConfigurationRecorderOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StopConfigurationRecorderInput struct {
-	ConfigurationRecorderName *string `type:"string" required:"true"json:",omitempty"`
+	ConfigurationRecorderName *string `type:"string" required:"true"`
 
 	metadataStopConfigurationRecorderInput `json:"-", xml:"-"`
 }
 
 type metadataStopConfigurationRecorderInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StopConfigurationRecorderOutput struct {
@@ -614,5 +614,5 @@ type StopConfigurationRecorderOutput struct {
 }
 
 type metadataStopConfigurationRecorderOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

@@ -722,7 +722,7 @@ type metadataAliasTarget struct {
 
 type AssociateVPCWithHostedZoneInput struct {
 	Comment      *string `type:"string"`
-	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 	VPC          *VPC    `type:"structure" required:"true"`
 
 	metadataAssociateVPCWithHostedZoneInput `json:"-", xml:"-"`
@@ -779,7 +779,7 @@ type metadataChangeInfo struct {
 
 type ChangeResourceRecordSetsInput struct {
 	ChangeBatch  *ChangeBatch `type:"structure" required:"true"`
-	HostedZoneID *string      `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	HostedZoneID *string      `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataChangeResourceRecordSetsInput `json:"-", xml:"-"`
 }
@@ -801,8 +801,8 @@ type metadataChangeResourceRecordSetsOutput struct {
 type ChangeTagsForResourceInput struct {
 	AddTags       []*Tag    `locationNameList:"Tag" type:"list"`
 	RemoveTagKeys []*string `locationNameList:"Key" type:"list"`
-	ResourceID    *string   `location:"uri" locationName:"ResourceId" type:"string" required:"true"json:"-" xml:"-"`
-	ResourceType  *string   `location:"uri" locationName:"ResourceType" type:"string" required:"true"json:"-" xml:"-"`
+	ResourceID    *string   `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
+	ResourceType  *string   `location:"uri" locationName:"ResourceType" type:"string" required:"true"`
 
 	metadataChangeTagsForResourceInput `json:"-", xml:"-"`
 }
@@ -832,7 +832,7 @@ type metadataCreateHealthCheckInput struct {
 
 type CreateHealthCheckOutput struct {
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
-	Location    *string      `location:"header" locationName:"Location" type:"string" required:"true"json:"-" xml:"-"`
+	Location    *string      `location:"header" locationName:"Location" type:"string" required:"true"`
 
 	metadataCreateHealthCheckOutput `json:"-", xml:"-"`
 }
@@ -859,7 +859,7 @@ type CreateHostedZoneOutput struct {
 	ChangeInfo    *ChangeInfo    `type:"structure" required:"true"`
 	DelegationSet *DelegationSet `type:"structure" required:"true"`
 	HostedZone    *HostedZone    `type:"structure" required:"true"`
-	Location      *string        `location:"header" locationName:"Location" type:"string" required:"true"json:"-" xml:"-"`
+	Location      *string        `location:"header" locationName:"Location" type:"string" required:"true"`
 	VPC           *VPC           `type:"structure"`
 
 	metadataCreateHostedZoneOutput `json:"-", xml:"-"`
@@ -882,7 +882,7 @@ type metadataCreateReusableDelegationSetInput struct {
 
 type CreateReusableDelegationSetOutput struct {
 	DelegationSet *DelegationSet `type:"structure" required:"true"`
-	Location      *string        `location:"header" locationName:"Location" type:"string" required:"true"json:"-" xml:"-"`
+	Location      *string        `location:"header" locationName:"Location" type:"string" required:"true"`
 
 	metadataCreateReusableDelegationSetOutput `json:"-", xml:"-"`
 }
@@ -904,7 +904,7 @@ type metadataDelegationSet struct {
 }
 
 type DeleteHealthCheckInput struct {
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"json:"-" xml:"-"`
+	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
 	metadataDeleteHealthCheckInput `json:"-", xml:"-"`
 }
@@ -922,7 +922,7 @@ type metadataDeleteHealthCheckOutput struct {
 }
 
 type DeleteHostedZoneInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataDeleteHostedZoneInput `json:"-", xml:"-"`
 }
@@ -942,7 +942,7 @@ type metadataDeleteHostedZoneOutput struct {
 }
 
 type DeleteReusableDelegationSetInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataDeleteReusableDelegationSetInput `json:"-", xml:"-"`
 }
@@ -961,7 +961,7 @@ type metadataDeleteReusableDelegationSetOutput struct {
 
 type DisassociateVPCFromHostedZoneInput struct {
 	Comment      *string `type:"string"`
-	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 	VPC          *VPC    `type:"structure" required:"true"`
 
 	metadataDisassociateVPCFromHostedZoneInput `json:"-", xml:"-"`
@@ -1009,7 +1009,7 @@ type metadataGeoLocationDetails struct {
 }
 
 type GetChangeInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetChangeInput `json:"-", xml:"-"`
 }
@@ -1047,9 +1047,9 @@ type metadataGetCheckerIPRangesOutput struct {
 }
 
 type GetGeoLocationInput struct {
-	ContinentCode   *string `location:"querystring" locationName:"continentcode" type:"string" json:"-" xml:"-"`
-	CountryCode     *string `location:"querystring" locationName:"countrycode" type:"string" json:"-" xml:"-"`
-	SubdivisionCode *string `location:"querystring" locationName:"subdivisioncode" type:"string" json:"-" xml:"-"`
+	ContinentCode   *string `location:"querystring" locationName:"continentcode" type:"string"`
+	CountryCode     *string `location:"querystring" locationName:"countrycode" type:"string"`
+	SubdivisionCode *string `location:"querystring" locationName:"subdivisioncode" type:"string"`
 
 	metadataGetGeoLocationInput `json:"-", xml:"-"`
 }
@@ -1087,7 +1087,7 @@ type metadataGetHealthCheckCountOutput struct {
 }
 
 type GetHealthCheckInput struct {
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"json:"-" xml:"-"`
+	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
 	metadataGetHealthCheckInput `json:"-", xml:"-"`
 }
@@ -1097,7 +1097,7 @@ type metadataGetHealthCheckInput struct {
 }
 
 type GetHealthCheckLastFailureReasonInput struct {
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"json:"-" xml:"-"`
+	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
 	metadataGetHealthCheckLastFailureReasonInput `json:"-", xml:"-"`
 }
@@ -1127,7 +1127,7 @@ type metadataGetHealthCheckOutput struct {
 }
 
 type GetHealthCheckStatusInput struct {
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"json:"-" xml:"-"`
+	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
 	metadataGetHealthCheckStatusInput `json:"-", xml:"-"`
 }
@@ -1147,7 +1147,7 @@ type metadataGetHealthCheckStatusOutput struct {
 }
 
 type GetHostedZoneInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetHostedZoneInput `json:"-", xml:"-"`
 }
@@ -1169,7 +1169,7 @@ type metadataGetHostedZoneOutput struct {
 }
 
 type GetReusableDelegationSetInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetReusableDelegationSetInput `json:"-", xml:"-"`
 }
@@ -1255,10 +1255,10 @@ type metadataHostedZoneConfig struct {
 }
 
 type ListGeoLocationsInput struct {
-	MaxItems             *string `location:"querystring" locationName:"maxitems" type:"string" json:"-" xml:"-"`
-	StartContinentCode   *string `location:"querystring" locationName:"startcontinentcode" type:"string" json:"-" xml:"-"`
-	StartCountryCode     *string `location:"querystring" locationName:"startcountrycode" type:"string" json:"-" xml:"-"`
-	StartSubdivisionCode *string `location:"querystring" locationName:"startsubdivisioncode" type:"string" json:"-" xml:"-"`
+	MaxItems             *string `location:"querystring" locationName:"maxitems" type:"string"`
+	StartContinentCode   *string `location:"querystring" locationName:"startcontinentcode" type:"string"`
+	StartCountryCode     *string `location:"querystring" locationName:"startcountrycode" type:"string"`
+	StartSubdivisionCode *string `location:"querystring" locationName:"startsubdivisioncode" type:"string"`
 
 	metadataListGeoLocationsInput `json:"-", xml:"-"`
 }
@@ -1283,8 +1283,8 @@ type metadataListGeoLocationsOutput struct {
 }
 
 type ListHealthChecksInput struct {
-	Marker   *string `location:"querystring" locationName:"marker" type:"string" json:"-" xml:"-"`
-	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string" json:"-" xml:"-"`
+	Marker   *string `location:"querystring" locationName:"marker" type:"string"`
+	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
 
 	metadataListHealthChecksInput `json:"-", xml:"-"`
 }
@@ -1308,9 +1308,9 @@ type metadataListHealthChecksOutput struct {
 }
 
 type ListHostedZonesInput struct {
-	DelegationSetID *string `location:"querystring" locationName:"delegationsetid" type:"string" json:"-" xml:"-"`
-	Marker          *string `location:"querystring" locationName:"marker" type:"string" json:"-" xml:"-"`
-	MaxItems        *string `location:"querystring" locationName:"maxitems" type:"string" json:"-" xml:"-"`
+	DelegationSetID *string `location:"querystring" locationName:"delegationsetid" type:"string"`
+	Marker          *string `location:"querystring" locationName:"marker" type:"string"`
+	MaxItems        *string `location:"querystring" locationName:"maxitems" type:"string"`
 
 	metadataListHostedZonesInput `json:"-", xml:"-"`
 }
@@ -1334,11 +1334,11 @@ type metadataListHostedZonesOutput struct {
 }
 
 type ListResourceRecordSetsInput struct {
-	HostedZoneID          *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
-	MaxItems              *string `location:"querystring" locationName:"maxitems" type:"string" json:"-" xml:"-"`
-	StartRecordIdentifier *string `location:"querystring" locationName:"identifier" type:"string" json:"-" xml:"-"`
-	StartRecordName       *string `location:"querystring" locationName:"name" type:"string" json:"-" xml:"-"`
-	StartRecordType       *string `location:"querystring" locationName:"type" type:"string" json:"-" xml:"-"`
+	HostedZoneID          *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	MaxItems              *string `location:"querystring" locationName:"maxitems" type:"string"`
+	StartRecordIdentifier *string `location:"querystring" locationName:"identifier" type:"string"`
+	StartRecordName       *string `location:"querystring" locationName:"name" type:"string"`
+	StartRecordType       *string `location:"querystring" locationName:"type" type:"string"`
 
 	metadataListResourceRecordSetsInput `json:"-", xml:"-"`
 }
@@ -1363,8 +1363,8 @@ type metadataListResourceRecordSetsOutput struct {
 }
 
 type ListReusableDelegationSetsInput struct {
-	Marker   *string `location:"querystring" locationName:"marker" type:"string" json:"-" xml:"-"`
-	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string" json:"-" xml:"-"`
+	Marker   *string `location:"querystring" locationName:"marker" type:"string"`
+	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
 
 	metadataListReusableDelegationSetsInput `json:"-", xml:"-"`
 }
@@ -1388,8 +1388,8 @@ type metadataListReusableDelegationSetsOutput struct {
 }
 
 type ListTagsForResourceInput struct {
-	ResourceID   *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"json:"-" xml:"-"`
-	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true"json:"-" xml:"-"`
+	ResourceID   *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
+	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true"`
 
 	metadataListTagsForResourceInput `json:"-", xml:"-"`
 }
@@ -1410,7 +1410,7 @@ type metadataListTagsForResourceOutput struct {
 
 type ListTagsForResourcesInput struct {
 	ResourceIDs  []*string `locationName:"ResourceIds" locationNameList:"ResourceId" type:"list" required:"true"`
-	ResourceType *string   `location:"uri" locationName:"ResourceType" type:"string" required:"true"json:"-" xml:"-"`
+	ResourceType *string   `location:"uri" locationName:"ResourceType" type:"string" required:"true"`
 
 	metadataListTagsForResourcesInput `json:"-", xml:"-"`
 }
@@ -1496,7 +1496,7 @@ type metadataTag struct {
 type UpdateHealthCheckInput struct {
 	FailureThreshold         *int64  `type:"integer"`
 	FullyQualifiedDomainName *string `type:"string"`
-	HealthCheckID            *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"json:"-" xml:"-"`
+	HealthCheckID            *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 	HealthCheckVersion       *int64  `type:"long"`
 	IPAddress                *string `type:"string"`
 	Port                     *int64  `type:"integer"`
@@ -1522,7 +1522,7 @@ type metadataUpdateHealthCheckOutput struct {
 
 type UpdateHostedZoneCommentInput struct {
 	Comment *string `type:"string"`
-	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataUpdateHostedZoneCommentInput `json:"-", xml:"-"`
 }

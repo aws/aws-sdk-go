@@ -434,57 +434,57 @@ func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (output *Terminat
 var opTerminateJobFlows *aws.Operation
 
 type AddInstanceGroupsInput struct {
-	InstanceGroups []*InstanceGroupConfig `type:"list" required:"true"json:",omitempty"`
-	JobFlowID      *string                `locationName:"JobFlowId" type:"string" required:"true"json:"JobFlowId,omitempty"`
+	InstanceGroups []*InstanceGroupConfig `type:"list" required:"true"`
+	JobFlowID      *string                `locationName:"JobFlowId" type:"string" required:"true"`
 
 	metadataAddInstanceGroupsInput `json:"-", xml:"-"`
 }
 
 type metadataAddInstanceGroupsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddInstanceGroupsOutput struct {
-	InstanceGroupIDs []*string `locationName:"InstanceGroupIds" type:"list" json:"InstanceGroupIds,omitempty"`
-	JobFlowID        *string   `locationName:"JobFlowId" type:"string" json:"JobFlowId,omitempty"`
+	InstanceGroupIDs []*string `locationName:"InstanceGroupIds" type:"list"`
+	JobFlowID        *string   `locationName:"JobFlowId" type:"string"`
 
 	metadataAddInstanceGroupsOutput `json:"-", xml:"-"`
 }
 
 type metadataAddInstanceGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddJobFlowStepsInput struct {
-	JobFlowID *string       `locationName:"JobFlowId" type:"string" required:"true"json:"JobFlowId,omitempty"`
-	Steps     []*StepConfig `type:"list" required:"true"json:",omitempty"`
+	JobFlowID *string       `locationName:"JobFlowId" type:"string" required:"true"`
+	Steps     []*StepConfig `type:"list" required:"true"`
 
 	metadataAddJobFlowStepsInput `json:"-", xml:"-"`
 }
 
 type metadataAddJobFlowStepsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddJobFlowStepsOutput struct {
-	StepIDs []*string `locationName:"StepIds" type:"list" json:"StepIds,omitempty"`
+	StepIDs []*string `locationName:"StepIds" type:"list"`
 
 	metadataAddJobFlowStepsOutput `json:"-", xml:"-"`
 }
 
 type metadataAddJobFlowStepsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddTagsInput struct {
-	ResourceID *string `locationName:"ResourceId" type:"string" required:"true"json:"ResourceId,omitempty"`
-	Tags       []*Tag  `type:"list" required:"true"json:",omitempty"`
+	ResourceID *string `locationName:"ResourceId" type:"string" required:"true"`
+	Tags       []*Tag  `type:"list" required:"true"`
 
 	metadataAddTagsInput `json:"-", xml:"-"`
 }
 
 type metadataAddTagsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AddTagsOutput struct {
@@ -492,604 +492,604 @@ type AddTagsOutput struct {
 }
 
 type metadataAddTagsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Application struct {
-	AdditionalInfo *map[string]*string `type:"map" json:",omitempty"`
-	Args           []*string           `type:"list" json:",omitempty"`
-	Name           *string             `type:"string" json:",omitempty"`
-	Version        *string             `type:"string" json:",omitempty"`
+	AdditionalInfo *map[string]*string `type:"map"`
+	Args           []*string           `type:"list"`
+	Name           *string             `type:"string"`
+	Version        *string             `type:"string"`
 
 	metadataApplication `json:"-", xml:"-"`
 }
 
 type metadataApplication struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BootstrapActionConfig struct {
-	Name                  *string                      `type:"string" required:"true"json:",omitempty"`
-	ScriptBootstrapAction *ScriptBootstrapActionConfig `type:"structure" required:"true"json:",omitempty"`
+	Name                  *string                      `type:"string" required:"true"`
+	ScriptBootstrapAction *ScriptBootstrapActionConfig `type:"structure" required:"true"`
 
 	metadataBootstrapActionConfig `json:"-", xml:"-"`
 }
 
 type metadataBootstrapActionConfig struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type BootstrapActionDetail struct {
-	BootstrapActionConfig *BootstrapActionConfig `type:"structure" json:",omitempty"`
+	BootstrapActionConfig *BootstrapActionConfig `type:"structure"`
 
 	metadataBootstrapActionDetail `json:"-", xml:"-"`
 }
 
 type metadataBootstrapActionDetail struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Cluster struct {
-	Applications            []*Application         `type:"list" json:",omitempty"`
-	AutoTerminate           *bool                  `type:"boolean" json:",omitempty"`
-	EC2InstanceAttributes   *EC2InstanceAttributes `locationName:"Ec2InstanceAttributes" type:"structure" json:"Ec2InstanceAttributes,omitempty"`
-	ID                      *string                `locationName:"Id" type:"string" json:"Id,omitempty"`
-	LogURI                  *string                `locationName:"LogUri" type:"string" json:"LogUri,omitempty"`
-	MasterPublicDNSName     *string                `locationName:"MasterPublicDnsName" type:"string" json:"MasterPublicDnsName,omitempty"`
-	Name                    *string                `type:"string" json:",omitempty"`
-	NormalizedInstanceHours *int64                 `type:"integer" json:",omitempty"`
-	RequestedAMIVersion     *string                `locationName:"RequestedAmiVersion" type:"string" json:"RequestedAmiVersion,omitempty"`
-	RunningAMIVersion       *string                `locationName:"RunningAmiVersion" type:"string" json:"RunningAmiVersion,omitempty"`
-	ServiceRole             *string                `type:"string" json:",omitempty"`
-	Status                  *ClusterStatus         `type:"structure" json:",omitempty"`
-	Tags                    []*Tag                 `type:"list" json:",omitempty"`
-	TerminationProtected    *bool                  `type:"boolean" json:",omitempty"`
-	VisibleToAllUsers       *bool                  `type:"boolean" json:",omitempty"`
+	Applications            []*Application         `type:"list"`
+	AutoTerminate           *bool                  `type:"boolean"`
+	EC2InstanceAttributes   *EC2InstanceAttributes `locationName:"Ec2InstanceAttributes" type:"structure"`
+	ID                      *string                `locationName:"Id" type:"string"`
+	LogURI                  *string                `locationName:"LogUri" type:"string"`
+	MasterPublicDNSName     *string                `locationName:"MasterPublicDnsName" type:"string"`
+	Name                    *string                `type:"string"`
+	NormalizedInstanceHours *int64                 `type:"integer"`
+	RequestedAMIVersion     *string                `locationName:"RequestedAmiVersion" type:"string"`
+	RunningAMIVersion       *string                `locationName:"RunningAmiVersion" type:"string"`
+	ServiceRole             *string                `type:"string"`
+	Status                  *ClusterStatus         `type:"structure"`
+	Tags                    []*Tag                 `type:"list"`
+	TerminationProtected    *bool                  `type:"boolean"`
+	VisibleToAllUsers       *bool                  `type:"boolean"`
 
 	metadataCluster `json:"-", xml:"-"`
 }
 
 type metadataCluster struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ClusterStateChangeReason struct {
-	Code    *string `type:"string" json:",omitempty"`
-	Message *string `type:"string" json:",omitempty"`
+	Code    *string `type:"string"`
+	Message *string `type:"string"`
 
 	metadataClusterStateChangeReason `json:"-", xml:"-"`
 }
 
 type metadataClusterStateChangeReason struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ClusterStatus struct {
-	State             *string                   `type:"string" json:",omitempty"`
-	StateChangeReason *ClusterStateChangeReason `type:"structure" json:",omitempty"`
-	Timeline          *ClusterTimeline          `type:"structure" json:",omitempty"`
+	State             *string                   `type:"string"`
+	StateChangeReason *ClusterStateChangeReason `type:"structure"`
+	Timeline          *ClusterTimeline          `type:"structure"`
 
 	metadataClusterStatus `json:"-", xml:"-"`
 }
 
 type metadataClusterStatus struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ClusterSummary struct {
-	ID                      *string        `locationName:"Id" type:"string" json:"Id,omitempty"`
-	Name                    *string        `type:"string" json:",omitempty"`
-	NormalizedInstanceHours *int64         `type:"integer" json:",omitempty"`
-	Status                  *ClusterStatus `type:"structure" json:",omitempty"`
+	ID                      *string        `locationName:"Id" type:"string"`
+	Name                    *string        `type:"string"`
+	NormalizedInstanceHours *int64         `type:"integer"`
+	Status                  *ClusterStatus `type:"structure"`
 
 	metadataClusterSummary `json:"-", xml:"-"`
 }
 
 type metadataClusterSummary struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ClusterTimeline struct {
-	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	ReadyDateTime    *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ReadyDateTime    *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	metadataClusterTimeline `json:"-", xml:"-"`
 }
 
 type metadataClusterTimeline struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Command struct {
-	Args       []*string `type:"list" json:",omitempty"`
-	Name       *string   `type:"string" json:",omitempty"`
-	ScriptPath *string   `type:"string" json:",omitempty"`
+	Args       []*string `type:"list"`
+	Name       *string   `type:"string"`
+	ScriptPath *string   `type:"string"`
 
 	metadataCommand `json:"-", xml:"-"`
 }
 
 type metadataCommand struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeClusterInput struct {
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"json:"ClusterId,omitempty"`
+	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
 
 	metadataDescribeClusterInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeClusterInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeClusterOutput struct {
-	Cluster *Cluster `type:"structure" json:",omitempty"`
+	Cluster *Cluster `type:"structure"`
 
 	metadataDescribeClusterOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeClusterOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeJobFlowsInput struct {
-	CreatedAfter  *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	CreatedBefore *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	JobFlowIDs    []*string  `locationName:"JobFlowIds" type:"list" json:"JobFlowIds,omitempty"`
-	JobFlowStates []*string  `type:"list" json:",omitempty"`
+	CreatedAfter  *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	JobFlowIDs    []*string  `locationName:"JobFlowIds" type:"list"`
+	JobFlowStates []*string  `type:"list"`
 
 	metadataDescribeJobFlowsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeJobFlowsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeJobFlowsOutput struct {
-	JobFlows []*JobFlowDetail `type:"list" json:",omitempty"`
+	JobFlows []*JobFlowDetail `type:"list"`
 
 	metadataDescribeJobFlowsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeJobFlowsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStepInput struct {
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"json:"ClusterId,omitempty"`
-	StepID    *string `locationName:"StepId" type:"string" required:"true"json:"StepId,omitempty"`
+	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	StepID    *string `locationName:"StepId" type:"string" required:"true"`
 
 	metadataDescribeStepInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStepInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStepOutput struct {
-	Step *Step `type:"structure" json:",omitempty"`
+	Step *Step `type:"structure"`
 
 	metadataDescribeStepOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStepOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EC2InstanceAttributes struct {
-	AdditionalMasterSecurityGroups []*string `type:"list" json:",omitempty"`
-	AdditionalSlaveSecurityGroups  []*string `type:"list" json:",omitempty"`
-	EC2AvailabilityZone            *string   `locationName:"Ec2AvailabilityZone" type:"string" json:"Ec2AvailabilityZone,omitempty"`
-	EC2KeyName                     *string   `locationName:"Ec2KeyName" type:"string" json:"Ec2KeyName,omitempty"`
-	EC2SubnetID                    *string   `locationName:"Ec2SubnetId" type:"string" json:"Ec2SubnetId,omitempty"`
-	EMRManagedMasterSecurityGroup  *string   `locationName:"EmrManagedMasterSecurityGroup" type:"string" json:"EmrManagedMasterSecurityGroup,omitempty"`
-	EMRManagedSlaveSecurityGroup   *string   `locationName:"EmrManagedSlaveSecurityGroup" type:"string" json:"EmrManagedSlaveSecurityGroup,omitempty"`
-	IAMInstanceProfile             *string   `locationName:"IamInstanceProfile" type:"string" json:"IamInstanceProfile,omitempty"`
+	AdditionalMasterSecurityGroups []*string `type:"list"`
+	AdditionalSlaveSecurityGroups  []*string `type:"list"`
+	EC2AvailabilityZone            *string   `locationName:"Ec2AvailabilityZone" type:"string"`
+	EC2KeyName                     *string   `locationName:"Ec2KeyName" type:"string"`
+	EC2SubnetID                    *string   `locationName:"Ec2SubnetId" type:"string"`
+	EMRManagedMasterSecurityGroup  *string   `locationName:"EmrManagedMasterSecurityGroup" type:"string"`
+	EMRManagedSlaveSecurityGroup   *string   `locationName:"EmrManagedSlaveSecurityGroup" type:"string"`
+	IAMInstanceProfile             *string   `locationName:"IamInstanceProfile" type:"string"`
 
 	metadataEC2InstanceAttributes `json:"-", xml:"-"`
 }
 
 type metadataEC2InstanceAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type HadoopJARStepConfig struct {
-	Args       []*string   `type:"list" json:",omitempty"`
-	JAR        *string     `locationName:"Jar" type:"string" required:"true"json:"Jar,omitempty"`
-	MainClass  *string     `type:"string" json:",omitempty"`
-	Properties []*KeyValue `type:"list" json:",omitempty"`
+	Args       []*string   `type:"list"`
+	JAR        *string     `locationName:"Jar" type:"string" required:"true"`
+	MainClass  *string     `type:"string"`
+	Properties []*KeyValue `type:"list"`
 
 	metadataHadoopJARStepConfig `json:"-", xml:"-"`
 }
 
 type metadataHadoopJARStepConfig struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type HadoopStepConfig struct {
-	Args       []*string           `type:"list" json:",omitempty"`
-	JAR        *string             `locationName:"Jar" type:"string" json:"Jar,omitempty"`
-	MainClass  *string             `type:"string" json:",omitempty"`
-	Properties *map[string]*string `type:"map" json:",omitempty"`
+	Args       []*string           `type:"list"`
+	JAR        *string             `locationName:"Jar" type:"string"`
+	MainClass  *string             `type:"string"`
+	Properties *map[string]*string `type:"map"`
 
 	metadataHadoopStepConfig `json:"-", xml:"-"`
 }
 
 type metadataHadoopStepConfig struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Instance struct {
-	EC2InstanceID    *string         `locationName:"Ec2InstanceId" type:"string" json:"Ec2InstanceId,omitempty"`
-	ID               *string         `locationName:"Id" type:"string" json:"Id,omitempty"`
-	PrivateDNSName   *string         `locationName:"PrivateDnsName" type:"string" json:"PrivateDnsName,omitempty"`
-	PrivateIPAddress *string         `locationName:"PrivateIpAddress" type:"string" json:"PrivateIpAddress,omitempty"`
-	PublicDNSName    *string         `locationName:"PublicDnsName" type:"string" json:"PublicDnsName,omitempty"`
-	PublicIPAddress  *string         `locationName:"PublicIpAddress" type:"string" json:"PublicIpAddress,omitempty"`
-	Status           *InstanceStatus `type:"structure" json:",omitempty"`
+	EC2InstanceID    *string         `locationName:"Ec2InstanceId" type:"string"`
+	ID               *string         `locationName:"Id" type:"string"`
+	PrivateDNSName   *string         `locationName:"PrivateDnsName" type:"string"`
+	PrivateIPAddress *string         `locationName:"PrivateIpAddress" type:"string"`
+	PublicDNSName    *string         `locationName:"PublicDnsName" type:"string"`
+	PublicIPAddress  *string         `locationName:"PublicIpAddress" type:"string"`
+	Status           *InstanceStatus `type:"structure"`
 
 	metadataInstance `json:"-", xml:"-"`
 }
 
 type metadataInstance struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceGroup struct {
-	BidPrice               *string              `type:"string" json:",omitempty"`
-	ID                     *string              `locationName:"Id" type:"string" json:"Id,omitempty"`
-	InstanceGroupType      *string              `type:"string" json:",omitempty"`
-	InstanceType           *string              `type:"string" json:",omitempty"`
-	Market                 *string              `type:"string" json:",omitempty"`
-	Name                   *string              `type:"string" json:",omitempty"`
-	RequestedInstanceCount *int64               `type:"integer" json:",omitempty"`
-	RunningInstanceCount   *int64               `type:"integer" json:",omitempty"`
-	Status                 *InstanceGroupStatus `type:"structure" json:",omitempty"`
+	BidPrice               *string              `type:"string"`
+	ID                     *string              `locationName:"Id" type:"string"`
+	InstanceGroupType      *string              `type:"string"`
+	InstanceType           *string              `type:"string"`
+	Market                 *string              `type:"string"`
+	Name                   *string              `type:"string"`
+	RequestedInstanceCount *int64               `type:"integer"`
+	RunningInstanceCount   *int64               `type:"integer"`
+	Status                 *InstanceGroupStatus `type:"structure"`
 
 	metadataInstanceGroup `json:"-", xml:"-"`
 }
 
 type metadataInstanceGroup struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceGroupConfig struct {
-	BidPrice      *string `type:"string" json:",omitempty"`
-	InstanceCount *int64  `type:"integer" required:"true"json:",omitempty"`
-	InstanceRole  *string `type:"string" required:"true"json:",omitempty"`
-	InstanceType  *string `type:"string" required:"true"json:",omitempty"`
-	Market        *string `type:"string" json:",omitempty"`
-	Name          *string `type:"string" json:",omitempty"`
+	BidPrice      *string `type:"string"`
+	InstanceCount *int64  `type:"integer" required:"true"`
+	InstanceRole  *string `type:"string" required:"true"`
+	InstanceType  *string `type:"string" required:"true"`
+	Market        *string `type:"string"`
+	Name          *string `type:"string"`
 
 	metadataInstanceGroupConfig `json:"-", xml:"-"`
 }
 
 type metadataInstanceGroupConfig struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceGroupDetail struct {
-	BidPrice              *string    `type:"string" json:",omitempty"`
-	CreationDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"json:",omitempty"`
-	EndDateTime           *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	InstanceGroupID       *string    `locationName:"InstanceGroupId" type:"string" json:"InstanceGroupId,omitempty"`
-	InstanceRequestCount  *int64     `type:"integer" required:"true"json:",omitempty"`
-	InstanceRole          *string    `type:"string" required:"true"json:",omitempty"`
-	InstanceRunningCount  *int64     `type:"integer" required:"true"json:",omitempty"`
-	InstanceType          *string    `type:"string" required:"true"json:",omitempty"`
-	LastStateChangeReason *string    `type:"string" json:",omitempty"`
-	Market                *string    `type:"string" required:"true"json:",omitempty"`
-	Name                  *string    `type:"string" json:",omitempty"`
-	ReadyDateTime         *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	StartDateTime         *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	State                 *string    `type:"string" required:"true"json:",omitempty"`
+	BidPrice              *string    `type:"string"`
+	CreationDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	EndDateTime           *time.Time `type:"timestamp" timestampFormat:"unix"`
+	InstanceGroupID       *string    `locationName:"InstanceGroupId" type:"string"`
+	InstanceRequestCount  *int64     `type:"integer" required:"true"`
+	InstanceRole          *string    `type:"string" required:"true"`
+	InstanceRunningCount  *int64     `type:"integer" required:"true"`
+	InstanceType          *string    `type:"string" required:"true"`
+	LastStateChangeReason *string    `type:"string"`
+	Market                *string    `type:"string" required:"true"`
+	Name                  *string    `type:"string"`
+	ReadyDateTime         *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartDateTime         *time.Time `type:"timestamp" timestampFormat:"unix"`
+	State                 *string    `type:"string" required:"true"`
 
 	metadataInstanceGroupDetail `json:"-", xml:"-"`
 }
 
 type metadataInstanceGroupDetail struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceGroupModifyConfig struct {
-	EC2InstanceIDsToTerminate []*string `locationName:"EC2InstanceIdsToTerminate" type:"list" json:"EC2InstanceIdsToTerminate,omitempty"`
-	InstanceCount             *int64    `type:"integer" json:",omitempty"`
-	InstanceGroupID           *string   `locationName:"InstanceGroupId" type:"string" required:"true"json:"InstanceGroupId,omitempty"`
+	EC2InstanceIDsToTerminate []*string `locationName:"EC2InstanceIdsToTerminate" type:"list"`
+	InstanceCount             *int64    `type:"integer"`
+	InstanceGroupID           *string   `locationName:"InstanceGroupId" type:"string" required:"true"`
 
 	metadataInstanceGroupModifyConfig `json:"-", xml:"-"`
 }
 
 type metadataInstanceGroupModifyConfig struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceGroupStateChangeReason struct {
-	Code    *string `type:"string" json:",omitempty"`
-	Message *string `type:"string" json:",omitempty"`
+	Code    *string `type:"string"`
+	Message *string `type:"string"`
 
 	metadataInstanceGroupStateChangeReason `json:"-", xml:"-"`
 }
 
 type metadataInstanceGroupStateChangeReason struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceGroupStatus struct {
-	State             *string                         `type:"string" json:",omitempty"`
-	StateChangeReason *InstanceGroupStateChangeReason `type:"structure" json:",omitempty"`
-	Timeline          *InstanceGroupTimeline          `type:"structure" json:",omitempty"`
+	State             *string                         `type:"string"`
+	StateChangeReason *InstanceGroupStateChangeReason `type:"structure"`
+	Timeline          *InstanceGroupTimeline          `type:"structure"`
 
 	metadataInstanceGroupStatus `json:"-", xml:"-"`
 }
 
 type metadataInstanceGroupStatus struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceGroupTimeline struct {
-	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	ReadyDateTime    *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ReadyDateTime    *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	metadataInstanceGroupTimeline `json:"-", xml:"-"`
 }
 
 type metadataInstanceGroupTimeline struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceStateChangeReason struct {
-	Code    *string `type:"string" json:",omitempty"`
-	Message *string `type:"string" json:",omitempty"`
+	Code    *string `type:"string"`
+	Message *string `type:"string"`
 
 	metadataInstanceStateChangeReason `json:"-", xml:"-"`
 }
 
 type metadataInstanceStateChangeReason struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceStatus struct {
-	State             *string                    `type:"string" json:",omitempty"`
-	StateChangeReason *InstanceStateChangeReason `type:"structure" json:",omitempty"`
-	Timeline          *InstanceTimeline          `type:"structure" json:",omitempty"`
+	State             *string                    `type:"string"`
+	StateChangeReason *InstanceStateChangeReason `type:"structure"`
+	Timeline          *InstanceTimeline          `type:"structure"`
 
 	metadataInstanceStatus `json:"-", xml:"-"`
 }
 
 type metadataInstanceStatus struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceTimeline struct {
-	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	ReadyDateTime    *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix"`
+	ReadyDateTime    *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	metadataInstanceTimeline `json:"-", xml:"-"`
 }
 
 type metadataInstanceTimeline struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type JobFlowDetail struct {
-	AMIVersion            *string                       `locationName:"AmiVersion" type:"string" json:"AmiVersion,omitempty"`
-	BootstrapActions      []*BootstrapActionDetail      `type:"list" json:",omitempty"`
-	ExecutionStatusDetail *JobFlowExecutionStatusDetail `type:"structure" required:"true"json:",omitempty"`
-	Instances             *JobFlowInstancesDetail       `type:"structure" required:"true"json:",omitempty"`
-	JobFlowID             *string                       `locationName:"JobFlowId" type:"string" required:"true"json:"JobFlowId,omitempty"`
-	JobFlowRole           *string                       `type:"string" json:",omitempty"`
-	LogURI                *string                       `locationName:"LogUri" type:"string" json:"LogUri,omitempty"`
-	Name                  *string                       `type:"string" required:"true"json:",omitempty"`
-	ServiceRole           *string                       `type:"string" json:",omitempty"`
-	Steps                 []*StepDetail                 `type:"list" json:",omitempty"`
-	SupportedProducts     []*string                     `type:"list" json:",omitempty"`
-	VisibleToAllUsers     *bool                         `type:"boolean" json:",omitempty"`
+	AMIVersion            *string                       `locationName:"AmiVersion" type:"string"`
+	BootstrapActions      []*BootstrapActionDetail      `type:"list"`
+	ExecutionStatusDetail *JobFlowExecutionStatusDetail `type:"structure" required:"true"`
+	Instances             *JobFlowInstancesDetail       `type:"structure" required:"true"`
+	JobFlowID             *string                       `locationName:"JobFlowId" type:"string" required:"true"`
+	JobFlowRole           *string                       `type:"string"`
+	LogURI                *string                       `locationName:"LogUri" type:"string"`
+	Name                  *string                       `type:"string" required:"true"`
+	ServiceRole           *string                       `type:"string"`
+	Steps                 []*StepDetail                 `type:"list"`
+	SupportedProducts     []*string                     `type:"list"`
+	VisibleToAllUsers     *bool                         `type:"boolean"`
 
 	metadataJobFlowDetail `json:"-", xml:"-"`
 }
 
 type metadataJobFlowDetail struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type JobFlowExecutionStatusDetail struct {
-	CreationDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"json:",omitempty"`
-	EndDateTime           *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LastStateChangeReason *string    `type:"string" json:",omitempty"`
-	ReadyDateTime         *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	StartDateTime         *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	State                 *string    `type:"string" required:"true"json:",omitempty"`
+	CreationDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	EndDateTime           *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastStateChangeReason *string    `type:"string"`
+	ReadyDateTime         *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartDateTime         *time.Time `type:"timestamp" timestampFormat:"unix"`
+	State                 *string    `type:"string" required:"true"`
 
 	metadataJobFlowExecutionStatusDetail `json:"-", xml:"-"`
 }
 
 type metadataJobFlowExecutionStatusDetail struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type JobFlowInstancesConfig struct {
-	AdditionalMasterSecurityGroups []*string              `type:"list" json:",omitempty"`
-	AdditionalSlaveSecurityGroups  []*string              `type:"list" json:",omitempty"`
-	EC2KeyName                     *string                `locationName:"Ec2KeyName" type:"string" json:"Ec2KeyName,omitempty"`
-	EC2SubnetID                    *string                `locationName:"Ec2SubnetId" type:"string" json:"Ec2SubnetId,omitempty"`
-	EMRManagedMasterSecurityGroup  *string                `locationName:"EmrManagedMasterSecurityGroup" type:"string" json:"EmrManagedMasterSecurityGroup,omitempty"`
-	EMRManagedSlaveSecurityGroup   *string                `locationName:"EmrManagedSlaveSecurityGroup" type:"string" json:"EmrManagedSlaveSecurityGroup,omitempty"`
-	HadoopVersion                  *string                `type:"string" json:",omitempty"`
-	InstanceCount                  *int64                 `type:"integer" json:",omitempty"`
-	InstanceGroups                 []*InstanceGroupConfig `type:"list" json:",omitempty"`
-	KeepJobFlowAliveWhenNoSteps    *bool                  `type:"boolean" json:",omitempty"`
-	MasterInstanceType             *string                `type:"string" json:",omitempty"`
-	Placement                      *PlacementType         `type:"structure" json:",omitempty"`
-	SlaveInstanceType              *string                `type:"string" json:",omitempty"`
-	TerminationProtected           *bool                  `type:"boolean" json:",omitempty"`
+	AdditionalMasterSecurityGroups []*string              `type:"list"`
+	AdditionalSlaveSecurityGroups  []*string              `type:"list"`
+	EC2KeyName                     *string                `locationName:"Ec2KeyName" type:"string"`
+	EC2SubnetID                    *string                `locationName:"Ec2SubnetId" type:"string"`
+	EMRManagedMasterSecurityGroup  *string                `locationName:"EmrManagedMasterSecurityGroup" type:"string"`
+	EMRManagedSlaveSecurityGroup   *string                `locationName:"EmrManagedSlaveSecurityGroup" type:"string"`
+	HadoopVersion                  *string                `type:"string"`
+	InstanceCount                  *int64                 `type:"integer"`
+	InstanceGroups                 []*InstanceGroupConfig `type:"list"`
+	KeepJobFlowAliveWhenNoSteps    *bool                  `type:"boolean"`
+	MasterInstanceType             *string                `type:"string"`
+	Placement                      *PlacementType         `type:"structure"`
+	SlaveInstanceType              *string                `type:"string"`
+	TerminationProtected           *bool                  `type:"boolean"`
 
 	metadataJobFlowInstancesConfig `json:"-", xml:"-"`
 }
 
 type metadataJobFlowInstancesConfig struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type JobFlowInstancesDetail struct {
-	EC2KeyName                  *string                `locationName:"Ec2KeyName" type:"string" json:"Ec2KeyName,omitempty"`
-	EC2SubnetID                 *string                `locationName:"Ec2SubnetId" type:"string" json:"Ec2SubnetId,omitempty"`
-	HadoopVersion               *string                `type:"string" json:",omitempty"`
-	InstanceCount               *int64                 `type:"integer" required:"true"json:",omitempty"`
-	InstanceGroups              []*InstanceGroupDetail `type:"list" json:",omitempty"`
-	KeepJobFlowAliveWhenNoSteps *bool                  `type:"boolean" json:",omitempty"`
-	MasterInstanceID            *string                `locationName:"MasterInstanceId" type:"string" json:"MasterInstanceId,omitempty"`
-	MasterInstanceType          *string                `type:"string" required:"true"json:",omitempty"`
-	MasterPublicDNSName         *string                `locationName:"MasterPublicDnsName" type:"string" json:"MasterPublicDnsName,omitempty"`
-	NormalizedInstanceHours     *int64                 `type:"integer" json:",omitempty"`
-	Placement                   *PlacementType         `type:"structure" json:",omitempty"`
-	SlaveInstanceType           *string                `type:"string" required:"true"json:",omitempty"`
-	TerminationProtected        *bool                  `type:"boolean" json:",omitempty"`
+	EC2KeyName                  *string                `locationName:"Ec2KeyName" type:"string"`
+	EC2SubnetID                 *string                `locationName:"Ec2SubnetId" type:"string"`
+	HadoopVersion               *string                `type:"string"`
+	InstanceCount               *int64                 `type:"integer" required:"true"`
+	InstanceGroups              []*InstanceGroupDetail `type:"list"`
+	KeepJobFlowAliveWhenNoSteps *bool                  `type:"boolean"`
+	MasterInstanceID            *string                `locationName:"MasterInstanceId" type:"string"`
+	MasterInstanceType          *string                `type:"string" required:"true"`
+	MasterPublicDNSName         *string                `locationName:"MasterPublicDnsName" type:"string"`
+	NormalizedInstanceHours     *int64                 `type:"integer"`
+	Placement                   *PlacementType         `type:"structure"`
+	SlaveInstanceType           *string                `type:"string" required:"true"`
+	TerminationProtected        *bool                  `type:"boolean"`
 
 	metadataJobFlowInstancesDetail `json:"-", xml:"-"`
 }
 
 type metadataJobFlowInstancesDetail struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type KeyValue struct {
-	Key   *string `type:"string" json:",omitempty"`
-	Value *string `type:"string" json:",omitempty"`
+	Key   *string `type:"string"`
+	Value *string `type:"string"`
 
 	metadataKeyValue `json:"-", xml:"-"`
 }
 
 type metadataKeyValue struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListBootstrapActionsInput struct {
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"json:"ClusterId,omitempty"`
-	Marker    *string `type:"string" json:",omitempty"`
+	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	Marker    *string `type:"string"`
 
 	metadataListBootstrapActionsInput `json:"-", xml:"-"`
 }
 
 type metadataListBootstrapActionsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListBootstrapActionsOutput struct {
-	BootstrapActions []*Command `type:"list" json:",omitempty"`
-	Marker           *string    `type:"string" json:",omitempty"`
+	BootstrapActions []*Command `type:"list"`
+	Marker           *string    `type:"string"`
 
 	metadataListBootstrapActionsOutput `json:"-", xml:"-"`
 }
 
 type metadataListBootstrapActionsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListClustersInput struct {
-	ClusterStates []*string  `type:"list" json:",omitempty"`
-	CreatedAfter  *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	CreatedBefore *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	Marker        *string    `type:"string" json:",omitempty"`
+	ClusterStates []*string  `type:"list"`
+	CreatedAfter  *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Marker        *string    `type:"string"`
 
 	metadataListClustersInput `json:"-", xml:"-"`
 }
 
 type metadataListClustersInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListClustersOutput struct {
-	Clusters []*ClusterSummary `type:"list" json:",omitempty"`
-	Marker   *string           `type:"string" json:",omitempty"`
+	Clusters []*ClusterSummary `type:"list"`
+	Marker   *string           `type:"string"`
 
 	metadataListClustersOutput `json:"-", xml:"-"`
 }
 
 type metadataListClustersOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListInstanceGroupsInput struct {
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"json:"ClusterId,omitempty"`
-	Marker    *string `type:"string" json:",omitempty"`
+	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	Marker    *string `type:"string"`
 
 	metadataListInstanceGroupsInput `json:"-", xml:"-"`
 }
 
 type metadataListInstanceGroupsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListInstanceGroupsOutput struct {
-	InstanceGroups []*InstanceGroup `type:"list" json:",omitempty"`
-	Marker         *string          `type:"string" json:",omitempty"`
+	InstanceGroups []*InstanceGroup `type:"list"`
+	Marker         *string          `type:"string"`
 
 	metadataListInstanceGroupsOutput `json:"-", xml:"-"`
 }
 
 type metadataListInstanceGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListInstancesInput struct {
-	ClusterID          *string   `locationName:"ClusterId" type:"string" required:"true"json:"ClusterId,omitempty"`
-	InstanceGroupID    *string   `locationName:"InstanceGroupId" type:"string" json:"InstanceGroupId,omitempty"`
-	InstanceGroupTypes []*string `type:"list" json:",omitempty"`
-	Marker             *string   `type:"string" json:",omitempty"`
+	ClusterID          *string   `locationName:"ClusterId" type:"string" required:"true"`
+	InstanceGroupID    *string   `locationName:"InstanceGroupId" type:"string"`
+	InstanceGroupTypes []*string `type:"list"`
+	Marker             *string   `type:"string"`
 
 	metadataListInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataListInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListInstancesOutput struct {
-	Instances []*Instance `type:"list" json:",omitempty"`
-	Marker    *string     `type:"string" json:",omitempty"`
+	Instances []*Instance `type:"list"`
+	Marker    *string     `type:"string"`
 
 	metadataListInstancesOutput `json:"-", xml:"-"`
 }
 
 type metadataListInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListStepsInput struct {
-	ClusterID  *string   `locationName:"ClusterId" type:"string" required:"true"json:"ClusterId,omitempty"`
-	Marker     *string   `type:"string" json:",omitempty"`
-	StepIDs    []*string `locationName:"StepIds" type:"list" json:"StepIds,omitempty"`
-	StepStates []*string `type:"list" json:",omitempty"`
+	ClusterID  *string   `locationName:"ClusterId" type:"string" required:"true"`
+	Marker     *string   `type:"string"`
+	StepIDs    []*string `locationName:"StepIds" type:"list"`
+	StepStates []*string `type:"list"`
 
 	metadataListStepsInput `json:"-", xml:"-"`
 }
 
 type metadataListStepsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListStepsOutput struct {
-	Marker *string        `type:"string" json:",omitempty"`
-	Steps  []*StepSummary `type:"list" json:",omitempty"`
+	Marker *string        `type:"string"`
+	Steps  []*StepSummary `type:"list"`
 
 	metadataListStepsOutput `json:"-", xml:"-"`
 }
 
 type metadataListStepsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyInstanceGroupsInput struct {
-	InstanceGroups []*InstanceGroupModifyConfig `type:"list" json:",omitempty"`
+	InstanceGroups []*InstanceGroupModifyConfig `type:"list"`
 
 	metadataModifyInstanceGroupsInput `json:"-", xml:"-"`
 }
 
 type metadataModifyInstanceGroupsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ModifyInstanceGroupsOutput struct {
@@ -1097,28 +1097,28 @@ type ModifyInstanceGroupsOutput struct {
 }
 
 type metadataModifyInstanceGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PlacementType struct {
-	AvailabilityZone *string `type:"string" required:"true"json:",omitempty"`
+	AvailabilityZone *string `type:"string" required:"true"`
 
 	metadataPlacementType `json:"-", xml:"-"`
 }
 
 type metadataPlacementType struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveTagsInput struct {
-	ResourceID *string   `locationName:"ResourceId" type:"string" required:"true"json:"ResourceId,omitempty"`
-	TagKeys    []*string `type:"list" required:"true"json:",omitempty"`
+	ResourceID *string   `locationName:"ResourceId" type:"string" required:"true"`
+	TagKeys    []*string `type:"list" required:"true"`
 
 	metadataRemoveTagsInput `json:"-", xml:"-"`
 }
 
 type metadataRemoveTagsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RemoveTagsOutput struct {
@@ -1126,61 +1126,61 @@ type RemoveTagsOutput struct {
 }
 
 type metadataRemoveTagsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RunJobFlowInput struct {
-	AMIVersion           *string                   `locationName:"AmiVersion" type:"string" json:"AmiVersion,omitempty"`
-	AdditionalInfo       *string                   `type:"string" json:",omitempty"`
-	BootstrapActions     []*BootstrapActionConfig  `type:"list" json:",omitempty"`
-	Instances            *JobFlowInstancesConfig   `type:"structure" required:"true"json:",omitempty"`
-	JobFlowRole          *string                   `type:"string" json:",omitempty"`
-	LogURI               *string                   `locationName:"LogUri" type:"string" json:"LogUri,omitempty"`
-	Name                 *string                   `type:"string" required:"true"json:",omitempty"`
-	NewSupportedProducts []*SupportedProductConfig `type:"list" json:",omitempty"`
-	ServiceRole          *string                   `type:"string" json:",omitempty"`
-	Steps                []*StepConfig             `type:"list" json:",omitempty"`
-	SupportedProducts    []*string                 `type:"list" json:",omitempty"`
-	Tags                 []*Tag                    `type:"list" json:",omitempty"`
-	VisibleToAllUsers    *bool                     `type:"boolean" json:",omitempty"`
+	AMIVersion           *string                   `locationName:"AmiVersion" type:"string"`
+	AdditionalInfo       *string                   `type:"string"`
+	BootstrapActions     []*BootstrapActionConfig  `type:"list"`
+	Instances            *JobFlowInstancesConfig   `type:"structure" required:"true"`
+	JobFlowRole          *string                   `type:"string"`
+	LogURI               *string                   `locationName:"LogUri" type:"string"`
+	Name                 *string                   `type:"string" required:"true"`
+	NewSupportedProducts []*SupportedProductConfig `type:"list"`
+	ServiceRole          *string                   `type:"string"`
+	Steps                []*StepConfig             `type:"list"`
+	SupportedProducts    []*string                 `type:"list"`
+	Tags                 []*Tag                    `type:"list"`
+	VisibleToAllUsers    *bool                     `type:"boolean"`
 
 	metadataRunJobFlowInput `json:"-", xml:"-"`
 }
 
 type metadataRunJobFlowInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RunJobFlowOutput struct {
-	JobFlowID *string `locationName:"JobFlowId" type:"string" json:"JobFlowId,omitempty"`
+	JobFlowID *string `locationName:"JobFlowId" type:"string"`
 
 	metadataRunJobFlowOutput `json:"-", xml:"-"`
 }
 
 type metadataRunJobFlowOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ScriptBootstrapActionConfig struct {
-	Args []*string `type:"list" json:",omitempty"`
-	Path *string   `type:"string" required:"true"json:",omitempty"`
+	Args []*string `type:"list"`
+	Path *string   `type:"string" required:"true"`
 
 	metadataScriptBootstrapActionConfig `json:"-", xml:"-"`
 }
 
 type metadataScriptBootstrapActionConfig struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetTerminationProtectionInput struct {
-	JobFlowIDs           []*string `locationName:"JobFlowIds" type:"list" required:"true"json:"JobFlowIds,omitempty"`
-	TerminationProtected *bool     `type:"boolean" required:"true"json:",omitempty"`
+	JobFlowIDs           []*string `locationName:"JobFlowIds" type:"list" required:"true"`
+	TerminationProtected *bool     `type:"boolean" required:"true"`
 
 	metadataSetTerminationProtectionInput `json:"-", xml:"-"`
 }
 
 type metadataSetTerminationProtectionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetTerminationProtectionOutput struct {
@@ -1188,18 +1188,18 @@ type SetTerminationProtectionOutput struct {
 }
 
 type metadataSetTerminationProtectionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetVisibleToAllUsersInput struct {
-	JobFlowIDs        []*string `locationName:"JobFlowIds" type:"list" required:"true"json:"JobFlowIds,omitempty"`
-	VisibleToAllUsers *bool     `type:"boolean" required:"true"json:",omitempty"`
+	JobFlowIDs        []*string `locationName:"JobFlowIds" type:"list" required:"true"`
+	VisibleToAllUsers *bool     `type:"boolean" required:"true"`
 
 	metadataSetVisibleToAllUsersInput `json:"-", xml:"-"`
 }
 
 type metadataSetVisibleToAllUsersInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetVisibleToAllUsersOutput struct {
@@ -1207,139 +1207,139 @@ type SetVisibleToAllUsersOutput struct {
 }
 
 type metadataSetVisibleToAllUsersOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Step struct {
-	ActionOnFailure *string           `type:"string" json:",omitempty"`
-	Config          *HadoopStepConfig `type:"structure" json:",omitempty"`
-	ID              *string           `locationName:"Id" type:"string" json:"Id,omitempty"`
-	Name            *string           `type:"string" json:",omitempty"`
-	Status          *StepStatus       `type:"structure" json:",omitempty"`
+	ActionOnFailure *string           `type:"string"`
+	Config          *HadoopStepConfig `type:"structure"`
+	ID              *string           `locationName:"Id" type:"string"`
+	Name            *string           `type:"string"`
+	Status          *StepStatus       `type:"structure"`
 
 	metadataStep `json:"-", xml:"-"`
 }
 
 type metadataStep struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StepConfig struct {
-	ActionOnFailure *string              `type:"string" json:",omitempty"`
-	HadoopJARStep   *HadoopJARStepConfig `locationName:"HadoopJarStep" type:"structure" required:"true"json:"HadoopJarStep,omitempty"`
-	Name            *string              `type:"string" required:"true"json:",omitempty"`
+	ActionOnFailure *string              `type:"string"`
+	HadoopJARStep   *HadoopJARStepConfig `locationName:"HadoopJarStep" type:"structure" required:"true"`
+	Name            *string              `type:"string" required:"true"`
 
 	metadataStepConfig `json:"-", xml:"-"`
 }
 
 type metadataStepConfig struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StepDetail struct {
-	ExecutionStatusDetail *StepExecutionStatusDetail `type:"structure" required:"true"json:",omitempty"`
-	StepConfig            *StepConfig                `type:"structure" required:"true"json:",omitempty"`
+	ExecutionStatusDetail *StepExecutionStatusDetail `type:"structure" required:"true"`
+	StepConfig            *StepConfig                `type:"structure" required:"true"`
 
 	metadataStepDetail `json:"-", xml:"-"`
 }
 
 type metadataStepDetail struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StepExecutionStatusDetail struct {
-	CreationDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"json:",omitempty"`
-	EndDateTime           *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	LastStateChangeReason *string    `type:"string" json:",omitempty"`
-	StartDateTime         *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	State                 *string    `type:"string" required:"true"json:",omitempty"`
+	CreationDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+	EndDateTime           *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastStateChangeReason *string    `type:"string"`
+	StartDateTime         *time.Time `type:"timestamp" timestampFormat:"unix"`
+	State                 *string    `type:"string" required:"true"`
 
 	metadataStepExecutionStatusDetail `json:"-", xml:"-"`
 }
 
 type metadataStepExecutionStatusDetail struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StepStateChangeReason struct {
-	Code    *string `type:"string" json:",omitempty"`
-	Message *string `type:"string" json:",omitempty"`
+	Code    *string `type:"string"`
+	Message *string `type:"string"`
 
 	metadataStepStateChangeReason `json:"-", xml:"-"`
 }
 
 type metadataStepStateChangeReason struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StepStatus struct {
-	State             *string                `type:"string" json:",omitempty"`
-	StateChangeReason *StepStateChangeReason `type:"structure" json:",omitempty"`
-	Timeline          *StepTimeline          `type:"structure" json:",omitempty"`
+	State             *string                `type:"string"`
+	StateChangeReason *StepStateChangeReason `type:"structure"`
+	Timeline          *StepTimeline          `type:"structure"`
 
 	metadataStepStatus `json:"-", xml:"-"`
 }
 
 type metadataStepStatus struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StepSummary struct {
-	ActionOnFailure *string           `type:"string" json:",omitempty"`
-	Config          *HadoopStepConfig `type:"structure" json:",omitempty"`
-	ID              *string           `locationName:"Id" type:"string" json:"Id,omitempty"`
-	Name            *string           `type:"string" json:",omitempty"`
-	Status          *StepStatus       `type:"structure" json:",omitempty"`
+	ActionOnFailure *string           `type:"string"`
+	Config          *HadoopStepConfig `type:"structure"`
+	ID              *string           `locationName:"Id" type:"string"`
+	Name            *string           `type:"string"`
+	Status          *StepStatus       `type:"structure"`
 
 	metadataStepSummary `json:"-", xml:"-"`
 }
 
 type metadataStepSummary struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StepTimeline struct {
-	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
-	StartDateTime    *time.Time `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
+	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix"`
+	StartDateTime    *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	metadataStepTimeline `json:"-", xml:"-"`
 }
 
 type metadataStepTimeline struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SupportedProductConfig struct {
-	Args []*string `type:"list" json:",omitempty"`
-	Name *string   `type:"string" json:",omitempty"`
+	Args []*string `type:"list"`
+	Name *string   `type:"string"`
 
 	metadataSupportedProductConfig `json:"-", xml:"-"`
 }
 
 type metadataSupportedProductConfig struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Tag struct {
-	Key   *string `type:"string" json:",omitempty"`
-	Value *string `type:"string" json:",omitempty"`
+	Key   *string `type:"string"`
+	Value *string `type:"string"`
 
 	metadataTag `json:"-", xml:"-"`
 }
 
 type metadataTag struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TerminateJobFlowsInput struct {
-	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" required:"true"json:"JobFlowIds,omitempty"`
+	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" required:"true"`
 
 	metadataTerminateJobFlowsInput `json:"-", xml:"-"`
 }
 
 type metadataTerminateJobFlowsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TerminateJobFlowsOutput struct {
@@ -1347,5 +1347,5 @@ type TerminateJobFlowsOutput struct {
 }
 
 type metadataTerminateJobFlowsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

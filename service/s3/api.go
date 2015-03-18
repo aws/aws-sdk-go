@@ -1235,9 +1235,9 @@ func (c *S3) UploadPartCopy(input *UploadPartCopyInput) (output *UploadPartCopyO
 var opUploadPartCopy *aws.Operation
 
 type AbortMultipartUploadInput struct {
-	Bucket   *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	Key      *string `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket   *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Key      *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataAbortMultipartUploadInput `json:"-", xml:"-"`
 }
@@ -1335,10 +1335,10 @@ type metadataCommonPrefix struct {
 }
 
 type CompleteMultipartUploadInput struct {
-	Bucket          *string                   `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	Key             *string                   `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket          *string                   `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Key             *string                   `location:"uri" locationName:"Key" type:"string" required:"true"`
 	MultipartUpload *CompletedMultipartUpload `locationName:"CompleteMultipartUpload" type:"structure"`
-	UploadID        *string                   `location:"querystring" locationName:"uploadId" type:"string" required:"true"json:"-" xml:"-"`
+	UploadID        *string                   `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataCompleteMultipartUploadInput `json:"-", xml:"-"`
 }
@@ -1350,12 +1350,12 @@ type metadataCompleteMultipartUploadInput struct {
 type CompleteMultipartUploadOutput struct {
 	Bucket               *string    `type:"string"`
 	ETag                 *string    `type:"string"`
-	Expiration           *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
+	Expiration           *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
 	Key                  *string    `type:"string"`
 	Location             *string    `type:"string"`
-	SSEKMSKeyID          *string    `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" json:"-" xml:"-"`
-	ServerSideEncryption *string    `location:"header" locationName:"x-amz-server-side-encryption" type:"string" json:"-" xml:"-"`
-	VersionID            *string    `location:"header" locationName:"x-amz-version-id" type:"string" json:"-" xml:"-"`
+	SSEKMSKeyID          *string    `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	ServerSideEncryption *string    `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	VersionID            *string    `location:"header" locationName:"x-amz-version-id" type:"string"`
 
 	metadataCompleteMultipartUploadOutput `json:"-", xml:"-"`
 }
@@ -1397,36 +1397,36 @@ type metadataCondition struct {
 }
 
 type CopyObjectInput struct {
-	ACL                            *string             `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
-	Bucket                         *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	CacheControl                   *string             `location:"header" locationName:"Cache-Control" type:"string" json:"-" xml:"-"`
-	ContentDisposition             *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
-	ContentEncoding                *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
-	ContentLanguage                *string             `location:"header" locationName:"Content-Language" type:"string" json:"-" xml:"-"`
-	ContentType                    *string             `location:"header" locationName:"Content-Type" type:"string" json:"-" xml:"-"`
-	CopySource                     *string             `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"json:"-" xml:"-"`
-	CopySourceIfMatch              *string             `location:"header" locationName:"x-amz-copy-source-if-match" type:"string" json:"-" xml:"-"`
-	CopySourceIfModifiedSince      *time.Time          `location:"header" locationName:"x-amz-copy-source-if-modified-since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	CopySourceIfNoneMatch          *string             `location:"header" locationName:"x-amz-copy-source-if-none-match" type:"string" json:"-" xml:"-"`
-	CopySourceIfUnmodifiedSince    *time.Time          `location:"header" locationName:"x-amz-copy-source-if-unmodified-since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	CopySourceSSECustomerAlgorithm *string             `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	CopySourceSSECustomerKey       *string             `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
-	CopySourceSSECustomerKeyMD5    *string             `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	Expires                        *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	GrantFullControl               *string             `location:"header" locationName:"x-amz-grant-full-control" type:"string" json:"-" xml:"-"`
-	GrantRead                      *string             `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
-	GrantReadACP                   *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string" json:"-" xml:"-"`
-	GrantWriteACP                  *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string" json:"-" xml:"-"`
-	Key                            *string             `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	Metadata                       *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map" json:"-" xml:"-"`
-	MetadataDirective              *string             `location:"header" locationName:"x-amz-metadata-directive" type:"string" json:"-" xml:"-"`
-	SSECustomerAlgorithm           *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKey                 *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5              *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	SSEKMSKeyID                    *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" json:"-" xml:"-"`
-	ServerSideEncryption           *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string" json:"-" xml:"-"`
-	StorageClass                   *string             `location:"header" locationName:"x-amz-storage-class" type:"string" json:"-" xml:"-"`
-	WebsiteRedirectLocation        *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string" json:"-" xml:"-"`
+	ACL                            *string             `location:"header" locationName:"x-amz-acl" type:"string"`
+	Bucket                         *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	CacheControl                   *string             `location:"header" locationName:"Cache-Control" type:"string"`
+	ContentDisposition             *string             `location:"header" locationName:"Content-Disposition" type:"string"`
+	ContentEncoding                *string             `location:"header" locationName:"Content-Encoding" type:"string"`
+	ContentLanguage                *string             `location:"header" locationName:"Content-Language" type:"string"`
+	ContentType                    *string             `location:"header" locationName:"Content-Type" type:"string"`
+	CopySource                     *string             `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"`
+	CopySourceIfMatch              *string             `location:"header" locationName:"x-amz-copy-source-if-match" type:"string"`
+	CopySourceIfModifiedSince      *time.Time          `location:"header" locationName:"x-amz-copy-source-if-modified-since" type:"timestamp" timestampFormat:"rfc822"`
+	CopySourceIfNoneMatch          *string             `location:"header" locationName:"x-amz-copy-source-if-none-match" type:"string"`
+	CopySourceIfUnmodifiedSince    *time.Time          `location:"header" locationName:"x-amz-copy-source-if-unmodified-since" type:"timestamp" timestampFormat:"rfc822"`
+	CopySourceSSECustomerAlgorithm *string             `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-algorithm" type:"string"`
+	CopySourceSSECustomerKey       *string             `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key" type:"string"`
+	CopySourceSSECustomerKeyMD5    *string             `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string"`
+	Expires                        *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
+	GrantFullControl               *string             `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+	GrantRead                      *string             `location:"header" locationName:"x-amz-grant-read" type:"string"`
+	GrantReadACP                   *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+	GrantWriteACP                  *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+	Key                            *string             `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Metadata                       *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+	MetadataDirective              *string             `location:"header" locationName:"x-amz-metadata-directive" type:"string"`
+	SSECustomerAlgorithm           *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKey                 *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+	SSECustomerKeyMD5              *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	SSEKMSKeyID                    *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	ServerSideEncryption           *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	StorageClass                   *string             `location:"header" locationName:"x-amz-storage-class" type:"string"`
+	WebsiteRedirectLocation        *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
 	metadataCopyObjectInput `json:"-", xml:"-"`
 }
@@ -1437,12 +1437,12 @@ type metadataCopyObjectInput struct {
 
 type CopyObjectOutput struct {
 	CopyObjectResult     *CopyObjectResult `type:"structure"`
-	CopySourceVersionID  *string           `location:"header" locationName:"x-amz-copy-source-version-id" type:"string" json:"-" xml:"-"`
-	Expiration           *time.Time        `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	SSECustomerAlgorithm *string           `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5    *string           `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	SSEKMSKeyID          *string           `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" json:"-" xml:"-"`
-	ServerSideEncryption *string           `location:"header" locationName:"x-amz-server-side-encryption" type:"string" json:"-" xml:"-"`
+	CopySourceVersionID  *string           `location:"header" locationName:"x-amz-copy-source-version-id" type:"string"`
+	Expiration           *time.Time        `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+	SSECustomerAlgorithm *string           `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKeyMD5    *string           `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	SSEKMSKeyID          *string           `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	ServerSideEncryption *string           `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
 
 	metadataCopyObjectOutput `json:"-", xml:"-"`
 }
@@ -1484,14 +1484,14 @@ type metadataCreateBucketConfiguration struct {
 }
 
 type CreateBucketInput struct {
-	ACL                       *string                    `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
-	Bucket                    *string                    `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	ACL                       *string                    `location:"header" locationName:"x-amz-acl" type:"string"`
+	Bucket                    *string                    `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 	CreateBucketConfiguration *CreateBucketConfiguration `locationName:"CreateBucketConfiguration" type:"structure"`
-	GrantFullControl          *string                    `location:"header" locationName:"x-amz-grant-full-control" type:"string" json:"-" xml:"-"`
-	GrantRead                 *string                    `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
-	GrantReadACP              *string                    `location:"header" locationName:"x-amz-grant-read-acp" type:"string" json:"-" xml:"-"`
-	GrantWrite                *string                    `location:"header" locationName:"x-amz-grant-write" type:"string" json:"-" xml:"-"`
-	GrantWriteACP             *string                    `location:"header" locationName:"x-amz-grant-write-acp" type:"string" json:"-" xml:"-"`
+	GrantFullControl          *string                    `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+	GrantRead                 *string                    `location:"header" locationName:"x-amz-grant-read" type:"string"`
+	GrantReadACP              *string                    `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+	GrantWrite                *string                    `location:"header" locationName:"x-amz-grant-write" type:"string"`
+	GrantWriteACP             *string                    `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
 	metadataCreateBucketInput `json:"-", xml:"-"`
 }
@@ -1501,7 +1501,7 @@ type metadataCreateBucketInput struct {
 }
 
 type CreateBucketOutput struct {
-	Location *string `location:"header" locationName:"Location" type:"string" json:"-" xml:"-"`
+	Location *string `location:"header" locationName:"Location" type:"string"`
 
 	metadataCreateBucketOutput `json:"-", xml:"-"`
 }
@@ -1511,27 +1511,27 @@ type metadataCreateBucketOutput struct {
 }
 
 type CreateMultipartUploadInput struct {
-	ACL                     *string             `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
-	Bucket                  *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string" json:"-" xml:"-"`
-	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
-	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
-	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string" json:"-" xml:"-"`
-	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string" json:"-" xml:"-"`
-	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	GrantFullControl        *string             `location:"header" locationName:"x-amz-grant-full-control" type:"string" json:"-" xml:"-"`
-	GrantRead               *string             `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
-	GrantReadACP            *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string" json:"-" xml:"-"`
-	GrantWriteACP           *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string" json:"-" xml:"-"`
-	Key                     *string             `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map" json:"-" xml:"-"`
-	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKey          *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" json:"-" xml:"-"`
-	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string" json:"-" xml:"-"`
-	StorageClass            *string             `location:"header" locationName:"x-amz-storage-class" type:"string" json:"-" xml:"-"`
-	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string" json:"-" xml:"-"`
+	ACL                     *string             `location:"header" locationName:"x-amz-acl" type:"string"`
+	Bucket                  *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string"`
+	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string"`
+	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string"`
+	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string"`
+	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string"`
+	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
+	GrantFullControl        *string             `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+	GrantRead               *string             `location:"header" locationName:"x-amz-grant-read" type:"string"`
+	GrantReadACP            *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+	GrantWriteACP           *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+	Key                     *string             `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKey          *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	StorageClass            *string             `location:"header" locationName:"x-amz-storage-class" type:"string"`
+	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
 	metadataCreateMultipartUploadInput `json:"-", xml:"-"`
 }
@@ -1543,10 +1543,10 @@ type metadataCreateMultipartUploadInput struct {
 type CreateMultipartUploadOutput struct {
 	Bucket               *string `locationName:"Bucket" type:"string"`
 	Key                  *string `type:"string"`
-	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5    *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	SSEKMSKeyID          *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" json:"-" xml:"-"`
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" json:"-" xml:"-"`
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKeyMD5    *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	SSEKMSKeyID          *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
 	UploadID             *string `locationName:"UploadId" type:"string"`
 
 	metadataCreateMultipartUploadOutput `json:"-", xml:"-"`
@@ -1568,7 +1568,7 @@ type metadataDelete struct {
 }
 
 type DeleteBucketCORSInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataDeleteBucketCORSInput `json:"-", xml:"-"`
 }
@@ -1586,7 +1586,7 @@ type metadataDeleteBucketCORSOutput struct {
 }
 
 type DeleteBucketInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataDeleteBucketInput `json:"-", xml:"-"`
 }
@@ -1596,7 +1596,7 @@ type metadataDeleteBucketInput struct {
 }
 
 type DeleteBucketLifecycleInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataDeleteBucketLifecycleInput `json:"-", xml:"-"`
 }
@@ -1622,7 +1622,7 @@ type metadataDeleteBucketOutput struct {
 }
 
 type DeleteBucketPolicyInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataDeleteBucketPolicyInput `json:"-", xml:"-"`
 }
@@ -1640,7 +1640,7 @@ type metadataDeleteBucketPolicyOutput struct {
 }
 
 type DeleteBucketTaggingInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataDeleteBucketTaggingInput `json:"-", xml:"-"`
 }
@@ -1658,7 +1658,7 @@ type metadataDeleteBucketTaggingOutput struct {
 }
 
 type DeleteBucketWebsiteInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataDeleteBucketWebsiteInput `json:"-", xml:"-"`
 }
@@ -1690,10 +1690,10 @@ type metadataDeleteMarkerEntry struct {
 }
 
 type DeleteObjectInput struct {
-	Bucket    *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	Key       *string `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	MFA       *string `location:"header" locationName:"x-amz-mfa" type:"string" json:"-" xml:"-"`
-	VersionID *string `location:"querystring" locationName:"versionId" type:"string" json:"-" xml:"-"`
+	Bucket    *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Key       *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	MFA       *string `location:"header" locationName:"x-amz-mfa" type:"string"`
+	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
 	metadataDeleteObjectInput `json:"-", xml:"-"`
 }
@@ -1703,8 +1703,8 @@ type metadataDeleteObjectInput struct {
 }
 
 type DeleteObjectOutput struct {
-	DeleteMarker *bool   `location:"header" locationName:"x-amz-delete-marker" type:"boolean" json:"-" xml:"-"`
-	VersionID    *string `location:"header" locationName:"x-amz-version-id" type:"string" json:"-" xml:"-"`
+	DeleteMarker *bool   `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+	VersionID    *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
 	metadataDeleteObjectOutput `json:"-", xml:"-"`
 }
@@ -1714,9 +1714,9 @@ type metadataDeleteObjectOutput struct {
 }
 
 type DeleteObjectsInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 	Delete *Delete `locationName:"Delete" type:"structure" required:"true"`
-	MFA    *string `location:"header" locationName:"x-amz-mfa" type:"string" json:"-" xml:"-"`
+	MFA    *string `location:"header" locationName:"x-amz-mfa" type:"string"`
 
 	metadataDeleteObjectsInput `json:"-", xml:"-"`
 }
@@ -1773,7 +1773,7 @@ type metadataErrorDocument struct {
 }
 
 type GetBucketACLInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataGetBucketACLInput `json:"-", xml:"-"`
 }
@@ -1794,7 +1794,7 @@ type metadataGetBucketACLOutput struct {
 }
 
 type GetBucketCORSInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataGetBucketCORSInput `json:"-", xml:"-"`
 }
@@ -1814,7 +1814,7 @@ type metadataGetBucketCORSOutput struct {
 }
 
 type GetBucketLifecycleInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataGetBucketLifecycleInput `json:"-", xml:"-"`
 }
@@ -1834,7 +1834,7 @@ type metadataGetBucketLifecycleOutput struct {
 }
 
 type GetBucketLocationInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataGetBucketLocationInput `json:"-", xml:"-"`
 }
@@ -1854,7 +1854,7 @@ type metadataGetBucketLocationOutput struct {
 }
 
 type GetBucketLoggingInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataGetBucketLoggingInput `json:"-", xml:"-"`
 }
@@ -1874,7 +1874,7 @@ type metadataGetBucketLoggingOutput struct {
 }
 
 type GetBucketNotificationInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataGetBucketNotificationInput `json:"-", xml:"-"`
 }
@@ -1896,7 +1896,7 @@ type metadataGetBucketNotificationOutput struct {
 }
 
 type GetBucketPolicyInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataGetBucketPolicyInput `json:"-", xml:"-"`
 }
@@ -1916,7 +1916,7 @@ type metadataGetBucketPolicyOutput struct {
 }
 
 type GetBucketRequestPaymentInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataGetBucketRequestPaymentInput `json:"-", xml:"-"`
 }
@@ -1936,7 +1936,7 @@ type metadataGetBucketRequestPaymentOutput struct {
 }
 
 type GetBucketTaggingInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataGetBucketTaggingInput `json:"-", xml:"-"`
 }
@@ -1956,7 +1956,7 @@ type metadataGetBucketTaggingOutput struct {
 }
 
 type GetBucketVersioningInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataGetBucketVersioningInput `json:"-", xml:"-"`
 }
@@ -1977,7 +1977,7 @@ type metadataGetBucketVersioningOutput struct {
 }
 
 type GetBucketWebsiteInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataGetBucketWebsiteInput `json:"-", xml:"-"`
 }
@@ -2000,9 +2000,9 @@ type metadataGetBucketWebsiteOutput struct {
 }
 
 type GetObjectACLInput struct {
-	Bucket    *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	Key       *string `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	VersionID *string `location:"querystring" locationName:"versionId" type:"string" json:"-" xml:"-"`
+	Bucket    *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Key       *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
 	metadataGetObjectACLInput `json:"-", xml:"-"`
 }
@@ -2023,23 +2023,23 @@ type metadataGetObjectACLOutput struct {
 }
 
 type GetObjectInput struct {
-	Bucket                     *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	IfMatch                    *string    `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
-	IfModifiedSince            *time.Time `location:"header" locationName:"If-Modified-Since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	IfNoneMatch                *string    `location:"header" locationName:"If-None-Match" type:"string" json:"-" xml:"-"`
-	IfUnmodifiedSince          *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	Key                        *string    `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	Range                      *string    `location:"header" locationName:"Range" type:"string" json:"-" xml:"-"`
-	ResponseCacheControl       *string    `location:"querystring" locationName:"response-cache-control" type:"string" json:"-" xml:"-"`
-	ResponseContentDisposition *string    `location:"querystring" locationName:"response-content-disposition" type:"string" json:"-" xml:"-"`
-	ResponseContentEncoding    *string    `location:"querystring" locationName:"response-content-encoding" type:"string" json:"-" xml:"-"`
-	ResponseContentLanguage    *string    `location:"querystring" locationName:"response-content-language" type:"string" json:"-" xml:"-"`
-	ResponseContentType        *string    `location:"querystring" locationName:"response-content-type" type:"string" json:"-" xml:"-"`
-	ResponseExpires            *time.Time `location:"querystring" locationName:"response-expires" type:"timestamp" timestampFormat:"iso8601" json:"-" xml:"-"`
-	SSECustomerAlgorithm       *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKey             *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5          *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	VersionID                  *string    `location:"querystring" locationName:"versionId" type:"string" json:"-" xml:"-"`
+	Bucket                     *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	IfMatch                    *string    `location:"header" locationName:"If-Match" type:"string"`
+	IfModifiedSince            *time.Time `location:"header" locationName:"If-Modified-Since" type:"timestamp" timestampFormat:"rfc822"`
+	IfNoneMatch                *string    `location:"header" locationName:"If-None-Match" type:"string"`
+	IfUnmodifiedSince          *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822"`
+	Key                        *string    `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Range                      *string    `location:"header" locationName:"Range" type:"string"`
+	ResponseCacheControl       *string    `location:"querystring" locationName:"response-cache-control" type:"string"`
+	ResponseContentDisposition *string    `location:"querystring" locationName:"response-content-disposition" type:"string"`
+	ResponseContentEncoding    *string    `location:"querystring" locationName:"response-content-encoding" type:"string"`
+	ResponseContentLanguage    *string    `location:"querystring" locationName:"response-content-language" type:"string"`
+	ResponseContentType        *string    `location:"querystring" locationName:"response-content-type" type:"string"`
+	ResponseExpires            *time.Time `location:"querystring" locationName:"response-expires" type:"timestamp" timestampFormat:"iso8601"`
+	SSECustomerAlgorithm       *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKey             *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+	SSECustomerKeyMD5          *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	VersionID                  *string    `location:"querystring" locationName:"versionId" type:"string"`
 
 	metadataGetObjectInput `json:"-", xml:"-"`
 }
@@ -2049,28 +2049,28 @@ type metadataGetObjectInput struct {
 }
 
 type GetObjectOutput struct {
-	AcceptRanges            *string             `location:"header" locationName:"accept-ranges" type:"string" json:"-" xml:"-"`
+	AcceptRanges            *string             `location:"header" locationName:"accept-ranges" type:"string"`
 	Body                    io.ReadSeeker       `type:"blob"`
-	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string" json:"-" xml:"-"`
-	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
-	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
-	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string" json:"-" xml:"-"`
-	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
-	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string" json:"-" xml:"-"`
-	DeleteMarker            *bool               `location:"header" locationName:"x-amz-delete-marker" type:"boolean" json:"-" xml:"-"`
-	ETag                    *string             `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
-	Expiration              *time.Time          `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	LastModified            *time.Time          `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map" json:"-" xml:"-"`
-	MissingMeta             *int64              `location:"header" locationName:"x-amz-missing-meta" type:"integer" json:"-" xml:"-"`
-	Restore                 *string             `location:"header" locationName:"x-amz-restore" type:"string" json:"-" xml:"-"`
-	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" json:"-" xml:"-"`
-	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string" json:"-" xml:"-"`
-	VersionID               *string             `location:"header" locationName:"x-amz-version-id" type:"string" json:"-" xml:"-"`
-	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string" json:"-" xml:"-"`
+	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string"`
+	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string"`
+	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string"`
+	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string"`
+	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer"`
+	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string"`
+	DeleteMarker            *bool               `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+	ETag                    *string             `location:"header" locationName:"ETag" type:"string"`
+	Expiration              *time.Time          `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
+	LastModified            *time.Time          `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822"`
+	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+	MissingMeta             *int64              `location:"header" locationName:"x-amz-missing-meta" type:"integer"`
+	Restore                 *string             `location:"header" locationName:"x-amz-restore" type:"string"`
+	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	VersionID               *string             `location:"header" locationName:"x-amz-version-id" type:"string"`
+	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
 	metadataGetObjectOutput `json:"-", xml:"-"`
 }
@@ -2080,8 +2080,8 @@ type metadataGetObjectOutput struct {
 }
 
 type GetObjectTorrentInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	Key    *string `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Key    *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
 	metadataGetObjectTorrentInput `json:"-", xml:"-"`
 }
@@ -2126,7 +2126,7 @@ type metadataGrantee struct {
 }
 
 type HeadBucketInput struct {
-	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	metadataHeadBucketInput `json:"-", xml:"-"`
 }
@@ -2144,17 +2144,17 @@ type metadataHeadBucketOutput struct {
 }
 
 type HeadObjectInput struct {
-	Bucket               *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	IfMatch              *string    `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
-	IfModifiedSince      *time.Time `location:"header" locationName:"If-Modified-Since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	IfNoneMatch          *string    `location:"header" locationName:"If-None-Match" type:"string" json:"-" xml:"-"`
-	IfUnmodifiedSince    *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	Key                  *string    `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	Range                *string    `location:"header" locationName:"Range" type:"string" json:"-" xml:"-"`
-	SSECustomerAlgorithm *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKey       *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5    *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	VersionID            *string    `location:"querystring" locationName:"versionId" type:"string" json:"-" xml:"-"`
+	Bucket               *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	IfMatch              *string    `location:"header" locationName:"If-Match" type:"string"`
+	IfModifiedSince      *time.Time `location:"header" locationName:"If-Modified-Since" type:"timestamp" timestampFormat:"rfc822"`
+	IfNoneMatch          *string    `location:"header" locationName:"If-None-Match" type:"string"`
+	IfUnmodifiedSince    *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822"`
+	Key                  *string    `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Range                *string    `location:"header" locationName:"Range" type:"string"`
+	SSECustomerAlgorithm *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKey       *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+	SSECustomerKeyMD5    *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	VersionID            *string    `location:"querystring" locationName:"versionId" type:"string"`
 
 	metadataHeadObjectInput `json:"-", xml:"-"`
 }
@@ -2164,27 +2164,27 @@ type metadataHeadObjectInput struct {
 }
 
 type HeadObjectOutput struct {
-	AcceptRanges            *string             `location:"header" locationName:"accept-ranges" type:"string" json:"-" xml:"-"`
-	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string" json:"-" xml:"-"`
-	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
-	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
-	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string" json:"-" xml:"-"`
-	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
-	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string" json:"-" xml:"-"`
-	DeleteMarker            *bool               `location:"header" locationName:"x-amz-delete-marker" type:"boolean" json:"-" xml:"-"`
-	ETag                    *string             `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
-	Expiration              *time.Time          `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	LastModified            *time.Time          `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map" json:"-" xml:"-"`
-	MissingMeta             *int64              `location:"header" locationName:"x-amz-missing-meta" type:"integer" json:"-" xml:"-"`
-	Restore                 *string             `location:"header" locationName:"x-amz-restore" type:"string" json:"-" xml:"-"`
-	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" json:"-" xml:"-"`
-	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string" json:"-" xml:"-"`
-	VersionID               *string             `location:"header" locationName:"x-amz-version-id" type:"string" json:"-" xml:"-"`
-	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string" json:"-" xml:"-"`
+	AcceptRanges            *string             `location:"header" locationName:"accept-ranges" type:"string"`
+	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string"`
+	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string"`
+	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string"`
+	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string"`
+	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer"`
+	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string"`
+	DeleteMarker            *bool               `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+	ETag                    *string             `location:"header" locationName:"ETag" type:"string"`
+	Expiration              *time.Time          `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
+	LastModified            *time.Time          `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822"`
+	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+	MissingMeta             *int64              `location:"header" locationName:"x-amz-missing-meta" type:"integer"`
+	Restore                 *string             `location:"header" locationName:"x-amz-restore" type:"string"`
+	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	VersionID               *string             `location:"header" locationName:"x-amz-version-id" type:"string"`
+	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
 	metadataHeadObjectOutput `json:"-", xml:"-"`
 }
@@ -2255,13 +2255,13 @@ type metadataListBucketsOutput struct {
 }
 
 type ListMultipartUploadsInput struct {
-	Bucket         *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	Delimiter      *string `location:"querystring" locationName:"delimiter" type:"string" json:"-" xml:"-"`
-	EncodingType   *string `location:"querystring" locationName:"encoding-type" type:"string" json:"-" xml:"-"`
-	KeyMarker      *string `location:"querystring" locationName:"key-marker" type:"string" json:"-" xml:"-"`
-	MaxUploads     *int64  `location:"querystring" locationName:"max-uploads" type:"integer" json:"-" xml:"-"`
-	Prefix         *string `location:"querystring" locationName:"prefix" type:"string" json:"-" xml:"-"`
-	UploadIDMarker *string `location:"querystring" locationName:"upload-id-marker" type:"string" json:"-" xml:"-"`
+	Bucket         *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Delimiter      *string `location:"querystring" locationName:"delimiter" type:"string"`
+	EncodingType   *string `location:"querystring" locationName:"encoding-type" type:"string"`
+	KeyMarker      *string `location:"querystring" locationName:"key-marker" type:"string"`
+	MaxUploads     *int64  `location:"querystring" locationName:"max-uploads" type:"integer"`
+	Prefix         *string `location:"querystring" locationName:"prefix" type:"string"`
+	UploadIDMarker *string `location:"querystring" locationName:"upload-id-marker" type:"string"`
 
 	metadataListMultipartUploadsInput `json:"-", xml:"-"`
 }
@@ -2292,13 +2292,13 @@ type metadataListMultipartUploadsOutput struct {
 }
 
 type ListObjectVersionsInput struct {
-	Bucket          *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	Delimiter       *string `location:"querystring" locationName:"delimiter" type:"string" json:"-" xml:"-"`
-	EncodingType    *string `location:"querystring" locationName:"encoding-type" type:"string" json:"-" xml:"-"`
-	KeyMarker       *string `location:"querystring" locationName:"key-marker" type:"string" json:"-" xml:"-"`
-	MaxKeys         *int64  `location:"querystring" locationName:"max-keys" type:"integer" json:"-" xml:"-"`
-	Prefix          *string `location:"querystring" locationName:"prefix" type:"string" json:"-" xml:"-"`
-	VersionIDMarker *string `location:"querystring" locationName:"version-id-marker" type:"string" json:"-" xml:"-"`
+	Bucket          *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Delimiter       *string `location:"querystring" locationName:"delimiter" type:"string"`
+	EncodingType    *string `location:"querystring" locationName:"encoding-type" type:"string"`
+	KeyMarker       *string `location:"querystring" locationName:"key-marker" type:"string"`
+	MaxKeys         *int64  `location:"querystring" locationName:"max-keys" type:"integer"`
+	Prefix          *string `location:"querystring" locationName:"prefix" type:"string"`
+	VersionIDMarker *string `location:"querystring" locationName:"version-id-marker" type:"string"`
 
 	metadataListObjectVersionsInput `json:"-", xml:"-"`
 }
@@ -2330,12 +2330,12 @@ type metadataListObjectVersionsOutput struct {
 }
 
 type ListObjectsInput struct {
-	Bucket       *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	Delimiter    *string `location:"querystring" locationName:"delimiter" type:"string" json:"-" xml:"-"`
-	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string" json:"-" xml:"-"`
-	Marker       *string `location:"querystring" locationName:"marker" type:"string" json:"-" xml:"-"`
-	MaxKeys      *int64  `location:"querystring" locationName:"max-keys" type:"integer" json:"-" xml:"-"`
-	Prefix       *string `location:"querystring" locationName:"prefix" type:"string" json:"-" xml:"-"`
+	Bucket       *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Delimiter    *string `location:"querystring" locationName:"delimiter" type:"string"`
+	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string"`
+	Marker       *string `location:"querystring" locationName:"marker" type:"string"`
+	MaxKeys      *int64  `location:"querystring" locationName:"max-keys" type:"integer"`
+	Prefix       *string `location:"querystring" locationName:"prefix" type:"string"`
 
 	metadataListObjectsInput `json:"-", xml:"-"`
 }
@@ -2364,11 +2364,11 @@ type metadataListObjectsOutput struct {
 }
 
 type ListPartsInput struct {
-	Bucket           *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	Key              *string `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	MaxParts         *int64  `location:"querystring" locationName:"max-parts" type:"integer" json:"-" xml:"-"`
-	PartNumberMarker *int64  `location:"querystring" locationName:"part-number-marker" type:"integer" json:"-" xml:"-"`
-	UploadID         *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket           *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Key              *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	MaxParts         *int64  `location:"querystring" locationName:"max-parts" type:"integer"`
+	PartNumberMarker *int64  `location:"querystring" locationName:"part-number-marker" type:"integer"`
+	UploadID         *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataListPartsInput `json:"-", xml:"-"`
 }
@@ -2525,15 +2525,15 @@ type metadataPart struct {
 }
 
 type PutBucketACLInput struct {
-	ACL                 *string              `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
+	ACL                 *string              `location:"header" locationName:"x-amz-acl" type:"string"`
 	AccessControlPolicy *AccessControlPolicy `locationName:"AccessControlPolicy" type:"structure"`
-	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	GrantFullControl    *string              `location:"header" locationName:"x-amz-grant-full-control" type:"string" json:"-" xml:"-"`
-	GrantRead           *string              `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
-	GrantReadACP        *string              `location:"header" locationName:"x-amz-grant-read-acp" type:"string" json:"-" xml:"-"`
-	GrantWrite          *string              `location:"header" locationName:"x-amz-grant-write" type:"string" json:"-" xml:"-"`
-	GrantWriteACP       *string              `location:"header" locationName:"x-amz-grant-write-acp" type:"string" json:"-" xml:"-"`
+	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string"`
+	GrantFullControl    *string              `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+	GrantRead           *string              `location:"header" locationName:"x-amz-grant-read" type:"string"`
+	GrantReadACP        *string              `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+	GrantWrite          *string              `location:"header" locationName:"x-amz-grant-write" type:"string"`
+	GrantWriteACP       *string              `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
 	metadataPutBucketACLInput `json:"-", xml:"-"`
 }
@@ -2551,9 +2551,9 @@ type metadataPutBucketACLOutput struct {
 }
 
 type PutBucketCORSInput struct {
-	Bucket            *string            `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket            *string            `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 	CORSConfiguration *CORSConfiguration `locationName:"CORSConfiguration" type:"structure"`
-	ContentMD5        *string            `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
+	ContentMD5        *string            `location:"header" locationName:"Content-MD5" type:"string"`
 
 	metadataPutBucketCORSInput `json:"-", xml:"-"`
 }
@@ -2571,8 +2571,8 @@ type metadataPutBucketCORSOutput struct {
 }
 
 type PutBucketLifecycleInput struct {
-	Bucket                 *string                 `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	ContentMD5             *string                 `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
+	Bucket                 *string                 `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	ContentMD5             *string                 `location:"header" locationName:"Content-MD5" type:"string"`
 	LifecycleConfiguration *LifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure"`
 
 	metadataPutBucketLifecycleInput `json:"-", xml:"-"`
@@ -2591,9 +2591,9 @@ type metadataPutBucketLifecycleOutput struct {
 }
 
 type PutBucketLoggingInput struct {
-	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 	BucketLoggingStatus *BucketLoggingStatus `locationName:"BucketLoggingStatus" type:"structure" required:"true"`
-	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
+	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string"`
 
 	metadataPutBucketLoggingInput `json:"-", xml:"-"`
 }
@@ -2611,8 +2611,8 @@ type metadataPutBucketLoggingOutput struct {
 }
 
 type PutBucketNotificationInput struct {
-	Bucket                    *string                    `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	ContentMD5                *string                    `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
+	Bucket                    *string                    `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	ContentMD5                *string                    `location:"header" locationName:"Content-MD5" type:"string"`
 	NotificationConfiguration *NotificationConfiguration `locationName:"NotificationConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketNotificationInput `json:"-", xml:"-"`
@@ -2631,8 +2631,8 @@ type metadataPutBucketNotificationOutput struct {
 }
 
 type PutBucketPolicyInput struct {
-	Bucket     *string `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
+	Bucket     *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
 	Policy     *string `type:"string" required:"true"`
 
 	metadataPutBucketPolicyInput `json:"-", xml:"-"`
@@ -2651,8 +2651,8 @@ type metadataPutBucketPolicyOutput struct {
 }
 
 type PutBucketRequestPaymentInput struct {
-	Bucket                      *string                      `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	ContentMD5                  *string                      `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
+	Bucket                      *string                      `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	ContentMD5                  *string                      `location:"header" locationName:"Content-MD5" type:"string"`
 	RequestPaymentConfiguration *RequestPaymentConfiguration `locationName:"RequestPaymentConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketRequestPaymentInput `json:"-", xml:"-"`
@@ -2671,8 +2671,8 @@ type metadataPutBucketRequestPaymentOutput struct {
 }
 
 type PutBucketTaggingInput struct {
-	Bucket     *string  `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	ContentMD5 *string  `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
+	Bucket     *string  `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	ContentMD5 *string  `location:"header" locationName:"Content-MD5" type:"string"`
 	Tagging    *Tagging `locationName:"Tagging" type:"structure" required:"true"`
 
 	metadataPutBucketTaggingInput `json:"-", xml:"-"`
@@ -2691,9 +2691,9 @@ type metadataPutBucketTaggingOutput struct {
 }
 
 type PutBucketVersioningInput struct {
-	Bucket                  *string                  `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	ContentMD5              *string                  `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	MFA                     *string                  `location:"header" locationName:"x-amz-mfa" type:"string" json:"-" xml:"-"`
+	Bucket                  *string                  `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	ContentMD5              *string                  `location:"header" locationName:"Content-MD5" type:"string"`
+	MFA                     *string                  `location:"header" locationName:"x-amz-mfa" type:"string"`
 	VersioningConfiguration *VersioningConfiguration `locationName:"VersioningConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketVersioningInput `json:"-", xml:"-"`
@@ -2712,8 +2712,8 @@ type metadataPutBucketVersioningOutput struct {
 }
 
 type PutBucketWebsiteInput struct {
-	Bucket               *string               `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	ContentMD5           *string               `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
+	Bucket               *string               `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	ContentMD5           *string               `location:"header" locationName:"Content-MD5" type:"string"`
 	WebsiteConfiguration *WebsiteConfiguration `locationName:"WebsiteConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketWebsiteInput `json:"-", xml:"-"`
@@ -2732,16 +2732,16 @@ type metadataPutBucketWebsiteOutput struct {
 }
 
 type PutObjectACLInput struct {
-	ACL                 *string              `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
+	ACL                 *string              `location:"header" locationName:"x-amz-acl" type:"string"`
 	AccessControlPolicy *AccessControlPolicy `locationName:"AccessControlPolicy" type:"structure"`
-	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	GrantFullControl    *string              `location:"header" locationName:"x-amz-grant-full-control" type:"string" json:"-" xml:"-"`
-	GrantRead           *string              `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
-	GrantReadACP        *string              `location:"header" locationName:"x-amz-grant-read-acp" type:"string" json:"-" xml:"-"`
-	GrantWrite          *string              `location:"header" locationName:"x-amz-grant-write" type:"string" json:"-" xml:"-"`
-	GrantWriteACP       *string              `location:"header" locationName:"x-amz-grant-write-acp" type:"string" json:"-" xml:"-"`
-	Key                 *string              `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string"`
+	GrantFullControl    *string              `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+	GrantRead           *string              `location:"header" locationName:"x-amz-grant-read" type:"string"`
+	GrantReadACP        *string              `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+	GrantWrite          *string              `location:"header" locationName:"x-amz-grant-write" type:"string"`
+	GrantWriteACP       *string              `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+	Key                 *string              `location:"uri" locationName:"Key" type:"string" required:"true"`
 
 	metadataPutObjectACLInput `json:"-", xml:"-"`
 }
@@ -2759,30 +2759,30 @@ type metadataPutObjectACLOutput struct {
 }
 
 type PutObjectInput struct {
-	ACL                     *string             `location:"header" locationName:"x-amz-acl" type:"string" json:"-" xml:"-"`
+	ACL                     *string             `location:"header" locationName:"x-amz-acl" type:"string"`
 	Body                    io.ReadSeeker       `type:"blob"`
-	Bucket                  *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string" json:"-" xml:"-"`
-	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string" json:"-" xml:"-"`
-	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string" json:"-" xml:"-"`
-	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string" json:"-" xml:"-"`
-	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
-	ContentMD5              *string             `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string" json:"-" xml:"-"`
-	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	GrantFullControl        *string             `location:"header" locationName:"x-amz-grant-full-control" type:"string" json:"-" xml:"-"`
-	GrantRead               *string             `location:"header" locationName:"x-amz-grant-read" type:"string" json:"-" xml:"-"`
-	GrantReadACP            *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string" json:"-" xml:"-"`
-	GrantWriteACP           *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string" json:"-" xml:"-"`
-	Key                     *string             `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map" json:"-" xml:"-"`
-	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKey          *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" json:"-" xml:"-"`
-	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string" json:"-" xml:"-"`
-	StorageClass            *string             `location:"header" locationName:"x-amz-storage-class" type:"string" json:"-" xml:"-"`
-	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string" json:"-" xml:"-"`
+	Bucket                  *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string"`
+	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string"`
+	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string"`
+	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string"`
+	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer"`
+	ContentMD5              *string             `location:"header" locationName:"Content-MD5" type:"string"`
+	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string"`
+	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
+	GrantFullControl        *string             `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+	GrantRead               *string             `location:"header" locationName:"x-amz-grant-read" type:"string"`
+	GrantReadACP            *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+	GrantWriteACP           *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+	Key                     *string             `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKey          *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	StorageClass            *string             `location:"header" locationName:"x-amz-storage-class" type:"string"`
+	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
 	metadataPutObjectInput `json:"-", xml:"-"`
 }
@@ -2792,13 +2792,13 @@ type metadataPutObjectInput struct {
 }
 
 type PutObjectOutput struct {
-	ETag                 *string    `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
-	Expiration           *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	SSECustomerAlgorithm *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5    *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	SSEKMSKeyID          *string    `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" json:"-" xml:"-"`
-	ServerSideEncryption *string    `location:"header" locationName:"x-amz-server-side-encryption" type:"string" json:"-" xml:"-"`
-	VersionID            *string    `location:"header" locationName:"x-amz-version-id" type:"string" json:"-" xml:"-"`
+	ETag                 *string    `location:"header" locationName:"ETag" type:"string"`
+	Expiration           *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+	SSECustomerAlgorithm *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKeyMD5    *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	SSEKMSKeyID          *string    `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	ServerSideEncryption *string    `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	VersionID            *string    `location:"header" locationName:"x-amz-version-id" type:"string"`
 
 	metadataPutObjectOutput `json:"-", xml:"-"`
 }
@@ -2856,10 +2856,10 @@ type metadataRequestPaymentConfiguration struct {
 }
 
 type RestoreObjectInput struct {
-	Bucket         *string         `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	Key            *string         `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket         *string         `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Key            *string         `location:"uri" locationName:"Key" type:"string" required:"true"`
 	RestoreRequest *RestoreRequest `locationName:"RestoreRequest" type:"structure"`
-	VersionID      *string         `location:"querystring" locationName:"versionId" type:"string" json:"-" xml:"-"`
+	VersionID      *string         `location:"querystring" locationName:"versionId" type:"string"`
 
 	metadataRestoreObjectInput `json:"-", xml:"-"`
 }
@@ -2971,22 +2971,22 @@ type metadataTransition struct {
 }
 
 type UploadPartCopyInput struct {
-	Bucket                         *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	CopySource                     *string    `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"json:"-" xml:"-"`
-	CopySourceIfMatch              *string    `location:"header" locationName:"x-amz-copy-source-if-match" type:"string" json:"-" xml:"-"`
-	CopySourceIfModifiedSince      *time.Time `location:"header" locationName:"x-amz-copy-source-if-modified-since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	CopySourceIfNoneMatch          *string    `location:"header" locationName:"x-amz-copy-source-if-none-match" type:"string" json:"-" xml:"-"`
-	CopySourceIfUnmodifiedSince    *time.Time `location:"header" locationName:"x-amz-copy-source-if-unmodified-since" type:"timestamp" timestampFormat:"rfc822" json:"-" xml:"-"`
-	CopySourceRange                *string    `location:"header" locationName:"x-amz-copy-source-range" type:"string" json:"-" xml:"-"`
-	CopySourceSSECustomerAlgorithm *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	CopySourceSSECustomerKey       *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
-	CopySourceSSECustomerKeyMD5    *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	Key                            *string    `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	PartNumber                     *int64     `location:"querystring" locationName:"partNumber" type:"integer" required:"true"json:"-" xml:"-"`
-	SSECustomerAlgorithm           *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKey                 *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5              *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	UploadID                       *string    `location:"querystring" locationName:"uploadId" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket                         *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	CopySource                     *string    `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"`
+	CopySourceIfMatch              *string    `location:"header" locationName:"x-amz-copy-source-if-match" type:"string"`
+	CopySourceIfModifiedSince      *time.Time `location:"header" locationName:"x-amz-copy-source-if-modified-since" type:"timestamp" timestampFormat:"rfc822"`
+	CopySourceIfNoneMatch          *string    `location:"header" locationName:"x-amz-copy-source-if-none-match" type:"string"`
+	CopySourceIfUnmodifiedSince    *time.Time `location:"header" locationName:"x-amz-copy-source-if-unmodified-since" type:"timestamp" timestampFormat:"rfc822"`
+	CopySourceRange                *string    `location:"header" locationName:"x-amz-copy-source-range" type:"string"`
+	CopySourceSSECustomerAlgorithm *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-algorithm" type:"string"`
+	CopySourceSSECustomerKey       *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key" type:"string"`
+	CopySourceSSECustomerKeyMD5    *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string"`
+	Key                            *string    `location:"uri" locationName:"Key" type:"string" required:"true"`
+	PartNumber                     *int64     `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
+	SSECustomerAlgorithm           *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKey                 *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+	SSECustomerKeyMD5              *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	UploadID                       *string    `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataUploadPartCopyInput `json:"-", xml:"-"`
 }
@@ -2997,11 +2997,11 @@ type metadataUploadPartCopyInput struct {
 
 type UploadPartCopyOutput struct {
 	CopyPartResult       *CopyPartResult `type:"structure"`
-	CopySourceVersionID  *string         `location:"header" locationName:"x-amz-copy-source-version-id" type:"string" json:"-" xml:"-"`
-	SSECustomerAlgorithm *string         `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5    *string         `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	SSEKMSKeyID          *string         `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" json:"-" xml:"-"`
-	ServerSideEncryption *string         `location:"header" locationName:"x-amz-server-side-encryption" type:"string" json:"-" xml:"-"`
+	CopySourceVersionID  *string         `location:"header" locationName:"x-amz-copy-source-version-id" type:"string"`
+	SSECustomerAlgorithm *string         `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKeyMD5    *string         `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	SSEKMSKeyID          *string         `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	ServerSideEncryption *string         `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
 
 	metadataUploadPartCopyOutput `json:"-", xml:"-"`
 }
@@ -3012,15 +3012,15 @@ type metadataUploadPartCopyOutput struct {
 
 type UploadPartInput struct {
 	Body                 io.ReadSeeker `type:"blob"`
-	Bucket               *string       `location:"uri" locationName:"Bucket" type:"string" required:"true"json:"-" xml:"-"`
-	ContentLength        *int64        `location:"header" locationName:"Content-Length" type:"integer" json:"-" xml:"-"`
-	ContentMD5           *string       `location:"header" locationName:"Content-MD5" type:"string" json:"-" xml:"-"`
-	Key                  *string       `location:"uri" locationName:"Key" type:"string" required:"true"json:"-" xml:"-"`
-	PartNumber           *int64        `location:"querystring" locationName:"partNumber" type:"integer" required:"true"json:"-" xml:"-"`
-	SSECustomerAlgorithm *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKey       *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5    *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	UploadID             *string       `location:"querystring" locationName:"uploadId" type:"string" required:"true"json:"-" xml:"-"`
+	Bucket               *string       `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	ContentLength        *int64        `location:"header" locationName:"Content-Length" type:"integer"`
+	ContentMD5           *string       `location:"header" locationName:"Content-MD5" type:"string"`
+	Key                  *string       `location:"uri" locationName:"Key" type:"string" required:"true"`
+	PartNumber           *int64        `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
+	SSECustomerAlgorithm *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKey       *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+	SSECustomerKeyMD5    *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	UploadID             *string       `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataUploadPartInput `json:"-", xml:"-"`
 }
@@ -3030,11 +3030,11 @@ type metadataUploadPartInput struct {
 }
 
 type UploadPartOutput struct {
-	ETag                 *string `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
-	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string" json:"-" xml:"-"`
-	SSECustomerKeyMD5    *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string" json:"-" xml:"-"`
-	SSEKMSKeyID          *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" json:"-" xml:"-"`
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" json:"-" xml:"-"`
+	ETag                 *string `location:"header" locationName:"ETag" type:"string"`
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+	SSECustomerKeyMD5    *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+	SSEKMSKeyID          *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
 
 	metadataUploadPartOutput `json:"-", xml:"-"`
 }

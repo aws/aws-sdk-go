@@ -1632,37 +1632,37 @@ func (c *OpsWorks) UpdateVolume(input *UpdateVolumeInput) (output *UpdateVolumeO
 var opUpdateVolume *aws.Operation
 
 type App struct {
-	AppID            *string                `locationName:"AppId" type:"string" json:"AppId,omitempty"`
-	AppSource        *Source                `type:"structure" json:",omitempty"`
-	Attributes       *map[string]*string    `type:"map" json:",omitempty"`
-	CreatedAt        *string                `type:"string" json:",omitempty"`
-	DataSources      []*DataSource          `type:"list" json:",omitempty"`
-	Description      *string                `type:"string" json:",omitempty"`
-	Domains          []*string              `type:"list" json:",omitempty"`
-	EnableSSL        *bool                  `locationName:"EnableSsl" type:"boolean" json:"EnableSsl,omitempty"`
-	Environment      []*EnvironmentVariable `type:"list" json:",omitempty"`
-	Name             *string                `type:"string" json:",omitempty"`
-	SSLConfiguration *SSLConfiguration      `locationName:"SslConfiguration" type:"structure" json:"SslConfiguration,omitempty"`
-	Shortname        *string                `type:"string" json:",omitempty"`
-	StackID          *string                `locationName:"StackId" type:"string" json:"StackId,omitempty"`
-	Type             *string                `type:"string" json:",omitempty"`
+	AppID            *string                `locationName:"AppId" type:"string"`
+	AppSource        *Source                `type:"structure"`
+	Attributes       *map[string]*string    `type:"map"`
+	CreatedAt        *string                `type:"string"`
+	DataSources      []*DataSource          `type:"list"`
+	Description      *string                `type:"string"`
+	Domains          []*string              `type:"list"`
+	EnableSSL        *bool                  `locationName:"EnableSsl" type:"boolean"`
+	Environment      []*EnvironmentVariable `type:"list"`
+	Name             *string                `type:"string"`
+	SSLConfiguration *SSLConfiguration      `locationName:"SslConfiguration" type:"structure"`
+	Shortname        *string                `type:"string"`
+	StackID          *string                `locationName:"StackId" type:"string"`
+	Type             *string                `type:"string"`
 
 	metadataApp `json:"-", xml:"-"`
 }
 
 type metadataApp struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssignInstanceInput struct {
-	InstanceID *string   `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
-	LayerIDs   []*string `locationName:"LayerIds" type:"list" required:"true"json:"LayerIds,omitempty"`
+	InstanceID *string   `locationName:"InstanceId" type:"string" required:"true"`
+	LayerIDs   []*string `locationName:"LayerIds" type:"list" required:"true"`
 
 	metadataAssignInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataAssignInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssignInstanceOutput struct {
@@ -1670,18 +1670,18 @@ type AssignInstanceOutput struct {
 }
 
 type metadataAssignInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssignVolumeInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	VolumeID   *string `locationName:"VolumeId" type:"string" required:"true"json:"VolumeId,omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+	VolumeID   *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataAssignVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataAssignVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssignVolumeOutput struct {
@@ -1689,18 +1689,18 @@ type AssignVolumeOutput struct {
 }
 
 type metadataAssignVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssociateElasticIPInput struct {
-	ElasticIP  *string `locationName:"ElasticIp" type:"string" required:"true"json:"ElasticIp,omitempty"`
-	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
+	ElasticIP  *string `locationName:"ElasticIp" type:"string" required:"true"`
+	InstanceID *string `locationName:"InstanceId" type:"string"`
 
 	metadataAssociateElasticIPInput `json:"-", xml:"-"`
 }
 
 type metadataAssociateElasticIPInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AssociateElasticIPOutput struct {
@@ -1708,18 +1708,18 @@ type AssociateElasticIPOutput struct {
 }
 
 type metadataAssociateElasticIPOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachElasticLoadBalancerInput struct {
-	ElasticLoadBalancerName *string `type:"string" required:"true"json:",omitempty"`
-	LayerID                 *string `locationName:"LayerId" type:"string" required:"true"json:"LayerId,omitempty"`
+	ElasticLoadBalancerName *string `type:"string" required:"true"`
+	LayerID                 *string `locationName:"LayerId" type:"string" required:"true"`
 
 	metadataAttachElasticLoadBalancerInput `json:"-", xml:"-"`
 }
 
 type metadataAttachElasticLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AttachElasticLoadBalancerOutput struct {
@@ -1727,299 +1727,299 @@ type AttachElasticLoadBalancerOutput struct {
 }
 
 type metadataAttachElasticLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type AutoScalingThresholds struct {
-	CPUThreshold       *float64 `locationName:"CpuThreshold" type:"double" json:"CpuThreshold,omitempty"`
-	IgnoreMetricsTime  *int64   `type:"integer" json:",omitempty"`
-	InstanceCount      *int64   `type:"integer" json:",omitempty"`
-	LoadThreshold      *float64 `type:"double" json:",omitempty"`
-	MemoryThreshold    *float64 `type:"double" json:",omitempty"`
-	ThresholdsWaitTime *int64   `type:"integer" json:",omitempty"`
+	CPUThreshold       *float64 `locationName:"CpuThreshold" type:"double"`
+	IgnoreMetricsTime  *int64   `type:"integer"`
+	InstanceCount      *int64   `type:"integer"`
+	LoadThreshold      *float64 `type:"double"`
+	MemoryThreshold    *float64 `type:"double"`
+	ThresholdsWaitTime *int64   `type:"integer"`
 
 	metadataAutoScalingThresholds `json:"-", xml:"-"`
 }
 
 type metadataAutoScalingThresholds struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChefConfiguration struct {
-	BerkshelfVersion *string `type:"string" json:",omitempty"`
-	ManageBerkshelf  *bool   `type:"boolean" json:",omitempty"`
+	BerkshelfVersion *string `type:"string"`
+	ManageBerkshelf  *bool   `type:"boolean"`
 
 	metadataChefConfiguration `json:"-", xml:"-"`
 }
 
 type metadataChefConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CloneStackInput struct {
-	Attributes                *map[string]*string        `type:"map" json:",omitempty"`
-	ChefConfiguration         *ChefConfiguration         `type:"structure" json:",omitempty"`
-	CloneAppIDs               []*string                  `locationName:"CloneAppIds" type:"list" json:"CloneAppIds,omitempty"`
-	ClonePermissions          *bool                      `type:"boolean" json:",omitempty"`
-	ConfigurationManager      *StackConfigurationManager `type:"structure" json:",omitempty"`
-	CustomCookbooksSource     *Source                    `type:"structure" json:",omitempty"`
-	CustomJSON                *string                    `locationName:"CustomJson" type:"string" json:"CustomJson,omitempty"`
-	DefaultAvailabilityZone   *string                    `type:"string" json:",omitempty"`
-	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string" json:"DefaultInstanceProfileArn,omitempty"`
-	DefaultOs                 *string                    `type:"string" json:",omitempty"`
-	DefaultRootDeviceType     *string                    `type:"string" json:",omitempty"`
-	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string" json:"DefaultSshKeyName,omitempty"`
-	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string" json:"DefaultSubnetId,omitempty"`
-	HostnameTheme             *string                    `type:"string" json:",omitempty"`
-	Name                      *string                    `type:"string" json:",omitempty"`
-	Region                    *string                    `type:"string" json:",omitempty"`
-	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string" required:"true"json:"ServiceRoleArn,omitempty"`
-	SourceStackID             *string                    `locationName:"SourceStackId" type:"string" required:"true"json:"SourceStackId,omitempty"`
-	UseCustomCookbooks        *bool                      `type:"boolean" json:",omitempty"`
-	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean" json:"UseOpsworksSecurityGroups,omitempty"`
-	VPCID                     *string                    `locationName:"VpcId" type:"string" json:"VpcId,omitempty"`
+	Attributes                *map[string]*string        `type:"map"`
+	ChefConfiguration         *ChefConfiguration         `type:"structure"`
+	CloneAppIDs               []*string                  `locationName:"CloneAppIds" type:"list"`
+	ClonePermissions          *bool                      `type:"boolean"`
+	ConfigurationManager      *StackConfigurationManager `type:"structure"`
+	CustomCookbooksSource     *Source                    `type:"structure"`
+	CustomJSON                *string                    `locationName:"CustomJson" type:"string"`
+	DefaultAvailabilityZone   *string                    `type:"string"`
+	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string"`
+	DefaultOs                 *string                    `type:"string"`
+	DefaultRootDeviceType     *string                    `type:"string"`
+	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string"`
+	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string"`
+	HostnameTheme             *string                    `type:"string"`
+	Name                      *string                    `type:"string"`
+	Region                    *string                    `type:"string"`
+	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string" required:"true"`
+	SourceStackID             *string                    `locationName:"SourceStackId" type:"string" required:"true"`
+	UseCustomCookbooks        *bool                      `type:"boolean"`
+	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
+	VPCID                     *string                    `locationName:"VpcId" type:"string"`
 
 	metadataCloneStackInput `json:"-", xml:"-"`
 }
 
 type metadataCloneStackInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CloneStackOutput struct {
-	StackID *string `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataCloneStackOutput `json:"-", xml:"-"`
 }
 
 type metadataCloneStackOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Command struct {
-	AcknowledgedAt *string `type:"string" json:",omitempty"`
-	CommandID      *string `locationName:"CommandId" type:"string" json:"CommandId,omitempty"`
-	CompletedAt    *string `type:"string" json:",omitempty"`
-	CreatedAt      *string `type:"string" json:",omitempty"`
-	DeploymentID   *string `locationName:"DeploymentId" type:"string" json:"DeploymentId,omitempty"`
-	ExitCode       *int64  `type:"integer" json:",omitempty"`
-	InstanceID     *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	LogURL         *string `locationName:"LogUrl" type:"string" json:"LogUrl,omitempty"`
-	Status         *string `type:"string" json:",omitempty"`
-	Type           *string `type:"string" json:",omitempty"`
+	AcknowledgedAt *string `type:"string"`
+	CommandID      *string `locationName:"CommandId" type:"string"`
+	CompletedAt    *string `type:"string"`
+	CreatedAt      *string `type:"string"`
+	DeploymentID   *string `locationName:"DeploymentId" type:"string"`
+	ExitCode       *int64  `type:"integer"`
+	InstanceID     *string `locationName:"InstanceId" type:"string"`
+	LogURL         *string `locationName:"LogUrl" type:"string"`
+	Status         *string `type:"string"`
+	Type           *string `type:"string"`
 
 	metadataCommand `json:"-", xml:"-"`
 }
 
 type metadataCommand struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAppInput struct {
-	AppSource        *Source                `type:"structure" json:",omitempty"`
-	Attributes       *map[string]*string    `type:"map" json:",omitempty"`
-	DataSources      []*DataSource          `type:"list" json:",omitempty"`
-	Description      *string                `type:"string" json:",omitempty"`
-	Domains          []*string              `type:"list" json:",omitempty"`
-	EnableSSL        *bool                  `locationName:"EnableSsl" type:"boolean" json:"EnableSsl,omitempty"`
-	Environment      []*EnvironmentVariable `type:"list" json:",omitempty"`
-	Name             *string                `type:"string" required:"true"json:",omitempty"`
-	SSLConfiguration *SSLConfiguration      `locationName:"SslConfiguration" type:"structure" json:"SslConfiguration,omitempty"`
-	Shortname        *string                `type:"string" json:",omitempty"`
-	StackID          *string                `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
-	Type             *string                `type:"string" required:"true"json:",omitempty"`
+	AppSource        *Source                `type:"structure"`
+	Attributes       *map[string]*string    `type:"map"`
+	DataSources      []*DataSource          `type:"list"`
+	Description      *string                `type:"string"`
+	Domains          []*string              `type:"list"`
+	EnableSSL        *bool                  `locationName:"EnableSsl" type:"boolean"`
+	Environment      []*EnvironmentVariable `type:"list"`
+	Name             *string                `type:"string" required:"true"`
+	SSLConfiguration *SSLConfiguration      `locationName:"SslConfiguration" type:"structure"`
+	Shortname        *string                `type:"string"`
+	StackID          *string                `locationName:"StackId" type:"string" required:"true"`
+	Type             *string                `type:"string" required:"true"`
 
 	metadataCreateAppInput `json:"-", xml:"-"`
 }
 
 type metadataCreateAppInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateAppOutput struct {
-	AppID *string `locationName:"AppId" type:"string" json:"AppId,omitempty"`
+	AppID *string `locationName:"AppId" type:"string"`
 
 	metadataCreateAppOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateAppOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDeploymentInput struct {
-	AppID       *string            `locationName:"AppId" type:"string" json:"AppId,omitempty"`
-	Command     *DeploymentCommand `type:"structure" required:"true"json:",omitempty"`
-	Comment     *string            `type:"string" json:",omitempty"`
-	CustomJSON  *string            `locationName:"CustomJson" type:"string" json:"CustomJson,omitempty"`
-	InstanceIDs []*string          `locationName:"InstanceIds" type:"list" json:"InstanceIds,omitempty"`
-	StackID     *string            `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	AppID       *string            `locationName:"AppId" type:"string"`
+	Command     *DeploymentCommand `type:"structure" required:"true"`
+	Comment     *string            `type:"string"`
+	CustomJSON  *string            `locationName:"CustomJson" type:"string"`
+	InstanceIDs []*string          `locationName:"InstanceIds" type:"list"`
+	StackID     *string            `locationName:"StackId" type:"string" required:"true"`
 
 	metadataCreateDeploymentInput `json:"-", xml:"-"`
 }
 
 type metadataCreateDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateDeploymentOutput struct {
-	DeploymentID *string `locationName:"DeploymentId" type:"string" json:"DeploymentId,omitempty"`
+	DeploymentID *string `locationName:"DeploymentId" type:"string"`
 
 	metadataCreateDeploymentOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateDeploymentOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateInstanceInput struct {
-	AMIID                *string   `locationName:"AmiId" type:"string" json:"AmiId,omitempty"`
-	Architecture         *string   `type:"string" json:",omitempty"`
-	AutoScalingType      *string   `type:"string" json:",omitempty"`
-	AvailabilityZone     *string   `type:"string" json:",omitempty"`
-	EBSOptimized         *bool     `locationName:"EbsOptimized" type:"boolean" json:"EbsOptimized,omitempty"`
-	Hostname             *string   `type:"string" json:",omitempty"`
-	InstallUpdatesOnBoot *bool     `type:"boolean" json:",omitempty"`
-	InstanceType         *string   `type:"string" required:"true"json:",omitempty"`
-	LayerIDs             []*string `locationName:"LayerIds" type:"list" required:"true"json:"LayerIds,omitempty"`
-	Os                   *string   `type:"string" json:",omitempty"`
-	RootDeviceType       *string   `type:"string" json:",omitempty"`
-	SSHKeyName           *string   `locationName:"SshKeyName" type:"string" json:"SshKeyName,omitempty"`
-	StackID              *string   `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
-	SubnetID             *string   `locationName:"SubnetId" type:"string" json:"SubnetId,omitempty"`
-	VirtualizationType   *string   `type:"string" json:",omitempty"`
+	AMIID                *string   `locationName:"AmiId" type:"string"`
+	Architecture         *string   `type:"string"`
+	AutoScalingType      *string   `type:"string"`
+	AvailabilityZone     *string   `type:"string"`
+	EBSOptimized         *bool     `locationName:"EbsOptimized" type:"boolean"`
+	Hostname             *string   `type:"string"`
+	InstallUpdatesOnBoot *bool     `type:"boolean"`
+	InstanceType         *string   `type:"string" required:"true"`
+	LayerIDs             []*string `locationName:"LayerIds" type:"list" required:"true"`
+	Os                   *string   `type:"string"`
+	RootDeviceType       *string   `type:"string"`
+	SSHKeyName           *string   `locationName:"SshKeyName" type:"string"`
+	StackID              *string   `locationName:"StackId" type:"string" required:"true"`
+	SubnetID             *string   `locationName:"SubnetId" type:"string"`
+	VirtualizationType   *string   `type:"string"`
 
 	metadataCreateInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataCreateInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateInstanceOutput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string"`
 
 	metadataCreateInstanceOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLayerInput struct {
-	Attributes                  *map[string]*string          `type:"map" json:",omitempty"`
-	AutoAssignElasticIPs        *bool                        `locationName:"AutoAssignElasticIps" type:"boolean" json:"AutoAssignElasticIps,omitempty"`
-	AutoAssignPublicIPs         *bool                        `locationName:"AutoAssignPublicIps" type:"boolean" json:"AutoAssignPublicIps,omitempty"`
-	CustomInstanceProfileARN    *string                      `locationName:"CustomInstanceProfileArn" type:"string" json:"CustomInstanceProfileArn,omitempty"`
-	CustomRecipes               *Recipes                     `type:"structure" json:",omitempty"`
-	CustomSecurityGroupIDs      []*string                    `locationName:"CustomSecurityGroupIds" type:"list" json:"CustomSecurityGroupIds,omitempty"`
-	EnableAutoHealing           *bool                        `type:"boolean" json:",omitempty"`
-	InstallUpdatesOnBoot        *bool                        `type:"boolean" json:",omitempty"`
-	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure" json:",omitempty"`
-	Name                        *string                      `type:"string" required:"true"json:",omitempty"`
-	Packages                    []*string                    `type:"list" json:",omitempty"`
-	Shortname                   *string                      `type:"string" required:"true"json:",omitempty"`
-	StackID                     *string                      `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
-	Type                        *string                      `type:"string" required:"true"json:",omitempty"`
-	UseEBSOptimizedInstances    *bool                        `locationName:"UseEbsOptimizedInstances" type:"boolean" json:"UseEbsOptimizedInstances,omitempty"`
-	VolumeConfigurations        []*VolumeConfiguration       `type:"list" json:",omitempty"`
+	Attributes                  *map[string]*string          `type:"map"`
+	AutoAssignElasticIPs        *bool                        `locationName:"AutoAssignElasticIps" type:"boolean"`
+	AutoAssignPublicIPs         *bool                        `locationName:"AutoAssignPublicIps" type:"boolean"`
+	CustomInstanceProfileARN    *string                      `locationName:"CustomInstanceProfileArn" type:"string"`
+	CustomRecipes               *Recipes                     `type:"structure"`
+	CustomSecurityGroupIDs      []*string                    `locationName:"CustomSecurityGroupIds" type:"list"`
+	EnableAutoHealing           *bool                        `type:"boolean"`
+	InstallUpdatesOnBoot        *bool                        `type:"boolean"`
+	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure"`
+	Name                        *string                      `type:"string" required:"true"`
+	Packages                    []*string                    `type:"list"`
+	Shortname                   *string                      `type:"string" required:"true"`
+	StackID                     *string                      `locationName:"StackId" type:"string" required:"true"`
+	Type                        *string                      `type:"string" required:"true"`
+	UseEBSOptimizedInstances    *bool                        `locationName:"UseEbsOptimizedInstances" type:"boolean"`
+	VolumeConfigurations        []*VolumeConfiguration       `type:"list"`
 
 	metadataCreateLayerInput `json:"-", xml:"-"`
 }
 
 type metadataCreateLayerInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateLayerOutput struct {
-	LayerID *string `locationName:"LayerId" type:"string" json:"LayerId,omitempty"`
+	LayerID *string `locationName:"LayerId" type:"string"`
 
 	metadataCreateLayerOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateLayerOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateStackInput struct {
-	Attributes                *map[string]*string        `type:"map" json:",omitempty"`
-	ChefConfiguration         *ChefConfiguration         `type:"structure" json:",omitempty"`
-	ConfigurationManager      *StackConfigurationManager `type:"structure" json:",omitempty"`
-	CustomCookbooksSource     *Source                    `type:"structure" json:",omitempty"`
-	CustomJSON                *string                    `locationName:"CustomJson" type:"string" json:"CustomJson,omitempty"`
-	DefaultAvailabilityZone   *string                    `type:"string" json:",omitempty"`
-	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string" required:"true"json:"DefaultInstanceProfileArn,omitempty"`
-	DefaultOs                 *string                    `type:"string" json:",omitempty"`
-	DefaultRootDeviceType     *string                    `type:"string" json:",omitempty"`
-	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string" json:"DefaultSshKeyName,omitempty"`
-	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string" json:"DefaultSubnetId,omitempty"`
-	HostnameTheme             *string                    `type:"string" json:",omitempty"`
-	Name                      *string                    `type:"string" required:"true"json:",omitempty"`
-	Region                    *string                    `type:"string" required:"true"json:",omitempty"`
-	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string" required:"true"json:"ServiceRoleArn,omitempty"`
-	UseCustomCookbooks        *bool                      `type:"boolean" json:",omitempty"`
-	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean" json:"UseOpsworksSecurityGroups,omitempty"`
-	VPCID                     *string                    `locationName:"VpcId" type:"string" json:"VpcId,omitempty"`
+	Attributes                *map[string]*string        `type:"map"`
+	ChefConfiguration         *ChefConfiguration         `type:"structure"`
+	ConfigurationManager      *StackConfigurationManager `type:"structure"`
+	CustomCookbooksSource     *Source                    `type:"structure"`
+	CustomJSON                *string                    `locationName:"CustomJson" type:"string"`
+	DefaultAvailabilityZone   *string                    `type:"string"`
+	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string" required:"true"`
+	DefaultOs                 *string                    `type:"string"`
+	DefaultRootDeviceType     *string                    `type:"string"`
+	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string"`
+	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string"`
+	HostnameTheme             *string                    `type:"string"`
+	Name                      *string                    `type:"string" required:"true"`
+	Region                    *string                    `type:"string" required:"true"`
+	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string" required:"true"`
+	UseCustomCookbooks        *bool                      `type:"boolean"`
+	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
+	VPCID                     *string                    `locationName:"VpcId" type:"string"`
 
 	metadataCreateStackInput `json:"-", xml:"-"`
 }
 
 type metadataCreateStackInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateStackOutput struct {
-	StackID *string `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataCreateStackOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateStackOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateUserProfileInput struct {
-	AllowSelfManagement *bool   `type:"boolean" json:",omitempty"`
-	IAMUserARN          *string `locationName:"IamUserArn" type:"string" required:"true"json:"IamUserArn,omitempty"`
-	SSHPublicKey        *string `locationName:"SshPublicKey" type:"string" json:"SshPublicKey,omitempty"`
-	SSHUsername         *string `locationName:"SshUsername" type:"string" json:"SshUsername,omitempty"`
+	AllowSelfManagement *bool   `type:"boolean"`
+	IAMUserARN          *string `locationName:"IamUserArn" type:"string" required:"true"`
+	SSHPublicKey        *string `locationName:"SshPublicKey" type:"string"`
+	SSHUsername         *string `locationName:"SshUsername" type:"string"`
 
 	metadataCreateUserProfileInput `json:"-", xml:"-"`
 }
 
 type metadataCreateUserProfileInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CreateUserProfileOutput struct {
-	IAMUserARN *string `locationName:"IamUserArn" type:"string" json:"IamUserArn,omitempty"`
+	IAMUserARN *string `locationName:"IamUserArn" type:"string"`
 
 	metadataCreateUserProfileOutput `json:"-", xml:"-"`
 }
 
 type metadataCreateUserProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DataSource struct {
-	ARN          *string `locationName:"Arn" type:"string" json:"Arn,omitempty"`
-	DatabaseName *string `type:"string" json:",omitempty"`
-	Type         *string `type:"string" json:",omitempty"`
+	ARN          *string `locationName:"Arn" type:"string"`
+	DatabaseName *string `type:"string"`
+	Type         *string `type:"string"`
 
 	metadataDataSource `json:"-", xml:"-"`
 }
 
 type metadataDataSource struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAppInput struct {
-	AppID *string `locationName:"AppId" type:"string" required:"true"json:"AppId,omitempty"`
+	AppID *string `locationName:"AppId" type:"string" required:"true"`
 
 	metadataDeleteAppInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteAppInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteAppOutput struct {
@@ -2027,19 +2027,19 @@ type DeleteAppOutput struct {
 }
 
 type metadataDeleteAppOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteInstanceInput struct {
-	DeleteElasticIP *bool   `locationName:"DeleteElasticIp" type:"boolean" json:"DeleteElasticIp,omitempty"`
-	DeleteVolumes   *bool   `type:"boolean" json:",omitempty"`
-	InstanceID      *string `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
+	DeleteElasticIP *bool   `locationName:"DeleteElasticIp" type:"boolean"`
+	DeleteVolumes   *bool   `type:"boolean"`
+	InstanceID      *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataDeleteInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteInstanceOutput struct {
@@ -2047,17 +2047,17 @@ type DeleteInstanceOutput struct {
 }
 
 type metadataDeleteInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLayerInput struct {
-	LayerID *string `locationName:"LayerId" type:"string" required:"true"json:"LayerId,omitempty"`
+	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
 
 	metadataDeleteLayerInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteLayerInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteLayerOutput struct {
@@ -2065,17 +2065,17 @@ type DeleteLayerOutput struct {
 }
 
 type metadataDeleteLayerOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteStackInput struct {
-	StackID *string `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataDeleteStackInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteStackInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteStackOutput struct {
@@ -2083,17 +2083,17 @@ type DeleteStackOutput struct {
 }
 
 type metadataDeleteStackOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteUserProfileInput struct {
-	IAMUserARN *string `locationName:"IamUserArn" type:"string" required:"true"json:"IamUserArn,omitempty"`
+	IAMUserARN *string `locationName:"IamUserArn" type:"string" required:"true"`
 
 	metadataDeleteUserProfileInput `json:"-", xml:"-"`
 }
 
 type metadataDeleteUserProfileInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeleteUserProfileOutput struct {
@@ -2101,49 +2101,49 @@ type DeleteUserProfileOutput struct {
 }
 
 type metadataDeleteUserProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Deployment struct {
-	AppID        *string            `locationName:"AppId" type:"string" json:"AppId,omitempty"`
-	Command      *DeploymentCommand `type:"structure" json:",omitempty"`
-	Comment      *string            `type:"string" json:",omitempty"`
-	CompletedAt  *string            `type:"string" json:",omitempty"`
-	CreatedAt    *string            `type:"string" json:",omitempty"`
-	CustomJSON   *string            `locationName:"CustomJson" type:"string" json:"CustomJson,omitempty"`
-	DeploymentID *string            `locationName:"DeploymentId" type:"string" json:"DeploymentId,omitempty"`
-	Duration     *int64             `type:"integer" json:",omitempty"`
-	IAMUserARN   *string            `locationName:"IamUserArn" type:"string" json:"IamUserArn,omitempty"`
-	InstanceIDs  []*string          `locationName:"InstanceIds" type:"list" json:"InstanceIds,omitempty"`
-	StackID      *string            `locationName:"StackId" type:"string" json:"StackId,omitempty"`
-	Status       *string            `type:"string" json:",omitempty"`
+	AppID        *string            `locationName:"AppId" type:"string"`
+	Command      *DeploymentCommand `type:"structure"`
+	Comment      *string            `type:"string"`
+	CompletedAt  *string            `type:"string"`
+	CreatedAt    *string            `type:"string"`
+	CustomJSON   *string            `locationName:"CustomJson" type:"string"`
+	DeploymentID *string            `locationName:"DeploymentId" type:"string"`
+	Duration     *int64             `type:"integer"`
+	IAMUserARN   *string            `locationName:"IamUserArn" type:"string"`
+	InstanceIDs  []*string          `locationName:"InstanceIds" type:"list"`
+	StackID      *string            `locationName:"StackId" type:"string"`
+	Status       *string            `type:"string"`
 
 	metadataDeployment `json:"-", xml:"-"`
 }
 
 type metadataDeployment struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeploymentCommand struct {
-	Args *map[string][]*string `type:"map" json:",omitempty"`
-	Name *string               `type:"string" required:"true"json:",omitempty"`
+	Args *map[string][]*string `type:"map"`
+	Name *string               `type:"string" required:"true"`
 
 	metadataDeploymentCommand `json:"-", xml:"-"`
 }
 
 type metadataDeploymentCommand struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeregisterElasticIPInput struct {
-	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"json:"ElasticIp,omitempty"`
+	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
 
 	metadataDeregisterElasticIPInput `json:"-", xml:"-"`
 }
 
 type metadataDeregisterElasticIPInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeregisterElasticIPOutput struct {
@@ -2151,17 +2151,17 @@ type DeregisterElasticIPOutput struct {
 }
 
 type metadataDeregisterElasticIPOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeregisterInstanceInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataDeregisterInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataDeregisterInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeregisterInstanceOutput struct {
@@ -2169,17 +2169,17 @@ type DeregisterInstanceOutput struct {
 }
 
 type metadataDeregisterInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeregisterRDSDBInstanceInput struct {
-	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string" required:"true"json:"RdsDbInstanceArn,omitempty"`
+	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string" required:"true"`
 
 	metadataDeregisterRDSDBInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataDeregisterRDSDBInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeregisterRDSDBInstanceOutput struct {
@@ -2187,17 +2187,17 @@ type DeregisterRDSDBInstanceOutput struct {
 }
 
 type metadataDeregisterRDSDBInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeregisterVolumeInput struct {
-	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"json:"VolumeId,omitempty"`
+	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataDeregisterVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataDeregisterVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeregisterVolumeOutput struct {
@@ -2205,178 +2205,178 @@ type DeregisterVolumeOutput struct {
 }
 
 type metadataDeregisterVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAppsInput struct {
-	AppIDs  []*string `locationName:"AppIds" type:"list" json:"AppIds,omitempty"`
-	StackID *string   `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	AppIDs  []*string `locationName:"AppIds" type:"list"`
+	StackID *string   `locationName:"StackId" type:"string"`
 
 	metadataDescribeAppsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeAppsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeAppsOutput struct {
-	Apps []*App `type:"list" json:",omitempty"`
+	Apps []*App `type:"list"`
 
 	metadataDescribeAppsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeAppsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeCommandsInput struct {
-	CommandIDs   []*string `locationName:"CommandIds" type:"list" json:"CommandIds,omitempty"`
-	DeploymentID *string   `locationName:"DeploymentId" type:"string" json:"DeploymentId,omitempty"`
-	InstanceID   *string   `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
+	CommandIDs   []*string `locationName:"CommandIds" type:"list"`
+	DeploymentID *string   `locationName:"DeploymentId" type:"string"`
+	InstanceID   *string   `locationName:"InstanceId" type:"string"`
 
 	metadataDescribeCommandsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeCommandsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeCommandsOutput struct {
-	Commands []*Command `type:"list" json:",omitempty"`
+	Commands []*Command `type:"list"`
 
 	metadataDescribeCommandsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeCommandsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDeploymentsInput struct {
-	AppID         *string   `locationName:"AppId" type:"string" json:"AppId,omitempty"`
-	DeploymentIDs []*string `locationName:"DeploymentIds" type:"list" json:"DeploymentIds,omitempty"`
-	StackID       *string   `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	AppID         *string   `locationName:"AppId" type:"string"`
+	DeploymentIDs []*string `locationName:"DeploymentIds" type:"list"`
+	StackID       *string   `locationName:"StackId" type:"string"`
 
 	metadataDescribeDeploymentsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDeploymentsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDeploymentsOutput struct {
-	Deployments []*Deployment `type:"list" json:",omitempty"`
+	Deployments []*Deployment `type:"list"`
 
 	metadataDescribeDeploymentsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDeploymentsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeElasticIPsInput struct {
-	IPs        []*string `locationName:"Ips" type:"list" json:"Ips,omitempty"`
-	InstanceID *string   `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	StackID    *string   `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	IPs        []*string `locationName:"Ips" type:"list"`
+	InstanceID *string   `locationName:"InstanceId" type:"string"`
+	StackID    *string   `locationName:"StackId" type:"string"`
 
 	metadataDescribeElasticIPsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeElasticIPsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeElasticIPsOutput struct {
-	ElasticIPs []*ElasticIP `locationName:"ElasticIps" type:"list" json:"ElasticIps,omitempty"`
+	ElasticIPs []*ElasticIP `locationName:"ElasticIps" type:"list"`
 
 	metadataDescribeElasticIPsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeElasticIPsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeElasticLoadBalancersInput struct {
-	LayerIDs []*string `locationName:"LayerIds" type:"list" json:"LayerIds,omitempty"`
-	StackID  *string   `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	LayerIDs []*string `locationName:"LayerIds" type:"list"`
+	StackID  *string   `locationName:"StackId" type:"string"`
 
 	metadataDescribeElasticLoadBalancersInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeElasticLoadBalancersInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeElasticLoadBalancersOutput struct {
-	ElasticLoadBalancers []*ElasticLoadBalancer `type:"list" json:",omitempty"`
+	ElasticLoadBalancers []*ElasticLoadBalancer `type:"list"`
 
 	metadataDescribeElasticLoadBalancersOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeElasticLoadBalancersOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeInstancesInput struct {
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list" json:"InstanceIds,omitempty"`
-	LayerID     *string   `locationName:"LayerId" type:"string" json:"LayerId,omitempty"`
-	StackID     *string   `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+	LayerID     *string   `locationName:"LayerId" type:"string"`
+	StackID     *string   `locationName:"StackId" type:"string"`
 
 	metadataDescribeInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeInstancesOutput struct {
-	Instances []*Instance `type:"list" json:",omitempty"`
+	Instances []*Instance `type:"list"`
 
 	metadataDescribeInstancesOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLayersInput struct {
-	LayerIDs []*string `locationName:"LayerIds" type:"list" json:"LayerIds,omitempty"`
-	StackID  *string   `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	LayerIDs []*string `locationName:"LayerIds" type:"list"`
+	StackID  *string   `locationName:"StackId" type:"string"`
 
 	metadataDescribeLayersInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLayersInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLayersOutput struct {
-	Layers []*Layer `type:"list" json:",omitempty"`
+	Layers []*Layer `type:"list"`
 
 	metadataDescribeLayersOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLayersOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLoadBasedAutoScalingInput struct {
-	LayerIDs []*string `locationName:"LayerIds" type:"list" required:"true"json:"LayerIds,omitempty"`
+	LayerIDs []*string `locationName:"LayerIds" type:"list" required:"true"`
 
 	metadataDescribeLoadBasedAutoScalingInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLoadBasedAutoScalingInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeLoadBasedAutoScalingOutput struct {
-	LoadBasedAutoScalingConfigurations []*LoadBasedAutoScalingConfiguration `type:"list" json:",omitempty"`
+	LoadBasedAutoScalingConfigurations []*LoadBasedAutoScalingConfiguration `type:"list"`
 
 	metadataDescribeLoadBasedAutoScalingOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeLoadBasedAutoScalingOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeMyUserProfileInput struct {
@@ -2384,238 +2384,238 @@ type DescribeMyUserProfileInput struct {
 }
 
 type metadataDescribeMyUserProfileInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeMyUserProfileOutput struct {
-	UserProfile *SelfUserProfile `type:"structure" json:",omitempty"`
+	UserProfile *SelfUserProfile `type:"structure"`
 
 	metadataDescribeMyUserProfileOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeMyUserProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribePermissionsInput struct {
-	IAMUserARN *string `locationName:"IamUserArn" type:"string" json:"IamUserArn,omitempty"`
-	StackID    *string `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	IAMUserARN *string `locationName:"IamUserArn" type:"string"`
+	StackID    *string `locationName:"StackId" type:"string"`
 
 	metadataDescribePermissionsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribePermissionsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribePermissionsOutput struct {
-	Permissions []*Permission `type:"list" json:",omitempty"`
+	Permissions []*Permission `type:"list"`
 
 	metadataDescribePermissionsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribePermissionsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeRAIDArraysInput struct {
-	InstanceID   *string   `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	RAIDArrayIDs []*string `locationName:"RaidArrayIds" type:"list" json:"RaidArrayIds,omitempty"`
-	StackID      *string   `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	InstanceID   *string   `locationName:"InstanceId" type:"string"`
+	RAIDArrayIDs []*string `locationName:"RaidArrayIds" type:"list"`
+	StackID      *string   `locationName:"StackId" type:"string"`
 
 	metadataDescribeRAIDArraysInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeRAIDArraysInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeRAIDArraysOutput struct {
-	RAIDArrays []*RAIDArray `locationName:"RaidArrays" type:"list" json:"RaidArrays,omitempty"`
+	RAIDArrays []*RAIDArray `locationName:"RaidArrays" type:"list"`
 
 	metadataDescribeRAIDArraysOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeRAIDArraysOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeRDSDBInstancesInput struct {
-	RDSDBInstanceARNs []*string `locationName:"RdsDbInstanceArns" type:"list" json:"RdsDbInstanceArns,omitempty"`
-	StackID           *string   `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	RDSDBInstanceARNs []*string `locationName:"RdsDbInstanceArns" type:"list"`
+	StackID           *string   `locationName:"StackId" type:"string" required:"true"`
 
 	metadataDescribeRDSDBInstancesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeRDSDBInstancesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeRDSDBInstancesOutput struct {
-	RDSDBInstances []*RDSDBInstance `locationName:"RdsDbInstances" type:"list" json:"RdsDbInstances,omitempty"`
+	RDSDBInstances []*RDSDBInstance `locationName:"RdsDbInstances" type:"list"`
 
 	metadataDescribeRDSDBInstancesOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeRDSDBInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeServiceErrorsInput struct {
-	InstanceID      *string   `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	ServiceErrorIDs []*string `locationName:"ServiceErrorIds" type:"list" json:"ServiceErrorIds,omitempty"`
-	StackID         *string   `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	InstanceID      *string   `locationName:"InstanceId" type:"string"`
+	ServiceErrorIDs []*string `locationName:"ServiceErrorIds" type:"list"`
+	StackID         *string   `locationName:"StackId" type:"string"`
 
 	metadataDescribeServiceErrorsInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeServiceErrorsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeServiceErrorsOutput struct {
-	ServiceErrors []*ServiceError `type:"list" json:",omitempty"`
+	ServiceErrors []*ServiceError `type:"list"`
 
 	metadataDescribeServiceErrorsOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeServiceErrorsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStackProvisioningParametersInput struct {
-	StackID *string `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataDescribeStackProvisioningParametersInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStackProvisioningParametersInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStackProvisioningParametersOutput struct {
-	AgentInstallerURL *string             `locationName:"AgentInstallerUrl" type:"string" json:"AgentInstallerUrl,omitempty"`
-	Parameters        *map[string]*string `type:"map" json:",omitempty"`
+	AgentInstallerURL *string             `locationName:"AgentInstallerUrl" type:"string"`
+	Parameters        *map[string]*string `type:"map"`
 
 	metadataDescribeStackProvisioningParametersOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStackProvisioningParametersOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStackSummaryInput struct {
-	StackID *string `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataDescribeStackSummaryInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStackSummaryInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStackSummaryOutput struct {
-	StackSummary *StackSummary `type:"structure" json:",omitempty"`
+	StackSummary *StackSummary `type:"structure"`
 
 	metadataDescribeStackSummaryOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStackSummaryOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStacksInput struct {
-	StackIDs []*string `locationName:"StackIds" type:"list" json:"StackIds,omitempty"`
+	StackIDs []*string `locationName:"StackIds" type:"list"`
 
 	metadataDescribeStacksInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStacksInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeStacksOutput struct {
-	Stacks []*Stack `type:"list" json:",omitempty"`
+	Stacks []*Stack `type:"list"`
 
 	metadataDescribeStacksOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeStacksOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeTimeBasedAutoScalingInput struct {
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list" required:"true"json:"InstanceIds,omitempty"`
+	InstanceIDs []*string `locationName:"InstanceIds" type:"list" required:"true"`
 
 	metadataDescribeTimeBasedAutoScalingInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTimeBasedAutoScalingInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeTimeBasedAutoScalingOutput struct {
-	TimeBasedAutoScalingConfigurations []*TimeBasedAutoScalingConfiguration `type:"list" json:",omitempty"`
+	TimeBasedAutoScalingConfigurations []*TimeBasedAutoScalingConfiguration `type:"list"`
 
 	metadataDescribeTimeBasedAutoScalingOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeTimeBasedAutoScalingOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeUserProfilesInput struct {
-	IAMUserARNs []*string `locationName:"IamUserArns" type:"list" json:"IamUserArns,omitempty"`
+	IAMUserARNs []*string `locationName:"IamUserArns" type:"list"`
 
 	metadataDescribeUserProfilesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeUserProfilesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeUserProfilesOutput struct {
-	UserProfiles []*UserProfile `type:"list" json:",omitempty"`
+	UserProfiles []*UserProfile `type:"list"`
 
 	metadataDescribeUserProfilesOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeUserProfilesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeVolumesInput struct {
-	InstanceID  *string   `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	RAIDArrayID *string   `locationName:"RaidArrayId" type:"string" json:"RaidArrayId,omitempty"`
-	StackID     *string   `locationName:"StackId" type:"string" json:"StackId,omitempty"`
-	VolumeIDs   []*string `locationName:"VolumeIds" type:"list" json:"VolumeIds,omitempty"`
+	InstanceID  *string   `locationName:"InstanceId" type:"string"`
+	RAIDArrayID *string   `locationName:"RaidArrayId" type:"string"`
+	StackID     *string   `locationName:"StackId" type:"string"`
+	VolumeIDs   []*string `locationName:"VolumeIds" type:"list"`
 
 	metadataDescribeVolumesInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeVolumesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeVolumesOutput struct {
-	Volumes []*Volume `type:"list" json:",omitempty"`
+	Volumes []*Volume `type:"list"`
 
 	metadataDescribeVolumesOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeVolumesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachElasticLoadBalancerInput struct {
-	ElasticLoadBalancerName *string `type:"string" required:"true"json:",omitempty"`
-	LayerID                 *string `locationName:"LayerId" type:"string" required:"true"json:"LayerId,omitempty"`
+	ElasticLoadBalancerName *string `type:"string" required:"true"`
+	LayerID                 *string `locationName:"LayerId" type:"string" required:"true"`
 
 	metadataDetachElasticLoadBalancerInput `json:"-", xml:"-"`
 }
 
 type metadataDetachElasticLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DetachElasticLoadBalancerOutput struct {
@@ -2623,17 +2623,17 @@ type DetachElasticLoadBalancerOutput struct {
 }
 
 type metadataDetachElasticLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisassociateElasticIPInput struct {
-	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"json:"ElasticIp,omitempty"`
+	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
 
 	metadataDisassociateElasticIPInput `json:"-", xml:"-"`
 }
 
 type metadataDisassociateElasticIPInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DisassociateElasticIPOutput struct {
@@ -2641,269 +2641,269 @@ type DisassociateElasticIPOutput struct {
 }
 
 type metadataDisassociateElasticIPOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ElasticIP struct {
-	Domain     *string `type:"string" json:",omitempty"`
-	IP         *string `locationName:"Ip" type:"string" json:"Ip,omitempty"`
-	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	Name       *string `type:"string" json:",omitempty"`
-	Region     *string `type:"string" json:",omitempty"`
+	Domain     *string `type:"string"`
+	IP         *string `locationName:"Ip" type:"string"`
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+	Name       *string `type:"string"`
+	Region     *string `type:"string"`
 
 	metadataElasticIP `json:"-", xml:"-"`
 }
 
 type metadataElasticIP struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ElasticLoadBalancer struct {
-	AvailabilityZones       []*string `type:"list" json:",omitempty"`
-	DNSName                 *string   `locationName:"DnsName" type:"string" json:"DnsName,omitempty"`
-	EC2InstanceIDs          []*string `locationName:"Ec2InstanceIds" type:"list" json:"Ec2InstanceIds,omitempty"`
-	ElasticLoadBalancerName *string   `type:"string" json:",omitempty"`
-	LayerID                 *string   `locationName:"LayerId" type:"string" json:"LayerId,omitempty"`
-	Region                  *string   `type:"string" json:",omitempty"`
-	StackID                 *string   `locationName:"StackId" type:"string" json:"StackId,omitempty"`
-	SubnetIDs               []*string `locationName:"SubnetIds" type:"list" json:"SubnetIds,omitempty"`
-	VPCID                   *string   `locationName:"VpcId" type:"string" json:"VpcId,omitempty"`
+	AvailabilityZones       []*string `type:"list"`
+	DNSName                 *string   `locationName:"DnsName" type:"string"`
+	EC2InstanceIDs          []*string `locationName:"Ec2InstanceIds" type:"list"`
+	ElasticLoadBalancerName *string   `type:"string"`
+	LayerID                 *string   `locationName:"LayerId" type:"string"`
+	Region                  *string   `type:"string"`
+	StackID                 *string   `locationName:"StackId" type:"string"`
+	SubnetIDs               []*string `locationName:"SubnetIds" type:"list"`
+	VPCID                   *string   `locationName:"VpcId" type:"string"`
 
 	metadataElasticLoadBalancer `json:"-", xml:"-"`
 }
 
 type metadataElasticLoadBalancer struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type EnvironmentVariable struct {
-	Key    *string `type:"string" required:"true"json:",omitempty"`
-	Secure *bool   `type:"boolean" json:",omitempty"`
-	Value  *string `type:"string" required:"true"json:",omitempty"`
+	Key    *string `type:"string" required:"true"`
+	Secure *bool   `type:"boolean"`
+	Value  *string `type:"string" required:"true"`
 
 	metadataEnvironmentVariable `json:"-", xml:"-"`
 }
 
 type metadataEnvironmentVariable struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetHostnameSuggestionInput struct {
-	LayerID *string `locationName:"LayerId" type:"string" required:"true"json:"LayerId,omitempty"`
+	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
 
 	metadataGetHostnameSuggestionInput `json:"-", xml:"-"`
 }
 
 type metadataGetHostnameSuggestionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetHostnameSuggestionOutput struct {
-	Hostname *string `type:"string" json:",omitempty"`
-	LayerID  *string `locationName:"LayerId" type:"string" json:"LayerId,omitempty"`
+	Hostname *string `type:"string"`
+	LayerID  *string `locationName:"LayerId" type:"string"`
 
 	metadataGetHostnameSuggestionOutput `json:"-", xml:"-"`
 }
 
 type metadataGetHostnameSuggestionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Instance struct {
-	AMIID                    *string     `locationName:"AmiId" type:"string" json:"AmiId,omitempty"`
-	Architecture             *string     `type:"string" json:",omitempty"`
-	AutoScalingType          *string     `type:"string" json:",omitempty"`
-	AvailabilityZone         *string     `type:"string" json:",omitempty"`
-	CreatedAt                *string     `type:"string" json:",omitempty"`
-	EBSOptimized             *bool       `locationName:"EbsOptimized" type:"boolean" json:"EbsOptimized,omitempty"`
-	EC2InstanceID            *string     `locationName:"Ec2InstanceId" type:"string" json:"Ec2InstanceId,omitempty"`
-	ElasticIP                *string     `locationName:"ElasticIp" type:"string" json:"ElasticIp,omitempty"`
-	Hostname                 *string     `type:"string" json:",omitempty"`
-	InfrastructureClass      *string     `type:"string" json:",omitempty"`
-	InstallUpdatesOnBoot     *bool       `type:"boolean" json:",omitempty"`
-	InstanceID               *string     `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	InstanceProfileARN       *string     `locationName:"InstanceProfileArn" type:"string" json:"InstanceProfileArn,omitempty"`
-	InstanceType             *string     `type:"string" json:",omitempty"`
-	LastServiceErrorID       *string     `locationName:"LastServiceErrorId" type:"string" json:"LastServiceErrorId,omitempty"`
-	LayerIDs                 []*string   `locationName:"LayerIds" type:"list" json:"LayerIds,omitempty"`
-	Os                       *string     `type:"string" json:",omitempty"`
-	PrivateDNS               *string     `locationName:"PrivateDns" type:"string" json:"PrivateDns,omitempty"`
-	PrivateIP                *string     `locationName:"PrivateIp" type:"string" json:"PrivateIp,omitempty"`
-	PublicDNS                *string     `locationName:"PublicDns" type:"string" json:"PublicDns,omitempty"`
-	PublicIP                 *string     `locationName:"PublicIp" type:"string" json:"PublicIp,omitempty"`
-	RegisteredBy             *string     `type:"string" json:",omitempty"`
-	ReportedOs               *ReportedOs `type:"structure" json:",omitempty"`
-	RootDeviceType           *string     `type:"string" json:",omitempty"`
-	RootDeviceVolumeID       *string     `locationName:"RootDeviceVolumeId" type:"string" json:"RootDeviceVolumeId,omitempty"`
-	SSHHostDSAKeyFingerprint *string     `locationName:"SshHostDsaKeyFingerprint" type:"string" json:"SshHostDsaKeyFingerprint,omitempty"`
-	SSHHostRSAKeyFingerprint *string     `locationName:"SshHostRsaKeyFingerprint" type:"string" json:"SshHostRsaKeyFingerprint,omitempty"`
-	SSHKeyName               *string     `locationName:"SshKeyName" type:"string" json:"SshKeyName,omitempty"`
-	SecurityGroupIDs         []*string   `locationName:"SecurityGroupIds" type:"list" json:"SecurityGroupIds,omitempty"`
-	StackID                  *string     `locationName:"StackId" type:"string" json:"StackId,omitempty"`
-	Status                   *string     `type:"string" json:",omitempty"`
-	SubnetID                 *string     `locationName:"SubnetId" type:"string" json:"SubnetId,omitempty"`
-	VirtualizationType       *string     `type:"string" json:",omitempty"`
+	AMIID                    *string     `locationName:"AmiId" type:"string"`
+	Architecture             *string     `type:"string"`
+	AutoScalingType          *string     `type:"string"`
+	AvailabilityZone         *string     `type:"string"`
+	CreatedAt                *string     `type:"string"`
+	EBSOptimized             *bool       `locationName:"EbsOptimized" type:"boolean"`
+	EC2InstanceID            *string     `locationName:"Ec2InstanceId" type:"string"`
+	ElasticIP                *string     `locationName:"ElasticIp" type:"string"`
+	Hostname                 *string     `type:"string"`
+	InfrastructureClass      *string     `type:"string"`
+	InstallUpdatesOnBoot     *bool       `type:"boolean"`
+	InstanceID               *string     `locationName:"InstanceId" type:"string"`
+	InstanceProfileARN       *string     `locationName:"InstanceProfileArn" type:"string"`
+	InstanceType             *string     `type:"string"`
+	LastServiceErrorID       *string     `locationName:"LastServiceErrorId" type:"string"`
+	LayerIDs                 []*string   `locationName:"LayerIds" type:"list"`
+	Os                       *string     `type:"string"`
+	PrivateDNS               *string     `locationName:"PrivateDns" type:"string"`
+	PrivateIP                *string     `locationName:"PrivateIp" type:"string"`
+	PublicDNS                *string     `locationName:"PublicDns" type:"string"`
+	PublicIP                 *string     `locationName:"PublicIp" type:"string"`
+	RegisteredBy             *string     `type:"string"`
+	ReportedOs               *ReportedOs `type:"structure"`
+	RootDeviceType           *string     `type:"string"`
+	RootDeviceVolumeID       *string     `locationName:"RootDeviceVolumeId" type:"string"`
+	SSHHostDSAKeyFingerprint *string     `locationName:"SshHostDsaKeyFingerprint" type:"string"`
+	SSHHostRSAKeyFingerprint *string     `locationName:"SshHostRsaKeyFingerprint" type:"string"`
+	SSHKeyName               *string     `locationName:"SshKeyName" type:"string"`
+	SecurityGroupIDs         []*string   `locationName:"SecurityGroupIds" type:"list"`
+	StackID                  *string     `locationName:"StackId" type:"string"`
+	Status                   *string     `type:"string"`
+	SubnetID                 *string     `locationName:"SubnetId" type:"string"`
+	VirtualizationType       *string     `type:"string"`
 
 	metadataInstance `json:"-", xml:"-"`
 }
 
 type metadataInstance struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstanceIdentity struct {
-	Document  *string `type:"string" json:",omitempty"`
-	Signature *string `type:"string" json:",omitempty"`
+	Document  *string `type:"string"`
+	Signature *string `type:"string"`
 
 	metadataInstanceIdentity `json:"-", xml:"-"`
 }
 
 type metadataInstanceIdentity struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type InstancesCount struct {
-	Assigning      *int64 `type:"integer" json:",omitempty"`
-	Booting        *int64 `type:"integer" json:",omitempty"`
-	ConnectionLost *int64 `type:"integer" json:",omitempty"`
-	Deregistering  *int64 `type:"integer" json:",omitempty"`
-	Online         *int64 `type:"integer" json:",omitempty"`
-	Pending        *int64 `type:"integer" json:",omitempty"`
-	Rebooting      *int64 `type:"integer" json:",omitempty"`
-	Registered     *int64 `type:"integer" json:",omitempty"`
-	Registering    *int64 `type:"integer" json:",omitempty"`
-	Requested      *int64 `type:"integer" json:",omitempty"`
-	RunningSetup   *int64 `type:"integer" json:",omitempty"`
-	SetupFailed    *int64 `type:"integer" json:",omitempty"`
-	ShuttingDown   *int64 `type:"integer" json:",omitempty"`
-	StartFailed    *int64 `type:"integer" json:",omitempty"`
-	Stopped        *int64 `type:"integer" json:",omitempty"`
-	Stopping       *int64 `type:"integer" json:",omitempty"`
-	Terminated     *int64 `type:"integer" json:",omitempty"`
-	Terminating    *int64 `type:"integer" json:",omitempty"`
-	Unassigning    *int64 `type:"integer" json:",omitempty"`
+	Assigning      *int64 `type:"integer"`
+	Booting        *int64 `type:"integer"`
+	ConnectionLost *int64 `type:"integer"`
+	Deregistering  *int64 `type:"integer"`
+	Online         *int64 `type:"integer"`
+	Pending        *int64 `type:"integer"`
+	Rebooting      *int64 `type:"integer"`
+	Registered     *int64 `type:"integer"`
+	Registering    *int64 `type:"integer"`
+	Requested      *int64 `type:"integer"`
+	RunningSetup   *int64 `type:"integer"`
+	SetupFailed    *int64 `type:"integer"`
+	ShuttingDown   *int64 `type:"integer"`
+	StartFailed    *int64 `type:"integer"`
+	Stopped        *int64 `type:"integer"`
+	Stopping       *int64 `type:"integer"`
+	Terminated     *int64 `type:"integer"`
+	Terminating    *int64 `type:"integer"`
+	Unassigning    *int64 `type:"integer"`
 
 	metadataInstancesCount `json:"-", xml:"-"`
 }
 
 type metadataInstancesCount struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Layer struct {
-	Attributes                  *map[string]*string          `type:"map" json:",omitempty"`
-	AutoAssignElasticIPs        *bool                        `locationName:"AutoAssignElasticIps" type:"boolean" json:"AutoAssignElasticIps,omitempty"`
-	AutoAssignPublicIPs         *bool                        `locationName:"AutoAssignPublicIps" type:"boolean" json:"AutoAssignPublicIps,omitempty"`
-	CreatedAt                   *string                      `type:"string" json:",omitempty"`
-	CustomInstanceProfileARN    *string                      `locationName:"CustomInstanceProfileArn" type:"string" json:"CustomInstanceProfileArn,omitempty"`
-	CustomRecipes               *Recipes                     `type:"structure" json:",omitempty"`
-	CustomSecurityGroupIDs      []*string                    `locationName:"CustomSecurityGroupIds" type:"list" json:"CustomSecurityGroupIds,omitempty"`
-	DefaultRecipes              *Recipes                     `type:"structure" json:",omitempty"`
-	DefaultSecurityGroupNames   []*string                    `type:"list" json:",omitempty"`
-	EnableAutoHealing           *bool                        `type:"boolean" json:",omitempty"`
-	InstallUpdatesOnBoot        *bool                        `type:"boolean" json:",omitempty"`
-	LayerID                     *string                      `locationName:"LayerId" type:"string" json:"LayerId,omitempty"`
-	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure" json:",omitempty"`
-	Name                        *string                      `type:"string" json:",omitempty"`
-	Packages                    []*string                    `type:"list" json:",omitempty"`
-	Shortname                   *string                      `type:"string" json:",omitempty"`
-	StackID                     *string                      `locationName:"StackId" type:"string" json:"StackId,omitempty"`
-	Type                        *string                      `type:"string" json:",omitempty"`
-	UseEBSOptimizedInstances    *bool                        `locationName:"UseEbsOptimizedInstances" type:"boolean" json:"UseEbsOptimizedInstances,omitempty"`
-	VolumeConfigurations        []*VolumeConfiguration       `type:"list" json:",omitempty"`
+	Attributes                  *map[string]*string          `type:"map"`
+	AutoAssignElasticIPs        *bool                        `locationName:"AutoAssignElasticIps" type:"boolean"`
+	AutoAssignPublicIPs         *bool                        `locationName:"AutoAssignPublicIps" type:"boolean"`
+	CreatedAt                   *string                      `type:"string"`
+	CustomInstanceProfileARN    *string                      `locationName:"CustomInstanceProfileArn" type:"string"`
+	CustomRecipes               *Recipes                     `type:"structure"`
+	CustomSecurityGroupIDs      []*string                    `locationName:"CustomSecurityGroupIds" type:"list"`
+	DefaultRecipes              *Recipes                     `type:"structure"`
+	DefaultSecurityGroupNames   []*string                    `type:"list"`
+	EnableAutoHealing           *bool                        `type:"boolean"`
+	InstallUpdatesOnBoot        *bool                        `type:"boolean"`
+	LayerID                     *string                      `locationName:"LayerId" type:"string"`
+	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure"`
+	Name                        *string                      `type:"string"`
+	Packages                    []*string                    `type:"list"`
+	Shortname                   *string                      `type:"string"`
+	StackID                     *string                      `locationName:"StackId" type:"string"`
+	Type                        *string                      `type:"string"`
+	UseEBSOptimizedInstances    *bool                        `locationName:"UseEbsOptimizedInstances" type:"boolean"`
+	VolumeConfigurations        []*VolumeConfiguration       `type:"list"`
 
 	metadataLayer `json:"-", xml:"-"`
 }
 
 type metadataLayer struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type LifecycleEventConfiguration struct {
-	Shutdown *ShutdownEventConfiguration `type:"structure" json:",omitempty"`
+	Shutdown *ShutdownEventConfiguration `type:"structure"`
 
 	metadataLifecycleEventConfiguration `json:"-", xml:"-"`
 }
 
 type metadataLifecycleEventConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type LoadBasedAutoScalingConfiguration struct {
-	DownScaling *AutoScalingThresholds `type:"structure" json:",omitempty"`
-	Enable      *bool                  `type:"boolean" json:",omitempty"`
-	LayerID     *string                `locationName:"LayerId" type:"string" json:"LayerId,omitempty"`
-	UpScaling   *AutoScalingThresholds `type:"structure" json:",omitempty"`
+	DownScaling *AutoScalingThresholds `type:"structure"`
+	Enable      *bool                  `type:"boolean"`
+	LayerID     *string                `locationName:"LayerId" type:"string"`
+	UpScaling   *AutoScalingThresholds `type:"structure"`
 
 	metadataLoadBasedAutoScalingConfiguration `json:"-", xml:"-"`
 }
 
 type metadataLoadBasedAutoScalingConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Permission struct {
-	AllowSSH   *bool   `locationName:"AllowSsh" type:"boolean" json:"AllowSsh,omitempty"`
-	AllowSudo  *bool   `type:"boolean" json:",omitempty"`
-	IAMUserARN *string `locationName:"IamUserArn" type:"string" json:"IamUserArn,omitempty"`
-	Level      *string `type:"string" json:",omitempty"`
-	StackID    *string `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	AllowSSH   *bool   `locationName:"AllowSsh" type:"boolean"`
+	AllowSudo  *bool   `type:"boolean"`
+	IAMUserARN *string `locationName:"IamUserArn" type:"string"`
+	Level      *string `type:"string"`
+	StackID    *string `locationName:"StackId" type:"string"`
 
 	metadataPermission `json:"-", xml:"-"`
 }
 
 type metadataPermission struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RAIDArray struct {
-	AvailabilityZone *string `type:"string" json:",omitempty"`
-	CreatedAt        *string `type:"string" json:",omitempty"`
-	Device           *string `type:"string" json:",omitempty"`
-	IOPS             *int64  `locationName:"Iops" type:"integer" json:"Iops,omitempty"`
-	InstanceID       *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	MountPoint       *string `type:"string" json:",omitempty"`
-	Name             *string `type:"string" json:",omitempty"`
-	NumberOfDisks    *int64  `type:"integer" json:",omitempty"`
-	RAIDArrayID      *string `locationName:"RaidArrayId" type:"string" json:"RaidArrayId,omitempty"`
-	RAIDLevel        *int64  `locationName:"RaidLevel" type:"integer" json:"RaidLevel,omitempty"`
-	Size             *int64  `type:"integer" json:",omitempty"`
-	StackID          *string `locationName:"StackId" type:"string" json:"StackId,omitempty"`
-	VolumeType       *string `type:"string" json:",omitempty"`
+	AvailabilityZone *string `type:"string"`
+	CreatedAt        *string `type:"string"`
+	Device           *string `type:"string"`
+	IOPS             *int64  `locationName:"Iops" type:"integer"`
+	InstanceID       *string `locationName:"InstanceId" type:"string"`
+	MountPoint       *string `type:"string"`
+	Name             *string `type:"string"`
+	NumberOfDisks    *int64  `type:"integer"`
+	RAIDArrayID      *string `locationName:"RaidArrayId" type:"string"`
+	RAIDLevel        *int64  `locationName:"RaidLevel" type:"integer"`
+	Size             *int64  `type:"integer"`
+	StackID          *string `locationName:"StackId" type:"string"`
+	VolumeType       *string `type:"string"`
 
 	metadataRAIDArray `json:"-", xml:"-"`
 }
 
 type metadataRAIDArray struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RDSDBInstance struct {
-	Address              *string `type:"string" json:",omitempty"`
-	DBInstanceIdentifier *string `locationName:"DbInstanceIdentifier" type:"string" json:"DbInstanceIdentifier,omitempty"`
-	DBPassword           *string `locationName:"DbPassword" type:"string" json:"DbPassword,omitempty"`
-	DBUser               *string `locationName:"DbUser" type:"string" json:"DbUser,omitempty"`
-	Engine               *string `type:"string" json:",omitempty"`
-	MissingOnRDS         *bool   `locationName:"MissingOnRds" type:"boolean" json:"MissingOnRds,omitempty"`
-	RDSDBInstanceARN     *string `locationName:"RdsDbInstanceArn" type:"string" json:"RdsDbInstanceArn,omitempty"`
-	Region               *string `type:"string" json:",omitempty"`
-	StackID              *string `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	Address              *string `type:"string"`
+	DBInstanceIdentifier *string `locationName:"DbInstanceIdentifier" type:"string"`
+	DBPassword           *string `locationName:"DbPassword" type:"string"`
+	DBUser               *string `locationName:"DbUser" type:"string"`
+	Engine               *string `type:"string"`
+	MissingOnRDS         *bool   `locationName:"MissingOnRds" type:"boolean"`
+	RDSDBInstanceARN     *string `locationName:"RdsDbInstanceArn" type:"string"`
+	Region               *string `type:"string"`
+	StackID              *string `locationName:"StackId" type:"string"`
 
 	metadataRDSDBInstance `json:"-", xml:"-"`
 }
 
 type metadataRDSDBInstance struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RebootInstanceInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataRebootInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataRebootInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RebootInstanceOutput struct {
@@ -2911,81 +2911,81 @@ type RebootInstanceOutput struct {
 }
 
 type metadataRebootInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Recipes struct {
-	Configure []*string `type:"list" json:",omitempty"`
-	Deploy    []*string `type:"list" json:",omitempty"`
-	Setup     []*string `type:"list" json:",omitempty"`
-	Shutdown  []*string `type:"list" json:",omitempty"`
-	Undeploy  []*string `type:"list" json:",omitempty"`
+	Configure []*string `type:"list"`
+	Deploy    []*string `type:"list"`
+	Setup     []*string `type:"list"`
+	Shutdown  []*string `type:"list"`
+	Undeploy  []*string `type:"list"`
 
 	metadataRecipes `json:"-", xml:"-"`
 }
 
 type metadataRecipes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterElasticIPInput struct {
-	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"json:"ElasticIp,omitempty"`
-	StackID   *string `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
+	StackID   *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataRegisterElasticIPInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterElasticIPInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterElasticIPOutput struct {
-	ElasticIP *string `locationName:"ElasticIp" type:"string" json:"ElasticIp,omitempty"`
+	ElasticIP *string `locationName:"ElasticIp" type:"string"`
 
 	metadataRegisterElasticIPOutput `json:"-", xml:"-"`
 }
 
 type metadataRegisterElasticIPOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterInstanceInput struct {
-	Hostname                *string           `type:"string" json:",omitempty"`
-	InstanceIdentity        *InstanceIdentity `type:"structure" json:",omitempty"`
-	PrivateIP               *string           `locationName:"PrivateIp" type:"string" json:"PrivateIp,omitempty"`
-	PublicIP                *string           `locationName:"PublicIp" type:"string" json:"PublicIp,omitempty"`
-	RSAPublicKey            *string           `locationName:"RsaPublicKey" type:"string" json:"RsaPublicKey,omitempty"`
-	RSAPublicKeyFingerprint *string           `locationName:"RsaPublicKeyFingerprint" type:"string" json:"RsaPublicKeyFingerprint,omitempty"`
-	StackID                 *string           `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	Hostname                *string           `type:"string"`
+	InstanceIdentity        *InstanceIdentity `type:"structure"`
+	PrivateIP               *string           `locationName:"PrivateIp" type:"string"`
+	PublicIP                *string           `locationName:"PublicIp" type:"string"`
+	RSAPublicKey            *string           `locationName:"RsaPublicKey" type:"string"`
+	RSAPublicKeyFingerprint *string           `locationName:"RsaPublicKeyFingerprint" type:"string"`
+	StackID                 *string           `locationName:"StackId" type:"string" required:"true"`
 
 	metadataRegisterInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterInstanceOutput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string"`
 
 	metadataRegisterInstanceOutput `json:"-", xml:"-"`
 }
 
 type metadataRegisterInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterRDSDBInstanceInput struct {
-	DBPassword       *string `locationName:"DbPassword" type:"string" required:"true"json:"DbPassword,omitempty"`
-	DBUser           *string `locationName:"DbUser" type:"string" required:"true"json:"DbUser,omitempty"`
-	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string" required:"true"json:"RdsDbInstanceArn,omitempty"`
-	StackID          *string `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	DBPassword       *string `locationName:"DbPassword" type:"string" required:"true"`
+	DBUser           *string `locationName:"DbUser" type:"string" required:"true"`
+	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string" required:"true"`
+	StackID          *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataRegisterRDSDBInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterRDSDBInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterRDSDBInstanceOutput struct {
@@ -2993,93 +2993,93 @@ type RegisterRDSDBInstanceOutput struct {
 }
 
 type metadataRegisterRDSDBInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterVolumeInput struct {
-	EC2VolumeID *string `locationName:"Ec2VolumeId" type:"string" json:"Ec2VolumeId,omitempty"`
-	StackID     *string `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	EC2VolumeID *string `locationName:"Ec2VolumeId" type:"string"`
+	StackID     *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataRegisterVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterVolumeOutput struct {
-	VolumeID *string `locationName:"VolumeId" type:"string" json:"VolumeId,omitempty"`
+	VolumeID *string `locationName:"VolumeId" type:"string"`
 
 	metadataRegisterVolumeOutput `json:"-", xml:"-"`
 }
 
 type metadataRegisterVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ReportedOs struct {
-	Family  *string `type:"string" json:",omitempty"`
-	Name    *string `type:"string" json:",omitempty"`
-	Version *string `type:"string" json:",omitempty"`
+	Family  *string `type:"string"`
+	Name    *string `type:"string"`
+	Version *string `type:"string"`
 
 	metadataReportedOs `json:"-", xml:"-"`
 }
 
 type metadataReportedOs struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SSLConfiguration struct {
-	Certificate *string `type:"string" required:"true"json:",omitempty"`
-	Chain       *string `type:"string" json:",omitempty"`
-	PrivateKey  *string `type:"string" required:"true"json:",omitempty"`
+	Certificate *string `type:"string" required:"true"`
+	Chain       *string `type:"string"`
+	PrivateKey  *string `type:"string" required:"true"`
 
 	metadataSSLConfiguration `json:"-", xml:"-"`
 }
 
 type metadataSSLConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SelfUserProfile struct {
-	IAMUserARN   *string `locationName:"IamUserArn" type:"string" json:"IamUserArn,omitempty"`
-	Name         *string `type:"string" json:",omitempty"`
-	SSHPublicKey *string `locationName:"SshPublicKey" type:"string" json:"SshPublicKey,omitempty"`
-	SSHUsername  *string `locationName:"SshUsername" type:"string" json:"SshUsername,omitempty"`
+	IAMUserARN   *string `locationName:"IamUserArn" type:"string"`
+	Name         *string `type:"string"`
+	SSHPublicKey *string `locationName:"SshPublicKey" type:"string"`
+	SSHUsername  *string `locationName:"SshUsername" type:"string"`
 
 	metadataSelfUserProfile `json:"-", xml:"-"`
 }
 
 type metadataSelfUserProfile struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ServiceError struct {
-	CreatedAt      *string `type:"string" json:",omitempty"`
-	InstanceID     *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	Message        *string `type:"string" json:",omitempty"`
-	ServiceErrorID *string `locationName:"ServiceErrorId" type:"string" json:"ServiceErrorId,omitempty"`
-	StackID        *string `locationName:"StackId" type:"string" json:"StackId,omitempty"`
-	Type           *string `type:"string" json:",omitempty"`
+	CreatedAt      *string `type:"string"`
+	InstanceID     *string `locationName:"InstanceId" type:"string"`
+	Message        *string `type:"string"`
+	ServiceErrorID *string `locationName:"ServiceErrorId" type:"string"`
+	StackID        *string `locationName:"StackId" type:"string"`
+	Type           *string `type:"string"`
 
 	metadataServiceError `json:"-", xml:"-"`
 }
 
 type metadataServiceError struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetLoadBasedAutoScalingInput struct {
-	DownScaling *AutoScalingThresholds `type:"structure" json:",omitempty"`
-	Enable      *bool                  `type:"boolean" json:",omitempty"`
-	LayerID     *string                `locationName:"LayerId" type:"string" required:"true"json:"LayerId,omitempty"`
-	UpScaling   *AutoScalingThresholds `type:"structure" json:",omitempty"`
+	DownScaling *AutoScalingThresholds `type:"structure"`
+	Enable      *bool                  `type:"boolean"`
+	LayerID     *string                `locationName:"LayerId" type:"string" required:"true"`
+	UpScaling   *AutoScalingThresholds `type:"structure"`
 
 	metadataSetLoadBasedAutoScalingInput `json:"-", xml:"-"`
 }
 
 type metadataSetLoadBasedAutoScalingInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetLoadBasedAutoScalingOutput struct {
@@ -3087,21 +3087,21 @@ type SetLoadBasedAutoScalingOutput struct {
 }
 
 type metadataSetLoadBasedAutoScalingOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetPermissionInput struct {
-	AllowSSH   *bool   `locationName:"AllowSsh" type:"boolean" json:"AllowSsh,omitempty"`
-	AllowSudo  *bool   `type:"boolean" json:",omitempty"`
-	IAMUserARN *string `locationName:"IamUserArn" type:"string" required:"true"json:"IamUserArn,omitempty"`
-	Level      *string `type:"string" json:",omitempty"`
-	StackID    *string `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	AllowSSH   *bool   `locationName:"AllowSsh" type:"boolean"`
+	AllowSudo  *bool   `type:"boolean"`
+	IAMUserARN *string `locationName:"IamUserArn" type:"string" required:"true"`
+	Level      *string `type:"string"`
+	StackID    *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataSetPermissionInput `json:"-", xml:"-"`
 }
 
 type metadataSetPermissionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetPermissionOutput struct {
@@ -3109,18 +3109,18 @@ type SetPermissionOutput struct {
 }
 
 type metadataSetPermissionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetTimeBasedAutoScalingInput struct {
-	AutoScalingSchedule *WeeklyAutoScalingSchedule `type:"structure" json:",omitempty"`
-	InstanceID          *string                    `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
+	AutoScalingSchedule *WeeklyAutoScalingSchedule `type:"structure"`
+	InstanceID          *string                    `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataSetTimeBasedAutoScalingInput `json:"-", xml:"-"`
 }
 
 type metadataSetTimeBasedAutoScalingInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SetTimeBasedAutoScalingOutput struct {
@@ -3128,99 +3128,99 @@ type SetTimeBasedAutoScalingOutput struct {
 }
 
 type metadataSetTimeBasedAutoScalingOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ShutdownEventConfiguration struct {
-	DelayUntilELBConnectionsDrained *bool  `locationName:"DelayUntilElbConnectionsDrained" type:"boolean" json:"DelayUntilElbConnectionsDrained,omitempty"`
-	ExecutionTimeout                *int64 `type:"integer" json:",omitempty"`
+	DelayUntilELBConnectionsDrained *bool  `locationName:"DelayUntilElbConnectionsDrained" type:"boolean"`
+	ExecutionTimeout                *int64 `type:"integer"`
 
 	metadataShutdownEventConfiguration `json:"-", xml:"-"`
 }
 
 type metadataShutdownEventConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Source struct {
-	Password *string `type:"string" json:",omitempty"`
-	Revision *string `type:"string" json:",omitempty"`
-	SSHKey   *string `locationName:"SshKey" type:"string" json:"SshKey,omitempty"`
-	Type     *string `type:"string" json:",omitempty"`
-	URL      *string `locationName:"Url" type:"string" json:"Url,omitempty"`
-	Username *string `type:"string" json:",omitempty"`
+	Password *string `type:"string"`
+	Revision *string `type:"string"`
+	SSHKey   *string `locationName:"SshKey" type:"string"`
+	Type     *string `type:"string"`
+	URL      *string `locationName:"Url" type:"string"`
+	Username *string `type:"string"`
 
 	metadataSource `json:"-", xml:"-"`
 }
 
 type metadataSource struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Stack struct {
-	ARN                       *string                    `locationName:"Arn" type:"string" json:"Arn,omitempty"`
-	Attributes                *map[string]*string        `type:"map" json:",omitempty"`
-	ChefConfiguration         *ChefConfiguration         `type:"structure" json:",omitempty"`
-	ConfigurationManager      *StackConfigurationManager `type:"structure" json:",omitempty"`
-	CreatedAt                 *string                    `type:"string" json:",omitempty"`
-	CustomCookbooksSource     *Source                    `type:"structure" json:",omitempty"`
-	CustomJSON                *string                    `locationName:"CustomJson" type:"string" json:"CustomJson,omitempty"`
-	DefaultAvailabilityZone   *string                    `type:"string" json:",omitempty"`
-	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string" json:"DefaultInstanceProfileArn,omitempty"`
-	DefaultOs                 *string                    `type:"string" json:",omitempty"`
-	DefaultRootDeviceType     *string                    `type:"string" json:",omitempty"`
-	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string" json:"DefaultSshKeyName,omitempty"`
-	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string" json:"DefaultSubnetId,omitempty"`
-	HostnameTheme             *string                    `type:"string" json:",omitempty"`
-	Name                      *string                    `type:"string" json:",omitempty"`
-	Region                    *string                    `type:"string" json:",omitempty"`
-	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string" json:"ServiceRoleArn,omitempty"`
-	StackID                   *string                    `locationName:"StackId" type:"string" json:"StackId,omitempty"`
-	UseCustomCookbooks        *bool                      `type:"boolean" json:",omitempty"`
-	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean" json:"UseOpsworksSecurityGroups,omitempty"`
-	VPCID                     *string                    `locationName:"VpcId" type:"string" json:"VpcId,omitempty"`
+	ARN                       *string                    `locationName:"Arn" type:"string"`
+	Attributes                *map[string]*string        `type:"map"`
+	ChefConfiguration         *ChefConfiguration         `type:"structure"`
+	ConfigurationManager      *StackConfigurationManager `type:"structure"`
+	CreatedAt                 *string                    `type:"string"`
+	CustomCookbooksSource     *Source                    `type:"structure"`
+	CustomJSON                *string                    `locationName:"CustomJson" type:"string"`
+	DefaultAvailabilityZone   *string                    `type:"string"`
+	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string"`
+	DefaultOs                 *string                    `type:"string"`
+	DefaultRootDeviceType     *string                    `type:"string"`
+	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string"`
+	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string"`
+	HostnameTheme             *string                    `type:"string"`
+	Name                      *string                    `type:"string"`
+	Region                    *string                    `type:"string"`
+	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string"`
+	StackID                   *string                    `locationName:"StackId" type:"string"`
+	UseCustomCookbooks        *bool                      `type:"boolean"`
+	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
+	VPCID                     *string                    `locationName:"VpcId" type:"string"`
 
 	metadataStack `json:"-", xml:"-"`
 }
 
 type metadataStack struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StackConfigurationManager struct {
-	Name    *string `type:"string" json:",omitempty"`
-	Version *string `type:"string" json:",omitempty"`
+	Name    *string `type:"string"`
+	Version *string `type:"string"`
 
 	metadataStackConfigurationManager `json:"-", xml:"-"`
 }
 
 type metadataStackConfigurationManager struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StackSummary struct {
-	ARN            *string         `locationName:"Arn" type:"string" json:"Arn,omitempty"`
-	AppsCount      *int64          `type:"integer" json:",omitempty"`
-	InstancesCount *InstancesCount `type:"structure" json:",omitempty"`
-	LayersCount    *int64          `type:"integer" json:",omitempty"`
-	Name           *string         `type:"string" json:",omitempty"`
-	StackID        *string         `locationName:"StackId" type:"string" json:"StackId,omitempty"`
+	ARN            *string         `locationName:"Arn" type:"string"`
+	AppsCount      *int64          `type:"integer"`
+	InstancesCount *InstancesCount `type:"structure"`
+	LayersCount    *int64          `type:"integer"`
+	Name           *string         `type:"string"`
+	StackID        *string         `locationName:"StackId" type:"string"`
 
 	metadataStackSummary `json:"-", xml:"-"`
 }
 
 type metadataStackSummary struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartInstanceInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataStartInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataStartInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartInstanceOutput struct {
@@ -3228,17 +3228,17 @@ type StartInstanceOutput struct {
 }
 
 type metadataStartInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartStackInput struct {
-	StackID *string `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataStartStackInput `json:"-", xml:"-"`
 }
 
 type metadataStartStackInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartStackOutput struct {
@@ -3246,17 +3246,17 @@ type StartStackOutput struct {
 }
 
 type metadataStartStackOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StopInstanceInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataStopInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataStopInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StopInstanceOutput struct {
@@ -3264,17 +3264,17 @@ type StopInstanceOutput struct {
 }
 
 type metadataStopInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StopStackInput struct {
-	StackID *string `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataStopStackInput `json:"-", xml:"-"`
 }
 
 type metadataStopStackInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StopStackOutput struct {
@@ -3282,28 +3282,28 @@ type StopStackOutput struct {
 }
 
 type metadataStopStackOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TimeBasedAutoScalingConfiguration struct {
-	AutoScalingSchedule *WeeklyAutoScalingSchedule `type:"structure" json:",omitempty"`
-	InstanceID          *string                    `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
+	AutoScalingSchedule *WeeklyAutoScalingSchedule `type:"structure"`
+	InstanceID          *string                    `locationName:"InstanceId" type:"string"`
 
 	metadataTimeBasedAutoScalingConfiguration `json:"-", xml:"-"`
 }
 
 type metadataTimeBasedAutoScalingConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UnassignInstanceInput struct {
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataUnassignInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataUnassignInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UnassignInstanceOutput struct {
@@ -3311,17 +3311,17 @@ type UnassignInstanceOutput struct {
 }
 
 type metadataUnassignInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UnassignVolumeInput struct {
-	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"json:"VolumeId,omitempty"`
+	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataUnassignVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataUnassignVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UnassignVolumeOutput struct {
@@ -3329,27 +3329,27 @@ type UnassignVolumeOutput struct {
 }
 
 type metadataUnassignVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateAppInput struct {
-	AppID            *string                `locationName:"AppId" type:"string" required:"true"json:"AppId,omitempty"`
-	AppSource        *Source                `type:"structure" json:",omitempty"`
-	Attributes       *map[string]*string    `type:"map" json:",omitempty"`
-	DataSources      []*DataSource          `type:"list" json:",omitempty"`
-	Description      *string                `type:"string" json:",omitempty"`
-	Domains          []*string              `type:"list" json:",omitempty"`
-	EnableSSL        *bool                  `locationName:"EnableSsl" type:"boolean" json:"EnableSsl,omitempty"`
-	Environment      []*EnvironmentVariable `type:"list" json:",omitempty"`
-	Name             *string                `type:"string" json:",omitempty"`
-	SSLConfiguration *SSLConfiguration      `locationName:"SslConfiguration" type:"structure" json:"SslConfiguration,omitempty"`
-	Type             *string                `type:"string" json:",omitempty"`
+	AppID            *string                `locationName:"AppId" type:"string" required:"true"`
+	AppSource        *Source                `type:"structure"`
+	Attributes       *map[string]*string    `type:"map"`
+	DataSources      []*DataSource          `type:"list"`
+	Description      *string                `type:"string"`
+	Domains          []*string              `type:"list"`
+	EnableSSL        *bool                  `locationName:"EnableSsl" type:"boolean"`
+	Environment      []*EnvironmentVariable `type:"list"`
+	Name             *string                `type:"string"`
+	SSLConfiguration *SSLConfiguration      `locationName:"SslConfiguration" type:"structure"`
+	Type             *string                `type:"string"`
 
 	metadataUpdateAppInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateAppInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateAppOutput struct {
@@ -3357,18 +3357,18 @@ type UpdateAppOutput struct {
 }
 
 type metadataUpdateAppOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateElasticIPInput struct {
-	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"json:"ElasticIp,omitempty"`
-	Name      *string `type:"string" json:",omitempty"`
+	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
+	Name      *string `type:"string"`
 
 	metadataUpdateElasticIPInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateElasticIPInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateElasticIPOutput struct {
@@ -3376,27 +3376,27 @@ type UpdateElasticIPOutput struct {
 }
 
 type metadataUpdateElasticIPOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateInstanceInput struct {
-	AMIID                *string   `locationName:"AmiId" type:"string" json:"AmiId,omitempty"`
-	Architecture         *string   `type:"string" json:",omitempty"`
-	AutoScalingType      *string   `type:"string" json:",omitempty"`
-	EBSOptimized         *bool     `locationName:"EbsOptimized" type:"boolean" json:"EbsOptimized,omitempty"`
-	Hostname             *string   `type:"string" json:",omitempty"`
-	InstallUpdatesOnBoot *bool     `type:"boolean" json:",omitempty"`
-	InstanceID           *string   `locationName:"InstanceId" type:"string" required:"true"json:"InstanceId,omitempty"`
-	InstanceType         *string   `type:"string" json:",omitempty"`
-	LayerIDs             []*string `locationName:"LayerIds" type:"list" json:"LayerIds,omitempty"`
-	Os                   *string   `type:"string" json:",omitempty"`
-	SSHKeyName           *string   `locationName:"SshKeyName" type:"string" json:"SshKeyName,omitempty"`
+	AMIID                *string   `locationName:"AmiId" type:"string"`
+	Architecture         *string   `type:"string"`
+	AutoScalingType      *string   `type:"string"`
+	EBSOptimized         *bool     `locationName:"EbsOptimized" type:"boolean"`
+	Hostname             *string   `type:"string"`
+	InstallUpdatesOnBoot *bool     `type:"boolean"`
+	InstanceID           *string   `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceType         *string   `type:"string"`
+	LayerIDs             []*string `locationName:"LayerIds" type:"list"`
+	Os                   *string   `type:"string"`
+	SSHKeyName           *string   `locationName:"SshKeyName" type:"string"`
 
 	metadataUpdateInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateInstanceOutput struct {
@@ -3404,31 +3404,31 @@ type UpdateInstanceOutput struct {
 }
 
 type metadataUpdateInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateLayerInput struct {
-	Attributes                  *map[string]*string          `type:"map" json:",omitempty"`
-	AutoAssignElasticIPs        *bool                        `locationName:"AutoAssignElasticIps" type:"boolean" json:"AutoAssignElasticIps,omitempty"`
-	AutoAssignPublicIPs         *bool                        `locationName:"AutoAssignPublicIps" type:"boolean" json:"AutoAssignPublicIps,omitempty"`
-	CustomInstanceProfileARN    *string                      `locationName:"CustomInstanceProfileArn" type:"string" json:"CustomInstanceProfileArn,omitempty"`
-	CustomRecipes               *Recipes                     `type:"structure" json:",omitempty"`
-	CustomSecurityGroupIDs      []*string                    `locationName:"CustomSecurityGroupIds" type:"list" json:"CustomSecurityGroupIds,omitempty"`
-	EnableAutoHealing           *bool                        `type:"boolean" json:",omitempty"`
-	InstallUpdatesOnBoot        *bool                        `type:"boolean" json:",omitempty"`
-	LayerID                     *string                      `locationName:"LayerId" type:"string" required:"true"json:"LayerId,omitempty"`
-	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure" json:",omitempty"`
-	Name                        *string                      `type:"string" json:",omitempty"`
-	Packages                    []*string                    `type:"list" json:",omitempty"`
-	Shortname                   *string                      `type:"string" json:",omitempty"`
-	UseEBSOptimizedInstances    *bool                        `locationName:"UseEbsOptimizedInstances" type:"boolean" json:"UseEbsOptimizedInstances,omitempty"`
-	VolumeConfigurations        []*VolumeConfiguration       `type:"list" json:",omitempty"`
+	Attributes                  *map[string]*string          `type:"map"`
+	AutoAssignElasticIPs        *bool                        `locationName:"AutoAssignElasticIps" type:"boolean"`
+	AutoAssignPublicIPs         *bool                        `locationName:"AutoAssignPublicIps" type:"boolean"`
+	CustomInstanceProfileARN    *string                      `locationName:"CustomInstanceProfileArn" type:"string"`
+	CustomRecipes               *Recipes                     `type:"structure"`
+	CustomSecurityGroupIDs      []*string                    `locationName:"CustomSecurityGroupIds" type:"list"`
+	EnableAutoHealing           *bool                        `type:"boolean"`
+	InstallUpdatesOnBoot        *bool                        `type:"boolean"`
+	LayerID                     *string                      `locationName:"LayerId" type:"string" required:"true"`
+	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure"`
+	Name                        *string                      `type:"string"`
+	Packages                    []*string                    `type:"list"`
+	Shortname                   *string                      `type:"string"`
+	UseEBSOptimizedInstances    *bool                        `locationName:"UseEbsOptimizedInstances" type:"boolean"`
+	VolumeConfigurations        []*VolumeConfiguration       `type:"list"`
 
 	metadataUpdateLayerInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateLayerInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateLayerOutput struct {
@@ -3436,17 +3436,17 @@ type UpdateLayerOutput struct {
 }
 
 type metadataUpdateLayerOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateMyUserProfileInput struct {
-	SSHPublicKey *string `locationName:"SshPublicKey" type:"string" json:"SshPublicKey,omitempty"`
+	SSHPublicKey *string `locationName:"SshPublicKey" type:"string"`
 
 	metadataUpdateMyUserProfileInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateMyUserProfileInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateMyUserProfileOutput struct {
@@ -3454,19 +3454,19 @@ type UpdateMyUserProfileOutput struct {
 }
 
 type metadataUpdateMyUserProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateRDSDBInstanceInput struct {
-	DBPassword       *string `locationName:"DbPassword" type:"string" json:"DbPassword,omitempty"`
-	DBUser           *string `locationName:"DbUser" type:"string" json:"DbUser,omitempty"`
-	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string" required:"true"json:"RdsDbInstanceArn,omitempty"`
+	DBPassword       *string `locationName:"DbPassword" type:"string"`
+	DBUser           *string `locationName:"DbUser" type:"string"`
+	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string" required:"true"`
 
 	metadataUpdateRDSDBInstanceInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateRDSDBInstanceInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateRDSDBInstanceOutput struct {
@@ -3474,33 +3474,33 @@ type UpdateRDSDBInstanceOutput struct {
 }
 
 type metadataUpdateRDSDBInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateStackInput struct {
-	Attributes                *map[string]*string        `type:"map" json:",omitempty"`
-	ChefConfiguration         *ChefConfiguration         `type:"structure" json:",omitempty"`
-	ConfigurationManager      *StackConfigurationManager `type:"structure" json:",omitempty"`
-	CustomCookbooksSource     *Source                    `type:"structure" json:",omitempty"`
-	CustomJSON                *string                    `locationName:"CustomJson" type:"string" json:"CustomJson,omitempty"`
-	DefaultAvailabilityZone   *string                    `type:"string" json:",omitempty"`
-	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string" json:"DefaultInstanceProfileArn,omitempty"`
-	DefaultOs                 *string                    `type:"string" json:",omitempty"`
-	DefaultRootDeviceType     *string                    `type:"string" json:",omitempty"`
-	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string" json:"DefaultSshKeyName,omitempty"`
-	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string" json:"DefaultSubnetId,omitempty"`
-	HostnameTheme             *string                    `type:"string" json:",omitempty"`
-	Name                      *string                    `type:"string" json:",omitempty"`
-	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string" json:"ServiceRoleArn,omitempty"`
-	StackID                   *string                    `locationName:"StackId" type:"string" required:"true"json:"StackId,omitempty"`
-	UseCustomCookbooks        *bool                      `type:"boolean" json:",omitempty"`
-	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean" json:"UseOpsworksSecurityGroups,omitempty"`
+	Attributes                *map[string]*string        `type:"map"`
+	ChefConfiguration         *ChefConfiguration         `type:"structure"`
+	ConfigurationManager      *StackConfigurationManager `type:"structure"`
+	CustomCookbooksSource     *Source                    `type:"structure"`
+	CustomJSON                *string                    `locationName:"CustomJson" type:"string"`
+	DefaultAvailabilityZone   *string                    `type:"string"`
+	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string"`
+	DefaultOs                 *string                    `type:"string"`
+	DefaultRootDeviceType     *string                    `type:"string"`
+	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string"`
+	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string"`
+	HostnameTheme             *string                    `type:"string"`
+	Name                      *string                    `type:"string"`
+	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string"`
+	StackID                   *string                    `locationName:"StackId" type:"string" required:"true"`
+	UseCustomCookbooks        *bool                      `type:"boolean"`
+	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
 
 	metadataUpdateStackInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateStackInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateStackOutput struct {
@@ -3508,20 +3508,20 @@ type UpdateStackOutput struct {
 }
 
 type metadataUpdateStackOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateUserProfileInput struct {
-	AllowSelfManagement *bool   `type:"boolean" json:",omitempty"`
-	IAMUserARN          *string `locationName:"IamUserArn" type:"string" required:"true"json:"IamUserArn,omitempty"`
-	SSHPublicKey        *string `locationName:"SshPublicKey" type:"string" json:"SshPublicKey,omitempty"`
-	SSHUsername         *string `locationName:"SshUsername" type:"string" json:"SshUsername,omitempty"`
+	AllowSelfManagement *bool   `type:"boolean"`
+	IAMUserARN          *string `locationName:"IamUserArn" type:"string" required:"true"`
+	SSHPublicKey        *string `locationName:"SshPublicKey" type:"string"`
+	SSHUsername         *string `locationName:"SshUsername" type:"string"`
 
 	metadataUpdateUserProfileInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateUserProfileInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateUserProfileOutput struct {
@@ -3529,19 +3529,19 @@ type UpdateUserProfileOutput struct {
 }
 
 type metadataUpdateUserProfileOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateVolumeInput struct {
-	MountPoint *string `type:"string" json:",omitempty"`
-	Name       *string `type:"string" json:",omitempty"`
-	VolumeID   *string `locationName:"VolumeId" type:"string" required:"true"json:"VolumeId,omitempty"`
+	MountPoint *string `type:"string"`
+	Name       *string `type:"string"`
+	VolumeID   *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataUpdateVolumeInput `json:"-", xml:"-"`
 }
 
 type metadataUpdateVolumeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UpdateVolumeOutput struct {
@@ -3549,72 +3549,72 @@ type UpdateVolumeOutput struct {
 }
 
 type metadataUpdateVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type UserProfile struct {
-	AllowSelfManagement *bool   `type:"boolean" json:",omitempty"`
-	IAMUserARN          *string `locationName:"IamUserArn" type:"string" json:"IamUserArn,omitempty"`
-	Name                *string `type:"string" json:",omitempty"`
-	SSHPublicKey        *string `locationName:"SshPublicKey" type:"string" json:"SshPublicKey,omitempty"`
-	SSHUsername         *string `locationName:"SshUsername" type:"string" json:"SshUsername,omitempty"`
+	AllowSelfManagement *bool   `type:"boolean"`
+	IAMUserARN          *string `locationName:"IamUserArn" type:"string"`
+	Name                *string `type:"string"`
+	SSHPublicKey        *string `locationName:"SshPublicKey" type:"string"`
+	SSHUsername         *string `locationName:"SshUsername" type:"string"`
 
 	metadataUserProfile `json:"-", xml:"-"`
 }
 
 type metadataUserProfile struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Volume struct {
-	AvailabilityZone *string `type:"string" json:",omitempty"`
-	Device           *string `type:"string" json:",omitempty"`
-	EC2VolumeID      *string `locationName:"Ec2VolumeId" type:"string" json:"Ec2VolumeId,omitempty"`
-	IOPS             *int64  `locationName:"Iops" type:"integer" json:"Iops,omitempty"`
-	InstanceID       *string `locationName:"InstanceId" type:"string" json:"InstanceId,omitempty"`
-	MountPoint       *string `type:"string" json:",omitempty"`
-	Name             *string `type:"string" json:",omitempty"`
-	RAIDArrayID      *string `locationName:"RaidArrayId" type:"string" json:"RaidArrayId,omitempty"`
-	Region           *string `type:"string" json:",omitempty"`
-	Size             *int64  `type:"integer" json:",omitempty"`
-	Status           *string `type:"string" json:",omitempty"`
-	VolumeID         *string `locationName:"VolumeId" type:"string" json:"VolumeId,omitempty"`
-	VolumeType       *string `type:"string" json:",omitempty"`
+	AvailabilityZone *string `type:"string"`
+	Device           *string `type:"string"`
+	EC2VolumeID      *string `locationName:"Ec2VolumeId" type:"string"`
+	IOPS             *int64  `locationName:"Iops" type:"integer"`
+	InstanceID       *string `locationName:"InstanceId" type:"string"`
+	MountPoint       *string `type:"string"`
+	Name             *string `type:"string"`
+	RAIDArrayID      *string `locationName:"RaidArrayId" type:"string"`
+	Region           *string `type:"string"`
+	Size             *int64  `type:"integer"`
+	Status           *string `type:"string"`
+	VolumeID         *string `locationName:"VolumeId" type:"string"`
+	VolumeType       *string `type:"string"`
 
 	metadataVolume `json:"-", xml:"-"`
 }
 
 type metadataVolume struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type VolumeConfiguration struct {
-	IOPS          *int64  `locationName:"Iops" type:"integer" json:"Iops,omitempty"`
-	MountPoint    *string `type:"string" required:"true"json:",omitempty"`
-	NumberOfDisks *int64  `type:"integer" required:"true"json:",omitempty"`
-	RAIDLevel     *int64  `locationName:"RaidLevel" type:"integer" json:"RaidLevel,omitempty"`
-	Size          *int64  `type:"integer" required:"true"json:",omitempty"`
-	VolumeType    *string `type:"string" json:",omitempty"`
+	IOPS          *int64  `locationName:"Iops" type:"integer"`
+	MountPoint    *string `type:"string" required:"true"`
+	NumberOfDisks *int64  `type:"integer" required:"true"`
+	RAIDLevel     *int64  `locationName:"RaidLevel" type:"integer"`
+	Size          *int64  `type:"integer" required:"true"`
+	VolumeType    *string `type:"string"`
 
 	metadataVolumeConfiguration `json:"-", xml:"-"`
 }
 
 type metadataVolumeConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WeeklyAutoScalingSchedule struct {
-	Friday    *map[string]*string `type:"map" json:",omitempty"`
-	Monday    *map[string]*string `type:"map" json:",omitempty"`
-	Saturday  *map[string]*string `type:"map" json:",omitempty"`
-	Sunday    *map[string]*string `type:"map" json:",omitempty"`
-	Thursday  *map[string]*string `type:"map" json:",omitempty"`
-	Tuesday   *map[string]*string `type:"map" json:",omitempty"`
-	Wednesday *map[string]*string `type:"map" json:",omitempty"`
+	Friday    *map[string]*string `type:"map"`
+	Monday    *map[string]*string `type:"map"`
+	Saturday  *map[string]*string `type:"map"`
+	Sunday    *map[string]*string `type:"map"`
+	Thursday  *map[string]*string `type:"map"`
+	Tuesday   *map[string]*string `type:"map"`
+	Wednesday *map[string]*string `type:"map"`
 
 	metadataWeeklyAutoScalingSchedule `json:"-", xml:"-"`
 }
 
 type metadataWeeklyAutoScalingSchedule struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

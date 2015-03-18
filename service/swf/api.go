@@ -784,452 +784,452 @@ func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput)
 var opTerminateWorkflowExecution *aws.Operation
 
 type ActivityTaskCancelRequestedEventAttributes struct {
-	ActivityID                   *string `locationName:"activityId" type:"string" required:"true"json:"activityId,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
+	ActivityID                   *string `locationName:"activityId" type:"string" required:"true"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskCancelRequestedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataActivityTaskCancelRequestedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ActivityTaskCanceledEventAttributes struct {
-	Details                      *string `locationName:"details" type:"string" json:"details,omitempty"`
-	LatestCancelRequestedEventID *int64  `locationName:"latestCancelRequestedEventId" type:"long" json:"latestCancelRequestedEventId,omitempty"`
-	ScheduledEventID             *int64  `locationName:"scheduledEventId" type:"long" required:"true"json:"scheduledEventId,omitempty"`
-	StartedEventID               *int64  `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
+	Details                      *string `locationName:"details" type:"string"`
+	LatestCancelRequestedEventID *int64  `locationName:"latestCancelRequestedEventId" type:"long"`
+	ScheduledEventID             *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
+	StartedEventID               *int64  `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskCanceledEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataActivityTaskCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ActivityTaskCompletedEventAttributes struct {
-	Result           *string `locationName:"result" type:"string" json:"result,omitempty"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"json:"scheduledEventId,omitempty"`
-	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
+	Result           *string `locationName:"result" type:"string"`
+	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
+	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskCompletedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataActivityTaskCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ActivityTaskFailedEventAttributes struct {
-	Details          *string `locationName:"details" type:"string" json:"details,omitempty"`
-	Reason           *string `locationName:"reason" type:"string" json:"reason,omitempty"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"json:"scheduledEventId,omitempty"`
-	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
+	Details          *string `locationName:"details" type:"string"`
+	Reason           *string `locationName:"reason" type:"string"`
+	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
+	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataActivityTaskFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ActivityTaskScheduledEventAttributes struct {
-	ActivityID                   *string       `locationName:"activityId" type:"string" required:"true"json:"activityId,omitempty"`
-	ActivityType                 *ActivityType `locationName:"activityType" type:"structure" required:"true"json:"activityType,omitempty"`
-	Control                      *string       `locationName:"control" type:"string" json:"control,omitempty"`
-	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	HeartbeatTimeout             *string       `locationName:"heartbeatTimeout" type:"string" json:"heartbeatTimeout,omitempty"`
-	Input                        *string       `locationName:"input" type:"string" json:"input,omitempty"`
-	ScheduleToCloseTimeout       *string       `locationName:"scheduleToCloseTimeout" type:"string" json:"scheduleToCloseTimeout,omitempty"`
-	ScheduleToStartTimeout       *string       `locationName:"scheduleToStartTimeout" type:"string" json:"scheduleToStartTimeout,omitempty"`
-	StartToCloseTimeout          *string       `locationName:"startToCloseTimeout" type:"string" json:"startToCloseTimeout,omitempty"`
-	TaskList                     *TaskList     `locationName:"taskList" type:"structure" required:"true"json:"taskList,omitempty"`
-	TaskPriority                 *string       `locationName:"taskPriority" type:"string" json:"taskPriority,omitempty"`
+	ActivityID                   *string       `locationName:"activityId" type:"string" required:"true"`
+	ActivityType                 *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+	Control                      *string       `locationName:"control" type:"string"`
+	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	HeartbeatTimeout             *string       `locationName:"heartbeatTimeout" type:"string"`
+	Input                        *string       `locationName:"input" type:"string"`
+	ScheduleToCloseTimeout       *string       `locationName:"scheduleToCloseTimeout" type:"string"`
+	ScheduleToStartTimeout       *string       `locationName:"scheduleToStartTimeout" type:"string"`
+	StartToCloseTimeout          *string       `locationName:"startToCloseTimeout" type:"string"`
+	TaskList                     *TaskList     `locationName:"taskList" type:"structure" required:"true"`
+	TaskPriority                 *string       `locationName:"taskPriority" type:"string"`
 
 	metadataActivityTaskScheduledEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataActivityTaskScheduledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ActivityTaskStartedEventAttributes struct {
-	Identity         *string `locationName:"identity" type:"string" json:"identity,omitempty"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"json:"scheduledEventId,omitempty"`
+	Identity         *string `locationName:"identity" type:"string"`
+	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	metadataActivityTaskStartedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataActivityTaskStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ActivityTaskTimedOutEventAttributes struct {
-	Details          *string `locationName:"details" type:"string" json:"details,omitempty"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"json:"scheduledEventId,omitempty"`
-	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
-	TimeoutType      *string `locationName:"timeoutType" type:"string" required:"true"json:"timeoutType,omitempty"`
+	Details          *string `locationName:"details" type:"string"`
+	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
+	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"`
+	TimeoutType      *string `locationName:"timeoutType" type:"string" required:"true"`
 
 	metadataActivityTaskTimedOutEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataActivityTaskTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ActivityType struct {
-	Name    *string `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
-	Version *string `locationName:"version" type:"string" required:"true"json:"version,omitempty"`
+	Name    *string `locationName:"name" type:"string" required:"true"`
+	Version *string `locationName:"version" type:"string" required:"true"`
 
 	metadataActivityType `json:"-", xml:"-"`
 }
 
 type metadataActivityType struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ActivityTypeConfiguration struct {
-	DefaultTaskHeartbeatTimeout       *string   `locationName:"defaultTaskHeartbeatTimeout" type:"string" json:"defaultTaskHeartbeatTimeout,omitempty"`
-	DefaultTaskList                   *TaskList `locationName:"defaultTaskList" type:"structure" json:"defaultTaskList,omitempty"`
-	DefaultTaskPriority               *string   `locationName:"defaultTaskPriority" type:"string" json:"defaultTaskPriority,omitempty"`
-	DefaultTaskScheduleToCloseTimeout *string   `locationName:"defaultTaskScheduleToCloseTimeout" type:"string" json:"defaultTaskScheduleToCloseTimeout,omitempty"`
-	DefaultTaskScheduleToStartTimeout *string   `locationName:"defaultTaskScheduleToStartTimeout" type:"string" json:"defaultTaskScheduleToStartTimeout,omitempty"`
-	DefaultTaskStartToCloseTimeout    *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string" json:"defaultTaskStartToCloseTimeout,omitempty"`
+	DefaultTaskHeartbeatTimeout       *string   `locationName:"defaultTaskHeartbeatTimeout" type:"string"`
+	DefaultTaskList                   *TaskList `locationName:"defaultTaskList" type:"structure"`
+	DefaultTaskPriority               *string   `locationName:"defaultTaskPriority" type:"string"`
+	DefaultTaskScheduleToCloseTimeout *string   `locationName:"defaultTaskScheduleToCloseTimeout" type:"string"`
+	DefaultTaskScheduleToStartTimeout *string   `locationName:"defaultTaskScheduleToStartTimeout" type:"string"`
+	DefaultTaskStartToCloseTimeout    *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
 
 	metadataActivityTypeConfiguration `json:"-", xml:"-"`
 }
 
 type metadataActivityTypeConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ActivityTypeInfo struct {
-	ActivityType    *ActivityType `locationName:"activityType" type:"structure" required:"true"json:"activityType,omitempty"`
-	CreationDate    *time.Time    `locationName:"creationDate" type:"timestamp" timestampFormat:"unix" required:"true"json:"creationDate,omitempty"`
-	DeprecationDate *time.Time    `locationName:"deprecationDate" type:"timestamp" timestampFormat:"unix" json:"deprecationDate,omitempty"`
-	Description     *string       `locationName:"description" type:"string" json:"description,omitempty"`
-	Status          *string       `locationName:"status" type:"string" required:"true"json:"status,omitempty"`
+	ActivityType    *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+	CreationDate    *time.Time    `locationName:"creationDate" type:"timestamp" timestampFormat:"unix" required:"true"`
+	DeprecationDate *time.Time    `locationName:"deprecationDate" type:"timestamp" timestampFormat:"unix"`
+	Description     *string       `locationName:"description" type:"string"`
+	Status          *string       `locationName:"status" type:"string" required:"true"`
 
 	metadataActivityTypeInfo `json:"-", xml:"-"`
 }
 
 type metadataActivityTypeInfo struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CancelTimerDecisionAttributes struct {
-	TimerID *string `locationName:"timerId" type:"string" required:"true"json:"timerId,omitempty"`
+	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataCancelTimerDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataCancelTimerDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CancelTimerFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	TimerID                      *string `locationName:"timerId" type:"string" required:"true"json:"timerId,omitempty"`
+	Cause                        *string `locationName:"cause" type:"string" required:"true"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	TimerID                      *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataCancelTimerFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataCancelTimerFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CancelWorkflowExecutionDecisionAttributes struct {
-	Details *string `locationName:"details" type:"string" json:"details,omitempty"`
+	Details *string `locationName:"details" type:"string"`
 
 	metadataCancelWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataCancelWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CancelWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
+	Cause                        *string `locationName:"cause" type:"string" required:"true"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataCancelWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataCancelWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChildWorkflowExecutionCanceledEventAttributes struct {
-	Details           *string            `locationName:"details" type:"string" json:"details,omitempty"`
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"json:"initiatedEventId,omitempty"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
-	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"json:"workflowExecution,omitempty"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	Details           *string            `locationName:"details" type:"string"`
+	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
+	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
+	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
+	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionCanceledEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataChildWorkflowExecutionCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChildWorkflowExecutionCompletedEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"json:"initiatedEventId,omitempty"`
-	Result            *string            `locationName:"result" type:"string" json:"result,omitempty"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
-	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"json:"workflowExecution,omitempty"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
+	Result            *string            `locationName:"result" type:"string"`
+	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
+	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
+	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionCompletedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataChildWorkflowExecutionCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChildWorkflowExecutionFailedEventAttributes struct {
-	Details           *string            `locationName:"details" type:"string" json:"details,omitempty"`
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"json:"initiatedEventId,omitempty"`
-	Reason            *string            `locationName:"reason" type:"string" json:"reason,omitempty"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
-	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"json:"workflowExecution,omitempty"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	Details           *string            `locationName:"details" type:"string"`
+	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
+	Reason            *string            `locationName:"reason" type:"string"`
+	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
+	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
+	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataChildWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChildWorkflowExecutionStartedEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"json:"initiatedEventId,omitempty"`
-	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"json:"workflowExecution,omitempty"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
+	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
+	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionStartedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataChildWorkflowExecutionStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChildWorkflowExecutionTerminatedEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"json:"initiatedEventId,omitempty"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
-	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"json:"workflowExecution,omitempty"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
+	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
+	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
+	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionTerminatedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataChildWorkflowExecutionTerminatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ChildWorkflowExecutionTimedOutEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"json:"initiatedEventId,omitempty"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
-	TimeoutType       *string            `locationName:"timeoutType" type:"string" required:"true"json:"timeoutType,omitempty"`
-	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"json:"workflowExecution,omitempty"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
+	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
+	TimeoutType       *string            `locationName:"timeoutType" type:"string" required:"true"`
+	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
+	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionTimedOutEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataChildWorkflowExecutionTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CloseStatusFilter struct {
-	Status *string `locationName:"status" type:"string" required:"true"json:"status,omitempty"`
+	Status *string `locationName:"status" type:"string" required:"true"`
 
 	metadataCloseStatusFilter `json:"-", xml:"-"`
 }
 
 type metadataCloseStatusFilter struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CompleteWorkflowExecutionDecisionAttributes struct {
-	Result *string `locationName:"result" type:"string" json:"result,omitempty"`
+	Result *string `locationName:"result" type:"string"`
 
 	metadataCompleteWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataCompleteWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CompleteWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
+	Cause                        *string `locationName:"cause" type:"string" required:"true"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataCompleteWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataCompleteWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
-	ChildPolicy                  *string   `locationName:"childPolicy" type:"string" json:"childPolicy,omitempty"`
-	ExecutionStartToCloseTimeout *string   `locationName:"executionStartToCloseTimeout" type:"string" json:"executionStartToCloseTimeout,omitempty"`
-	Input                        *string   `locationName:"input" type:"string" json:"input,omitempty"`
-	TagList                      []*string `locationName:"tagList" type:"list" json:"tagList,omitempty"`
-	TaskList                     *TaskList `locationName:"taskList" type:"structure" json:"taskList,omitempty"`
-	TaskPriority                 *string   `locationName:"taskPriority" type:"string" json:"taskPriority,omitempty"`
-	TaskStartToCloseTimeout      *string   `locationName:"taskStartToCloseTimeout" type:"string" json:"taskStartToCloseTimeout,omitempty"`
-	WorkflowTypeVersion          *string   `locationName:"workflowTypeVersion" type:"string" json:"workflowTypeVersion,omitempty"`
+	ChildPolicy                  *string   `locationName:"childPolicy" type:"string"`
+	ExecutionStartToCloseTimeout *string   `locationName:"executionStartToCloseTimeout" type:"string"`
+	Input                        *string   `locationName:"input" type:"string"`
+	TagList                      []*string `locationName:"tagList" type:"list"`
+	TaskList                     *TaskList `locationName:"taskList" type:"structure"`
+	TaskPriority                 *string   `locationName:"taskPriority" type:"string"`
+	TaskStartToCloseTimeout      *string   `locationName:"taskStartToCloseTimeout" type:"string"`
+	WorkflowTypeVersion          *string   `locationName:"workflowTypeVersion" type:"string"`
 
 	metadataContinueAsNewWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataContinueAsNewWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
+	Cause                        *string `locationName:"cause" type:"string" required:"true"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataContinueAsNewWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataContinueAsNewWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CountClosedWorkflowExecutionsInput struct {
-	CloseStatusFilter *CloseStatusFilter       `locationName:"closeStatusFilter" type:"structure" json:"closeStatusFilter,omitempty"`
-	CloseTimeFilter   *ExecutionTimeFilter     `locationName:"closeTimeFilter" type:"structure" json:"closeTimeFilter,omitempty"`
-	Domain            *string                  `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	ExecutionFilter   *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure" json:"executionFilter,omitempty"`
-	StartTimeFilter   *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure" json:"startTimeFilter,omitempty"`
-	TagFilter         *TagFilter               `locationName:"tagFilter" type:"structure" json:"tagFilter,omitempty"`
-	TypeFilter        *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure" json:"typeFilter,omitempty"`
+	CloseStatusFilter *CloseStatusFilter       `locationName:"closeStatusFilter" type:"structure"`
+	CloseTimeFilter   *ExecutionTimeFilter     `locationName:"closeTimeFilter" type:"structure"`
+	Domain            *string                  `locationName:"domain" type:"string" required:"true"`
+	ExecutionFilter   *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
+	StartTimeFilter   *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure"`
+	TagFilter         *TagFilter               `locationName:"tagFilter" type:"structure"`
+	TypeFilter        *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure"`
 
 	metadataCountClosedWorkflowExecutionsInput `json:"-", xml:"-"`
 }
 
 type metadataCountClosedWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CountOpenWorkflowExecutionsInput struct {
-	Domain          *string                  `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure" json:"executionFilter,omitempty"`
-	StartTimeFilter *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure" required:"true"json:"startTimeFilter,omitempty"`
-	TagFilter       *TagFilter               `locationName:"tagFilter" type:"structure" json:"tagFilter,omitempty"`
-	TypeFilter      *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure" json:"typeFilter,omitempty"`
+	Domain          *string                  `locationName:"domain" type:"string" required:"true"`
+	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
+	StartTimeFilter *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure" required:"true"`
+	TagFilter       *TagFilter               `locationName:"tagFilter" type:"structure"`
+	TypeFilter      *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure"`
 
 	metadataCountOpenWorkflowExecutionsInput `json:"-", xml:"-"`
 }
 
 type metadataCountOpenWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CountPendingActivityTasksInput struct {
-	Domain   *string   `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"json:"taskList,omitempty"`
+	Domain   *string   `locationName:"domain" type:"string" required:"true"`
+	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
 	metadataCountPendingActivityTasksInput `json:"-", xml:"-"`
 }
 
 type metadataCountPendingActivityTasksInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type CountPendingDecisionTasksInput struct {
-	Domain   *string   `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"json:"taskList,omitempty"`
+	Domain   *string   `locationName:"domain" type:"string" required:"true"`
+	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
 	metadataCountPendingDecisionTasksInput `json:"-", xml:"-"`
 }
 
 type metadataCountPendingDecisionTasksInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type Decision struct {
-	CancelTimerDecisionAttributes                            *CancelTimerDecisionAttributes                            `locationName:"cancelTimerDecisionAttributes" type:"structure" json:"cancelTimerDecisionAttributes,omitempty"`
-	CancelWorkflowExecutionDecisionAttributes                *CancelWorkflowExecutionDecisionAttributes                `locationName:"cancelWorkflowExecutionDecisionAttributes" type:"structure" json:"cancelWorkflowExecutionDecisionAttributes,omitempty"`
-	CompleteWorkflowExecutionDecisionAttributes              *CompleteWorkflowExecutionDecisionAttributes              `locationName:"completeWorkflowExecutionDecisionAttributes" type:"structure" json:"completeWorkflowExecutionDecisionAttributes,omitempty"`
-	ContinueAsNewWorkflowExecutionDecisionAttributes         *ContinueAsNewWorkflowExecutionDecisionAttributes         `locationName:"continueAsNewWorkflowExecutionDecisionAttributes" type:"structure" json:"continueAsNewWorkflowExecutionDecisionAttributes,omitempty"`
-	DecisionType                                             *string                                                   `locationName:"decisionType" type:"string" required:"true"json:"decisionType,omitempty"`
-	FailWorkflowExecutionDecisionAttributes                  *FailWorkflowExecutionDecisionAttributes                  `locationName:"failWorkflowExecutionDecisionAttributes" type:"structure" json:"failWorkflowExecutionDecisionAttributes,omitempty"`
-	RecordMarkerDecisionAttributes                           *RecordMarkerDecisionAttributes                           `locationName:"recordMarkerDecisionAttributes" type:"structure" json:"recordMarkerDecisionAttributes,omitempty"`
-	RequestCancelActivityTaskDecisionAttributes              *RequestCancelActivityTaskDecisionAttributes              `locationName:"requestCancelActivityTaskDecisionAttributes" type:"structure" json:"requestCancelActivityTaskDecisionAttributes,omitempty"`
-	RequestCancelExternalWorkflowExecutionDecisionAttributes *RequestCancelExternalWorkflowExecutionDecisionAttributes `locationName:"requestCancelExternalWorkflowExecutionDecisionAttributes" type:"structure" json:"requestCancelExternalWorkflowExecutionDecisionAttributes,omitempty"`
-	ScheduleActivityTaskDecisionAttributes                   *ScheduleActivityTaskDecisionAttributes                   `locationName:"scheduleActivityTaskDecisionAttributes" type:"structure" json:"scheduleActivityTaskDecisionAttributes,omitempty"`
-	SignalExternalWorkflowExecutionDecisionAttributes        *SignalExternalWorkflowExecutionDecisionAttributes        `locationName:"signalExternalWorkflowExecutionDecisionAttributes" type:"structure" json:"signalExternalWorkflowExecutionDecisionAttributes,omitempty"`
-	StartChildWorkflowExecutionDecisionAttributes            *StartChildWorkflowExecutionDecisionAttributes            `locationName:"startChildWorkflowExecutionDecisionAttributes" type:"structure" json:"startChildWorkflowExecutionDecisionAttributes,omitempty"`
-	StartTimerDecisionAttributes                             *StartTimerDecisionAttributes                             `locationName:"startTimerDecisionAttributes" type:"structure" json:"startTimerDecisionAttributes,omitempty"`
+	CancelTimerDecisionAttributes                            *CancelTimerDecisionAttributes                            `locationName:"cancelTimerDecisionAttributes" type:"structure"`
+	CancelWorkflowExecutionDecisionAttributes                *CancelWorkflowExecutionDecisionAttributes                `locationName:"cancelWorkflowExecutionDecisionAttributes" type:"structure"`
+	CompleteWorkflowExecutionDecisionAttributes              *CompleteWorkflowExecutionDecisionAttributes              `locationName:"completeWorkflowExecutionDecisionAttributes" type:"structure"`
+	ContinueAsNewWorkflowExecutionDecisionAttributes         *ContinueAsNewWorkflowExecutionDecisionAttributes         `locationName:"continueAsNewWorkflowExecutionDecisionAttributes" type:"structure"`
+	DecisionType                                             *string                                                   `locationName:"decisionType" type:"string" required:"true"`
+	FailWorkflowExecutionDecisionAttributes                  *FailWorkflowExecutionDecisionAttributes                  `locationName:"failWorkflowExecutionDecisionAttributes" type:"structure"`
+	RecordMarkerDecisionAttributes                           *RecordMarkerDecisionAttributes                           `locationName:"recordMarkerDecisionAttributes" type:"structure"`
+	RequestCancelActivityTaskDecisionAttributes              *RequestCancelActivityTaskDecisionAttributes              `locationName:"requestCancelActivityTaskDecisionAttributes" type:"structure"`
+	RequestCancelExternalWorkflowExecutionDecisionAttributes *RequestCancelExternalWorkflowExecutionDecisionAttributes `locationName:"requestCancelExternalWorkflowExecutionDecisionAttributes" type:"structure"`
+	ScheduleActivityTaskDecisionAttributes                   *ScheduleActivityTaskDecisionAttributes                   `locationName:"scheduleActivityTaskDecisionAttributes" type:"structure"`
+	SignalExternalWorkflowExecutionDecisionAttributes        *SignalExternalWorkflowExecutionDecisionAttributes        `locationName:"signalExternalWorkflowExecutionDecisionAttributes" type:"structure"`
+	StartChildWorkflowExecutionDecisionAttributes            *StartChildWorkflowExecutionDecisionAttributes            `locationName:"startChildWorkflowExecutionDecisionAttributes" type:"structure"`
+	StartTimerDecisionAttributes                             *StartTimerDecisionAttributes                             `locationName:"startTimerDecisionAttributes" type:"structure"`
 
 	metadataDecision `json:"-", xml:"-"`
 }
 
 type metadataDecision struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DecisionTaskCompletedEventAttributes struct {
-	ExecutionContext *string `locationName:"executionContext" type:"string" json:"executionContext,omitempty"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"json:"scheduledEventId,omitempty"`
-	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
+	ExecutionContext *string `locationName:"executionContext" type:"string"`
+	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
+	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataDecisionTaskCompletedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataDecisionTaskCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DecisionTaskScheduledEventAttributes struct {
-	StartToCloseTimeout *string   `locationName:"startToCloseTimeout" type:"string" json:"startToCloseTimeout,omitempty"`
-	TaskList            *TaskList `locationName:"taskList" type:"structure" required:"true"json:"taskList,omitempty"`
-	TaskPriority        *string   `locationName:"taskPriority" type:"string" json:"taskPriority,omitempty"`
+	StartToCloseTimeout *string   `locationName:"startToCloseTimeout" type:"string"`
+	TaskList            *TaskList `locationName:"taskList" type:"structure" required:"true"`
+	TaskPriority        *string   `locationName:"taskPriority" type:"string"`
 
 	metadataDecisionTaskScheduledEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataDecisionTaskScheduledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DecisionTaskStartedEventAttributes struct {
-	Identity         *string `locationName:"identity" type:"string" json:"identity,omitempty"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"json:"scheduledEventId,omitempty"`
+	Identity         *string `locationName:"identity" type:"string"`
+	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	metadataDecisionTaskStartedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataDecisionTaskStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DecisionTaskTimedOutEventAttributes struct {
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"json:"scheduledEventId,omitempty"`
-	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
-	TimeoutType      *string `locationName:"timeoutType" type:"string" required:"true"json:"timeoutType,omitempty"`
+	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
+	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"`
+	TimeoutType      *string `locationName:"timeoutType" type:"string" required:"true"`
 
 	metadataDecisionTaskTimedOutEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataDecisionTaskTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeprecateActivityTypeInput struct {
-	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"json:"activityType,omitempty"`
-	Domain       *string       `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
+	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+	Domain       *string       `locationName:"domain" type:"string" required:"true"`
 
 	metadataDeprecateActivityTypeInput `json:"-", xml:"-"`
 }
 
 type metadataDeprecateActivityTypeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeprecateActivityTypeOutput struct {
@@ -1237,17 +1237,17 @@ type DeprecateActivityTypeOutput struct {
 }
 
 type metadataDeprecateActivityTypeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeprecateDomainInput struct {
-	Name *string `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
+	Name *string `locationName:"name" type:"string" required:"true"`
 
 	metadataDeprecateDomainInput `json:"-", xml:"-"`
 }
 
 type metadataDeprecateDomainInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeprecateDomainOutput struct {
@@ -1255,18 +1255,18 @@ type DeprecateDomainOutput struct {
 }
 
 type metadataDeprecateDomainOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeprecateWorkflowTypeInput struct {
-	Domain       *string       `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	Domain       *string       `locationName:"domain" type:"string" required:"true"`
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataDeprecateWorkflowTypeInput `json:"-", xml:"-"`
 }
 
 type metadataDeprecateWorkflowTypeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DeprecateWorkflowTypeOutput struct {
@@ -1274,514 +1274,514 @@ type DeprecateWorkflowTypeOutput struct {
 }
 
 type metadataDeprecateWorkflowTypeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeActivityTypeInput struct {
-	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"json:"activityType,omitempty"`
-	Domain       *string       `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
+	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+	Domain       *string       `locationName:"domain" type:"string" required:"true"`
 
 	metadataDescribeActivityTypeInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeActivityTypeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeActivityTypeOutput struct {
-	Configuration *ActivityTypeConfiguration `locationName:"configuration" type:"structure" required:"true"json:"configuration,omitempty"`
-	TypeInfo      *ActivityTypeInfo          `locationName:"typeInfo" type:"structure" required:"true"json:"typeInfo,omitempty"`
+	Configuration *ActivityTypeConfiguration `locationName:"configuration" type:"structure" required:"true"`
+	TypeInfo      *ActivityTypeInfo          `locationName:"typeInfo" type:"structure" required:"true"`
 
 	metadataDescribeActivityTypeOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeActivityTypeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDomainInput struct {
-	Name *string `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
+	Name *string `locationName:"name" type:"string" required:"true"`
 
 	metadataDescribeDomainInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDomainInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeDomainOutput struct {
-	Configuration *DomainConfiguration `locationName:"configuration" type:"structure" required:"true"json:"configuration,omitempty"`
-	DomainInfo    *DomainInfo          `locationName:"domainInfo" type:"structure" required:"true"json:"domainInfo,omitempty"`
+	Configuration *DomainConfiguration `locationName:"configuration" type:"structure" required:"true"`
+	DomainInfo    *DomainInfo          `locationName:"domainInfo" type:"structure" required:"true"`
 
 	metadataDescribeDomainOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeDomainOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeWorkflowExecutionInput struct {
-	Domain    *string            `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"json:"execution,omitempty"`
+	Domain    *string            `locationName:"domain" type:"string" required:"true"`
+	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
 
 	metadataDescribeWorkflowExecutionInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeWorkflowExecutionOutput struct {
-	ExecutionConfiguration      *WorkflowExecutionConfiguration `locationName:"executionConfiguration" type:"structure" required:"true"json:"executionConfiguration,omitempty"`
-	ExecutionInfo               *WorkflowExecutionInfo          `locationName:"executionInfo" type:"structure" required:"true"json:"executionInfo,omitempty"`
-	LatestActivityTaskTimestamp *time.Time                      `locationName:"latestActivityTaskTimestamp" type:"timestamp" timestampFormat:"unix" json:"latestActivityTaskTimestamp,omitempty"`
-	LatestExecutionContext      *string                         `locationName:"latestExecutionContext" type:"string" json:"latestExecutionContext,omitempty"`
-	OpenCounts                  *WorkflowExecutionOpenCounts    `locationName:"openCounts" type:"structure" required:"true"json:"openCounts,omitempty"`
+	ExecutionConfiguration      *WorkflowExecutionConfiguration `locationName:"executionConfiguration" type:"structure" required:"true"`
+	ExecutionInfo               *WorkflowExecutionInfo          `locationName:"executionInfo" type:"structure" required:"true"`
+	LatestActivityTaskTimestamp *time.Time                      `locationName:"latestActivityTaskTimestamp" type:"timestamp" timestampFormat:"unix"`
+	LatestExecutionContext      *string                         `locationName:"latestExecutionContext" type:"string"`
+	OpenCounts                  *WorkflowExecutionOpenCounts    `locationName:"openCounts" type:"structure" required:"true"`
 
 	metadataDescribeWorkflowExecutionOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeWorkflowTypeInput struct {
-	Domain       *string       `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	Domain       *string       `locationName:"domain" type:"string" required:"true"`
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataDescribeWorkflowTypeInput `json:"-", xml:"-"`
 }
 
 type metadataDescribeWorkflowTypeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DescribeWorkflowTypeOutput struct {
-	Configuration *WorkflowTypeConfiguration `locationName:"configuration" type:"structure" required:"true"json:"configuration,omitempty"`
-	TypeInfo      *WorkflowTypeInfo          `locationName:"typeInfo" type:"structure" required:"true"json:"typeInfo,omitempty"`
+	Configuration *WorkflowTypeConfiguration `locationName:"configuration" type:"structure" required:"true"`
+	TypeInfo      *WorkflowTypeInfo          `locationName:"typeInfo" type:"structure" required:"true"`
 
 	metadataDescribeWorkflowTypeOutput `json:"-", xml:"-"`
 }
 
 type metadataDescribeWorkflowTypeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DomainConfiguration struct {
-	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" type:"string" required:"true"json:"workflowExecutionRetentionPeriodInDays,omitempty"`
+	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" type:"string" required:"true"`
 
 	metadataDomainConfiguration `json:"-", xml:"-"`
 }
 
 type metadataDomainConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type DomainInfo struct {
-	Description *string `locationName:"description" type:"string" json:"description,omitempty"`
-	Name        *string `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
-	Status      *string `locationName:"status" type:"string" required:"true"json:"status,omitempty"`
+	Description *string `locationName:"description" type:"string"`
+	Name        *string `locationName:"name" type:"string" required:"true"`
+	Status      *string `locationName:"status" type:"string" required:"true"`
 
 	metadataDomainInfo `json:"-", xml:"-"`
 }
 
 type metadataDomainInfo struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ExecutionTimeFilter struct {
-	LatestDate *time.Time `locationName:"latestDate" type:"timestamp" timestampFormat:"unix" json:"latestDate,omitempty"`
-	OldestDate *time.Time `locationName:"oldestDate" type:"timestamp" timestampFormat:"unix" required:"true"json:"oldestDate,omitempty"`
+	LatestDate *time.Time `locationName:"latestDate" type:"timestamp" timestampFormat:"unix"`
+	OldestDate *time.Time `locationName:"oldestDate" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	metadataExecutionTimeFilter `json:"-", xml:"-"`
 }
 
 type metadataExecutionTimeFilter struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ExternalWorkflowExecutionCancelRequestedEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"json:"initiatedEventId,omitempty"`
-	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"json:"workflowExecution,omitempty"`
+	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
+	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
 	metadataExternalWorkflowExecutionCancelRequestedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataExternalWorkflowExecutionCancelRequestedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ExternalWorkflowExecutionSignaledEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"json:"initiatedEventId,omitempty"`
-	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"json:"workflowExecution,omitempty"`
+	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
+	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
 	metadataExternalWorkflowExecutionSignaledEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataExternalWorkflowExecutionSignaledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type FailWorkflowExecutionDecisionAttributes struct {
-	Details *string `locationName:"details" type:"string" json:"details,omitempty"`
-	Reason  *string `locationName:"reason" type:"string" json:"reason,omitempty"`
+	Details *string `locationName:"details" type:"string"`
+	Reason  *string `locationName:"reason" type:"string"`
 
 	metadataFailWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataFailWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type FailWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
+	Cause                        *string `locationName:"cause" type:"string" required:"true"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataFailWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataFailWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetWorkflowExecutionHistoryInput struct {
-	Domain          *string            `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	Execution       *WorkflowExecution `locationName:"execution" type:"structure" required:"true"json:"execution,omitempty"`
-	MaximumPageSize *int64             `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
-	NextPageToken   *string            `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	ReverseOrder    *bool              `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
+	Domain          *string            `locationName:"domain" type:"string" required:"true"`
+	Execution       *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
+	MaximumPageSize *int64             `locationName:"maximumPageSize" type:"integer"`
+	NextPageToken   *string            `locationName:"nextPageToken" type:"string"`
+	ReverseOrder    *bool              `locationName:"reverseOrder" type:"boolean"`
 
 	metadataGetWorkflowExecutionHistoryInput `json:"-", xml:"-"`
 }
 
 type metadataGetWorkflowExecutionHistoryInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type GetWorkflowExecutionHistoryOutput struct {
-	Events        []*HistoryEvent `locationName:"events" type:"list" required:"true"json:"events,omitempty"`
-	NextPageToken *string         `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
+	Events        []*HistoryEvent `locationName:"events" type:"list" required:"true"`
+	NextPageToken *string         `locationName:"nextPageToken" type:"string"`
 
 	metadataGetWorkflowExecutionHistoryOutput `json:"-", xml:"-"`
 }
 
 type metadataGetWorkflowExecutionHistoryOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type HistoryEvent struct {
-	ActivityTaskCancelRequestedEventAttributes                     *ActivityTaskCancelRequestedEventAttributes                     `locationName:"activityTaskCancelRequestedEventAttributes" type:"structure" json:"activityTaskCancelRequestedEventAttributes,omitempty"`
-	ActivityTaskCanceledEventAttributes                            *ActivityTaskCanceledEventAttributes                            `locationName:"activityTaskCanceledEventAttributes" type:"structure" json:"activityTaskCanceledEventAttributes,omitempty"`
-	ActivityTaskCompletedEventAttributes                           *ActivityTaskCompletedEventAttributes                           `locationName:"activityTaskCompletedEventAttributes" type:"structure" json:"activityTaskCompletedEventAttributes,omitempty"`
-	ActivityTaskFailedEventAttributes                              *ActivityTaskFailedEventAttributes                              `locationName:"activityTaskFailedEventAttributes" type:"structure" json:"activityTaskFailedEventAttributes,omitempty"`
-	ActivityTaskScheduledEventAttributes                           *ActivityTaskScheduledEventAttributes                           `locationName:"activityTaskScheduledEventAttributes" type:"structure" json:"activityTaskScheduledEventAttributes,omitempty"`
-	ActivityTaskStartedEventAttributes                             *ActivityTaskStartedEventAttributes                             `locationName:"activityTaskStartedEventAttributes" type:"structure" json:"activityTaskStartedEventAttributes,omitempty"`
-	ActivityTaskTimedOutEventAttributes                            *ActivityTaskTimedOutEventAttributes                            `locationName:"activityTaskTimedOutEventAttributes" type:"structure" json:"activityTaskTimedOutEventAttributes,omitempty"`
-	CancelTimerFailedEventAttributes                               *CancelTimerFailedEventAttributes                               `locationName:"cancelTimerFailedEventAttributes" type:"structure" json:"cancelTimerFailedEventAttributes,omitempty"`
-	CancelWorkflowExecutionFailedEventAttributes                   *CancelWorkflowExecutionFailedEventAttributes                   `locationName:"cancelWorkflowExecutionFailedEventAttributes" type:"structure" json:"cancelWorkflowExecutionFailedEventAttributes,omitempty"`
-	ChildWorkflowExecutionCanceledEventAttributes                  *ChildWorkflowExecutionCanceledEventAttributes                  `locationName:"childWorkflowExecutionCanceledEventAttributes" type:"structure" json:"childWorkflowExecutionCanceledEventAttributes,omitempty"`
-	ChildWorkflowExecutionCompletedEventAttributes                 *ChildWorkflowExecutionCompletedEventAttributes                 `locationName:"childWorkflowExecutionCompletedEventAttributes" type:"structure" json:"childWorkflowExecutionCompletedEventAttributes,omitempty"`
-	ChildWorkflowExecutionFailedEventAttributes                    *ChildWorkflowExecutionFailedEventAttributes                    `locationName:"childWorkflowExecutionFailedEventAttributes" type:"structure" json:"childWorkflowExecutionFailedEventAttributes,omitempty"`
-	ChildWorkflowExecutionStartedEventAttributes                   *ChildWorkflowExecutionStartedEventAttributes                   `locationName:"childWorkflowExecutionStartedEventAttributes" type:"structure" json:"childWorkflowExecutionStartedEventAttributes,omitempty"`
-	ChildWorkflowExecutionTerminatedEventAttributes                *ChildWorkflowExecutionTerminatedEventAttributes                `locationName:"childWorkflowExecutionTerminatedEventAttributes" type:"structure" json:"childWorkflowExecutionTerminatedEventAttributes,omitempty"`
-	ChildWorkflowExecutionTimedOutEventAttributes                  *ChildWorkflowExecutionTimedOutEventAttributes                  `locationName:"childWorkflowExecutionTimedOutEventAttributes" type:"structure" json:"childWorkflowExecutionTimedOutEventAttributes,omitempty"`
-	CompleteWorkflowExecutionFailedEventAttributes                 *CompleteWorkflowExecutionFailedEventAttributes                 `locationName:"completeWorkflowExecutionFailedEventAttributes" type:"structure" json:"completeWorkflowExecutionFailedEventAttributes,omitempty"`
-	ContinueAsNewWorkflowExecutionFailedEventAttributes            *ContinueAsNewWorkflowExecutionFailedEventAttributes            `locationName:"continueAsNewWorkflowExecutionFailedEventAttributes" type:"structure" json:"continueAsNewWorkflowExecutionFailedEventAttributes,omitempty"`
-	DecisionTaskCompletedEventAttributes                           *DecisionTaskCompletedEventAttributes                           `locationName:"decisionTaskCompletedEventAttributes" type:"structure" json:"decisionTaskCompletedEventAttributes,omitempty"`
-	DecisionTaskScheduledEventAttributes                           *DecisionTaskScheduledEventAttributes                           `locationName:"decisionTaskScheduledEventAttributes" type:"structure" json:"decisionTaskScheduledEventAttributes,omitempty"`
-	DecisionTaskStartedEventAttributes                             *DecisionTaskStartedEventAttributes                             `locationName:"decisionTaskStartedEventAttributes" type:"structure" json:"decisionTaskStartedEventAttributes,omitempty"`
-	DecisionTaskTimedOutEventAttributes                            *DecisionTaskTimedOutEventAttributes                            `locationName:"decisionTaskTimedOutEventAttributes" type:"structure" json:"decisionTaskTimedOutEventAttributes,omitempty"`
-	EventID                                                        *int64                                                          `locationName:"eventId" type:"long" required:"true"json:"eventId,omitempty"`
-	EventTimestamp                                                 *time.Time                                                      `locationName:"eventTimestamp" type:"timestamp" timestampFormat:"unix" required:"true"json:"eventTimestamp,omitempty"`
-	EventType                                                      *string                                                         `locationName:"eventType" type:"string" required:"true"json:"eventType,omitempty"`
-	ExternalWorkflowExecutionCancelRequestedEventAttributes        *ExternalWorkflowExecutionCancelRequestedEventAttributes        `locationName:"externalWorkflowExecutionCancelRequestedEventAttributes" type:"structure" json:"externalWorkflowExecutionCancelRequestedEventAttributes,omitempty"`
-	ExternalWorkflowExecutionSignaledEventAttributes               *ExternalWorkflowExecutionSignaledEventAttributes               `locationName:"externalWorkflowExecutionSignaledEventAttributes" type:"structure" json:"externalWorkflowExecutionSignaledEventAttributes,omitempty"`
-	FailWorkflowExecutionFailedEventAttributes                     *FailWorkflowExecutionFailedEventAttributes                     `locationName:"failWorkflowExecutionFailedEventAttributes" type:"structure" json:"failWorkflowExecutionFailedEventAttributes,omitempty"`
-	MarkerRecordedEventAttributes                                  *MarkerRecordedEventAttributes                                  `locationName:"markerRecordedEventAttributes" type:"structure" json:"markerRecordedEventAttributes,omitempty"`
-	RecordMarkerFailedEventAttributes                              *RecordMarkerFailedEventAttributes                              `locationName:"recordMarkerFailedEventAttributes" type:"structure" json:"recordMarkerFailedEventAttributes,omitempty"`
-	RequestCancelActivityTaskFailedEventAttributes                 *RequestCancelActivityTaskFailedEventAttributes                 `locationName:"requestCancelActivityTaskFailedEventAttributes" type:"structure" json:"requestCancelActivityTaskFailedEventAttributes,omitempty"`
-	RequestCancelExternalWorkflowExecutionFailedEventAttributes    *RequestCancelExternalWorkflowExecutionFailedEventAttributes    `locationName:"requestCancelExternalWorkflowExecutionFailedEventAttributes" type:"structure" json:"requestCancelExternalWorkflowExecutionFailedEventAttributes,omitempty"`
-	RequestCancelExternalWorkflowExecutionInitiatedEventAttributes *RequestCancelExternalWorkflowExecutionInitiatedEventAttributes `locationName:"requestCancelExternalWorkflowExecutionInitiatedEventAttributes" type:"structure" json:"requestCancelExternalWorkflowExecutionInitiatedEventAttributes,omitempty"`
-	ScheduleActivityTaskFailedEventAttributes                      *ScheduleActivityTaskFailedEventAttributes                      `locationName:"scheduleActivityTaskFailedEventAttributes" type:"structure" json:"scheduleActivityTaskFailedEventAttributes,omitempty"`
-	SignalExternalWorkflowExecutionFailedEventAttributes           *SignalExternalWorkflowExecutionFailedEventAttributes           `locationName:"signalExternalWorkflowExecutionFailedEventAttributes" type:"structure" json:"signalExternalWorkflowExecutionFailedEventAttributes,omitempty"`
-	SignalExternalWorkflowExecutionInitiatedEventAttributes        *SignalExternalWorkflowExecutionInitiatedEventAttributes        `locationName:"signalExternalWorkflowExecutionInitiatedEventAttributes" type:"structure" json:"signalExternalWorkflowExecutionInitiatedEventAttributes,omitempty"`
-	StartChildWorkflowExecutionFailedEventAttributes               *StartChildWorkflowExecutionFailedEventAttributes               `locationName:"startChildWorkflowExecutionFailedEventAttributes" type:"structure" json:"startChildWorkflowExecutionFailedEventAttributes,omitempty"`
-	StartChildWorkflowExecutionInitiatedEventAttributes            *StartChildWorkflowExecutionInitiatedEventAttributes            `locationName:"startChildWorkflowExecutionInitiatedEventAttributes" type:"structure" json:"startChildWorkflowExecutionInitiatedEventAttributes,omitempty"`
-	StartTimerFailedEventAttributes                                *StartTimerFailedEventAttributes                                `locationName:"startTimerFailedEventAttributes" type:"structure" json:"startTimerFailedEventAttributes,omitempty"`
-	TimerCanceledEventAttributes                                   *TimerCanceledEventAttributes                                   `locationName:"timerCanceledEventAttributes" type:"structure" json:"timerCanceledEventAttributes,omitempty"`
-	TimerFiredEventAttributes                                      *TimerFiredEventAttributes                                      `locationName:"timerFiredEventAttributes" type:"structure" json:"timerFiredEventAttributes,omitempty"`
-	TimerStartedEventAttributes                                    *TimerStartedEventAttributes                                    `locationName:"timerStartedEventAttributes" type:"structure" json:"timerStartedEventAttributes,omitempty"`
-	WorkflowExecutionCancelRequestedEventAttributes                *WorkflowExecutionCancelRequestedEventAttributes                `locationName:"workflowExecutionCancelRequestedEventAttributes" type:"structure" json:"workflowExecutionCancelRequestedEventAttributes,omitempty"`
-	WorkflowExecutionCanceledEventAttributes                       *WorkflowExecutionCanceledEventAttributes                       `locationName:"workflowExecutionCanceledEventAttributes" type:"structure" json:"workflowExecutionCanceledEventAttributes,omitempty"`
-	WorkflowExecutionCompletedEventAttributes                      *WorkflowExecutionCompletedEventAttributes                      `locationName:"workflowExecutionCompletedEventAttributes" type:"structure" json:"workflowExecutionCompletedEventAttributes,omitempty"`
-	WorkflowExecutionContinuedAsNewEventAttributes                 *WorkflowExecutionContinuedAsNewEventAttributes                 `locationName:"workflowExecutionContinuedAsNewEventAttributes" type:"structure" json:"workflowExecutionContinuedAsNewEventAttributes,omitempty"`
-	WorkflowExecutionFailedEventAttributes                         *WorkflowExecutionFailedEventAttributes                         `locationName:"workflowExecutionFailedEventAttributes" type:"structure" json:"workflowExecutionFailedEventAttributes,omitempty"`
-	WorkflowExecutionSignaledEventAttributes                       *WorkflowExecutionSignaledEventAttributes                       `locationName:"workflowExecutionSignaledEventAttributes" type:"structure" json:"workflowExecutionSignaledEventAttributes,omitempty"`
-	WorkflowExecutionStartedEventAttributes                        *WorkflowExecutionStartedEventAttributes                        `locationName:"workflowExecutionStartedEventAttributes" type:"structure" json:"workflowExecutionStartedEventAttributes,omitempty"`
-	WorkflowExecutionTerminatedEventAttributes                     *WorkflowExecutionTerminatedEventAttributes                     `locationName:"workflowExecutionTerminatedEventAttributes" type:"structure" json:"workflowExecutionTerminatedEventAttributes,omitempty"`
-	WorkflowExecutionTimedOutEventAttributes                       *WorkflowExecutionTimedOutEventAttributes                       `locationName:"workflowExecutionTimedOutEventAttributes" type:"structure" json:"workflowExecutionTimedOutEventAttributes,omitempty"`
+	ActivityTaskCancelRequestedEventAttributes                     *ActivityTaskCancelRequestedEventAttributes                     `locationName:"activityTaskCancelRequestedEventAttributes" type:"structure"`
+	ActivityTaskCanceledEventAttributes                            *ActivityTaskCanceledEventAttributes                            `locationName:"activityTaskCanceledEventAttributes" type:"structure"`
+	ActivityTaskCompletedEventAttributes                           *ActivityTaskCompletedEventAttributes                           `locationName:"activityTaskCompletedEventAttributes" type:"structure"`
+	ActivityTaskFailedEventAttributes                              *ActivityTaskFailedEventAttributes                              `locationName:"activityTaskFailedEventAttributes" type:"structure"`
+	ActivityTaskScheduledEventAttributes                           *ActivityTaskScheduledEventAttributes                           `locationName:"activityTaskScheduledEventAttributes" type:"structure"`
+	ActivityTaskStartedEventAttributes                             *ActivityTaskStartedEventAttributes                             `locationName:"activityTaskStartedEventAttributes" type:"structure"`
+	ActivityTaskTimedOutEventAttributes                            *ActivityTaskTimedOutEventAttributes                            `locationName:"activityTaskTimedOutEventAttributes" type:"structure"`
+	CancelTimerFailedEventAttributes                               *CancelTimerFailedEventAttributes                               `locationName:"cancelTimerFailedEventAttributes" type:"structure"`
+	CancelWorkflowExecutionFailedEventAttributes                   *CancelWorkflowExecutionFailedEventAttributes                   `locationName:"cancelWorkflowExecutionFailedEventAttributes" type:"structure"`
+	ChildWorkflowExecutionCanceledEventAttributes                  *ChildWorkflowExecutionCanceledEventAttributes                  `locationName:"childWorkflowExecutionCanceledEventAttributes" type:"structure"`
+	ChildWorkflowExecutionCompletedEventAttributes                 *ChildWorkflowExecutionCompletedEventAttributes                 `locationName:"childWorkflowExecutionCompletedEventAttributes" type:"structure"`
+	ChildWorkflowExecutionFailedEventAttributes                    *ChildWorkflowExecutionFailedEventAttributes                    `locationName:"childWorkflowExecutionFailedEventAttributes" type:"structure"`
+	ChildWorkflowExecutionStartedEventAttributes                   *ChildWorkflowExecutionStartedEventAttributes                   `locationName:"childWorkflowExecutionStartedEventAttributes" type:"structure"`
+	ChildWorkflowExecutionTerminatedEventAttributes                *ChildWorkflowExecutionTerminatedEventAttributes                `locationName:"childWorkflowExecutionTerminatedEventAttributes" type:"structure"`
+	ChildWorkflowExecutionTimedOutEventAttributes                  *ChildWorkflowExecutionTimedOutEventAttributes                  `locationName:"childWorkflowExecutionTimedOutEventAttributes" type:"structure"`
+	CompleteWorkflowExecutionFailedEventAttributes                 *CompleteWorkflowExecutionFailedEventAttributes                 `locationName:"completeWorkflowExecutionFailedEventAttributes" type:"structure"`
+	ContinueAsNewWorkflowExecutionFailedEventAttributes            *ContinueAsNewWorkflowExecutionFailedEventAttributes            `locationName:"continueAsNewWorkflowExecutionFailedEventAttributes" type:"structure"`
+	DecisionTaskCompletedEventAttributes                           *DecisionTaskCompletedEventAttributes                           `locationName:"decisionTaskCompletedEventAttributes" type:"structure"`
+	DecisionTaskScheduledEventAttributes                           *DecisionTaskScheduledEventAttributes                           `locationName:"decisionTaskScheduledEventAttributes" type:"structure"`
+	DecisionTaskStartedEventAttributes                             *DecisionTaskStartedEventAttributes                             `locationName:"decisionTaskStartedEventAttributes" type:"structure"`
+	DecisionTaskTimedOutEventAttributes                            *DecisionTaskTimedOutEventAttributes                            `locationName:"decisionTaskTimedOutEventAttributes" type:"structure"`
+	EventID                                                        *int64                                                          `locationName:"eventId" type:"long" required:"true"`
+	EventTimestamp                                                 *time.Time                                                      `locationName:"eventTimestamp" type:"timestamp" timestampFormat:"unix" required:"true"`
+	EventType                                                      *string                                                         `locationName:"eventType" type:"string" required:"true"`
+	ExternalWorkflowExecutionCancelRequestedEventAttributes        *ExternalWorkflowExecutionCancelRequestedEventAttributes        `locationName:"externalWorkflowExecutionCancelRequestedEventAttributes" type:"structure"`
+	ExternalWorkflowExecutionSignaledEventAttributes               *ExternalWorkflowExecutionSignaledEventAttributes               `locationName:"externalWorkflowExecutionSignaledEventAttributes" type:"structure"`
+	FailWorkflowExecutionFailedEventAttributes                     *FailWorkflowExecutionFailedEventAttributes                     `locationName:"failWorkflowExecutionFailedEventAttributes" type:"structure"`
+	MarkerRecordedEventAttributes                                  *MarkerRecordedEventAttributes                                  `locationName:"markerRecordedEventAttributes" type:"structure"`
+	RecordMarkerFailedEventAttributes                              *RecordMarkerFailedEventAttributes                              `locationName:"recordMarkerFailedEventAttributes" type:"structure"`
+	RequestCancelActivityTaskFailedEventAttributes                 *RequestCancelActivityTaskFailedEventAttributes                 `locationName:"requestCancelActivityTaskFailedEventAttributes" type:"structure"`
+	RequestCancelExternalWorkflowExecutionFailedEventAttributes    *RequestCancelExternalWorkflowExecutionFailedEventAttributes    `locationName:"requestCancelExternalWorkflowExecutionFailedEventAttributes" type:"structure"`
+	RequestCancelExternalWorkflowExecutionInitiatedEventAttributes *RequestCancelExternalWorkflowExecutionInitiatedEventAttributes `locationName:"requestCancelExternalWorkflowExecutionInitiatedEventAttributes" type:"structure"`
+	ScheduleActivityTaskFailedEventAttributes                      *ScheduleActivityTaskFailedEventAttributes                      `locationName:"scheduleActivityTaskFailedEventAttributes" type:"structure"`
+	SignalExternalWorkflowExecutionFailedEventAttributes           *SignalExternalWorkflowExecutionFailedEventAttributes           `locationName:"signalExternalWorkflowExecutionFailedEventAttributes" type:"structure"`
+	SignalExternalWorkflowExecutionInitiatedEventAttributes        *SignalExternalWorkflowExecutionInitiatedEventAttributes        `locationName:"signalExternalWorkflowExecutionInitiatedEventAttributes" type:"structure"`
+	StartChildWorkflowExecutionFailedEventAttributes               *StartChildWorkflowExecutionFailedEventAttributes               `locationName:"startChildWorkflowExecutionFailedEventAttributes" type:"structure"`
+	StartChildWorkflowExecutionInitiatedEventAttributes            *StartChildWorkflowExecutionInitiatedEventAttributes            `locationName:"startChildWorkflowExecutionInitiatedEventAttributes" type:"structure"`
+	StartTimerFailedEventAttributes                                *StartTimerFailedEventAttributes                                `locationName:"startTimerFailedEventAttributes" type:"structure"`
+	TimerCanceledEventAttributes                                   *TimerCanceledEventAttributes                                   `locationName:"timerCanceledEventAttributes" type:"structure"`
+	TimerFiredEventAttributes                                      *TimerFiredEventAttributes                                      `locationName:"timerFiredEventAttributes" type:"structure"`
+	TimerStartedEventAttributes                                    *TimerStartedEventAttributes                                    `locationName:"timerStartedEventAttributes" type:"structure"`
+	WorkflowExecutionCancelRequestedEventAttributes                *WorkflowExecutionCancelRequestedEventAttributes                `locationName:"workflowExecutionCancelRequestedEventAttributes" type:"structure"`
+	WorkflowExecutionCanceledEventAttributes                       *WorkflowExecutionCanceledEventAttributes                       `locationName:"workflowExecutionCanceledEventAttributes" type:"structure"`
+	WorkflowExecutionCompletedEventAttributes                      *WorkflowExecutionCompletedEventAttributes                      `locationName:"workflowExecutionCompletedEventAttributes" type:"structure"`
+	WorkflowExecutionContinuedAsNewEventAttributes                 *WorkflowExecutionContinuedAsNewEventAttributes                 `locationName:"workflowExecutionContinuedAsNewEventAttributes" type:"structure"`
+	WorkflowExecutionFailedEventAttributes                         *WorkflowExecutionFailedEventAttributes                         `locationName:"workflowExecutionFailedEventAttributes" type:"structure"`
+	WorkflowExecutionSignaledEventAttributes                       *WorkflowExecutionSignaledEventAttributes                       `locationName:"workflowExecutionSignaledEventAttributes" type:"structure"`
+	WorkflowExecutionStartedEventAttributes                        *WorkflowExecutionStartedEventAttributes                        `locationName:"workflowExecutionStartedEventAttributes" type:"structure"`
+	WorkflowExecutionTerminatedEventAttributes                     *WorkflowExecutionTerminatedEventAttributes                     `locationName:"workflowExecutionTerminatedEventAttributes" type:"structure"`
+	WorkflowExecutionTimedOutEventAttributes                       *WorkflowExecutionTimedOutEventAttributes                       `locationName:"workflowExecutionTimedOutEventAttributes" type:"structure"`
 
 	metadataHistoryEvent `json:"-", xml:"-"`
 }
 
 type metadataHistoryEvent struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListActivityTypesInput struct {
-	Domain             *string `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
-	Name               *string `locationName:"name" type:"string" json:"name,omitempty"`
-	NextPageToken      *string `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"json:"registrationStatus,omitempty"`
-	ReverseOrder       *bool   `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
+	Domain             *string `locationName:"domain" type:"string" required:"true"`
+	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer"`
+	Name               *string `locationName:"name" type:"string"`
+	NextPageToken      *string `locationName:"nextPageToken" type:"string"`
+	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"`
+	ReverseOrder       *bool   `locationName:"reverseOrder" type:"boolean"`
 
 	metadataListActivityTypesInput `json:"-", xml:"-"`
 }
 
 type metadataListActivityTypesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListActivityTypesOutput struct {
-	NextPageToken *string             `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	TypeInfos     []*ActivityTypeInfo `locationName:"typeInfos" type:"list" required:"true"json:"typeInfos,omitempty"`
+	NextPageToken *string             `locationName:"nextPageToken" type:"string"`
+	TypeInfos     []*ActivityTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
 
 	metadataListActivityTypesOutput `json:"-", xml:"-"`
 }
 
 type metadataListActivityTypesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListClosedWorkflowExecutionsInput struct {
-	CloseStatusFilter *CloseStatusFilter       `locationName:"closeStatusFilter" type:"structure" json:"closeStatusFilter,omitempty"`
-	CloseTimeFilter   *ExecutionTimeFilter     `locationName:"closeTimeFilter" type:"structure" json:"closeTimeFilter,omitempty"`
-	Domain            *string                  `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	ExecutionFilter   *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure" json:"executionFilter,omitempty"`
-	MaximumPageSize   *int64                   `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
-	NextPageToken     *string                  `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	ReverseOrder      *bool                    `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
-	StartTimeFilter   *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure" json:"startTimeFilter,omitempty"`
-	TagFilter         *TagFilter               `locationName:"tagFilter" type:"structure" json:"tagFilter,omitempty"`
-	TypeFilter        *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure" json:"typeFilter,omitempty"`
+	CloseStatusFilter *CloseStatusFilter       `locationName:"closeStatusFilter" type:"structure"`
+	CloseTimeFilter   *ExecutionTimeFilter     `locationName:"closeTimeFilter" type:"structure"`
+	Domain            *string                  `locationName:"domain" type:"string" required:"true"`
+	ExecutionFilter   *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
+	MaximumPageSize   *int64                   `locationName:"maximumPageSize" type:"integer"`
+	NextPageToken     *string                  `locationName:"nextPageToken" type:"string"`
+	ReverseOrder      *bool                    `locationName:"reverseOrder" type:"boolean"`
+	StartTimeFilter   *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure"`
+	TagFilter         *TagFilter               `locationName:"tagFilter" type:"structure"`
+	TypeFilter        *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure"`
 
 	metadataListClosedWorkflowExecutionsInput `json:"-", xml:"-"`
 }
 
 type metadataListClosedWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListDomainsInput struct {
-	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
-	NextPageToken      *string `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"json:"registrationStatus,omitempty"`
-	ReverseOrder       *bool   `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
+	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer"`
+	NextPageToken      *string `locationName:"nextPageToken" type:"string"`
+	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"`
+	ReverseOrder       *bool   `locationName:"reverseOrder" type:"boolean"`
 
 	metadataListDomainsInput `json:"-", xml:"-"`
 }
 
 type metadataListDomainsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListDomainsOutput struct {
-	DomainInfos   []*DomainInfo `locationName:"domainInfos" type:"list" required:"true"json:"domainInfos,omitempty"`
-	NextPageToken *string       `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
+	DomainInfos   []*DomainInfo `locationName:"domainInfos" type:"list" required:"true"`
+	NextPageToken *string       `locationName:"nextPageToken" type:"string"`
 
 	metadataListDomainsOutput `json:"-", xml:"-"`
 }
 
 type metadataListDomainsOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListOpenWorkflowExecutionsInput struct {
-	Domain          *string                  `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure" json:"executionFilter,omitempty"`
-	MaximumPageSize *int64                   `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
-	NextPageToken   *string                  `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	ReverseOrder    *bool                    `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
-	StartTimeFilter *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure" required:"true"json:"startTimeFilter,omitempty"`
-	TagFilter       *TagFilter               `locationName:"tagFilter" type:"structure" json:"tagFilter,omitempty"`
-	TypeFilter      *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure" json:"typeFilter,omitempty"`
+	Domain          *string                  `locationName:"domain" type:"string" required:"true"`
+	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
+	MaximumPageSize *int64                   `locationName:"maximumPageSize" type:"integer"`
+	NextPageToken   *string                  `locationName:"nextPageToken" type:"string"`
+	ReverseOrder    *bool                    `locationName:"reverseOrder" type:"boolean"`
+	StartTimeFilter *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure" required:"true"`
+	TagFilter       *TagFilter               `locationName:"tagFilter" type:"structure"`
+	TypeFilter      *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure"`
 
 	metadataListOpenWorkflowExecutionsInput `json:"-", xml:"-"`
 }
 
 type metadataListOpenWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListWorkflowTypesInput struct {
-	Domain             *string `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
-	Name               *string `locationName:"name" type:"string" json:"name,omitempty"`
-	NextPageToken      *string `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"json:"registrationStatus,omitempty"`
-	ReverseOrder       *bool   `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
+	Domain             *string `locationName:"domain" type:"string" required:"true"`
+	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer"`
+	Name               *string `locationName:"name" type:"string"`
+	NextPageToken      *string `locationName:"nextPageToken" type:"string"`
+	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"`
+	ReverseOrder       *bool   `locationName:"reverseOrder" type:"boolean"`
 
 	metadataListWorkflowTypesInput `json:"-", xml:"-"`
 }
 
 type metadataListWorkflowTypesInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ListWorkflowTypesOutput struct {
-	NextPageToken *string             `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	TypeInfos     []*WorkflowTypeInfo `locationName:"typeInfos" type:"list" required:"true"json:"typeInfos,omitempty"`
+	NextPageToken *string             `locationName:"nextPageToken" type:"string"`
+	TypeInfos     []*WorkflowTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
 
 	metadataListWorkflowTypesOutput `json:"-", xml:"-"`
 }
 
 type metadataListWorkflowTypesOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type MarkerRecordedEventAttributes struct {
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	Details                      *string `locationName:"details" type:"string" json:"details,omitempty"`
-	MarkerName                   *string `locationName:"markerName" type:"string" required:"true"json:"markerName,omitempty"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	Details                      *string `locationName:"details" type:"string"`
+	MarkerName                   *string `locationName:"markerName" type:"string" required:"true"`
 
 	metadataMarkerRecordedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataMarkerRecordedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PendingTaskCount struct {
-	Count     *int64 `locationName:"count" type:"integer" required:"true"json:"count,omitempty"`
-	Truncated *bool  `locationName:"truncated" type:"boolean" json:"truncated,omitempty"`
+	Count     *int64 `locationName:"count" type:"integer" required:"true"`
+	Truncated *bool  `locationName:"truncated" type:"boolean"`
 
 	metadataPendingTaskCount `json:"-", xml:"-"`
 }
 
 type metadataPendingTaskCount struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PollForActivityTaskInput struct {
-	Domain   *string   `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	Identity *string   `locationName:"identity" type:"string" json:"identity,omitempty"`
-	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"json:"taskList,omitempty"`
+	Domain   *string   `locationName:"domain" type:"string" required:"true"`
+	Identity *string   `locationName:"identity" type:"string"`
+	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
 	metadataPollForActivityTaskInput `json:"-", xml:"-"`
 }
 
 type metadataPollForActivityTaskInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PollForActivityTaskOutput struct {
-	ActivityID        *string            `locationName:"activityId" type:"string" required:"true"json:"activityId,omitempty"`
-	ActivityType      *ActivityType      `locationName:"activityType" type:"structure" required:"true"json:"activityType,omitempty"`
-	Input             *string            `locationName:"input" type:"string" json:"input,omitempty"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
-	TaskToken         *string            `locationName:"taskToken" type:"string" required:"true"json:"taskToken,omitempty"`
-	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"json:"workflowExecution,omitempty"`
+	ActivityID        *string            `locationName:"activityId" type:"string" required:"true"`
+	ActivityType      *ActivityType      `locationName:"activityType" type:"structure" required:"true"`
+	Input             *string            `locationName:"input" type:"string"`
+	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
+	TaskToken         *string            `locationName:"taskToken" type:"string" required:"true"`
+	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
 	metadataPollForActivityTaskOutput `json:"-", xml:"-"`
 }
 
 type metadataPollForActivityTaskOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PollForDecisionTaskInput struct {
-	Domain          *string   `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	Identity        *string   `locationName:"identity" type:"string" json:"identity,omitempty"`
-	MaximumPageSize *int64    `locationName:"maximumPageSize" type:"integer" json:"maximumPageSize,omitempty"`
-	NextPageToken   *string   `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	ReverseOrder    *bool     `locationName:"reverseOrder" type:"boolean" json:"reverseOrder,omitempty"`
-	TaskList        *TaskList `locationName:"taskList" type:"structure" required:"true"json:"taskList,omitempty"`
+	Domain          *string   `locationName:"domain" type:"string" required:"true"`
+	Identity        *string   `locationName:"identity" type:"string"`
+	MaximumPageSize *int64    `locationName:"maximumPageSize" type:"integer"`
+	NextPageToken   *string   `locationName:"nextPageToken" type:"string"`
+	ReverseOrder    *bool     `locationName:"reverseOrder" type:"boolean"`
+	TaskList        *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
 	metadataPollForDecisionTaskInput `json:"-", xml:"-"`
 }
 
 type metadataPollForDecisionTaskInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type PollForDecisionTaskOutput struct {
-	Events                 []*HistoryEvent    `locationName:"events" type:"list" required:"true"json:"events,omitempty"`
-	NextPageToken          *string            `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
-	PreviousStartedEventID *int64             `locationName:"previousStartedEventId" type:"long" json:"previousStartedEventId,omitempty"`
-	StartedEventID         *int64             `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
-	TaskToken              *string            `locationName:"taskToken" type:"string" required:"true"json:"taskToken,omitempty"`
-	WorkflowExecution      *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"json:"workflowExecution,omitempty"`
-	WorkflowType           *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	Events                 []*HistoryEvent    `locationName:"events" type:"list" required:"true"`
+	NextPageToken          *string            `locationName:"nextPageToken" type:"string"`
+	PreviousStartedEventID *int64             `locationName:"previousStartedEventId" type:"long"`
+	StartedEventID         *int64             `locationName:"startedEventId" type:"long" required:"true"`
+	TaskToken              *string            `locationName:"taskToken" type:"string" required:"true"`
+	WorkflowExecution      *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
+	WorkflowType           *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataPollForDecisionTaskOutput `json:"-", xml:"-"`
 }
 
 type metadataPollForDecisionTaskOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RecordActivityTaskHeartbeatInput struct {
-	Details   *string `locationName:"details" type:"string" json:"details,omitempty"`
-	TaskToken *string `locationName:"taskToken" type:"string" required:"true"json:"taskToken,omitempty"`
+	Details   *string `locationName:"details" type:"string"`
+	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
 	metadataRecordActivityTaskHeartbeatInput `json:"-", xml:"-"`
 }
 
 type metadataRecordActivityTaskHeartbeatInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RecordActivityTaskHeartbeatOutput struct {
-	CancelRequested *bool `locationName:"cancelRequested" type:"boolean" required:"true"json:"cancelRequested,omitempty"`
+	CancelRequested *bool `locationName:"cancelRequested" type:"boolean" required:"true"`
 
 	metadataRecordActivityTaskHeartbeatOutput `json:"-", xml:"-"`
 }
 
 type metadataRecordActivityTaskHeartbeatOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RecordMarkerDecisionAttributes struct {
-	Details    *string `locationName:"details" type:"string" json:"details,omitempty"`
-	MarkerName *string `locationName:"markerName" type:"string" required:"true"json:"markerName,omitempty"`
+	Details    *string `locationName:"details" type:"string"`
+	MarkerName *string `locationName:"markerName" type:"string" required:"true"`
 
 	metadataRecordMarkerDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataRecordMarkerDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RecordMarkerFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	MarkerName                   *string `locationName:"markerName" type:"string" required:"true"json:"markerName,omitempty"`
+	Cause                        *string `locationName:"cause" type:"string" required:"true"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	MarkerName                   *string `locationName:"markerName" type:"string" required:"true"`
 
 	metadataRecordMarkerFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataRecordMarkerFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterActivityTypeInput struct {
-	DefaultTaskHeartbeatTimeout       *string   `locationName:"defaultTaskHeartbeatTimeout" type:"string" json:"defaultTaskHeartbeatTimeout,omitempty"`
-	DefaultTaskList                   *TaskList `locationName:"defaultTaskList" type:"structure" json:"defaultTaskList,omitempty"`
-	DefaultTaskPriority               *string   `locationName:"defaultTaskPriority" type:"string" json:"defaultTaskPriority,omitempty"`
-	DefaultTaskScheduleToCloseTimeout *string   `locationName:"defaultTaskScheduleToCloseTimeout" type:"string" json:"defaultTaskScheduleToCloseTimeout,omitempty"`
-	DefaultTaskScheduleToStartTimeout *string   `locationName:"defaultTaskScheduleToStartTimeout" type:"string" json:"defaultTaskScheduleToStartTimeout,omitempty"`
-	DefaultTaskStartToCloseTimeout    *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string" json:"defaultTaskStartToCloseTimeout,omitempty"`
-	Description                       *string   `locationName:"description" type:"string" json:"description,omitempty"`
-	Domain                            *string   `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	Name                              *string   `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
-	Version                           *string   `locationName:"version" type:"string" required:"true"json:"version,omitempty"`
+	DefaultTaskHeartbeatTimeout       *string   `locationName:"defaultTaskHeartbeatTimeout" type:"string"`
+	DefaultTaskList                   *TaskList `locationName:"defaultTaskList" type:"structure"`
+	DefaultTaskPriority               *string   `locationName:"defaultTaskPriority" type:"string"`
+	DefaultTaskScheduleToCloseTimeout *string   `locationName:"defaultTaskScheduleToCloseTimeout" type:"string"`
+	DefaultTaskScheduleToStartTimeout *string   `locationName:"defaultTaskScheduleToStartTimeout" type:"string"`
+	DefaultTaskStartToCloseTimeout    *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
+	Description                       *string   `locationName:"description" type:"string"`
+	Domain                            *string   `locationName:"domain" type:"string" required:"true"`
+	Name                              *string   `locationName:"name" type:"string" required:"true"`
+	Version                           *string   `locationName:"version" type:"string" required:"true"`
 
 	metadataRegisterActivityTypeInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterActivityTypeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterActivityTypeOutput struct {
@@ -1789,19 +1789,19 @@ type RegisterActivityTypeOutput struct {
 }
 
 type metadataRegisterActivityTypeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterDomainInput struct {
-	Description                            *string `locationName:"description" type:"string" json:"description,omitempty"`
-	Name                                   *string `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
-	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" type:"string" required:"true"json:"workflowExecutionRetentionPeriodInDays,omitempty"`
+	Description                            *string `locationName:"description" type:"string"`
+	Name                                   *string `locationName:"name" type:"string" required:"true"`
+	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" type:"string" required:"true"`
 
 	metadataRegisterDomainInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterDomainInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterDomainOutput struct {
@@ -1809,25 +1809,25 @@ type RegisterDomainOutput struct {
 }
 
 type metadataRegisterDomainOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterWorkflowTypeInput struct {
-	DefaultChildPolicy                  *string   `locationName:"defaultChildPolicy" type:"string" json:"defaultChildPolicy,omitempty"`
-	DefaultExecutionStartToCloseTimeout *string   `locationName:"defaultExecutionStartToCloseTimeout" type:"string" json:"defaultExecutionStartToCloseTimeout,omitempty"`
-	DefaultTaskList                     *TaskList `locationName:"defaultTaskList" type:"structure" json:"defaultTaskList,omitempty"`
-	DefaultTaskPriority                 *string   `locationName:"defaultTaskPriority" type:"string" json:"defaultTaskPriority,omitempty"`
-	DefaultTaskStartToCloseTimeout      *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string" json:"defaultTaskStartToCloseTimeout,omitempty"`
-	Description                         *string   `locationName:"description" type:"string" json:"description,omitempty"`
-	Domain                              *string   `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	Name                                *string   `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
-	Version                             *string   `locationName:"version" type:"string" required:"true"json:"version,omitempty"`
+	DefaultChildPolicy                  *string   `locationName:"defaultChildPolicy" type:"string"`
+	DefaultExecutionStartToCloseTimeout *string   `locationName:"defaultExecutionStartToCloseTimeout" type:"string"`
+	DefaultTaskList                     *TaskList `locationName:"defaultTaskList" type:"structure"`
+	DefaultTaskPriority                 *string   `locationName:"defaultTaskPriority" type:"string"`
+	DefaultTaskStartToCloseTimeout      *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
+	Description                         *string   `locationName:"description" type:"string"`
+	Domain                              *string   `locationName:"domain" type:"string" required:"true"`
+	Name                                *string   `locationName:"name" type:"string" required:"true"`
+	Version                             *string   `locationName:"version" type:"string" required:"true"`
 
 	metadataRegisterWorkflowTypeInput `json:"-", xml:"-"`
 }
 
 type metadataRegisterWorkflowTypeInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RegisterWorkflowTypeOutput struct {
@@ -1835,81 +1835,81 @@ type RegisterWorkflowTypeOutput struct {
 }
 
 type metadataRegisterWorkflowTypeOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RequestCancelActivityTaskDecisionAttributes struct {
-	ActivityID *string `locationName:"activityId" type:"string" required:"true"json:"activityId,omitempty"`
+	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
 
 	metadataRequestCancelActivityTaskDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataRequestCancelActivityTaskDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RequestCancelActivityTaskFailedEventAttributes struct {
-	ActivityID                   *string `locationName:"activityId" type:"string" required:"true"json:"activityId,omitempty"`
-	Cause                        *string `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
+	ActivityID                   *string `locationName:"activityId" type:"string" required:"true"`
+	Cause                        *string `locationName:"cause" type:"string" required:"true"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataRequestCancelActivityTaskFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataRequestCancelActivityTaskFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
-	Control    *string `locationName:"control" type:"string" json:"control,omitempty"`
-	RunID      *string `locationName:"runId" type:"string" json:"runId,omitempty"`
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
+	Control    *string `locationName:"control" type:"string"`
+	RunID      *string `locationName:"runId" type:"string"`
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataRequestCancelExternalWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	Control                      *string `locationName:"control" type:"string" json:"control,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	InitiatedEventID             *int64  `locationName:"initiatedEventId" type:"long" required:"true"json:"initiatedEventId,omitempty"`
-	RunID                        *string `locationName:"runId" type:"string" json:"runId,omitempty"`
-	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
+	Cause                        *string `locationName:"cause" type:"string" required:"true"`
+	Control                      *string `locationName:"control" type:"string"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	InitiatedEventID             *int64  `locationName:"initiatedEventId" type:"long" required:"true"`
+	RunID                        *string `locationName:"runId" type:"string"`
+	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
-	Control                      *string `locationName:"control" type:"string" json:"control,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	RunID                        *string `locationName:"runId" type:"string" json:"runId,omitempty"`
-	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
+	Control                      *string `locationName:"control" type:"string"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	RunID                        *string `locationName:"runId" type:"string"`
+	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RequestCancelWorkflowExecutionInput struct {
-	Domain     *string `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	RunID      *string `locationName:"runId" type:"string" json:"runId,omitempty"`
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
+	Domain     *string `locationName:"domain" type:"string" required:"true"`
+	RunID      *string `locationName:"runId" type:"string"`
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelWorkflowExecutionInput `json:"-", xml:"-"`
 }
 
 type metadataRequestCancelWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RequestCancelWorkflowExecutionOutput struct {
@@ -1917,18 +1917,18 @@ type RequestCancelWorkflowExecutionOutput struct {
 }
 
 type metadataRequestCancelWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RespondActivityTaskCanceledInput struct {
-	Details   *string `locationName:"details" type:"string" json:"details,omitempty"`
-	TaskToken *string `locationName:"taskToken" type:"string" required:"true"json:"taskToken,omitempty"`
+	Details   *string `locationName:"details" type:"string"`
+	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
 	metadataRespondActivityTaskCanceledInput `json:"-", xml:"-"`
 }
 
 type metadataRespondActivityTaskCanceledInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RespondActivityTaskCanceledOutput struct {
@@ -1936,18 +1936,18 @@ type RespondActivityTaskCanceledOutput struct {
 }
 
 type metadataRespondActivityTaskCanceledOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RespondActivityTaskCompletedInput struct {
-	Result    *string `locationName:"result" type:"string" json:"result,omitempty"`
-	TaskToken *string `locationName:"taskToken" type:"string" required:"true"json:"taskToken,omitempty"`
+	Result    *string `locationName:"result" type:"string"`
+	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
 	metadataRespondActivityTaskCompletedInput `json:"-", xml:"-"`
 }
 
 type metadataRespondActivityTaskCompletedInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RespondActivityTaskCompletedOutput struct {
@@ -1955,19 +1955,19 @@ type RespondActivityTaskCompletedOutput struct {
 }
 
 type metadataRespondActivityTaskCompletedOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RespondActivityTaskFailedInput struct {
-	Details   *string `locationName:"details" type:"string" json:"details,omitempty"`
-	Reason    *string `locationName:"reason" type:"string" json:"reason,omitempty"`
-	TaskToken *string `locationName:"taskToken" type:"string" required:"true"json:"taskToken,omitempty"`
+	Details   *string `locationName:"details" type:"string"`
+	Reason    *string `locationName:"reason" type:"string"`
+	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
 	metadataRespondActivityTaskFailedInput `json:"-", xml:"-"`
 }
 
 type metadataRespondActivityTaskFailedInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RespondActivityTaskFailedOutput struct {
@@ -1975,19 +1975,19 @@ type RespondActivityTaskFailedOutput struct {
 }
 
 type metadataRespondActivityTaskFailedOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RespondDecisionTaskCompletedInput struct {
-	Decisions        []*Decision `locationName:"decisions" type:"list" json:"decisions,omitempty"`
-	ExecutionContext *string     `locationName:"executionContext" type:"string" json:"executionContext,omitempty"`
-	TaskToken        *string     `locationName:"taskToken" type:"string" required:"true"json:"taskToken,omitempty"`
+	Decisions        []*Decision `locationName:"decisions" type:"list"`
+	ExecutionContext *string     `locationName:"executionContext" type:"string"`
+	TaskToken        *string     `locationName:"taskToken" type:"string" required:"true"`
 
 	metadataRespondDecisionTaskCompletedInput `json:"-", xml:"-"`
 }
 
 type metadataRespondDecisionTaskCompletedInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type RespondDecisionTaskCompletedOutput struct {
@@ -1995,97 +1995,97 @@ type RespondDecisionTaskCompletedOutput struct {
 }
 
 type metadataRespondDecisionTaskCompletedOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ScheduleActivityTaskDecisionAttributes struct {
-	ActivityID             *string       `locationName:"activityId" type:"string" required:"true"json:"activityId,omitempty"`
-	ActivityType           *ActivityType `locationName:"activityType" type:"structure" required:"true"json:"activityType,omitempty"`
-	Control                *string       `locationName:"control" type:"string" json:"control,omitempty"`
-	HeartbeatTimeout       *string       `locationName:"heartbeatTimeout" type:"string" json:"heartbeatTimeout,omitempty"`
-	Input                  *string       `locationName:"input" type:"string" json:"input,omitempty"`
-	ScheduleToCloseTimeout *string       `locationName:"scheduleToCloseTimeout" type:"string" json:"scheduleToCloseTimeout,omitempty"`
-	ScheduleToStartTimeout *string       `locationName:"scheduleToStartTimeout" type:"string" json:"scheduleToStartTimeout,omitempty"`
-	StartToCloseTimeout    *string       `locationName:"startToCloseTimeout" type:"string" json:"startToCloseTimeout,omitempty"`
-	TaskList               *TaskList     `locationName:"taskList" type:"structure" json:"taskList,omitempty"`
-	TaskPriority           *string       `locationName:"taskPriority" type:"string" json:"taskPriority,omitempty"`
+	ActivityID             *string       `locationName:"activityId" type:"string" required:"true"`
+	ActivityType           *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+	Control                *string       `locationName:"control" type:"string"`
+	HeartbeatTimeout       *string       `locationName:"heartbeatTimeout" type:"string"`
+	Input                  *string       `locationName:"input" type:"string"`
+	ScheduleToCloseTimeout *string       `locationName:"scheduleToCloseTimeout" type:"string"`
+	ScheduleToStartTimeout *string       `locationName:"scheduleToStartTimeout" type:"string"`
+	StartToCloseTimeout    *string       `locationName:"startToCloseTimeout" type:"string"`
+	TaskList               *TaskList     `locationName:"taskList" type:"structure"`
+	TaskPriority           *string       `locationName:"taskPriority" type:"string"`
 
 	metadataScheduleActivityTaskDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataScheduleActivityTaskDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type ScheduleActivityTaskFailedEventAttributes struct {
-	ActivityID                   *string       `locationName:"activityId" type:"string" required:"true"json:"activityId,omitempty"`
-	ActivityType                 *ActivityType `locationName:"activityType" type:"structure" required:"true"json:"activityType,omitempty"`
-	Cause                        *string       `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
+	ActivityID                   *string       `locationName:"activityId" type:"string" required:"true"`
+	ActivityType                 *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+	Cause                        *string       `locationName:"cause" type:"string" required:"true"`
+	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataScheduleActivityTaskFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataScheduleActivityTaskFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SignalExternalWorkflowExecutionDecisionAttributes struct {
-	Control    *string `locationName:"control" type:"string" json:"control,omitempty"`
-	Input      *string `locationName:"input" type:"string" json:"input,omitempty"`
-	RunID      *string `locationName:"runId" type:"string" json:"runId,omitempty"`
-	SignalName *string `locationName:"signalName" type:"string" required:"true"json:"signalName,omitempty"`
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
+	Control    *string `locationName:"control" type:"string"`
+	Input      *string `locationName:"input" type:"string"`
+	RunID      *string `locationName:"runId" type:"string"`
+	SignalName *string `locationName:"signalName" type:"string" required:"true"`
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataSignalExternalWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SignalExternalWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	Control                      *string `locationName:"control" type:"string" json:"control,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	InitiatedEventID             *int64  `locationName:"initiatedEventId" type:"long" required:"true"json:"initiatedEventId,omitempty"`
-	RunID                        *string `locationName:"runId" type:"string" json:"runId,omitempty"`
-	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
+	Cause                        *string `locationName:"cause" type:"string" required:"true"`
+	Control                      *string `locationName:"control" type:"string"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	InitiatedEventID             *int64  `locationName:"initiatedEventId" type:"long" required:"true"`
+	RunID                        *string `locationName:"runId" type:"string"`
+	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataSignalExternalWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
-	Control                      *string `locationName:"control" type:"string" json:"control,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	Input                        *string `locationName:"input" type:"string" json:"input,omitempty"`
-	RunID                        *string `locationName:"runId" type:"string" json:"runId,omitempty"`
-	SignalName                   *string `locationName:"signalName" type:"string" required:"true"json:"signalName,omitempty"`
-	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
+	Control                      *string `locationName:"control" type:"string"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	Input                        *string `locationName:"input" type:"string"`
+	RunID                        *string `locationName:"runId" type:"string"`
+	SignalName                   *string `locationName:"signalName" type:"string" required:"true"`
+	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionInitiatedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataSignalExternalWorkflowExecutionInitiatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SignalWorkflowExecutionInput struct {
-	Domain     *string `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	Input      *string `locationName:"input" type:"string" json:"input,omitempty"`
-	RunID      *string `locationName:"runId" type:"string" json:"runId,omitempty"`
-	SignalName *string `locationName:"signalName" type:"string" required:"true"json:"signalName,omitempty"`
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
+	Domain     *string `locationName:"domain" type:"string" required:"true"`
+	Input      *string `locationName:"input" type:"string"`
+	RunID      *string `locationName:"runId" type:"string"`
+	SignalName *string `locationName:"signalName" type:"string" required:"true"`
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalWorkflowExecutionInput `json:"-", xml:"-"`
 }
 
 type metadataSignalWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type SignalWorkflowExecutionOutput struct {
@@ -2093,149 +2093,149 @@ type SignalWorkflowExecutionOutput struct {
 }
 
 type metadataSignalWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartChildWorkflowExecutionDecisionAttributes struct {
-	ChildPolicy                  *string       `locationName:"childPolicy" type:"string" json:"childPolicy,omitempty"`
-	Control                      *string       `locationName:"control" type:"string" json:"control,omitempty"`
-	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string" json:"executionStartToCloseTimeout,omitempty"`
-	Input                        *string       `locationName:"input" type:"string" json:"input,omitempty"`
-	TagList                      []*string     `locationName:"tagList" type:"list" json:"tagList,omitempty"`
-	TaskList                     *TaskList     `locationName:"taskList" type:"structure" json:"taskList,omitempty"`
-	TaskPriority                 *string       `locationName:"taskPriority" type:"string" json:"taskPriority,omitempty"`
-	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string" json:"taskStartToCloseTimeout,omitempty"`
-	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
-	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	ChildPolicy                  *string       `locationName:"childPolicy" type:"string"`
+	Control                      *string       `locationName:"control" type:"string"`
+	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string"`
+	Input                        *string       `locationName:"input" type:"string"`
+	TagList                      []*string     `locationName:"tagList" type:"list"`
+	TaskList                     *TaskList     `locationName:"taskList" type:"structure"`
+	TaskPriority                 *string       `locationName:"taskPriority" type:"string"`
+	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string"`
+	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataStartChildWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataStartChildWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartChildWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string       `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	Control                      *string       `locationName:"control" type:"string" json:"control,omitempty"`
-	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	InitiatedEventID             *int64        `locationName:"initiatedEventId" type:"long" required:"true"json:"initiatedEventId,omitempty"`
-	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
-	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	Cause                        *string       `locationName:"cause" type:"string" required:"true"`
+	Control                      *string       `locationName:"control" type:"string"`
+	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	InitiatedEventID             *int64        `locationName:"initiatedEventId" type:"long" required:"true"`
+	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataStartChildWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataStartChildWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartChildWorkflowExecutionInitiatedEventAttributes struct {
-	ChildPolicy                  *string       `locationName:"childPolicy" type:"string" required:"true"json:"childPolicy,omitempty"`
-	Control                      *string       `locationName:"control" type:"string" json:"control,omitempty"`
-	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string" json:"executionStartToCloseTimeout,omitempty"`
-	Input                        *string       `locationName:"input" type:"string" json:"input,omitempty"`
-	TagList                      []*string     `locationName:"tagList" type:"list" json:"tagList,omitempty"`
-	TaskList                     *TaskList     `locationName:"taskList" type:"structure" required:"true"json:"taskList,omitempty"`
-	TaskPriority                 *string       `locationName:"taskPriority" type:"string" json:"taskPriority,omitempty"`
-	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string" json:"taskStartToCloseTimeout,omitempty"`
-	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
-	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	ChildPolicy                  *string       `locationName:"childPolicy" type:"string" required:"true"`
+	Control                      *string       `locationName:"control" type:"string"`
+	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string"`
+	Input                        *string       `locationName:"input" type:"string"`
+	TagList                      []*string     `locationName:"tagList" type:"list"`
+	TaskList                     *TaskList     `locationName:"taskList" type:"structure" required:"true"`
+	TaskPriority                 *string       `locationName:"taskPriority" type:"string"`
+	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string"`
+	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataStartChildWorkflowExecutionInitiatedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataStartChildWorkflowExecutionInitiatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartTimerDecisionAttributes struct {
-	Control            *string `locationName:"control" type:"string" json:"control,omitempty"`
-	StartToFireTimeout *string `locationName:"startToFireTimeout" type:"string" required:"true"json:"startToFireTimeout,omitempty"`
-	TimerID            *string `locationName:"timerId" type:"string" required:"true"json:"timerId,omitempty"`
+	Control            *string `locationName:"control" type:"string"`
+	StartToFireTimeout *string `locationName:"startToFireTimeout" type:"string" required:"true"`
+	TimerID            *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataStartTimerDecisionAttributes `json:"-", xml:"-"`
 }
 
 type metadataStartTimerDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartTimerFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"json:"cause,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	TimerID                      *string `locationName:"timerId" type:"string" required:"true"json:"timerId,omitempty"`
+	Cause                        *string `locationName:"cause" type:"string" required:"true"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	TimerID                      *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataStartTimerFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataStartTimerFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartWorkflowExecutionInput struct {
-	ChildPolicy                  *string       `locationName:"childPolicy" type:"string" json:"childPolicy,omitempty"`
-	Domain                       *string       `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string" json:"executionStartToCloseTimeout,omitempty"`
-	Input                        *string       `locationName:"input" type:"string" json:"input,omitempty"`
-	TagList                      []*string     `locationName:"tagList" type:"list" json:"tagList,omitempty"`
-	TaskList                     *TaskList     `locationName:"taskList" type:"structure" json:"taskList,omitempty"`
-	TaskPriority                 *string       `locationName:"taskPriority" type:"string" json:"taskPriority,omitempty"`
-	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string" json:"taskStartToCloseTimeout,omitempty"`
-	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
-	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	ChildPolicy                  *string       `locationName:"childPolicy" type:"string"`
+	Domain                       *string       `locationName:"domain" type:"string" required:"true"`
+	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string"`
+	Input                        *string       `locationName:"input" type:"string"`
+	TagList                      []*string     `locationName:"tagList" type:"list"`
+	TaskList                     *TaskList     `locationName:"taskList" type:"structure"`
+	TaskPriority                 *string       `locationName:"taskPriority" type:"string"`
+	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string"`
+	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataStartWorkflowExecutionInput `json:"-", xml:"-"`
 }
 
 type metadataStartWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type StartWorkflowExecutionOutput struct {
-	RunID *string `locationName:"runId" type:"string" json:"runId,omitempty"`
+	RunID *string `locationName:"runId" type:"string"`
 
 	metadataStartWorkflowExecutionOutput `json:"-", xml:"-"`
 }
 
 type metadataStartWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TagFilter struct {
-	Tag *string `locationName:"tag" type:"string" required:"true"json:"tag,omitempty"`
+	Tag *string `locationName:"tag" type:"string" required:"true"`
 
 	metadataTagFilter `json:"-", xml:"-"`
 }
 
 type metadataTagFilter struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TaskList struct {
-	Name *string `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
+	Name *string `locationName:"name" type:"string" required:"true"`
 
 	metadataTaskList `json:"-", xml:"-"`
 }
 
 type metadataTaskList struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TerminateWorkflowExecutionInput struct {
-	ChildPolicy *string `locationName:"childPolicy" type:"string" json:"childPolicy,omitempty"`
-	Details     *string `locationName:"details" type:"string" json:"details,omitempty"`
-	Domain      *string `locationName:"domain" type:"string" required:"true"json:"domain,omitempty"`
-	Reason      *string `locationName:"reason" type:"string" json:"reason,omitempty"`
-	RunID       *string `locationName:"runId" type:"string" json:"runId,omitempty"`
-	WorkflowID  *string `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string"`
+	Details     *string `locationName:"details" type:"string"`
+	Domain      *string `locationName:"domain" type:"string" required:"true"`
+	Reason      *string `locationName:"reason" type:"string"`
+	RunID       *string `locationName:"runId" type:"string"`
+	WorkflowID  *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataTerminateWorkflowExecutionInput `json:"-", xml:"-"`
 }
 
 type metadataTerminateWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TerminateWorkflowExecutionOutput struct {
@@ -2243,301 +2243,301 @@ type TerminateWorkflowExecutionOutput struct {
 }
 
 type metadataTerminateWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TimerCanceledEventAttributes struct {
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	StartedEventID               *int64  `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
-	TimerID                      *string `locationName:"timerId" type:"string" required:"true"json:"timerId,omitempty"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	StartedEventID               *int64  `locationName:"startedEventId" type:"long" required:"true"`
+	TimerID                      *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerCanceledEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataTimerCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TimerFiredEventAttributes struct {
-	StartedEventID *int64  `locationName:"startedEventId" type:"long" required:"true"json:"startedEventId,omitempty"`
-	TimerID        *string `locationName:"timerId" type:"string" required:"true"json:"timerId,omitempty"`
+	StartedEventID *int64  `locationName:"startedEventId" type:"long" required:"true"`
+	TimerID        *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerFiredEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataTimerFiredEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type TimerStartedEventAttributes struct {
-	Control                      *string `locationName:"control" type:"string" json:"control,omitempty"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	StartToFireTimeout           *string `locationName:"startToFireTimeout" type:"string" required:"true"json:"startToFireTimeout,omitempty"`
-	TimerID                      *string `locationName:"timerId" type:"string" required:"true"json:"timerId,omitempty"`
+	Control                      *string `locationName:"control" type:"string"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	StartToFireTimeout           *string `locationName:"startToFireTimeout" type:"string" required:"true"`
+	TimerID                      *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerStartedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataTimerStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecution struct {
-	RunID      *string `locationName:"runId" type:"string" required:"true"json:"runId,omitempty"`
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
+	RunID      *string `locationName:"runId" type:"string" required:"true"`
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataWorkflowExecution `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecution struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionCancelRequestedEventAttributes struct {
-	Cause                     *string            `locationName:"cause" type:"string" json:"cause,omitempty"`
-	ExternalInitiatedEventID  *int64             `locationName:"externalInitiatedEventId" type:"long" json:"externalInitiatedEventId,omitempty"`
-	ExternalWorkflowExecution *WorkflowExecution `locationName:"externalWorkflowExecution" type:"structure" json:"externalWorkflowExecution,omitempty"`
+	Cause                     *string            `locationName:"cause" type:"string"`
+	ExternalInitiatedEventID  *int64             `locationName:"externalInitiatedEventId" type:"long"`
+	ExternalWorkflowExecution *WorkflowExecution `locationName:"externalWorkflowExecution" type:"structure"`
 
 	metadataWorkflowExecutionCancelRequestedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionCancelRequestedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionCanceledEventAttributes struct {
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	Details                      *string `locationName:"details" type:"string" json:"details,omitempty"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	Details                      *string `locationName:"details" type:"string"`
 
 	metadataWorkflowExecutionCanceledEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionCompletedEventAttributes struct {
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	Result                       *string `locationName:"result" type:"string" json:"result,omitempty"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	Result                       *string `locationName:"result" type:"string"`
 
 	metadataWorkflowExecutionCompletedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionConfiguration struct {
-	ChildPolicy                  *string   `locationName:"childPolicy" type:"string" required:"true"json:"childPolicy,omitempty"`
-	ExecutionStartToCloseTimeout *string   `locationName:"executionStartToCloseTimeout" type:"string" required:"true"json:"executionStartToCloseTimeout,omitempty"`
-	TaskList                     *TaskList `locationName:"taskList" type:"structure" required:"true"json:"taskList,omitempty"`
-	TaskPriority                 *string   `locationName:"taskPriority" type:"string" json:"taskPriority,omitempty"`
-	TaskStartToCloseTimeout      *string   `locationName:"taskStartToCloseTimeout" type:"string" required:"true"json:"taskStartToCloseTimeout,omitempty"`
+	ChildPolicy                  *string   `locationName:"childPolicy" type:"string" required:"true"`
+	ExecutionStartToCloseTimeout *string   `locationName:"executionStartToCloseTimeout" type:"string" required:"true"`
+	TaskList                     *TaskList `locationName:"taskList" type:"structure" required:"true"`
+	TaskPriority                 *string   `locationName:"taskPriority" type:"string"`
+	TaskStartToCloseTimeout      *string   `locationName:"taskStartToCloseTimeout" type:"string" required:"true"`
 
 	metadataWorkflowExecutionConfiguration `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionContinuedAsNewEventAttributes struct {
-	ChildPolicy                  *string       `locationName:"childPolicy" type:"string" required:"true"json:"childPolicy,omitempty"`
-	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string" json:"executionStartToCloseTimeout,omitempty"`
-	Input                        *string       `locationName:"input" type:"string" json:"input,omitempty"`
-	NewExecutionRunID            *string       `locationName:"newExecutionRunId" type:"string" required:"true"json:"newExecutionRunId,omitempty"`
-	TagList                      []*string     `locationName:"tagList" type:"list" json:"tagList,omitempty"`
-	TaskList                     *TaskList     `locationName:"taskList" type:"structure" required:"true"json:"taskList,omitempty"`
-	TaskPriority                 *string       `locationName:"taskPriority" type:"string" json:"taskPriority,omitempty"`
-	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string" json:"taskStartToCloseTimeout,omitempty"`
-	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	ChildPolicy                  *string       `locationName:"childPolicy" type:"string" required:"true"`
+	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string"`
+	Input                        *string       `locationName:"input" type:"string"`
+	NewExecutionRunID            *string       `locationName:"newExecutionRunId" type:"string" required:"true"`
+	TagList                      []*string     `locationName:"tagList" type:"list"`
+	TaskList                     *TaskList     `locationName:"taskList" type:"structure" required:"true"`
+	TaskPriority                 *string       `locationName:"taskPriority" type:"string"`
+	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string"`
+	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataWorkflowExecutionContinuedAsNewEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionContinuedAsNewEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionCount struct {
-	Count     *int64 `locationName:"count" type:"integer" required:"true"json:"count,omitempty"`
-	Truncated *bool  `locationName:"truncated" type:"boolean" json:"truncated,omitempty"`
+	Count     *int64 `locationName:"count" type:"integer" required:"true"`
+	Truncated *bool  `locationName:"truncated" type:"boolean"`
 
 	metadataWorkflowExecutionCount `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionCount struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionFailedEventAttributes struct {
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"json:"decisionTaskCompletedEventId,omitempty"`
-	Details                      *string `locationName:"details" type:"string" json:"details,omitempty"`
-	Reason                       *string `locationName:"reason" type:"string" json:"reason,omitempty"`
+	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	Details                      *string `locationName:"details" type:"string"`
+	Reason                       *string `locationName:"reason" type:"string"`
 
 	metadataWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionFilter struct {
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"json:"workflowId,omitempty"`
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataWorkflowExecutionFilter `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionFilter struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionInfo struct {
-	CancelRequested *bool              `locationName:"cancelRequested" type:"boolean" json:"cancelRequested,omitempty"`
-	CloseStatus     *string            `locationName:"closeStatus" type:"string" json:"closeStatus,omitempty"`
-	CloseTimestamp  *time.Time         `locationName:"closeTimestamp" type:"timestamp" timestampFormat:"unix" json:"closeTimestamp,omitempty"`
-	Execution       *WorkflowExecution `locationName:"execution" type:"structure" required:"true"json:"execution,omitempty"`
-	ExecutionStatus *string            `locationName:"executionStatus" type:"string" required:"true"json:"executionStatus,omitempty"`
-	Parent          *WorkflowExecution `locationName:"parent" type:"structure" json:"parent,omitempty"`
-	StartTimestamp  *time.Time         `locationName:"startTimestamp" type:"timestamp" timestampFormat:"unix" required:"true"json:"startTimestamp,omitempty"`
-	TagList         []*string          `locationName:"tagList" type:"list" json:"tagList,omitempty"`
-	WorkflowType    *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	CancelRequested *bool              `locationName:"cancelRequested" type:"boolean"`
+	CloseStatus     *string            `locationName:"closeStatus" type:"string"`
+	CloseTimestamp  *time.Time         `locationName:"closeTimestamp" type:"timestamp" timestampFormat:"unix"`
+	Execution       *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
+	ExecutionStatus *string            `locationName:"executionStatus" type:"string" required:"true"`
+	Parent          *WorkflowExecution `locationName:"parent" type:"structure"`
+	StartTimestamp  *time.Time         `locationName:"startTimestamp" type:"timestamp" timestampFormat:"unix" required:"true"`
+	TagList         []*string          `locationName:"tagList" type:"list"`
+	WorkflowType    *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataWorkflowExecutionInfo `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionInfo struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionInfos struct {
-	ExecutionInfos []*WorkflowExecutionInfo `locationName:"executionInfos" type:"list" required:"true"json:"executionInfos,omitempty"`
-	NextPageToken  *string                  `locationName:"nextPageToken" type:"string" json:"nextPageToken,omitempty"`
+	ExecutionInfos []*WorkflowExecutionInfo `locationName:"executionInfos" type:"list" required:"true"`
+	NextPageToken  *string                  `locationName:"nextPageToken" type:"string"`
 
 	metadataWorkflowExecutionInfos `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionInfos struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionOpenCounts struct {
-	OpenActivityTasks           *int64 `locationName:"openActivityTasks" type:"integer" required:"true"json:"openActivityTasks,omitempty"`
-	OpenChildWorkflowExecutions *int64 `locationName:"openChildWorkflowExecutions" type:"integer" required:"true"json:"openChildWorkflowExecutions,omitempty"`
-	OpenDecisionTasks           *int64 `locationName:"openDecisionTasks" type:"integer" required:"true"json:"openDecisionTasks,omitempty"`
-	OpenTimers                  *int64 `locationName:"openTimers" type:"integer" required:"true"json:"openTimers,omitempty"`
+	OpenActivityTasks           *int64 `locationName:"openActivityTasks" type:"integer" required:"true"`
+	OpenChildWorkflowExecutions *int64 `locationName:"openChildWorkflowExecutions" type:"integer" required:"true"`
+	OpenDecisionTasks           *int64 `locationName:"openDecisionTasks" type:"integer" required:"true"`
+	OpenTimers                  *int64 `locationName:"openTimers" type:"integer" required:"true"`
 
 	metadataWorkflowExecutionOpenCounts `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionOpenCounts struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionSignaledEventAttributes struct {
-	ExternalInitiatedEventID  *int64             `locationName:"externalInitiatedEventId" type:"long" json:"externalInitiatedEventId,omitempty"`
-	ExternalWorkflowExecution *WorkflowExecution `locationName:"externalWorkflowExecution" type:"structure" json:"externalWorkflowExecution,omitempty"`
-	Input                     *string            `locationName:"input" type:"string" json:"input,omitempty"`
-	SignalName                *string            `locationName:"signalName" type:"string" required:"true"json:"signalName,omitempty"`
+	ExternalInitiatedEventID  *int64             `locationName:"externalInitiatedEventId" type:"long"`
+	ExternalWorkflowExecution *WorkflowExecution `locationName:"externalWorkflowExecution" type:"structure"`
+	Input                     *string            `locationName:"input" type:"string"`
+	SignalName                *string            `locationName:"signalName" type:"string" required:"true"`
 
 	metadataWorkflowExecutionSignaledEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionSignaledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionStartedEventAttributes struct {
-	ChildPolicy                  *string            `locationName:"childPolicy" type:"string" required:"true"json:"childPolicy,omitempty"`
-	ContinuedExecutionRunID      *string            `locationName:"continuedExecutionRunId" type:"string" json:"continuedExecutionRunId,omitempty"`
-	ExecutionStartToCloseTimeout *string            `locationName:"executionStartToCloseTimeout" type:"string" json:"executionStartToCloseTimeout,omitempty"`
-	Input                        *string            `locationName:"input" type:"string" json:"input,omitempty"`
-	ParentInitiatedEventID       *int64             `locationName:"parentInitiatedEventId" type:"long" json:"parentInitiatedEventId,omitempty"`
-	ParentWorkflowExecution      *WorkflowExecution `locationName:"parentWorkflowExecution" type:"structure" json:"parentWorkflowExecution,omitempty"`
-	TagList                      []*string          `locationName:"tagList" type:"list" json:"tagList,omitempty"`
-	TaskList                     *TaskList          `locationName:"taskList" type:"structure" required:"true"json:"taskList,omitempty"`
-	TaskPriority                 *string            `locationName:"taskPriority" type:"string" json:"taskPriority,omitempty"`
-	TaskStartToCloseTimeout      *string            `locationName:"taskStartToCloseTimeout" type:"string" json:"taskStartToCloseTimeout,omitempty"`
-	WorkflowType                 *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	ChildPolicy                  *string            `locationName:"childPolicy" type:"string" required:"true"`
+	ContinuedExecutionRunID      *string            `locationName:"continuedExecutionRunId" type:"string"`
+	ExecutionStartToCloseTimeout *string            `locationName:"executionStartToCloseTimeout" type:"string"`
+	Input                        *string            `locationName:"input" type:"string"`
+	ParentInitiatedEventID       *int64             `locationName:"parentInitiatedEventId" type:"long"`
+	ParentWorkflowExecution      *WorkflowExecution `locationName:"parentWorkflowExecution" type:"structure"`
+	TagList                      []*string          `locationName:"tagList" type:"list"`
+	TaskList                     *TaskList          `locationName:"taskList" type:"structure" required:"true"`
+	TaskPriority                 *string            `locationName:"taskPriority" type:"string"`
+	TaskStartToCloseTimeout      *string            `locationName:"taskStartToCloseTimeout" type:"string"`
+	WorkflowType                 *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataWorkflowExecutionStartedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionTerminatedEventAttributes struct {
-	Cause       *string `locationName:"cause" type:"string" json:"cause,omitempty"`
-	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"json:"childPolicy,omitempty"`
-	Details     *string `locationName:"details" type:"string" json:"details,omitempty"`
-	Reason      *string `locationName:"reason" type:"string" json:"reason,omitempty"`
+	Cause       *string `locationName:"cause" type:"string"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+	Details     *string `locationName:"details" type:"string"`
+	Reason      *string `locationName:"reason" type:"string"`
 
 	metadataWorkflowExecutionTerminatedEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionTerminatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowExecutionTimedOutEventAttributes struct {
-	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"json:"childPolicy,omitempty"`
-	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"json:"timeoutType,omitempty"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
 
 	metadataWorkflowExecutionTimedOutEventAttributes `json:"-", xml:"-"`
 }
 
 type metadataWorkflowExecutionTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowType struct {
-	Name    *string `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
-	Version *string `locationName:"version" type:"string" required:"true"json:"version,omitempty"`
+	Name    *string `locationName:"name" type:"string" required:"true"`
+	Version *string `locationName:"version" type:"string" required:"true"`
 
 	metadataWorkflowType `json:"-", xml:"-"`
 }
 
 type metadataWorkflowType struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowTypeConfiguration struct {
-	DefaultChildPolicy                  *string   `locationName:"defaultChildPolicy" type:"string" json:"defaultChildPolicy,omitempty"`
-	DefaultExecutionStartToCloseTimeout *string   `locationName:"defaultExecutionStartToCloseTimeout" type:"string" json:"defaultExecutionStartToCloseTimeout,omitempty"`
-	DefaultTaskList                     *TaskList `locationName:"defaultTaskList" type:"structure" json:"defaultTaskList,omitempty"`
-	DefaultTaskPriority                 *string   `locationName:"defaultTaskPriority" type:"string" json:"defaultTaskPriority,omitempty"`
-	DefaultTaskStartToCloseTimeout      *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string" json:"defaultTaskStartToCloseTimeout,omitempty"`
+	DefaultChildPolicy                  *string   `locationName:"defaultChildPolicy" type:"string"`
+	DefaultExecutionStartToCloseTimeout *string   `locationName:"defaultExecutionStartToCloseTimeout" type:"string"`
+	DefaultTaskList                     *TaskList `locationName:"defaultTaskList" type:"structure"`
+	DefaultTaskPriority                 *string   `locationName:"defaultTaskPriority" type:"string"`
+	DefaultTaskStartToCloseTimeout      *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
 
 	metadataWorkflowTypeConfiguration `json:"-", xml:"-"`
 }
 
 type metadataWorkflowTypeConfiguration struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowTypeFilter struct {
-	Name    *string `locationName:"name" type:"string" required:"true"json:"name,omitempty"`
-	Version *string `locationName:"version" type:"string" json:"version,omitempty"`
+	Name    *string `locationName:"name" type:"string" required:"true"`
+	Version *string `locationName:"version" type:"string"`
 
 	metadataWorkflowTypeFilter `json:"-", xml:"-"`
 }
 
 type metadataWorkflowTypeFilter struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }
 
 type WorkflowTypeInfo struct {
-	CreationDate    *time.Time    `locationName:"creationDate" type:"timestamp" timestampFormat:"unix" required:"true"json:"creationDate,omitempty"`
-	DeprecationDate *time.Time    `locationName:"deprecationDate" type:"timestamp" timestampFormat:"unix" json:"deprecationDate,omitempty"`
-	Description     *string       `locationName:"description" type:"string" json:"description,omitempty"`
-	Status          *string       `locationName:"status" type:"string" required:"true"json:"status,omitempty"`
-	WorkflowType    *WorkflowType `locationName:"workflowType" type:"structure" required:"true"json:"workflowType,omitempty"`
+	CreationDate    *time.Time    `locationName:"creationDate" type:"timestamp" timestampFormat:"unix" required:"true"`
+	DeprecationDate *time.Time    `locationName:"deprecationDate" type:"timestamp" timestampFormat:"unix"`
+	Description     *string       `locationName:"description" type:"string"`
+	Status          *string       `locationName:"status" type:"string" required:"true"`
+	WorkflowType    *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataWorkflowTypeInfo `json:"-", xml:"-"`
 }
 
 type metadataWorkflowTypeInfo struct {
-	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+	SDKShapeTraits bool `type:"structure"`
 }

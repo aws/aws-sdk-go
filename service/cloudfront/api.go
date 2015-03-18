@@ -691,8 +691,8 @@ type metadataCreateCloudFrontOriginAccessIdentityInput struct {
 
 type CreateCloudFrontOriginAccessIdentityOutput struct {
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
-	ETag                           *string                         `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
-	Location                       *string                         `location:"header" locationName:"Location" type:"string" json:"-" xml:"-"`
+	ETag                           *string                         `location:"header" locationName:"ETag" type:"string"`
+	Location                       *string                         `location:"header" locationName:"Location" type:"string"`
 
 	metadataCreateCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
 }
@@ -713,8 +713,8 @@ type metadataCreateDistributionInput struct {
 
 type CreateDistributionOutput struct {
 	Distribution *Distribution `type:"structure"`
-	ETag         *string       `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
-	Location     *string       `location:"header" locationName:"Location" type:"string" json:"-" xml:"-"`
+	ETag         *string       `location:"header" locationName:"ETag" type:"string"`
+	Location     *string       `location:"header" locationName:"Location" type:"string"`
 
 	metadataCreateDistributionOutput `json:"-", xml:"-"`
 }
@@ -724,7 +724,7 @@ type metadataCreateDistributionOutput struct {
 }
 
 type CreateInvalidationInput struct {
-	DistributionID    *string            `location:"uri" locationName:"DistributionId" type:"string" required:"true"json:"-" xml:"-"`
+	DistributionID    *string            `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
 	InvalidationBatch *InvalidationBatch `locationName:"InvalidationBatch" type:"structure" required:"true"`
 
 	metadataCreateInvalidationInput `json:"-", xml:"-"`
@@ -736,7 +736,7 @@ type metadataCreateInvalidationInput struct {
 
 type CreateInvalidationOutput struct {
 	Invalidation *Invalidation `type:"structure"`
-	Location     *string       `location:"header" locationName:"Location" type:"string" json:"-" xml:"-"`
+	Location     *string       `location:"header" locationName:"Location" type:"string"`
 
 	metadataCreateInvalidationOutput `json:"-", xml:"-"`
 }
@@ -756,8 +756,8 @@ type metadataCreateStreamingDistributionInput struct {
 }
 
 type CreateStreamingDistributionOutput struct {
-	ETag                  *string                `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
-	Location              *string                `location:"header" locationName:"Location" type:"string" json:"-" xml:"-"`
+	ETag                  *string                `location:"header" locationName:"ETag" type:"string"`
+	Location              *string                `location:"header" locationName:"Location" type:"string"`
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
 	metadataCreateStreamingDistributionOutput `json:"-", xml:"-"`
@@ -820,8 +820,8 @@ type metadataDefaultCacheBehavior struct {
 }
 
 type DeleteCloudFrontOriginAccessIdentityInput struct {
-	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
-	IfMatch *string `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
+	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
 	metadataDeleteCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
 }
@@ -839,8 +839,8 @@ type metadataDeleteCloudFrontOriginAccessIdentityOutput struct {
 }
 
 type DeleteDistributionInput struct {
-	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
-	IfMatch *string `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
+	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
 	metadataDeleteDistributionInput `json:"-", xml:"-"`
 }
@@ -858,8 +858,8 @@ type metadataDeleteDistributionOutput struct {
 }
 
 type DeleteStreamingDistributionInput struct {
-	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
-	IfMatch *string `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
+	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
 	metadataDeleteStreamingDistributionInput `json:"-", xml:"-"`
 }
@@ -977,7 +977,7 @@ type metadataGeoRestriction struct {
 }
 
 type GetCloudFrontOriginAccessIdentityConfigInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetCloudFrontOriginAccessIdentityConfigInput `json:"-", xml:"-"`
 }
@@ -988,7 +988,7 @@ type metadataGetCloudFrontOriginAccessIdentityConfigInput struct {
 
 type GetCloudFrontOriginAccessIdentityConfigOutput struct {
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `type:"structure"`
-	ETag                                 *string                               `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
+	ETag                                 *string                               `location:"header" locationName:"ETag" type:"string"`
 
 	metadataGetCloudFrontOriginAccessIdentityConfigOutput `json:"-", xml:"-"`
 }
@@ -998,7 +998,7 @@ type metadataGetCloudFrontOriginAccessIdentityConfigOutput struct {
 }
 
 type GetCloudFrontOriginAccessIdentityInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
 }
@@ -1009,7 +1009,7 @@ type metadataGetCloudFrontOriginAccessIdentityInput struct {
 
 type GetCloudFrontOriginAccessIdentityOutput struct {
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
-	ETag                           *string                         `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
+	ETag                           *string                         `location:"header" locationName:"ETag" type:"string"`
 
 	metadataGetCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
 }
@@ -1019,7 +1019,7 @@ type metadataGetCloudFrontOriginAccessIdentityOutput struct {
 }
 
 type GetDistributionConfigInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetDistributionConfigInput `json:"-", xml:"-"`
 }
@@ -1030,7 +1030,7 @@ type metadataGetDistributionConfigInput struct {
 
 type GetDistributionConfigOutput struct {
 	DistributionConfig *DistributionConfig `type:"structure"`
-	ETag               *string             `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
+	ETag               *string             `location:"header" locationName:"ETag" type:"string"`
 
 	metadataGetDistributionConfigOutput `json:"-", xml:"-"`
 }
@@ -1040,7 +1040,7 @@ type metadataGetDistributionConfigOutput struct {
 }
 
 type GetDistributionInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetDistributionInput `json:"-", xml:"-"`
 }
@@ -1051,7 +1051,7 @@ type metadataGetDistributionInput struct {
 
 type GetDistributionOutput struct {
 	Distribution *Distribution `type:"structure"`
-	ETag         *string       `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
+	ETag         *string       `location:"header" locationName:"ETag" type:"string"`
 
 	metadataGetDistributionOutput `json:"-", xml:"-"`
 }
@@ -1061,8 +1061,8 @@ type metadataGetDistributionOutput struct {
 }
 
 type GetInvalidationInput struct {
-	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"json:"-" xml:"-"`
-	ID             *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
+	ID             *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetInvalidationInput `json:"-", xml:"-"`
 }
@@ -1082,7 +1082,7 @@ type metadataGetInvalidationOutput struct {
 }
 
 type GetStreamingDistributionConfigInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetStreamingDistributionConfigInput `json:"-", xml:"-"`
 }
@@ -1092,7 +1092,7 @@ type metadataGetStreamingDistributionConfigInput struct {
 }
 
 type GetStreamingDistributionConfigOutput struct {
-	ETag                        *string                      `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
+	ETag                        *string                      `location:"header" locationName:"ETag" type:"string"`
 	StreamingDistributionConfig *StreamingDistributionConfig `type:"structure"`
 
 	metadataGetStreamingDistributionConfigOutput `json:"-", xml:"-"`
@@ -1103,7 +1103,7 @@ type metadataGetStreamingDistributionConfigOutput struct {
 }
 
 type GetStreamingDistributionInput struct {
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetStreamingDistributionInput `json:"-", xml:"-"`
 }
@@ -1113,7 +1113,7 @@ type metadataGetStreamingDistributionInput struct {
 }
 
 type GetStreamingDistributionOutput struct {
-	ETag                  *string                `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
+	ETag                  *string                `location:"header" locationName:"ETag" type:"string"`
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
 	metadataGetStreamingDistributionOutput `json:"-", xml:"-"`
@@ -1197,8 +1197,8 @@ type metadataKeyPairIDs struct {
 }
 
 type ListCloudFrontOriginAccessIdentitiesInput struct {
-	Marker   *string `location:"querystring" locationName:"Marker" type:"string" json:"-" xml:"-"`
-	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string" json:"-" xml:"-"`
+	Marker   *string `location:"querystring" locationName:"Marker" type:"string"`
+	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
 	metadataListCloudFrontOriginAccessIdentitiesInput `json:"-", xml:"-"`
 }
@@ -1218,8 +1218,8 @@ type metadataListCloudFrontOriginAccessIdentitiesOutput struct {
 }
 
 type ListDistributionsInput struct {
-	Marker   *string `location:"querystring" locationName:"Marker" type:"string" json:"-" xml:"-"`
-	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string" json:"-" xml:"-"`
+	Marker   *string `location:"querystring" locationName:"Marker" type:"string"`
+	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
 	metadataListDistributionsInput `json:"-", xml:"-"`
 }
@@ -1239,9 +1239,9 @@ type metadataListDistributionsOutput struct {
 }
 
 type ListInvalidationsInput struct {
-	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"json:"-" xml:"-"`
-	Marker         *string `location:"querystring" locationName:"Marker" type:"string" json:"-" xml:"-"`
-	MaxItems       *string `location:"querystring" locationName:"MaxItems" type:"string" json:"-" xml:"-"`
+	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
+	Marker         *string `location:"querystring" locationName:"Marker" type:"string"`
+	MaxItems       *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
 	metadataListInvalidationsInput `json:"-", xml:"-"`
 }
@@ -1261,8 +1261,8 @@ type metadataListInvalidationsOutput struct {
 }
 
 type ListStreamingDistributionsInput struct {
-	Marker   *string `location:"querystring" locationName:"Marker" type:"string" json:"-" xml:"-"`
-	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string" json:"-" xml:"-"`
+	Marker   *string `location:"querystring" locationName:"Marker" type:"string"`
+	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
 	metadataListStreamingDistributionsInput `json:"-", xml:"-"`
 }
@@ -1464,8 +1464,8 @@ type metadataTrustedSigners struct {
 
 type UpdateCloudFrontOriginAccessIdentityInput struct {
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
-	ID                                   *string                               `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
-	IfMatch                              *string                               `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
+	ID                                   *string                               `location:"uri" locationName:"Id" type:"string" required:"true"`
+	IfMatch                              *string                               `location:"header" locationName:"If-Match" type:"string"`
 
 	metadataUpdateCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
 }
@@ -1476,7 +1476,7 @@ type metadataUpdateCloudFrontOriginAccessIdentityInput struct {
 
 type UpdateCloudFrontOriginAccessIdentityOutput struct {
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
-	ETag                           *string                         `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
+	ETag                           *string                         `location:"header" locationName:"ETag" type:"string"`
 
 	metadataUpdateCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
 }
@@ -1487,8 +1487,8 @@ type metadataUpdateCloudFrontOriginAccessIdentityOutput struct {
 
 type UpdateDistributionInput struct {
 	DistributionConfig *DistributionConfig `locationName:"DistributionConfig" type:"structure" required:"true"`
-	ID                 *string             `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
-	IfMatch            *string             `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
+	ID                 *string             `location:"uri" locationName:"Id" type:"string" required:"true"`
+	IfMatch            *string             `location:"header" locationName:"If-Match" type:"string"`
 
 	metadataUpdateDistributionInput `json:"-", xml:"-"`
 }
@@ -1499,7 +1499,7 @@ type metadataUpdateDistributionInput struct {
 
 type UpdateDistributionOutput struct {
 	Distribution *Distribution `type:"structure"`
-	ETag         *string       `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
+	ETag         *string       `location:"header" locationName:"ETag" type:"string"`
 
 	metadataUpdateDistributionOutput `json:"-", xml:"-"`
 }
@@ -1509,8 +1509,8 @@ type metadataUpdateDistributionOutput struct {
 }
 
 type UpdateStreamingDistributionInput struct {
-	ID                          *string                      `location:"uri" locationName:"Id" type:"string" required:"true"json:"-" xml:"-"`
-	IfMatch                     *string                      `location:"header" locationName:"If-Match" type:"string" json:"-" xml:"-"`
+	ID                          *string                      `location:"uri" locationName:"Id" type:"string" required:"true"`
+	IfMatch                     *string                      `location:"header" locationName:"If-Match" type:"string"`
 	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure" required:"true"`
 
 	metadataUpdateStreamingDistributionInput `json:"-", xml:"-"`
@@ -1521,7 +1521,7 @@ type metadataUpdateStreamingDistributionInput struct {
 }
 
 type UpdateStreamingDistributionOutput struct {
-	ETag                  *string                `location:"header" locationName:"ETag" type:"string" json:"-" xml:"-"`
+	ETag                  *string                `location:"header" locationName:"ETag" type:"string"`
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
 	metadataUpdateStreamingDistributionOutput `json:"-", xml:"-"`

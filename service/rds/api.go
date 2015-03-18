@@ -1825,7 +1825,6 @@ type DBInstance struct {
 	AvailabilityZone                      *string                       `type:"string"`
 	BackupRetentionPeriod                 *int64                        `type:"integer"`
 	CharacterSetName                      *string                       `type:"string"`
-	DBIResourceID                         *string                       `locationName:"DbiResourceId" type:"string"`
 	DBInstanceClass                       *string                       `type:"string"`
 	DBInstanceIdentifier                  *string                       `type:"string"`
 	DBInstanceStatus                      *string                       `type:"string"`
@@ -1833,6 +1832,7 @@ type DBInstance struct {
 	DBParameterGroups                     []*DBParameterGroupStatus     `locationNameList:"DBParameterGroup" type:"list"`
 	DBSecurityGroups                      []*DBSecurityGroupMembership  `locationNameList:"DBSecurityGroup" type:"list"`
 	DBSubnetGroup                         *DBSubnetGroup                `type:"structure"`
+	DBiResourceID                         *string                       `locationName:"DbiResourceId" type:"string"`
 	Endpoint                              *Endpoint                     `type:"structure"`
 	Engine                                *string                       `type:"string"`
 	EngineVersion                         *string                       `type:"string"`
