@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/json/jsonutil"
 )
 
 var emptyJSON = []byte("{}")
@@ -42,7 +43,7 @@ func Build(req *aws.Request) {
 
 func Unmarshal(req *aws.Request) {
 	if req.DataFilled() {
-		err := json.NewDecoder(req.HTTPResponse.Body).Decode(req.Data)
+		err := jsonutil.UnmarshalJSON(req.Data, req.HTTPResponse.Body)
 		if err != nil {
 			req.Error = err
 		}
