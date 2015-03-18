@@ -103,7 +103,6 @@ func parseStruct(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 				name = locName
 			}
 		}
-		fmt.Println(name)
 
 		// try to find the field by name in elements
 		elems := node.Children[name]
