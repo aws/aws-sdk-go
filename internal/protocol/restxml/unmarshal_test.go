@@ -13,6 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"testing"
 	"time"
 )
@@ -25,6 +26,7 @@ var _ xmlutil.XMLNode
 var _ xml.Attr
 var _ = ioutil.Discard
 var _ = util.Trim("")
+var _ = url.Values{}
 
 // OutputService1ProtocolTest is a client for OutputService1ProtocolTest.
 type OutputService1ProtocolTest struct {
@@ -59,7 +61,7 @@ func NewOutputService1ProtocolTest(config *OutputService1ProtocolTestConfig) *Ou
 }
 
 // OutputService1TestCaseOperation1Request generates a request for the OutputService1TestCaseOperation1 operation.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputService1TestCaseOperation1Output) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputShape) {
 	if opOutputService1TestCaseOperation1 == nil {
 		opOutputService1TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
@@ -67,12 +69,12 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(inp
 	}
 
 	req = aws.NewRequest(c.Service, opOutputService1TestCaseOperation1, input, output)
-	output = &OutputService1TestShapeOutputService1TestCaseOperation1Output{}
+	output = &OutputService1TestShapeOutputShape{}
 	req.Data = output
 	return
 }
 
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputService1TestCaseOperation1Output, err error) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputShape, err error) {
 	req, out := c.OutputService1TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -80,6 +82,29 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *Out
 }
 
 var opOutputService1TestCaseOperation1 *aws.Operation
+
+// OutputService1TestCaseOperation2Request generates a request for the OutputService1TestCaseOperation2 operation.
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2Request(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation2Input) (req *aws.Request, output *OutputService1TestShapeOutputShape) {
+	if opOutputService1TestCaseOperation2 == nil {
+		opOutputService1TestCaseOperation2 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opOutputService1TestCaseOperation2, input, output)
+	output = &OutputService1TestShapeOutputShape{}
+	req.Data = output
+	return
+}
+
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation2(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation2Input) (output *OutputService1TestShapeOutputShape, err error) {
+	req, out := c.OutputService1TestCaseOperation2Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opOutputService1TestCaseOperation2 *aws.Operation
 
 type OutputService1TestShapeOutputService1TestCaseOperation1Input struct {
 	metadataOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-", xml:"-"`
@@ -89,22 +114,31 @@ type metadataOutputService1TestShapeOutputService1TestCaseOperation1Input struct
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
-	Char              *string  `type:"character"`
-	Double            *float64 `type:"double"`
-	FalseBool         *bool    `type:"boolean"`
-	Float             *float64 `type:"float"`
-	ImaHeader         *string  `location:"header" type:"string"`
-	ImaHeaderLocation *string  `location:"header" locationName:"X-Foo" type:"string"`
-	Long              *int64   `type:"long"`
-	Num               *int64   `locationName:"FooNum" type:"integer"`
-	Str               *string  `type:"string"`
-	TrueBool          *bool    `type:"boolean"`
-
-	metadataOutputService1TestShapeOutputService1TestCaseOperation1Output `json:"-", xml:"-"`
+type OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation2Input struct {
+	metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation2Input `json:"-", xml:"-"`
 }
 
-type metadataOutputService1TestShapeOutputService1TestCaseOperation1Output struct {
+type metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation2Input struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type OutputService1TestShapeOutputShape struct {
+	Char              *string   `type:"character"`
+	Double            *float64  `type:"double"`
+	FalseBool         *bool     `type:"boolean"`
+	Float             *float64  `type:"float"`
+	ImaHeader         *string   `location:"header" type:"string"`
+	ImaHeaderLocation *string   `location:"header" locationName:"X-Foo" type:"string"`
+	Long              *int64    `type:"long"`
+	Num               *int64    `locationName:"FooNum" type:"integer"`
+	Str               *string   `type:"string"`
+	Timestamp         *aws.Time `type:"timestamp" timestampFormat:"iso8601"`
+	TrueBool          *bool     `type:"boolean"`
+
+	metadataOutputService1TestShapeOutputShape `json:"-", xml:"-"`
+}
+
+type metadataOutputService1TestShapeOutputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -786,6 +820,87 @@ type metadataOutputService10TestShapeOutputService10TestCaseOperation1Output str
 	SDKShapeTraits bool `type:"structure" payload:"Stream"`
 }
 
+// OutputService11ProtocolTest is a client for OutputService11ProtocolTest.
+type OutputService11ProtocolTest struct {
+	*aws.Service
+}
+
+type OutputService11ProtocolTestConfig struct {
+	*aws.Config
+}
+
+// New returns a new OutputService11ProtocolTest client.
+func NewOutputService11ProtocolTest(config *OutputService11ProtocolTestConfig) *OutputService11ProtocolTest {
+	if config == nil {
+		config = &OutputService11ProtocolTestConfig{}
+	}
+
+	service := &aws.Service{
+		Config:      aws.DefaultConfig.Merge(config.Config),
+		ServiceName: "outputservice11protocoltest",
+		APIVersion:  "",
+	}
+	service.Initialize()
+
+	// Handlers
+	service.Handlers.Sign.PushBack(v4.Sign)
+	service.Handlers.Build.PushBack(restxml.Build)
+	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+
+	return &OutputService11ProtocolTest{service}
+}
+
+// OutputService11TestCaseOperation1Request generates a request for the OutputService11TestCaseOperation1 operation.
+func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(input *OutputService11TestShapeOutputService11TestCaseOperation1Input) (req *aws.Request, output *OutputService11TestShapeOutputService11TestCaseOperation1Output) {
+	if opOutputService11TestCaseOperation1 == nil {
+		opOutputService11TestCaseOperation1 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opOutputService11TestCaseOperation1, input, output)
+	output = &OutputService11TestShapeOutputService11TestCaseOperation1Output{}
+	req.Data = output
+	return
+}
+
+func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1(input *OutputService11TestShapeOutputService11TestCaseOperation1Input) (output *OutputService11TestShapeOutputService11TestCaseOperation1Output, err error) {
+	req, out := c.OutputService11TestCaseOperation1Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opOutputService11TestCaseOperation1 *aws.Operation
+
+type OutputService11TestShapeOutputService11TestCaseOperation1Input struct {
+	metadataOutputService11TestShapeOutputService11TestCaseOperation1Input `json:"-", xml:"-"`
+}
+
+type metadataOutputService11TestShapeOutputService11TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type OutputService11TestShapeOutputService11TestCaseOperation1Output struct {
+	Char      *string   `location:"header" locationName:"x-char" type:"character"`
+	Double    *float64  `location:"header" locationName:"x-double" type:"double"`
+	FalseBool *bool     `location:"header" locationName:"x-false-bool" type:"boolean"`
+	Float     *float64  `location:"header" locationName:"x-float" type:"float"`
+	Integer   *int64    `location:"header" locationName:"x-int" type:"integer"`
+	Long      *int64    `location:"header" locationName:"x-long" type:"long"`
+	Str       *string   `location:"header" locationName:"x-str" type:"string"`
+	Timestamp *aws.Time `location:"header" locationName:"x-timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	TrueBool  *bool     `location:"header" locationName:"x-true-bool" type:"boolean"`
+
+	metadataOutputService11TestShapeOutputService11TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataOutputService11TestShapeOutputService11TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 //
 // Tests begin here
 //
@@ -793,7 +908,7 @@ type metadataOutputService10TestShapeOutputService10TestCaseOperation1Output str
 func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	svc := NewOutputService1ProtocolTest(nil)
 
-	buf := bytes.NewReader([]byte("<OperationNameResponse><Str>myname</Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char></OperationNameResponse>"))
+	buf := bytes.NewReader([]byte("<OperationNameResponse><Str>myname</Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char><Timestamp>2015-01-25T08:00:00Z</Timestamp></OperationNameResponse>"))
 	req, out := svc.OutputService1TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
@@ -817,6 +932,39 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	assert.Equal(t, 200, *out.Long)
 	assert.Equal(t, 123, *out.Num)
 	assert.Equal(t, "myname", *out.Str)
+	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.Time.String())
+	assert.Equal(t, true, *out.TrueBool)
+
+}
+
+func TestOutputService1ProtocolTestScalarMembersCase2(t *testing.T) {
+	svc := NewOutputService1ProtocolTest(nil)
+
+	buf := bytes.NewReader([]byte("<OperationNameResponse><Str></Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char><Timestamp>2015-01-25T08:00:00Z</Timestamp></OperationNameResponse>"))
+	req, out := svc.OutputService1TestCaseOperation2Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+	req.HTTPResponse.Header.Set("ImaHeader", "test")
+	req.HTTPResponse.Header.Set("X-Foo", "abc")
+
+	// unmarshal response
+	restxml.UnmarshalMeta(req)
+	restxml.Unmarshal(req)
+	assert.NoError(t, req.Error)
+
+	// assert response
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "a", *out.Char)
+	assert.Equal(t, 1.3, *out.Double)
+	assert.Equal(t, false, *out.FalseBool)
+	assert.Equal(t, 1.2, *out.Float)
+	assert.Equal(t, "test", *out.ImaHeader)
+	assert.Equal(t, "abc", *out.ImaHeaderLocation)
+	assert.Equal(t, 200, *out.Long)
+	assert.Equal(t, 123, *out.Num)
+	assert.Equal(t, "", *out.Str)
+	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.Time.String())
 	assert.Equal(t, true, *out.TrueBool)
 
 }
@@ -1006,6 +1154,43 @@ func TestOutputService10ProtocolTestStreamingPayloadCase1(t *testing.T) {
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
 	assert.Equal(t, "abc", string(out.Stream))
+
+}
+
+func TestOutputService11ProtocolTestScalarMembersInHeadersCase1(t *testing.T) {
+	svc := NewOutputService11ProtocolTest(nil)
+
+	buf := bytes.NewReader([]byte(""))
+	req, out := svc.OutputService11TestCaseOperation1Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+	req.HTTPResponse.Header.Set("x-char", "a")
+	req.HTTPResponse.Header.Set("x-double", "1.5")
+	req.HTTPResponse.Header.Set("x-false-bool", "false")
+	req.HTTPResponse.Header.Set("x-float", "1.5")
+	req.HTTPResponse.Header.Set("x-int", "1")
+	req.HTTPResponse.Header.Set("x-long", "100")
+	req.HTTPResponse.Header.Set("x-str", "string")
+	req.HTTPResponse.Header.Set("x-timestamp", "Sun, 25 Jan 2015 08:00:00 GMT")
+	req.HTTPResponse.Header.Set("x-true-bool", "true")
+
+	// unmarshal response
+	restxml.UnmarshalMeta(req)
+	restxml.Unmarshal(req)
+	assert.NoError(t, req.Error)
+
+	// assert response
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "a", *out.Char)
+	assert.Equal(t, 1.5, *out.Double)
+	assert.Equal(t, false, *out.FalseBool)
+	assert.Equal(t, 1.5, *out.Float)
+	assert.Equal(t, 1, *out.Integer)
+	assert.Equal(t, 100, *out.Long)
+	assert.Equal(t, "string", *out.Str)
+	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.Time.String())
+	assert.Equal(t, true, *out.TrueBool)
 
 }
 

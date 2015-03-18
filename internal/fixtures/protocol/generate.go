@@ -49,6 +49,7 @@ var _ xmlutil.XMLNode
 var _ xml.Attr
 var _ = ioutil.Discard
 var _ = util.Trim("")
+var _ = url.Values{}
 `
 
 var reStripSpace = regexp.MustCompile(`\s(\w)`)
@@ -67,6 +68,7 @@ var extraImports = []string{
 	"net/http",
 	"testing",
 	"time",
+	"net/url",
 	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil",
 	"github.com/awslabs/aws-sdk-go/internal/util",
 	"github.com/stretchr/testify/assert",
@@ -109,10 +111,9 @@ func Test{{ .OpName }}(t *testing.T) {
 	{{ .TestCase.TestSuite.API.ProtocolPackage }}.Build(req)
 	assert.NoError(t, req.Error)
 
-	{{ if ne .Body "" }}// assert body
+	{{ if ne .TestCase.InputTest.Body "" }}// assert body
 	assert.NotNil(t, r.Body)
-	{{ if eq .TestCase.TestSuite.API.Metadata.Protocol "rest-xml" }}body := util.SortXML(r.Body){{ else }}body, _ := ioutil.ReadAll(r.Body){{ end }}
-	assert.Equal(t, util.Trim({{ .Body }}), util.Trim(string(body))){{ end }}
+	{{ .BodyAssertions }}{{ end }}
 
 	{{ if ne .TestCase.InputTest.URI "" }}// assert URL
 	assert.Equal(t, "https://test{{ .TestCase.InputTest.URI }}", r.URL.String()){{ end }}
@@ -125,7 +126,20 @@ func Test{{ .OpName }}(t *testing.T) {
 
 type tplInputTestCaseData struct {
 	*TestCase
-	Body, OpName, ParamsString string
+	OpName, ParamsString string
+}
+
+func (t tplInputTestCaseData) BodyAssertions() string {
+	protocol, code := t.TestCase.TestSuite.API.Metadata.Protocol, ""
+	switch protocol {
+	case "rest-xml":
+		code += "body := util.SortXML(r.Body)\n"
+	default:
+		code += "body, _ := ioutil.ReadAll(r.Body)\n"
+	}
+
+	code += "assert.Equal(t, util.Trim(`" + t.InputTest.Body + "`), util.Trim(string(body)))"
+	return code
 }
 
 var tplOutputTestCase = template.Must(template.New("outputcase").Parse(`
@@ -175,7 +189,6 @@ func (i *TestCase) TestCase(idx int) string {
 
 		input := tplInputTestCaseData{
 			TestCase:     i,
-			Body:         fmt.Sprintf("%q", i.InputTest.Body),
 			OpName:       strings.ToUpper(opName[0:1]) + opName[1:],
 			ParamsString: helpers.ParamsStructFromJSON(i.Params, i.Given.InputRef.Shape, false),
 		}

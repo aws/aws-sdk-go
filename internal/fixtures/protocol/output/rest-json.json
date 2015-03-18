@@ -160,8 +160,7 @@
   {
     "description": "Timestamp members",
     "metadata": {
-      "protocol": "rest-json",
-      "timestampFormat": "iso8601"
+      "protocol": "rest-json"
     },
     "shapes": {
       "OutputShape": {
@@ -182,8 +181,7 @@
         "type": "structure",
         "members": {
           "foo": {
-            "shape": "TimeType",
-            "timestampFormat": "unixTimestamp"
+            "shape": "TimeType"
           }
         }
       }
@@ -205,7 +203,7 @@
         "response": {
           "status_code": 200,
           "headers": {},
-          "body": "{\"TimeMember\": \"2014-04-29T18:30:38+00:00\", \"StructMember\": {\"foo\": 1398796238}}"
+          "body": "{\"TimeMember\": 1398796238, \"StructMember\": {\"foo\": 1398796238}}"
         }
       }
     ]
@@ -365,8 +363,7 @@
   {
     "description": "Complex Map Values",
     "metadata": {
-      "protocol": "rest-json",
-      "timestampFormat": "iso8601"
+      "protocol": "rest-json"
     },
     "shapes": {
       "OutputShape": {
@@ -410,7 +407,7 @@
         "response": {
           "status_code": 200,
           "headers": {},
-          "body": "{\"MapMember\": {\"a\": \"2014-04-29T18:30:38+00:00\", \"b\": \"2014-04-29T18:30:38+00:00\"}}"
+          "body": "{\"MapMember\": {\"a\": 1398796238, \"b\": 1398796238}}"
         }
       }
     ]
@@ -494,12 +491,12 @@
         "result": {
           "AllHeaders": {
             "Content-Length": "10",
-            "x-Foo": "bar",
-            "X-bam": "boo"
+            "X-Foo": "bar",
+            "X-Bam": "boo"
           },
           "PrefixedHeaders": {
             "Foo": "bar",
-            "bam": "boo"
+            "Bam": "boo"
           }
         },
         "response": {

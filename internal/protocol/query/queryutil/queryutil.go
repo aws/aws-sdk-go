@@ -36,16 +36,24 @@ func (q *queryParser) parseValue(v url.Values, value reflect.Value, prefix strin
 		return nil
 	}
 
-	switch value.Kind() {
-	case reflect.Struct:
-		return q.parseStruct(v, value, prefix)
-	case reflect.Slice:
-		if tag.Get("type") == "blob" { // this is a scalar slice, not a list
-			return q.parseScalar(v, value, prefix, tag)
-		} else {
-			return q.parseList(v, value, prefix, tag)
+	t := tag.Get("type")
+	if t == "" {
+		switch value.Kind() {
+		case reflect.Struct:
+			t = "structure"
+		case reflect.Slice:
+			t = "list"
+		case reflect.Map:
+			t = "map"
 		}
-	case reflect.Map:
+	}
+
+	switch t {
+	case "structure":
+		return q.parseStruct(v, value, prefix)
+	case "list":
+		return q.parseList(v, value, prefix, tag)
+	case "map":
 		return q.parseMap(v, value, prefix, tag)
 	default:
 		return q.parseScalar(v, value, prefix, tag)

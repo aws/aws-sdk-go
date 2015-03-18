@@ -15,7 +15,7 @@ func Unmarshal(r *aws.Request) {
 	if r.DataFilled() {
 		decoder := xml.NewDecoder(r.HTTPResponse.Body)
 		err := xmlutil.UnmarshalXML(r.Data, decoder, "")
-		if err != nil && err != io.EOF {
+		if err != nil {
 			r.Error = err
 			return
 		}

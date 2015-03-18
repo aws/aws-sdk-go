@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"net/http"
 	"reflect"
 	"strconv"
 	"strings"
@@ -68,14 +69,55 @@ func unmarshalLocationElements(r *aws.Request, v reflect.Value) {
 			}
 
 			switch field.Tag.Get("location") {
-			case "header": // we should only ever be pulling out headers
-				unmarshalHeader(m, r.HTTPResponse.Header.Get(name))
+			case "statusCode":
+				unmarshalStatusCode(m, r.HTTPResponse.StatusCode)
+			case "header":
+				err := unmarshalHeader(m, r.HTTPResponse.Header.Get(name))
+				if err != nil {
+					r.Error = err
+					break
+				}
+			case "headers":
+				prefix := field.Tag.Get("locationName")
+				err := unmarshalHeaderMap(m, r.HTTPResponse.Header, prefix)
+				if err != nil {
+					r.Error = err
+					break
+				}
 			}
 		}
 		if r.Error != nil {
 			return
 		}
 	}
+}
+
+func unmarshalStatusCode(v reflect.Value, statusCode int) {
+	if !v.IsValid() {
+		return
+	}
+
+	switch v.Interface().(type) {
+	case *int64:
+		s := int64(statusCode)
+		v.Set(reflect.ValueOf(&s))
+	}
+}
+
+func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string) error {
+	switch r.Interface().(type) {
+	case *map[string]*string: // we only support string map value types
+		out := map[string]*string{}
+		for k, v := range headers {
+			k = http.CanonicalHeaderKey(k)
+			if strings.HasPrefix(strings.ToLower(k), strings.ToLower(prefix)) {
+				out[k[len(prefix):]] = &v[0]
+			}
+		}
+		fmt.Println(out)
+		r.Set(reflect.ValueOf(&out))
+	}
+	return nil
 }
 
 func unmarshalHeader(v reflect.Value, header string) error {
@@ -107,13 +149,6 @@ func unmarshalHeader(v reflect.Value, header string) error {
 		} else {
 			v.Set(reflect.ValueOf(&i))
 		}
-	case *int:
-		i, err := strconv.ParseInt(header, 10, 32)
-		if err != nil {
-			return err
-		} else {
-			v.Set(reflect.ValueOf(&i))
-		}
 	case *float64:
 		f, err := strconv.ParseFloat(header, 64)
 		if err != nil {
@@ -121,19 +156,12 @@ func unmarshalHeader(v reflect.Value, header string) error {
 		} else {
 			v.Set(reflect.ValueOf(&f))
 		}
-	case *float32:
-		f, err := strconv.ParseFloat(header, 32)
+	case *aws.Time:
+		t, err := time.Parse(RFC822, header)
 		if err != nil {
 			return err
 		} else {
-			v.Set(reflect.ValueOf(&f))
-		}
-	case *time.Time:
-		t, err := time.Parse(time.RFC822Z, header)
-		if err != nil {
-			return err
-		} else {
-			v.Set(reflect.ValueOf(&t))
+			v.Set(reflect.ValueOf(aws.NewTime(t)))
 		}
 	default:
 		err := fmt.Errorf("Unsupported value for param %v (%s)", v.Interface(), v.Type())

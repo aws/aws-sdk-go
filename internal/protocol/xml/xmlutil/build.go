@@ -5,6 +5,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"reflect"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -140,6 +141,10 @@ func (b *xmlBuilder) buildStruct(value reflect.Value, current *XMLNode, tag refl
 }
 
 func (b *xmlBuilder) buildList(value reflect.Value, current *XMLNode, tag reflect.StructTag) error {
+	if value.IsNil() { // don't build omitted lists
+		return nil
+	}
+
 	// check for unflattened list member
 	flattened := tag.Get("flattened") != ""
 
@@ -174,8 +179,52 @@ func (b *xmlBuilder) buildList(value reflect.Value, current *XMLNode, tag reflec
 }
 
 func (b *xmlBuilder) buildMap(value reflect.Value, current *XMLNode, tag reflect.StructTag) error {
-	// TODO(rest-xml-input-maps) implement support for REST-XML map inputs
-	return fmt.Errorf("maps are not supported for this protocol")
+	if value.IsNil() { // don't build omitted maps
+		return nil
+	}
+
+	maproot := NewXMLElement(xml.Name{Local: tag.Get("locationName")})
+	current.AddChild(maproot)
+	current = maproot
+
+	kname, vname := "key", "value"
+	if n := tag.Get("locationNameKey"); n != "" {
+		kname = n
+	}
+	if n := tag.Get("locationNameValue"); n != "" {
+		vname = n
+	}
+
+	// sorting is not required for compliance, but it makes testing easier
+	keys := make([]string, value.Len())
+	for i, k := range value.MapKeys() {
+		keys[i] = k.String()
+	}
+	sort.Strings(keys)
+
+	for _, k := range keys {
+		v := value.MapIndex(reflect.ValueOf(k))
+		fmt.Println(k, v.Interface())
+
+		mapcur := current
+		if tag.Get("flattened") == "" { // add "entry" tag to non-flat maps
+			child := NewXMLElement(xml.Name{Local: "entry"})
+			mapcur.AddChild(child)
+			mapcur = child
+		}
+
+		kchild := NewXMLElement(xml.Name{Local: kname})
+		kchild.Text = k
+		vchild := NewXMLElement(xml.Name{Local: vname})
+		mapcur.AddChild(kchild)
+		mapcur.AddChild(vchild)
+
+		if err := b.buildValue(v, vchild, ""); err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 func (b *xmlBuilder) buildScalar(value reflect.Value, current *XMLNode, tag reflect.StructTag) error {

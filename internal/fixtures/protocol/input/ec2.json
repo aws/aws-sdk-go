@@ -319,5 +319,42 @@
         }
       }
     ]
+  },
+  {
+    "description": "Timestamp values",
+    "metadata": {
+      "protocol": "ec2",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "TimeArg": {
+            "shape": "TimestampType"
+          }
+        }
+      },
+      "TimestampType": {
+        "type": "timestamp"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "TimeArg": 1422172800
+        },
+        "serialized": {
+          "uri": "/",
+          "body": "Action=OperationName&Version=2014-01-01&TimeArg=2015-01-25T08%3A00%3A00Z"
+        }
+      }
+    ]
   }
 ]

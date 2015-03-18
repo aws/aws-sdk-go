@@ -6,7 +6,6 @@ package restxml
 import (
 	"bytes"
 	"encoding/xml"
-	"io"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/query"
@@ -33,7 +32,7 @@ func Unmarshal(r *aws.Request) {
 		defer r.HTTPResponse.Body.Close()
 		decoder := xml.NewDecoder(r.HTTPResponse.Body)
 		err := xmlutil.UnmarshalXML(r.Data, decoder, "")
-		if err != nil && err != io.EOF {
+		if err != nil {
 			r.Error = err
 			return
 		}

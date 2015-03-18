@@ -13,6 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"testing"
 	"time"
 )
@@ -25,6 +26,7 @@ var _ xmlutil.XMLNode
 var _ xml.Attr
 var _ = ioutil.Discard
 var _ = util.Trim("")
+var _ = url.Values{}
 
 // OutputService1ProtocolTest is a client for OutputService1ProtocolTest.
 type OutputService1ProtocolTest struct {
@@ -260,12 +262,23 @@ type metadataOutputService3TestShapeOutputService3TestCaseOperation1Input struct
 }
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
-	ListMember []*string `type:"list" json:",omitempty"`
+	StructMember *OutputService3TestShapeTimeContainer `type:"structure" json:",omitempty"`
+	TimeMember   *aws.Time                             `type:"timestamp" timestampFormat:"unix" json:",omitempty"`
 
 	metadataOutputService3TestShapeOutputService3TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService3TestShapeOutputService3TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type OutputService3TestShapeTimeContainer struct {
+	Foo *aws.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix" json:"foo,omitempty"`
+
+	metadataOutputService3TestShapeTimeContainer `json:"-", xml:"-"`
+}
+
+type metadataOutputService3TestShapeTimeContainer struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -335,7 +348,7 @@ type metadataOutputService4TestShapeOutputService4TestCaseOperation1Input struct
 }
 
 type OutputService4TestShapeOutputService4TestCaseOperation1Output struct {
-	MapMember *map[string][]*int64 `type:"map" json:",omitempty"`
+	ListMember []*string `type:"list" json:",omitempty"`
 
 	metadataOutputService4TestShapeOutputService4TestCaseOperation1Output `json:"-", xml:"-"`
 }
@@ -410,12 +423,87 @@ type metadataOutputService5TestShapeOutputService5TestCaseOperation1Input struct
 }
 
 type OutputService5TestShapeOutputService5TestCaseOperation1Output struct {
-	StrType *string `type:"string" json:",omitempty"`
+	MapMember *map[string][]*int64 `type:"map" json:",omitempty"`
 
 	metadataOutputService5TestShapeOutputService5TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
 type metadataOutputService5TestShapeOutputService5TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+// OutputService6ProtocolTest is a client for OutputService6ProtocolTest.
+type OutputService6ProtocolTest struct {
+	*aws.Service
+}
+
+type OutputService6ProtocolTestConfig struct {
+	*aws.Config
+}
+
+// New returns a new OutputService6ProtocolTest client.
+func NewOutputService6ProtocolTest(config *OutputService6ProtocolTestConfig) *OutputService6ProtocolTest {
+	if config == nil {
+		config = &OutputService6ProtocolTestConfig{}
+	}
+
+	service := &aws.Service{
+		Config:       aws.DefaultConfig.Merge(config.Config),
+		ServiceName:  "outputservice6protocoltest",
+		APIVersion:   "",
+		JSONVersion:  "",
+		TargetPrefix: "",
+	}
+	service.Initialize()
+
+	// Handlers
+	service.Handlers.Sign.PushBack(v4.Sign)
+	service.Handlers.Build.PushBack(jsonrpc.Build)
+	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
+
+	return &OutputService6ProtocolTest{service}
+}
+
+// OutputService6TestCaseOperation1Request generates a request for the OutputService6TestCaseOperation1 operation.
+func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1Request(input *OutputService6TestShapeOutputService6TestCaseOperation1Input) (req *aws.Request, output *OutputService6TestShapeOutputService6TestCaseOperation1Output) {
+	if opOutputService6TestCaseOperation1 == nil {
+		opOutputService6TestCaseOperation1 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opOutputService6TestCaseOperation1, input, output)
+	output = &OutputService6TestShapeOutputService6TestCaseOperation1Output{}
+	req.Data = output
+	return
+}
+
+func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1(input *OutputService6TestShapeOutputService6TestCaseOperation1Input) (output *OutputService6TestShapeOutputService6TestCaseOperation1Output, err error) {
+	req, out := c.OutputService6TestCaseOperation1Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opOutputService6TestCaseOperation1 *aws.Operation
+
+type OutputService6TestShapeOutputService6TestCaseOperation1Input struct {
+	metadataOutputService6TestShapeOutputService6TestCaseOperation1Input `json:"-", xml:"-"`
+}
+
+type metadataOutputService6TestShapeOutputService6TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure" json:",omitempty"`
+}
+
+type OutputService6TestShapeOutputService6TestCaseOperation1Output struct {
+	StrType *string `type:"string" json:",omitempty"`
+
+	metadataOutputService6TestShapeOutputService6TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataOutputService6TestShapeOutputService6TestCaseOperation1Output struct {
 	SDKShapeTraits bool `type:"structure" json:",omitempty"`
 }
 
@@ -471,11 +559,32 @@ func TestOutputService2ProtocolTestBlobMembersCase1(t *testing.T) {
 
 }
 
-func TestOutputService3ProtocolTestListsCase1(t *testing.T) {
+func TestOutputService3ProtocolTestTimestampMembersCase1(t *testing.T) {
 	svc := NewOutputService3ProtocolTest(nil)
 
-	buf := bytes.NewReader([]byte("{\"ListMember\": [\"a\", \"b\"]}"))
+	buf := bytes.NewReader([]byte("{\"TimeMember\": 1398796238, \"StructMember\": {\"foo\": 1398796238}}"))
 	req, out := svc.OutputService3TestCaseOperation1Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+
+	// unmarshal response
+	jsonrpc.UnmarshalMeta(req)
+	jsonrpc.Unmarshal(req)
+	assert.NoError(t, req.Error)
+
+	// assert response
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), out.StructMember.Foo.Time.String())
+	assert.Equal(t, time.Unix(1.398796238e+09, 0).UTC().String(), out.TimeMember.Time.String())
+
+}
+
+func TestOutputService4ProtocolTestListsCase1(t *testing.T) {
+	svc := NewOutputService4ProtocolTest(nil)
+
+	buf := bytes.NewReader([]byte("{\"ListMember\": [\"a\", \"b\"]}"))
+	req, out := svc.OutputService4TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -492,11 +601,11 @@ func TestOutputService3ProtocolTestListsCase1(t *testing.T) {
 
 }
 
-func TestOutputService4ProtocolTestMapsCase1(t *testing.T) {
-	svc := NewOutputService4ProtocolTest(nil)
+func TestOutputService5ProtocolTestMapsCase1(t *testing.T) {
+	svc := NewOutputService5ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("{\"MapMember\": {\"a\": [1, 2], \"b\": [3, 4]}}"))
-	req, out := svc.OutputService4TestCaseOperation1Request(nil)
+	req, out := svc.OutputService5TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -515,11 +624,11 @@ func TestOutputService4ProtocolTestMapsCase1(t *testing.T) {
 
 }
 
-func TestOutputService5ProtocolTestIgnoresExtraDataCase1(t *testing.T) {
-	svc := NewOutputService5ProtocolTest(nil)
+func TestOutputService6ProtocolTestIgnoresExtraDataCase1(t *testing.T) {
+	svc := NewOutputService6ProtocolTest(nil)
 
 	buf := bytes.NewReader([]byte("{\"foo\": \"bar\"}"))
-	req, out := svc.OutputService5TestCaseOperation1Request(nil)
+	req, out := svc.OutputService6TestCaseOperation1Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers

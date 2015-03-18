@@ -22,8 +22,7 @@ func Build(r *aws.Request) {
 }
 
 func Unmarshal(r *aws.Request) {
-	m := rest.PayloadMember(r.Data)
-	if m != nil {
+	if t := rest.PayloadType(r.Data); t == "structure" || t == "" {
 		jsonrpc.Unmarshal(r)
 	}
 }

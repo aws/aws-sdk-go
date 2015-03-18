@@ -13,6 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"testing"
 	"time"
 )
@@ -25,6 +26,7 @@ var _ xmlutil.XMLNode
 var _ xml.Attr
 var _ = ioutil.Discard
 var _ = util.Trim("")
+var _ = url.Values{}
 
 // InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
@@ -550,6 +552,79 @@ type metadataInputService7TestShapeInputService7TestCaseOperation1Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// InputService8ProtocolTest is a client for InputService8ProtocolTest.
+type InputService8ProtocolTest struct {
+	*aws.Service
+}
+
+type InputService8ProtocolTestConfig struct {
+	*aws.Config
+}
+
+// New returns a new InputService8ProtocolTest client.
+func NewInputService8ProtocolTest(config *InputService8ProtocolTestConfig) *InputService8ProtocolTest {
+	if config == nil {
+		config = &InputService8ProtocolTestConfig{}
+	}
+
+	service := &aws.Service{
+		Config:      aws.DefaultConfig.Merge(config.Config),
+		ServiceName: "inputservice8protocoltest",
+		APIVersion:  "2014-01-01",
+	}
+	service.Initialize()
+
+	// Handlers
+	service.Handlers.Sign.PushBack(v4.Sign)
+	service.Handlers.Build.PushBack(ec2query.Build)
+	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
+
+	return &InputService8ProtocolTest{service}
+}
+
+// InputService8TestCaseOperation1Request generates a request for the InputService8TestCaseOperation1 operation.
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation1Request(input *InputService8TestShapeInputService8TestCaseOperation1Input) (req *aws.Request, output *InputService8TestShapeInputService8TestCaseOperation1Output) {
+	if opInputService8TestCaseOperation1 == nil {
+		opInputService8TestCaseOperation1 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation1, input, output)
+	output = &InputService8TestShapeInputService8TestCaseOperation1Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation1(input *InputService8TestShapeInputService8TestCaseOperation1Input) (output *InputService8TestShapeInputService8TestCaseOperation1Output, err error) {
+	req, out := c.InputService8TestCaseOperation1Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opInputService8TestCaseOperation1 *aws.Operation
+
+type InputService8TestShapeInputService8TestCaseOperation1Input struct {
+	TimeArg *aws.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	metadataInputService8TestShapeInputService8TestCaseOperation1Input `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeInputService8TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService8TestShapeInputService8TestCaseOperation1Output struct {
+	metadataInputService8TestShapeInputService8TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeInputService8TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 //
 // Tests begin here
 //
@@ -572,7 +647,7 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -600,7 +675,7 @@ func TestInputService2ProtocolTestStructureWithLocationNameAndQueryNameAppliedTo
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&BarLocationName=val2&Foo=val1&Version=2014-01-01&yuckQueryName=val3"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&BarLocationName=val2&Foo=val1&Version=2014-01-01&yuckQueryName=val3`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -628,7 +703,7 @@ func TestInputService3ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&Struct.Scalar=foo&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&Struct.Scalar=foo&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -658,7 +733,7 @@ func TestInputService4ProtocolTestListTypesCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&ListArg.1=foo&ListArg.2=bar&ListArg.3=baz&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&ListArg.1=foo&ListArg.2=bar&ListArg.3=baz&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -688,7 +763,7 @@ func TestInputService5ProtocolTestListWithLocationNameAppliedToMemberCase1(t *te
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&ListMemberName.1=a&ListMemberName.2=b&ListMemberName.3=c&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&ListMemberName.1=a&ListMemberName.2=b&ListMemberName.3=c&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -718,7 +793,7 @@ func TestInputService6ProtocolTestListWithLocationNameAndQueryNameCase1(t *testi
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&ListQueryName.1=a&ListQueryName.2=b&ListQueryName.3=c&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&ListQueryName.1=a&ListQueryName.2=b&ListQueryName.3=c&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -744,7 +819,33 @@ func TestInputService7ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&BlobArg=Zm9v&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&BlobArg=Zm9v&Version=2014-01-01`), util.Trim(string(body)))
+
+	// assert URL
+	assert.Equal(t, "https://test/", r.URL.String())
+
+	// assert headers
+
+}
+
+func TestInputService8ProtocolTestTimestampValuesCase1(t *testing.T) {
+	svc := NewInputService8ProtocolTest(nil)
+	svc.Endpoint = "https://test"
+
+	input := &InputService8TestShapeInputService8TestCaseOperation1Input{
+		TimeArg: aws.NewTime(time.Unix(1422172800, 0)),
+	}
+	req, _ := svc.InputService8TestCaseOperation1Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	ec2query.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(`Action=OperationName&TimeArg=2015-01-25T08%3A00%3A00Z&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())

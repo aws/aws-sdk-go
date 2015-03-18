@@ -41,9 +41,11 @@ func Build(req *aws.Request) {
 }
 
 func Unmarshal(req *aws.Request) {
-	defer req.HTTPResponse.Body.Close()
-	if req.Data != nil {
-		json.NewDecoder(req.HTTPResponse.Body).Decode(req.Data)
+	if req.DataFilled() {
+		err := json.NewDecoder(req.HTTPResponse.Body).Decode(req.Data)
+		if err != nil {
+			req.Error = err
+		}
 	}
 	return
 }

@@ -13,6 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"testing"
 	"time"
 )
@@ -25,6 +26,7 @@ var _ xmlutil.XMLNode
 var _ xml.Attr
 var _ = ioutil.Discard
 var _ = util.Trim("")
+var _ = url.Values{}
 
 // OutputService1ProtocolTest is a client for OutputService1ProtocolTest.
 type OutputService1ProtocolTest struct {
@@ -59,7 +61,7 @@ func NewOutputService1ProtocolTest(config *OutputService1ProtocolTestConfig) *Ou
 }
 
 // OutputService1TestCaseOperation1Request generates a request for the OutputService1TestCaseOperation1 operation.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputService1TestCaseOperation1Output) {
 	if opOutputService1TestCaseOperation1 == nil {
 		opOutputService1TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
@@ -67,12 +69,12 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(inp
 	}
 
 	req = aws.NewRequest(c.Service, opOutputService1TestCaseOperation1, input, output)
-	output = &OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output{}
+	output = &OutputService1TestShapeOutputService1TestCaseOperation1Output{}
 	req.Data = output
 	return
 }
 
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output, err error) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputService1TestCaseOperation1Output, err error) {
 	req, out := c.OutputService1TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -81,15 +83,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *Out
 
 var opOutputService1TestCaseOperation1 *aws.Operation
 
-type OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
-	metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-", xml:"-"`
-}
-
-type metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output struct {
+type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
 	Char      *string  `type:"character"`
 	Double    *float64 `type:"double"`
 	FalseBool *bool    `type:"boolean"`
@@ -99,10 +93,18 @@ type OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperati
 	Str       *string  `type:"string"`
 	TrueBool  *bool    `type:"boolean"`
 
-	metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output `json:"-", xml:"-"`
+	metadataOutputService1TestShapeOutputService1TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
-type metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Output struct {
+type metadataOutputService1TestShapeOutputService1TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
+	metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-", xml:"-"`
+}
+
+type metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

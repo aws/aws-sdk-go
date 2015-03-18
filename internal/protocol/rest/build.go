@@ -10,10 +10,12 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
+
+// RFC822 returns an RFC822 formatted timestamp for AWS protocols
+const RFC822 = "Mon, 2 Jan 2006 03:04:05 GMT"
 
 func Build(r *aws.Request) {
 	if r.ParamsFilled() {
@@ -202,14 +204,10 @@ func convertType(v reflect.Value) (*string, error) {
 		str = strconv.FormatBool(value)
 	case int64:
 		str = strconv.FormatInt(value, 10)
-	case int:
-		str = strconv.Itoa(value)
 	case float64:
 		str = strconv.FormatFloat(value, 'f', -1, 64)
-	case float32:
-		str = strconv.FormatFloat(float64(value), 'f', -1, 32)
-	case time.Time:
-		str = value.UTC().Format(time.RFC822Z)
+	case aws.Time:
+		str = value.UTC().Format(RFC822)
 	default:
 		err := fmt.Errorf("Unsupported value for param %v (%s)", v.Interface(), v.Type())
 		return nil, err

@@ -13,6 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"testing"
 	"time"
 )
@@ -25,6 +26,7 @@ var _ xmlutil.XMLNode
 var _ xml.Attr
 var _ = ioutil.Discard
 var _ = util.Trim("")
+var _ = url.Values{}
 
 // InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
@@ -476,6 +478,320 @@ type metadataInputService6TestShapeInputService6TestCaseOperation1Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// InputService7ProtocolTest is a client for InputService7ProtocolTest.
+type InputService7ProtocolTest struct {
+	*aws.Service
+}
+
+type InputService7ProtocolTestConfig struct {
+	*aws.Config
+}
+
+// New returns a new InputService7ProtocolTest client.
+func NewInputService7ProtocolTest(config *InputService7ProtocolTestConfig) *InputService7ProtocolTest {
+	if config == nil {
+		config = &InputService7ProtocolTestConfig{}
+	}
+
+	service := &aws.Service{
+		Config:      aws.DefaultConfig.Merge(config.Config),
+		ServiceName: "inputservice7protocoltest",
+		APIVersion:  "2014-01-01",
+	}
+	service.Initialize()
+
+	// Handlers
+	service.Handlers.Sign.PushBack(v4.Sign)
+	service.Handlers.Build.PushBack(query.Build)
+	service.Handlers.Unmarshal.PushBack(query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(query.UnmarshalError)
+
+	return &InputService7ProtocolTest{service}
+}
+
+// InputService7TestCaseOperation1Request generates a request for the InputService7TestCaseOperation1 operation.
+func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input *InputService7TestShapeInputService7TestCaseOperation1Input) (req *aws.Request, output *InputService7TestShapeInputService7TestCaseOperation1Output) {
+	if opInputService7TestCaseOperation1 == nil {
+		opInputService7TestCaseOperation1 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opInputService7TestCaseOperation1, input, output)
+	output = &InputService7TestShapeInputService7TestCaseOperation1Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *InputService7TestShapeInputService7TestCaseOperation1Input) (output *InputService7TestShapeInputService7TestCaseOperation1Output, err error) {
+	req, out := c.InputService7TestCaseOperation1Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opInputService7TestCaseOperation1 *aws.Operation
+
+type InputService7TestShapeInputService7TestCaseOperation1Input struct {
+	TimeArg *aws.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	metadataInputService7TestShapeInputService7TestCaseOperation1Input `json:"-", xml:"-"`
+}
+
+type metadataInputService7TestShapeInputService7TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService7TestShapeInputService7TestCaseOperation1Output struct {
+	metadataInputService7TestShapeInputService7TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService7TestShapeInputService7TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// InputService8ProtocolTest is a client for InputService8ProtocolTest.
+type InputService8ProtocolTest struct {
+	*aws.Service
+}
+
+type InputService8ProtocolTestConfig struct {
+	*aws.Config
+}
+
+// New returns a new InputService8ProtocolTest client.
+func NewInputService8ProtocolTest(config *InputService8ProtocolTestConfig) *InputService8ProtocolTest {
+	if config == nil {
+		config = &InputService8ProtocolTestConfig{}
+	}
+
+	service := &aws.Service{
+		Config:      aws.DefaultConfig.Merge(config.Config),
+		ServiceName: "inputservice8protocoltest",
+		APIVersion:  "2014-01-01",
+	}
+	service.Initialize()
+
+	// Handlers
+	service.Handlers.Sign.PushBack(v4.Sign)
+	service.Handlers.Build.PushBack(query.Build)
+	service.Handlers.Unmarshal.PushBack(query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(query.UnmarshalError)
+
+	return &InputService8ProtocolTest{service}
+}
+
+// InputService8TestCaseOperation1Request generates a request for the InputService8TestCaseOperation1 operation.
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation1Request(input *InputService8TestShapeInputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestCaseOperation1Output) {
+	if opInputService8TestCaseOperation1 == nil {
+		opInputService8TestCaseOperation1 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation1, input, output)
+	output = &InputService8TestShapeInputService8TestCaseOperation1Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation1(input *InputService8TestShapeInputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestCaseOperation1Output, err error) {
+	req, out := c.InputService8TestCaseOperation1Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opInputService8TestCaseOperation1 *aws.Operation
+
+// InputService8TestCaseOperation2Request generates a request for the InputService8TestCaseOperation2 operation.
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation2Request(input *InputService8TestShapeInputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestCaseOperation2Output) {
+	if opInputService8TestCaseOperation2 == nil {
+		opInputService8TestCaseOperation2 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation2, input, output)
+	output = &InputService8TestShapeInputService8TestCaseOperation2Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation2(input *InputService8TestShapeInputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestCaseOperation2Output, err error) {
+	req, out := c.InputService8TestCaseOperation2Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opInputService8TestCaseOperation2 *aws.Operation
+
+// InputService8TestCaseOperation3Request generates a request for the InputService8TestCaseOperation3 operation.
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation3Request(input *InputService8TestShapeInputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestCaseOperation3Output) {
+	if opInputService8TestCaseOperation3 == nil {
+		opInputService8TestCaseOperation3 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation3, input, output)
+	output = &InputService8TestShapeInputService8TestCaseOperation3Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation3(input *InputService8TestShapeInputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestCaseOperation3Output, err error) {
+	req, out := c.InputService8TestCaseOperation3Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opInputService8TestCaseOperation3 *aws.Operation
+
+// InputService8TestCaseOperation4Request generates a request for the InputService8TestCaseOperation4 operation.
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation4Request(input *InputService8TestShapeInputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output) {
+	if opInputService8TestCaseOperation4 == nil {
+		opInputService8TestCaseOperation4 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation4, input, output)
+	output = &InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation4(input *InputService8TestShapeInputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output, err error) {
+	req, out := c.InputService8TestCaseOperation4Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opInputService8TestCaseOperation4 *aws.Operation
+
+// InputService8TestCaseOperation5Request generates a request for the InputService8TestCaseOperation5 operation.
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation5Request(input *InputService8TestShapeInputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output) {
+	if opInputService8TestCaseOperation5 == nil {
+		opInputService8TestCaseOperation5 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation5, input, output)
+	output = &InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation5(input *InputService8TestShapeInputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output, err error) {
+	req, out := c.InputService8TestCaseOperation5Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opInputService8TestCaseOperation5 *aws.Operation
+
+// InputService8TestCaseOperation6Request generates a request for the InputService8TestCaseOperation6 operation.
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation6Request(input *InputService8TestShapeInputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output) {
+	if opInputService8TestCaseOperation6 == nil {
+		opInputService8TestCaseOperation6 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation6, input, output)
+	output = &InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation6(input *InputService8TestShapeInputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output, err error) {
+	req, out := c.InputService8TestCaseOperation6Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opInputService8TestCaseOperation6 *aws.Operation
+
+type InputService8TestShapeInputService8TestCaseOperation1Output struct {
+	metadataInputService8TestShapeInputService8TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeInputService8TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService8TestShapeInputService8TestCaseOperation2Output struct {
+	metadataInputService8TestShapeInputService8TestCaseOperation2Output `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeInputService8TestCaseOperation2Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService8TestShapeInputService8TestCaseOperation3Output struct {
+	metadataInputService8TestShapeInputService8TestCaseOperation3Output `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeInputService8TestCaseOperation3Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output struct {
+	metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output struct {
+	metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output struct {
+	metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService8TestShapeInputService8TestShapeInputShape struct {
+	RecursiveStruct *InputService8TestShapeRecursiveStructType `type:"structure"`
+
+	metadataInputService8TestShapeInputService8TestShapeInputShape `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeInputService8TestShapeInputShape struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService8TestShapeRecursiveStructType struct {
+	NoRecurse       *string                                                `type:"string"`
+	RecursiveList   []*InputService8TestShapeRecursiveStructType           `type:"list"`
+	RecursiveMap    *map[string]*InputService8TestShapeRecursiveStructType `type:"map"`
+	RecursiveStruct *InputService8TestShapeRecursiveStructType             `type:"structure"`
+
+	metadataInputService8TestShapeRecursiveStructType `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeRecursiveStructType struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 //
 // Tests begin here
 //
@@ -498,7 +814,7 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -526,7 +842,7 @@ func TestInputService2ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&StructArg.ScalarArg=foo&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&StructArg.ScalarArg=foo&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -556,7 +872,7 @@ func TestInputService3ProtocolTestListTypesCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&ListArg.member.1=foo&ListArg.member.2=bar&ListArg.member.3=baz&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&ListArg.member.1=foo&ListArg.member.2=bar&ListArg.member.3=baz&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -587,7 +903,7 @@ func TestInputService4ProtocolTestFlattenedListCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&ListArg.1=a&ListArg.2=b&ListArg.3=c&ScalarArg=foo&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&ListArg.1=a&ListArg.2=b&ListArg.3=c&ScalarArg=foo&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -616,7 +932,7 @@ func TestInputService5ProtocolTestSerializeMapTypeCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&MapArg.entry.1.key=key1&MapArg.entry.1.value=val1&MapArg.entry.2.key=key2&MapArg.entry.2.value=val2&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&MapArg.entry.1.key=key1&MapArg.entry.1.value=val1&MapArg.entry.2.key=key2&MapArg.entry.2.value=val2&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())
@@ -642,7 +958,232 @@ func TestInputService6ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	// assert body
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	assert.Equal(t, util.Trim("Action=OperationName&BlobArg=Zm9v&Version=2014-01-01"), util.Trim(string(body)))
+	assert.Equal(t, util.Trim(`Action=OperationName&BlobArg=Zm9v&Version=2014-01-01`), util.Trim(string(body)))
+
+	// assert URL
+	assert.Equal(t, "https://test/", r.URL.String())
+
+	// assert headers
+
+}
+
+func TestInputService7ProtocolTestTimestampValuesCase1(t *testing.T) {
+	svc := NewInputService7ProtocolTest(nil)
+	svc.Endpoint = "https://test"
+
+	input := &InputService7TestShapeInputService7TestCaseOperation1Input{
+		TimeArg: aws.NewTime(time.Unix(1422172800, 0)),
+	}
+	req, _ := svc.InputService7TestCaseOperation1Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	query.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(`Action=OperationName&TimeArg=2015-01-25T08%3A00%3A00Z&Version=2014-01-01`), util.Trim(string(body)))
+
+	// assert URL
+	assert.Equal(t, "https://test/", r.URL.String())
+
+	// assert headers
+
+}
+
+func TestInputService8ProtocolTestRecursiveShapesCase1(t *testing.T) {
+	svc := NewInputService8ProtocolTest(nil)
+	svc.Endpoint = "https://test"
+
+	input := &InputService8TestShapeInputService8TestShapeInputShape{
+		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
+			NoRecurse: aws.String("foo"),
+		},
+	}
+	req, _ := svc.InputService8TestCaseOperation1Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	query.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(`Action=OperationName&RecursiveStruct.NoRecurse=foo&Version=2014-01-01`), util.Trim(string(body)))
+
+	// assert URL
+	assert.Equal(t, "https://test/", r.URL.String())
+
+	// assert headers
+
+}
+
+func TestInputService8ProtocolTestRecursiveShapesCase2(t *testing.T) {
+	svc := NewInputService8ProtocolTest(nil)
+	svc.Endpoint = "https://test"
+
+	input := &InputService8TestShapeInputService8TestShapeInputShape{
+		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
+			RecursiveStruct: &InputService8TestShapeRecursiveStructType{
+				NoRecurse: aws.String("foo"),
+			},
+		},
+	}
+	req, _ := svc.InputService8TestCaseOperation2Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	query.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(`Action=OperationName&RecursiveStruct.RecursiveStruct.NoRecurse=foo&Version=2014-01-01`), util.Trim(string(body)))
+
+	// assert URL
+	assert.Equal(t, "https://test/", r.URL.String())
+
+	// assert headers
+
+}
+
+func TestInputService8ProtocolTestRecursiveShapesCase3(t *testing.T) {
+	svc := NewInputService8ProtocolTest(nil)
+	svc.Endpoint = "https://test"
+
+	input := &InputService8TestShapeInputService8TestShapeInputShape{
+		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
+			RecursiveStruct: &InputService8TestShapeRecursiveStructType{
+				RecursiveStruct: &InputService8TestShapeRecursiveStructType{
+					RecursiveStruct: &InputService8TestShapeRecursiveStructType{
+						NoRecurse: aws.String("foo"),
+					},
+				},
+			},
+		},
+	}
+	req, _ := svc.InputService8TestCaseOperation3Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	query.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(`Action=OperationName&RecursiveStruct.RecursiveStruct.RecursiveStruct.RecursiveStruct.NoRecurse=foo&Version=2014-01-01`), util.Trim(string(body)))
+
+	// assert URL
+	assert.Equal(t, "https://test/", r.URL.String())
+
+	// assert headers
+
+}
+
+func TestInputService8ProtocolTestRecursiveShapesCase4(t *testing.T) {
+	svc := NewInputService8ProtocolTest(nil)
+	svc.Endpoint = "https://test"
+
+	input := &InputService8TestShapeInputService8TestShapeInputShape{
+		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
+			RecursiveList: []*InputService8TestShapeRecursiveStructType{
+				&InputService8TestShapeRecursiveStructType{
+					NoRecurse: aws.String("foo"),
+				},
+				&InputService8TestShapeRecursiveStructType{
+					NoRecurse: aws.String("bar"),
+				},
+			},
+		},
+	}
+	req, _ := svc.InputService8TestCaseOperation4Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	query.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(`Action=OperationName&RecursiveStruct.RecursiveList.member.1.NoRecurse=foo&RecursiveStruct.RecursiveList.member.2.NoRecurse=bar&Version=2014-01-01`), util.Trim(string(body)))
+
+	// assert URL
+	assert.Equal(t, "https://test/", r.URL.String())
+
+	// assert headers
+
+}
+
+func TestInputService8ProtocolTestRecursiveShapesCase5(t *testing.T) {
+	svc := NewInputService8ProtocolTest(nil)
+	svc.Endpoint = "https://test"
+
+	input := &InputService8TestShapeInputService8TestShapeInputShape{
+		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
+			RecursiveList: []*InputService8TestShapeRecursiveStructType{
+				&InputService8TestShapeRecursiveStructType{
+					NoRecurse: aws.String("foo"),
+				},
+				&InputService8TestShapeRecursiveStructType{
+					RecursiveStruct: &InputService8TestShapeRecursiveStructType{
+						NoRecurse: aws.String("bar"),
+					},
+				},
+			},
+		},
+	}
+	req, _ := svc.InputService8TestCaseOperation5Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	query.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(`Action=OperationName&RecursiveStruct.RecursiveList.member.1.NoRecurse=foo&RecursiveStruct.RecursiveList.member.2.RecursiveStruct.NoRecurse=bar&Version=2014-01-01`), util.Trim(string(body)))
+
+	// assert URL
+	assert.Equal(t, "https://test/", r.URL.String())
+
+	// assert headers
+
+}
+
+func TestInputService8ProtocolTestRecursiveShapesCase6(t *testing.T) {
+	svc := NewInputService8ProtocolTest(nil)
+	svc.Endpoint = "https://test"
+
+	input := &InputService8TestShapeInputService8TestShapeInputShape{
+		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
+			RecursiveMap: &map[string]*InputService8TestShapeRecursiveStructType{
+				"bar": &InputService8TestShapeRecursiveStructType{
+					NoRecurse: aws.String("bar"),
+				},
+				"foo": &InputService8TestShapeRecursiveStructType{
+					NoRecurse: aws.String("foo"),
+				},
+			},
+		},
+	}
+	req, _ := svc.InputService8TestCaseOperation6Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	query.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(`Action=OperationName&RecursiveStruct.RecursiveMap.entry.1.key=bar&RecursiveStruct.RecursiveMap.entry.1.value.NoRecurse=bar&RecursiveStruct.RecursiveMap.entry.2.key=foo&RecursiveStruct.RecursiveMap.entry.2.value.NoRecurse=foo&Version=2014-01-01`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())

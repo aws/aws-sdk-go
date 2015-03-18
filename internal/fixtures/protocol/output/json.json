@@ -134,6 +134,57 @@
     ]
   },
   {
+    "description": "Timestamp members",
+    "metadata": {
+      "protocol": "json"
+    },
+    "shapes": {
+      "OutputShape": {
+        "type": "structure",
+        "members": {
+          "TimeMember": {
+            "shape": "TimeType"
+          },
+          "StructMember": {
+            "shape": "TimeContainer"
+          }
+        }
+      },
+      "TimeType": {
+        "type": "timestamp"
+      },
+      "TimeContainer": {
+        "type": "structure",
+        "members": {
+          "foo": {
+            "shape": "TimeType"
+          }
+        }
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "output": {
+            "shape": "OutputShape"
+          },
+          "name": "OperationName"
+        },
+        "result": {
+          "TimeMember": 1398796238,
+          "StructMember": {
+            "foo": 1398796238
+          }
+        },
+        "response": {
+          "status_code": 200,
+          "headers": {},
+          "body": "{\"TimeMember\": 1398796238, \"StructMember\": {\"foo\": 1398796238}}"
+        }
+      }
+    ]
+  },
+  {
     "description": "Lists",
     "metadata": {
       "protocol": "json"

@@ -4,6 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/xml"
 	"fmt"
+	"io"
 	"reflect"
 	"strconv"
 	"strings"
@@ -23,6 +24,9 @@ func UnmarshalXML(v interface{}, d *xml.Decoder, wrapper string) error {
 
 				err := parse(reflect.ValueOf(v), c, "")
 				if err != nil {
+					if err == io.EOF {
+						return nil
+					}
 					return err
 				}
 			}
@@ -33,24 +37,32 @@ func UnmarshalXML(v interface{}, d *xml.Decoder, wrapper string) error {
 }
 
 func parse(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
-	t := r.Type()
-	if t.Kind() == reflect.Ptr {
-		t = t.Elem() // check kind of actual element type
+	rtype := r.Type()
+	if rtype.Kind() == reflect.Ptr {
+		rtype = rtype.Elem() // check kind of actual element type
 	}
 
-	switch t.Kind() {
-	case reflect.Struct:
-		if field, ok := t.FieldByName("SDKShapeTraits"); ok {
+	t := tag.Get("type")
+	if t == "" {
+		switch rtype.Kind() {
+		case reflect.Struct:
+			t = "structure"
+		case reflect.Slice:
+			t = "list"
+		case reflect.Map:
+			t = "map"
+		}
+	}
+
+	switch t {
+	case "structure":
+		if field, ok := rtype.FieldByName("SDKShapeTraits"); ok {
 			tag = field.Tag
 		}
 		return parseStruct(r, node, tag)
-	case reflect.Slice:
-		if tag.Get("type") == "blob" { // this is a scalar slice, not a list
-			return parseScalar(r, node, tag)
-		} else {
-			return parseList(r, node, tag)
-		}
-	case reflect.Map:
+	case "list":
+		return parseList(r, node, tag)
+	case "map":
 		return parseMap(r, node, tag)
 	default:
 		return parseScalar(r, node, tag)
@@ -86,7 +98,12 @@ func parseStruct(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 		name := field.Name
 		if locName := field.Tag.Get("locationName"); locName != "" {
 			name = locName
+		} else if field.Tag.Get("flattened") != "" {
+			if locName := field.Tag.Get("locationNameList"); locName != "" {
+				name = locName
+			}
 		}
+		fmt.Println(name)
 
 		// try to find the field by name in elements
 		elems := node.Children[name]
@@ -230,7 +247,7 @@ func parseScalar(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 		if err != nil {
 			return err
 		} else {
-			r.Set(reflect.ValueOf(&t))
+			r.Set(reflect.ValueOf(aws.NewTime(t)))
 		}
 	default:
 		return fmt.Errorf("unsupported value: %v (%s)", r.Interface(), r.Type())

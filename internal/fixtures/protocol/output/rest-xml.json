@@ -39,6 +39,9 @@
           },
           "Char": {
             "shape": "CharType"
+          },
+          "Timestamp": {
+            "shape": "TimestampType"
           }
         }
       },
@@ -70,6 +73,9 @@
       "StatusShape": {
         "type": "integer",
         "location": "statusCode"
+      },
+      "TimestampType": {
+        "type": "timestamp"
       }
     },
     "cases": [
@@ -90,7 +96,8 @@
           "Float": 1.2,
           "Double": 1.3,
           "Long": 200,
-          "Char": "a"
+          "Char": "a",
+          "Timestamp": 1422172800
         },
         "response": {
           "status_code": 200,
@@ -98,7 +105,36 @@
             "ImaHeader": "test",
             "X-Foo": "abc"
           },
-          "body": "<OperationNameResponse><Str>myname</Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char></OperationNameResponse>"
+          "body": "<OperationNameResponse><Str>myname</Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char><Timestamp>2015-01-25T08:00:00Z</Timestamp></OperationNameResponse>"
+        }
+      },
+      {
+        "given": {
+          "output": {
+            "shape": "OutputShape"
+          },
+          "name": "OperationName"
+        },
+        "result": {
+          "ImaHeader": "test",
+          "ImaHeaderLocation": "abc",
+          "Str": "",
+          "Num": 123,
+          "FalseBool": false,
+          "TrueBool": true,
+          "Float": 1.2,
+          "Double": 1.3,
+          "Long": 200,
+          "Char": "a",
+          "Timestamp": 1422172800
+        },
+        "response": {
+          "status_code": 200,
+          "headers": {
+            "ImaHeader": "test",
+            "X-Foo": "abc"
+          },
+          "body": "<OperationNameResponse><Str></Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char><Timestamp>2015-01-25T08:00:00Z</Timestamp></OperationNameResponse>"
         }
       }
     ]
@@ -523,6 +559,123 @@
           "status_code": 200,
           "headers": {},
           "body": "abc"
+        }
+      }
+    ]
+  },
+  {
+    "description": "Scalar members in headers",
+    "metadata": {
+      "protocol": "rest-xml"
+    },
+    "shapes": {
+      "OutputShape": {
+        "type": "structure",
+        "members": {
+          "Str": {
+            "locationName": "x-str",
+            "shape": "StringHeaderType"
+          },
+          "Integer": {
+            "locationName": "x-int",
+            "shape": "IntegerHeaderType"
+          },
+          "TrueBool": {
+            "locationName": "x-true-bool",
+            "shape": "BooleanHeaderType"
+          },
+          "FalseBool": {
+            "locationName": "x-false-bool",
+            "shape": "BooleanHeaderType"
+          },
+          "Float": {
+            "locationName": "x-float",
+            "shape": "FloatHeaderType"
+          },
+          "Double": {
+            "locationName": "x-double",
+            "shape": "DoubleHeaderType"
+          },
+          "Long": {
+            "locationName": "x-long",
+            "shape": "LongHeaderType"
+          },
+          "Char": {
+            "locationName": "x-char",
+            "shape": "CharHeaderType"
+          },
+          "Timestamp": {
+            "locationName": "x-timestamp",
+            "shape": "TimestampHeaderType"
+          }
+        }
+      },
+      "StringHeaderType": {
+        "location": "header",
+        "type": "string"
+      },
+      "IntegerHeaderType": {
+        "location": "header",
+        "type": "integer"
+      },
+      "BooleanHeaderType": {
+        "location": "header",
+        "type": "boolean"
+      },
+      "FloatHeaderType": {
+        "location": "header",
+        "type": "float"
+      },
+      "DoubleHeaderType": {
+        "location": "header",
+        "type": "double"
+      },
+      "LongHeaderType": {
+        "location": "header",
+        "type": "long"
+      },
+      "CharHeaderType": {
+        "location": "header",
+        "type": "character"
+      },
+      "TimestampHeaderType": {
+        "location": "header",
+        "type": "timestamp"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "output": {
+            "shape": "OutputShape"
+          },
+          "name": "OperationName"
+        },
+        "result": {
+          "Str": "string",
+          "Integer": 1,
+          "TrueBool": true,
+          "FalseBool": false,
+          "Float": 1.5,
+          "Double": 1.5,
+          "Long": 100,
+          "Char": "a",
+          "Timestamp": 1422172800
+        },
+        "response": {
+          "status_code": 200,
+          "headers": {
+            "x-str": "string",
+            "x-int": "1",
+            "x-true-bool": "true",
+            "x-false-bool": "false",
+            "x-float": "1.5",
+            "x-double": "1.5",
+            "x-long": "100",
+            "x-char": "a",
+            "x-timestamp": "Sun, 25 Jan 2015 08:00:00 GMT"
+          },
+          "body": ""
         }
       }
     ]
