@@ -160,7 +160,8 @@ func format(uri, service, region string) string {
 }
 
 func findOverride(service, region string) *override {
-	for _, override := range overrides {
+	for i := len(overrides) - 1; i >= 0; i-- {
+		override := overrides[i]
 		if strings.ToUpper(override.service) == strings.ToUpper(service) &&
 			override.region == region {
 			return &override
