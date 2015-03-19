@@ -790,6 +790,12 @@ func (c *OpsWorks) DescribeAppsRequest(input *DescribeAppsInput) (req *aws.Reque
 			Name:       "DescribeApps",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -829,6 +835,12 @@ func (c *OpsWorks) DescribeCommandsRequest(input *DescribeCommandsInput) (req *a
 			Name:       "DescribeCommands",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -868,6 +880,12 @@ func (c *OpsWorks) DescribeDeploymentsRequest(input *DescribeDeploymentsInput) (
 			Name:       "DescribeDeployments",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -907,6 +925,12 @@ func (c *OpsWorks) DescribeElasticIPsRequest(input *DescribeElasticIPsInput) (re
 			Name:       "DescribeElasticIps",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -946,6 +970,12 @@ func (c *OpsWorks) DescribeElasticLoadBalancersRequest(input *DescribeElasticLoa
 			Name:       "DescribeElasticLoadBalancers",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -985,6 +1015,12 @@ func (c *OpsWorks) DescribeInstancesRequest(input *DescribeInstancesInput) (req 
 			Name:       "DescribeInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1024,6 +1060,12 @@ func (c *OpsWorks) DescribeLayersRequest(input *DescribeLayersInput) (req *aws.R
 			Name:       "DescribeLayers",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1063,6 +1105,12 @@ func (c *OpsWorks) DescribeLoadBasedAutoScalingRequest(input *DescribeLoadBasedA
 			Name:       "DescribeLoadBasedAutoScaling",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1138,6 +1186,12 @@ func (c *OpsWorks) DescribePermissionsRequest(input *DescribePermissionsInput) (
 			Name:       "DescribePermissions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1175,6 +1229,12 @@ func (c *OpsWorks) DescribeRAIDArraysRequest(input *DescribeRAIDArraysInput) (re
 			Name:       "DescribeRaidArrays",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1251,6 +1311,12 @@ func (c *OpsWorks) DescribeServiceErrorsRequest(input *DescribeServiceErrorsInpu
 			Name:       "DescribeServiceErrors",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1363,6 +1429,12 @@ func (c *OpsWorks) DescribeStacksRequest(input *DescribeStacksInput) (req *aws.R
 			Name:       "DescribeStacks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1400,6 +1472,12 @@ func (c *OpsWorks) DescribeTimeBasedAutoScalingRequest(input *DescribeTimeBasedA
 			Name:       "DescribeTimeBasedAutoScaling",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1439,6 +1517,12 @@ func (c *OpsWorks) DescribeUserProfilesRequest(input *DescribeUserProfilesInput)
 			Name:       "DescribeUserProfiles",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1475,6 +1559,12 @@ func (c *OpsWorks) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws
 			Name:       "DescribeVolumes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 

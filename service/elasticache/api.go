@@ -565,6 +565,12 @@ func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersI
 			Name:       "DescribeCacheClusters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -618,6 +624,12 @@ func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEng
 			Name:       "DescribeCacheEngineVersions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -651,6 +663,12 @@ func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCachePa
 			Name:       "DescribeCacheParameterGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -685,6 +703,12 @@ func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParamet
 			Name:       "DescribeCacheParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -718,6 +742,12 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSec
 			Name:       "DescribeCacheSecurityGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -752,6 +782,12 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubne
 			Name:       "DescribeCacheSubnetGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -786,6 +822,12 @@ func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngi
 			Name:       "DescribeEngineDefaultParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -819,6 +861,12 @@ func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *aw
 			Name:       "DescribeEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -857,6 +905,12 @@ func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicatio
 			Name:       "DescribeReplicationGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -891,6 +945,12 @@ func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedC
 			Name:       "DescribeReservedCacheNodes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -924,6 +984,12 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *Describe
 			Name:       "DescribeReservedCacheNodesOfferings",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -957,6 +1023,12 @@ func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (r
 			Name:       "DescribeSnapshots",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 

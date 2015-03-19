@@ -538,6 +538,12 @@ func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) 
 			Name:       "DescribeInstanceHealth",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -605,6 +611,12 @@ func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPol
 			Name:       "DescribeLoadBalancerPolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -644,6 +656,12 @@ func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancer
 			Name:       "DescribeLoadBalancerPolicyTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -679,6 +697,12 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 			Name:       "DescribeLoadBalancers",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 

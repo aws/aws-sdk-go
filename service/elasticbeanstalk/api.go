@@ -361,6 +361,12 @@ func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApp
 			Name:       "DescribeApplicationVersions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -393,6 +399,12 @@ func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicatio
 			Name:       "DescribeApplications",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -425,6 +437,12 @@ func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeCo
 			Name:       "DescribeConfigurationOptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -537,6 +555,12 @@ func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmen
 			Name:       "DescribeEnvironments",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -569,6 +593,12 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 			Name:       "DescribeEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -601,6 +631,12 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailab
 			Name:       "ListAvailableSolutionStacks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 

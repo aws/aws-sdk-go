@@ -22,6 +22,12 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *aws.Reque
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "ExclusiveStartKey",
+				OutputToken:     "LastEvaluatedKey",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -414,6 +420,12 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *aws.Request, 
 			Name:       "ListTables",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "ExclusiveStartKey",
+				OutputToken:     "LastEvaluatedKey",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -504,6 +516,12 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *aws.Request, output *Qu
 			Name:       "Query",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "ExclusiveStartKey",
+				OutputToken:     "LastEvaluatedKey",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -560,6 +578,12 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *aws.Request, output *Scan
 			Name:       "Scan",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "ExclusiveStartKey",
+				OutputToken:     "LastEvaluatedKey",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 

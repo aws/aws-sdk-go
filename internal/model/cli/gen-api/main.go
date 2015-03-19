@@ -30,6 +30,11 @@ func newGenerateInfo(modelFile, svcPath string) *generateInfo {
 	g := &generateInfo{API: &api.API{}}
 	g.API.Attach(modelFile)
 
+	paginatorsFile := strings.Replace(modelFile, ".normal.json", ".paginators.json", -1)
+	if _, err := os.Stat(paginatorsFile); err == nil {
+		g.API.AttachPaginators(paginatorsFile)
+	}
+
 	if svc := os.Getenv("SERVICES"); svc != "" {
 		svcs := strings.Split(svc, ",")
 		for _, s := range svcs {

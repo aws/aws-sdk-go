@@ -830,6 +830,12 @@ func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterP
 			Name:       "DescribeClusterParameterGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -880,6 +886,12 @@ func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParame
 			Name:       "DescribeClusterParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -923,6 +935,12 @@ func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSe
 			Name:       "DescribeClusterSecurityGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -971,6 +989,12 @@ func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapsho
 			Name:       "DescribeClusterSnapshots",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1018,6 +1042,12 @@ func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubn
 			Name:       "DescribeClusterSubnetGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1062,6 +1092,12 @@ func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersions
 			Name:       "DescribeClusterVersions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1098,6 +1134,12 @@ func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *a
 			Name:       "DescribeClusters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1143,6 +1185,12 @@ func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaul
 			Name:       "DescribeDefaultClusterParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1213,6 +1261,12 @@ func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscri
 			Name:       "DescribeEventSubscriptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1247,6 +1301,12 @@ func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.R
 			Name:       "DescribeEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1282,6 +1342,12 @@ func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClient
 			Name:       "DescribeHsmClientCertificates",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1326,6 +1392,12 @@ func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurat
 			Name:       "DescribeHsmConfigurations",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1403,6 +1475,12 @@ func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderab
 			Name:       "DescribeOrderableClusterOptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1443,6 +1521,12 @@ func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedN
 			Name:       "DescribeReservedNodeOfferings",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1484,6 +1568,12 @@ func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInpu
 			Name:       "DescribeReservedNodes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 

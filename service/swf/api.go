@@ -574,6 +574,12 @@ func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHist
 			Name:       "GetWorkflowExecutionHistory",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "nextPageToken",
+				OutputToken:     "nextPageToken",
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -623,6 +629,12 @@ func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *aws.
 			Name:       "ListActivityTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "nextPageToken",
+				OutputToken:     "nextPageToken",
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -673,6 +685,12 @@ func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecu
 			Name:       "ListClosedWorkflowExecutions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "nextPageToken",
+				OutputToken:     "nextPageToken",
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -726,6 +744,12 @@ func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, out
 			Name:       "ListDomains",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "nextPageToken",
+				OutputToken:     "nextPageToken",
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -776,6 +800,12 @@ func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecution
 			Name:       "ListOpenWorkflowExecutions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "nextPageToken",
+				OutputToken:     "nextPageToken",
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -829,6 +859,12 @@ func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *aws.
 			Name:       "ListWorkflowTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "nextPageToken",
+				OutputToken:     "nextPageToken",
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -933,6 +969,12 @@ func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *
 			Name:       "PollForDecisionTask",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "nextPageToken",
+				OutputToken:     "nextPageToken",
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 

@@ -89,6 +89,12 @@ func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *aws
 			Name:       "DescribeTrails",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 

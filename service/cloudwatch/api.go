@@ -54,6 +54,12 @@ func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInpu
 			Name:       "DescribeAlarmHistory",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -88,6 +94,12 @@ func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *aws
 			Name:       "DescribeAlarms",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -122,6 +134,12 @@ func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetr
 			Name:       "DescribeAlarmsForMetric",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -277,6 +295,12 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *aws.Reque
 			Name:       "ListMetrics",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 

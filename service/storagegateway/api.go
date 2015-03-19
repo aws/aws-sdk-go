@@ -809,6 +809,12 @@ func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCached
 			Name:       "DescribeCachediSCSIVolumes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -984,6 +990,12 @@ func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStored
 			Name:       "DescribeStorediSCSIVolumes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1019,6 +1031,12 @@ func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchives
 			Name:       "DescribeTapeArchives",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1055,6 +1073,12 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRe
 			Name:       "DescribeTapeRecoveryPoints",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1092,6 +1116,12 @@ func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *a
 			Name:       "DescribeTapes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1163,6 +1193,12 @@ func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInpu
 			Name:       "DescribeVTLDevices",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1277,6 +1313,12 @@ func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *aws
 			Name:       "ListGateways",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1319,6 +1361,12 @@ func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req 
 			Name:       "ListLocalDisks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1360,6 +1408,12 @@ func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecove
 			Name:       "ListVolumeRecoveryPoints",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1398,6 +1452,12 @@ func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *aws.R
 			Name:       "ListVolumes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 

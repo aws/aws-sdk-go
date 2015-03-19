@@ -470,6 +470,12 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListClou
 			Name:       "ListCloudFrontOriginAccessIdentities2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "StreamingDistributionList.NextMarker",
+				LimitToken:      "MaxItems",
+				TruncationToken: "StreamingDistributionList.IsTruncated",
+			},
 		}
 	}
 
@@ -502,6 +508,12 @@ func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (re
 			Name:       "ListDistributions2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "StreamingDistributionList.NextMarker",
+				LimitToken:      "MaxItems",
+				TruncationToken: "StreamingDistributionList.IsTruncated",
+			},
 		}
 	}
 
@@ -534,6 +546,12 @@ func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (re
 			Name:       "ListInvalidations2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "StreamingDistributionList.NextMarker",
+				LimitToken:      "MaxItems",
+				TruncationToken: "StreamingDistributionList.IsTruncated",
+			},
 		}
 	}
 
@@ -566,6 +584,12 @@ func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistr
 			Name:       "ListStreamingDistributions2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/streaming-distribution",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "StreamingDistributionList.NextMarker",
+				LimitToken:      "MaxItems",
+				TruncationToken: "StreamingDistributionList.IsTruncated",
+			},
 		}
 	}
 

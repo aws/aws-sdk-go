@@ -125,6 +125,12 @@ func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsIn
 			Name:       "DescribeStackEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -197,6 +203,12 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 			Name:       "DescribeStackResources",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -245,6 +257,12 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 			Name:       "DescribeStacks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -424,6 +442,12 @@ func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInpu
 			Name:       "ListStackResources",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -459,6 +483,12 @@ func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *aws.Req
 			Name:       "ListStacks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 

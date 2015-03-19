@@ -2785,6 +2785,12 @@ func (c *EC2) DescribeAccountAttributesRequest(input *DescribeAccountAttributesI
 			Name:       "DescribeAccountAttributes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -2835,6 +2841,12 @@ func (c *EC2) DescribeAddressesRequest(input *DescribeAddressesInput) (req *aws.
 			Name:       "DescribeAddresses",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -2871,6 +2883,12 @@ func (c *EC2) DescribeAvailabilityZonesRequest(input *DescribeAvailabilityZonesI
 			Name:       "DescribeAvailabilityZones",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -2909,6 +2927,12 @@ func (c *EC2) DescribeBundleTasksRequest(input *DescribeBundleTasksInput) (req *
 			Name:       "DescribeBundleTasks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -2981,6 +3005,12 @@ func (c *EC2) DescribeConversionTasksRequest(input *DescribeConversionTasksInput
 			Name:       "DescribeConversionTasks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3016,6 +3046,12 @@ func (c *EC2) DescribeCustomerGatewaysRequest(input *DescribeCustomerGatewaysInp
 			Name:       "DescribeCustomerGateways",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3052,6 +3088,12 @@ func (c *EC2) DescribeDHCPOptionsRequest(input *DescribeDHCPOptionsInput) (req *
 			Name:       "DescribeDhcpOptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3087,6 +3129,12 @@ func (c *EC2) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *
 			Name:       "DescribeExportTasks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3152,6 +3200,12 @@ func (c *EC2) DescribeImagesRequest(input *DescribeImagesInput) (req *aws.Reques
 			Name:       "DescribeImages",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3291,6 +3345,12 @@ func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) 
 			Name:       "DescribeInstanceStatus",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3381,6 +3441,12 @@ func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *aws.
 			Name:       "DescribeInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3422,6 +3488,12 @@ func (c *EC2) DescribeInternetGatewaysRequest(input *DescribeInternetGatewaysInp
 			Name:       "DescribeInternetGateways",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3454,6 +3526,12 @@ func (c *EC2) DescribeKeyPairsRequest(input *DescribeKeyPairsInput) (req *aws.Re
 			Name:       "DescribeKeyPairs",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3489,6 +3567,12 @@ func (c *EC2) DescribeNetworkACLsRequest(input *DescribeNetworkACLsInput) (req *
 			Name:       "DescribeNetworkAcls",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3557,6 +3641,12 @@ func (c *EC2) DescribeNetworkInterfacesRequest(input *DescribeNetworkInterfacesI
 			Name:       "DescribeNetworkInterfaces",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3589,6 +3679,12 @@ func (c *EC2) DescribePlacementGroupsRequest(input *DescribePlacementGroupsInput
 			Name:       "DescribePlacementGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3623,6 +3719,12 @@ func (c *EC2) DescribeRegionsRequest(input *DescribeRegionsInput) (req *aws.Requ
 			Name:       "DescribeRegions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3658,6 +3760,12 @@ func (c *EC2) DescribeReservedInstancesRequest(input *DescribeReservedInstancesI
 			Name:       "DescribeReservedInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3693,6 +3801,12 @@ func (c *EC2) DescribeReservedInstancesListingsRequest(input *DescribeReservedIn
 			Name:       "DescribeReservedInstancesListings",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3784,6 +3898,12 @@ func (c *EC2) DescribeReservedInstancesOfferingsRequest(input *DescribeReservedI
 			Name:       "DescribeReservedInstancesOfferings",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3823,6 +3943,12 @@ func (c *EC2) DescribeRouteTablesRequest(input *DescribeRouteTablesInput) (req *
 			Name:       "DescribeRouteTables",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3858,6 +3984,12 @@ func (c *EC2) DescribeSecurityGroupsRequest(input *DescribeSecurityGroupsInput) 
 			Name:       "DescribeSecurityGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3933,6 +4065,12 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.
 			Name:       "DescribeSnapshots",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -4038,6 +4176,12 @@ func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceReq
 			Name:       "DescribeSpotInstanceRequests",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -4081,6 +4225,12 @@ func (c *EC2) DescribeSpotPriceHistoryRequest(input *DescribeSpotPriceHistoryInp
 			Name:       "DescribeSpotPriceHistory",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -4121,6 +4271,12 @@ func (c *EC2) DescribeSubnetsRequest(input *DescribeSubnetsInput) (req *aws.Requ
 			Name:       "DescribeSubnets",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -4156,6 +4312,12 @@ func (c *EC2) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, o
 			Name:       "DescribeTags",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -4288,6 +4450,12 @@ func (c *EC2) DescribeVPCsRequest(input *DescribeVPCsInput) (req *aws.Request, o
 			Name:       "DescribeVpcs",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -4320,6 +4488,12 @@ func (c *EC2) DescribeVPNConnectionsRequest(input *DescribeVPNConnectionsInput) 
 			Name:       "DescribeVpnConnections",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -4356,6 +4530,12 @@ func (c *EC2) DescribeVPNGatewaysRequest(input *DescribeVPNGatewaysInput) (req *
 			Name:       "DescribeVpnGateways",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -4428,6 +4608,12 @@ func (c *EC2) DescribeVolumeStatusRequest(input *DescribeVolumeStatusInput) (req
 			Name:       "DescribeVolumeStatus",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -4494,6 +4680,12 @@ func (c *EC2) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws.Requ
 			Name:       "DescribeVolumes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 

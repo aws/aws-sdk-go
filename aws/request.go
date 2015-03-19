@@ -39,6 +39,14 @@ type Operation struct {
 	Name       string
 	HTTPMethod string
 	HTTPPath   string
+	*Paginator
+}
+
+type Paginator struct {
+	InputToken      string
+	OutputToken     string
+	LimitToken      string
+	TruncationToken string
 }
 
 // NewRequest returns a new Request pointer for the service API

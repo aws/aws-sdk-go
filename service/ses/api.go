@@ -286,6 +286,12 @@ func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Reques
 			Name:       "ListIdentities",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxItems",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -321,6 +327,12 @@ func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddresse
 			Name:       "ListVerifiedEmailAddresses",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxItems",
+				TruncationToken: "",
+			},
 		}
 	}
 

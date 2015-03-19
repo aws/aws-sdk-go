@@ -809,6 +809,12 @@ func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInp
 			Name:       "DescribeDBEngineVersions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -841,6 +847,12 @@ func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *
 			Name:       "DescribeDBInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -873,6 +885,12 @@ func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *aw
 			Name:       "DescribeDBLogFiles",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -905,6 +923,12 @@ func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsI
 			Name:       "DescribeDBParameterGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -939,6 +963,12 @@ func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req
 			Name:       "DescribeDBParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -971,6 +1001,12 @@ func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInp
 			Name:       "DescribeDBSecurityGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1005,6 +1041,12 @@ func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *
 			Name:       "DescribeDBSnapshots",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1037,6 +1079,12 @@ func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) 
 			Name:       "DescribeDBSubnetGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1072,6 +1120,12 @@ func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaul
 			Name:       "DescribeEngineDefaultParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1140,6 +1194,12 @@ func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscription
 			Name:       "DescribeEventSubscriptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1176,6 +1236,12 @@ func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Reques
 			Name:       "DescribeEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1212,6 +1278,12 @@ func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOption
 			Name:       "DescribeOptionGroupOptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1244,6 +1316,12 @@ func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req
 			Name:       "DescribeOptionGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1276,6 +1354,12 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderable
 			Name:       "DescribeOrderableDBInstanceOptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1341,6 +1425,12 @@ func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstan
 			Name:       "DescribeReservedDBInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1374,6 +1464,12 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReserve
 			Name:       "DescribeReservedDBInstancesOfferings",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1406,6 +1502,12 @@ func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInp
 			Name:       "DownloadDBLogFilePortion",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1438,6 +1540,12 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 			Name:       "ListTagsForResource",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -3111,6 +3219,7 @@ type metadataDBEngineVersion struct {
 //  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
 // as a response element in the DescribeDBInstances action.
 type DBInstance struct {
+<<<<<<< HEAD
 	// Specifies the allocated storage size specified in gigabytes.
 	AllocatedStorage *int64 `type:"integer"`
 
@@ -3265,6 +3374,46 @@ type DBInstance struct {
 	VPCSecurityGroups []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroups" locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
 	metadataDBInstance `json:"-" xml:"-"`
+=======
+	AllocatedStorage                      *int64                        `type:"integer"`
+	AutoMinorVersionUpgrade               *bool                         `type:"boolean"`
+	AvailabilityZone                      *string                       `type:"string"`
+	BackupRetentionPeriod                 *int64                        `type:"integer"`
+	CharacterSetName                      *string                       `type:"string"`
+	DBIResourceID                         *string                       `locationName:"DbiResourceId" type:"string"`
+	DBInstanceClass                       *string                       `type:"string"`
+	DBInstanceIdentifier                  *string                       `type:"string"`
+	DBInstanceStatus                      *string                       `type:"string"`
+	DBName                                *string                       `type:"string"`
+	DBParameterGroups                     []*DBParameterGroupStatus     `locationNameList:"DBParameterGroup" type:"list"`
+	DBSecurityGroups                      []*DBSecurityGroupMembership  `locationNameList:"DBSecurityGroup" type:"list"`
+	DBSubnetGroup                         *DBSubnetGroup                `type:"structure"`
+	Endpoint                              *Endpoint                     `type:"structure"`
+	Engine                                *string                       `type:"string"`
+	EngineVersion                         *string                       `type:"string"`
+	IOPS                                  *int64                        `locationName:"Iops" type:"integer"`
+	InstanceCreateTime                    *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
+	KMSKeyID                              *string                       `locationName:"KmsKeyId" type:"string"`
+	LatestRestorableTime                  *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
+	LicenseModel                          *string                       `type:"string"`
+	MasterUsername                        *string                       `type:"string"`
+	MultiAZ                               *bool                         `type:"boolean"`
+	OptionGroupMemberships                []*OptionGroupMembership      `locationNameList:"OptionGroupMembership" type:"list"`
+	PendingModifiedValues                 *PendingModifiedValues        `type:"structure"`
+	PreferredBackupWindow                 *string                       `type:"string"`
+	PreferredMaintenanceWindow            *string                       `type:"string"`
+	PubliclyAccessible                    *bool                         `type:"boolean"`
+	ReadReplicaDBInstanceIdentifiers      []*string                     `locationNameList:"ReadReplicaDBInstanceIdentifier" type:"list"`
+	ReadReplicaSourceDBInstanceIdentifier *string                       `type:"string"`
+	SecondaryAvailabilityZone             *string                       `type:"string"`
+	StatusInfos                           []*DBInstanceStatusInfo       `locationNameList:"DBInstanceStatusInfo" type:"list"`
+	StorageEncrypted                      *bool                         `type:"boolean"`
+	StorageType                           *string                       `type:"string"`
+	TDECredentialARN                      *string                       `locationName:"TdeCredentialArn" type:"string"`
+	VPCSecurityGroups                     []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroups" locationNameList:"VpcSecurityGroupMembership" type:"list"`
+
+	metadataDBInstance `json:"-", xml:"-"`
+>>>>>>> Add paginator configuration to supported operations.
 }
 
 type metadataDBInstance struct {

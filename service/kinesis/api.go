@@ -175,6 +175,12 @@ func (c *Kinesis) DescribeStreamRequest(input *DescribeStreamInput) (req *aws.Re
 			Name:       "DescribeStream",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "ExclusiveStartStreamName",
+				OutputToken:     "StreamNames[-1]",
+				LimitToken:      "Limit",
+				TruncationToken: "HasMoreStreams",
+			},
 		}
 	}
 
@@ -372,6 +378,12 @@ func (c *Kinesis) ListStreamsRequest(input *ListStreamsInput) (req *aws.Request,
 			Name:       "ListStreams",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "ExclusiveStartStreamName",
+				OutputToken:     "StreamNames[-1]",
+				LimitToken:      "Limit",
+				TruncationToken: "HasMoreStreams",
+			},
 		}
 	}
 

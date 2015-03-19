@@ -197,6 +197,12 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *aws.Requ
 			Name:       "DescribeCases",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -242,6 +248,12 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 			Name:       "DescribeCommunications",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -283,6 +295,12 @@ func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *aw
 			Name:       "DescribeServices",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -359,6 +377,12 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 			Name:       "DescribeTrustedAdvisorCheckRefreshStatuses",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -435,6 +459,12 @@ func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTru
 			Name:       "DescribeTrustedAdvisorCheckSummaries",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
