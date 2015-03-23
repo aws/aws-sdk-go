@@ -143,12 +143,10 @@ func updatePath(url *url.URL, urlPath string) {
 	url.Scheme, url.Path, url.RawQuery = "", "", ""
 	s := url.String()
 	url.Scheme = scheme
+	url.RawQuery = query
 
 	// build opaque URI
 	url.Opaque = s + urlPath
-	if query != "" {
-		url.Opaque += "?" + query
-	}
 }
 
 // Whether the byte value can be sent without escaping in AWS URLs
