@@ -19,6 +19,9 @@ type API struct {
 	// Disables inflection checks. Only use this when generating tests
 	NoInflections bool
 
+	// Set to true to avoid removing unused shapes
+	NoRemoveUnusedShapes bool
+
 	initialized       bool
 	imports           map[string]bool
 	name              string
