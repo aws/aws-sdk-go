@@ -116,6 +116,21 @@ func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (*DescribeTrails
 	return out, err
 }
 
+func (c *CloudTrail) DescribeTrailsPages(input *DescribeTrailsInput) <-chan *DescribeTrailsOutput {
+	page, _ := c.DescribeTrailsRequest(input)
+	ch := make(chan *DescribeTrailsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeTrailsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeTrails *aws.Operation
 
 // GetTrailStatusRequest generates a request for the GetTrailStatus operation.

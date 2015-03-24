@@ -23,9 +23,9 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *aws.Reque
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "ExclusiveStartKey",
-				OutputToken:     "LastEvaluatedKey",
-				LimitToken:      "Limit",
+				InputToken:      "RequestItems",
+				OutputToken:     "UnprocessedKeys",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}
@@ -91,6 +91,21 @@ func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (*BatchGetItemOutput, 
 	req, out := c.BatchGetItemRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DynamoDB) BatchGetItemPages(input *BatchGetItemInput) <-chan *BatchGetItemOutput {
+	page, _ := c.BatchGetItemRequest(input)
+	ch := make(chan *BatchGetItemOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*BatchGetItemOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opBatchGetItem *aws.Operation
@@ -421,8 +436,8 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *aws.Request, 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "ExclusiveStartKey",
-				OutputToken:     "LastEvaluatedKey",
+				InputToken:      "ExclusiveStartTableName",
+				OutputToken:     "LastEvaluatedTableName",
 				LimitToken:      "Limit",
 				TruncationToken: "",
 			},
@@ -446,6 +461,21 @@ func (c *DynamoDB) ListTables(input *ListTablesInput) (*ListTablesOutput, error)
 	req, out := c.ListTablesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DynamoDB) ListTablesPages(input *ListTablesInput) <-chan *ListTablesOutput {
+	page, _ := c.ListTablesRequest(input)
+	ch := make(chan *ListTablesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListTablesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListTables *aws.Operation
@@ -566,6 +596,21 @@ func (c *DynamoDB) Query(input *QueryInput) (*QueryOutput, error) {
 	return out, err
 }
 
+func (c *DynamoDB) QueryPages(input *QueryInput) <-chan *QueryOutput {
+	page, _ := c.QueryRequest(input)
+	ch := make(chan *QueryOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*QueryOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opQuery *aws.Operation
 
 // ScanRequest generates a request for the Scan operation.
@@ -618,6 +663,21 @@ func (c *DynamoDB) Scan(input *ScanInput) (*ScanOutput, error) {
 	req, out := c.ScanRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DynamoDB) ScanPages(input *ScanInput) <-chan *ScanOutput {
+	page, _ := c.ScanRequest(input)
+	ch := make(chan *ScanOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ScanOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opScan *aws.Operation

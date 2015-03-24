@@ -810,9 +810,9 @@ func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCached
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "Marker",
-				OutputToken:     "Marker",
-				LimitToken:      "Limit",
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}
@@ -839,6 +839,21 @@ func (c *StorageGateway) DescribeCachediSCSIVolumes(input *DescribeCachediSCSIVo
 	req, out := c.DescribeCachediSCSIVolumesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *StorageGateway) DescribeCachediSCSIVolumesPages(input *DescribeCachediSCSIVolumesInput) <-chan *DescribeCachediSCSIVolumesOutput {
+	page, _ := c.DescribeCachediSCSIVolumesRequest(input)
+	ch := make(chan *DescribeCachediSCSIVolumesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeCachediSCSIVolumesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeCachediSCSIVolumes *aws.Operation
@@ -991,9 +1006,9 @@ func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStored
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "Marker",
-				OutputToken:     "Marker",
-				LimitToken:      "Limit",
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}
@@ -1017,6 +1032,21 @@ func (c *StorageGateway) DescribeStorediSCSIVolumes(input *DescribeStorediSCSIVo
 	req, out := c.DescribeStorediSCSIVolumesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *StorageGateway) DescribeStorediSCSIVolumesPages(input *DescribeStorediSCSIVolumesInput) <-chan *DescribeStorediSCSIVolumesOutput {
+	page, _ := c.DescribeStorediSCSIVolumesRequest(input)
+	ch := make(chan *DescribeStorediSCSIVolumesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeStorediSCSIVolumesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeStorediSCSIVolumes *aws.Operation
@@ -1059,6 +1089,21 @@ func (c *StorageGateway) DescribeTapeArchives(input *DescribeTapeArchivesInput) 
 	req, out := c.DescribeTapeArchivesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *StorageGateway) DescribeTapeArchivesPages(input *DescribeTapeArchivesInput) <-chan *DescribeTapeArchivesOutput {
+	page, _ := c.DescribeTapeArchivesRequest(input)
+	ch := make(chan *DescribeTapeArchivesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeTapeArchivesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeTapeArchives *aws.Operation
@@ -1104,6 +1149,21 @@ func (c *StorageGateway) DescribeTapeRecoveryPoints(input *DescribeTapeRecoveryP
 	return out, err
 }
 
+func (c *StorageGateway) DescribeTapeRecoveryPointsPages(input *DescribeTapeRecoveryPointsInput) <-chan *DescribeTapeRecoveryPointsOutput {
+	page, _ := c.DescribeTapeRecoveryPointsRequest(input)
+	ch := make(chan *DescribeTapeRecoveryPointsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeTapeRecoveryPointsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeTapeRecoveryPoints *aws.Operation
 
 // DescribeTapesRequest generates a request for the DescribeTapes operation.
@@ -1142,6 +1202,21 @@ func (c *StorageGateway) DescribeTapes(input *DescribeTapesInput) (*DescribeTape
 	req, out := c.DescribeTapesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *StorageGateway) DescribeTapesPages(input *DescribeTapesInput) <-chan *DescribeTapesOutput {
+	page, _ := c.DescribeTapesRequest(input)
+	ch := make(chan *DescribeTapesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeTapesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeTapes *aws.Operation
@@ -1220,6 +1295,21 @@ func (c *StorageGateway) DescribeVTLDevices(input *DescribeVTLDevicesInput) (*De
 	req, out := c.DescribeVTLDevicesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *StorageGateway) DescribeVTLDevicesPages(input *DescribeVTLDevicesInput) <-chan *DescribeVTLDevicesOutput {
+	page, _ := c.DescribeVTLDevicesRequest(input)
+	ch := make(chan *DescribeVTLDevicesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeVTLDevicesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeVTLDevices *aws.Operation
@@ -1349,6 +1439,21 @@ func (c *StorageGateway) ListGateways(input *ListGatewaysInput) (*ListGatewaysOu
 	return out, err
 }
 
+func (c *StorageGateway) ListGatewaysPages(input *ListGatewaysInput) <-chan *ListGatewaysOutput {
+	page, _ := c.ListGatewaysRequest(input)
+	ch := make(chan *ListGatewaysOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListGatewaysOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opListGateways *aws.Operation
 
 // ListLocalDisksRequest generates a request for the ListLocalDisks operation.
@@ -1362,9 +1467,9 @@ func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "Marker",
-				OutputToken:     "Marker",
-				LimitToken:      "Limit",
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}
@@ -1396,6 +1501,21 @@ func (c *StorageGateway) ListLocalDisks(input *ListLocalDisksInput) (*ListLocalD
 	return out, err
 }
 
+func (c *StorageGateway) ListLocalDisksPages(input *ListLocalDisksInput) <-chan *ListLocalDisksOutput {
+	page, _ := c.ListLocalDisksRequest(input)
+	ch := make(chan *ListLocalDisksOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListLocalDisksOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opListLocalDisks *aws.Operation
 
 // ListVolumeRecoveryPointsRequest generates a request for the ListVolumeRecoveryPoints operation.
@@ -1409,9 +1529,9 @@ func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecove
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "Marker",
-				OutputToken:     "Marker",
-				LimitToken:      "Limit",
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}
@@ -1438,6 +1558,21 @@ func (c *StorageGateway) ListVolumeRecoveryPoints(input *ListVolumeRecoveryPoint
 	req, out := c.ListVolumeRecoveryPointsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *StorageGateway) ListVolumeRecoveryPointsPages(input *ListVolumeRecoveryPointsInput) <-chan *ListVolumeRecoveryPointsOutput {
+	page, _ := c.ListVolumeRecoveryPointsRequest(input)
+	ch := make(chan *ListVolumeRecoveryPointsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListVolumeRecoveryPointsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListVolumeRecoveryPoints *aws.Operation
@@ -1485,6 +1620,21 @@ func (c *StorageGateway) ListVolumes(input *ListVolumesInput) (*ListVolumesOutpu
 	req, out := c.ListVolumesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput) <-chan *ListVolumesOutput {
+	page, _ := c.ListVolumesRequest(input)
+	ch := make(chan *ListVolumesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListVolumesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListVolumes *aws.Operation

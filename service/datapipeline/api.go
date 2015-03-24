@@ -166,7 +166,7 @@ func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req 
 			Paginator: &aws.Paginator{
 				InputToken:      "marker",
 				OutputToken:     "marker",
-				LimitToken:      "limit",
+				LimitToken:      "",
 				TruncationToken: "hasMoreResults",
 			},
 		}
@@ -191,6 +191,21 @@ func (c *DataPipeline) DescribeObjects(input *DescribeObjectsInput) (*DescribeOb
 	return out, err
 }
 
+func (c *DataPipeline) DescribeObjectsPages(input *DescribeObjectsInput) <-chan *DescribeObjectsOutput {
+	page, _ := c.DescribeObjectsRequest(input)
+	ch := make(chan *DescribeObjectsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeObjectsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeObjects *aws.Operation
 
 // DescribePipelinesRequest generates a request for the DescribePipelines operation.
@@ -204,10 +219,10 @@ func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "marker",
-				OutputToken:     "marker",
-				LimitToken:      "limit",
-				TruncationToken: "hasMoreResults",
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
 			},
 		}
 	}
@@ -235,6 +250,21 @@ func (c *DataPipeline) DescribePipelines(input *DescribePipelinesInput) (*Descri
 	req, out := c.DescribePipelinesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DataPipeline) DescribePipelinesPages(input *DescribePipelinesInput) <-chan *DescribePipelinesOutput {
+	page, _ := c.DescribePipelinesRequest(input)
+	ch := make(chan *DescribePipelinesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribePipelinesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribePipelines *aws.Operation
@@ -318,7 +348,7 @@ func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *aws
 			Paginator: &aws.Paginator{
 				InputToken:      "marker",
 				OutputToken:     "marker",
-				LimitToken:      "limit",
+				LimitToken:      "",
 				TruncationToken: "hasMoreResults",
 			},
 		}
@@ -340,6 +370,21 @@ func (c *DataPipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesO
 	req, out := c.ListPipelinesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DataPipeline) ListPipelinesPages(input *ListPipelinesInput) <-chan *ListPipelinesOutput {
+	page, _ := c.ListPipelinesRequest(input)
+	ch := make(chan *ListPipelinesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListPipelinesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListPipelines *aws.Operation
@@ -473,6 +518,21 @@ func (c *DataPipeline) QueryObjects(input *QueryObjectsInput) (*QueryObjectsOutp
 	req, out := c.QueryObjectsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DataPipeline) QueryObjectsPages(input *QueryObjectsInput) <-chan *QueryObjectsOutput {
+	page, _ := c.QueryObjectsRequest(input)
+	ch := make(chan *QueryObjectsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*QueryObjectsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opQueryObjects *aws.Operation

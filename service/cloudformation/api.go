@@ -156,6 +156,21 @@ func (c *CloudFormation) DescribeStackEvents(input *DescribeStackEventsInput) (*
 	return out, err
 }
 
+func (c *CloudFormation) DescribeStackEventsPages(input *DescribeStackEventsInput) <-chan *DescribeStackEventsOutput {
+	page, _ := c.DescribeStackEventsRequest(input)
+	ch := make(chan *DescribeStackEventsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeStackEventsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeStackEvents *aws.Operation
 
 // DescribeStackResourceRequest generates a request for the DescribeStackResource operation.
@@ -204,8 +219,8 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputToken:      "",
+				OutputToken:     "",
 				LimitToken:      "",
 				TruncationToken: "",
 			},
@@ -245,6 +260,21 @@ func (c *CloudFormation) DescribeStackResources(input *DescribeStackResourcesInp
 	return out, err
 }
 
+func (c *CloudFormation) DescribeStackResourcesPages(input *DescribeStackResourcesInput) <-chan *DescribeStackResourcesOutput {
+	page, _ := c.DescribeStackResourcesRequest(input)
+	ch := make(chan *DescribeStackResourcesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeStackResourcesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeStackResources *aws.Operation
 
 // DescribeStacksRequest generates a request for the DescribeStacks operation.
@@ -282,6 +312,21 @@ func (c *CloudFormation) DescribeStacks(input *DescribeStacksInput) (*DescribeSt
 	req, out := c.DescribeStacksRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *CloudFormation) DescribeStacksPages(input *DescribeStacksInput) <-chan *DescribeStacksOutput {
+	page, _ := c.DescribeStacksRequest(input)
+	ch := make(chan *DescribeStacksOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeStacksOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeStacks *aws.Operation
@@ -471,6 +516,21 @@ func (c *CloudFormation) ListStackResources(input *ListStackResourcesInput) (*Li
 	return out, err
 }
 
+func (c *CloudFormation) ListStackResourcesPages(input *ListStackResourcesInput) <-chan *ListStackResourcesOutput {
+	page, _ := c.ListStackResourcesRequest(input)
+	ch := make(chan *ListStackResourcesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListStackResourcesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opListStackResources *aws.Operation
 
 // ListStacksRequest generates a request for the ListStacks operation.
@@ -511,6 +571,21 @@ func (c *CloudFormation) ListStacks(input *ListStacksInput) (*ListStacksOutput, 
 	req, out := c.ListStacksRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *CloudFormation) ListStacksPages(input *ListStacksInput) <-chan *ListStacksOutput {
+	page, _ := c.ListStacksRequest(input)
+	ch := make(chan *ListStacksOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListStacksOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListStacks *aws.Operation

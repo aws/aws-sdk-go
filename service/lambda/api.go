@@ -475,7 +475,26 @@ func (c *Lambda) ListEventSourceMappings(input *ListEventSourceMappingsInput) (*
 	return out, err
 }
 
+<<<<<<< HEAD
 var opListEventSourceMappings *aws.Operation
+=======
+func (c *Lambda) ListEventSourcesPages(input *ListEventSourcesInput) <-chan *ListEventSourcesOutput {
+	page, _ := c.ListEventSourcesRequest(input)
+	ch := make(chan *ListEventSourcesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListEventSourcesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
+var opListEventSources *aws.Operation
+>>>>>>> Add initial implementation of pagination
 
 // ListFunctionsRequest generates a request for the ListFunctions operation.
 func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *aws.Request, output *ListFunctionsOutput) {
@@ -515,6 +534,21 @@ func (c *Lambda) ListFunctions(input *ListFunctionsInput) (*ListFunctionsOutput,
 	req, out := c.ListFunctionsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *Lambda) ListFunctionsPages(input *ListFunctionsInput) <-chan *ListFunctionsOutput {
+	page, _ := c.ListFunctionsRequest(input)
+	ch := make(chan *ListFunctionsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListFunctionsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListFunctions *aws.Operation

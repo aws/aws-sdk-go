@@ -273,6 +273,21 @@ func (c *ElasticTranscoder) ListJobsByPipeline(input *ListJobsByPipelineInput) (
 	return out, err
 }
 
+func (c *ElasticTranscoder) ListJobsByPipelinePages(input *ListJobsByPipelineInput) <-chan *ListJobsByPipelineOutput {
+	page, _ := c.ListJobsByPipelineRequest(input)
+	ch := make(chan *ListJobsByPipelineOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListJobsByPipelineOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opListJobsByPipeline *aws.Operation
 
 // ListJobsByStatusRequest generates a request for the ListJobsByStatus operation.
@@ -311,6 +326,21 @@ func (c *ElasticTranscoder) ListJobsByStatus(input *ListJobsByStatusInput) (*Lis
 	req, out := c.ListJobsByStatusRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *ElasticTranscoder) ListJobsByStatusPages(input *ListJobsByStatusInput) <-chan *ListJobsByStatusOutput {
+	page, _ := c.ListJobsByStatusRequest(input)
+	ch := make(chan *ListJobsByStatusOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListJobsByStatusOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListJobsByStatus *aws.Operation
@@ -352,6 +382,21 @@ func (c *ElasticTranscoder) ListPipelines(input *ListPipelinesInput) (*ListPipel
 	return out, err
 }
 
+func (c *ElasticTranscoder) ListPipelinesPages(input *ListPipelinesInput) <-chan *ListPipelinesOutput {
+	page, _ := c.ListPipelinesRequest(input)
+	ch := make(chan *ListPipelinesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListPipelinesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opListPipelines *aws.Operation
 
 // ListPresetsRequest generates a request for the ListPresets operation.
@@ -389,6 +434,21 @@ func (c *ElasticTranscoder) ListPresets(input *ListPresetsInput) (*ListPresetsOu
 	req, out := c.ListPresetsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *ElasticTranscoder) ListPresetsPages(input *ListPresetsInput) <-chan *ListPresetsOutput {
+	page, _ := c.ListPresetsRequest(input)
+	ch := make(chan *ListPresetsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListPresetsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListPresets *aws.Operation

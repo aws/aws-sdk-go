@@ -362,9 +362,9 @@ func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
-				LimitToken:      "MaxRecords",
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}
@@ -387,6 +387,21 @@ func (c *ElasticBeanstalk) DescribeApplicationVersions(input *DescribeApplicatio
 	return out, err
 }
 
+func (c *ElasticBeanstalk) DescribeApplicationVersionsPages(input *DescribeApplicationVersionsInput) <-chan *DescribeApplicationVersionsOutput {
+	page, _ := c.DescribeApplicationVersionsRequest(input)
+	ch := make(chan *DescribeApplicationVersionsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeApplicationVersionsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeApplicationVersions *aws.Operation
 
 // DescribeApplicationsRequest generates a request for the DescribeApplications operation.
@@ -400,9 +415,9 @@ func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicatio
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
-				LimitToken:      "MaxRecords",
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}
@@ -425,6 +440,21 @@ func (c *ElasticBeanstalk) DescribeApplications(input *DescribeApplicationsInput
 	return out, err
 }
 
+func (c *ElasticBeanstalk) DescribeApplicationsPages(input *DescribeApplicationsInput) <-chan *DescribeApplicationsOutput {
+	page, _ := c.DescribeApplicationsRequest(input)
+	ch := make(chan *DescribeApplicationsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeApplicationsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeApplications *aws.Operation
 
 // DescribeConfigurationOptionsRequest generates a request for the DescribeConfigurationOptions operation.
@@ -438,9 +468,9 @@ func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeCo
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
-				LimitToken:      "MaxRecords",
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}
@@ -465,6 +495,21 @@ func (c *ElasticBeanstalk) DescribeConfigurationOptions(input *DescribeConfigura
 	req, out := c.DescribeConfigurationOptionsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *ElasticBeanstalk) DescribeConfigurationOptionsPages(input *DescribeConfigurationOptionsInput) <-chan *DescribeConfigurationOptionsOutput {
+	page, _ := c.DescribeConfigurationOptionsRequest(input)
+	ch := make(chan *DescribeConfigurationOptionsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeConfigurationOptionsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeConfigurationOptions *aws.Operation
@@ -556,9 +601,9 @@ func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmen
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
-				LimitToken:      "MaxRecords",
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}
@@ -579,6 +624,21 @@ func (c *ElasticBeanstalk) DescribeEnvironments(input *DescribeEnvironmentsInput
 	req, out := c.DescribeEnvironmentsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *ElasticBeanstalk) DescribeEnvironmentsPages(input *DescribeEnvironmentsInput) <-chan *DescribeEnvironmentsOutput {
+	page, _ := c.DescribeEnvironmentsRequest(input)
+	ch := make(chan *DescribeEnvironmentsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeEnvironmentsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeEnvironments *aws.Operation
@@ -619,6 +679,21 @@ func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsInput) (*Describe
 	return out, err
 }
 
+func (c *ElasticBeanstalk) DescribeEventsPages(input *DescribeEventsInput) <-chan *DescribeEventsOutput {
+	page, _ := c.DescribeEventsRequest(input)
+	ch := make(chan *DescribeEventsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeEventsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeEvents *aws.Operation
 
 // ListAvailableSolutionStacksRequest generates a request for the ListAvailableSolutionStacks operation.
@@ -632,9 +707,9 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailab
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
-				LimitToken:      "MaxRecords",
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}
@@ -655,6 +730,21 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacks(input *ListAvailableSolut
 	req, out := c.ListAvailableSolutionStacksRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *ElasticBeanstalk) ListAvailableSolutionStacksPages(input *ListAvailableSolutionStacksInput) <-chan *ListAvailableSolutionStacksOutput {
+	page, _ := c.ListAvailableSolutionStacksRequest(input)
+	ch := make(chan *ListAvailableSolutionStacksOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListAvailableSolutionStacksOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListAvailableSolutionStacks *aws.Operation

@@ -549,6 +549,21 @@ func (c *AutoScaling) DescribeAutoScalingGroups(input *DescribeAutoScalingGroups
 	return out, err
 }
 
+func (c *AutoScaling) DescribeAutoScalingGroupsPages(input *DescribeAutoScalingGroupsInput) <-chan *DescribeAutoScalingGroupsOutput {
+	page, _ := c.DescribeAutoScalingGroupsRequest(input)
+	ch := make(chan *DescribeAutoScalingGroupsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeAutoScalingGroupsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeAutoScalingGroups *aws.Operation
 
 // DescribeAutoScalingInstancesRequest generates a request for the DescribeAutoScalingInstances operation.
@@ -591,6 +606,21 @@ func (c *AutoScaling) DescribeAutoScalingInstances(input *DescribeAutoScalingIns
 	req, out := c.DescribeAutoScalingInstancesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *AutoScaling) DescribeAutoScalingInstancesPages(input *DescribeAutoScalingInstancesInput) <-chan *DescribeAutoScalingInstancesOutput {
+	page, _ := c.DescribeAutoScalingInstancesRequest(input)
+	ch := make(chan *DescribeAutoScalingInstancesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeAutoScalingInstancesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeAutoScalingInstances *aws.Operation
@@ -666,6 +696,21 @@ func (c *AutoScaling) DescribeLaunchConfigurations(input *DescribeLaunchConfigur
 	req, out := c.DescribeLaunchConfigurationsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *AutoScaling) DescribeLaunchConfigurationsPages(input *DescribeLaunchConfigurationsInput) <-chan *DescribeLaunchConfigurationsOutput {
+	page, _ := c.DescribeLaunchConfigurationsRequest(input)
+	ch := make(chan *DescribeLaunchConfigurationsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeLaunchConfigurationsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeLaunchConfigurations *aws.Operation
@@ -807,6 +852,21 @@ func (c *AutoScaling) DescribeNotificationConfigurations(input *DescribeNotifica
 	return out, err
 }
 
+func (c *AutoScaling) DescribeNotificationConfigurationsPages(input *DescribeNotificationConfigurationsInput) <-chan *DescribeNotificationConfigurationsOutput {
+	page, _ := c.DescribeNotificationConfigurationsRequest(input)
+	ch := make(chan *DescribeNotificationConfigurationsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeNotificationConfigurationsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeNotificationConfigurations *aws.Operation
 
 // DescribePoliciesRequest generates a request for the DescribePolicies operation.
@@ -847,6 +907,21 @@ func (c *AutoScaling) DescribePolicies(input *DescribePoliciesInput) (*DescribeP
 	req, out := c.DescribePoliciesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *AutoScaling) DescribePoliciesPages(input *DescribePoliciesInput) <-chan *DescribePoliciesOutput {
+	page, _ := c.DescribePoliciesRequest(input)
+	ch := make(chan *DescribePoliciesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribePoliciesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribePolicies *aws.Operation
@@ -892,6 +967,21 @@ func (c *AutoScaling) DescribeScalingActivities(input *DescribeScalingActivities
 	req, out := c.DescribeScalingActivitiesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *AutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput) <-chan *DescribeScalingActivitiesOutput {
+	page, _ := c.DescribeScalingActivitiesRequest(input)
+	ch := make(chan *DescribeScalingActivitiesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeScalingActivitiesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeScalingActivities *aws.Operation
@@ -966,6 +1056,21 @@ func (c *AutoScaling) DescribeScheduledActions(input *DescribeScheduledActionsIn
 	return out, err
 }
 
+func (c *AutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActionsInput) <-chan *DescribeScheduledActionsOutput {
+	page, _ := c.DescribeScheduledActionsRequest(input)
+	ch := make(chan *DescribeScheduledActionsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeScheduledActionsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeScheduledActions *aws.Operation
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
@@ -1011,6 +1116,21 @@ func (c *AutoScaling) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutpu
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *AutoScaling) DescribeTagsPages(input *DescribeTagsInput) <-chan *DescribeTagsOutput {
+	page, _ := c.DescribeTagsRequest(input)
+	ch := make(chan *DescribeTagsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeTagsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeTags *aws.Operation

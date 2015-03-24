@@ -543,6 +543,21 @@ func (c *SQS) ListQueues(input *ListQueuesInput) (*ListQueuesOutput, error) {
 	return out, err
 }
 
+func (c *SQS) ListQueuesPages(input *ListQueuesInput) <-chan *ListQueuesOutput {
+	page, _ := c.ListQueuesRequest(input)
+	ch := make(chan *ListQueuesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListQueuesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opListQueues *aws.Operation
 
 // PurgeQueueRequest generates a request for the PurgeQueue operation.

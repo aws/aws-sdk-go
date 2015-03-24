@@ -617,6 +617,21 @@ func (c *SWF) GetWorkflowExecutionHistory(input *GetWorkflowExecutionHistoryInpu
 	return out, err
 }
 
+func (c *SWF) GetWorkflowExecutionHistoryPages(input *GetWorkflowExecutionHistoryInput) <-chan *GetWorkflowExecutionHistoryOutput {
+	page, _ := c.GetWorkflowExecutionHistoryRequest(input)
+	ch := make(chan *GetWorkflowExecutionHistoryOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*GetWorkflowExecutionHistoryOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opGetWorkflowExecutionHistory *aws.Operation
 
 // ListActivityTypesRequest generates a request for the ListActivityTypes operation.
@@ -671,6 +686,21 @@ func (c *SWF) ListActivityTypes(input *ListActivityTypesInput) (*ListActivityTyp
 	req, out := c.ListActivityTypesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *SWF) ListActivityTypesPages(input *ListActivityTypesInput) <-chan *ListActivityTypesOutput {
+	page, _ := c.ListActivityTypesRequest(input)
+	ch := make(chan *ListActivityTypesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListActivityTypesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListActivityTypes *aws.Operation
@@ -732,6 +762,21 @@ func (c *SWF) ListClosedWorkflowExecutions(input *ListClosedWorkflowExecutionsIn
 	return out, err
 }
 
+func (c *SWF) ListClosedWorkflowExecutionsPages(input *ListClosedWorkflowExecutionsInput) <-chan *WorkflowExecutionInfos {
+	page, _ := c.ListClosedWorkflowExecutionsRequest(input)
+	ch := make(chan *WorkflowExecutionInfos)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*WorkflowExecutionInfos)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opListClosedWorkflowExecutions *aws.Operation
 
 // ListDomainsRequest generates a request for the ListDomains operation.
@@ -786,6 +831,21 @@ func (c *SWF) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, error) {
 	req, out := c.ListDomainsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *SWF) ListDomainsPages(input *ListDomainsInput) <-chan *ListDomainsOutput {
+	page, _ := c.ListDomainsRequest(input)
+	ch := make(chan *ListDomainsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListDomainsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListDomains *aws.Operation
@@ -847,6 +907,21 @@ func (c *SWF) ListOpenWorkflowExecutions(input *ListOpenWorkflowExecutionsInput)
 	return out, err
 }
 
+func (c *SWF) ListOpenWorkflowExecutionsPages(input *ListOpenWorkflowExecutionsInput) <-chan *WorkflowExecutionInfos {
+	page, _ := c.ListOpenWorkflowExecutionsRequest(input)
+	ch := make(chan *WorkflowExecutionInfos)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*WorkflowExecutionInfos)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opListOpenWorkflowExecutions *aws.Operation
 
 // ListWorkflowTypesRequest generates a request for the ListWorkflowTypes operation.
@@ -899,6 +974,21 @@ func (c *SWF) ListWorkflowTypes(input *ListWorkflowTypesInput) (*ListWorkflowTyp
 	req, out := c.ListWorkflowTypesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *SWF) ListWorkflowTypesPages(input *ListWorkflowTypesInput) <-chan *ListWorkflowTypesOutput {
+	page, _ := c.ListWorkflowTypesRequest(input)
+	ch := make(chan *ListWorkflowTypesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*ListWorkflowTypesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opListWorkflowTypes *aws.Operation
@@ -1025,6 +1115,21 @@ func (c *SWF) PollForDecisionTask(input *PollForDecisionTaskInput) (*PollForDeci
 	req, out := c.PollForDecisionTaskRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *SWF) PollForDecisionTaskPages(input *PollForDecisionTaskInput) <-chan *PollForDecisionTaskOutput {
+	page, _ := c.PollForDecisionTaskRequest(input)
+	ch := make(chan *PollForDecisionTaskOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*PollForDecisionTaskOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opPollForDecisionTask *aws.Operation

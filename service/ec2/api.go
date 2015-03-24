@@ -2829,6 +2829,21 @@ func (c *EC2) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (
 	return out, err
 }
 
+func (c *EC2) DescribeAccountAttributesPages(input *DescribeAccountAttributesInput) <-chan *DescribeAccountAttributesOutput {
+	page, _ := c.DescribeAccountAttributesRequest(input)
+	ch := make(chan *DescribeAccountAttributesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeAccountAttributesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeAccountAttributes *aws.Operation
 
 // DescribeAddressesRequest generates a request for the DescribeAddresses operation.
@@ -2869,6 +2884,21 @@ func (c *EC2) DescribeAddresses(input *DescribeAddressesInput) (*DescribeAddress
 	req, out := c.DescribeAddressesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeAddressesPages(input *DescribeAddressesInput) <-chan *DescribeAddressesOutput {
+	page, _ := c.DescribeAddressesRequest(input)
+	ch := make(chan *DescribeAddressesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeAddressesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeAddresses *aws.Operation
@@ -2915,6 +2945,21 @@ func (c *EC2) DescribeAvailabilityZones(input *DescribeAvailabilityZonesInput) (
 	return out, err
 }
 
+func (c *EC2) DescribeAvailabilityZonesPages(input *DescribeAvailabilityZonesInput) <-chan *DescribeAvailabilityZonesOutput {
+	page, _ := c.DescribeAvailabilityZonesRequest(input)
+	ch := make(chan *DescribeAvailabilityZonesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeAvailabilityZonesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeAvailabilityZones *aws.Operation
 
 // DescribeBundleTasksRequest generates a request for the DescribeBundleTasks operation.
@@ -2956,6 +3001,21 @@ func (c *EC2) DescribeBundleTasks(input *DescribeBundleTasksInput) (*DescribeBun
 	req, out := c.DescribeBundleTasksRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeBundleTasksPages(input *DescribeBundleTasksInput) <-chan *DescribeBundleTasksOutput {
+	page, _ := c.DescribeBundleTasksRequest(input)
+	ch := make(chan *DescribeBundleTasksOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeBundleTasksOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeBundleTasks *aws.Operation
@@ -3034,6 +3094,21 @@ func (c *EC2) DescribeConversionTasks(input *DescribeConversionTasksInput) (*Des
 	return out, err
 }
 
+func (c *EC2) DescribeConversionTasksPages(input *DescribeConversionTasksInput) <-chan *DescribeConversionTasksOutput {
+	page, _ := c.DescribeConversionTasksRequest(input)
+	ch := make(chan *DescribeConversionTasksOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeConversionTasksOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeConversionTasks *aws.Operation
 
 // DescribeCustomerGatewaysRequest generates a request for the DescribeCustomerGateways operation.
@@ -3074,6 +3149,21 @@ func (c *EC2) DescribeCustomerGateways(input *DescribeCustomerGatewaysInput) (*D
 	req, out := c.DescribeCustomerGatewaysRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeCustomerGatewaysPages(input *DescribeCustomerGatewaysInput) <-chan *DescribeCustomerGatewaysOutput {
+	page, _ := c.DescribeCustomerGatewaysRequest(input)
+	ch := make(chan *DescribeCustomerGatewaysOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeCustomerGatewaysOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeCustomerGateways *aws.Operation
@@ -3117,6 +3207,21 @@ func (c *EC2) DescribeDHCPOptions(input *DescribeDHCPOptionsInput) (*DescribeDHC
 	return out, err
 }
 
+func (c *EC2) DescribeDHCPOptionsPages(input *DescribeDHCPOptionsInput) <-chan *DescribeDHCPOptionsOutput {
+	page, _ := c.DescribeDHCPOptionsRequest(input)
+	ch := make(chan *DescribeDHCPOptionsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeDHCPOptionsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeDHCPOptions *aws.Operation
 
 // DescribeExportTasksRequest generates a request for the DescribeExportTasks operation.
@@ -3153,6 +3258,21 @@ func (c *EC2) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExp
 	req, out := c.DescribeExportTasksRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeExportTasksPages(input *DescribeExportTasksInput) <-chan *DescribeExportTasksOutput {
+	page, _ := c.DescribeExportTasksRequest(input)
+	ch := make(chan *DescribeExportTasksOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeExportTasksOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeExportTasks *aws.Operation
@@ -3230,6 +3350,21 @@ func (c *EC2) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput,
 	req, out := c.DescribeImagesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeImagesPages(input *DescribeImagesInput) <-chan *DescribeImagesOutput {
+	page, _ := c.DescribeImagesRequest(input)
+	ch := make(chan *DescribeImagesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeImagesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeImages *aws.Operation
@@ -3346,9 +3481,9 @@ func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},
 		}
@@ -3429,6 +3564,21 @@ func (c *EC2) DescribeInstanceStatus(input *DescribeInstanceStatusInput) (*Descr
 	return out, err
 }
 
+func (c *EC2) DescribeInstanceStatusPages(input *DescribeInstanceStatusInput) <-chan *DescribeInstanceStatusOutput {
+	page, _ := c.DescribeInstanceStatusRequest(input)
+	ch := make(chan *DescribeInstanceStatusOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeInstanceStatusOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeInstanceStatus *aws.Operation
 
 // DescribeInstancesRequest generates a request for the DescribeInstances operation.
@@ -3442,9 +3592,9 @@ func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},
 		}
@@ -3474,6 +3624,21 @@ func (c *EC2) DescribeInstances(input *DescribeInstancesInput) (*DescribeInstanc
 	req, out := c.DescribeInstancesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeInstancesPages(input *DescribeInstancesInput) <-chan *DescribeInstancesOutput {
+	page, _ := c.DescribeInstancesRequest(input)
+	ch := make(chan *DescribeInstancesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeInstancesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeInstances *aws.Operation
@@ -3512,6 +3677,21 @@ func (c *EC2) DescribeInternetGateways(input *DescribeInternetGatewaysInput) (*D
 	req, out := c.DescribeInternetGatewaysRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeInternetGatewaysPages(input *DescribeInternetGatewaysInput) <-chan *DescribeInternetGatewaysOutput {
+	page, _ := c.DescribeInternetGatewaysRequest(input)
+	ch := make(chan *DescribeInternetGatewaysOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeInternetGatewaysOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeInternetGateways *aws.Operation
@@ -3555,6 +3735,21 @@ func (c *EC2) DescribeKeyPairs(input *DescribeKeyPairsInput) (*DescribeKeyPairsO
 	return out, err
 }
 
+func (c *EC2) DescribeKeyPairsPages(input *DescribeKeyPairsInput) <-chan *DescribeKeyPairsOutput {
+	page, _ := c.DescribeKeyPairsRequest(input)
+	ch := make(chan *DescribeKeyPairsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeKeyPairsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeKeyPairs *aws.Operation
 
 // DescribeNetworkACLsRequest generates a request for the DescribeNetworkACLs operation.
@@ -3594,6 +3789,21 @@ func (c *EC2) DescribeNetworkACLs(input *DescribeNetworkACLsInput) (*DescribeNet
 	req, out := c.DescribeNetworkACLsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeNetworkACLsPages(input *DescribeNetworkACLsInput) <-chan *DescribeNetworkACLsOutput {
+	page, _ := c.DescribeNetworkACLsRequest(input)
+	ch := make(chan *DescribeNetworkACLsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeNetworkACLsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeNetworkACLs *aws.Operation
@@ -3667,6 +3877,21 @@ func (c *EC2) DescribeNetworkInterfaces(input *DescribeNetworkInterfacesInput) (
 	return out, err
 }
 
+func (c *EC2) DescribeNetworkInterfacesPages(input *DescribeNetworkInterfacesInput) <-chan *DescribeNetworkInterfacesOutput {
+	page, _ := c.DescribeNetworkInterfacesRequest(input)
+	ch := make(chan *DescribeNetworkInterfacesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeNetworkInterfacesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeNetworkInterfaces *aws.Operation
 
 // DescribePlacementGroupsRequest generates a request for the DescribePlacementGroups operation.
@@ -3705,6 +3930,21 @@ func (c *EC2) DescribePlacementGroups(input *DescribePlacementGroupsInput) (*Des
 	req, out := c.DescribePlacementGroupsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribePlacementGroupsPages(input *DescribePlacementGroupsInput) <-chan *DescribePlacementGroupsOutput {
+	page, _ := c.DescribePlacementGroupsRequest(input)
+	ch := make(chan *DescribePlacementGroupsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribePlacementGroupsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribePlacementGroups *aws.Operation
@@ -3748,6 +3988,21 @@ func (c *EC2) DescribeRegions(input *DescribeRegionsInput) (*DescribeRegionsOutp
 	return out, err
 }
 
+func (c *EC2) DescribeRegionsPages(input *DescribeRegionsInput) <-chan *DescribeRegionsOutput {
+	page, _ := c.DescribeRegionsRequest(input)
+	ch := make(chan *DescribeRegionsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeRegionsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeRegions *aws.Operation
 
 // DescribeReservedInstancesRequest generates a request for the DescribeReservedInstances operation.
@@ -3787,6 +4042,21 @@ func (c *EC2) DescribeReservedInstances(input *DescribeReservedInstancesInput) (
 	req, out := c.DescribeReservedInstancesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeReservedInstancesPages(input *DescribeReservedInstancesInput) <-chan *DescribeReservedInstancesOutput {
+	page, _ := c.DescribeReservedInstancesRequest(input)
+	ch := make(chan *DescribeReservedInstancesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeReservedInstancesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeReservedInstances *aws.Operation
@@ -3848,6 +4118,21 @@ func (c *EC2) DescribeReservedInstancesListings(input *DescribeReservedInstances
 	return out, err
 }
 
+func (c *EC2) DescribeReservedInstancesListingsPages(input *DescribeReservedInstancesListingsInput) <-chan *DescribeReservedInstancesListingsOutput {
+	page, _ := c.DescribeReservedInstancesListingsRequest(input)
+	ch := make(chan *DescribeReservedInstancesListingsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeReservedInstancesListingsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeReservedInstancesListings *aws.Operation
 
 // DescribeReservedInstancesModificationsRequest generates a request for the DescribeReservedInstancesModifications operation.
@@ -3899,9 +4184,9 @@ func (c *EC2) DescribeReservedInstancesOfferingsRequest(input *DescribeReservedI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},
 		}
@@ -3929,6 +4214,21 @@ func (c *EC2) DescribeReservedInstancesOfferings(input *DescribeReservedInstance
 	req, out := c.DescribeReservedInstancesOfferingsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeReservedInstancesOfferingsPages(input *DescribeReservedInstancesOfferingsInput) <-chan *DescribeReservedInstancesOfferingsOutput {
+	page, _ := c.DescribeReservedInstancesOfferingsRequest(input)
+	ch := make(chan *DescribeReservedInstancesOfferingsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeReservedInstancesOfferingsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeReservedInstancesOfferings *aws.Operation
@@ -3970,6 +4270,21 @@ func (c *EC2) DescribeRouteTables(input *DescribeRouteTablesInput) (*DescribeRou
 	req, out := c.DescribeRouteTablesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeRouteTablesPages(input *DescribeRouteTablesInput) <-chan *DescribeRouteTablesOutput {
+	page, _ := c.DescribeRouteTablesRequest(input)
+	ch := make(chan *DescribeRouteTablesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeRouteTablesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeRouteTables *aws.Operation
@@ -4015,6 +4330,21 @@ func (c *EC2) DescribeSecurityGroups(input *DescribeSecurityGroupsInput) (*Descr
 	req, out := c.DescribeSecurityGroupsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeSecurityGroupsPages(input *DescribeSecurityGroupsInput) <-chan *DescribeSecurityGroupsOutput {
+	page, _ := c.DescribeSecurityGroupsRequest(input)
+	ch := make(chan *DescribeSecurityGroupsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeSecurityGroupsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeSecurityGroups *aws.Operation
@@ -4130,6 +4460,21 @@ func (c *EC2) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapsho
 	return out, err
 }
 
+func (c *EC2) DescribeSnapshotsPages(input *DescribeSnapshotsInput) <-chan *DescribeSnapshotsOutput {
+	page, _ := c.DescribeSnapshotsRequest(input)
+	ch := make(chan *DescribeSnapshotsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeSnapshotsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeSnapshots *aws.Operation
 
 // DescribeSpotDatafeedSubscriptionRequest generates a request for the DescribeSpotDatafeedSubscription operation.
@@ -4213,6 +4558,21 @@ func (c *EC2) DescribeSpotInstanceRequests(input *DescribeSpotInstanceRequestsIn
 	return out, err
 }
 
+func (c *EC2) DescribeSpotInstanceRequestsPages(input *DescribeSpotInstanceRequestsInput) <-chan *DescribeSpotInstanceRequestsOutput {
+	page, _ := c.DescribeSpotInstanceRequestsRequest(input)
+	ch := make(chan *DescribeSpotInstanceRequestsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeSpotInstanceRequestsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeSpotInstanceRequests *aws.Operation
 
 // DescribeSpotPriceHistoryRequest generates a request for the DescribeSpotPriceHistory operation.
@@ -4226,9 +4586,9 @@ func (c *EC2) DescribeSpotPriceHistoryRequest(input *DescribeSpotPriceHistoryInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},
 		}
@@ -4257,6 +4617,21 @@ func (c *EC2) DescribeSpotPriceHistory(input *DescribeSpotPriceHistoryInput) (*D
 	req, out := c.DescribeSpotPriceHistoryRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeSpotPriceHistoryPages(input *DescribeSpotPriceHistoryInput) <-chan *DescribeSpotPriceHistoryOutput {
+	page, _ := c.DescribeSpotPriceHistoryRequest(input)
+	ch := make(chan *DescribeSpotPriceHistoryOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeSpotPriceHistoryOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeSpotPriceHistory *aws.Operation
@@ -4300,6 +4675,21 @@ func (c *EC2) DescribeSubnets(input *DescribeSubnetsInput) (*DescribeSubnetsOutp
 	return out, err
 }
 
+func (c *EC2) DescribeSubnetsPages(input *DescribeSubnetsInput) <-chan *DescribeSubnetsOutput {
+	page, _ := c.DescribeSubnetsRequest(input)
+	ch := make(chan *DescribeSubnetsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeSubnetsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeSubnets *aws.Operation
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
@@ -4339,6 +4729,21 @@ func (c *EC2) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeTagsPages(input *DescribeTagsInput) <-chan *DescribeTagsOutput {
+	page, _ := c.DescribeTagsRequest(input)
+	ch := make(chan *DescribeTagsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeTagsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeTags *aws.Operation
@@ -4476,6 +4881,21 @@ func (c *EC2) DescribeVPCs(input *DescribeVPCsInput) (*DescribeVPCsOutput, error
 	return out, err
 }
 
+func (c *EC2) DescribeVPCsPages(input *DescribeVPCsInput) <-chan *DescribeVPCsOutput {
+	page, _ := c.DescribeVPCsRequest(input)
+	ch := make(chan *DescribeVPCsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeVPCsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeVPCs *aws.Operation
 
 // DescribeVPNConnectionsRequest generates a request for the DescribeVPNConnections operation.
@@ -4518,6 +4938,21 @@ func (c *EC2) DescribeVPNConnections(input *DescribeVPNConnectionsInput) (*Descr
 	return out, err
 }
 
+func (c *EC2) DescribeVPNConnectionsPages(input *DescribeVPNConnectionsInput) <-chan *DescribeVPNConnectionsOutput {
+	page, _ := c.DescribeVPNConnectionsRequest(input)
+	ch := make(chan *DescribeVPNConnectionsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeVPNConnectionsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeVPNConnections *aws.Operation
 
 // DescribeVPNGatewaysRequest generates a request for the DescribeVPNGateways operation.
@@ -4558,6 +4993,21 @@ func (c *EC2) DescribeVPNGateways(input *DescribeVPNGatewaysInput) (*DescribeVPN
 	req, out := c.DescribeVPNGatewaysRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeVPNGatewaysPages(input *DescribeVPNGatewaysInput) <-chan *DescribeVPNGatewaysOutput {
+	page, _ := c.DescribeVPNGatewaysRequest(input)
+	ch := make(chan *DescribeVPNGatewaysOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeVPNGatewaysOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeVPNGateways *aws.Operation
@@ -4609,9 +5059,9 @@ func (c *EC2) DescribeVolumeStatusRequest(input *DescribeVolumeStatusInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},
 		}
@@ -4668,6 +5118,21 @@ func (c *EC2) DescribeVolumeStatus(input *DescribeVolumeStatusInput) (*DescribeV
 	return out, err
 }
 
+func (c *EC2) DescribeVolumeStatusPages(input *DescribeVolumeStatusInput) <-chan *DescribeVolumeStatusOutput {
+	page, _ := c.DescribeVolumeStatusRequest(input)
+	ch := make(chan *DescribeVolumeStatusOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeVolumeStatusOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeVolumeStatus *aws.Operation
 
 // DescribeVolumesRequest generates a request for the DescribeVolumes operation.
@@ -4681,9 +5146,9 @@ func (c *EC2) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
+				InputToken:      "NextToken",
+				OutputToken:     "NextToken",
+				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},
 		}
@@ -4714,6 +5179,21 @@ func (c *EC2) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolumesOutp
 	req, out := c.DescribeVolumesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EC2) DescribeVolumesPages(input *DescribeVolumesInput) <-chan *DescribeVolumesOutput {
+	page, _ := c.DescribeVolumesRequest(input)
+	ch := make(chan *DescribeVolumesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeVolumesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeVolumes *aws.Operation

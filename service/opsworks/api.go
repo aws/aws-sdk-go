@@ -823,6 +823,21 @@ func (c *OpsWorks) DescribeApps(input *DescribeAppsInput) (*DescribeAppsOutput, 
 	return out, err
 }
 
+func (c *OpsWorks) DescribeAppsPages(input *DescribeAppsInput) <-chan *DescribeAppsOutput {
+	page, _ := c.DescribeAppsRequest(input)
+	ch := make(chan *DescribeAppsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeAppsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeApps *aws.Operation
 
 // DescribeCommandsRequest generates a request for the DescribeCommands operation.
@@ -866,6 +881,21 @@ func (c *OpsWorks) DescribeCommands(input *DescribeCommandsInput) (*DescribeComm
 	req, out := c.DescribeCommandsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *OpsWorks) DescribeCommandsPages(input *DescribeCommandsInput) <-chan *DescribeCommandsOutput {
+	page, _ := c.DescribeCommandsRequest(input)
+	ch := make(chan *DescribeCommandsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeCommandsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeCommands *aws.Operation
@@ -913,6 +943,21 @@ func (c *OpsWorks) DescribeDeployments(input *DescribeDeploymentsInput) (*Descri
 	return out, err
 }
 
+func (c *OpsWorks) DescribeDeploymentsPages(input *DescribeDeploymentsInput) <-chan *DescribeDeploymentsOutput {
+	page, _ := c.DescribeDeploymentsRequest(input)
+	ch := make(chan *DescribeDeploymentsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeDeploymentsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeDeployments *aws.Operation
 
 // DescribeElasticIPsRequest generates a request for the DescribeElasticIPs operation.
@@ -956,6 +1001,21 @@ func (c *OpsWorks) DescribeElasticIPs(input *DescribeElasticIPsInput) (*Describe
 	req, out := c.DescribeElasticIPsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *OpsWorks) DescribeElasticIPsPages(input *DescribeElasticIPsInput) <-chan *DescribeElasticIPsOutput {
+	page, _ := c.DescribeElasticIPsRequest(input)
+	ch := make(chan *DescribeElasticIPsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeElasticIPsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeElasticIPs *aws.Operation
@@ -1003,6 +1063,21 @@ func (c *OpsWorks) DescribeElasticLoadBalancers(input *DescribeElasticLoadBalanc
 	return out, err
 }
 
+func (c *OpsWorks) DescribeElasticLoadBalancersPages(input *DescribeElasticLoadBalancersInput) <-chan *DescribeElasticLoadBalancersOutput {
+	page, _ := c.DescribeElasticLoadBalancersRequest(input)
+	ch := make(chan *DescribeElasticLoadBalancersOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeElasticLoadBalancersOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeElasticLoadBalancers *aws.Operation
 
 // DescribeInstancesRequest generates a request for the DescribeInstances operation.
@@ -1046,6 +1121,21 @@ func (c *OpsWorks) DescribeInstances(input *DescribeInstancesInput) (*DescribeIn
 	req, out := c.DescribeInstancesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *OpsWorks) DescribeInstancesPages(input *DescribeInstancesInput) <-chan *DescribeInstancesOutput {
+	page, _ := c.DescribeInstancesRequest(input)
+	ch := make(chan *DescribeInstancesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeInstancesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeInstances *aws.Operation
@@ -1093,6 +1183,21 @@ func (c *OpsWorks) DescribeLayers(input *DescribeLayersInput) (*DescribeLayersOu
 	return out, err
 }
 
+func (c *OpsWorks) DescribeLayersPages(input *DescribeLayersInput) <-chan *DescribeLayersOutput {
+	page, _ := c.DescribeLayersRequest(input)
+	ch := make(chan *DescribeLayersOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeLayersOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeLayers *aws.Operation
 
 // DescribeLoadBasedAutoScalingRequest generates a request for the DescribeLoadBasedAutoScaling operation.
@@ -1136,6 +1241,21 @@ func (c *OpsWorks) DescribeLoadBasedAutoScaling(input *DescribeLoadBasedAutoScal
 	req, out := c.DescribeLoadBasedAutoScalingRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *OpsWorks) DescribeLoadBasedAutoScalingPages(input *DescribeLoadBasedAutoScalingInput) <-chan *DescribeLoadBasedAutoScalingOutput {
+	page, _ := c.DescribeLoadBasedAutoScalingRequest(input)
+	ch := make(chan *DescribeLoadBasedAutoScalingOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeLoadBasedAutoScalingOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeLoadBasedAutoScaling *aws.Operation
@@ -1217,6 +1337,21 @@ func (c *OpsWorks) DescribePermissions(input *DescribePermissionsInput) (*Descri
 	return out, err
 }
 
+func (c *OpsWorks) DescribePermissionsPages(input *DescribePermissionsInput) <-chan *DescribePermissionsOutput {
+	page, _ := c.DescribePermissionsRequest(input)
+	ch := make(chan *DescribePermissionsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribePermissionsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribePermissions *aws.Operation
 
 // DescribeRAIDArraysRequest generates a request for the DescribeRAIDArrays operation.
@@ -1260,6 +1395,21 @@ func (c *OpsWorks) DescribeRAIDArrays(input *DescribeRAIDArraysInput) (*Describe
 	req, out := c.DescribeRAIDArraysRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *OpsWorks) DescribeRAIDArraysPages(input *DescribeRAIDArraysInput) <-chan *DescribeRAIDArraysOutput {
+	page, _ := c.DescribeRAIDArraysRequest(input)
+	ch := make(chan *DescribeRAIDArraysOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeRAIDArraysOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeRAIDArrays *aws.Operation
@@ -1340,6 +1490,21 @@ func (c *OpsWorks) DescribeServiceErrors(input *DescribeServiceErrorsInput) (*De
 	req, out := c.DescribeServiceErrorsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *OpsWorks) DescribeServiceErrorsPages(input *DescribeServiceErrorsInput) <-chan *DescribeServiceErrorsOutput {
+	page, _ := c.DescribeServiceErrorsRequest(input)
+	ch := make(chan *DescribeServiceErrorsOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeServiceErrorsOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeServiceErrors *aws.Operation
@@ -1460,6 +1625,21 @@ func (c *OpsWorks) DescribeStacks(input *DescribeStacksInput) (*DescribeStacksOu
 	return out, err
 }
 
+func (c *OpsWorks) DescribeStacksPages(input *DescribeStacksInput) <-chan *DescribeStacksOutput {
+	page, _ := c.DescribeStacksRequest(input)
+	ch := make(chan *DescribeStacksOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeStacksOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeStacks *aws.Operation
 
 // DescribeTimeBasedAutoScalingRequest generates a request for the DescribeTimeBasedAutoScaling operation.
@@ -1505,6 +1685,21 @@ func (c *OpsWorks) DescribeTimeBasedAutoScaling(input *DescribeTimeBasedAutoScal
 	return out, err
 }
 
+func (c *OpsWorks) DescribeTimeBasedAutoScalingPages(input *DescribeTimeBasedAutoScalingInput) <-chan *DescribeTimeBasedAutoScalingOutput {
+	page, _ := c.DescribeTimeBasedAutoScalingRequest(input)
+	ch := make(chan *DescribeTimeBasedAutoScalingOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeTimeBasedAutoScalingOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
+}
+
 var opDescribeTimeBasedAutoScaling *aws.Operation
 
 // DescribeUserProfilesRequest generates a request for the DescribeUserProfiles operation.
@@ -1545,6 +1740,21 @@ func (c *OpsWorks) DescribeUserProfiles(input *DescribeUserProfilesInput) (*Desc
 	req, out := c.DescribeUserProfilesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *OpsWorks) DescribeUserProfilesPages(input *DescribeUserProfilesInput) <-chan *DescribeUserProfilesOutput {
+	page, _ := c.DescribeUserProfilesRequest(input)
+	ch := make(chan *DescribeUserProfilesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeUserProfilesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeUserProfiles *aws.Operation
@@ -1590,6 +1800,21 @@ func (c *OpsWorks) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolume
 	req, out := c.DescribeVolumesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *OpsWorks) DescribeVolumesPages(input *DescribeVolumesInput) <-chan *DescribeVolumesOutput {
+	page, _ := c.DescribeVolumesRequest(input)
+	ch := make(chan *DescribeVolumesOutput)
+	go func() {
+		for page != nil {
+			page.Send()
+			out := page.Data.(*DescribeVolumesOutput)
+			ch <- out
+			page = page.NextPage()
+		}
+		close(ch)
+	}()
+	return ch
 }
 
 var opDescribeVolumes *aws.Operation
