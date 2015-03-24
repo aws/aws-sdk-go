@@ -84,14 +84,14 @@ func (r *referenceResolver) resolveShape(shape *Shape) {
 
 func (a *API) renameToplevelShapes() {
 	for _, v := range a.Operations {
-		if v.HasInput() {
+		if v.HasInput() && !a.NoInflections {
 			name := v.ExportedName + "Input"
 			switch n := len(v.InputRef.Shape.refs); {
 			case n == 1:
 				v.InputRef.Shape.Rename(name)
 			}
 		}
-		if v.HasOutput() {
+		if v.HasOutput() && !a.NoInflections {
 			name := v.ExportedName + "Output"
 			switch n := len(v.OutputRef.Shape.refs); {
 			case n == 1:
