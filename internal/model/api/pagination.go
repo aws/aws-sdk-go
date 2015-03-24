@@ -36,9 +36,10 @@ func (a *API) AttachPaginators(filename string) {
 
 func (p *paginationDefinitions) setup() {
 	for n, e := range p.Pagination {
+		paginator := e
 		n = p.ExportableName(n)
 		if o, ok := p.Operations[n]; ok {
-			o.Paginator = &e
+			o.Paginator = &paginator
 		} else {
 			panic("unknown operation for paginator " + n)
 		}
