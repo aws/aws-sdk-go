@@ -2479,7 +2479,7 @@ type GetObjectOutput struct {
 	AcceptRanges *string `location:"header" locationName:"accept-ranges" type:"string"`
 
 	// Object data.
-	Body io.ReadSeeker `type:"blob"`
+	Body io.ReadCloser `type:"blob"`
 
 	// Specifies caching behavior along the request/reply chain.
 	CacheControl *string `location:"header" locationName:"Cache-Control" type:"string"`
@@ -2580,7 +2580,7 @@ type metadataGetObjectTorrentInput struct {
 }
 
 type GetObjectTorrentOutput struct {
-	Body io.ReadSeeker `type:"blob"`
+	Body io.ReadCloser `type:"blob"`
 
 	metadataGetObjectTorrentOutput `json:"-", xml:"-"`
 }

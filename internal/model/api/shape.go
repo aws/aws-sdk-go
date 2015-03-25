@@ -214,8 +214,13 @@ func (s *Shape) GoCode() string {
 			m := s.MemberRefs[n]
 			code += m.Docstring()
 			if (m.Streaming || s.Streaming) && s.Payload == n {
+				rtype := "io.ReadSeeker"
+				if strings.HasSuffix(s.ShapeName, "Output") {
+					rtype = "io.ReadCloser"
+				}
+
 				s.API.imports["io"] = true
-				code += n + " io.ReadSeeker " + m.GoTags(false, s.IsRequired(n)) + "\n\n"
+				code += n + " " + rtype + " " + m.GoTags(false, s.IsRequired(n)) + "\n\n"
 			} else {
 				code += n + " " + m.GoType() + " " + m.GoTags(false, s.IsRequired(n)) + "\n\n"
 			}
