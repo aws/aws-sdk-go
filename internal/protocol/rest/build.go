@@ -16,7 +16,7 @@ import (
 )
 
 // RFC822 returns an RFC822 formatted timestamp for AWS protocols
-const RFC822 = "Mon, 2 Jan 2006 03:04:05 GMT"
+const RFC822 = "Mon, 2 Jan 2006 15:04:05 GMT"
 
 func Build(r *aws.Request) {
 	if r.ParamsFilled() {

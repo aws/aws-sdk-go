@@ -120,7 +120,7 @@ func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string) err
 }
 
 func unmarshalHeader(v reflect.Value, header string) error {
-	if !v.IsValid() {
+	if !v.IsValid() || (header == "" && v.Elem().Kind() != reflect.String) {
 		return nil
 	}
 
